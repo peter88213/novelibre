@@ -330,12 +330,14 @@ class NvController:
             return newNode
 
     def check_lock(self):
-        """Show a message and return True, if the project is locked."""
+        """If the project is locked, unlock it on demand.
+
+        Return True, if the project remains locked, otherwise return False.
+        """
         if self.isLocked:
             if self._ui.ask_yes_no(_('The project is locked.\nUnlock?'), title=_('Can not do')):
                 self.unlock()
                 return False
-
             else:
                 return True
         else:
@@ -525,10 +527,10 @@ class NvController:
             scId0: str -- ID of the section to be extended
             scId1: str -- ID of the section to be discarded.
             
-        If not both arguments are given, determine them from the tree _view selection.
+        If not both arguments are given, determine them from the tree selection.
         """
         if self.check_lock():
-            return False
+            return
 
         if scId0 is None or scId1 is None:
             try:
@@ -553,12 +555,15 @@ class NvController:
         self._view_new_element(scId0)
 
     def lock(self, event=None):
-        """Lock the project."""
+        """Lock the project.
+        
+        Return True on success, otherwise return False.
+        """
         if self._mdl.isModified and not self._internalLockFlag:
             if self._ui.ask_yes_no(_('Save and lock?')):
                 self.save_project()
             else:
-                return
+                return False
 
         if self._mdl.prjFile.filePath is not None:
             self._internalLockFlag = True
@@ -566,8 +571,8 @@ class NvController:
             self._mdl.prjFile.lock()
             # make it persistent
             return True
-
-        return False
+        else:
+            return False
 
     def manage_plugins(self, event=None):
         """Open a toplevel window to manage the plugins."""
@@ -602,7 +607,6 @@ class NvController:
         self.show_status()
         # setting the status bar
         self._ui.tv.go_to_node(CH_ROOT)
-
         return 'break'
 
     def on_quit(self, event=None):
@@ -651,8 +655,8 @@ class NvController:
             filePath: str -- The new project's file name.
         
         If no file name is given, a file picker is opened.
-        - Display project title, description and status.
-        - Return True on success, otherwise return False.
+        Display project title, description and status.
+        Return True on success, otherwise return False.
         """
         self._ui.restore_status()
         filePath = self.select_project(filePath)
