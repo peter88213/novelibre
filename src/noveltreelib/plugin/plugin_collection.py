@@ -30,8 +30,9 @@ class PluginCollection(dict):
         """Get a reference to the calling controller instance.
         
         Positional arguments:
-            controller -- reference to the main controller instance of the application.
+            model -- reference to the main model instance of the application.
             view -- reference to the main view instance of the application.
+            controller -- reference to the main controller instance of the application.
             
         Extends the superclass constructor.
         """
