@@ -1,0 +1,1104 @@
+# noveltree Dictionary (English-German)
+# Copyright (C) 2022 Peter Triesberger
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"POT-Creation-Date: 2024-01-08 17:56:27\n"
+"PO-Revision-Date: 2024-01-08 17:56:27\n"
+"Last-Translator: Peter Triesberger\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+
+msgid "1st Edit"
+msgstr "1. Überarbeitung"
+
+msgid "1st Level"
+msgstr "Erste Ebene"
+
+msgid "2nd Edit"
+msgstr "2. Überarbeitung"
+
+msgid "2nd Level"
+msgstr "Zweite Ebene"
+
+msgid "A"
+msgstr "A"
+
+msgid "A/R"
+msgstr "A/R"
+
+msgid "AKA"
+msgstr "alias"
+
+msgid "Action"
+msgstr "Aktion"
+
+msgid "Action canceled by user"
+msgstr "Vorgang vom Benutzer abgebrochen"
+
+msgid "Action/Reaction"
+msgstr "Aktion/Reaktion"
+
+msgid "Add"
+msgstr "Hinzufügen"
+
+msgid "Add Arc"
+msgstr "Bogen hinzufügen"
+
+msgid "Add Chapter"
+msgstr "Kapitel hinzufügen"
+
+msgid "Add Part"
+msgstr "Teil hinzufügen"
+
+msgid "Add Project note"
+msgstr "Projektnotiz hinizufügen"
+
+msgid "Add Section"
+msgstr "Abschnitt hinzufügen"
+
+msgid "Add Turning point"
+msgstr "Wendepunkt hinzufügen"
+
+msgid "All"
+msgstr "Alle"
+
+msgid "All files"
+msgstr "Alle Dateien"
+
+msgid "Append to previous section"
+msgstr "An den vorherigen Abschnitt anhängen"
+
+msgid "Apply"
+msgstr "Anwenden"
+
+msgid "Arc"
+msgstr "Bogen"
+
+msgid "Arcs"
+msgstr "Bögen"
+
+msgid "Assign section"
+msgstr "Abschnitt zuordnen"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Auto number chapters when refreshing the tree"
+msgstr "Kapitel automatisch nummerieren"
+
+msgid "Auto number parts when refreshing the tree"
+msgstr "Teile automatisch nummerieren"
+
+msgid "Auto numbering"
+msgstr "Automatische Nummerierung"
+
+msgid "Bio"
+msgstr "Biographie"
+
+msgid "Birth date"
+msgstr "Geburtsdatum"
+
+msgid "Book"
+msgstr "Buch"
+
+msgid "Brief synopsis"
+msgstr "Kurzzusammenfassung"
+
+msgid "Brief synopsis (export only)"
+msgstr "Kurzzusammenfassung (nur Export)"
+
+msgid "C"
+msgstr "B"
+
+msgid "Can not do"
+msgstr "Geht nicht"
+
+msgid "Cannot create directory"
+msgstr "Kann Verzeichnis nicht erzeugen"
+
+msgid "Cannot create file"
+msgstr "Kann Datei nicht erzeugen"
+
+msgid "Cannot generate date/time"
+msgstr "Kann Datum/Zeit nicht erzeugen"
+
+msgid "Cannot join sections"
+msgstr "Kann Abschnitte nicht zusammenfassen"
+
+msgid "Cannot open link"
+msgstr "Kann Link nicht öffnen"
+
+msgid "Cannot overwrite file"
+msgstr "Kann Datei nicht überschreiben"
+
+msgid "Cannot read file"
+msgstr "Kann Datei nicht lesen"
+
+msgid "Cannot save: The project is locked"
+msgstr "Speichern nicht möglich: Das Projekt ist gesperrt"
+
+msgid "Cannot write file"
+msgstr "Kann Datei nicht schreiben"
+
+msgid "Change Level"
+msgstr "Ebene ändern"
+
+msgid "Chapter"
+msgstr "Kapitel"
+
+msgid "Chapter descriptions"
+msgstr "Kapitelbeschreibungen"
+
+msgid "Chapter level"
+msgstr "Kapitelebene anzeigen"
+
+msgid "Chapter number prefix"
+msgstr "Präfix Kapitelnummer"
+
+msgid "Chapter number suffix"
+msgstr "Suffix Kapitelnummer"
+
+msgid "Character"
+msgstr "Figur"
+
+msgid "Character descriptions"
+msgstr "Figurenbeschreibungen"
+
+msgid "Character list"
+msgstr "Figurenliste"
+
+msgid "Characters"
+msgstr "Figuren"
+
+msgid "Characters/locations/items data files"
+msgstr "Figuren/Schauplätze/Gegenstände-Datendateien"
+
+msgid "Choice"
+msgstr "Wahl"
+
+msgid "Clear assignment"
+msgstr "Zuordnung löschen"
+
+msgid "Clear date/time"
+msgstr "Datum/Zeit löschen"
+
+msgid "Clear date/time from this section?"
+msgstr "Datum/Zeit dieses Abschnitts löschen?"
+
+msgid "Clear duration"
+msgstr "Dauer löschen"
+
+msgid "Clear duration from this section?"
+msgstr "Dauer dieses Abschnitts löschen?"
+
+msgid "Clear section assignments"
+msgstr "Abschnittszuordnungen löschen"
+
+msgid "Close"
+msgstr "Schließen"
+
+msgid "Collapse"
+msgstr "Einklappen"
+
+msgid "Collapse all"
+msgstr "Alle einklappen"
+
+msgid "Collapse selected"
+msgstr "Ausgewählte einklappen"
+
+msgid "Coloring mode"
+msgstr "Farbgebungsmodus"
+
+msgid "Columns"
+msgstr "Spalten"
+
+msgid "Conflict"
+msgstr "Konflikt"
+
+msgid "Convert all section dates to days relative to the reference date?"
+msgstr "Alle Abschnitts-Datumsangaben in Tage relativ zum Bezugsdatum umwandeln?"
+
+msgid "Convert all section days to dates using the reference date?"
+msgstr "Alle Abschnitts-Tage mit Hilfe des Bezugsdatums in Datumsangaben umwandeln?"
+
+msgid "Convert date/day"
+msgstr "Datum/Tag umwandeln"
+
+msgid "Convert dates to days"
+msgstr "Datum in Tage umwandeln"
+
+msgid "Convert days to dates"
+msgstr "Tage in Datum umwandeln"
+
+msgid "Corrupt marker"
+msgstr "Beschädigte Markierung"
+
+msgid "Country code"
+msgstr "Ländercode"
+
+msgid "Create a noveltree project file from {0}\nNew project: \"{1}\""
+msgstr "Erzeuge eine noveltree-Projektdatei aus {0}\nNeues Projekt: \"{1}\""
+
+msgid "Create from ODT..."
+msgstr "Aus ODT erzeugen..."
+
+msgid "Created {0} on {1}."
+msgstr "{0} erzeugt am {1}."
+
+msgid "Cross reference"
+msgstr "Querverweise"
+
+msgid "Cross references (export only)"
+msgstr "Querverweise (nur Export)"
+
+msgid "Custom"
+msgstr "Benutzerdefiniert"
+
+msgid "Custom Conflict"
+msgstr "Benutzerdef. Konflikt"
+
+msgid "Custom Goal"
+msgstr "Benutzerdef. Ziel"
+
+msgid "Custom Outcome"
+msgstr "Benutzerdef. Ausgang"
+
+msgid "Custom chara Bio"
+msgstr "Benutzerdef. Biographie"
+
+msgid "Custom chara Goals"
+msgstr "Benutzerdef. Ziele"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Date/Time"
+msgstr "Datum/Zeit"
+
+msgid "Day"
+msgstr "Tag"
+
+msgid "Days"
+msgstr "Tage"
+
+msgid "Death date"
+msgstr "Sterbedatum"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "Delete file"
+msgstr "Lösche Datei"
+
+msgid "Delete {}?"
+msgstr "{} löschen?"
+
+msgid "Description"
+msgstr "Beschreibung"
+
+msgid "Detach/Dock Properties"
+msgstr "Eigenschaften abtrennen/andocken"
+
+msgid "Dialogue"
+msgstr "Dialog"
+
+msgid "Dilemma"
+msgstr "Dilemma"
+
+msgid "Discard"
+msgstr "Verwerfen"
+
+msgid "Discard changes and reload the project?"
+msgstr "Änderungen verwerfen und das Projekt neu laden?"
+
+msgid "Discard changes and restore the latest backup?"
+msgstr "Änderungen verwerfen und die letzte Sicherungskopie wiederherstellen?"
+
+msgid "Discard document after import"
+msgstr "Dokument nach dem Importieren verwerfen"
+
+msgid "Discard manuscript"
+msgstr "Manuskript verwerfen"
+
+msgid "Do not auto-number this chapter"
+msgstr "Dieses Kapitel nicht automatisch nummerieren"
+
+msgid "Do not auto-number this part"
+msgstr "Diesen Teil nicht automatisch nummerieren"
+
+msgid "Document"
+msgstr "Dokument"
+
+msgid "Document language"
+msgstr "Sprache des Dokuments"
+
+msgid "Done"
+msgstr "Fertiggestellt"
+
+msgid "Draft"
+msgstr "Entwurf"
+
+msgid "Dramatic action"
+msgstr "Dramatische Handlung"
+
+msgid "Duration"
+msgstr "Dauer"
+
+msgid "Editable manuscript"
+msgstr "Manuskript zum Bearbeiten"
+
+msgid "Empty project"
+msgstr "Leeres Projekt"
+
+msgid "Exit"
+msgstr "Beenden"
+
+msgid "Expand"
+msgstr "Aufklappen"
+
+msgid "Expand all"
+msgstr "Alles aufklappen"
+
+msgid "Expand selected"
+msgstr "Ausgewählte aufklappen"
+
+msgid "Export"
+msgstr "Exportieren"
+
+msgid "Export chapter descriptions for editing"
+msgstr "Kapitelbeschreibungen zum Bearbeiten exportieren"
+
+msgid "Export character descriptions for editing"
+msgstr "Figurenbeschreibungen zum Bearbeiten exportieren"
+
+msgid "Export character list (spreadsheet)"
+msgstr "Figurenliste exportieren (Tabelle)"
+
+msgid "Export document"
+msgstr "Dokument exportieren"
+
+msgid "Export item descriptions for editing"
+msgstr "Gegenstandsbeschreibungen zum Bearbeiten exportieren"
+
+msgid "Export item list (spreadsheet)"
+msgstr "Gegenstandsliste exportieren (Tabelle)"
+
+msgid "Export location descriptions for editing"
+msgstr "Schauplatzbeschreibungen zum Bearbeiten exportieren"
+
+msgid "Export location list (spreadsheet)"
+msgstr "Schauplatzliste exportieren (Tabelle)"
+
+msgid "Export part descriptions for editing"
+msgstr "Teilebeschreibungen zum Bearbeiten exportieren"
+
+msgid "Export plot description"
+msgstr "Plot-Beschreibung exportieren"
+
+msgid "Export plot list (spreadsheet)"
+msgstr "Plot-Liste exportieren (Tabelle)"
+
+msgid "Export section descriptions for editing"
+msgstr "Abschnittsbeschreibungen zum Bearbeiten exportieren"
+
+msgid "Export section list (spreadsheet)"
+msgstr "Abschnittsliste exportieren (Tabelle)"
+
+msgid "Export type is not supported"
+msgstr "Exporttyp wird nicht unterstützt"
+
+msgid "Exported documents"
+msgstr "Exportierte Dokumente"
+
+msgid "Exposition"
+msgstr "Exposition"
+
+msgid "File"
+msgstr "Datei"
+
+msgid "File already exists"
+msgstr "Datei existiert bereits"
+
+msgid "File has changed on disk. Reload anyway?"
+msgstr "Die Datei wurde auf der Festplatte geändert. Trotzdem laden?"
+
+msgid "File has changed on disk. Reload?"
+msgstr "Die Datei wurde auf der Festplatte geändert. Neu laden?"
+
+msgid "File has changed on disk. Save anyway?"
+msgstr "Die Datei wurde auf der Festplatte geändert. Trotzdem speichern?"
+
+msgid "File is write protected"
+msgstr "Datei ist schreibgeschützt"
+
+msgid "File not found"
+msgstr "Datei nicht gefunden"
+
+msgid "File type is not supported"
+msgstr "Dateityp wird nicht unterstützt"
+
+msgid "File written"
+msgstr "Datei gespeichert"
+
+msgid "Friday"
+msgstr "Freitag"
+
+msgid "Full name"
+msgstr "Vollst. Name"
+
+msgid "Generate"
+msgstr "Erzeugen"
+
+msgid "Go to"
+msgstr "Gehe zu"
+
+msgid "Go to section"
+msgstr "Gehe zum Abschnitt"
+
+msgid "Goal"
+msgstr "Ziel"
+
+msgid "Goals"
+msgstr "Ziele"
+
+msgid "HTML Plot list"
+msgstr "HTML-Plotliste"
+
+msgid "Help"
+msgstr "Hilfe"
+
+msgid "Home page"
+msgstr "Homepage"
+
+msgid "Hours"
+msgstr "Stunden"
+
+msgid "Image file"
+msgstr "Bilddatei"
+
+msgid "Import"
+msgstr "Importieren"
+
+msgid "Import selected elements"
+msgstr "Ausgewählte Elemente importieren"
+
+msgid "Input rejected"
+msgstr "Eingabe abgelehnt"
+
+msgid "Input: {0} \"{1}\"\nOutput: {2} \"{3}\""
+msgstr "Quelle: {0} \"{1}\"\nZiel: {2} \"{3}\""
+
+msgid "Insert Stage"
+msgstr "Stadium einfügen"
+
+msgid "Installed plugins"
+msgstr "Installierte Plugins"
+
+msgid "Item"
+msgstr "Gegenstand"
+
+msgid "Item descriptions"
+msgstr "Gegenstandsbeschreibungen"
+
+msgid "Item list"
+msgstr "Gegenstandsliste"
+
+msgid "Items"
+msgstr "Gegenstände"
+
+msgid "Join with previous"
+msgstr "Mit dem vorhergehenden zusammenfassen"
+
+msgid "Language code"
+msgstr "Sprachencode"
+
+msgid "Latest backup successfully restored."
+msgstr "Letzte Sicherung erfolgreich wiederhergestellt."
+
+msgid "Links"
+msgstr "Links"
+
+msgid "Location"
+msgstr "Schauplatz"
+
+msgid "Location descriptions"
+msgstr "Schauplatzbeschreibungen"
+
+msgid "Location list"
+msgstr "Schauplatzliste"
+
+msgid "Locations"
+msgstr "Schauplätze"
+
+msgid "Lock"
+msgstr "Sperren"
+
+msgid "Log writing progress"
+msgstr "Schreibfortschritt protokollieren"
+
+msgid "Major Character"
+msgstr "Hauptfigur"
+
+msgid "Manuscript"
+msgstr "Manuskript"
+
+msgid "Manuscript discarded"
+msgstr "Manuskript verworfen"
+
+msgid "Manuscript for editing"
+msgstr "Manuskript zum Bearbeiten"
+
+msgid "Manuscript with visible structure tags for proof reading"
+msgstr "Manuskript mit sichtbaren Markierungen zum Korrekturlesen"
+
+msgid "Manuscript without tags (export only)"
+msgstr "Manuskript ohne Markierungen (nur Export)"
+
+msgid "Minor Character"
+msgstr "Nebenfigur"
+
+msgid "Minutes"
+msgstr "Minuten"
+
+msgid "Module"
+msgstr "Modul"
+
+msgid "Monday"
+msgstr "Montag"
+
+msgid "N"
+msgstr "N"
+
+msgid "N/A"
+msgstr "N/A"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Narration"
+msgstr "Erzählerische Zusammenfassung"
+
+msgid "Narrative time"
+msgstr "Erzählzeit"
+
+msgid "Never"
+msgstr "Niemals"
+
+msgid "New"
+msgstr "Neu"
+
+msgid "New Arc"
+msgstr "Neuer Bogen"
+
+msgid "New Chapter"
+msgstr "Neues Kapitel"
+
+msgid "New Character"
+msgstr "Neue Figur"
+
+msgid "New Item"
+msgstr "Neuer Gegenstand"
+
+msgid "New Location"
+msgstr "Neuer Schauplatz"
+
+msgid "New Note"
+msgstr "Neue Notiz"
+
+msgid "New Part"
+msgstr "Neuer Teil"
+
+msgid "New Section"
+msgstr "Neuer Abschnitt"
+
+msgid "New Turning point"
+msgstr "Neuer Wendepunkt"
+
+msgid "Newer than the project file"
+msgstr "Neuer als die Projektdatei"
+
+msgid "Next"
+msgstr "Vor"
+
+msgid "No backup available"
+msgstr "Keine Sicherungskopie verfügbar"
+
+msgid "No character data found"
+msgstr "Keine Figurendaten gefunden"
+
+msgid "No description"
+msgstr "Keine Beschreibung"
+
+msgid "No document type"
+msgstr "Kein Dokumenttyp"
+
+msgid "No item data found"
+msgstr "Keine Gegenstandsdaten gefunden"
+
+msgid "No location data found"
+msgstr "Keine Schauplatzdaten gefunden"
+
+msgid "No noveltree project to write"
+msgstr "Kein noveltree-Projekt zum Schreiben"
+
+msgid "No valid version found in file"
+msgstr "Keine gültige Versionsangabe in der Datei gefunden"
+
+msgid "None"
+msgstr "Keiner"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "Notes"
+msgstr "Notizen"
+
+msgid "Novel outline"
+msgstr "Romanstruktur"
+
+msgid "Number of sections"
+msgstr "Anzahl Abschnitte"
+
+msgid "ODF Spreadsheet document"
+msgstr "ODF-Tabellendokument"
+
+msgid "ODF Text document"
+msgstr "ODF-Textdokument"
+
+msgid "ODS Plot list"
+msgstr "ODS-Plotliste"
+
+msgid "Older than the project file"
+msgstr "Älter als die Projektdatei"
+
+msgid "Online help"
+msgstr "Online-Hilfe"
+
+msgid "Open"
+msgstr "Öffnen"
+
+msgid "Open Project folder"
+msgstr "Projektordner öffnen"
+
+msgid "Open installation folder"
+msgstr "Installationsordner öffnen"
+
+msgid "Open link"
+msgstr "Link öffnen"
+
+msgid "Open..."
+msgstr "Öffnen..."
+
+msgid "Opened existing {0} (last saved on {1})"
+msgstr "Bestehende(s) {0} geöffnet (zuletzt gespeichert: {1})"
+
+msgid "Options"
+msgstr "Optionen"
+
+msgid "Outcome"
+msgstr "Ausgang"
+
+msgid "Outline"
+msgstr "Gliederung"
+
+msgid "Overwrite existing file \"{}\"?"
+msgstr "Bestehende Datei \"{}\" überschreiben?"
+
+msgid "Overwrite the current project file?"
+msgstr "Die aktuelle Projektdatei überschreiben?"
+
+msgid "Part"
+msgstr "Teil"
+
+msgid "Part descriptions"
+msgstr "Teilebeschreibungen"
+
+msgid "Part number prefix"
+msgstr "Präfix Teilenummer"
+
+msgid "Part number suffix"
+msgstr "Suffix Teilenummer"
+
+msgid "Please close the document first"
+msgstr "Bitte zuerst das Dokument schließen"
+
+msgid "Please close the manuscript first"
+msgstr "Bitte zuerst das Manuskript schließen"
+
+msgid "Please wait ..."
+msgstr "Bitte warten ..."
+
+msgid "Plot"
+msgstr "Plot"
+
+msgid "Plot description"
+msgstr "Plot-Beschreibung"
+
+msgid "Plugin Manager"
+msgstr "Plugin-Manager"
+
+msgid "Position"
+msgstr "Position"
+
+msgid "Preferences"
+msgstr "Einstellungen"
+
+msgid "Previous"
+msgstr "Zurück"
+
+msgid "Project note"
+msgstr "Projektnotiz"
+
+msgid "Project notes"
+msgstr "Projektnotizen"
+
+msgid "Project successfully restored from disk."
+msgstr "Zuletzt gespeicherte Fassung erfolgreich wiederhergestellt."
+
+msgid "R"
+msgstr "R"
+
+msgid "Reaction"
+msgstr "Reaktion"
+
+msgid "Reference date"
+msgstr "Bezugsdatum"
+
+msgid "Refresh Tree"
+msgstr "Baum aktualisieren"
+
+msgid "Refresh view"
+msgstr "Ansicht aktualisieren"
+
+msgid "Relationships"
+msgstr "Beziehungen"
+
+msgid "Reload"
+msgstr "Neu laden"
+
+msgid "Remove"
+msgstr "Entfernen"
+
+msgid "Remove all sections from the story arc"
+msgstr "Alle Abschnitte vom Handlungsbogen entfernen"
+
+msgid "Remove character"
+msgstr "Figur entfernen"
+
+msgid "Remove item"
+msgstr "Gegenstand entfernen"
+
+msgid "Remove link"
+msgstr "Link entfernen"
+
+msgid "Remove location"
+msgstr "Schauplatz entfernen"
+
+msgid "Renamings"
+msgstr "Umbenennungen"
+
+msgid "Reset chapter number when starting a new part"
+msgstr "Kapitelnummerierung per Teil"
+
+msgid "Restore backup"
+msgstr "Sicherungskopie wiederherstellen"
+
+msgid "Restore the latest backup?"
+msgstr "Die letzte Sicherungskopie wiederherstellen?"
+
+msgid "Saturday"
+msgstr "Samstag"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Save and lock?"
+msgstr "Speichern und sperren?"
+
+msgid "Save as..."
+msgstr "Speichern unter..."
+
+msgid "Save changes?"
+msgstr "Änderungen speichern?"
+
+msgid "Section"
+msgstr "Abschnitt"
+
+msgid "Section descriptions"
+msgstr "Abschnittsbeschreibungen"
+
+msgid "Section list"
+msgstr "Abschnittsliste"
+
+msgid "Select characters"
+msgstr "Figuren auswählen"
+
+msgid "Select items"
+msgstr "Gegenstände auswählen"
+
+msgid "Select locations"
+msgstr "Schauplätze auswählen"
+
+msgid "Set Status"
+msgstr "Status setzen"
+
+msgid "Set Type"
+msgstr "Typ wählen"
+
+msgid "Set actual wordcount as start"
+msgstr "Aktuelle Wortzahl als Anfangswert setzen"
+
+msgid "Short name"
+msgstr "Kurzname"
+
+msgid "Show Arcs"
+msgstr "Bögen anzeigen"
+
+msgid "Show Book"
+msgstr "Buch anzeigen"
+
+msgid "Show Characters"
+msgstr "Figuren anzeigen"
+
+msgid "Show Items"
+msgstr "Gegenstände anzeigen"
+
+msgid "Show Locations"
+msgstr "Schauplätze anzeigen"
+
+msgid "Show Plot list"
+msgstr "Plot-Liste anzeigen"
+
+msgid "Show Project notes"
+msgstr "Projektnotizen anzeigen"
+
+msgid "Show list"
+msgstr "Liste anzeigen"
+
+msgid "Show markup"
+msgstr "Markup anzeigen"
+
+msgid "Source document deleted"
+msgstr "Quelldokument gelöscht"
+
+msgid "Stage"
+msgstr "Stadium"
+
+msgid "Start"
+msgstr "Beginn"
+
+msgid "Starting count"
+msgstr "Anfangswert"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Story structure"
+msgstr "Erzählstruktur"
+
+msgid "Sunday"
+msgstr "Sonntag"
+
+msgid "Tagged manuscript for proofing"
+msgstr "Manuskript mit Markierungen zum Überarbeiten"
+
+msgid "Tags"
+msgstr "Tags"
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Text file"
+msgstr "Textdatei"
+
+msgid "The plugin remains active until next start."
+msgstr "Das Plugin bleibt bis zum nächsten Start aktiv."
+
+msgid "The previous section has no date/time set."
+msgstr "Der vorhergehende Abschnitt hat keine Datum/Zeitangaben"
+
+msgid "The project \"{}\" was created with a newer noveltree version."
+msgstr "Das Projekt \"{}\" wurde mit einer neueren Version von noveltree erzeugt."
+
+msgid "The project \"{}\" was created with an outdated noveltree version."
+msgstr "Das Projekt \"{}\" wurde mit einer veralteten Version von noveltree erzeugt."
+
+msgid "The project is locked.\nUnlock?"
+msgstr "Das Projekt is gesperrt.\nEntsperren?"
+
+msgid "The reference date is not set"
+msgstr "Das Bezugsdatum ist nicht festgelegt"
+
+msgid "The sections are not of the same type"
+msgstr "Die Abschnitte sind nicht vom selben Typ"
+
+msgid "The sections have different viewpoints"
+msgstr "Die Abschnitte haben unterschiedliche Perspektiven"
+
+msgid "There is no previous section"
+msgstr "Es gibt keinen vorhergehenden Abschnitt"
+
+msgid "This document is not meant to be written back"
+msgstr "Dieses Dokument ist nicht zum Zurückschreiben gedacht"
+
+msgid "Thursday"
+msgstr "Donnerstag"
+
+msgid "Time"
+msgstr "Zeit"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Toggle Properties"
+msgstr "Eigenschaften anzeigen/verbergen"
+
+msgid "Toggle Text viewer"
+msgstr "Textbetrachter anzeigen/verbergen"
+
+msgid "Tools"
+msgstr "Extras"
+
+msgid "Trash"
+msgstr "Papierkorb"
+
+msgid "Tuesday"
+msgstr "Dienstag"
+
+msgid "Turning point"
+msgstr "Wendepunkt"
+
+msgid "Turning points"
+msgstr "Wendepunkte"
+
+msgid "Undefined"
+msgstr "Nicht definiert"
+
+msgid "Unknown author"
+msgstr "Unbekannter Autor"
+
+msgid "Unlock"
+msgstr "Entsperren"
+
+msgid "Unnamed"
+msgstr "Unbenannt"
+
+msgid "Untitled project"
+msgstr "Projekt ohne Titel"
+
+msgid "Unused"
+msgstr "Unbenutzt"
+
+msgid "Use Roman chapter numbers"
+msgstr "Römische Kapitelnummern"
+
+msgid "Use Roman part numbers"
+msgstr "Römische Teilenummern"
+
+msgid "Used"
+msgstr "Benutzt"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "View"
+msgstr "Ansicht"
+
+msgid "Viewpoint"
+msgstr "Perspektive"
+
+msgid "Wednesday"
+msgstr "Mittwoch"
+
+msgid "Words"
+msgstr "Wörter"
+
+msgid "Words to write"
+msgstr "Wörter zu schreiben"
+
+msgid "Words written"
+msgstr "Wörter geschrieben"
+
+msgid "Work in progress"
+msgstr "Manuskript in Arbeit"
+
+msgid "Work phase"
+msgstr "Arbeitsphase"
+
+msgid "Writing progress"
+msgstr "Schreibfortschritt"
+
+msgid "Wrong date"
+msgstr "Falsches Datum"
+
+msgid "Wrong day"
+msgstr "Falscher Tag"
+
+msgid "Wrong entry: numbers required"
+msgstr "Fehleingabe: Zahlen erforderlich"
+
+msgid "Wrong name"
+msgstr "Falscher Name"
+
+msgid "Wrong table structure"
+msgstr "Falsche Tabellenstruktur"
+
+msgid "Wrong time"
+msgstr "Falsche Zeit"
+
+msgid "XML character data file"
+msgstr "XML-Figurendatei"
+
+msgid "XML data file"
+msgstr "XML-Datendatei"
+
+msgid "XML item data file"
+msgstr "XML-Gegenstandsdatei"
+
+msgid "XML location data file"
+msgstr "XML-Schauplatzdatei"
+
+msgid "by"
+msgstr "von"
+
+msgid "deleted"
+msgstr "gelöscht"
+
+msgid "elements imported"
+msgstr "Elemente importiert"
+
+msgid "last saved on"
+msgstr "zuletzt gespeichert:"
+
+msgid "manuscript"
+msgstr "Manuskript"
+
+msgid "noveltree API"
+msgstr "noveltree API"
+
+msgid "noveltree XML data files"
+msgstr "noveltree XML-Datendateien"
+
+msgid "noveltree project"
+msgstr "noveltree-Projekt"
+
+msgid "unknown"
+msgstr "unbekannt"
+
+msgid "{0} (last saved on {1})"
+msgstr "{0} (zuletzt gespeichert: {1})"
+
+msgid "{0} already exists.\n(last saved on {2})\n{1}.\n\nOpen this document instead of overwriting it?"
+msgstr "{0} gibt es schon.\n(zuletzt gespeichert: {2})\n{1}.\n\nDieses Dokument öffnen, statt es zu überschreiben?"
+
+msgid "{0} parts, {1} chapters, {2} sections, {3} words"
+msgstr "{0} Teile, {1} Kapitel, {2} Abschnitte, {3} Wörter"
+
+msgid "{} created.\n\nOpen now?"
+msgstr "{} erzeugt.\n\nJetzt öffnen?"
+

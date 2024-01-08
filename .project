@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>noveltree</name>
+	<comment></comment>
+	<projects>
+		<project>noveltree_aeon2</project>
+		<project>noveltree_collection</project>
+		<project>noveltree_editor</project>
+		<project>noveltree_matrix</project>
+		<project>noveltree_progress</project>
+		<project>noveltree_templates</project>
+		<project>noveltree_themes</project>
+		<project>noveltree_timeline</project>
+		<project>noveltree_toolbar</project>
+		<project>noveltree_updater</project>
+		<project>noveltree_yw7</project>
+		<project>novxlib</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.python.pydev.PyDevBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.python.pydev.pythonNature</nature>
+	</natures>
+</projectDescription>

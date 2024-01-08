@@ -1,0 +1,1104 @@
+# noveltree Dictionary
+# Copyright (C) 2023 Peter Triesberger
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"POT-Creation-Date: 2024-01-08 17:56:27\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: LANGUAGE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: novxlib pgettext.py 0.3\n"
+
+
+msgid "1st Edit"
+msgstr ""
+
+msgid "1st Level"
+msgstr ""
+
+msgid "2nd Edit"
+msgstr ""
+
+msgid "2nd Level"
+msgstr ""
+
+msgid "A"
+msgstr ""
+
+msgid "A/R"
+msgstr ""
+
+msgid "AKA"
+msgstr ""
+
+msgid "Action"
+msgstr ""
+
+msgid "Action canceled by user"
+msgstr ""
+
+msgid "Action/Reaction"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Add Arc"
+msgstr ""
+
+msgid "Add Chapter"
+msgstr ""
+
+msgid "Add Part"
+msgstr ""
+
+msgid "Add Project note"
+msgstr ""
+
+msgid "Add Section"
+msgstr ""
+
+msgid "Add Turning point"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "All files"
+msgstr ""
+
+msgid "Append to previous section"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "Arc"
+msgstr ""
+
+msgid "Arcs"
+msgstr ""
+
+msgid "Assign section"
+msgstr ""
+
+msgid "Author"
+msgstr ""
+
+msgid "Auto number chapters when refreshing the tree"
+msgstr ""
+
+msgid "Auto number parts when refreshing the tree"
+msgstr ""
+
+msgid "Auto numbering"
+msgstr ""
+
+msgid "Bio"
+msgstr ""
+
+msgid "Birth date"
+msgstr ""
+
+msgid "Book"
+msgstr ""
+
+msgid "Brief synopsis"
+msgstr ""
+
+msgid "Brief synopsis (export only)"
+msgstr ""
+
+msgid "C"
+msgstr ""
+
+msgid "Can not do"
+msgstr ""
+
+msgid "Cannot create directory"
+msgstr ""
+
+msgid "Cannot create file"
+msgstr ""
+
+msgid "Cannot generate date/time"
+msgstr ""
+
+msgid "Cannot join sections"
+msgstr ""
+
+msgid "Cannot open link"
+msgstr ""
+
+msgid "Cannot overwrite file"
+msgstr ""
+
+msgid "Cannot read file"
+msgstr ""
+
+msgid "Cannot save: The project is locked"
+msgstr ""
+
+msgid "Cannot write file"
+msgstr ""
+
+msgid "Change Level"
+msgstr ""
+
+msgid "Chapter"
+msgstr ""
+
+msgid "Chapter descriptions"
+msgstr ""
+
+msgid "Chapter level"
+msgstr ""
+
+msgid "Chapter number prefix"
+msgstr ""
+
+msgid "Chapter number suffix"
+msgstr ""
+
+msgid "Character"
+msgstr ""
+
+msgid "Character descriptions"
+msgstr ""
+
+msgid "Character list"
+msgstr ""
+
+msgid "Characters"
+msgstr ""
+
+msgid "Characters/locations/items data files"
+msgstr ""
+
+msgid "Choice"
+msgstr ""
+
+msgid "Clear assignment"
+msgstr ""
+
+msgid "Clear date/time"
+msgstr ""
+
+msgid "Clear date/time from this section?"
+msgstr ""
+
+msgid "Clear duration"
+msgstr ""
+
+msgid "Clear duration from this section?"
+msgstr ""
+
+msgid "Clear section assignments"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Collapse"
+msgstr ""
+
+msgid "Collapse all"
+msgstr ""
+
+msgid "Collapse selected"
+msgstr ""
+
+msgid "Coloring mode"
+msgstr ""
+
+msgid "Columns"
+msgstr ""
+
+msgid "Conflict"
+msgstr ""
+
+msgid "Convert all section dates to days relative to the reference date?"
+msgstr ""
+
+msgid "Convert all section days to dates using the reference date?"
+msgstr ""
+
+msgid "Convert date/day"
+msgstr ""
+
+msgid "Convert dates to days"
+msgstr ""
+
+msgid "Convert days to dates"
+msgstr ""
+
+msgid "Corrupt marker"
+msgstr ""
+
+msgid "Country code"
+msgstr ""
+
+msgid "Create a noveltree project file from {0}\nNew project: \"{1}\""
+msgstr ""
+
+msgid "Create from ODT..."
+msgstr ""
+
+msgid "Created {0} on {1}."
+msgstr ""
+
+msgid "Cross reference"
+msgstr ""
+
+msgid "Cross references (export only)"
+msgstr ""
+
+msgid "Custom"
+msgstr ""
+
+msgid "Custom Conflict"
+msgstr ""
+
+msgid "Custom Goal"
+msgstr ""
+
+msgid "Custom Outcome"
+msgstr ""
+
+msgid "Custom chara Bio"
+msgstr ""
+
+msgid "Custom chara Goals"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Date/Time"
+msgstr ""
+
+msgid "Day"
+msgstr ""
+
+msgid "Days"
+msgstr ""
+
+msgid "Death date"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Delete file"
+msgstr ""
+
+msgid "Delete {}?"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Detach/Dock Properties"
+msgstr ""
+
+msgid "Dialogue"
+msgstr ""
+
+msgid "Dilemma"
+msgstr ""
+
+msgid "Discard"
+msgstr ""
+
+msgid "Discard changes and reload the project?"
+msgstr ""
+
+msgid "Discard changes and restore the latest backup?"
+msgstr ""
+
+msgid "Discard document after import"
+msgstr ""
+
+msgid "Discard manuscript"
+msgstr ""
+
+msgid "Do not auto-number this chapter"
+msgstr ""
+
+msgid "Do not auto-number this part"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Document language"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+msgid "Draft"
+msgstr ""
+
+msgid "Dramatic action"
+msgstr ""
+
+msgid "Duration"
+msgstr ""
+
+msgid "Editable manuscript"
+msgstr ""
+
+msgid "Empty project"
+msgstr ""
+
+msgid "Exit"
+msgstr ""
+
+msgid "Expand"
+msgstr ""
+
+msgid "Expand all"
+msgstr ""
+
+msgid "Expand selected"
+msgstr ""
+
+msgid "Export"
+msgstr ""
+
+msgid "Export chapter descriptions for editing"
+msgstr ""
+
+msgid "Export character descriptions for editing"
+msgstr ""
+
+msgid "Export character list (spreadsheet)"
+msgstr ""
+
+msgid "Export document"
+msgstr ""
+
+msgid "Export item descriptions for editing"
+msgstr ""
+
+msgid "Export item list (spreadsheet)"
+msgstr ""
+
+msgid "Export location descriptions for editing"
+msgstr ""
+
+msgid "Export location list (spreadsheet)"
+msgstr ""
+
+msgid "Export part descriptions for editing"
+msgstr ""
+
+msgid "Export plot description"
+msgstr ""
+
+msgid "Export plot list (spreadsheet)"
+msgstr ""
+
+msgid "Export section descriptions for editing"
+msgstr ""
+
+msgid "Export section list (spreadsheet)"
+msgstr ""
+
+msgid "Export type is not supported"
+msgstr ""
+
+msgid "Exported documents"
+msgstr ""
+
+msgid "Exposition"
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "File already exists"
+msgstr ""
+
+msgid "File has changed on disk. Reload anyway?"
+msgstr ""
+
+msgid "File has changed on disk. Reload?"
+msgstr ""
+
+msgid "File has changed on disk. Save anyway?"
+msgstr ""
+
+msgid "File is write protected"
+msgstr ""
+
+msgid "File not found"
+msgstr ""
+
+msgid "File type is not supported"
+msgstr ""
+
+msgid "File written"
+msgstr ""
+
+msgid "Friday"
+msgstr ""
+
+msgid "Full name"
+msgstr ""
+
+msgid "Generate"
+msgstr ""
+
+msgid "Go to"
+msgstr ""
+
+msgid "Go to section"
+msgstr ""
+
+msgid "Goal"
+msgstr ""
+
+msgid "Goals"
+msgstr ""
+
+msgid "HTML Plot list"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Home page"
+msgstr ""
+
+msgid "Hours"
+msgstr ""
+
+msgid "Image file"
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "Import selected elements"
+msgstr ""
+
+msgid "Input rejected"
+msgstr ""
+
+msgid "Input: {0} \"{1}\"\nOutput: {2} \"{3}\""
+msgstr ""
+
+msgid "Insert Stage"
+msgstr ""
+
+msgid "Installed plugins"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Item descriptions"
+msgstr ""
+
+msgid "Item list"
+msgstr ""
+
+msgid "Items"
+msgstr ""
+
+msgid "Join with previous"
+msgstr ""
+
+msgid "Language code"
+msgstr ""
+
+msgid "Latest backup successfully restored."
+msgstr ""
+
+msgid "Links"
+msgstr ""
+
+msgid "Location"
+msgstr ""
+
+msgid "Location descriptions"
+msgstr ""
+
+msgid "Location list"
+msgstr ""
+
+msgid "Locations"
+msgstr ""
+
+msgid "Lock"
+msgstr ""
+
+msgid "Log writing progress"
+msgstr ""
+
+msgid "Major Character"
+msgstr ""
+
+msgid "Manuscript"
+msgstr ""
+
+msgid "Manuscript discarded"
+msgstr ""
+
+msgid "Manuscript for editing"
+msgstr ""
+
+msgid "Manuscript with visible structure tags for proof reading"
+msgstr ""
+
+msgid "Manuscript without tags (export only)"
+msgstr ""
+
+msgid "Minor Character"
+msgstr ""
+
+msgid "Minutes"
+msgstr ""
+
+msgid "Module"
+msgstr ""
+
+msgid "Monday"
+msgstr ""
+
+msgid "N"
+msgstr ""
+
+msgid "N/A"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Narration"
+msgstr ""
+
+msgid "Narrative time"
+msgstr ""
+
+msgid "Never"
+msgstr ""
+
+msgid "New"
+msgstr ""
+
+msgid "New Arc"
+msgstr ""
+
+msgid "New Chapter"
+msgstr ""
+
+msgid "New Character"
+msgstr ""
+
+msgid "New Item"
+msgstr ""
+
+msgid "New Location"
+msgstr ""
+
+msgid "New Note"
+msgstr ""
+
+msgid "New Part"
+msgstr ""
+
+msgid "New Section"
+msgstr ""
+
+msgid "New Turning point"
+msgstr ""
+
+msgid "Newer than the project file"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "No backup available"
+msgstr ""
+
+msgid "No character data found"
+msgstr ""
+
+msgid "No description"
+msgstr ""
+
+msgid "No document type"
+msgstr ""
+
+msgid "No item data found"
+msgstr ""
+
+msgid "No location data found"
+msgstr ""
+
+msgid "No noveltree project to write"
+msgstr ""
+
+msgid "No valid version found in file"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Notes"
+msgstr ""
+
+msgid "Novel outline"
+msgstr ""
+
+msgid "Number of sections"
+msgstr ""
+
+msgid "ODF Spreadsheet document"
+msgstr ""
+
+msgid "ODF Text document"
+msgstr ""
+
+msgid "ODS Plot list"
+msgstr ""
+
+msgid "Older than the project file"
+msgstr ""
+
+msgid "Online help"
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Open Project folder"
+msgstr ""
+
+msgid "Open installation folder"
+msgstr ""
+
+msgid "Open link"
+msgstr ""
+
+msgid "Open..."
+msgstr ""
+
+msgid "Opened existing {0} (last saved on {1})"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Outcome"
+msgstr ""
+
+msgid "Outline"
+msgstr ""
+
+msgid "Overwrite existing file \"{}\"?"
+msgstr ""
+
+msgid "Overwrite the current project file?"
+msgstr ""
+
+msgid "Part"
+msgstr ""
+
+msgid "Part descriptions"
+msgstr ""
+
+msgid "Part number prefix"
+msgstr ""
+
+msgid "Part number suffix"
+msgstr ""
+
+msgid "Please close the document first"
+msgstr ""
+
+msgid "Please close the manuscript first"
+msgstr ""
+
+msgid "Please wait ..."
+msgstr ""
+
+msgid "Plot"
+msgstr ""
+
+msgid "Plot description"
+msgstr ""
+
+msgid "Plugin Manager"
+msgstr ""
+
+msgid "Position"
+msgstr ""
+
+msgid "Preferences"
+msgstr ""
+
+msgid "Previous"
+msgstr ""
+
+msgid "Project note"
+msgstr ""
+
+msgid "Project notes"
+msgstr ""
+
+msgid "Project successfully restored from disk."
+msgstr ""
+
+msgid "R"
+msgstr ""
+
+msgid "Reaction"
+msgstr ""
+
+msgid "Reference date"
+msgstr ""
+
+msgid "Refresh Tree"
+msgstr ""
+
+msgid "Refresh view"
+msgstr ""
+
+msgid "Relationships"
+msgstr ""
+
+msgid "Reload"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Remove all sections from the story arc"
+msgstr ""
+
+msgid "Remove character"
+msgstr ""
+
+msgid "Remove item"
+msgstr ""
+
+msgid "Remove link"
+msgstr ""
+
+msgid "Remove location"
+msgstr ""
+
+msgid "Renamings"
+msgstr ""
+
+msgid "Reset chapter number when starting a new part"
+msgstr ""
+
+msgid "Restore backup"
+msgstr ""
+
+msgid "Restore the latest backup?"
+msgstr ""
+
+msgid "Saturday"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Save and lock?"
+msgstr ""
+
+msgid "Save as..."
+msgstr ""
+
+msgid "Save changes?"
+msgstr ""
+
+msgid "Section"
+msgstr ""
+
+msgid "Section descriptions"
+msgstr ""
+
+msgid "Section list"
+msgstr ""
+
+msgid "Select characters"
+msgstr ""
+
+msgid "Select items"
+msgstr ""
+
+msgid "Select locations"
+msgstr ""
+
+msgid "Set Status"
+msgstr ""
+
+msgid "Set Type"
+msgstr ""
+
+msgid "Set actual wordcount as start"
+msgstr ""
+
+msgid "Short name"
+msgstr ""
+
+msgid "Show Arcs"
+msgstr ""
+
+msgid "Show Book"
+msgstr ""
+
+msgid "Show Characters"
+msgstr ""
+
+msgid "Show Items"
+msgstr ""
+
+msgid "Show Locations"
+msgstr ""
+
+msgid "Show Plot list"
+msgstr ""
+
+msgid "Show Project notes"
+msgstr ""
+
+msgid "Show list"
+msgstr ""
+
+msgid "Show markup"
+msgstr ""
+
+msgid "Source document deleted"
+msgstr ""
+
+msgid "Stage"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "Starting count"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Story structure"
+msgstr ""
+
+msgid "Sunday"
+msgstr ""
+
+msgid "Tagged manuscript for proofing"
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Text file"
+msgstr ""
+
+msgid "The plugin remains active until next start."
+msgstr ""
+
+msgid "The previous section has no date/time set."
+msgstr ""
+
+msgid "The project \"{}\" was created with a newer noveltree version."
+msgstr ""
+
+msgid "The project \"{}\" was created with an outdated noveltree version."
+msgstr ""
+
+msgid "The project is locked.\nUnlock?"
+msgstr ""
+
+msgid "The reference date is not set"
+msgstr ""
+
+msgid "The sections are not of the same type"
+msgstr ""
+
+msgid "The sections have different viewpoints"
+msgstr ""
+
+msgid "There is no previous section"
+msgstr ""
+
+msgid "This document is not meant to be written back"
+msgstr ""
+
+msgid "Thursday"
+msgstr ""
+
+msgid "Time"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Toggle Properties"
+msgstr ""
+
+msgid "Toggle Text viewer"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Trash"
+msgstr ""
+
+msgid "Tuesday"
+msgstr ""
+
+msgid "Turning point"
+msgstr ""
+
+msgid "Turning points"
+msgstr ""
+
+msgid "Undefined"
+msgstr ""
+
+msgid "Unknown author"
+msgstr ""
+
+msgid "Unlock"
+msgstr ""
+
+msgid "Unnamed"
+msgstr ""
+
+msgid "Untitled project"
+msgstr ""
+
+msgid "Unused"
+msgstr ""
+
+msgid "Use Roman chapter numbers"
+msgstr ""
+
+msgid "Use Roman part numbers"
+msgstr ""
+
+msgid "Used"
+msgstr ""
+
+msgid "Version"
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "Viewpoint"
+msgstr ""
+
+msgid "Wednesday"
+msgstr ""
+
+msgid "Words"
+msgstr ""
+
+msgid "Words to write"
+msgstr ""
+
+msgid "Words written"
+msgstr ""
+
+msgid "Work in progress"
+msgstr ""
+
+msgid "Work phase"
+msgstr ""
+
+msgid "Writing progress"
+msgstr ""
+
+msgid "Wrong date"
+msgstr ""
+
+msgid "Wrong day"
+msgstr ""
+
+msgid "Wrong entry: numbers required"
+msgstr ""
+
+msgid "Wrong name"
+msgstr ""
+
+msgid "Wrong table structure"
+msgstr ""
+
+msgid "Wrong time"
+msgstr ""
+
+msgid "XML character data file"
+msgstr ""
+
+msgid "XML data file"
+msgstr ""
+
+msgid "XML item data file"
+msgstr ""
+
+msgid "XML location data file"
+msgstr ""
+
+msgid "by"
+msgstr ""
+
+msgid "deleted"
+msgstr ""
+
+msgid "elements imported"
+msgstr ""
+
+msgid "last saved on"
+msgstr ""
+
+msgid "manuscript"
+msgstr ""
+
+msgid "noveltree API"
+msgstr ""
+
+msgid "noveltree XML data files"
+msgstr ""
+
+msgid "noveltree project"
+msgstr ""
+
+msgid "unknown"
+msgstr ""
+
+msgid "{0} (last saved on {1})"
+msgstr ""
+
+msgid "{0} already exists.\n(last saved on {2})\n{1}.\n\nOpen this document instead of overwriting it?"
+msgstr ""
+
+msgid "{0} parts, {1} chapters, {2} sections, {3} words"
+msgstr ""
+
+msgid "{} created.\n\nOpen now?"
+msgstr ""

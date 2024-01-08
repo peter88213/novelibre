@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="noveltree" basedir=".">
+	<property name="version" value="1.0.0" />
+	<property name="test-app" value="noveltree" />
+	
+	<property name="source-path" location="../src" />
+	<property name="test-path" location="../test" />
+	<property name="build-path" location="../build" />
+	<property name="dist-path" location="../dist" />
+	<property name="docs-path" location="../docs" />
+	<property name="i18n-path" location="../i18n" />
+	<property name="application" value="${ant.project.name}" />
+	<property name="release" value="${application}_v${version}" />
+
+	<target name="build" description="inline all library modules">
+		<delete file="${test-path}/${test-app}.py" />
+		<exec executable="python" failonerror="true">
+		    <arg value="make_pot.py"/>
+		    <arg value="${version}"/>
+		</exec>
+		<exec executable="python" failonerror="true">
+		    <arg value="translate_de.py"/>
+		    <arg value="${version}"/>
+		</exec>
+	</target>
+
+	<target name="dist" description="generate the distribution">		
+		<delete dir="${build-path}" />
+		<delete dir="${dist-path}" />
+		<mkdir dir="${build-path}" />
+		<mkdir dir="${dist-path}" />
+		<mkdir dir="${build-path}/${release}" />
+		
+		<copy file="${test-path}/${test-app}.py" tofile="${build-path}/${release}/${application}.py" />
+		<replace encoding="utf-8" file="${build-path}/${release}/${application}.py" token="@release" value="${version}" />
+		
+		<copy file="${source-path}/setup.pyw" todir="${build-path}/${release}" />		
+		<replace encoding="utf-8" file="${build-path}/${release}/setup.pyw" token="@release" value="${version}" />
+
+		<copy file="../LICENSE" todir="${build-path}/${release}" />	
+		<copy file="${docs-path}/usage.md" tofile="${build-path}/${release}/README.md" />
+		
+		<fixcrlf encoding="utf-8" eol="lf" srcdir="${build-path}/${release}" includes="**/*.*" />
+		
+		<copy todir="${build-path}/${release}/locale"> 
+			<fileset dir="${i18n-path}/locale" />
+		</copy>
+		
+		<copy todir="${build-path}/${release}/icons"> 
+			<fileset dir="${source-path}/icons" />
+		</copy>
+		
+		<zip destfile="${dist-path}/${release}.zip" basedir="${build-path}" />
+		
+		<copy file="${docs-path}/template/index.md" overwrite="True" todir="${docs-path}" />
+		<replace encoding="utf-8" file="${docs-path}/index.md" token="0.99.0" value="${version}" />
+		
+		<copy file="${docs-path}/template/VERSION" overwrite="True" todir=".." />
+		<replace encoding="utf-8" file="../VERSION" token="0.99.0" value="${version}" />
+	</target>
+
+	<target name="clean" description="clean up">		
+		<delete file="${test-path}/${test-app}.py" />
+		<delete file="${test-path}/test_${test-app}.py" />		
+	</target>
+
+</project>

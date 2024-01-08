@@ -1,0 +1,6 @@
+/src/locale/
+/test/work/
+/test/noveltree.py
+/build/
+*.pyc
+*.bak
