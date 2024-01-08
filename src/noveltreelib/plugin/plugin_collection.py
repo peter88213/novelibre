@@ -27,7 +27,7 @@ class PluginCollection(dict):
     """
 
     def __init__(self, model, view, controller):
-        """Get a reference to the calling controller instance.
+        """Set up the API references and the version number.
         
         Positional arguments:
             model -- reference to the main model instance of the application.
