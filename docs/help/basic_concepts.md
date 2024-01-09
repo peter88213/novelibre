@@ -8,7 +8,7 @@
 
 ## Part/chapter/section types
 
-Each parts, chapter, and section  is of a type that can be changed via context menu or Part/Chapter/Section menu. 
+Each part, chapter, and section  is of a type that can be changed via context menu or Part/Chapter/Section menu. 
 The type can be *Normal* or *Unused*.
 
 ### Normal
@@ -42,9 +42,9 @@ You can assign a status to each "Normal" type section via context menu or Sectio
 It is assumed that very few types of text markup are needed for a novel text.
 When importing from ODT, *noveltree* supports the following formats:
 
-- *Emphasized* (usually shown as italics).
-- *Strongly emphasized* (usually shown as capitalized).
-- *Quotation* (paragraph visually distinguished from body text).
+- *Emphasized* style or italics.
+- *Strongly emphasized* style or bold.
+- *Quotations* (paragraph visually distinguished from body text).
 - *Unordered list item* (indented paragraph with a bullet).
 
 ---
@@ -63,7 +63,7 @@ ODF documents are generally assigned a language that determines spell checking a
 
 ### Document overall
 
-The project language (Language code acc. to ISO 639-1 and country code acc. to ISO 3166-2) can be set in the **Project** settings (right pane) under **Document language**.  
+The project language (Language code acc. to ISO 639-1 and country code acc. to ISO 3166-2) can be set in the **Book** settings (right pane) under **Document language**.  
 
 ### Text passages in sections
 

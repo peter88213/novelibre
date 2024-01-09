@@ -2,7 +2,7 @@
 
 --- 
 
-The *noveltree* Python program provides a tree view for *.novx* novel projects.
+The *noveltree* Python program provides a tree view for novels written with LibreOffice or OpenOffice.
 
 # Instructions for use
 

@@ -1,6 +1,6 @@
 # noveltree
 
-*noveltree* is an organizer tool for writing novels with LibreOffice or OpenOffice Writer. It is written in Python and should run on several operating systems.
+The *noveltree* Python program provides a tree view for novels written with LibreOffice or OpenOffice.
 
 For more information, see the [project homepage](https://peter88213.github.io/noveltree) with description and download instructions.
 
@@ -117,10 +117,6 @@ See https://github.com/peter88213/novxlib/blob/main/docs/conventions.md
 - [Python](https://python.org) version 3.11.
 - [Eclipse IDE](https://eclipse.org) with [PyDev](https://pydev.org) and *EGit*.
 - Apache Ant is used for building the application.
-
-### Documentation tools
-
-- [Gaphor](https://gaphor.org/) for creating UML diagrams
 
 ## Plugin development
 

@@ -2,6 +2,8 @@
 
 --- 
 
+**NOTE:** This help page applies to *novelyst* and is not yet updated for *noveltree*.
+
 # Arcs
 
 ## What are arcs?
