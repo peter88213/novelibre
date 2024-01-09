@@ -126,7 +126,7 @@ See https://github.com/peter88213/novxlib/blob/main/docs/conventions.md
 
 If you want to develop a noveltree plugin, you may want to start with a repository on GitHub using [noveltree_plugin](https://github.com/peter88213/noveltree_plugin) as a template repository. After setting up your new repository 
 named e.g. *noveltree_yourPluginName*, just do a global search, and replace 
-*noveltree_plugin* with *noveltree_yourPluginName*. 
+*noveltree_plugin* with *noveltree_yourPluginName*, and *nv_plugin* with *nv_yourPluginName*. 
 
 
 ## Credits

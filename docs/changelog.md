@@ -8,6 +8,10 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.0.1
+
+- Fix the plugin API version constant.
+Based on novxlib v1.0.0
 
 ### v1.0.0
 

@@ -23,7 +23,7 @@ class PluginBase(ABC):
     """
     # Class constants to be overridden by subclasses.
     VERSION = ''
-    NOVELYST_API = ''
+    NOVELTREE_API = ''
     DESCRIPTION = ''
     URL = ''
 

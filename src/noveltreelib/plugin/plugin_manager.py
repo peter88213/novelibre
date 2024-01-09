@@ -55,7 +55,7 @@ class PluginManager(tk.Toplevel):
             except:
                 description = _('No description')
             try:
-                apiRequired = self._ctrl.plugins[moduleName].NOVELYST_API
+                apiRequired = self._ctrl.plugins[moduleName].NOVELTREE_API
             except:
                 apiRequired = _('unknown')
             columns = [moduleName, version, apiRequired, description]

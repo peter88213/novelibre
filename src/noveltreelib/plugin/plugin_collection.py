@@ -94,7 +94,7 @@ class PluginCollection(dict):
 
             # Check API compatibility.
             pluginObject = module.Plugin()
-            apiVerStr = pluginObject.NOVELYST_API
+            apiVerStr = pluginObject.NOVELTREE_API
             majorStr, minorStr = apiVerStr.split('.')
             apiMajorVersion = int(majorStr)
             apiMinorVersion = int(minorStr)

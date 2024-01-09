@@ -21,7 +21,7 @@ class RejectedPlugin:
         DESCRIPTION: str -- Error message to be displayed instead of the plugin description.   
     """
     VERSION = '-'
-    NOVELYST_API = '-'
+    NOVELTREE_API = '-'
     URL = ''
 
     def __init__(self, filePath, message):
