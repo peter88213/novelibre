@@ -4,7 +4,16 @@
 
 ![Screenshot](Screenshots/screen01.png)
 
-*noveltree* is written in Python and should run on several operating systems.
+*noveltree* is written in Python and should run on several operating systems, like Windows and Linux.
+
+*noveltree* is to replace the [novelyst](https://peter88213.github.io/novelyst/) application. 
+The main difference is the use of a new file format instead of the *.yw7* format. For 
+more details see the [comparison between noveltree and novelyst](https://github.com/peter88213/noveltree/discussions/2).
+
+If you are considering switching from *novelyst* to *noveltree*, the 
+[noveltree_yw7 plugin](https://peter88213.github.io/noveltree_yw7/) will help you to
+create *.novx* files from your existing projects. To migrate entire collections or larger amounts of project files,
+you might want to take a look at the [yw_novx conversion tools](https://github.com/peter88213/yw_novx).
 
 
 ## Features
