@@ -46,8 +46,10 @@ With [arcs](arcs), you can link your plot to the narrative.
 - **[Characters menu](characters_menu)**
 - **[Locations menu](locations_menu)**
 - **[Items menu](items_menu)**
+- **[Plot menu](plot_menu)**
 - **[Project notes menu](project_notes_menu)**
 - **[Export menu](export_menu)**
+- **[Import menu](import_menu)**
 - **[Tools menu](tools_menu)**
 - **[Tree view context menu](tree_context_menu)**
 
