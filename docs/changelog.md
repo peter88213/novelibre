@@ -8,6 +8,11 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.1.1
+
+- Handle missing toolbar icon files.
+Based on novxlib v1.0.0
+
 ### v1.1.0
 
 - Integrate the toolbar. 
