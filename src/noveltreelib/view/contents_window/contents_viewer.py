@@ -26,8 +26,10 @@ class ContentsViewer(RichTextNv):
         """Put a text box to the specified window.
         
         Positional arguments:
-            view: NoveltreeUi -- The instanitating controller.
             parent: tk.Frame -- The parent window.
+            model -- reference to the main model instance of the application.
+            view -- reference to the main view instance of the application.
+            controller -- reference to the main controller instance of the application.
         
         Required keyword arguments:
             show_markup: bool 

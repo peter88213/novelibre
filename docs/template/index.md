@@ -32,7 +32,6 @@ you might want to take a look at the [yw_novx conversion tools](https://github.c
 
 *noveltree's* functionality can be extended by plugins. Here are some examples:
 
-- [A toolbar with buttons for frequently used commands](https://peter88213.github.io/noveltree_toolbar/)
 - [A yw7 file importer/exporter](https://peter88213.github.io/noveltree_yw7/)
 - [An on-demand update checker](https://peter88213.github.io/noveltree_updater/)
 - [A daily progress log viewer](https://peter88213.github.io/noveltree_progress/)
@@ -85,7 +84,9 @@ See the [instructions for use](usage)
 
 ## Credits
 
-The icons are made using the free *Pusab* font by Ryoichi Tsunekawa, [Flat-it](http://flat-it.com/).
+The app icons are made using the free *Pusab* font by Ryoichi Tsunekawa, [Flat-it](http://flat-it.com/).
+The toolbar icons are based on the [Eva Icons](https://akveo.github.io/eva-icons/#/), published under the [MIT License](http://www.opensource.org/licenses/mit-license.php). The original black and white icons were colored for this plugin by the maintainer. 
+
 
 ## License
 

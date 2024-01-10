@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="noveltree" basedir=".">
-	<property name="version" value="1.0.1" />
+	<property name="version" value="1.1.0" />
 	<property name="test-app" value="noveltree" />
 	
 	<property name="source-path" location="../src" />

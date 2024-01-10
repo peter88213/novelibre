@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0.1\n"
-"POT-Creation-Date: 2024-01-09 13:34:42\n"
-"PO-Revision-Date: 2024-01-09 13:34:42\n"
+"Project-Id-Version: 1.1.0\n"
+"POT-Creation-Date: 2024-01-10 12:22:49\n"
+"PO-Revision-Date: 2024-01-10 12:22:49\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -147,6 +147,9 @@ msgstr "Kann Datei nicht schreiben"
 
 msgid "Change Level"
 msgstr "Ebene ändern"
+
+msgid "Change icon size"
+msgstr "Symbolgröße ändern"
 
 msgid "Chapter"
 msgstr "Kapitel"
@@ -516,6 +519,9 @@ msgstr "Mit dem vorhergehenden zusammenfassen"
 
 msgid "Language code"
 msgstr "Sprachencode"
+
+msgid "Large toolbar icons"
+msgstr "Große Symbole in der Werkzeugleiste"
 
 msgid "Latest backup successfully restored."
 msgstr "Letzte Sicherung erfolgreich wiederhergestellt."
@@ -915,6 +921,9 @@ msgstr "Text"
 
 msgid "Text file"
 msgstr "Textdatei"
+
+msgid "The change takes effect after next startup."
+msgstr "Die Änderung wird beim nächsten Programmstart wirksam"
 
 msgid "The plugin remains active until next start."
 msgstr "Das Plugin bleibt bis zum nächsten Start aktiv."

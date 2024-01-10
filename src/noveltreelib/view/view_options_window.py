@@ -16,8 +16,14 @@ import tkinter as tk
 class ViewOptionsWindow(tk.Toplevel):
     """A pop-up window with view preference settings."""
 
-    def __init__(self, size, tv, **kw):
-        self._tv = tv
+    def __init__(self, size, view, **kw):
+        """Open a pop-up window to edit the view options.
+        
+        Positional arguments:
+            size -- str: Window size and coordinates.
+            view -- Reference to the application's main view.
+        """
+        self._ui = view
         super().__init__(**kw)
         self.title(_('Preferences'))
         self.geometry(size)
@@ -31,12 +37,13 @@ class ViewOptionsWindow(tk.Toplevel):
             )
         frame1 = ttk.Frame(window)
         frame1.pack(fill='both', side='left')
+
         ttk.Separator(window, orient='vertical').pack(fill='y', padx=10, side='left')
         frame2 = ttk.Frame(window)
         frame2.pack(fill='both', side='left')
 
         # Combobox for coloring mode setting.
-        self._coloringModeStr = tk.StringVar(value=self._tv.COLORING_MODES[self._tv.coloringMode])
+        self._coloringModeStr = tk.StringVar(value=self._ui.tv.COLORING_MODES[self._ui.tv.coloringMode])
         self._coloringModeStr.trace('w', self._change_colors)
         ttk.Label(
             frame1,
@@ -45,11 +52,17 @@ class ViewOptionsWindow(tk.Toplevel):
         ttk.Combobox(
             frame1,
             textvariable=self._coloringModeStr,
-            values=self._tv.COLORING_MODES,
+            values=self._ui.tv.COLORING_MODES,
             width=20
             ).pack(padx=5, pady=5, anchor='w')
 
         ttk.Separator(frame1, orient='horizontal').pack(fill='x', pady=10)
+
+        # Checkbox for large toolbar buttons.
+
+        self._largeIcons = tk.BooleanVar(frame1, value=prefs['large_icons'])
+        ttk.Checkbutton(frame1, text=_('Large toolbar icons'), variable=self._largeIcons).pack(padx=5, pady=5, anchor='w')
+        self._largeIcons.trace('w', self._change_icon_size)
 
         # Listbox for column reordering.
         ttk.Label(
@@ -57,7 +70,7 @@ class ViewOptionsWindow(tk.Toplevel):
             text=_('Columns')
             ).pack(padx=5, pady=5, anchor='w')
         self._coIdsByTitle = {}
-        for coId, title, __ in self._tv.columns:
+        for coId, title, __ in self._ui.tv.columns:
             self._coIdsByTitle[title] = coId
         self._colEntries = tk.Variable(value=list(self._coIdsByTitle))
         DragDropListbox(
@@ -82,8 +95,8 @@ class ViewOptionsWindow(tk.Toplevel):
 
     def _change_colors(self, *args, **kwargs):
         cmStr = self._coloringModeStr.get()
-        self._tv.coloringMode = self._tv.COLORING_MODES.index(cmStr)
-        self._tv.refresh()
+        self._ui.tv.coloringMode = self._ui.tv.COLORING_MODES.index(cmStr)
+        self._ui.tv.refresh()
 
     def _change_column_order(self, *args, **kwargs):
         srtColumns = []
@@ -91,6 +104,9 @@ class ViewOptionsWindow(tk.Toplevel):
         for title in titles:
             srtColumns.append(self._coIdsByTitle[title])
         prefs['column_order'] = list_to_string(srtColumns)
-        self._tv.configure_columns()
-        self._tv.refresh()
+        self._ui.tv.configure_columns()
+        self._ui.tv.refresh()
 
+    def _change_icon_size(self, *args):
+        prefs['large_icons'] = self._largeIcons.get()
+        self._ui.show_info(_('The change takes effect after next startup.'), title=f'{_("Change icon size")}')

@@ -45,6 +45,7 @@ from noveltreelib.view.tree_window.tree_viewer import TreeViewer
 from noveltreelib.view.view_options_window import ViewOptionsWindow
 from noveltreelib.view.contents_window.contents_viewer import ContentsViewer
 from noveltreelib.view.properties_window.properties_viewer import PropertiesViewer
+from noveltreelib.view.toolbar import Toolbar
 
 
 class NvView:
@@ -174,6 +175,10 @@ class NvView:
         #--- Add commands and submenus to the main menu.
         self._build_menu()
 
+        #--- Add a toolbar.
+        self._toolbar = Toolbar(self, self._ctrl)
+        self.views.append(self._toolbar)
+
         #--- tk root event bindings.
         self._bind_events()
 
@@ -234,6 +239,11 @@ class NvView:
         self.fileMenu.entryconfig(_('Save'), state='disabled')
         self.fileMenu.entryconfig(_('Save as...'), state='disabled')
         self.fileMenu.entryconfig(_('Discard manuscript'), state='disabled')
+        for view in self.views:
+            try:
+                view.disable_menu()
+            except AttributeError:
+                pass
 
     def dock_properties_frame(self, event=None):
         """Dock the properties window at the right pane, if detached."""
@@ -257,12 +267,12 @@ class NvView:
             pass
         return 'break'
 
-    def edit_settings(self, event=None):
-        """Open a toplevel window to edit the program settings."""
+    def _view_options(self, event=None):
+        """Open a toplevel window to edit the view options."""
         offset = 300
         __, x, y = self.root.geometry().split('+')
         windowGeometry = f'+{int(x)+offset}+{int(y)+offset}'
-        ViewOptionsWindow(windowGeometry, self.tv)
+        ViewOptionsWindow(windowGeometry, self)
         return 'break'
 
     def enable_menu(self):
@@ -285,6 +295,11 @@ class NvView:
         self.fileMenu.entryconfig(_('Save'), state='normal')
         self.fileMenu.entryconfig(_('Save as...'), state='normal')
         self.fileMenu.entryconfig(_('Discard manuscript'), state='normal')
+        for view in self.views:
+            try:
+                view.enable_menu()
+            except AttributeError:
+                pass
 
     def on_change_selection(self, nodeId):
         """Event handler for element selection.
@@ -455,7 +470,10 @@ class NvView:
             self.pathBar.config(bg=self.root.cget('background'))
             self.pathBar.config(fg='black')
         for view in self.views:
-            view.refresh()
+            try:
+                view.refresh()
+            except AttributeError:
+                pass
         self.set_title()
 
     def _bind_events(self):
@@ -537,7 +555,7 @@ class NvView:
         self.viewMenu.add_command(label=_('Toggle Properties'), accelerator=self._KEY_TOGGLE_PROPERTIES[1], command=self.toggle_properties_view)
         self.viewMenu.add_command(label=_('Detach/Dock Properties'), accelerator=self._KEY_DETACH_PROPERTIES[1], command=self.toggle_properties_window)
         self.viewMenu.add_separator()
-        self.viewMenu.add_command(label=_('Options'), command=self.edit_settings)
+        self.viewMenu.add_command(label=_('Options'), command=self._view_options)
 
         # Part
         self.partMenu = tk.Menu(self.mainMenu, tearoff=0)

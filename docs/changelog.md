@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.1.0
+
+- Integrate the toolbar. 
+  If the *noveltree_toolbar* plugin is installed, please delete it with the Plugin manager.
+- Refactor.
+Based on novxlib v1.0.0
+
 ### v1.0.1
 
 - Fix the plugin API version constant.

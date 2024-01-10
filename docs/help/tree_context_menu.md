@@ -148,4 +148,4 @@ Sets the selected character's status. This can be *major* or *minor*.
 
 ---
 
-[<< Previous](tools_menu) -- [First >>](file_menu)
+[<< Previous](tools_menu) -- [Nextt >>](toolbar_menu)
