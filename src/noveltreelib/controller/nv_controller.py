@@ -352,7 +352,6 @@ class NvController:
         - trigger plugins.
         """
         self._ui.propertiesView.apply_changes()
-        self._ui.contentsView.reset_view()
         self.plugins.on_close()
         # closing the current element _view after checking for modifications
         if self._mdl.isModified and not doNotSave:
@@ -361,6 +360,7 @@ class NvController:
         self._ui.propertiesView._view_nothing()
         self._mdl.close_project()
         self._ui.tv.reset_view()
+        self._ui.contentsView.reset_view()
         self._internalLockFlag = False
         # CAUTION: calling self.unlock() here would clear the lockfile.
         self._ui.unlock()

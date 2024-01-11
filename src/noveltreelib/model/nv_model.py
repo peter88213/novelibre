@@ -881,6 +881,9 @@ class NvModel:
         for elemId in elemIds:
             if elemId.startswith(CHAPTER_PREFIX):
                 self.novel.chapters[elemId].chLevel = newLevel
+            elif elemId.startswith(SECTION_PREFIX):
+                if self.novel.sections[elemId].scType > 1:
+                    self.novel.sections[elemId].scType = newLevel + 1
 
     def set_character_status(self, isMajor, elemIds):
         """Recursively set character status (Major/Minor).

@@ -75,6 +75,9 @@ class ContentsViewer(RichTextNv):
 
     def refresh(self, event=None, *args):
         """Reload the text to view."""
+        if self._mdl.prjFile is None:
+            return
+
         if self._parent.winfo_manager():
             self.reset_view()
             self.view_text()
