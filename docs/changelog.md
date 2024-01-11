@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.1.3
+
+- Move the CollectionBox buttons to the right side.
+
+Based on novxlib v1.0.0
+
 ### v1.1.2
 
 - Fix a regression where the contents viewer is not reset on closing a project.

@@ -58,12 +58,9 @@ class CollectionBox(ttk.Frame):
         if cmdActivate is None:
             cmdActivate = self.activate_buttons
 
-        buttonbar = ttk.Frame(self)
-        buttonbar.pack(anchor='n', side='left', fill='x', padx=5)
-
         # Listbox.
         listFrame = ttk.Frame(self)
-        listFrame.pack(side='right', fill='both', expand=True)
+        listFrame.pack(side='left', fill='both', expand=True)
         self.cList = tk.StringVar()
         self.cListbox = tk.Listbox(listFrame, listvariable=self.cList, selectmode='single')
         vbar = ttk.Scrollbar(listFrame, orient='vertical', command=self.cListbox.yview)
@@ -75,6 +72,8 @@ class CollectionBox(ttk.Frame):
         self.cListbox.bind('<<ListboxSelect>>', cmdActivate)
 
         # Buttons.
+        buttonbar = ttk.Frame(self)
+        buttonbar.pack(anchor='n', side='right', fill='x', padx=5)
         self.inputWidgets = []
 
         # "Open" command.
