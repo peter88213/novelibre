@@ -200,10 +200,10 @@ def install(installDir):
     # Install the icon files.
     output(f'Copying icons ...')
     copytree('icons', f'{installDir}/icons', dirs_exist_ok=True)
-    for f in os.listdir(f'{installDir}/icons'):
-        if not f.endswith('.png') and not f.endswith('.ico'):
-            output(f'Deleting {installDir}/icons/{f} ...')
-            os.remove(f'{installDir}/icons/{f}')
+
+    # Install the css files.
+    output(f'Copying css stylesheet ...')
+    copytree('css', f'{installDir}/css', dirs_exist_ok=True)
 
     #--- Make the scripts executable under Linux.
     st = os.stat(f'{installDir}/{APP}')

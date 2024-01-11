@@ -9,6 +9,7 @@
 	<property name="dist-path" location="../dist" />
 	<property name="docs-path" location="../docs" />
 	<property name="i18n-path" location="../i18n" />
+	<property name="novxlib-path" location="../../novxlib" />
 	<property name="application" value="${ant.project.name}" />
 	<property name="release" value="${application}_v${version}" />
 
@@ -48,6 +49,10 @@
 		
 		<copy todir="${build-path}/${release}/icons"> 
 			<fileset dir="${source-path}/icons" />
+		</copy>
+		
+		<copy todir="${build-path}/${release}/css"> 
+			<fileset dir="${novxlib-path}/css" />
 		</copy>
 		
 		<zip destfile="${dist-path}/${release}.zip" basedir="${build-path}" />
