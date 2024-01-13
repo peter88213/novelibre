@@ -8,12 +8,14 @@ from tkinter import ttk
 
 from noveltreelib.noveltree_globals import prefs
 from noveltreelib.view.properties_window.dated_section_view import DatedSectionView
+from noveltreelib.widgets.collection_box import CollectionBox
 from noveltreelib.widgets.folding_frame import FoldingFrame
 from noveltreelib.widgets.label_combo import LabelCombo
-from noveltreelib.widgets.label_entry import LabelEntry
 from noveltreelib.widgets.my_string_var import MyStringVar
 from noveltreelib.widgets.text_box import TextBox
 from novxlib.novx_globals import CR_ROOT
+from novxlib.novx_globals import AC_ROOT
+from novxlib.novx_globals import ARC_PREFIX
 from novxlib.novx_globals import _
 from novxlib.novx_globals import list_to_string
 from novxlib.novx_globals import string_to_list
@@ -76,12 +78,22 @@ class FullSectionView(DatedSectionView):
         #--- Frame for arcs and plot.
         self._arcFrame = FoldingFrame(self._sectionExtraFrame, _('Plot'), self._toggle_arc_frame)
 
-        # 'Arcs' entry.
-        self._shortNames = MyStringVar()
-        self._shortNamesEntry = LabelEntry(self._arcFrame, text=_('Arcs'), textvariable=self._shortNames)
-        self._shortNamesEntry.pack(anchor='w')
-        inputWidgets.append(self._shortNamesEntry)
-        self._shortNamesEntry.entry.bind('<Return>', self.apply_changes)
+        # 'Arcs' listbox.
+        self._arcTitles = ''
+        self._arcLabel = ttk.Label(self._arcFrame, text=_('Arcs'))
+        self._arcLabel.pack(anchor='w')
+        self._arcCollection = CollectionBox(
+            self._arcFrame,
+            cmdAdd=self._pick_arc,
+            cmdRemove=self._remove_arc,
+            cmdOpen=self._go_to_arc,
+            cmdActivate=self._activate_arc_buttons,
+            lblOpen=_('Go to'),
+            )
+        self._arcCollection.pack(fill='x')
+        inputWidgets.extend(self._arcCollection.inputWidgets)
+
+        tk.Label(self._arcFrame, text=_('Turning points')).pack(anchor='w')
 
         #--- 'Turning points' label.
         self._turningPointsDisplay = tk.Label(self._arcFrame, anchor='w', bg='white')
@@ -211,39 +223,6 @@ class FullSectionView(DatedSectionView):
         #--- 'Append to previous section' checkbox.
         self._element.appendToPrev = self._appendToPrev.get()
 
-        #--- 'Arcs' entry.
-        newShortNamesStr = self._shortNames.get()
-        newShortNames = string_to_list(newShortNamesStr)
-        arcs = {}
-        # key: short name; value: ID
-        for acId in self._mdl.novel.arcs:
-            arcs[self._mdl.novel.arcs[acId].shortName] = acId
-        newArcs = []
-        checkedShortNames = []
-        for shortName in newShortNames:
-            if shortName in arcs:
-                checkedShortNames.append(shortName)
-                newArcs.append(arcs[shortName])
-            else:
-                self._ui.show_error(f'{_("Wrong name")}: "{shortName}"', title=_('Input rejected'))
-        if checkedShortNames != newShortNames:
-            self._shortNames.set(list_to_string(checkedShortNames))
-        if self._element.scArcs != newArcs:
-            self._element.scArcs = newArcs
-            for acId in self._mdl.novel.arcs:
-                arcSections = self._mdl.novel.arcs[acId].sections
-                if acId in self._element.scArcs:
-                    if not self._elementId in arcSections:
-                        arcSections.append(self._elementId)
-                else:
-                    if self._elementId in arcSections:
-                        arcSections.remove(self._elementId)
-                        for tpId in list(self._element.scTurningPoints):
-                            if self._element.scTurningPoints[tpId] == acId:
-                                self._mdl.novel.turningPoints[tpId].sectionAssoc = None
-                                del(self._element.scTurningPoints[tpId])
-                self._mdl.novel.arcs[acId].sections = arcSections
-
         #--- 'Goal/Reaction' window.
         if self._goalWindow.hasChanged:
             self._element.goal = self._goalWindow.get_text()
@@ -277,14 +256,21 @@ class FullSectionView(DatedSectionView):
             vp = ''
         self._viewpoint.set(value=vp)
 
-        # 'Arcs' entry (if any).
-        arcShortNames = []
+        #--- 'Arcs' listbox.
+        self._arcTitles = self._get_element_titles(self._element.scArcs, self._mdl.novel.arcs)
+        self._arcCollection.cList.set(self._arcTitles)
+        listboxSize = len(self._arcTitles)
+        if listboxSize > self._HEIGHT_LIMIT:
+            listboxSize = self._HEIGHT_LIMIT
+        self._arcCollection.cListbox.config(height=listboxSize)
+        if not self._arcCollection.cListbox.curselection() or not self._arcCollection.cListbox.focus_get():
+            self._arcCollection.deactivate_buttons()
+
+        #--- "Turning points" label
         turningPointTitles = []
-        for acId in self._element.scArcs:
-            arcShortNames.append(self._mdl.novel.arcs[acId].shortName)
         for tpId in self._element.scTurningPoints:
-            turningPointTitles.append(self._mdl.novel.turningPoints[tpId].title)
-        self._shortNames.set(list_to_string(arcShortNames))
+            acId = self._element.scTurningPoints[tpId]
+            turningPointTitles.append(f'{self._mdl.novel.arcs[acId].shortName}: {self._mdl.novel.turningPoints[tpId].title}')
         self._turningPointsDisplay.config(text=list_to_string(turningPointTitles))
 
         #--- 'Append to previous section' checkbox.
@@ -341,6 +327,24 @@ class FullSectionView(DatedSectionView):
         else:
             self._set_action_section()
 
+    def _activate_arc_buttons(self, event=None):
+        if self._element.scArcs:
+            self._arcCollection.activate_buttons()
+        else:
+            self._arcCollection.deactivate_buttons()
+
+    def _add_arc(self, event=None):
+        # Add the selected element to the collection, if applicable.
+        arcList = self._element.scArcs
+        acId = self._ui.tv.tree.selection()[0]
+        if acId.startswith(ARC_PREFIX)and not acId in arcList:
+            arcList.append(acId)
+            self._element.scArcs = arcList
+            arcSections = self._mdl.novel.arcs[acId].sections
+            if not self._elementId in arcSections:
+                arcSections.append(self._elementId)
+                self._mdl.novel.arcs[acId].sections = arcSections
+
     def _get_relation_id_list(self, newTitleStr, oldTitleStr, elements):
         """Return a list of valid IDs from a string containing semicolon-separated titles."""
         if newTitleStr or oldTitleStr:
@@ -357,6 +361,52 @@ class FullSectionView(DatedSectionView):
                 return elemIds
 
         return None
+
+    def _go_to_arc(self, event=None):
+        """Go to the arc selected in the listbox."""
+        try:
+            selection = self._arcCollection.cListbox.curselection()[0]
+        except:
+            return
+
+        self._ui.tv.go_to_node(self._element.scArcs[selection])
+
+    def _pick_arc(self, event=None):
+        """Enter the "add arc" selection mode."""
+        self._start_picking_mode()
+        self._ui.tv.tree.bind('<<TreeviewSelect>>', self._add_arc)
+        self._ui.tv.tree.see(AC_ROOT)
+
+    def _remove_arc(self, event=None):
+        """Remove the arc selected in the listbox from the section arcs."""
+        try:
+            selection = self._arcCollection.cListbox.curselection()[0]
+        except:
+            return
+
+        acId = self._element.scArcs[selection]
+        title = self._mdl.novel.arcs[acId].title
+        if self._ui.ask_yes_no(f'{_("Remove arc")}: "{title}"?'):
+
+            # Remove the arc from the section's list.
+            arcList = self._element.scArcs
+            del arcList[selection]
+            self._element.scArcs = arcList
+
+            # Remove the section from the arc's list.
+            arcSections = self._mdl.novel.arcs[acId].sections
+            if self._elementId in arcSections:
+                arcSections.remove(self._elementId)
+                self._mdl.novel.arcs[acId].sections = arcSections
+
+                # Remove turning point assignments, if any.
+                for tpId in list(self._element.scTurningPoints):
+                    if self._element.scTurningPoints[tpId] == acId:
+                        del(self._element.scTurningPoints[tpId])
+                        # removing the arc's turning point from the section's list
+                        # Note: this doesn't trigger the refreshing method
+                        self._mdl.novel.turningPoints[tpId].sectionAssoc = None
+                        # un-assigning the section from the arc's turning point
 
     def _set_action_section(self, event=None):
         self._goalLabel.config(text=_('Goal'))

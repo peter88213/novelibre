@@ -117,6 +117,10 @@ class BasicView(ttk.Frame, ABC):
                 self._notesWindow.clear()
                 self._notesWindow.set_text(self._element.notes)
 
+        if self._pickingMode:
+            self._start_picking_mode()
+            # refreshing the status bar
+
     def show(self):
         """Make the view visible."""
         self.pack(expand=True, fill='both')
@@ -197,6 +201,7 @@ class BasicView(ttk.Frame, ABC):
             self._ui.tv.tree.see(self._lastSelected)
             self._ui.tv.tree.selection_set(self._lastSelected)
             self._pickingMode = False
+        self._ui.restore_status()
 
     def _load_next(self):
         """Load the next tree element of the same type."""
@@ -230,5 +235,7 @@ class BasicView(ttk.Frame, ABC):
             self._treeSelectBinding = self._ui.tv.tree.bind('<<TreeviewSelect>>')
             self._uiEscBinding = self._ui.root.bind('<Esc>')
             self._ui.root.bind('<Escape>', self._end_picking_mode)
+            self._ui.statusBar.bind('<Button-1>', self._end_picking_mode)
             self._pickingMode = True
+        self._ui.set_status(_('Pick Mode (click here or press Esc to exit)'), colors=('maroon', 'white'))
 

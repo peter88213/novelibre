@@ -196,10 +196,7 @@ class RelatedSectionView(BasicView):
         # Add the selected element to the collection, if applicable.
         crList = self._element.characters
         crId = self._ui.tv.tree.selection()[0]
-        if not crId.startswith(CHARACTER_PREFIX):
-            # Restore the previous section selection mode.
-            self._end_picking_mode()
-        elif not crId in crList:
+        if crId.startswith(CHARACTER_PREFIX)and  not crId in crList:
             crList.append(crId)
             self._element.characters = crList
 
@@ -207,10 +204,7 @@ class RelatedSectionView(BasicView):
         # Add the selected element to the collection, if applicable.
         lcList = self._element.locations
         lcId = self._ui.tv.tree.selection()[0]
-        if not lcId.startswith(LOCATION_PREFIX):
-            # Restore the previous section selection mode.
-            self._end_picking_mode()
-        elif not lcId in lcList:
+        if lcId.startswith(LOCATION_PREFIX)and not lcId in lcList:
             lcList.append(lcId)
             self._element.locations = lcList
 
@@ -218,10 +212,7 @@ class RelatedSectionView(BasicView):
         # Add the selected element to the collection, if applicable.
         itList = self._element.items
         itId = self._ui.tv.tree.selection()[0]
-        if not itId.startswith(ITEM_PREFIX):
-            # Restore the previous section selection mode.
-            self._end_picking_mode()
-        elif not itId in itList:
+        if itId.startswith(ITEM_PREFIX) and not itId in itList:
             itList.append(itId)
             self._element.items = itList
 

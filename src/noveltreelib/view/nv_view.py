@@ -312,28 +312,37 @@ class NvView:
     def restore_status(self, event=None):
         """Overwrite error message with the status before."""
         self.show_status(self._statusText)
+        self.statusBar.bind('<Button-1>', self.restore_status)
 
     def set_info(self, message):
         """This is a stub, just for compatibility with several converters."""
         pass
 
-    def set_status(self, message):
-        """Show how the program is doing.
+    def set_status(self, message, colors=None):
+        """SDisplay a message at the status bar.
         
         Positional arguments:
             message -- message to be displayed. 
             
-        Display the message at the status bar.
+        Optional arguments:
+            colors: tuple -- (background color, foreground color).
+
+        Default status bar color is red if the message starts with "!", otherwise green.
         """
         if message is not None:
-            if message.startswith('!'):
-                self.statusBar.config(bg='red')
-                self.statusBar.config(fg='white')
-                self.infoHowText = message.split('!', maxsplit=1)[1].strip()
-            else:
-                self.statusBar.config(bg='green')
-                self.statusBar.config(fg='white')
+            try:
+                self.statusBar.config(bg=colors[0])
+                self.statusBar.config(fg=colors[1])
                 self.infoHowText = message
+            except:
+                if message.startswith('!'):
+                    self.statusBar.config(bg='red')
+                    self.statusBar.config(fg='white')
+                    self.infoHowText = message.split('!', maxsplit=1)[1].strip()
+                else:
+                    self.statusBar.config(bg='green')
+                    self.statusBar.config(fg='white')
+                    self.infoHowText = message
             self.statusBar.config(text=self.infoHowText)
 
     def set_title(self):

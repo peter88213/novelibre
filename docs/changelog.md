@@ -8,6 +8,14 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.2.0
+
+- Change the view of the arcs associated with a section into a list.
+- Improve the usability by indicating the Pick Mode.
+- Extend the API: NvView.set_status() takes a custom colors argument.
+
+Based on novxlib v1.0.0
+
 ### v1.1.3
 
 - Move the CollectionBox buttons to the right side.
