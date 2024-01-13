@@ -337,7 +337,10 @@ class FullSectionView(DatedSectionView):
         # Add the selected element to the collection, if applicable.
         arcList = self._element.scArcs
         acId = self._ui.tv.tree.selection()[0]
-        if acId.startswith(ARC_PREFIX)and not acId in arcList:
+        if not acId.startswith(ARC_PREFIX):
+            # Restore the previous section selection mode.
+            self._end_picking_mode()
+        elif not acId in arcList:
             arcList.append(acId)
             self._element.scArcs = arcList
             arcSections = self._mdl.novel.arcs[acId].sections

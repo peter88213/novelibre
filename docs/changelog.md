@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.2.1
+
+- Make it easier to exit the Pick Mode.
+
+Based on novxlib v1.0.0
+
 ### v1.2.0
 
 - Change the view of the arcs associated with a section into a list.
