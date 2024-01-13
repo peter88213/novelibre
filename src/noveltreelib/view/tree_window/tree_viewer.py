@@ -418,7 +418,7 @@ class TreeViewer(ttk.Frame):
 
         if self.skipUpdate:
             self.skipUpdate = False
-        else:
+        elif self._mdl.prjFile is not None:
             self._wordsTotal = self._mdl.get_counts()[0]
             update_branch('')
             self.tree.configure(selectmode='extended')
