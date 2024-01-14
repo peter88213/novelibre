@@ -89,6 +89,9 @@ class FullSectionView(DatedSectionView):
             cmdOpen=self._go_to_arc,
             cmdActivate=self._activate_arc_buttons,
             lblOpen=_('Go to'),
+            iconAdd=self._ui.icons.addIcon,
+            iconRemove=self._ui.icons.removeIcon,
+            iconOpen=self._ui.icons.gotoIcon
             )
         self._arcCollection.pack(fill='x')
         inputWidgets.extend(self._arcCollection.inputWidgets)

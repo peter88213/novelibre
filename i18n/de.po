@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.2.2\n"
-"POT-Creation-Date: 2024-01-13 18:50:45\n"
-"PO-Revision-Date: 2024-01-13 18:50:46\n"
+"Project-Id-Version: 1.3.0\n"
+"POT-Creation-Date: 2024-01-14 11:09:22\n"
+"PO-Revision-Date: 2024-01-14 11:09:23\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -96,6 +96,9 @@ msgstr "Teile automatisch nummerieren"
 
 msgid "Auto numbering"
 msgstr "Automatische Nummerierung"
+
+msgid "Back"
+msgstr "Zurück"
 
 msgid "Bio"
 msgstr "Biographie"
@@ -373,6 +376,9 @@ msgstr "Ausgewählte aufklappen"
 msgid "Export"
 msgstr "Exportieren"
 
+msgid "Export Manuscript"
+msgstr "Manuskript zum Bearbeiten exportieren"
+
 msgid "Export chapter descriptions for editing"
 msgstr "Kapitelbeschreibungen zum Bearbeiten exportieren"
 
@@ -447,6 +453,9 @@ msgstr "Dateityp wird nicht unterstützt"
 
 msgid "File written"
 msgstr "Datei gespeichert"
+
+msgid "Forward"
+msgstr "Vor"
 
 msgid "Friday"
 msgstr "Freitag"
@@ -543,6 +552,9 @@ msgstr "Schauplätze"
 
 msgid "Lock"
 msgstr "Sperren"
+
+msgid "Lock/unlock"
+msgstr "Sperren/Entsperren"
 
 msgid "Log writing progress"
 msgstr "Schreibfortschritt protokollieren"
@@ -1008,6 +1020,9 @@ msgstr "Projekt ohne Titel"
 
 msgid "Unused"
 msgstr "Unbenutzt"
+
+msgid "Update from manuscript"
+msgstr "Änderungen am Manuskript übernehmen"
 
 msgid "Use Roman chapter numbers"
 msgstr "Römische Kapitelnummern"

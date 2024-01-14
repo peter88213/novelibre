@@ -5,47 +5,49 @@ For further information see https://github.com/peter88213/noveltree
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import sys
-import webbrowser
-import tkinter as tk
-from tkinter import ttk
 from tkinter import messagebox
-from novxlib.novx_globals import _
-from novxlib.novx_globals import CHARACTER_PREFIX
-from novxlib.novx_globals import LOCATION_PREFIX
-from novxlib.novx_globals import ITEM_PREFIX
-from novxlib.novx_globals import CH_ROOT
+from tkinter import ttk
+import webbrowser
+
+from noveltreelib.noveltree_globals import prefs
+from noveltreelib.view.contents_window.contents_viewer import ContentsViewer
+from noveltreelib.view.icons import Icons
+from noveltreelib.view.properties_window.properties_viewer import PropertiesViewer
+from noveltreelib.view.toolbar import Toolbar
+from noveltreelib.view.tree_window.tree_viewer import TreeViewer
+from noveltreelib.view.view_options_window import ViewOptionsWindow
 from novxlib.novx_globals import AC_ROOT
-from novxlib.novx_globals import CR_ROOT
-from novxlib.novx_globals import LC_ROOT
-from novxlib.novx_globals import IT_ROOT
-from novxlib.novx_globals import PN_ROOT
 from novxlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from novxlib.novx_globals import CHAPTERS_SUFFIX
-from novxlib.novx_globals import CHARACTER_REPORT_SUFFIX
 from novxlib.novx_globals import CHARACTERS_SUFFIX
+from novxlib.novx_globals import CHARACTER_PREFIX
+from novxlib.novx_globals import CHARACTER_REPORT_SUFFIX
 from novxlib.novx_globals import CHARLIST_SUFFIX
+from novxlib.novx_globals import CH_ROOT
+from novxlib.novx_globals import CR_ROOT
 from novxlib.novx_globals import DATA_SUFFIX
-from novxlib.novx_globals import ITEM_REPORT_SUFFIX
 from novxlib.novx_globals import ITEMLIST_SUFFIX
 from novxlib.novx_globals import ITEMS_SUFFIX
-from novxlib.novx_globals import LOCATION_REPORT_SUFFIX
+from novxlib.novx_globals import ITEM_PREFIX
+from novxlib.novx_globals import ITEM_REPORT_SUFFIX
+from novxlib.novx_globals import IT_ROOT
+from novxlib.novx_globals import LC_ROOT
 from novxlib.novx_globals import LOCATIONS_SUFFIX
+from novxlib.novx_globals import LOCATION_PREFIX
+from novxlib.novx_globals import LOCATION_REPORT_SUFFIX
 from novxlib.novx_globals import LOCLIST_SUFFIX
 from novxlib.novx_globals import MANUSCRIPT_SUFFIX
 from novxlib.novx_globals import PARTS_SUFFIX
 from novxlib.novx_globals import PLOTLIST_SUFFIX
 from novxlib.novx_globals import PLOT_SUFFIX
+from novxlib.novx_globals import PN_ROOT
 from novxlib.novx_globals import PROOF_SUFFIX
 from novxlib.novx_globals import SECTIONLIST_SUFFIX
 from novxlib.novx_globals import SECTIONS_SUFFIX
 from novxlib.novx_globals import XREF_SUFFIX
+from novxlib.novx_globals import _
 from novxlib.ui.set_icon_tk import set_icon
-from noveltreelib.noveltree_globals import prefs
-from noveltreelib.view.tree_window.tree_viewer import TreeViewer
-from noveltreelib.view.view_options_window import ViewOptionsWindow
-from noveltreelib.view.contents_window.contents_viewer import ContentsViewer
-from noveltreelib.view.properties_window.properties_viewer import PropertiesViewer
-from noveltreelib.view.toolbar import Toolbar
+import tkinter as tk
 
 
 class NvView:
@@ -132,6 +134,9 @@ class NvView:
 
         #--- Initialize GUI theme.
         self.guiStyle = ttk.Style()
+
+        #--- Initalize icons.
+        self.icons = Icons()
 
         #--- Build the GUI frames.
 

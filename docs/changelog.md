@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.3.0
+
+- Provide icons for the collection list buttons.
+- Make the icons available for the entire GUI.
+
+Based on novxlib v1.0.0
+
 ### v1.2.2
 
 - Fix "View" menu control.

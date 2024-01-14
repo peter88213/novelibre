@@ -76,6 +76,9 @@ class RelatedSectionView(BasicView):
             cmdOpen=self._go_to_character,
             cmdActivate=self._activate_character_buttons,
             lblOpen=_('Go to'),
+            iconAdd=self._ui.icons.addIcon,
+            iconRemove=self._ui.icons.removeIcon,
+            iconOpen=self._ui.icons.gotoIcon
             )
         self._characterCollection.pack(fill='x')
         inputWidgets.extend(self._characterCollection.inputWidgets)
@@ -91,6 +94,9 @@ class RelatedSectionView(BasicView):
             cmdOpen=self._go_to_location,
             cmdActivate=self._activate_location_buttons,
             lblOpen=_('Go to'),
+            iconAdd=self._ui.icons.addIcon,
+            iconRemove=self._ui.icons.removeIcon,
+            iconOpen=self._ui.icons.gotoIcon
             )
         self._locationCollection.pack(fill='x')
         inputWidgets.extend(self._locationCollection.inputWidgets)
@@ -106,6 +112,9 @@ class RelatedSectionView(BasicView):
             cmdOpen=self._go_to_item,
             cmdActivate=self._activate_item_buttons,
             lblOpen=_('Go to'),
+            iconAdd=self._ui.icons.addIcon,
+            iconRemove=self._ui.icons.removeIcon,
+            iconOpen=self._ui.icons.gotoIcon
             )
         self._itemCollection.pack(fill='x')
         inputWidgets.extend(self._itemCollection.inputWidgets)

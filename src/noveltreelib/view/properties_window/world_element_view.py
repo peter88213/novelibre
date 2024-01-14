@@ -138,6 +138,9 @@ class WorldElementView(BasicView, ABC):
             cmdOpen=self._open_link,
             cmdActivate=self._activate_link_buttons,
             lblOpen=_('Open link'),
+            iconAdd=self._ui.icons.addIcon,
+            iconRemove=self._ui.icons.removeIcon,
+            iconOpen=self._ui.icons.gotoIcon
             )
         self._inputWidgets.extend(self._linkCollection.inputWidgets)
         self._linkCollection.pack(fill='x')

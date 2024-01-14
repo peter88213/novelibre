@@ -15,8 +15,8 @@ from novxlib.novx_globals import IT_ROOT
 from novxlib.novx_globals import LC_ROOT
 from novxlib.novx_globals import MANUSCRIPT_SUFFIX
 from novxlib.novx_globals import PN_ROOT
+from novxlib.novx_globals import _
 import tkinter as tk
-from noveltreelib.noveltree_globals import prefs
 
 
 class Toolbar:
@@ -31,167 +31,159 @@ class Toolbar:
         """
         self._ctrl = controller
         self._ui = view
-        iconPath = f'{os.path.dirname(sys.argv[0])}/icons/toolbar'
-        if prefs.get('large_icons', False):
-            size = 24
-        else:
-            size = 16
 
         # Add a toolbar to the editor window.
         self._buttonBar = tk.Frame(self._ui.mainWindow)
 
-        try:
-            # "Go back" button.
-            goBackIcon = tk.PhotoImage(file=f'{iconPath}/tb_goBack{size}.png')
-            self._goBackButton = ttk.Button(
-                self._buttonBar,
-                image=goBackIcon,
-                command=self._ui.tv.go_back
-                )
-            self._goBackButton.pack(side='left')
-            self._goBackButton.image = goBackIcon
+        # "Go back" button.
+        self._goBackButton = ttk.Button(
+            self._buttonBar,
+            text=_('Back'),
+            image=self._ui.icons.goBackIcon,
+            command=self._ui.tv.go_back
+            )
+        self._goBackButton.pack(side='left')
+        self._goBackButton.image = self._ui.icons.goBackIcon
 
-            # "Go forward" button.
-            goForwardIcon = tk.PhotoImage(file=f'{iconPath}/tb_goForward{size}.png')
-            self._goForwardButton = ttk.Button(
-                self._buttonBar,
-                image=goForwardIcon,
-                command=self._ui.tv.go_forward
-                )
-            self._goForwardButton.pack(side='left')
-            self._goForwardButton.image = goForwardIcon
+        # "Go forward" button.
+        self._goForwardButton = ttk.Button(
+            self._buttonBar,
+            text=_('Forward'),
+            image=self._ui.icons.goForwardIcon,
+            command=self._ui.tv.go_forward
+            )
+        self._goForwardButton.pack(side='left')
+        self._goForwardButton.image = self._ui.icons.goForwardIcon
 
-            # Separator.
-            tk.Frame(self._buttonBar, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
+        # Separator.
+        tk.Frame(self._buttonBar, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
 
-            # "View Book" button.
-            viewBookIcon = tk.PhotoImage(file=f'{iconPath}/tb_viewBook{size}.png')
-            self._viewBookButton = ttk.Button(
-                self._buttonBar,
-                image=viewBookIcon,
-                command=lambda: self._ui.tv.show_branch(CH_ROOT)
-                )
-            self._viewBookButton.pack(side='left')
-            self._viewBookButton.image = viewBookIcon
+        # "View Book" button.
+        self._viewBookButton = ttk.Button(
+            self._buttonBar,
+            text=_('Book'),
+            image=self._ui.icons.viewBookIcon,
+            command=lambda: self._ui.tv.show_branch(CH_ROOT)
+            )
+        self._viewBookButton.pack(side='left')
+        self._viewBookButton.image = self._ui.icons.viewBookIcon
 
-            # "View Characters" button.
-            viewCharactersIcon = tk.PhotoImage(file=f'{iconPath}/tb_viewCharacters{size}.png')
-            self._viewCharactersButton = ttk.Button(
-                self._buttonBar,
-                image=viewCharactersIcon,
-                command=lambda: self._ui.tv.show_branch(CR_ROOT)
-                )
-            self._viewCharactersButton.pack(side='left')
-            self._viewCharactersButton.image = viewCharactersIcon
+        # "View Characters" button.
+        self._viewCharactersButton = ttk.Button(
+            self._buttonBar,
+            text=_('Characters'),
+            image=self._ui.icons.viewCharactersIcon,
+            command=lambda: self._ui.tv.show_branch(CR_ROOT)
+            )
+        self._viewCharactersButton.pack(side='left')
+        self._viewCharactersButton.image = self._ui.icons.viewCharactersIcon
 
-            # "View Locations" button.
-            viewLocationsIcon = tk.PhotoImage(file=f'{iconPath}/tb_viewLocations{size}.png')
-            self._viewLocationsButton = ttk.Button(
-                self._buttonBar,
-                image=viewLocationsIcon,
-                command=lambda: self._ui.tv.show_branch(LC_ROOT)
-                )
-            self._viewLocationsButton.pack(side='left')
-            self._viewLocationsButton.image = viewLocationsIcon
+        # "View Locations" button.
+        self._viewLocationsButton = ttk.Button(
+            self._buttonBar,
+            text=_('Locations'),
+            image=self._ui.icons.viewLocationsIcon,
+            command=lambda: self._ui.tv.show_branch(LC_ROOT)
+            )
+        self._viewLocationsButton.pack(side='left')
+        self._viewLocationsButton.image = self._ui.icons.viewLocationsIcon
 
-            # "View Items" button.
-            viewItemsIcon = tk.PhotoImage(file=f'{iconPath}/tb_viewItems{size}.png')
-            self._viewItemsButton = ttk.Button(
-                self._buttonBar,
-                image=viewItemsIcon,
-                command=lambda: self._ui.tv.show_branch(IT_ROOT)
-                )
-            self._viewItemsButton.pack(side='left')
-            self._viewItemsButton.image = viewItemsIcon
+        # "View Items" button.
+        self._viewItemsButton = ttk.Button(
+            self._buttonBar,
+            text=_('Items'),
+            image=self._ui.icons.viewItemsIcon,
+            command=lambda: self._ui.tv.show_branch(IT_ROOT)
+            )
+        self._viewItemsButton.pack(side='left')
+        self._viewItemsButton.image = self._ui.icons.viewItemsIcon
 
-            # "View Arcs" button.
-            viewArcsIcon = tk.PhotoImage(file=f'{iconPath}/tb_viewArcs{size}.png')
-            self._viewArcsButton = ttk.Button(
-                self._buttonBar,
-                image=viewArcsIcon,
-                command=lambda: self._ui.tv.show_branch(AC_ROOT)
-                )
-            self._viewArcsButton.pack(side='left')
-            self._viewArcsButton.image = viewArcsIcon
+        # "View Arcs" button.
+        self._viewArcsButton = ttk.Button(
+            self._buttonBar,
+            text=_('Arcs'),
+            image=self._ui.icons.viewArcsIcon,
+            command=lambda: self._ui.tv.show_branch(AC_ROOT)
+            )
+        self._viewArcsButton.pack(side='left')
+        self._viewArcsButton.image = self._ui.icons.viewArcsIcon
 
-            # "View Projectnotes" button.
-            viewProjectnotesIcon = tk.PhotoImage(file=f'{iconPath}/tb_viewProjectnotes{size}.png')
-            self._viewProjectnotesButton = ttk.Button(
-                self._buttonBar,
-                image=viewProjectnotesIcon,
-                command=lambda: self._ui.tv.show_branch(PN_ROOT)
-                )
-            self._viewProjectnotesButton.pack(side='left')
-            self._viewProjectnotesButton.image = viewProjectnotesIcon
+        # "View Projectnotes" button.
+        self._viewProjectnotesButton = ttk.Button(
+            self._buttonBar,
+            text=_('Project notes'),
+            image=self._ui.icons.viewProjectnotesIcon,
+            command=lambda: self._ui.tv.show_branch(PN_ROOT)
+            )
+        self._viewProjectnotesButton.pack(side='left')
+        self._viewProjectnotesButton.image = self._ui.icons.viewProjectnotesIcon
 
-            # Separator.
-            tk.Frame(self._buttonBar, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
+        # Separator.
+        tk.Frame(self._buttonBar, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
 
-            # "Save" button.
-            saveIcon = tk.PhotoImage(file=f'{iconPath}/tb_save{size}.png')
-            self._saveButton = ttk.Button(
-                self._buttonBar,
-                image=saveIcon,
-                command=self._ctrl.save_project
-                )
-            self._saveButton.pack(side='left')
-            self._saveButton.image = saveIcon
+        # "Save" button.
+        self._saveButton = ttk.Button(
+            self._buttonBar,
+            text=_('Save'),
+            image=self._ui.icons.saveIcon,
+            command=self._ctrl.save_project
+            )
+        self._saveButton.pack(side='left')
+        self._saveButton.image = self._ui.icons.saveIcon
 
-            # "Lock/Unlock" button.
-            lockIcon = tk.PhotoImage(file=f'{iconPath}/tb_lock{size}.png')
-            self._lockButton = ttk.Button(
-                self._buttonBar,
-                image=lockIcon,
-                command=self._ctrl.toggle_lock
-                )
-            self._lockButton.pack(side='left')
-            self._lockButton.image = lockIcon
+        # "Lock/Unlock" button.
+        self._lockButton = ttk.Button(
+            self._buttonBar,
+            text=_('Lock/unlock'),
+            image=self._ui.icons.lockIcon,
+            command=self._ctrl.toggle_lock
+            )
+        self._lockButton.pack(side='left')
+        self._lockButton.image = self._ui.icons.lockIcon
 
-            # "Manuscript" button.
-            manuscriptIcon = tk.PhotoImage(file=f'{iconPath}/tb_manuscript{size}.png')
-            self._manuscriptButton = ttk.Button(
-                self._buttonBar,
-                image=manuscriptIcon,
-                command=lambda:self._ctrl.export_document(MANUSCRIPT_SUFFIX)
-                )
-            self._manuscriptButton.pack(side='left')
-            self._manuscriptButton.image = manuscriptIcon
+        # "Manuscript" button.
+        self._manuscriptButton = ttk.Button(
+            self._buttonBar,
+            text=_('Export Manuscript'),
+            image=self._ui.icons.manuscriptIcon,
+            command=lambda:self._ctrl.export_document(MANUSCRIPT_SUFFIX)
+            )
+        self._manuscriptButton.pack(side='left')
+        self._manuscriptButton.image = self._ui.icons.manuscriptIcon
 
-            # "Update from manuscript" button.
-            updateFromManuscriptIcon = tk.PhotoImage(file=f'{iconPath}/tb_updateFromManuscript{size}.png')
-            self._updateButton = ttk.Button(
-                self._buttonBar,
-                image=updateFromManuscriptIcon,
-                command=lambda: self._ctrl.update_from_odt(suffix=MANUSCRIPT_SUFFIX)
-                )
-            self._updateButton.pack(side='left')
-            self._updateButton.image = updateFromManuscriptIcon
+        # "Update from manuscript" button.
+        self._updateButton = ttk.Button(
+            self._buttonBar,
+            text=_('Update from manuscript'),
+            image=self._ui.icons.updateFromManuscriptIcon,
+            command=lambda: self._ctrl.update_from_odt(suffix=MANUSCRIPT_SUFFIX)
+            )
+        self._updateButton.pack(side='left')
+        self._updateButton.image = self._ui.icons.updateFromManuscriptIcon
 
-            # Reverse order (side='right').
+        # Reverse order (side='right').
 
-            # "Toggle properties" button.
-            propertiesIcon = tk.PhotoImage(file=f'{iconPath}/tb_properties{size}.png')
-            self._propertiesButton = ttk.Button(
-                self._buttonBar,
-                image=propertiesIcon,
-                command=self._ui.toggle_properties_view
-                )
-            self._propertiesButton.pack(side='right')
-            self._propertiesButton.image = propertiesIcon
+        # "Toggle properties" button.
+        self._propertiesButton = ttk.Button(
+            self._buttonBar,
+            text=_('Toggle Properties'),
+            image=self._ui.icons.propertiesIcon,
+            command=self._ui.toggle_properties_view
+            )
+        self._propertiesButton.pack(side='right')
+        self._propertiesButton.image = self._ui.icons.propertiesIcon
 
-            # "Toggle content viewer" button.
-            viewerIcon = tk.PhotoImage(file=f'{iconPath}/tb_viewer{size}.png')
-            self._viewerButton = ttk.Button(
-                self._buttonBar,
-                image=viewerIcon,
-                command=self._ui.toggle_contents_view
-                )
-            self._viewerButton.pack(side='right')
-            self._viewerButton.image = viewerIcon
-        except Exception as ex:
-            print(str(ex))
-        else:
-            self._buttonBar.pack(expand=False, before=self._ui.appWindow, fill='both')
+        # "Toggle content viewer" button.
+        self._viewerButton = ttk.Button(
+            self._buttonBar,
+            text=_('Toggle Text viewer'),
+            image=self._ui.icons.viewerIcon,
+            command=self._ui.toggle_contents_view
+            )
+        self._viewerButton.pack(side='right')
+        self._viewerButton.image = self._ui.icons.viewerIcon
+
+        self._buttonBar.pack(expand=False, before=self._ui.appWindow, fill='both')
 
     def disable_menu(self):
         """Disable menu entries when no project is open."""

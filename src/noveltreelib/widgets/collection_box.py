@@ -2,7 +2,7 @@
 
 Copyright (c) 2024 Peter Triesberger
 https://github.com/peter88213
-Published under the MIT License (https://opensource.org/licenses/mit-license.php)
+License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
@@ -28,10 +28,11 @@ class CollectionBox(ttk.Frame):
     """
 
     def __init__(
-            self, master,
-            cmdAdd=None, lblAdd=None,
-            cmdOpen=None, lblOpen=None,
-            cmdRemove=None, lblRemove=None,
+            self,
+            master,
+            cmdAdd=None, lblAdd=None, iconAdd=None,
+            cmdOpen=None, lblOpen=None, iconOpen=None,
+            cmdRemove=None, lblRemove=None, iconRemove=None,
             cmdActivate=None,
             **kw
             ):
@@ -41,14 +42,17 @@ class CollectionBox(ttk.Frame):
             cmdAdd -- Reference to the callback routine for the "Add" button.
                       If not set, the "Add" button is not available.
             lblAdd --  Optional alternative text on the "Add" button.
+            iconAdd --  Optional icon on the "Add" button.
             cmdOpen -- Reference to the callback routine for the "Open" button.
                        Bound to the "Return" key and left mouse button doublecklick.
                        If not set, the "Add" button is not available.
             lblOpen -- Optional alternative text on the "Open" button.
+            iconOpen -- Optional icon on the "Open" button.
             cmdRemove -- Reference to the callback routine for the "Remove" button.
                          Bound to the "Delete" key.
                          If not set, the "Remove" button is not available.
             lblRemove -- Optional alternative text on the "Remove" button.
+            iconRemove -- Optional icon on the "Remove" button.
             cmdActivate -- Reference to an external callback routine (optional)
                            Bound to listbox focus and selection.
         
@@ -77,32 +81,44 @@ class CollectionBox(ttk.Frame):
         self.inputWidgets = []
 
         # "Open" command.
+        kwargs = dict(
+            command=cmdOpen,
+            image=iconOpen,
+            )
         if lblOpen is None:
-            label = _('Open')
+            kwargs['text'] = _('Open')
         else:
-            label = lblOpen
-        self.btnOpen = ttk.Button(buttonbar, text=label, command=cmdOpen)
+            kwargs['text'] = lblOpen
+        self.btnOpen = ttk.Button(buttonbar, **kwargs)
         if cmdOpen is not None:
             self.btnOpen.pack(fill='x', expand=True)
             self.cListbox.bind('<Double-1>', cmdOpen)
             self.cListbox.bind('<Return>', cmdOpen)
 
         # "Add" command.
+        kwargs = dict(
+            command=cmdAdd,
+            image=iconAdd,
+            )
         if lblAdd is None:
-            label = _('Add')
+            kwargs['text'] = _('Add')
         else:
-            label = lblAdd
-        self.btnAdd = ttk.Button(buttonbar, text=label, command=cmdAdd)
+            kwargs['text'] = lblAdd
+        self.btnAdd = ttk.Button(buttonbar, **kwargs)
         if cmdAdd is not None:
             self.btnAdd.pack(fill='x', expand=True)
             self.inputWidgets.append(self.btnAdd)
 
         # "Remove" command.
+        kwargs = dict(
+            command=cmdRemove,
+            image=iconRemove,
+            )
         if lblRemove is None:
-            label = _('Remove')
+            kwargs['text'] = _('Remove')
         else:
-            label = lblRemove
-        self.btnRemove = ttk.Button(buttonbar, text=label, command=cmdRemove)
+            kwargs['text'] = lblRemove
+        self.btnRemove = ttk.Button(buttonbar, **kwargs)
         if cmdRemove is not None:
             self.btnRemove.pack(fill='x', expand=True)
             self.inputWidgets.append(self.btnRemove)
