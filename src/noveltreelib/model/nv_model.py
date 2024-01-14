@@ -900,11 +900,13 @@ class NvModel:
                 self.set_character_status(isMajor, self.tree.get_children(crId))
 
     def set_section_edit_status(self, newStatus, elemIds):
-        """Recursively set section editing status (Outline/Draft..).
+        """Recursively set section completion status (Outline/Draft..).
         
         Positional arguments:
             newStatus: int -- New section status to be set.        
             elemIds: list of IDs to process.
+
+        TODO: Rename this method to set_completion_status()            
         """
         for elemId in elemIds:
             if elemId.startswith(SECTION_PREFIX):

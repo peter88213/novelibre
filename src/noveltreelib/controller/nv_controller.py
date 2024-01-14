@@ -891,11 +891,13 @@ class NvController:
             self._mdl.set_level(newLevel, elemIds)
 
     def set_section_edit_status(self, newStatus, elemIds=None):
-        """Set section editing status (Outline/Draft..).
+        """Set section completion status (Outline/Draft..).
         
         Positional arguments:
             newStatus: int -- New section status to be set.        
             elemIds: list of IDs to process.
+            
+        TODO: Rename this method to set_completion_status()
         """
         if not self.check_lock():
             if elemIds is None:

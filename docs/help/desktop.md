@@ -58,7 +58,7 @@ Select item and hit the **Del** key.
 - The _Trash_ chapter is created automatically, if needed. 
 - When deleting the _Trash_ chapter, all sections are deleted.
 
-- The type of chapters and sections, as well as the editing status of the sections are color coded and can be changed via context menu.
+- The type of chapters and sections, as well as the completion status of the sections are color coded and can be changed via context menu.
 - Within chapters, sections of the same type and with the same viewpoint can be joined.
 - "Notes" and "To do" type chapters can be exported to a separate ODT document. 
 
