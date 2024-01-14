@@ -6,9 +6,9 @@
 
 ---
 
-![Go back](icons/tb_goBack24.png) Go back in the browsing history.
+![Go back](icons/tb_goBack24.png) Go back in the browsing history. Same as **F2**.
 
-![Go forward](icons/tb_goForward24.png) Go forward in the browsing history.
+![Go forward](icons/tb_goForward24.png) Go forward in the browsing history. Same as **F3**.
 
 ---
 

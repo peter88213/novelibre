@@ -934,7 +934,7 @@ class NvController:
         self._ui.propertiesView.apply_changes()
         reporter = NvHtmlReporter()
         try:
-            reporter.run(self._mdl, suffix, tempdir=self.tempDir)
+            reporter.run(self._mdl.prjFile, suffix, tempdir=self.tempDir)
         except Error as ex:
             self._ui.set_status(f'!{str(ex)}')
 

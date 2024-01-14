@@ -2,35 +2,47 @@
 
 --- 
 
-**NOTE:** This help page applies to *novelyst* and is not yet updated for *noveltree*.
+**NOTE:** This help page partially applies to *novelyst* and is not yet fully updated for *noveltree*.
 
-# Arcs
+# Plot
 
-## What are arcs?
+--- 
+
+## Arcs
 
 *noveltree* provides *arcs* as a powerful and flexible concept for plotting.
 
 ![Arcs](../Screenshots/arcs01.png)
 
 The term *plot* refers to the consequent course of the narrative action. 
-"Arc" can mean a variety of things: Narrative strand, thread, character arc, storyline, sequence of cause and effect, sequence of setup and payoff, road map with milestones, and so on. You can think of an arc as a line on which points are arranged that characterize the progression of the story. These points can be assigned to sections to indicate the section's relevance to the plot. 
+"Arc" can mean a variety of things: Narrative strand, thread, character arc, storyline, 
+sequence of cause and effect, sequence of setup and payoff, road map with milestones, 
+and so on. You can think of an arc as a line on which points are arranged that 
+characterize the progression of the story. These "Turning points" can be assigned to 
+sections to indicate the section's relevance to the plot. 
 
 - *noveltree* lets you define any number of arcs. 
 - Any number of sections can be assigned to each arc. 
 - Any number of arcs can be assigned to each section.
-- Each arc can contain any number of points. 
-- Each point can be assigned to exactly one section. 
+- Each arc can contain any number of Turning points. 
+- Each Turning point can be assigned to exactly one section. 
 
 The association of sections and turning points is shown in the "Plot" column of the tree view.
 
-## What about acts?
+--- 
 
-If you want to divide a story into phases according to a dramaturgical scheme, for example into acts or steps, arcs are not necessarily the means of choice. This is because their points have to be assigned to specific sections.
-Better suited for this are "todo" type chapters, which are inserted between the regular chapters at the beginning of each phase. This gives you color-coded subheadings in the tree view, and also gives you the option of documenting your dramaturgical model in as much detail as you like, e.g. with "todo" sections underneath. 
+## Stages
+
+If you want to divide a story into stages according to a dramaturgical scheme, for example into acts or steps, arcs are not necessarily the means of choice. This is because their turning points have to be assigned to specific sections.
+Better suited for this are stages, which are inserted between the regular sections at the beginning of each phase. This gives you color-coded subheadings in the tree view, and also gives you the option of documenting your dramaturgical model in as much detail as you like. There are two levels. Acts may be defined as stages on the first level. 
 
 ![Acts](../Screenshots/acts01.png)
 
-This method can of course be combined well with turning points, which in this case can be created as plot points such as pinch point, Turning point, climax, etc.
+This method can also be used to define turning points, which in this case can be created as stages on the second level.
+
+---
+
+
 
 ## How to define arcs
 

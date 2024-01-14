@@ -2,7 +2,6 @@
 
 --- 
 
-**NOTE:** This help page applies to *novelyst* and is not yet updated for *noveltree*.
 
 # Desktop overview
 
@@ -11,12 +10,14 @@ The *noveltree* desktop is divided into three panes:
 
 ![Desktop](../Screenshots/desktop01.png)
 
+--- 
+
 ## Project tree
 
 The project tree in the left pane shows the organization of the project.
 
-- The tree elements are color-coded according to the section type (see [Basic concepts](basic_concepts)). *Normal* type sections are highlighted according to the selected coloring mode (see *Program settings* in the [Tools menu](tools_menu)).
-- The order of the columns can be changed (see *Program settings* in the [Tools menu](tools_menu)).
+- The tree elements are color-coded according to the section type (see [Basic concepts](basic_concepts)). *Normal* type sections are highlighted according to the selected coloring mode (see *Program settings* in the [View menu](view_menu)).
+- The order of the columns can be changed (see *Program settings* in the [View menu](tools_menu)).
 - Right-clicking on a tree element opens a [context menu](tree_context_menu) with several options. 
 
 ---
@@ -25,8 +26,8 @@ The project tree in the left pane shows the organization of the project.
 
 - The **Book** branch contains the parts, chapters, and sections that belong to the novel manuscript.
 - The **Characters/Locations/Items** branches contain descriptions of the story world's elements that can be associated with the book's sections.
-- The **Research** branch contains all *Notes* type parts with chapters and sections intended for the documentation of the story world.
-- The **Planning** branch contains all *Todo* type parts with chapters and sections intended to build the dramaturgical structure of the story. This is the right place for planning plot points, archetypes, character arcs, and so on. 
+- The **Arcs** branch contains all *Notes* type parts with chapters and sections intended for the documentation of the story world.
+- The **Project notes** branch contains all project notes. 
 
 ---
 
@@ -74,7 +75,7 @@ The **Content viewer** in the middle pane shows the part/chapter/section content
 - You can select text with the mouse, and copy it to the clipboard with **Ctrl-C**.
 - You cannot edit the text. For this, you might want to install an editor plugin, such as [noveltree_editor](https://peter88213.github.io/noveltree_editor/).
 - Section text is color-coded according to the section type (see [Basic concepts](basic_concepts)).
-- With the **Show markup** checkbox section markup such as bold, italics, and language can be shown/hidden.
+- With the **Show markup** checkbox, XML markup can be shown/hidden.
 
 ---
 

@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.3.1
+
+- Fix a bug where the HTML lists are not generated.
+
+Based on novxlib v1.0.0
+
 ### v1.3.0
 
 - Provide icons for the collection list buttons.

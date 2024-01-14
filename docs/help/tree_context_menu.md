@@ -2,8 +2,6 @@
 
 --- 
 
-**NOTE:** This help page applies to *novelyst* and is not yet updated for *noveltree*.
-
 # Tree view context menu
 
 When right-clicking on a tree element in the left pane, a context menu opens. 
@@ -13,6 +11,8 @@ Greyed-out entries are not available, e.g. due to "project lock".
 ---
 
 ## Book/Research/Planning context menu entries
+
+---
 
 ### Add Section
 
@@ -25,10 +25,11 @@ Adds a new section.
 
 - *Normal* type
 - *Outline* completion status
-- *Staged* mode
 - No viewpoint character assigned
 - No arc or tag assigned
 - No date/time set
+
+---
 
 ### Add Chapter
 
@@ -37,29 +38,36 @@ Adds a new chapter.
 - The new chapter is placed at the next free position after the selection.
 - The new chapter has an auto-generated title. You can change it in the right pane.
 
-### Promote Chapter
-
-Converts the selected chapter into a part. 
-
-- Chapters that follow the selected one to the next part will be placed below the new part.
+--- 
 
 ### Add Part
 
 Adds a new part.
+
 - The new part is placed at the next free position after the selection.
+- In the tree, the part is at the same level as the chapters, so the chapters 
+  are not children of the part. This is to make it easier to move the part boundaries. 
 - The new part has an auto-generated title. You can change it in the right pane.
 
-### Demote Part
+--- 
 
-Converts the selected part into a chapter.
+### Insert Stage 
 
-- The chapters of the part together with the converted part are allocated to the preceding part, if there is one.
+Inserts a new stage at the next free position at stage level after the selection.
 
-### Cancel Part
+- The new stage has an auto-generated title. You can change it in the right pane.
+- The new stage is on the second level by default.
 
-Removes the selected part but keep its chapters.
+--- 
 
-- The chapters of the removed part are allocated to the preceding part, if there is one. 
+### Change Level
+
+Changes the level of a chapter or a stage.
+
+- **1st Level** converts a selected part into a chapter.
+- **2nd Level** converts a selected chapter into a part.
+
+--- 
 
 ### Delete
 
@@ -67,12 +75,18 @@ Deletes the selected tree element and its children.
 
 - Parts and chapters are deleted.
 - Sections are marked "unused" and moved to the "Trash" chapter. 
+- Deleting a part has no effect on its subordinate chapters.
+- Deleting a chapter moves its sections to the "Trash" chapter.
+
+---
 
 ### Set Type
 
-Sets the [type](basic_concepts) of the selected section. This can be *Normal*, *Notes*, *Todo*, or *Unused*.
+Sets the [type](basic_concepts) of the selected chapter or section. This can be *Normal* or *Unused*.
 
-- Select a parent node to set the type for multiple sections.
+- Setting the type of a chapter to *Unused* will also make its sections *Unused*.
+
+--- 
 
 ### Set Status
 
@@ -80,11 +94,7 @@ Sets the [completion status](basic_concepts) of the selected section.
 
 - Select a parent node to set the status for multiple sections.
 
-### Set Mode
-
-Sets the [mode of discourse](basic_concepts) of the selected section. This can be *staged*, *explaining*, *descriptive*, or *summarizing*.
-
-- Select a parent node to set the mode for multiple sections.
+--- 
 
 ### Join with previous
 
@@ -104,21 +114,31 @@ Joins two sections, if within the same chapter, of the same type, and with the s
 - [Arc](arcs) point associations] are moved to the joined section, if any.
 - Section durations are added.
 
+--- 
+
 ### Chapter level
 
 Hides the sections by collapsing the tree, so that only parts and chapters are visible.
+
+--- 
 
 ### Expand
 
 Shows a whole branch by expanding the selected tree element.
 
+--- 
+
 ### Collapse
 
 Hides the child elements of the selected tree element.
 
+--- 
+
 ### Expand all
 
 Shows the whole tree.
+
+--- 
 
 ### Collapse all
 
@@ -128,6 +148,8 @@ Hides all tree elements except the main categories.
 
 ## Characters/Locations/Items context menu entries
 
+---
+
 ### Add
 
 Adds a new character/location/item.
@@ -136,9 +158,13 @@ Adds a new character/location/item.
 - The new element has an auto-generated title. You can change it in the right pane.
 - The status of newly created characters is *minor*.
 
+--- 
+
 ### Delete
 
 Deletes the selected character/location/item.
+
+--- 
 
 ### Set Status
 
