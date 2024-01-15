@@ -77,6 +77,8 @@ Deletes the selected tree element and its children.
 - Sections are marked "unused" and moved to the "Trash" chapter. 
 - Deleting a part has no effect on its subordinate chapters.
 - Deleting a chapter moves its sections to the "Trash" chapter.
+- The "Trash" chapter is created automatically, if needed. 
+- When deleting the "Trash" chapter, all its sections are deleted.
 
 ---
 

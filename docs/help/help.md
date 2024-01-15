@@ -2,8 +2,6 @@
 
 --- 
 
-**NOTE:** This help page applies to *novelyst* and is not yet updated for *noveltree*.
-
 # Online help
 
 This page refers to the latest *noveltree* release.

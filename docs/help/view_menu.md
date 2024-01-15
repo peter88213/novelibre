@@ -2,11 +2,9 @@
 
 --- 
 
-**NOTE:** This help page applies to *novelyst* and is not yet updated for *noveltree*.
-
 # View menu 
 
-**Adjust the project tree display**
+**Control the display**
 
 --- 
 
@@ -54,7 +52,7 @@
 
 **Go to the "Book" branch and expand it**
 
-- You can select and open the "Book" branch with **View > View Book** or **F6**. 
+- You can select and open the "Book" branch with **View > View Book** or **F12**. 
 
 --- 
 
@@ -82,19 +80,11 @@
 
 --- 
 
-## Show Research
+## Show Arcs
 
-**Go to the "Research" branch and expand it**
+**Go to the "Arcs" branch and expand it**
 
-- You can select and open the "Research" branch with **View > View Research** or **F10**. 
-
---- 
-
-## Show Planning
-
-**Go to the "Planning" branch and expand it**
-
-- You can select and open the "Planning" branch with **View > View Planning** or **F11**. 
+- You can select and open the "Arcs" branch with **View > View Research** or **F10**. 
 
 --- 
 
@@ -102,7 +92,7 @@
 
 **Go to the "Project notes" branch and expand it**
 
-- You can select and open the "Project notes" branch with **View > View Project notes** or **F12**. 
+- You can select and open the "Project notes" branch with **View > View Planning** or **F11**. 
 
 --- 
 
@@ -136,5 +126,40 @@
 - On closing the detached window, the properties are docked again.
 
 --- 
+
+## Options
+
+**Project independent program settings**
+
+---
+
+### Coloring mode
+
+**Set criteria according to which normal sections are colored in the tree**
+
+- **None** - Normal sections are black on white by default.
+- **Status** - Normal sections are colored according to their completion status (*Outline*, *Draft*, *1st Edit*, *2nd Edit*, or *Done*).
+- **Work phase** - Normal sections are highlighted if their completion status is behind the work phase defined in the project properties.
+
+---
+
+### Large toolbar icons
+
+By default, the icon size is 16x16 pixels. If *Large toolbar icons* is checked, 24x24 icons are used after the next program startup. 
+
+**Note:** This applies not only to the toolbar, but also to all other icons that decorate the application's control elements. 
+
+---
+
+### Columns
+
+**Change the column order**
+
+- From top to bottom in the list means from left to right in the tree.
+- Just drag and drop to change the order.
+
+Click the **Apply** button to apply changes.
+
+---
 
 [<< Previous](file_menu) -- [Next >>](part_menu)

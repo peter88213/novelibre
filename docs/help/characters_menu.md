@@ -15,7 +15,7 @@
 You can add a character to the tree with **Characters > Add**.
 
 - If a character is selected, the new character is placed after the selected one.
-- Otherwise, the new character is placed at the first position.   
+- Otherwise, the new character is placed at the last position.   
 - The new character has an auto-generated title. You can change it in the right pane.
 - The status of newly created characters is *minor*.
 

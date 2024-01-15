@@ -2,8 +2,6 @@
 
 --- 
 
-**NOTE:** This help page applies to *novelyst* and is not yet updated for *noveltree*.
-
 # File menu 
 
 **File operation**
@@ -14,9 +12,45 @@
 
 **Create a new novel project**
 
-- You can create a new project with **File > New** or **Ctrl-N**. This will close the current project
-  and open a file dialog asking for the location and file name of the project to create.
-- Once you specified a valid file path, a blank project appears. Be aware, it's not saved on disk yet.
+- You can create a new project with **File > New** or **Ctrl-N**. This will open a submenu. 
+
+**Note:** The submenu can be extended by plugins to add more file types from which a *noveltree* project can be created. 
+
+---
+
+### Empty project
+
+- This will close the current project and create a blank project. 
+- This project is not yet saved on disc. When saving manually (see below), a file dialo will open and ask for a locantion and file name.
+
+---
+
+### Create from ODT...
+
+- This will close the current project and open a file dialog asking for an ODT document to create the new projec from.
+- The newly created project is saved automatically in the same directory as the ODT document, using its file name and the extension *.novx*.
+- If a project with the same file name as the ODT document already exists, no new project will be created.
+- If you select a previously exported document belonging to an existing project, this project will be updated and loaded.
+- The ODT document can either be a **work in progress** i.e. a regular novel manuscript with chapter headings and section contents, 
+  or an **outline**, containing the chapter and section structure with titles and descriptions.
+
+#### How to set up a work in progress for import
+
+A work in progress has no third level heading.
+
+-   *Heading 1* → New chapter title (beginning a new section).
+-   *Heading 2* → New chapter title.
+-   `* * *` → Section divider (not needed for the first section in a chapter).
+-   All other text is considered section content.
+
+#### How to set up an outline for import
+
+An outline has at least one third level heading.
+
+-   *Heading 1* → New chapter title (beginning a new section).
+-   *Heading 2* → New chapter title.
+-   *Heading 3* → New section title.
+-   All other text is considered to be chapter/section description.
 
 --- 
 
@@ -51,15 +85,13 @@
 
 ## Refresh tree
 
-**Update the project structure after making changes**
+**Enforce tree refresh after making changes**
 
-You can synchronize the tree with the project structure with **File > Refresh tree** or **F5**.
-This ensures for instance, 
-that sections within a "Notes", "Unused", or "To do" chapter are of the same type after moving them there.
-- Refreshing the tree may trigger the "Modified" flag.
-- When refreshing the tree, "Normal type" chapters in the *Research* tree are moved to the *Book* tree.
-- When refreshing the tree, parts and chapters are renumbered according to the settings. 
-- When refreshing the tree, the tree view is reset and the browsing history is cleared.
+You can refresh the tree with **File > Refresh tree** or **F5**.
+
+- "Normal" sections that have been moved to an "Unused" chapter are made "Unused".
+- Parts and chapters are renumbered according to the settings. 
+- The "Trash" chapter is moved to the end of the book, if necessary.
 
 --- 
 
@@ -103,8 +135,6 @@ In case you edit the project "outsides", consider locking it before.
 
 - You can add the *.bak* extension to the current manuscript with **File > Discard manuscript**. 
 This may help to avoid confusion about changes made with *noveltree* and OpenOffice/LibreOffice. 
-It is recommended in any case if new sections or chapters were created by splitting during the 
-last export from OpenOffice/LibreOffice. 
 
 --- 
 
@@ -114,8 +144,6 @@ last export from OpenOffice/LibreOffice.
 
 - You can save the project with **File > Save** or **Ctrl-S**.
 - If the project has changed on disk since last opened, you will get a warning.
-- It is recommended to refresh the tree (see above) before saving. So you can see how 
-  it will look after reloading. 
 
 --- 
 
@@ -124,7 +152,7 @@ last export from OpenOffice/LibreOffice.
 **Save the project with another file name/at another place**
 
 - You can save the project with another file name/at another place with **File > Save as...** or **Ctrl-Shift-S**. Then a file select dialog opens.
-- Your current project remains as saved the last time. Changes since then go to the new project.
+- Your current project remains as saved the last time. Changes since then apply to the new project.
 
 --- 
 

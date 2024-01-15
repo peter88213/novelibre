@@ -2,8 +2,6 @@
 
 --- 
 
-**NOTE:** This help page applies to *novelyst* and is not yet updated for *noveltree*.
-
 # Section menu 
 
 **Section operation**
@@ -23,7 +21,6 @@ You can add a section to the tree with **Section > Add**.
 
 - *Normal* type
 - *Outline* completion status
-- *Staged* mode
 - No viewpoint character assigned
 - No arc or tag assigned
 - No date/time set
@@ -34,12 +31,11 @@ You can add a section to the tree with **Section > Add**.
 
 **Set the [type](basic_concepts) of the selected section**
 
-This can be *Normal*, *Notes*, *Todo*, or *Unused*.
+This can be *Normal* or *Unused*.
 
 ### Type change for multiple sections
 
-- Either select multiple sections, or
-- select a parent node (part or chapter)
+Either select multiple sections, or select a chapter.
 
 --- 
 
@@ -52,20 +48,7 @@ This can be *Outline*, *Draft*, *1st Edit*, *2nd Edit*, or *Done*.
 ### Status change for multiple sections
 
 - Either select multiple sections, or
-- select a parent node (part, chapter, or Book)
-
---- 
-
-## Set Mode
-
-**Set the section's [mode of discourse](basic_concepts)**
-
-This can be *Narration*, *Dramatic action*, *Dialogue*, *Description*, or *Exposition*.
-
-### Mode change for multiple sections
-
-- Either select multiple sections, or
-- select a parent node (part, chapter, or Book)
+- select a parent node (chapter or Book)
 
 --- 
 
@@ -76,7 +59,7 @@ This can be *Narration*, *Dramatic action*, *Dialogue*, *Description*, or *Expos
 This will generate a new OpenDocument text document (odt) containing a
 **full synopsis** with part/chapter headings and section descriptions that can
 be edited and written back to project format. File name suffix is
-`_sections`.
+`_sections_tmp`.
 
 --- 
 
@@ -86,7 +69,7 @@ be edited and written back to project format. File name suffix is
 
 This will generate a new OpenDocument spreadsheet (ods) listing the following:
 
-- Hyperlink to the manuscript's section section
+- Hyperlink to the section in the manuscript (if any)
 - Section title
 - Section description
 - Tags
@@ -97,23 +80,14 @@ This will generate a new OpenDocument spreadsheet (ods) listing the following:
 - Outcome
 - Sequential section number
 - Words total
-- Rating 1
-- Rating 2
-- Rating 3
-- Rating 4
 - Word count
-- Letter count
-- Status
 - Characters
 - Locations
 - Items
 
-Only "normal" sections get a row in the section list. Sections of the "Unused", "Notes", or "ToDo" 
-type are omitted.
+Only "normal" sections get a row in the section list. Sections of the "Unused" type are omitted.
 
-Sections beginning with `<HTML>` or `<TEX>` are omitted.
-
-File name suffix is `_sectionlist`.
+File name suffix is `_sectionlist_tmp`.
 
 --- 
 

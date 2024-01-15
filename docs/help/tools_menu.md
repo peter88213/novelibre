@@ -2,37 +2,13 @@
 
 --- 
 
-**NOTE:** This help page applies to *novelyst* and is not yet updated for *noveltree*.
-
 # Tools menu 
 
-**Program settings and miscellaneous functions**
+**Miscellaneous functions**
+
+**Note:** The *Tools* menu can be extended by plugins to add more features.
 
 --- 
-
-## Program settings
-
-**Project independent settings**
-
-### Coloring mode
-
-**Set criteria according to which normal sections are colored in the tree**
-
-- **None** - Normal sections are black on white by default.
-- **Status** - Normal sections are colored according to their completion status (*Outline*, *Draft*, *1st Edit*, *2nd Edit*, or *Done*).
-- **Work phase** - Normal sections are highlighted if their completion status is behind the work phase defined in the project properties.
-- **Mode** - Normal sections are colored according to their mode (*staged*, *explaining*, *descriptive*, or *summarizing*). 
-
-### Columns
-
-**Change the column order**
-
-- From top to bottom in the list means from left to right in the tree.
-- Just drag and drop to change the order.
-
-Click the **Apply** button to apply changes.
-
----
 
 ## Plugin manager
 

@@ -2,8 +2,6 @@
 
 --- 
 
-**NOTE:** This help page applies to *novelyst* and is not yet updated for *noveltree*.
-
 # Items menu 
 
 **Item operation**
@@ -41,7 +39,7 @@ use **Export > Characters/locations/items data files**.
 
 This will generate a new OpenDocument text document (odt) containing
 item descriptions that can be edited in Office Writer and written back
-to project format. File name suffix is `_items`.
+to project format. File name suffix is `_items_tmp`.
 
 --- 
 
@@ -51,7 +49,7 @@ to project format. File name suffix is `_items`.
 
 This will generate a new OpenDocument spreadsheet (ods) containing a
 item list that can be edited in Office Calc and written back to
-project format. File name suffix is `_loclist`.
+project format. File name suffix is `_itemlist_tmp`.
 
 You may change the sort order of the rows. You may also add or remove
 rows. New entities must get a unique ID.
