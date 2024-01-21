@@ -42,6 +42,13 @@ you might want to take a look at the [yw_novx conversion tools](https://github.c
 - [A Story Template management plugin](https://peter88213.github.io/noveltree_templates/)
 - [A simple "markup" section editor](https://peter88213.github.io/noveltree_editor/)
 
+## Tools
+
+Stand-alone Python scripts for *novx* file conversion.
+
+- [scap_novx](https://peter88213.github.io/scap_novx/): Generate a *noveltree* project from a *Scapple* outline.
+- [novx_xtg](https://peter88213.github.io/novx_xtg/): XPress tagged text export from *noveltree* projects.
+
 ## Requirements
 
 - [Python](https://www.python.org/) version 3.6+. 
@@ -80,11 +87,6 @@ I use the program myself and fix errors immediately if I notice any. As far as I
 ## Usage
 
 See the [instructions for use](usage)
-
-## See also
-
-- [scap_novx](https://peter88213.github.io/scap_novx/): Generate a *noveltree* project from a *Scapple* outline.
-- [novx_xtg](https://peter88213.github.io/novx_xtg/): XPress tagged text export from *noveltree* projects.
 
 ## Credits
 
