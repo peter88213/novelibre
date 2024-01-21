@@ -81,6 +81,11 @@ I use the program myself and fix errors immediately if I notice any. As far as I
 
 See the [instructions for use](usage)
 
+## See also
+
+- [scap_novx](https://peter88213.github.io/scap_novx/): Generate a *noveltree* project from a *Scapple* outline.
+- [novx_xtg](https://peter88213.github.io/novx_xtg/): XPress tagged text export from *noveltree* projects.
+
 ## Credits
 
 The app icons are made using the free *Pusab* font by Ryoichi Tsunekawa, [Flat-it](http://flat-it.com/).
