@@ -775,6 +775,7 @@ class NvController:
 
     def refresh_views(self, event=None):
         """Update all registered views."""
+        self._ui.propertiesView.apply_changes()
         self._mdl.renumber_chapters()
         self._mdl.prjFile.adjust_section_types()
         self._mdl.novel.update_section_arcs()
