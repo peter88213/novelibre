@@ -53,33 +53,35 @@ import tkinter as tk
 class NvView:
     """Main view of the tkinter GUI framework for noveltree."""
     _HELP_URL = 'https://peter88213.github.io/noveltree/help/help'
-    _KEY_RESTORE_STATUS = ('<Escape>', 'Esc')
-    _KEY_OPEN_PROJECT = ('<Control-o>', 'Ctrl-O')
-    _KEY_QUIT_PROGRAM = ('<Control-q>', 'Ctrl-Q')
-    _KEY_NEW_PROJECT = ('<Control-n>', 'Ctrl-N')
-    _KEY_LOCK_PROJECT = ('<Control-l>', 'Ctrl-L')
-    _KEY_UNLOCK_PROJECT = ('<Control-u>', 'Ctrl-U')
-    _KEY_FOLDER = ('<Control-p>', 'Ctrl-P')
-    _KEY_RELOAD_PROJECT = ('<Control-r>', 'Ctrl-R')
-    _KEY_RESTORE_BACKUP = ('<Control-b>', 'Ctrl-B')
-    _KEY_SAVE_PROJECT = ('<Control-s>', 'Ctrl-S')
-    _KEY_SAVE_AS = ('<Control-S>', 'Ctrl-Shift-S')
+    _KEY_ADD_CHILD = ('<Control-Alt-n>', 'Ctrl-Alt-N')
+    _KEY_ADD_ELEMENT = ('<Control-n>', 'Ctrl-N')
+    _KEY_ADD_PARENT = ('<Control-Alt-Shift-N>', 'Ctrl-Alt-Shift-N')
     _KEY_CHAPTER_LEVEL = ('<Control-Alt-c>', 'Ctrl-Alt-C')
-    _KEY_TOGGLE_VIEWER = ('<Control-t>', 'Ctrl-T')
-    _KEY_TOGGLE_PROPERTIES = ('<Control-Alt-t>', 'Ctrl-Alt-T')
     _KEY_DETACH_PROPERTIES = ('<Control-Alt-d>', 'Ctrl-Alt-D')
-    _KEY_SHOW_HELP = ('<F1>', 'F1')
+    _KEY_EDIT_MANUSCRIPT = ('<F4>', 'F4')
+    _KEY_FOLDER = ('<Control-p>', 'Ctrl-P')
     _KEY_GO_BACK = ('<F2>', 'F2')
     _KEY_GO_FORWARD = ('<F3>', 'F3')
-    _KEY_EDIT_MANUSCRIPT = ('<F4>', 'F4')
+    _KEY_LOCK_PROJECT = ('<Control-l>', 'Ctrl-L')
+    _KEY_OPEN_PROJECT = ('<Control-o>', 'Ctrl-O')
+    _KEY_QUIT_PROGRAM = ('<Control-q>', 'Ctrl-Q')
     _KEY_REFRESH_TREE = ('<F5>', 'F5')
-    _KEY_UPDATE_FROM_MANUSCRIPT = ('<F6>', 'F6')
-    _KEY_SHOW_CHARACTERS = ('<F7>', 'F7')
-    _KEY_SHOW_LOCATIONS = ('<F8>', 'F8')
-    _KEY_SHOW_ITEMS = ('<F9>', 'F9')
+    _KEY_RELOAD_PROJECT = ('<Control-r>', 'Ctrl-R')
+    _KEY_RESTORE_BACKUP = ('<Control-b>', 'Ctrl-B')
+    _KEY_RESTORE_STATUS = ('<Escape>', 'Esc')
+    _KEY_SAVE_AS = ('<Control-S>', 'Ctrl-Shift-S')
+    _KEY_SAVE_PROJECT = ('<Control-s>', 'Ctrl-S')
     _KEY_SHOW_ARCS = ('<F10>', 'F10')
-    _KEY_SHOW_PROJECTNOTES = ('<F11>', 'F11')
     _KEY_SHOW_BOOK = ('<F12>', 'F12')
+    _KEY_SHOW_CHARACTERS = ('<F7>', 'F7')
+    _KEY_SHOW_HELP = ('<F1>', 'F1')
+    _KEY_SHOW_ITEMS = ('<F9>', 'F9')
+    _KEY_SHOW_LOCATIONS = ('<F8>', 'F8')
+    _KEY_SHOW_PROJECTNOTES = ('<F11>', 'F11')
+    _KEY_TOGGLE_PROPERTIES = ('<Control-Alt-t>', 'Ctrl-Alt-T')
+    _KEY_TOGGLE_VIEWER = ('<Control-t>', 'Ctrl-T')
+    _KEY_UNLOCK_PROJECT = ('<Control-u>', 'Ctrl-U')
+    _KEY_UPDATE_FROM_MANUSCRIPT = ('<F6>', 'F6')
 
     def __init__(self, model, controller, title):
         """Set up the application's user interface.
@@ -282,14 +284,6 @@ class NvView:
             self.propertiesView.show_properties(self.tv.tree.selection()[0])
         except IndexError:
             pass
-        return 'break'
-
-    def _view_options(self, event=None):
-        """Open a toplevel window to edit the view options."""
-        offset = 300
-        __, x, y = self.root.geometry().split('+')
-        windowGeometry = f'+{int(x)+offset}+{int(y)+offset}'
-        ViewOptionsWindow(windowGeometry, self)
         return 'break'
 
     def enable_menu(self):
@@ -518,7 +512,6 @@ class NvView:
         self.root.bind(self._KEY_RESTORE_STATUS[0], self.restore_status)
         self.root.bind(self._KEY_OPEN_PROJECT[0], self._ctrl.open_project)
         self.root.bind(self._KEY_QUIT_PROGRAM[0], self._ctrl.on_quit)
-        self.root.bind(self._KEY_NEW_PROJECT[0], self._ctrl.new_project)
         self.root.bind(self._KEY_LOCK_PROJECT[0], self._ctrl.lock)
         self.root.bind(self._KEY_UNLOCK_PROJECT[0], self._ctrl.unlock)
         self.root.bind(self._KEY_RELOAD_PROJECT[0], self._ctrl.reload_project)
@@ -545,6 +538,9 @@ class NvView:
         self.root.bind(self._KEY_SHOW_ARCS[0], lambda event: self.tv.show_branch(AC_ROOT))
         self.root.bind(self._KEY_SHOW_PROJECTNOTES[0], lambda event: self.tv.show_branch(PN_ROOT))
         self.root.bind(self._KEY_SHOW_HELP[0], lambda event: webbrowser.open(self._HELP_URL))
+        self.root.bind(self._KEY_ADD_ELEMENT[0], self._ctrl.add_element)
+        self.root.bind(self._KEY_ADD_CHILD[0], self._ctrl.add_child)
+        self.root.bind(self._KEY_ADD_PARENT[0], self._ctrl.add_parent)
 
     def _build_menu(self):
         """Add commands and submenus to the main menu."""
@@ -557,7 +553,7 @@ class NvView:
         # Files
         self.fileMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('File'), menu=self.fileMenu)
-        self.fileMenu.add_cascade(label=_('New'), accelerator=self._KEY_NEW_PROJECT[1], menu=self.newMenu)
+        self.fileMenu.add_cascade(label=_('New'), menu=self.newMenu)
         self.fileMenu.add_command(label=_('Open...'), accelerator=self._KEY_OPEN_PROJECT[1], command=self._ctrl.open_project)
         self.fileMenu.add_command(label=_('Reload'), accelerator=self._KEY_RELOAD_PROJECT[1], command=self._ctrl.reload_project)
         self.fileMenu.add_command(label=_('Restore backup'), accelerator=self._KEY_RESTORE_BACKUP[1], command=self._ctrl.restore_backup)
@@ -705,4 +701,12 @@ class NvView:
         self.helpMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Help'), menu=self.helpMenu)
         self.helpMenu.add_command(label=_('Online help'), accelerator=self._KEY_SHOW_HELP[1], command=lambda: webbrowser.open(self._HELP_URL))
+
+    def _view_options(self, event=None):
+        """Open a toplevel window to edit the view options."""
+        offset = 300
+        __, x, y = self.root.geometry().split('+')
+        windowGeometry = f'+{int(x)+offset}+{int(y)+offset}'
+        ViewOptionsWindow(windowGeometry, self)
+        return 'break'
 

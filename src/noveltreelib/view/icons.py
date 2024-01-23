@@ -27,6 +27,14 @@ class Icons:
         except:
             self.addIcon = None
         try:
+            self.addChildIcon = tk.PhotoImage(file=f'{iconPath}/addChild.png')
+        except:
+            self.addChildIcon = None
+        try:
+            self.addParentIcon = tk.PhotoImage(file=f'{iconPath}/addParent.png')
+        except:
+            self.addParentIcon = None
+        try:
             self.goBackIcon = tk.PhotoImage(file=f'{iconPath}/goBack.png')
         except:
             self.goBackIcon = None

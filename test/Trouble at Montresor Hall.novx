@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE novx SYSTEM "novx_1_0.dtd">
+<?xml-stylesheet href="novx.css" type="text/css"?>
+<novx version="1.0" xml:lang="en-GB">
+  <PROJECT renumberChapters="1" saveWordCount="1">
+    <Title>Trouble at Montresor Hall</Title>
+    <Author>W. R. Hack</Author>
+    <ChapterHeadingPrefix>Chapter </ChapterHeadingPrefix>
+    <PartHeadingPrefix>Part </PartHeadingPrefix>
+  </PROJECT>
+  <CHAPTERS>
+    <CHAPTER id="ch1">
+      <Title>Chapter 1</Title>
+      <SECTION id="sc1" type="2">
+        <Title>ACT 1</Title>
+        <Desc>
+          <p>Setup</p>
+        </Desc>
+      </SECTION>
+      <SECTION id="sc14">
+        <Title>Montresor returns from a long journey</Title>
+      </SECTION>
+      <SECTION id="sc15">
+        <Title>Dorothy shows up</Title>
+      </SECTION>
+      <SECTION id="sc2" type="3">
+        <Title>Inciting Incident</Title>
+        <Desc>
+          <p>Also called "catalyst" or "call to adventure". This sets the protagonist in motion.</p>
+        </Desc>
+      </SECTION>
+      <SECTION id="sc16">
+        <Title>Dorothy meets Baharov</Title>
+      </SECTION>
+      <SECTION id="sc17">
+        <Title>Montresor at the Gembling Hall</Title>
+      </SECTION>
+    </CHAPTER>
+    <CHAPTER id="ch2">
+      <Title>Chapter 2</Title>
+      <SECTION id="sc3">
+        <Title>Montresor meets Coralinne</Title>
+      </SECTION>
+      <SECTION id="sc18">
+        <Title>Baharov buys a horse</Title>
+      </SECTION>
+      <SECTION id="sc19">
+        <Title>Dorothy and Coralinne at the Proms</Title>
+      </SECTION>
+      <SECTION id="sc4" type="3">
+        <Title>Plot Point 1</Title>
+        <Desc>
+          <p>"Point of no return": The protagonist engages with the action the inciting incident has created.</p>
+        </Desc>
+      </SECTION>
+      <SECTION id="sc5">
+        <Title>The crime</Title>
+      </SECTION>
+    </CHAPTER>
+    <CHAPTER id="ch3">
+      <Title>Chapter 3</Title>
+      <SECTION id="sc6" type="2">
+        <Title>ACT 2</Title>
+        <Desc>
+          <p>Confrontation</p>
+        </Desc>
+      </SECTION>
+      <SECTION id="sc8">
+        <Title>Mary merrily at work</Title>
+      </SECTION>
+      <SECTION id="sc20">
+        <Title>Montresor fires Mary</Title>
+      </SECTION>
+    </CHAPTER>
+    <CHAPTER id="ch4">
+      <Title>Chapter 4</Title>
+      <SECTION id="sc21">
+        <Title>Baharov meets the Prosecutor</Title>
+      </SECTION>
+      <SECTION id="sc10">
+        <Title>At the black market</Title>
+      </SECTION>
+      <SECTION id="sc22">
+        <Title>Dorothy gets impressed</Title>
+      </SECTION>
+    </CHAPTER>
+    <CHAPTER id="ch5">
+      <Title>Chapter 5</Title>
+      <SECTION id="sc23">
+        <Title>Bad guys lurking around</Title>
+      </SECTION>
+      <SECTION id="sc24">
+        <Title>A chase</Title>
+      </SECTION>
+      <SECTION id="sc7" type="3">
+        <Title>Midpoint</Title>
+        <Desc>
+          <p>The main turning point. A significant event, changing the development of things from good to bad, or vice versa.</p>
+        </Desc>
+      </SECTION>
+      <SECTION id="sc25">
+        <Title>Montresor sentenced</Title>
+      </SECTION>
+      <SECTION id="sc26">
+        <Title>Mary in despair</Title>
+      </SECTION>
+      <SECTION id="sc13">
+        <Title>New Section</Title>
+      </SECTION>
+    </CHAPTER>
+    <CHAPTER id="ch6">
+      <Title>Chapter 6</Title>
+      <SECTION id="sc9" type="3">
+        <Title>Plot Point 2</Title>
+        <Desc>
+          <p>The aftermath of the Midpoint crisis. What changes the protagonist from "passenger" to "driver".</p>
+        </Desc>
+      </SECTION>
+      <SECTION id="sc27">
+        <Title>Dorothy commits suicide</Title>
+      </SECTION>
+    </CHAPTER>
+    <CHAPTER id="ch8">
+      <Title>Chapter 7</Title>
+      <SECTION id="sc11" type="2">
+        <Title>ACT 3</Title>
+        <Desc>
+          <p>Resolution</p>
+        </Desc>
+      </SECTION>
+      <SECTION id="sc28">
+        <Title>Baharov doing his business</Title>
+      </SECTION>
+      <SECTION id="sc29">
+        <Title>Montresor returns</Title>
+      </SECTION>
+      <SECTION id="sc30">
+        <Title>Coralinne's new plans</Title>
+      </SECTION>
+      <SECTION id="sc12" type="3">
+        <Title>Climax</Title>
+        <Desc>
+          <p>The final moment of the story's conflict.</p>
+        </Desc>
+      </SECTION>
+      <SECTION id="sc31">
+        <Title>Baharov killed</Title>
+      </SECTION>
+      <SECTION id="sc32">
+        <Title>Visiting uncle Sam</Title>
+      </SECTION>
+      <SECTION id="sc33">
+        <Title>The marriage</Title>
+      </SECTION>
+    </CHAPTER>
+    <CHAPTER id="ch7" type="1" isTrash="1" noNumber="1">
+      <Title>Trash</Title>
+    </CHAPTER>
+  </CHAPTERS>
+  <CHARACTERS />
+  <LOCATIONS />
+  <ITEMS />
+  <ARCS>
+    <ARC id="ac1">
+      <Title>Montresor's Revenge</Title>
+      <ShortName>A</ShortName>
+      <Desc>
+        <p>The development of Sir Walter Montresor from a dandy to a responsible man worthy of his heritage.</p>
+      </Desc>
+      <Sections ids="sc14 sc3 sc17 sc20 sc5" />
+      <POINT id="ap1">
+        <Title>The normal world</Title>
+        <Desc>
+          <p>The young nobleman Montresor drifts around the world on pleasure trips, while his inherited estate perishes.</p>
+        </Desc>
+        <Section id="sc14" />
+      </POINT>
+      <POINT id="ap2">
+        <Title>The lie Montresor believes</Title>
+        <Section id="sc3" />
+      </POINT>
+      <POINT id="ap3">
+        <Title>Montresor's Ghost appears</Title>
+        <Section id="sc17" />
+      </POINT>
+      <POINT id="ap4">
+        <Title>The characteristic moment</Title>
+        <Section id="sc20" />
+      </POINT>
+      <POINT id="ap5">
+        <Title>Things are going for the worse</Title>
+        <Section id="sc5" />
+      </POINT>
+    </ARC>
+    <ARC id="ac2">
+      <Title>Checkov's Gun</Title>
+      <ShortName>C</ShortName>
+      <Sections ids="sc31 sc16" />
+      <POINT id="ap6">
+        <Title>Setup</Title>
+        <Desc>
+          <p>Baharoff walks into the room and notices a rifle hanging on the wall.</p>
+        </Desc>
+        <Section id="sc16" />
+      </POINT>
+      <POINT id="ap7">
+        <Title>Payoff</Title>
+        <Section id="sc31" />
+      </POINT>
+    </ARC>
+  </ARCS>
+  <PROJECTNOTES />
+  <PROGRESS>
+    <WC>
+      <Date>2024-01-23</Date>
+      <Count>0</Count>
+      <WithUnused>0</WithUnused>
+    </WC>
+  </PROGRESS>
+</novx>

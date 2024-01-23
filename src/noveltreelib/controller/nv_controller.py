@@ -25,6 +25,10 @@ from novxlib.novx_globals import CHAPTER_PREFIX
 from novxlib.novx_globals import CHARACTER_PREFIX
 from novxlib.novx_globals import CH_ROOT
 from novxlib.novx_globals import CR_ROOT
+from novxlib.novx_globals import LC_ROOT
+from novxlib.novx_globals import IT_ROOT
+from novxlib.novx_globals import AC_ROOT
+from novxlib.novx_globals import PN_ROOT
 from novxlib.novx_globals import Error
 from novxlib.novx_globals import ITEM_PREFIX
 from novxlib.novx_globals import LOCATION_PREFIX
@@ -160,13 +164,53 @@ class NvController:
             self._view_new_element(newNode)
             return newNode
 
-    def add_element(self, selection):
+    def add_child(self, event=None):
+        """Add a child element to an element.
+        
+        What kind of element is added, depends on the selection's prefix.
+        """
+        if not self.check_lock():
+            try:
+                selection = self._ui.tv.tree.selection()[0]
+            except:
+                return
+
+        if selection == CH_ROOT:
+            self.add_chapter(targetNode=selection)
+        elif selection.startswith(CHAPTER_PREFIX):
+            self.add_section(targetNode=selection)
+        elif selection.startswith(ARC_PREFIX):
+            self.add_turning_point(targetNode=selection)
+        elif selection == CR_ROOT:
+            self.add_character(targetNode=selection)
+        elif selection == LC_ROOT:
+            self.add_location(targetNode=selection)
+        elif selection == IT_ROOT:
+            self.add_item(targetNode=selection)
+        elif selection == AC_ROOT:
+            self.add_arc(targetNode=selection)
+        elif selection == PN_ROOT:
+            self.add_project_note(targetNode=selection)
+
+    def add_element(self, event=None):
         """Add an element to the novel.
         
-        The element may be a Character, Location, Item, Project note, 
-        depending on the selection's prefix.
+        What kind of element is added, depends on the selection's prefix.
         """
-        if CHARACTER_PREFIX in selection:
+        if not self.check_lock():
+            try:
+                selection = self._ui.tv.tree.selection()[0]
+            except:
+                return
+
+        if selection.startswith(SECTION_PREFIX):
+            if self._mdl.novel.sections[selection].scType < 2:
+                self.add_section(targetNode=selection)
+            else:
+                self.add_stage(targetNode=selection)
+        elif CHAPTER_PREFIX in selection:
+            self.add_chapter(targetNode=selection)
+        elif CHARACTER_PREFIX in selection:
             self.add_character(targetNode=selection)
         elif LOCATION_PREFIX in selection:
             self.add_location(targetNode=selection)
@@ -176,6 +220,8 @@ class NvController:
             self.add_arc(targetNode=selection)
         elif PRJ_NOTE_PREFIX in selection:
             self.add_project_note(targetNode=selection)
+        elif selection.startswith(ARC_POINT_PREFIX):
+            self.add_turning_point(targetNode=selection)
 
     def add_item(self, **kwargs):
         """Add an item to the novel.
@@ -216,6 +262,22 @@ class NvController:
             newNode = self._mdl.add_location(**kwargs)
             self._view_new_element(newNode)
             return newNode
+
+    def add_parent(self, event=None):
+        """Add a parent element to an element.
+        
+        What kind of element is added, depends on the selection's prefix.
+        """
+        if not self.check_lock():
+            try:
+                selection = self._ui.tv.tree.selection()[0]
+            except:
+                return
+
+        if selection.startswith(SECTION_PREFIX):
+            self.add_chapter(targetNode=selection)
+        elif selection.startswith(ARC_POINT_PREFIX):
+            self.add_arc(targetNode=selection)
 
     def add_part(self, **kwargs):
         """Add a part to the novel.
@@ -607,6 +669,8 @@ class NvController:
         self.show_status()
         # setting the status bar
         self._ui.tv.go_to_node(CH_ROOT)
+        self.refresh_views()
+        self.save_project()
         return 'break'
 
     def on_quit(self, event=None):

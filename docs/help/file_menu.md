@@ -12,7 +12,7 @@
 
 **Create a new novel project**
 
-- You can create a new project with **File > New** or **Ctrl-N**. This will open a submenu. 
+- You can create a new project with **File > New**. This will open a submenu. 
 
 **Note:** The submenu can be extended by plugins to add more file types from which a *noveltree* project can be created. 
 
@@ -21,7 +21,7 @@
 ### Empty project
 
 - This will close the current project and create a blank project. 
-- This project is not yet saved on disc. When saving manually (see below), a file dialo will open and ask for a locantion and file name.
+- A file select dialog asks for the new project's file name (noveltree v1.4+). If you cancel the dialog, you can select the file name later when saving the project.
 
 ---
 

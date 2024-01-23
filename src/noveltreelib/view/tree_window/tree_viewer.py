@@ -423,6 +423,14 @@ class TreeViewer(ttk.Frame):
             update_branch('')
             self.tree.configure(selectmode='extended')
 
+    def _bind_events(self, **kwargs):
+        self.tree.bind('<<TreeviewSelect>>', self._on_select_node)
+        self.tree.bind('<<TreeviewOpen>>', self._on_open_branch)
+        self.tree.bind('<<TreeviewClose>>', self._on_close_branch)
+        self.tree.bind('<Delete>', self._ctrl.delete_elements)
+        self.tree.bind(kwargs['button_context_menu'], self._on_open_context_menu)
+        self.tree.bind('<Alt-B1-Motion>', self._on_move_node)
+
     def _browse_tree(self, node):
         """Select and show node. 
         
@@ -440,6 +448,78 @@ class TreeViewer(ttk.Frame):
         else:
             self._history.reset()
             self._history.append_node(self.tree.selection()[0])
+
+    def _build_menus(self):
+        """Create public submenus and local context menus."""
+
+        #--- Create public submenus.
+
+        #--- Create a section type submenu.
+        self.selectTypeMenu = tk.Menu(self.tree, tearoff=0)
+        self.selectTypeMenu.add_command(label=_('Normal'), command=lambda:self._ctrl.set_type(0))
+        self.selectTypeMenu.add_command(label=_('Unused'), command=lambda:self._ctrl.set_type(1))
+
+        #--- Create a chapter/stage level submenu.
+        self.selectLevelMenu = tk.Menu(self.tree, tearoff=0)
+        self.selectLevelMenu.add_command(label=_('1st Level'), command=lambda:self._ctrl.set_level(1))
+        self.selectLevelMenu.add_command(label=_('2nd Level'), command=lambda:self._ctrl.set_level(2))
+
+        #--- Create a section status submenu.
+        self.scStatusMenu = tk.Menu(self.tree, tearoff=0)
+        self.scStatusMenu.add_command(label=_('Outline'), command=lambda:self._ctrl.set_section_edit_status(1))
+        self.scStatusMenu.add_command(label=_('Draft'), command=lambda:self._ctrl.set_section_edit_status(2))
+        self.scStatusMenu.add_command(label=_('1st Edit'), command=lambda:self._ctrl.set_section_edit_status(3))
+        self.scStatusMenu.add_command(label=_('2nd Edit'), command=lambda:self._ctrl.set_section_edit_status(4))
+        self.scStatusMenu.add_command(label=_('Done'), command=lambda:self._ctrl.set_section_edit_status(5))
+
+        #--- Create a character status submenu.
+        self.crStatusMenu = tk.Menu(self.tree, tearoff=0)
+        self.crStatusMenu.add_command(label=_('Major Character'), command=lambda:self._ctrl.set_character_status(True))
+        self.crStatusMenu.add_command(label=_('Minor Character'), command=lambda:self._ctrl.set_character_status(False))
+
+        #--- Create local context menus.
+
+        #--- Create a narrative context menu.
+        self._nvCtxtMenu = tk.Menu(self.tree, tearoff=0)
+        self._nvCtxtMenu.add_command(label=_('Add Section'), command=self._ctrl.add_section)
+        self._nvCtxtMenu.add_command(label=_('Add Chapter'), command=self._ctrl.add_chapter)
+        self._nvCtxtMenu.add_command(label=_('Add Part'), command=self._ctrl.add_part)
+        self._nvCtxtMenu.add_command(label=_('Insert Stage'), command=self._ctrl.add_stage)
+        self._nvCtxtMenu.add_cascade(label=_('Change Level'), menu=self.selectLevelMenu)
+        self._nvCtxtMenu.add_separator()
+        self._nvCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
+        self._nvCtxtMenu.add_separator()
+        self._nvCtxtMenu.add_cascade(label=_('Set Type'), menu=self.selectTypeMenu)
+        self._nvCtxtMenu.add_cascade(label=_('Set Status'), menu=self.scStatusMenu)
+        self._nvCtxtMenu.add_separator()
+        self._nvCtxtMenu.add_command(label=_('Join with previous'), command=self._ctrl.join_sections)
+        self._nvCtxtMenu.add_separator()
+        self._nvCtxtMenu.add_command(label=_('Chapter level'), command=self.show_chapter_level)
+        self._nvCtxtMenu.add_command(label=_('Expand'), command=lambda: self.open_children(self.tree.selection()[0]))
+        self._nvCtxtMenu.add_command(label=_('Collapse'), command=lambda: self.close_children(self.tree.selection()[0]))
+        self._nvCtxtMenu.add_command(label=_('Expand all'), command=lambda: self.open_children(''))
+        self._nvCtxtMenu.add_command(label=_('Collapse all'), command=lambda: self.close_children(''))
+
+        #--- Create a world element context menu.
+        self._wrCtxtMenu = tk.Menu(self.tree, tearoff=0)
+        self._wrCtxtMenu.add_command(label=_('Add'), command=self._ctrl.add_element)
+        self._wrCtxtMenu.add_separator()
+        self._wrCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
+        self._wrCtxtMenu.add_separator()
+        self._wrCtxtMenu.add_cascade(label=_('Set Status'), menu=self.crStatusMenu)
+
+        #--- Create an arc context menu.
+        self._acCtxtMenu = tk.Menu(self.tree, tearoff=0)
+        self._acCtxtMenu.add_command(label=_('Add Arc'), command=self._ctrl.add_arc)
+        self._acCtxtMenu.add_command(label=_('Add Turning point'), command=self._ctrl.add_turning_point)
+        self._acCtxtMenu.add_separator()
+        self._acCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
+
+        #--- Create a project note context menu.
+        self._pnCtxtMenu = tk.Menu(self.tree, tearoff=0)
+        self._pnCtxtMenu.add_command(label=_('Add Project note'), command=self._ctrl.add_project_note)
+        self._pnCtxtMenu.add_separator()
+        self._pnCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
 
     def _configure_arc_display(self, acId):
         """Configure project note formatting and columns."""
@@ -971,84 +1051,4 @@ class TreeViewer(ttk.Frame):
 
         self._history.append_node(nodeId)
         self._ui.on_change_selection(nodeId)
-
-    def _bind_events(self, **kwargs):
-        self.tree.bind('<<TreeviewSelect>>', self._on_select_node)
-        self.tree.bind('<<TreeviewOpen>>', self._on_open_branch)
-        self.tree.bind('<<TreeviewClose>>', self._on_close_branch)
-        self.tree.bind('<Delete>', self._ctrl.delete_elements)
-        self.tree.bind(kwargs['button_context_menu'], self._on_open_context_menu)
-        self.tree.bind('<Alt-B1-Motion>', self._on_move_node)
-
-    def _build_menus(self):
-        """Create public submenus and local context menus."""
-
-        #--- Create public submenus.
-
-        #--- Create a section type submenu.
-        self.selectTypeMenu = tk.Menu(self.tree, tearoff=0)
-        self.selectTypeMenu.add_command(label=_('Normal'), command=lambda:self._ctrl.set_type(0))
-        self.selectTypeMenu.add_command(label=_('Unused'), command=lambda:self._ctrl.set_type(1))
-
-        #--- Create a chapter/stage level submenu.
-        self.selectLevelMenu = tk.Menu(self.tree, tearoff=0)
-        self.selectLevelMenu.add_command(label=_('1st Level'), command=lambda:self._ctrl.set_level(1))
-        self.selectLevelMenu.add_command(label=_('2nd Level'), command=lambda:self._ctrl.set_level(2))
-
-        #--- Create a section status submenu.
-        self.scStatusMenu = tk.Menu(self.tree, tearoff=0)
-        self.scStatusMenu.add_command(label=_('Outline'), command=lambda:self._ctrl.set_section_edit_status(1))
-        self.scStatusMenu.add_command(label=_('Draft'), command=lambda:self._ctrl.set_section_edit_status(2))
-        self.scStatusMenu.add_command(label=_('1st Edit'), command=lambda:self._ctrl.set_section_edit_status(3))
-        self.scStatusMenu.add_command(label=_('2nd Edit'), command=lambda:self._ctrl.set_section_edit_status(4))
-        self.scStatusMenu.add_command(label=_('Done'), command=lambda:self._ctrl.set_section_edit_status(5))
-
-        #--- Create a character status submenu.
-        self.crStatusMenu = tk.Menu(self.tree, tearoff=0)
-        self.crStatusMenu.add_command(label=_('Major Character'), command=lambda:self._ctrl.set_character_status(True))
-        self.crStatusMenu.add_command(label=_('Minor Character'), command=lambda:self._ctrl.set_character_status(False))
-
-        #--- Create local context menus.
-
-        #--- Create a narrative context menu.
-        self._nvCtxtMenu = tk.Menu(self.tree, tearoff=0)
-        self._nvCtxtMenu.add_command(label=_('Add Section'), command=self._ctrl.add_section)
-        self._nvCtxtMenu.add_command(label=_('Add Chapter'), command=self._ctrl.add_chapter)
-        self._nvCtxtMenu.add_command(label=_('Add Part'), command=self._ctrl.add_part)
-        self._nvCtxtMenu.add_command(label=_('Insert Stage'), command=self._ctrl.add_stage)
-        self._nvCtxtMenu.add_cascade(label=_('Change Level'), menu=self.selectLevelMenu)
-        self._nvCtxtMenu.add_separator()
-        self._nvCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
-        self._nvCtxtMenu.add_separator()
-        self._nvCtxtMenu.add_cascade(label=_('Set Type'), menu=self.selectTypeMenu)
-        self._nvCtxtMenu.add_cascade(label=_('Set Status'), menu=self.scStatusMenu)
-        self._nvCtxtMenu.add_separator()
-        self._nvCtxtMenu.add_command(label=_('Join with previous'), command=self._ctrl.join_sections)
-        self._nvCtxtMenu.add_separator()
-        self._nvCtxtMenu.add_command(label=_('Chapter level'), command=self.show_chapter_level)
-        self._nvCtxtMenu.add_command(label=_('Expand'), command=lambda: self.open_children(self.tree.selection()[0]))
-        self._nvCtxtMenu.add_command(label=_('Collapse'), command=lambda: self.close_children(self.tree.selection()[0]))
-        self._nvCtxtMenu.add_command(label=_('Expand all'), command=lambda: self.open_children(''))
-        self._nvCtxtMenu.add_command(label=_('Collapse all'), command=lambda: self.close_children(''))
-
-        #--- Create a world element context menu.
-        self._wrCtxtMenu = tk.Menu(self.tree, tearoff=0)
-        self._wrCtxtMenu.add_command(label=_('Add'), command=lambda: self._ctrl.add_element(self.tree.selection()[0]))
-        self._wrCtxtMenu.add_separator()
-        self._wrCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
-        self._wrCtxtMenu.add_separator()
-        self._wrCtxtMenu.add_cascade(label=_('Set Status'), menu=self.crStatusMenu)
-
-        #--- Create an arc context menu.
-        self._acCtxtMenu = tk.Menu(self.tree, tearoff=0)
-        self._acCtxtMenu.add_command(label=_('Add Arc'), command=self._ctrl.add_arc)
-        self._acCtxtMenu.add_command(label=_('Add Turning point'), command=self._ctrl.add_turning_point)
-        self._acCtxtMenu.add_separator()
-        self._acCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
-
-        #--- Create a project note context menu.
-        self._pnCtxtMenu = tk.Menu(self.tree, tearoff=0)
-        self._pnCtxtMenu.add_command(label=_('Add Project note'), command=self._ctrl.add_project_note)
-        self._pnCtxtMenu.add_separator()
-        self._pnCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
 

@@ -37,6 +37,16 @@
 
 ---
 
+![Add](icons/tb_add24.png) Add element. Same as **Ctrl-N**.
+
+![Add child](icons/tb_addChild24.png) Add child element. Same as **Ctrl-Alt-N**.
+
+![Add parent](icons/tb_addParent24.png) Add element on the parent's level. Same as **Ctrl-Alt-Shift-N**.
+
+![Delete](icons/tb_remove24.png) Delete selected elements. Same as **Del**.
+
+---
+
 ![Toggle Text viewer](icons/tb_viewer24.png) Toggle Text viewer. Same as **View > Toggle Text viewer** or **Ctrl-T**.
 
 ![Toggle Properties](icons/tb_properties24.png) Toggle Properties. Same as **View > Toggle Properties** or **Ctrl-Alt-T**.

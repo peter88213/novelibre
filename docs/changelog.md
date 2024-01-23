@@ -8,6 +8,24 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.4.0
+
+- Fix a bug where the project structure of a newly created project is invisible until the first element is created.
+- Save new empty projects right after creation.
+
+Extend the toolbar and change key bindings:
+
+- Ctrl-N adds an element
+- Ctrl-Alt-N adds a child element
+- Ctrl-Alt-Shift-N adds a parent element
+
+Extend the API:
+- NvController.add_child()
+- NvController.add_parent()
+- NvController.add_element(): arguments changed
+
+Based on novxlib v1.0.0
+
 ### v1.3.1
 
 - Fix a bug where the HTML lists are not generated.

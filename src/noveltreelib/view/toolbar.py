@@ -161,6 +161,49 @@ class Toolbar:
         self._updateButton.pack(side='left')
         self._updateButton.image = self._ui.icons.updateFromManuscriptIcon
 
+        # Separator.
+        tk.Frame(self._buttonBar, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
+
+        # "Add" button.
+        self._addElementButton = ttk.Button(
+            self._buttonBar,
+            text=_('Add'),
+            image=self._ui.icons.addIcon,
+            command=self._ctrl.add_element
+            )
+        self._addElementButton.pack(side='left')
+        self._addElementButton.image = self._ui.icons.addIcon
+
+        # "Add Child" button.
+        self._addChildButton = ttk.Button(
+            self._buttonBar,
+            text=_('Add'),
+            image=self._ui.icons.addChildIcon,
+            command=self._ctrl.add_child
+            )
+        self._addChildButton.pack(side='left')
+        self._addChildButton.image = self._ui.icons.addChildIcon
+
+        # "Add Parent" button.
+        self._addParentButton = ttk.Button(
+            self._buttonBar,
+            text=_('Add'),
+            image=self._ui.icons.addParentIcon,
+            command=self._ctrl.add_parent
+            )
+        self._addParentButton.pack(side='left')
+        self._addParentButton.image = self._ui.icons.addParentIcon
+
+        # "Remove" button.
+        self._removeElementButton = ttk.Button(
+            self._buttonBar,
+            text=_('Add'),
+            image=self._ui.icons.removeIcon,
+            command=self._ctrl.delete_elements
+            )
+        self._removeElementButton.pack(side='left')
+        self._removeElementButton.image = self._ui.icons.removeIcon
+
         # Reverse order (side='right').
 
         # "Toggle properties" button.
