@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.4.1
+
+- Add "Unused" checkboxes to the chapter/section properties view.
+
+Based on novxlib v1.0.0
+
 ### v1.4.0
 
 - Fix a bug where the project structure of a newly created project is invisible until the first element is created.

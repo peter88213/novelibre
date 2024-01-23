@@ -44,6 +44,18 @@ class ChapterView(BasicView):
             )
         inputWidgets.append(self._noNumberCheckbox)
 
+        #--- 'Unused' checkbox.
+        self._isUnused = tk.BooleanVar()
+        self._isUnusedCheckbox = ttk.Checkbutton(
+            self._elementInfoWindow,
+            text=_('Unused'),
+            variable=self._isUnused,
+            onvalue=True,
+            offvalue=False,
+            command=self.apply_changes,
+            )
+        inputWidgets.append(self._isUnusedCheckbox)
+
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)
             self._inputWidgets.append(widget)
@@ -57,6 +69,12 @@ class ChapterView(BasicView):
             return
 
         super().apply_changes()
+
+        #--- 'Unused section' checkbox.
+        if self._isUnused.get():
+            self._ctrl.set_type(1)
+        else:
+            self._ctrl.set_type(0)
 
         # 'Do not auto-number...' checkbutton.
         self._element.noNumber = self._noNumber.get()
@@ -72,18 +90,28 @@ class ChapterView(BasicView):
         self._element = self._mdl.novel.chapters[elementId]
         super().set_data(elementId)
 
+        # 'Unused' checkbox.
+        if self._element.chType > 0:
+            self._isUnused.set(True)
+        else:
+            self._isUnused.set(False)
+
         # 'Do not auto-number...' checkbutton.
         if self._element.noNumber:
             self._noNumber.set(True)
         else:
             self._noNumber.set(False)
 
+        # Hide properties, if the Chapter is the "trasch bin".
         if self._element.isTrash:
             self._elementInfoWindow.pack_forget()
             return
 
         if not self._elementInfoWindow.winfo_manager():
             self._elementInfoWindow.pack(fill='x')
+
+        if not self._isUnusedCheckbox.winfo_manager():
+            self._isUnusedCheckbox.pack(anchor='w')
 
         if self._element.chType == 0:
             if self._element.chLevel == 1:
@@ -92,9 +120,10 @@ class ChapterView(BasicView):
                 labelText = _('Do not auto-number this chapter')
             self._noNumberCheckbox.configure(text=labelText)
             if not self._noNumberCheckbox.winfo_manager():
-                self._noNumberCheckbox.pack(anchor='w', pady=2)
-        elif self._noNumberCheckbox.winfo_manager():
-            self._noNumberCheckbox.pack_forget()
+                self._noNumberCheckbox.pack(anchor='w')
+        else:
+            if self._noNumberCheckbox.winfo_manager():
+                self._noNumberCheckbox.pack_forget()
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""

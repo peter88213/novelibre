@@ -27,6 +27,7 @@ class FullSectionView(DatedSectionView):
        
     Adds to the right pane:
     - A combobox for viewpoint character selection.
+    - A checkbox "unused".
     - A checkbox "append to previous".
     - A "Plot" folding frame for arcs and turning point associations.
     - An "Action/Reaction" folding frame for Goal/Reaction/Outcome.
@@ -60,6 +61,19 @@ class FullSectionView(DatedSectionView):
         self._characterCombobox.combo.bind('<<ComboboxSelected>>', self.apply_changes)
         self._vpList = []
 
+        #--- 'Unused' checkbox.
+        self._isUnused = tk.BooleanVar()
+        self._isUnusedCheckbox = ttk.Checkbutton(
+            self._sectionExtraFrame,
+            text=_('Unused'),
+            variable=self._isUnused,
+            onvalue=True,
+            offvalue=False,
+            command=self.apply_changes,
+            )
+        self._isUnusedCheckbox.pack(anchor='w')
+        inputWidgets.append(self._isUnusedCheckbox)
+
         #--- 'Append to previous section' checkbox.
         self._appendToPrev = tk.BooleanVar()
         self._appendToPrevCheckbox = ttk.Checkbutton(
@@ -70,7 +84,7 @@ class FullSectionView(DatedSectionView):
             offvalue=False,
             command=self.apply_changes,
             )
-        self._appendToPrevCheckbox.pack(anchor='w', pady=2)
+        self._appendToPrevCheckbox.pack(anchor='w')
         inputWidgets.append(self._appendToPrevCheckbox)
 
         ttk.Separator(self._sectionExtraFrame, orient='horizontal').pack(fill='x')
@@ -223,6 +237,12 @@ class FullSectionView(DatedSectionView):
                 scCharacters.insert(0, vpId)
                 self._element.characters = scCharacters
 
+        #--- 'Unused' checkbox.
+        if self._isUnused.get():
+            self._element.scType = 1
+        else:
+            self._element.scType = 0
+
         #--- 'Append to previous section' checkbox.
         self._element.appendToPrev = self._appendToPrev.get()
 
@@ -275,6 +295,14 @@ class FullSectionView(DatedSectionView):
             acId = self._element.scTurningPoints[tpId]
             turningPointTitles.append(f'{self._mdl.novel.arcs[acId].shortName}: {self._mdl.novel.turningPoints[tpId].title}')
         self._turningPointsDisplay.config(text=list_to_string(turningPointTitles))
+
+        #--- 'Unused' checkbox.
+        if self._element.scType > 0:
+            self._isUnused.set(True)
+            # self._ctrl.set_type(1)
+        else:
+            self._isUnused.set(False)
+            # self._ctrl.set_type(0)
 
         #--- 'Append to previous section' checkbox.
         if self._element.appendToPrev:

@@ -33,7 +33,7 @@
         <Title>Dorothy meets Baharov</Title>
       </SECTION>
       <SECTION id="sc17">
-        <Title>Montresor at the Gembling Hall</Title>
+        <Title>Montresor at the Gambling Hall</Title>
       </SECTION>
     </CHAPTER>
     <CHAPTER id="ch2">
@@ -167,7 +167,7 @@
       <Desc>
         <p>The development of Sir Walter Montresor from a dandy to a responsible man worthy of his heritage.</p>
       </Desc>
-      <Sections ids="sc14 sc3 sc17 sc20 sc5" />
+      <Sections ids="sc14 sc3 sc17 sc20 sc5 sc15" />
       <POINT id="ap1">
         <Title>The normal world</Title>
         <Desc>
@@ -177,7 +177,7 @@
       </POINT>
       <POINT id="ap2">
         <Title>The lie Montresor believes</Title>
-        <Section id="sc3" />
+        <Section id="sc15" />
       </POINT>
       <POINT id="ap3">
         <Title>Montresor's Ghost appears</Title>
@@ -185,7 +185,7 @@
       </POINT>
       <POINT id="ap4">
         <Title>The characteristic moment</Title>
-        <Section id="sc20" />
+        <Section id="sc3" />
       </POINT>
       <POINT id="ap5">
         <Title>Things are going for the worse</Title>
