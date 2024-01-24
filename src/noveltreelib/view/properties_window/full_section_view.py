@@ -280,7 +280,7 @@ class FullSectionView(DatedSectionView):
         self._viewpoint.set(value=vp)
 
         #--- 'Arcs' listbox.
-        self._arcTitles = self._get_element_titles(self._element.scArcs, self._mdl.novel.arcs)
+        self._arcTitles = self._get_arc_titles(self._element.scArcs, self._mdl.novel.arcs)
         self._arcCollection.cList.set(self._arcTitles)
         listboxSize = len(self._arcTitles)
         if listboxSize > self._HEIGHT_LIMIT:
@@ -378,6 +378,22 @@ class FullSectionView(DatedSectionView):
             if not self._elementId in arcSections:
                 arcSections.append(self._elementId)
                 self._mdl.novel.arcs[acId].sections = arcSections
+
+    def _get_arc_titles(self, elemIds, elements):
+        """Return a list of arc titles, preceded by the short names.
+        
+        Positional arguments:
+            elemIds -- list of element IDs.
+            elements -- list of element objects.          
+        """
+        elemTitles = []
+        if elemIds:
+            for elemId in elemIds:
+                try:
+                    elemTitles.append(f'({elements[elemId].shortName}) {elements[elemId].title}')
+                except:
+                    pass
+        return elemTitles
 
     def _get_relation_id_list(self, newTitleStr, oldTitleStr, elements):
         """Return a list of valid IDs from a string containing semicolon-separated titles."""
