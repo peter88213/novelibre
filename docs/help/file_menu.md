@@ -129,6 +129,20 @@ In case you edit the project "outsides", consider locking it before.
 
 ---
 
+## Copy style sheet
+
+**Provide a css style sheet in the project folder**
+
+- You can copy the style sheet *novx.css* into the current project folder with **File > Copy style sheet** . 
+This allows you to view the *.novx* project file with a web browser. 
+
+**Note:** Depending on your web browser and your operating system, 
+the *content type* resp. *MIME type* of *.novx* files must be
+registered as *"text/xml"*. Under Windows, yo can do this by
+running the **<home>\.noveltree\add_noveltree.reg** script.
+
+---
+
 ## Discard manuscript
 
 **Discard the current manuscript by renaming it**

@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.6.0
+
+- Add "File > Copy style sheet" menu entry.
+
+Based on novxlib v1.0.0
+
 ### v1.5.0
 
 - Under Windows, exit the program with Alt-F4 instead of Ctrl-Q.

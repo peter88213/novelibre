@@ -6,6 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
 import sys
+from shutil import copy2
 from tkinter import filedialog
 
 from noveltreelib.exporter.nv_doc_exporter import NvDocExporter
@@ -440,6 +441,16 @@ class NvController:
         self._ui.show_path('')
         self.disable_menu()
         return 'break'
+
+    def copy_css(self, event=None):
+        """Copy the provided css style sheet into the project directory."""
+        try:
+            projectDir, __ = os.path.split(self._mdl.prjFile.filePath)
+            copy2(f'{os.path.dirname(sys.argv[0])}/css/novx.css', projectDir)
+            message = _('Style sheet copied into the project folder.')
+        except Exception as ex:
+            message = f'!{str(ex)}'
+        self._ui.set_status(message)
 
     def delete_elements(self, event=None, elements=None):
         """Delete elements and their children.

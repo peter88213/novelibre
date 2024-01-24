@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.5.0\n"
-"POT-Creation-Date: 2024-01-24 10:47:46\n"
-"PO-Revision-Date: 2024-01-24 10:47:46\n"
+"Project-Id-Version: 1.6.0\n"
+"POT-Creation-Date: 2024-01-24 17:39:51\n"
+"PO-Revision-Date: 2024-01-24 17:39:51\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -240,6 +240,9 @@ msgstr "Datum in Tage umwandeln"
 
 msgid "Convert days to dates"
 msgstr "Tage in Datum umwandeln"
+
+msgid "Copy style sheet"
+msgstr "Style sheet kopieren"
 
 msgid "Corrupt marker"
 msgstr "Beschädigte Markierung"
@@ -927,6 +930,9 @@ msgstr "Status"
 
 msgid "Story structure"
 msgstr "Erzählstruktur"
+
+msgid "Style sheet copied into the project folder."
+msgstr "Style sheet in den Projektordner kopiert."
 
 msgid "Sunday"
 msgstr "Sonntag"
