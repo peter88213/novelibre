@@ -115,8 +115,8 @@ Based on novxlib v1.0.0
 
 - Integrate the toolbar. 
   If the *noveltree_toolbar* plugin is installed, please delete it with the Plugin manager.
-  
 - Refactor.
+
 Based on novxlib v1.0.0
 
 ### v1.0.1

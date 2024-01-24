@@ -11,7 +11,7 @@ import os
 import sys
 import stat
 import glob
-from shutil import copyfile
+from shutil import copy2
 from shutil import copytree
 from pathlib import Path
 from string import Template
@@ -186,7 +186,7 @@ def install(installDir):
 
     #--- Install the new version.
     output(f'Copying "{APP}" ...')
-    copyfile(APP, f'{installDir}/{APP}')
+    copy2(APP, f'{installDir}/{APP}')
 
     # Create a starter script.
     output(f'Creating starter script ...')
@@ -217,7 +217,7 @@ def install(installDir):
             for file in files:
                 if not os.path.isfile(f'{cnfDir}{file.name}'):
                     output(f'Copying "{file.name}" ...')
-                    copyfile(f'{SAMPLE_PATH}{file.name}', f'{cnfDir}{file.name}')
+                    copy2(f'{SAMPLE_PATH}{file.name}', f'{cnfDir}{file.name}')
                 else:
                     output(f'Keeping "{file.name}".')
     except:
