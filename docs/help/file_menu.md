@@ -166,11 +166,12 @@ This may help to avoid confusion about changes made with *noveltree* and OpenOff
 
 --- 
 
-## Exit
+## Quit/Exit
 
 **Exit the program**
 
-- You can exit with **File > Exit** of **Ctrl-Q**.
+- Under Windows you can exit with **File > Exit** or **Alt-F4**.
+- Otherwise you can exit with **File > Quit** or **Ctrl-Q**.
 - When exiting the program, you will be asked for saving the project, if it has changed.
 
 --- 

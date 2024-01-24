@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.5.0
+
+- Under Windows, exit the program with Alt-F4 instead of Ctrl-Q.
+- No longer use the hotkeys F1..F4, F6...F12.
+
+Based on novxlib v1.0.0
+
 ### v1.4.3
 
 - When closing the project, disable the buttons introduced with v1.4.0.

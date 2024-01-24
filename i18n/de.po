@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.4.3\n"
-"POT-Creation-Date: 2024-01-24 09:47:41\n"
-"PO-Revision-Date: 2024-01-24 09:47:42\n"
+"Project-Id-Version: 1.5.0\n"
+"POT-Creation-Date: 2024-01-24 10:47:46\n"
+"PO-Revision-Date: 2024-01-24 10:47:46\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -780,6 +780,9 @@ msgstr "Projektnotizen"
 
 msgid "Project successfully restored from disk."
 msgstr "Zuletzt gespeicherte Fassung erfolgreich wiederhergestellt."
+
+msgid "Quit"
+msgstr "Beenden"
 
 msgid "R"
 msgstr "R"

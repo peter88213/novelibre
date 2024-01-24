@@ -72,18 +72,6 @@ class NvView:
     _KEY_TOGGLE_VIEWER = ('<Control-t>', 'Ctrl-T')
     _KEY_UNLOCK_PROJECT = ('<Control-u>', 'Ctrl-U')
 
-    _KEY_SHOW_HELP = ('<F1>', 'F1')
-    _KEY_GO_BACK = ('<F2>', 'F2')
-    _KEY_GO_FORWARD = ('<F3>', 'F3')
-    _KEY_EDIT_MANUSCRIPT = ('<F4>', 'F4')
-    _KEY_UPDATE_FROM_MANUSCRIPT = ('<F6>', 'F6')
-    _KEY_SHOW_CHARACTERS = ('<F7>', 'F7')
-    _KEY_SHOW_LOCATIONS = ('<F8>', 'F8')
-    _KEY_SHOW_ITEMS = ('<F9>', 'F9')
-    _KEY_SHOW_ARCS = ('<F10>', 'F10')
-    _KEY_SHOW_PROJECTNOTES = ('<F11>', 'F11')
-    _KEY_SHOW_BOOK = ('<F12>', 'F12')
-
     def __init__(self, model, controller, title):
         """Set up the application's user interface.
     
@@ -512,7 +500,7 @@ class NvView:
     def _bind_events(self):
         self.root.bind(self._KEY_RESTORE_STATUS[0], self.restore_status)
         self.root.bind(self._KEY_OPEN_PROJECT[0], self._ctrl.open_project)
-        self.root.bind(self._KEY_QUIT_PROGRAM[0], self._ctrl.on_quit)
+
         self.root.bind(self._KEY_LOCK_PROJECT[0], self._ctrl.lock)
         self.root.bind(self._KEY_UNLOCK_PROJECT[0], self._ctrl.unlock)
         self.root.bind(self._KEY_RELOAD_PROJECT[0], self._ctrl.reload_project)
@@ -525,24 +513,14 @@ class NvView:
         self.root.bind(self._KEY_TOGGLE_VIEWER[0], self.toggle_contents_view)
         self.root.bind(self._KEY_TOGGLE_PROPERTIES[0], self.toggle_properties_view)
         self.root.bind(self._KEY_DETACH_PROPERTIES[0], self.toggle_properties_window)
-        if sys.platform == 'win32':
-            self.root.bind('<4>', self.tv.go_back)
-            self.root.bind('<5>', self.tv.go_forward)
         self.root.bind(self._KEY_ADD_ELEMENT[0], self._ctrl.add_element)
         self.root.bind(self._KEY_ADD_CHILD[0], self._ctrl.add_child)
         self.root.bind(self._KEY_ADD_PARENT[0], self._ctrl.add_parent)
-
-        self.root.bind(self._KEY_GO_BACK[0], self.tv.go_back)
-        self.root.bind(self._KEY_GO_FORWARD[0], self.tv.go_forward)
-        self.root.bind(self._KEY_EDIT_MANUSCRIPT[0], lambda event:self._ctrl.export_document(MANUSCRIPT_SUFFIX))
-        self.root.bind(self._KEY_UPDATE_FROM_MANUSCRIPT[0], lambda event:self._ctrl.update_from_odt(suffix=MANUSCRIPT_SUFFIX))
-        self.root.bind(self._KEY_SHOW_BOOK[0], lambda event: self.tv.show_branch(CH_ROOT))
-        self.root.bind(self._KEY_SHOW_CHARACTERS[0], lambda event: self.tv.show_branch(CR_ROOT))
-        self.root.bind(self._KEY_SHOW_LOCATIONS[0], lambda event: self.tv.show_branch(LC_ROOT))
-        self.root.bind(self._KEY_SHOW_ITEMS[0], lambda event: self.tv.show_branch(IT_ROOT))
-        self.root.bind(self._KEY_SHOW_ARCS[0], lambda event: self.tv.show_branch(AC_ROOT))
-        self.root.bind(self._KEY_SHOW_PROJECTNOTES[0], lambda event: self.tv.show_branch(PN_ROOT))
-        self.root.bind(self._KEY_SHOW_HELP[0], lambda event: webbrowser.open(self._HELP_URL))
+        if sys.platform == 'win32':
+            self.root.bind('<4>', self.tv.go_back)
+            self.root.bind('<5>', self.tv.go_forward)
+        else:
+            self.root.bind(self._KEY_QUIT_PROGRAM[0], self._ctrl.on_quit)
 
     def _build_menu(self):
         """Add commands and submenus to the main menu."""
@@ -569,7 +547,10 @@ class NvView:
         self.fileMenu.add_command(label=_('Save'), accelerator=self._KEY_SAVE_PROJECT[1], command=self._ctrl.save_project)
         self.fileMenu.add_command(label=_('Save as...'), accelerator=self._KEY_SAVE_AS[1], command=self._ctrl.save_as)
         self.fileMenu.add_command(label=_('Close'), command=self._ctrl.close_project)
-        self.fileMenu.add_command(label=_('Exit'), accelerator=self._KEY_QUIT_PROGRAM[1], command=self._ctrl.on_quit)
+        if sys.platform == 'win32':
+            self.fileMenu.add_command(label=_('Exit'), accelerator='Alt-F4', command=self._ctrl.on_quit)
+        else:
+            self.fileMenu.add_command(label=_('Quit'), accelerator=self._KEY_QUIT_PROGRAM[1], command=self._ctrl.on_quit)
 
         # View
         self.viewMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -580,12 +561,12 @@ class NvView:
         self.viewMenu.add_command(label=_('Expand all'), command=lambda: self.tv.open_children(''))
         self.viewMenu.add_command(label=_('Collapse all'), command=lambda: self.tv.close_children(''))
         self.viewMenu.add_separator()
-        self.viewMenu.add_command(label=_('Show Book'), accelerator=self._KEY_SHOW_BOOK[1], command=lambda: self.tv.show_branch(CH_ROOT))
-        self.viewMenu.add_command(label=_('Show Characters'), accelerator=self._KEY_SHOW_CHARACTERS[1], command=lambda: self.tv.show_branch(CR_ROOT))
-        self.viewMenu.add_command(label=_('Show Locations'), accelerator=self._KEY_SHOW_LOCATIONS[1], command=lambda: self.tv.show_branch(LC_ROOT))
-        self.viewMenu.add_command(label=_('Show Items'), accelerator=self._KEY_SHOW_ITEMS[1], command=lambda: self.tv.show_branch(IT_ROOT))
-        self.viewMenu.add_command(label=_('Show Arcs'), accelerator=self._KEY_SHOW_ARCS[1], command=lambda: self.tv.show_branch(AC_ROOT))
-        self.viewMenu.add_command(label=_('Show Project notes'), accelerator=self._KEY_SHOW_PROJECTNOTES[1], command=lambda: self.tv.show_branch(PN_ROOT))
+        self.viewMenu.add_command(label=_('Show Book'), command=lambda: self.tv.show_branch(CH_ROOT))
+        self.viewMenu.add_command(label=_('Show Characters'), command=lambda: self.tv.show_branch(CR_ROOT))
+        self.viewMenu.add_command(label=_('Show Locations'), command=lambda: self.tv.show_branch(LC_ROOT))
+        self.viewMenu.add_command(label=_('Show Items'), command=lambda: self.tv.show_branch(IT_ROOT))
+        self.viewMenu.add_command(label=_('Show Arcs'), command=lambda: self.tv.show_branch(AC_ROOT))
+        self.viewMenu.add_command(label=_('Show Project notes'), command=lambda: self.tv.show_branch(PN_ROOT))
         self.viewMenu.add_separator()
         self.viewMenu.add_command(label=_('Toggle Text viewer'), accelerator=self._KEY_TOGGLE_VIEWER[1], command=self.toggle_contents_view)
         self.viewMenu.add_command(label=_('Toggle Properties'), accelerator=self._KEY_TOGGLE_PROPERTIES[1], command=self.toggle_properties_view)
@@ -679,7 +660,7 @@ class NvView:
         # "Export" menu.
         self.exportMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Export'), menu=self.exportMenu)
-        self.exportMenu.add_command(label=_('Manuscript for editing'), accelerator=self._KEY_EDIT_MANUSCRIPT[1], command=lambda:self._ctrl.export_document(MANUSCRIPT_SUFFIX))
+        self.exportMenu.add_command(label=_('Manuscript for editing'), command=lambda:self._ctrl.export_document(MANUSCRIPT_SUFFIX))
         self.exportMenu.add_separator()
         self.exportMenu.add_command(label=_('Manuscript with visible structure tags for proof reading'), command=lambda: self._ctrl.export_document(PROOF_SUFFIX))
         self.exportMenu.add_separator()
@@ -702,7 +683,7 @@ class NvView:
         # "Help" menu.
         self.helpMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Help'), menu=self.helpMenu)
-        self.helpMenu.add_command(label=_('Online help'), accelerator=self._KEY_SHOW_HELP[1], command=lambda: webbrowser.open(self._HELP_URL))
+        self.helpMenu.add_command(label=_('Online help'), command=lambda: webbrowser.open(self._HELP_URL))
 
     def _view_options(self, event=None):
         """Open a toplevel window to edit the view options."""

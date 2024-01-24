@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.4.3\n"
-"POT-Creation-Date: 2024-01-24 09:47:41\n"
+"Project-Id-Version: 1.5.0\n"
+"POT-Creation-Date: 2024-01-24 10:47:46\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -780,6 +780,9 @@ msgid "Project notes"
 msgstr ""
 
 msgid "Project successfully restored from disk."
+msgstr ""
+
+msgid "Quit"
 msgstr ""
 
 msgid "R"

@@ -5,7 +5,7 @@
 # Online help
 
 This page refers to the latest *noveltree* release.
-You can open it with **Help > Online help** or **F1**.
+You can open it with **Help > Online help**.
 
 --- 
 
