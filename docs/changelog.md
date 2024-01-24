@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.4.3
+
+- When closing the project, disable the buttons introduced with v1.4.0.
+
+Based on novxlib v1.0.0
+
 ### v1.4.2
 
 - Fix a bug where property changes might be lost when pressing the F5 key.

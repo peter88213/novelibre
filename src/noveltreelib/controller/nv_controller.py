@@ -169,6 +169,9 @@ class NvController:
         
         What kind of element is added, depends on the selection's prefix.
         """
+        if self._mdl.prjFile is None:
+            return
+
         if not self.check_lock():
             try:
                 selection = self._ui.tv.tree.selection()[0]
@@ -197,6 +200,9 @@ class NvController:
         
         What kind of element is added, depends on the selection's prefix.
         """
+        if self._mdl.prjFile is None:
+            return
+
         if not self.check_lock():
             try:
                 selection = self._ui.tv.tree.selection()[0]
@@ -268,6 +274,9 @@ class NvController:
         
         What kind of element is added, depends on the selection's prefix.
         """
+        if self._mdl.prjFile is None:
+            return
+
         if not self.check_lock():
             try:
                 selection = self._ui.tv.tree.selection()[0]

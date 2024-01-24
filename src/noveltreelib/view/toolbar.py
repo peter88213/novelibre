@@ -244,6 +244,10 @@ class Toolbar:
         self._goForwardButton.config(state='disabled')
         self._propertiesButton.config(state='disabled')
         self._viewerButton.config(state='disabled')
+        self._addElementButton.config(state='disabled')
+        self._addChildButton.config(state='disabled')
+        self._addParentButton.config(state='disabled')
+        self._removeElementButton.config(state='disabled')
 
     def enable_menu(self):
         """Enable menu entries when a project is open."""
@@ -261,4 +265,8 @@ class Toolbar:
         self._goForwardButton.config(state='normal')
         self._propertiesButton.config(state='normal')
         self._viewerButton.config(state='normal')
+        self._addElementButton.config(state='normal')
+        self._addChildButton.config(state='normal')
+        self._addParentButton.config(state='normal')
+        self._removeElementButton.config(state='normal')
 
