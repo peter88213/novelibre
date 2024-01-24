@@ -28,9 +28,9 @@ You can open it with **Help > Online help**.
 
 ---
 
-## [Arcs](arcs)
+## [Plotting with noveltree](plotting)
 
-With [arcs](arcs), you can link your plot to the narrative.
+Designing a plot with stages and arcs.
 
 ---
 

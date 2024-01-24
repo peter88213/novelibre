@@ -1,8 +1,8 @@
-[Project homepage](../index) > [Instructions for use](../usage) > [Online help](help) > Arcs
+[Project homepage](../index) > [Instructions for use](../usage) > [Online help](help) > Plotting with noveltree
 
 --- 
 
-# Plot
+# Plotting with noveltree
 
 ---
 
@@ -36,10 +36,6 @@ The association of scenes and turning points is shown in the "Plot" column of th
 You can use arcs to establish named connections between scenes, such as *setup -> payoff*, so you can keep track of this relationship even if the scenes are far away from each other.
 
 ![Template](../Screenshots/causality01.png)
+
 ---
 
-## Loading and saving complete narrative structures
-
-With the [noveltree_templates plugin](https://peter88213.github.io/noveltree_templates) you can load a prefabricated story structure defined with a Markdown file. You also can save a story structure made with *noveltree* in a Markdown file for reuse.
-
-![Template](../Screenshots/template01.png)

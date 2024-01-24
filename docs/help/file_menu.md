@@ -139,7 +139,7 @@ This allows you to view the *.novx* project file with a web browser.
 **Note:** Depending on your web browser and your operating system, 
 the *content type* resp. *MIME type* of *.novx* files must be
 registered as *"text/xml"*. Under Windows, yo can do this by
-running the **<home>\.noveltree\add_noveltree.reg** script.
+running the `<home>\.noveltree\add_noveltree.reg` script.
 
 ---
 
