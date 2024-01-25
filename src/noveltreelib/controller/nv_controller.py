@@ -1017,6 +1017,9 @@ class NvController:
         Positional arguments:
             suffix: str -- the HTML file name suffix, indicating the report type.        
         """
+        if self._mdl.prjFile.filePath is None:
+            return False
+
         self._ui.restore_status()
         self._ui.propertiesView.apply_changes()
         reporter = NvHtmlReporter()
