@@ -30,8 +30,6 @@ class RelatedSectionView(BasicView):
     - A "Tags" entry.
     - A folding frame for relationships (characters/locations/items)
     """
-    _REL_Y = 2
-    # height of the Relations text boxes
     _HEIGHT_LIMIT = 10
 
     def __init__(self, parent, model, view, controller):
