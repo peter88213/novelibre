@@ -63,16 +63,6 @@ class TreeViewer(ttk.Frame):
         PN_ROOT: _('Project notes'),
         }
 
-    _SCN_MODES = [
-        _('N/A'),
-        _('Narration'),
-        _('Dramatic action'),
-        _('Dialogue'),
-        _('Description'),
-        _('Exposition')
-        ]
-    # Modes of discourse according to Jack M. Bickham.
-
     _SCN_PACING = [
         _('A'),
         _('R'),
