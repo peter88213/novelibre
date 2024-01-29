@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.6.1\n"
-"POT-Creation-Date: 2024-01-24 22:17:35\n"
+"Project-Id-Version: 1.6.2\n"
+"POT-Creation-Date: 2024-01-29 14:30:16\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -314,9 +314,6 @@ msgstr ""
 msgid "Detach/Dock Properties"
 msgstr ""
 
-msgid "Dialogue"
-msgstr ""
-
 msgid "Dilemma"
 msgstr ""
 
@@ -351,9 +348,6 @@ msgid "Done"
 msgstr ""
 
 msgid "Draft"
-msgstr ""
-
-msgid "Dramatic action"
 msgstr ""
 
 msgid "Duration"
@@ -426,9 +420,6 @@ msgid "Export type is not supported"
 msgstr ""
 
 msgid "Exported documents"
-msgstr ""
-
-msgid "Exposition"
 msgstr ""
 
 msgid "File"
@@ -600,9 +591,6 @@ msgid "N/A"
 msgstr ""
 
 msgid "Name"
-msgstr ""
-
-msgid "Narration"
 msgstr ""
 
 msgid "Narrative time"

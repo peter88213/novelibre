@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.6.1\n"
-"POT-Creation-Date: 2024-01-24 22:17:35\n"
-"PO-Revision-Date: 2024-01-24 22:17:35\n"
+"Project-Id-Version: 1.6.2\n"
+"POT-Creation-Date: 2024-01-29 14:30:16\n"
+"PO-Revision-Date: 2024-01-29 14:30:16\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -313,9 +313,6 @@ msgstr "Beschreibung"
 msgid "Detach/Dock Properties"
 msgstr "Eigenschaften abtrennen/andocken"
 
-msgid "Dialogue"
-msgstr "Dialog"
-
 msgid "Dilemma"
 msgstr "Dilemma"
 
@@ -351,9 +348,6 @@ msgstr "Fertiggestellt"
 
 msgid "Draft"
 msgstr "Entwurf"
-
-msgid "Dramatic action"
-msgstr "Dramatische Handlung"
 
 msgid "Duration"
 msgstr "Dauer"
@@ -426,9 +420,6 @@ msgstr "Exporttyp wird nicht unterstützt"
 
 msgid "Exported documents"
 msgstr "Exportierte Dokumente"
-
-msgid "Exposition"
-msgstr "Exposition"
 
 msgid "File"
 msgstr "Datei"
@@ -600,9 +591,6 @@ msgstr "N/A"
 
 msgid "Name"
 msgstr "Name"
-
-msgid "Narration"
-msgstr "Erzählerische Zusammenfassung"
 
 msgid "Narrative time"
 msgstr "Erzählzeit"

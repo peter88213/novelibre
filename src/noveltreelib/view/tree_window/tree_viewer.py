@@ -9,6 +9,7 @@ from tkinter import ttk
 from noveltreelib.model.nv_treeview import NvTreeview
 from noveltreelib.noveltree_globals import prefs
 from noveltreelib.view.tree_window.history_list import HistoryList
+from noveltreelib.widgets.context_menu import ContextMenu
 from novxlib.model.section import Section
 from novxlib.novx_globals import AC_ROOT
 from novxlib.novx_globals import ARC_POINT_PREFIX
@@ -470,7 +471,7 @@ class TreeViewer(ttk.Frame):
         #--- Create local context menus.
 
         #--- Create a narrative context menu.
-        self._nvCtxtMenu = tk.Menu(self.tree, tearoff=0)
+        self._nvCtxtMenu = ContextMenu(self.tree, tearoff=0)
         self._nvCtxtMenu.add_command(label=_('Add Section'), command=self._ctrl.add_section)
         self._nvCtxtMenu.add_command(label=_('Add Chapter'), command=self._ctrl.add_chapter)
         self._nvCtxtMenu.add_command(label=_('Add Part'), command=self._ctrl.add_part)
@@ -491,7 +492,7 @@ class TreeViewer(ttk.Frame):
         self._nvCtxtMenu.add_command(label=_('Collapse all'), command=lambda: self.close_children(''))
 
         #--- Create a world element context menu.
-        self._wrCtxtMenu = tk.Menu(self.tree, tearoff=0)
+        self._wrCtxtMenu = ContextMenu(self.tree, tearoff=0)
         self._wrCtxtMenu.add_command(label=_('Add'), command=self._ctrl.add_element)
         self._wrCtxtMenu.add_separator()
         self._wrCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
@@ -499,14 +500,14 @@ class TreeViewer(ttk.Frame):
         self._wrCtxtMenu.add_cascade(label=_('Set Status'), menu=self.crStatusMenu)
 
         #--- Create an arc context menu.
-        self._acCtxtMenu = tk.Menu(self.tree, tearoff=0)
+        self._acCtxtMenu = ContextMenu(self.tree, tearoff=0)
         self._acCtxtMenu.add_command(label=_('Add Arc'), command=self._ctrl.add_arc)
         self._acCtxtMenu.add_command(label=_('Add Turning point'), command=self._ctrl.add_turning_point)
         self._acCtxtMenu.add_separator()
         self._acCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
 
         #--- Create a project note context menu.
-        self._pnCtxtMenu = tk.Menu(self.tree, tearoff=0)
+        self._pnCtxtMenu = ContextMenu(self.tree, tearoff=0)
         self._pnCtxtMenu.add_command(label=_('Add Project note'), command=self._ctrl.add_project_note)
         self._pnCtxtMenu.add_separator()
         self._pnCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
