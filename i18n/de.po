@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.6.2\n"
+"Project-Id-Version: unknown\n"
 "POT-Creation-Date: 2024-01-29 14:30:16\n"
-"PO-Revision-Date: 2024-01-29 14:30:16\n"
+"PO-Revision-Date: 2024-02-02 14:09:16\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -185,7 +185,7 @@ msgid "Characters/locations/items data files"
 msgstr "Figuren/Schauplätze/Gegenstände-Datendateien"
 
 msgid "Choice"
-msgstr "Wahl"
+msgstr "Entscheidung"
 
 msgid "Clear assignment"
 msgstr "Zuordnung löschen"

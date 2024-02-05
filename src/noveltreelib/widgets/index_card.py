@@ -21,36 +21,39 @@ class IndexCard(tk.Frame):
         super().__init__(master=master, cnf=cnf, **kw)
         # Title label.
         self.title = MyStringVar(value='')
-        self.titleEntry = tk.Entry(self,
-                              bg=bg,
-                              bd=0,
-                              textvariable=self.title,
-                              relief='flat',
-                              font=font,
-                              )
-        self.titleEntry.config({'background': bg,
-                           'foreground': fg,
-                           'insertbackground': fg,
-                           })
+        self.titleEntry = tk.Entry(
+            self,
+            bg=bg,
+            bd=0,
+            textvariable=self.title,
+            relief='flat',
+            font=font,
+            )
+        self.titleEntry.config({
+            'background': bg,
+            'foreground': fg,
+            'insertbackground': fg,
+            })
         self.titleEntry.pack(fill='x', ipady=6)
 
         tk.Frame(self, bg='red', height=1, bd=0).pack(fill='x')
         tk.Frame(self, bg=bg, height=1, bd=0).pack(fill='x')
 
         # Description window.
-        self.bodyBox = TextBox(self,
-                scrollbar=scrollbar,
-                wrap='word',
-                undo=True,
-                autoseparators=True,
-                maxundo=-1,
-                padx=5,
-                pady=5,
-                bg=bg,
-                fg=fg,
-                insertbackground=fg,
-                font=font,
-                )
+        self.bodyBox = TextBox(
+            self,
+            scrollbar=scrollbar,
+            wrap='word',
+            undo=True,
+            autoseparators=True,
+            maxundo=-1,
+            padx=5,
+            pady=5,
+            bg=bg,
+            fg=fg,
+            insertbackground=fg,
+            font=font,
+            )
         self.bodyBox.pack(fill='both', expand=True)
 
     def lock(self):
