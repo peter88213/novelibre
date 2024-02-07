@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.6.3
+
+- Update icons.
+. Update German translation.
+
+Based on novxlib v1.0.0
+
 ### v1.6.2
 
 - Make the context menus close under Linux when losing the focus.
