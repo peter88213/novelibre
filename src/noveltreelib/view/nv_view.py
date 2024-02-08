@@ -53,6 +53,7 @@ import tkinter as tk
 class NvView:
     """Main view of the tkinter GUI framework for noveltree."""
     _HELP_URL = 'https://peter88213.github.io/noveltree-help/'
+    _HOME_URL = 'https://peter88213.github.io/noveltree/'
     _KEY_ADD_CHILD = ('<Control-Alt-n>', 'Ctrl-Alt-N')
     _KEY_ADD_ELEMENT = ('<Control-n>', 'Ctrl-N')
     _KEY_ADD_PARENT = ('<Control-Alt-Shift-N>', 'Ctrl-Alt-Shift-N')
@@ -688,6 +689,7 @@ class NvView:
         self.helpMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Help'), menu=self.helpMenu)
         self.helpMenu.add_command(label=_('Online help'), command=lambda: webbrowser.open(self._HELP_URL))
+        self.helpMenu.add_command(label=f"noveltree {_('Home page')}", command=lambda: webbrowser.open(self._HOME_URL))
 
     def _view_options(self, event=None):
         """Open a toplevel window to edit the view options."""

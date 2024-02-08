@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.6.5
+
+- Add a "novelyst Home page" entry to the help menu.
+
+Based on novxlib v1.0.0
+
 ### v1.6.4
 
 - Switch the online help to https://peter88213.github.io/noveltree-help/.
