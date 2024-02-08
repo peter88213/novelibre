@@ -52,7 +52,7 @@ import tkinter as tk
 
 class NvView:
     """Main view of the tkinter GUI framework for noveltree."""
-    _HELP_URL = 'https://peter88213.github.io/noveltree/help/help'
+    _HELP_URL = 'https://peter88213.github.io/noveltree-help/'
     _KEY_ADD_CHILD = ('<Control-Alt-n>', 'Ctrl-Alt-N')
     _KEY_ADD_ELEMENT = ('<Control-n>', 'Ctrl-N')
     _KEY_ADD_PARENT = ('<Control-Alt-Shift-N>', 'Ctrl-Alt-Shift-N')

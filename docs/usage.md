@@ -54,12 +54,8 @@ You can either
 
 --- 
 
-# [Online help](https://peter88213.github.io/noveltree/help/help)
+# [Online help](https://peter88213.github.io/noveltree-help/)
 
-- Basic concepts
-- Arcs
-- Command reference
-- Cover thumbnails
 
 You can open the online help page with **Help > Online help**.
 
