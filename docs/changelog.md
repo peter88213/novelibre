@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### v1.6.5
 
-- Add a "novelyst Home page" entry to the help menu.
+- Add a "noveltree Home page" entry to the help menu.
 
 Based on novxlib v1.0.0
 
