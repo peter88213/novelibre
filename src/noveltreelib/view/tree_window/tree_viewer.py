@@ -867,6 +867,10 @@ class TreeViewer(ttk.Frame):
         for __ in self.columns:
             columns.append('')
 
+        # "Point has notes" indicator.
+        if self._mdl.novel.turningPoints[tpId].notes:
+            columns[self._colPos['nt']] = _('N')
+
         # Display associated section, if any.
         scId = self._mdl.novel.turningPoints[tpId].sectionAssoc
         if scId:

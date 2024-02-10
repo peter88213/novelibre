@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.6.6
+
+- Mark turning points with "notes" in the tree.
+
+Based on novxlib v1.0.0
+
 ### v1.6.5
 
 - Add a "noveltree Home page" entry to the help menu.
