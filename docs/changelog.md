@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.6.8
+
+- Fix a bug in novxlib where turning points appear in the wrong columns
+of the plot list ods export and html report.
+
+Based on novxlib v1.0.1
+
 ### v1.6.7
 
 - Fix a bug where locked documents are not highlighted in the import list.
