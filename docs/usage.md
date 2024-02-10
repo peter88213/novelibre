@@ -59,6 +59,8 @@ You can either
 
 You can open the online help page with **Help > Online help**.
 
+![Online help screenshot](Screenshots/help01.png)
+
 --- 
 
 # License
