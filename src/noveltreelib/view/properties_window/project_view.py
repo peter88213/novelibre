@@ -577,7 +577,7 @@ class ProjectView(BasicView):
         
         Callback procedure for the related button.
         """
-        self._wordCountStart.set(self._ui.wordCount)
+        self._wordCountStart.set(self._mdl.wordCount)
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""
@@ -682,7 +682,7 @@ class ProjectView(BasicView):
         - self._wordTarget
         """
         try:
-            ww = self._ui.wordCount - self._wordCountStart.get()
+            ww = self._mdl.wordCount - self._wordCountStart.get()
             wt = self._wordTarget.get()
             try:
                 wp = f'({round(100*ww/wt)}%)'

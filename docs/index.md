@@ -70,9 +70,9 @@ I use the program myself and fix errors immediately if I notice any. As far as I
 
 ## Download and install
 
-[Download the latest release (version 1.6.8)](https://github.com/peter88213/noveltree/raw/main/dist/noveltree_v1.6.8.zip)
+[Download the latest release (version 1.6.9)](https://github.com/peter88213/noveltree/raw/main/dist/noveltree_v1.6.9.zip)
 
-- Extract the "noveltree_v1.6.8" folder from the downloaded zipfile "noveltree_v1.6.8.zip".
+- Extract the "noveltree_v1.6.9" folder from the downloaded zipfile "noveltree_v1.6.9.zip".
 - Move into this new folder and open "README.md" for further instructions.
 - You may wish to install plugins; the [section editor](https://peter88213.github.io/noveltree_editor/) is highly recommended.
 

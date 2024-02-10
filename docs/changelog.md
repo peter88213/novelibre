@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.6.9
+
+- Fix a bug where the writing progress is unclear because the overall word count is not provided by the model.
+
+Based on novxlib v1.0.1
+
 ### v1.6.8
 
 - Fix a bug in novxlib where turning points appear in the wrong columns

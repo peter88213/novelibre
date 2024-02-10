@@ -567,6 +567,7 @@ class NvModel:
                     partCount += 1
                 else:
                     chapterCount += 1
+        self.wordCount = wordCount
         return wordCount, sectionCount, chapterCount, partCount
 
     def get_status_counts(self):
