@@ -100,10 +100,10 @@ class PrjUpdater(tk.Toplevel):
             except:
                 documentDate = _('unknown')
             columns = [documentType, documentDate]
-            if timestamp > self._mdl.prjFile.timestamp:
-                nodeTags.append('newer')
-            elif odf_is_locked(filePath):
+            if odf_is_locked(filePath):
                 nodeTags.append('locked')
+            elif timestamp > self._mdl.prjFile.timestamp:
+                nodeTags.append('newer')
             self._documentCollection.insert('', 'end', filePath, values=columns, tags=tuple(nodeTags))
 
     def _delete_document(self, event=None):

@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.6.7
+
+- Fix a bug where locked documents are not highlighted in the import list.
+
+Based on novxlib v1.0.0
+
 ### v1.6.6
 
 - Mark turning points with "notes" in the tree.
