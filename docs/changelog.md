@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.6.11
+
+- Never disable Text viewer and Properties buttons.
+
+Based on novxlib v1.0.1
+
 ### v1.6.10
 
 - Deactivate the detached mode for the Properties window to avoid problems
