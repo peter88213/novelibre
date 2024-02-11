@@ -203,9 +203,14 @@ class NvView:
         self._propertiesWindow = tk.Toplevel()
         self._propertiesWindow.geometry(prefs['prop_win_geometry'])
         set_icon(self._propertiesWindow, icon='pLogo32', default=False)
+
+        # "Re-parent" the Properties viewer.
         self.propertiesView.pack_forget()
+        self.views.remove(self.propertiesView)
         self.propertiesView = PropertiesViewer(self._propertiesWindow, self._mdl, self, self._ctrl)
+        self.views.append(self.propertiesView)
         self.propertiesView.pack(expand=True, fill='both')
+
         self._propertiesWindow.protocol("WM_DELETE_WINDOW", self.dock_properties_frame)
         prefs['detach_prop_win'] = True
         self._propWinDetached = True
@@ -263,14 +268,20 @@ class NvView:
 
         if not self.rightFrame.winfo_manager():
             self.rightFrame.pack(side='left', expand=False, fill='both')
-        self.propertiesView = PropertiesViewer(self.rightFrame, self._mdl, self, self._ctrl)
-        self.propertiesView.pack(expand=True, fill='both')
+
         prefs['prop_win_geometry'] = self._propertiesWindow.winfo_geometry()
+
+        # "Re-parent" the Properties viewer.
         self._propertiesWindow.destroy()
+        self.views.remove(self.propertiesView)
+        self.propertiesView = PropertiesViewer(self.rightFrame, self._mdl, self, self._ctrl)
+        self.views.append(self.propertiesView)
+        self.propertiesView.pack(expand=True, fill='both')
+        self.root.lift()
+
         prefs['show_properties'] = True
         prefs['detach_prop_win'] = False
         self._propWinDetached = False
-        self.root.lift()
         try:
             self.propertiesView.show_properties(self.tv.tree.selection()[0])
         except IndexError:

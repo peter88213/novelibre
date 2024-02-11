@@ -700,8 +700,7 @@ class NvController:
                 self.close_project()
             self.plugins.on_quit()
             self._ui.on_quit()
-        except Error as ex:
-            # TODO: Replace Error with Exception
+        except Exception as ex:
             self._ui.show_error(str(ex), title='ERROR: Unhandled exception on exit')
             self._ui.root.quit()
         return 'break'

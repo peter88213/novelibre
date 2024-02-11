@@ -10,6 +10,10 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### v1.6.11
 
+Fix a bug where detaching and re-docking the Properties view causes malfunction.
+
+- Neatly reparent the Properties viewer when detaching/docking it.
+- Catch all exceptions that might be raised on shutdown. 
 - Never disable Text viewer and Properties buttons.
 
 Based on novxlib v1.0.1
