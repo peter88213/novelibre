@@ -324,6 +324,19 @@ class NvView:
         self.propertiesView.show_properties(nodeId)
         self.contentsView.see(nodeId)
 
+    def on_quit(self):
+        """Gracefully close the user interface."""
+
+        # Save contents window "show markup" state.
+        prefs['show_markup'] = self.contentsView.showMarkup.get()
+
+        # Save windows size and position.
+        if self._propWinDetached:
+            prefs['prop_win_geometry'] = self._propertiesWindow.winfo_geometry()
+        self.tv.on_quit()
+        prefs['root_geometry'] = self.root.winfo_geometry()
+        self.root.quit()
+
     def restore_status(self, event=None):
         """Overwrite error message with the status before."""
         self.show_status(self._statusText)
@@ -515,7 +528,8 @@ class NvView:
         self.root.bind(self._KEY_CHAPTER_LEVEL[0], self.tv.show_chapter_level)
         self.root.bind(self._KEY_TOGGLE_VIEWER[0], self.toggle_contents_view)
         self.root.bind(self._KEY_TOGGLE_PROPERTIES[0], self.toggle_properties_view)
-        self.root.bind(self._KEY_DETACH_PROPERTIES[0], self.toggle_properties_window)
+        # self.root.bind(self._KEY_DETACH_PROPERTIES[0], self.toggle_properties_window)
+        # TODO: re-activate this for fixing #4
         self.root.bind(self._KEY_ADD_ELEMENT[0], self._ctrl.add_element)
         self.root.bind(self._KEY_ADD_CHILD[0], self._ctrl.add_child)
         self.root.bind(self._KEY_ADD_PARENT[0], self._ctrl.add_parent)
@@ -575,7 +589,8 @@ class NvView:
         self.viewMenu.add_separator()
         self.viewMenu.add_command(label=_('Toggle Text viewer'), accelerator=self._KEY_TOGGLE_VIEWER[1], command=self.toggle_contents_view)
         self.viewMenu.add_command(label=_('Toggle Properties'), accelerator=self._KEY_TOGGLE_PROPERTIES[1], command=self.toggle_properties_view)
-        self.viewMenu.add_command(label=_('Detach/Dock Properties'), accelerator=self._KEY_DETACH_PROPERTIES[1], command=self.toggle_properties_window)
+        # self.viewMenu.add_command(label=_('Detach/Dock Properties'), accelerator=self._KEY_DETACH_PROPERTIES[1], command=self.toggle_properties_window)
+        # TODO: re-activate this for fixing #4
         self.viewMenu.add_separator()
         self.viewMenu.add_command(label=_('Options'), command=self._view_options)
 

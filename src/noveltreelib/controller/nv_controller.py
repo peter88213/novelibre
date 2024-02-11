@@ -64,6 +64,7 @@ class NvController:
         - Create a path bar for the project file path.
         """
         self.tempDir = tempDir
+        self._internalLockFlag = False
 
         #--- Create the model
         self._mdl = NvModel()
@@ -90,7 +91,6 @@ class NvController:
         self.plugins.load_plugins(PLUGIN_PATH)
         self.disable_menu()
 
-        self._internalLockFlag = False
         self._ui.tv.reset_view()
 
     @property
@@ -699,17 +699,9 @@ class NvController:
             if self._mdl.prjFile is not None:
                 self.close_project()
             self.plugins.on_quit()
-
-            # Save contents window "show markup" state.
-            prefs['show_markup'] = self._ui.contentsView.showMarkup.get()
-
-            # Save windows size and position.
-            if self._ui._propWinDetached:
-                prefs['prop_win_geometry'] = self._propertiesWindow.winfo_geometry()
-            self._ui.tv.on_quit()
-            prefs['root_geometry'] = self._ui.root.winfo_geometry()
-            self._ui.root.quit()
+            self._ui.on_quit()
         except Error as ex:
+            # TODO: Replace Error with Exception
             self._ui.show_error(str(ex), title='ERROR: Unhandled exception on exit')
             self._ui.root.quit()
         return 'break'

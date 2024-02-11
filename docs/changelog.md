@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.6.10
+
+- Deactivate the detached mode for the Properties window to avoid problems
+  caused by a bug yet to fix.
+
+Based on novxlib v1.0.1
+
 ### v1.6.9
 
 - Fix a bug where the writing progress is unclear because the overall word count is not provided by the model.

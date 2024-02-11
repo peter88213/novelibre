@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.6.9\n"
-"POT-Creation-Date: 2024-02-10 23:15:48\n"
-"PO-Revision-Date: 2024-02-10 23:15:48\n"
+"Project-Id-Version: 1.6.10\n"
+"POT-Creation-Date: 2024-02-11 15:04:44\n"
+"PO-Revision-Date: 2024-02-11 15:04:44\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -309,9 +309,6 @@ msgstr "{} löschen?"
 
 msgid "Description"
 msgstr "Beschreibung"
-
-msgid "Detach/Dock Properties"
-msgstr "Eigenschaften abtrennen/andocken"
 
 msgid "Dilemma"
 msgstr "Dilemma"
