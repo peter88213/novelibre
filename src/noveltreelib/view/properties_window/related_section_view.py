@@ -5,6 +5,7 @@ For further information see https://github.com/peter88213/noveltree
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
+from datetime import date, timedelta
 
 from noveltreelib.noveltree_globals import prefs
 from noveltreelib.view.properties_window.basic_view import BasicView
@@ -365,12 +366,27 @@ class RelatedSectionView(BasicView):
 
     def _show_ages(self, event=None):
         """Display the ages of the related characters."""
+        now = self._element.date
+        try:
+            if now is None:
+                # Calculate the section date from day and reference date.
+                refDate = date.fromisoformat(self._mdl.novel.referenceDate)
+                now = date.isoformat(refDate + timedelta(days=int(self._element.day)))
+        except:
+            self._ui.show_info(
+                _('Please enter either a section date or a day and a reference date.'),
+                title=_('Date information is missing'))
+            return
+
         charList = []
         for crId in self._element.characters:
             birthDate = self._mdl.novel.characters[crId].birthDate
             deathDate = self._mdl.novel.characters[crId].deathDate
-            now = self._element.date
             try:
+                if now is None:
+                    # Calculate the section date from day and reference date.
+                    refDate = date.fromisoformat(self._mdl.novel.referenceDate)
+                    now = date.isoformat(refDate + timedelta(days=int(self._element.day)))
                 years = get_age(now, birthDate, deathDate)
                 if years < 0:
                     years *= -1
@@ -379,7 +395,7 @@ class RelatedSectionView(BasicView):
                     suffix = _('years old')
                 charList.append(f'{self._mdl.novel.characters[crId].title}: {years} {suffix}')
             except:
-                pass
+                charList.append(f'{self._mdl.novel.characters[crId].title}: ({_("no data")})')
 
         if charList:
             self._ui.show_info('\n'.join(charList), title=f'{_("Date")}: {now}')

@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.7.1
+
+- If a section has a "day" instead of a date, calculate the age of the related characters based on the reference date, if any.
+- Extend messaging.
+
+Based on novxlib v1.1.0
+
 ### v1.7.0
 
 - The age of the related characters can be called up in the section properties window. 

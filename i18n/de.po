@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.7.0\n"
-"POT-Creation-Date: 2024-02-14 15:06:04\n"
-"PO-Revision-Date: 2024-02-14 15:06:04\n"
+"Project-Id-Version: 1.7.1\n"
+"POT-Creation-Date: 2024-02-14 18:33:26\n"
+"PO-Revision-Date: 2024-02-14 18:33:26\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -285,6 +285,9 @@ msgstr "Benutzerdef. Ziele"
 
 msgid "Date"
 msgstr "Datum"
+
+msgid "Date information is missing"
+msgstr "Datumsinformationen fehlen"
 
 msgid "Date/Time"
 msgstr "Datum/Zeit"
@@ -742,6 +745,9 @@ msgstr "Bitte zuerst das Dokument schließen"
 msgid "Please close the manuscript first"
 msgstr "Bitte zuerst das Manuskript schließen"
 
+msgid "Please enter either a section date or a day and a reference date."
+msgstr "Geben Sie bitte entweder ein Abschnittsdatum ein, oder einen Tag und ein Referenzdatum."
+
 msgid "Please wait ..."
 msgstr "Bitte warten ..."
 
@@ -1107,6 +1113,9 @@ msgstr "zuletzt gespeichert:"
 
 msgid "manuscript"
 msgstr "Manuskript"
+
+msgid "no data"
+msgstr "keine Daten"
 
 msgid "noveltree API"
 msgstr "noveltree API"

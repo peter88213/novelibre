@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.7.0\n"
-"POT-Creation-Date: 2024-02-14 15:06:04\n"
+"Project-Id-Version: 1.7.1\n"
+"POT-Creation-Date: 2024-02-14 18:33:26\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -285,6 +285,9 @@ msgid "Custom chara Goals"
 msgstr ""
 
 msgid "Date"
+msgstr ""
+
+msgid "Date information is missing"
 msgstr ""
 
 msgid "Date/Time"
@@ -743,6 +746,9 @@ msgstr ""
 msgid "Please close the manuscript first"
 msgstr ""
 
+msgid "Please enter either a section date or a day and a reference date."
+msgstr ""
+
 msgid "Please wait ..."
 msgstr ""
 
@@ -1107,6 +1113,9 @@ msgid "last saved on"
 msgstr ""
 
 msgid "manuscript"
+msgstr ""
+
+msgid "no data"
 msgstr ""
 
 msgid "noveltree API"
