@@ -12,6 +12,7 @@ from noveltreelib.widgets.folding_frame import FoldingFrame
 from noveltreelib.widgets.label_entry import LabelEntry
 from noveltreelib.widgets.my_string_var import MyStringVar
 from noveltreelib.widgets.collection_box import CollectionBox
+from novxlib.model.date_time_tools import get_age
 from novxlib.novx_globals import _
 from novxlib.novx_globals import list_to_string
 from novxlib.novx_globals import string_to_list
@@ -65,8 +66,11 @@ class RelatedSectionView(BasicView):
 
         # 'Characters' listbox.
         self._crTitles = ''
-        self._characterLabel = ttk.Label(self._relationFrame, text=_('Characters'))
-        self._characterLabel.pack(anchor='w')
+        crHeading = ttk.Frame(self._relationFrame)
+        self._characterLabel = ttk.Label(crHeading, text=_('Characters'))
+        self._characterLabel.pack(anchor='w', side='left')
+        ttk.Button(crHeading, text=_('Show ages'), command=self._show_ages).pack(anchor='e')
+        crHeading.pack(fill='x')
         self._characterCollection = CollectionBox(
             self._relationFrame,
             cmdAdd=self._pick_character,
@@ -358,6 +362,27 @@ class RelatedSectionView(BasicView):
             itList = self._element.items
             del itList[selection]
             self._element.items = itList
+
+    def _show_ages(self, event=None):
+        """Display the ages of the related characters."""
+        charList = []
+        for crId in self._element.characters:
+            birthDate = self._mdl.novel.characters[crId].birthDate
+            deathDate = self._mdl.novel.characters[crId].deathDate
+            now = self._element.date
+            try:
+                years = get_age(now, birthDate, deathDate)
+                if years < 0:
+                    years *= -1
+                    suffix = _('years after death')
+                else:
+                    suffix = _('years old')
+                charList.append(f'{self._mdl.novel.characters[crId].title}: {years} {suffix}')
+            except:
+                pass
+
+        if charList:
+            self._ui.show_info('\n'.join(charList), title=f'{_("Date")}: {now}')
 
     def _toggle_relation_frame(self, event=None):
         """Hide/show the 'Relationships' frame."""

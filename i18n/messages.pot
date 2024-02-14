@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.6.11\n"
-"POT-Creation-Date: 2024-02-11 16:30:24\n"
+"Project-Id-Version: 1.7.0\n"
+"POT-Creation-Date: 2024-02-14 15:06:04\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -896,6 +896,9 @@ msgstr ""
 msgid "Show Project notes"
 msgstr ""
 
+msgid "Show ages"
+msgstr ""
+
 msgid "Show list"
 msgstr ""
 
@@ -1116,6 +1119,12 @@ msgid "noveltree project"
 msgstr ""
 
 msgid "unknown"
+msgstr ""
+
+msgid "years after death"
+msgstr ""
+
+msgid "years old"
 msgstr ""
 
 msgid "{0} (last saved on {1})"

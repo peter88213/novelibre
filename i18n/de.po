@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.6.11\n"
-"POT-Creation-Date: 2024-02-11 16:30:24\n"
-"PO-Revision-Date: 2024-02-11 16:30:24\n"
+"Project-Id-Version: 1.7.0\n"
+"POT-Creation-Date: 2024-02-14 15:06:04\n"
+"PO-Revision-Date: 2024-02-14 15:06:04\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -895,6 +895,9 @@ msgstr "Plot-Liste anzeigen"
 msgid "Show Project notes"
 msgstr "Projektnotizen anzeigen"
 
+msgid "Show ages"
+msgstr "Alter anzeigen"
+
 msgid "Show list"
 msgstr "Liste anzeigen"
 
@@ -1116,6 +1119,12 @@ msgstr "noveltree-Projekt"
 
 msgid "unknown"
 msgstr "unbekannt"
+
+msgid "years after death"
+msgstr "Jahre seit dem Todesfall"
+
+msgid "years old"
+msgstr "Jahre alt"
 
 msgid "{0} (last saved on {1})"
 msgstr "{0} (zuletzt gespeichert: {1})"

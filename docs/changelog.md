@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.7.0
+
+- The age of the related characters can be called up in the section properties window. 
+
+Based on novxlib v1.1.0
+
 ### v1.6.11
 
 Fix a bug where detaching and re-docking the Properties view causes malfunction.
