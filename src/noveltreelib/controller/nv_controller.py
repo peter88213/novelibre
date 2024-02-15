@@ -628,13 +628,14 @@ class NvController:
                 self._ui.show_error(_('There is no previous section'), title=_('Cannot join sections'))
                 return
 
-        try:
-            self._mdl.join_sections(scId0, scId1)
-        except Error as ex:
-            self._ui.show_error(str(ex), title=_('Cannot join sections'))
-            return
+        if self._ui.ask_yes_no(f'{_("Join with previous")}?'):
+            try:
+                self._mdl.join_sections(scId0, scId1)
+            except Error as ex:
+                self._ui.show_error(str(ex), title=_('Cannot join sections'))
+                return
 
-        self._view_new_element(scId0)
+            self._view_new_element(scId0)
 
     def lock(self, event=None):
         """Lock the project.
