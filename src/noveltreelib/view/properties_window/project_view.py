@@ -21,19 +21,10 @@ import tkinter as tk
 
 
 class ProjectView(BasicView):
-    """Class for viewing and editing project properties.
-    
-    """
+    """Class for viewing and editing project properties."""
 
     def __init__(self, parent, model, view, controller):
-        """Initialize the view once before element date is available.
-        
-        Positional arguments:
-            view: NoveltreeUi -- Reference to the user interface.
-            parent -- Parent widget to display this widget.
-
-        - Initialize element-specific tk entry data.
-        - Place element-specific widgets in the element's info window.
+        """Initialize the view once before element data is available.
         
         Extends the superclass constructor.
         """

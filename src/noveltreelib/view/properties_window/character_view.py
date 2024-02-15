@@ -30,13 +30,6 @@ class CharacterView(WorldElementView):
     def __init__(self, parent, model, view, controller):
         """Initialize the view once before element data is available.
         
-        Positional arguments:
-            view: NoveltreeUi -- Reference to the user interface.
-            parent -- Parent widget to display this widget.
-
-        - Initialize element-specific tk entry data.
-        - Place element-specific widgets in the element's info window.
-        
         Extends the superclass constructor.
         """
         super().__init__(parent, model, view, controller)
@@ -103,6 +96,8 @@ class CharacterView(WorldElementView):
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)
             self._inputWidgets.append(widget)
+
+        self._prefsShowLinks = 'show_cr_links'
 
     def apply_changes(self, event=None):
         """Apply changes.

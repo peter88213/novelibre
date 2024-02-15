@@ -24,13 +24,6 @@ class ArcView(BasicView):
     def __init__(self, parent, model, view, controller):
         """Initialize the view once before element data is available.
         
-        Positional arguments:
-            view: NoveltreeUi -- Reference to the user interface.
-            parent -- Parent widget to display this widget.
-
-        - Initialize element-specific tk entry data.
-        - Place element-specific widgets in the element's info window.
-        
         Extends the superclass constructor.
         """
         super().__init__(parent, model, view, controller)

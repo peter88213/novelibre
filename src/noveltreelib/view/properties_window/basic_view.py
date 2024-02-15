@@ -29,8 +29,10 @@ class BasicView(ttk.Frame, ABC):
         """Initialize the view once before element data is available.
         
         Positional arguments:
-            view: NoveltreeUi -- Reference to the user interface.
             parent -- Parent widget to display this widget.
+            model -- reference to the main model instance of the application.
+            view -- reference to the main view instance of the application.
+            controller -- reference to the main controller instance of the application.
 
         - Initialize element-specific tk entry data.
         - Place element-specific widgets in the element's info window.

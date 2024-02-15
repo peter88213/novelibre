@@ -36,13 +36,6 @@ class WorldElementView(BasicView, ABC):
     def __init__(self, parent, model, view, controller):
         """Initialize the view once before element data is available.
         
-        Positional arguments:
-            view: NoveltreeUi -- Reference to the user interface.
-            parent -- Parent widget to display this widget.
-
-        - Initialize element-specific tk entry data.
-        - Place element-specific widgets in the element's info window.
-        
         Extends the superclass constructor.
         """
         super().__init__(parent, model, view, controller)
@@ -68,6 +61,8 @@ class WorldElementView(BasicView, ABC):
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)
             self._inputWidgets.append(widget)
+
+        self._prefsShowLinks = None
 
     def apply_changes(self, event=None):
         """Apply changes of element title, description and notes."""
@@ -99,7 +94,7 @@ class WorldElementView(BasicView, ABC):
         self._tags.set(self._tagsStr)
 
         # Links window.
-        if prefs['show_links']:
+        if prefs[self._prefsShowLinks]:
             self._linksWindow.show()
         else:
             self._linksWindow.hide()
@@ -150,12 +145,12 @@ class WorldElementView(BasicView, ABC):
         
         Callback procedure for the FoldingFrame's button.
         """
-        if prefs['show_links']:
+        if prefs[self._prefsShowLinks]:
             self._linksWindow.hide()
-            prefs['show_links'] = False
+            prefs[self._prefsShowLinks] = False
         else:
             self._linksWindow.show()
-            prefs['show_links'] = True
+            prefs[self._prefsShowLinks] = True
 
     def _add_link(self):
         """Select a link and add it to the list."""

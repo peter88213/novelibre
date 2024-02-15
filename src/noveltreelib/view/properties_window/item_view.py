@@ -10,6 +10,14 @@ from noveltreelib.view.properties_window.world_element_view import WorldElementV
 class ItemView(WorldElementView):
     """Class for viewing and editing item properties."""
 
+    def __init__(self, parent, model, view, controller):
+        """Initialize the view once before element data is available.
+        
+        Extends the superclass constructor.
+        """
+        super().__init__(parent, model, view, controller)
+        self._prefsShowLinks = 'show_it_links'
+
     def set_data(self, elementId):
         """Update the view with element's data.
         
