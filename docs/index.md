@@ -10,7 +10,7 @@
 The main differences are an improved workflow that doesn't require a LibreOffice/OpenOffice extension, and the use of a new file format instead of the *.yw7* format. For more details see the [comparison between noveltree and novelyst](https://github.com/peter88213/noveltree/discussions/2).
 
 If you are considering switching from *novelyst* to *noveltree*, the 
-[noveltree_yw7 plugin](https://peter88213.github.io/noveltree_yw7/) will help you to
+[nv_yw7 plugin](https://peter88213.github.io/nv_yw7/) will help you to
 create *.novx* files from your existing projects. To migrate entire collections or larger amounts of project files,
 you might want to take a look at the [yw_novx conversion tools](https://github.com/peter88213/yw_novx).
 
@@ -31,16 +31,16 @@ you might want to take a look at the [yw_novx conversion tools](https://github.c
 
 *noveltree's* functionality can be extended by plugins. Here are some examples:
 
-- [A yw7 file importer/exporter](https://peter88213.github.io/noveltree_yw7/)
-- [An on-demand update checker](https://peter88213.github.io/noveltree_updater/)
-- [A daily progress log viewer](https://peter88213.github.io/noveltree_progress/)
-- [A book/series collection manager](https://peter88213.github.io/noveltree_collection/)
-- [A relationship matrix](https://peter88213.github.io/noveltree_matrix/)
-- [A Timeline plugin](https://peter88213.github.io/noveltree_timeline/)
-- [An Aeon Timeline 2 plugin](https://peter88213.github.io/noveltree_aeon2/)
-- [A theme changer](https://peter88213.github.io/noveltree_themes/)
-- [A Story Template management plugin](https://peter88213.github.io/noveltree_templates/)
-- [A simple "markup" section editor](https://peter88213.github.io/noveltree_editor/)
+- [A yw7 file importer/exporter](https://peter88213.github.io/nv_yw7/)
+- [An on-demand update checker](https://peter88213.github.io/nv_updater/)
+- [A daily progress log viewer](https://peter88213.github.io/nv_progress/)
+- [A book/series collection manager](https://peter88213.github.io/nv_collection/)
+- [A relationship matrix](https://peter88213.github.io/nv_matrix/)
+- [A Timeline plugin](https://peter88213.github.io/nv_timeline/)
+- [An Aeon Timeline 2 plugin](https://peter88213.github.io/nv_aeon2/)
+- [A theme changer](https://peter88213.github.io/nv_themes/)
+- [A Story Template management plugin](https://peter88213.github.io/nv_templates/)
+- [A simple "markup" section editor](https://peter88213.github.io/nv_editor/)
 
 ## Tools
 
@@ -74,7 +74,7 @@ I use the program myself and fix errors immediately if I notice any. As far as I
 
 - Extract the "noveltree_v1.7.3" folder from the downloaded zipfile "noveltree_v1.7.3.zip".
 - Move into this new folder and open "README.md" for further instructions.
-- You may wish to install plugins; the [section editor](https://peter88213.github.io/noveltree_editor/) is highly recommended.
+- You may wish to install plugins; the [section editor](https://peter88213.github.io/nv_editor/) is highly recommended.
 
 ---
 

@@ -6,7 +6,7 @@ First, you need to know your language code according to ISO 639-1.
 
 For English, this is, for example, `en`, for German, it is `de`.
 
-**NOTE:** The procedure described below is greatly simplified if you create a language pack based on the [noveltree_xx](https://github.com/peter88213/noveltree_xx) template and use the tools provided for this purpose. 
+**NOTE:** The procedure described below is greatly simplified if you create a language pack based on the [nv_xx](https://github.com/peter88213/nv_xx) template and use the tools provided for this purpose. 
 
 ### Create a message catalog
 
@@ -110,8 +110,8 @@ See https://github.com/peter88213/novxlib/blob/main/docs/conventions.md
 
 ## Plugin development
 
-If you want to develop a noveltree plugin, you may want to start with a repository on GitHub using [noveltree_plugin](https://github.com/peter88213/noveltree_plugin) as a template repository. After setting up your new repository 
+If you want to develop a noveltree plugin, you may want to start with a repository on GitHub using [nv_plugin](https://github.com/peter88213/nv_plugin) as a template repository. After setting up your new repository 
 named e.g. *noveltree_yourPluginName*, just do a global search, and replace 
-*noveltree_plugin* with *noveltree_yourPluginName*, and *nv_plugin* with *nv_yourPluginName*. 
+*nv_plugin* with *noveltree_yourPluginName*, and *nv_plugin* with *nv_yourPluginName*. 
 
 
