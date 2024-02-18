@@ -1,3 +1,9 @@
+[![Download the latest version](docs/img/download-button)](https://github.com/peter88213/noveltree/raw/main/dist/noveltree_v0.99.0.zip)
+[![News](docs/img/news-button)](https://github.com/peter88213/noveltree/discussions/1)
+[![Online help](docs/img/help-button)](https://github.com/peter88213/nvhelp-en/)
+
+---
+
 # ![N](docs/img/nLogo32.png) noveltree
 
 *noveltree* is an organizer tool for writing novels with *LibreOffice Writer* or *OpenOffice Writer*. The entire novel is stored in a single file with all additional information. The manuscript is exported for editing with *Office Writer*, and then written back so that everything is always consistent and in one place. *noveltree* uses its own XML file format. 
