@@ -78,7 +78,7 @@ I use the program myself and fix errors immediately if I notice any. As far as I
 
 ---
 
-[Changelog](docs/changelog)
+[Changelog](docs/changelog.md)
 
 [News](https://github.com/peter88213/noveltree/discussions/1)
 
@@ -86,7 +86,7 @@ I use the program myself and fix errors immediately if I notice any. As far as I
 
 ## Usage
 
-See the [instructions for use](docs/usage)
+See the [instructions for use](docs/usage.md)
 
 ## Credits
 
