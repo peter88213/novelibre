@@ -1,4 +1,4 @@
-[Project homepage](../README.md) > Instructions for use
+[Project homepage](../) > Instructions for use
 
 --- 
 
@@ -54,7 +54,7 @@ You can either
 
 --- 
 
-# [Online help](https://peter88213.github.io/nvhelp-en/)
+# [Online help](https://peter88213.github.io/nvhelp-en/index.html)
 
 
 You can open the online help page with **Help > Online help**.
