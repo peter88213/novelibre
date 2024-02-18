@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v1.8.0
+
+- Re-structure the website; adjust links.
+
+Based on novxlib v1.1.0
+
 ### v1.7.3
 
 - Ask for confirmation before joining two sections.
