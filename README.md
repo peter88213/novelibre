@@ -1,4 +1,4 @@
-[![Download the latest version](docs/img/download-button.png)](https://github.com/peter88213/noveltree/raw/main/dist/noveltree_v1.8.0.zip)
+[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/noveltree/raw/main/dist/noveltree_v1.8.0.zip)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
 [![News](docs/img/news-button.png)](https://github.com/peter88213/noveltree/discussions/1)
 
