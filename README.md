@@ -1,6 +1,6 @@
-[![Download the latest version](docs/img/download-button)](https://github.com/peter88213/noveltree/raw/main/dist/noveltree_v1.8.0.zip)
-[![News](docs/img/news-button)](https://github.com/peter88213/noveltree/discussions/1)
-[![Online help](docs/img/help-button)](https://github.com/peter88213/nvhelp-en/)
+[![Download the latest version](docs/img/download-button.png)](https://github.com/peter88213/noveltree/raw/main/dist/noveltree_v1.8.0.zip)
+[![News](docs/img/news-button.png)](https://github.com/peter88213/noveltree/discussions/1)
+[![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
 
 ---
 
