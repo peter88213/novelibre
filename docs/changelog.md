@@ -10,6 +10,9 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### v1.8.0
 
+**Please update all installed plugins.** 
+See [this message](https://github.com/peter88213/noveltree/discussions/1#discussioncomment-8510191).
+
 - Re-structure the website; adjust links.
 
 Based on novxlib v1.1.0
