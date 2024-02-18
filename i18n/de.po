@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.7.3\n"
-"POT-Creation-Date: 2024-02-15 21:06:38\n"
-"PO-Revision-Date: 2024-02-15 21:06:39\n"
+"Project-Id-Version: 1.8.0\n"
+"POT-Creation-Date: 2024-02-18 13:49:27\n"
+"PO-Revision-Date: 2024-02-18 13:49:27\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1125,6 +1125,9 @@ msgstr "noveltree XML-Datendateien"
 
 msgid "noveltree project"
 msgstr "noveltree-Projekt"
+
+msgid "nvhelp-en"
+msgstr "nvhelp-en"
 
 msgid "unknown"
 msgstr "unbekannt"

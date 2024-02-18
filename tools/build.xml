@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="noveltree" basedir=".">
-	<property name="version" value="1.7.3" />
+	<property name="version" value="1.8.0" />
 	<property name="test-app" value="noveltree" />
 	
 	<property name="source-path" location="../src" />
@@ -57,8 +57,8 @@
 		
 		<zip destfile="${dist-path}/${release}.zip" basedir="${build-path}" />
 		
-		<copy file="${docs-path}/template/index.md" overwrite="True" todir="${docs-path}" />
-		<replace encoding="utf-8" file="${docs-path}/index.md" token="0.99.0" value="${version}" />
+		<copy file="${docs-path}/template/README.md" overwrite="True" todir=".." />
+		<replace encoding="utf-8" file="../README.md" token="0.99.0" value="${version}" />
 		
 		<copy file="${docs-path}/template/VERSION" overwrite="True" todir=".." />
 		<replace encoding="utf-8" file="../VERSION" token="0.99.0" value="${version}" />

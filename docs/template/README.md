@@ -1,8 +1,8 @@
-# ![N](img/nLogo32.png) noveltree
+# ![N](docs/img/nLogo32.png) noveltree
 
 *noveltree* is an organizer tool for writing novels with *LibreOffice Writer* or *OpenOffice Writer*. The entire novel is stored in a single file with all additional information. The manuscript is exported for editing with *Office Writer*, and then written back so that everything is always consistent and in one place. *noveltree* uses its own XML file format. 
 
-![Screenshot](Screenshots/screen01.png)
+![Screenshot](docs/Screenshots/screen01.png)
 
 *noveltree* is written in Python and should run on several operating systems, like Windows and Linux.
 
@@ -78,7 +78,7 @@ I use the program myself and fix errors immediately if I notice any. As far as I
 
 ---
 
-[Changelog](changelog)
+[Changelog](docs/changelog.md)
 
 [News](https://github.com/peter88213/noveltree/discussions/1)
 
@@ -86,7 +86,7 @@ I use the program myself and fix errors immediately if I notice any. As far as I
 
 ## Usage
 
-See the [instructions for use](usage)
+See the [instructions for use](docs/usage.md)
 
 ## Credits
 
@@ -99,3 +99,5 @@ The toolbar icons are based on the [Eva Icons](https://akveo.github.io/eva-icons
 This is Open Source software, and *noveltree* is licensed under GPLv3. See the
 [GNU General Public License website](https://www.gnu.org/licenses/gpl-3.0.en.html) for more
 details, or consult the [LICENSE](https://github.com/peter88213/noveltree/blob/main/LICENSE) file.
+
+The modules in the *widgets* package are licenced under the [MIT License](http://www.opensource.org/licenses/mit-license.php). 

@@ -528,7 +528,7 @@ class NvController:
         """Export a document.
         
         Required arguments:
-            suffix -- str: Document type suffix (https://peter88213.github.io/noveltree/help/export_menu).
+            suffix -- str: Document type suffix.
         """
         self._ui.restore_status()
         self._ui.propertiesView.apply_changes()
