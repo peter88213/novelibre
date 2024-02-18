@@ -1,4 +1,4 @@
-[Project homepage](../../README.md) > [Instructions for use](../usage.md) > Online help
+[Project homepage](../../) > [Instructions for use](../usage.md) > Online help
 
 --- 
 
