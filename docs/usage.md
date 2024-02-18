@@ -1,4 +1,4 @@
-[Project homepage](https://peter88213.github.io/noveltree) > Instructions for use
+[Project homepage](../README.md) > Instructions for use
 
 --- 
 
@@ -54,7 +54,7 @@ You can either
 
 --- 
 
-# [Online help](https://peter88213.github.io/noveltree-help/)
+# [Online help](https://peter88213.github.io/nvhelp-en/)
 
 
 You can open the online help page with **Help > Online help**.

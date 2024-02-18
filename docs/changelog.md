@@ -1,4 +1,4 @@
-[Project home page](index) > Changelog
+[Project home page](../README.md) > Changelog
 
 ------------------------------------------------------------------------
 
