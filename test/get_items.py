@@ -8,7 +8,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import sys
 from novxlib.model.novel import Novel
 from novxlib.model.nv_tree import NvTree
-from noveltreelib.data_reader.item_data_reader import ItemDataReader
+from nvlib.data_reader.item_data_reader import ItemDataReader
 
 filePath = sys.argv[1]
 dataSet = ItemDataReader(filePath)

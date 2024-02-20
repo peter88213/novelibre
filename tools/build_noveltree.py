@@ -23,7 +23,7 @@ os.makedirs(BUILD, exist_ok=True)
 
 
 def main():
-    inliner.run(SOURCE_FILE, TARGET_FILE, 'noveltreelib', '../src/')
+    inliner.run(SOURCE_FILE, TARGET_FILE, 'nvlib', '../src/')
     inliner.run(TARGET_FILE, TARGET_FILE, 'novxlib', '../../novxlib/src/')
     print('Done.')
 

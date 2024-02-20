@@ -21,9 +21,9 @@ import os
 from pathlib import Path
 import sys
 
-from noveltreelib.configuration.nv_configuration import NvConfiguration
-from noveltreelib.controller.nv_controller import NvController
-from noveltreelib.noveltree_globals import prefs
+from nvlib.configuration.nv_configuration import NvConfiguration
+from nvlib.controller.nv_controller import NvController
+from nvlib.nv_globals import prefs
 from novxlib.config.configuration import Configuration
 
 APPNAME = 'noveltree'
@@ -104,7 +104,7 @@ def main():
     #--- Set up the directories for configuration and temporary files.
     try:
         homeDir = str(Path.home()).replace('\\', '/')
-        installDir = f'{homeDir}/.noveltree'
+        installDir = f'{homeDir}/.novx'
     except:
         installDir = '.'
     os.makedirs(installDir, exist_ok=True)

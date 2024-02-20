@@ -23,7 +23,9 @@ try:
 except ModuleNotFoundError:
     print('The tkinter module is missing. Please install the tk support package for your python3 version.')
     sys.exit(1)
+
 from tkinter import messagebox
+import relocate
 
 # Initialize localization.
 LOCALE_PATH = f'{os.path.dirname(sys.argv[0])}/locale/'
@@ -152,7 +154,15 @@ def open_folder(installDir):
 
 
 def install(installDir):
-    """Install the script."""
+    """Install the application."""
+    #--- Relocate the v1.x installation directory.
+    try:
+        messagebox.showinfo(
+        'Moving the noveltree installation directory',
+        relocate.main()
+        )
+    except:
+        pass
 
     #--- Create a general novxlib installation directory, if necessary.
     os.makedirs(installDir, exist_ok=True)
@@ -162,14 +172,6 @@ def install(installDir):
     else:
         simpleUpdate = False
 
-    #--- Move an existing installation to the new place, if necessary.
-    try:
-        oldInst = os.getenv('APPDATA').replace('\\', '/')
-        oldInstDir = f'{oldInst}/pyWriter/{APPNAME}'
-        output(f'Moving "{oldInstDir}" to "{installDir}" ...')
-        os.replace(oldInstDir, installDir)
-    except:
-        pass
     os.makedirs(cnfDir, exist_ok=True)
 
     #--- Delete the old version, but retain configuration, if any.
@@ -276,7 +278,7 @@ if __name__ == '__main__':
 
     # Run the installation.
     homePath = str(Path.home()).replace('\\', '/')
-    novxlibPath = f'{homePath}/.noveltree'
+    novxlibPath = f'{homePath}/.novx'
     try:
         install(novxlibPath)
     except Exception as ex:

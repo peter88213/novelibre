@@ -8,6 +8,19 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v2.0.0
+
+**Please update all installed plugins.** 
+See [this message](https://github.com/peter88213/noveltree/discussions/1#discussioncomment-8510191).
+
+Preparations for renaming the application:
+- Refactor the code for v2.0 API.
+- Change the installation directory in the setup and registry scripts.
+- Rename packages that have "noveltree" in their name.
+- Refactor the code for v2.0 API.
+
+Based on novxlib v1.1.0
+
 ### v1.8.0
 
 **Please update all installed plugins.** 
