@@ -10,8 +10,8 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### v2.0.0
 
-**Please update all installed plugins.** 
-See [this message](https://github.com/peter88213/noveltree/discussions/1#discussioncomment-8510191).
+**Please update all installed plugins. Check your program launcher/desktop shortcut, and re-run the registry script on Windows.** 
+See [this message](https://github.com/peter88213/noveltree/discussions/1#discussioncomment-8526314).
 
 Preparations for renaming the application:
 - Refactor the code for v2.0 API.
