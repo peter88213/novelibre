@@ -6,31 +6,31 @@
 
 # ![N](docs/img/nLogo32.png) noveltree
 
-*noveltree* is an organizer tool for writing novels with *LibreOffice Writer* or *OpenOffice Writer*. The entire novel is stored in a single file with all additional information. The manuscript is exported for editing with *Office Writer*, and then written back so that everything is always consistent and in one place. *noveltree* uses its own XML file format. 
+*noveltree* is a computer program for novelists who prefer to write with LibreOffice or OpenOffice, 
+but need additional features for the organization of their work. 
 
 ![Screenshot](docs/Screenshots/screen01.png)
 
-*noveltree* is written in Python and should run on several operating systems, like Windows and Linux.
-
-*noveltree* is to replace the [novelyst](https://peter88213.github.io/novelyst/) application. 
-The main differences are an improved workflow that doesn't require a LibreOffice/OpenOffice extension, and the use of a new file format instead of the *.yw7* format. For more details see the [comparison between noveltree and novelyst](https://github.com/peter88213/noveltree/discussions/2).
-
-If you are considering switching from *novelyst* to *noveltree*, the 
-[nv_yw7 plugin](https://github.com/peter88213/nv_yw7/) will help you to
-create *.novx* files from your existing projects. To migrate entire collections or larger amounts of project files,
-you might want to take a look at the [yw_novx conversion tools](https://github.com/peter88213/yw_novx).
-
-
 ## Features
 
-- The entire project is displayed in a tree, with branches for the book, characters, locations, items, arcs, and project notes.
-- Tree elements can be added, moved, and deleted.
-- There are three levels: part, chapter, and section.
-- The right sidebar displays the essential properties of the selected element for editing.
-- A text viewer window can be toggled on and off.
-- There is a wide range of ODF-type file export for *OpenOffice* and *LibreOffice*.
-- The exported ODT manuscript and several other exported documents can be re-imported to update the project.
-- Several reports can be presented in list form. 
+- With *noveltree*, extensive novels can be broken down into **parts, chapters, and sections**. 
+- You can store data on **characters, locations, and items** that are important for the story.  
+- All of this appears as a clear and editable **tree** structure with listed information. 
+- Summaries can be entered at all these levels, from which **synopses** and lists can be generated. 
+- To keep track of progress, the **word count** and the **completion status** of the sections are displayed. 
+- Individual chapters and sections can be flagged as "unused" to exclude them from document export.
+- You can add information about the **narrative time** and duration to each section. If you enter a date, 
+  the day of the week is displayed. You can also call up the age of characters that are assigned to
+  a section. The date and time information can be synchronised with dedicated timeline software.
+- For the **actual writing work**, *noveltree* starts the Word processor of LibreOffice or OpenOffice with 
+  a structured manuscript in *Open Document* format (*.odt*). At the end of a work cycle, *noveltree* 
+  reimports the manuscript and updates the writing project. New chapters and sections can also be 
+  created in the process.
+- For **printing**, *noveltree* exports a neatly designed novel manuscript that can be formatted as 
+  you wish applying LibreOffice/OpenOffice document templates. 
+- *noveltree* saves its data in a well-documented file format (XML), which can also be read as 
+  plain text and displayed with a standard web browser.
+- *noveltree* is written in Python and should run on several operating systems, like Windows and Linux.
 - The application is ready for internationalization with GNU gettext. A German localization is provided. 
 
 ## Plugins
@@ -60,12 +60,8 @@ Stand-alone Python scripts for *novx* file conversion.
 - [Python](https://www.python.org/) version 3.6+. 
      - For current Windows versions, use version 3.9.10 or above.
      - For Vista and Windows 7, use version 3.7.2.
-- Tk support for Python. This is usually part of the Windows Python installation, but may need to be installed additionally under Linux.
+     - Linux users: Make sure you have the *python3-tk* package installed.
 - Either [LibreOffice](https://www.libreoffice.org/) or [OpenOffice](https://www.openoffice.org).
-
-### Note for Linux users
-
-Please make sure that your Python3 installation has the *tkinter* module. On Ubuntu, for example, it is not available out of the box and must be installed via a separate package named *python3-tk*. 
 
 ## General note about the fitness for use
 
@@ -73,6 +69,15 @@ At present, this program is still under active development. Therefore it is reco
 
 I use the program myself and fix errors immediately if I notice any. As far as I can tell, *noveltree* runs fast and reliably under Windows and Linux. It should also under other operating systems for which there is a reasonably up-to-date *Python 3* installation. However, there is a lack of a broad user base, which is why one cannot speak of real proven operation. 
 
+## A note for novelyst users
+
+*noveltree* is to replace the [novelyst](https://peter88213.github.io/novelyst/) application. 
+The main differences are an improved workflow that doesn't require a LibreOffice/OpenOffice extension, and the use of a new file format instead of the *.yw7* format. For more details see the [comparison between noveltree and novelyst](https://github.com/peter88213/noveltree/discussions/2).
+
+If you are considering switching from *novelyst* to *noveltree*, the 
+[nv_yw7 plugin](https://github.com/peter88213/nv_yw7/) will help you to
+create *.novx* files from your existing projects. To migrate entire collections or larger amounts of project files,
+you might want to take a look at the [yw_novx conversion tools](https://github.com/peter88213/yw_novx).
 
 ## Download and install
 
