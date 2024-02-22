@@ -17,12 +17,18 @@ but need additional features for the organization of their work.
 - You can store data on **characters, locations, and items** that are important for the story.  
 - All of this appears as a clear and editable **tree** structure with listed information. 
 - Summaries can be entered at all these levels, from which **synopses** and lists can be generated. 
+- If you choose a **narrative structure**, *novelibre* can display stages (e.g. acts or steps) in the tree.
+  When plotting, descriptions of these stages can be entered, from which *noveltree* can generate 
+  its own documentation. Prefabricated structural models can also be imported from templates.
+- *noveltree* also allows you to create and document an **underlying structure of arcs** 
+  (character arcs or storylines) apart from the chapters and sections. This can then be linked 
+  to the sections of the novel text.
 - To keep track of progress, the **word count** and the **completion status** of the sections are displayed. 
 - Individual chapters and sections can be flagged as "unused" to exclude them from document export.
 - You can add information about the **narrative time** and duration to each section. If you enter a date, 
   the day of the week is displayed. You can also call up the age of characters that are assigned to
   a section. The date and time information can be synchronised with dedicated timeline software.
-- For the **actual writing work**, *noveltree* starts the Word processor of LibreOffice or OpenOffice with 
+- For the **actual writing work**, *noveltree* starts the word processor of LibreOffice or OpenOffice with 
   a structured manuscript in *Open Document* format (*.odt*). At the end of a work cycle, *noveltree* 
   reimports the manuscript and updates the writing project. New chapters and sections can also be 
   created in the process.
