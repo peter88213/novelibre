@@ -21,7 +21,7 @@ but need additional features for the organization of their work.
   When plotting, descriptions of these stages can be entered, from which *noveltree* can generate 
   its own documentation. Prefabricated structural models can also be imported from templates.
 - *noveltree* also allows you to create and document an **underlying structure of arcs** 
-  (character arcs or storylines) apart from the chapters and sections. This can then be linked 
+  (e.g. character arcs or storylines) apart from the chapters and sections. This can then be linked 
   to the sections of the novel text.
 - To keep track of progress, the **word count** and the **completion status** of the sections are displayed. 
 - Individual chapters and sections can be flagged as "unused" to exclude them from document export.
