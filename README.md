@@ -17,7 +17,7 @@ but need additional features for the organization of their work.
 - You can store data on **characters, locations, and items** that are important for the story.  
 - All of this appears as a clear and editable **tree** structure with listed information. 
 - Summaries can be entered at all these levels, from which **synopses** and lists can be generated. 
-- If you choose a **narrative structure**, *novelibre* can display stages (e.g. acts or steps) in the tree.
+- If you choose a **narrative structure**, *noveltree* can display stages (e.g. acts or steps) in the tree.
   When plotting, descriptions of these stages can be entered, from which *noveltree* can generate 
   its own documentation. Prefabricated structural models can also be imported from templates.
 - *noveltree* also allows you to create and document an **underlying structure of arcs** 
