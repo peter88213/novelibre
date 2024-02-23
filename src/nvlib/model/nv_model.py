@@ -1,7 +1,7 @@
-"""Provide a class for the noveltree model.
+"""Provide a class for the novelibre model.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/noveltree
+For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.model.nv_work_file import NvWorkFile
@@ -33,7 +33,7 @@ from novxlib.novx_globals import _
 
 
 class NvModel:
-    """noveltree model representation."""
+    """novelibre model representation."""
 
     def __init__(self):
         """Initialize instance variables.
@@ -724,7 +724,7 @@ class NvModel:
                 self.tree.move(node, self.tree.prev(targetNode), 'end')
 
     def new_project(self, tree):
-        """Create a noveltree project instance."""
+        """Create a novelibre project instance."""
         self.novel = Novel(
             title='',
             desc='',
@@ -866,7 +866,7 @@ class NvModel:
         self.trashBin = None
 
     def save_project(self, filePath=None):
-        """Write the noveltree project file, and set "unchanged" status."""
+        """Write the novelibre project file, and set "unchanged" status."""
         if filePath is not None:
             self.prjFile.filePath = filePath
         self.prjFile.write()

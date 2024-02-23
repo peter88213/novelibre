@@ -8,6 +8,14 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v2.1.0
+
+**Please run the registry script "add_novelibre.reg" on Windows.** 
+
+Rename the application.
+
+Based on novxlib v1.1.0
+
 ### v2.0.0
 
 **Please update all installed plugins. Check your program launcher/desktop shortcut, and re-run the registry script on Windows.** 

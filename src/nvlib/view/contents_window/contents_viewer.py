@@ -1,7 +1,7 @@
 """Provide a tkinter text box class for "contents" viewing.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/noveltree
+For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import re
@@ -16,7 +16,7 @@ import tkinter as tk
 
 
 class ContentsViewer(RichTextNv):
-    """A tkinter text box class for noveltree file viewing.
+    """A tkinter text box class for novelibre file viewing.
     
     Show the novel contents in a text box.
     """
@@ -89,7 +89,7 @@ class ContentsViewer(RichTextNv):
     def view_text(self):
         """Build a list of "tagged text" tuples and send it to the text box."""
 
-        def convert_from_noveltree(text):
+        def convert_from_novx(text):
 
             if not self.showMarkup.get():
                 self._contentParser.showTags = False
@@ -141,7 +141,7 @@ class ContentsViewer(RichTextNv):
                 taggedText.append((heading, headingTag))
 
                 if section.sectionContent:
-                    textTuples = convert_from_noveltree(section.sectionContent)
+                    textTuples = convert_from_novx(section.sectionContent)
                     taggedText.extend(textTuples)
 
         if not taggedText:

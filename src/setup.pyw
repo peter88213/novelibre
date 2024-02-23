@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""Install the noveltree application. 
+"""Install the novelibre application. 
 
 Version @release
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/noveltree
+For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
@@ -42,7 +42,7 @@ except:
     def _(message):
         return message
 
-APPNAME = 'noveltree'
+APPNAME = 'novelibre'
 VERSION = ' @release'
 APP = f'{APPNAME}.py'
 START_UP_SCRIPT = 'run.pyw'
@@ -68,22 +68,25 @@ python3 '$Apppath' %f
 ADD_TO_REGISTRY = f'''Windows Registry Editor Version 5.00
 
 [-HKEY_CURRENT_USER\Software\Classes\\noveltree]
+[-HKEY_CURRENT_USER\Software\Classes\\novelibre]
+[-HKEY_CURRENT_USER\Software\Classes\\novelibre]
+[-HKEY_CURRENT_USER\Software\Classes\\novxCollection]
 [-HKEY_CURRENT_USER\Software\Classes\\.novx]
 [HKEY_CURRENT_USER\Software\Classes\\.novx]
 "Content Type"="text/xml"
-@="noveltree"
-[HKEY_CURRENT_USER\Software\Classes\\noveltree]
-@="noveltree Project"
-[HKEY_CURRENT_USER\Software\Classes\\noveltree\DefaultIcon]
+@="novelibre"
+[HKEY_CURRENT_USER\Software\Classes\\novelibre]
+@="novelibre Project"
+[HKEY_CURRENT_USER\Software\Classes\\novelibre\DefaultIcon]
 @="$INSTALL\\\\icons\\\\nLogo64.ico"
-[HKEY_CURRENT_USER\Software\Classes\\noveltree\shell\open\command]
+[HKEY_CURRENT_USER\Software\Classes\\novelibre\shell\open\command]
 @="\\"$PYTHON\\" \\"$SCRIPT\\" \\"%1\\""
 [HKEY_CURRENT_USER\Software\Classes\\.nvcx]
 "Content Type"="text/xml"
-@="nv5Collection"
-[HKEY_CURRENT_USER\Software\Classes\\nv5Collection]
-@="noveltree Collection"
-[HKEY_CURRENT_USER\Software\Classes\\nv5Collection\DefaultIcon]
+@="novxCollection"
+[HKEY_CURRENT_USER\Software\Classes\\novxCollection]
+@="novelibre Collection"
+[HKEY_CURRENT_USER\Software\Classes\\novxCollection\DefaultIcon]
 @="$INSTALL\\\\icons\\\\cLogo64.ico"
 
 '''
@@ -91,11 +94,13 @@ ADD_TO_REGISTRY = f'''Windows Registry Editor Version 5.00
 REMOVE_FROM_REGISTRY = f'''Windows Registry Editor Version 5.00
 
 [-HKEY_CURRENT_USER\Software\Classes\\noveltree]
+[-HKEY_CURRENT_USER\Software\Classes\\nv5Collection]
+[-HKEY_CURRENT_USER\Software\Classes\\novelibre]
 [-HKEY_CURRENT_USER\Software\Classes\\.novx]
 
 '''
 
-PLUGIN_OUTDATED = '''There are outdated plugins installed, which will be ignored by noveltree from now on. 
+PLUGIN_OUTDATED = '''There are outdated plugins installed, which will be ignored by novelibre from now on. 
 Please update your plugins.
 '''
 
@@ -114,7 +119,7 @@ message = []
 
 
 def make_context_menu(installPath):
-    """Generate ".reg" files to extend the noveltree context menu."""
+    """Generate ".reg" files to extend the novelibre context menu."""
 
     def save_reg_file(filePath, template, mapping):
         """Save a registry file."""
@@ -126,8 +131,8 @@ def make_context_menu(installPath):
     installUrl = installPath.replace('/', '\\\\')
     script = f'{installUrl}\\\\{START_UP_SCRIPT}'
     mapping = dict(PYTHON=python, SCRIPT=script, INSTALL=installUrl)
-    save_reg_file(f'{installPath}/add_noveltree.reg', Template(ADD_TO_REGISTRY), mapping)
-    save_reg_file(f'{installPath}/remove_noveltree.reg', Template(REMOVE_FROM_REGISTRY), {})
+    save_reg_file(f'{installPath}/add_novelibre.reg', Template(ADD_TO_REGISTRY), mapping)
+    save_reg_file(f'{installPath}/remove_novelibre.reg', Template(REMOVE_FROM_REGISTRY), {})
 
 
 def output(text):
@@ -155,14 +160,10 @@ def open_folder(installDir):
 
 def install(installDir):
     """Install the application."""
-    #--- Relocate the v1.x installation directory.
-    try:
-        messagebox.showinfo(
-        'Moving the noveltree installation directory',
-        relocate.main()
-        )
-    except:
-        pass
+    #--- Relocate the v1.x installation directory, if necessary.
+    message = relocate.main()
+    if message:
+        messagebox.showinfo('Moving the novelibre installation directory', message)
 
     #--- Create a general novxlib installation directory, if necessary.
     os.makedirs(installDir, exist_ok=True)
@@ -179,12 +180,11 @@ def install(installDir):
     # Do not remove the icons folder, because it may contain plugin data.
     with os.scandir(installDir) as files:
         for file in files:
-            if not 'config' in file.name:
-                try:
-                    output(f'Removing "{file.name}" ...')
-                    os.remove(file)
-                except:
-                    pass
+            try:
+                os.remove(file)
+                output(f'"{file.name}" removed.')
+            except:
+                pass
 
     #--- Install the new version.
     output(f'Copying "{APP}" ...')
@@ -285,7 +285,7 @@ if __name__ == '__main__':
         output(str(ex))
 
     # Show options: open installation folders or quit.
-    root.openButton = tk.Button(text="Open installation folder", command=lambda: open_folder(f'{homePath}/.noveltree'))
+    root.openButton = tk.Button(text="Open installation folder", command=lambda: open_folder(f'{homePath}/.novx'))
     root.openButton.config(height=1, width=30)
     root.openButton.pack(padx=5, pady=5)
     root.quitButton = tk.Button(text="Quit", command=quit)

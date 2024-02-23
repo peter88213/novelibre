@@ -1,7 +1,7 @@
-"""Provide a class for the noveltree project file.
+"""Provide a class for the novelibre project file.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/noveltree
+For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from datetime import date
@@ -14,7 +14,7 @@ from novxlib.novx_globals import _
 
 
 class NvWorkFile(NovxFile):
-    """noveltree project file representation.
+    """novelibre project file representation.
     
     This is to be an adapter to the .novx project format.
     
@@ -26,7 +26,7 @@ class NvWorkFile(NovxFile):
 
     Extends the superclass.
     """
-    DESCRIPTION = _('noveltree project')
+    DESCRIPTION = _('novelibre project')
     _LOCKFILE_PREFIX = '.LOCK.'
     _LOCKFILE_SUFFIX = '#'
 

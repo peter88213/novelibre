@@ -1,11 +1,11 @@
-# noveltree Dictionary (English-German)
+# novelibre Dictionary (English-German)
 # Copyright (C) 2022 Peter Triesberger
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.0.0\n"
-"POT-Creation-Date: 2024-02-20 17:06:40\n"
-"PO-Revision-Date: 2024-02-20 17:06:40\n"
+"Project-Id-Version: 2.1.0\n"
+"POT-Creation-Date: 2024-02-23 11:55:43\n"
+"PO-Revision-Date: 2024-02-23 11:55:43\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -250,8 +250,8 @@ msgstr "Beschädigte Markierung"
 msgid "Country code"
 msgstr "Ländercode"
 
-msgid "Create a noveltree project file from {0}\nNew project: \"{1}\""
-msgstr "Erzeuge eine noveltree-Projektdatei aus {0}\nNeues Projekt: \"{1}\""
+msgid "Create a novelibre project file from {0}\nNew project: \"{1}\""
+msgstr "Erzeuge eine novelibre-Projektdatei aus {0}\nNeues Projekt: \"{1}\""
 
 msgid "Create from ODT..."
 msgstr "Aus ODT erzeugen..."
@@ -655,8 +655,8 @@ msgstr "Keine Gegenstandsdaten gefunden"
 msgid "No location data found"
 msgstr "Keine Schauplatzdaten gefunden"
 
-msgid "No noveltree project to write"
-msgstr "Kein noveltree-Projekt zum Schreiben"
+msgid "No novelibre project to write"
+msgstr "Kein novelibre-Projekt zum Schreiben"
 
 msgid "No valid version found in file"
 msgstr "Keine gültige Versionsangabe in der Datei gefunden"
@@ -955,11 +955,11 @@ msgstr "Das Plugin bleibt bis zum nächsten Start aktiv."
 msgid "The previous section has no date/time set."
 msgstr "Der vorhergehende Abschnitt hat keine Datum/Zeitangaben"
 
-msgid "The project \"{}\" was created with a newer noveltree version."
-msgstr "Das Projekt \"{}\" wurde mit einer neueren Version von noveltree erzeugt."
+msgid "The project \"{}\" was created with a newer novelibre version."
+msgstr "Das Projekt \"{}\" wurde mit einer neueren Version von novelibre erzeugt."
 
-msgid "The project \"{}\" was created with an outdated noveltree version."
-msgstr "Das Projekt \"{}\" wurde mit einer veralteten Version von noveltree erzeugt."
+msgid "The project \"{}\" was created with an outdated novelibre version."
+msgstr "Das Projekt \"{}\" wurde mit einer veralteten Version von novelibre erzeugt."
 
 msgid "The project is locked.\nUnlock?"
 msgstr "Das Projekt is gesperrt.\nEntsperren?"
@@ -1117,14 +1117,14 @@ msgstr "Manuskript"
 msgid "no data"
 msgstr "keine Daten"
 
-msgid "noveltree API"
-msgstr "noveltree API"
+msgid "novelibre API"
+msgstr "novelibre API"
 
-msgid "noveltree XML data files"
-msgstr "noveltree XML-Datendateien"
+msgid "novelibre XML data files"
+msgstr "novelibre XML-Datendateien"
 
-msgid "noveltree project"
-msgstr "noveltree-Projekt"
+msgid "novelibre project"
+msgstr "novelibre-Projekt"
 
 msgid "nvhelp-en"
 msgstr "nvhelp-en"

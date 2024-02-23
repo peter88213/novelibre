@@ -4,7 +4,7 @@
 Version @release
 Requires Python 3.6+
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/noveltree
+For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,6 @@ from nvlib.controller.nv_controller import NvController
 from nvlib.nv_globals import prefs
 from novxlib.config.configuration import Configuration
 
-APPNAME = 'noveltree'
 SETTINGS = dict(
     last_open='',
     root_geometry='1200x800',
@@ -114,14 +113,14 @@ def main():
     os.makedirs(tempDir, exist_ok=True)
 
     #--- Load configuration.
-    iniFile = f'{configDir}/{APPNAME}.ini'
+    iniFile = f'{configDir}/novx.ini'
     configuration = Configuration(SETTINGS, OPTIONS)
     configuration.read(iniFile)
     prefs.update(configuration.settings)
     prefs.update(configuration.options)
 
     #--- Instantiate the app object.
-    app = NvController('noveltree @release', tempDir)
+    app = NvController('novelibre @release', tempDir)
     ui = app.get_view()
 
     #--- Launchers for opening linked non-standard filetypes.
@@ -152,7 +151,7 @@ def main():
 
     #--- Delete the temporary files.
     # Note: Do not remove the temp directory itself,
-    # because other noveltree instances might be running and using it.
+    # because other novelibre instances might be running and using it.
     # However, temporary files of other running instances are deleted
     # if not protected e.g. by a read-only flag.
     for file in os.scandir(tempDir):

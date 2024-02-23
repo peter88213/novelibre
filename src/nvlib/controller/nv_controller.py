@@ -1,7 +1,7 @@
-"""Provide a tkinter GUI framework for noveltree.
+"""Provide a tkinter GUI framework for novelibre.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/noveltree
+For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
@@ -43,7 +43,7 @@ PLUGIN_PATH = f'{sys.path[0]}/plugin'
 
 
 class NvController:
-    """Controller for the noveltree application."""
+    """Controller for the novelibre application."""
 
     def __init__(self, title, tempDir):
         """Initialize the model, set up the application's user interface, and load plugins.
@@ -680,7 +680,7 @@ class NvController:
             self._mdl.move_node(node, targetNode)
 
     def new_project(self, event=None):
-        """Create a noveltree project instance."""
+        """Create a novelibre project instance."""
         if self._mdl.prjFile is not None:
             self.close_project()
         self._mdl.new_project(self._ui.tv.tree)
@@ -725,7 +725,7 @@ class NvController:
         return 'break'
 
     def open_project(self, event=None, filePath='', doNotSave=False):
-        """Create a noveltree project instance and read the file.
+        """Create a novelibre project instance and read the file.
         
         Optional arguments:
             filePath: str -- The new project's file name.
@@ -876,7 +876,7 @@ class NvController:
         return False
 
     def save_project(self, event=None):
-        """Save the noveltree project to disk.
+        """Save the novelibre project to disk.
         
         Return True on success, otherwise return False.
         """

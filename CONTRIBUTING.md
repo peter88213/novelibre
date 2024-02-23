@@ -10,9 +10,9 @@ For English, this is, for example, `en`, for German, it is `de`.
 
 ### Create a message catalog
 
-A "message catalog" is a dictionary for noveltree's messages and menu entries.
+A "message catalog" is a dictionary for novelibre's messages and menu entries.
 
-For creating a message catalog, you download a template with all English messages from [here](https://github.com/peter88213/noveltree/blob/main/i18n/messages.pot). 
+For creating a message catalog, you download a template with all English messages from [here](https://github.com/peter88213/novelibre/blob/main/i18n/messages.pot). 
 
 
 Rename `messages.pot` to `<your language code>.po`, then give some specific information in the header data by modifying the following lines:
@@ -43,39 +43,39 @@ Before you distribute your translations, you can convert and install the message
 The application needs the message catalog in binary format. This is easily achieved using the **msgfmt.py** converter script. 
 You find it in your Python installation, in the **Tools/i18n** subdirectory. If not, you can download the code from [here](https://github.com/python/cpython/blob/main/Tools/i18n/msgfmt.py)
 
-Name the binary file **noveltree.mo**. 
+Name the binary file **novelibre.mo**. 
 
 
 ### Install your translation for testing
 
-Add a subdirectory tree to **.noveltree/locale**, and place *noveltree.mo* there, like this:
+Add a subdirectory tree to **.novelibre/locale**, and place *novelibre.mo* there, like this:
 
 ```
 <your home directory>
-└── .noveltree/
+└── .novelibre/
     └── locale/
         └─ <language code>/
            └─ LC_MESSAGES/
-              └─ noveltree.mo
+              └─ novelibre.mo
 ```
 
-Then start *noveltree* and see whether your translation works. 
+Then start *novelibre* and see whether your translation works. 
 
-**NOTE:** At startup, *noveltree* tries to load a message dictionary that fits to the system language. If it doesn't find a matching language code in the *locale* directory, it uses English as default language. 
+**NOTE:** At startup, *novelibre* tries to load a message dictionary that fits to the system language. If it doesn't find a matching language code in the *locale* directory, it uses English as default language. 
 
-**HINT:** *noveltree* comes with German translations. Look at the `de` directory tree, if you need an example. 
+**HINT:** *novelibre* comes with German translations. Look at the `de` directory tree, if you need an example. 
 
 
 ### Contribute your translations
 
-If *noveltree* works fine with your translations, you can consider contributing it. 
+If *novelibre* works fine with your translations, you can consider contributing it. 
 
-An easy way may be to put a posting in the [noveltree forum](https://github.com/peter88213/noveltree/discussions), appending your  `<your language code>.po` file. 
+An easy way may be to put a posting in the [novelibre forum](https://github.com/peter88213/novelibre/discussions), appending your  `<your language code>.po` file. 
 
 
 ## Development
 
-*noveltree* depends on the [novxlib](https://github.com/peter88213/novxlib) library which must be present in your file system. It is organized as an Eclipse PyDev project. The official release branch on GitHub is *main*.
+*novelibre* depends on the [novxlib](https://github.com/peter88213/novxlib) library which must be present in your file system. It is organized as an Eclipse PyDev project. The official release branch on GitHub is *main*.
 
 ### Mandatory directory structure for building the application
 
@@ -88,12 +88,12 @@ An easy way may be to put a posting in the [noveltree forum](https://github.com/
 │       ├── pgettext.py
 │       ├── translations.py
 │       └── msgfmt.py
-└── noveltree/
+└── novelibre/
     ├── src/
     ├── test/
     └── tools/ 
         ├── build.xml
-        ├── build_noveltree.py
+        ├── build_novelibre.py
         ├── make_pot.py
         └── translate_de.py
 ```
@@ -110,8 +110,8 @@ See https://github.com/peter88213/novxlib/blob/main/docs/conventions.md
 
 ## Plugin development
 
-If you want to develop a noveltree plugin, you may want to start with a repository on GitHub using [nv_plugin](https://github.com/peter88213/nv_plugin) as a template repository. After setting up your new repository 
-named e.g. *noveltree_yourPluginName*, just do a global search, and replace 
-*nv_plugin* with *noveltree_yourPluginName*, and *nv_plugin* with *nv_yourPluginName*. 
+If you want to develop a novelibre plugin, you may want to start with a repository on GitHub using [nv_plugin](https://github.com/peter88213/nv_plugin) as a template repository. After setting up your new repository 
+named e.g. *novelibre_yourPluginName*, just do a global search, and replace 
+*nv_plugin* with *novelibre_yourPluginName*, and *nv_plugin* with *nv_yourPluginName*. 
 
 

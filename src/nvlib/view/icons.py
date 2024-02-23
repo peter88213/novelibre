@@ -1,4 +1,4 @@
-"""Provide icons for the noveltree.GUI
+"""Provide icons for the novelibre.GUI
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/

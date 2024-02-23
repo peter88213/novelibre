@@ -1,12 +1,12 @@
-"""Build a python script for the noveltree distribution.
+"""Build a python script for the novelibre distribution.
         
 In order to distribute a single script without dependencies, 
 this script "inlines" all modules imported from the novxlib package.
 
 The novxlib project (see see https://github.com/peter88213/novxlib)
-must be located on the same directory level as the noveltree project. 
+must be located on the same directory level as the novelibre project. 
 
-For further information see https://github.com/peter88213/noveltree
+For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
@@ -16,8 +16,8 @@ import inliner
 
 SRC = '../src/'
 BUILD = '../test/'
-SOURCE_FILE = f'{SRC}noveltree_.py'
-TARGET_FILE = f'{BUILD}noveltree.py'
+SOURCE_FILE = f'{SRC}novelibre_.py'
+TARGET_FILE = f'{BUILD}novelibre.py'
 
 os.makedirs(BUILD, exist_ok=True)
 

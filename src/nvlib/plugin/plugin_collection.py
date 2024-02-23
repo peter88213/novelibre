@@ -1,7 +1,7 @@
 """Provide a plugin registry class.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/noveltree
+For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import glob
@@ -54,7 +54,7 @@ class PluginCollection(dict):
         except ValueError:
             # Set defaults for testing.
             self.majorVersion = 2
-            self.minorVersion = 0
+            self.minorVersion = 1
             self.patchlevel = 0
 
     def delete_file(self, moduleName):

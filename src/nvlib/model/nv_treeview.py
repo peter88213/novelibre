@@ -1,4 +1,4 @@
-"""Provide a class for a noveltree project tree.
+"""Provide a class for a novelibre project tree.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/
@@ -15,7 +15,7 @@ from novxlib.novx_globals import PN_ROOT
 
 
 class NvTreeview(ttk.Treeview):
-    """noveltree project tree, defining the novel structure."""
+    """novelibre project tree, defining the novel structure."""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

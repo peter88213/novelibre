@@ -1,10 +1,10 @@
-# noveltree Dictionary
+# novelibre Dictionary
 # Copyright (C) 2023 Peter Triesberger
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.0.0\n"
-"POT-Creation-Date: 2024-02-20 17:06:40\n"
+"Project-Id-Version: 2.1.0\n"
+"POT-Creation-Date: 2024-02-23 11:55:43\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -251,7 +251,7 @@ msgstr ""
 msgid "Country code"
 msgstr ""
 
-msgid "Create a noveltree project file from {0}\nNew project: \"{1}\""
+msgid "Create a novelibre project file from {0}\nNew project: \"{1}\""
 msgstr ""
 
 msgid "Create from ODT..."
@@ -656,7 +656,7 @@ msgstr ""
 msgid "No location data found"
 msgstr ""
 
-msgid "No noveltree project to write"
+msgid "No novelibre project to write"
 msgstr ""
 
 msgid "No valid version found in file"
@@ -956,10 +956,10 @@ msgstr ""
 msgid "The previous section has no date/time set."
 msgstr ""
 
-msgid "The project \"{}\" was created with a newer noveltree version."
+msgid "The project \"{}\" was created with a newer novelibre version."
 msgstr ""
 
-msgid "The project \"{}\" was created with an outdated noveltree version."
+msgid "The project \"{}\" was created with an outdated novelibre version."
 msgstr ""
 
 msgid "The project is locked.\nUnlock?"
@@ -1118,13 +1118,13 @@ msgstr ""
 msgid "no data"
 msgstr ""
 
-msgid "noveltree API"
+msgid "novelibre API"
 msgstr ""
 
-msgid "noveltree XML data files"
+msgid "novelibre XML data files"
 msgstr ""
 
-msgid "noveltree project"
+msgid "novelibre project"
 msgstr ""
 
 msgid "nvhelp-en"

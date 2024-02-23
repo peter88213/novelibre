@@ -1,4 +1,4 @@
-"""Provide a converter class for noveltree universal import and export.
+"""Provide a converter class for novelibre universal import and export.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novxlib
@@ -33,7 +33,7 @@ from novxlib.odt.odt_r_sectiondesc import OdtRSectionDesc
 class NvDocImporter:
     """A converter for universal import.
 
-    Support noveltree projects and most of the File subclasses 
+    Support novelibre projects and most of the File subclasses 
     that are written by OpenOffice/LibreOffice.
     """
     IMPORT_SOURCE_CLASSES = [
@@ -76,10 +76,10 @@ class NvDocImporter:
         try:
             source, __ = self.importSourceFactory.make_file_objects(sourcePath, **kwargs)
         except Error:
-            # A new noveltree project might be required.
+            # A new novelibre project might be required.
             source, target = self.newProjectFactory.make_file_objects(sourcePath, **kwargs)
             if os.path.isfile(target.filePath):
-                # do not overwrite an existing noveltree project with a non-tagged document
+                # do not overwrite an existing novelibre project with a non-tagged document
                 raise Error(f'!{_("File already exists")}: "{norm_path(target.filePath)}".')
 
             self._check(source, target)
@@ -91,7 +91,7 @@ class NvDocImporter:
             return f'{_("File written")}: "{norm_path(target.filePath)}".'
 
         else:
-            # Try to update an existing noveltree project.
+            # Try to update an existing novelibre project.
             kwargs['suffix'] = source.SUFFIX
             __, target = self.importTargetFactory.make_file_objects(sourcePath, **kwargs)
             self.newFile = None

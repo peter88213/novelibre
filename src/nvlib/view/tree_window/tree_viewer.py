@@ -1,7 +1,7 @@
-"""Provide a tkinter based noveltree tree view.
+"""Provide a tkinter based novelibre tree view.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/noveltree
+For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
@@ -34,7 +34,7 @@ import tkinter.font as tkFont
 
 
 class TreeViewer(ttk.Frame):
-    """Widget for noveltree tree view."""
+    """Widget for novelibre tree view."""
     COLORING_MODES = [_('None'), _('Status'), _('Work phase')]
     # List[str] -- Section row coloring modes.
 

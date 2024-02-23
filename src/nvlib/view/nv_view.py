@@ -1,7 +1,7 @@
-"""Provide a tkinter GUI framework for noveltree.
+"""Provide a tkinter GUI framework for novelibre.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/noveltree
+For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import sys
@@ -51,9 +51,9 @@ import tkinter as tk
 
 
 class NvView:
-    """Main view of the tkinter GUI framework for noveltree."""
+    """Main view of the tkinter GUI framework for novelibre."""
     _HELP_URL = f'https://peter88213.github.io/{_("nvhelp-en")}/'
-    _HOME_URL = 'https://github.com/peter88213/noveltree/'
+    _HOME_URL = 'https://github.com/peter88213/novelibre/'
     _KEY_ADD_CHILD = ('<Control-Alt-n>', 'Ctrl-Alt-N')
     _KEY_ADD_ELEMENT = ('<Control-n>', 'Ctrl-N')
     _KEY_ADD_PARENT = ('<Control-Alt-Shift-N>', 'Ctrl-Alt-Shift-N')
@@ -713,7 +713,7 @@ class NvView:
         self.helpMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Help'), menu=self.helpMenu)
         self.helpMenu.add_command(label=_('Online help'), command=lambda: webbrowser.open(self._HELP_URL))
-        self.helpMenu.add_command(label=f"noveltree {_('Home page')}", command=lambda: webbrowser.open(self._HOME_URL))
+        self.helpMenu.add_command(label=f"novelibre {_('Home page')}", command=lambda: webbrowser.open(self._HOME_URL))
 
     def _view_options(self, event=None):
         """Open a toplevel window to edit the view options."""

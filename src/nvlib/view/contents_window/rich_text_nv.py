@@ -1,7 +1,7 @@
-"""Provide a tkinter Rich Text box class with noveltree-specific highlighting.
+"""Provide a tkinter Rich Text box class with novelibre-specific highlighting.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/noveltree
+For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import font as tkFont
@@ -9,7 +9,7 @@ from novxlib.ui.rich_text_tk import RichTextTk
 
 
 class RichTextNv(RichTextTk):
-    """A text box applying noveltree formatting."""
+    """A text box applying novelibre formatting."""
     H1_NOTES_TAG = 'h1Notes'
     H1_TODO_TAG = 'h1Todo'
     H1_UNUSED_TAG = 'h1Unused'
@@ -37,7 +37,7 @@ class RichTextNv(RichTextTk):
     COLOR_NOTE_TAG = 'bisque'
 
     def __init__(self, *args, **kwargs):
-        """Define some tags for noveltree-specific colors.
+        """Define some tags for novelibre-specific colors.
         
         Extends the supeclass constructor
         """

@@ -1,7 +1,7 @@
 """Provide a class for a plugin manager.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/noveltree
+For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
@@ -21,14 +21,14 @@ class PluginManager(tk.Toplevel):
         self._ui = view
         self._ctrl = controller
         super().__init__(**kw)
-        self.title(f'{_("Installed plugins")} - noveltree @release')
+        self.title(f'{_("Installed plugins")} - novelibre @release')
         self.geometry(size)
         self.grab_set()
         self.focus()
         window = ttk.Frame(self)
         window.pack(fill='both', expand=True)
 
-        columns = 'Module', 'Version', 'noveltree API', 'Description'
+        columns = 'Module', 'Version', 'novelibre API', 'Description'
         self._moduleCollection = ttk.Treeview(window, columns=columns, show='headings', selectmode='browse')
         self._moduleCollection.pack(fill='both', expand=True)
         self._moduleCollection.bind('<<TreeviewSelect>>', self._on_select_module)
@@ -39,8 +39,8 @@ class PluginManager(tk.Toplevel):
         self._moduleCollection.heading('Module', text=_('Module'), anchor='w')
         self._moduleCollection.column('Version', width=100, minwidth=100, stretch=False)
         self._moduleCollection.heading('Version', text=_('Version'), anchor='w')
-        self._moduleCollection.column('noveltree API', width=100, minwidth=100, stretch=False)
-        self._moduleCollection.heading('noveltree API', text=_('noveltree API'), anchor='w')
+        self._moduleCollection.column('novelibre API', width=100, minwidth=100, stretch=False)
+        self._moduleCollection.heading('novelibre API', text=_('novelibre API'), anchor='w')
         self._moduleCollection.column('Description', width=400, stretch=True)
         self._moduleCollection.heading('Description', text=_('Description'), anchor='w')
 

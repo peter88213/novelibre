@@ -1,7 +1,7 @@
 """Provide a class for a project update manager.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/noveltree
+For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from datetime import datetime
@@ -30,7 +30,7 @@ class PrjUpdater(tk.Toplevel):
             return
 
         super().__init__(**kw)
-        self.title(f'{_("Exported documents")} - noveltree @release')
+        self.title(f'{_("Exported documents")} - novelibre @release')
         self.geometry(size)
         self.grab_set()
         self.focus()

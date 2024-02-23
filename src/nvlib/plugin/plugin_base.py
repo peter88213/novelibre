@@ -1,7 +1,7 @@
 """Provide an abstract Plugin base class.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/noveltree
+For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from abc import ABC, abstractmethod
@@ -13,7 +13,7 @@ class PluginBase(ABC):
     Public class constants:
         VERSION: str -- Version string.
         NOVELYST_API: str -- API compatibility indicator.
-        DESCRIPTION: str -- Description to be diplayed in the noveltree plugin list.
+        DESCRIPTION: str -- Description to be diplayed in the novelibre plugin list.
         URL: str -- Plugin project homepage URL.
 
     Public instance variables:
@@ -57,7 +57,7 @@ class PluginBase(ABC):
         pass
 
     def on_quit(self):
-        """Actions to be performed when noveltree is closed."""
+        """Actions to be performed when novelibre is closed."""
         pass
 
     def open_node(self):

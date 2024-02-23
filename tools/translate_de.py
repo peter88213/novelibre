@@ -1,7 +1,7 @@
 """Generate German translation files for GNU gettext.
 
 - Update the project's 'de.po' translation file.
-- Generate the language specific 'noveltree.mo' dictionary.
+- Generate the language specific 'novelibre.mo' dictionary.
 
 Usage: 
 translate_de.py
@@ -14,7 +14,7 @@ File structure:
 │   └── src/
 │       ├── translations.py
 │       └── msgfmt.py
-└── noveltree/
+└── novelibre/
     ├── src/ 
     ├── tools/ 
     │   └── translate_de.py
@@ -24,10 +24,10 @@ File structure:
         └── locale/
             └─ de/
                └─ LC_MESSAGES/
-                  └─ noveltree.mo
+                  └─ novelibre.mo
     
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/noveltree
+For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
@@ -37,10 +37,10 @@ sys.path.insert(0, f'{os.getcwd()}/../../novxlib/src')
 import translations
 import msgfmt
 
-APP_NAME = 'noveltree'
+APP_NAME = 'novelibre'
 PO_PATH = '../i18n/de.po'
-MO_PATH = '../i18n/locale/de/LC_MESSAGES/noveltree.mo'
-MO_COPY = '../src/locale/de/LC_MESSAGES/noveltree.mo'
+MO_PATH = '../i18n/locale/de/LC_MESSAGES/novelibre.mo'
+MO_COPY = '../src/locale/de/LC_MESSAGES/novelibre.mo'
 
 
 def main(version='unknown'):
