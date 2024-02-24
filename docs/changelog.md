@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v2.2.0
+
+- Do not ask before opening the manuscript, if the export is called by clicking on the toolbar icon.
+- Modifiy the manuscript export wording in the Export menu.
+
+Based on novxlib v1.1.0
+
 ### v2.1.0
 
 **Please run the registry script "add_novelibre.reg" on Windows.** 

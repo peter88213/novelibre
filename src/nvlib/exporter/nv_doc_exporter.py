@@ -64,6 +64,10 @@ class NvDocExporter:
 
     def run(self, source, suffix, **kwargs):
         """Create a target object and run conversion.
+        
+        Keyword arguments:
+            show: Boolean -- If True, open the exported document after creation.
+            ask: Boolean -- If True, ask before opening the created document.
 
         Positional arguments: 
             source -- NovxFile instance.
@@ -108,7 +112,9 @@ class NvDocExporter:
         self._target.write()
         self._targetFileDate = datetime.now().replace(microsecond=0).isoformat(sep=' ')
         if kwargs.get('show', True):
-            if messagebox.askyesno(title=self._target.novel.title, message=_('{} created.\n\nOpen now?').format(norm_path(self._target.DESCRIPTION))):
+            if not kwargs.get('ask', True) or messagebox.askyesno(
+                title=self._target.novel.title, message=_('{} created.\n\nOpen now?').format(
+                    norm_path(self._target.DESCRIPTION))):
                 open_document(self._target.filePath)
         return _('Created {0} on {1}.').format(self._target.DESCRIPTION, self._targetFileDate)
 

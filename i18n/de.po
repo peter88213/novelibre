@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.1.0\n"
-"POT-Creation-Date: 2024-02-23 11:55:43\n"
-"PO-Revision-Date: 2024-02-23 11:55:43\n"
+"Project-Id-Version: 2.2.0\n"
+"POT-Creation-Date: 2024-02-24 21:40:33\n"
+"PO-Revision-Date: 2024-02-24 21:40:34\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -568,11 +568,11 @@ msgstr "Manuskript verworfen"
 msgid "Manuscript for editing"
 msgstr "Manuskript zum Bearbeiten"
 
-msgid "Manuscript with visible structure tags for proof reading"
-msgstr "Manuskript mit sichtbaren Markierungen zum Korrekturlesen"
+msgid "Manuscript for printing (export only)"
+msgstr "Manuskript zum Drucken (nur Export)"
 
-msgid "Manuscript without tags (export only)"
-msgstr "Manuskript ohne Markierungen (nur Export)"
+msgid "Manuscript for third-party word processing"
+msgstr "Manuskript für fremde Textverarbeitung"
 
 msgid "Minor Character"
 msgstr "Nebenfigur"

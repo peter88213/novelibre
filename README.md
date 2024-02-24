@@ -1,4 +1,4 @@
-[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v2.1.0.zip)
+[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v2.2.0.zip)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
 [![News](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions/1)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
@@ -79,9 +79,9 @@ I use the program myself and fix errors immediately if I notice any. As far as I
 
 ## Download and install
 
-[Download the latest release (version 2.1.0)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v2.1.0.zip)
+[Download the latest release (version 2.2.0)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v2.2.0.zip)
 
-- Extract the "novelibre_v2.1.0" folder from the downloaded zipfile "novelibre_v2.1.0.zip".
+- Extract the "novelibre_v2.2.0" folder from the downloaded zipfile "novelibre_v2.2.0.zip".
 - Move into this new folder and open "README.md" for further instructions.
 - You may wish to install plugins; the [section editor](https://github.com/peter88213/nv_editor/) is highly recommended.
 
@@ -101,7 +101,6 @@ See the [instructions for use](docs/usage.md)
 
 - The logos and file icons are made using the free *Pusab* font by Ryoichi Tsunekawa, [Flat-it](http://flat-it.com/).
 - The toolbar icons are based on the [Eva Icons](https://akveo.github.io/eva-icons/#/), published under the [MIT License](http://www.opensource.org/licenses/mit-license.php). The original black and white icons were colored for this plugin by the maintainer. 
-
 
 ## License
 

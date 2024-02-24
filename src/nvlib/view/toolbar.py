@@ -146,7 +146,7 @@ class Toolbar:
             self._buttonBar,
             text=_('Export Manuscript'),
             image=self._ui.icons.manuscriptIcon,
-            command=lambda:self._ctrl.export_document(MANUSCRIPT_SUFFIX)
+            command=lambda:self._ctrl.export_document(MANUSCRIPT_SUFFIX, ask=False)
             )
         self._manuscriptButton.pack(side='left')
         self._manuscriptButton.image = self._ui.icons.manuscriptIcon
