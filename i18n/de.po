@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: unknown\n"
-"POT-Creation-Date: 2024-02-25 12:35:13\n"
-"PO-Revision-Date: 2024-02-25 12:37:15\n"
+"Project-Id-Version: 2.3.0\n"
+"POT-Creation-Date: 2024-02-25 13:35:58\n"
+"PO-Revision-Date: 2024-02-25 13:35:59\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -168,6 +168,12 @@ msgstr "Präfix Kapitelnummer"
 
 msgid "Chapter number suffix"
 msgstr "Suffix Kapitelnummer"
+
+msgid "Chapters belonging to arc"
+msgstr "Kapitel gehören zum Bogen"
+
+msgid "Chapters from viewpoint"
+msgstr "Kapitel aus Perspektive"
 
 msgid "Character"
 msgstr "Figur"
@@ -864,6 +870,12 @@ msgstr "Abschnittsbeschreibungen"
 
 msgid "Section list"
 msgstr "Abschnittsliste"
+
+msgid "Sections belonging to arc"
+msgstr "Abschnitte gehören zum Bogen"
+
+msgid "Sections from viewpoint"
+msgstr "Abschnitte aus Perspektive"
 
 msgid "Select characters"
 msgstr "Figuren auswählen"

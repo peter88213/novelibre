@@ -4,6 +4,7 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU LGPLv3 (https://www.gnu.org/licenses/lgpl-3.0.en.html)
 """
+from novxlib.novx_globals import _
 
 
 class ScVpFilter:
@@ -20,7 +21,7 @@ class ScVpFilter:
         """Check whether an entity matches the filter criteria.
         
         Positional arguments:
-            source -- Novel instance holding the section to check.
+            source -- File instance holding the section to check.
             scId -- ID of the section to check.       
         
         Return True if the filterElementId matches the section's viewpoint character.
@@ -32,3 +33,7 @@ class ScVpFilter:
         except:
             pass
         return False
+
+    def get_message(self, source):
+        """Return a message about how the document exported from source is filtered."""
+        return f'{_("Sections from viewpoint")}: {source.novel.characters[self._filterElementId].title}'

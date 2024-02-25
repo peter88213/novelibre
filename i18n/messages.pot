@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: unknown\n"
-"POT-Creation-Date: 2024-02-25 12:35:13\n"
+"Project-Id-Version: 2.3.0\n"
+"POT-Creation-Date: 2024-02-25 13:35:58\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -168,6 +168,12 @@ msgid "Chapter number prefix"
 msgstr ""
 
 msgid "Chapter number suffix"
+msgstr ""
+
+msgid "Chapters belonging to arc"
+msgstr ""
+
+msgid "Chapters from viewpoint"
 msgstr ""
 
 msgid "Character"
@@ -864,6 +870,12 @@ msgid "Section descriptions"
 msgstr ""
 
 msgid "Section list"
+msgstr ""
+
+msgid "Sections belonging to arc"
+msgstr ""
+
+msgid "Sections from viewpoint"
 msgstr ""
 
 msgid "Select characters"
