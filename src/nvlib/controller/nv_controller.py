@@ -320,16 +320,15 @@ class NvController:
             
         Return the element's ID, if successful.
         """
-        if not self.check_lock():
-            targetNode = kwargs.get('targetNode', None)
-            if targetNode is None:
-                try:
-                    kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
-                except:
-                    pass
-            newNode = self._mdl.add_project_note(**kwargs)
-            self._view_new_element(newNode)
-            return newNode
+        targetNode = kwargs.get('targetNode', None)
+        if targetNode is None:
+            try:
+                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+            except:
+                pass
+        newNode = self._mdl.add_project_note(**kwargs)
+        self._view_new_element(newNode)
+        return newNode
 
     def add_section(self, **kwargs):
         """Add a section to the novel.
@@ -651,6 +650,7 @@ class NvController:
         if self._mdl.prjFile.filePath is not None:
             self._internalLockFlag = True
             self._ui.lock()
+            self.plugins.lock()
             self._mdl.prjFile.lock()
             # make it persistent
             return True
@@ -1046,6 +1046,7 @@ class NvController:
         """
         self._internalLockFlag = False
         self._ui.unlock()
+        self.plugins.unlock()
         self._mdl.prjFile.unlock()
         # make it persistent
         if self._mdl.prjFile.has_changed_on_disk():

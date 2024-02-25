@@ -327,6 +327,28 @@ class NvView:
             except AttributeError:
                 pass
 
+    def lock(self):
+        """Make the "locked" state visible."""
+        self.pathBar.config(bg=prefs['color_locked_bg'])
+        self.pathBar.config(fg=prefs['color_locked_fg'])
+        self.fileMenu.entryconfig(_('Save'), state='disabled')
+        self.fileMenu.entryconfig(_('Lock'), state='disabled')
+        self.fileMenu.entryconfig(_('Unlock'), state='normal')
+        self.mainMenu.entryconfig(_('Part'), state='disabled')
+        self.mainMenu.entryconfig(_('Chapter'), state='disabled')
+        self.mainMenu.entryconfig(_('Section'), state='disabled')
+        self.mainMenu.entryconfig(_('Characters'), state='disabled')
+        self.mainMenu.entryconfig(_('Locations'), state='disabled')
+        self.mainMenu.entryconfig(_('Items'), state='disabled')
+        self.mainMenu.entryconfig(_('Plot'), state='disabled')
+        self.mainMenu.entryconfig(_('Project notes'), state='disabled')
+        self.mainMenu.entryconfig(_('Export'), state='disabled')
+        for view in self.views:
+            try:
+                view.lock()
+            except AttributeError:
+                pass
+
     def on_change_selection(self, nodeId):
         """Event handler for element selection.
         
@@ -347,6 +369,21 @@ class NvView:
         self.tv.on_quit()
         prefs['root_geometry'] = self.root.winfo_geometry()
         self.root.quit()
+
+    def refresh(self):
+        """Update children."""
+        if self._mdl.isModified:
+            self.pathBar.config(bg=prefs['color_modified_bg'])
+            self.pathBar.config(fg=prefs['color_modified_fg'])
+        else:
+            self.pathBar.config(bg=self.root.cget('background'))
+            self.pathBar.config(fg='black')
+        for view in self.views:
+            try:
+                view.refresh()
+            except AttributeError:
+                pass
+        self.set_title()
 
     def restore_status(self, event=None):
         """Overwrite error message with the status before."""
@@ -490,43 +527,20 @@ class NvView:
         self.fileMenu.entryconfig(_('Save'), state='normal')
         self.fileMenu.entryconfig(_('Lock'), state='normal')
         self.fileMenu.entryconfig(_('Unlock'), state='disabled')
-        self.exportMenu.entryconfig(_('Manuscript for editing'), state='normal')
-        self.exportMenu.entryconfig(_('Manuscript for third-party word processing'), state='normal')
+        self.mainMenu.entryconfig(_('Part'), state='normal')
+        self.mainMenu.entryconfig(_('Chapter'), state='normal')
+        self.mainMenu.entryconfig(_('Section'), state='normal')
+        self.mainMenu.entryconfig(_('Characters'), state='normal')
+        self.mainMenu.entryconfig(_('Locations'), state='normal')
+        self.mainMenu.entryconfig(_('Items'), state='normal')
+        self.mainMenu.entryconfig(_('Plot'), state='normal')
+        self.mainMenu.entryconfig(_('Project notes'), state='normal')
+        self.mainMenu.entryconfig(_('Export'), state='normal')
         for view in self.views:
             try:
                 view.unlock()
             except AttributeError:
                 pass
-
-    def lock(self):
-        """Make the "locked" state visible."""
-        self.pathBar.config(bg=prefs['color_locked_bg'])
-        self.pathBar.config(fg=prefs['color_locked_fg'])
-        self.fileMenu.entryconfig(_('Save'), state='disabled')
-        self.fileMenu.entryconfig(_('Lock'), state='disabled')
-        self.fileMenu.entryconfig(_('Unlock'), state='normal')
-        self.exportMenu.entryconfig(_('Manuscript for editing'), state='disabled')
-        self.exportMenu.entryconfig(_('Manuscript for third-party word processing'), state='disabled')
-        for view in self.views:
-            try:
-                view.lock()
-            except AttributeError:
-                pass
-
-    def refresh(self):
-        """Update children."""
-        if self._mdl.isModified:
-            self.pathBar.config(bg=prefs['color_modified_bg'])
-            self.pathBar.config(fg=prefs['color_modified_fg'])
-        else:
-            self.pathBar.config(bg=self.root.cget('background'))
-            self.pathBar.config(fg='black')
-        for view in self.views:
-            try:
-                view.refresh()
-            except AttributeError:
-                pass
-        self.set_title()
 
     def _bind_events(self):
         self.root.bind(self._KEY_RESTORE_STATUS[0], self.restore_status)

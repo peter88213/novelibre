@@ -169,6 +169,24 @@ class PluginCollection(dict):
                 except:
                     pass
 
+    def lock(self):
+        """Prevent the plugins from changing the model."""
+        for moduleName in self:
+            if self[moduleName].isActive:
+                try:
+                    self[moduleName].lock()
+                except:
+                    pass
+
+    def unlock(self):
+        """Allow the plugins changing the model."""
+        for moduleName in self:
+            if self[moduleName].isActive:
+                try:
+                    self[moduleName].unlock()
+                except:
+                    pass
+
     def on_quit(self):
         """Perform actions before the application is closed."""
         for moduleName in self:
