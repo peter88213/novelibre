@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.3.0\n"
-"POT-Creation-Date: 2024-02-25 13:35:58\n"
-"PO-Revision-Date: 2024-02-25 13:35:59\n"
+"POT-Creation-Date: 2024-02-25 18:10:48\n"
+"PO-Revision-Date: 2024-02-25 18:10:49\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -429,6 +429,12 @@ msgstr "Abschnittsbeschreibungen zum Bearbeiten exportieren"
 
 msgid "Export section list (spreadsheet)"
 msgstr "Abschnittsliste exportieren (Tabelle)"
+
+msgid "Export synopsis filtered by arc"
+msgstr "Zusammenfassung nach Bogen gefiltert exportieren"
+
+msgid "Export synopsis filtered by viewpoint"
+msgstr "Zusammenfassung nach Perspektive gefiltert exportieren"
 
 msgid "Export type is not supported"
 msgstr "Exporttyp wird nicht unterstützt"

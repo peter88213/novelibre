@@ -14,8 +14,8 @@ class ScAcFilter:
     This is a stub with no filter criteria specified.
     """
 
-    def __init__(self, filterElementId):
-        self._filterElementId = filterElementId
+    def __init__(self, acId):
+        self._acId = acId
 
     def accept(self, source, scId):
         """Check whether an entity matches the filter criteria.
@@ -24,10 +24,10 @@ class ScAcFilter:
             source -- File instance holding the section to check.
             scId -- ID of the section to check.       
         
-        Return True if the filterElementId matches an arc the section is assigned to.
+        Return True if the acId matches an arc the section is assigned to.
         """
         try:
-            if self._filterElementId in source.novel.sections[scId].scArcs:
+            if self._acId in source.novel.sections[scId].scArcs:
                 return True
 
         except:
@@ -36,4 +36,4 @@ class ScAcFilter:
 
     def get_message(self, source):
         """Return a message about how the document exported from source is filtered."""
-        return f'{_("Sections belonging to arc")}: "{source.novel.arcs[self._filterElementId].title}"'
+        return f'{_("Sections belonging to arc")}: "{source.novel.arcs[self._acId].title}"'

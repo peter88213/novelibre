@@ -23,6 +23,7 @@ from novxlib.novx_globals import IT_ROOT
 from novxlib.novx_globals import LC_ROOT
 from novxlib.novx_globals import LOCATION_PREFIX
 from novxlib.novx_globals import MANUSCRIPT_SUFFIX
+from novxlib.novx_globals import SECTIONS_SUFFIX
 from novxlib.novx_globals import PN_ROOT
 from novxlib.novx_globals import PRJ_NOTE_PREFIX
 from novxlib.novx_globals import ROOT_PREFIX
@@ -497,6 +498,7 @@ class TreeViewer(ttk.Frame):
         self._wrCtxtMenu.add_command(label=_('Add'), command=self._ctrl.add_element)
         self._wrCtxtMenu.add_separator()
         self._wrCtxtMenu.add_command(label=_('Export manuscript filtered by viewpoint'), command=self._export_manuscript)
+        self._wrCtxtMenu.add_command(label=_('Export synopsis filtered by viewpoint'), command=self._export_synopsis)
         self._wrCtxtMenu.add_separator()
         self._wrCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
         self._wrCtxtMenu.add_separator()
@@ -508,6 +510,7 @@ class TreeViewer(ttk.Frame):
         self._acCtxtMenu.add_command(label=_('Add Turning point'), command=self._ctrl.add_turning_point)
         self._acCtxtMenu.add_separator()
         self._acCtxtMenu.add_command(label=_('Export manuscript filtered by arc'), command=self._export_manuscript)
+        self._acCtxtMenu.add_command(label=_('Export synopsis filtered by arc'), command=self._export_synopsis)
         self._acCtxtMenu.add_separator()
         self._acCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
 
@@ -887,6 +890,9 @@ class TreeViewer(ttk.Frame):
     def _export_manuscript(self, event=None):
         self._ctrl.export_document(MANUSCRIPT_SUFFIX, filter=self.tree.selection()[0], ask=False)
 
+    def _export_synopsis(self, event=None):
+        self._ctrl.export_document(SECTIONS_SUFFIX, filter=self.tree.selection()[0], ask=False)
+
     def _on_close_branch(self, event=None):
         """Event handler for manually collapsing a branch."""
         try:
@@ -991,6 +997,7 @@ class TreeViewer(ttk.Frame):
                     self._wrCtxtMenu.entryconfig(_('Delete'), state='disabled')
                     self._wrCtxtMenu.entryconfig(_('Set Status'), state='disabled')
                     self._wrCtxtMenu.entryconfig(_('Export manuscript filtered by viewpoint'), state='disabled')
+                    self._wrCtxtMenu.entryconfig(_('Export synopsis filtered by viewpoint'), state='disabled')
                 else:
                     self._wrCtxtMenu.entryconfig(_('Add'), state='normal')
                     if prefix.startswith('wr'):
@@ -1003,10 +1010,12 @@ class TreeViewer(ttk.Frame):
                         # Context is a character.
                         self._wrCtxtMenu.entryconfig(_('Set Status'), state='normal')
                         self._wrCtxtMenu.entryconfig(_('Export manuscript filtered by viewpoint'), state='normal')
+                        self._wrCtxtMenu.entryconfig(_('Export synopsis filtered by viewpoint'), state='normal')
                     else:
                         # Context is not a character.
                         self._wrCtxtMenu.entryconfig(_('Set Status'), state='disabled')
                         self._wrCtxtMenu.entryconfig(_('Export manuscript filtered by viewpoint'), state='disabled')
+                        self._wrCtxtMenu.entryconfig(_('Export synopsis filtered by viewpoint'), state='disabled')
                 try:
                     self._wrCtxtMenu.tk_popup(event.x_root, event.y_root, 0)
                 finally:
@@ -1019,19 +1028,23 @@ class TreeViewer(ttk.Frame):
                     self._acCtxtMenu.entryconfig(_('Add Turning point'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Delete'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Export manuscript filtered by arc'), state='disabled')
+                    self._acCtxtMenu.entryconfig(_('Export synopsis filtered by arc'), state='disabled')
                 elif prefix.startswith(AC_ROOT):
                     self._acCtxtMenu.entryconfig(_('Add Arc'), state='normal')
                     self._acCtxtMenu.entryconfig(_('Add Turning point'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Delete'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Export manuscript filtered by arc'), state='disabled')
+                    self._acCtxtMenu.entryconfig(_('Export synopsis filtered by arc'), state='disabled')
                 else:
                     self._acCtxtMenu.entryconfig(_('Add Arc'), state='normal')
                     self._acCtxtMenu.entryconfig(_('Add Turning point'), state='normal')
                     self._acCtxtMenu.entryconfig(_('Delete'), state='normal')
                     if prefix == ARC_PREFIX:
                         self._acCtxtMenu.entryconfig(_('Export manuscript filtered by arc'), state='normal')
+                        self._acCtxtMenu.entryconfig(_('Export synopsis filtered by arc'), state='normal')
                     else:
                         self._acCtxtMenu.entryconfig(_('Export manuscript filtered by arc'), state='disabled')
+                        self._acCtxtMenu.entryconfig(_('Export synopsis filtered by arc'), state='disabled')
                 try:
                     self._acCtxtMenu.tk_popup(event.x_root, event.y_root, 0)
                 finally:

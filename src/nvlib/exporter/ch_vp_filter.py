@@ -14,8 +14,8 @@ class ChVpFilter:
     This is a stub with no filter criteria specified.
     """
 
-    def __init__(self, filterElementId):
-        self._filterElementId = filterElementId
+    def __init__(self, crId):
+        self._crId = crId
 
     def accept(self, source, chId):
         """Check whether an entity matches the filter criteria.
@@ -24,18 +24,18 @@ class ChVpFilter:
             source -- File instance holding the chapter to check.
             chId -- ID of the chapter to check.       
         
-        Return True if the filterElementId matches a viewpoint character of 
+        Return True if the crId matches a viewpoint character of 
         at least one section of the chapter.
         """
-        try:
-            for scId in source.novel.tree.get_children(chId):
-                if self._filterElementId == source.novel.sections[scId].characters[0]:
+        for scId in source.novel.tree.get_children(chId):
+            try:
+                if self._crId == source.novel.sections[scId].characters[0]:
                     return True
 
-        except:
-            pass
+            except:
+                pass
         return False
 
     def get_message(self, source):
         """Return a message about how the document exported from source is filtered."""
-        return f'{_("Chapters from viewpoint")}: {source.novel.characters[self._filterElementId].title}'
+        return f'{_("Chapters from viewpoint")}: {source.novel.characters[self._crId].title}'

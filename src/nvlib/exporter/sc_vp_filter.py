@@ -14,8 +14,8 @@ class ScVpFilter:
     This is a stub with no filter criteria specified.
     """
 
-    def __init__(self, filterElementId):
-        self._filterElementId = filterElementId
+    def __init__(self, crId):
+        self._crId = crId
 
     def accept(self, source, scId):
         """Check whether an entity matches the filter criteria.
@@ -24,10 +24,10 @@ class ScVpFilter:
             source -- File instance holding the section to check.
             scId -- ID of the section to check.       
         
-        Return True if the filterElementId matches the section's viewpoint character.
+        Return True if the crId matches the section's viewpoint character.
         """
         try:
-            if self._filterElementId == source.novel.sections[scId].characters[0]:
+            if self._crId == source.novel.sections[scId].characters[0]:
                 return True
 
         except:
@@ -36,4 +36,4 @@ class ScVpFilter:
 
     def get_message(self, source):
         """Return a message about how the document exported from source is filtered."""
-        return f'{_("Sections from viewpoint")}: {source.novel.characters[self._filterElementId].title}'
+        return f'{_("Sections from viewpoint")}: {source.novel.characters[self._crId].title}'
