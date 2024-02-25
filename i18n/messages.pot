@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.3.0\n"
-"POT-Creation-Date: 2024-02-25 18:10:48\n"
+"POT-Creation-Date: 2024-02-25 19:33:17\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"

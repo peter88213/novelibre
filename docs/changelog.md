@@ -8,6 +8,14 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v2.3.0
+
+- Export manuscripts and synopses optionally filtered either by viewpoint, or by arc.
+- Disable several menus when locking the project.
+- Lock/unlock the plugins.
+
+Based on novxlib v1.2.0
+
 ### v2.2.0
 
 - Do not ask before opening the manuscript, if the export is called by clicking on the toolbar icon.
