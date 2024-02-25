@@ -990,6 +990,7 @@ class TreeViewer(ttk.Frame):
                     self._wrCtxtMenu.entryconfig(_('Add'), state='disabled')
                     self._wrCtxtMenu.entryconfig(_('Delete'), state='disabled')
                     self._wrCtxtMenu.entryconfig(_('Set Status'), state='disabled')
+                    self._wrCtxtMenu.entryconfig(_('Export manuscript filtered by viewpoint'), state='disabled')
                 else:
                     self._wrCtxtMenu.entryconfig(_('Add'), state='normal')
                     if prefix.startswith('wr'):
@@ -1001,9 +1002,11 @@ class TreeViewer(ttk.Frame):
                     if prefix.startswith(CHARACTER_PREFIX) or  row.endswith(CHARACTER_PREFIX):
                         # Context is a character.
                         self._wrCtxtMenu.entryconfig(_('Set Status'), state='normal')
+                        self._wrCtxtMenu.entryconfig(_('Export manuscript filtered by viewpoint'), state='normal')
                     else:
                         # Context is not a character.
                         self._wrCtxtMenu.entryconfig(_('Set Status'), state='disabled')
+                        self._wrCtxtMenu.entryconfig(_('Export manuscript filtered by viewpoint'), state='disabled')
                 try:
                     self._wrCtxtMenu.tk_popup(event.x_root, event.y_root, 0)
                 finally:
@@ -1015,14 +1018,20 @@ class TreeViewer(ttk.Frame):
                     self._acCtxtMenu.entryconfig(_('Add Arc'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Add Turning point'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Delete'), state='disabled')
+                    self._acCtxtMenu.entryconfig(_('Export manuscript filtered by arc'), state='disabled')
                 elif prefix.startswith(AC_ROOT):
                     self._acCtxtMenu.entryconfig(_('Add Arc'), state='normal')
                     self._acCtxtMenu.entryconfig(_('Add Turning point'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Delete'), state='disabled')
+                    self._acCtxtMenu.entryconfig(_('Export manuscript filtered by arc'), state='disabled')
                 else:
                     self._acCtxtMenu.entryconfig(_('Add Arc'), state='normal')
                     self._acCtxtMenu.entryconfig(_('Add Turning point'), state='normal')
                     self._acCtxtMenu.entryconfig(_('Delete'), state='normal')
+                    if prefix == ARC_PREFIX:
+                        self._acCtxtMenu.entryconfig(_('Export manuscript filtered by arc'), state='normal')
+                    else:
+                        self._acCtxtMenu.entryconfig(_('Export manuscript filtered by arc'), state='disabled')
                 try:
                     self._acCtxtMenu.tk_popup(event.x_root, event.y_root, 0)
                 finally:

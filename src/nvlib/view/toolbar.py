@@ -266,3 +266,16 @@ class Toolbar:
         self._addParentButton.config(state='normal')
         self._removeElementButton.config(state='normal')
 
+    def lock(self):
+        self._manuscriptButton.config(state='disabled')
+        self._addElementButton.config(state='disabled')
+        self._addChildButton.config(state='disabled')
+        self._addParentButton.config(state='disabled')
+        self._removeElementButton.config(state='disabled')
+
+    def unlock(self):
+        self._manuscriptButton.config(state='normal')
+        self._addElementButton.config(state='normal')
+        self._addChildButton.config(state='normal')
+        self._addParentButton.config(state='normal')
+        self._removeElementButton.config(state='normal')

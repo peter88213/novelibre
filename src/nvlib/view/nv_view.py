@@ -490,6 +490,8 @@ class NvView:
         self.fileMenu.entryconfig(_('Save'), state='normal')
         self.fileMenu.entryconfig(_('Lock'), state='normal')
         self.fileMenu.entryconfig(_('Unlock'), state='disabled')
+        self.exportMenu.entryconfig(_('Manuscript for editing'), state='normal')
+        self.exportMenu.entryconfig(_('Manuscript for third-party word processing'), state='normal')
         for view in self.views:
             try:
                 view.unlock()
@@ -503,6 +505,8 @@ class NvView:
         self.fileMenu.entryconfig(_('Save'), state='disabled')
         self.fileMenu.entryconfig(_('Lock'), state='disabled')
         self.fileMenu.entryconfig(_('Unlock'), state='normal')
+        self.exportMenu.entryconfig(_('Manuscript for editing'), state='disabled')
+        self.exportMenu.entryconfig(_('Manuscript for third-party word processing'), state='disabled')
         for view in self.views:
             try:
                 view.lock()
