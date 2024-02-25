@@ -22,6 +22,7 @@ from novxlib.novx_globals import ITEM_PREFIX
 from novxlib.novx_globals import IT_ROOT
 from novxlib.novx_globals import LC_ROOT
 from novxlib.novx_globals import LOCATION_PREFIX
+from novxlib.novx_globals import MANUSCRIPT_SUFFIX
 from novxlib.novx_globals import PN_ROOT
 from novxlib.novx_globals import PRJ_NOTE_PREFIX
 from novxlib.novx_globals import ROOT_PREFIX
@@ -495,6 +496,8 @@ class TreeViewer(ttk.Frame):
         self._wrCtxtMenu = ContextMenu(self.tree, tearoff=0)
         self._wrCtxtMenu.add_command(label=_('Add'), command=self._ctrl.add_element)
         self._wrCtxtMenu.add_separator()
+        self._wrCtxtMenu.add_command(label=_('Export manuscript filtered by viewpoint'), command=self._export_manuscript)
+        self._wrCtxtMenu.add_separator()
         self._wrCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
         self._wrCtxtMenu.add_separator()
         self._wrCtxtMenu.add_cascade(label=_('Set Status'), menu=self.crStatusMenu)
@@ -503,6 +506,8 @@ class TreeViewer(ttk.Frame):
         self._acCtxtMenu = ContextMenu(self.tree, tearoff=0)
         self._acCtxtMenu.add_command(label=_('Add Arc'), command=self._ctrl.add_arc)
         self._acCtxtMenu.add_command(label=_('Add Turning point'), command=self._ctrl.add_turning_point)
+        self._acCtxtMenu.add_separator()
+        self._acCtxtMenu.add_command(label=_('Export manuscript filtered by arc'), command=self._export_manuscript)
         self._acCtxtMenu.add_separator()
         self._acCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
 
@@ -878,6 +883,9 @@ class TreeViewer(ttk.Frame):
             if sectionTitle is not None:
                 columns[self._colPos['tp']] = sectionTitle
         return title, columns, ('turning_point')
+
+    def _export_manuscript(self, event=None):
+        self._ctrl.export_document(MANUSCRIPT_SUFFIX, filter=self.tree.selection()[0], ask=False)
 
     def _on_close_branch(self, event=None):
         """Event handler for manually collapsing a branch."""

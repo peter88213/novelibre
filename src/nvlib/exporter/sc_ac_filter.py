@@ -1,15 +1,13 @@
-"""Provide a generic filter class for template-based file export.
-
-All specific filters inherit from this class.
+"""Provide a "sections by arc" filter class for template-based file export.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/novxlib
+For further information see https://github.com/peter88213/novelibre
 License: GNU LGPLv3 (https://www.gnu.org/licenses/lgpl-3.0.en.html)
 """
 
 
-class ViewpointFilter:
-    """Filter an entity (chapter/section/character/location/item) by filter criteria.
+class ScAcFilter:
+    """Filter a section by filter criteria "belongs to arc".
     
     Strategy class, implementing filtering criteria for template-based export.
     This is a stub with no filter criteria specified.
@@ -25,10 +23,10 @@ class ViewpointFilter:
             source -- Novel instance holding the section to check.
             scId -- ID of the section to check.       
         
-        Return True if the filterElementId matches the section's viewpoint character.
+        Return True if the filterElementId matches an arc the section is assigned to.
         """
         try:
-            if self._filterElementId == source.sections[scId].characters[0]:
+            if self._filterElementId in source.novel.sections[scId].scArcs:
                 return True
 
         except:

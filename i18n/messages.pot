@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.2.0\n"
-"POT-Creation-Date: 2024-02-24 21:40:33\n"
+"Project-Id-Version: unknown\n"
+"POT-Creation-Date: 2024-02-25 12:35:13\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -402,6 +402,12 @@ msgid "Export location descriptions for editing"
 msgstr ""
 
 msgid "Export location list (spreadsheet)"
+msgstr ""
+
+msgid "Export manuscript filtered by arc"
+msgstr ""
+
+msgid "Export manuscript filtered by viewpoint"
 msgstr ""
 
 msgid "Export part descriptions for editing"

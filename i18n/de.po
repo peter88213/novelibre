@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.2.0\n"
-"POT-Creation-Date: 2024-02-24 21:40:33\n"
-"PO-Revision-Date: 2024-02-24 21:40:34\n"
+"Project-Id-Version: unknown\n"
+"POT-Creation-Date: 2024-02-25 12:35:13\n"
+"PO-Revision-Date: 2024-02-25 12:37:15\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -402,6 +402,12 @@ msgstr "Schauplatzbeschreibungen zum Bearbeiten exportieren"
 
 msgid "Export location list (spreadsheet)"
 msgstr "Schauplatzliste exportieren (Tabelle)"
+
+msgid "Export manuscript filtered by arc"
+msgstr "Manuskript nach Bogen gefiltert exportieren"
+
+msgid "Export manuscript filtered by viewpoint"
+msgstr "Manuskript nach Perspektive gefiltert exportieren"
 
 msgid "Export part descriptions for editing"
 msgstr "Teilebeschreibungen zum Bearbeiten exportieren"
