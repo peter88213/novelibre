@@ -31,6 +31,7 @@ from novxlib.odt.odt_w_plot import OdtWPlot
 from novxlib.odt.odt_w_proof import OdtWProof
 from novxlib.odt.odt_w_sectiondesc import OdtWSectionDesc
 from novxlib.odt.odt_w_xref import OdtWXref
+from nvlib.exporter.section_filter_factory import SectionFilterFactory
 
 
 class NvDocExporter:
@@ -108,6 +109,8 @@ class NvDocExporter:
                 return f'{prefix}{_("Opened existing {0} (last saved on {1})").format(self._target.DESCRIPTION, self._targetFileDate)}.'
 
         # Generate a new document. Overwrite the existing document, if any.
+        filterElementId = kwargs.get('filter', '')
+        self._target.sectionFilter = SectionFilterFactory.get_filter(filterElementId)
         self._target.novel = self._source.novel
         self._target.write()
         self._targetFileDate = datetime.now().replace(microsecond=0).isoformat(sep=' ')
