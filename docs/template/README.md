@@ -83,7 +83,7 @@ I use the program myself and fix errors immediately if I notice any. As far as I
 
 - Extract the "novelibre_v0.99.0" folder from the downloaded zipfile "novelibre_v0.99.0.zip".
 - Move into this new folder and open "README.md" for further instructions.
-- You may wish to install plugins; the [section editor](https://github.com/peter88213/nv_editor/) is highly recommended.
+- You may wish to install plugins; the [update checker](https://github.com/peter88213/nv_updater/) is highly recommended.
 
 ---
 
