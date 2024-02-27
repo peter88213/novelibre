@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v2.3.1
+
+- Require changes to be saved before document export.
+- Fix a bug where document import is aborted silently on error. 
+
+Based on novxlib v1.2.1
+
 ### v2.3.0
 
 - Export manuscripts and synopses optionally filtered either by viewpoint, or by arc.

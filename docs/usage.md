@@ -49,7 +49,7 @@ The included installation script prompts you to create a shortcut on the desktop
 You can either
 
 - launch the program by double-clicking on the shortcut icon, or
-- launch the program by dragging a *.novx* project file and dropping it on the shortcut icon.
+- launch the program by dragging and dropping a *.novx* project file to the shortcut icon.
 
 
 --- 

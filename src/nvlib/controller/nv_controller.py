@@ -532,6 +532,13 @@ class NvController:
         self._ui.restore_status()
         self._ui.propertiesView.apply_changes()
         if self._mdl.prjFile.filePath is not None or self.save_project():
+            if self._mdl.isModified:
+                if self._ui.ask_yes_no(_('Save changes?')):
+                    self.save_project()
+                else:
+                    # Do not export a document from an unsaved project.
+                    return
+
             exporter = NvDocExporter()
             try:
                 self._ui.set_status(exporter.run(self._mdl.prjFile, suffix, **kwargs))
