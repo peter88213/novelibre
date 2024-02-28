@@ -34,7 +34,7 @@ class NvDocImporter:
     """A converter for universal import.
 
     Support novelibre projects and most of the File subclasses 
-    that are written by OpenOffice/LibreOffice.
+    that are written with OpenOffice/LibreOffice Writer or Calc.
     """
     IMPORT_SOURCE_CLASSES = [
         OdtRProof,

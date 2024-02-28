@@ -6,8 +6,9 @@
 
 # ![N](docs/img/nLogo32.png) novelibre
 
-*novelibre* is an application for novelists who prefer to write with LibreOffice or OpenOffice, 
-but need additional features for the organization of their work. 
+*novelibre* is an application for novelists who prefer to write with the *Writer* 
+word processor of LibreOffice or OpenOffice, but need additional features for the 
+organization of their work. 
 
 ![Screenshot](docs/Screenshots/screen01.png)
 
@@ -29,12 +30,12 @@ but need additional features for the organization of their work.
 - You can add information about the **narrative time** and duration to each section. If you enter a date, 
   the day of the week is displayed. You can also call up the age of characters that are assigned to
   a section. The date and time information can be synchronised with dedicated timeline software.
-- For the **actual writing work**, *novelibre* starts the word processor of LibreOffice or OpenOffice with 
-  a structured manuscript in *Open Document* format (*.odt*). At the end of a work cycle, *novelibre* 
+- For the **actual writing work**, *novelibre* starts the *Writer* word processor with 
+  a structured manuscript in *Open Document Text* format *(.odt)*. At the end of a work cycle, *novelibre* 
   reimports the manuscript and updates the writing project. New chapters and sections can also be 
   created in the process.
 - For **printing**, *novelibre* exports a neatly designed novel manuscript that can be formatted as 
-  you wish applying LibreOffice/OpenOffice document templates. 
+  you wish applying *Writer* document templates. 
 - *novelibre* saves its data in a well-documented, XML-based **file format** ([.novx](https://github.com/peter88213/novxlib/tree/main/dtd)), which can also be read as 
   plain text and displayed with a standard web browser.
 - *novelibre* is written in Python and should run on several **operating systems**, like Windows and Linux.

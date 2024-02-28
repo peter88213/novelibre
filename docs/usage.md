@@ -2,7 +2,7 @@
 
 --- 
 
-The *novelibre* Python program provides a tree view for novels written with LibreOffice or OpenOffice.
+The *novelibre* Python program provides a tree view for novels written with LibreOffice or OpenOffice *Writer*.
 
 # Instructions for use
 
