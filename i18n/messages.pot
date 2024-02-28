@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.3.1\n"
-"POT-Creation-Date: 2024-02-27 19:46:27\n"
+"Project-Id-Version: 2.4.0\n"
+"POT-Creation-Date: 2024-02-28 12:29:39\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -56,13 +56,13 @@ msgstr ""
 msgid "Add Part"
 msgstr ""
 
+msgid "Add Plot point"
+msgstr ""
+
 msgid "Add Project note"
 msgstr ""
 
 msgid "Add Section"
-msgstr ""
-
-msgid "Add Turning point"
 msgstr ""
 
 msgid "All"
@@ -647,10 +647,10 @@ msgstr ""
 msgid "New Part"
 msgstr ""
 
-msgid "New Section"
+msgid "New Plot point"
 msgstr ""
 
-msgid "New Turning point"
+msgid "New Section"
 msgstr ""
 
 msgid "Newer than the project file"
@@ -777,6 +777,12 @@ msgid "Plot"
 msgstr ""
 
 msgid "Plot description"
+msgstr ""
+
+msgid "Plot point"
+msgstr ""
+
+msgid "Plot points"
 msgstr ""
 
 msgid "Plugin Manager"
@@ -1029,12 +1035,6 @@ msgid "Trash"
 msgstr ""
 
 msgid "Tuesday"
-msgstr ""
-
-msgid "Turning point"
-msgstr ""
-
-msgid "Turning points"
 msgstr ""
 
 msgid "Undefined"

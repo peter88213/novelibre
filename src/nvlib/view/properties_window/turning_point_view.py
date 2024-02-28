@@ -1,4 +1,4 @@
-"""Provide a class for viewing and editing turning points.
+"""Provide a class for viewing and editing plot points.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -14,7 +14,7 @@ import tkinter as tk
 
 
 class TurningPointView(BasicView):
-    """Class for viewing and editing turning points.
+    """Class for viewing and editing plot points.
 
     Adds to the right pane:
     - A label showing section associated with the turnong point. 
@@ -71,7 +71,7 @@ class TurningPointView(BasicView):
         self.sectionAssocTitle['text'] = sectionTitle
 
     def _assign_section(self, event=None):
-        """Associate the selected section with the Turning point.
+        """Associate the selected section with the Plot point.
         
         End the picking mode after the section is assigned.
         """
@@ -94,7 +94,7 @@ class TurningPointView(BasicView):
         self._end_picking_mode()
 
     def _clear_assignment(self):
-        """Unassign a section from the Turning point."""
+        """Unassign a section from the Plot point."""
         scId = self._element.sectionAssoc
         if scId is not None:
             del(self._mdl.novel.sections[scId].scTurningPoints[self._elementId])
@@ -108,7 +108,7 @@ class TurningPointView(BasicView):
         self._create_button_bar()
 
     def _select_assigned_section(self):
-        """Select the section assigned to the turning point."""
+        """Select the section assigned to the plot point."""
         if self._element.sectionAssoc is not None:
             targetNode = self._element.sectionAssoc
             self._ui.tv.tree.see(targetNode)

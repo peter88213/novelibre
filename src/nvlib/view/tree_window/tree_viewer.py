@@ -52,7 +52,7 @@ class TreeViewer(ttk.Frame):
         po=(_('Position'), 'ps_width'),
         ac=(_('Arcs'), 'arcs_width'),
         ar=(_('A/R'), 'pacing_width'),
-        tp=(_('Turning points'), 'points_width'),
+        tp=(_('Plot points'), 'points_width'),
         )
     # Key: column ID
     # Value: (column title, column width)
@@ -112,7 +112,7 @@ class TreeViewer(ttk.Frame):
         self.tree.tag_configure('root', font=('', fontSize, 'bold'))
         self.tree.tag_configure('chapter', foreground=kwargs['color_chapter'])
         self.tree.tag_configure('arc', font=('', fontSize, 'bold'), foreground=kwargs['color_arc'])
-        self.tree.tag_configure('turning_point', foreground=kwargs['color_arc'])
+        self.tree.tag_configure('plot_point', foreground=kwargs['color_arc'])
         self.tree.tag_configure('unused', foreground=kwargs['color_unused'])
         self.tree.tag_configure('stage1', font=('', fontSize, 'bold'), foreground=kwargs['color_stage'])
         self.tree.tag_configure('stage2', foreground=kwargs['color_stage'])
@@ -398,7 +398,7 @@ class TreeViewer(ttk.Frame):
                     update_branch(elemId, scnPos)
                     title, columns, nodeTags = self._configure_arc_display(elemId)
                 elif elemId.startswith(ARC_POINT_PREFIX):
-                    title, columns, nodeTags = self._configure_turning_point_display(elemId)
+                    title, columns, nodeTags = self._configure_plot_point_display(elemId)
                 elif elemId.startswith(PRJ_NOTE_PREFIX):
                     title, columns, nodeTags = self._configure_prj_note_display(elemId)
                 else:
@@ -507,7 +507,7 @@ class TreeViewer(ttk.Frame):
         #--- Create an arc context menu.
         self._acCtxtMenu = ContextMenu(self.tree, tearoff=0)
         self._acCtxtMenu.add_command(label=_('Add Arc'), command=self._ctrl.add_arc)
-        self._acCtxtMenu.add_command(label=_('Add Turning point'), command=self._ctrl.add_turning_point)
+        self._acCtxtMenu.add_command(label=_('Add Plot point'), command=self._ctrl.add_turning_point)
         self._acCtxtMenu.add_separator()
         self._acCtxtMenu.add_command(label=_('Export manuscript filtered by arc'), command=self._export_manuscript)
         self._acCtxtMenu.add_command(label=_('Export synopsis filtered by arc'), command=self._export_synopsis)
@@ -866,8 +866,8 @@ class TreeViewer(ttk.Frame):
             pass
         return title, columns, tuple(nodeTags)
 
-    def _configure_turning_point_display(self, tpId):
-        """Configure turning point formatting and columns."""
+    def _configure_plot_point_display(self, tpId):
+        """Configure plot point formatting and columns."""
         title = self._mdl.novel.turningPoints[tpId].title
         if not title:
             title = _('Unnamed')
@@ -885,7 +885,7 @@ class TreeViewer(ttk.Frame):
             sectionTitle = self._mdl.novel.sections[scId].title
             if sectionTitle is not None:
                 columns[self._colPos['tp']] = sectionTitle
-        return title, columns, ('turning_point')
+        return title, columns, ('plot_point')
 
     def _export_manuscript(self, event=None):
         self._ctrl.export_document(MANUSCRIPT_SUFFIX, filter=self.tree.selection()[0], ask=False)
@@ -1021,23 +1021,23 @@ class TreeViewer(ttk.Frame):
                 finally:
                     self._wrCtxtMenu.grab_release()
             elif prefix in (AC_ROOT, ARC_PREFIX, ARC_POINT_PREFIX):
-                # Context is Arc/Turning point.
+                # Context is Arc/Plot point.
                 if self._ctrl.isLocked:
                     # No changes allowed.
                     self._acCtxtMenu.entryconfig(_('Add Arc'), state='disabled')
-                    self._acCtxtMenu.entryconfig(_('Add Turning point'), state='disabled')
+                    self._acCtxtMenu.entryconfig(_('Add Plot point'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Delete'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Export manuscript filtered by arc'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Export synopsis filtered by arc'), state='disabled')
                 elif prefix.startswith(AC_ROOT):
                     self._acCtxtMenu.entryconfig(_('Add Arc'), state='normal')
-                    self._acCtxtMenu.entryconfig(_('Add Turning point'), state='disabled')
+                    self._acCtxtMenu.entryconfig(_('Add Plot point'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Delete'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Export manuscript filtered by arc'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Export synopsis filtered by arc'), state='disabled')
                 else:
                     self._acCtxtMenu.entryconfig(_('Add Arc'), state='normal')
-                    self._acCtxtMenu.entryconfig(_('Add Turning point'), state='normal')
+                    self._acCtxtMenu.entryconfig(_('Add Plot point'), state='normal')
                     self._acCtxtMenu.entryconfig(_('Delete'), state='normal')
                     if prefix == ARC_PREFIX:
                         self._acCtxtMenu.entryconfig(_('Export manuscript filtered by arc'), state='normal')

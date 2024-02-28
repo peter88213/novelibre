@@ -688,7 +688,7 @@ class NvView:
         self.plotMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Plot'), menu=self.plotMenu)
         self.plotMenu.add_command(label=_('Add Arc'), command=self._ctrl.add_arc)
-        self.plotMenu.add_command(label=_('Add Turning point'), command=self._ctrl.add_turning_point)
+        self.plotMenu.add_command(label=_('Add Plot point'), command=self._ctrl.add_turning_point)
         self.plotMenu.add_separator()
         self.plotMenu.add_command(label=_('Insert Stage'), command=self._ctrl.add_stage)
         self.plotMenu.add_cascade(label=_('Change Level'), menu=self.tv.selectLevelMenu)

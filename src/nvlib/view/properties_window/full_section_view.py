@@ -29,7 +29,7 @@ class FullSectionView(DatedSectionView):
     - A combobox for viewpoint character selection.
     - A checkbox "unused".
     - A checkbox "append to previous".
-    - A "Plot" folding frame for arcs and turning point associations.
+    - A "Plot" folding frame for arcs and plot point associations.
     - An "Action/Reaction" folding frame for Goal/Reaction/Outcome.
     """
 
@@ -103,11 +103,11 @@ class FullSectionView(DatedSectionView):
         self._arcCollection.pack(fill='x')
         inputWidgets.extend(self._arcCollection.inputWidgets)
 
-        tk.Label(self._arcFrame, text=_('Turning points')).pack(anchor='w')
+        tk.Label(self._arcFrame, text=_('Plot points')).pack(anchor='w')
 
-        #--- 'Turning points' label.
-        self._turningPointsDisplay = tk.Label(self._arcFrame, anchor='w', bg='white')
-        self._turningPointsDisplay.pack(anchor='w', fill='x')
+        #--- 'Plot points' label.
+        self._plotPointsDisplay = tk.Label(self._arcFrame, anchor='w', bg='white')
+        self._plotPointsDisplay.pack(anchor='w', fill='x')
 
         ttk.Separator(self._sectionExtraFrame, orient='horizontal').pack(fill='x')
 
@@ -282,12 +282,12 @@ class FullSectionView(DatedSectionView):
         if not self._arcCollection.cListbox.curselection() or not self._arcCollection.cListbox.focus_get():
             self._arcCollection.deactivate_buttons()
 
-        #--- "Turning points" label
-        turningPointTitles = []
+        #--- "Plot points" label
+        plotPointTitles = []
         for tpId in self._element.scTurningPoints:
             acId = self._element.scTurningPoints[tpId]
-            turningPointTitles.append(f'{self._mdl.novel.arcs[acId].shortName}: {self._mdl.novel.turningPoints[tpId].title}')
-        self._turningPointsDisplay.config(text=list_to_string(turningPointTitles))
+            plotPointTitles.append(f'{self._mdl.novel.arcs[acId].shortName}: {self._mdl.novel.turningPoints[tpId].title}')
+        self._plotPointsDisplay.config(text=list_to_string(plotPointTitles))
 
         #--- 'Unused' checkbox.
         if self._element.scType > 0:
@@ -442,14 +442,14 @@ class FullSectionView(DatedSectionView):
                 arcSections.remove(self._elementId)
                 self._mdl.novel.arcs[acId].sections = arcSections
 
-                # Remove turning point assignments, if any.
+                # Remove plot point assignments, if any.
                 for tpId in list(self._element.scTurningPoints):
                     if self._element.scTurningPoints[tpId] == acId:
                         del(self._element.scTurningPoints[tpId])
-                        # removing the arc's turning point from the section's list
+                        # removing the arc's plot point from the section's list
                         # Note: this doesn't trigger the refreshing method
                         self._mdl.novel.turningPoints[tpId].sectionAssoc = None
-                        # un-assigning the section from the arc's turning point
+                        # un-assigning the section from the arc's plot point
 
     def _set_action_section(self, event=None):
         self._goalLabel.config(text=_('Goal'))

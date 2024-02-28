@@ -45,7 +45,7 @@ class PropertiesViewer(ttk.Frame):
         self._locationView = LocationView(self, self._mdl, self._ui, self._ctrl)
         self._itemView = ItemView(self, self._mdl, self._ui, self._ctrl)
         self._arcView = ArcView(self, self._mdl, self._ui, self._ctrl)
-        self._turningPointView = TurningPointView(self, self._mdl, self._ui, self._ctrl)
+        self._plotPointView = TurningPointView(self, self._mdl, self._ui, self._ctrl)
         self._projectnoteView = ProjectnoteView(self, self._mdl, self._ui, self._ctrl)
         self._elementView = self._noView
         self._elementView.set_data(None)
@@ -59,7 +59,7 @@ class PropertiesViewer(ttk.Frame):
             self._locationView,
             self._itemView,
             self._arcView,
-            self._turningPointView,
+            self._plotPointView,
             self._projectnoteView,
             ]
 
@@ -234,13 +234,13 @@ class PropertiesViewer(ttk.Frame):
         self._set_data(scId)
 
     def _view_turning_point(self, tpId):
-        """Show the selected turning point
+        """Show the selected plot point
         Positional arguments:
-            tpId: str -- Turning point ID
+            tpId: str -- Plot point ID
         """
-        if not self._elementView is self._turningPointView:
+        if not self._elementView is self._plotPointView:
             self._elementView.hide()
-            self._elementView = self._turningPointView
+            self._elementView = self._plotPointView
             self._elementView.show()
         self._set_data(tpId)
 

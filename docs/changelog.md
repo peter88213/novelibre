@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v2.4.0
+
+- Fix a bug where the plot list cannot be generated if an arc has no plot point.
+- Reword/Refactor replacing "Turning point" with "Plot point" without affecting the API.
+
+Based on novxlib v1.3.0
+
 ### v2.3.1
 
 - Require changes to be saved before document export.

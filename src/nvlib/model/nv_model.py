@@ -85,6 +85,7 @@ class NvModel:
             title=kwargs.get('title', f'{_("New Arc")} ({acId})'),
             desc='',
             shortName=acId,
+            sections=[],
             on_element_change=self.on_element_change,
             )
         self.tree.insert(AC_ROOT, index, acId)
@@ -370,7 +371,7 @@ class NvModel:
         return scId
 
     def add_turning_point(self, **kwargs):
-        """Add a turning point to the novel.
+        """Add a plot point to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -379,7 +380,7 @@ class NvModel:
         - Place the new node at the next free position after the target node, if possible.
         - Otherwise, do nothing. 
         
-        Return the turning point ID, if successful.
+        Return the plot point ID, if successful.
         """
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
@@ -396,7 +397,7 @@ class NvModel:
 
         tpId = create_id(self.novel.turningPoints, prefix=ARC_POINT_PREFIX)
         self.novel.turningPoints[tpId] = TurningPoint(
-            title=kwargs.get('title', f'{_("New Turning point")} ({tpId})'),
+            title=kwargs.get('title', f'{_("New Plot point")} ({tpId})'),
             desc='',
             on_element_change=self.on_element_change,
             )
@@ -419,8 +420,8 @@ class NvModel:
         - Delete parts/chapters and move their children sections to the "Trash" chapter.
         - Delete characters/locations/items and remove their section references.
         - Delete stages.
-        - Delete arcs and remove their turning points and section references.
-        - Delete turning points and remove their section references.
+        - Delete arcs and remove their plot points and section references.
+        - Delete plot points and remove their section references.
         - Delete prjFile notes.
         """
 
@@ -431,7 +432,7 @@ class NvModel:
                     # Move the section to the trash bin.
                     self.tree.move(elemId, self.trashBin, 0)
                     self.novel.sections[elemId].scType = 1
-                    # Remove turning point and arc references.
+                    # Remove plot point and arc references.
                     arcReferences = self.novel.sections[elemId].scArcs
                     tpReferences = self.novel.sections[elemId].scTurningPoints
                     self.novel.sections[elemId].scArcs = []
@@ -505,7 +506,7 @@ class NvModel:
             del self.novel.arcs[elemId]
             self.tree.delete(elemId)
         elif elemId.startswith(ARC_POINT_PREFIX):
-            # Delete an turning point and remove references.
+            # Delete a plot point and remove references.
             scId = self.novel.turningPoints[elemId].sectionAssoc
             if scId is not None:
                 del(self.novel.sections[scId].scTurningPoints[elemId])
@@ -663,7 +664,7 @@ class NvModel:
             if not scArc in self.novel.sections[ScId0].scArcs:
                 self.novel.sections[ScId0].scArcs.append(scArc)
 
-        # Move turning point associations.
+        # Move plot point associations.
         for ptId in self.novel.sections[ScId1].scTurningPoints:
             self.novel.turningPoints[ptId].sectionAssoc = ScId0
             self.novel.sections[ScId0].scTurningPoints[ptId] = self.novel.sections[ScId1].scTurningPoints[ptId]

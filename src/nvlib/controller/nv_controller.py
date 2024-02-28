@@ -381,13 +381,13 @@ class NvController:
             return newNode
 
     def add_turning_point(self, **kwargs):
-        """Add a turning point to the novel.
+        """Add a plot point to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
             title: str -- Section title. Default: Auto-generated title. 
             
-        Return the turning point ID, if successful.
+        Return the plot point ID, if successful.
         """
         if not self.check_lock():
             targetNode = kwargs.get('targetNode', None)
@@ -483,7 +483,7 @@ class NvController:
             elif elemId.startswith(ARC_PREFIX):
                 candidate = f'{_("Arc")} "{self._mdl.novel.arcs[elemId].title}"'
             elif elemId.startswith(ARC_POINT_PREFIX):
-                candidate = f'{_("Turning point")} "{self._mdl.novel.turningPoints[elemId].title}"'
+                candidate = f'{_("Plot point")} "{self._mdl.novel.turningPoints[elemId].title}"'
             elif elemId.startswith(PRJ_NOTE_PREFIX):
                 candidate = f'{_("Project note")} "{self._mdl.novel.projectNotes[elemId].title}"'
             else:

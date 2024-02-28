@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.3.1\n"
-"POT-Creation-Date: 2024-02-27 19:46:27\n"
-"PO-Revision-Date: 2024-02-27 19:46:27\n"
+"Project-Id-Version: 2.4.0\n"
+"POT-Creation-Date: 2024-02-28 12:29:39\n"
+"PO-Revision-Date: 2024-02-28 12:29:39\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -55,14 +55,14 @@ msgstr "Kapitel hinzufügen"
 msgid "Add Part"
 msgstr "Teil hinzufügen"
 
+msgid "Add Plot point"
+msgstr "Plotpunkt hinzufügen"
+
 msgid "Add Project note"
 msgstr "Projektnotiz hinizufügen"
 
 msgid "Add Section"
 msgstr "Abschnitt hinzufügen"
-
-msgid "Add Turning point"
-msgstr "Wendepunkt hinzufügen"
 
 msgid "All"
 msgstr "Alle"
@@ -646,11 +646,11 @@ msgstr "Neue Notiz"
 msgid "New Part"
 msgstr "Neuer Teil"
 
+msgid "New Plot point"
+msgstr "Neuer Plotpunkt"
+
 msgid "New Section"
 msgstr "Neuer Abschnitt"
-
-msgid "New Turning point"
-msgstr "Neuer Wendepunkt"
 
 msgid "Newer than the project file"
 msgstr "Neuer als die Projektdatei"
@@ -777,6 +777,12 @@ msgstr "Plot"
 
 msgid "Plot description"
 msgstr "Plot-Beschreibung"
+
+msgid "Plot point"
+msgstr "Plotpunkt"
+
+msgid "Plot points"
+msgstr "Plotpunkte"
 
 msgid "Plugin Manager"
 msgstr "Plugin-Manager"
@@ -1029,12 +1035,6 @@ msgstr "Papierkorb"
 
 msgid "Tuesday"
 msgstr "Dienstag"
-
-msgid "Turning point"
-msgstr "Wendepunkt"
-
-msgid "Turning points"
-msgstr "Wendepunkte"
 
 msgid "Undefined"
 msgstr "Nicht definiert"
