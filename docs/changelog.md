@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v2.4.1
+
+- Replace the "Segoe UI 10" font with "Calibri 10.5" for ODF document export.
+- Fix a bug where links do not work in the ODS plot list for section titles containing false double quotes.
+
+Based on novxlib v1.3.1
+
 ### v2.4.0
 
 - Fix a bug where the plot list cannot be generated if an arc has no plot point.
