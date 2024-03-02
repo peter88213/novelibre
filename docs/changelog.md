@@ -8,6 +8,15 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v2.5.0
+
+**Note:** Section list spreadsheets created with a *novelibre*
+version prior to v2.5 can no longer be read back. 
+
+- Add date/time information to the section list.
+
+Based on novxlib v1.4.0
+
 ### v2.4.1
 
 - Replace the "Segoe UI 10" font with "Calibri 10.5" for ODF document export.
