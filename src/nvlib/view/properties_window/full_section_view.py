@@ -95,6 +95,7 @@ class FullSectionView(DatedSectionView):
             cmdRemove=self._remove_arc,
             cmdOpen=self._go_to_arc,
             cmdActivate=self._activate_arc_buttons,
+            cmdSelect=self._on_select_arc,
             lblOpen=_('Go to'),
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
@@ -102,6 +103,26 @@ class FullSectionView(DatedSectionView):
             )
         self._arcCollection.pack(fill='x')
         inputWidgets.extend(self._arcCollection.inputWidgets)
+        self._selectedArc = None
+
+        #--- 'Arc notes' text box for entering self._element.plotNotes[acId],
+        #    where acId is the ID of the selected arc in the'Arcs' listbox.
+        ttk.Label(self._arcFrame, text=_('Notes on the selected arc')).pack(anchor='w')
+        self._arcNotesWindow = TextBox(
+            self._arcFrame,
+            wrap='word',
+            undo=True,
+            autoseparators=True,
+            maxundo=-1,
+            height=prefs['gco_height'],
+            padx=5,
+            pady=5,
+            bg=prefs['color_text_bg'],
+            fg=prefs['color_text_fg'],
+            insertbackground=prefs['color_text_fg'],
+            )
+        self._arcNotesWindow.pack(fill='x')
+        inputWidgets.append(self._arcNotesWindow)
 
         tk.Label(self._arcFrame, text=_('Plot points')).pack(anchor='w')
 
@@ -155,54 +176,57 @@ class FullSectionView(DatedSectionView):
         # 'Goal/Reaction' window. The labels are configured dynamically.
         self._goalLabel = ttk.Label(self._pacingFrame)
         self._goalLabel.pack(anchor='w')
-        self._goalWindow = TextBox(self._pacingFrame,
-                wrap='word',
-                undo=True,
-                autoseparators=True,
-                maxundo=-1,
-                height=prefs['gco_height'],
-                padx=5,
-                pady=5,
-                bg=prefs['color_text_bg'],
-                fg=prefs['color_text_fg'],
-                insertbackground=prefs['color_text_fg'],
-                )
+        self._goalWindow = TextBox(
+            self._pacingFrame,
+            wrap='word',
+            undo=True,
+            autoseparators=True,
+            maxundo=-1,
+            height=prefs['gco_height'],
+            padx=5,
+            pady=5,
+            bg=prefs['color_text_bg'],
+            fg=prefs['color_text_fg'],
+            insertbackground=prefs['color_text_fg'],
+            )
         self._goalWindow.pack(fill='x')
         inputWidgets.append(self._goalWindow)
 
         # 'Conflict/Dilemma' window. The labels are configured dynamically.
         self._conflictLabel = ttk.Label(self._pacingFrame)
         self._conflictLabel.pack(anchor='w')
-        self._conflictWindow = TextBox(self._pacingFrame,
-                wrap='word',
-                undo=True,
-                autoseparators=True,
-                maxundo=-1,
-                height=prefs['gco_height'],
-                padx=5,
-                pady=5,
-                bg=prefs['color_text_bg'],
-                fg=prefs['color_text_fg'],
-                insertbackground=prefs['color_text_fg'],
-                )
+        self._conflictWindow = TextBox(
+            self._pacingFrame,
+            wrap='word',
+            undo=True,
+            autoseparators=True,
+            maxundo=-1,
+            height=prefs['gco_height'],
+            padx=5,
+            pady=5,
+            bg=prefs['color_text_bg'],
+            fg=prefs['color_text_fg'],
+            insertbackground=prefs['color_text_fg'],
+            )
         self._conflictWindow.pack(fill='x')
         inputWidgets.append(self._conflictWindow)
 
         # 'Outcome/Choice' window. The labels are configured dynamically.
         self._outcomeLabel = ttk.Label(self._pacingFrame)
         self._outcomeLabel.pack(anchor='w')
-        self._outcomeWindow = TextBox(self._pacingFrame,
-                wrap='word',
-                undo=True,
-                autoseparators=True,
-                maxundo=-1,
-                height=prefs['gco_height'],
-                padx=5,
-                pady=5,
-                bg=prefs['color_text_bg'],
-                fg=prefs['color_text_fg'],
-                insertbackground=prefs['color_text_fg'],
-                )
+        self._outcomeWindow = TextBox(
+            self._pacingFrame,
+            wrap='word',
+            undo=True,
+            autoseparators=True,
+            maxundo=-1,
+            height=prefs['gco_height'],
+            padx=5,
+            pady=5,
+            bg=prefs['color_text_bg'],
+            fg=prefs['color_text_fg'],
+            insertbackground=prefs['color_text_fg'],
+            )
         self._outcomeWindow.pack(fill='x')
         inputWidgets.append(self._outcomeWindow)
 
@@ -281,6 +305,8 @@ class FullSectionView(DatedSectionView):
         self._arcCollection.cListbox.config(height=listboxSize)
         if not self._arcCollection.cListbox.curselection() or not self._arcCollection.cListbox.focus_get():
             self._arcCollection.deactivate_buttons()
+
+        #--- 'Arc notes' text box.
 
         #--- "Plot points" label
         plotPointTitles = []
@@ -413,6 +439,20 @@ class FullSectionView(DatedSectionView):
             return
 
         self._ui.tv.go_to_node(self._element.scArcs[selection])
+
+    def _on_select_arc(self, selection):
+        """Callback routine for section arc list selection."""
+        if self._selectedArc and self._arcNotesWindow.hasChanged:
+            plotNotes = self._element.plotNotes
+            if plotNotes is None:
+                plotNotes = {}
+            plotNotes[self._selectedArc] = self._arcNotesWindow.get_text()
+            self._element.plotNotes = plotNotes
+        self._selectedArc = self._element.scArcs[selection]
+        if self._element.plotNotes:
+            self._arcNotesWindow.set_text(self._element.plotNotes.get(self._selectedArc, ''))
+        else:
+            self._arcNotesWindow.clear()
 
     def _pick_arc(self, event=None):
         """Enter the "add arc" selection mode."""

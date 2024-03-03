@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.6.1\n"
-"POT-Creation-Date: 2024-03-03 12:45:56\n"
-"PO-Revision-Date: 2024-03-03 12:45:56\n"
+"Project-Id-Version: unknown\n"
+"POT-Creation-Date: 2024-03-03 17:14:28\n"
+"PO-Revision-Date: 2024-03-03 17:14:36\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -699,6 +699,9 @@ msgstr "Normal"
 
 msgid "Notes"
 msgstr "Notizen"
+
+msgid "Notes on the selected arc"
+msgstr "Notizen zum ausgewählten Bogen"
 
 msgid "Novel outline"
 msgstr "Romanstruktur"

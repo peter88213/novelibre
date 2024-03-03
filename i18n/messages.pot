@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.6.1\n"
-"POT-Creation-Date: 2024-03-03 12:45:56\n"
+"Project-Id-Version: unknown\n"
+"POT-Creation-Date: 2024-03-03 17:14:28\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -699,6 +699,9 @@ msgid "Normal"
 msgstr ""
 
 msgid "Notes"
+msgstr ""
+
+msgid "Notes on the selected arc"
 msgstr ""
 
 msgid "Novel outline"

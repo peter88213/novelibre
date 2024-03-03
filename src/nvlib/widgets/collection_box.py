@@ -33,7 +33,7 @@ class CollectionBox(ttk.Frame):
             cmdAdd=None, lblAdd=None, iconAdd=None,
             cmdOpen=None, lblOpen=None, iconOpen=None,
             cmdRemove=None, lblRemove=None, iconRemove=None,
-            cmdActivate=None,
+            cmdActivate=None, cmdSelect=None,
             **kw
             ):
         """Set up the listbox and the buttons.
@@ -55,6 +55,8 @@ class CollectionBox(ttk.Frame):
             iconRemove -- Optional icon on the "Remove" button.
             cmdActivate -- Reference to an external callback routine (optional)
                            Bound to listbox focus and selection.
+            cmdSelect -- Reference to the callback routine for list element 
+                         selection (optional).
         
         Extends the superclass constructor.
         """
@@ -73,12 +75,15 @@ class CollectionBox(ttk.Frame):
         self.cListbox.config(yscrollcommand=vbar.set)
 
         self.cListbox.bind('<FocusIn>', cmdActivate)
-        self.cListbox.bind('<<ListboxSelect>>', cmdActivate)
+        self.cListbox.bind('<<ListboxSelect>>', self._on_change_selection)
 
         # Buttons.
         buttonbar = ttk.Frame(self)
         buttonbar.pack(anchor='n', side='right', fill='x', padx=5)
         self.inputWidgets = []
+
+        # "Select" command.
+        self._cmdSelect = cmdSelect
 
         # "Open" command.
         kwargs = dict(
@@ -134,3 +139,10 @@ class CollectionBox(ttk.Frame):
         self.btnOpen.config(state='disabled')
         self.btnRemove.config(state='disabled')
 
+    def _on_change_selection(self, event=None):
+        self.activate_buttons()
+        if self._cmdSelect is not None:
+            try:
+                self._cmdSelect(self.cListbox.curselection()[0])
+            except:
+                pass
