@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.6.0\n"
-"POT-Creation-Date: 2024-03-03 11:40:25\n"
+"Project-Id-Version: 2.6.1\n"
+"POT-Creation-Date: 2024-03-03 12:45:56\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -63,6 +63,9 @@ msgid "Add Project note"
 msgstr ""
 
 msgid "Add Section"
+msgstr ""
+
+msgid "Aka"
 msgstr ""
 
 msgid "All"
@@ -521,6 +524,9 @@ msgstr ""
 msgid "Import selected elements"
 msgstr ""
 
+msgid "Importance"
+msgstr ""
+
 msgid "Input rejected"
 msgstr ""
 
@@ -884,10 +890,22 @@ msgstr ""
 msgid "Section"
 msgstr ""
 
+msgid "Section description"
+msgstr ""
+
 msgid "Section descriptions"
 msgstr ""
 
+msgid "Section link"
+msgstr ""
+
 msgid "Section list"
+msgstr ""
+
+msgid "Section notes"
+msgstr ""
+
+msgid "Section title"
 msgstr ""
 
 msgid "Sections belonging to arc"
@@ -1088,10 +1106,16 @@ msgstr ""
 msgid "Wednesday"
 msgstr ""
 
+msgid "Word count"
+msgstr ""
+
 msgid "Words"
 msgstr ""
 
 msgid "Words to write"
+msgstr ""
+
+msgid "Words total"
 msgstr ""
 
 msgid "Words written"

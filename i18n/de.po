@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.6.0\n"
-"POT-Creation-Date: 2024-03-03 11:40:25\n"
-"PO-Revision-Date: 2024-03-03 11:40:25\n"
+"Project-Id-Version: 2.6.1\n"
+"POT-Creation-Date: 2024-03-03 12:45:56\n"
+"PO-Revision-Date: 2024-03-03 12:45:56\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -63,6 +63,9 @@ msgstr "Projektnotiz hinizufügen"
 
 msgid "Add Section"
 msgstr "Abschnitt hinzufügen"
+
+msgid "Aka"
+msgstr "alias"
 
 msgid "All"
 msgstr "Alle"
@@ -520,6 +523,9 @@ msgstr "Importieren"
 msgid "Import selected elements"
 msgstr "Ausgewählte Elemente importieren"
 
+msgid "Importance"
+msgstr "Bedeutung"
+
 msgid "Input rejected"
 msgstr "Eingabe abgelehnt"
 
@@ -883,11 +889,23 @@ msgstr "Änderungen speichern?"
 msgid "Section"
 msgstr "Abschnitt"
 
+msgid "Section description"
+msgstr "Abschnittsbeschreibung"
+
 msgid "Section descriptions"
 msgstr "Abschnittsbeschreibungen"
 
+msgid "Section link"
+msgstr "Link"
+
 msgid "Section list"
 msgstr "Abschnittsliste"
+
+msgid "Section notes"
+msgstr "Abschnittsnotizen"
+
+msgid "Section title"
+msgstr "Abschnittstitel"
 
 msgid "Sections belonging to arc"
 msgstr "Abschnitte gehören zum Bogen"
@@ -1087,11 +1105,17 @@ msgstr "Perspektive"
 msgid "Wednesday"
 msgstr "Mittwoch"
 
+msgid "Word count"
+msgstr "Wortzählung"
+
 msgid "Words"
 msgstr "Wörter"
 
 msgid "Words to write"
 msgstr "Wörter zu schreiben"
+
+msgid "Words total"
+msgstr "Wortzahl"
 
 msgid "Words written"
 msgstr "Wörter geschrieben"

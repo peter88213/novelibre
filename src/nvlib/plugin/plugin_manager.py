@@ -79,8 +79,8 @@ class PluginManager(tk.Toplevel):
         self._deleteButton = ttk.Button(window, text=_('Delete'), command=self._delete_module, state='disabled')
         self._deleteButton.pack(padx=5, pady=5, side='left')
 
-        # "Exit" button.
-        ttk.Button(window, text=_('Exit'), command=self.destroy).pack(padx=5, pady=5, side='left')
+        # "Close" button.
+        ttk.Button(window, text=_('Close'), command=self.destroy).pack(padx=5, pady=5, side='left')
 
     def _delete_module(self, event=None):
         moduleName = self._moduleCollection.selection()[0]

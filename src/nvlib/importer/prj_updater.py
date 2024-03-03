@@ -66,8 +66,8 @@ class PrjUpdater(tk.Toplevel):
         self._refreshButton = ttk.Button(window, text=_('Refresh view'), command=self.list_documents)
         self._refreshButton.pack(padx=5, pady=5, side='left')
 
-        # "Exit" button.
-        ttk.Button(window, text=_('Exit'), command=self.destroy).pack(padx=5, pady=5, side='left')
+        # "Close" button.
+        ttk.Button(window, text=_('Close'), command=self.destroy).pack(padx=5, pady=5, side='left')
 
         # Set Key bindings.
         self._documentCollection.bind('<Double-1>', self._import_document)

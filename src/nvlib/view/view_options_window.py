@@ -86,10 +86,10 @@ class ViewOptionsWindow(tk.Toplevel):
 
         ttk.Separator(self, orient='horizontal').pack(fill='x')
 
-        # "Exit" button.
+        # "Close" button.
         ttk.Button(
             self,
-            text=_('Exit'),
+            text=_('Close'),
             command=self.destroy
             ).pack(padx=5, pady=5, anchor='e')
 

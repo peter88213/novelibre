@@ -8,6 +8,14 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v2.6.1
+
+- Provide translated headers for ODS export.
+- Label the plugin manager exit button "Close".
+- Label the view options exit button "Close".
+
+Based on novxlib v1.4.2
+
 ### v2.6.0
 
 - Add a button for creating the section duration from date/time difference.
