@@ -8,10 +8,14 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
-### v2.5.0
+### v2.6.0
 
-**Note:** Section list spreadsheets created with a *novelibre*
-version prior to v2.5 can no longer be read back. 
+- Add a button for creating the section duration from date/time difference.
+- More robust ODS file reading.
+
+Based on novxlib v1.4.1
+
+### v2.5.0
 
 - Add date/time information to the section list.
 

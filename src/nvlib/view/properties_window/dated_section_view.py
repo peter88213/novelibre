@@ -4,8 +4,7 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from datetime import date
-from datetime import time
+from datetime import datetime, time, date, timedelta
 from tkinter import ttk
 
 from nvlib.nv_globals import prefs
@@ -37,37 +36,47 @@ class DatedSectionView(RelatedSectionView):
         ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- Frame for date/time/duration.
-        self._dateTimeFrame = FoldingFrame(self._elementInfoWindow, _('Date/Time'), self._toggle_date_time_frame)
-        sectionStartFrame = ttk.Frame(self._dateTimeFrame)
+        self._dateTimeFrame = FoldingFrame(
+            self._elementInfoWindow,
+            _('Date/Time'),
+            self._toggle_date_time_frame)
+        sectionStartFrame = ttk.Frame(self._dateTimeFrame
+                                      )
         sectionStartFrame.pack(fill='x')
         ttk.Label(sectionStartFrame, text=_('Start')).pack(anchor='w')
 
         # 'Start date' entry.
         self._startDate = MyStringVar()
-        self._startDateEntry = LabelEntry(sectionStartFrame,
-                   text=_('Date'),
-                   textvariable=self._startDate,
-                   lblWidth=self._DATE_TIME_LBL_X)
+        self._startDateEntry = LabelEntry(
+            sectionStartFrame,
+            text=_('Date'),
+            textvariable=self._startDate,
+            lblWidth=self._DATE_TIME_LBL_X
+            )
         self._startDateEntry.pack(anchor='w')
         inputWidgets.append(self._startDateEntry)
         self._startDateEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Start time' entry.
         self._startTime = MyStringVar()
-        self._startTimeEntry = LabelEntry(sectionStartFrame,
-                   text=_('Time'),
-                   textvariable=self._startTime,
-                   lblWidth=self._DATE_TIME_LBL_X)
+        self._startTimeEntry = LabelEntry(
+            sectionStartFrame,
+            text=_('Time'),
+            textvariable=self._startTime,
+            lblWidth=self._DATE_TIME_LBL_X
+            )
         self._startTimeEntry.pack(anchor='w')
         inputWidgets.append(self._startTimeEntry)
         self._startTimeEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Start day' entry.
         self._startDay = MyStringVar()
-        self._startDayEntry = LabelEntry(sectionStartFrame,
-                   text=_('Day'),
-                   textvariable=self._startDay,
-                   lblWidth=self._DATE_TIME_LBL_X)
+        self._startDayEntry = LabelEntry(
+            sectionStartFrame,
+            text=_('Day'),
+            textvariable=self._startDay,
+            lblWidth=self._DATE_TIME_LBL_X
+            )
         self._startDayEntry.pack(anchor='w')
         inputWidgets.append(self._startDayEntry)
         self._startDayEntry.entry.bind('<Return>', self._change_day)
@@ -80,23 +89,29 @@ class DatedSectionView(RelatedSectionView):
         ttk.Label(weekdayFrame, textvariable=self._weekDay).pack(anchor='w')
 
         # 'Clear date/time' button.
-        self._clearDateButton = ttk.Button(sectionStartFrame,
-                   text=_('Clear date/time'),
-                   command=self._clear_start)
+        self._clearDateButton = ttk.Button(
+            sectionStartFrame,
+            text=_('Clear date/time'),
+            command=self._clear_start
+            )
         self._clearDateButton.pack(side='left', fill='x', expand=True, padx=1, pady=2)
         inputWidgets.append(self._clearDateButton)
 
         # 'Generate' button.
-        self._generatDateButton = ttk.Button(sectionStartFrame,
-                   text=_('Generate'),
-                   command=self._auto_set)
+        self._generatDateButton = ttk.Button(
+            sectionStartFrame,
+            text=_('Generate'),
+            command=self._auto_set_date
+            )
         self._generatDateButton.pack(side='left', fill='x', expand=True, padx=1, pady=2)
         inputWidgets.append(self._generatDateButton)
 
         # 'Toggle date' button.
-        self._toggleDateButton = ttk.Button(sectionStartFrame,
-                   text=_('Convert date/day'),
-                   command=self._toggle_date)
+        self._toggleDateButton = ttk.Button(
+            sectionStartFrame,
+            text=_('Convert date/day'),
+            command=self._toggle_date
+            )
         self._toggleDateButton.pack(side='left', fill='x', expand=True, padx=1, pady=2)
         inputWidgets.append(self._toggleDateButton)
 
@@ -108,40 +123,57 @@ class DatedSectionView(RelatedSectionView):
 
         # 'Duration days' entry.
         self._lastsDays = MyStringVar()
-        self._lastsDaysEntry = LabelEntry(sectionDurationFrame,
-                   text=_('Days'),
-                   textvariable=self._lastsDays,
-                   lblWidth=self._DATE_TIME_LBL_X)
+        self._lastsDaysEntry = LabelEntry(
+            sectionDurationFrame,
+            text=_('Days'),
+            textvariable=self._lastsDays,
+            lblWidth=self._DATE_TIME_LBL_X
+            )
         self._lastsDaysEntry.pack(anchor='w')
         inputWidgets.append(self._lastsDaysEntry)
         self._lastsDaysEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Duration hours' entry.
         self._lastsHours = MyStringVar()
-        self._lastsHoursEntry = LabelEntry(sectionDurationFrame,
-                   text=_('Hours'),
-                   textvariable=self._lastsHours,
-                   lblWidth=self._DATE_TIME_LBL_X)
+        self._lastsHoursEntry = LabelEntry(
+            sectionDurationFrame,
+            text=_('Hours'),
+            textvariable=self._lastsHours,
+            lblWidth=self._DATE_TIME_LBL_X
+            )
         self._lastsHoursEntry.pack(anchor='w')
         inputWidgets.append(self._lastsHoursEntry)
         self._lastsHoursEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Duration minutes' entry.
         self._lastsMinutes = MyStringVar()
-        self._lastsMinutesEntry = LabelEntry(sectionDurationFrame,
-                   text=_('Minutes'),
-                   textvariable=self._lastsMinutes,
-                   lblWidth=self._DATE_TIME_LBL_X)
+        self._lastsMinutesEntry = LabelEntry(
+            sectionDurationFrame,
+            text=_('Minutes'),
+            textvariable=self._lastsMinutes,
+            lblWidth=self._DATE_TIME_LBL_X
+            )
         self._lastsMinutesEntry.pack(anchor='w')
         inputWidgets.append(self._lastsMinutesEntry)
         self._lastsMinutesEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Clear duration' button.
-        self._clearDurationButton = ttk.Button(sectionDurationFrame,
-                   text=_('Clear duration'),
-                   command=self._clear_duration)
+        self._clearDurationButton = ttk.Button(
+            sectionDurationFrame,
+            text=_('Clear duration'),
+            command=self._clear_duration
+            )
         self._clearDurationButton.pack(side='left', padx=1, pady=2)
         inputWidgets.append(self._clearDurationButton)
+
+        # 'Generate' button.
+        self._generatDurationButton = ttk.Button(
+            sectionDurationFrame,
+            text=_('Generate'),
+            command=self._auto_set_duration
+            )
+        self._generatDurationButton.pack(side='left', padx=1, pady=2)
+        inputWidgets.append(self._generatDurationButton)
 
         ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
 
@@ -336,23 +368,103 @@ class DatedSectionView(RelatedSectionView):
         else:
             self._dateTimeFrame.hide()
 
-    def _auto_set(self):
+    def _auto_set_date(self):
         """Set section start to the end of the previous section."""
-
         prevScId = self._ui.tv.prev_node(self._elementId)
-        if prevScId:
-            newDate, newTime, newDay = self._mdl.novel.sections[prevScId].get_end_date_time()
-            if newTime is not None:
-                self.doNotUpdate = True
-                self._element.date = newDate
-                self._element.time = newTime
-                self._element.day = newDay
-                self.doNotUpdate = False
-                self._startDate.set(newDate)
-                self._startTime.set(newTime.rsplit(':', 1)[0])
-                self._startDay.set(newDay)
-            else:
-                self._ui.show_error(_('The previous section has no date/time set.'), title=_('Cannot generate date/time'))
+        if not prevScId:
+            return
+
+        newDate, newTime, newDay = self._mdl.novel.sections[prevScId].get_end_date_time()
+        if newTime is None:
+            self._ui.show_error(
+                _('The previous section has no time set.'),
+                title=_('Cannot generate date/time')
+                )
+            return
+
+        self.doNotUpdate = True
+        self._element.date = newDate
+        self._element.time = newTime
+        self._element.day = newDay
+        self.doNotUpdate = False
+        self._startDate.set(newDate)
+        self._startTime.set(newTime.rsplit(':', 1)[0])
+        self._startDay.set(newDay)
+
+    def _auto_set_duration(self):
+        """Calculate section duration from the start of the next section."""
+
+        def day_to_date(day, refDate):
+            deltaDays = timedelta(days=int(day))
+            return date.isoformat(refDate + deltaDays)
+
+        nextScId = self._ui.tv.next_node(self._elementId)
+        if not nextScId:
+            return
+
+        thisTimeIso = self._element.time
+        if not thisTimeIso:
+            self._ui.show_error(
+                _('This section has no time set.'),
+                title=_('Cannot generate duration')
+                )
+            return
+
+        nextTimeIso = self._mdl.novel.sections[nextScId].time
+        if not nextTimeIso:
+            self._ui.show_error(
+                _('The next section has no time set.'),
+                title=_('Cannot generate duration')
+                )
+            return
+
+        try:
+            refDateIso = self._mdl.novel.referenceDate
+            refDate = date.fromisoformat(refDateIso)
+        except:
+            refDate = date.today()
+            refDateIso = date.isoformat(refDate)
+        if self._mdl.novel.sections[nextScId].date:
+            nextDateIso = self._mdl.novel.sections[nextScId].date
+        elif self._mdl.novel.sections[nextScId].day:
+            nextDateIso = day_to_date(self._mdl.novel.sections[nextScId].day, refDate)
+        elif self._element.day:
+            nextDateIso = self._element.day
+        else:
+            nextDateIso = refDateIso
+        if self._element.date:
+            thisDateIso = self._element.date
+        elif self._element.day:
+            thisDateIso = day_to_date(self._element.day, refDate)
+        else:
+            thisDateIso = nextDateIso
+
+        StartDateTime = datetime.fromisoformat(f'{thisDateIso}T{thisTimeIso}')
+        endDateTime = datetime.fromisoformat(f'{nextDateIso}T{nextTimeIso}')
+        sectionDuration = endDateTime - StartDateTime
+        lastsHours = sectionDuration.seconds // 3600
+        lastsMinutes = (sectionDuration.seconds % 3600) // 60
+        if sectionDuration.days:
+            newDays = str(sectionDuration.days)
+        else:
+            newDays = None
+        if lastsHours:
+            newHours = str(lastsHours)
+        else:
+            newHours = None
+        if lastsMinutes:
+            newMinutes = str(lastsMinutes)
+        else:
+            newMinutes = None
+
+        self.doNotUpdate = True
+        self._element.lastsDays = newDays
+        self._element.lastsHours = newHours
+        self._element.lastsMinutes = newMinutes
+        self.doNotUpdate = False
+        self._lastsDays.set(newDays)
+        self._lastsHours.set(newHours)
+        self._lastsMinutes.set(newMinutes)
 
     def _clear_duration(self):
         """Remove duration data from the section."""

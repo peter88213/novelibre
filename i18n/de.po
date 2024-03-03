@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.5.0\n"
-"POT-Creation-Date: 2024-03-02 15:16:32\n"
-"PO-Revision-Date: 2024-03-02 15:16:32\n"
+"Project-Id-Version: 2.6.0\n"
+"POT-Creation-Date: 2024-03-03 11:40:25\n"
+"PO-Revision-Date: 2024-03-03 11:40:25\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -129,6 +129,9 @@ msgstr "Kann Datei nicht erzeugen"
 
 msgid "Cannot generate date/time"
 msgstr "Kann Datum/Zeit nicht erzeugen"
+
+msgid "Cannot generate duration"
+msgstr "Kann Dauer nicht erzeugen"
 
 msgid "Cannot join sections"
 msgstr "Kann Abschnitte nicht zusammenfassen"
@@ -982,11 +985,14 @@ msgstr "Textdatei"
 msgid "The change takes effect after next startup."
 msgstr "Die Änderung wird beim nächsten Programmstart wirksam"
 
+msgid "The next section has no time set."
+msgstr "Der nachfolgende Abschnitt hat keine Zeitangabe"
+
 msgid "The plugin remains active until next start."
 msgstr "Das Plugin bleibt bis zum nächsten Start aktiv."
 
-msgid "The previous section has no date/time set."
-msgstr "Der vorhergehende Abschnitt hat keine Datum/Zeitangaben"
+msgid "The previous section has no time set."
+msgstr "Der vorhergehende Abschnitt hat keine Zeitangabe"
 
 msgid "The project \"{}\" was created with a newer novelibre version."
 msgstr "Das Projekt \"{}\" wurde mit einer neueren Version von novelibre erzeugt."
@@ -1011,6 +1017,9 @@ msgstr "Es gibt keinen vorhergehenden Abschnitt"
 
 msgid "This document is not meant to be written back"
 msgstr "Dieses Dokument ist nicht zum Zurückschreiben gedacht"
+
+msgid "This section has no time set."
+msgstr "Dieser Abschnitt hat keine Zeitangabe"
 
 msgid "Thursday"
 msgstr "Donnerstag"

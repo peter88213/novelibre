@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.5.0\n"
-"POT-Creation-Date: 2024-03-02 15:16:32\n"
+"Project-Id-Version: 2.6.0\n"
+"POT-Creation-Date: 2024-03-03 11:40:25\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -129,6 +129,9 @@ msgid "Cannot create file"
 msgstr ""
 
 msgid "Cannot generate date/time"
+msgstr ""
+
+msgid "Cannot generate duration"
 msgstr ""
 
 msgid "Cannot join sections"
@@ -983,10 +986,13 @@ msgstr ""
 msgid "The change takes effect after next startup."
 msgstr ""
 
+msgid "The next section has no time set."
+msgstr ""
+
 msgid "The plugin remains active until next start."
 msgstr ""
 
-msgid "The previous section has no date/time set."
+msgid "The previous section has no time set."
 msgstr ""
 
 msgid "The project \"{}\" was created with a newer novelibre version."
@@ -1011,6 +1017,9 @@ msgid "There is no previous section"
 msgstr ""
 
 msgid "This document is not meant to be written back"
+msgstr ""
+
+msgid "This section has no time set."
 msgstr ""
 
 msgid "Thursday"
