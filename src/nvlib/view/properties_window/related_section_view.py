@@ -157,7 +157,7 @@ class RelatedSectionView(BasicView):
             listboxSize = self._HEIGHT_LIMIT
         self._characterCollection.cListbox.config(height=listboxSize)
         if not self._characterCollection.cListbox.curselection() or not self._characterCollection.cListbox.focus_get():
-            self._characterCollection.deactivate_buttons()
+            self._characterCollection.disable_buttons()
 
         # 'Locations' window.
         self._lcTitles = self._get_element_titles(self._element.locations, self._mdl.novel.locations)
@@ -167,7 +167,7 @@ class RelatedSectionView(BasicView):
             listboxSize = self._HEIGHT_LIMIT
         self._locationCollection.cListbox.config(height=listboxSize)
         if not self._locationCollection.cListbox.curselection() or not self._locationCollection.cListbox.focus_get():
-            self._locationCollection.deactivate_buttons()
+            self._locationCollection.disable_buttons()
 
         # 'Items' window.
         self._itTitles = self._get_element_titles(self._element.items, self._mdl.novel.items)
@@ -177,25 +177,25 @@ class RelatedSectionView(BasicView):
             listboxSize = self._HEIGHT_LIMIT
         self._itemCollection.cListbox.config(height=listboxSize)
         if not self._itemCollection.cListbox.curselection() or not self._itemCollection.cListbox.focus_get():
-            self._itemCollection.deactivate_buttons()
+            self._itemCollection.disable_buttons()
 
     def _activate_character_buttons(self, event=None):
         if self._element.characters:
-            self._characterCollection.activate_buttons()
+            self._characterCollection.enable_buttons()
         else:
-            self._characterCollection.deactivate_buttons()
+            self._characterCollection.disable_buttons()
 
     def _activate_location_buttons(self, event=None):
         if self._element.locations:
-            self._locationCollection.activate_buttons()
+            self._locationCollection.enable_buttons()
         else:
-            self._locationCollection.deactivate_buttons()
+            self._locationCollection.disable_buttons()
 
     def _activate_item_buttons(self, event=None):
         if self._element.items:
-            self._itemCollection.activate_buttons()
+            self._itemCollection.enable_buttons()
         else:
-            self._itemCollection.deactivate_buttons()
+            self._itemCollection.disable_buttons()
 
     def _add_character(self, event=None):
         # Add the selected element to the collection, if applicable.

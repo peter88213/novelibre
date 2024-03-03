@@ -22,7 +22,7 @@ class CollectionBox(ttk.Frame):
         inputWidgets -- List with references to the input widgets.
         
     The inputWidgets list can be used to lock the application, deactivating the input widgets.
-    The activate_buttons() and deactivate_buttons() methods are intended for setting the 
+    The enable_buttons() and disable_buttons() methods are intended for setting the 
     buttons' status from outsides, dependent on the list content and selection. So "Add" is always 
     meant to be active, whereas "Open" and "Remove" is only to be active when a list item is selected.
     """
@@ -62,7 +62,7 @@ class CollectionBox(ttk.Frame):
         """
         super().__init__(master, **kw)
         if cmdActivate is None:
-            cmdActivate = self.activate_buttons
+            cmdActivate = self.enable_buttons
 
         # Listbox.
         listFrame = ttk.Frame(self)
@@ -129,18 +129,18 @@ class CollectionBox(ttk.Frame):
             self.inputWidgets.append(self.btnRemove)
             self.cListbox.bind('<Delete>', cmdRemove)
 
-    def activate_buttons(self, event=None):
+    def enable_buttons(self, event=None):
         """Activate the group of activatable buttons."""
         self.btnOpen.config(state='normal')
         self.btnRemove.config(state='normal')
 
-    def deactivate_buttons(self, event=None):
+    def disable_buttons(self, event=None):
         """Deactivate the group of activatable buttons."""
         self.btnOpen.config(state='disabled')
         self.btnRemove.config(state='disabled')
 
     def _on_change_selection(self, event=None):
-        self.activate_buttons()
+        self.enable_buttons()
         if self._cmdSelect is not None:
             try:
                 self._cmdSelect(self.cListbox.curselection()[0])

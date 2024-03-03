@@ -51,6 +51,7 @@ class BasicView(ttk.Frame, ABC):
 
         self.doNotUpdate = False
         self._pickingMode = False
+        self._isLocked = False
 
         # Frame for element specific informations.
         self._propertiesFrame = ttk.Frame(self)
@@ -96,6 +97,7 @@ class BasicView(ttk.Frame, ABC):
             pass
         for widget in self._inputWidgets:
             widget.config(state='disabled')
+        self._isLocked = True
 
     @abstractmethod
     def set_data(self, elementId):
@@ -128,7 +130,7 @@ class BasicView(ttk.Frame, ABC):
         self.pack(expand=True, fill='both')
 
     def unlock(self):
-        """enable element change."""
+        """Enable element change."""
         self._indexCard.unlock()
         try:
             self._notesWindow.config(state='normal')
@@ -136,6 +138,7 @@ class BasicView(ttk.Frame, ABC):
             pass
         for widget in self._inputWidgets:
             widget.config(state='normal')
+        self._isLocked = False
 
     def _add_separator(self):
         ttk.Separator(self._propertiesFrame, orient='horizontal').pack(fill='x')

@@ -263,10 +263,12 @@ class FullSectionView(DatedSectionView):
         #--- 'Append to previous section' checkbox.
         self._element.appendToPrev = self._appendToPrev.get()
 
+        #--- 'Arc notes' text box.
+        self._save_arc_notes()
+
         #--- 'Goal/Reaction' window.
         if self._goalWindow.hasChanged:
             self._element.goal = self._goalWindow.get_text()
-
         #--- 'Conflict/Dilemma' window.
         if self._conflictWindow.hasChanged:
             self._element.conflict = self._conflictWindow.get_text()
@@ -304,11 +306,20 @@ class FullSectionView(DatedSectionView):
             listboxSize = self._HEIGHT_LIMIT
         self._arcCollection.cListbox.config(height=listboxSize)
         if not self._arcCollection.cListbox.curselection() or not self._arcCollection.cListbox.focus_get():
-            self._arcCollection.deactivate_buttons()
+            self._arcCollection.disable_buttons()
 
         #--- 'Arc notes' text box.
+        self._arcNotesWindow.clear()
+        self._arcNotesWindow.config(state='disabled')
+        self._arcNotesWindow.config(bg='light gray')
+        if self._arcTitles:
+            self._arcCollection.cListbox.select_set(0)
+            self._selectedArc = 0
+            self._on_select_arc(0)
+        else:
+            self._selectedArc = None
 
-        #--- "Plot points" label
+        #--- "Plot poinself._arcCollection.cListbox.ts" label
         plotPointTitles = []
         for tpId in self._element.scTurningPoints:
             acId = self._element.scTurningPoints[tpId]
@@ -377,11 +388,17 @@ class FullSectionView(DatedSectionView):
         else:
             self._set_action_section()
 
+    def unlock(self):
+        """Enable arc notes only if an arc is selected."""
+        super().unlock()
+        if self._selectedArc is None:
+            self._arcNotesWindow.config(state='disabled')
+
     def _activate_arc_buttons(self, event=None):
         if self._element.scArcs:
-            self._arcCollection.activate_buttons()
+            self._arcCollection.enable_buttons()
         else:
-            self._arcCollection.deactivate_buttons()
+            self._arcCollection.disable_buttons()
 
     def _add_arc(self, event=None):
         # Add the selected element to the collection, if applicable.
@@ -442,17 +459,16 @@ class FullSectionView(DatedSectionView):
 
     def _on_select_arc(self, selection):
         """Callback routine for section arc list selection."""
-        if self._selectedArc and self._arcNotesWindow.hasChanged:
-            plotNotes = self._element.plotNotes
-            if plotNotes is None:
-                plotNotes = {}
-            plotNotes[self._selectedArc] = self._arcNotesWindow.get_text()
-            self._element.plotNotes = plotNotes
+        self._save_arc_notes()
         self._selectedArc = self._element.scArcs[selection]
+        self._arcNotesWindow.config(state='normal')
         if self._element.plotNotes:
             self._arcNotesWindow.set_text(self._element.plotNotes.get(self._selectedArc, ''))
         else:
             self._arcNotesWindow.clear()
+        if self._isLocked:
+            self._arcNotesWindow.config(state='disabled')
+        self._arcNotesWindow.config(bg='white')
 
     def _pick_arc(self, event=None):
         """Enter the "add arc" selection mode."""
@@ -469,27 +485,38 @@ class FullSectionView(DatedSectionView):
 
         acId = self._element.scArcs[selection]
         title = self._mdl.novel.arcs[acId].title
-        if self._ui.ask_yes_no(f'{_("Remove arc")}: "{title}"?'):
+        if not self._ui.ask_yes_no(f'{_("Remove arc")}: "{title}"?'):
+            return
 
-            # Remove the arc from the section's list.
-            arcList = self._element.scArcs
-            del arcList[selection]
-            self._element.scArcs = arcList
+        # Remove the arc from the section's list.
+        arcList = self._element.scArcs
+        del arcList[selection]
+        self._element.scArcs = arcList
 
-            # Remove the section from the arc's list.
-            arcSections = self._mdl.novel.arcs[acId].sections
-            if self._elementId in arcSections:
-                arcSections.remove(self._elementId)
-                self._mdl.novel.arcs[acId].sections = arcSections
+        # Remove the section from the arc's list.
+        arcSections = self._mdl.novel.arcs[acId].sections
+        if self._elementId in arcSections:
+            arcSections.remove(self._elementId)
+            self._mdl.novel.arcs[acId].sections = arcSections
 
-                # Remove plot point assignments, if any.
-                for tpId in list(self._element.scTurningPoints):
-                    if self._element.scTurningPoints[tpId] == acId:
-                        del(self._element.scTurningPoints[tpId])
-                        # removing the arc's plot point from the section's list
-                        # Note: this doesn't trigger the refreshing method
-                        self._mdl.novel.turningPoints[tpId].sectionAssoc = None
-                        # un-assigning the section from the arc's plot point
+            # Remove plot point assignments, if any.
+            for tpId in list(self._element.scTurningPoints):
+                if self._element.scTurningPoints[tpId] == acId:
+                    del(self._element.scTurningPoints[tpId])
+                    # removing the arc's plot point from the section's list
+                    # Note: this doesn't trigger the refreshing method
+                    self._mdl.novel.turningPoints[tpId].sectionAssoc = None
+                    # un-assigning the section from the arc's plot point
+
+    def _save_arc_notes(self):
+        if self._selectedArc and self._arcNotesWindow.hasChanged:
+            plotNotes = self._element.plotNotes
+            if plotNotes is None:
+                plotNotes = {}
+            plotNotes[self._selectedArc] = self._arcNotesWindow.get_text()
+            self.doNotUpdate = True
+            self._element.plotNotes = plotNotes
+            self.doNotUpdate = False
 
     def _set_action_section(self, event=None):
         self._goalLabel.config(text=_('Goal'))

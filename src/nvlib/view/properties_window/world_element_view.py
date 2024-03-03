@@ -105,13 +105,13 @@ class WorldElementView(BasicView, ABC):
             listboxSize = self._HEIGHT_LIMIT
         self._linkCollection.cListbox.config(height=listboxSize)
         if not self._linkCollection.cListbox.curselection() or not self._linkCollection.cListbox.focus_get():
-            self._linkCollection.deactivate_buttons()
+            self._linkCollection.disable_buttons()
 
     def _activate_link_buttons(self, event=None):
         if self._element.links:
-            self._linkCollection.activate_buttons()
+            self._linkCollection.enable_buttons()
         else:
-            self._linkCollection.deactivate_buttons()
+            self._linkCollection.disable_buttons()
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""
