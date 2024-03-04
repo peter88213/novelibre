@@ -545,7 +545,7 @@ class NvController:
             except Error as ex:
                 self._ui.set_status(f'!{str(ex)}')
             else:
-                if kwargs.get('lock', True):
+                if kwargs.get('lock', True) and prefs['lock_on_export']:
                     self.lock()
 
     def get_view(self):

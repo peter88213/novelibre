@@ -96,6 +96,8 @@ OPTIONS = dict(
     detach_prop_win=False,
     discard_tmp_docs=True,
     large_icons=False,
+    lock_on_export=False,
+    ask_doc_open=True,
     )
 
 

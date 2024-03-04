@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: unknown\n"
-"POT-Creation-Date: 2024-03-03 17:14:28\n"
-"PO-Revision-Date: 2024-03-03 17:14:36\n"
+"POT-Creation-Date: 2024-03-04 08:32:06\n"
+"PO-Revision-Date: 2024-03-04 08:38:59\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -84,6 +84,9 @@ msgstr "Bogen"
 
 msgid "Arcs"
 msgstr "Bögen"
+
+msgid "Ask before opening exported documents"
+msgstr "Vor dem Öffnen exportierter Dokumente nachfragen"
 
 msgid "Assign section"
 msgstr "Abschnitt zuordnen"
@@ -580,6 +583,9 @@ msgstr "Schauplätze"
 msgid "Lock"
 msgstr "Sperren"
 
+msgid "Lock the project after document export for editing"
+msgstr "Nach dem Dokumentenexport zum Editieren das Projekt sperren"
+
 msgid "Lock/unlock"
 msgstr "Sperren/Entsperren"
 
@@ -801,9 +807,6 @@ msgstr "Plugin-Manager"
 
 msgid "Position"
 msgstr "Position"
-
-msgid "Preferences"
-msgstr "Einstellungen"
 
 msgid "Previous"
 msgstr "Zurück"
@@ -1161,6 +1164,12 @@ msgstr "XML-Gegenstandsdatei"
 
 msgid "XML location data file"
 msgstr "XML-Schauplatzdatei"
+
+msgid "\"Export\" options"
+msgstr "\"Export\"-Optionen"
+
+msgid "\"View\" options"
+msgstr "\"Ansicht\"-Optionen"
 
 msgid "by"
 msgstr "von"

@@ -32,6 +32,7 @@ from novxlib.odt.odt_w_proof import OdtWProof
 from novxlib.odt.odt_w_sectiondesc import OdtWSectionDesc
 from novxlib.odt.odt_w_xref import OdtWXref
 from nvlib.exporter.filter_factory import FilterFactory
+from nvlib.nv_globals import prefs
 
 
 class NvDocExporter:
@@ -116,9 +117,11 @@ class NvDocExporter:
         self._target.write()
         self._targetFileDate = datetime.now().replace(microsecond=0).isoformat(sep=' ')
         if kwargs.get('show', True):
-            if not kwargs.get('ask', True) or messagebox.askyesno(
-                title=self._target.novel.title, message=_('{} created.\n\nOpen now?').format(
-                    norm_path(self._target.DESCRIPTION))):
+            askOpen = kwargs.get('ask', True) and prefs['ask_doc_open']
+            if not askOpen or messagebox.askyesno(
+                title=self._target.novel.title,
+                message=_('{} created.\n\nOpen now?').format(norm_path(self._target.DESCRIPTION))
+                ):
                 open_document(self._target.filePath)
         return _('Created {0} on {1}.').format(self._target.DESCRIPTION, self._targetFileDate)
 

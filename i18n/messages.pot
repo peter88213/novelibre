@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: unknown\n"
-"POT-Creation-Date: 2024-03-03 17:14:28\n"
+"POT-Creation-Date: 2024-03-04 08:32:06\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -13,6 +13,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: novxlib pgettext.py 0.3\n"
 
+
+msgid "\"Export\" options"
+msgstr ""
+
+msgid "\"View\" options"
+msgstr ""
 
 msgid "1st Edit"
 msgstr ""
@@ -84,6 +90,9 @@ msgid "Arc"
 msgstr ""
 
 msgid "Arcs"
+msgstr ""
+
+msgid "Ask before opening exported documents"
 msgstr ""
 
 msgid "Assign section"
@@ -581,6 +590,9 @@ msgstr ""
 msgid "Lock"
 msgstr ""
 
+msgid "Lock the project after document export for editing"
+msgstr ""
+
 msgid "Lock/unlock"
 msgstr ""
 
@@ -801,9 +813,6 @@ msgid "Plugin Manager"
 msgstr ""
 
 msgid "Position"
-msgstr ""
-
-msgid "Preferences"
 msgstr ""
 
 msgid "Previous"

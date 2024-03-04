@@ -15,6 +15,7 @@ from nvlib.view.icons import Icons
 from nvlib.view.properties_window.properties_viewer import PropertiesViewer
 from nvlib.view.toolbar import Toolbar
 from nvlib.view.tree_window.tree_viewer import TreeViewer
+from nvlib.exporter.export_options_window import ExportOptionsWindow
 from nvlib.view.view_options_window import ViewOptionsWindow
 from novxlib.novx_globals import AC_ROOT
 from novxlib.novx_globals import BRF_SYNOPSIS_SUFFIX
@@ -716,6 +717,8 @@ class NvView:
         self.exportMenu.add_command(label=_('Cross references (export only)'), command=lambda: self._ctrl.export_document(XREF_SUFFIX, lock=False))
         self.exportMenu.add_separator()
         self.exportMenu.add_command(label=_('Characters/locations/items data files'), command=lambda: self._ctrl.export_document(DATA_SUFFIX, lock=False, show=False))
+        self.exportMenu.add_separator()
+        self.exportMenu.add_command(label=_('Options'), command=self._export_options)
 
         # "Update" menu.
         self.mainMenu.add_command(label=_('Import'), command=self._ctrl.update_project)
@@ -732,6 +735,14 @@ class NvView:
         self.mainMenu.add_cascade(label=_('Help'), menu=self.helpMenu)
         self.helpMenu.add_command(label=_('Online help'), command=lambda: webbrowser.open(self._HELP_URL))
         self.helpMenu.add_command(label=f"novelibre {_('Home page')}", command=lambda: webbrowser.open(self._HOME_URL))
+
+    def _export_options(self, event=None):
+        """Open a toplevel window to edit the export options."""
+        offset = 300
+        __, x, y = self.root.geometry().split('+')
+        windowGeometry = f'+{int(x)+offset}+{int(y)+offset}'
+        ExportOptionsWindow(windowGeometry, self)
+        return 'break'
 
     def _view_options(self, event=None):
         """Open a toplevel window to edit the view options."""

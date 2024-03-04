@@ -8,6 +8,17 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v2.7.0
+
+- New option: Ask whether documents should be opened straight after export.
+- New option: Lock the project after document export.
+- Add "Export" options dialog. 
+- In the section properties view, provide a text box to enter notes for the selected arc.
+- Add the ODS Plot grid to the document types for export and import.
+- Remove the ODS Section list from the document types for import.
+
+Based on novxlib v1.5.0
+
 ### v2.6.1
 
 - Provide translated headers for ODS export.

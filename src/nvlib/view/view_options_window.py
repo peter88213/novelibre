@@ -1,4 +1,4 @@
-"""Provide a class for program settings.
+"""Provide a class for view settings.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -25,7 +25,7 @@ class ViewOptionsWindow(tk.Toplevel):
         """
         self._ui = view
         super().__init__(**kw)
-        self.title(_('Preferences'))
+        self.title(_('"View" options'))
         self.geometry(size)
         self.grab_set()
         self.focus()
