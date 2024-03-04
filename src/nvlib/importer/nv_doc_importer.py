@@ -19,7 +19,7 @@ from novxlib.novx_globals import norm_path
 from novxlib.ods.ods_r_charlist import OdsRCharList
 from novxlib.ods.ods_r_itemlist import OdsRItemList
 from novxlib.ods.ods_r_loclist import OdsRLocList
-from novxlib.ods.ods_r_sectionlist import OdsRSectionList
+from novxlib.ods.ods_r_grid import OdsRGrid
 from novxlib.odt.odt_r_chapterdesc import OdtRChapterDesc
 from novxlib.odt.odt_r_characters import OdtRCharacters
 from novxlib.odt.odt_r_items import OdtRItems
@@ -48,7 +48,7 @@ class NvDocImporter:
         OdsRCharList,
         OdsRLocList,
         OdsRItemList,
-        OdsRSectionList,
+        OdsRGrid,
         ]
     CREATE_SOURCE_CLASSES = []
 

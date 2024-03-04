@@ -19,6 +19,7 @@ from novxlib.ods.ods_w_itemlist import OdsWItemList
 from novxlib.ods.ods_w_loclist import OdsWLocList
 from novxlib.ods.ods_w_plot_list import OdsWPlotList
 from novxlib.ods.ods_w_sectionlist import OdsWSectionList
+from novxlib.ods.ods_w_grid import OdsWGrid
 from novxlib.odt.odt_w_brief_synopsis import OdtWBriefSynopsis
 from novxlib.odt.odt_w_chapterdesc import OdtWChapterDesc
 from novxlib.odt.odt_w_characters import OdtWCharacters
@@ -54,6 +55,7 @@ class NvDocExporter:
         OdsWLocList,
         OdsWItemList,
         OdsWSectionList,
+        OdsWGrid,
         OdsWPlotList,
         DataWriter,
         ]

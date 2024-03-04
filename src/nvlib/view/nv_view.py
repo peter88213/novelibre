@@ -44,6 +44,7 @@ from novxlib.novx_globals import PLOT_SUFFIX
 from novxlib.novx_globals import PN_ROOT
 from novxlib.novx_globals import PROOF_SUFFIX
 from novxlib.novx_globals import SECTIONLIST_SUFFIX
+from novxlib.novx_globals import GRID_SUFFIX
 from novxlib.novx_globals import SECTIONS_SUFFIX
 from novxlib.novx_globals import XREF_SUFFIX
 from novxlib.novx_globals import _
@@ -709,7 +710,7 @@ class NvView:
         self.exportMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Export'), menu=self.exportMenu)
         self.exportMenu.add_command(label=_('Manuscript for editing'), command=lambda:self._ctrl.export_document(MANUSCRIPT_SUFFIX))
-        self.exportMenu.add_separator()
+        self.exportMenu.add_command(label=_('Plot grid for editing'), command=lambda:self._ctrl.export_document(GRID_SUFFIX))
         self.exportMenu.add_command(label=_('Manuscript for third-party word processing'), command=lambda: self._ctrl.export_document(PROOF_SUFFIX))
         self.exportMenu.add_separator()
         self.exportMenu.add_command(label=_('Manuscript for printing (export only)'), command=lambda: self._ctrl.export_document('', lock=False))

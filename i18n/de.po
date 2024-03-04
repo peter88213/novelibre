@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: unknown\n"
-"POT-Creation-Date: 2024-03-04 08:32:06\n"
-"PO-Revision-Date: 2024-03-04 08:38:59\n"
+"POT-Creation-Date: 2024-03-04 09:18:43\n"
+"PO-Revision-Date: 2024-03-04 09:20:58\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -795,6 +795,12 @@ msgstr "Plot"
 
 msgid "Plot description"
 msgstr "Plot-Beschreibung"
+
+msgid "Plot grid"
+msgstr "Handlungsraster (Plot grid)"
+
+msgid "Plot grid for editing"
+msgstr "Handlungsraster (Plot grid) zum Bearbeiten"
 
 msgid "Plot point"
 msgstr "Plotpunkt"
