@@ -649,7 +649,7 @@ class NvView:
         self.sectionMenu.add_cascade(label=_('Set Status'), menu=self.tv.scStatusMenu)
         self.sectionMenu.add_separator()
         self.sectionMenu.add_command(label=_('Export section descriptions for editing'), command=lambda: self._ctrl.export_document(SECTIONS_SUFFIX))
-        self.sectionMenu.add_command(label=_('Export section list (spreadsheet)'), command=lambda: self._ctrl.export_document(SECTIONLIST_SUFFIX))
+        self.sectionMenu.add_command(label=_('Section list (export only)'), command=lambda: self._ctrl.export_document(SECTIONLIST_SUFFIX))
 
         # Character
         self.characterMenu = tk.Menu(self.mainMenu, tearoff=0)

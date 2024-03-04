@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: unknown\n"
-"POT-Creation-Date: 2024-03-04 09:18:43\n"
-"PO-Revision-Date: 2024-03-04 09:20:58\n"
+"POT-Creation-Date: 2024-03-04 19:49:31\n"
+"PO-Revision-Date: 2024-03-04 19:49:38\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -438,9 +438,6 @@ msgstr "Plot-Liste exportieren (Tabelle)"
 
 msgid "Export section descriptions for editing"
 msgstr "Abschnittsbeschreibungen zum Bearbeiten exportieren"
-
-msgid "Export section list (spreadsheet)"
-msgstr "Abschnittsliste exportieren (Tabelle)"
 
 msgid "Export synopsis filtered by arc"
 msgstr "Zusammenfassung nach Bogen gefiltert exportieren"
@@ -912,6 +909,9 @@ msgstr "Link"
 
 msgid "Section list"
 msgstr "Abschnittsliste"
+
+msgid "Section list (export only)"
+msgstr "Abschnittsliste (nur Export)"
 
 msgid "Section notes"
 msgstr "Abschnittsnotizen"

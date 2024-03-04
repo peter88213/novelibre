@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: unknown\n"
-"POT-Creation-Date: 2024-03-04 09:18:43\n"
+"POT-Creation-Date: 2024-03-04 19:49:31\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -444,9 +444,6 @@ msgid "Export plot list (spreadsheet)"
 msgstr ""
 
 msgid "Export section descriptions for editing"
-msgstr ""
-
-msgid "Export section list (spreadsheet)"
 msgstr ""
 
 msgid "Export synopsis filtered by arc"
@@ -918,6 +915,9 @@ msgid "Section link"
 msgstr ""
 
 msgid "Section list"
+msgstr ""
+
+msgid "Section list (export only)"
 msgstr ""
 
 msgid "Section notes"
