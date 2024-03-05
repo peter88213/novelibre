@@ -597,30 +597,30 @@ class TreeViewer(ttk.Frame):
 
         def collect_arcs(chId):
             """Return a tuple of two strings: semicolon-separated plot lines, semicolon-separated plot points."""
-            chArcShortNames = []
-            chTurningPointTitles = []
-            chArcs = {}
+            chPlotlineShortNames = []
+            chPlotPointTitles = []
+            chPlotlines = {}
             for acId in self._mdl.novel.arcs:
-                chArcs[acId] = []
+                chPlotlines[acId] = []
             if self._mdl.novel.chapters[chId].chType == 0:
                 for scId in self.tree.get_children(chId):
                     if self._mdl.novel.sections[scId].scType == 0:
-                        scArcs = self._mdl.novel.sections[scId].scArcs
-                        for acId in scArcs:
+                        scPlotlines = self._mdl.novel.sections[scId].scArcs
+                        for acId in scPlotlines:
                             shortName = self._mdl.novel.arcs[acId].shortName
-                            if not shortName in chArcShortNames:
-                                chArcShortNames.append(shortName)
+                            if not shortName in chPlotlineShortNames:
+                                chPlotlineShortNames.append(shortName)
                         for tpId in self._mdl.novel.sections[scId].scTurningPoints:
-                            chArcs[acId].append(tpId)
-                if len(chArcShortNames) == 1:
-                    for acId in chArcs:
-                        for tpId in chArcs[acId]:
-                            chTurningPointTitles.append(self._mdl.novel.turningPoints[tpId].title)
+                            chPlotlines[acId].append(tpId)
+                if len(chPlotlineShortNames) == 1:
+                    for acId in chPlotlines:
+                        for tpId in chPlotlines[acId]:
+                            chPlotPointTitles.append(self._mdl.novel.turningPoints[tpId].title)
                 else:
-                    for acId in chArcs:
-                        for tpId in chArcs[acId]:
-                            chTurningPointTitles.append(f'{self._mdl.novel.arcs[acId].shortName}: {self._mdl.novel.turningPoints[tpId].title}')
-            return list_to_string(chArcShortNames), list_to_string(chTurningPointTitles)
+                    for acId in chPlotlines:
+                        for tpId in chPlotlines[acId]:
+                            chPlotPointTitles.append(f'{self._mdl.novel.arcs[acId].shortName}: {self._mdl.novel.turningPoints[tpId].title}')
+            return list_to_string(chPlotlineShortNames), list_to_string(chPlotPointTitles)
 
         def collect_note_indicators(chId):
             """Return a string that indicates section notes within the chapter."""
@@ -839,21 +839,21 @@ class TreeViewer(ttk.Frame):
             columns[self._colPos['dr']] = f'{days}{hours}{minutes}'
 
             # Display plot lines the section belongs to.
-            scArcShortNames = []
-            scTurningPointTitles = []
-            scArcs = self._mdl.novel.sections[scId].scArcs
-            for acId in scArcs:
+            scPlotlineShortNames = []
+            scPlotPointTitles = []
+            scPlotlines = self._mdl.novel.sections[scId].scArcs
+            for acId in scPlotlines:
                 shortName = self._mdl.novel.arcs[acId].shortName
-                if not shortName in scArcShortNames:
-                    scArcShortNames.append(shortName)
+                if not shortName in scPlotlineShortNames:
+                    scPlotlineShortNames.append(shortName)
             for tpId in self._mdl.novel.sections[scId].scTurningPoints:
-                if len(scArcShortNames) == 1:
-                    scTurningPointTitles.append(self._mdl.novel.turningPoints[tpId].title)
+                if len(scPlotlineShortNames) == 1:
+                    scPlotPointTitles.append(self._mdl.novel.turningPoints[tpId].title)
                 else:
                     acId = self._mdl.novel.sections[scId].scTurningPoints[tpId]
-                    scTurningPointTitles.append(f'{self._mdl.novel.arcs[acId].shortName}: {self._mdl.novel.turningPoints[tpId].title}')
-            columns[self._colPos['ac']] = list_to_string(scArcShortNames)
-            columns[self._colPos['tp']] = list_to_string(scTurningPointTitles)
+                    scPlotPointTitles.append(f'{self._mdl.novel.arcs[acId].shortName}: {self._mdl.novel.turningPoints[tpId].title}')
+            columns[self._colPos['ac']] = list_to_string(scPlotlineShortNames)
+            columns[self._colPos['tp']] = list_to_string(scPlotPointTitles)
 
         # "Section has notes" indicator.
         if self._mdl.novel.sections[scId].notes:
@@ -1021,7 +1021,7 @@ class TreeViewer(ttk.Frame):
                 finally:
                     self._wrCtxtMenu.grab_release()
             elif prefix in (AC_ROOT, ARC_PREFIX, ARC_POINT_PREFIX):
-                # Context is Arc/Plot point.
+                # Context is Plot line/Plot point.
                 if self._ctrl.isLocked:
                     # No changes allowed.
                     self._acCtxtMenu.entryconfig(_('Add Plot line'), state='disabled')

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.7.0\n"
-"POT-Creation-Date: 2024-03-05 14:33:34\n"
+"POT-Creation-Date: 2024-03-05 16:28:28\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -713,7 +713,7 @@ msgstr ""
 msgid "Notes"
 msgstr ""
 
-msgid "Notes on the selected arc"
+msgid "Notes on the selected plot line"
 msgstr ""
 
 msgid "Novel outline"

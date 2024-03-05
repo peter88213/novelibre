@@ -86,29 +86,29 @@ class FullSectionView(DatedSectionView):
         self._arcFrame = FoldingFrame(self._sectionExtraFrame, _('Plot'), self._toggle_arc_frame)
 
         # 'Plot lines' listbox.
-        self._arcTitles = ''
+        self._plotlineTitles = ''
         self._arcLabel = ttk.Label(self._arcFrame, text=_('Plot lines'))
         self._arcLabel.pack(anchor='w')
-        self._arcCollection = CollectionBox(
+        self._plotlineCollection = CollectionBox(
             self._arcFrame,
-            cmdAdd=self._pick_arc,
-            cmdRemove=self._remove_arc,
+            cmdAdd=self._pick_plotline,
+            cmdRemove=self._remove_plotline,
             cmdOpen=self._go_to_arc,
             cmdActivate=self._activate_arc_buttons,
-            cmdSelect=self._on_select_arc,
+            cmdSelect=self._on_select_plotline,
             lblOpen=_('Go to'),
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
             iconOpen=self._ui.icons.gotoIcon
             )
-        self._arcCollection.pack(fill='x')
-        inputWidgets.extend(self._arcCollection.inputWidgets)
-        self._selectedArc = None
+        self._plotlineCollection.pack(fill='x')
+        inputWidgets.extend(self._plotlineCollection.inputWidgets)
+        self._selectedPlotline = None
 
         #--- 'Plot line notes' text box for entering self._element.plotNotes[acId],
         #    where acId is the ID of the selected plot line in the'Plot lines' listbox.
-        ttk.Label(self._arcFrame, text=_('Notes on the selected arc')).pack(anchor='w')
-        self._arcNotesWindow = TextBox(
+        ttk.Label(self._arcFrame, text=_('Notes on the selected plot line')).pack(anchor='w')
+        self._plotNotesWindow = TextBox(
             self._arcFrame,
             wrap='word',
             undo=True,
@@ -121,8 +121,8 @@ class FullSectionView(DatedSectionView):
             fg=prefs['color_text_fg'],
             insertbackground=prefs['color_text_fg'],
             )
-        self._arcNotesWindow.pack(fill='x')
-        inputWidgets.append(self._arcNotesWindow)
+        self._plotNotesWindow.pack(fill='x')
+        inputWidgets.append(self._plotNotesWindow)
 
         tk.Label(self._arcFrame, text=_('Plot points')).pack(anchor='w')
 
@@ -264,7 +264,7 @@ class FullSectionView(DatedSectionView):
         self._element.appendToPrev = self._appendToPrev.get()
 
         #--- 'Plot line notes' text box.
-        self._save_arc_notes()
+        self._save_plot_notes()
 
         #--- 'Goal/Reaction' window.
         if self._goalWindow.hasChanged:
@@ -299,25 +299,25 @@ class FullSectionView(DatedSectionView):
         self._viewpoint.set(value=vp)
 
         #--- 'Plot lines' listbox.
-        self._arcTitles = self._get_arc_titles(self._element.scArcs, self._mdl.novel.arcs)
-        self._arcCollection.cList.set(self._arcTitles)
-        listboxSize = len(self._arcTitles)
+        self._plotlineTitles = self._get_plotline_titles(self._element.scArcs, self._mdl.novel.arcs)
+        self._plotlineCollection.cList.set(self._plotlineTitles)
+        listboxSize = len(self._plotlineTitles)
         if listboxSize > self._HEIGHT_LIMIT:
             listboxSize = self._HEIGHT_LIMIT
-        self._arcCollection.cListbox.config(height=listboxSize)
-        if not self._arcCollection.cListbox.curselection() or not self._arcCollection.cListbox.focus_get():
-            self._arcCollection.disable_buttons()
+        self._plotlineCollection.cListbox.config(height=listboxSize)
+        if not self._plotlineCollection.cListbox.curselection() or not self._plotlineCollection.cListbox.focus_get():
+            self._plotlineCollection.disable_buttons()
 
-        #--- 'Plot line notes' text box.
-        self._arcNotesWindow.clear()
-        self._arcNotesWindow.config(state='disabled')
-        self._arcNotesWindow.config(bg='light gray')
-        if self._arcTitles:
-            self._arcCollection.cListbox.select_set(0)
-            self._selectedArc = 0
-            self._on_select_arc(0)
+        #--- 'Plot notes' text box.
+        self._plotNotesWindow.clear()
+        self._plotNotesWindow.config(state='disabled')
+        self._plotNotesWindow.config(bg='light gray')
+        if self._plotlineTitles:
+            self._plotlineCollection.cListbox.select_set(0)
+            self._selectedPlotline = 0
+            self._on_select_plotline(0)
         else:
-            self._selectedArc = None
+            self._selectedPlotline = None
 
         #--- "Plot points" label
         plotPointTitles = []
@@ -391,31 +391,31 @@ class FullSectionView(DatedSectionView):
     def unlock(self):
         """Enable plot line notes only if a plot line is selected."""
         super().unlock()
-        if self._selectedArc is None:
-            self._arcNotesWindow.config(state='disabled')
+        if self._selectedPlotline is None:
+            self._plotNotesWindow.config(state='disabled')
 
     def _activate_arc_buttons(self, event=None):
         if self._element.scArcs:
-            self._arcCollection.enable_buttons()
+            self._plotlineCollection.enable_buttons()
         else:
-            self._arcCollection.disable_buttons()
+            self._plotlineCollection.disable_buttons()
 
-    def _add_arc(self, event=None):
+    def _add_plotline(self, event=None):
         # Add the selected element to the collection, if applicable.
-        arcList = self._element.scArcs
+        plotlineList = self._element.scArcs
         acId = self._ui.tv.tree.selection()[0]
         if not acId.startswith(ARC_PREFIX):
             # Restore the previous section selection mode.
             self._end_picking_mode()
-        elif not acId in arcList:
-            arcList.append(acId)
-            self._element.scArcs = arcList
-            arcSections = self._mdl.novel.arcs[acId].sections
-            if not self._elementId in arcSections:
-                arcSections.append(self._elementId)
-                self._mdl.novel.arcs[acId].sections = arcSections
+        elif not acId in plotlineList:
+            plotlineList.append(acId)
+            self._element.scArcs = plotlineList
+            plotlineSections = self._mdl.novel.arcs[acId].sections
+            if not self._elementId in plotlineSections:
+                plotlineSections.append(self._elementId)
+                self._mdl.novel.arcs[acId].sections = plotlineSections
 
-    def _get_arc_titles(self, elemIds, elements):
+    def _get_plotline_titles(self, elemIds, elements):
         """Return a list of plot line titles, preceded by the short names.
         
         Positional arguments:
@@ -451,35 +451,35 @@ class FullSectionView(DatedSectionView):
     def _go_to_arc(self, event=None):
         """Go to the plot line selected in the listbox."""
         try:
-            selection = self._arcCollection.cListbox.curselection()[0]
+            selection = self._plotlineCollection.cListbox.curselection()[0]
         except:
             return
 
         self._ui.tv.go_to_node(self._element.scArcs[selection])
 
-    def _on_select_arc(self, selection):
+    def _on_select_plotline(self, selection):
         """Callback routine for section plot line list selection."""
-        self._save_arc_notes()
-        self._selectedArc = self._element.scArcs[selection]
-        self._arcNotesWindow.config(state='normal')
+        self._save_plot_notes()
+        self._selectedPlotline = self._element.scArcs[selection]
+        self._plotNotesWindow.config(state='normal')
         if self._element.plotNotes:
-            self._arcNotesWindow.set_text(self._element.plotNotes.get(self._selectedArc, ''))
+            self._plotNotesWindow.set_text(self._element.plotNotes.get(self._selectedPlotline, ''))
         else:
-            self._arcNotesWindow.clear()
+            self._plotNotesWindow.clear()
         if self._isLocked:
-            self._arcNotesWindow.config(state='disabled')
-        self._arcNotesWindow.config(bg='white')
+            self._plotNotesWindow.config(state='disabled')
+        self._plotNotesWindow.config(bg='white')
 
-    def _pick_arc(self, event=None):
+    def _pick_plotline(self, event=None):
         """Enter the "add plot line" selection mode."""
         self._start_picking_mode()
-        self._ui.tv.tree.bind('<<TreeviewSelect>>', self._add_arc)
+        self._ui.tv.tree.bind('<<TreeviewSelect>>', self._add_plotline)
         self._ui.tv.tree.see(AC_ROOT)
 
-    def _remove_arc(self, event=None):
+    def _remove_plotline(self, event=None):
         """Remove the plot line selected in the listbox from the section associations."""
         try:
-            selection = self._arcCollection.cListbox.curselection()[0]
+            selection = self._plotlineCollection.cListbox.curselection()[0]
         except:
             return
 
@@ -508,12 +508,12 @@ class FullSectionView(DatedSectionView):
                     self._mdl.novel.turningPoints[tpId].sectionAssoc = None
                     # un-assigning the section from the plot line's plot point
 
-    def _save_arc_notes(self):
-        if self._selectedArc and self._arcNotesWindow.hasChanged:
+    def _save_plot_notes(self):
+        if self._selectedPlotline and self._plotNotesWindow.hasChanged:
             plotNotes = self._element.plotNotes
             if plotNotes is None:
                 plotNotes = {}
-            plotNotes[self._selectedArc] = self._arcNotesWindow.get_text()
+            plotNotes[self._selectedPlotline] = self._plotNotesWindow.get_text()
             self.doNotUpdate = True
             self._element.plotNotes = plotNotes
             self.doNotUpdate = False
