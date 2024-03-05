@@ -10,6 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### v2.7.0
 
+- Up to 20 sections can now be added at once.
 - New option: Ask whether documents should be opened straight after export.
 - New option: Lock the project after document export.
 - Add "Export" options dialog. 

@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.7.0\n"
-"POT-Creation-Date: 2024-03-05 08:44:31\n"
-"PO-Revision-Date: 2024-03-05 08:44:31\n"
+"Project-Id-Version: unknown\n"
+"POT-Creation-Date: 2024-03-05 09:41:32\n"
+"PO-Revision-Date: 2024-03-05 09:43:32\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -63,6 +63,12 @@ msgstr "Projektnotiz hinizufügen"
 
 msgid "Add Section"
 msgstr "Abschnitt hinzufügen"
+
+msgid "Add multiple sections"
+msgstr "Mehrere Abschnitte hinzufügen"
+
+msgid "Add sections"
+msgstr "Abschnitte hinzufügen"
 
 msgid "Aka"
 msgstr "alias"
@@ -513,6 +519,9 @@ msgstr "Homepage"
 
 msgid "Hours"
 msgstr "Stunden"
+
+msgid "How many sections to add?"
+msgstr "Wie viele Abschnitte hinzufügen?"
 
 msgid "Image file"
 msgstr "Bilddatei"

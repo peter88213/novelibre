@@ -6,6 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import sys
 from tkinter import messagebox
+from tkinter import simpledialog
 from tkinter import ttk
 import webbrowser
 
@@ -50,6 +51,9 @@ from novxlib.novx_globals import XREF_SUFFIX
 from novxlib.novx_globals import _
 from novxlib.ui.set_icon_tk import set_icon
 import tkinter as tk
+
+MAX_NR_NEW_SECTIONS = 20
+# maximum number of sections to add in bulk
 
 
 class NvView:
@@ -544,6 +548,17 @@ class NvView:
             except AttributeError:
                 pass
 
+    def _add_multiple_sections(self):
+        n = simpledialog.askinteger(
+            title=_('Add sections'),
+            prompt=_('How many sections to add?')
+            )
+        if n > MAX_NR_NEW_SECTIONS:
+            n = MAX_NR_NEW_SECTIONS
+        if n > 0:
+            for __ in range(n):
+                self._ctrl.add_section()
+
     def _bind_events(self):
         self.root.bind(self._KEY_RESTORE_STATUS[0], self.restore_status)
         self.root.bind(self._KEY_OPEN_PROJECT[0], self._ctrl.open_project)
@@ -644,6 +659,7 @@ class NvView:
         self.sectionMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Section'), menu=self.sectionMenu)
         self.sectionMenu.add_command(label=_('Add'), command=self._ctrl.add_section)
+        self.sectionMenu.add_command(label=_('Add multiple sections'), command=self._add_multiple_sections)
         self.sectionMenu.add_separator()
         self.sectionMenu.add_cascade(label=_('Set Type'), menu=self.tv.selectTypeMenu)
         self.sectionMenu.add_cascade(label=_('Set Status'), menu=self.tv.scStatusMenu)
