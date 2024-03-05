@@ -103,7 +103,7 @@ class NvController:
         raise NotImplementedError
 
     def add_arc(self, **kwargs):
-        """Add an arc to the novel.
+        """Add a plot line to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -481,7 +481,7 @@ class NvController:
             elif elemId.startswith(ITEM_PREFIX):
                 candidate = f'{_("Item")} "{self._mdl.novel.items[elemId].title}"'
             elif elemId.startswith(ARC_PREFIX):
-                candidate = f'{_("Arc")} "{self._mdl.novel.arcs[elemId].title}"'
+                candidate = f'{_("Plot line")} "{self._mdl.novel.arcs[elemId].title}"'
             elif elemId.startswith(ARC_POINT_PREFIX):
                 candidate = f'{_("Plot point")} "{self._mdl.novel.turningPoints[elemId].title}"'
             elif elemId.startswith(PRJ_NOTE_PREFIX):

@@ -82,12 +82,12 @@ class FullSectionView(DatedSectionView):
 
         ttk.Separator(self._sectionExtraFrame, orient='horizontal').pack(fill='x')
 
-        #--- Frame for arcs and plot.
+        #--- Frame for plot lines and plot.
         self._arcFrame = FoldingFrame(self._sectionExtraFrame, _('Plot'), self._toggle_arc_frame)
 
-        # 'Arcs' listbox.
+        # 'Plot lines' listbox.
         self._arcTitles = ''
-        self._arcLabel = ttk.Label(self._arcFrame, text=_('Arcs'))
+        self._arcLabel = ttk.Label(self._arcFrame, text=_('Plot lines'))
         self._arcLabel.pack(anchor='w')
         self._arcCollection = CollectionBox(
             self._arcFrame,
@@ -105,8 +105,8 @@ class FullSectionView(DatedSectionView):
         inputWidgets.extend(self._arcCollection.inputWidgets)
         self._selectedArc = None
 
-        #--- 'Arc notes' text box for entering self._element.plotNotes[acId],
-        #    where acId is the ID of the selected arc in the'Arcs' listbox.
+        #--- 'Plot line notes' text box for entering self._element.plotNotes[acId],
+        #    where acId is the ID of the selected plot line in the'Plot lines' listbox.
         ttk.Label(self._arcFrame, text=_('Notes on the selected arc')).pack(anchor='w')
         self._arcNotesWindow = TextBox(
             self._arcFrame,
@@ -263,7 +263,7 @@ class FullSectionView(DatedSectionView):
         #--- 'Append to previous section' checkbox.
         self._element.appendToPrev = self._appendToPrev.get()
 
-        #--- 'Arc notes' text box.
+        #--- 'Plot line notes' text box.
         self._save_arc_notes()
 
         #--- 'Goal/Reaction' window.
@@ -298,7 +298,7 @@ class FullSectionView(DatedSectionView):
             vp = ''
         self._viewpoint.set(value=vp)
 
-        #--- 'Arcs' listbox.
+        #--- 'Plot lines' listbox.
         self._arcTitles = self._get_arc_titles(self._element.scArcs, self._mdl.novel.arcs)
         self._arcCollection.cList.set(self._arcTitles)
         listboxSize = len(self._arcTitles)
@@ -308,7 +308,7 @@ class FullSectionView(DatedSectionView):
         if not self._arcCollection.cListbox.curselection() or not self._arcCollection.cListbox.focus_get():
             self._arcCollection.disable_buttons()
 
-        #--- 'Arc notes' text box.
+        #--- 'Plot line notes' text box.
         self._arcNotesWindow.clear()
         self._arcNotesWindow.config(state='disabled')
         self._arcNotesWindow.config(bg='light gray')
@@ -319,7 +319,7 @@ class FullSectionView(DatedSectionView):
         else:
             self._selectedArc = None
 
-        #--- "Plot poinself._arcCollection.cListbox.ts" label
+        #--- "Plot points" label
         plotPointTitles = []
         for tpId in self._element.scTurningPoints:
             acId = self._element.scTurningPoints[tpId]
@@ -356,7 +356,7 @@ class FullSectionView(DatedSectionView):
         else:
             self._customOutcome = _('N/A')
 
-        #--- Frame for narrative arcs.
+        #--- Frame for plot lines.
         if prefs['show_sc_arcs']:
             self._arcFrame.show()
         else:
@@ -389,7 +389,7 @@ class FullSectionView(DatedSectionView):
             self._set_action_section()
 
     def unlock(self):
-        """Enable arc notes only if an arc is selected."""
+        """Enable plot line notes only if a plot line is selected."""
         super().unlock()
         if self._selectedArc is None:
             self._arcNotesWindow.config(state='disabled')
@@ -416,7 +416,7 @@ class FullSectionView(DatedSectionView):
                 self._mdl.novel.arcs[acId].sections = arcSections
 
     def _get_arc_titles(self, elemIds, elements):
-        """Return a list of arc titles, preceded by the short names.
+        """Return a list of plot line titles, preceded by the short names.
         
         Positional arguments:
             elemIds -- list of element IDs.
@@ -449,7 +449,7 @@ class FullSectionView(DatedSectionView):
         return None
 
     def _go_to_arc(self, event=None):
-        """Go to the arc selected in the listbox."""
+        """Go to the plot line selected in the listbox."""
         try:
             selection = self._arcCollection.cListbox.curselection()[0]
         except:
@@ -458,7 +458,7 @@ class FullSectionView(DatedSectionView):
         self._ui.tv.go_to_node(self._element.scArcs[selection])
 
     def _on_select_arc(self, selection):
-        """Callback routine for section arc list selection."""
+        """Callback routine for section plot line list selection."""
         self._save_arc_notes()
         self._selectedArc = self._element.scArcs[selection]
         self._arcNotesWindow.config(state='normal')
@@ -471,13 +471,13 @@ class FullSectionView(DatedSectionView):
         self._arcNotesWindow.config(bg='white')
 
     def _pick_arc(self, event=None):
-        """Enter the "add arc" selection mode."""
+        """Enter the "add plot line" selection mode."""
         self._start_picking_mode()
         self._ui.tv.tree.bind('<<TreeviewSelect>>', self._add_arc)
         self._ui.tv.tree.see(AC_ROOT)
 
     def _remove_arc(self, event=None):
-        """Remove the arc selected in the listbox from the section arcs."""
+        """Remove the plot line selected in the listbox from the section associations."""
         try:
             selection = self._arcCollection.cListbox.curselection()[0]
         except:
@@ -485,15 +485,15 @@ class FullSectionView(DatedSectionView):
 
         acId = self._element.scArcs[selection]
         title = self._mdl.novel.arcs[acId].title
-        if not self._ui.ask_yes_no(f'{_("Remove arc")}: "{title}"?'):
+        if not self._ui.ask_yes_no(f'{_("Remove plot line")}: "{title}"?'):
             return
 
-        # Remove the arc from the section's list.
+        # Remove the plot line from the section's list.
         arcList = self._element.scArcs
         del arcList[selection]
         self._element.scArcs = arcList
 
-        # Remove the section from the arc's list.
+        # Remove the section from the plot line's list.
         arcSections = self._mdl.novel.arcs[acId].sections
         if self._elementId in arcSections:
             arcSections.remove(self._elementId)
@@ -503,10 +503,10 @@ class FullSectionView(DatedSectionView):
             for tpId in list(self._element.scTurningPoints):
                 if self._element.scTurningPoints[tpId] == acId:
                     del(self._element.scTurningPoints[tpId])
-                    # removing the arc's plot point from the section's list
+                    # removing the plot line's plot point from the section's list
                     # Note: this doesn't trigger the refreshing method
                     self._mdl.novel.turningPoints[tpId].sectionAssoc = None
-                    # un-assigning the section from the arc's plot point
+                    # un-assigning the section from the plot line's plot point
 
     def _save_arc_notes(self):
         if self._selectedArc and self._arcNotesWindow.hasChanged:
@@ -537,7 +537,7 @@ class FullSectionView(DatedSectionView):
         self._element.scPacing = self._sectionPacingType.get()
 
     def _toggle_arc_frame(self, event=None):
-        """Hide/show the narrative arcs frame."""
+        """Hide/show the plot lines frame."""
         if prefs['show_sc_arcs']:
             self._arcFrame.hide()
             prefs['show_sc_arcs'] = False

@@ -129,10 +129,10 @@ class PropertiesViewer(ttk.Frame):
             self._elementView.set_data(elemId)
 
     def _view_arc(self, acId):
-        """Show the selected arc.
+        """Show the selected plot line.
         
         Positional arguments:
-            acId: str -- Arc ID
+            acId: str -- Plot line ID
         """
         if not self._elementView is self._arcView:
             self._elementView.hide()

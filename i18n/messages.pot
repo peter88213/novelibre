@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: unknown\n"
-"POT-Creation-Date: 2024-03-05 09:41:32\n"
+"Project-Id-Version: 2.7.0\n"
+"POT-Creation-Date: 2024-03-05 14:33:34\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -53,13 +53,13 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-msgid "Add Arc"
-msgstr ""
-
 msgid "Add Chapter"
 msgstr ""
 
 msgid "Add Part"
+msgstr ""
+
+msgid "Add Plot line"
 msgstr ""
 
 msgid "Add Plot point"
@@ -90,12 +90,6 @@ msgid "Append to previous section"
 msgstr ""
 
 msgid "Apply"
-msgstr ""
-
-msgid "Arc"
-msgstr ""
-
-msgid "Arcs"
 msgstr ""
 
 msgid "Ask before opening exported documents"
@@ -194,7 +188,7 @@ msgstr ""
 msgid "Chapter number suffix"
 msgstr ""
 
-msgid "Chapters belonging to arc"
+msgid "Chapters belonging to plot line"
 msgstr ""
 
 msgid "Chapters from viewpoint"
@@ -434,7 +428,7 @@ msgstr ""
 msgid "Export location list (spreadsheet)"
 msgstr ""
 
-msgid "Export manuscript filtered by arc"
+msgid "Export manuscript filtered by plot line"
 msgstr ""
 
 msgid "Export manuscript filtered by viewpoint"
@@ -452,7 +446,7 @@ msgstr ""
 msgid "Export section descriptions for editing"
 msgstr ""
 
-msgid "Export synopsis filtered by arc"
+msgid "Export synopsis filtered by plot line"
 msgstr ""
 
 msgid "Export synopsis filtered by viewpoint"
@@ -653,9 +647,6 @@ msgstr ""
 msgid "New"
 msgstr ""
 
-msgid "New Arc"
-msgstr ""
-
 msgid "New Chapter"
 msgstr ""
 
@@ -672,6 +663,9 @@ msgid "New Note"
 msgstr ""
 
 msgid "New Part"
+msgstr ""
+
+msgid "New Plot line"
 msgstr ""
 
 msgid "New Plot point"
@@ -815,6 +809,12 @@ msgstr ""
 msgid "Plot grid for editing"
 msgstr ""
 
+msgid "Plot line"
+msgstr ""
+
+msgid "Plot lines"
+msgstr ""
+
 msgid "Plot point"
 msgstr ""
 
@@ -866,10 +866,7 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-msgid "Remove all sections from the story arc"
-msgstr ""
-
-msgid "Remove arc"
+msgid "Remove all sections from the plot line"
 msgstr ""
 
 msgid "Remove character"
@@ -882,6 +879,9 @@ msgid "Remove link"
 msgstr ""
 
 msgid "Remove location"
+msgstr ""
+
+msgid "Remove plot line"
 msgstr ""
 
 msgid "Renamings"
@@ -938,7 +938,7 @@ msgstr ""
 msgid "Section word count"
 msgstr ""
 
-msgid "Sections belonging to arc"
+msgid "Sections belonging to plot line"
 msgstr ""
 
 msgid "Sections from viewpoint"
@@ -965,9 +965,6 @@ msgstr ""
 msgid "Short name"
 msgstr ""
 
-msgid "Show Arcs"
-msgstr ""
-
 msgid "Show Book"
 msgstr ""
 
@@ -978,6 +975,9 @@ msgid "Show Items"
 msgstr ""
 
 msgid "Show Locations"
+msgstr ""
+
+msgid "Show Plot lines"
 msgstr ""
 
 msgid "Show Plot list"

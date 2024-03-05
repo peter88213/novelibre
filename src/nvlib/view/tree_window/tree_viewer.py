@@ -50,7 +50,7 @@ class TreeViewer(ttk.Frame):
         dr=(_('Duration'), 'duration_width'),
         tg=(_('Tags'), 'tags_width'),
         po=(_('Position'), 'ps_width'),
-        ac=(_('Arcs'), 'arcs_width'),
+        ac=(_('Plot lines'), 'arcs_width'),
         ar=(_('A/R'), 'pacing_width'),
         tp=(_('Plot points'), 'points_width'),
         )
@@ -62,7 +62,7 @@ class TreeViewer(ttk.Frame):
         CR_ROOT: _('Characters'),
         LC_ROOT: _('Locations'),
         IT_ROOT: _('Items'),
-        AC_ROOT: _('Arcs'),
+        AC_ROOT: _('Plot lines'),
         PN_ROOT: _('Project notes'),
         }
 
@@ -504,13 +504,13 @@ class TreeViewer(ttk.Frame):
         self._wrCtxtMenu.add_separator()
         self._wrCtxtMenu.add_cascade(label=_('Set Status'), menu=self.crStatusMenu)
 
-        #--- Create an arc context menu.
+        #--- Create a plot line context menu.
         self._acCtxtMenu = ContextMenu(self.tree, tearoff=0)
-        self._acCtxtMenu.add_command(label=_('Add Arc'), command=self._ctrl.add_arc)
+        self._acCtxtMenu.add_command(label=_('Add Plot line'), command=self._ctrl.add_arc)
         self._acCtxtMenu.add_command(label=_('Add Plot point'), command=self._ctrl.add_turning_point)
         self._acCtxtMenu.add_separator()
-        self._acCtxtMenu.add_command(label=_('Export manuscript filtered by arc'), command=self._export_manuscript)
-        self._acCtxtMenu.add_command(label=_('Export synopsis filtered by arc'), command=self._export_synopsis)
+        self._acCtxtMenu.add_command(label=_('Export manuscript filtered by plot line'), command=self._export_manuscript)
+        self._acCtxtMenu.add_command(label=_('Export synopsis filtered by plot line'), command=self._export_synopsis)
         self._acCtxtMenu.add_separator()
         self._acCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
 
@@ -596,7 +596,7 @@ class TreeViewer(ttk.Frame):
             return list_to_string(chapterTags)
 
         def collect_arcs(chId):
-            """Return a tuple of two strings: semicolon-separated arcs, semicolon-separated turning points."""
+            """Return a tuple of two strings: semicolon-separated plot lines, semicolon-separated plot points."""
             chArcShortNames = []
             chTurningPointTitles = []
             chArcs = {}
@@ -838,7 +838,7 @@ class TreeViewer(ttk.Frame):
             columns[self._colPos['tm']] = dispTime
             columns[self._colPos['dr']] = f'{days}{hours}{minutes}'
 
-            # Display arcs the section belongs to.
+            # Display plot lines the section belongs to.
             scArcShortNames = []
             scTurningPointTitles = []
             scArcs = self._mdl.novel.sections[scId].scArcs
@@ -1024,27 +1024,27 @@ class TreeViewer(ttk.Frame):
                 # Context is Arc/Plot point.
                 if self._ctrl.isLocked:
                     # No changes allowed.
-                    self._acCtxtMenu.entryconfig(_('Add Arc'), state='disabled')
+                    self._acCtxtMenu.entryconfig(_('Add Plot line'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Add Plot point'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Delete'), state='disabled')
-                    self._acCtxtMenu.entryconfig(_('Export manuscript filtered by arc'), state='disabled')
-                    self._acCtxtMenu.entryconfig(_('Export synopsis filtered by arc'), state='disabled')
+                    self._acCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='disabled')
+                    self._acCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='disabled')
                 elif prefix.startswith(AC_ROOT):
-                    self._acCtxtMenu.entryconfig(_('Add Arc'), state='normal')
+                    self._acCtxtMenu.entryconfig(_('Add Plot line'), state='normal')
                     self._acCtxtMenu.entryconfig(_('Add Plot point'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Delete'), state='disabled')
-                    self._acCtxtMenu.entryconfig(_('Export manuscript filtered by arc'), state='disabled')
-                    self._acCtxtMenu.entryconfig(_('Export synopsis filtered by arc'), state='disabled')
+                    self._acCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='disabled')
+                    self._acCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='disabled')
                 else:
-                    self._acCtxtMenu.entryconfig(_('Add Arc'), state='normal')
+                    self._acCtxtMenu.entryconfig(_('Add Plot line'), state='normal')
                     self._acCtxtMenu.entryconfig(_('Add Plot point'), state='normal')
                     self._acCtxtMenu.entryconfig(_('Delete'), state='normal')
                     if prefix == ARC_PREFIX:
-                        self._acCtxtMenu.entryconfig(_('Export manuscript filtered by arc'), state='normal')
-                        self._acCtxtMenu.entryconfig(_('Export synopsis filtered by arc'), state='normal')
+                        self._acCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='normal')
+                        self._acCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='normal')
                     else:
-                        self._acCtxtMenu.entryconfig(_('Export manuscript filtered by arc'), state='disabled')
-                        self._acCtxtMenu.entryconfig(_('Export synopsis filtered by arc'), state='disabled')
+                        self._acCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='disabled')
+                        self._acCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='disabled')
                 try:
                     self._acCtxtMenu.tk_popup(event.x_root, event.y_root, 0)
                 finally:

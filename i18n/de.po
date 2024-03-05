@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: unknown\n"
-"POT-Creation-Date: 2024-03-05 09:41:32\n"
-"PO-Revision-Date: 2024-03-05 09:43:32\n"
+"Project-Id-Version: 2.7.0\n"
+"POT-Creation-Date: 2024-03-05 14:33:34\n"
+"PO-Revision-Date: 2024-03-05 14:33:34\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -46,14 +46,14 @@ msgstr "Aktion/Reaktion"
 msgid "Add"
 msgstr "Hinzufügen"
 
-msgid "Add Arc"
-msgstr "Bogen hinzufügen"
-
 msgid "Add Chapter"
 msgstr "Kapitel hinzufügen"
 
 msgid "Add Part"
 msgstr "Teil hinzufügen"
+
+msgid "Add Plot line"
+msgstr "Plotlinie hinzufügen"
 
 msgid "Add Plot point"
 msgstr "Plotpunkt hinzufügen"
@@ -84,12 +84,6 @@ msgstr "An den vorherigen Abschnitt anhängen"
 
 msgid "Apply"
 msgstr "Anwenden"
-
-msgid "Arc"
-msgstr "Bogen"
-
-msgid "Arcs"
-msgstr "Bögen"
 
 msgid "Ask before opening exported documents"
 msgstr "Vor dem Öffnen exportierter Dokumente nachfragen"
@@ -187,8 +181,8 @@ msgstr "Präfix Kapitelnummer"
 msgid "Chapter number suffix"
 msgstr "Suffix Kapitelnummer"
 
-msgid "Chapters belonging to arc"
-msgstr "Kapitel gehören zum Bogen"
+msgid "Chapters belonging to plot line"
+msgstr "Kapitel gehören zur Plotlinie"
 
 msgid "Chapters from viewpoint"
 msgstr "Kapitel aus Perspektive"
@@ -427,8 +421,8 @@ msgstr "Schauplatzbeschreibungen zum Bearbeiten exportieren"
 msgid "Export location list (spreadsheet)"
 msgstr "Schauplatzliste exportieren (Tabelle)"
 
-msgid "Export manuscript filtered by arc"
-msgstr "Manuskript nach Bogen gefiltert exportieren"
+msgid "Export manuscript filtered by plot line"
+msgstr "Manuskript nach Plotlinie gefiltert exportieren"
 
 msgid "Export manuscript filtered by viewpoint"
 msgstr "Manuskript nach Perspektive gefiltert exportieren"
@@ -445,8 +439,8 @@ msgstr "Plot-Liste exportieren (Tabelle)"
 msgid "Export section descriptions for editing"
 msgstr "Abschnittsbeschreibungen zum Bearbeiten exportieren"
 
-msgid "Export synopsis filtered by arc"
-msgstr "Zusammenfassung nach Bogen gefiltert exportieren"
+msgid "Export synopsis filtered by plot line"
+msgstr "Zusammenfassung nach Plottlinie gefiltert exportieren"
 
 msgid "Export synopsis filtered by viewpoint"
 msgstr "Zusammenfassung nach Perspektive gefiltert exportieren"
@@ -646,9 +640,6 @@ msgstr "Niemals"
 msgid "New"
 msgstr "Neu"
 
-msgid "New Arc"
-msgstr "Neuer Bogen"
-
 msgid "New Chapter"
 msgstr "Neues Kapitel"
 
@@ -666,6 +657,9 @@ msgstr "Neue Notiz"
 
 msgid "New Part"
 msgstr "Neuer Teil"
+
+msgid "New Plot line"
+msgstr "Neue Plotlinie"
 
 msgid "New Plot point"
 msgstr "Neuer Plotpunkt"
@@ -713,7 +707,7 @@ msgid "Notes"
 msgstr "Notizen"
 
 msgid "Notes on the selected arc"
-msgstr "Notizen zum ausgewählten Bogen"
+msgstr "Notizen zur ausgewählten Plotlinie"
 
 msgid "Novel outline"
 msgstr "Romanstruktur"
@@ -808,6 +802,12 @@ msgstr "Handlungsraster (Plot grid)"
 msgid "Plot grid for editing"
 msgstr "Handlungsraster (Plot grid) zum Bearbeiten"
 
+msgid "Plot line"
+msgstr "Plotlinie"
+
+msgid "Plot lines"
+msgstr "Plotlinien"
+
 msgid "Plot point"
 msgstr "Plotpunkt"
 
@@ -859,11 +859,8 @@ msgstr "Neu laden"
 msgid "Remove"
 msgstr "Entfernen"
 
-msgid "Remove all sections from the story arc"
+msgid "Remove all sections from the plot line"
 msgstr "Alle Abschnitte vom Handlungsbogen entfernen"
-
-msgid "Remove arc"
-msgstr "Bogen entfernen"
 
 msgid "Remove character"
 msgstr "Figur entfernen"
@@ -876,6 +873,9 @@ msgstr "Link entfernen"
 
 msgid "Remove location"
 msgstr "Schauplatz entfernen"
+
+msgid "Remove plot line"
+msgstr "Plotlinie entfernen"
 
 msgid "Renamings"
 msgstr "Umbenennungen"
@@ -931,8 +931,8 @@ msgstr "Abschnittstitel"
 msgid "Section word count"
 msgstr "Wörter Abschnitt"
 
-msgid "Sections belonging to arc"
-msgstr "Abschnitte gehören zum Bogen"
+msgid "Sections belonging to plot line"
+msgstr "Abschnitte gehören zur Plotlinie"
 
 msgid "Sections from viewpoint"
 msgstr "Abschnitte aus Perspektive"
@@ -958,9 +958,6 @@ msgstr "Aktuelle Wortzahl als Anfangswert setzen"
 msgid "Short name"
 msgstr "Kurzname"
 
-msgid "Show Arcs"
-msgstr "Bögen anzeigen"
-
 msgid "Show Book"
 msgstr "Buch anzeigen"
 
@@ -972,6 +969,9 @@ msgstr "Gegenstände anzeigen"
 
 msgid "Show Locations"
 msgstr "Schauplätze anzeigen"
+
+msgid "Show Plot lines"
+msgstr "Plotlinien anzeigen"
 
 msgid "Show Plot list"
 msgstr "Plot-Liste anzeigen"

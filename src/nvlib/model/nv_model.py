@@ -64,7 +64,7 @@ class NvModel:
             client.refresh()
 
     def add_arc(self, **kwargs):
-        """Add an arc to the novel.
+        """Add a plot line to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -82,7 +82,7 @@ class NvModel:
             index = self.tree.index(targetNode) + 1
         acId = create_id(self.novel.arcs, prefix=ARC_PREFIX)
         self.novel.arcs[acId] = Arc(
-            title=kwargs.get('title', f'{_("New Arc")} ({acId})'),
+            title=kwargs.get('title', f'{_("New Plot line")} ({acId})'),
             desc='',
             shortName=acId,
             sections=[],
@@ -432,7 +432,7 @@ class NvModel:
                     # Move the section to the trash bin.
                     self.tree.move(elemId, self.trashBin, 0)
                     self.novel.sections[elemId].scType = 1
-                    # Remove plot point and arc references.
+                    # Remove plot point and plot line references.
                     arcReferences = self.novel.sections[elemId].scArcs
                     tpReferences = self.novel.sections[elemId].scTurningPoints
                     self.novel.sections[elemId].scArcs = []
@@ -494,7 +494,7 @@ class NvModel:
                 except:
                     pass
         elif elemId.startswith(ARC_PREFIX):
-            # Delete an arc and remove references.
+            # Delete a plot line and remove references.
             if self.novel.arcs[elemId].sections:
                 for scId in self.novel.arcs[elemId].sections:
                     self.novel.sections[scId].scArcs.remove(elemId)
@@ -656,7 +656,7 @@ class NvModel:
         join_lst(self.novel.sections[ScId0].items, self.novel.sections[ScId1].items)
         join_lst(self.novel.sections[ScId0].tags, self.novel.sections[ScId1].tags)
 
-        # Move arc associations.
+        # Move plot line associations.
         for scArc in self.novel.sections[ScId1].scArcs:
             self.novel.arcs[scArc].sections.remove(ScId1)
             if not ScId0 in self.novel.arcs[scArc].sections:

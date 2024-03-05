@@ -1,4 +1,4 @@
-"""Provide a class for viewing and editing "Todo" chapter properties.
+"""Provide a class for viewing and editing plot line properties.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -13,7 +13,7 @@ from novxlib.novx_globals import _
 
 
 class ArcView(BasicView):
-    """Class for viewing and editing arc properties.
+    """Class for viewing and editing plot line properties.
     
     Adds to the right pane:
     - A "Short name" entry.
@@ -38,7 +38,7 @@ class ArcView(BasicView):
         inputWidgets.append(self._shortNameEntry)
         self._shortNameEntry.entry.bind('<Return>', self.apply_changes)
 
-        # Frame for arc specific widgets.
+        # Frame for plot line specific widgets.
         self._arcFrame = ttk.Frame(self._elementInfoWindow)
         self._arcFrame.pack(fill='x')
         self._nrSections = ttk.Label(self._arcFrame)
@@ -69,10 +69,10 @@ class ArcView(BasicView):
         self._element = self._mdl.novel.arcs[elementId]
         super().set_data(elementId)
 
-        # 'Arc name' entry.
+        # 'Plot line name' entry.
         self._shortName.set(self._element.shortName)
 
-        # Frame for arc specific widgets.
+        # Frame for plot line specific widgets.
         if self._element.sections is not None:
             self._nrSections['text'] = f'{_("Number of sections")}: {len(self._element.sections)}'
 
@@ -87,7 +87,7 @@ class ArcView(BasicView):
         
         Remove also all section associations from the children points.
         """
-        if self._ui.ask_yes_no(f'{_("Remove all sections from the story arc")} "{self._element.shortName}"?'):
+        if self._ui.ask_yes_no(f'{_("Remove all sections from the plot line")} "{self._element.shortName}"?'):
             # Remove section back references.
             if self._element.sections:
                 self.doNotUpdate = True

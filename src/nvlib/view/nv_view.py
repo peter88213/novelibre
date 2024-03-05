@@ -258,7 +258,7 @@ class NvView:
         self.viewMenu.entryconfig(_('Show Characters'), state='disabled')
         self.viewMenu.entryconfig(_('Show Locations'), state='disabled')
         self.viewMenu.entryconfig(_('Show Items'), state='disabled')
-        self.viewMenu.entryconfig(_('Show Arcs'), state='disabled')
+        self.viewMenu.entryconfig(_('Show Plot lines'), state='disabled')
         self.viewMenu.entryconfig(_('Show Project notes'), state='disabled')
         for view in self.views:
             try:
@@ -325,7 +325,7 @@ class NvView:
         self.viewMenu.entryconfig(_('Show Characters'), state='normal')
         self.viewMenu.entryconfig(_('Show Locations'), state='normal')
         self.viewMenu.entryconfig(_('Show Items'), state='normal')
-        self.viewMenu.entryconfig(_('Show Arcs'), state='normal')
+        self.viewMenu.entryconfig(_('Show Plot lines'), state='normal')
         self.viewMenu.entryconfig(_('Show Project notes'), state='normal')
         for view in self.views:
             try:
@@ -629,7 +629,7 @@ class NvView:
         self.viewMenu.add_command(label=_('Show Characters'), command=lambda: self.tv.show_branch(CR_ROOT))
         self.viewMenu.add_command(label=_('Show Locations'), command=lambda: self.tv.show_branch(LC_ROOT))
         self.viewMenu.add_command(label=_('Show Items'), command=lambda: self.tv.show_branch(IT_ROOT))
-        self.viewMenu.add_command(label=_('Show Arcs'), command=lambda: self.tv.show_branch(AC_ROOT))
+        self.viewMenu.add_command(label=_('Show Plot lines'), command=lambda: self.tv.show_branch(AC_ROOT))
         self.viewMenu.add_command(label=_('Show Project notes'), command=lambda: self.tv.show_branch(PN_ROOT))
         self.viewMenu.add_separator()
         self.viewMenu.add_command(label=_('Toggle Text viewer'), accelerator=self._KEY_TOGGLE_VIEWER[1], command=self.toggle_contents_view)
@@ -705,7 +705,7 @@ class NvView:
         # "Plot" menu.
         self.plotMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Plot'), menu=self.plotMenu)
-        self.plotMenu.add_command(label=_('Add Arc'), command=self._ctrl.add_arc)
+        self.plotMenu.add_command(label=_('Add Plot line'), command=self._ctrl.add_arc)
         self.plotMenu.add_command(label=_('Add Plot point'), command=self._ctrl.add_turning_point)
         self.plotMenu.add_separator()
         self.plotMenu.add_command(label=_('Insert Stage'), command=self._ctrl.add_stage)

@@ -1,4 +1,4 @@
-"""Provide a "sections by arc" filter class for template-based file export.
+"""Provide a "sections by plot line" filter class for template-based file export.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -8,7 +8,7 @@ from novxlib.novx_globals import _
 
 
 class ScAcFilter:
-    """Filter a section by filter criteria "belongs to arc".
+    """Filter a section by filter criteria "belongs to plot line".
     
     Strategy class, implementing filtering criteria for template-based export.
     This is a stub with no filter criteria specified.
@@ -36,4 +36,4 @@ class ScAcFilter:
 
     def get_message(self, source):
         """Return a message about how the document exported from source is filtered."""
-        return f'{_("Sections belonging to arc")}: "{source.novel.arcs[self._acId].title}"'
+        return f'{_("Sections belonging to plot line")}: "{source.novel.arcs[self._acId].title}"'
