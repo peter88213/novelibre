@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: unknown\n"
-"POT-Creation-Date: 2024-03-04 19:49:31\n"
+"Project-Id-Version: 2.7.0\n"
+"POT-Creation-Date: 2024-03-05 08:44:31\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -926,6 +926,9 @@ msgstr ""
 msgid "Section title"
 msgstr ""
 
+msgid "Section word count"
+msgstr ""
+
 msgid "Sections belonging to arc"
 msgstr ""
 
@@ -1122,9 +1125,6 @@ msgid "Viewpoint"
 msgstr ""
 
 msgid "Wednesday"
-msgstr ""
-
-msgid "Word count"
 msgstr ""
 
 msgid "Words"

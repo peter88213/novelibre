@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: unknown\n"
-"POT-Creation-Date: 2024-03-04 19:49:31\n"
-"PO-Revision-Date: 2024-03-04 19:49:38\n"
+"Project-Id-Version: 2.7.0\n"
+"POT-Creation-Date: 2024-03-05 08:44:31\n"
+"PO-Revision-Date: 2024-03-05 08:44:31\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -919,6 +919,9 @@ msgstr "Abschnittsnotizen"
 msgid "Section title"
 msgstr "Abschnittstitel"
 
+msgid "Section word count"
+msgstr "Wörter Abschnitt"
+
 msgid "Sections belonging to arc"
 msgstr "Abschnitte gehören zum Bogen"
 
@@ -1117,9 +1120,6 @@ msgstr "Perspektive"
 msgid "Wednesday"
 msgstr "Mittwoch"
 
-msgid "Word count"
-msgstr "Wortzählung"
-
 msgid "Words"
 msgstr "Wörter"
 
@@ -1127,7 +1127,7 @@ msgid "Words to write"
 msgstr "Wörter zu schreiben"
 
 msgid "Words total"
-msgstr "Wortzahl"
+msgstr "Wörter gesamt"
 
 msgid "Words written"
 msgstr "Wörter geschrieben"
