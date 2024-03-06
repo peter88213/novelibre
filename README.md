@@ -22,9 +22,11 @@ organization of their work.
 - If you choose a **narrative structure**, *novelibre* can display stages (e.g. acts or steps) in the tree.
   When plotting, descriptions of these stages can be entered, from which *novelibre* can generate 
   its own documentation. Prefabricated structural models can also be imported from templates.
-- *novelibre* also allows you to create and document an **underlying structure of arcs** 
-  (e.g. character arcs or storylines) apart from the chapters and sections. This can then be linked 
+- *novelibre* also allows you to create and document an underlying structure of **plot lines** 
+  (e.g. subplots or character arcs) apart from the chapters and sections. This can then be linked 
   to the sections of the novel text.
+- *novelibre* povides a **plot grid** with plot line notes for each section. This allows you to 
+  see the big picture and keep track of multiple subplots.   
 - To keep track of progress, the **word count** and the **completion status** of the sections are displayed. 
 - Individual chapters and sections can be flagged as "unused" to exclude them from document export.
 - You can add information about the **narrative time** and duration to each section. If you enter a date, 
