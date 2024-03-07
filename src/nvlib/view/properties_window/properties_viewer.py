@@ -14,7 +14,7 @@ from nvlib.view.properties_window.item_view import ItemView
 from nvlib.view.properties_window.location_view import LocationView
 from nvlib.view.properties_window.no_view import NoView
 from nvlib.view.properties_window.project_view import ProjectView
-from nvlib.view.properties_window.project_note_view import ProjectnoteView
+from nvlib.view.properties_window.project_note_view import ProjectNoteView
 from nvlib.view.properties_window.stage_view import StageView
 from nvlib.view.properties_window.plot_point_view import TurningPointView
 from novxlib.novx_globals import PLOT_POINT_PREFIX
@@ -46,7 +46,7 @@ class PropertiesViewer(ttk.Frame):
         self._itemView = ItemView(self, self._mdl, self._ui, self._ctrl)
         self._arcView = PlotLineView(self, self._mdl, self._ui, self._ctrl)
         self._plotPointView = TurningPointView(self, self._mdl, self._ui, self._ctrl)
-        self._projectnoteView = ProjectnoteView(self, self._mdl, self._ui, self._ctrl)
+        self._projectnoteView = ProjectNoteView(self, self._mdl, self._ui, self._ctrl)
         self._elementView = self._noView
         self._elementView.set_data(None)
         self._elementView.doNotUpdate = False

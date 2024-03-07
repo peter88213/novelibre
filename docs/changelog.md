@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v3.0.1
+
+- Refactor the code.
+
+Based on novxlib v2.0.0
+
 ### v3.0.0
 
 - Fix a regression from v2.7.0 where faulty plot lists are generated. 

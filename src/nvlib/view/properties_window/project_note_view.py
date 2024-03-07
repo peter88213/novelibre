@@ -7,7 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from nvlib.view.properties_window.basic_view import BasicView
 
 
-class ProjectnoteView(BasicView):
+class ProjectNoteView(BasicView):
     """Class for viewing and editing project notes."""
 
     def set_data(self, elementId):
