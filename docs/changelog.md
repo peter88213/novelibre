@@ -8,6 +8,14 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+
+### v3.0.2
+
+- Fix a bug where imported sections are split at the 
+  "####" mark, but not appended as they should. 
+
+Based on novxlib v2.0.1
+
 ### v3.0.1
 
 - Refactor the code.
