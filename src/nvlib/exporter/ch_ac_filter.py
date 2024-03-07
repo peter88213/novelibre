@@ -14,8 +14,8 @@ class ChAcFilter:
     This is a stub with no filter criteria specified.
     """
 
-    def __init__(self, acId):
-        self._acId = acId
+    def __init__(self, plId):
+        self._plId = plId
 
     def accept(self, source, chId):
         """Check whether an entity matches the filter criteria.
@@ -24,12 +24,12 @@ class ChAcFilter:
             source -- File instance holding the chapter to check.
             chId -- ID of the chapter to check.       
         
-        Return True if the acId matches an arc that at least
+        Return True if the plId matches an arc that at least
         one section in the chapter is assigned to.
         """
         for scId in source.novel.tree.get_children(chId):
             try:
-                if self._acId in source.novel.sections[scId].scArcs:
+                if self._plId in source.novel.sections[scId].scPlotLines:
                     return True
 
             except:
@@ -38,4 +38,4 @@ class ChAcFilter:
 
     def get_message(self, source):
         """Return a message about how the document exported from source is filtered."""
-        return f'{_("Chapters belonging to plot line")}: "{source.novel.arcs[self._acId].title}"'
+        return f'{_("Chapters belonging to plot line")}: "{source.novel.arcs[self._plId].title}"'

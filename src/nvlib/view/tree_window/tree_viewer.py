@@ -11,9 +11,9 @@ from nvlib.nv_globals import prefs
 from nvlib.view.tree_window.history_list import HistoryList
 from nvlib.widgets.context_menu import ContextMenu
 from novxlib.model.section import Section
-from novxlib.novx_globals import AC_ROOT
-from novxlib.novx_globals import ARC_POINT_PREFIX
-from novxlib.novx_globals import ARC_PREFIX
+from novxlib.novx_globals import PL_ROOT
+from novxlib.novx_globals import PLOT_POINT_PREFIX
+from novxlib.novx_globals import PLOT_LINE_PREFIX
 from novxlib.novx_globals import CHAPTER_PREFIX
 from novxlib.novx_globals import CHARACTER_PREFIX
 from novxlib.novx_globals import CH_ROOT
@@ -62,7 +62,7 @@ class TreeViewer(ttk.Frame):
         CR_ROOT: _('Characters'),
         LC_ROOT: _('Locations'),
         IT_ROOT: _('Items'),
-        AC_ROOT: _('Plot lines'),
+        PL_ROOT: _('Plot lines'),
         PN_ROOT: _('Project notes'),
         }
 
@@ -394,10 +394,10 @@ class TreeViewer(ttk.Frame):
                     scnPos = update_branch(elemId, scnPos)
                     doCollect = not self.tree.item(elemId, 'open')
                     title, columns, nodeTags = self._configure_chapter_display(elemId, position=chpPos, collect=doCollect)
-                elif elemId.startswith(ARC_PREFIX):
+                elif elemId.startswith(PLOT_LINE_PREFIX):
                     update_branch(elemId, scnPos)
                     title, columns, nodeTags = self._configure_arc_display(elemId)
-                elif elemId.startswith(ARC_POINT_PREFIX):
+                elif elemId.startswith(PLOT_POINT_PREFIX):
                     title, columns, nodeTags = self._configure_plot_point_display(elemId)
                 elif elemId.startswith(PRJ_NOTE_PREFIX):
                     title, columns, nodeTags = self._configure_prj_note_display(elemId)
@@ -520,12 +520,12 @@ class TreeViewer(ttk.Frame):
         self._pnCtxtMenu.add_separator()
         self._pnCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
 
-    def _configure_arc_display(self, acId):
+    def _configure_arc_display(self, plId):
         """Configure project note formatting and columns."""
-        title = self._mdl.novel.arcs[acId].title
+        title = self._mdl.novel.plotLines[plId].title
         if not title:
             title = _('Unnamed')
-        title = f'({self._mdl.novel.arcs[acId].shortName}) {title}'
+        title = f'({self._mdl.novel.plotLines[plId].shortName}) {title}'
         columns = []
         for __ in self.columns:
             columns.append('')
@@ -600,26 +600,26 @@ class TreeViewer(ttk.Frame):
             chPlotlineShortNames = []
             chPlotPointTitles = []
             chPlotlines = {}
-            for acId in self._mdl.novel.arcs:
-                chPlotlines[acId] = []
+            for plId in self._mdl.novel.plotLines:
+                chPlotlines[plId] = []
             if self._mdl.novel.chapters[chId].chType == 0:
                 for scId in self.tree.get_children(chId):
                     if self._mdl.novel.sections[scId].scType == 0:
-                        scPlotlines = self._mdl.novel.sections[scId].scArcs
-                        for acId in scPlotlines:
-                            shortName = self._mdl.novel.arcs[acId].shortName
+                        scPlotlines = self._mdl.novel.sections[scId].scPlotLines
+                        for plId in scPlotlines:
+                            shortName = self._mdl.novel.plotLines[plId].shortName
                             if not shortName in chPlotlineShortNames:
                                 chPlotlineShortNames.append(shortName)
-                        for tpId in self._mdl.novel.sections[scId].scTurningPoints:
-                            chPlotlines[acId].append(tpId)
+                        for ppId in self._mdl.novel.sections[scId].scPlotPoints:
+                            chPlotlines[plId].append(ppId)
                 if len(chPlotlineShortNames) == 1:
-                    for acId in chPlotlines:
-                        for tpId in chPlotlines[acId]:
-                            chPlotPointTitles.append(self._mdl.novel.turningPoints[tpId].title)
+                    for plId in chPlotlines:
+                        for ppId in chPlotlines[plId]:
+                            chPlotPointTitles.append(self._mdl.novel.plotPoints[ppId].title)
                 else:
-                    for acId in chPlotlines:
-                        for tpId in chPlotlines[acId]:
-                            chPlotPointTitles.append(f'{self._mdl.novel.arcs[acId].shortName}: {self._mdl.novel.turningPoints[tpId].title}')
+                    for plId in chPlotlines:
+                        for ppId in chPlotlines[plId]:
+                            chPlotPointTitles.append(f'{self._mdl.novel.plotLines[plId].shortName}: {self._mdl.novel.plotPoints[ppId].title}')
             return list_to_string(chPlotlineShortNames), list_to_string(chPlotPointTitles)
 
         def collect_note_indicators(chId):
@@ -841,17 +841,17 @@ class TreeViewer(ttk.Frame):
             # Display plot lines the section belongs to.
             scPlotlineShortNames = []
             scPlotPointTitles = []
-            scPlotlines = self._mdl.novel.sections[scId].scArcs
-            for acId in scPlotlines:
-                shortName = self._mdl.novel.arcs[acId].shortName
+            scPlotlines = self._mdl.novel.sections[scId].scPlotLines
+            for plId in scPlotlines:
+                shortName = self._mdl.novel.plotLines[plId].shortName
                 if not shortName in scPlotlineShortNames:
                     scPlotlineShortNames.append(shortName)
-            for tpId in self._mdl.novel.sections[scId].scTurningPoints:
+            for ppId in self._mdl.novel.sections[scId].scPlotPoints:
                 if len(scPlotlineShortNames) == 1:
-                    scPlotPointTitles.append(self._mdl.novel.turningPoints[tpId].title)
+                    scPlotPointTitles.append(self._mdl.novel.plotPoints[ppId].title)
                 else:
-                    acId = self._mdl.novel.sections[scId].scTurningPoints[tpId]
-                    scPlotPointTitles.append(f'{self._mdl.novel.arcs[acId].shortName}: {self._mdl.novel.turningPoints[tpId].title}')
+                    plId = self._mdl.novel.sections[scId].scPlotPoints[ppId]
+                    scPlotPointTitles.append(f'{self._mdl.novel.plotLines[plId].shortName}: {self._mdl.novel.plotPoints[ppId].title}')
             columns[self._colPos['ac']] = list_to_string(scPlotlineShortNames)
             columns[self._colPos['tp']] = list_to_string(scPlotPointTitles)
 
@@ -866,9 +866,9 @@ class TreeViewer(ttk.Frame):
             pass
         return title, columns, tuple(nodeTags)
 
-    def _configure_plot_point_display(self, tpId):
+    def _configure_plot_point_display(self, ppId):
         """Configure plot point formatting and columns."""
-        title = self._mdl.novel.turningPoints[tpId].title
+        title = self._mdl.novel.plotPoints[ppId].title
         if not title:
             title = _('Unnamed')
         columns = []
@@ -876,11 +876,11 @@ class TreeViewer(ttk.Frame):
             columns.append('')
 
         # "Point has notes" indicator.
-        if self._mdl.novel.turningPoints[tpId].notes:
+        if self._mdl.novel.plotPoints[ppId].notes:
             columns[self._colPos['nt']] = _('N')
 
         # Display associated section, if any.
-        scId = self._mdl.novel.turningPoints[tpId].sectionAssoc
+        scId = self._mdl.novel.plotPoints[ppId].sectionAssoc
         if scId:
             sectionTitle = self._mdl.novel.sections[scId].title
             if sectionTitle is not None:
@@ -1020,7 +1020,7 @@ class TreeViewer(ttk.Frame):
                     self._wrCtxtMenu.tk_popup(event.x_root, event.y_root, 0)
                 finally:
                     self._wrCtxtMenu.grab_release()
-            elif prefix in (AC_ROOT, ARC_PREFIX, ARC_POINT_PREFIX):
+            elif prefix in (PL_ROOT, PLOT_LINE_PREFIX, PLOT_POINT_PREFIX):
                 # Context is Plot line/Plot point.
                 if self._ctrl.isLocked:
                     # No changes allowed.
@@ -1029,7 +1029,7 @@ class TreeViewer(ttk.Frame):
                     self._acCtxtMenu.entryconfig(_('Delete'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='disabled')
-                elif prefix.startswith(AC_ROOT):
+                elif prefix.startswith(PL_ROOT):
                     self._acCtxtMenu.entryconfig(_('Add Plot line'), state='normal')
                     self._acCtxtMenu.entryconfig(_('Add Plot point'), state='disabled')
                     self._acCtxtMenu.entryconfig(_('Delete'), state='disabled')
@@ -1039,7 +1039,7 @@ class TreeViewer(ttk.Frame):
                     self._acCtxtMenu.entryconfig(_('Add Plot line'), state='normal')
                     self._acCtxtMenu.entryconfig(_('Add Plot point'), state='normal')
                     self._acCtxtMenu.entryconfig(_('Delete'), state='normal')
-                    if prefix == ARC_PREFIX:
+                    if prefix == PLOT_LINE_PREFIX:
                         self._acCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='normal')
                         self._acCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='normal')
                     else:

@@ -12,7 +12,7 @@ from nvlib.widgets.my_string_var import MyStringVar
 from novxlib.novx_globals import _
 
 
-class ArcView(BasicView):
+class PlotLineView(BasicView):
     """Class for viewing and editing plot line properties.
     
     Adds to the right pane:
@@ -66,7 +66,7 @@ class ArcView(BasicView):
         
         Extends the superclass constructor.
         """
-        self._element = self._mdl.novel.arcs[elementId]
+        self._element = self._mdl.novel.plotLines[elementId]
         super().set_data(elementId)
 
         # 'Plot line name' entry.
@@ -92,12 +92,12 @@ class ArcView(BasicView):
             if self._element.sections:
                 self.doNotUpdate = True
                 for scId in self._element.sections:
-                    self._mdl.novel.sections[scId].scArcs.remove(self._elementId)
-                for tpId in self._mdl.novel.tree.get_children(self._elementId):
-                    scId = self._mdl.novel.turningPoints[tpId].sectionAssoc
+                    self._mdl.novel.sections[scId].scPlotLines.remove(self._elementId)
+                for ppId in self._mdl.novel.tree.get_children(self._elementId):
+                    scId = self._mdl.novel.plotPoints[ppId].sectionAssoc
                     if scId is not None:
-                        del(self._mdl.novel.sections[scId].scTurningPoints[tpId])
-                        self._mdl.novel.turningPoints[tpId].sectionAssoc = None
+                        del(self._mdl.novel.sections[scId].scPlotPoints[ppId])
+                        self._mdl.novel.plotPoints[ppId].sectionAssoc = None
                 self._element.sections = []
                 self.set_data(self._elementId)
                 self.doNotUpdate = False

@@ -8,7 +8,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 import sys
 import os
-from novxlib.novx_globals import AC_ROOT
+from novxlib.novx_globals import PL_ROOT
 from novxlib.novx_globals import CH_ROOT
 from novxlib.novx_globals import CR_ROOT
 from novxlib.novx_globals import IT_ROOT
@@ -99,14 +99,14 @@ class Toolbar:
         self._viewItemsButton.image = self._ui.icons.viewItemsIcon
 
         # "View Plot lines" button.
-        self._viewArcsButton = ttk.Button(
+        self._viewPlotLinesButton = ttk.Button(
             self._buttonBar,
             text=_('Plot lines'),
-            image=self._ui.icons.viewArcsIcon,
-            command=lambda: self._ui.tv.show_branch(AC_ROOT)
+            image=self._ui.icons.viewPlotLinesIcon,
+            command=lambda: self._ui.tv.show_branch(PL_ROOT)
             )
-        self._viewArcsButton.pack(side='left')
-        self._viewArcsButton.image = self._ui.icons.viewArcsIcon
+        self._viewPlotLinesButton.pack(side='left')
+        self._viewPlotLinesButton.image = self._ui.icons.viewPlotLinesIcon
 
         # "View Projectnotes" button.
         self._viewProjectnotesButton = ttk.Button(
@@ -238,7 +238,7 @@ class Toolbar:
         self._viewCharactersButton.config(state='disabled')
         self._viewLocationsButton.config(state='disabled')
         self._viewItemsButton.config(state='disabled')
-        self._viewArcsButton.config(state='disabled')
+        self._viewPlotLinesButton.config(state='disabled')
         self._viewProjectnotesButton.config(state='disabled')
         self._goBackButton.config(state='disabled')
         self._goForwardButton.config(state='disabled')
@@ -257,7 +257,7 @@ class Toolbar:
         self._viewCharactersButton.config(state='normal')
         self._viewLocationsButton.config(state='normal')
         self._viewItemsButton.config(state='normal')
-        self._viewArcsButton.config(state='normal')
+        self._viewPlotLinesButton.config(state='normal')
         self._viewProjectnotesButton.config(state='normal')
         self._goBackButton.config(state='normal')
         self._goForwardButton.config(state='normal')

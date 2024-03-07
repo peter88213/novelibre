@@ -18,7 +18,7 @@ from nvlib.view.toolbar import Toolbar
 from nvlib.view.tree_window.tree_viewer import TreeViewer
 from nvlib.exporter.export_options_window import ExportOptionsWindow
 from nvlib.view.view_options_window import ViewOptionsWindow
-from novxlib.novx_globals import AC_ROOT
+from novxlib.novx_globals import PL_ROOT
 from novxlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from novxlib.novx_globals import CHAPTERS_SUFFIX
 from novxlib.novx_globals import CHARACTERS_SUFFIX
@@ -629,7 +629,7 @@ class NvView:
         self.viewMenu.add_command(label=_('Show Characters'), command=lambda: self.tv.show_branch(CR_ROOT))
         self.viewMenu.add_command(label=_('Show Locations'), command=lambda: self.tv.show_branch(LC_ROOT))
         self.viewMenu.add_command(label=_('Show Items'), command=lambda: self.tv.show_branch(IT_ROOT))
-        self.viewMenu.add_command(label=_('Show Plot lines'), command=lambda: self.tv.show_branch(AC_ROOT))
+        self.viewMenu.add_command(label=_('Show Plot lines'), command=lambda: self.tv.show_branch(PL_ROOT))
         self.viewMenu.add_command(label=_('Show Project notes'), command=lambda: self.tv.show_branch(PN_ROOT))
         self.viewMenu.add_separator()
         self.viewMenu.add_command(label=_('Toggle Text viewer'), accelerator=self._KEY_TOGGLE_VIEWER[1], command=self.toggle_contents_view)

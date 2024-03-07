@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from nvlib.view.properties_window.arc_view import ArcView
+from nvlib.view.properties_window.plot_line_view import PlotLineView
 from nvlib.view.properties_window.chapter_view import ChapterView
 from nvlib.view.properties_window.character_view import CharacterView
 from nvlib.view.properties_window.full_section_view import FullSectionView
@@ -14,11 +14,11 @@ from nvlib.view.properties_window.item_view import ItemView
 from nvlib.view.properties_window.location_view import LocationView
 from nvlib.view.properties_window.no_view import NoView
 from nvlib.view.properties_window.project_view import ProjectView
-from nvlib.view.properties_window.projectnote_view import ProjectnoteView
+from nvlib.view.properties_window.project_note_view import ProjectnoteView
 from nvlib.view.properties_window.stage_view import StageView
-from nvlib.view.properties_window.turning_point_view import TurningPointView
-from novxlib.novx_globals import ARC_POINT_PREFIX
-from novxlib.novx_globals import ARC_PREFIX
+from nvlib.view.properties_window.plot_point_view import TurningPointView
+from novxlib.novx_globals import PLOT_POINT_PREFIX
+from novxlib.novx_globals import PLOT_LINE_PREFIX
 from novxlib.novx_globals import CHAPTER_PREFIX
 from novxlib.novx_globals import CHARACTER_PREFIX
 from novxlib.novx_globals import CH_ROOT
@@ -44,7 +44,7 @@ class PropertiesViewer(ttk.Frame):
         self._characterView = CharacterView(self, self._mdl, self._ui, self._ctrl)
         self._locationView = LocationView(self, self._mdl, self._ui, self._ctrl)
         self._itemView = ItemView(self, self._mdl, self._ui, self._ctrl)
-        self._arcView = ArcView(self, self._mdl, self._ui, self._ctrl)
+        self._arcView = PlotLineView(self, self._mdl, self._ui, self._ctrl)
         self._plotPointView = TurningPointView(self, self._mdl, self._ui, self._ctrl)
         self._projectnoteView = ProjectnoteView(self, self._mdl, self._ui, self._ctrl)
         self._elementView = self._noView
@@ -96,10 +96,10 @@ class PropertiesViewer(ttk.Frame):
             self._view_location(nodeId)
         elif nodeId.startswith(ITEM_PREFIX):
             self._view_item(nodeId)
-        elif nodeId.startswith(ARC_PREFIX):
+        elif nodeId.startswith(PLOT_LINE_PREFIX):
             self._view_arc(nodeId)
-        elif nodeId.startswith(ARC_POINT_PREFIX):
-            self._view_turning_point(nodeId)
+        elif nodeId.startswith(PLOT_POINT_PREFIX):
+            self._view_plot_point(nodeId)
         elif nodeId.startswith(PRJ_NOTE_PREFIX):
             self._view_projectnote(nodeId)
         else:
@@ -128,17 +128,17 @@ class PropertiesViewer(ttk.Frame):
         else:
             self._elementView.set_data(elemId)
 
-    def _view_arc(self, acId):
+    def _view_arc(self, plId):
         """Show the selected plot line.
         
         Positional arguments:
-            acId: str -- Plot line ID
+            plId: str -- Plot line ID
         """
         if not self._elementView is self._arcView:
             self._elementView.hide()
             self._elementView = self._arcView
             self._elementView.show()
-        self._set_data(acId)
+        self._set_data(plId)
 
     def _view_chapter(self, chId):
         """Show the selected chapter's properties; move to it in the content viewer.
@@ -233,14 +233,14 @@ class PropertiesViewer(ttk.Frame):
                 self._elementView.show()
         self._set_data(scId)
 
-    def _view_turning_point(self, tpId):
+    def _view_plot_point(self, ppId):
         """Show the selected plot point
         Positional arguments:
-            tpId: str -- Plot point ID
+            ppId: str -- Plot point ID
         """
         if not self._elementView is self._plotPointView:
             self._elementView.hide()
             self._elementView = self._plotPointView
             self._elementView.show()
-        self._set_data(tpId)
+        self._set_data(ppId)
 

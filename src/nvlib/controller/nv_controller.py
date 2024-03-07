@@ -20,15 +20,15 @@ from nvlib.nv_globals import prefs
 from nvlib.plugin.plugin_collection import PluginCollection
 from nvlib.plugin.plugin_manager import PluginManager
 from nvlib.view.nv_view import NvView
-from novxlib.novx_globals import ARC_POINT_PREFIX
-from novxlib.novx_globals import ARC_PREFIX
+from novxlib.novx_globals import PLOT_POINT_PREFIX
+from novxlib.novx_globals import PLOT_LINE_PREFIX
 from novxlib.novx_globals import CHAPTER_PREFIX
 from novxlib.novx_globals import CHARACTER_PREFIX
 from novxlib.novx_globals import CH_ROOT
 from novxlib.novx_globals import CR_ROOT
 from novxlib.novx_globals import LC_ROOT
 from novxlib.novx_globals import IT_ROOT
-from novxlib.novx_globals import AC_ROOT
+from novxlib.novx_globals import PL_ROOT
 from novxlib.novx_globals import PN_ROOT
 from novxlib.novx_globals import Error
 from novxlib.novx_globals import ITEM_PREFIX
@@ -183,7 +183,7 @@ class NvController:
             self.add_chapter(targetNode=selection)
         elif selection.startswith(CHAPTER_PREFIX):
             self.add_section(targetNode=selection)
-        elif selection.startswith(ARC_PREFIX):
+        elif selection.startswith(PLOT_LINE_PREFIX):
             self.add_turning_point(targetNode=selection)
         elif selection == CR_ROOT:
             self.add_character(targetNode=selection)
@@ -191,7 +191,7 @@ class NvController:
             self.add_location(targetNode=selection)
         elif selection == IT_ROOT:
             self.add_item(targetNode=selection)
-        elif selection == AC_ROOT:
+        elif selection == PL_ROOT:
             self.add_arc(targetNode=selection)
         elif selection == PN_ROOT:
             self.add_project_note(targetNode=selection)
@@ -223,11 +223,11 @@ class NvController:
             self.add_location(targetNode=selection)
         elif ITEM_PREFIX in selection:
             self.add_item(targetNode=selection)
-        elif ARC_PREFIX in selection:
+        elif PLOT_LINE_PREFIX in selection:
             self.add_arc(targetNode=selection)
         elif PRJ_NOTE_PREFIX in selection:
             self.add_project_note(targetNode=selection)
-        elif selection.startswith(ARC_POINT_PREFIX):
+        elif selection.startswith(PLOT_POINT_PREFIX):
             self.add_turning_point(targetNode=selection)
 
     def add_item(self, **kwargs):
@@ -286,7 +286,7 @@ class NvController:
 
         if selection.startswith(SECTION_PREFIX):
             self.add_chapter(targetNode=selection)
-        elif selection.startswith(ARC_POINT_PREFIX):
+        elif selection.startswith(PLOT_POINT_PREFIX):
             self.add_arc(targetNode=selection)
 
     def add_part(self, **kwargs):
@@ -480,9 +480,9 @@ class NvController:
                 candidate = f'{_("Location")} "{self._mdl.novel.locations[elemId].title}"'
             elif elemId.startswith(ITEM_PREFIX):
                 candidate = f'{_("Item")} "{self._mdl.novel.items[elemId].title}"'
-            elif elemId.startswith(ARC_PREFIX):
+            elif elemId.startswith(PLOT_LINE_PREFIX):
                 candidate = f'{_("Plot line")} "{self._mdl.novel.arcs[elemId].title}"'
-            elif elemId.startswith(ARC_POINT_PREFIX):
+            elif elemId.startswith(PLOT_POINT_PREFIX):
                 candidate = f'{_("Plot point")} "{self._mdl.novel.turningPoints[elemId].title}"'
             elif elemId.startswith(PRJ_NOTE_PREFIX):
                 candidate = f'{_("Project note")} "{self._mdl.novel.projectNotes[elemId].title}"'
@@ -681,7 +681,7 @@ class NvController:
         """
         if not self.isLocked:
             if (node.startswith(SECTION_PREFIX) and targetNode.startswith(CHAPTER_PREFIX)
-                ) or (node.startswith(ARC_POINT_PREFIX) and targetNode.startswith(ARC_PREFIX)):
+                ) or (node.startswith(PLOT_POINT_PREFIX) and targetNode.startswith(PLOT_LINE_PREFIX)):
                 self._ui.tv.open_children(targetNode)
             self._ui.tv.skipUpdate = True
             self._mdl.move_node(node, targetNode)
@@ -797,7 +797,7 @@ class NvController:
         self._ui.propertiesView.apply_changes()
         self._mdl.renumber_chapters()
         self._mdl.prjFile.adjust_section_types()
-        self._mdl.novel.update_section_arcs()
+        self._mdl.novel.update_plot_lines()
         self._ui.refresh()
         return 'break'
 

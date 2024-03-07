@@ -14,8 +14,8 @@ from nvlib.widgets.label_combo import LabelCombo
 from nvlib.widgets.my_string_var import MyStringVar
 from nvlib.widgets.text_box import TextBox
 from novxlib.novx_globals import CR_ROOT
-from novxlib.novx_globals import AC_ROOT
-from novxlib.novx_globals import ARC_PREFIX
+from novxlib.novx_globals import PL_ROOT
+from novxlib.novx_globals import PLOT_LINE_PREFIX
 from novxlib.novx_globals import _
 from novxlib.novx_globals import list_to_string
 from novxlib.novx_globals import string_to_list
@@ -29,7 +29,7 @@ class FullSectionView(DatedSectionView):
     - A combobox for viewpoint character selection.
     - A checkbox "unused".
     - A checkbox "append to previous".
-    - A "Plot" folding frame for arcs and plot point associations.
+    - A "Plot" folding frame for plotLines and plot point associations.
     - An "Action/Reaction" folding frame for Goal/Reaction/Outcome.
     """
 
@@ -105,8 +105,8 @@ class FullSectionView(DatedSectionView):
         inputWidgets.extend(self._plotlineCollection.inputWidgets)
         self._selectedPlotline = None
 
-        #--- 'Plot line notes' text box for entering self._element.plotNotes[acId],
-        #    where acId is the ID of the selected plot line in the'Plot lines' listbox.
+        #--- 'Plot line notes' text box for entering self._element.plotNotes[plId],
+        #    where plId is the ID of the selected plot line in the'Plot lines' listbox.
         ttk.Label(self._arcFrame, text=_('Notes on the selected plot line')).pack(anchor='w')
         self._plotNotesWindow = TextBox(
             self._arcFrame,
@@ -299,7 +299,7 @@ class FullSectionView(DatedSectionView):
         self._viewpoint.set(value=vp)
 
         #--- 'Plot lines' listbox.
-        self._plotlineTitles = self._get_plotline_titles(self._element.scArcs, self._mdl.novel.arcs)
+        self._plotlineTitles = self._get_plotline_titles(self._element.scPlotLines, self._mdl.novel.plotLines)
         self._plotlineCollection.cList.set(self._plotlineTitles)
         listboxSize = len(self._plotlineTitles)
         if listboxSize > self._HEIGHT_LIMIT:
@@ -321,9 +321,9 @@ class FullSectionView(DatedSectionView):
 
         #--- "Plot points" label
         plotPointTitles = []
-        for tpId in self._element.scTurningPoints:
-            acId = self._element.scTurningPoints[tpId]
-            plotPointTitles.append(f'{self._mdl.novel.arcs[acId].shortName}: {self._mdl.novel.turningPoints[tpId].title}')
+        for ppId in self._element.scPlotPoints:
+            plId = self._element.scPlotPoints[ppId]
+            plotPointTitles.append(f'{self._mdl.novel.plotLines[plId].shortName}: {self._mdl.novel.plotPoints[ppId].title}')
         self._plotPointsDisplay.config(text=list_to_string(plotPointTitles))
 
         #--- 'Unused' checkbox.
@@ -395,25 +395,25 @@ class FullSectionView(DatedSectionView):
             self._plotNotesWindow.config(state='disabled')
 
     def _activate_arc_buttons(self, event=None):
-        if self._element.scArcs:
+        if self._element.scPlotLines:
             self._plotlineCollection.enable_buttons()
         else:
             self._plotlineCollection.disable_buttons()
 
     def _add_plotline(self, event=None):
         # Add the selected element to the collection, if applicable.
-        plotlineList = self._element.scArcs
-        acId = self._ui.tv.tree.selection()[0]
-        if not acId.startswith(ARC_PREFIX):
+        plotlineList = self._element.scPlotLines
+        plId = self._ui.tv.tree.selection()[0]
+        if not plId.startswith(PLOT_LINE_PREFIX):
             # Restore the previous section selection mode.
             self._end_picking_mode()
-        elif not acId in plotlineList:
-            plotlineList.append(acId)
-            self._element.scArcs = plotlineList
-            plotlineSections = self._mdl.novel.arcs[acId].sections
+        elif not plId in plotlineList:
+            plotlineList.append(plId)
+            self._element.scPlotLines = plotlineList
+            plotlineSections = self._mdl.novel.plotLines[plId].sections
             if not self._elementId in plotlineSections:
                 plotlineSections.append(self._elementId)
-                self._mdl.novel.arcs[acId].sections = plotlineSections
+                self._mdl.novel.plotLines[plId].sections = plotlineSections
 
     def _get_plotline_titles(self, elemIds, elements):
         """Return a list of plot line titles, preceded by the short names.
@@ -455,12 +455,12 @@ class FullSectionView(DatedSectionView):
         except:
             return
 
-        self._ui.tv.go_to_node(self._element.scArcs[selection])
+        self._ui.tv.go_to_node(self._element.scPlotLines[selection])
 
     def _on_select_plotline(self, selection):
         """Callback routine for section plot line list selection."""
         self._save_plot_notes()
-        self._selectedPlotline = self._element.scArcs[selection]
+        self._selectedPlotline = self._element.scPlotLines[selection]
         self._plotNotesWindow.config(state='normal')
         if self._element.plotNotes:
             self._plotNotesWindow.set_text(self._element.plotNotes.get(self._selectedPlotline, ''))
@@ -474,7 +474,7 @@ class FullSectionView(DatedSectionView):
         """Enter the "add plot line" selection mode."""
         self._start_picking_mode()
         self._ui.tv.tree.bind('<<TreeviewSelect>>', self._add_plotline)
-        self._ui.tv.tree.see(AC_ROOT)
+        self._ui.tv.tree.see(PL_ROOT)
 
     def _remove_plotline(self, event=None):
         """Remove the plot line selected in the listbox from the section associations."""
@@ -483,29 +483,29 @@ class FullSectionView(DatedSectionView):
         except:
             return
 
-        acId = self._element.scArcs[selection]
-        title = self._mdl.novel.arcs[acId].title
+        plId = self._element.scPlotLines[selection]
+        title = self._mdl.novel.plotLines[plId].title
         if not self._ui.ask_yes_no(f'{_("Remove plot line")}: "{title}"?'):
             return
 
         # Remove the plot line from the section's list.
-        arcList = self._element.scArcs
+        arcList = self._element.scPlotLines
         del arcList[selection]
-        self._element.scArcs = arcList
+        self._element.scPlotLines = arcList
 
         # Remove the section from the plot line's list.
-        arcSections = self._mdl.novel.arcs[acId].sections
+        arcSections = self._mdl.novel.plotLines[plId].sections
         if self._elementId in arcSections:
             arcSections.remove(self._elementId)
-            self._mdl.novel.arcs[acId].sections = arcSections
+            self._mdl.novel.plotLines[plId].sections = arcSections
 
             # Remove plot point assignments, if any.
-            for tpId in list(self._element.scTurningPoints):
-                if self._element.scTurningPoints[tpId] == acId:
-                    del(self._element.scTurningPoints[tpId])
+            for ppId in list(self._element.scPlotPoints):
+                if self._element.scPlotPoints[ppId] == plId:
+                    del(self._element.scPlotPoints[ppId])
                     # removing the plot line's plot point from the section's list
                     # Note: this doesn't trigger the refreshing method
-                    self._mdl.novel.turningPoints[tpId].sectionAssoc = None
+                    self._mdl.novel.plotPoints[ppId].sectionAssoc = None
                     # un-assigning the section from the plot line's plot point
 
     def _save_plot_notes(self):

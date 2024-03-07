@@ -8,6 +8,17 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v3.0.0
+
+- Fix a regression from v2.7.0 where faulty plot lists are generated. 
+- Refactor the code, using the new "plot line/plot point" 
+  wording for the variables and methods. 
+- Upgrade the API to version 3 due to the DTD changes. Otherwise, plugins
+  with v2.x API might not be able to read the novx files.
+- Enable the online help in German.
+
+Based on novxlib v2.0.0
+
 ### v2.7.0
 
 - Rewording: Arc -> Plot line.

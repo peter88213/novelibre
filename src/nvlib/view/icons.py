@@ -71,9 +71,9 @@ class Icons:
         except:
             self.updateFromManuscriptIcon = None
         try:
-            self.viewArcsIcon = tk.PhotoImage(file=f'{iconPath}/viewArcs.png')
+            self.viewPlotLinesIcon = tk.PhotoImage(file=f'{iconPath}/viewArcs.png')
         except:
-            self.viewArcsIcon = None
+            self.viewPlotLinesIcon = None
         try:
             self.viewBookIcon = tk.PhotoImage(file=f'{iconPath}/viewBook.png')
         except:

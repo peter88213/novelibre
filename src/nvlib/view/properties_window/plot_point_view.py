@@ -60,7 +60,7 @@ class TurningPointView(BasicView):
         
         Extends the superclass constructor.
         """
-        self._element = self._mdl.novel.turningPoints[elementId]
+        self._element = self._mdl.novel.plotPoints[elementId]
         super().set_data(elementId)
 
         # Associated section display.
@@ -80,16 +80,16 @@ class TurningPointView(BasicView):
             if self._mdl.novel.sections[nodeId].scType == 0:
                 self._clear_assignment()
                 # Associate the point with the section.
-                acId = self._ui.tv.tree.parent(self._elementId)
-                arcSections = self._mdl.novel.arcs[acId].sections
+                plId = self._ui.tv.tree.parent(self._elementId)
+                arcSections = self._mdl.novel.plotLines[plId].sections
                 if arcSections is None:
                     arcSections = [nodeId]
                 elif not nodeId in arcSections:
                     arcSections.append(nodeId)
-                self._mdl.novel.arcs[acId].sections = arcSections
-                self._mdl.novel.sections[nodeId].scTurningPoints[self._elementId] = acId
-                if not acId in self._mdl.novel.sections[nodeId].scArcs:
-                    self._mdl.novel.sections[nodeId].scArcs.append(acId)
+                self._mdl.novel.plotLines[plId].sections = arcSections
+                self._mdl.novel.sections[nodeId].scPlotPoints[self._elementId] = plId
+                if not plId in self._mdl.novel.sections[nodeId].scPlotLines:
+                    self._mdl.novel.sections[nodeId].scPlotLines.append(plId)
                 self._element.sectionAssoc = nodeId
         self._end_picking_mode()
 
@@ -97,7 +97,7 @@ class TurningPointView(BasicView):
         """Unassign a section from the Plot point."""
         scId = self._element.sectionAssoc
         if scId is not None:
-            del(self._mdl.novel.sections[scId].scTurningPoints[self._elementId])
+            del(self._mdl.novel.sections[scId].scPlotPoints[self._elementId])
             self._element.sectionAssoc = None
 
     def _create_frames(self):

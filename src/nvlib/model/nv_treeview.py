@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from novxlib.novx_globals import AC_ROOT
+from novxlib.novx_globals import PL_ROOT
 from novxlib.novx_globals import CH_ROOT
 from novxlib.novx_globals import CR_ROOT
 from novxlib.novx_globals import IT_ROOT
@@ -26,7 +26,7 @@ class NvTreeview(ttk.Treeview):
         self.append('', CR_ROOT)
         self.append('', LC_ROOT)
         self.append('', IT_ROOT)
-        self.append('', AC_ROOT)
+        self.append('', PL_ROOT)
         self.append('', PN_ROOT)
 
     def append(self, parent, iid, text=None):

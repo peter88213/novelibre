@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from novxlib.file.filter import Filter
 from novxlib.novx_globals import CHARACTER_PREFIX
-from novxlib.novx_globals import ARC_PREFIX
+from novxlib.novx_globals import PLOT_LINE_PREFIX
 from nvlib.exporter.sc_vp_filter import ScVpFilter
 from nvlib.exporter.sc_ac_filter import ScAcFilter
 from nvlib.exporter.ch_vp_filter import ChVpFilter
@@ -26,7 +26,7 @@ class FilterFactory:
         if filterElementId.startswith(CHARACTER_PREFIX):
             return ScVpFilter(filterElementId)
 
-        elif filterElementId.startswith(ARC_PREFIX):
+        elif filterElementId.startswith(PLOT_LINE_PREFIX):
             return ScAcFilter(filterElementId)
 
         else:
@@ -43,7 +43,7 @@ class FilterFactory:
         if filterElementId.startswith(CHARACTER_PREFIX):
             return ChVpFilter(filterElementId)
 
-        elif filterElementId.startswith(ARC_PREFIX):
+        elif filterElementId.startswith(PLOT_LINE_PREFIX):
             return ChAcFilter(filterElementId)
 
         else:

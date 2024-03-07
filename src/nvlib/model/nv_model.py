@@ -5,18 +5,18 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.model.nv_work_file import NvWorkFile
-from novxlib.model.arc import Arc
+from novxlib.model.plot_line import PlotLine
 from novxlib.model.basic_element import BasicElement
 from novxlib.model.chapter import Chapter
 from novxlib.model.character import Character
 from novxlib.model.id_generator import create_id
 from novxlib.model.novel import Novel
 from novxlib.model.section import Section
-from novxlib.model.turning_point import TurningPoint
+from novxlib.model.plot_point import PlotPoint
 from novxlib.model.world_element import WorldElement
-from novxlib.novx_globals import AC_ROOT
-from novxlib.novx_globals import ARC_POINT_PREFIX
-from novxlib.novx_globals import ARC_PREFIX
+from novxlib.novx_globals import PL_ROOT
+from novxlib.novx_globals import PLOT_POINT_PREFIX
+from novxlib.novx_globals import PLOT_LINE_PREFIX
 from novxlib.novx_globals import CHAPTER_PREFIX
 from novxlib.novx_globals import CHARACTER_PREFIX
 from novxlib.novx_globals import CH_ROOT
@@ -78,18 +78,18 @@ class NvModel:
         """
         targetNode = kwargs.get('targetNode', '')
         index = 'end'
-        if targetNode.startswith(ARC_PREFIX):
+        if targetNode.startswith(PLOT_LINE_PREFIX):
             index = self.tree.index(targetNode) + 1
-        acId = create_id(self.novel.arcs, prefix=ARC_PREFIX)
-        self.novel.arcs[acId] = Arc(
-            title=kwargs.get('title', f'{_("New Plot line")} ({acId})'),
+        plId = create_id(self.novel.plotLines, prefix=PLOT_LINE_PREFIX)
+        self.novel.plotLines[plId] = PlotLine(
+            title=kwargs.get('title', f'{_("New Plot line")} ({plId})'),
             desc='',
-            shortName=acId,
+            shortName=plId,
             sections=[],
             on_element_change=self.on_element_change,
             )
-        self.tree.insert(AC_ROOT, index, acId)
-        return acId
+        self.tree.insert(PL_ROOT, index, plId)
+        return plId
 
     def add_chapter(self, **kwargs):
         """Add a chapter to the novel.
@@ -387,22 +387,22 @@ class NvModel:
             return
 
         index = 'end'
-        if targetNode.startswith(ARC_POINT_PREFIX):
+        if targetNode.startswith(PLOT_POINT_PREFIX):
             parent = self.tree.parent(targetNode)
             index = self.tree.index(targetNode) + 1
-        elif targetNode.startswith(ARC_PREFIX):
+        elif targetNode.startswith(PLOT_LINE_PREFIX):
             parent = targetNode
         else:
             return
 
-        tpId = create_id(self.novel.turningPoints, prefix=ARC_POINT_PREFIX)
-        self.novel.turningPoints[tpId] = TurningPoint(
-            title=kwargs.get('title', f'{_("New Plot point")} ({tpId})'),
+        ppId = create_id(self.novel.plotPoints, prefix=PLOT_POINT_PREFIX)
+        self.novel.plotPoints[ppId] = PlotPoint(
+            title=kwargs.get('title', f'{_("New Plot point")} ({ppId})'),
             desc='',
             on_element_change=self.on_element_change,
             )
-        self.tree.insert(parent, index, tpId)
-        return tpId
+        self.tree.insert(parent, index, ppId)
+        return ppId
 
     def close_project(self):
         self.isModified = False
@@ -420,7 +420,7 @@ class NvModel:
         - Delete parts/chapters and move their children sections to the "Trash" chapter.
         - Delete characters/locations/items and remove their section references.
         - Delete stages.
-        - Delete arcs and remove their plot points and section references.
+        - Delete plotLines and remove their plot points and section references.
         - Delete plot points and remove their section references.
         - Delete prjFile notes.
         """
@@ -433,16 +433,16 @@ class NvModel:
                     self.tree.move(elemId, self.trashBin, 0)
                     self.novel.sections[elemId].scType = 1
                     # Remove plot point and plot line references.
-                    arcReferences = self.novel.sections[elemId].scArcs
-                    tpReferences = self.novel.sections[elemId].scTurningPoints
-                    self.novel.sections[elemId].scArcs = []
-                    self.novel.sections[elemId].scTurningPoints = {}
-                    for acId in arcReferences:
-                        sections = self.novel.arcs[acId].sections
+                    arcReferences = self.novel.sections[elemId].scPlotLines
+                    tpReferences = self.novel.sections[elemId].scPlotPoints
+                    self.novel.sections[elemId].scPlotLines = []
+                    self.novel.sections[elemId].scPlotPoints = {}
+                    for plId in arcReferences:
+                        sections = self.novel.plotLines[plId].sections
                         sections.remove(elemId)
-                        self.novel.arcs[acId].sections = sections
-                    for ptId in tpReferences:
-                        self.novel.turningPoints[ptId].sectionAssoc = None
+                        self.novel.plotLines[plId].sections = sections
+                    for ppId in tpReferences:
+                        self.novel.plotPoints[ppId].sectionAssoc = None
                 else:
                     # Delete the stage.
                     self.tree.delete(elemId)
@@ -493,24 +493,24 @@ class NvModel:
                     self.novel.sections[scId].items = scItems
                 except:
                     pass
-        elif elemId.startswith(ARC_PREFIX):
+        elif elemId.startswith(PLOT_LINE_PREFIX):
             # Delete a plot line and remove references.
-            if self.novel.arcs[elemId].sections:
-                for scId in self.novel.arcs[elemId].sections:
-                    self.novel.sections[scId].scArcs.remove(elemId)
-                for tpId in self.tree.get_children(elemId):
-                    scId = self.novel.turningPoints[tpId].sectionAssoc
+            if self.novel.plotLines[elemId].sections:
+                for scId in self.novel.plotLines[elemId].sections:
+                    self.novel.sections[scId].scPlotLines.remove(elemId)
+                for ppId in self.tree.get_children(elemId):
+                    scId = self.novel.plotPoints[ppId].sectionAssoc
                     if scId is not None:
-                        del(self.novel.sections[scId].scTurningPoints[tpId])
-                    del self.novel.turningPoints[tpId]
-            del self.novel.arcs[elemId]
+                        del(self.novel.sections[scId].scPlotPoints[ppId])
+                    del self.novel.plotPoints[ppId]
+            del self.novel.plotLines[elemId]
             self.tree.delete(elemId)
-        elif elemId.startswith(ARC_POINT_PREFIX):
+        elif elemId.startswith(PLOT_POINT_PREFIX):
             # Delete a plot point and remove references.
-            scId = self.novel.turningPoints[elemId].sectionAssoc
+            scId = self.novel.plotPoints[elemId].sectionAssoc
             if scId is not None:
-                del(self.novel.sections[scId].scTurningPoints[elemId])
-            del self.novel.turningPoints[elemId]
+                del(self.novel.sections[scId].scPlotPoints[elemId])
+            del self.novel.plotPoints[elemId]
             self.tree.delete(elemId)
         elif elemId.startswith(PRJ_NOTE_PREFIX):
             # Delete a prjFile note.
@@ -657,17 +657,17 @@ class NvModel:
         join_lst(self.novel.sections[ScId0].tags, self.novel.sections[ScId1].tags)
 
         # Move plot line associations.
-        for scArc in self.novel.sections[ScId1].scArcs:
-            self.novel.arcs[scArc].sections.remove(ScId1)
-            if not ScId0 in self.novel.arcs[scArc].sections:
-                self.novel.arcs[scArc].sections.append(ScId0)
-            if not scArc in self.novel.sections[ScId0].scArcs:
-                self.novel.sections[ScId0].scArcs.append(scArc)
+        for scPlotLine in self.novel.sections[ScId1].scPlotLines:
+            self.novel.plotLines[scPlotLine].sections.remove(ScId1)
+            if not ScId0 in self.novel.plotLines[scPlotLine].sections:
+                self.novel.plotLines[scPlotLine].sections.append(ScId0)
+            if not scPlotLine in self.novel.sections[ScId0].scPlotLines:
+                self.novel.sections[ScId0].scPlotLines.append(scPlotLine)
 
         # Move plot point associations.
-        for ptId in self.novel.sections[ScId1].scTurningPoints:
-            self.novel.turningPoints[ptId].sectionAssoc = ScId0
-            self.novel.sections[ScId0].scTurningPoints[ptId] = self.novel.sections[ScId1].scTurningPoints[ptId]
+        for ppId in self.novel.sections[ScId1].scPlotPoints:
+            self.novel.plotPoints[ppId].sectionAssoc = ScId0
+            self.novel.sections[ScId0].scPlotPoints[ppId] = self.novel.sections[ScId1].scPlotPoints[ppId]
 
         # Add duration.
         try:
@@ -718,7 +718,7 @@ class NvModel:
         if node[:2] == targetNode[:2]:
             self.tree.move(node, self.tree.parent(targetNode), self.tree.index(targetNode))
         elif (node.startswith(SECTION_PREFIX) and targetNode.startswith(CHAPTER_PREFIX)
-              )or (node.startswith(ARC_POINT_PREFIX) and targetNode.startswith(ARC_PREFIX)):
+              )or (node.startswith(PLOT_POINT_PREFIX) and targetNode.startswith(PLOT_LINE_PREFIX)):
             if not self.tree.get_children(targetNode):
                 self.tree.move(node, targetNode, 0)
             elif self.tree.prev(targetNode):
@@ -969,11 +969,11 @@ class NvModel:
                     self.novel.chapters[elemId].on_element_change = on_element_change
                     if self.novel.chapters[elemId].isTrash:
                         self.trashBin = elemId
-                elif elemId.startswith(ARC_PREFIX):
+                elif elemId.startswith(PLOT_LINE_PREFIX):
                     initialize_branch(elemId)
-                    self.novel.arcs[elemId].on_element_change = on_element_change
-                elif elemId.startswith(ARC_POINT_PREFIX):
-                    self.novel.turningPoints[elemId].on_element_change = on_element_change
+                    self.novel.plotLines[elemId].on_element_change = on_element_change
+                elif elemId.startswith(PLOT_POINT_PREFIX):
+                    self.novel.plotPoints[elemId].on_element_change = on_element_change
                 else:
                     initialize_branch(elemId)
 
