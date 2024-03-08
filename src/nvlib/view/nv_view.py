@@ -6,19 +6,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import sys
 from tkinter import messagebox
-from tkinter import simpledialog
 from tkinter import ttk
 import webbrowser
 
-from nvlib.nv_globals import prefs
-from nvlib.view.contents_window.contents_viewer import ContentsViewer
-from nvlib.view.icons import Icons
-from nvlib.view.properties_window.properties_viewer import PropertiesViewer
-from nvlib.view.toolbar import Toolbar
-from nvlib.view.tree_window.tree_viewer import TreeViewer
-from nvlib.exporter.export_options_window import ExportOptionsWindow
-from nvlib.view.view_options_window import ViewOptionsWindow
-from novxlib.novx_globals import PL_ROOT
 from novxlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from novxlib.novx_globals import CHAPTERS_SUFFIX
 from novxlib.novx_globals import CHARACTERS_SUFFIX
@@ -28,6 +18,7 @@ from novxlib.novx_globals import CHARLIST_SUFFIX
 from novxlib.novx_globals import CH_ROOT
 from novxlib.novx_globals import CR_ROOT
 from novxlib.novx_globals import DATA_SUFFIX
+from novxlib.novx_globals import GRID_SUFFIX
 from novxlib.novx_globals import ITEMLIST_SUFFIX
 from novxlib.novx_globals import ITEMS_SUFFIX
 from novxlib.novx_globals import ITEM_PREFIX
@@ -42,14 +33,23 @@ from novxlib.novx_globals import MANUSCRIPT_SUFFIX
 from novxlib.novx_globals import PARTS_SUFFIX
 from novxlib.novx_globals import PLOTLIST_SUFFIX
 from novxlib.novx_globals import PLOT_SUFFIX
+from novxlib.novx_globals import PL_ROOT
 from novxlib.novx_globals import PN_ROOT
 from novxlib.novx_globals import PROOF_SUFFIX
 from novxlib.novx_globals import SECTIONLIST_SUFFIX
-from novxlib.novx_globals import GRID_SUFFIX
 from novxlib.novx_globals import SECTIONS_SUFFIX
 from novxlib.novx_globals import XREF_SUFFIX
 from novxlib.novx_globals import _
 from novxlib.ui.set_icon_tk import set_icon
+from nvlib.exporter.export_options_window import ExportOptionsWindow
+from nvlib.nv_globals import prefs
+from nvlib.view.contents_window.contents_viewer import ContentsViewer
+from nvlib.view.icons import Icons
+from nvlib.view.properties_window.properties_viewer import PropertiesViewer
+from nvlib.view.toolbar import Toolbar
+from nvlib.view.tree_window.tree_viewer import TreeViewer
+from nvlib.view.view_options_window import ViewOptionsWindow
+from nvlib.widgets.simple_dialog import askinteger
 import tkinter as tk
 
 MAX_NR_NEW_SECTIONS = 20
@@ -549,13 +549,14 @@ class NvView:
                 pass
 
     def _add_multiple_sections(self):
-        n = simpledialog.askinteger(
-            title=_('Add sections'),
-            prompt=_('How many sections to add?')
+        n = askinteger(
+            title=_('New'),
+            prompt=_('How many sections to add?'),
+            initialvalue=0,
+            minvalue=0,
+            maxvalue=MAX_NR_NEW_SECTIONS
             )
-        if n > MAX_NR_NEW_SECTIONS:
-            n = MAX_NR_NEW_SECTIONS
-        if n > 0:
+        if n is not None:
             for __ in range(n):
                 self._ctrl.add_section()
 

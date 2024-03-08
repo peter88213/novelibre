@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.0.2\n"
-"POT-Creation-Date: 2024-03-08 00:18:24\n"
+"Project-Id-Version: unknown\n"
+"POT-Creation-Date: 2024-03-09 00:07:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -132,6 +132,9 @@ msgid "C"
 msgstr ""
 
 msgid "Can not do"
+msgstr ""
+
+msgid "Cancel"
 msgstr ""
 
 msgid "Cannot create directory"
@@ -524,6 +527,9 @@ msgstr ""
 msgid "How many sections to add?"
 msgstr ""
 
+msgid "Illegal value"
+msgstr ""
+
 msgid "Image file"
 msgstr ""
 
@@ -710,6 +716,12 @@ msgstr ""
 msgid "Normal"
 msgstr ""
 
+msgid "Not a floating point value."
+msgstr ""
+
+msgid "Not an integer."
+msgstr ""
+
 msgid "Notes"
 msgstr ""
 
@@ -729,6 +741,9 @@ msgid "ODF Text document"
 msgstr ""
 
 msgid "ODS Plot list"
+msgstr ""
+
+msgid "OK"
 msgstr ""
 
 msgid "Older than the project file"
@@ -792,6 +807,9 @@ msgid "Please close the manuscript first"
 msgstr ""
 
 msgid "Please enter either a section date or a day and a reference date."
+msgstr ""
+
+msgid "Please try again"
 msgstr ""
 
 msgid "Please wait ..."
@@ -1031,6 +1049,12 @@ msgstr ""
 msgid "Text file"
 msgstr ""
 
+msgid "The allowed maximum value is"
+msgstr ""
+
+msgid "The allowed minimum value is"
+msgstr ""
+
 msgid "The change takes effect after next startup."
 msgstr ""
 
@@ -1083,6 +1107,12 @@ msgid "Toggle Properties"
 msgstr ""
 
 msgid "Toggle Text viewer"
+msgstr ""
+
+msgid "Too large"
+msgstr ""
+
+msgid "Too small"
 msgstr ""
 
 msgid "Tools"

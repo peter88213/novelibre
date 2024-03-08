@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.0.2\n"
-"POT-Creation-Date: 2024-03-08 00:18:24\n"
-"PO-Revision-Date: 2024-03-08 00:18:24\n"
+"Project-Id-Version: unknown\n"
+"POT-Creation-Date: 2024-03-09 00:07:00\n"
+"PO-Revision-Date: 2024-03-09 00:20:33\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -126,6 +126,9 @@ msgstr "B"
 
 msgid "Can not do"
 msgstr "Geht nicht"
+
+msgid "Cancel"
+msgstr "Abbrechen"
 
 msgid "Cannot create directory"
 msgstr "Kann Verzeichnis nicht erzeugen"
@@ -517,6 +520,9 @@ msgstr "Stunden"
 msgid "How many sections to add?"
 msgstr "Wie viele Abschnitte hinzufügen?"
 
+msgid "Illegal value"
+msgstr "Unzulässiger Wert"
+
 msgid "Image file"
 msgstr "Bilddatei"
 
@@ -703,6 +709,12 @@ msgstr "Keiner"
 msgid "Normal"
 msgstr "Normal"
 
+msgid "Not a floating point value."
+msgstr "Keine Fließkommazahl."
+
+msgid "Not an integer."
+msgstr "Kein ganzzahliger Wert."
+
 msgid "Notes"
 msgstr "Notizen"
 
@@ -723,6 +735,9 @@ msgstr "ODF-Textdokument"
 
 msgid "ODS Plot list"
 msgstr "ODS-Plotliste"
+
+msgid "OK"
+msgstr "OK"
 
 msgid "Older than the project file"
 msgstr "Älter als die Projektdatei"
@@ -786,6 +801,9 @@ msgstr "Bitte zuerst das Manuskript schließen"
 
 msgid "Please enter either a section date or a day and a reference date."
 msgstr "Geben Sie bitte entweder ein Abschnittsdatum ein, oder einen Tag und ein Referenzdatum."
+
+msgid "Please try again"
+msgstr "Bitte noch einmal versuchen"
 
 msgid "Please wait ..."
 msgstr "Bitte warten ..."
@@ -1024,6 +1042,12 @@ msgstr "Text"
 msgid "Text file"
 msgstr "Textdatei"
 
+msgid "The allowed maximum value is"
+msgstr "Der zulässige Höchstwert ist"
+
+msgid "The allowed minimum value is"
+msgstr "Der zulässige Mindestwert ist"
+
 msgid "The change takes effect after next startup."
 msgstr "Die Änderung wird beim nächsten Programmstart wirksam"
 
@@ -1077,6 +1101,12 @@ msgstr "Eigenschaften anzeigen/verbergen"
 
 msgid "Toggle Text viewer"
 msgstr "Textbetrachter anzeigen/verbergen"
+
+msgid "Too large"
+msgstr "Zu hoch"
+
+msgid "Too small"
+msgstr "Zu niedrig"
 
 msgid "Tools"
 msgstr "Extras"
