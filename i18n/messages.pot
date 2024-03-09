@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: unknown\n"
-"POT-Creation-Date: 2024-03-09 00:07:00\n"
+"Project-Id-Version: 3.0.3\n"
+"POT-Creation-Date: 2024-03-09 10:19:31\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -72,9 +72,6 @@ msgid "Add Section"
 msgstr ""
 
 msgid "Add multiple sections"
-msgstr ""
-
-msgid "Add sections"
 msgstr ""
 
 msgid "Aka"
@@ -758,6 +755,9 @@ msgstr ""
 msgid "Open Project folder"
 msgstr ""
 
+msgid "Open existing"
+msgstr ""
+
 msgid "Open installation folder"
 msgstr ""
 
@@ -777,6 +777,9 @@ msgid "Outcome"
 msgstr ""
 
 msgid "Outline"
+msgstr ""
+
+msgid "Overwrite"
 msgstr ""
 
 msgid "Overwrite existing file \"{}\"?"

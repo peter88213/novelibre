@@ -24,6 +24,7 @@ http://www.pythonware.com
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
+License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import _get_temp_root, _destroy_temp_root
 from tkinter import messagebox
@@ -38,6 +39,8 @@ class SimpleDialog:
     def __init__(self, master,
                  text='', buttons=[], default=None, cancel=None,
                  title=None, class_=None):
+        if master is None:
+            master = _get_temp_root()
         if class_:
             self.root = tk.Toplevel(master, class_=class_)
         else:
@@ -48,7 +51,7 @@ class SimpleDialog:
 
         _setup_dialog(self.root)
 
-        self.message = tk.Message(self.root, text=text, aspect=400)
+        self.message = tk.Message(self.root, text=text, aspect=400, bg='white')
         self.message.pack(expand=1, fill='both')
         self.frame = tk.Frame(self.root)
         self.frame.pack()
@@ -60,9 +63,9 @@ class SimpleDialog:
             s = buttons[num]
             b = ttk.Button(self.frame, text=s,
                        command=(lambda self=self, num=num: self.done(num)))
-            # if num == default:
-            #    b.config(relief='ridge', borderwidth=8)
-            b.pack(side='left', fill='both', expand=1)
+            if num == default:
+                b.focus()
+            b.pack(side='left', fill='both', expand=1, padx=5, pady=10)
         self.root.protocol('WM_DELETE_WINDOW', self.wm_delete_window)
         self.root.transient(master)
         _place_window(self.root, master)
@@ -176,9 +179,9 @@ class Dialog(tk.Toplevel):
         box = tk.Frame(self)
 
         w = ttk.Button(box, text=_('OK'), width=10, command=self.ok, default='active')
-        w.pack(side='left', padx=5, pady=5)
+        w.pack(side='left', padx=5, pady=10)
         w = ttk.Button(box, text=_('Cancel'), width=10, command=self.cancel)
-        w.pack(side='left', padx=5, pady=5)
+        w.pack(side='left', padx=5, pady=10)
 
         self.bind('<Return>', self.ok)
         self.bind('<Escape>', self.cancel)
@@ -298,7 +301,7 @@ class _QueryDialog(Dialog):
         w.grid(row=0, padx=5, sticky='w')
 
         self.entry = ttk.Entry(master, name='entry')
-        self.entry.grid(row=1, padx=5, sticky='w' + 'e')
+        self.entry.grid(row=1, padx=5, pady=5, sticky='w' + 'e')
 
         if self.initialvalue is not None:
             self.entry.insert(0, self.initialvalue)

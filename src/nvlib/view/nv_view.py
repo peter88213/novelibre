@@ -49,7 +49,7 @@ from nvlib.view.properties_window.properties_viewer import PropertiesViewer
 from nvlib.view.toolbar import Toolbar
 from nvlib.view.tree_window.tree_viewer import TreeViewer
 from nvlib.view.view_options_window import ViewOptionsWindow
-from nvlib.widgets.simple_dialog import askinteger
+from nvlib.widgets.nv_simpledialog import askinteger
 import tkinter as tk
 
 MAX_NR_NEW_SECTIONS = 20

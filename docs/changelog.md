@@ -9,6 +9,13 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v3.0.3
+
+- Improve the "Export document" and the "New sections" 
+  dialogs with a custom dialog box. 
+
+Based on novxlib v2.0.1
+
 ### v3.0.2
 
 - Fix a bug where imported sections are split at the 
