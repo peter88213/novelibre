@@ -1093,3 +1093,6 @@ class NvController:
             self._ui.tv.go_to_node(newNode)
             self._ui.propertiesView.show_properties(newNode)
             self._ui.propertiesView.focus_title()
+        else:
+            self._ui.set_status(f'!{_("Cannot create the element at this position")}.')
+

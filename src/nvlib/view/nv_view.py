@@ -54,6 +54,8 @@ import tkinter as tk
 
 MAX_NR_NEW_SECTIONS = 20
 # maximum number of sections to add in bulk
+INI_NR_NEW_SECTIONS = 1
+# initial value when asking for the number of sections to add
 
 
 class NvView:
@@ -552,7 +554,7 @@ class NvView:
         n = askinteger(
             title=_('New'),
             prompt=_('How many sections to add?'),
-            initialvalue=0,
+            initialvalue=INI_NR_NEW_SECTIONS,
             minvalue=0,
             maxvalue=MAX_NR_NEW_SECTIONS
             )

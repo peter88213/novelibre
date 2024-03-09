@@ -9,6 +9,13 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v3.0.5
+
+- Make the initial value for adding multiple sections a constant and set it to 1.
+- Show an error message if a new element cannot be created.
+
+Based on novxlib v2.0.1
+
 ### v3.0.4
 
 - SimpleDialog class: Instead of just focusing, activate the default button. 

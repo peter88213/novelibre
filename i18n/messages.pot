@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.0.4\n"
-"POT-Creation-Date: 2024-03-09 18:05:25\n"
+"Project-Id-Version: 3.0.5\n"
+"POT-Creation-Date: 2024-03-09 19:04:38\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -138,6 +138,9 @@ msgid "Cannot create directory"
 msgstr ""
 
 msgid "Cannot create file"
+msgstr ""
+
+msgid "Cannot create the element at this position"
 msgstr ""
 
 msgid "Cannot generate date/time"
