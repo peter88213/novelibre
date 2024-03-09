@@ -1,8 +1,8 @@
 """Provide a custom variant of the tkinter simpledialog module by Frederik Lundh.
 
 This modification of the tkinter simpledialog module
-is slightly refactored, features ttk widgets, and is 
-prepared for translation with GNU gettext.
+is slightly refactored, features ttk widgets, 
+and is prepared for translation with GNU gettext.
 
 This modules handles dialog boxes.
 
@@ -18,10 +18,12 @@ askfloat -- get a float from the user
 
 askstring -- get a string from the user
 
+tkinter code: 
 Copyright (c) 1997 by Fredrik Lundh
 fredrik@pythonware.com
 http://www.pythonware.com
 
+modifications for novelibre:
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
@@ -61,10 +63,13 @@ class SimpleDialog:
         self.root.bind('<Return>', self.return_event)
         for num in range(len(buttons)):
             s = buttons[num]
-            b = ttk.Button(self.frame, text=s,
-                       command=(lambda self=self, num=num: self.done(num)))
+            b = ttk.Button(
+                self.frame,
+                text=s,
+                command=(lambda self=self, num=num: self.done(num))
+                )
             if num == default:
-                b.focus()
+                b.configure(default='active')
             b.pack(side='left', fill='both', expand=1, padx=5, pady=10)
         self.root.protocol('WM_DELETE_WINDOW', self.wm_delete_window)
         self.root.transient(master)

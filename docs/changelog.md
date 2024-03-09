@@ -9,6 +9,12 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v3.0.4
+
+- SimpleDialog class: Instead of just focusing, activate the default button. 
+
+Based on novxlib v2.0.1
+
 ### v3.0.3
 
 - Improve the "Export document" and the "New sections" 
