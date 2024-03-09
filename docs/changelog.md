@@ -9,6 +9,12 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v3.0.6
+
+- Move the "Close" buttons of Plugin Manager and import dialog to the right.
+
+Based on novxlib v2.0.1
+
 ### v3.0.5
 
 - Make the initial value for adding multiple sections a constant and set it to 1.

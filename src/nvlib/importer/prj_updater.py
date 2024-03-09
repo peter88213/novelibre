@@ -67,7 +67,7 @@ class PrjUpdater(tk.Toplevel):
         self._refreshButton.pack(padx=5, pady=5, side='left')
 
         # "Close" button.
-        ttk.Button(window, text=_('Close'), command=self.destroy).pack(padx=5, pady=5, side='left')
+        ttk.Button(window, text=_('Close'), command=self.destroy).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
         self._documentCollection.bind('<Double-1>', self._import_document)
