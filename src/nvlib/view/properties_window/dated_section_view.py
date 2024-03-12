@@ -196,9 +196,7 @@ class DatedSectionView(RelatedSectionView):
                             self._ui.show_error(f'{_("Wrong day")}: "{dayStr}"', title=_('Input rejected'))
                         else:
                             self._element.day = dayStr
-                            self._startDate.set('')
                             self._element.date = None
-                            self._weekDay.set('')
 
     def apply_changes(self, event=None):
         """Apply changes.
@@ -218,7 +216,6 @@ class DatedSectionView(RelatedSectionView):
         dateStr = self._startDate.get()
         if not dateStr:
             self._element.date = None
-            self._weekDay.set('')
         elif dateStr != self._element.date:
             try:
                 date.fromisoformat(dateStr)
@@ -253,7 +250,6 @@ class DatedSectionView(RelatedSectionView):
         # 'Day' entry.
         if self._element.date:
             self._element.day = None
-            self._startDay.set('')
         else:
             self._change_day()
 
@@ -382,11 +378,11 @@ class DatedSectionView(RelatedSectionView):
                 )
             return
 
-        self.doNotUpdate = True
+        # self.doNotUpdate = True
         self._element.date = newDate
         self._element.time = newTime
         self._element.day = newDay
-        self.doNotUpdate = False
+        # self.doNotUpdate = False
         self._startDate.set(newDate)
         self._startTime.set(newTime.rsplit(':', 1)[0])
         self._startDay.set(newDay)
@@ -478,14 +474,9 @@ class DatedSectionView(RelatedSectionView):
             if dataElement:
                 hasData = True
         if hasData and self._ui.ask_yes_no(_('Clear duration from this section?')):
-            self.doNotUpdate = True
             self._element.lastsDays = None
             self._element.lastsHours = None
             self._element.lastsMinutes = None
-            self.doNotUpdate = False
-            self._lastsDays.set('')
-            self._lastsHours.set('')
-            self._lastsMinutes.set('')
 
     def _clear_start(self):
         """Remove start data from the section."""
@@ -499,15 +490,9 @@ class DatedSectionView(RelatedSectionView):
             if dataElement:
                 hasData = True
         if hasData and self._ui.ask_yes_no(_('Clear date/time from this section?')):
-            self.doNotUpdate = True
             self._element.date = None
             self._element.time = None
             self._element.day = None
-            self.doNotUpdate = False
-            self._startDate.set('')
-            self._startTime.set('')
-            self._startDay.set('')
-            self._weekDay.set('')
 
     def _toggle_date(self, event=None):
         """Toggle specific/unspecific date."""
