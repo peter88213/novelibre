@@ -767,7 +767,7 @@ class TreeViewer(ttk.Frame):
 
         # Date or day for displaying.
         if self._mdl.novel.sections[scId].date is not None and self._mdl.novel.sections[scId].date != Section.NULL_DATE:
-            dispDate = self._mdl.novel.sections[scId].date
+            dispDate = self._mdl.novel.sections[scId].localeDate
         else:
             if self._mdl.novel.sections[scId].day is not None:
                 dispDate = f'{_("Day")} {self._mdl.novel.sections[scId].day}'
