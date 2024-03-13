@@ -218,11 +218,13 @@ class ProjectView(BasicView):
         self._referenceDateEntry.entry.bind('<Return>', self.apply_changes)
 
         # Day of the week display.
+        localeDateFrame = ttk.Frame(self._narrativeTimeFrame)
+        localeDateFrame.pack(fill='x')
+        ttk.Label(localeDateFrame, width=20).pack(side='left')
         self._referenceWeekDay = MyStringVar()
-        weekdayFrame = ttk.Frame(self._narrativeTimeFrame)
-        weekdayFrame.pack(fill='x')
-        ttk.Label(weekdayFrame, width=20).pack(side='left')
-        ttk.Label(weekdayFrame, textvariable=self._referenceWeekDay).pack(anchor='w')
+        ttk.Label(localeDateFrame, textvariable=self._referenceWeekDay).pack(side='left')
+        self._localeDate = MyStringVar()
+        ttk.Label(localeDateFrame, textvariable=self._localeDate).pack(anchor='w')
 
         # Convert date/day buttons.
         self._datesToDaysButton = ttk.Button(self._narrativeTimeFrame, text=_('Convert dates to days'), command=self._dates_to_days)
@@ -355,6 +357,7 @@ class ProjectView(BasicView):
         if not refDateStr:
             self._element.referenceDate = None
             self._referenceWeekDay.set('')
+            self._localeDate.set('')
         elif refDateStr != self._element.referenceDate:
             try:
                 date.fromisoformat(refDateStr)
@@ -367,6 +370,7 @@ class ProjectView(BasicView):
                     self._referenceWeekDay.set(WEEKDAYS[self._element.referenceWeekDay])
                 else:
                     self._referenceWeekDay.set('')
+                    self._localeDate.set('')
 
         #--- "Writing progress" frame.
         try:
@@ -495,9 +499,15 @@ class ProjectView(BasicView):
             self._narrativeTimeFrame.hide()
 
         if self._element.referenceDate and self._element.referenceWeekDay is not None:
-            self._referenceWeekDay.set(WEEKDAYS[self._element.referenceWeekDay])
+            self._referenceWeekDay.set(
+                WEEKDAYS[self._element.referenceWeekDay]
+                )
+            self._localeDate.set(
+                date.fromisoformat(self._element.referenceDate).strftime('%x')
+                )
         else:
             self._referenceWeekDay.set('')
+            self._localeDate.set('')
         self._referenceDate.set(self._element.referenceDate)
 
         #--- "Writing progress" frame.

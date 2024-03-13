@@ -43,9 +43,9 @@ class DatedSectionView(RelatedSectionView):
         sectionStartFrame = ttk.Frame(self._dateTimeFrame
                                       )
         sectionStartFrame.pack(fill='x')
-        weekdayFrame = ttk.Frame(sectionStartFrame)
-        weekdayFrame.pack(fill='x')
-        ttk.Label(weekdayFrame, text=_('Start'), width=self._DATE_TIME_LBL_X).pack(side='left')
+        localeDateFrame = ttk.Frame(sectionStartFrame)
+        localeDateFrame.pack(fill='x')
+        ttk.Label(localeDateFrame, text=_('Start'), width=self._DATE_TIME_LBL_X).pack(side='left')
 
         # 'Start date' entry.
         self._startDate = MyStringVar()
@@ -85,14 +85,14 @@ class DatedSectionView(RelatedSectionView):
 
         # Day of the week display.
         self._weekDay = MyStringVar()
-        ttk.Label(weekdayFrame, textvariable=self._weekDay).pack(side='left')
+        ttk.Label(localeDateFrame, textvariable=self._weekDay).pack(side='left')
 
         # Localized date display.
         self._localeDate = MyStringVar()
-        ttk.Label(weekdayFrame, textvariable=self._localeDate).pack(side='left')
+        ttk.Label(localeDateFrame, textvariable=self._localeDate).pack(side='left')
 
         # Time display.
-        ttk.Label(weekdayFrame, textvariable=self._startTime).pack(anchor='w')
+        ttk.Label(localeDateFrame, textvariable=self._startTime).pack(anchor='w')
 
         # 'Clear date/time' button.
         self._clearDateButton = ttk.Button(
