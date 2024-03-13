@@ -391,7 +391,10 @@ class RelatedSectionView(BasicView):
                 charList.append(f'{self._mdl.novel.characters[crId].title}: ({_("no data")})')
 
         if charList:
-            self._ui.show_info('\n'.join(charList), title=f'{_("Date")}: {now}')
+            self._ui.show_info(
+                '\n'.join(charList),
+                title=f'{_("Date")}: {date.fromisoformat(now).strftime("%x")}'
+                )
 
     def _toggle_relation_frame(self, event=None):
         """Hide/show the 'Relationships' frame."""
