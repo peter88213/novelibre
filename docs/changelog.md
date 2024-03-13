@@ -9,6 +9,14 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v3.1.0
+
+- Display the localized date in the tree view.
+- Display the localized date with the week day in the properties view.
+- Refactor the section date/day display.
+
+Based on novxlib v3.0.0
+
 ### v3.0.6
 
 - Move the "Close" buttons of Plugin Manager and import dialog to the right.

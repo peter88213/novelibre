@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.0.6\n"
-"POT-Creation-Date: 2024-03-09 20:25:51\n"
+"Project-Id-Version: 3.1.0\n"
+"POT-Creation-Date: 2024-03-13 11:28:31\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -89,10 +89,16 @@ msgstr ""
 msgid "Apply"
 msgstr ""
 
+msgid "April"
+msgstr ""
+
 msgid "Ask before opening exported documents"
 msgstr ""
 
 msgid "Assign section"
+msgstr ""
+
+msgid "August"
 msgstr ""
 
 msgid "Author"
@@ -329,6 +335,9 @@ msgstr ""
 msgid "Death date"
 msgstr ""
 
+msgid "December"
+msgstr ""
+
 msgid "Delete"
 msgstr ""
 
@@ -461,6 +470,9 @@ msgstr ""
 msgid "Exported documents"
 msgstr ""
 
+msgid "February"
+msgstr ""
+
 msgid "File"
 msgstr ""
 
@@ -566,7 +578,16 @@ msgstr ""
 msgid "Items"
 msgstr ""
 
+msgid "January"
+msgstr ""
+
 msgid "Join with previous"
+msgstr ""
+
+msgid "July"
+msgstr ""
+
+msgid "June"
 msgstr ""
 
 msgid "Language code"
@@ -621,6 +642,12 @@ msgid "Manuscript for printing (export only)"
 msgstr ""
 
 msgid "Manuscript for third-party word processing"
+msgstr ""
+
+msgid "March"
+msgstr ""
+
+msgid "May"
 msgstr ""
 
 msgid "Minor Character"
@@ -731,6 +758,9 @@ msgstr ""
 msgid "Novel outline"
 msgstr ""
 
+msgid "November"
+msgstr ""
+
 msgid "Number of sections"
 msgstr ""
 
@@ -744,6 +774,9 @@ msgid "ODS Plot list"
 msgstr ""
 
 msgid "OK"
+msgstr ""
+
+msgid "October"
 msgstr ""
 
 msgid "Older than the project file"
@@ -975,6 +1008,9 @@ msgid "Select items"
 msgstr ""
 
 msgid "Select locations"
+msgstr ""
+
+msgid "September"
 msgstr ""
 
 msgid "Set Status"

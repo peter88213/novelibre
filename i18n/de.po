@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.0.6\n"
-"POT-Creation-Date: 2024-03-09 20:25:51\n"
-"PO-Revision-Date: 2024-03-09 20:25:51\n"
+"Project-Id-Version: 3.1.0\n"
+"POT-Creation-Date: 2024-03-13 11:28:31\n"
+"PO-Revision-Date: 2024-03-13 11:28:31\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -82,11 +82,17 @@ msgstr "An den vorherigen Abschnitt anhängen"
 msgid "Apply"
 msgstr "Anwenden"
 
+msgid "April"
+msgstr "April"
+
 msgid "Ask before opening exported documents"
 msgstr "Vor dem Öffnen exportierter Dokumente nachfragen"
 
 msgid "Assign section"
 msgstr "Abschnitt zuordnen"
+
+msgid "August"
+msgstr "August"
 
 msgid "Author"
 msgstr "Autor"
@@ -322,6 +328,9 @@ msgstr "Tage"
 msgid "Death date"
 msgstr "Sterbedatum"
 
+msgid "December"
+msgstr "Dezember"
+
 msgid "Delete"
 msgstr "Löschen"
 
@@ -454,6 +463,9 @@ msgstr "Exporttyp wird nicht unterstützt"
 msgid "Exported documents"
 msgstr "Exportierte Dokumente"
 
+msgid "February"
+msgstr "Februar"
+
 msgid "File"
 msgstr "Datei"
 
@@ -559,8 +571,17 @@ msgstr "Gegenstandsliste"
 msgid "Items"
 msgstr "Gegenstände"
 
+msgid "January"
+msgstr "Januar"
+
 msgid "Join with previous"
 msgstr "Mit dem vorhergehenden zusammenfassen"
+
+msgid "July"
+msgstr "Juli"
+
+msgid "June"
+msgstr "Juni"
 
 msgid "Language code"
 msgstr "Sprachencode"
@@ -615,6 +636,12 @@ msgstr "Manuskript zum Drucken (nur Export)"
 
 msgid "Manuscript for third-party word processing"
 msgstr "Manuskript für fremde Textverarbeitung"
+
+msgid "March"
+msgstr "März"
+
+msgid "May"
+msgstr "Mai"
 
 msgid "Minor Character"
 msgstr "Nebenfigur"
@@ -724,6 +751,9 @@ msgstr "Notizen zur ausgewählten Plotlinie"
 msgid "Novel outline"
 msgstr "Romanstruktur"
 
+msgid "November"
+msgstr "November"
+
 msgid "Number of sections"
 msgstr "Anzahl Abschnitte"
 
@@ -738,6 +768,9 @@ msgstr "ODS-Plotliste"
 
 msgid "OK"
 msgstr "OK"
+
+msgid "October"
+msgstr "Oktober"
 
 msgid "Older than the project file"
 msgstr "Älter als die Projektdatei"
@@ -969,6 +1002,9 @@ msgstr "Gegenstände auswählen"
 
 msgid "Select locations"
 msgstr "Schauplätze auswählen"
+
+msgid "September"
+msgstr "September"
 
 msgid "Set Status"
 msgstr "Status setzen"
