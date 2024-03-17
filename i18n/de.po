@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.2.1\n"
-"POT-Creation-Date: 2024-03-17 19:13:31\n"
-"PO-Revision-Date: 2024-03-17 19:13:31\n"
+"Project-Id-Version: 3.2.2\n"
+"POT-Creation-Date: 2024-03-17 21:44:20\n"
+"PO-Revision-Date: 2024-03-17 21:44:20\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -699,6 +699,9 @@ msgstr "Keine Schauplatzdaten gefunden"
 
 msgid "No novelibre project to write"
 msgstr "Kein novelibre-Projekt zum Schreiben"
+
+msgid "No text available"
+msgstr "Kein Text vorhanden"
 
 msgid "No valid version found in file"
 msgstr "Keine gültige Versionsangabe in der Datei gefunden"

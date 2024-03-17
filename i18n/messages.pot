@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.2.1\n"
-"POT-Creation-Date: 2024-03-17 19:13:31\n"
+"Project-Id-Version: 3.2.2\n"
+"POT-Creation-Date: 2024-03-17 21:44:20\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -705,6 +705,9 @@ msgid "No location data found"
 msgstr ""
 
 msgid "No novelibre project to write"
+msgstr ""
+
+msgid "No text available"
 msgstr ""
 
 msgid "No valid version found in file"

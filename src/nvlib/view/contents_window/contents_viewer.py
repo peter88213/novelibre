@@ -145,7 +145,7 @@ class ContentsViewer(RichTextNv):
                     taggedText.extend(textTuples)
 
         if not taggedText:
-            taggedText.append(('(No text available)', self.ITALIC_TAG))
+            taggedText.append((f'({_("No text available")})', self.ITALIC_TAG))
         self._textMarks = {}
         self.config(state='normal')
         self.delete('1.0', 'end')
