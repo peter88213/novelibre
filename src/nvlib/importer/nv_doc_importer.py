@@ -121,7 +121,7 @@ class NvDocImporter:
 
         if source.is_locked():
             # the document might be open in the Office application
-            raise Error(f'{_("Please close the document first")}".')
+            raise Error(f'{_("Please close the document first")}.')
 
         if os.path.isfile(target.filePath):
             # an existing project is to be updated
