@@ -127,7 +127,7 @@ class NvDocImporter:
             # an existing project is to be updated
             if not messagebox.askyesno(
                 title=source.DESCRIPTION,
-                message=_('Overwrite the current project file?')
+                message=_('Update the project?')
                 ):
                 raise Error(f'{_("Action canceled by user")}.')
 

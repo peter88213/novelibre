@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.1.1\n"
-"POT-Creation-Date: 2024-03-13 16:47:07\n"
-"PO-Revision-Date: 2024-03-13 16:47:07\n"
+"Project-Id-Version: 3.1.2\n"
+"POT-Creation-Date: 2024-03-17 10:44:53\n"
+"PO-Revision-Date: 2024-03-17 10:44:53\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -775,9 +775,6 @@ msgstr "Überschreiben"
 msgid "Overwrite existing file \"{}\"?"
 msgstr "Bestehende Datei \"{}\" überschreiben?"
 
-msgid "Overwrite the current project file?"
-msgstr "Die aktuelle Projektdatei überschreiben?"
-
 msgid "Part"
 msgstr "Teil"
 
@@ -1125,6 +1122,9 @@ msgstr "Unbenutzt"
 
 msgid "Update from manuscript"
 msgstr "Änderungen am Manuskript übernehmen"
+
+msgid "Update the project?"
+msgstr "Das Projekt aktualisieren?"
 
 msgid "Use Roman chapter numbers"
 msgstr "Römische Kapitelnummern"
