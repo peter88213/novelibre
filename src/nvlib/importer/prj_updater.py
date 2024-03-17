@@ -114,7 +114,7 @@ class PrjUpdater(tk.Toplevel):
             except:
                 documentType = _('No document type')
             try:
-                documentDate = datetime.fromtimestamp(timestamp).replace(microsecond=0).isoformat(sep=' ')
+                documentDate = datetime.fromtimestamp(timestamp).strftime('%c')
             except:
                 documentDate = _('unknown')
             columns = [documentType, documentDate]

@@ -4,11 +4,30 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from datetime import datetime
 import os
-import sys
 from shutil import copy2
+import sys
 from tkinter import filedialog
 
+from novxlib.novx_globals import CHAPTER_PREFIX
+from novxlib.novx_globals import CHARACTER_PREFIX
+from novxlib.novx_globals import CH_ROOT
+from novxlib.novx_globals import CR_ROOT
+from novxlib.novx_globals import Error
+from novxlib.novx_globals import ITEM_PREFIX
+from novxlib.novx_globals import IT_ROOT
+from novxlib.novx_globals import LC_ROOT
+from novxlib.novx_globals import LOCATION_PREFIX
+from novxlib.novx_globals import MANUSCRIPT_SUFFIX
+from novxlib.novx_globals import PLOT_LINE_PREFIX
+from novxlib.novx_globals import PLOT_POINT_PREFIX
+from novxlib.novx_globals import PL_ROOT
+from novxlib.novx_globals import PN_ROOT
+from novxlib.novx_globals import PRJ_NOTE_PREFIX
+from novxlib.novx_globals import SECTION_PREFIX
+from novxlib.novx_globals import _
+from novxlib.novx_globals import norm_path
 from nvlib.exporter.nv_doc_exporter import NvDocExporter
 from nvlib.exporter.nv_html_reporter import NvHtmlReporter
 from nvlib.importer.nv_data_importer import NvDataImporter
@@ -20,24 +39,6 @@ from nvlib.nv_globals import prefs
 from nvlib.plugin.plugin_collection import PluginCollection
 from nvlib.plugin.plugin_manager import PluginManager
 from nvlib.view.nv_view import NvView
-from novxlib.novx_globals import PLOT_POINT_PREFIX
-from novxlib.novx_globals import PLOT_LINE_PREFIX
-from novxlib.novx_globals import CHAPTER_PREFIX
-from novxlib.novx_globals import CHARACTER_PREFIX
-from novxlib.novx_globals import CH_ROOT
-from novxlib.novx_globals import CR_ROOT
-from novxlib.novx_globals import LC_ROOT
-from novxlib.novx_globals import IT_ROOT
-from novxlib.novx_globals import PL_ROOT
-from novxlib.novx_globals import PN_ROOT
-from novxlib.novx_globals import Error
-from novxlib.novx_globals import ITEM_PREFIX
-from novxlib.novx_globals import LOCATION_PREFIX
-from novxlib.novx_globals import MANUSCRIPT_SUFFIX
-from novxlib.novx_globals import PRJ_NOTE_PREFIX
-from novxlib.novx_globals import SECTION_PREFIX
-from novxlib.novx_globals import _
-from novxlib.novx_globals import norm_path
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 

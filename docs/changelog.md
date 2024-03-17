@@ -9,9 +9,10 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
-### v3.2.0
+### v3.2.1
 
 - Option for importing documents even if open in OO/LO.
+- Show localized file date/time instead of ISO-formatted date/time.
 
 Based on novxlib v3.0.1
 

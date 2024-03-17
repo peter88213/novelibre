@@ -22,7 +22,7 @@ class NvWorkFile(NovxFile):
         timestamp: float -- Time of last file modification (number of seconds since the epoch).
     
     Public properties:
-        fileDate: str -- ISO-formatted file date/time (YYYY-MM-DD hh:mm:ss).
+        fileDate: str -- Localized file date/time.
 
     Extends the superclass.
     """
@@ -46,10 +46,10 @@ class NvWorkFile(NovxFile):
 
     @property
     def fileDate(self):
-        if self.timestamp is not None:
-            return datetime.fromtimestamp(self.timestamp).replace(microsecond=0).isoformat(sep=' ')
-        else:
+        if self.timestamp is None:
             return _('Never')
+        else:
+            return datetime.fromtimestamp(self.timestamp).strftime('%c')
 
     def adjust_section_types(self):
         """Make sure the "trash bin" is at the end.
@@ -114,10 +114,10 @@ class NvWorkFile(NovxFile):
             latestTotalCount = self.wcLog[latestDate][1]
             if actualCount != latestCount or actualTotalCount != latestTotalCount:
                 try:
-                    fileDate = date.fromtimestamp(self.timestamp).isoformat()
+                    fileDateIso = date.fromtimestamp(self.timestamp).isoformat()
                 except:
-                    fileDate = date.today().isoformat()
-                self.wcLogUpdate[fileDate] = [actualCount, actualTotalCount]
+                    fileDateIso = date.today().isoformat()
+                self.wcLogUpdate[fileDateIso] = [actualCount, actualTotalCount]
 
         #--- If no reasonable looking locale is set, set the system locale.
         self.novel.check_locale()
