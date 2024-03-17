@@ -9,6 +9,12 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v3.2.0
+
+- Option for importing documents even if open in OO/LO.
+
+Based on novxlib v3.0.1
+
 ### v3.1.2
 
 - Update message.

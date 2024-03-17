@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.1.2\n"
-"POT-Creation-Date: 2024-03-17 10:44:53\n"
-"PO-Revision-Date: 2024-03-17 10:44:53\n"
+"Project-Id-Version: 3.2.0\n"
+"POT-Creation-Date: 2024-03-17 12:04:11\n"
+"PO-Revision-Date: 2024-03-17 12:04:11\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -75,6 +75,9 @@ msgstr "Alle"
 
 msgid "All files"
 msgstr "Alle Dateien"
+
+msgid "Always discard documents after import"
+msgstr "Dokumente nach dem Import immer verwerfen"
 
 msgid "Append to previous section"
 msgstr "An den vorherigen Abschnitt anhängen"
@@ -349,8 +352,8 @@ msgstr "Änderungen verwerfen und das Projekt neu laden?"
 msgid "Discard changes and restore the latest backup?"
 msgstr "Änderungen verwerfen und die letzte Sicherungskopie wiederherstellen?"
 
-msgid "Discard document after import"
-msgstr "Dokument nach dem Importieren verwerfen"
+msgid "Discard documents only when sections are split"
+msgstr "Dokumente nur verwerfen, falls Abschnitte geteilt wurden"
 
 msgid "Discard manuscript"
 msgstr "Manuskript verwerfen"
@@ -525,6 +528,9 @@ msgstr "Bilddatei"
 
 msgid "Import"
 msgstr "Importieren"
+
+msgid "Import documents even if locked; do not discard"
+msgstr "Auch gesperrte Dokumente importieren; nicht verwerfen"
 
 msgid "Import selected elements"
 msgstr "Ausgewählte Elemente importieren"

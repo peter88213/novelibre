@@ -73,7 +73,8 @@ SETTINGS = dict(
     duration_width=55,
     arcs_width=55,
     points_width=300,
-    column_order='wc;vp;sy;st;nt;dt;tm;dr;tg;po;ac;pt;ar'
+    column_order='wc;vp;sy;st;nt;dt;tm;dr;tg;po;ac;pt;ar',
+    import_mode='0',
     )
 OPTIONS = dict(
     show_contents=True,
@@ -94,7 +95,6 @@ OPTIONS = dict(
     show_cr_bio=True,
     show_cr_goals=True,
     detach_prop_win=False,
-    discard_tmp_docs=True,
     large_icons=False,
     lock_on_export=False,
     ask_doc_open=True,

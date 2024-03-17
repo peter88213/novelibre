@@ -7,6 +7,7 @@ License: GNU LGPLv3 (https://www.gnu.org/licenses/lgpl-3.0.en.html)
 import os
 from tkinter import messagebox
 
+from nvlib.nv_globals import prefs
 from novxlib.converter.import_source_factory import ImportSourceFactory
 from novxlib.converter.import_target_factory import ImportTargetFactory
 from novxlib.converter.new_project_factory import NewProjectFactory
@@ -76,7 +77,8 @@ class NvDocImporter:
         try:
             source, __ = self.importSourceFactory.make_file_objects(sourcePath, **kwargs)
         except Error:
-            # A new novelibre project might be required.
+
+            #--- Import a document without section markers.
             source, target = self.newProjectFactory.make_file_objects(sourcePath, **kwargs)
             if os.path.isfile(target.filePath):
                 # do not overwrite an existing novelibre project with a non-tagged document
@@ -91,7 +93,8 @@ class NvDocImporter:
             return f'{_("File written")}: "{norm_path(target.filePath)}".'
 
         else:
-            # Try to update an existing novelibre project.
+
+            #--- Import a document with section markers.
             kwargs['suffix'] = source.SUFFIX
             __, target = self.importTargetFactory.make_file_objects(sourcePath, **kwargs)
             self.newFile = None
@@ -100,6 +103,16 @@ class NvDocImporter:
             target.read()
             source.novel = target.novel
             source.read()
+            if source.sectionsSplit and source.is_locked():
+                raise Error(f'{_("Please close the document first")}.')
+
+            if os.path.isfile(target.filePath):
+                if not messagebox.askyesno(
+                    title=source.DESCRIPTION,
+                    message=_('Update the project?')
+                    ):
+                    raise Error(f'{_("Action canceled by user")}.')
+
             target.novel = source.novel
             target.write()
             message = f'{_("File written")}: "{norm_path(target.filePath)}".'
@@ -121,13 +134,6 @@ class NvDocImporter:
 
         if source.is_locked():
             # the document might be open in the Office application
-            raise Error(f'{_("Please close the document first")}.')
-
-        if os.path.isfile(target.filePath):
-            # an existing project is to be updated
-            if not messagebox.askyesno(
-                title=source.DESCRIPTION,
-                message=_('Update the project?')
-                ):
-                raise Error(f'{_("Action canceled by user")}.')
+            if not prefs['import_mode'] == '2':
+                raise Error(f'{_("Please close the document first")}.')
 

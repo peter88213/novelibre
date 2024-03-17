@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.1.2\n"
-"POT-Creation-Date: 2024-03-17 10:44:53\n"
+"Project-Id-Version: 3.2.0\n"
+"POT-Creation-Date: 2024-03-17 12:04:11\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -81,6 +81,9 @@ msgid "All"
 msgstr ""
 
 msgid "All files"
+msgstr ""
+
+msgid "Always discard documents after import"
 msgstr ""
 
 msgid "Append to previous section"
@@ -356,7 +359,7 @@ msgstr ""
 msgid "Discard changes and restore the latest backup?"
 msgstr ""
 
-msgid "Discard document after import"
+msgid "Discard documents only when sections are split"
 msgstr ""
 
 msgid "Discard manuscript"
@@ -531,6 +534,9 @@ msgid "Image file"
 msgstr ""
 
 msgid "Import"
+msgstr ""
+
+msgid "Import documents even if locked; do not discard"
 msgstr ""
 
 msgid "Import selected elements"

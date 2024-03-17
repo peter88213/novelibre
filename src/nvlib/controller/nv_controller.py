@@ -602,7 +602,7 @@ class NvController:
 
         if importer.newFile:
             self.open_project(filePath=importer.newFile)
-            if prefs['discard_tmp_docs'] and os.path.isfile(sourcePath):
+            if os.path.isfile(sourcePath) and prefs['import_mode'] == '1':
                 os.replace(sourcePath, f'{sourcePath}.bak')
                 message = f'{message} - {_("Source document deleted")}.'
             self._ui.set_status(message)

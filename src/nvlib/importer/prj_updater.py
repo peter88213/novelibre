@@ -50,9 +50,27 @@ class PrjUpdater(tk.Toplevel):
         self._documentCollection.heading('Date', text=_('Date'), anchor='w')
 
         # "Discard after import" checkbox.
-        self._discardTmpDocs = tk.BooleanVar(window, value=prefs['discard_tmp_docs'])
-        ttk.Checkbutton(window, text=_('Discard document after import'), variable=self._discardTmpDocs).pack(padx=5, pady=5, anchor='w')
-        self._discardTmpDocs.trace('w', self._save_options)
+        IMPORT_MODES = [
+            _("Discard documents only when sections are split"),
+            _("Always discard documents after import"),
+            _("Import documents even if locked; do not discard")
+            ]
+        try:
+            importMode = int(prefs['import_mode'])
+        except:
+            importMode = 0
+        if importMode >= len(IMPORT_MODES):
+            importMode = 0
+
+        self._importMode = tk.IntVar(window, value=importMode)
+        for i, buttonLabel in enumerate(IMPORT_MODES):
+            ttk.Radiobutton(
+                window,
+                text=buttonLabel,
+                variable=self._importMode,
+                value=i
+                ).pack(padx=5, pady=5, anchor='w')
+        self._importMode.trace('w', self._save_options)
 
         # "Import" button.
         self._importButton = ttk.Button(window, text=_('Import'), command=self._import_document, state='disabled')
@@ -149,5 +167,5 @@ class PrjUpdater(tk.Toplevel):
 
     def _save_options(self, event=None, *args):
         """Save "discard temporary documents" state."""
-        prefs['discard_tmp_docs'] = self._discardTmpDocs.get()
+        prefs['import_mode'] = str(self._importMode.get())
 
