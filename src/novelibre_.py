@@ -40,7 +40,6 @@ SETTINGS = dict(
     color_arc='maroon',
     color_stage='red',
     color_unused='gray',
-    color_not_exported='rosy brown',
     color_major='navy',
     color_minor='cornflower blue',
     color_outline='dark orchid',
