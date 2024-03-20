@@ -68,7 +68,8 @@ class PrjUpdater(tk.Toplevel):
                 window,
                 text=buttonLabel,
                 variable=self._importMode,
-                value=i
+                value=i,
+                command=self._on_select_document
                 ).pack(padx=5, pady=5, anchor='w')
         self._importMode.trace('w', self._save_options)
 
@@ -133,18 +134,24 @@ class PrjUpdater(tk.Toplevel):
             except Exception as ex:
                 self._ui.set_status(f'!{str(ex)}')
 
-    def _on_select_document(self, event):
+    def _on_select_document(self, event=None):
         try:
             filePath = self._documentCollection.selection()[0]
         except IndexError:
-            buttonState = 'disabled'
+            delButtonState = 'disabled'
+            impButtonState = 'disabled'
         else:
             if odf_is_locked(filePath):
-                buttonState = 'disabled'
+                delButtonState = 'disabled'
+                if self._importMode.get() != 2:
+                    impButtonState = 'disabled'
+                else:
+                    impButtonState = 'normal'
             else:
-                buttonState = 'normal'
-        self._deleteButton.configure(state=buttonState)
-        self._importButton.configure(state=buttonState)
+                delButtonState = 'normal'
+                impButtonState = 'normal'
+        self._deleteButton.configure(state=delButtonState)
+        self._importButton.configure(state=impButtonState)
 
     def _import_document(self, event=None):
         try:
