@@ -70,7 +70,7 @@ class PrjUpdater(tk.Toplevel):
                 variable=self._importMode,
                 value=i,
                 command=self._on_select_document
-                ).pack(padx=5, pady=5, anchor='w')
+                ).pack(padx=5, pady=1, anchor='w')
         self._importMode.trace('w', self._save_options)
 
         # "Import" button.
