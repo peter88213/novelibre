@@ -37,10 +37,15 @@ class CharacterView(WorldElementView):
 
         #--- 'Full name' entry.
         self._fullName = MyStringVar()
-        self._fullNameEntry = LabelEntry(self._fullNameFrame, text=_('Full name'), textvariable=self._fullName, lblWidth=self._LBL_X)
+        self._fullNameEntry = LabelEntry(
+            self._fullNameFrame,
+            text=_('Full name'),
+            textvariable=self._fullName,
+            command=self.apply_changes,
+            lblWidth=self._LBL_X
+            )
         self._fullNameEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._fullNameEntry)
-        self._fullNameEntry.entry.bind('<Return>', self.apply_changes)
 
         ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
 
@@ -48,12 +53,24 @@ class CharacterView(WorldElementView):
         self._bioFrame = FoldingFrame(self._elementInfoWindow, '', self._toggle_bio_window)
 
         self._birthDate = MyStringVar()
-        self._birthDateEntry = LabelEntry(self._bioFrame, text=_('Birth date'), textvariable=self._birthDate, lblWidth=self._LBL_X)
+        self._birthDateEntry = LabelEntry(
+            self._bioFrame,
+            text=_('Birth date'),
+            textvariable=self._birthDate,
+            command=self.apply_changes,
+            lblWidth=self._LBL_X
+            )
         self._birthDateEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._birthDateEntry)
 
         self._deathDate = MyStringVar()
-        self._deathDateEntry = LabelEntry(self._bioFrame, text=_('Death date'), textvariable=self._deathDate, lblWidth=self._LBL_X)
+        self._deathDateEntry = LabelEntry(
+            self._bioFrame,
+            text=_('Death date'),
+            textvariable=self._deathDate,
+            command=self.apply_changes,
+            lblWidth=self._LBL_X
+            )
         self._deathDateEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._deathDateEntry)
 

@@ -53,11 +53,11 @@ class DatedSectionView(RelatedSectionView):
             sectionStartFrame,
             text=_('Date'),
             textvariable=self._startDate,
+            command=self.apply_changes,
             lblWidth=self._DATE_TIME_LBL_X
             )
         self._startDateEntry.pack(anchor='w')
         inputWidgets.append(self._startDateEntry)
-        self._startDateEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Start time' entry.
         self._startTime = MyStringVar()
@@ -65,11 +65,11 @@ class DatedSectionView(RelatedSectionView):
             sectionStartFrame,
             text=_('Time'),
             textvariable=self._startTime,
+            command=self.apply_changes,
             lblWidth=self._DATE_TIME_LBL_X
             )
         self._startTimeEntry.pack(anchor='w')
         inputWidgets.append(self._startTimeEntry)
-        self._startTimeEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Start day' entry.
         self._startDay = MyStringVar()
@@ -77,6 +77,7 @@ class DatedSectionView(RelatedSectionView):
             sectionStartFrame,
             text=_('Day'),
             textvariable=self._startDay,
+            command=self.apply_changes,
             lblWidth=self._DATE_TIME_LBL_X
             )
         self._startDayEntry.pack(anchor='w')
@@ -133,11 +134,11 @@ class DatedSectionView(RelatedSectionView):
             sectionDurationFrame,
             text=_('Days'),
             textvariable=self._lastsDays,
+            command=self.apply_changes,
             lblWidth=self._DATE_TIME_LBL_X
             )
         self._lastsDaysEntry.pack(anchor='w')
         inputWidgets.append(self._lastsDaysEntry)
-        self._lastsDaysEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Duration hours' entry.
         self._lastsHours = MyStringVar()
@@ -145,11 +146,11 @@ class DatedSectionView(RelatedSectionView):
             sectionDurationFrame,
             text=_('Hours'),
             textvariable=self._lastsHours,
+            command=self.apply_changes,
             lblWidth=self._DATE_TIME_LBL_X
             )
         self._lastsHoursEntry.pack(anchor='w')
         inputWidgets.append(self._lastsHoursEntry)
-        self._lastsHoursEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Duration minutes' entry.
         self._lastsMinutes = MyStringVar()
@@ -157,11 +158,11 @@ class DatedSectionView(RelatedSectionView):
             sectionDurationFrame,
             text=_('Minutes'),
             textvariable=self._lastsMinutes,
+            command=self.apply_changes,
             lblWidth=self._DATE_TIME_LBL_X
             )
         self._lastsMinutesEntry.pack(anchor='w')
         inputWidgets.append(self._lastsMinutesEntry)
-        self._lastsMinutesEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Clear duration' button.
         self._clearDurationButton = ttk.Button(

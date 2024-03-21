@@ -46,17 +46,27 @@ class WorldElementView(BasicView, ABC):
 
         # 'AKA' entry.
         self._aka = MyStringVar()
-        self._akaEntry = LabelEntry(self._elementInfoWindow, text=_('AKA'), textvariable=self._aka, lblWidth=self._LBL_X)
+        self._akaEntry = LabelEntry(
+            self._elementInfoWindow,
+            text=_('AKA'),
+            textvariable=self._aka,
+            command=self.apply_changes,
+            lblWidth=self._LBL_X
+            )
         self._akaEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._akaEntry)
-        self._akaEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Tags' entry.
         self._tags = MyStringVar()
-        self._tagsEntry = LabelEntry(self._elementInfoWindow, text=_('Tags'), textvariable=self._tags, lblWidth=self._LBL_X)
+        self._tagsEntry = LabelEntry(
+            self._elementInfoWindow,
+            text=_('Tags'),
+            textvariable=self._tags,
+            command=self.apply_changes,
+            lblWidth=self._LBL_X
+            )
         self._tagsEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._tagsEntry)
-        self._tagsEntry.entry.bind('<Return>', self.apply_changes)
 
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)

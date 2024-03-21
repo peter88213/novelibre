@@ -44,10 +44,15 @@ class RelatedSectionView(BasicView):
 
         #--- 'Tags' entry.
         self._tags = MyStringVar()
-        self._tagsEntry = LabelEntry(self._elementInfoWindow, text=_('Tags'), textvariable=self._tags, lblWidth=self._LBL_X)
+        self._tagsEntry = LabelEntry(
+            self._elementInfoWindow,
+            text=_('Tags'),
+            textvariable=self._tags,
+            command=self.apply_changes,
+            lblWidth=self._LBL_X
+            )
         self._tagsEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._tagsEntry)
-        self._tagsEntry.entry.bind('<Return>', self.apply_changes)
 
         #--- Frame for section specific properties.
         self._sectionExtraFrame = ttk.Frame(self._elementInfoWindow)

@@ -33,10 +33,15 @@ class PlotLineView(BasicView):
 
         # 'Short name' entry.
         self._shortName = MyStringVar()
-        self._shortNameEntry = LabelEntry(self._elementInfoWindow, text=_('Short name'), textvariable=self._shortName, lblWidth=22)
+        self._shortNameEntry = LabelEntry(
+            self._elementInfoWindow,
+            text=_('Short name'),
+            textvariable=self._shortName,
+            command=self.apply_changes,
+            lblWidth=22
+            )
         self._shortNameEntry.pack(anchor='w')
         inputWidgets.append(self._shortNameEntry)
-        self._shortNameEntry.entry.bind('<Return>', self.apply_changes)
 
         # Frame for plot line specific widgets.
         self._arcFrame = ttk.Frame(self._elementInfoWindow)

@@ -9,6 +9,13 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v3.2.4
+
+- Refactor: Add "Return" keybinding to the LabelEntry widget.
+- Improve the "Import" dialog layout.
+
+Based on novxlib v3.0.1
+
 ### v3.2.3
 
 - Fix the "Import" dialog button activation.

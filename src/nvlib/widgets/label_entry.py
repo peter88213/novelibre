@@ -15,13 +15,14 @@ class LabelEntry(ttk.Frame):
     https://stackoverflow.com/questions/54584673/how-to-keep-tkinter-button-on-same-row-as-label-and-entry-box
     """
 
-    def __init__(self, parent, text, textvariable, lblWidth=10):
+    def __init__(self, parent, text, textvariable, command, lblWidth=10):
         super().__init__(parent)
         self.pack(fill='x')
         self._label = ttk.Label(self, text=text, anchor='w', width=lblWidth)
         self._label.pack(side='left')
         self.entry = ttk.Entry(self, textvariable=textvariable)
         self.entry.pack(side='left', fill='x', expand=True)
+        self.entry.bind('<Return>', command)
 
     def set(self, value):
         """Replace None by an empty string.

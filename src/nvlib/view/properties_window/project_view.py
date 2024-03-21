@@ -33,10 +33,15 @@ class ProjectView(BasicView):
 
         #--- Author entry.
         self._authorName = MyStringVar()
-        self._authorNameEntry = LabelEntry(self._elementInfoWindow, text=_('Author'), textvariable=self._authorName, lblWidth=20)
+        self._authorNameEntry = LabelEntry(
+            self._elementInfoWindow,
+            text=_('Author'),
+            textvariable=self._authorName,
+            command=self.apply_changes,
+            lblWidth=20
+            )
         self._authorNameEntry.pack(anchor='w')
         inputWidgets.append(self._authorNameEntry)
-        self._authorNameEntry.entry.bind('<Return>', self.apply_changes)
 
         ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
 
@@ -47,16 +52,26 @@ class ProjectView(BasicView):
 
         # Language and country code.
         self._languageCode = MyStringVar()
-        self._languageCodeEntry = LabelEntry(self._languageFrame, text=_('Language code'), textvariable=self._languageCode, lblWidth=20)
+        self._languageCodeEntry = LabelEntry(
+            self._languageFrame,
+            text=_('Language code'),
+            textvariable=self._languageCode,
+            command=self.apply_changes,
+            lblWidth=20
+            )
         self._languageCodeEntry.pack(anchor='w')
         inputWidgets.append(self._languageCodeEntry)
-        self._languageCodeEntry.entry.bind('<Return>', self.apply_changes)
 
         self._countryCode = MyStringVar()
-        self._countryCodeEntry = LabelEntry(self._languageFrame, text=_('Country code'), textvariable=self._countryCode, lblWidth=20)
+        self._countryCodeEntry = LabelEntry(
+            self._languageFrame,
+            text=_('Country code'),
+            textvariable=self._countryCode,
+            command=self.apply_changes,
+            lblWidth=20
+            )
         self._countryCodeEntry.pack(anchor='w')
         inputWidgets.append(self._countryCodeEntry)
-        self._countryCodeEntry.entry.bind('<Return>', self.apply_changes)
 
         #--- "Auto numbering" frame.
         self._numberingFrame = FoldingFrame(self._elementInfoWindow, _('Auto numbering'), self._toggle_numbering_frame)
@@ -78,19 +93,27 @@ class ProjectView(BasicView):
 
         # 'Chapter number prefix' entry.
         self._chapterHeadingPrefix = MyStringVar()
-        self._chapterHeadingPrefixEntry = LabelEntry(self._numberingFrame, text=_('Chapter number prefix'),
-                   textvariable=self._chapterHeadingPrefix, lblWidth=20)
+        self._chapterHeadingPrefixEntry = LabelEntry(
+            self._numberingFrame,
+            text=_('Chapter number prefix'),
+            textvariable=self._chapterHeadingPrefix,
+            command=self.apply_changes,
+            lblWidth=20
+            )
         self._chapterHeadingPrefixEntry.pack(anchor='w')
         inputWidgets.append(self._chapterHeadingPrefixEntry)
-        self._chapterHeadingPrefixEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Chapter number suffix' entry.
         self._chapterHeadingSuffix = MyStringVar()
-        self._chapterHeadingSuffixEntry = LabelEntry(self._numberingFrame, text=_('Chapter number suffix'),
-                   textvariable=self._chapterHeadingSuffix, lblWidth=20)
+        self._chapterHeadingSuffixEntry = LabelEntry(
+            self._numberingFrame,
+            text=_('Chapter number suffix'),
+            textvariable=self._chapterHeadingSuffix,
+            command=self.apply_changes,
+            lblWidth=20
+            )
         self._chapterHeadingSuffixEntry.pack(anchor='w')
         inputWidgets.append(self._chapterHeadingSuffixEntry)
-        self._chapterHeadingSuffixEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Use Roman chapter numbers' checkbox.
         self._romanChapterNumbers = tk.BooleanVar()
@@ -133,19 +156,27 @@ class ProjectView(BasicView):
 
         # 'Part number prefix' entry.
         self._partHeadingPrefix = MyStringVar()
-        self._partHeadingPrefixEntry = LabelEntry(self._numberingFrame, text=_('Part number prefix'),
-                   textvariable=self._partHeadingPrefix, lblWidth=20)
+        self._partHeadingPrefixEntry = LabelEntry(
+            self._numberingFrame,
+            text=_('Part number prefix'),
+            textvariable=self._partHeadingPrefix,
+            command=self.apply_changes,
+            lblWidth=20
+            )
         self._partHeadingPrefixEntry.pack(anchor='w')
         inputWidgets.append(self._partHeadingPrefixEntry)
-        self._partHeadingPrefixEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Part number suffix' entry.
         self._partHeadingSuffix = MyStringVar()
-        self._partHeadingSuffixEntry = LabelEntry(self._numberingFrame, text=_('Part number suffix'),
-                   textvariable=self._partHeadingSuffix, lblWidth=20)
+        self._partHeadingSuffixEntry = LabelEntry(
+            self._numberingFrame,
+            text=_('Part number suffix'),
+            textvariable=self._partHeadingSuffix,
+            command=self.apply_changes,
+            lblWidth=20
+            )
         self._partHeadingSuffixEntry.pack(anchor='w')
         inputWidgets.append(self._partHeadingSuffixEntry)
-        self._partHeadingSuffixEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Use Roman part numbers' checkbox.
         self._romanPartNumbers = tk.BooleanVar()
@@ -167,40 +198,65 @@ class ProjectView(BasicView):
 
         # 'Custom Goal' entry.
         self._customGoal = MyStringVar()
-        self._customGoalEntry = LabelEntry(self._renamingsFrame, text=_('Custom Goal'), textvariable=self._customGoal, lblWidth=20)
+        self._customGoalEntry = LabelEntry(
+            self._renamingsFrame,
+            text=_('Custom Goal'),
+            textvariable=self._customGoal,
+            command=self.apply_changes,
+            lblWidth=20
+            )
         self._customGoalEntry.pack(anchor='w')
         inputWidgets.append(self._customGoalEntry)
-        self._customGoalEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Custom Conflict' entry.
         self._customConflict = MyStringVar()
-        self._customConflictEntry = LabelEntry(self._renamingsFrame, text=_('Custom Conflict'), textvariable=self._customConflict, lblWidth=20)
+        self._customConflictEntry = LabelEntry(
+            self._renamingsFrame,
+            text=_('Custom Conflict'),
+            textvariable=self._customConflict,
+            command=self.apply_changes,
+            lblWidth=20
+            )
         self._customConflictEntry.pack(anchor='w')
         inputWidgets.append(self._customConflictEntry)
-        self._customConflictEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Custom Outcome' entry.
         self._customOutcome = MyStringVar()
-        self._customOutcomeEntry = LabelEntry(self._renamingsFrame, text=_('Custom Outcome'), textvariable=self._customOutcome, lblWidth=20)
+        self._customOutcomeEntry = LabelEntry(
+            self._renamingsFrame,
+            text=_('Custom Outcome'),
+            textvariable=self._customOutcome,
+            command=self.apply_changes,
+            lblWidth=20
+            )
         self._customOutcomeEntry.pack(anchor='w')
         inputWidgets.append(self._customOutcomeEntry)
-        self._customOutcomeEntry.entry.bind('<Return>', self.apply_changes)
 
         ttk.Separator(self._renamingsFrame, orient='horizontal').pack(fill='x')
 
         # 'Custom Bio' entry.
         self._customChrBio = MyStringVar()
-        self._customChrBioEntry = LabelEntry(self._renamingsFrame, text=_('Custom chara Bio'), textvariable=self._customChrBio, lblWidth=20)
+        self._customChrBioEntry = LabelEntry(
+            self._renamingsFrame,
+            text=_('Custom chara Bio'),
+            textvariable=self._customChrBio,
+            command=self.apply_changes,
+            lblWidth=20
+            )
         self._customChrBioEntry.pack(anchor='w')
         inputWidgets.append(self._customChrBioEntry)
-        self._customChrBioEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Custom chara Goals' entry.
         self._customChrGoals = MyStringVar()
-        self._customChrGoalsEntry = LabelEntry(self._renamingsFrame, text=_('Custom chara Goals'), textvariable=self._customChrGoals, lblWidth=20)
+        self._customChrGoalsEntry = LabelEntry(
+            self._renamingsFrame,
+            text=_('Custom chara Goals'),
+            textvariable=self._customChrGoals,
+            command=self.apply_changes,
+            lblWidth=20
+            )
         self._customChrGoalsEntry.pack(anchor='w')
         inputWidgets.append(self._customChrGoalsEntry)
-        self._customChrGoalsEntry.entry.bind('<Return>', self.apply_changes)
 
         #--- "Narrative time" frame.
         self._narrativeTimeFrame = FoldingFrame(self._elementInfoWindow, _('Narrative time'), self._toggle_narrative_time_frame)
@@ -209,13 +265,15 @@ class ProjectView(BasicView):
 
         # 'Reference date' entry.
         self._referenceDate = MyStringVar()
-        self._referenceDateEntry = LabelEntry(self._narrativeTimeFrame,
-                   text=_('Reference date'),
-                   textvariable=self._referenceDate,
-                   lblWidth=20)
+        self._referenceDateEntry = LabelEntry(
+            self._narrativeTimeFrame,
+            text=_('Reference date'),
+            textvariable=self._referenceDate,
+            command=self.apply_changes,
+            lblWidth=20
+            )
         self._referenceDateEntry.pack(anchor='w')
         inputWidgets.append(self._referenceDateEntry)
-        self._referenceDateEntry.entry.bind('<Return>', self.apply_changes)
 
         # Day of the week display.
         localeDateFrame = ttk.Frame(self._narrativeTimeFrame)
@@ -255,17 +313,27 @@ class ProjectView(BasicView):
 
         # 'Words to write' entry.
         self._wordTarget = tk.IntVar()
-        self._wordTargetEntry = LabelEntry(self._progressFrame, text=_('Words to write'), textvariable=self._wordTarget, lblWidth=20)
+        self._wordTargetEntry = LabelEntry(
+            self._progressFrame,
+            text=_('Words to write'),
+            textvariable=self._wordTarget,
+            command=self.apply_changes,
+            lblWidth=20
+            )
         self._wordTargetEntry.pack(anchor='w')
         inputWidgets.append(self._wordTargetEntry)
-        self._wordTargetEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Starting count' entry.
         self._wordCountStart = tk.IntVar()
-        self._wordCountStartEntry = LabelEntry(self._progressFrame, text=_('Starting count'), textvariable=self._wordCountStart, lblWidth=20)
+        self._wordCountStartEntry = LabelEntry(
+            self._progressFrame,
+            text=_('Starting count'),
+            textvariable=self._wordCountStart,
+            command=self.apply_changes,
+            lblWidth=20
+            )
         self._wordCountStartEntry.pack(anchor='w')
         inputWidgets.append(self._wordCountStartEntry)
-        self._wordCountStartEntry.entry.bind('<Return>', self.apply_changes)
 
         # 'Set actual wordcount as start' button.
         self._setInitialWcButton = ttk.Button(self._progressFrame, text=_('Set actual wordcount as start'), command=self._set_initial_wc)
