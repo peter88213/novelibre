@@ -1,4 +1,4 @@
-[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v3.2.4.zip)
+[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v3.3.0.zip)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
 [![News](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions/1)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
@@ -82,9 +82,9 @@ I use the program myself and fix errors immediately if I notice any. As far as I
 
 ## Download and install
 
-[Download the latest release (version 3.2.4)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v3.2.4.zip)
+[Download the latest release (version 3.3.0)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v3.3.0.zip)
 
-- Extract the "novelibre_v3.2.4" folder from the downloaded zipfile "novelibre_v3.2.4.zip".
+- Extract the "novelibre_v3.3.0" folder from the downloaded zipfile "novelibre_v3.3.0.zip".
 - Move into this new folder and open "README.md" for further instructions.
 - You may wish to install plugins; the [update checker](https://github.com/peter88213/nv_updater/) is highly recommended.
 

@@ -71,14 +71,6 @@ class TreeViewer(ttk.Frame):
         _('R'),
         _('C'),
         ]
-    _SCN_STATUS = [
-        None,
-        _('Outline'),
-        _('Draft'),
-        _('1st Edit'),
-        _('2nd Edit'),
-        _('Done')
-        ]
 
     def __init__(self, parent, model, view, controller, kwargs, **kw):
         """Put a tkinter tree in the specified parent widget.
@@ -826,7 +818,7 @@ class TreeViewer(ttk.Frame):
                     pass
             columns[self._colPos['po']] = positionStr
             columns[self._colPos['wc']] = self._mdl.novel.sections[scId].wordCount
-            columns[self._colPos['st']] = self._SCN_STATUS[self._mdl.novel.sections[scId].status]
+            columns[self._colPos['st']] = Section.STATUS[self._mdl.novel.sections[scId].status]
             try:
                 columns[self._colPos['vp']] = self._mdl.novel.characters[self._mdl.novel.sections[scId].characters[0]].title
             except:

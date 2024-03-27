@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v3.3.0
+
+- Update section list structure.
+- Import tags from Plot Grid even if empty.
+- Refactor for novxlib update.
+
+Based on novxlib v3.1.0
 
 ### v3.2.4
 
