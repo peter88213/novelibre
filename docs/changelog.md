@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v3.3.1
+
+- Move the Plot grid export from the export menu to the Plot menu.
+
+Based on novxlib v3.1.0
+
 ### v3.3.0
 
 - Update section list structure.

@@ -1,4 +1,4 @@
-[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v3.3.0.zip)
+[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v3.3.1.zip)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
 [![News](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions/1)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
@@ -47,15 +47,15 @@ organization of their work.
 
 *novelibre's* functionality can be extended by plugins. Here are some examples:
 
-- [A yw7 file importer/exporter](https://github.com/peter88213/nv_yw7/)
+- [A relationship matrix](https://github.com/peter88213/nv_matrix/)
+- [A book/series collection manager](https://github.com/peter88213/nv_collection/)
 - [An on-demand update checker](https://github.com/peter88213/nv_updater/)
 - [A daily progress log viewer](https://github.com/peter88213/nv_progress/)
-- [A book/series collection manager](https://github.com/peter88213/nv_collection/)
-- [A relationship matrix](https://github.com/peter88213/nv_matrix/)
+- [A Story Template management plugin](https://github.com/peter88213/nv_templates/)
 - [A Timeline plugin](https://github.com/peter88213/nv_timeline/)
 - [An Aeon Timeline 2 plugin](https://github.com/peter88213/nv_aeon2/)
 - [A theme changer](https://github.com/peter88213/nv_themes/)
-- [A Story Template management plugin](https://github.com/peter88213/nv_templates/)
+- [A yw7 file importer/exporter](https://github.com/peter88213/nv_yw7/)
 - [A simple "markup" section editor](https://github.com/peter88213/nv_editor/)
 
 ## Tools
@@ -82,9 +82,9 @@ I use the program myself and fix errors immediately if I notice any. As far as I
 
 ## Download and install
 
-[Download the latest release (version 3.3.0)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v3.3.0.zip)
+[Download the latest release (version 3.3.1)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v3.3.1.zip)
 
-- Extract the "novelibre_v3.3.0" folder from the downloaded zipfile "novelibre_v3.3.0.zip".
+- Extract the "novelibre_v3.3.1" folder from the downloaded zipfile "novelibre_v3.3.1.zip".
 - Move into this new folder and open "README.md" for further instructions.
 - You may wish to install plugins; the [update checker](https://github.com/peter88213/nv_updater/) is highly recommended.
 

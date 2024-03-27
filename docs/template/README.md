@@ -47,15 +47,15 @@ organization of their work.
 
 *novelibre's* functionality can be extended by plugins. Here are some examples:
 
-- [A yw7 file importer/exporter](https://github.com/peter88213/nv_yw7/)
+- [A relationship matrix](https://github.com/peter88213/nv_matrix/)
+- [A book/series collection manager](https://github.com/peter88213/nv_collection/)
 - [An on-demand update checker](https://github.com/peter88213/nv_updater/)
 - [A daily progress log viewer](https://github.com/peter88213/nv_progress/)
-- [A book/series collection manager](https://github.com/peter88213/nv_collection/)
-- [A relationship matrix](https://github.com/peter88213/nv_matrix/)
+- [A Story Template management plugin](https://github.com/peter88213/nv_templates/)
 - [A Timeline plugin](https://github.com/peter88213/nv_timeline/)
 - [An Aeon Timeline 2 plugin](https://github.com/peter88213/nv_aeon2/)
 - [A theme changer](https://github.com/peter88213/nv_themes/)
-- [A Story Template management plugin](https://github.com/peter88213/nv_templates/)
+- [A yw7 file importer/exporter](https://github.com/peter88213/nv_yw7/)
 - [A simple "markup" section editor](https://github.com/peter88213/nv_editor/)
 
 ## Tools
