@@ -171,7 +171,7 @@ class WorldElementView(BasicView, ABC):
                      ]
         selectedPath = filedialog.askopenfilename(filetypes=fileTypes)
         if selectedPath:
-            shortPath = self._ctrl.linkProcessor.to_novx(selectedPath)
+            shortPath = self._ctrl.linkProcessor.shorten_path(selectedPath)
             links = self._element.links
             if links is None:
                 links = {}
