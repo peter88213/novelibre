@@ -384,11 +384,12 @@ class TreeViewer(ttk.Frame):
                     # save chapter start position, because the positions of the
                     # chapters sections will now be added to scnPos.
                     scnPos = update_branch(elemId, scnPos)
-                    doCollect = not self.tree.item(elemId, 'open')
-                    title, columns, nodeTags = self._configure_chapter_display(elemId, position=chpPos, collect=doCollect)
+                    collapsed = not self.tree.item(elemId, 'open')
+                    title, columns, nodeTags = self._configure_chapter_display(elemId, position=chpPos, collect=collapsed)
                 elif elemId.startswith(PLOT_LINE_PREFIX):
                     update_branch(elemId, scnPos)
-                    title, columns, nodeTags = self._configure_arc_display(elemId)
+                    collapsed = not self.tree.item(elemId, 'open')
+                    title, columns, nodeTags = self._configure_plot_line_display(elemId, collect=collapsed)
                 elif elemId.startswith(PLOT_POINT_PREFIX):
                     title, columns, nodeTags = self._configure_plot_point_display(elemId)
                 elif elemId.startswith(PRJ_NOTE_PREFIX):
@@ -497,14 +498,14 @@ class TreeViewer(ttk.Frame):
         self._wrCtxtMenu.add_cascade(label=_('Set Status'), menu=self.crStatusMenu)
 
         #--- Create a plot line context menu.
-        self._acCtxtMenu = ContextMenu(self.tree, tearoff=0)
-        self._acCtxtMenu.add_command(label=_('Add Plot line'), command=self._ctrl.add_arc)
-        self._acCtxtMenu.add_command(label=_('Add Plot point'), command=self._ctrl.add_turning_point)
-        self._acCtxtMenu.add_separator()
-        self._acCtxtMenu.add_command(label=_('Export manuscript filtered by plot line'), command=self._export_manuscript)
-        self._acCtxtMenu.add_command(label=_('Export synopsis filtered by plot line'), command=self._export_synopsis)
-        self._acCtxtMenu.add_separator()
-        self._acCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
+        self._plCtxtMenu = ContextMenu(self.tree, tearoff=0)
+        self._plCtxtMenu.add_command(label=_('Add Plot line'), command=self._ctrl.add_arc)
+        self._plCtxtMenu.add_command(label=_('Add Plot point'), command=self._ctrl.add_turning_point)
+        self._plCtxtMenu.add_separator()
+        self._plCtxtMenu.add_command(label=_('Export manuscript filtered by plot line'), command=self._export_manuscript)
+        self._plCtxtMenu.add_command(label=_('Export synopsis filtered by plot line'), command=self._export_synopsis)
+        self._plCtxtMenu.add_separator()
+        self._plCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
 
         #--- Create a project note context menu.
         self._pnCtxtMenu = ContextMenu(self.tree, tearoff=0)
@@ -512,26 +513,14 @@ class TreeViewer(ttk.Frame):
         self._pnCtxtMenu.add_separator()
         self._pnCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
 
-    def _configure_arc_display(self, plId):
-        """Configure project note formatting and columns."""
-        title = self._mdl.novel.plotLines[plId].title
-        if not title:
-            title = _('Unnamed')
-        title = f'({self._mdl.novel.plotLines[plId].shortName}) {title}'
-        columns = []
-        for __ in self.columns:
-            columns.append('')
-        nodeTags = ['arc']
-        return title, columns, tuple(nodeTags)
-
     def _configure_chapter_columns(self, nodeId, collect=False):
         """Add/remove column items collected from the chapter's sections.
         
         Positional arguments:
-        nodeId: str -- Chapter ID.
+            nodeId: str -- Chapter ID.
         
         Optional arguments:
-        collect: bool -- If True, add the collected metadata; if False, remove it.
+            collect: bool -- If True, add the collected metadata; if False, remove it.
         """
         if nodeId.startswith(CHAPTER_PREFIX):
             chId = nodeId
@@ -587,7 +576,7 @@ class TreeViewer(ttk.Frame):
                                     chapterTags.append(tag)
             return list_to_string(chapterTags)
 
-        def collect_arcs(chId):
+        def collect_plot_lines(chId):
             """Return a tuple of two strings: semicolon-separated plot lines, semicolon-separated plot points."""
             chPlotlineShortNames = []
             chPlotPointTitles = []
@@ -619,7 +608,7 @@ class TreeViewer(ttk.Frame):
             indicator = ''
             if self._mdl.novel.chapters[chId].chType == 0:
                 for scId in self.tree.get_children(chId):
-                    if self._mdl.novel.sections[scId].scType == 0:
+                    if self._mdl.novel.sections[scId].scType != 1:
                         if self._mdl.novel.sections[scId].notes:
                             indicator = _('N')
             return indicator
@@ -662,7 +651,7 @@ class TreeViewer(ttk.Frame):
                 columns[self._colPos['vp']] = collect_viewpoints(chId)
         if collect:
             columns[self._colPos['tg']] = collect_tags(chId)
-            columns[self._colPos['ac']], columns[self._colPos['tp']] = collect_arcs(chId)
+            columns[self._colPos['ac']], columns[self._colPos['tp']] = collect_plot_lines(chId)
             columns[self._colPos['nt']] = collect_note_indicators(chId)
         return title, columns, tuple(nodeTags)
 
@@ -740,6 +729,73 @@ class TreeViewer(ttk.Frame):
         except:
             pass
         return title, columns, ()
+
+    def _configure_plot_line_columns(self, nodeId, collect=False):
+        """Add/remove column items collected from the plotline's points.
+        
+        Positional arguments:
+            nodeId: str -- Plotline ID.
+        
+        Optional arguments:
+            collect: bool -- If True, add the collected metadata; if False, remove it.
+        """
+        if nodeId.startswith(PLOT_LINE_PREFIX):
+            plId = nodeId
+            __, columns, __ = self._configure_plot_line_display(plId, collect=collect)
+            self.tree.item(nodeId, values=columns)
+
+    def _configure_plot_line_display(self, plId, collect=False):
+        """Configure plotline formatting and columns.
+
+        Positional arguments:
+            plId: str -- Plotline ID
+            
+        Optional arguments:
+            collect: bool -- If True, summarize section metadata.        
+        """
+
+        def collect_note_indicators(plId):
+            """Return a string that indicates section notes within the chapter."""
+            indicator = ''
+            for ppId in self.tree.get_children(plId):
+                if self._mdl.novel.plotPoints[ppId].notes:
+                    indicator = _('N')
+            return indicator
+
+        title = self._mdl.novel.plotLines[plId].title
+        if not title:
+            title = _('Unnamed')
+        title = f'({self._mdl.novel.plotLines[plId].shortName}) {title}'
+        columns = []
+        for __ in self.columns:
+            columns.append('')
+        nodeTags = ['arc']
+        if collect:
+            columns[self._colPos['nt']] = collect_note_indicators(plId)
+        else:
+            columns[self._colPos['nt']] = ''
+        return title, columns, tuple(nodeTags)
+
+    def _configure_plot_point_display(self, ppId):
+        """Configure plot point formatting and columns."""
+        title = self._mdl.novel.plotPoints[ppId].title
+        if not title:
+            title = _('Unnamed')
+        columns = []
+        for __ in self.columns:
+            columns.append('')
+
+        # "Point has notes" indicator.
+        if self._mdl.novel.plotPoints[ppId].notes:
+            columns[self._colPos['nt']] = _('N')
+
+        # Display associated section, if any.
+        scId = self._mdl.novel.plotPoints[ppId].sectionAssoc
+        if scId:
+            sectionTitle = self._mdl.novel.sections[scId].title
+            if sectionTitle is not None:
+                columns[self._colPos['tp']] = sectionTitle
+        return title, columns, ('plot_point')
 
     def _configure_prj_note_display(self, pnId):
         """Configure project note formatting and columns."""
@@ -858,27 +914,6 @@ class TreeViewer(ttk.Frame):
             pass
         return title, columns, tuple(nodeTags)
 
-    def _configure_plot_point_display(self, ppId):
-        """Configure plot point formatting and columns."""
-        title = self._mdl.novel.plotPoints[ppId].title
-        if not title:
-            title = _('Unnamed')
-        columns = []
-        for __ in self.columns:
-            columns.append('')
-
-        # "Point has notes" indicator.
-        if self._mdl.novel.plotPoints[ppId].notes:
-            columns[self._colPos['nt']] = _('N')
-
-        # Display associated section, if any.
-        scId = self._mdl.novel.plotPoints[ppId].sectionAssoc
-        if scId:
-            sectionTitle = self._mdl.novel.sections[scId].title
-            if sectionTitle is not None:
-                columns[self._colPos['tp']] = sectionTitle
-        return title, columns, ('plot_point')
-
     def _export_manuscript(self, event=None):
         self._ctrl.export_document(MANUSCRIPT_SUFFIX, filter=self.tree.selection()[0], ask=False)
 
@@ -889,6 +924,10 @@ class TreeViewer(ttk.Frame):
         """Event handler for manually collapsing a branch."""
         try:
             self._configure_chapter_columns(self.tree.selection()[0], collect=True)
+        except:
+            pass
+        try:
+            self._configure_plot_line_columns(self.tree.selection()[0], collect=True)
         except:
             pass
 
@@ -902,6 +941,10 @@ class TreeViewer(ttk.Frame):
         """Event handler for manually expanding a branch."""
         try:
             self._configure_chapter_columns(self.tree.selection()[0], collect=False)
+        except:
+            pass
+        try:
+            self._configure_plot_line_columns(self.tree.selection()[0], collect=False)
         except:
             pass
 
@@ -1016,31 +1059,31 @@ class TreeViewer(ttk.Frame):
                 # Context is Plot line/Plot point.
                 if self._ctrl.isLocked:
                     # No changes allowed.
-                    self._acCtxtMenu.entryconfig(_('Add Plot line'), state='disabled')
-                    self._acCtxtMenu.entryconfig(_('Add Plot point'), state='disabled')
-                    self._acCtxtMenu.entryconfig(_('Delete'), state='disabled')
-                    self._acCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='disabled')
-                    self._acCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='disabled')
+                    self._plCtxtMenu.entryconfig(_('Add Plot line'), state='disabled')
+                    self._plCtxtMenu.entryconfig(_('Add Plot point'), state='disabled')
+                    self._plCtxtMenu.entryconfig(_('Delete'), state='disabled')
+                    self._plCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='disabled')
+                    self._plCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='disabled')
                 elif prefix.startswith(PL_ROOT):
-                    self._acCtxtMenu.entryconfig(_('Add Plot line'), state='normal')
-                    self._acCtxtMenu.entryconfig(_('Add Plot point'), state='disabled')
-                    self._acCtxtMenu.entryconfig(_('Delete'), state='disabled')
-                    self._acCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='disabled')
-                    self._acCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='disabled')
+                    self._plCtxtMenu.entryconfig(_('Add Plot line'), state='normal')
+                    self._plCtxtMenu.entryconfig(_('Add Plot point'), state='disabled')
+                    self._plCtxtMenu.entryconfig(_('Delete'), state='disabled')
+                    self._plCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='disabled')
+                    self._plCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='disabled')
                 else:
-                    self._acCtxtMenu.entryconfig(_('Add Plot line'), state='normal')
-                    self._acCtxtMenu.entryconfig(_('Add Plot point'), state='normal')
-                    self._acCtxtMenu.entryconfig(_('Delete'), state='normal')
+                    self._plCtxtMenu.entryconfig(_('Add Plot line'), state='normal')
+                    self._plCtxtMenu.entryconfig(_('Add Plot point'), state='normal')
+                    self._plCtxtMenu.entryconfig(_('Delete'), state='normal')
                     if prefix == PLOT_LINE_PREFIX:
-                        self._acCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='normal')
-                        self._acCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='normal')
+                        self._plCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='normal')
+                        self._plCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='normal')
                     else:
-                        self._acCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='disabled')
-                        self._acCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='disabled')
+                        self._plCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='disabled')
+                        self._plCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='disabled')
                 try:
-                    self._acCtxtMenu.tk_popup(event.x_root, event.y_root, 0)
+                    self._plCtxtMenu.tk_popup(event.x_root, event.y_root, 0)
                 finally:
-                    self._acCtxtMenu.grab_release()
+                    self._plCtxtMenu.grab_release()
             elif prefix in (PN_ROOT, PRJ_NOTE_PREFIX):
                 # Context is Project note.
                 if self._ctrl.isLocked:
