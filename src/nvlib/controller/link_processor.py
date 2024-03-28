@@ -52,6 +52,7 @@ class LinkProcessor:
         
         Positional arguments:
             linkPath: str -- Link path as stored in novx.
+            launchers: dict -- key: extension, value: path to application.
         """
         linkPath = self.from_novx(linkPath)
         extension = None
