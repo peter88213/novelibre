@@ -54,6 +54,7 @@ class LinkProcessor:
             linkPath: str -- Link path as stored in novx.
         """
         linkPath = self.from_novx(linkPath)
+        extension = None
         try:
             filePath, extension = os.path.splitext(linkPath)
             if extension == self.ZIM_NOTE_EXTENSION:
@@ -75,15 +76,10 @@ class LinkProcessor:
 
         except:
             pass
-        try:
-            __, extension = os.path.splitext(linkPath)
-        except IndexError:
-            pass
-        else:
-            launcher = launchers.get(extension, '')
-            if os.path.isfile(launcher):
-                subprocess.Popen([launcher, linkPath])
-                return
+        launcher = launchers.get(extension, '')
+        if os.path.isfile(launcher):
+            subprocess.Popen([launcher, linkPath])
+            return
 
         if os.path.isfile(linkPath):
             open_document(linkPath)
