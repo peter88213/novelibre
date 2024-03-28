@@ -373,12 +373,8 @@ class ProjectView(BasicView):
         inputWidgets.append(self._phaseCombobox)
         self._phaseCombobox.bind('<Return>', self.apply_changes)
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
-
         #--- Cover display
         self._coverFile = None
-        self._cover = tk.Label(self._elementInfoWindow)
-        self._cover.pack()
 
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)
@@ -650,12 +646,18 @@ class ProjectView(BasicView):
         """
         self._wordCountStart.set(self._mdl.wordCount)
 
+    def _create_cover_window(self):
+        """Create a text box for element notes."""
+        self._cover = tk.Label(self._propertiesFrame)
+        self._cover.pack()
+
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""
         self._create_index_card()
         self._create_element_info_window()
         self._create_links_window()
         self._add_separator()
+        self._create_cover_window()
 
     def _toggle_language_frame(self, event=None):
         """Hide/show the "Document language" frame.
