@@ -10,9 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### v3.4.0
 
-Refactor:
-- Implement a strategy for link processing.
-- Make launchers a global variable.
+- Open Zim links the correct way.
 - Add ODF documents to the link file types.
 
 Based on novxlib v3.1.0

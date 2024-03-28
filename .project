@@ -3,6 +3,7 @@
 	<name>novelibre</name>
 	<comment></comment>
 	<projects>
+		<project>novxlib</project>
 		<project>nv_aeon2</project>
 		<project>nv_collection</project>
 		<project>nv_editor</project>
@@ -13,7 +14,6 @@
 		<project>nv_timeline</project>
 		<project>nv_updater</project>
 		<project>nv_yw7</project>
-		<project>novxlib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

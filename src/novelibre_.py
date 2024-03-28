@@ -24,7 +24,6 @@ import sys
 from nvlib.configuration.nv_configuration import NvConfiguration
 from nvlib.controller.nv_controller import NvController
 from nvlib.nv_globals import prefs
-from nvlib.nv_globals import launchers
 from novxlib.config.configuration import Configuration
 
 SETTINGS = dict(
@@ -121,14 +120,14 @@ def main():
     prefs.update(configuration.settings)
     prefs.update(configuration.options)
 
-    #--- Launchers for opening linked non-standard filetypes.
-    launcherConfig = NvConfiguration()
-    launcherConfig.read(f'{configDir}/launchers.ini')
-    launchers.update(launcherConfig.settings)
-
     #--- Instantiate the app object.
     app = NvController('novelibre @release', tempDir)
     ui = app.get_view()
+
+    #--- Launchers for opening linked non-standard filetypes.
+    launcherConfig = NvConfiguration()
+    launcherConfig.read(f'{configDir}/launchers.ini')
+    app.launchers = launcherConfig.settings
 
     #--- Load a project, if specified.
     try:

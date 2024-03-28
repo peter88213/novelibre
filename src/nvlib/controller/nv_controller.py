@@ -27,6 +27,7 @@ from novxlib.novx_globals import PRJ_NOTE_PREFIX
 from novxlib.novx_globals import SECTION_PREFIX
 from novxlib.novx_globals import _
 from novxlib.novx_globals import norm_path
+from nvlib.controller.link_processor import LinkProcessor
 from nvlib.exporter.nv_doc_exporter import NvDocExporter
 from nvlib.exporter.nv_html_reporter import NvHtmlReporter
 from nvlib.importer.nv_data_importer import NvDataImporter
@@ -69,6 +70,12 @@ class NvController:
         #--- Create the model
         self._mdl = NvModel()
         self._mdl.register_client(self)
+
+        self.launchers = {}
+        # launchers for opening linked non-standard filetypes.
+
+        self.linkProcessor = LinkProcessor()
+        # strategy for processing links
 
         self._fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
         self.importFiletypes = [(_('ODF Text document'), '.odt'), (_('ODF Spreadsheet document'), '.ods')]
@@ -727,6 +734,22 @@ class NvController:
                 except:
                     pass
         return 'break'
+
+    def open_link(self, linkPath):
+        """Open a linked file.
+        
+        Positional arguments:
+            linkPath: str -- Path to the linked file.
+        
+        The linkProcessor strategy can be overridden e.g. by plugins.
+        """
+        try:
+            self.linkProcessor.open_link(linkPath, self.launchers)
+        except Exception as ex:
+            self._ui.show_error(
+                str(ex),
+                title=_('Cannot open link')
+                )
 
     def open_project(self, event=None, filePath='', doNotSave=False):
         """Create a novelibre project instance and read the file.

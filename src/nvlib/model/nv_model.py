@@ -29,7 +29,6 @@ from novxlib.novx_globals import PN_ROOT
 from novxlib.novx_globals import PRJ_NOTE_PREFIX
 from novxlib.novx_globals import SECTION_PREFIX
 from novxlib.novx_globals import _
-from nvlib.model.link_processor import LinkProcessor
 from nvlib.model.nv_work_file import NvWorkFile
 
 
@@ -52,9 +51,6 @@ class NvModel:
         self.trashBin = None
         self.wordCount = 0
         self._internalModificationFlag = False
-
-        self.linkProcessor = LinkProcessor()
-        # strategy for processing links
 
     @property
     def isModified(self):
