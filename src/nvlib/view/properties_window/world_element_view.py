@@ -5,23 +5,20 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from abc import ABC, abstractmethod
-import os
-from pathlib import Path
-import subprocess
 from tkinter import filedialog
 from tkinter import ttk
 
-from nvlib.nv_globals import prefs
-from nvlib.view.properties_window.basic_view import BasicView
-from nvlib.widgets.collection_box import CollectionBox
-from nvlib.widgets.folding_frame import FoldingFrame
-from nvlib.widgets.label_entry import LabelEntry
-from nvlib.widgets.my_string_var import MyStringVar
-from novxlib.file.doc_open import open_document
 from novxlib.novx_globals import _
 from novxlib.novx_globals import list_to_string
 from novxlib.novx_globals import norm_path
 from novxlib.novx_globals import string_to_list
+from nvlib.nv_globals import prefs
+from nvlib.view.properties_window.basic_view import BasicView
+from nvlib.view.properties_window.link_processor import LinkProcessor
+from nvlib.widgets.collection_box import CollectionBox
+from nvlib.widgets.folding_frame import FoldingFrame
+from nvlib.widgets.label_entry import LabelEntry
+from nvlib.widgets.my_string_var import MyStringVar
 
 
 class WorldElementView(BasicView, ABC):
@@ -73,6 +70,9 @@ class WorldElementView(BasicView, ABC):
             self._inputWidgets.append(widget)
 
         self._prefsShowLinks = None
+
+        self._linkProcessor = LinkProcessor()
+        # strategy for processing links
 
     def apply_changes(self, event=None):
         """Apply changes of element title, description and notes."""
@@ -170,15 +170,13 @@ class WorldElementView(BasicView, ABC):
                      (_('Image file'), '.gif'),
                      (_('Text file'), '.txt'),
                      (_('Text file'), '.md'),
+                     (_('ODF document'), '.odt'),
+                     (_('ODF document'), '.ods'),
                      (_('All files'), '.*'),
                      ]
         selectedPath = filedialog.askopenfilename(filetypes=fileTypes)
         if selectedPath:
-            try:
-                homeDir = str(Path.home()).replace('\\', '/')
-                shortPath = selectedPath.replace(homeDir, '~')
-            except:
-                shortPath = selectedPath
+            shortPath = self._linkProcessor.to_novx(selectedPath)
             links = self._element.links
             if links is None:
                 links = {}
@@ -193,30 +191,11 @@ class WorldElementView(BasicView, ABC):
             return
 
         linkPath = list(self._element.links)[selection]
-        try:
-            homeDir = str(Path.home()).replace('\\', '/')
-            linkPath = linkPath.replace('~', homeDir)
-        except:
-            pass
-        try:
-            extension = os.path.splitext(linkPath)[1]
-        except IndexError:
-            pass
-        else:
-            launcher = self._ctrl.launchers.get(extension, '')
-            if os.path.isfile(launcher):
-                subprocess.Popen([launcher, linkPath])
-                return
-
-        if os.path.isfile(linkPath):
-            open_document(linkPath)
-            return
-
-        self._ui.show_error(
-            f"{_('File not found')}: {norm_path(linkPath)}",
-            title=_('Cannot open link')
-            )
-        return
+        if not self._linkProcessor.open_link(linkPath):
+            self._ui.show_error(
+                f"{_('File not found')}: {norm_path(linkPath)}",
+                title=_('Cannot open link')
+                )
 
     def _remove_link(self, event=None):
         """Remove a link from the list."""

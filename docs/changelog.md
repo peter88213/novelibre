@@ -8,6 +8,15 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v3.4.0
+
+Refactor:
+- Implement a strategy for link processing.
+- Make launchers a global variable.
+- Add ODF documents to the link file types.
+
+Based on novxlib v3.1.0
+
 ### v3.3.1
 
 - Move the Plot grid export from the export menu to the Plot menu.

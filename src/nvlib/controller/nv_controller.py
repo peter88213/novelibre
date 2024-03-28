@@ -4,7 +4,6 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from datetime import datetime
 import os
 from shutil import copy2
 import sys
@@ -70,9 +69,6 @@ class NvController:
         #--- Create the model
         self._mdl = NvModel()
         self._mdl.register_client(self)
-
-        self.launchers = {}
-        # launchers for opening linked non-standard filetypes.
 
         self._fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
         self.importFiletypes = [(_('ODF Text document'), '.odt'), (_('ODF Spreadsheet document'), '.ods')]
