@@ -10,6 +10,10 @@ from nvlib.view.properties_window.basic_view import BasicView
 class StageView(BasicView):
     """Class for viewing and editing stage properties."""
 
+    def __init__(self, parent, model, view, controller):
+        super().__init__(parent, model, view, controller)
+        self._prefsShowLinks = 'show_st_links'
+
     def set_data(self, elementId):
         """Update the view with element's data.
         

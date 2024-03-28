@@ -94,6 +94,7 @@ OPTIONS = dict(
     show_pr_links=False,
     show_ch_links=False,
     show_sc_links=False,
+    show_st_links=False,
     show_pl_links=False,
     show_pp_links=False,
     show_pn_links=False,
