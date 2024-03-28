@@ -14,7 +14,6 @@ from novxlib.novx_globals import norm_path
 from novxlib.novx_globals import string_to_list
 from nvlib.nv_globals import prefs
 from nvlib.view.properties_window.basic_view import BasicView
-from nvlib.view.properties_window.link_processor import LinkProcessor
 from nvlib.widgets.collection_box import CollectionBox
 from nvlib.widgets.folding_frame import FoldingFrame
 from nvlib.widgets.label_entry import LabelEntry
@@ -70,9 +69,6 @@ class WorldElementView(BasicView, ABC):
             self._inputWidgets.append(widget)
 
         self._prefsShowLinks = None
-
-        self._linkProcessor = LinkProcessor()
-        # strategy for processing links
 
     def apply_changes(self, event=None):
         """Apply changes of element title, description and notes."""
@@ -176,7 +172,7 @@ class WorldElementView(BasicView, ABC):
                      ]
         selectedPath = filedialog.askopenfilename(filetypes=fileTypes)
         if selectedPath:
-            shortPath = self._linkProcessor.to_novx(selectedPath)
+            shortPath = self.linkProcessor.to_novx(selectedPath)
             links = self._element.links
             if links is None:
                 links = {}
@@ -191,7 +187,7 @@ class WorldElementView(BasicView, ABC):
             return
 
         linkPath = list(self._element.links)[selection]
-        if not self._linkProcessor.open_link(linkPath):
+        if not self.linkProcessor.open_link(linkPath):
             self._ui.show_error(
                 f"{_('File not found')}: {norm_path(linkPath)}",
                 title=_('Cannot open link')

@@ -11,6 +11,7 @@ from nvlib.nv_globals import prefs
 from nvlib.widgets.index_card import IndexCard
 from nvlib.widgets.text_box import TextBox
 from novxlib.novx_globals import _
+from nvlib.view.properties_window.link_processor import LinkProcessor
 
 
 class BasicView(ttk.Frame, ABC):
@@ -24,6 +25,9 @@ class BasicView(ttk.Frame, ABC):
 
     _LBL_X = 10
     # Width of left-placed labels.
+
+    linkProcessor = LinkProcessor()
+    # strategy for processing links
 
     def __init__(self, parent, model, view, controller):
         """Initialize the view once before element data is available.
