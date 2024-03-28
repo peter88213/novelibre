@@ -182,7 +182,7 @@ class DatedSectionView(RelatedSectionView):
         self._generatDurationButton.pack(side='left', padx=1, pady=2)
         inputWidgets.append(self._generatDurationButton)
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        # ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
 
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)

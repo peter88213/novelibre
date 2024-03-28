@@ -55,6 +55,8 @@ class TurningPointView(BasicView):
         for widget in inputWidgets:
             self._inputWidgets.append(widget)
 
+        self._prefsShowLinks = 'show_pp_links'
+
     def set_data(self, elementId):
         """Update the widgets with element's data.
         
@@ -104,6 +106,8 @@ class TurningPointView(BasicView):
         """Template method for creating the frames in the right pane."""
         self._create_index_card()
         self._create_element_info_window()
+        self._create_links_window()
+        self._add_separator()
         self._create_notes_window()
         self._create_button_bar()
 

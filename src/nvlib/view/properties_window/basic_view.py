@@ -11,6 +11,9 @@ from novxlib.novx_globals import _
 from nvlib.nv_globals import prefs
 from nvlib.widgets.index_card import IndexCard
 from nvlib.widgets.text_box import TextBox
+from tkinter import filedialog
+from nvlib.widgets.collection_box import CollectionBox
+from nvlib.widgets.folding_frame import FoldingFrame
 
 
 class BasicView(ttk.Frame, ABC):
@@ -21,6 +24,7 @@ class BasicView(ttk.Frame, ABC):
     - A text box fpr element notes (optional).
     - Navigation buttons (go to next/previous element). 
     """
+    _HEIGHT_LIMIT = 10
 
     _LBL_X = 10
     # Width of left-placed labels.
@@ -57,7 +61,14 @@ class BasicView(ttk.Frame, ABC):
         self._propertiesFrame = ttk.Frame(self)
         self._propertiesFrame.pack(expand=True, fill='both')
 
+        self._prefsShowLinks = None
         self._create_frames()
+
+    def _activate_link_buttons(self, event=None):
+        if self._element.links:
+            self._linkCollection.enable_buttons()
+        else:
+            self._linkCollection.disable_buttons()
 
     def apply_changes(self, event=None):
         """Apply changes of element title, description, and notes."""
@@ -116,6 +127,20 @@ class BasicView(ttk.Frame, ABC):
             self._indexCard.bodyBox.clear()
             self._indexCard.bodyBox.set_text(self._element.desc)
 
+            # Links window.
+            if prefs[self._prefsShowLinks]:
+                self._linksWindow.show()
+            else:
+                self._linksWindow.hide()
+            linkList = list(self._element.links.values())
+            self._linkCollection.cList.set(linkList)
+            listboxSize = len(linkList)
+            if listboxSize > self._HEIGHT_LIMIT:
+                listboxSize = self._HEIGHT_LIMIT
+            self._linkCollection.cListbox.config(height=listboxSize)
+            if not self._linkCollection.cListbox.curselection() or not self._linkCollection.cListbox.focus_get():
+                self._linkCollection.disable_buttons()
+
             # Notes entry (if any).
             if hasattr(self._element, 'notes'):
                 self._notesWindow.clear()
@@ -139,6 +164,27 @@ class BasicView(ttk.Frame, ABC):
         for widget in self._inputWidgets:
             widget.config(state='normal')
         self._isLocked = False
+
+    def _add_link(self):
+        """Select a link and add it to the list."""
+        fileTypes = [(_('Image file'), '.jpg'),
+                     (_('Image file'), '.jpeg'),
+                     (_('Image file'), '.png'),
+                     (_('Image file'), '.gif'),
+                     (_('Text file'), '.txt'),
+                     (_('Text file'), '.md'),
+                     (_('ODF document'), '.odt'),
+                     (_('ODF document'), '.ods'),
+                     (_('All files'), '.*'),
+                     ]
+        selectedPath = filedialog.askopenfilename(filetypes=fileTypes)
+        if selectedPath:
+            shortPath = self._ctrl.linkProcessor.shorten_path(selectedPath)
+            links = self._element.links
+            if links is None:
+                links = {}
+            links[shortPath] = None
+            self._element.links = links
 
     def _add_separator(self):
         ttk.Separator(self._propertiesFrame, orient='horizontal').pack(fill='x')
@@ -178,6 +224,25 @@ class BasicView(ttk.Frame, ABC):
         self._indexCard.titleEntry.bind('<Return>', self.apply_changes)
         self._indexCard.titleEntry.bind('<FocusOut>', self.apply_changes)
         self._indexCard.bodyBox.bind('<FocusOut>', self.apply_changes)
+
+    def _create_links_window(self):
+        """A folding frame with a "Links" listbox and control buttons."""
+        ttk.Separator(self._propertiesFrame, orient='horizontal').pack(fill='x')
+        self._linksWindow = FoldingFrame(self._propertiesFrame, _('Links'), self._toggle_links_window)
+        self._linksWindow.pack(fill='x')
+        self._linkCollection = CollectionBox(
+            self._linksWindow,
+            cmdAdd=self._add_link,
+            cmdRemove=self._remove_link,
+            cmdOpen=self._open_link,
+            cmdActivate=self._activate_link_buttons,
+            lblOpen=_('Open link'),
+            iconAdd=self._ui.icons.addIcon,
+            iconRemove=self._ui.icons.removeIcon,
+            iconOpen=self._ui.icons.gotoIcon
+            )
+        self._inputWidgets.extend(self._linkCollection.inputWidgets)
+        self._linkCollection.pack(fill='x')
 
     def _create_notes_window(self):
         """Create a text box for element notes."""
@@ -224,6 +289,33 @@ class BasicView(ttk.Frame, ABC):
             self._ui.tv.tree.see(prevNode)
             self._ui.tv.tree.selection_set(prevNode)
 
+    def _open_link(self, event=None):
+        """Open the selected link."""
+        try:
+            selection = self._linkCollection.cListbox.curselection()[0]
+        except:
+            return
+
+        linkPath = list(self._element.links)[selection]
+        self._ctrl.open_link(linkPath)
+
+    def _remove_link(self, event=None):
+        """Remove a link from the list."""
+        try:
+            selection = self._linkCollection.cListbox.curselection()[0]
+        except:
+            return
+
+        linkPath = list(self._element.links)[selection]
+        if self._ui.ask_yes_no(f'{_("Remove link")}: "{self._element.links[linkPath]}"?'):
+            links = self._element.links
+            try:
+                del links[linkPath]
+            except:
+                pass
+            else:
+                self._element.links = links
+
     def _start_picking_mode(self, event=None):
         """Start the picking mode for element selection.        
         
@@ -243,4 +335,16 @@ class BasicView(ttk.Frame, ABC):
             self._ui.statusBar.bind('<Button-1>', self._end_picking_mode)
             self._pickingMode = True
         self._ui.set_status(_('Pick Mode (click here or press Esc to exit)'), colors=('maroon', 'white'))
+
+    def _toggle_links_window(self, event=None):
+        """Hide/show the "links" window.
+        
+        Callback procedure for the FoldingFrame's button.
+        """
+        if prefs[self._prefsShowLinks]:
+            self._linksWindow.hide()
+            prefs[self._prefsShowLinks] = False
+        else:
+            self._linksWindow.show()
+            prefs[self._prefsShowLinks] = True
 

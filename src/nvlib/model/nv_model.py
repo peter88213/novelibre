@@ -86,6 +86,7 @@ class NvModel:
             desc='',
             shortName=plId,
             sections=[],
+            links={},
             on_element_change=self.on_element_change,
             )
         self.tree.insert(PL_ROOT, index, plId)
@@ -120,6 +121,7 @@ class NvModel:
             chType=kwargs.get('chType', 0),
             noNumber=kwargs.get('NoNumber', False),
             isTrash=False,
+            links={},
             on_element_change=self.on_element_change,
             )
         self.tree.insert(CH_ROOT, index, chId)
@@ -247,6 +249,7 @@ class NvModel:
             chType=kwargs.get('chType', 0),
             noNumber=kwargs.get('NoNumber', False),
             isTrash=False,
+            links={},
             on_element_change=self.on_element_change,
             )
         self.tree.insert(CH_ROOT, index, chId)
@@ -273,6 +276,7 @@ class NvModel:
         self.novel.projectNotes[pnId] = BasicElement(
             title=kwargs.get('title', f'{_("New Note")} ({pnId})'),
             desc='',
+            links={},
             on_element_change=self.on_element_change,
             )
         self.tree.insert(PN_ROOT, index, pnId)
@@ -325,6 +329,7 @@ class NvModel:
             characters=[],
             locations=[],
             items=[],
+            links={},
             on_element_change=self.on_element_change,
             )
         self.novel.sections[scId].sectionContent = '<p></p>'
@@ -365,6 +370,7 @@ class NvModel:
             scType=kwargs.get('scType', 3),
             status=0,
             scPacing=0,
+            links={},
             on_element_change=self.on_element_change,
             )
         self.tree.insert(parent, index, scId)
@@ -399,6 +405,7 @@ class NvModel:
         self.novel.plotPoints[ppId] = PlotPoint(
             title=kwargs.get('title', f'{_("New Plot point")} ({ppId})'),
             desc='',
+            links={},
             on_element_change=self.on_element_change,
             )
         self.tree.insert(parent, index, ppId)

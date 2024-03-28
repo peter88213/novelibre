@@ -56,6 +56,8 @@ class PlotLineView(BasicView):
             widget.bind('<FocusOut>', self.apply_changes)
             self._inputWidgets.append(widget)
 
+        self._prefsShowLinks = 'show_pl_links'
+
     def apply_changes(self, event=None):
         """Apply changes.
         
@@ -85,6 +87,8 @@ class PlotLineView(BasicView):
         """Template method for creating the frames in the right pane."""
         self._create_index_card()
         self._create_element_info_window()
+        self._create_links_window()
+        self._add_separator()
         self._create_button_bar()
 
     def _remove_sections(self):
