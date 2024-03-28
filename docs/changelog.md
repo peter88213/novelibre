@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v3.4.1
+
+- Fix a regression from v3.4.0 where links cannot be added.
+
+Based on novxlib v3.1.0
+
 ### v3.4.0
 
 - Open Zim links the correct way.
