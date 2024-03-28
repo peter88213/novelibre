@@ -10,7 +10,7 @@ from tkinter import ttk
 
 from novxlib.novx_globals import _
 from novxlib.novx_globals import list_to_string
-from novxlib.novx_globals import norm_path
+from novxlib.novx_globals import Error
 from novxlib.novx_globals import string_to_list
 from nvlib.nv_globals import prefs
 from nvlib.view.properties_window.basic_view import BasicView
@@ -172,7 +172,7 @@ class WorldElementView(BasicView, ABC):
                      ]
         selectedPath = filedialog.askopenfilename(filetypes=fileTypes)
         if selectedPath:
-            shortPath = self.linkProcessor.to_novx(selectedPath)
+            shortPath = self._mdl.linkProcessor.to_novx(selectedPath)
             links = self._element.links
             if links is None:
                 links = {}
@@ -187,9 +187,11 @@ class WorldElementView(BasicView, ABC):
             return
 
         linkPath = list(self._element.links)[selection]
-        if not self.linkProcessor.open_link(linkPath):
+        try:
+            self._mdl.linkProcessor.open_link(linkPath)
+        except Error as ex:
             self._ui.show_error(
-                f"{_('File not found')}: {norm_path(linkPath)}",
+                str(ex),
                 title=_('Cannot open link')
                 )
 

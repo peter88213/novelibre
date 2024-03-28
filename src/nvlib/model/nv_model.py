@@ -4,19 +4,15 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.model.nv_work_file import NvWorkFile
-from novxlib.model.plot_line import PlotLine
 from novxlib.model.basic_element import BasicElement
 from novxlib.model.chapter import Chapter
 from novxlib.model.character import Character
 from novxlib.model.id_generator import create_id
 from novxlib.model.novel import Novel
-from novxlib.model.section import Section
+from novxlib.model.plot_line import PlotLine
 from novxlib.model.plot_point import PlotPoint
+from novxlib.model.section import Section
 from novxlib.model.world_element import WorldElement
-from novxlib.novx_globals import PL_ROOT
-from novxlib.novx_globals import PLOT_POINT_PREFIX
-from novxlib.novx_globals import PLOT_LINE_PREFIX
 from novxlib.novx_globals import CHAPTER_PREFIX
 from novxlib.novx_globals import CHARACTER_PREFIX
 from novxlib.novx_globals import CH_ROOT
@@ -26,10 +22,15 @@ from novxlib.novx_globals import ITEM_PREFIX
 from novxlib.novx_globals import IT_ROOT
 from novxlib.novx_globals import LC_ROOT
 from novxlib.novx_globals import LOCATION_PREFIX
+from novxlib.novx_globals import PLOT_LINE_PREFIX
+from novxlib.novx_globals import PLOT_POINT_PREFIX
+from novxlib.novx_globals import PL_ROOT
 from novxlib.novx_globals import PN_ROOT
 from novxlib.novx_globals import PRJ_NOTE_PREFIX
 from novxlib.novx_globals import SECTION_PREFIX
 from novxlib.novx_globals import _
+from nvlib.model.link_processor import LinkProcessor
+from nvlib.model.nv_work_file import NvWorkFile
 
 
 class NvModel:
@@ -51,6 +52,9 @@ class NvModel:
         self.trashBin = None
         self.wordCount = 0
         self._internalModificationFlag = False
+
+        self.linkProcessor = LinkProcessor()
+        # strategy for processing links
 
     @property
     def isModified(self):

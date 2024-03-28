@@ -4,7 +4,7 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.view.properties_window.link_processor import LinkProcessor
+from nvlib.model.link_processor import LinkProcessor
 
 
 class ZimLinker(LinkProcessor):
@@ -21,7 +21,7 @@ class ZimLinker(LinkProcessor):
         return super().to_novx(linkPath)
 
     def open_link(self, linkPath):
-        """Open a link specified by linkPath.
+        """Open a link specified by linkPath. Return True on success.
         
         Positional arguments:
             linkPath: str -- Link path as stored in novx.

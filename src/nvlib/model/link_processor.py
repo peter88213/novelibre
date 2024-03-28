@@ -9,7 +9,10 @@ from pathlib import Path
 import subprocess
 
 from novxlib.file.doc_open import open_document
+from novxlib.novx_globals import Error
+from novxlib.novx_globals import norm_path
 from nvlib.nv_globals import launchers
+from novxlib.novx_globals import _
 
 
 class LinkProcessor:
@@ -28,8 +31,8 @@ class LinkProcessor:
             pass
         return linkPath
 
-    def open_link(self, linkPath):
-        """Open a link specified by linkPath.
+    def from_novx(self, linkPath):
+        """Return a path string where ~ is substituted with the home path.
         
         Positional arguments:
             linkPath: str -- Link path as stored in novx.
@@ -39,6 +42,15 @@ class LinkProcessor:
             linkPath = linkPath.replace('~', homeDir)
         except:
             pass
+        return linkPath
+
+    def open_link(self, linkPath):
+        """Open a link specified by linkPath. 
+        
+        Positional arguments:
+            linkPath: str -- Full link path.
+        """
+        linkPath = self.from_novx(linkPath)
         try:
             extension = os.path.splitext(linkPath)[1]
         except IndexError:
@@ -47,11 +59,11 @@ class LinkProcessor:
             launcher = launchers.get(extension, '')
             if os.path.isfile(launcher):
                 subprocess.Popen([launcher, linkPath])
-                return True
+                return
 
         if os.path.isfile(linkPath):
             open_document(linkPath)
-            return True
+            return
 
-        return False
+        raise Error(f"{_('File not found')}: {norm_path(linkPath)}")
 
