@@ -74,7 +74,7 @@ class NvController:
         self.launchers = {}
         # launchers for opening linked non-standard filetypes.
 
-        self.linkProcessor = LinkProcessor()
+        self.linkProcessor = LinkProcessor(self._mdl)
         # strategy for processing links
 
         self._fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]

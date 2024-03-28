@@ -18,30 +18,42 @@ class LinkProcessor:
     """Strategy class for link processing."""
     ZIM_NOTE_EXTENSION = '.txt'
 
-    def to_novx(self, linkPath):
-        """Return a path string where the home path is substituted with ~.
+    def __init__(self, model):
+        self._mdl = model
+        # this is needed for d
+
+    def shorten_path(self, linkPath):
+        """Return a shortened path string. 
         
         Positional arguments:
             linkPath: str -- Full link path.
+            
+        The project path is substituted with ".", if leading.
+        Otherwise, the home path is substituted with "~", if leading.            
         """
-        try:
+        projectDir = os.path.split(self._mdl.prjFile.filePath)[0].replace('\\', '/')
+        if linkPath.startswith(projectDir):
+            linkPath = linkPath.replace(projectDir, '.')
+        else:
             homeDir = str(Path.home()).replace('\\', '/')
             linkPath = linkPath.replace(homeDir, '~')
-        except:
-            pass
         return linkPath
 
-    def from_novx(self, linkPath):
-        """Return a path string where ~ is substituted with the home path.
+    def expand_path(self, linkPath):
+        """Return an expanded path string.
         
         Positional arguments:
             linkPath: str -- Link path as stored in novx.
+
+        A leading "." is substituted with the project path.
+        A leading "~" is substituted with the home path.            
         """
-        try:
+        if linkPath.startswith('.'):
+            projectDir = os.path.split(self._mdl.prjFile.filePath)[0].replace('\\', '/')
+            linkPath = linkPath.replace('.', projectDir, 1)
+        elif linkPath.startswith('~'):
             homeDir = str(Path.home()).replace('\\', '/')
-            linkPath = linkPath.replace('~', homeDir)
-        except:
-            pass
+            linkPath = linkPath.replace('~', homeDir, 1)
         return linkPath
 
     def open_link(self, linkPath, launchers):
@@ -54,7 +66,7 @@ class LinkProcessor:
             linkPath: str -- Link path as stored in novx.
             launchers: dict -- key: extension, value: path to application.
         """
-        linkPath = self.from_novx(linkPath)
+        linkPath = self.expand_path(linkPath)
         extension = None
         try:
             filePath, extension = os.path.splitext(linkPath)
