@@ -605,6 +605,9 @@ class TreeViewer(ttk.Frame):
 
         def collect_note_indicators(chId):
             """Return a string that indicates section notes within the chapter."""
+            if self._mdl.novel.chapters[chId].notes:
+                return _('N')
+
             indicator = ''
             if self._mdl.novel.chapters[chId].chType == 0:
                 for scId in self.tree.get_children(chId):
@@ -653,6 +656,8 @@ class TreeViewer(ttk.Frame):
             columns[self._colPos['tg']] = collect_tags(chId)
             columns[self._colPos['ac']], columns[self._colPos['tp']] = collect_plot_lines(chId)
             columns[self._colPos['nt']] = collect_note_indicators(chId)
+        else:
+            columns[self._colPos['nt']] = self._get_notes_indicator(self._mdl.novel.chapters[chId])
         return title, columns, tuple(nodeTags)
 
     def _configure_character_display(self, crId):
@@ -664,8 +669,8 @@ class TreeViewer(ttk.Frame):
         for __ in self.columns:
             columns.append('')
 
-        if self._mdl.novel.characters[crId].notes:
-            columns[self._colPos['nt']] = _('N')
+        # Notes indicator.
+        columns[self._colPos['nt']] = self._get_notes_indicator(self._mdl.novel.characters[crId])
 
         # Count the sections that use this character as viewpoint.
         wordCount = 0
@@ -707,6 +712,9 @@ class TreeViewer(ttk.Frame):
         for __ in self.columns:
             columns.append('')
 
+        # Notes indicator.
+        columns[self._colPos['nt']] = self._get_notes_indicator(self._mdl.novel.items[itId])
+
         # tags.
         try:
             columns[self._colPos['tg']] = list_to_string(self._mdl.novel.items[itId].tags)
@@ -722,6 +730,9 @@ class TreeViewer(ttk.Frame):
         columns = []
         for __ in self.columns:
             columns.append('')
+
+        # Notes indicator.
+        columns[self._colPos['nt']] = self._get_notes_indicator(self._mdl.novel.locations[lcId])
 
         # Tags.
         try:
@@ -756,6 +767,9 @@ class TreeViewer(ttk.Frame):
 
         def collect_note_indicators(plId):
             """Return a string that indicates section notes within the chapter."""
+            if self._mdl.novel.plotLines[plId].notes:
+                return _('N')
+
             indicator = ''
             for ppId in self.tree.get_children(plId):
                 if self._mdl.novel.plotPoints[ppId].notes:
@@ -773,7 +787,7 @@ class TreeViewer(ttk.Frame):
         if collect:
             columns[self._colPos['nt']] = collect_note_indicators(plId)
         else:
-            columns[self._colPos['nt']] = ''
+            columns[self._colPos['nt']] = self._get_notes_indicator(self._mdl.novel.plotLines[plId])
         return title, columns, tuple(nodeTags)
 
     def _configure_plot_point_display(self, ppId):
@@ -785,9 +799,8 @@ class TreeViewer(ttk.Frame):
         for __ in self.columns:
             columns.append('')
 
-        # "Point has notes" indicator.
-        if self._mdl.novel.plotPoints[ppId].notes:
-            columns[self._colPos['nt']] = _('N')
+        # Notes indicator.
+        columns[self._colPos['nt']] = self._get_notes_indicator(self._mdl.novel.plotPoints[ppId])
 
         # Display associated section, if any.
         scId = self._mdl.novel.plotPoints[ppId].sectionAssoc
@@ -903,9 +916,8 @@ class TreeViewer(ttk.Frame):
             columns[self._colPos['ac']] = list_to_string(scPlotlineShortNames)
             columns[self._colPos['tp']] = list_to_string(scPlotPointTitles)
 
-        # "Section has notes" indicator.
-        if self._mdl.novel.sections[scId].notes:
-            columns[self._colPos['nt']] = _('N')
+        # Notes indicator.
+        columns[self._colPos['nt']] = self._get_notes_indicator(self._mdl.novel.sections[scId])
 
         # Section tags.
         try:
@@ -919,6 +931,12 @@ class TreeViewer(ttk.Frame):
 
     def _export_synopsis(self, event=None):
         self._ctrl.export_document(SECTIONS_SUFFIX, filter=self.tree.selection()[0], ask=False)
+
+    def _get_notes_indicator(self, element):
+        if element.notes:
+            return _('N')
+        else:
+            return ''
 
     def _on_close_branch(self, event=None):
         """Event handler for manually collapsing a branch."""

@@ -97,5 +97,6 @@ class WorldElementView(BasicView, ABC):
         self._create_element_info_window()
         self._create_links_window()
         self._add_separator()
+        self._create_notes_window()
         self._create_button_bar()
 
