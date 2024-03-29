@@ -485,9 +485,9 @@ class NvController:
             elif elemId.startswith(ITEM_PREFIX):
                 candidate = f'{_("Item")} "{self._mdl.novel.items[elemId].title}"'
             elif elemId.startswith(PLOT_LINE_PREFIX):
-                candidate = f'{_("Plot line")} "{self._mdl.novel.arcs[elemId].title}"'
+                candidate = f'{_("Plot line")} "{self._mdl.novel.plotLines[elemId].title}"'
             elif elemId.startswith(PLOT_POINT_PREFIX):
-                candidate = f'{_("Plot point")} "{self._mdl.novel.turningPoints[elemId].title}"'
+                candidate = f'{_("Plot point")} "{self._mdl.novel.plotPoints[elemId].title}"'
             elif elemId.startswith(PRJ_NOTE_PREFIX):
                 candidate = f'{_("Project note")} "{self._mdl.novel.projectNotes[elemId].title}"'
             else:

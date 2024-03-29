@@ -38,4 +38,4 @@ class ChAcFilter:
 
     def get_message(self, source):
         """Return a message about how the document exported from source is filtered."""
-        return f'{_("Chapters belonging to plot line")}: "{source.novel.arcs[self._plId].title}"'
+        return f'{_("Chapters belonging to plot line")}: "{source.novel.plotLines[self._plId].title}"'
