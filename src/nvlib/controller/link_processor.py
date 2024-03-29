@@ -20,7 +20,7 @@ class LinkProcessor:
 
     def __init__(self, model):
         self._mdl = model
-        # this is needed for d
+        # holding the project path
 
     def shorten_path(self, linkPath):
         """Return a shortened path string. 

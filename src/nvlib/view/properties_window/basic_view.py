@@ -128,18 +128,19 @@ class BasicView(ttk.Frame, ABC):
             self._indexCard.bodyBox.set_text(self._element.desc)
 
             # Links window.
-            if prefs[self._prefsShowLinks]:
-                self._linksWindow.show()
-            else:
-                self._linksWindow.hide()
-            linkList = list(self._element.links.values())
-            self._linkCollection.cList.set(linkList)
-            listboxSize = len(linkList)
-            if listboxSize > self._HEIGHT_LIMIT:
-                listboxSize = self._HEIGHT_LIMIT
-            self._linkCollection.cListbox.config(height=listboxSize)
-            if not self._linkCollection.cListbox.curselection() or not self._linkCollection.cListbox.focus_get():
-                self._linkCollection.disable_buttons()
+            if hasattr(self._element, 'links'):
+                if prefs[self._prefsShowLinks]:
+                    self._linksWindow.show()
+                else:
+                    self._linksWindow.hide()
+                linkList = list(self._element.links.values())
+                self._linkCollection.cList.set(linkList)
+                listboxSize = len(linkList)
+                if listboxSize > self._HEIGHT_LIMIT:
+                    listboxSize = self._HEIGHT_LIMIT
+                self._linkCollection.cListbox.config(height=listboxSize)
+                if not self._linkCollection.cListbox.curselection() or not self._linkCollection.cListbox.focus_get():
+                    self._linkCollection.disable_buttons()
 
             # Notes entry (if any).
             if hasattr(self._element, 'notes'):
@@ -167,16 +168,17 @@ class BasicView(ttk.Frame, ABC):
 
     def _add_link(self):
         """Select a link and add it to the list."""
-        fileTypes = [(_('Image file'), '.jpg'),
-                     (_('Image file'), '.jpeg'),
-                     (_('Image file'), '.png'),
-                     (_('Image file'), '.gif'),
-                     (_('Text file'), '.txt'),
-                     (_('Text file'), '.md'),
-                     (_('ODF document'), '.odt'),
-                     (_('ODF document'), '.ods'),
-                     (_('All files'), '.*'),
-                     ]
+        fileTypes = [
+            (_('Image file'), '.jpg'),
+            (_('Image file'), '.jpeg'),
+            (_('Image file'), '.png'),
+            (_('Image file'), '.gif'),
+            (_('Text file'), '.txt'),
+            (_('Text file'), '.md'),
+            (_('ODF document'), '.odt'),
+            (_('ODF document'), '.ods'),
+            (_('All files'), '.*'),
+            ]
         selectedPath = filedialog.askopenfilename(filetypes=fileTypes)
         if selectedPath:
             shortPath = self._ctrl.linkProcessor.shorten_path(selectedPath)
