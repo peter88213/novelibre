@@ -15,6 +15,15 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 Based on novxlib v3.2.0
 
+## Important
+
+For *novelibre* version 3.5, the following plugins and tools must be updated to work with the version 1.2 file format:
+
+- [Timeline plugin](https://github.com/peter88213/nv_timeline/)
+- [Aeon Timeline 2 plugin](https://github.com/peter88213/nv_aeon2/)
+- [XPress tagged text export](https://github.com/peter88213/novx_xtg/)
+
+
 ### v3.5.0
 
 The DTD has been upgraded to version 1.2, due to the following changes:
