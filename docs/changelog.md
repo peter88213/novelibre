@@ -8,6 +8,24 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+
+### v3.5.0
+
+The DTD has been upgraded to version 1.2, due to the following changes:
+
+#### Add "Sticky notes" to the chapters, locations, items, and plot lines (#15)
+
+- Add notes text boxes to the properties views.
+- Show collected stage note indicators for collapsed chapters.
+- Show collected plot point note indicators for collapsed plot lines.
+
+#### Add links to chapters, sections, plot lines, plot points, and project notes (#16).
+
+- Add link frames to all properties views
+- Abbreviate links in the project path.
+
+Based on novxlib v3.2.0
+
 ### v3.4.1
 
 - Fix a regression from v3.4.0 where links cannot be added.
