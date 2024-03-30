@@ -735,21 +735,58 @@ class NvController:
                     pass
         return 'break'
 
-    def open_link(self, linkPath):
+    def open_link(self, element, linkIndex):
         """Open a linked file.
         
         Positional arguments:
-            linkPath: str -- Path to the linked file.
+            element: BasicElement or subclass.
+            linkIndex: int -- Index of the link to open.
+            
+        First try to open the link using its relative path.
+        If this fails, try to open it using the "full" path. 
+        On success, fix the link. 
+        Otherwise, show an error message. 
         
         The linkProcessor strategy can be overridden e.g. by plugins.
         """
+        linkPath = list(element.links)[linkIndex]
+        fullPath = element.links[linkPath]
         try:
             self.linkProcessor.open_link(linkPath, self.launchers)
-        except Exception as ex:
-            self._ui.show_error(
-                str(ex),
-                title=_('Cannot open link')
-                )
+            # using the relative path
+        except:
+
+            # The relative link seems to be broken. Try the full path.
+            if fullPath is not None:
+                newPath = self.linkProcessor.shorten_path(fullPath)
+            else:
+                newPath = ''
+            # fixing the link using the full path
+            try:
+                self.linkProcessor.open_link(newPath, self.launchers)
+            except Exception as ex:
+
+                # The full path is also broken.
+                self._ui.show_error(
+                    str(ex),
+                    title=_('Cannot open link')
+                    )
+            else:
+                # Replace the broken link with the fixed one.
+                links = element.links
+                del links[linkPath]
+                links[newPath] = fullPath
+                element.links = links
+                self._ui.set_status(_('Broken link fixed'))
+        else:
+            # Relative path is o.k. -- now check the full path.
+            pathOk = self.linkProcessor.expand_path(linkPath)
+            if fullPath != pathOk:
+                # Replace the broken full path.
+                links = element.links
+                links[linkPath] = pathOk
+                element.links = links
+                self._ui.set_status(_('Broken link fixed'))
 
     def open_project(self, event=None, filePath='', doNotSave=False):
         """Create a novelibre project instance and read the file.

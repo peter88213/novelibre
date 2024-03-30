@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.5.2\n"
-"POT-Creation-Date: 2024-03-30 13:50:28\n"
-"PO-Revision-Date: 2024-03-30 13:50:28\n"
+"Project-Id-Version: 3.6.0\n"
+"POT-Creation-Date: 2024-03-30 17:40:35\n"
+"PO-Revision-Date: 2024-03-30 17:40:35\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -120,6 +120,9 @@ msgstr "Kurzzusammenfassung"
 
 msgid "Brief synopsis (export only)"
 msgstr "Kurzzusammenfassung (nur Export)"
+
+msgid "Broken link fixed"
+msgstr "Defekten Link korrigiert"
 
 msgid "C"
 msgstr "B"

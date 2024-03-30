@@ -5,15 +5,16 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from abc import ABC, abstractmethod
+import os
+from tkinter import filedialog
 from tkinter import ttk
 
 from novxlib.novx_globals import _
 from nvlib.nv_globals import prefs
-from nvlib.widgets.index_card import IndexCard
-from nvlib.widgets.text_box import TextBox
-from tkinter import filedialog
 from nvlib.widgets.collection_box import CollectionBox
 from nvlib.widgets.folding_frame import FoldingFrame
+from nvlib.widgets.index_card import IndexCard
+from nvlib.widgets.text_box import TextBox
 
 
 class BasicView(ttk.Frame, ABC):
@@ -133,7 +134,9 @@ class BasicView(ttk.Frame, ABC):
                     self._linksWindow.show()
                 else:
                     self._linksWindow.hide()
-                linkList = list(self._element.links.values())
+                linkList = []
+                for path in self._element.links:
+                    linkList.append(os.path.split(path)[1])
                 self._linkCollection.cList.set(linkList)
                 listboxSize = len(linkList)
                 if listboxSize > self._HEIGHT_LIMIT:
@@ -185,7 +188,7 @@ class BasicView(ttk.Frame, ABC):
             links = self._element.links
             if links is None:
                 links = {}
-            links[shortPath] = None
+            links[shortPath] = selectedPath
             self._element.links = links
 
     def _add_separator(self):
@@ -298,8 +301,7 @@ class BasicView(ttk.Frame, ABC):
         except:
             return
 
-        linkPath = list(self._element.links)[selection]
-        self._ctrl.open_link(linkPath)
+        self._ctrl.open_link(self._element, selection)
 
     def _remove_link(self, event=None):
         """Remove a link from the list."""
