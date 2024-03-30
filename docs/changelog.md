@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v3.6.0
+
+- Try to fix broken links (#17).
+- API update due to the changes in novxlib.
+
+Based on novxlib v3.3.0
 
 ### v3.5.2
 
