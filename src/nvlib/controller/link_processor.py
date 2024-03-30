@@ -28,16 +28,15 @@ class LinkProcessor:
         Positional arguments:
             linkPath: str -- Full link path.
             
-        The project path is substituted with ".", if leading.
-        Otherwise, the home path is substituted with "~", if leading.            
+        If linkPath is on the same drive as the project path,
+        the shortened path is relative to the project path.            
         """
-        projectDir = os.path.split(self._mdl.prjFile.filePath)[0].replace('\\', '/')
-        if linkPath.startswith(projectDir):
-            linkPath = linkPath.replace(projectDir, '.')
-        else:
-            homeDir = str(Path.home()).replace('\\', '/')
-            linkPath = linkPath.replace(homeDir, '~')
-        return linkPath
+        projectDir = os.path.split(self._mdl.prjFile.filePath)[0]
+        try:
+            linkPath = os.path.relpath(linkPath, projectDir)
+        except ValueError:
+            pass
+        return linkPath.replace('\\', '/')
 
     def expand_path(self, linkPath):
         """Return an expanded path string.
@@ -45,16 +44,16 @@ class LinkProcessor:
         Positional arguments:
             linkPath: str -- Link path as stored in novx.
 
-        A leading "." is substituted with the project path.
-        A leading "~" is substituted with the home path.            
+        A leading "~" is substituted with the full home path.            
+        A path relative to the project path is expanded to a full path.
         """
-        if linkPath.startswith('.'):
-            projectDir = os.path.split(self._mdl.prjFile.filePath)[0].replace('\\', '/')
-            linkPath = linkPath.replace('.', projectDir, 1)
-        elif linkPath.startswith('~'):
-            homeDir = str(Path.home()).replace('\\', '/')
+        if linkPath.startswith('~'):
+            homeDir = str(Path.home())
             linkPath = linkPath.replace('~', homeDir, 1)
-        return linkPath
+        else:
+            projectDir = os.path.split(self._mdl.prjFile.filePath)[0]
+            linkPath = os.path.join(projectDir, linkPath)
+        return os.path.realpath(linkPath).replace('\\', '/')
 
     def open_link(self, linkPath, launchers):
         """Open a link specified by linkPath. Return True on success.

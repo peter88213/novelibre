@@ -9,6 +9,12 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v3.5.2
+
+- Store link paths relative to the project directory.
+
+Based on novxlib v3.2.0
+
 ### v3.5.1
 
 - Fix a regression from v3.0.0 where plot lines and plot points cannot be deleted.
