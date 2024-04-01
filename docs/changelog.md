@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v3.6.1
+
+- Fix a bug where changing the chapter type may also affect the next chapter selected.
+- Fix a bug where the chapter properties are displayed in the wrong order after selecting the "Trash bin". 
+
+Based on novxlib v3.3.0
+
 ### v3.6.0
 
 - Try to fix broken links (#17).

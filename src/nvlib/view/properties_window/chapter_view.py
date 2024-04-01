@@ -69,9 +69,9 @@ class ChapterView(BasicView):
 
         #--- 'Unused' checkbox.
         if self._isUnused.get():
-            self._ctrl.set_type(1)
+            self._ctrl.set_type(1, [self._elementId])
         else:
-            self._ctrl.set_type(0)
+            self._ctrl.set_type(0, [self._elementId])
 
         #--- 'Do not auto-number...' checkbox.
         self._element.noNumber = self._noNumber.get()
@@ -92,6 +92,11 @@ class ChapterView(BasicView):
             self._isUnused.set(False)
 
         #--- 'Do not auto-number...' checkbox.
+        if self._element.chLevel == 1:
+            labelText = _('Do not auto-number this part')
+        else:
+            labelText = _('Do not auto-number this chapter')
+        self._noNumberCheckbox.configure(text=labelText)
         if self._element.noNumber:
             self._noNumber.set(True)
         else:
