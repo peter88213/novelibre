@@ -26,18 +26,6 @@ class ChapterView(BasicView):
         super().__init__(parent, model, view, controller)
         inputWidgets = []
 
-        # 'Do not auto-number...' checkbutton.
-        self._noNumber = tk.BooleanVar()
-        self._noNumberCheckbox = ttk.Checkbutton(
-            self._elementInfoWindow,
-            variable=self._noNumber,
-            onvalue=True,
-            offvalue=False,
-            command=self.apply_changes,
-            )
-        self._noNumberCheckbox.pack(anchor='w')
-        inputWidgets.append(self._noNumberCheckbox)
-
         #--- 'Unused' checkbox.
         self._isUnused = tk.BooleanVar()
         self._isUnusedCheckbox = ttk.Checkbutton(
@@ -50,6 +38,18 @@ class ChapterView(BasicView):
             )
         self._isUnusedCheckbox.pack(anchor='w')
         inputWidgets.append(self._isUnusedCheckbox)
+
+        #--- 'Do not auto-number...' checkbox.
+        self._noNumber = tk.BooleanVar()
+        self._noNumberCheckbox = ttk.Checkbutton(
+            self._elementInfoWindow,
+            variable=self._noNumber,
+            onvalue=True,
+            offvalue=False,
+            command=self.apply_changes,
+            )
+        self._noNumberCheckbox.pack(anchor='w')
+        inputWidgets.append(self._noNumberCheckbox)
 
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)
@@ -67,13 +67,13 @@ class ChapterView(BasicView):
 
         super().apply_changes()
 
-        #--- 'Unused section' checkbox.
+        #--- 'Unused' checkbox.
         if self._isUnused.get():
             self._ctrl.set_type(1)
         else:
             self._ctrl.set_type(0)
 
-        # 'Do not auto-number...' checkbutton.
+        #--- 'Do not auto-number...' checkbox.
         self._element.noNumber = self._noNumber.get()
 
     def set_data(self, elementId):
@@ -85,13 +85,13 @@ class ChapterView(BasicView):
         self._element = self._mdl.novel.chapters[elementId]
         super().set_data(elementId)
 
-        # 'Unused' checkbox.
+        #--- 'Unused' checkbox.
         if self._element.chType > 0:
             self._isUnused.set(True)
         else:
             self._isUnused.set(False)
 
-        # 'Do not auto-number...' checkbutton.
+        #--- 'Do not auto-number...' checkbox.
         if self._element.noNumber:
             self._noNumber.set(True)
         else:
