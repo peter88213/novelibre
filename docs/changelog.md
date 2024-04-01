@@ -22,6 +22,15 @@ Based on novxlib v3.3.0
 
 Based on novxlib v3.3.0
 
+## Important
+
+For *novelibre* version 3.6, the following plugins and tools must be updated to work with the version 1.3 file format:
+
+- [Timeline plugin](https://github.com/peter88213/nv_timeline/)
+- [Aeon Timeline 2 plugin](https://github.com/peter88213/nv_aeon2/)
+- [XPress tagged text export](https://github.com/peter88213/novx_xtg/)
+
+
 ### v3.5.2
 
 - Store link paths relative to the project directory.
