@@ -86,6 +86,8 @@ class PropertiesViewer(ttk.Frame):
             self._view_nothing()
         elif nodeId.startswith(SECTION_PREFIX):
             self._view_section(nodeId)
+        elif nodeId == self._mdl.trashBin:
+            self._view_nothing()
         elif nodeId.startswith(CHAPTER_PREFIX):
             self._view_chapter(nodeId)
         elif nodeId.startswith(CH_ROOT):

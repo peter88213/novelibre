@@ -35,6 +35,7 @@ class ChapterView(BasicView):
             offvalue=False,
             command=self.apply_changes,
             )
+        self._noNumberCheckbox.pack(anchor='w')
         inputWidgets.append(self._noNumberCheckbox)
 
         #--- 'Unused' checkbox.
@@ -47,6 +48,7 @@ class ChapterView(BasicView):
             offvalue=False,
             command=self.apply_changes,
             )
+        self._isUnusedCheckbox.pack(anchor='w')
         inputWidgets.append(self._isUnusedCheckbox)
 
         for widget in inputWidgets:
@@ -77,8 +79,6 @@ class ChapterView(BasicView):
     def set_data(self, elementId):
         """Update the view with element's data.
         
-        - Hide the info window, if the chapter ist the "trash bin". 
-        - Show/hide the "Do not auto-number" button, depending on the chapter type.       
         - Configure the "Do not auto-number" button, depending on the chapter level.       
         Extends the superclass constructor.
         """
@@ -96,29 +96,6 @@ class ChapterView(BasicView):
             self._noNumber.set(True)
         else:
             self._noNumber.set(False)
-
-        # Hide properties, if the Chapter is the "trasch bin".
-        if self._element.isTrash:
-            self._elementInfoWindow.pack_forget()
-            return
-
-        if not self._elementInfoWindow.winfo_manager():
-            self._elementInfoWindow.pack(fill='x')
-
-        if not self._isUnusedCheckbox.winfo_manager():
-            self._isUnusedCheckbox.pack(anchor='w')
-
-        if self._element.chType == 0:
-            if self._element.chLevel == 1:
-                labelText = _('Do not auto-number this part')
-            else:
-                labelText = _('Do not auto-number this chapter')
-            self._noNumberCheckbox.configure(text=labelText)
-            if not self._noNumberCheckbox.winfo_manager():
-                self._noNumberCheckbox.pack(anchor='w')
-        else:
-            if self._noNumberCheckbox.winfo_manager():
-                self._noNumberCheckbox.pack_forget()
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""

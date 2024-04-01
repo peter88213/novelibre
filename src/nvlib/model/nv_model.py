@@ -938,7 +938,6 @@ class NvModel:
                         newType = parentType
                     self.novel.sections[elemId].scType = newType
             elif elemId.startswith(CHAPTER_PREFIX):
-                self.tree.item(elemId, open=True)
                 chapter = self.novel.chapters[elemId]
                 if chapter.isTrash:
                     newType = 1
