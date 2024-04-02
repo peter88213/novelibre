@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### v3.6.1
 
-- Fix a bug where changing the chapter type may also affect the next chapter selected.
+- Fix a regression from v1.4.1 where changing the chapter type may also affect the next chapter selected.
 - Fix a regression from v3.5.0 where the chapter properties are displayed in the wrong order after selecting the "Trash bin". 
 
 Based on novxlib v3.3.0
