@@ -757,6 +757,7 @@ class NvModel:
             customOutcome='',
             customChrBio='',
             customChrGoals='',
+            links=[],
             tree=tree,
             on_element_change=self.on_element_change,
             )

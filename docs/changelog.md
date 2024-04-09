@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v3.6.3
+
+- Fix a regression from v3.5.0 where the book settings of the last opened project are preset in newly created projects.
+
+Based on novxlib v3.3.0
+
 ### v3.6.2
 
 - Fix a bug where the viewpoint can not be set if no character is related.
