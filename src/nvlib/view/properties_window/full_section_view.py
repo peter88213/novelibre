@@ -243,16 +243,18 @@ class FullSectionView(DatedSectionView):
         # updating the character list before the viewpoints
 
         #--- 'Viewpoint' combobox.
-        scCharacters = self._element.characters
-        if scCharacters:
-            option = self._characterCombobox.current()
-            if option >= 0:
-                # Put the selected character at the first position of related characters.
-                vpId = self._vpList[option]
-                if vpId in scCharacters:
-                    scCharacters.remove(vpId)
-                scCharacters.insert(0, vpId)
-                self._element.characters = scCharacters
+        option = self._characterCombobox.current()
+        if option >= 0:
+            # Put the selected character at the first position of related characters.
+            vpId = self._vpList[option]
+            scCharacters = self._element.characters
+            if scCharacters:
+                    if vpId in scCharacters:
+                        scCharacters.remove(vpId)
+                    scCharacters.insert(0, vpId)
+            else:
+                scCharacters = [vpId]
+            self._element.characters = scCharacters
 
         #--- 'Unused' checkbox.
         if self._isUnused.get():

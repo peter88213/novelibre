@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v3.6.2
+
+- Fix a bug where the viewpoint can not be set if no character is related.
+
+Based on novxlib v3.3.0
+
 ### v3.6.1
 
 - Fix a regression from v1.4.1 where changing the chapter type may also affect the next chapter selected.
