@@ -79,7 +79,6 @@ class ContentsViewer(RichTextNv):
             return
 
         if self._parent.winfo_manager():
-            self.reset_view()
             self.view_text()
             try:
                 super().see(self._index)
@@ -90,7 +89,7 @@ class ContentsViewer(RichTextNv):
         """Build a list of "tagged text" tuples and send it to the text box."""
 
         def convert_from_novx(text):
-
+            """Build a list of (text, tag) tuples from xml text."""
             if not self.showMarkup.get():
                 self._contentParser.showTags = False
             else:
@@ -99,10 +98,12 @@ class ContentsViewer(RichTextNv):
             self._contentParser.feed(text)
             return self._contentParser.taggedText[1:-1]
 
+        # Build a list of (text, tag) tuples for the whole book.
         taggedText = []
         for chId in self._mdl.novel.tree.get_children(CH_ROOT):
             chapter = self._mdl.novel.chapters[chId]
             taggedText.append(chId)
+            # inserting a chapter mark
             if chapter.chLevel == 2:
                 if chapter.chType == 0:
                     headingTag = self.H2_TAG
@@ -113,8 +114,6 @@ class ContentsViewer(RichTextNv):
                     headingTag = self.H1_TAG
                 else:
                     headingTag = self.H1_UNUSED_TAG
-
-            # Get chapter titles.
             if chapter.title:
                 heading = f'{chapter.title}\n'
             else:
@@ -124,6 +123,7 @@ class ContentsViewer(RichTextNv):
             for scId in self._mdl.novel.tree.get_children(chId):
                 section = self._mdl.novel.sections[scId]
                 taggedText.append(scId)
+                # inserting a section mark
                 textTag = ''
                 if section.scType == 3:
                     headingTag = self.STAGE2_TAG
@@ -147,8 +147,12 @@ class ContentsViewer(RichTextNv):
         if not taggedText:
             taggedText.append((f'({_("No text available")})', self.ITALIC_TAG))
         self._textMarks = {}
+
+        # Clear the text box first.
         self.config(state='normal')
         self.delete('1.0', 'end')
+
+        # Send the (text, tag) tuples to the text box.
         for entry in taggedText:
             if len(entry) == 2:
                 # entry is a regular (text, tag) tuple.
