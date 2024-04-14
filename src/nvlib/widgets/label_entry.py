@@ -24,15 +24,6 @@ class LabelEntry(ttk.Frame):
         self.entry.pack(side='left', fill='x', expand=True)
         self.entry.bind('<Return>', command)
 
-    def set(self, value):
-        """Replace None by an empty string.
-        
-        Extends the superclass method.
-        """
-        if value is None:
-            value = ''
-        self.entry.set(value)
-
     def config(self, **kwargs):
         self.configure(**kwargs)
 
