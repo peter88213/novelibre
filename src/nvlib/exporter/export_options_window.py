@@ -7,9 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 
 from nvlib.nv_globals import prefs
-from nvlib.widgets.drag_drop_listbox import DragDropListbox
 from novxlib.novx_globals import _
-from novxlib.novx_globals import list_to_string
 import tkinter as tk
 
 
