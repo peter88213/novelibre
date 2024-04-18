@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.6.3\n"
-"POT-Creation-Date: 2024-04-09 10:52:57\n"
-"PO-Revision-Date: 2024-04-09 10:52:57\n"
+"Project-Id-Version: 3.7.0\n"
+"POT-Creation-Date: 2024-04-18 09:40:29\n"
+"PO-Revision-Date: 2024-04-18 09:40:30\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -439,17 +439,20 @@ msgstr "Manuskript nach Perspektive gefiltert exportieren"
 msgid "Export part descriptions for editing"
 msgstr "Teilebeschreibungen zum Bearbeiten exportieren"
 
-msgid "Export plot description"
-msgstr "Plot-Beschreibung exportieren"
-
 msgid "Export plot grid for editing"
 msgstr "Handlungsraster (Plot grid) zum Bearbeiten exportieren"
+
+msgid "Export plot line descriptions for editing"
+msgstr "Plotlinienbeschreibungen zum Bearbeiten exportieren"
 
 msgid "Export plot list (spreadsheet)"
 msgstr "Plot-Liste exportieren (Tabelle)"
 
 msgid "Export section descriptions for editing"
 msgstr "Abschnittsbeschreibungen zum Bearbeiten exportieren"
+
+msgid "Export story structure description for editing"
+msgstr "Erzählstruktur-Beschreibung zum Bearbeiten exportieren"
 
 msgid "Export synopsis filtered by plot line"
 msgstr "Zusammenfassung nach Plottlinie gefiltert exportieren"
@@ -825,9 +828,6 @@ msgstr "Bitte warten ..."
 
 msgid "Plot"
 msgstr "Plot"
-
-msgid "Plot description"
-msgstr "Plot-Beschreibung"
 
 msgid "Plot grid"
 msgstr "Handlungsraster (Plot grid)"

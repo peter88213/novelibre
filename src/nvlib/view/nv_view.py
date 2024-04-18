@@ -32,12 +32,13 @@ from novxlib.novx_globals import LOCLIST_SUFFIX
 from novxlib.novx_globals import MANUSCRIPT_SUFFIX
 from novxlib.novx_globals import PARTS_SUFFIX
 from novxlib.novx_globals import PLOTLIST_SUFFIX
-from novxlib.novx_globals import PLOT_SUFFIX
+from novxlib.novx_globals import PLOTLINES_SUFFIX
 from novxlib.novx_globals import PL_ROOT
 from novxlib.novx_globals import PN_ROOT
 from novxlib.novx_globals import PROOF_SUFFIX
 from novxlib.novx_globals import SECTIONLIST_SUFFIX
 from novxlib.novx_globals import SECTIONS_SUFFIX
+from novxlib.novx_globals import STAGES_SUFFIX
 from novxlib.novx_globals import XREF_SUFFIX
 from novxlib.novx_globals import _
 from novxlib.ui.set_icon_tk import set_icon
@@ -715,7 +716,9 @@ class NvView:
         self.plotMenu.add_cascade(label=_('Change Level'), menu=self.tv.selectLevelMenu)
         self.plotMenu.add_separator()
         self.plotMenu.add_command(label=_('Export plot grid for editing'), command=lambda:self._ctrl.export_document(GRID_SUFFIX))
-        self.plotMenu.add_command(label=_('Export plot description'), command=lambda: self._ctrl.export_document(PLOT_SUFFIX, lock=False))
+        self.plotMenu.add_command(label=_('Export story structure description for editing'), command=lambda:self._ctrl.export_document(STAGES_SUFFIX))
+        self.plotMenu.add_command(label=_('Export plot line descriptions for editing'), command=lambda: self._ctrl.export_document(PLOTLINES_SUFFIX, lock=False))
+        self.plotMenu.add_separator()
         self.plotMenu.add_command(label=_('Export plot list (spreadsheet)'), command=lambda: self._ctrl.export_document(PLOTLIST_SUFFIX, lock=False))
         self.plotMenu.add_command(label=_('Show Plot list'), command=lambda: self._ctrl.show_report(PLOTLIST_SUFFIX))
 

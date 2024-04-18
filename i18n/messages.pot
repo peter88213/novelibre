@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.6.3\n"
-"POT-Creation-Date: 2024-04-09 10:52:57\n"
+"Project-Id-Version: 3.7.0\n"
+"POT-Creation-Date: 2024-04-18 09:40:29\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -446,16 +446,19 @@ msgstr ""
 msgid "Export part descriptions for editing"
 msgstr ""
 
-msgid "Export plot description"
+msgid "Export plot grid for editing"
 msgstr ""
 
-msgid "Export plot grid for editing"
+msgid "Export plot line descriptions for editing"
 msgstr ""
 
 msgid "Export plot list (spreadsheet)"
 msgstr ""
 
 msgid "Export section descriptions for editing"
+msgstr ""
+
+msgid "Export story structure description for editing"
 msgstr ""
 
 msgid "Export synopsis filtered by plot line"
@@ -831,9 +834,6 @@ msgid "Please wait ..."
 msgstr ""
 
 msgid "Plot"
-msgstr ""
-
-msgid "Plot description"
 msgstr ""
 
 msgid "Plot grid"

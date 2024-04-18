@@ -8,6 +8,16 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+
+### v3.7.0
+
+New document types:
+
+- Story structure export and import.
+- Plot line descriptions export and import.
+
+Based on novxlib v3.4.0
+
 ### v3.6.3
 
 - Fix a regression from v3.5.0 where the book settings of the last opened project are preset in newly created projects.

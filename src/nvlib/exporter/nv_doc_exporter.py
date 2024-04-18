@@ -15,11 +15,11 @@ from novxlib.novx_globals import Error
 from novxlib.novx_globals import _
 from novxlib.novx_globals import norm_path
 from novxlib.ods.ods_w_charlist import OdsWCharList
+from novxlib.ods.ods_w_grid import OdsWGrid
 from novxlib.ods.ods_w_itemlist import OdsWItemList
 from novxlib.ods.ods_w_loclist import OdsWLocList
 from novxlib.ods.ods_w_plot_list import OdsWPlotList
 from novxlib.ods.ods_w_sectionlist import OdsWSectionList
-from novxlib.ods.ods_w_grid import OdsWGrid
 from novxlib.odt.odt_w_brief_synopsis import OdtWBriefSynopsis
 from novxlib.odt.odt_w_chapterdesc import OdtWChapterDesc
 from novxlib.odt.odt_w_characters import OdtWCharacters
@@ -28,9 +28,10 @@ from novxlib.odt.odt_w_items import OdtWItems
 from novxlib.odt.odt_w_locations import OdtWLocations
 from novxlib.odt.odt_w_manuscript import OdtWManuscript
 from novxlib.odt.odt_w_partdesc import OdtWPartDesc
-from novxlib.odt.odt_w_plot import OdtWPlot
+from novxlib.odt.odt_w_plotlines import OdtWPlotlines
 from novxlib.odt.odt_w_proof import OdtWProof
 from novxlib.odt.odt_w_sectiondesc import OdtWSectionDesc
+from novxlib.odt.odt_w_stages import OdtWStages
 from novxlib.odt.odt_w_xref import OdtWXref
 from nvlib.exporter.filter_factory import FilterFactory
 from nvlib.nv_globals import prefs
@@ -40,25 +41,26 @@ from nvlib.widgets.nv_simpledialog import SimpleDialog
 class NvDocExporter:
     """Converter class for document export."""
     EXPORT_TARGET_CLASSES = [
-        OdtWProof,
-        OdtWManuscript,
+        DataWriter,
+        OdsWCharList,
+        OdsWGrid,
+        OdsWItemList,
+        OdsWLocList,
+        OdsWPlotList,
+        OdsWSectionList,
         OdtWBriefSynopsis,
-        OdtWSectionDesc,
         OdtWChapterDesc,
-        OdtWPartDesc,
-        OdtWExport,
-        OdtWPlot,
         OdtWCharacters,
+        OdtWExport,
         OdtWItems,
         OdtWLocations,
+        OdtWManuscript,
+        OdtWPartDesc,
+        OdtWPlotlines,
+        OdtWProof,
+        OdtWSectionDesc,
+        OdtWStages,
         OdtWXref,
-        OdsWCharList,
-        OdsWLocList,
-        OdsWItemList,
-        OdsWSectionList,
-        OdsWGrid,
-        OdsWPlotList,
-        DataWriter,
         ]
 
     def __init__(self):
