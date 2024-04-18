@@ -9,6 +9,13 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v3.7.1
+
+- Update plot line hyperlinks in the plotlist.
+- Add plot line hyperlinks to the plot grid.
+
+Based on novxlib v3.4.1
+
 ### v3.7.0
 
 New document types:
