@@ -9,6 +9,12 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v3.7.2
+
+- Fix a bug where single spaces between emphasized text in section content are lost when writing novx files.
+
+Based on novxlib v3.5.0
+
 ### v3.7.1
 
 - Update plot line hyperlinks in the plotlist.
