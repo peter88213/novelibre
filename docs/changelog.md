@@ -9,6 +9,12 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v3.7.4
+
+- Fix a bug where scenes might get lost during splitting, if split markers are not placed as intended. 
+
+Based on novxlib v3.5.3
+
 ### v3.7.3
 
 - Indent the novx files up to the content paragraph level, but not inline elements within paragraphs.
