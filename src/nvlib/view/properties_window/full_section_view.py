@@ -404,16 +404,18 @@ class FullSectionView(DatedSectionView):
         # Add the selected element to the collection, if applicable.
         plotlineList = self._element.scPlotLines
         plId = self._ui.tv.tree.selection()[0]
-        if not plId.startswith(PLOT_LINE_PREFIX):
-            # Restore the previous section selection mode.
-            self._end_picking_mode()
-        elif not plId in plotlineList:
+        if plId.startswith(PLOT_LINE_PREFIX) and not plId in plotlineList:
             plotlineList.append(plId)
             self._element.scPlotLines = plotlineList
             plotlineSections = self._mdl.novel.plotLines[plId].sections
             if not self._elementId in plotlineSections:
                 plotlineSections.append(self._elementId)
                 self._mdl.novel.plotLines[plId].sections = plotlineSections
+
+            # TODO: Select the new plot line entry.
+
+        # Restore the previous section selection mode.
+        self._end_picking_mode()
 
     def _get_plotline_titles(self, elemIds, elements):
         """Return a list of plot line titles, preceded by the short names.

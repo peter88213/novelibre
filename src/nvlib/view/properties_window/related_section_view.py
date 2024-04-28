@@ -215,6 +215,9 @@ class RelatedSectionView(BasicView):
             crList.append(crId)
             self._element.characters = crList
 
+        # Restore the previous section selection mode.
+        self._end_picking_mode()
+
     def _add_location(self, event=None):
         # Add the selected element to the collection, if applicable.
         lcList = self._element.locations
@@ -226,6 +229,9 @@ class RelatedSectionView(BasicView):
             lcList.append(lcId)
             self._element.locations = lcList
 
+        # Restore the previous section selection mode.
+        self._end_picking_mode()
+
     def _add_item(self, event=None):
         # Add the selected element to the collection, if applicable.
         itList = self._element.items
@@ -236,6 +242,9 @@ class RelatedSectionView(BasicView):
         elif not itId in itList:
             itList.append(itId)
             self._element.items = itList
+
+        # Restore the previous section selection mode.
+        self._end_picking_mode()
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""
