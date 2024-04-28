@@ -315,9 +315,10 @@ class FullSectionView(DatedSectionView):
         self._plotNotesWindow.config(state='disabled')
         self._plotNotesWindow.config(bg='light gray')
         if self._plotlineTitles:
-            self._plotlineCollection.cListbox.select_set(0)
-            self._selectedPlotline = 0
-            self._on_select_plotline(0)
+            self._plotlineCollection.cListbox.select_clear(0, 'end')
+            self._plotlineCollection.cListbox.select_set('end')
+            self._selectedPlotline = -1
+            self._on_select_plotline(-1)
         else:
             self._selectedPlotline = None
 

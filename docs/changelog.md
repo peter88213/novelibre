@@ -9,6 +9,13 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v3.7.6
+
+- Improve the "pick mode".
+- When updating the section view, select the last plot line.
+
+Based on novxlib v3.5.3
+
 ### v3.7.5
 
 - Section view: Terminate the "pick mode" after adding a picked element to the list. 
