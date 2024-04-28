@@ -9,6 +9,12 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v3.7.7
+
+- Fix a bug where the status bar cannot be restored with the "Esc" key after having used the pick mode.
+
+Based on novxlib v3.5.3
+
 ### v3.7.6
 
 - Improve the "pick mode".

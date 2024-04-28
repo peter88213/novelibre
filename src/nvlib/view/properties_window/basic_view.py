@@ -54,9 +54,12 @@ class BasicView(ttk.Frame, ABC):
         self._parent = parent
         self._inputWidgets = []
 
-        self.doNotUpdate = False
         self._pickingMode = False
         self._pickCommand = None
+        self._uiEscBinding = ''
+        self._uiBtn1Binding = ''
+
+        self.doNotUpdate = False
         self._isLocked = False
 
         # Frame for element specific informations.
@@ -270,7 +273,7 @@ class BasicView(ttk.Frame, ABC):
             if self._pickCommand is not None:
                 self._pickCommand()
                 self._pickCommand = None
-            self._ui.root.unbind('<Button-1>')
+            self._ui.root.bind('<Button-1>', self._uiBtn1Binding)
             self._ui.root.bind('<Escape>', self._uiEscBinding)
             self._ui.tv.config(cursor='arrow')
             self._ui.tv.tree.see(self._lastSelected)
@@ -334,8 +337,9 @@ class BasicView(ttk.Frame, ABC):
             self._lastSelected = self._ui.tv.tree.selection()[0]
             self._ui.tv.config(cursor='plus')
             self._ui.tv.open_children('')
-            self._uiEscBinding = self._ui.root.bind('<Esc>')
+            self._uiEscBinding = self._ui.root.bind('<Escape>')
             self._ui.root.bind('<Escape>', self._end_picking_mode)
+            self._uiBtn1Binding = self._ui.root.bind('<Button-1>')
             self._ui.root.bind('<Button-1>', self._end_picking_mode)
             self._pickingMode = True
         self._ui.set_status(_('Pick Mode (click here or press Esc to exit)'), colors=('maroon', 'white'))
