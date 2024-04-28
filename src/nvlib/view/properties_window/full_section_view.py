@@ -414,9 +414,6 @@ class FullSectionView(DatedSectionView):
 
             # TODO: Select the new plot line entry.
 
-        # Restore the previous section selection mode.
-        self._end_picking_mode()
-
     def _get_plotline_titles(self, elemIds, elements):
         """Return a list of plot line titles, preceded by the short names.
         
@@ -474,8 +471,7 @@ class FullSectionView(DatedSectionView):
 
     def _pick_plotline(self, event=None):
         """Enter the "add plot line" selection mode."""
-        self._start_picking_mode()
-        self._ui.tv.tree.bind('<<TreeviewSelect>>', self._add_plotline)
+        self._start_picking_mode(command=self._add_plotline)
         self._ui.tv.tree.see(PL_ROOT)
 
     def _remove_plotline(self, event=None):

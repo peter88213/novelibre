@@ -208,43 +208,25 @@ class RelatedSectionView(BasicView):
         # Add the selected element to the collection, if applicable.
         crList = self._element.characters
         crId = self._ui.tv.tree.selection()[0]
-        if not crId.startswith(CHARACTER_PREFIX):
-            # Restore the previous section selection mode.
-            self._end_picking_mode()
-        elif not crId in crList:
+        if crId.startswith(CHARACTER_PREFIX) and not crId in crList:
             crList.append(crId)
             self._element.characters = crList
-
-        # Restore the previous section selection mode.
-        self._end_picking_mode()
 
     def _add_location(self, event=None):
         # Add the selected element to the collection, if applicable.
         lcList = self._element.locations
         lcId = self._ui.tv.tree.selection()[0]
-        if not lcId.startswith(LOCATION_PREFIX):
-            # Restore the previous section selection mode.
-            self._end_picking_mode()
-        elif not lcId in lcList:
+        if lcId.startswith(LOCATION_PREFIX)and not lcId in lcList:
             lcList.append(lcId)
             self._element.locations = lcList
-
-        # Restore the previous section selection mode.
-        self._end_picking_mode()
 
     def _add_item(self, event=None):
         # Add the selected element to the collection, if applicable.
         itList = self._element.items
         itId = self._ui.tv.tree.selection()[0]
-        if not itId.startswith(ITEM_PREFIX):
-            # Restore the previous section selection mode.
-            self._end_picking_mode()
-        elif not itId in itList:
+        if itId.startswith(ITEM_PREFIX)and not itId in itList:
             itList.append(itId)
             self._element.items = itList
-
-        # Restore the previous section selection mode.
-        self._end_picking_mode()
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""
@@ -317,20 +299,17 @@ class RelatedSectionView(BasicView):
 
     def _pick_character(self, event=None):
         """Enter the "add character" selection mode."""
-        self._start_picking_mode()
-        self._ui.tv.tree.bind('<<TreeviewSelect>>', self._add_character)
+        self._start_picking_mode(command=self._add_character)
         self._ui.tv.tree.see(CR_ROOT)
 
     def _pick_location(self, event=None):
         """Enter the "add location" selection mode."""
-        self._start_picking_mode()
-        self._ui.tv.tree.bind('<<TreeviewSelect>>', self._add_location)
+        self._start_picking_mode(command=self._add_location)
         self._ui.tv.tree.see(LC_ROOT)
 
     def _pick_item(self, event=None):
         """Enter the "add item" selection mode."""
-        self._start_picking_mode()
-        self._ui.tv.tree.bind('<<TreeviewSelect>>', self._add_item)
+        self._start_picking_mode(command=self._add_item)
         self._ui.tv.tree.see(IT_ROOT)
 
     def _remove_character(self, event=None):

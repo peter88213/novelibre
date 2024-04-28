@@ -93,7 +93,6 @@ class TurningPointView(BasicView):
                 if not plId in self._mdl.novel.sections[nodeId].scPlotLines:
                     self._mdl.novel.sections[nodeId].scPlotLines.append(plId)
                 self._element.sectionAssoc = nodeId
-        self._end_picking_mode()
 
     def _clear_assignment(self):
         """Unassign a section from the Plot point."""
@@ -120,7 +119,6 @@ class TurningPointView(BasicView):
 
     def _pick_section(self):
         """Enter the "associate section" selection mode."""
-        self._start_picking_mode()
-        self._ui.tv.tree.bind('<<TreeviewSelect>>', self._assign_section)
+        self._start_picking_mode(command=self._assign_section)
         self._ui.tv.tree.see(CH_ROOT)
 

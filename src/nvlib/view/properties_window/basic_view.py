@@ -56,6 +56,7 @@ class BasicView(ttk.Frame, ABC):
 
         self.doNotUpdate = False
         self._pickingMode = False
+        self._pickCommand = None
         self._isLocked = False
 
         # Frame for element specific informations.
@@ -149,10 +150,6 @@ class BasicView(ttk.Frame, ABC):
             if hasattr(self._element, 'notes'):
                 self._notesWindow.clear()
                 self._notesWindow.set_text(self._element.notes)
-
-        if self._pickingMode:
-            self._start_picking_mode()
-            # refreshing the status bar
 
     def show(self):
         """Make the view visible."""
@@ -270,7 +267,10 @@ class BasicView(ttk.Frame, ABC):
 
     def _end_picking_mode(self, event=None):
         if self._pickingMode:
-            self._ui.tv.tree.bind('<<TreeviewSelect>>', self._treeSelectBinding)
+            if self._pickCommand is not None:
+                self._pickCommand()
+                self._pickCommand = None
+            self._ui.root.unbind('<Button-1>')
             self._ui.root.bind('<Escape>', self._uiEscBinding)
             self._ui.tv.config(cursor='arrow')
             self._ui.tv.tree.see(self._lastSelected)
@@ -320,7 +320,7 @@ class BasicView(ttk.Frame, ABC):
             else:
                 self._element.links = links
 
-    def _start_picking_mode(self, event=None):
+    def _start_picking_mode(self, event=None, command=None):
         """Start the picking mode for element selection.        
         
         Change the mouse cursor to "+" and expand the "Book" subtree.
@@ -329,14 +329,14 @@ class BasicView(ttk.Frame, ABC):
         
         To end the picking mode, press the Escape key.
         """
+        self._pickCommand = command
         if not self._pickingMode:
             self._lastSelected = self._ui.tv.tree.selection()[0]
             self._ui.tv.config(cursor='plus')
             self._ui.tv.open_children('')
-            self._treeSelectBinding = self._ui.tv.tree.bind('<<TreeviewSelect>>')
             self._uiEscBinding = self._ui.root.bind('<Esc>')
             self._ui.root.bind('<Escape>', self._end_picking_mode)
-            self._ui.statusBar.bind('<Button-1>', self._end_picking_mode)
+            self._ui.root.bind('<Button-1>', self._end_picking_mode)
             self._pickingMode = True
         self._ui.set_status(_('Pick Mode (click here or press Esc to exit)'), colors=('maroon', 'white'))
 
