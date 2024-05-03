@@ -229,7 +229,6 @@ class TreeViewer(ttk.Frame):
         
         Positional arguments: 
             thisNode: str -- node ID
-            root: str -- root ID of the branch to search 
         """
 
         def search_tree(parent, result, flag):
@@ -293,7 +292,6 @@ class TreeViewer(ttk.Frame):
 
         Positional arguments: 
             thisNode: str -- node ID
-            root: str -- root ID of the branch to search 
         """
 
         def search_tree(parent, result, prevNode):
