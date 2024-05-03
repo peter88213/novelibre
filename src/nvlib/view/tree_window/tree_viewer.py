@@ -370,30 +370,30 @@ class TreeViewer(ttk.Frame):
             """
             for elemId in self.tree.get_children(node):
                 if elemId.startswith(SECTION_PREFIX):
-                    title, columns, nodeTags = self._configure_section_display(elemId, position=scnPos)
+                    title, columns, nodeTags = self._get_section_row(elemId, position=scnPos)
                     if self._mdl.novel.sections[elemId].scType == 0:
                         scnPos += self._mdl.novel.sections[elemId].wordCount
                 elif elemId.startswith(CHARACTER_PREFIX):
-                    title, columns, nodeTags = self._configure_character_display(elemId)
+                    title, columns, nodeTags = self._get_character_row(elemId)
                 elif elemId.startswith(LOCATION_PREFIX):
-                    title, columns, nodeTags = self._configure_location_display(elemId)
+                    title, columns, nodeTags = self._get_location_row(elemId)
                 elif elemId.startswith(ITEM_PREFIX):
-                    title, columns, nodeTags = self._configure_item_display(elemId)
+                    title, columns, nodeTags = self._get_item_row(elemId)
                 elif elemId.startswith(CHAPTER_PREFIX):
                     chpPos = scnPos
                     # save chapter start position, because the positions of the
                     # chapters sections will now be added to scnPos.
                     scnPos = update_branch(elemId, scnPos)
-                    collapsed = not self.tree.item(elemId, 'open')
-                    title, columns, nodeTags = self._configure_chapter_display(elemId, position=chpPos, collect=collapsed)
+                    isCollapsed = not self.tree.item(elemId, 'open')
+                    title, columns, nodeTags = self._get_chapter_row(elemId, position=chpPos, collect=isCollapsed)
                 elif elemId.startswith(PLOT_LINE_PREFIX):
                     update_branch(elemId, scnPos)
-                    collapsed = not self.tree.item(elemId, 'open')
-                    title, columns, nodeTags = self._configure_plot_line_display(elemId, collect=collapsed)
+                    isCollapsed = not self.tree.item(elemId, 'open')
+                    title, columns, nodeTags = self._get_plot_line_row(elemId, collect=isCollapsed)
                 elif elemId.startswith(PLOT_POINT_PREFIX):
-                    title, columns, nodeTags = self._configure_plot_point_display(elemId)
+                    title, columns, nodeTags = self._get_plot_point_row(elemId)
                 elif elemId.startswith(PRJ_NOTE_PREFIX):
-                    title, columns, nodeTags = self._configure_prj_note_display(elemId)
+                    title, columns, nodeTags = self._get_prj_note_row(elemId)
                 else:
                     title = self._ROOT_TITLES[elemId]
                     columns = []
@@ -513,35 +513,57 @@ class TreeViewer(ttk.Frame):
         self._pnCtxtMenu.add_separator()
         self._pnCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
 
-    def _configure_chapter_columns(self, nodeId, collect=False):
-        """Add/remove column items collected from the chapter's sections.
+    def _configure_chapter_columns(self, chId, collect=False):
+        """Add/remove column elements collected from the chapter's sections.
         
         Positional arguments:
-            nodeId: str -- Chapter ID.
+            chId: str -- Chapter ID.
         
         Optional arguments:
             collect: bool -- If True, add the collected metadata; if False, remove it.
         """
-        if nodeId.startswith(CHAPTER_PREFIX):
-            chId = nodeId
-            positionStr = self.tree.item(nodeId)['values'][self._colPos['po']]
-            __, columns, __ = self._configure_chapter_display(chId, position=None, collect=collect)
+        if chId.startswith(CHAPTER_PREFIX):
+            positionStr = self.tree.item(chId)['values'][self._colPos['po']]
+            __, columns, __ = self._get_chapter_row(chId, position=None, collect=collect)
             columns[self._colPos['po']] = positionStr
-            self.tree.item(nodeId, values=columns)
+            self.tree.item(chId, values=columns)
 
-    def _configure_chapter_display(self, chId, position=None, collect=False):
-        """Configure chapter formatting and columns.
+    def _configure_plot_line_columns(self, plId, collect=False):
+        """Add/remove column elements collected from the plotline's points.
+        
+        Positional arguments:
+            plId: str -- Plotline ID.
+        
+        Optional arguments:
+            collect: bool -- If True, add the collected metadata; if False, remove it.
+        """
+        if plId.startswith(PLOT_LINE_PREFIX):
+            __, columns, __ = self._get_plot_line_row(plId, collect=collect)
+            self.tree.item(plId, values=columns)
+
+    def _export_manuscript(self, event=None):
+        self._ctrl.export_document(MANUSCRIPT_SUFFIX, filter=self.tree.selection()[0], ask=False)
+
+    def _export_synopsis(self, event=None):
+        self._ctrl.export_document(SECTIONS_SUFFIX, filter=self.tree.selection()[0], ask=False)
+
+    def _get_chapter_row(self, chId, position=None, collect=False):
+        """Return title, columns, and tags for a chapter.
         
         Positional arguments:
             chId: str -- Chapter ID
             
         Optional arguments:
-            position: integer -- Word count at the beginning of the chapter.
+            position: integer -- Accumulated word count at chapter beginning.
             collect: bool -- If True, summarize section metadata.
         """
 
         def count_words(chId):
-            """Accumulate word counts of all normal sections in a chapter."""
+            """Accumulate word counts of all normal sections in a chapter.
+            
+            Positional arguments:
+                chId: str -- Chapter ID            
+            """
             chapterWordCount = 0
             if self._mdl.novel.chapters[chId].chType == 0:
                 for scId in self.tree.get_children(chId):
@@ -550,7 +572,11 @@ class TreeViewer(ttk.Frame):
             return chapterWordCount
 
         def collect_viewpoints(chId):
-            """Return a string with semicolon-separated viewpoint character names."""
+            """Return a string with semicolon-separated viewpoint character names.
+
+            Positional arguments:
+                chId: str -- Chapter ID            
+            """
             chapterViewpoints = []
             if self._mdl.novel.chapters[chId].chType == 0:
                 for scId in self.tree.get_children(chId):
@@ -565,7 +591,11 @@ class TreeViewer(ttk.Frame):
             return list_to_string(chapterViewpoints)
 
         def collect_tags(chId):
-            """Return a string with semicolon-separated section tags."""
+            """Return a string with semicolon-separated section tags.
+            
+            Positional arguments:
+                chId: str -- Chapter ID            
+            """
             chapterTags = []
             if self._mdl.novel.chapters[chId].chType == 0:
                 for scId in self.tree.get_children(chId):
@@ -577,7 +607,11 @@ class TreeViewer(ttk.Frame):
             return list_to_string(chapterTags)
 
         def collect_plot_lines(chId):
-            """Return a tuple of two strings: semicolon-separated plot lines, semicolon-separated plot points."""
+            """Return a tuple of two strings: semicolon-separated plot lines, semicolon-separated plot points.
+            
+            Positional arguments:
+                chId: str -- Chapter ID            
+            """
             chPlotlineShortNames = []
             chPlotPointTitles = []
             chPlotlines = {}
@@ -604,7 +638,11 @@ class TreeViewer(ttk.Frame):
             return list_to_string(chPlotlineShortNames), list_to_string(chPlotPointTitles)
 
         def collect_note_indicators(chId):
-            """Return a string that indicates section notes within the chapter."""
+            """Return a string that indicates section notes within the chapter.
+            
+            Positional arguments:
+                chId: str -- Chapter ID            
+            """
             if self._mdl.novel.chapters[chId].notes:
                 return _('N')
 
@@ -660,8 +698,12 @@ class TreeViewer(ttk.Frame):
             columns[self._colPos['nt']] = self._get_notes_indicator(self._mdl.novel.chapters[chId])
         return title, columns, tuple(nodeTags)
 
-    def _configure_character_display(self, crId):
-        """Configure character formatting and columns."""
+    def _get_character_row(self, crId):
+        """Return title, columns, and tags for a character.
+        
+        Positional arguments:
+            crId: str -- Character ID            
+        """
         title = self._mdl.novel.characters[crId].title
         if not title:
             title = _('Unnamed')
@@ -703,8 +745,12 @@ class TreeViewer(ttk.Frame):
             nodeTags.append('minor')
         return title, columns, tuple(nodeTags)
 
-    def _configure_item_display(self, itId):
-        """Configure item formatting and columns."""
+    def _get_item_row(self, itId):
+        """Return title, columns, and tags for an item.
+        
+        Positional arguments:
+            itId: str -- Item ID            
+        """
         title = self._mdl.novel.items[itId].title
         if not title:
             title = _('Unnamed')
@@ -722,8 +768,12 @@ class TreeViewer(ttk.Frame):
             pass
         return title, columns, ()
 
-    def _configure_location_display(self, lcId):
-        """Configure location formatting and columns."""
+    def _get_location_row(self, lcId):
+        """Return title, columns, and tags for a location.
+        
+        Positional arguments:
+            lcId: str -- Location ID            
+        """
         title = self._mdl.novel.locations[lcId].title
         if not title:
             title = _('Unnamed')
@@ -741,22 +791,19 @@ class TreeViewer(ttk.Frame):
             pass
         return title, columns, ()
 
-    def _configure_plot_line_columns(self, nodeId, collect=False):
-        """Add/remove column items collected from the plotline's points.
+    def _get_notes_indicator(self, element):
+        """Return a string that indicates whether the element has a note.
         
         Positional arguments:
-            nodeId: str -- Plotline ID.
-        
-        Optional arguments:
-            collect: bool -- If True, add the collected metadata; if False, remove it.
+            element: BasicElementNotes subclass instance      
         """
-        if nodeId.startswith(PLOT_LINE_PREFIX):
-            plId = nodeId
-            __, columns, __ = self._configure_plot_line_display(plId, collect=collect)
-            self.tree.item(nodeId, values=columns)
+        if element.notes:
+            return _('N')
+        else:
+            return ''
 
-    def _configure_plot_line_display(self, plId, collect=False):
-        """Configure plotline formatting and columns.
+    def _get_plot_line_row(self, plId, collect=False):
+        """Return title, columns, and tags for a plotline.
 
         Positional arguments:
             plId: str -- Plotline ID
@@ -790,8 +837,12 @@ class TreeViewer(ttk.Frame):
             columns[self._colPos['nt']] = self._get_notes_indicator(self._mdl.novel.plotLines[plId])
         return title, columns, tuple(nodeTags)
 
-    def _configure_plot_point_display(self, ppId):
-        """Configure plot point formatting and columns."""
+    def _get_plot_point_row(self, ppId):
+        """Return title, columns, and tags for a plot point.
+        
+        Positional arguments:
+            ppId: str -- Plot point ID            
+        """
         title = self._mdl.novel.plotPoints[ppId].title
         if not title:
             title = _('Unnamed')
@@ -810,8 +861,12 @@ class TreeViewer(ttk.Frame):
                 columns[self._colPos['tp']] = sectionTitle
         return title, columns, ('plot_point')
 
-    def _configure_prj_note_display(self, pnId):
-        """Configure project note formatting and columns."""
+    def _get_prj_note_row(self, pnId):
+        """Return title, columns, and tags for a project note.
+        
+        Positional arguments:
+            pnId: str -- Project note ID            
+        """
         title = self._mdl.novel.projectNotes[pnId].title
         if not title:
             title = _('Unnamed')
@@ -820,8 +875,15 @@ class TreeViewer(ttk.Frame):
             columns.append('')
         return title, columns, ()
 
-    def _configure_section_display(self, scId, position=None):
-        """Configure section formatting and columns."""
+    def _get_section_row(self, scId, position=None):
+        """Return title, columns, and tags for a section.
+        
+        Positional arguments:
+            scId: str -- Section ID
+            
+        Optional arguments:
+            position: int -- Accumulated word count at section beginning.
+        """
         title = self._mdl.novel.sections[scId].title
         if not title:
             title = _('Unnamed')
@@ -926,18 +988,6 @@ class TreeViewer(ttk.Frame):
             pass
         return title, columns, tuple(nodeTags)
 
-    def _export_manuscript(self, event=None):
-        self._ctrl.export_document(MANUSCRIPT_SUFFIX, filter=self.tree.selection()[0], ask=False)
-
-    def _export_synopsis(self, event=None):
-        self._ctrl.export_document(SECTIONS_SUFFIX, filter=self.tree.selection()[0], ask=False)
-
-    def _get_notes_indicator(self, element):
-        if element.notes:
-            return _('N')
-        else:
-            return ''
-
     def _on_close_branch(self, event=None):
         """Event handler for manually collapsing a branch."""
         try:
@@ -950,6 +1000,7 @@ class TreeViewer(ttk.Frame):
             pass
 
     def _on_move_node(self, event):
+        """Event handler for manually moving a node."""
         self._ctrl.move_node(
             self.tree.selection()[0],
             self.tree.identify_row(event.y)
