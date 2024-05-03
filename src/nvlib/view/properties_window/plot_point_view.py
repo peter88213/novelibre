@@ -114,11 +114,11 @@ class TurningPointView(BasicView):
         """Select the section assigned to the plot point."""
         if self._element.sectionAssoc is not None:
             targetNode = self._element.sectionAssoc
-            self._ui.tv.tree.see(targetNode)
+            self._ui.tv.see_node(targetNode)
             self._ui.tv.tree.selection_set(targetNode)
 
     def _pick_section(self):
         """Enter the "associate section" selection mode."""
         self._start_picking_mode(command=self._assign_section)
-        self._ui.tv.tree.see(CH_ROOT)
+        self._ui.tv.see_node(CH_ROOT)
 

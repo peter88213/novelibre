@@ -300,17 +300,17 @@ class RelatedSectionView(BasicView):
     def _pick_character(self, event=None):
         """Enter the "add character" selection mode."""
         self._start_picking_mode(command=self._add_character)
-        self._ui.tv.tree.see(CR_ROOT)
+        self._ui.tv.see_node(CR_ROOT)
 
     def _pick_location(self, event=None):
         """Enter the "add location" selection mode."""
         self._start_picking_mode(command=self._add_location)
-        self._ui.tv.tree.see(LC_ROOT)
+        self._ui.tv.see_node(LC_ROOT)
 
     def _pick_item(self, event=None):
         """Enter the "add item" selection mode."""
         self._start_picking_mode(command=self._add_item)
-        self._ui.tv.tree.see(IT_ROOT)
+        self._ui.tv.see_node(IT_ROOT)
 
     def _remove_character(self, event=None):
         """Remove the character selected in the listbox from the section characters."""

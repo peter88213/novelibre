@@ -146,8 +146,7 @@ class TreeViewer(ttk.Frame):
             parent: str -- Root node of the branch to close.
         """
         self.tree.item(parent, open=False)
-        if parent.startswith(CHAPTER_PREFIX):
-            self._configure_chapter_columns(parent, collect=True)
+        self._update_node_values(parent, collect=True)
         for child in self.tree.get_children(parent):
             self.close_children(child)
 
@@ -195,6 +194,22 @@ class TreeViewer(ttk.Frame):
         """Select a node forward in the tree browsing history."""
         self._browse_tree(self._history.go_forward())
 
+    def see_node(self, node):
+        """View a node.
+        
+        If the parent is being expanded for this, 
+        remove collected values from the parent's row.
+        
+        Positional arguments:
+            node: str -- Tree element to select and show.
+        """
+        try:
+            self.tree.see(node)
+            parent = self.tree.parent(node)
+            self._update_node_values(parent, collect=False)
+        except:
+            pass
+
     def go_to_node(self, node):
         """Select and view a node.
         
@@ -204,7 +219,7 @@ class TreeViewer(ttk.Frame):
         try:
             self.tree.focus_set()
             self.tree.selection_set(node)
-            self.tree.see(node)
+            self.see_node(node)
             self.tree.focus(node)
         except:
             pass
@@ -269,8 +284,7 @@ class TreeViewer(ttk.Frame):
             parent: str -- Root node of the branch to open.
         """
         self.tree.item(parent, open=True)
-        if parent.startswith(CHAPTER_PREFIX):
-            self._configure_chapter_columns(parent, collect=False)
+        self._update_node_values(parent, collect=False)
         for child in self.tree.get_children(parent):
             self.open_children(child)
 
@@ -345,7 +359,7 @@ class TreeViewer(ttk.Frame):
         def show_chapters(parent):
             if parent.startswith(CHAPTER_PREFIX):
                 self.tree.item(parent, open=False)
-                self._configure_chapter_columns(parent, collect=True)
+                self._update_node_values(parent, collect=True)
             else:
                 self.tree.item(parent, open=True)
                 for child in self.tree.get_children(parent):
@@ -514,34 +528,6 @@ class TreeViewer(ttk.Frame):
         self._pnCtxtMenu.add_command(label=_('Add Project note'), command=self._ctrl.add_project_note)
         self._pnCtxtMenu.add_separator()
         self._pnCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
-
-    def _configure_chapter_columns(self, chId, collect=False):
-        """Add/remove column elements collected from the chapter's sections.
-        
-        Positional arguments:
-            chId: str -- Chapter ID.
-        
-        Optional arguments:
-            collect: bool -- If True, add the collected metadata; if False, remove it.
-        """
-        if chId.startswith(CHAPTER_PREFIX):
-            positionStr = self.tree.item(chId)['values'][self._colPos['po']]
-            __, columns, __ = self._get_chapter_row_data(chId, position=None, collect=collect)
-            columns[self._colPos['po']] = positionStr
-            self.tree.item(chId, values=columns)
-
-    def _configure_plot_line_columns(self, plId, collect=False):
-        """Add/remove column elements collected from the plotline's points.
-        
-        Positional arguments:
-            plId: str -- Plotline ID.
-        
-        Optional arguments:
-            collect: bool -- If True, add the collected metadata; if False, remove it.
-        """
-        if plId.startswith(PLOT_LINE_PREFIX):
-            __, columns, __ = self._get_plot_line_row_data(plId, collect=collect)
-            self.tree.item(plId, values=columns)
 
     def _export_manuscript(self, event=None):
         self._ctrl.export_document(MANUSCRIPT_SUFFIX, filter=self.tree.selection()[0], ask=False)
@@ -956,16 +942,9 @@ class TreeViewer(ttk.Frame):
             pass
         return to_string(self._mdl.novel.sections[scId].title), nodeValues, tuple(nodeTags)
 
-    def _on_close_branch(self, event=None):
+    def _on_close_branch(self, event):
         """Event handler for manually collapsing a branch."""
-        try:
-            self._configure_chapter_columns(self.tree.selection()[0], collect=True)
-        except:
-            pass
-        try:
-            self._configure_plot_line_columns(self.tree.selection()[0], collect=True)
-        except:
-            pass
+        self._update_node_values(self.tree.selection()[0], collect=True)
 
     def _on_move_node(self, event):
         """Event handler for manually moving a node."""
@@ -974,16 +953,9 @@ class TreeViewer(ttk.Frame):
             self.tree.identify_row(event.y)
             )
 
-    def _on_open_branch(self, event=None):
+    def _on_open_branch(self, event):
         """Event handler for manually expanding a branch."""
-        try:
-            self._configure_chapter_columns(self.tree.selection()[0], collect=False)
-        except:
-            pass
-        try:
-            self._configure_plot_line_columns(self.tree.selection()[0], collect=False)
-        except:
-            pass
+        self._update_node_values(self.tree.selection()[0], collect=False)
 
     def _on_open_context_menu(self, event):
         """Event handler for the tree's context menu.
@@ -1135,7 +1107,7 @@ class TreeViewer(ttk.Frame):
                 finally:
                     self._pnCtxtMenu.grab_release()
 
-    def _on_select_node(self, event=None):
+    def _on_select_node(self, event):
         """Event handler for node selection.
         
         - Show the node's properties.
@@ -1148,4 +1120,25 @@ class TreeViewer(ttk.Frame):
 
         self._history.append_node(nodeId)
         self._ui.on_change_selection(nodeId)
+
+    def _update_node_values(self, nodeId, collect=False):
+        """Add/remove node values collected from the node's children.
+        
+        Positional arguments:
+            nodeId: str -- Node ID.
+        
+        Optional arguments:
+            collect: bool -- If True, add the collected values; if False, remove them.
+        """
+        if nodeId.startswith(CHAPTER_PREFIX):
+            positionStr = self.tree.item(nodeId)['values'][self._colPos['po']]
+            __, nodeValues, __ = self._get_chapter_row_data(nodeId, position=None, collect=collect)
+            nodeValues[self._colPos['po']] = positionStr
+            self.tree.item(nodeId, values=nodeValues)
+            return
+
+        if nodeId.startswith(PLOT_LINE_PREFIX):
+            __, nodeValues, __ = self._get_plot_line_row_data(nodeId, collect=collect)
+            self.tree.item(nodeId, values=nodeValues)
+            return
 

@@ -276,7 +276,7 @@ class BasicView(ttk.Frame, ABC):
             self._ui.root.bind('<Button-1>', self._uiBtn1Binding)
             self._ui.root.bind('<Escape>', self._uiEscBinding)
             self._ui.tv.config(cursor='arrow')
-            self._ui.tv.tree.see(self._lastSelected)
+            self._ui.tv.see_node(self._lastSelected)
             self._ui.tv.tree.selection_set(self._lastSelected)
             self._pickingMode = False
         self._ui.restore_status()
@@ -286,7 +286,7 @@ class BasicView(ttk.Frame, ABC):
         thisNode = self._ui.tv.tree.selection()[0]
         nextNode = self._ui.tv.next_node(thisNode)
         if nextNode:
-            self._ui.tv.tree.see(nextNode)
+            self._ui.tv.see_node(nextNode)
             self._ui.tv.tree.selection_set(nextNode)
 
     def _load_prev(self):
@@ -294,7 +294,7 @@ class BasicView(ttk.Frame, ABC):
         thisNode = self._ui.tv.tree.selection()[0]
         prevNode = self._ui.tv.prev_node(thisNode)
         if prevNode:
-            self._ui.tv.tree.see(prevNode)
+            self._ui.tv.see_node(prevNode)
             self._ui.tv.tree.selection_set(prevNode)
 
     def _open_link(self, event=None):

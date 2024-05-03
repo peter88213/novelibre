@@ -9,6 +9,13 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v3.7.8
+
+- Make sure that collected values are hidden when a parent node is expanded, for whatever reason.
+- Refactor the tree_viewer module.
+
+Based on novxlib v3.5.4
+
 ### v3.7.7
 
 - Fix a bug where the status bar cannot be restored with the "Esc" key after having used the pick mode.

@@ -473,7 +473,7 @@ class FullSectionView(DatedSectionView):
     def _pick_plotline(self, event=None):
         """Enter the "add plot line" selection mode."""
         self._start_picking_mode(command=self._add_plotline)
-        self._ui.tv.tree.see(PL_ROOT)
+        self._ui.tv.see_node(PL_ROOT)
 
     def _remove_plotline(self, event=None):
         """Remove the plot line selected in the listbox from the section associations."""
