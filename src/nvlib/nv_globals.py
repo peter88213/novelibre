@@ -6,3 +6,10 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 prefs = {}
 
+
+def to_string(text):
+    """Return text, converted to a string."""
+    if text is None:
+        return ''
+
+    return str(text)
