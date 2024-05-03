@@ -201,7 +201,7 @@ class TreeViewer(ttk.Frame):
         remove collected values from the parent's row.
         
         Positional arguments:
-            node: str -- Tree element to select and show.
+            node: str -- Tree element to view.
         """
         try:
             self.tree.see(node)
@@ -880,7 +880,6 @@ class TreeViewer(ttk.Frame):
             stageLevel = self._mdl.novel.sections[scId].scType - 1
             # Stage.
             nodeTags.append(f'stage{stageLevel}')
-
         else:
             # Section is Normal or Unused type.
             positionStr = ''
