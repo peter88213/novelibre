@@ -141,16 +141,6 @@ class Toolbar:
         self._lockButton.pack(side='left')
         self._lockButton.image = self._ui.icons.lockIcon
 
-        # "Manuscript" button.
-        self._manuscriptButton = ttk.Button(
-            self._buttonBar,
-            text=_('Export Manuscript'),
-            image=self._ui.icons.manuscriptIcon,
-            command=lambda:self._ctrl.export_document(MANUSCRIPT_SUFFIX, ask=False)
-            )
-        self._manuscriptButton.pack(side='left')
-        self._manuscriptButton.image = self._ui.icons.manuscriptIcon
-
         # "Update from manuscript" button.
         self._updateButton = ttk.Button(
             self._buttonBar,
@@ -160,6 +150,16 @@ class Toolbar:
             )
         self._updateButton.pack(side='left')
         self._updateButton.image = self._ui.icons.updateFromManuscriptIcon
+
+        # "Manuscript" button.
+        self._manuscriptButton = ttk.Button(
+            self._buttonBar,
+            text=_('Export Manuscript'),
+            image=self._ui.icons.manuscriptIcon,
+            command=lambda:self._ctrl.export_document(MANUSCRIPT_SUFFIX, ask=False)
+            )
+        self._manuscriptButton.pack(side='left')
+        self._manuscriptButton.image = self._ui.icons.manuscriptIcon
 
         # Separator.
         tk.Frame(self._buttonBar, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
