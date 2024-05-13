@@ -9,6 +9,13 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v3.8.0
+
+- Improve the novx file read/write process.
+- Change toolbar button positions.
+
+Based on novxlib v3.6.0
+
 ### v3.7.8
 
 - Make sure that collected values are hidden when a parent node is expanded, for whatever reason.

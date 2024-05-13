@@ -777,7 +777,7 @@ class NvModel:
         Positional arguments:
             filePath: str -- path to the prjFile file.
         """
-        self.novel = Novel(tree=self.tree)
+        self.novel = Novel(tree=self.tree, links={})
         self.prjFile = NvWorkFile(filePath)
         self.prjFile.novel = self.novel
         self.prjFile.read()
