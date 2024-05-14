@@ -11,10 +11,10 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### v3.9.0
 
-- Fix a novxlib regression from v3.8.0 where data export raises an unhandled exception.
+- Fix a regression from v3.8.0 where data export raises an unhandled exception due to a bug in novxlib.
 - novxlib API is extended: new global function intersection().
 
-Based on novxlib v3.7.1
+Based on novxlib v3.7.2
 
 ### v3.8.0
 
