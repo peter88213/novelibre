@@ -9,6 +9,13 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v3.9.0
+
+- Fix a novxlib regression from v3.8.0 where data export raises an unhandled exception.
+- novxlib API is extended: new global function intersection().
+
+Based on novxlib v3.7.1
+
 ### v3.8.0
 
 - Improve the novx file read/write process.
