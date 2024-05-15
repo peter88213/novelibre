@@ -9,6 +9,12 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v3.9.2
+
+- Make sure not to read back redundant language tags from ODT.
+
+Based on novxlib v3.7.4
+
 ### v3.9.1
 
 - Change the view settings of generated ODT documents to single page per column.
