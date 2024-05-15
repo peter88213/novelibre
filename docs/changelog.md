@@ -9,6 +9,13 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v3.9.1
+
+- Change the view settings of generated ODT documents to single page per column.
+- Leave empty plot notes out when writing novx files.
+
+Based on novxlib v3.7.3
+
 ### v3.9.0
 
 - Fix a regression from v3.8.0 where data export raises an unhandled exception due to a bug in novxlib.
