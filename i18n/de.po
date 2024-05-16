@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.9.2\n"
-"POT-Creation-Date: 2024-05-16 00:16:17\n"
-"PO-Revision-Date: 2024-05-16 00:16:17\n"
+"Project-Id-Version: 4.0.0\n"
+"POT-Creation-Date: 2024-05-16 13:53:56\n"
+"PO-Revision-Date: 2024-05-16 13:53:56\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -28,9 +28,6 @@ msgstr "Zweite Ebene"
 msgid "A"
 msgstr "A"
 
-msgid "A/R"
-msgstr "A/R"
-
 msgid "AKA"
 msgstr "alias"
 
@@ -39,9 +36,6 @@ msgstr "Aktion"
 
 msgid "Action canceled by user"
 msgstr "Vorgang vom Benutzer abgebrochen"
-
-msgid "Action/Reaction"
-msgstr "Aktion/Reaktion"
 
 msgid "Add"
 msgstr "Hinzufügen"
@@ -305,7 +299,7 @@ msgid "Custom Outcome"
 msgstr "Benutzerdef. Ausgang"
 
 msgid "Custom chara Bio"
-msgstr "Benutzerdef. Biographie"
+msgstr "Benutzerdef. Biogr."
 
 msgid "Custom chara Goals"
 msgstr "Benutzerdef. Ziele"
@@ -465,6 +459,9 @@ msgstr "Exporttyp wird nicht unterstützt"
 
 msgid "Exported documents"
 msgstr "Exportierte Dokumente"
+
+msgid "Field"
+msgstr "Feld"
 
 msgid "File"
 msgstr "Datei"
@@ -933,6 +930,9 @@ msgstr "Speichern unter..."
 
 msgid "Save changes?"
 msgstr "Änderungen speichern?"
+
+msgid "Scene"
+msgstr "Szene"
 
 msgid "Section"
 msgstr "Abschnitt"

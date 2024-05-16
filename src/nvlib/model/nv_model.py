@@ -291,7 +291,7 @@ class NvModel:
             desc: str -- Description.
             scType: int -- Section type. Default: 0.
             status: int -- Section status. Default: 1.
-            scPacing: int -- Action/Reaction/Custom. Default = 0.
+            scene: int -- Action/Reaction/Custom. Default = 0.
             appendToPrev: bool -- Append to previous section. Default: False.
             
         - Place the new node at the next free position after the target node, if possible.
@@ -323,7 +323,7 @@ class NvModel:
             title=kwargs.get('title', f'{_("New Section")} ({scId})'),
             desc=kwargs.get('desc', ''),
             scType=newType,
-            scPacing=kwargs.get('scPacing', 0),
+            scene=kwargs.get('scene', 0),
             status=kwargs.get('status', 1),
             appendToPrev=kwargs.get('appendToPrev', False),
             characters=[],
@@ -369,7 +369,7 @@ class NvModel:
             desc=kwargs.get('desc', ''),
             scType=kwargs.get('scType', 3),
             status=0,
-            scPacing=0,
+            scene=0,
             links={},
             on_element_change=self.on_element_change,
             )

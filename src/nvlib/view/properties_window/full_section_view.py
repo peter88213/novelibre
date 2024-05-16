@@ -132,21 +132,30 @@ class FullSectionView(DatedSectionView):
 
         ttk.Separator(self._sectionExtraFrame, orient='horizontal').pack(fill='x')
 
-        #--- Frame for 'Action'/'Reaction'/'Custom'.
-        self._pacingFrame = FoldingFrame(self._sectionExtraFrame, _('Action/Reaction'), self._toggle_pacing_frame)
+        #--- Frame for 'Scene'.
+        self._pacingFrame = FoldingFrame(self._sectionExtraFrame, _('Scene'), self._toggle_pacing_frame)
 
         # 'Action'/'Reaction'/'Custom' radiobuttons.
         selectionFrame = ttk.Frame(self._pacingFrame)
         self._customGoal = ''
         self._customConflict = ''
         self._customOutcome = ''
-        self._sectionPacingType = tk.IntVar()
+        self._scene = tk.IntVar()
+
+        self._notApplicableRadiobutton = ttk.Radiobutton(
+            selectionFrame,
+            text=_('N/A'),
+            variable=self._scene,
+            value=0, command=self._set_not_applicable,
+            )
+        self._notApplicableRadiobutton.pack(side='left', anchor='w')
+        inputWidgets.append(self._notApplicableRadiobutton)
 
         self._actionRadiobutton = ttk.Radiobutton(
             selectionFrame,
             text=_('Action'),
-            variable=self._sectionPacingType,
-            value=0, command=self._set_action_section,
+            variable=self._scene,
+            value=1, command=self._set_action_scene,
             )
         self._actionRadiobutton.pack(side='left', anchor='w')
         inputWidgets.append(self._actionRadiobutton)
@@ -154,9 +163,9 @@ class FullSectionView(DatedSectionView):
         self._reactionRadiobutton = ttk.Radiobutton(
             selectionFrame,
             text=_('Reaction'),
-            variable=self._sectionPacingType,
-            value=1,
-            command=self._set_reaction_section,
+            variable=self._scene,
+            value=2,
+            command=self._set_reaction_scene,
             )
         self._reactionRadiobutton.pack(side='left', anchor='w')
         inputWidgets.append(self._reactionRadiobutton)
@@ -164,9 +173,9 @@ class FullSectionView(DatedSectionView):
         self._customRadiobutton = ttk.Radiobutton(
             selectionFrame,
             text=_('Custom'),
-            variable=self._sectionPacingType,
-            value=2,
-            command=self._set_custom_ar_section
+            variable=self._scene,
+            value=3,
+            command=self._set_custom_scene
             )
         self._customRadiobutton.pack(anchor='w')
         inputWidgets.append(self._customRadiobutton)
@@ -345,17 +354,33 @@ class FullSectionView(DatedSectionView):
         if self._mdl.novel.customGoal:
             self._customGoal = self._mdl.novel.customGoal
         else:
-            self._customGoal = _('N/A')
+            self._customGoal = f"{_('Field')} 1"
 
         if self._mdl.novel.customConflict:
             self._customConflict = self._mdl.novel.customConflict
         else:
-            self._customConflict = _('N/A')
+            self._customConflict = f"{_('Field')} 2"
 
         if self._mdl.novel.customOutcome:
             self._customOutcome = self._mdl.novel.customOutcome
         else:
-            self._customOutcome = _('N/A')
+            self._customOutcome = f"{_('Field')} 3"
+
+        # "N/A" Goal/Conflict/Outcome configuration.
+        if self._mdl.novel.notApplicableGoal:
+            self._notApplicableGoal = self._mdl.novel.notApplicableGoal
+        else:
+            self._notApplicableGoal = f"{_('Field')} 1"
+
+        if self._mdl.novel.notApplicableConflict:
+            self._notApplicableConflict = self._mdl.novel.notApplicableConflict
+        else:
+            self._notApplicableConflict = f"{_('Field')} 2"
+
+        if self._mdl.novel.notApplicableOutcome:
+            self._notApplicableOutcome = self._mdl.novel.notApplicableOutcome
+        else:
+            self._notApplicableOutcome = f"{_('Field')} 3"
 
         #--- Frame for plot lines.
         if prefs['show_sc_arcs']:
@@ -369,8 +394,8 @@ class FullSectionView(DatedSectionView):
         else:
             self._pacingFrame.hide()
 
-        #--- 'Action'/'Reaction'/'Custom' radiobuttons.
-        self._sectionPacingType.set(self._element.scPacing)
+        #--- 'N/A'/'Action'/'Reaction'/'Custom' radiobuttons.
+        self._scene.set(self._element.scene)
 
         #--- 'Goal/Reaction' window.
         self._goalWindow.set_text(self._element.goal)
@@ -382,12 +407,14 @@ class FullSectionView(DatedSectionView):
         self._outcomeWindow.set_text(self._element.outcome)
 
         # Configure the labels.
-        if self._element.scPacing == 2:
-            self._set_custom_ar_section()
-        elif self._element.scPacing == 1:
-            self._set_reaction_section()
+        if self._element.scene == 3:
+            self._set_custom_scene()
+        elif self._element.scene == 2:
+            self._set_reaction_scene()
+        elif self._element.scene == 1:
+            self._set_action_scene()
         else:
-            self._set_action_section()
+            self._set_not_applicable()
 
     def unlock(self):
         """Enable plot line notes only if a plot line is selected."""
@@ -517,23 +544,29 @@ class FullSectionView(DatedSectionView):
             self._element.plotNotes = plotNotes
             self.doNotUpdate = False
 
-    def _set_action_section(self, event=None):
+    def _set_action_scene(self, event=None):
         self._goalLabel.config(text=_('Goal'))
         self._conflictLabel.config(text=_('Conflict'))
         self._outcomeLabel.config(text=_('Outcome'))
-        self._element.scPacing = self._sectionPacingType.get()
+        self._element.scene = self._scene.get()
 
-    def _set_custom_ar_section(self, event=None):
+    def _set_custom_scene(self, event=None):
         self._goalLabel.config(text=self._customGoal)
         self._conflictLabel.config(text=self._customConflict)
         self._outcomeLabel.config(text=self._customOutcome)
-        self._element.scPacing = self._sectionPacingType.get()
+        self._element.scene = self._scene.get()
 
-    def _set_reaction_section(self, event=None):
+    def _set_not_applicable(self, event=None):
+        self._goalLabel.config(text=self._notApplicableGoal)
+        self._conflictLabel.config(text=self._notApplicableConflict)
+        self._outcomeLabel.config(text=self._notApplicableOutcome)
+        self._element.scene = self._scene.get()
+
+    def _set_reaction_scene(self, event=None):
         self._goalLabel.config(text=_('Reaction'))
         self._conflictLabel.config(text=_('Dilemma'))
         self._outcomeLabel.config(text=_('Choice'))
-        self._element.scPacing = self._sectionPacingType.get()
+        self._element.scene = self._scene.get()
 
     def _toggle_arc_frame(self, event=None):
         """Hide/show the plot lines frame."""

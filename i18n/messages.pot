@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.9.2\n"
-"POT-Creation-Date: 2024-05-16 00:16:17\n"
+"Project-Id-Version: 4.0.0\n"
+"POT-Creation-Date: 2024-05-16 13:53:56\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -35,9 +35,6 @@ msgstr ""
 msgid "A"
 msgstr ""
 
-msgid "A/R"
-msgstr ""
-
 msgid "AKA"
 msgstr ""
 
@@ -45,9 +42,6 @@ msgid "Action"
 msgstr ""
 
 msgid "Action canceled by user"
-msgstr ""
-
-msgid "Action/Reaction"
 msgstr ""
 
 msgid "Add"
@@ -471,6 +465,9 @@ msgid "Export type is not supported"
 msgstr ""
 
 msgid "Exported documents"
+msgstr ""
+
+msgid "Field"
 msgstr ""
 
 msgid "File"
@@ -939,6 +936,9 @@ msgid "Save as..."
 msgstr ""
 
 msgid "Save changes?"
+msgstr ""
+
+msgid "Scene"
 msgstr ""
 
 msgid "Section"

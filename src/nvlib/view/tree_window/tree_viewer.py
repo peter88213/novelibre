@@ -51,7 +51,7 @@ class TreeViewer(ttk.Frame):
         tg=(_('Tags'), 'tags_width'),
         po=(_('Position'), 'ps_width'),
         ac=(_('Plot lines'), 'arcs_width'),
-        ar=(_('A/R'), 'pacing_width'),
+        sc=(_('Scene'), 'scene_width'),
         tp=(_('Plot points'), 'points_width'),
         )
     # Key: column ID
@@ -66,7 +66,8 @@ class TreeViewer(ttk.Frame):
         PN_ROOT: _('Project notes'),
         }
 
-    _SCN_PACING = [
+    _SCENE = [
+        '-',
         _('A'),
         _('R'),
         _('C'),
@@ -906,7 +907,7 @@ class TreeViewer(ttk.Frame):
             except:
                 nodeValues[self._colPos['vp']] = _('N/A')
 
-            nodeValues[self._colPos['ar']] = self._SCN_PACING[self._mdl.novel.sections[scId].scPacing]
+            nodeValues[self._colPos['sc']] = self._SCENE[self._mdl.novel.sections[scId].scene]
 
             nodeValues[self._colPos['dt']] = get_date_or_day(scId)
             nodeValues[self._colPos['tm']] = dispTime
