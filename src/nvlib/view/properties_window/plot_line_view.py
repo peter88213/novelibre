@@ -44,11 +44,11 @@ class PlotLineView(BasicView):
         inputWidgets.append(self._shortNameEntry)
 
         # Frame for plot line specific widgets.
-        self._arcFrame = ttk.Frame(self._elementInfoWindow)
-        self._arcFrame.pack(fill='x')
-        self._nrSections = ttk.Label(self._arcFrame)
+        self._plotFrame = ttk.Frame(self._elementInfoWindow)
+        self._plotFrame.pack(fill='x')
+        self._nrSections = ttk.Label(self._plotFrame)
         self._nrSections.pack(side='left')
-        self._clearButton = ttk.Button(self._arcFrame, text=_('Clear section assignments'), command=self._remove_sections)
+        self._clearButton = ttk.Button(self._plotFrame, text=_('Clear section assignments'), command=self._remove_sections)
         self._clearButton.pack(padx=1, pady=2)
         inputWidgets.append(self._clearButton)
 

@@ -30,7 +30,7 @@ class FullSectionView(DatedSectionView):
     - A checkbox "unused".
     - A checkbox "append to previous".
     - A "Plot" folding frame for plotLines and plot point associations.
-    - An "Action/Reaction" folding frame for Goal/Reaction/Outcome.
+    - A "Scene" folding frame for Goal/Reaction/Outcome.
     """
 
     def __init__(self, parent, model, view, controller):
@@ -82,15 +82,15 @@ class FullSectionView(DatedSectionView):
 
         ttk.Separator(self._sectionExtraFrame, orient='horizontal').pack(fill='x')
 
-        #--- Frame for plot lines and plot.
-        self._arcFrame = FoldingFrame(self._sectionExtraFrame, _('Plot'), self._toggle_arc_frame)
+        #--- Frame for 'Plot'.
+        self._plotFrame = FoldingFrame(self._sectionExtraFrame, _('Plot'), self._toggle_plot_frame)
 
         # 'Plot lines' listbox.
         self._plotlineTitles = ''
-        self._arcLabel = ttk.Label(self._arcFrame, text=_('Plot lines'))
-        self._arcLabel.pack(anchor='w')
+        self._plotlineLabel = ttk.Label(self._plotFrame, text=_('Plot lines'))
+        self._plotlineLabel.pack(anchor='w')
         self._plotlineCollection = CollectionBox(
-            self._arcFrame,
+            self._plotFrame,
             cmdAdd=self._pick_plotline,
             cmdRemove=self._remove_plotline,
             cmdOpen=self._go_to_arc,
@@ -107,9 +107,9 @@ class FullSectionView(DatedSectionView):
 
         #--- 'Plot line notes' text box for entering self._element.plotNotes[plId],
         #    where plId is the ID of the selected plot line in the'Plot lines' listbox.
-        ttk.Label(self._arcFrame, text=_('Notes on the selected plot line')).pack(anchor='w')
+        ttk.Label(self._plotFrame, text=_('Notes on the selected plot line')).pack(anchor='w')
         self._plotNotesWindow = TextBox(
-            self._arcFrame,
+            self._plotFrame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -124,19 +124,19 @@ class FullSectionView(DatedSectionView):
         self._plotNotesWindow.pack(fill='x')
         inputWidgets.append(self._plotNotesWindow)
 
-        tk.Label(self._arcFrame, text=_('Plot points')).pack(anchor='w')
+        tk.Label(self._plotFrame, text=_('Plot points')).pack(anchor='w')
 
         #--- 'Plot points' label.
-        self._plotPointsDisplay = tk.Label(self._arcFrame, anchor='w', bg='white')
+        self._plotPointsDisplay = tk.Label(self._plotFrame, anchor='w', bg='white')
         self._plotPointsDisplay.pack(anchor='w', fill='x')
 
         ttk.Separator(self._sectionExtraFrame, orient='horizontal').pack(fill='x')
 
         #--- Frame for 'Scene'.
-        self._pacingFrame = FoldingFrame(self._sectionExtraFrame, _('Scene'), self._toggle_pacing_frame)
+        self._sceneFrame = FoldingFrame(self._sectionExtraFrame, _('Scene'), self._toggle_scene_frame)
 
-        # 'Action'/'Reaction'/'Custom' radiobuttons.
-        selectionFrame = ttk.Frame(self._pacingFrame)
+        # Scene radiobuttons.
+        selectionFrame = ttk.Frame(self._sceneFrame)
         self._customGoal = ''
         self._customConflict = ''
         self._customOutcome = ''
@@ -183,10 +183,10 @@ class FullSectionView(DatedSectionView):
         selectionFrame.pack(fill='x')
 
         # 'Goal/Reaction' window. The labels are configured dynamically.
-        self._goalLabel = ttk.Label(self._pacingFrame)
+        self._goalLabel = ttk.Label(self._sceneFrame)
         self._goalLabel.pack(anchor='w')
         self._goalWindow = TextBox(
-            self._pacingFrame,
+            self._sceneFrame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -202,10 +202,10 @@ class FullSectionView(DatedSectionView):
         inputWidgets.append(self._goalWindow)
 
         # 'Conflict/Dilemma' window. The labels are configured dynamically.
-        self._conflictLabel = ttk.Label(self._pacingFrame)
+        self._conflictLabel = ttk.Label(self._sceneFrame)
         self._conflictLabel.pack(anchor='w')
         self._conflictWindow = TextBox(
-            self._pacingFrame,
+            self._sceneFrame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -221,10 +221,10 @@ class FullSectionView(DatedSectionView):
         inputWidgets.append(self._conflictWindow)
 
         # 'Outcome/Choice' window. The labels are configured dynamically.
-        self._outcomeLabel = ttk.Label(self._pacingFrame)
+        self._outcomeLabel = ttk.Label(self._sceneFrame)
         self._outcomeLabel.pack(anchor='w')
         self._outcomeWindow = TextBox(
-            self._pacingFrame,
+            self._sceneFrame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -382,19 +382,19 @@ class FullSectionView(DatedSectionView):
         else:
             self._notApplicableOutcome = f"{_('Field')} 3"
 
-        #--- Frame for plot lines.
-        if prefs['show_sc_arcs']:
-            self._arcFrame.show()
+        #--- Frame for 'Plot'.
+        if prefs['show_plot']:
+            self._plotFrame.show()
         else:
-            self._arcFrame.hide()
+            self._plotFrame.hide()
 
-        #--- Frame for 'Action'/'Reaction'/'Custom'.
-        if prefs['show_action_reaction']:
-            self._pacingFrame.show()
+        #--- Frame for 'Scene'.
+        if prefs['show_scene']:
+            self._sceneFrame.show()
         else:
-            self._pacingFrame.hide()
+            self._sceneFrame.hide()
 
-        #--- 'N/A'/'Action'/'Reaction'/'Custom' radiobuttons.
+        #--- Scene radiobuttons.
         self._scene.set(self._element.scene)
 
         #--- 'Goal/Reaction' window.
@@ -568,21 +568,21 @@ class FullSectionView(DatedSectionView):
         self._outcomeLabel.config(text=_('Choice'))
         self._element.scene = self._scene.get()
 
-    def _toggle_arc_frame(self, event=None):
-        """Hide/show the plot lines frame."""
-        if prefs['show_sc_arcs']:
-            self._arcFrame.hide()
-            prefs['show_sc_arcs'] = False
+    def _toggle_plot_frame(self, event=None):
+        """Hide/show the 'Plot' frame."""
+        if prefs['show_plot']:
+            self._plotFrame.hide()
+            prefs['show_plot'] = False
         else:
-            self._arcFrame.show()
-            prefs['show_sc_arcs'] = True
+            self._plotFrame.show()
+            prefs['show_plot'] = True
 
-    def _toggle_pacing_frame(self, event=None):
-        """Hide/show the 'A/R/C' frame."""
-        if prefs['show_action_reaction']:
-            self._pacingFrame.hide()
-            prefs['show_action_reaction'] = False
+    def _toggle_scene_frame(self, event=None):
+        """Hide/show the 'Scene' frame."""
+        if prefs['show_scene']:
+            self._sceneFrame.hide()
+            prefs['show_scene'] = False
         else:
-            self._pacingFrame.show()
-            prefs['show_action_reaction'] = True
+            self._sceneFrame.show()
+            prefs['show_scene'] = True
 

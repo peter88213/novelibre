@@ -514,8 +514,8 @@ class TreeViewer(ttk.Frame):
 
         #--- Create a plot line context menu.
         self._plCtxtMenu = ContextMenu(self.tree, tearoff=0)
-        self._plCtxtMenu.add_command(label=_('Add Plot line'), command=self._ctrl.add_arc)
-        self._plCtxtMenu.add_command(label=_('Add Plot point'), command=self._ctrl.add_turning_point)
+        self._plCtxtMenu.add_command(label=_('Add Plot line'), command=self._ctrl.add_plot_line)
+        self._plCtxtMenu.add_command(label=_('Add Plot point'), command=self._ctrl.add_plot_point)
         self._plCtxtMenu.add_separator()
         self._plCtxtMenu.add_command(label=_('Export manuscript filtered by plot line'), command=self._export_manuscript)
         self._plCtxtMenu.add_command(label=_('Export synopsis filtered by plot line'), command=self._export_synopsis)

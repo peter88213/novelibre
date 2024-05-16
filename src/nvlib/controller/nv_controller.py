@@ -106,26 +106,6 @@ class NvController:
     def isLocked(self, setFlag):
         raise NotImplementedError
 
-    def add_arc(self, **kwargs):
-        """Add a plot line to the novel.
-        
-        Keyword arguments:
-            targetNode: str -- Tree position where to place a new node.
-            title: str -- Element title. Default: Auto-generated title. 
-            
-        Return the element's ID, if successful.
-        """
-        if not self.check_lock():
-            targetNode = kwargs.get('targetNode', None)
-            if targetNode is None:
-                try:
-                    kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
-                except:
-                    pass
-            newNode = self._mdl.add_arc(**kwargs)
-            self._view_new_element(newNode)
-            return newNode
-
     def add_chapter(self, **kwargs):
         """Add a chapter to the novel.
              
@@ -188,7 +168,7 @@ class NvController:
         elif selection.startswith(CHAPTER_PREFIX):
             self.add_section(targetNode=selection)
         elif selection.startswith(PLOT_LINE_PREFIX):
-            self.add_turning_point(targetNode=selection)
+            self.add_plot_point(targetNode=selection)
         elif selection == CR_ROOT:
             self.add_character(targetNode=selection)
         elif selection == LC_ROOT:
@@ -196,7 +176,7 @@ class NvController:
         elif selection == IT_ROOT:
             self.add_item(targetNode=selection)
         elif selection == PL_ROOT:
-            self.add_arc(targetNode=selection)
+            self.add_plot_line(targetNode=selection)
         elif selection == PN_ROOT:
             self.add_project_note(targetNode=selection)
 
@@ -228,11 +208,11 @@ class NvController:
         elif ITEM_PREFIX in selection:
             self.add_item(targetNode=selection)
         elif PLOT_LINE_PREFIX in selection:
-            self.add_arc(targetNode=selection)
+            self.add_plot_line(targetNode=selection)
         elif PRJ_NOTE_PREFIX in selection:
             self.add_project_note(targetNode=selection)
         elif selection.startswith(PLOT_POINT_PREFIX):
-            self.add_turning_point(targetNode=selection)
+            self.add_plot_point(targetNode=selection)
 
     def add_item(self, **kwargs):
         """Add an item to the novel.
@@ -291,7 +271,7 @@ class NvController:
         if selection.startswith(SECTION_PREFIX):
             self.add_chapter(targetNode=selection)
         elif selection.startswith(PLOT_POINT_PREFIX):
-            self.add_arc(targetNode=selection)
+            self.add_plot_line(targetNode=selection)
 
     def add_part(self, **kwargs):
         """Add a part to the novel.
@@ -312,6 +292,46 @@ class NvController:
                 except:
                     pass
             newNode = self._mdl.add_part(**kwargs)
+            self._view_new_element(newNode)
+            return newNode
+
+    def add_plot_line(self, **kwargs):
+        """Add a plot line to the novel.
+        
+        Keyword arguments:
+            targetNode: str -- Tree position where to place a new node.
+            title: str -- Element title. Default: Auto-generated title. 
+            
+        Return the plot line ID, if successful.
+        """
+        if not self.check_lock():
+            targetNode = kwargs.get('targetNode', None)
+            if targetNode is None:
+                try:
+                    kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+                except:
+                    pass
+            newNode = self._mdl.add_plot_line(**kwargs)
+            self._view_new_element(newNode)
+            return newNode
+
+    def add_plot_point(self, **kwargs):
+        """Add a plot point to the novel.
+        
+        Keyword arguments:
+            targetNode: str -- Tree position where to place a new node.
+            title: str -- Section title. Default: Auto-generated title. 
+            
+        Return the plot point ID, if successful.
+        """
+        if not self.check_lock():
+            targetNode = kwargs.get('targetNode', None)
+            if targetNode is None:
+                try:
+                    kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+                except:
+                    pass
+            newNode = self._mdl.add_plot_point(**kwargs)
             self._view_new_element(newNode)
             return newNode
 
@@ -381,26 +401,6 @@ class NvController:
                 except:
                     pass
             newNode = self._mdl.add_stage(**kwargs)
-            self._view_new_element(newNode)
-            return newNode
-
-    def add_turning_point(self, **kwargs):
-        """Add a plot point to the novel.
-        
-        Keyword arguments:
-            targetNode: str -- Tree position where to place a new node.
-            title: str -- Section title. Default: Auto-generated title. 
-            
-        Return the plot point ID, if successful.
-        """
-        if not self.check_lock():
-            targetNode = kwargs.get('targetNode', None)
-            if targetNode is None:
-                try:
-                    kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
-                except:
-                    pass
-            newNode = self._mdl.add_turning_point(**kwargs)
             self._view_new_element(newNode)
             return newNode
 

@@ -63,7 +63,7 @@ class NvModel:
         for client in self._clients:
             client.refresh()
 
-    def add_arc(self, **kwargs):
+    def add_plot_line(self, **kwargs):
         """Add a plot line to the novel.
         
         Keyword arguments:
@@ -376,7 +376,7 @@ class NvModel:
         self.tree.insert(parent, index, scId)
         return scId
 
-    def add_turning_point(self, **kwargs):
+    def add_plot_point(self, **kwargs):
         """Add a plot point to the novel.
         
         Keyword arguments:
