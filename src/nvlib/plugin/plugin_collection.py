@@ -53,8 +53,8 @@ class PluginCollection(dict):
             self.patchlevel = int(patchStr)
         except ValueError:
             # Set defaults for testing.
-            self.majorVersion = 3
-            self.minorVersion = 9
+            self.majorVersion = 4
+            self.minorVersion = 0
             self.patchlevel = 0
 
     def delete_file(self, moduleName):

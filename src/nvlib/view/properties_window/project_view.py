@@ -195,12 +195,52 @@ class ProjectView(BasicView):
         self._renamingsFrame = FoldingFrame(self._elementInfoWindow, _('Renamings'), self._toggle_renamings_frame)
 
         ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Label(self._renamingsFrame, text=_('Not a scene')).pack(anchor='w')
 
-        # 'Custom Goal' entry.
+        # Custom 'Plot progress' entry.
+        self._customPlotProgress = MyStringVar()
+        self._customPlotProgressEntry = LabelEntry(
+            self._renamingsFrame,
+            text=f"{_('Plot progress')}",
+            textvariable=self._customPlotProgress,
+            command=self.apply_changes,
+            lblWidth=20
+            )
+        self._customPlotProgressEntry.pack(anchor='w')
+        inputWidgets.append(self._customPlotProgressEntry)
+
+        # Custom 'Characterization' entry.
+        self._customCharacterization = MyStringVar()
+        self._customCharacterizationEntry = LabelEntry(
+            self._renamingsFrame,
+            text=f"{_('Characterization')}",
+            textvariable=self._customCharacterization,
+            command=self.apply_changes,
+            lblWidth=20
+            )
+        self._customCharacterizationEntry.pack(anchor='w')
+        inputWidgets.append(self._customCharacterizationEntry)
+
+        # Custom 'World building' entry.
+        self._customWorldBuilding = MyStringVar()
+        self.__customWorldBuildingEntry = LabelEntry(
+            self._renamingsFrame,
+            text=f"{_('World building')}",
+            textvariable=self._customWorldBuilding,
+            command=self.apply_changes,
+            lblWidth=20
+            )
+        self.__customWorldBuildingEntry.pack(anchor='w')
+        inputWidgets.append(self.__customWorldBuildingEntry)
+
+        ttk.Separator(self._renamingsFrame, orient='horizontal').pack(fill='x', pady=5)
+        ttk.Label(self._renamingsFrame, text=_('Other scene')).pack(anchor='w')
+
+        # 'Opening' entry.
         self._customGoal = MyStringVar()
         self._customGoalEntry = LabelEntry(
             self._renamingsFrame,
-            text=_('Custom Goal'),
+            text=_('Opening'),
             textvariable=self._customGoal,
             command=self.apply_changes,
             lblWidth=20
@@ -208,11 +248,11 @@ class ProjectView(BasicView):
         self._customGoalEntry.pack(anchor='w')
         inputWidgets.append(self._customGoalEntry)
 
-        # 'Custom Conflict' entry.
+        # 'Peak emotional moment' entry.
         self._customConflict = MyStringVar()
         self._customConflictEntry = LabelEntry(
             self._renamingsFrame,
-            text=_('Custom Conflict'),
+            text=_('Peak em. moment'),
             textvariable=self._customConflict,
             command=self.apply_changes,
             lblWidth=20
@@ -220,11 +260,11 @@ class ProjectView(BasicView):
         self._customConflictEntry.pack(anchor='w')
         inputWidgets.append(self._customConflictEntry)
 
-        # 'Custom Outcome' entry.
+        # 'Ending' entry.
         self._customOutcome = MyStringVar()
         self._customOutcomeEntry = LabelEntry(
             self._renamingsFrame,
-            text=_('Custom Outcome'),
+            text=_('Ending'),
             textvariable=self._customOutcome,
             command=self.apply_changes,
             lblWidth=20
@@ -232,13 +272,14 @@ class ProjectView(BasicView):
         self._customOutcomeEntry.pack(anchor='w')
         inputWidgets.append(self._customOutcomeEntry)
 
-        ttk.Separator(self._renamingsFrame, orient='horizontal').pack(fill='x')
+        ttk.Separator(self._renamingsFrame, orient='horizontal').pack(fill='x', pady=5)
+        ttk.Label(self._renamingsFrame, text=_('Character')).pack(anchor='w')
 
-        # 'Custom Bio' entry.
+        # 'Bio' entry.
         self._customChrBio = MyStringVar()
         self._customChrBioEntry = LabelEntry(
             self._renamingsFrame,
-            text=_('Custom chara Bio'),
+            text=_('Bio'),
             textvariable=self._customChrBio,
             command=self.apply_changes,
             lblWidth=20
@@ -246,11 +287,11 @@ class ProjectView(BasicView):
         self._customChrBioEntry.pack(anchor='w')
         inputWidgets.append(self._customChrBioEntry)
 
-        # 'Custom chara Goals' entry.
+        # 'Goals' entry.
         self._customChrGoals = MyStringVar()
         self._customChrGoalsEntry = LabelEntry(
             self._renamingsFrame,
-            text=_('Custom chara Goals'),
+            text=_('Goals'),
             textvariable=self._customChrGoals,
             command=self.apply_changes,
             lblWidth=20
@@ -412,6 +453,9 @@ class ProjectView(BasicView):
         self._element.chapterHeadingSuffix = self._chapterHeadingSuffix.get()
         self._element.partHeadingPrefix = self._partHeadingPrefix.get()
         self._element.partHeadingSuffix = self._partHeadingSuffix.get()
+        self._element.customPlotProgress = self._customPlotProgress.get()
+        self._element.customCharacterization = self._customCharacterization.get()
+        self._element.customWorldBuilding = self._customWorldBuilding.get()
         self._element.customGoal = self._customGoal.get()
         self._element.customConflict = self._customConflict.get()
         self._element.customOutcome = self._customOutcome.get()
@@ -543,19 +587,13 @@ class ProjectView(BasicView):
         else:
             self._renamingsFrame.hide()
 
-        # 'Custom Goal' entry.
+        self._customPlotProgress.set(self._element.customPlotProgress)
+        self._customCharacterization.set(self._element.customCharacterization)
+        self._customWorldBuilding.set(self._element.customWorldBuilding)
         self._customGoal.set(self._element.customGoal)
-
-        # 'Custom Conflict' entry.
         self._customConflict.set(self._element.customConflict)
-
-        # 'Custom Outcome' entry.
         self._customOutcome.set(self._element.customOutcome)
-
-        # 'Custom Bio' entry.
         self._customChrBio.set(self._element.customChrBio)
-
-        # 'Custom chara Goals' entry.
         self._customChrGoals.set(self._element.customChrGoals)
 
         #--- "Narrative time" frame

@@ -70,7 +70,7 @@ class TreeViewer(ttk.Frame):
         '-',
         _('A'),
         _('R'),
-        _('C'),
+        'x',
         ]
 
     _NOTE_INDICATOR = _('N')

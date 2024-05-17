@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.0.0\n"
-"POT-Creation-Date: 2024-05-16 13:53:56\n"
-"PO-Revision-Date: 2024-05-16 13:53:56\n"
+"POT-Creation-Date: 2024-05-17 08:56:21\n"
+"PO-Revision-Date: 2024-05-17 08:56:21\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -118,9 +118,6 @@ msgstr "Kurzzusammenfassung (nur Export)"
 msgid "Broken link fixed"
 msgstr "Defekten Link korrigiert"
 
-msgid "C"
-msgstr "B"
-
 msgid "Can not do"
 msgstr "Geht nicht"
 
@@ -198,6 +195,9 @@ msgstr "Figurenbeschreibungen"
 
 msgid "Character list"
 msgstr "Figurenliste"
+
+msgid "Characterization"
+msgstr "Charakterisierung"
 
 msgid "Characters"
 msgstr "Figuren"
@@ -286,24 +286,6 @@ msgstr "Querverweise"
 msgid "Cross references (export only)"
 msgstr "Querverweise (nur Export)"
 
-msgid "Custom"
-msgstr "Benutzerdefiniert"
-
-msgid "Custom Conflict"
-msgstr "Benutzerdef. Konflikt"
-
-msgid "Custom Goal"
-msgstr "Benutzerdef. Ziel"
-
-msgid "Custom Outcome"
-msgstr "Benutzerdef. Ausgang"
-
-msgid "Custom chara Bio"
-msgstr "Benutzerdef. Biogr."
-
-msgid "Custom chara Goals"
-msgstr "Benutzerdef. Ziele"
-
 msgid "Date"
 msgstr "Datum"
 
@@ -382,6 +364,9 @@ msgstr "Manuskript zum Bearbeiten"
 msgid "Empty project"
 msgstr "Leeres Projekt"
 
+msgid "Ending"
+msgstr "Ende"
+
 msgid "Exit"
 msgstr "Beenden"
 
@@ -459,9 +444,6 @@ msgstr "Exporttyp wird nicht unterstützt"
 
 msgid "Exported documents"
 msgstr "Exportierte Dokumente"
-
-msgid "Field"
-msgstr "Feld"
 
 msgid "File"
 msgstr "Datei"
@@ -724,6 +706,9 @@ msgstr "Normal"
 msgid "Not a floating point value."
 msgstr "Keine Fließkommazahl."
 
+msgid "Not a scene"
+msgstr "Keine Szene"
+
 msgid "Not an integer."
 msgstr "Kein ganzzahliger Wert."
 
@@ -781,8 +766,17 @@ msgstr "Öffnen..."
 msgid "Opened existing {0} (last saved on {1})"
 msgstr "Bestehende(s) {0} geöffnet (zuletzt gespeichert: {1})"
 
+msgid "Opening"
+msgstr "Eröffnung"
+
 msgid "Options"
 msgstr "Optionen"
+
+msgid "Other"
+msgstr "Andere"
+
+msgid "Other scene"
+msgstr "Andere Szene"
 
 msgid "Outcome"
 msgstr "Ausgang"
@@ -807,6 +801,12 @@ msgstr "Präfix Teilenummer"
 
 msgid "Part number suffix"
 msgstr "Suffix Teilenummer"
+
+msgid "Peak em. moment"
+msgstr "Em. Höhepunkt"
+
+msgid "Peak emotional moment"
+msgstr "Emotionaler Höhepunkt"
 
 msgid "Pick Mode (click here or press Esc to exit)"
 msgstr "Auswahlmodus (zum Verlassen hier klicken oder Esc drücken)"
@@ -843,6 +843,9 @@ msgstr "Plotpunkt"
 
 msgid "Plot points"
 msgstr "Plotpunkte"
+
+msgid "Plot progress"
+msgstr "Handlungsfortschritt"
 
 msgid "Plugin Manager"
 msgstr "Plugin-Manager"
@@ -1170,6 +1173,9 @@ msgstr "Manuskript in Arbeit"
 
 msgid "Work phase"
 msgstr "Arbeitsphase"
+
+msgid "World building"
+msgstr "Weltenbau"
 
 msgid "Writing progress"
 msgstr "Schreibfortschritt"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.0.0\n"
-"POT-Creation-Date: 2024-05-16 13:53:56\n"
+"POT-Creation-Date: 2024-05-17 08:56:21\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -125,9 +125,6 @@ msgstr ""
 msgid "Broken link fixed"
 msgstr ""
 
-msgid "C"
-msgstr ""
-
 msgid "Can not do"
 msgstr ""
 
@@ -204,6 +201,9 @@ msgid "Character descriptions"
 msgstr ""
 
 msgid "Character list"
+msgstr ""
+
+msgid "Characterization"
 msgstr ""
 
 msgid "Characters"
@@ -293,24 +293,6 @@ msgstr ""
 msgid "Cross references (export only)"
 msgstr ""
 
-msgid "Custom"
-msgstr ""
-
-msgid "Custom Conflict"
-msgstr ""
-
-msgid "Custom Goal"
-msgstr ""
-
-msgid "Custom Outcome"
-msgstr ""
-
-msgid "Custom chara Bio"
-msgstr ""
-
-msgid "Custom chara Goals"
-msgstr ""
-
 msgid "Date"
 msgstr ""
 
@@ -389,6 +371,9 @@ msgstr ""
 msgid "Empty project"
 msgstr ""
 
+msgid "Ending"
+msgstr ""
+
 msgid "Exit"
 msgstr ""
 
@@ -465,9 +450,6 @@ msgid "Export type is not supported"
 msgstr ""
 
 msgid "Exported documents"
-msgstr ""
-
-msgid "Field"
 msgstr ""
 
 msgid "File"
@@ -731,6 +713,9 @@ msgstr ""
 msgid "Not a floating point value."
 msgstr ""
 
+msgid "Not a scene"
+msgstr ""
+
 msgid "Not an integer."
 msgstr ""
 
@@ -788,7 +773,16 @@ msgstr ""
 msgid "Opened existing {0} (last saved on {1})"
 msgstr ""
 
+msgid "Opening"
+msgstr ""
+
 msgid "Options"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Other scene"
 msgstr ""
 
 msgid "Outcome"
@@ -813,6 +807,12 @@ msgid "Part number prefix"
 msgstr ""
 
 msgid "Part number suffix"
+msgstr ""
+
+msgid "Peak em. moment"
+msgstr ""
+
+msgid "Peak emotional moment"
 msgstr ""
 
 msgid "Pick Mode (click here or press Esc to exit)"
@@ -849,6 +849,9 @@ msgid "Plot point"
 msgstr ""
 
 msgid "Plot points"
+msgstr ""
+
+msgid "Plot progress"
 msgstr ""
 
 msgid "Plugin Manager"
@@ -1176,6 +1179,9 @@ msgid "Work in progress"
 msgstr ""
 
 msgid "Work phase"
+msgstr ""
+
+msgid "World building"
 msgstr ""
 
 msgid "Writing progress"
