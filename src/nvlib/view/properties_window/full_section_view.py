@@ -105,7 +105,7 @@ class FullSectionView(DatedSectionView):
         inputWidgets.extend(self._plotlineCollection.inputWidgets)
         self._selectedPlotline = None
 
-        #--- 'Plot line notes' text box for entering self._element.plotNotes[plId],
+        #--- 'Plot line notes' text box for entering self._element.plotlineNotes[plId],
         #    where plId is the ID of the selected plot line in the'Plot lines' listbox.
         ttk.Label(self._plotFrame, text=_('Notes on the selected plot line')).pack(anchor='w')
         self._plotNotesWindow = TextBox(
@@ -491,8 +491,8 @@ class FullSectionView(DatedSectionView):
         self._save_plot_notes()
         self._selectedPlotline = self._element.scPlotLines[selection]
         self._plotNotesWindow.config(state='normal')
-        if self._element.plotNotes:
-            self._plotNotesWindow.set_text(self._element.plotNotes.get(self._selectedPlotline, ''))
+        if self._element.plotlineNotes:
+            self._plotNotesWindow.set_text(self._element.plotlineNotes.get(self._selectedPlotline, ''))
         else:
             self._plotNotesWindow.clear()
         if self._isLocked:
@@ -538,12 +538,12 @@ class FullSectionView(DatedSectionView):
 
     def _save_plot_notes(self):
         if self._selectedPlotline and self._plotNotesWindow.hasChanged:
-            plotNotes = self._element.plotNotes
-            if plotNotes is None:
-                plotNotes = {}
-            plotNotes[self._selectedPlotline] = self._plotNotesWindow.get_text()
+            plotlineNotes = self._element.plotlineNotes
+            if plotlineNotes is None:
+                plotlineNotes = {}
+            plotlineNotes[self._selectedPlotline] = self._plotNotesWindow.get_text()
             self.doNotUpdate = True
-            self._element.plotNotes = plotNotes
+            self._element.plotlineNotes = plotlineNotes
             self.doNotUpdate = False
 
     def _set_action_scene(self, event=None):
