@@ -30,7 +30,7 @@ from novxlib.novx_globals import PRJ_NOTE_PREFIX
 from novxlib.novx_globals import SECTION_PREFIX
 from novxlib.novx_globals import _
 from nvlib.model.nv_work_file import NvWorkFile
-from nvlib.model.nv_facade import NvFacade
+from nvlib.model.nv_services import NvServices
 
 
 class NvModel:
@@ -53,7 +53,7 @@ class NvModel:
         self.wordCount = 0
         self._internalModificationFlag = False
 
-        self.nvFacade = NvFacade()
+        self.nvServices = NvServices()
 
     @property
     def isModified(self):
