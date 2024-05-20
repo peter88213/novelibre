@@ -30,7 +30,7 @@ from novxlib.novx_globals import PRJ_NOTE_PREFIX
 from novxlib.novx_globals import SECTION_PREFIX
 from novxlib.novx_globals import _
 from nvlib.model.nv_work_file import NvWorkFile
-from nvlib.model.nv_services import NvServices
+from nvlib.model.nv_service import NvService
 
 
 class NvModel:
@@ -53,7 +53,7 @@ class NvModel:
         self.wordCount = 0
         self._internalModificationFlag = False
 
-        self.nvServices = NvServices()
+        self.nvService = NvService()
 
     @property
     def isModified(self):
@@ -65,35 +65,6 @@ class NvModel:
         self._internalModificationFlag = setFlag
         for client in self._clients:
             client.refresh()
-
-    def add_plot_line(self, **kwargs):
-        """Add a plot line to the novel.
-        
-        Keyword arguments:
-            targetNode: str -- Tree position where to place a new node.
-            title: str -- Element title. Default: Auto-generated title. 
-            
-        - If the target node is of the same type as the new node, 
-          place the new node after the selected node and select it.
-        - Otherwise, place the new node at the last position.   
-
-        Return the element's ID, if successful.
-        """
-        targetNode = kwargs.get('targetNode', '')
-        index = 'end'
-        if targetNode.startswith(PLOT_LINE_PREFIX):
-            index = self.tree.index(targetNode) + 1
-        plId = create_id(self.novel.plotLines, prefix=PLOT_LINE_PREFIX)
-        self.novel.plotLines[plId] = PlotLine(
-            title=kwargs.get('title', f'{_("New Plot line")} ({plId})'),
-            desc='',
-            shortName=plId,
-            sections=[],
-            links={},
-            on_element_change=self.on_element_change,
-            )
-        self.tree.insert(PL_ROOT, index, plId)
-        return plId
 
     def add_chapter(self, **kwargs):
         """Add a chapter to the novel.
@@ -258,6 +229,60 @@ class NvModel:
         self.tree.insert(CH_ROOT, index, chId)
         return chId
 
+    def add_plot_line(self, **kwargs):
+        """Add a plot line to the novel.
+        
+        Keyword arguments:
+            targetNode: str -- Tree position where to place a new node.
+            title: str -- Element title. Default: Auto-generated title. 
+            
+        - If the target node is of the same type as the new node, 
+          place the new node after the selected node and select it.
+        - Otherwise, place the new node at the last position.   
+
+        Return the element's ID, if successful.
+        """
+        targetNode = kwargs.get('targetNode', '')
+        index = 'end'
+        if targetNode.startswith(PLOT_LINE_PREFIX):
+            index = self.tree.index(targetNode) + 1
+        plId = create_id(self.novel.plotLines, prefix=PLOT_LINE_PREFIX)
+        self.novel.plotLines[plId] = PlotLine(
+            title=kwargs.get('title', f'{_("New Plot line")} ({plId})'),
+            desc='',
+            shortName=plId,
+            sections=[],
+            links={},
+            on_element_change=self.on_element_change,
+            )
+        self.tree.insert(PL_ROOT, index, plId)
+        return plId
+
+    def add_plot_point(self, **kwargs):
+        """Add a plot point to the novel.
+        
+        Keyword arguments:
+            targetNode: str -- Tree position where to place a new node.
+            title: str -- Section title. Default: Auto-generated title.
+            
+        - Place the new node at the next free position after the target node, if possible.
+        - Otherwise, do nothing. 
+        
+        Return the plot point ID, if successful.
+        """
+        targetNode = kwargs.get('targetNode', None)
+        if targetNode is None:
+            return
+
+        index = 'end'
+        if targetNode.startswith(PLOT_POINT_PREFIX):
+            parent = self.tree.parent(targetNode)
+            index = self.tree.index(targetNode) + 1
+        elif targetNode.startswith(PLOT_LINE_PREFIX):
+            parent = targetNode
+        else:
+            return
+
     def add_project_note(self, **kwargs):
         """Add a prjFile note to the novel.
         
@@ -378,31 +403,6 @@ class NvModel:
             )
         self.tree.insert(parent, index, scId)
         return scId
-
-    def add_plot_point(self, **kwargs):
-        """Add a plot point to the novel.
-        
-        Keyword arguments:
-            targetNode: str -- Tree position where to place a new node.
-            title: str -- Section title. Default: Auto-generated title.
-            
-        - Place the new node at the next free position after the target node, if possible.
-        - Otherwise, do nothing. 
-        
-        Return the plot point ID, if successful.
-        """
-        targetNode = kwargs.get('targetNode', None)
-        if targetNode is None:
-            return
-
-        index = 'end'
-        if targetNode.startswith(PLOT_POINT_PREFIX):
-            parent = self.tree.parent(targetNode)
-            index = self.tree.index(targetNode) + 1
-        elif targetNode.startswith(PLOT_LINE_PREFIX):
-            parent = targetNode
-        else:
-            return
 
         ppId = create_id(self.novel.plotPoints, prefix=PLOT_POINT_PREFIX)
         self.novel.plotPoints[ppId] = PlotPoint(
