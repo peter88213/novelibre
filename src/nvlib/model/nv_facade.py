@@ -4,6 +4,7 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from novxlib.config.configuration import Configuration
 from novxlib.file.file import File
 from novxlib.model.chapter import Chapter
 from novxlib.model.character import Character
@@ -54,6 +55,9 @@ class NvFacade:
 
     def make_section(self, **kwargs):
         return Section(**kwargs)
+
+    def make_configuration(self, **kwargs):
+        return Configuration(**kwargs)
 
     def make_world_element(self, **kwargs):
         return WorldElement(**kwargs)
