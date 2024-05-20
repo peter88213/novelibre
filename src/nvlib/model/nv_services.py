@@ -36,10 +36,10 @@ class NvServices:
 
     def make_novel(self, **kwargs):
         kwargs['tree'] = kwargs.get('tree', NvTree())
-        return Novel(self, **kwargs)
+        return Novel(**kwargs)
 
     def make_nv_tree(self, **kwargs):
-        return NvTree(self, **kwargs)
+        return NvTree(**kwargs)
 
     def make_plot_line(self, **kwargs):
         return PlotLine(**kwargs)
