@@ -397,7 +397,6 @@ class NvView:
     def restore_status(self, event=None):
         """Overwrite error message with the status before."""
         self.show_status(self._statusText)
-        self.statusBar.bind('<Button-1>', self.restore_status)
 
     def set_info(self, message):
         """This is a stub, just for compatibility with several converters."""
