@@ -9,9 +9,9 @@ import os
 from pathlib import Path
 import subprocess
 
+from novxlib.file.doc_open import open_document
 from novxlib.novx_globals import _
 from novxlib.novx_globals import norm_path
-from novxlib.novx_globals import open_document
 
 
 class LinkProcessor:

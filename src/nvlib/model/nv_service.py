@@ -8,7 +8,6 @@ from novxlib.config.configuration import Configuration
 from novxlib.model.basic_element import BasicElement
 from novxlib.model.chapter import Chapter
 from novxlib.model.character import Character
-from novxlib.model.id_generator import create_id
 from novxlib.model.novel import Novel
 from novxlib.model.nv_tree import NvTree
 from novxlib.model.plot_line import PlotLine
@@ -35,9 +34,6 @@ class NvService:
 
     def make_configuration(self, **kwargs):
         return Configuration(**kwargs)
-
-    def make_id(self, elements, prefix=''):
-        return create_id(elements, prefix=prefix)
 
     def make_novel(self, **kwargs):
         kwargs['tree'] = kwargs.get('tree', NvTree())

@@ -9,11 +9,12 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
-### v4.0.1
+### v4.1.0
 
 - Library update. Now reading and writing *.novx* version 1.4 files.
 - Make the Action/Reaction scheme more general (#22).
 - Refactor, changing the API.
+- Provide a service class with factory methods and getters for the novxlib model.
 
 Based on novxlib v4.0.1
 
