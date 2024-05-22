@@ -48,7 +48,7 @@ Name the binary file **novelibre.mo**.
 
 ### Install your translation for testing
 
-Add a subdirectory tree to **.novelibre/locale**, and place *novelibre.mo* there, like this:
+Add a subdirectory tree to **.novx/locale**, and place *novelibre.mo* there, like this:
 
 ```
 <your home directory>

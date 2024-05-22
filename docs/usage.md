@@ -20,7 +20,7 @@ The *novelibre* Python program provides a tree view for novels written with Libr
 
 After installation, the setup script displays a button to open the installation directory. On Windows, the path is typically
 
-`C:\Users\<username>\.novelibre`
+`C:\Users\<username>\.novx`
 
 There you will find some registry scripts that can help you integrate *novelibre* into Windows. They are started by double-clicking.
 
