@@ -10,7 +10,6 @@ from nvlib.model.nv_treeview import NvTreeview
 from nvlib.nv_globals import prefs, to_string
 from nvlib.view.tree_window.history_list import HistoryList
 from nvlib.widgets.context_menu import ContextMenu
-from novxlib.model.section import Section
 from novxlib.novx_globals import PL_ROOT
 from novxlib.novx_globals import PLOT_POINT_PREFIX
 from novxlib.novx_globals import PLOT_LINE_PREFIX
@@ -528,6 +527,131 @@ class TreeViewer(ttk.Frame):
         self._pnCtxtMenu.add_separator()
         self._pnCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
 
+    def _collect_ch_note_indicators(self, chId):
+        """Return a string that indicates section notes within the chapter.
+        
+        Positional arguments:
+            chId: str -- Chapter ID            
+        """
+        if self._mdl.novel.chapters[chId].notes:
+            return self._NOTE_INDICATOR
+
+        if self._mdl.novel.chapters[chId].chType == 0:
+            for scId in self.tree.get_children(chId):
+                if self._mdl.novel.sections[scId].scType != 1:
+                    if self._mdl.novel.sections[scId].notes:
+                        return self._NOTE_INDICATOR
+
+        return ''
+
+    def _collect_pl_note_indicators(self, plId):
+        """Return a string that indicates plot point notes within the plot line.
+        
+        Positional arguments:
+            plId: str -- lot line ID            
+        """
+        if self._mdl.novel.plotLines[plId].notes:
+            return self._NOTE_INDICATOR
+
+        for ppId in self.tree.get_children(plId):
+            if self._mdl.novel.plotPoints[ppId].notes:
+                return self._NOTE_INDICATOR
+
+        return ''
+
+    def _collect_plot_lines(self, chId):
+        """Return a tuple of two strings: semicolon-separated plot lines, semicolon-separated plot points.
+        
+        Positional arguments:
+            chId: str -- Chapter ID            
+        """
+        chPlotlineShortNames = []
+        chPlotPointTitles = []
+        chPlotlines = {}
+        for plId in self._mdl.novel.plotLines:
+            chPlotlines[plId] = []
+        if self._mdl.novel.chapters[chId].chType == 0:
+            for scId in self.tree.get_children(chId):
+                if self._mdl.novel.sections[scId].scType == 0:
+                    scPlotlines = self._mdl.novel.sections[scId].scPlotLines
+                    for plId in scPlotlines:
+                        shortName = self._mdl.novel.plotLines[plId].shortName
+                        if not shortName in chPlotlineShortNames:
+                            chPlotlineShortNames.append(shortName)
+                    for ppId in self._mdl.novel.sections[scId].scPlotPoints:
+                        chPlotlines[plId].append(ppId)
+            if len(chPlotlineShortNames) == 1:
+                for plId in chPlotlines:
+                    for ppId in chPlotlines[plId]:
+                        chPlotPointTitles.append(self._mdl.novel.plotPoints[ppId].title)
+            else:
+                for plId in chPlotlines:
+                    for ppId in chPlotlines[plId]:
+                        chPlotPointTitles.append(f'{self._mdl.novel.plotLines[plId].shortName}: {self._mdl.novel.plotPoints[ppId].title}')
+        return list_to_string(chPlotlineShortNames), list_to_string(chPlotPointTitles)
+
+    def _collect_tags(self, chId):
+        """Return a string with semicolon-separated section tags.
+        
+        Positional arguments:
+            chId: str -- Chapter ID            
+        """
+        chapterTags = []
+        if self._mdl.novel.chapters[chId].chType == 0:
+            for scId in self.tree.get_children(chId):
+                if self._mdl.novel.sections[scId].scType == 0:
+                    if self._mdl.novel.sections[scId].tags:
+                        for tag in self._mdl.novel.sections[scId].tags:
+                            if not tag in chapterTags:
+                                chapterTags.append(tag)
+        return list_to_string(chapterTags)
+
+    def _collect_viewpoints(self, chId):
+        """Return a string with semicolon-separated viewpoint character names.
+
+        Positional arguments:
+            chId: str -- Chapter ID            
+        """
+        chapterViewpoints = []
+        if self._mdl.novel.chapters[chId].chType == 0:
+            for scId in self.tree.get_children(chId):
+                if self._mdl.novel.sections[scId].scType == 0:
+                    try:
+                        crId = self._mdl.novel.sections[scId].characters[0]
+                        viewpoint = self._mdl.novel.characters[crId].title
+                        if not viewpoint in chapterViewpoints:
+                            chapterViewpoints.append(viewpoint)
+                    except:
+                        pass
+        return list_to_string(chapterViewpoints)
+
+    def _count_words(self, chId):
+        """Return accumulated word count of all normal sections in a chapter.
+        
+        Positional arguments:
+            chId: str -- Chapter ID            
+        """
+        chapterWordCount = 0
+        if self._mdl.novel.chapters[chId].chType == 0:
+            for scId in self.tree.get_children(chId):
+                if self._mdl.novel.sections[scId].scType == 0:
+                    chapterWordCount += self._mdl.novel.sections[scId].wordCount
+        return chapterWordCount
+
+    def _date_is_valid(self, section):
+        """Return True if the date can be displayed in the tree view.
+        
+        Positional arguments:
+            section: Section instance         
+        """
+        if section.date is None:
+            return False
+
+        if section.date == section.NULL_DATE:
+            return False
+
+        return True
+
     def _export_manuscript(self, event=None):
         self._ctrl.export_document(MANUSCRIPT_SUFFIX, filter=self.tree.selection()[0], ask=False)
 
@@ -544,103 +668,6 @@ class TreeViewer(ttk.Frame):
             position: integer -- Accumulated word count at chapter beginning.
             collect: bool -- If True, summarize section metadata.
         """
-
-        def count_words(chId):
-            """Accumulate word counts of all normal sections in a chapter.
-            
-            Positional arguments:
-                chId: str -- Chapter ID            
-            """
-            chapterWordCount = 0
-            if self._mdl.novel.chapters[chId].chType == 0:
-                for scId in self.tree.get_children(chId):
-                    if self._mdl.novel.sections[scId].scType == 0:
-                        chapterWordCount += self._mdl.novel.sections[scId].wordCount
-            return chapterWordCount
-
-        def collect_viewpoints(chId):
-            """Return a string with semicolon-separated viewpoint character names.
-
-            Positional arguments:
-                chId: str -- Chapter ID            
-            """
-            chapterViewpoints = []
-            if self._mdl.novel.chapters[chId].chType == 0:
-                for scId in self.tree.get_children(chId):
-                    if self._mdl.novel.sections[scId].scType == 0:
-                        try:
-                            crId = self._mdl.novel.sections[scId].characters[0]
-                            viewpoint = self._mdl.novel.characters[crId].title
-                            if not viewpoint in chapterViewpoints:
-                                chapterViewpoints.append(viewpoint)
-                        except:
-                            pass
-            return list_to_string(chapterViewpoints)
-
-        def collect_tags(chId):
-            """Return a string with semicolon-separated section tags.
-            
-            Positional arguments:
-                chId: str -- Chapter ID            
-            """
-            chapterTags = []
-            if self._mdl.novel.chapters[chId].chType == 0:
-                for scId in self.tree.get_children(chId):
-                    if self._mdl.novel.sections[scId].scType == 0:
-                        if self._mdl.novel.sections[scId].tags:
-                            for tag in self._mdl.novel.sections[scId].tags:
-                                if not tag in chapterTags:
-                                    chapterTags.append(tag)
-            return list_to_string(chapterTags)
-
-        def collect_plot_lines(chId):
-            """Return a tuple of two strings: semicolon-separated plot lines, semicolon-separated plot points.
-            
-            Positional arguments:
-                chId: str -- Chapter ID            
-            """
-            chPlotlineShortNames = []
-            chPlotPointTitles = []
-            chPlotlines = {}
-            for plId in self._mdl.novel.plotLines:
-                chPlotlines[plId] = []
-            if self._mdl.novel.chapters[chId].chType == 0:
-                for scId in self.tree.get_children(chId):
-                    if self._mdl.novel.sections[scId].scType == 0:
-                        scPlotlines = self._mdl.novel.sections[scId].scPlotLines
-                        for plId in scPlotlines:
-                            shortName = self._mdl.novel.plotLines[plId].shortName
-                            if not shortName in chPlotlineShortNames:
-                                chPlotlineShortNames.append(shortName)
-                        for ppId in self._mdl.novel.sections[scId].scPlotPoints:
-                            chPlotlines[plId].append(ppId)
-                if len(chPlotlineShortNames) == 1:
-                    for plId in chPlotlines:
-                        for ppId in chPlotlines[plId]:
-                            chPlotPointTitles.append(self._mdl.novel.plotPoints[ppId].title)
-                else:
-                    for plId in chPlotlines:
-                        for ppId in chPlotlines[plId]:
-                            chPlotPointTitles.append(f'{self._mdl.novel.plotLines[plId].shortName}: {self._mdl.novel.plotPoints[ppId].title}')
-            return list_to_string(chPlotlineShortNames), list_to_string(chPlotPointTitles)
-
-        def collect_note_indicators(chId):
-            """Return a string that indicates section notes within the chapter.
-            
-            Positional arguments:
-                chId: str -- Chapter ID            
-            """
-            if self._mdl.novel.chapters[chId].notes:
-                return self._NOTE_INDICATOR
-
-            if self._mdl.novel.chapters[chId].chType == 0:
-                for scId in self.tree.get_children(chId):
-                    if self._mdl.novel.sections[scId].scType != 1:
-                        if self._mdl.novel.sections[scId].notes:
-                            return self._NOTE_INDICATOR
-
-            return ''
-
         nodeValues = [''] * len(self.columns)
         nodeTags = []
         if self._mdl.novel.chapters[chId].chType != 0:
@@ -655,7 +682,7 @@ class TreeViewer(ttk.Frame):
                 positionStr = f'{round(100 * position / self._wordsTotal, 1)}%'
             except:
                 positionStr = ''
-            wordCount = count_words(chId)
+            wordCount = self._count_words(chId)
             if self._mdl.novel.chapters[chId].chLevel == 1:
                 nodeTags.append('part')
 
@@ -667,15 +694,15 @@ class TreeViewer(ttk.Frame):
                     if self._mdl.novel.chapters[c].chLevel == 1:
                         break
                     i += 1
-                    wordCount += count_words(c)
+                    wordCount += self._count_words(c)
             nodeValues[self._colPos['wc']] = wordCount
             nodeValues[self._colPos['po']] = positionStr
             if collect:
-                nodeValues[self._colPos['vp']] = collect_viewpoints(chId)
+                nodeValues[self._colPos['vp']] = self._collect_viewpoints(chId)
         if collect:
-            nodeValues[self._colPos['tg']] = collect_tags(chId)
-            nodeValues[self._colPos['ac']], nodeValues[self._colPos['tp']] = collect_plot_lines(chId)
-            nodeValues[self._colPos['nt']] = collect_note_indicators(chId)
+            nodeValues[self._colPos['tg']] = self._collect_tags(chId)
+            nodeValues[self._colPos['ac']], nodeValues[self._colPos['tp']] = self._collect_plot_lines(chId)
+            nodeValues[self._colPos['nt']] = self._collect_ch_note_indicators(chId)
         else:
             nodeValues[self._colPos['nt']] = self._get_notes_indicator(self._mdl.novel.chapters[chId])
         return to_string(self._mdl.novel.chapters[chId].title), nodeValues, tuple(nodeTags)
@@ -721,6 +748,21 @@ class TreeViewer(ttk.Frame):
         else:
             nodeTags.append('minor')
         return to_string(self._mdl.novel.characters[crId].title), nodeValues, tuple(nodeTags)
+
+    def _get_date_or_day(self, scId):
+        """Return section date or day as a string for display."""
+        if self._date_is_valid(self._mdl.novel.sections[scId]):
+            return self._mdl.novel.sections[scId].localeDate
+
+        if self._mdl.novel.sections[scId].day is not None:
+            return f'{_("Day")} {self._mdl.novel.sections[scId].day}'
+
+        return ''
+
+        """Return the element's title, if any."""
+        title = self._mdl.novel.sections[scId].title
+        if not title:
+            title = _('Unnamed')
 
     def _get_item_row_data(self, itId):
         """Return title, values, and tags for an item row.
@@ -778,23 +820,11 @@ class TreeViewer(ttk.Frame):
         Optional arguments:
             collect: bool -- If True, summarize section metadata.        
         """
-
-        def collect_note_indicators(plId):
-            """Return a string that indicates section notes within the chapter."""
-            if self._mdl.novel.plotLines[plId].notes:
-                return self._NOTE_INDICATOR
-
-            for ppId in self.tree.get_children(plId):
-                if self._mdl.novel.plotPoints[ppId].notes:
-                    return self._NOTE_INDICATOR
-
-            return ''
-
         fullName = to_string(self._mdl.novel.plotLines[plId].title)
         title = f'({self._mdl.novel.plotLines[plId].shortName}) {fullName}'
         nodeValues = [''] * len(self.columns)
         if collect:
-            nodeValues[self._colPos['nt']] = collect_note_indicators(plId)
+            nodeValues[self._colPos['nt']] = self._collect_pl_note_indicators(plId)
         else:
             nodeValues[self._colPos['nt']] = self._get_notes_indicator(self._mdl.novel.plotLines[plId])
         return title, nodeValues, ('arc')
@@ -836,21 +866,6 @@ class TreeViewer(ttk.Frame):
         Optional arguments:
             position: int -- Accumulated word count at section beginning.
         """
-
-        def get_date_or_day(scId):
-            """Return section date or day for display."""
-            if self._mdl.novel.sections[scId].date is not None and self._mdl.novel.sections[scId].date != Section.NULL_DATE:
-                return self._mdl.novel.sections[scId].localeDate
-
-            if self._mdl.novel.sections[scId].day is not None:
-                return f'{_("Day")} {self._mdl.novel.sections[scId].day}'
-
-            return ''
-
-            """Return the element's title, if any."""
-            title = self._mdl.novel.sections[scId].title
-            if not title:
-                title = _('Unnamed')
 
         # Time for displaying.
         if self._mdl.novel.sections[scId].time is not None:
@@ -901,7 +916,7 @@ class TreeViewer(ttk.Frame):
                     pass
             nodeValues[self._colPos['po']] = positionStr
             nodeValues[self._colPos['wc']] = self._mdl.novel.sections[scId].wordCount
-            nodeValues[self._colPos['st']] = Section.STATUS[self._mdl.novel.sections[scId].status]
+            nodeValues[self._colPos['st']] = self._mdl.novel.sections[scId].STATUS[self._mdl.novel.sections[scId].status]
             try:
                 nodeValues[self._colPos['vp']] = self._mdl.novel.characters[self._mdl.novel.sections[scId].characters[0]].title
             except:
@@ -909,7 +924,7 @@ class TreeViewer(ttk.Frame):
 
             nodeValues[self._colPos['sc']] = self._SCENE[self._mdl.novel.sections[scId].scene]
 
-            nodeValues[self._colPos['dt']] = get_date_or_day(scId)
+            nodeValues[self._colPos['dt']] = self._get_date_or_day(scId)
             nodeValues[self._colPos['tm']] = dispTime
             nodeValues[self._colPos['dr']] = f'{days}{hours}{minutes}'
 

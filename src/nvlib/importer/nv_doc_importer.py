@@ -10,8 +10,6 @@ from tkinter import messagebox
 from novxlib.converter.import_source_factory import ImportSourceFactory
 from novxlib.converter.import_target_factory import ImportTargetFactory
 from novxlib.converter.new_project_factory import NewProjectFactory
-from novxlib.model.novel import Novel
-from novxlib.model.nv_tree import NvTree
 from novxlib.novx.novx_file import NovxFile
 from novxlib.novx_globals import Error
 from novxlib.novx_globals import _
@@ -62,6 +60,7 @@ class NvDocImporter:
         self.importSourceFactory = ImportSourceFactory(self.IMPORT_SOURCE_CLASSES)
         self.newProjectFactory = NewProjectFactory(self.CREATE_SOURCE_CLASSES)
         self.importTargetFactory = ImportTargetFactory([NovxFile])
+        self.newFile = None
 
     def run(self, sourcePath, **kwargs):
         """Create source and target objects and run conversion.
@@ -89,7 +88,7 @@ class NvDocImporter:
                 raise Error(f'!{_("File already exists")}: "{norm_path(target.filePath)}".')
 
             self._check(source, target)
-            source.novel = Novel(tree=NvTree())
+            source.novel = kwargs['nv_service'].make_novel()
             source.read()
             target.novel = source.novel
             target.write()
@@ -103,7 +102,7 @@ class NvDocImporter:
             __, target = self.importTargetFactory.make_file_objects(sourcePath, **kwargs)
             self.newFile = None
             self._check(source, target)
-            target.novel = Novel(tree=NvTree())
+            target.novel = kwargs['nv_service'].make_novel()
             target.read()
             source.novel = target.novel
             source.read()

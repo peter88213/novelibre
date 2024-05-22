@@ -9,6 +9,15 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v4.1.2
+
+- Fix a regression from v4.1.1 where plot points cannot be created.
+- Refactor: make nvService inherit from novxService.
+- Refactor: use nvService factory methods for model object instantiation.
+- Refactor: convert TreeViewer local functions into methods.
+
+Based on novxlib v4.1.0
+
 ### v4.1.1
 
 - Library update. Now reading and writing *.novx* version 1.4 files.

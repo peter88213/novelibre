@@ -4,15 +4,7 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from novxlib.model.basic_element import BasicElement
-from novxlib.model.chapter import Chapter
-from novxlib.model.character import Character
 from novxlib.model.id_generator import create_id
-from novxlib.model.novel import Novel
-from novxlib.model.plot_line import PlotLine
-from novxlib.model.plot_point import PlotPoint
-from novxlib.model.section import Section
-from novxlib.model.world_element import WorldElement
 from novxlib.novx_globals import CHAPTER_PREFIX
 from novxlib.novx_globals import CHARACTER_PREFIX
 from novxlib.novx_globals import CH_ROOT
@@ -29,8 +21,8 @@ from novxlib.novx_globals import PN_ROOT
 from novxlib.novx_globals import PRJ_NOTE_PREFIX
 from novxlib.novx_globals import SECTION_PREFIX
 from novxlib.novx_globals import _
-from nvlib.model.nv_work_file import NvWorkFile
 from nvlib.model.nv_service import NvService
+from nvlib.model.nv_work_file import NvWorkFile
 
 
 class NvModel:
@@ -88,7 +80,7 @@ class NvModel:
             index = self.tree.index(targetNode) + 1
             targetNode = self.tree.parent(targetNode)
         chId = create_id(self.novel.chapters, prefix=CHAPTER_PREFIX)
-        self.novel.chapters[chId] = Chapter(
+        self.novel.chapters[chId] = self.nvService.make_chapter(
             title=kwargs.get('title', f'{_("New Chapter")} ({chId})'),
             desc='',
             chLevel=2,
@@ -120,7 +112,7 @@ class NvModel:
         if targetNode.startswith(CHARACTER_PREFIX):
             index = self.tree.index(targetNode) + 1
         crId = create_id(self.novel.characters, prefix=CHARACTER_PREFIX)
-        self.novel.characters[crId] = Character(
+        self.novel.characters[crId] = self.nvService.make_character(
             title=kwargs.get('title', f'{_("New Character")} ({crId})'),
             desc='',
             aka='',
@@ -154,7 +146,7 @@ class NvModel:
         if targetNode.startswith(ITEM_PREFIX):
             index = self.tree.index(targetNode) + 1
         itId = create_id(self.novel.items, prefix=ITEM_PREFIX)
-        self.novel.items[itId] = WorldElement(
+        self.novel.items[itId] = self.nvService.make_world_element(
             title=kwargs.get('title', f'{_("New Item")} ({itId})'),
             desc='',
             aka='',
@@ -183,7 +175,7 @@ class NvModel:
         if targetNode.startswith(LOCATION_PREFIX):
             index = self.tree.index(targetNode) + 1
         lcId = create_id(self.novel.locations, prefix=LOCATION_PREFIX)
-        self.novel.locations[lcId] = WorldElement(
+        self.novel.locations[lcId] = self.nvService.make_world_element(
             title=kwargs.get('title', f'{_("New Location")} ({lcId})'),
             desc='',
             aka='',
@@ -216,7 +208,7 @@ class NvModel:
             index = self.tree.index(targetNode) + 1
             targetNode = self.tree.parent(targetNode)
         chId = create_id(self.novel.chapters, prefix=CHAPTER_PREFIX)
-        self.novel.chapters[chId] = Chapter(
+        self.novel.chapters[chId] = self.nvService.make_chapter(
             title=kwargs.get('title', f'{_("New Part")} ({chId})'),
             desc='',
             chLevel=1,
@@ -247,7 +239,7 @@ class NvModel:
         if targetNode.startswith(PLOT_LINE_PREFIX):
             index = self.tree.index(targetNode) + 1
         plId = create_id(self.novel.plotLines, prefix=PLOT_LINE_PREFIX)
-        self.novel.plotLines[plId] = PlotLine(
+        self.novel.plotLines[plId] = self.nvService.make_plot_line(
             title=kwargs.get('title', f'{_("New Plot line")} ({plId})'),
             desc='',
             shortName=plId,
@@ -283,6 +275,16 @@ class NvModel:
         else:
             return
 
+        ppId = create_id(self.novel.plotPoints, prefix=PLOT_POINT_PREFIX)
+        self.novel.plotPoints[ppId] = self.nvService.make_plot_point(
+            title=kwargs.get('title', f'{_("New Plot point")} ({ppId})'),
+            desc='',
+            links={},
+            on_element_change=self.on_element_change,
+            )
+        self.tree.insert(parent, index, ppId)
+        return ppId
+
     def add_project_note(self, **kwargs):
         """Add a prjFile note to the novel.
         
@@ -301,7 +303,7 @@ class NvModel:
         if targetNode.startswith(PRJ_NOTE_PREFIX):
             index = self.tree.index(targetNode) + 1
         pnId = create_id(self.novel.projectNotes, prefix=PRJ_NOTE_PREFIX)
-        self.novel.projectNotes[pnId] = BasicElement(
+        self.novel.projectNotes[pnId] = self.nvService.make_basic_element(
             title=kwargs.get('title', f'{_("New Note")} ({pnId})'),
             desc='',
             links={},
@@ -347,7 +349,7 @@ class NvModel:
         else:
             newType = kwargs.get('scType', 0)
         scId = create_id(self.novel.sections, prefix=SECTION_PREFIX)
-        self.novel.sections[scId] = Section(
+        self.novel.sections[scId] = self.nvService.make_section(
             title=kwargs.get('title', f'{_("New Section")} ({scId})'),
             desc=kwargs.get('desc', ''),
             scType=newType,
@@ -392,7 +394,7 @@ class NvModel:
             return
 
         scId = create_id(self.novel.sections, prefix=SECTION_PREFIX)
-        self.novel.sections[scId] = Section(
+        self.novel.sections[scId] = self.nvService.make_section(
             title=kwargs.get('title', f'{_("Stage")}'),
             desc=kwargs.get('desc', ''),
             scType=kwargs.get('scType', 3),
@@ -403,16 +405,6 @@ class NvModel:
             )
         self.tree.insert(parent, index, scId)
         return scId
-
-        ppId = create_id(self.novel.plotPoints, prefix=PLOT_POINT_PREFIX)
-        self.novel.plotPoints[ppId] = PlotPoint(
-            title=kwargs.get('title', f'{_("New Plot point")} ({ppId})'),
-            desc='',
-            links={},
-            on_element_change=self.on_element_change,
-            )
-        self.tree.insert(parent, index, ppId)
-        return ppId
 
     def close_project(self):
         self.isModified = False
@@ -531,7 +523,7 @@ class NvModel:
             if self.trashBin is None:
                 # Create a "trash bin"; use the first free chapter ID.
                 self.trashBin = create_id(self.novel.chapters, prefix=CHAPTER_PREFIX)
-                self.novel.chapters[self.trashBin] = Chapter(
+                self.novel.chapters[self.trashBin] = self.nvService.make_chapter(
                     title=_('Trash'),
                     desc='',
                     chLevel=2,
@@ -736,7 +728,7 @@ class NvModel:
 
     def new_project(self, tree):
         """Create a novelibre project instance."""
-        self.novel = Novel(
+        self.novel = self.nvService.make_novel(
             title='',
             desc='',
             authorName='',
@@ -780,7 +772,7 @@ class NvModel:
         Positional arguments:
             filePath: str -- path to the prjFile file.
         """
-        self.novel = Novel(tree=self.tree, links={})
+        self.novel = self.nvService.make_novel(tree=self.tree, links={})
         self.prjFile = NvWorkFile(filePath)
         self.prjFile.novel = self.novel
         self.prjFile.read()

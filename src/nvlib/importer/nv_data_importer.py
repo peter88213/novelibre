@@ -6,8 +6,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.widgets.pick_list import PickList
 from novxlib.model.id_generator import create_id
-from novxlib.model.novel import Novel
-from novxlib.model.nv_tree import NvTree
 from novxlib.novx.character_data_reader import CharacterDataReader
 from novxlib.novx.item_data_reader import ItemDataReader
 from novxlib.novx.location_data_reader import LocationDataReader
@@ -39,14 +37,14 @@ class NvDataImporter:
             CHARACTER_PREFIX:CharacterDataReader,
             LOCATION_PREFIX:LocationDataReader,
             ITEM_PREFIX:ItemDataReader,
-            }
+        }
         source = sources[elemPrefix](filePath)
-        source.novel = Novel(tree=NvTree())
+        source.novel = self._mdl.nvService.make_novel()
         errorMessages = {
             CHARACTER_PREFIX:_('No character data found'),
             LOCATION_PREFIX:_('No location data found'),
             ITEM_PREFIX:_('No item data found'),
-            }
+        }
         try:
             source.read()
         except:
@@ -57,22 +55,22 @@ class NvDataImporter:
             CHARACTER_PREFIX:source.novel.characters,
             LOCATION_PREFIX:source.novel.locations,
             ITEM_PREFIX:source.novel.items,
-            }
+        }
         targetElements = {
             CHARACTER_PREFIX:self._mdl.novel.characters,
             LOCATION_PREFIX:self._mdl.novel.locations,
             ITEM_PREFIX:self._mdl.novel.items,
-            }
+        }
         elemParents = {
             CHARACTER_PREFIX:CR_ROOT,
             LOCATION_PREFIX:LC_ROOT,
             ITEM_PREFIX:IT_ROOT,
-            }
+        }
         windowTitles = {
             CHARACTER_PREFIX:_('Select characters'),
             LOCATION_PREFIX:_('Select locations'),
             ITEM_PREFIX:_('Select items'),
-            }
+        }
         self._elemPrefix = elemPrefix
         self._sourceElements = sourceElements[elemPrefix]
         self._targetElements = targetElements[elemPrefix]

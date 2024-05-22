@@ -596,10 +596,8 @@ class NvController:
                 if self._ui.ask_yes_no(_('Save changes?')):
                     self.save_project()
         importer = NvDocImporter()
-        importer.ui = self._ui
-        kwargs = {}
         try:
-            message = importer.run(sourcePath, **kwargs)
+            message = importer.run(sourcePath, nv_service=self._mdl.nvService)
         except Error as ex:
             self._ui.set_status(f'!{str(ex)}')
             return 'break'
