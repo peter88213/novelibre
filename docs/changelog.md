@@ -9,6 +9,14 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v4.2.1
+
+- Make sure that critical errors do not happen silently. 
+  In case of unhandled exceptions, show a popup window with the stack trace.
+  This is only part of the "run.pyw" starter script generated during setup. 
+
+Based on novxlib v4.1.0
+
 ### v4.2.0
 
 - Upgrade the plugin API by improving the *NvService* interface. 

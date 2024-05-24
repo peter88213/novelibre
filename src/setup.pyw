@@ -110,6 +110,16 @@ You may want to run the Plugin Manager for compatibility check.
 '''
 
 START_UP_CODE = f'''import {APPNAME}
+import tkinter as tk
+from tkinter import messagebox
+import traceback
+
+def show_error(self, *args):
+    err = traceback.format_exception(*args)
+    messagebox.showerror('Exception', err)
+
+
+tk.Tk.report_callback_exception = show_error
 {APPNAME}.main()
 '''
 
