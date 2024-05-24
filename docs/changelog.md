@@ -9,6 +9,14 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v4.2.0
+
+- Upgrade the plugin API by improving the *NvService* interface. 
+  The service now returns *NvTreeview* instances instead of *NvView* instances. 
+  This may help to avoid side effects in case of a broken plugin implementation.
+
+Based on novxlib v4.1.0
+
 ### v4.1.2
 
 - Fix a regression from v4.1.1 where plot points cannot be created.
