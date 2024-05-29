@@ -9,6 +9,17 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v4.3.0
+
+Extend the API for the nv_clipboard plugin.
+
+- Make the toolbar delegate in NvView a "public" instance variable.
+- Make the Toolbar buttonBar a "public" instance variable.
+- Add a service to the controller that returns the global preferences.
+- Remove unused imports; update docstrings.
+
+Based on novxlib v4.1.0
+
 ### v4.2.1
 
 - Make sure that critical errors do not happen silently. 

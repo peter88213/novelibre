@@ -182,8 +182,8 @@ class NvView:
         self._build_menu()
 
         #--- Add a toolbar.
-        self._toolbar = Toolbar(self, self._ctrl)
-        self.views.append(self._toolbar)
+        self.toolbar = Toolbar(self, self._ctrl)
+        self.views.append(self.toolbar)
 
         #--- tk root event bindings.
         self._bind_events()

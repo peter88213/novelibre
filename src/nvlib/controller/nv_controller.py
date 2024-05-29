@@ -552,6 +552,10 @@ class NvController:
                 if kwargs.get('lock', True) and prefs['lock_on_export']:
                     self.lock()
 
+    def get_preferences(self):
+        """Return the global preferences dictionary."""
+        return prefs
+
     def get_view(self):
         """Return a reference to the application's main view object."""
         return self._ui
