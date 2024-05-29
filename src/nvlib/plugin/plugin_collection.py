@@ -121,7 +121,7 @@ class PluginCollection(dict):
             self[moduleName] = pluginObject
 
             # Locate the module.
-            module.Plugin.filePath = filePath
+            pluginObject.filePath = filePath
             return True
 
         except Exception as ex:

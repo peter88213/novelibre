@@ -9,6 +9,14 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
 
+### v4.3.1
+
+- Fix a bug in PluginCollection.load_file(), where the plugin's file path gets lost 
+  if the plugin inherits from PluginBase.
+- Refactor the nv_controller module.
+
+Based on novxlib v4.1.0
+
 ### v4.3.0
 
 Extend the API for the nv_clipboard plugin.
