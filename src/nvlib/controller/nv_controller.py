@@ -117,16 +117,18 @@ class NvController:
             
         Return the chapter ID, if successful.
         """
-        if not self.check_lock():
-            targetNode = kwargs.get('targetNode', None)
-            if targetNode is None:
-                try:
-                    kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
-                except:
-                    pass
-            newNode = self._mdl.add_chapter(**kwargs)
-            self._view_new_element(newNode)
-            return newNode
+        if self.check_lock():
+            return
+
+        targetNode = kwargs.get('targetNode', None)
+        if targetNode is None:
+            try:
+                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+            except:
+                pass
+        newNode = self._mdl.add_chapter(**kwargs)
+        self._view_new_element(newNode)
+        return newNode
 
     def add_character(self, **kwargs):
         """Add a character to the novel.
@@ -138,16 +140,18 @@ class NvController:
             
         Return the element's ID, if successful.
         """
-        if not self.check_lock():
-            targetNode = kwargs.get('targetNode', None)
-            if targetNode is None:
-                try:
-                    kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
-                except:
-                    pass
-            newNode = self._mdl.add_character(**kwargs)
-            self._view_new_element(newNode)
-            return newNode
+        if self.check_lock():
+            return
+
+        targetNode = kwargs.get('targetNode', None)
+        if targetNode is None:
+            try:
+                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+            except:
+                pass
+        newNode = self._mdl.add_character(**kwargs)
+        self._view_new_element(newNode)
+        return newNode
 
     def add_child(self, event=None):
         """Add a child element to an element.
@@ -157,27 +161,43 @@ class NvController:
         if self._mdl.prjFile is None:
             return
 
-        if not self.check_lock():
-            try:
-                selection = self._ui.tv.tree.selection()[0]
-            except:
-                return
+        if self.check_lock():
+            return
+
+        try:
+            selection = self._ui.tv.tree.selection()[0]
+        except:
+            return
 
         if selection == CH_ROOT:
             self.add_chapter(targetNode=selection)
-        elif selection.startswith(CHAPTER_PREFIX):
+            return
+
+        if selection.startswith(CHAPTER_PREFIX):
             self.add_section(targetNode=selection)
-        elif selection.startswith(PLOT_LINE_PREFIX):
+            return
+
+        if selection.startswith(PLOT_LINE_PREFIX):
             self.add_plot_point(targetNode=selection)
-        elif selection == CR_ROOT:
+            return
+
+        if selection == CR_ROOT:
             self.add_character(targetNode=selection)
-        elif selection == LC_ROOT:
+            return
+
+        if selection == LC_ROOT:
             self.add_location(targetNode=selection)
-        elif selection == IT_ROOT:
+            return
+
+        if selection == IT_ROOT:
             self.add_item(targetNode=selection)
-        elif selection == PL_ROOT:
+            return
+
+        if selection == PL_ROOT:
             self.add_plot_line(targetNode=selection)
-        elif selection == PN_ROOT:
+            return
+
+        if selection == PN_ROOT:
             self.add_project_note(targetNode=selection)
 
     def add_element(self, event=None):
@@ -188,30 +208,47 @@ class NvController:
         if self._mdl.prjFile is None:
             return
 
-        if not self.check_lock():
-            try:
-                selection = self._ui.tv.tree.selection()[0]
-            except:
-                return
+        if self.check_lock():
+            return
+
+        try:
+            selection = self._ui.tv.tree.selection()[0]
+        except:
+            return
 
         if selection.startswith(SECTION_PREFIX):
             if self._mdl.novel.sections[selection].scType < 2:
                 self.add_section(targetNode=selection)
-            else:
-                self.add_stage(targetNode=selection)
-        elif CHAPTER_PREFIX in selection:
+                return
+
+            self.add_stage(targetNode=selection)
+            return
+
+        if CHAPTER_PREFIX in selection:
             self.add_chapter(targetNode=selection)
-        elif CHARACTER_PREFIX in selection:
+            return
+
+        if CHARACTER_PREFIX in selection:
             self.add_character(targetNode=selection)
-        elif LOCATION_PREFIX in selection:
+            return
+
+        if LOCATION_PREFIX in selection:
             self.add_location(targetNode=selection)
-        elif ITEM_PREFIX in selection:
+            return
+
+        if ITEM_PREFIX in selection:
             self.add_item(targetNode=selection)
-        elif PLOT_LINE_PREFIX in selection:
+            return
+
+        if PLOT_LINE_PREFIX in selection:
             self.add_plot_line(targetNode=selection)
-        elif PRJ_NOTE_PREFIX in selection:
+            return
+
+        if PRJ_NOTE_PREFIX in selection:
             self.add_project_note(targetNode=selection)
-        elif selection.startswith(PLOT_POINT_PREFIX):
+            return
+
+        if selection.startswith(PLOT_POINT_PREFIX):
             self.add_plot_point(targetNode=selection)
 
     def add_item(self, **kwargs):
@@ -223,16 +260,18 @@ class NvController:
             
         Return the element's ID, if successful.
         """
-        if not self.check_lock():
-            targetNode = kwargs.get('targetNode', None)
-            if targetNode is None:
-                try:
-                    kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
-                except:
-                    pass
-            newNode = self._mdl.add_item(**kwargs)
-            self._view_new_element(newNode)
-            return newNode
+        if self.check_lock():
+            return
+
+        targetNode = kwargs.get('targetNode', None)
+        if targetNode is None:
+            try:
+                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+            except:
+                pass
+        newNode = self._mdl.add_item(**kwargs)
+        self._view_new_element(newNode)
+        return newNode
 
     def add_location(self, **kwargs):
         """Add a location to the novel.
@@ -243,16 +282,18 @@ class NvController:
             
         Return the element's ID, if successful.
         """
-        if not self.check_lock():
-            targetNode = kwargs.get('targetNode', None)
-            if targetNode is None:
-                try:
-                    kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
-                except:
-                    pass
-            newNode = self._mdl.add_location(**kwargs)
-            self._view_new_element(newNode)
-            return newNode
+        if self.check_lock():
+            return
+
+        targetNode = kwargs.get('targetNode', None)
+        if targetNode is None:
+            try:
+                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+            except:
+                pass
+        newNode = self._mdl.add_location(**kwargs)
+        self._view_new_element(newNode)
+        return newNode
 
     def add_parent(self, event=None):
         """Add a parent element to an element.
@@ -284,16 +325,18 @@ class NvController:
            
         Return the chapter ID, if successful.
         """
-        if not self.check_lock():
-            targetNode = kwargs.get('targetNode', None)
-            if targetNode is None:
-                try:
-                    kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
-                except:
-                    pass
-            newNode = self._mdl.add_part(**kwargs)
-            self._view_new_element(newNode)
-            return newNode
+        if self.check_lock():
+            return
+
+        targetNode = kwargs.get('targetNode', None)
+        if targetNode is None:
+            try:
+                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+            except:
+                pass
+        newNode = self._mdl.add_part(**kwargs)
+        self._view_new_element(newNode)
+        return newNode
 
     def add_plot_line(self, **kwargs):
         """Add a plot line to the novel.
@@ -304,16 +347,18 @@ class NvController:
             
         Return the plot line ID, if successful.
         """
-        if not self.check_lock():
-            targetNode = kwargs.get('targetNode', None)
-            if targetNode is None:
-                try:
-                    kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
-                except:
-                    pass
-            newNode = self._mdl.add_plot_line(**kwargs)
-            self._view_new_element(newNode)
-            return newNode
+        if self.check_lock():
+            return
+
+        targetNode = kwargs.get('targetNode', None)
+        if targetNode is None:
+            try:
+                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+            except:
+                pass
+        newNode = self._mdl.add_plot_line(**kwargs)
+        self._view_new_element(newNode)
+        return newNode
 
     def add_plot_point(self, **kwargs):
         """Add a plot point to the novel.
@@ -324,16 +369,18 @@ class NvController:
             
         Return the plot point ID, if successful.
         """
-        if not self.check_lock():
-            targetNode = kwargs.get('targetNode', None)
-            if targetNode is None:
-                try:
-                    kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
-                except:
-                    pass
-            newNode = self._mdl.add_plot_point(**kwargs)
-            self._view_new_element(newNode)
-            return newNode
+        if self.check_lock():
+            return
+
+        targetNode = kwargs.get('targetNode', None)
+        if targetNode is None:
+            try:
+                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+            except:
+                pass
+        newNode = self._mdl.add_plot_point(**kwargs)
+        self._view_new_element(newNode)
+        return newNode
 
     def add_project_note(self, **kwargs):
         """Add a Project note to the novel.
@@ -371,16 +418,18 @@ class NvController:
         
         Return the section ID, if successful.
         """
-        if not self.check_lock():
-            targetNode = kwargs.get('targetNode', None)
-            if targetNode is None:
-                try:
-                    kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
-                except:
-                    pass
-            newNode = self._mdl.add_section(**kwargs)
-            self._view_new_element(newNode)
-            return newNode
+        if self.check_lock():
+            return
+
+        targetNode = kwargs.get('targetNode', None)
+        if targetNode is None:
+            try:
+                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+            except:
+                pass
+        newNode = self._mdl.add_section(**kwargs)
+        self._view_new_element(newNode)
+        return newNode
 
     def add_stage(self, **kwargs):
         """Add a stage to the novel.
@@ -393,16 +442,18 @@ class NvController:
             
         Return the section ID, if successful.
         """
-        if not self.check_lock():
-            targetNode = kwargs.get('targetNode', None)
-            if targetNode is None:
-                try:
-                    kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
-                except:
-                    pass
-            newNode = self._mdl.add_stage(**kwargs)
-            self._view_new_element(newNode)
-            return newNode
+        if self.check_lock():
+            return
+
+        targetNode = kwargs.get('targetNode', None)
+        if targetNode is None:
+            try:
+                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+            except:
+                pass
+        newNode = self._mdl.add_stage(**kwargs)
+        self._view_new_element(newNode)
+        return newNode
 
     def check_lock(self):
         """If the project is locked, unlock it on demand.
