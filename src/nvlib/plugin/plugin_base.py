@@ -52,6 +52,10 @@ class PluginBase(ABC):
         """Enable menu entries when a project is open."""
         pass
 
+    def lock(self):
+        """Inhibit changes on the model."""
+        pass
+
     def on_close(self):
         """Actions to be performed when a project is closed."""
         pass
@@ -62,4 +66,8 @@ class PluginBase(ABC):
 
     def open_node(self):
         """Actions on double-clicking on a node or pressing the Return key."""
+        pass
+
+    def unlock(self):
+        """Enable changes on the model."""
         pass
