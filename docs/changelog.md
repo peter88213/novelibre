@@ -14,6 +14,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Fix a bug in PluginCollection.load_file(), where the plugin's file path gets lost 
   if the plugin inherits from PluginBase.
 - Refactor the nv_controller module.
+- Update the PluginBase class.
 
 Based on novxlib v4.1.0
 
