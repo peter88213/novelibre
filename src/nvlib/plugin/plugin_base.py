@@ -40,7 +40,7 @@ class PluginBase(ABC):
             model -- reference to the main model instance of the application.
             view -- reference to the main view instance of the application.
             controller -- reference to the main controller instance of the application.
-            prefs -- reference to the application's global dictionary with settings and options.
+            prefs -- (deprecated) reference to the application's global dictionary with settings and options.
         """
         pass
 
