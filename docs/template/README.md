@@ -57,6 +57,7 @@ organization of their work.
 - [A theme changer](https://github.com/peter88213/nv_themes/)
 - [A yw7 file importer/exporter](https://github.com/peter88213/nv_yw7/)
 - [A simple "markup" section editor](https://github.com/peter88213/nv_editor/)
+- [A clipboard plugin](https://github.com/peter88213/nv_clipboard/)
 
 ## Tools
 
