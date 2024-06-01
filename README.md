@@ -38,7 +38,7 @@ organization of their work.
   created in the process.
 - For **printing**, *novelibre* exports a neatly designed novel manuscript that can be formatted as 
   you wish applying *Writer* document templates. 
-- *novelibre* saves its data in a well-documented, XML-based **file format** ([.novx](https://github.com/peter88213/novxlib/tree/main/dtd)), which can also be read as 
+- *novelibre* saves its data in a well-documented, XML-based **file format** ([.novx](https://peter88213.github.io/novxlib-docs/the_novx_file_format.html)), which can also be read as 
   plain text and displayed with a standard web browser.
 - *novelibre* is written in Python and should run on several **operating systems**, like Windows and Linux.
 - The application is ready for internationalization with GNU gettext. German translations are provided. 
