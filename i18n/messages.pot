@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.3.1\n"
-"POT-Creation-Date: 2024-05-29 20:17:12\n"
+"Project-Id-Version: 4.3.2\n"
+"POT-Creation-Date: 2024-06-13 16:05:02\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -273,6 +273,9 @@ msgid "Copy style sheet"
 msgstr ""
 
 msgid "Corrupt marker"
+msgstr ""
+
+msgid "Corrupt project data"
 msgstr ""
 
 msgid "Country code"

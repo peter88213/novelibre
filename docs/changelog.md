@@ -8,6 +8,14 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v4.3.2
+
+novxlib update, verifying XML input:
+- ISO-formatted date
+- ISO-formatted time
+- Strings representing numbers
+
+Based on novxlib v4.2.0
 
 ### v4.3.1
 
