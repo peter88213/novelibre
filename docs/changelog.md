@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v4.3.4
+
+novxlib update, verifying XML input:
+- Check whether project notes IDs start with the correct prefix.
+
+Based on novxlib v4.2.2
+
 ### v4.3.3
 
 novxlib update, verifying XML input:
