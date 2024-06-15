@@ -410,7 +410,7 @@ class NvController:
             desc: str -- Description.
             scType: int -- Section type. Default: 0.
             status: int -- Section status. Default: 1.
-            scPacing: int -- Action/Reaction/Custom. Default = 0.
+            scene: int -- Scene kind. Default = 0.
             appendToPrev: bool -- Append to previous section. Default: False.
             
         - Place the new node at the next free position after the selection, if possible.
