@@ -281,7 +281,7 @@ class NvModel:
         return ppId
 
     def add_project_note(self, **kwargs):
-        """Add a prjFile note to the novel.
+        """Add a project note to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -419,7 +419,7 @@ class NvModel:
         - Delete stages.
         - Delete plotLines and remove their plot points and section references.
         - Delete plot points and remove their section references.
-        - Delete prjFile notes.
+        - Delete project notes.
         """
 
         def waste_sections(elemId):
@@ -510,7 +510,7 @@ class NvModel:
             del self.novel.plotPoints[elemId]
             self.tree.delete(elemId)
         elif elemId.startswith(PRJ_NOTE_PREFIX):
-            # Delete a prjFile note.
+            # Delete a project note.
             self.tree.delete(elemId)
             del self.novel.projectNotes[elemId]
         else:
