@@ -29,11 +29,6 @@ class NvModel:
     """novelibre model representation."""
 
     def __init__(self):
-        """Initialize instance variables.
-        
-        Positional arguments:
-            tree: NvTreeview -- The tree view shared by model and view.
-        """
         self.tree = None
         # strategy class
         self.prjFile = None
