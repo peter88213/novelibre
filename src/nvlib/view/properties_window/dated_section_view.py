@@ -4,16 +4,20 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from datetime import datetime, time, date, timedelta
+from datetime import date
+from datetime import datetime
+from datetime import time
+from datetime import timedelta
 from tkinter import ttk
 
+from novxlib.model.date_time_tools import get_specific_date
+from novxlib.novx_globals import WEEKDAYS
+from novxlib.novx_globals import _
 from nvlib.nv_globals import prefs
 from nvlib.view.properties_window.related_section_view import RelatedSectionView
 from nvlib.widgets.folding_frame import FoldingFrame
 from nvlib.widgets.label_entry import LabelEntry
 from nvlib.widgets.my_string_var import MyStringVar
-from novxlib.novx_globals import WEEKDAYS
-from novxlib.novx_globals import _
 
 
 class DatedSectionView(RelatedSectionView):
@@ -93,7 +97,14 @@ class DatedSectionView(RelatedSectionView):
         ttk.Label(localeDateFrame, textvariable=self._localeDate).pack(side='left')
 
         # Time display.
-        ttk.Label(localeDateFrame, textvariable=self._startTime).pack(anchor='w')
+        ttk.Label(localeDateFrame, textvariable=self._startTime).pack(side='left')
+
+        # 'Moon phase' button.
+        ttk.Button(
+            localeDateFrame,
+            text=_('Moon phase'),
+            command=self._show_moonphase
+            ).pack(anchor='e')
 
         # 'Clear date/time' button.
         self._clearDateButton = ttk.Button(
@@ -105,13 +116,13 @@ class DatedSectionView(RelatedSectionView):
         inputWidgets.append(self._clearDateButton)
 
         # 'Generate' button.
-        self._generatDateButton = ttk.Button(
+        self._generateDateButton = ttk.Button(
             sectionStartFrame,
             text=_('Generate'),
             command=self._auto_set_date
             )
-        self._generatDateButton.pack(side='left', fill='x', expand=True, padx=1, pady=2)
-        inputWidgets.append(self._generatDateButton)
+        self._generateDateButton.pack(side='left', fill='x', expand=True, padx=1, pady=2)
+        inputWidgets.append(self._generateDateButton)
 
         # 'Toggle date' button.
         self._toggleDateButton = ttk.Button(
@@ -507,6 +518,26 @@ class DatedSectionView(RelatedSectionView):
             self._element.date = None
             self._element.time = None
             self._element.day = None
+
+    def _show_moonphase(self, event=None):
+        """Display the moon phase of the section start date."""
+        if self._element.date is not None:
+            now = self._element.date
+        else:
+            try:
+                now = get_specific_date(
+                    self._element.day,
+                    self._mdl.novel.referenceDate
+                    )
+            except:
+                self._show_missing_date_message()
+                return
+
+        self._ui.show_info(
+            f'{_("Moon phase")}: '\
+            f'{self._mdl.nvService.get_moon_phase_str(now)}',
+            title=f'{_("Date")}: {date.fromisoformat(now).strftime("%x")}'
+            )
 
     def _toggle_date(self, event=None):
         """Toggle specific/unspecific date."""

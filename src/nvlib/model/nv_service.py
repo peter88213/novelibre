@@ -5,6 +5,7 @@ For further information see https://github.com/peter88213/
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from novxlib.config.configuration import Configuration
+from novxlib.model.moonphase import get_moon_phase_string
 from novxlib.model.novel import Novel
 from novxlib.novx_service import NovxService
 from nvlib.model.nv_treeview import NvTreeview
@@ -12,6 +13,9 @@ from nvlib.model.nv_treeview import NvTreeview
 
 class NvService(NovxService):
     """Getters and factory methods for novxlib objects."""
+
+    def get_moon_phase_str(self, isoDate):
+        return get_moon_phase_string(isoDate)
 
     def make_configuration(self, **kwargs):
         return Configuration(**kwargs)

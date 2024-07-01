@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.3.4\n"
-"POT-Creation-Date: 2024-06-13 17:24:00\n"
+"Project-Id-Version: 4.4.0\n"
+"POT-Creation-Date: 2024-07-01 14:33:27\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -624,6 +624,9 @@ msgid "Minutes"
 msgstr ""
 
 msgid "Module"
+msgstr ""
+
+msgid "Moon phase"
 msgstr ""
 
 msgid "N"

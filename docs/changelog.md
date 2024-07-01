@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v4.4.0
+
+- Show section moon phase on demand.
+- Extend the API, providing a service for moonphase calculation.
+
+Based on novxlib v4.3.0
+
 ### v4.3.4
 
 novxlib update, verifying XML input:

@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.3.4\n"
-"POT-Creation-Date: 2024-06-13 17:24:00\n"
-"PO-Revision-Date: 2024-06-13 17:24:01\n"
+"Project-Id-Version: 4.4.0\n"
+"POT-Creation-Date: 2024-07-01 14:33:27\n"
+"PO-Revision-Date: 2024-07-01 14:33:27\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -619,6 +619,9 @@ msgstr "Minuten"
 msgid "Module"
 msgstr "Modul"
 
+msgid "Moon phase"
+msgstr "Mondphase"
+
 msgid "N"
 msgstr "N"
 
@@ -821,7 +824,7 @@ msgid "Please close the manuscript first"
 msgstr "Bitte zuerst das Manuskript schließen"
 
 msgid "Please enter either a section date or a day and a reference date."
-msgstr "Geben Sie bitte entweder ein Abschnittsdatum ein, oder einen Tag und ein Referenzdatum."
+msgstr "Geben Sie bitte entweder ein Abschnittsdatum ein, oder einen Tag und ein Bezugsdatum."
 
 msgid "Please try again"
 msgstr "Bitte noch einmal versuchen"

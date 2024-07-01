@@ -4,25 +4,26 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from datetime import date
 from tkinter import ttk
-from datetime import date, timedelta
 
-from nvlib.nv_globals import prefs
-from nvlib.view.properties_window.basic_view import BasicView
-from nvlib.widgets.folding_frame import FoldingFrame
-from nvlib.widgets.label_entry import LabelEntry
-from nvlib.widgets.my_string_var import MyStringVar
-from nvlib.widgets.collection_box import CollectionBox
 from novxlib.model.date_time_tools import get_age
+from novxlib.model.date_time_tools import get_specific_date
+from novxlib.novx_globals import CHARACTER_PREFIX
+from novxlib.novx_globals import CR_ROOT
+from novxlib.novx_globals import ITEM_PREFIX
+from novxlib.novx_globals import IT_ROOT
+from novxlib.novx_globals import LC_ROOT
+from novxlib.novx_globals import LOCATION_PREFIX
 from novxlib.novx_globals import _
 from novxlib.novx_globals import list_to_string
 from novxlib.novx_globals import string_to_list
-from novxlib.novx_globals import CR_ROOT
-from novxlib.novx_globals import CHARACTER_PREFIX
-from novxlib.novx_globals import LC_ROOT
-from novxlib.novx_globals import LOCATION_PREFIX
-from novxlib.novx_globals import IT_ROOT
-from novxlib.novx_globals import ITEM_PREFIX
+from nvlib.nv_globals import prefs
+from nvlib.view.properties_window.basic_view import BasicView
+from nvlib.widgets.collection_box import CollectionBox
+from nvlib.widgets.folding_frame import FoldingFrame
+from nvlib.widgets.label_entry import LabelEntry
+from nvlib.widgets.my_string_var import MyStringVar
 
 
 class RelatedSectionView(BasicView):
@@ -356,27 +357,23 @@ class RelatedSectionView(BasicView):
 
     def _show_ages(self, event=None):
         """Display the ages of the related characters."""
-        now = self._element.date
-        try:
-            if now is None:
-                # Calculate the section date from day and reference date.
-                refDate = date.fromisoformat(self._mdl.novel.referenceDate)
-                now = date.isoformat(refDate + timedelta(days=int(self._element.day)))
-        except:
-            self._ui.show_info(
-                _('Please enter either a section date or a day and a reference date.'),
-                title=_('Date information is missing'))
-            return
+        if self._element.date is not None:
+            now = self._element.date
+        else:
+            try:
+                now = get_specific_date(
+                    self._element.day,
+                    self._mdl.novel.referenceDate
+                    )
+            except:
+                self._show_missing_date_message()
+                return
 
         charList = []
         for crId in self._element.characters:
             birthDate = self._mdl.novel.characters[crId].birthDate
             deathDate = self._mdl.novel.characters[crId].deathDate
             try:
-                if now is None:
-                    # Calculate the section date from day and reference date.
-                    refDate = date.fromisoformat(self._mdl.novel.referenceDate)
-                    now = date.isoformat(refDate + timedelta(days=int(self._element.day)))
                 years = get_age(now, birthDate, deathDate)
                 if years < 0:
                     years *= -1
@@ -392,6 +389,11 @@ class RelatedSectionView(BasicView):
                 '\n'.join(charList),
                 title=f'{_("Date")}: {date.fromisoformat(now).strftime("%x")}'
                 )
+
+    def _show_missing_date_message(self):
+        self._ui.show_error(
+            _('Please enter either a section date or a day and a reference date.'),
+            title=_('Date information is missing'))
 
     def _toggle_relation_frame(self, event=None):
         """Hide/show the 'Relationships' frame."""
