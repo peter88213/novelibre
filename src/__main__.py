@@ -7,12 +7,12 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+import zipfile
+
 import os
 import sys
 import stat
 import glob
-from shutil import copy2
-from shutil import copytree
 from pathlib import Path
 from string import Template
 import gettext
@@ -26,6 +26,9 @@ except ModuleNotFoundError:
 
 from tkinter import messagebox
 import relocate
+
+pyz = os.path.dirname(__file__)
+print(pyz)
 
 # Initialize localization.
 LOCALE_PATH = f'{os.path.dirname(sys.argv[0])}/locale/'
@@ -128,6 +131,18 @@ processInfo = tk.Label(root, text='')
 message = []
 
 
+def copy_file(sourceFile, targetDir):
+    with zipfile.ZipFile(pyz) as z:
+        z.extract(sourceFile, targetDir)
+
+
+def copy_tree(sourceDir, targetDir):
+    with zipfile.ZipFile(pyz) as z:
+        for file in z.namelist():
+            if file.startswith(f'{sourceDir}/'):
+                z.extract(file, targetDir)
+
+
 def make_context_menu(installPath):
     """Generate ".reg" files to extend the novelibre context menu."""
 
@@ -198,7 +213,7 @@ def install(installDir):
 
     #--- Install the new version.
     output(f'Copying "{APP}" ...')
-    copy2(APP, f'{installDir}/{APP}')
+    copy_file(APP, installDir)
 
     # Create a starter script.
     output(f'Creating starter script ...')
@@ -207,15 +222,15 @@ def install(installDir):
 
     # Install the localization files.
     output(f'Copying locale ...')
-    copytree('locale', f'{installDir}/locale', dirs_exist_ok=True)
+    copy_tree('locale', installDir)
 
     # Install the icon files.
     output(f'Copying icons ...')
-    copytree('icons', f'{installDir}/icons', dirs_exist_ok=True)
+    copy_tree('icons', installDir)
 
     # Install the css files.
     output(f'Copying css stylesheet ...')
-    copytree('css', f'{installDir}/css', dirs_exist_ok=True)
+    copy_tree('css', installDir)
 
     #--- Make the scripts executable under Linux.
     st = os.stat(f'{installDir}/{APP}')
@@ -229,7 +244,7 @@ def install(installDir):
             for file in files:
                 if not os.path.isfile(f'{cnfDir}{file.name}'):
                     output(f'Copying "{file.name}" ...')
-                    copy2(f'{SAMPLE_PATH}{file.name}', f'{cnfDir}{file.name}')
+                    copy_file(f'{SAMPLE_PATH}{file.name}', cnfDir)
                 else:
                     output(f'Keeping "{file.name}".')
     except:
