@@ -56,17 +56,13 @@
 			<fileset dir="${novxlib-path}/css" />
 		</copy>
 		
-		<!--zip destfile="${dist-path}/${release}.zip" basedir="${build-path}" /-->
-
       <exec executable="python" failonerror="true">
          <arg value="-m"/>
          <arg value="zipapp"/>
          <arg value="-o=${dist-path}/${release}.pyzw"/>
          <arg value="-c"/>
          <arg value="${build-path}/${release}"/>
-      </exec>
-		
-		
+      </exec>	
 		
 		<copy file="${docs-path}/template/README.md" overwrite="True" todir=".." />
 		<replace encoding="utf-8" file="../README.md" token="0.99.0" value="${version}" />
