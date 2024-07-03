@@ -390,11 +390,6 @@ class RelatedSectionView(BasicView):
                 title=f'{_("Date")}: {date.fromisoformat(now).strftime("%x")}'
                 )
 
-    def _show_missing_date_message(self):
-        self._ui.show_error(
-            _('Please enter either a section date or a day and a reference date.'),
-            title=_('Date information is missing'))
-
     def _toggle_relation_frame(self, event=None):
         """Hide/show the 'Relationships' frame."""
         if prefs['show_relationships']:

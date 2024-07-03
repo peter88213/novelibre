@@ -323,6 +323,16 @@ class BasicView(ttk.Frame, ABC):
             else:
                 self._element.links = links
 
+    def _show_missing_date_message(self):
+        self._ui.show_error(
+            _('Please enter either a section date or a day and a reference date.'),
+            title=_('Date information is missing'))
+
+    def _show_missing_reference_date_message(self):
+        self._ui.show_error(
+            _('Please enter a reference date.'),
+            title=_('Cannot convert date/days'))
+
     def _start_picking_mode(self, event=None, command=None):
         """Start the picking mode for element selection.        
         

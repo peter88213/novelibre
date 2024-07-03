@@ -541,19 +541,21 @@ class DatedSectionView(RelatedSectionView):
 
     def _toggle_date(self, event=None):
         """Toggle specific/unspecific date."""
-        if self._mdl.novel.referenceDate:
-            self.doNotUpdate = True
-            if self._element.date:
-                self._element.date_to_day(self._mdl.novel.referenceDate)
-            elif self._element.day:
-                self._element.day_to_date(self._mdl.novel.referenceDate)
-            else:
-                return
+        if not self._mdl.novel.referenceDate:
+            self._show_missing_reference_date_message()
+            return
 
-            self.doNotUpdate = False
-            self.set_data(self._elementId)
+        self.doNotUpdate = True
+        if self._element.date:
+            self._element.date_to_day(self._mdl.novel.referenceDate)
+        elif self._element.day:
+            self._element.day_to_date(self._mdl.novel.referenceDate)
         else:
-            self._ui.set_status(f'!{_("The reference date is not set")}.')
+            self._show_missing_date_message()
+            return
+
+        self.doNotUpdate = False
+        self.set_data(self._elementId)
 
     def _toggle_date_time_frame(self, event=None):
         """Hide/show the 'Date/Time' frame."""

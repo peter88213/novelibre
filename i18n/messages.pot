@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.4.0\n"
-"POT-Creation-Date: 2024-07-01 14:33:27\n"
+"Project-Id-Version: 4.4.1\n"
+"POT-Creation-Date: 2024-07-03 14:08:02\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -129,6 +129,9 @@ msgid "Can not do"
 msgstr ""
 
 msgid "Cancel"
+msgstr ""
+
+msgid "Cannot convert date/days"
 msgstr ""
 
 msgid "Cannot create directory"
@@ -830,6 +833,9 @@ msgstr ""
 msgid "Please close the manuscript first"
 msgstr ""
 
+msgid "Please enter a reference date."
+msgstr ""
+
 msgid "Please enter either a section date or a day and a reference date."
 msgstr ""
 
@@ -1083,9 +1089,6 @@ msgid "The project \"{}\" was created with an outdated novelibre version."
 msgstr ""
 
 msgid "The project is locked.\nUnlock?"
-msgstr ""
-
-msgid "The reference date is not set"
 msgstr ""
 
 msgid "The sections are not of the same type"

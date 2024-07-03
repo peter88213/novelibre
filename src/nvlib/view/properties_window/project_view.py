@@ -721,7 +721,7 @@ class ProjectView(BasicView):
                     self._mdl.novel.sections[scId].date_to_day(self._mdl.novel.referenceDate)
                 self.doNotUpdate = False
         else:
-            self._ui.set_status(f"!{_('The reference date is not set')}.")
+            self._show_missing_reference_date_message()
         self._datesToDaysButton['text'] = buttonText
 
     def _days_to_dates(self):
@@ -736,7 +736,7 @@ class ProjectView(BasicView):
                     self._mdl.novel.sections[scId].day_to_date(self._mdl.novel.referenceDate)
                 self.doNotUpdate = False
         else:
-            self._ui.set_status(f"!{_('The reference date is not set')}.")
+            self._show_missing_reference_date_message()
         self._daysToDatesButton['text'] = buttonText
 
     def _toggle_numbering_frame(self, event=None):

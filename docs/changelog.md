@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v4.4.1
+
+- Revise the "missing date/reference date" messaging.
+
+Based on novxlib v4.3.0
+
 ### v4.4.0
 
 - Show section moon phase on demand.
