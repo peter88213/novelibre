@@ -85,7 +85,8 @@ I use the program myself and fix errors immediately if I notice any. As far as I
 
 [Download the latest release (version 0.99.0)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v0.99.0.pyzw)
 
-- Launch "novelibre_v0.99.0.pyzw" by double-clicking.
+- Launch "novelibre_v0.99.0.pyzw" by double-clicking (Windows/Linux desktop),
+- or execute `python novelibre_v0.99.0.pyzw` (Windows), resp. `python3 novelibre_v0.99.0.pyzw` (Linux) on the command line.
 - You may wish to install plugins; the [update checker](https://github.com/peter88213/nv_updater/) is highly recommended.
 
 ---

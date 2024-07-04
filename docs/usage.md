@@ -9,7 +9,8 @@ The *novelibre* Python program provides a tree view for novels written with Libr
 
 ## Installation
 
-- Move into your download folder and launch the downloaded *.pyzw* package. This installs the application for the local user.
+- Launch "novelibre_v4.4.1.pyzw" by double-clicking (Windows/Linux desktop),
+- or execute `python novelibre_v4.4.1.pyzw` (Windows), resp. `python3 novelibre_v4.4.1.pyzw` (Linux) on the command line.
 - Create a shortcut on the desktop when asked.
 - Optionally, you can replace the "Python" icon by the *novelibre* logo you may find in the installation's **icons** subdirectory.
 

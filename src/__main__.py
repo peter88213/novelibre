@@ -8,7 +8,6 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import zipfile
-
 import os
 import sys
 import stat
@@ -26,9 +25,6 @@ except ModuleNotFoundError:
 
 from tkinter import messagebox
 import relocate
-
-pyz = os.path.dirname(__file__)
-print(pyz)
 
 # Initialize localization.
 LOCALE_PATH = f'{os.path.dirname(sys.argv[0])}/locale/'
@@ -129,6 +125,8 @@ tk.Tk.report_callback_exception = show_error
 root = tk.Tk()
 processInfo = tk.Label(root, text='')
 message = []
+
+pyz = os.path.dirname(__file__)
 
 
 def copy_file(sourceFile, targetDir):
