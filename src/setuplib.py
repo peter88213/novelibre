@@ -225,20 +225,20 @@ def install(installDir, zipped):
     copy_file(APP, installDir)
 
     # Create a starter script.
-    output(f'Creating starter script ...')
+    output('Creating starter script ...')
     with open(f'{installDir}/{START_UP_SCRIPT}', 'w', encoding='utf-8') as f:
         f.write(f'import {APPNAME}\n{APPNAME}.main()')
 
     # Install the localization files.
-    output(f'Copying locale ...')
+    output('Copying locale ...')
     copy_tree('locale', installDir)
 
     # Install the icon files.
-    output(f'Copying icons ...')
+    output('Copying icons ...')
     copy_tree('icons', installDir)
 
     # Install the css files.
-    output(f'Copying css stylesheet ...')
+    output('Copying css stylesheet ...')
     copy_tree('css', installDir)
 
     #--- Make the scripts executable under Linux.
