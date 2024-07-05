@@ -1,5 +1,4 @@
-#!/usr/bin/python3
-"""Install the novelibre application. 
+"""novelibre installer library module. 
 
 Version @release
 
@@ -7,6 +6,8 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from shutil import copytree
+from shutil import copy2
 import zipfile
 import os
 import sys
@@ -47,7 +48,6 @@ APP = f'{APPNAME}.py'
 START_UP_SCRIPT = 'run.pyw'
 INI_FILE = f'{APPNAME}.ini'
 INI_PATH = '/config/'
-SAMPLE_PATH = 'sample/'
 SUCCESS_MESSAGE = '''
 
 $Appname is installed here:
@@ -129,16 +129,20 @@ message = []
 pyz = os.path.dirname(__file__)
 
 
-def copy_file(sourceFile, targetDir):
+def extract_file(sourceFile, targetDir):
     with zipfile.ZipFile(pyz) as z:
         z.extract(sourceFile, targetDir)
 
 
-def copy_tree(sourceDir, targetDir):
+def extract_tree(sourceDir, targetDir):
     with zipfile.ZipFile(pyz) as z:
         for file in z.namelist():
             if file.startswith(f'{sourceDir}/'):
                 z.extract(file, targetDir)
+
+
+def cp_tree(sourceDir, targetDir):
+    copytree(sourceDir, f'{targetDir}/{sourceDir}', dirs_exist_ok=True)
 
 
 def make_context_menu(installPath):
@@ -181,8 +185,15 @@ def open_folder(installDir):
                 pass
 
 
-def install(installDir):
+def install(installDir, zipped):
     """Install the application."""
+    if zipped:
+        copy_file = extract_file
+        copy_tree = extract_tree
+    else:
+        copy_file = copy2
+        copy_tree = cp_tree
+
     #--- Relocate the v1.x installation directory, if necessary.
     message = relocate.main()
     if message:
@@ -236,18 +247,6 @@ def install(installDir):
     st = os.stat(f'{installDir}/{START_UP_SCRIPT}')
     os.chmod(f'{installDir}/{START_UP_SCRIPT}', st.st_mode | stat.S_IEXEC)
 
-    #--- Install configuration files, if needed.
-    try:
-        with os.scandir(SAMPLE_PATH) as files:
-            for file in files:
-                if not os.path.isfile(f'{cnfDir}{file.name}'):
-                    output(f'Copying "{file.name}" ...')
-                    copy_file(f'{SAMPLE_PATH}{file.name}', cnfDir)
-                else:
-                    output(f'Keeping "{file.name}".')
-    except:
-        pass
-
     #--- Create a plugin directory.
 
     pluginDir = f'{installDir}/plugin'
@@ -285,7 +284,7 @@ def install(installDir):
         f.write(f'{shebang}{START_UP_CODE}')
 
 
-if __name__ == '__main__':
+def main(zipped=True):
     scriptPath = os.path.abspath(sys.argv[0])
     scriptDir = os.path.dirname(scriptPath)
     os.chdir(scriptDir)
@@ -303,7 +302,7 @@ if __name__ == '__main__':
     homePath = str(Path.home()).replace('\\', '/')
     novxlibPath = f'{homePath}/.novx'
     try:
-        install(novxlibPath)
+        install(novxlibPath, zipped)
     except Exception as ex:
         output(str(ex))
 
@@ -315,3 +314,4 @@ if __name__ == '__main__':
     root.quitButton.config(height=1, width=30)
     root.quitButton.pack(padx=5, pady=5)
     root.mainloop()
+

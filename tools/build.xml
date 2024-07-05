@@ -36,8 +36,9 @@
 		<replace encoding="utf-8" file="${build-path}/${release}/${application}.py" token="@release" value="${version}" />
 		
       <copy file="${source-path}/relocate.py" todir="${build-path}/${release}" />     
-      <copy file="${source-path}/__main__.py" todir="${build-path}/${release}" />     
-		<replace encoding="utf-8" file="${build-path}/${release}/__main__.py" token="@release" value="${version}" />
+      <!--copy file="${source-path}/setup.pyw" todir="${build-path}/${release}" /-->     
+      <copy file="${source-path}/setuplib.py" todir="${build-path}/${release}" />     
+		<replace encoding="utf-8" file="${build-path}/${release}/setuplib.py" token="@release" value="${version}" />
 
 		<copy file="../LICENSE" todir="${build-path}/${release}" />	
 		<copy file="${docs-path}/usage.md" tofile="${build-path}/${release}/README.md" />
@@ -55,11 +56,14 @@
 		<copy todir="${build-path}/${release}/css"> 
 			<fileset dir="${novxlib-path}/css" />
 		</copy>
+
+		<!--zip destfile="${dist-path}/${release}.zip" basedir="${build-path}" /-->
 		
       <exec executable="python" failonerror="true">
          <arg value="-m"/>
          <arg value="zipapp"/>
          <arg value="-o=${dist-path}/${release}.pyzw"/>
+         <arg value="-m=setuplib:main"/>
          <arg value="-c"/>
          <arg value="${build-path}/${release}"/>
       </exec>	
