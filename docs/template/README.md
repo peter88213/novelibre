@@ -83,11 +83,22 @@ I use the program myself and fix errors immediately if I notice any. As far as I
 
 ## Download and install
 
-[Download the latest release (version 0.99.0)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v0.99.0.pyzw)
+### Default: Executable Python zip archive
 
-- Launch "novelibre_v0.99.0.pyzw" by double-clicking (Windows/Linux desktop),
+Download the latest release [novelibre_v0.99.0.pyzw](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v0.99.0.pyzw)
+
+- Launch *novelibre_v0.99.0.pyzw* by double-clicking (Windows/Linux desktop),
 - or execute `python novelibre_v0.99.0.pyzw` (Windows), resp. `python3 novelibre_v0.99.0.pyzw` (Linux) on the command line.
-- You may wish to install plugins; the [update checker](https://github.com/peter88213/nv_updater/) is highly recommended.
+
+### Alternative: Zip file
+
+The package is also available in zip format: [novelibre_v0.99.0.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v0.99.0.zip)
+
+- Extract the *novelibre_v0.99.0* folder from the downloaded zipfile "novelibre_v0.99.0.zip".
+- Move into this new folder and launch *setup.pyw* by double-clicking (Windows/Linux desktop), 
+- or execute `python setup.pyw` (Windows), resp. `python3 setup.pyw` (Linux) on the command line.
+
+You may wish to install plugins; the [update checker](https://github.com/peter88213/nv_updater/) is highly recommended.
 
 ---
 
@@ -99,7 +110,7 @@ I use the program myself and fix errors immediately if I notice any. As far as I
 
 ## Usage
 
-See the [instructions for use](docs/usage.md)
+See the [online manual](https://peter88213.github.io/nvhelp-en/)
 
 ## Credits
 
