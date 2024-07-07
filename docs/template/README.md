@@ -91,6 +91,7 @@ Download the latest release [novelibre_v0.99.0.pyzw](https://github.com/peter882
 - or execute `python novelibre_v0.99.0.pyzw` (Windows), resp. `python3 novelibre_v0.99.0.pyzw` (Linux) on the command line.
 
 #### Important
+
 Many web browsers recognize the download as an executable file and offer to open it immediately. 
 This starts the installation.
 
