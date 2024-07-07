@@ -91,7 +91,7 @@ Download the latest release [novelibre_v4.4.1.pyzw](https://github.com/peter8821
 - or execute `python novelibre_v4.4.1.pyzw` (Windows), resp. `python3 novelibre_v4.4.1.pyzw` (Linux) on the command line.
 
 #### Important
-Many web browsers recognize the download as an executable file and offer to open it in a pop-up window. 
+Many web browsers recognize the download as an executable file and offer to open it immediately. 
 This starts the installation.
 
 However, depending on the security settings, the browser may 
