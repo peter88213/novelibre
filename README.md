@@ -61,10 +61,13 @@ organization of their work.
 
 ## Tools
 
-Stand-alone Python scripts for *novx* file conversion.
-
-- [scap_novx](https://github.com/peter88213/scap_novx/): Generate a *novelibre* project from a *Scapple* outline.
-- [novx_xtg](https://github.com/peter88213/novx_xtg/): XPress tagged text export from *novelibre* projects.
+- [scap_novx](https://github.com/peter88213/scap_novx/): 
+  Python script for generating a *novelibre* project from a *Scapple* outline.
+- [novx_xtg](https://github.com/peter88213/novx_xtg/): 
+  Python script for exporting XPress tagged text from *novelibre* projects.
+- [novelibre-tools](https://github.com/peter88213/novelibre-tools/):
+  OpenOffice/LibreOffice extension for post-processing documents 
+  exported from *novelibre*.
 
 ## Requirements
 
