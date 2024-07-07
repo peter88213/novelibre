@@ -90,6 +90,17 @@ Download the latest release [novelibre_v0.99.0.pyzw](https://github.com/peter882
 - Launch *novelibre_v0.99.0.pyzw* by double-clicking (Windows/Linux desktop),
 - or execute `python novelibre_v0.99.0.pyzw` (Windows), resp. `python3 novelibre_v0.99.0.pyzw` (Linux) on the command line.
 
+#### Important
+Many web browsers recognize the download as an executable file and offer to open it in a pop-up window. 
+This starts the installation.
+
+However, depending on the security settings, the browser may 
+initially  refuse  to download the executable file. 
+In this case, your confirmation or an additional action is required. 
+If this is not possible, you have the option of downloading 
+the zip file. 
+
+
 ### Alternative: Zip file
 
 The package is also available in zip format: [novelibre_v0.99.0.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v0.99.0.zip)
