@@ -201,7 +201,7 @@ class ProjectView(BasicView):
         self._customPlotProgress = MyStringVar()
         self._customPlotProgressEntry = LabelEntry(
             self._renamingsFrame,
-            text=f"{_('Plot progress')}",
+            text=_('Plot progress'),
             textvariable=self._customPlotProgress,
             command=self.apply_changes,
             lblWidth=20
@@ -213,7 +213,7 @@ class ProjectView(BasicView):
         self._customCharacterization = MyStringVar()
         self._customCharacterizationEntry = LabelEntry(
             self._renamingsFrame,
-            text=f"{_('Characterization')}",
+            text=_('Characterization'),
             textvariable=self._customCharacterization,
             command=self.apply_changes,
             lblWidth=20
@@ -225,7 +225,7 @@ class ProjectView(BasicView):
         self._customWorldBuilding = MyStringVar()
         self.__customWorldBuildingEntry = LabelEntry(
             self._renamingsFrame,
-            text=f"{_('World building')}",
+            text=_('World building'),
             textvariable=self._customWorldBuilding,
             command=self.apply_changes,
             lblWidth=20
