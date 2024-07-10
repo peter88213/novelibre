@@ -59,31 +59,6 @@ organization of their work.
 - [A simple "markup" section editor](https://github.com/peter88213/nv_editor/)
 - [A clipboard plugin](https://github.com/peter88213/nv_clipboard/)
 
-## Python scripts
-
-Solutions for tasks that are not everyday.
-
-- [scap_novx](https://github.com/peter88213/scap_novx/): 
-  Python script for generating a *novelibre* project from a *Scapple* outline.
-- [novx_xtg](https://github.com/peter88213/novx_xtg/): 
-  Python script for exporting XPress tagged text from *novelibre* projects.
-  
-## OpenOffice/LibreOffice extensions
-
-*Writer* macros that may come in handy when editing your manuscript.
-
-- [novelibre-tools](https://github.com/peter88213/novelibre-tools/):
-  OpenOffice/LibreOffice extension for processing documents 
-  in connection with *novelibre*.
-- [StyleSwitcher](https://peter88213.github.io/StyleSwitcher/):
-  Quickly switch between the style sheets of different document templates. 
-- [curly](https://peter88213.github.io/curly/):
-  Conversion of "curly quotes", 
-  typographical apostrophes, ellipses and so on
-  in several languages.
-- [emph](https://peter88213.github.io/emph/):
-  Use character styles instead of direct formatting to mark up text.
-
 ## Requirements
 
 - [Python](https://www.python.org/) version 3.6+. 
@@ -146,6 +121,34 @@ See the [online manual](https://peter88213.github.io/nvhelp-en/)
 
 - The logos and file icons are made using the free *Pusab* font by Ryoichi Tsunekawa, [Flat-it](http://flat-it.com/).
 - The toolbar icons are based on the [Eva Icons](https://akveo.github.io/eva-icons/#/), published under the [MIT License](http://www.opensource.org/licenses/mit-license.php). The original black and white icons were colored for this plugin by the maintainer. 
+
+## See also
+
+### Python scripts
+
+Solutions for tasks that are not everyday.
+
+- [scap_novx](https://github.com/peter88213/scap_novx/): 
+  Python script for generating a *novelibre* project from a *Scapple* outline.
+- [novx_xtg](https://github.com/peter88213/novx_xtg/): 
+  Python script for exporting XPress tagged text from *novelibre* projects.
+  
+### OpenOffice/LibreOffice extensions
+
+*Writer* macros that may come in handy when editing your manuscript.
+
+- [novelibre-tools](https://github.com/peter88213/novelibre-tools/):
+  OpenOffice/LibreOffice extension for processing documents 
+  in connection with *novelibre*.
+- [StyleSwitcher](https://peter88213.github.io/StyleSwitcher/):
+  Quickly switch between the style sheets of different document templates. 
+- [curly](https://peter88213.github.io/curly/):
+  Conversion of "curly quotes", 
+  typographical apostrophes, ellipses and so on
+  in several languages.
+- [emph](https://peter88213.github.io/emph/):
+  Use character styles instead of direct formatting to mark up text.
+
 
 ## License
 
