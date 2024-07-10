@@ -78,7 +78,6 @@
 
    <target name="zip" description="generate a zipfile">      
       <copy file="${docs-path}/usage.md" tofile="${build-path}/${release}/README.md" />
-      <fixcrlf encoding="utf-8" eol="lf" srcdir="${build-path}/${release}" includes="**/*.*" />
       <copy file="${source-path}/setup.pyw" todir="${build-path}/${release}" />     
       <zip destfile="${dist-path}/${release}.zip" basedir="${build-path}" />
    </target>
