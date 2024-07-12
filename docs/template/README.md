@@ -117,6 +117,10 @@ You may wish to install plugins; the [update checker](https://github.com/peter88
 
 See the [online manual](https://peter88213.github.io/nvhelp-en/)
 
+* [Download manual (PDF, English)](https://github.com/peter88213/nvhelp-en/raw/main/pdf/novelibreuserguide.pdf)
+* [Download manual (PDF, German)](https://github.com/peter88213/nvhelp-de/raw/main/pdf/novelibrebenutzerhandbuch.pdf)
+
+
 ## Credits
 
 - The logos and file icons are made using the free *Pusab* font by Ryoichi Tsunekawa, [Flat-it](http://flat-it.com/).
