@@ -117,6 +117,8 @@ You may wish to install plugins; the [update checker](https://github.com/peter88
 
 See the [online user guide](https://peter88213.github.io/nvhelp-en/)
 
+![Screenshot](docs/Screenshots/help01.png)
+
 There are also PDF versions of the user guide:
 
 * [Download the English manual as PDF](https://github.com/peter88213/nvhelp-en/raw/main/pdf/novelibreuserguide.pdf)
