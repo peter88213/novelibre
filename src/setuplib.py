@@ -264,7 +264,7 @@ def install(installDir, zipped):
             break
 
     #--- Generate registry entries for the context menu (Windows only).
-    if os.name == 'nt':
+    if platform.system() == 'Windows':
         make_context_menu(installDir)
 
     #--- Display a success message.

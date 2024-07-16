@@ -4,7 +4,7 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-import sys
+import platform
 from tkinter import messagebox
 from tkinter import ttk
 import webbrowser
@@ -31,8 +31,8 @@ from novxlib.novx_globals import LOCATION_REPORT_SUFFIX
 from novxlib.novx_globals import LOCLIST_SUFFIX
 from novxlib.novx_globals import MANUSCRIPT_SUFFIX
 from novxlib.novx_globals import PARTS_SUFFIX
-from novxlib.novx_globals import PLOTLIST_SUFFIX
 from novxlib.novx_globals import PLOTLINES_SUFFIX
+from novxlib.novx_globals import PLOTLIST_SUFFIX
 from novxlib.novx_globals import PL_ROOT
 from novxlib.novx_globals import PN_ROOT
 from novxlib.novx_globals import PROOF_SUFFIX
@@ -581,7 +581,7 @@ class NvView:
         self.root.bind(self._KEY_ADD_ELEMENT[0], self._ctrl.add_element)
         self.root.bind(self._KEY_ADD_CHILD[0], self._ctrl.add_child)
         self.root.bind(self._KEY_ADD_PARENT[0], self._ctrl.add_parent)
-        if sys.platform == 'win32':
+        if platform.system() == 'Windows':
             self.root.bind('<4>', self.tv.go_back)
             self.root.bind('<5>', self.tv.go_forward)
         else:
@@ -614,7 +614,7 @@ class NvView:
         self.fileMenu.add_command(label=_('Save'), accelerator=self._KEY_SAVE_PROJECT[1], command=self._ctrl.save_project)
         self.fileMenu.add_command(label=_('Save as...'), accelerator=self._KEY_SAVE_AS[1], command=self._ctrl.save_as)
         self.fileMenu.add_command(label=_('Close'), command=self._ctrl.close_project)
-        if sys.platform == 'win32':
+        if platform.system() == 'Windows':
             self.fileMenu.add_command(label=_('Exit'), accelerator='Alt-F4', command=self._ctrl.on_quit)
         else:
             self.fileMenu.add_command(label=_('Quit'), accelerator=self._KEY_QUIT_PROGRAM[1], command=self._ctrl.on_quit)
