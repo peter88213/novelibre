@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v4.5.0
+
+- API update: Add register/unregister methods to NvView.
+
+Based on novxlib v4.4.0
+
 ### v4.4.2
 
 - Use the customized field titles for document export.

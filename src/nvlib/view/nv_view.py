@@ -151,7 +151,7 @@ class NvView:
 
         #--- Create a novel tree window in the left frame.
         self.tv = TreeViewer(self.leftFrame, self._mdl, self, self._ctrl, prefs)
-        self.views.append(self.tv)
+        self.register_view(self.tv)
         self.tv.pack(expand=True, fill='both')
 
         #--- Middle frame (intended for the content viewer).
@@ -160,7 +160,7 @@ class NvView:
 
         #--- Create a text viewer in the middle frame.
         self.contentsView = ContentsViewer(self.middleFrame, self._mdl, self, self._ctrl)
-        self.views.append(self.contentsView)
+        self.register_view(self.contentsView)
         if prefs['show_contents']:
             self.middleFrame.pack(side='left', expand=False, fill='both')
 
@@ -176,14 +176,14 @@ class NvView:
         self._propWinDetached = False
         if prefs['detach_prop_win']:
             self.detach_properties_frame()
-        self.views.append(self.propertiesView)
+        self.register_view(self.propertiesView)
 
         #--- Add commands and submenus to the main menu.
         self._build_menu()
 
         #--- Add a toolbar.
         self.toolbar = Toolbar(self, self._ctrl)
-        self.views.append(self.toolbar)
+        self.register_view(self.toolbar)
 
         #--- tk root event bindings.
         self._bind_events()
@@ -215,9 +215,9 @@ class NvView:
 
         # "Re-parent" the Properties viewer.
         self.propertiesView.pack_forget()
-        self.views.remove(self.propertiesView)
+        self.unregister_view(self.propertiesView)
         self.propertiesView = PropertiesViewer(self._propertiesWindow, self._mdl, self, self._ctrl)
-        self.views.append(self.propertiesView)
+        self.register_view(self.propertiesView)
         self.propertiesView.pack(expand=True, fill='both')
 
         self._propertiesWindow.protocol("WM_DELETE_WINDOW", self.dock_properties_frame)
@@ -282,9 +282,9 @@ class NvView:
 
         # "Re-parent" the Properties viewer.
         self._propertiesWindow.destroy()
-        self.views.remove(self.propertiesView)
+        self.unregister_view(self.propertiesView)
         self.propertiesView = PropertiesViewer(self.rightFrame, self._mdl, self, self._ctrl)
-        self.views.append(self.propertiesView)
+        self.register_view(self.propertiesView)
         self.propertiesView.pack(expand=True, fill='both')
         self.root.lift()
 
@@ -393,6 +393,10 @@ class NvView:
             except AttributeError:
                 pass
         self.set_title()
+
+    def register_view(self, view):
+        if not view in self.views:
+            self.views.append(view)
 
     def restore_status(self, event=None):
         """Overwrite error message with the status before."""
@@ -549,6 +553,12 @@ class NvView:
                 view.unlock()
             except AttributeError:
                 pass
+
+    def unregister_view(self, view):
+        try:
+            self.views.remove(view)
+        except:
+            pass
 
     def _add_multiple_sections(self):
         n = askinteger(
