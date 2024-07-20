@@ -8,7 +8,7 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
-### v4.5.1
+### v4.5.2
 
 - Update messages for wrong date/time entry.
 
