@@ -25,7 +25,7 @@ organization of their work.
 - *novelibre* also allows you to create and document an underlying structure of **plot lines** 
   (e.g. subplots or character arcs) apart from the chapters and sections. This can then be linked 
   to the sections of the novel text.
-- *novelibre* povides a **plot grid** with plot line notes for each section. This allows you to 
+- *novelibre* provides a **plot grid** with plot line notes for each section. This allows you to 
   see the big picture and keep track of multiple subplots.   
 - To keep track of progress, the **word count** and the **completion status** of the sections are displayed. 
 - Individual chapters and sections can be flagged as "unused" to exclude them from document export.
