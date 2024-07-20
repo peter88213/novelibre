@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.5.0\n"
-"POT-Creation-Date: 2024-07-19 07:26:36\n"
-"PO-Revision-Date: 2024-07-19 07:26:36\n"
+"Project-Id-Version: 4.5.1\n"
+"POT-Creation-Date: 2024-07-20 07:47:04\n"
+"PO-Revision-Date: 2024-07-20 07:47:04\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -925,6 +925,9 @@ msgstr "Plotlinie entfernen"
 msgid "Renamings"
 msgstr "Umbenennungen"
 
+msgid "Required"
+msgstr "Erforderlich"
+
 msgid "Reset chapter number when starting a new part"
 msgstr "Kapitelnummerierung per Teil"
 
@@ -1195,8 +1198,8 @@ msgstr "Falsches Datum"
 msgid "Wrong day"
 msgstr "Falscher Tag"
 
-msgid "Wrong entry: numbers required"
-msgstr "Fehleingabe: Zahlen erforderlich"
+msgid "Wrong entry: number required"
+msgstr "Fehleingabe: Zahl erforderlich"
 
 msgid "Wrong name"
 msgstr "Falscher Name"
@@ -1219,6 +1222,9 @@ msgstr "XML-Gegenstandsdatei"
 msgid "XML location data file"
 msgstr "XML-Schauplatzdatei"
 
+msgid "YYYY-MM-DD"
+msgstr "JJJJ-MM-TT"
+
 msgid "\"Export\" options"
 msgstr "\"Export\"-Optionen"
 
@@ -1233,6 +1239,9 @@ msgstr "gelöscht"
 
 msgid "elements imported"
 msgstr "Elemente importiert"
+
+msgid "hh:mm"
+msgstr "hh:mm"
 
 msgid "last saved on"
 msgstr "zuletzt gespeichert:"

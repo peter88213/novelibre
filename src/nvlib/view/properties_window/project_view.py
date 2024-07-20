@@ -473,7 +473,10 @@ class ProjectView(BasicView):
                 date.fromisoformat(refDateStr)
             except ValueError:
                 self._referenceDate.set(self._element.referenceDate)
-                self._ui.show_error(f'{_("Wrong date")}: "{refDateStr}"', title=_('Input rejected'))
+                self._ui.show_error(
+                    f'{_("Wrong date")}: "{refDateStr}"\n {_("Required")}: {_("YYYY-MM-DD")}',
+                    title=_('Input rejected')
+                    )
             else:
                 self._element.referenceDate = refDateStr
                 if self._element.referenceWeekDay is not None:

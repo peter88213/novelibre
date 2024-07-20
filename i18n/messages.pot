@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.5.0\n"
-"POT-Creation-Date: 2024-07-19 07:26:36\n"
+"Project-Id-Version: 4.5.1\n"
+"POT-Creation-Date: 2024-07-20 07:47:04\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -932,6 +932,9 @@ msgstr ""
 msgid "Renamings"
 msgstr ""
 
+msgid "Required"
+msgstr ""
+
 msgid "Reset chapter number when starting a new part"
 msgstr ""
 
@@ -1202,7 +1205,7 @@ msgstr ""
 msgid "Wrong day"
 msgstr ""
 
-msgid "Wrong entry: numbers required"
+msgid "Wrong entry: number required"
 msgstr ""
 
 msgid "Wrong name"
@@ -1226,6 +1229,9 @@ msgstr ""
 msgid "XML location data file"
 msgstr ""
 
+msgid "YYYY-MM-DD"
+msgstr ""
+
 msgid "by"
 msgstr ""
 
@@ -1233,6 +1239,9 @@ msgid "deleted"
 msgstr ""
 
 msgid "elements imported"
+msgstr ""
+
+msgid "hh:mm"
 msgstr ""
 
 msgid "last saved on"

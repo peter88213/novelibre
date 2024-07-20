@@ -211,7 +211,10 @@ class DatedSectionView(RelatedSectionView):
                             int(dayStr)
                         except ValueError:
                             self._startDay.set(self._element.day)
-                            self._ui.show_error(f'{_("Wrong day")}: "{dayStr}"', title=_('Input rejected'))
+                            self._ui.show_error(
+                                f'{_("Wrong entry: number required")}.',
+                                title=_('Input rejected')
+                                )
                         else:
                             self._element.day = dayStr
                             self._element.date = None
@@ -239,7 +242,10 @@ class DatedSectionView(RelatedSectionView):
                 date.fromisoformat(dateStr)
             except ValueError:
                 self._startDate.set(self._element.date)
-                self._ui.show_error(f'{_("Wrong date")}: "{dateStr}"', title=_('Input rejected'))
+                self._ui.show_error(
+                    f'{_("Wrong date")}: "{dateStr}"\n {_("Required")}: {_("YYYY-MM-DD")}',
+                    title=_('Input rejected')
+                    )
             else:
                 self._element.date = dateStr
 
@@ -257,7 +263,10 @@ class DatedSectionView(RelatedSectionView):
                     time.fromisoformat(timeStr)
                 except ValueError:
                     self._startTime.set(dispTime)
-                    self._ui.show_error(f'{_("Wrong time")}: "{timeStr}"', title=_('Input rejected'))
+                    self._ui.show_error(
+                        f'{_("Wrong time")}: "{timeStr}"\n {_("Required")}: {_("hh:mm")}',
+                        title=_('Input rejected')
+                        )
                 else:
                     while timeStr.count(':') < 2:
                         timeStr = f'{timeStr}:00'
@@ -342,7 +351,7 @@ class DatedSectionView(RelatedSectionView):
             self._lastsMinutes.set(self._element.lastsMinutes)
             self._lastsHours.set(self._element.lastsHours)
             self._lastsDays.set(self._element.lastsDays)
-            self._ui.show_error(f'{_("Wrong entry: numbers required")}.', title=_('Input rejected'))
+            self._ui.show_error(f'{_("Wrong entry: number required")}.', title=_('Input rejected'))
         elif newEntry:
             self._element.lastsMinutes = lastsMinutesStr
             self._element.lastsHours = lastsHoursStr
