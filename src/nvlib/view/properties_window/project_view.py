@@ -474,7 +474,7 @@ class ProjectView(BasicView):
             except ValueError:
                 self._referenceDate.set(self._element.referenceDate)
                 self._ui.show_error(
-                    f'{_("Wrong date")}: "{refDateStr}"\n {_("Required")}: {_("YYYY-MM-DD")}',
+                    f'{_("Wrong date")}: "{refDateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}',
                     title=_('Input rejected')
                     )
             else:

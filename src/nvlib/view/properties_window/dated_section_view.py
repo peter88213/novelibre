@@ -243,7 +243,7 @@ class DatedSectionView(RelatedSectionView):
             except ValueError:
                 self._startDate.set(self._element.date)
                 self._ui.show_error(
-                    f'{_("Wrong date")}: "{dateStr}"\n {_("Required")}: {_("YYYY-MM-DD")}',
+                    f'{_("Wrong date")}: "{dateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}',
                     title=_('Input rejected')
                     )
             else:
@@ -264,7 +264,7 @@ class DatedSectionView(RelatedSectionView):
                 except ValueError:
                     self._startTime.set(dispTime)
                     self._ui.show_error(
-                        f'{_("Wrong time")}: "{timeStr}"\n {_("Required")}: {_("hh:mm")}',
+                        f'{_("Wrong time")}: "{timeStr}"\n{_("Required")}: {_("hh:mm")}',
                         title=_('Input rejected')
                         )
                 else:
