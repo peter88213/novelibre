@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.5.2\n"
-"POT-Creation-Date: 2024-07-20 08:00:37\n"
+"Project-Id-Version: 4.6.0\n"
+"POT-Creation-Date: 2024-07-24 13:42:22\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -1260,6 +1260,12 @@ msgid "novelibre project"
 msgstr ""
 
 msgid "nvhelp-en"
+msgstr ""
+
+msgid "options"
+msgstr ""
+
+msgid "plugin-manager"
 msgstr ""
 
 msgid "unknown"

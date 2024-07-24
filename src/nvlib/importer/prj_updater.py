@@ -8,10 +8,11 @@ from datetime import datetime
 import os
 from tkinter import ttk
 
-from nvlib.nv_globals import prefs
 from novxlib.converter.novx_converter import NovxConverter
 from novxlib.novx_globals import _
 from novxlib.odf.check_odf import odf_is_locked
+from nvlib.nv_globals import open_help
+from nvlib.nv_globals import prefs
 import tkinter as tk
 
 
@@ -44,9 +45,9 @@ class PrjUpdater(tk.Toplevel):
         self._documentCollection.tag_configure('newer', foreground='green')
         self._documentCollection.tag_configure('locked', foreground='red')
 
-        self._documentCollection.column('Document', width=300, minwidth=250, stretch=False)
+        self._documentCollection.column('Document', width=300, minwidth=250, stretch=True)
         self._documentCollection.heading('Document', text=_('Document'), anchor='w')
-        self._documentCollection.column('Date', width=120, minwidth=120, stretch=False)
+        self._documentCollection.column('Date', minwidth=120, stretch=False)
         self._documentCollection.heading('Date', text=_('Date'), anchor='w')
 
         # "Discard after import" checkbox.
@@ -88,7 +89,15 @@ class PrjUpdater(tk.Toplevel):
         # "Close" button.
         ttk.Button(window, text=_('Close'), command=self.destroy).pack(padx=5, pady=5, side='right')
 
+        # "Help" button.
+        ttk.Button(
+            window,
+            text=_('Online help'),
+            command=self._open_help
+            ).pack(padx=5, pady=5, side='right')
+
         # Set Key bindings.
+        self.bind('<F1>', self._open_help)
         self._documentCollection.bind('<Double-1>', self._import_document)
         self._documentCollection.bind('<Return>', self._import_document)
 
@@ -163,6 +172,9 @@ class PrjUpdater(tk.Toplevel):
         importButtonState = 'disabled'
         self._importButton.configure(state=importButtonState)
         self.list_documents()
+
+    def _open_help(self, event=None):
+        open_help(f'import_menu.html')
 
     def _update_project(self, event=None):
         pass

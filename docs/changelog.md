@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v4.6.0
+
+- Provide context sensitive help via F1 key and several mouse buttons.
+
+Based on novxlib v4.4.0
+
 ### v4.5.2
 
 - Update messages for wrong date/time entry.

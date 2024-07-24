@@ -6,8 +6,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from nvlib.nv_globals import prefs
 from novxlib.novx_globals import _
+from nvlib.nv_globals import open_help
+from nvlib.nv_globals import prefs
 import tkinter as tk
 
 
@@ -59,10 +60,23 @@ class ExportOptionsWindow(tk.Toplevel):
             self,
             text=_('Close'),
             command=self.destroy
-            ).pack(padx=5, pady=5, anchor='e')
+            ).pack(padx=5, pady=5, side='right')
+
+        # "Help" button.
+        ttk.Button(
+            self,
+            text=_('Online help'),
+            command=self._open_help
+            ).pack(padx=5, pady=5, side='right')
+
+        # Set Key bindings.
+        self.bind('<F1>', self._open_help)
 
     def _change_ask_doc_open(self, *args):
         prefs['ask_doc_open'] = self._askDocOpen.get()
 
     def _change_lock_on_export(self, *args):
         prefs['lock_on_export'] = self._lockOnExport.get()
+
+    def _open_help(self, event=None):
+        open_help(f'export_menu.html#{_("options").lower()}')

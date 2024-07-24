@@ -6,10 +6,11 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from nvlib.nv_globals import prefs
-from nvlib.widgets.drag_drop_listbox import DragDropListbox
 from novxlib.novx_globals import _
 from novxlib.novx_globals import list_to_string
+from nvlib.nv_globals import open_help
+from nvlib.nv_globals import prefs
+from nvlib.widgets.drag_drop_listbox import DragDropListbox
 import tkinter as tk
 
 
@@ -91,7 +92,17 @@ class ViewOptionsWindow(tk.Toplevel):
             self,
             text=_('Close'),
             command=self.destroy
-            ).pack(padx=5, pady=5, anchor='e')
+            ).pack(padx=5, pady=5, side='right')
+
+        # "Help" button.
+        ttk.Button(
+            self,
+            text=_('Online help'),
+            command=self._open_help
+            ).pack(padx=5, pady=5, side='right')
+
+        # Set Key bindings.
+        self.bind('<F1>', self._open_help)
 
     def _change_colors(self, *args, **kwargs):
         cmStr = self._coloringModeStr.get()
@@ -110,3 +121,6 @@ class ViewOptionsWindow(tk.Toplevel):
     def _change_icon_size(self, *args):
         prefs['large_icons'] = self._largeIcons.get()
         self._ui.show_info(_('The change takes effect after next startup.'), title=f'{_("Change icon size")}')
+
+    def _open_help(self, event=None):
+        open_help(f'view_menu.html#{_("options").lower()}')

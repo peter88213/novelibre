@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="novelibre" basedir=".">
-	<property name="version" value="4.5.2" />
+	<property name="version" value="4.6.0" />
 	<property name="test-app" value="novelibre" />
 	
 	<property name="source-path" location="../src" />

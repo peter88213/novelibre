@@ -43,6 +43,8 @@ from novxlib.novx_globals import XREF_SUFFIX
 from novxlib.novx_globals import _
 from novxlib.ui.set_icon_tk import set_icon
 from nvlib.exporter.export_options_window import ExportOptionsWindow
+from nvlib.nv_globals import HOME_URL
+from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
 from nvlib.view.contents_window.contents_viewer import ContentsViewer
 from nvlib.view.icons import Icons
@@ -61,8 +63,6 @@ INI_NR_NEW_SECTIONS = 1
 
 class NvView:
     """Main view of the tkinter GUI framework for novelibre."""
-    _HELP_URL = f'https://peter88213.github.io/{_("nvhelp-en")}/'
-    _HOME_URL = 'https://github.com/peter88213/novelibre/'
     _KEY_ADD_CHILD = ('<Control-Alt-n>', 'Ctrl-Alt-N')
     _KEY_ADD_ELEMENT = ('<Control-n>', 'Ctrl-N')
     _KEY_ADD_PARENT = ('<Control-Alt-Shift-N>', 'Ctrl-Alt-Shift-N')
@@ -596,6 +596,7 @@ class NvView:
             self.root.bind('<5>', self.tv.go_forward)
         else:
             self.root.bind(self._KEY_QUIT_PROGRAM[0], self._ctrl.on_quit)
+        self.root.bind('<F1>', self._open_help)
 
     def _build_menu(self):
         """Add commands and submenus to the main menu."""
@@ -765,8 +766,8 @@ class NvView:
         # "Help" menu.
         self.helpMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Help'), menu=self.helpMenu)
-        self.helpMenu.add_command(label=_('Online help'), command=lambda: webbrowser.open(self._HELP_URL))
-        self.helpMenu.add_command(label=f"novelibre {_('Home page')}", command=lambda: webbrowser.open(self._HOME_URL))
+        self.helpMenu.add_command(label=_('Online help'), command=self._open_help)
+        self.helpMenu.add_command(label=f"novelibre {_('Home page')}", command=lambda: webbrowser.open(HOME_URL))
 
     def _export_options(self, event=None):
         """Open a toplevel window to edit the export options."""
@@ -775,6 +776,9 @@ class NvView:
         windowGeometry = f'+{int(x)+offset}+{int(y)+offset}'
         ExportOptionsWindow(windowGeometry, self)
         return 'break'
+
+    def _open_help(self, event=None):
+        open_help('')
 
     def _view_options(self, event=None):
         """Open a toplevel window to edit the view options."""

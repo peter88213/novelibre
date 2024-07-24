@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.5.2\n"
-"POT-Creation-Date: 2024-07-20 08:00:37\n"
-"PO-Revision-Date: 2024-07-20 08:00:37\n"
+"Project-Id-Version: 4.6.0\n"
+"POT-Creation-Date: 2024-07-24 13:42:22\n"
+"PO-Revision-Date: 2024-07-24 13:42:22\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1260,6 +1260,12 @@ msgstr "novelibre-Projekt"
 
 msgid "nvhelp-en"
 msgstr "nvhelp-de"
+
+msgid "options"
+msgstr "Optionen"
+
+msgid "plugin-manager"
+msgstr "pluginmanager"
 
 msgid "unknown"
 msgstr "unbekannt"

@@ -8,6 +8,7 @@ from tkinter import ttk
 import webbrowser
 
 from novxlib.novx_globals import _
+from nvlib.nv_globals import open_help
 import tkinter as tk
 
 
@@ -82,6 +83,16 @@ class PluginManager(tk.Toplevel):
         # "Close" button.
         ttk.Button(window, text=_('Close'), command=self.destroy).pack(padx=5, pady=5, side='right')
 
+        # "Help" button.
+        ttk.Button(
+            window,
+            text=_('Online help'),
+            command=self._open_help
+            ).pack(padx=5, pady=5, side='right')
+
+        # Set Key bindings.
+        self.bind('<F1>', self._open_help)
+
     def _delete_module(self, event=None):
         moduleName = self._moduleCollection.selection()[0]
         if moduleName:
@@ -109,6 +120,9 @@ class PluginManager(tk.Toplevel):
                 pass
         self._homeButton.configure(state=homeButtonState)
         self._deleteButton.configure(state=deleteButtonState)
+
+    def _open_help(self, event=None):
+        open_help(f'tools_menu.html#{_("plugin-manager").lower()}')
 
     def _open_home_page(self, event=None):
         moduleName = self._moduleCollection.selection()[0]
