@@ -70,6 +70,7 @@ class NvView:
     _KEY_DETACH_PROPERTIES = ('<Control-Alt-d>', 'Ctrl-Alt-D')
     _KEY_FOLDER = ('<Control-p>', 'Ctrl-P')
     _KEY_LOCK_PROJECT = ('<Control-l>', 'Ctrl-L')
+    _KEY_OPEN_HELP = ('<F1>', 'F1')
     _KEY_OPEN_PROJECT = ('<Control-o>', 'Ctrl-O')
     _KEY_QUIT_PROGRAM = ('<Control-q>', 'Ctrl-Q')
     _KEY_REFRESH_TREE = ('<F5>', 'F5')
@@ -596,7 +597,7 @@ class NvView:
             self.root.bind('<5>', self.tv.go_forward)
         else:
             self.root.bind(self._KEY_QUIT_PROGRAM[0], self._ctrl.on_quit)
-        self.root.bind('<F1>', self._open_help)
+        self.root.bind(self._KEY_OPEN_HELP[0], self._open_help)
 
     def _build_menu(self):
         """Add commands and submenus to the main menu."""
@@ -766,7 +767,7 @@ class NvView:
         # "Help" menu.
         self.helpMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Help'), menu=self.helpMenu)
-        self.helpMenu.add_command(label=_('Online help'), command=self._open_help)
+        self.helpMenu.add_command(label=_('Online help'), accelerator=self._KEY_OPEN_HELP[1], command=self._open_help)
         self.helpMenu.add_command(label=f"novelibre {_('Home page')}", command=lambda: webbrowser.open(HOME_URL))
 
     def _export_options(self, event=None):

@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v4.6.1
+
+- Add accelerator key to the "Online help" menu entry.
+
+Based on novxlib v4.4.0
+
 ### v4.6.0
 
 - Provide context sensitive help via F1 key and several mouse buttons.
