@@ -42,7 +42,7 @@ def read_translations(filePath):
 
 translations = {}
 read_translations('../i18n/de.po')
-read_translations('../../novelyst/i18n/de.po')
+read_translations('../../novelibre/i18n/de.po')
 
 # Sort the terms by length to minimize errors.
 sortedTranslations = sorted(translations, key=len, reverse=True)
