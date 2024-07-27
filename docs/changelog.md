@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v4.6.2
+
+- Fix a bug where no modification is indicated when the reference date is cleared.
+
+Based on novxlib v4.4.1
+
 ### v4.6.1
 
 - Add accelerator key to the "Online help" menu entry.
