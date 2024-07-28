@@ -4,7 +4,6 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from datetime import date
 from tkinter import ttk
 
 from novxlib.model.date_time_tools import get_age
@@ -18,6 +17,7 @@ from novxlib.novx_globals import LOCATION_PREFIX
 from novxlib.novx_globals import _
 from novxlib.novx_globals import list_to_string
 from novxlib.novx_globals import string_to_list
+from nvlib.nv_globals import datestr
 from nvlib.nv_globals import prefs
 from nvlib.view.properties_window.basic_view import BasicView
 from nvlib.widgets.collection_box import CollectionBox
@@ -387,7 +387,7 @@ class RelatedSectionView(BasicView):
         if charList:
             self._ui.show_info(
                 '\n'.join(charList),
-                title=f'{_("Date")}: {date.fromisoformat(now).strftime("%x")}'
+                title=f'{_("Date")}: {datestr(now)}'
                 )
 
     def _toggle_relation_frame(self, event=None):

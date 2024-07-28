@@ -7,7 +7,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 
 from nvlib.model.nv_treeview import NvTreeview
-from nvlib.nv_globals import prefs, to_string
+from nvlib.nv_globals import get_section_date_str
+from nvlib.nv_globals import prefs
+from nvlib.nv_globals import to_string
 from nvlib.view.tree_window.history_list import HistoryList
 from nvlib.widgets.context_menu import ContextMenu
 from novxlib.novx_globals import PL_ROOT
@@ -752,7 +754,7 @@ class TreeViewer(ttk.Frame):
     def _get_date_or_day(self, scId):
         """Return section date or day as a string for display."""
         if self._date_is_valid(self._mdl.novel.sections[scId]):
-            return self._mdl.novel.sections[scId].localeDate
+            return get_section_date_str(self._mdl.novel.sections[scId])
 
         if self._mdl.novel.sections[scId].day is not None:
             return f'{_("Day")} {self._mdl.novel.sections[scId].day}'

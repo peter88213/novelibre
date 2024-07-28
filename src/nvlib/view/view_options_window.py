@@ -60,10 +60,22 @@ class ViewOptionsWindow(tk.Toplevel):
         ttk.Separator(frame1, orient='horizontal').pack(fill='x', pady=10)
 
         # Checkbox for large toolbar buttons.
-
         self._largeIcons = tk.BooleanVar(frame1, value=prefs['large_icons'])
-        ttk.Checkbutton(frame1, text=_('Large toolbar icons'), variable=self._largeIcons).pack(padx=5, pady=5, anchor='w')
-        self._largeIcons.trace('w', self._change_icon_size)
+        ttk.Checkbutton(
+            frame1,
+            text=_('Large toolbar icons'),
+            variable=self._largeIcons,
+            command=self._change_icon_size,
+            ).pack(padx=5, pady=5, anchor='w')
+
+        # Checkbox for ISO-formatted date display.
+        self._localizeDate = tk.BooleanVar(frame1, value=prefs['localize_date'])
+        ttk.Checkbutton(
+            frame1,
+            text=_('Display localized dates'),
+            variable=self._localizeDate,
+            command=self._change_localize_date,
+            ).pack(padx=5, pady=5, anchor='w')
 
         # Listbox for column reordering.
         ttk.Label(
@@ -121,6 +133,11 @@ class ViewOptionsWindow(tk.Toplevel):
     def _change_icon_size(self, *args):
         prefs['large_icons'] = self._largeIcons.get()
         self._ui.show_info(_('The change takes effect after next startup.'), title=f'{_("Change icon size")}')
+
+    def _change_localize_date(self, *args):
+        prefs['localize_date'] = self._localizeDate.get()
+        self._ui.tv.refresh()
+        self._ui.propertiesView.refresh()
 
     def _open_help(self, event=None):
         open_help(f'view_menu.html#{_("options").lower()}')

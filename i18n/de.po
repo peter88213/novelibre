@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.6.2\n"
-"POT-Creation-Date: 2024-07-27 13:35:34\n"
-"PO-Revision-Date: 2024-07-27 13:35:34\n"
+"Project-Id-Version: 4.7.0\n"
+"POT-Creation-Date: 2024-07-28 15:52:02\n"
+"PO-Revision-Date: 2024-07-28 15:52:02\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -342,6 +342,9 @@ msgstr "Dokumente nur verwerfen, falls Abschnitte geteilt wurden"
 
 msgid "Discard manuscript"
 msgstr "Manuskript verwerfen"
+
+msgid "Display localized dates"
+msgstr "Lokalisierte Datumsangaben anzeigen"
 
 msgid "Do not auto-number this chapter"
 msgstr "Dieses Kapitel nicht automatisch nummerieren"

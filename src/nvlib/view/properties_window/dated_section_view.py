@@ -13,6 +13,8 @@ from tkinter import ttk
 from novxlib.model.date_time_tools import get_specific_date
 from novxlib.novx_globals import WEEKDAYS
 from novxlib.novx_globals import _
+from nvlib.nv_globals import datestr
+from nvlib.nv_globals import get_section_date_str
 from nvlib.nv_globals import prefs
 from nvlib.view.properties_window.related_section_view import RelatedSectionView
 from nvlib.widgets.folding_frame import FoldingFrame
@@ -373,7 +375,7 @@ class DatedSectionView(RelatedSectionView):
             self._weekDay.set('')
         self._startDate.set(self._element.date)
         if self._element.localeDate:
-            displayDate = self._element.localeDate
+            displayDate = get_section_date_str(self._element)
         elif self._element.day:
             displayDate = f'{_("Day")} {self._element.day}'
         else:
@@ -545,7 +547,7 @@ class DatedSectionView(RelatedSectionView):
         self._ui.show_info(
             f'{_("Moon phase")}: '\
             f'{self._mdl.nvService.get_moon_phase_str(now)}',
-            title=f'{_("Date")}: {date.fromisoformat(now).strftime("%x")}'
+            title=f'{_("Date")}: {datestr(now)}'
             )
 
     def _toggle_date(self, event=None):

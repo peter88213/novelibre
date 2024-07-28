@@ -8,6 +8,7 @@ from datetime import date
 import os
 from tkinter import ttk
 
+from nvlib.nv_globals import datestr
 from nvlib.nv_globals import prefs
 from nvlib.view.properties_window.basic_view import BasicView
 from nvlib.widgets.folding_frame import FoldingFrame
@@ -610,7 +611,7 @@ class ProjectView(BasicView):
                 WEEKDAYS[self._element.referenceWeekDay]
                 )
             self._localeDate.set(
-                date.fromisoformat(self._element.referenceDate).strftime('%x')
+                datestr(self._element.referenceDate)
                 )
         else:
             self._referenceWeekDay.set('')

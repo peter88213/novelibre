@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v4.7.0
+
+- API change: New option "localize_date".
+- Make date localization optional (Closes #26).
+
+Based on novxlib v4.4.2
+
 ### v4.6.2
 
 - Fix a bug where no modification is indicated when the reference date is cleared.
