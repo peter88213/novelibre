@@ -14,13 +14,14 @@ from shutil import copy2
 from shutil import rmtree
 import sys
 
-import translate_de
 sys.path.insert(0, f'{os.getcwd()}/../../novxlib/src')
 import build_tools
+import translate_de
 
 APP = 'novelibre'
-VERSION = '4.7.1'
+VERSION = '4.7.0'
 RELEASE = f'{APP}_v{VERSION}'
+MO_FILE = 'novelibre.mo'
 
 SOURCE_DIR = '../src/'
 TEST_DIR = '../test/'
@@ -30,10 +31,10 @@ BUILD_BASE = '../build'
 BUILD_DIR = f'{BUILD_BASE}/{RELEASE}'
 DIST_DIR = '../dist'
 
-
-def collect_dist(buildDir):
-    print(f'Copying "{TEST_FILE}" to "{buildDir}" ...')
-    copy2(TEST_FILE, buildDir)
+distFiles = [
+    (TEST_FILE, BUILD_DIR),
+    (f'{SOURCE_DIR}setuplib.py', BUILD_DIR),
+]
 
 
 def build_app():
@@ -51,13 +52,32 @@ def build_package():
     except FileNotFoundError:
         pass
     os.makedirs(DIST_DIR)
-    build_tools.make_pyz(BUILD_DIR, f'{DIST_DIR}/{RELEASE}')
-    build_tools.make_zip(BUILD_DIR, f'{DIST_DIR}/{RELEASE}')
+    build_tools.make_pyz(BUILD_DIR, DIST_DIR, RELEASE)
+    build_tools.make_zip(BUILD_DIR, DIST_DIR, RELEASE)
 
 
 def build_translation():
-    if not translate_de.main(version=VERSION):
+    if not MO_FILE:
+        return
+
+    translation = translate_de.main(
+        MO_FILE,
+        app='novelibre',
+        version=VERSION
+        )
+    if translation is None:
         sys.exit(1)
+
+    i18Dir, moDir = translation
+    distFiles.append((
+        f'{i18Dir}/{moDir}/{MO_FILE}',
+        f'{BUILD_DIR}/{moDir}'
+        ))
+
+
+def clean_up():
+    print(f'Removing "{TEST_FILE}" ...')
+    os.remove(TEST_FILE)
 
 
 def prepare_package():
@@ -66,8 +86,7 @@ def prepare_package():
         rmtree(BUILD_BASE)
     except FileNotFoundError:
         pass
-    os.makedirs(BUILD_DIR)
-    collect_dist(BUILD_DIR)
+    build_tools.collect_dist_files(distFiles)
 
 
 def main():
@@ -75,6 +94,7 @@ def main():
     build_translation()
     prepare_package()
     build_package()
+    clean_up()
 
 
 if __name__ == '__main__':
