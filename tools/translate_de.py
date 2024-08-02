@@ -38,18 +38,22 @@ import translations
 import msgfmt
 
 APP_NAME = 'novelibre'
-PO_PATH = '../i18n/de.po'
-MO_PATH = '../i18n/locale/de/LC_MESSAGES/novelibre.mo'
+I18_DIR = '../i18n'
+MO_DIR = f'{I18_DIR}/locale/de/LC_MESSAGES'
+PO_PATH = f'{I18_DIR}/de.po'
+MO_PATH = f'{MO_DIR}/novelibre.mo'
 MO_COPY = '../src/locale/de/LC_MESSAGES/novelibre.mo'
 
 
 def main(version='unknown'):
-    if translations.main('de', app=APP_NAME, appVersion=version, json=True):
-        print(f'Writing "{MO_PATH}" ...')
-        msgfmt.make(PO_PATH, MO_PATH)
-        copyfile(MO_PATH, MO_COPY)
-    else:
-        sys.exit(1)
+    if not translations.main('de', app=APP_NAME, appVersion=version, json=True):
+        return False
+
+    os.makedirs(MO_DIR, exist_ok=True)
+    print(f'Writing "{MO_PATH}" ...')
+    msgfmt.make(PO_PATH, MO_PATH)
+    copyfile(MO_PATH, MO_COPY)
+    return True
 
 
 if __name__ == '__main__':

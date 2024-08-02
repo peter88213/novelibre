@@ -87,14 +87,12 @@ An easy way may be to put a posting in the [novelibre forum](https://github.com/
 │       ├── inliner.py
 │       ├── pgettext.py
 │       ├── translations.py
+│       ├── build_tools.py
 │       └── msgfmt.py
 └── novelibre/
     ├── src/
-    ├── test/
     └── tools/ 
-        ├── build.xml
-        ├── build_novelibre.py
-        ├── make_pot.py
+        ├── build.py
         └── translate_de.py
 ```
 
@@ -105,8 +103,13 @@ See https://github.com/peter88213/novxlib/blob/main/docs/conventions.md
 ## Development tools
 
 - [Python](https://python.org) version 3.11.
+- **build.py** starts the building and packaging process.
+- **translate_de.py** is called by the build script to provide 
+  a German translation with the regular release.
+
+### Optional IDE
 - [Eclipse IDE](https://eclipse.org) with [PyDev](https://pydev.org) and *EGit*.
-- Apache Ant is used for building the application.
+- Apache Ant can be used for starting the **build.py** script.
 
 ## Plugin development
 
