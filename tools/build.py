@@ -72,10 +72,9 @@ def build_translation():
         sys.exit(1)
 
     i18Dir, moDir = translation
-    distFiles.append((
-        f'{i18Dir}/{moDir}/{MO_FILE}',
-        f'{BUILD_DIR}/{moDir}'
-        ))
+    distFiles.append(
+        (f'{i18Dir}/{moDir}/{MO_FILE}', f'{BUILD_DIR}/{moDir}')
+        )
 
 
 def clean_up():
