@@ -14,14 +14,8 @@
 	<property name="release" value="${application}_v${version}" />
 
 	<target name="build" description="inline all library modules">
-		<delete file="${test-path}/${test-app}.py" />
 		<exec executable="python" failonerror="true">
-		    <arg value="make_pot.py"/>
-		    <arg value="${version}"/>
-		</exec>
-		<exec executable="python" failonerror="true">
-		    <arg value="translate_de.py"/>
-		    <arg value="${version}"/>
+		    <arg value="build.py"/>
 		</exec>
 	</target>
 
@@ -71,15 +65,5 @@
 		<replace encoding="utf-8" file="../VERSION" token="0.99.0" value="${version}" />
 	</target>
 
-	<target name="clean" description="clean up">		
-		<delete file="${test-path}/${test-app}.py" />
-		<delete file="${test-path}/test_${test-app}.py" />		
-	</target>
-
-   <target name="zip" description="generate a zipfile">      
-      <copy file="${docs-path}/usage.md" tofile="${build-path}/${release}/README.md" />
-      <copy file="${source-path}/setup.pyw" todir="${build-path}/${release}" />     
-      <zip destfile="${dist-path}/${release}.zip" basedir="${build-path}" />
-   </target>
    
 </project>

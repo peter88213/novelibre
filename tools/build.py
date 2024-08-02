@@ -34,6 +34,8 @@ DIST_DIR = '../dist'
 distFiles = [
     (TEST_FILE, BUILD_DIR),
     (f'{SOURCE_DIR}setuplib.py', BUILD_DIR),
+    (f'{SOURCE_DIR}relocate.py', BUILD_DIR),
+    ('../LICENSE', BUILD_DIR),
 ]
 
 
@@ -46,7 +48,7 @@ def build_app():
 
 
 def build_package():
-    print(f'Providing empty "{DIST_DIR}" ...')
+    print(f'\nProviding empty "{DIST_DIR}" ...')
     try:
         rmtree(DIST_DIR)
     except FileNotFoundError:
@@ -76,17 +78,21 @@ def build_translation():
 
 
 def clean_up():
-    print(f'Removing "{TEST_FILE}" ...')
+    print(f'\nRemoving "{TEST_FILE}" ...')
     os.remove(TEST_FILE)
 
 
 def prepare_package():
-    print(f'Providing empty "{BUILD_DIR}" ...')
+    print(f'\nProviding empty "{BUILD_DIR}" ...')
     try:
         rmtree(BUILD_BASE)
     except FileNotFoundError:
         pass
     build_tools.collect_dist_files(distFiles)
+    build_tools.insert_version_number(
+        f'{BUILD_DIR}/setuplib.py',
+        version=VERSION
+        )
 
 
 def main():
