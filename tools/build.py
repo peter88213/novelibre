@@ -43,8 +43,6 @@ def build_app():
     os.makedirs(TEST_DIR, exist_ok=True)
     build_tools.inline_modules(SOURCE_FILE, TEST_FILE)
     build_tools.insert_version_number(TEST_FILE, version=VERSION)
-    if not build_tools.make_pot(TEST_FILE, app=APP, version=VERSION):
-        sys.exit(1)
 
 
 def build_package():
@@ -61,6 +59,9 @@ def build_package():
 def build_translation():
     if not MO_FILE:
         return
+
+    if not build_tools.make_pot(TEST_FILE, app=APP, version=VERSION):
+        sys.exit(1)
 
     translation = translate_de.main(
         MO_FILE,
