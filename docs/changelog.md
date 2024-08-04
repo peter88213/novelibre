@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v4.8.0
+
+- Use a special paragraph style for the chapter beginnings in the manuscript and in the final document.
+- Use translated names for the custom ODT styles used.
+
+Based on novxlib v4.5.0
+
 ### v4.7.0
 
 - API change: New option "localize_date".
