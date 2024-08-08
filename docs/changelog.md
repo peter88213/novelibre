@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v4.8.2
+
+- Validating model object property types to prevent broken plugins from causing major damage.
+
+Based on novxlib v4.5.2
+
 ### v4.8.1
 
 - Prevent overwriting novx files with incomplete XML structures in case of conversion errors. 
