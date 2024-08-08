@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.8.0\n"
-"POT-Creation-Date: 2024-08-04 13:24:12\n"
+"Project-Id-Version: 4.8.1\n"
+"POT-Creation-Date: 2024-08-08 14:38:57\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -164,6 +164,9 @@ msgstr ""
 msgid "Cannot read file"
 msgstr ""
 
+msgid "Cannot save the project"
+msgstr ""
+
 msgid "Cannot save: The project is locked"
 msgstr ""
 
@@ -297,6 +300,9 @@ msgid "Create from ODT..."
 msgstr ""
 
 msgid "Created {0} on {1}."
+msgstr ""
+
+msgid "Critical Error"
 msgstr ""
 
 msgid "Cross reference"

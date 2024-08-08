@@ -482,7 +482,9 @@ class NvController:
         # closing the current element _view after checking for modifications
         if self._mdl.isModified and not doNotSave:
             if self._ui.ask_yes_no(_('Save changes?')):
-                self.save_project()
+                if not self.save_project():
+                    self._ui.show_error(_('Cannot save the project'), _('Critical Error'))
+
         self._ui.propertiesView._view_nothing()
         self._mdl.close_project()
         self._ui.tv.reset_view()

@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v4.8.1
+
+- Prevent overwriting novx files with incomplete XML structures in case of conversion errors. 
+- Show a popup message, if saving fails.
+
+Based on novxlib v4.5.1
+
 ### v4.8.0
 
 - Use a special paragraph style for the chapter beginnings in the manuscript and in the final document.
