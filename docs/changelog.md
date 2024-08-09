@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v4.8.3
+
+- Fix a regression from v4.8.2 where project files could be mistakenly rejected as corrupted.
+
+Based on novxlib v4.5.3
+
 ### v4.8.2
 
 - Validating model object property types to prevent broken plugins from causing major damage.
