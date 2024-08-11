@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v4.9.1
+
+- Remove "private" tkinter imports that would not work with Linux.
+
+Based on novxlib v4.5.3
+
 ### v4.9.0
 
 - Make the right mouse button work under Mac OS.

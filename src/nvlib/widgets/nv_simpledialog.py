@@ -28,7 +28,6 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from tkinter import _get_temp_root, _destroy_temp_root
 from tkinter import messagebox
 from tkinter import ttk
 
@@ -41,8 +40,6 @@ class SimpleDialog:
     def __init__(self, master,
                  text='', buttons=[], default=None, cancel=None,
                  title=None, class_=None):
-        if master is None:
-            master = _get_temp_root()
         if class_:
             self.root = tk.Toplevel(master, class_=class_)
         else:
@@ -116,9 +113,6 @@ class Dialog(tk.Toplevel):
             title -- the dialog title
         """
         master = parent
-        if master is None:
-            master = _get_temp_root()
-
         tk.Toplevel.__init__(self, master)
 
         self.withdraw()  # remain invisible for now
@@ -161,7 +155,6 @@ class Dialog(tk.Toplevel):
         """Destroy the window"""
         self.initial_focus = None
         tk.Toplevel.destroy(self)
-        _destroy_temp_root(self.master)
 
     #
     # construction hooks
