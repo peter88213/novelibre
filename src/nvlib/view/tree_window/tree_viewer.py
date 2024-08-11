@@ -4,17 +4,9 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+import platform
 from tkinter import ttk
 
-from nvlib.model.nv_treeview import NvTreeview
-from nvlib.nv_globals import get_section_date_str
-from nvlib.nv_globals import prefs
-from nvlib.nv_globals import to_string
-from nvlib.view.tree_window.history_list import HistoryList
-from nvlib.widgets.context_menu import ContextMenu
-from novxlib.novx_globals import PL_ROOT
-from novxlib.novx_globals import PLOT_POINT_PREFIX
-from novxlib.novx_globals import PLOT_LINE_PREFIX
 from novxlib.novx_globals import CHAPTER_PREFIX
 from novxlib.novx_globals import CHARACTER_PREFIX
 from novxlib.novx_globals import CH_ROOT
@@ -24,14 +16,23 @@ from novxlib.novx_globals import IT_ROOT
 from novxlib.novx_globals import LC_ROOT
 from novxlib.novx_globals import LOCATION_PREFIX
 from novxlib.novx_globals import MANUSCRIPT_SUFFIX
-from novxlib.novx_globals import SECTIONS_SUFFIX
+from novxlib.novx_globals import PLOT_LINE_PREFIX
+from novxlib.novx_globals import PLOT_POINT_PREFIX
+from novxlib.novx_globals import PL_ROOT
 from novxlib.novx_globals import PN_ROOT
 from novxlib.novx_globals import PRJ_NOTE_PREFIX
 from novxlib.novx_globals import ROOT_PREFIX
+from novxlib.novx_globals import SECTIONS_SUFFIX
 from novxlib.novx_globals import SECTION_PREFIX
 from novxlib.novx_globals import _
 from novxlib.novx_globals import list_to_string
 from novxlib.novx_globals import string_to_list
+from nvlib.model.nv_treeview import NvTreeview
+from nvlib.nv_globals import get_section_date_str
+from nvlib.nv_globals import prefs
+from nvlib.nv_globals import to_string
+from nvlib.view.tree_window.history_list import HistoryList
+from nvlib.widgets.context_menu import ContextMenu
 import tkinter as tk
 import tkinter.font as tkFont
 
@@ -430,7 +431,10 @@ class TreeViewer(ttk.Frame):
         self.tree.bind('<<TreeviewOpen>>', self._on_open_branch)
         self.tree.bind('<<TreeviewClose>>', self._on_close_branch)
         self.tree.bind('<Delete>', self._ctrl.delete_elements)
-        self.tree.bind(kwargs['button_context_menu'], self._on_open_context_menu)
+        if platform.system() == 'Darwin':
+            self.tree.bind('<Button-2>', self._on_open_context_menu)
+        else:
+            self.tree.bind('<Button-3>', self._on_open_context_menu)
         self.tree.bind('<Alt-B1-Motion>', self._on_move_node)
 
     def _browse_tree(self, node):

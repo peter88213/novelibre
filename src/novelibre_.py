@@ -28,7 +28,6 @@ from nvlib.nv_globals import prefs
 
 SETTINGS = dict(
     arcs_width=55,
-    button_context_menu='<Button-3>',
     color_1st_edit='DarkGoldenrod4',
     color_2nd_edit='DarkGoldenrod3',
     color_arc='maroon',
