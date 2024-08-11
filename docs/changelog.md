@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v4.9.0
+
+- Make the right mouse button work under Mac OS.
+- Extend the API, providing a global PLATFORM constant.
+
+Based on novxlib v4.5.3
+
 ### v4.8.3
 
 - Fix a regression from v4.8.2 where project files could be mistakenly rejected as corrupted.
