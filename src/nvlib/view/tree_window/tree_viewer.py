@@ -4,7 +4,7 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-import platform
+from nvlib.nv_globals import PLATFORM
 from tkinter import ttk
 
 from novxlib.novx_globals import CHAPTER_PREFIX
@@ -431,7 +431,7 @@ class TreeViewer(ttk.Frame):
         self.tree.bind('<<TreeviewOpen>>', self._on_open_branch)
         self.tree.bind('<<TreeviewClose>>', self._on_close_branch)
         self.tree.bind('<Delete>', self._ctrl.delete_elements)
-        if platform.system() == 'Darwin':
+        if PLATFORM == 'mac':
             self.tree.bind('<Button-2>', self._on_open_context_menu)
         else:
             self.tree.bind('<Button-3>', self._on_open_context_menu)

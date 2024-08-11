@@ -5,6 +5,7 @@ For further information see https://github.com/peter88213/
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from datetime import date
+import platform
 import webbrowser
 
 from novxlib.novx_globals import _
@@ -13,6 +14,15 @@ prefs = {}
 
 HELP_URL = f'https://peter88213.github.io/{_("nvhelp-en")}/'
 HOME_URL = 'https://github.com/peter88213/novelibre/'
+
+if platform.system() == 'Windows':
+    PLATFORM = 'win'
+elif platform.system() in ('Linux', 'FreeBSD'):
+    PLATFORM = 'ix'
+elif platform.system() == 'Darwin':
+    PLATFORM = 'mac'
+else:
+    PLATFORM = ''
 
 
 def to_string(text):

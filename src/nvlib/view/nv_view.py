@@ -4,7 +4,6 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-import platform
 from tkinter import messagebox
 from tkinter import ttk
 import webbrowser
@@ -44,6 +43,7 @@ from novxlib.novx_globals import _
 from novxlib.ui.set_icon_tk import set_icon
 from nvlib.exporter.export_options_window import ExportOptionsWindow
 from nvlib.nv_globals import HOME_URL
+from nvlib.nv_globals import PLATFORM
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
 from nvlib.view.contents_window.contents_viewer import ContentsViewer
@@ -592,7 +592,7 @@ class NvView:
         self.root.bind(self._KEY_ADD_ELEMENT[0], self._ctrl.add_element)
         self.root.bind(self._KEY_ADD_CHILD[0], self._ctrl.add_child)
         self.root.bind(self._KEY_ADD_PARENT[0], self._ctrl.add_parent)
-        if platform.system() == 'Windows':
+        if PLATFORM == 'win':
             self.root.bind('<4>', self.tv.go_back)
             self.root.bind('<5>', self.tv.go_forward)
         else:
@@ -626,9 +626,9 @@ class NvView:
         self.fileMenu.add_command(label=_('Save'), accelerator=self._KEY_SAVE_PROJECT[1], command=self._ctrl.save_project)
         self.fileMenu.add_command(label=_('Save as...'), accelerator=self._KEY_SAVE_AS[1], command=self._ctrl.save_as)
         self.fileMenu.add_command(label=_('Close'), command=self._ctrl.close_project)
-        if platform.system() == 'Windows':
+        if PLATFORM == 'win':
             self.fileMenu.add_command(label=_('Exit'), accelerator='Alt-F4', command=self._ctrl.on_quit)
-        else:
+        elif PLATFORM == 'ix':
             self.fileMenu.add_command(label=_('Quit'), accelerator=self._KEY_QUIT_PROGRAM[1], command=self._ctrl.on_quit)
 
         # View
