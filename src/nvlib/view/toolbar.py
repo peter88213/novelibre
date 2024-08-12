@@ -176,7 +176,7 @@ class Toolbar:
         # "Add Child" button.
         self._addChildButton = ttk.Button(
             self.buttonBar,
-            text=_('Add'),
+            text=_('Add child'),
             image=self._ui.icons.addChildIcon,
             command=self._ctrl.add_child
             )
@@ -186,7 +186,7 @@ class Toolbar:
         # "Add Parent" button.
         self._addParentButton = ttk.Button(
             self.buttonBar,
-            text=_('Add'),
+            text=_('Add parent'),
             image=self._ui.icons.addParentIcon,
             command=self._ctrl.add_parent
             )
@@ -196,7 +196,7 @@ class Toolbar:
         # "Remove" button.
         self._removeElementButton = ttk.Button(
             self.buttonBar,
-            text=_('Add'),
+            text=_('Remove'),
             image=self._ui.icons.removeIcon,
             command=self._ctrl.delete_elements
             )

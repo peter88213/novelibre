@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.9.1\n"
-"POT-Creation-Date: 2024-08-11 12:56:40\n"
-"PO-Revision-Date: 2024-08-11 12:56:40\n"
+"POT-Creation-Date: 2024-08-12 10:43:40\n"
+"PO-Revision-Date: 2024-08-12 10:43:40\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -58,8 +58,14 @@ msgstr "Projektnotiz hinizufügen"
 msgid "Add Section"
 msgstr "Abschnitt hinzufügen"
 
+msgid "Add child"
+msgstr "Kindelement hinzufügen"
+
 msgid "Add multiple sections"
 msgstr "Mehrere Abschnitte hinzufügen"
+
+msgid "Add parent"
+msgstr "Elternelement hinzufügen"
 
 msgid "Aka"
 msgstr "alias"
@@ -175,6 +181,9 @@ msgstr "Symbolgröße ändern"
 msgid "Chapter"
 msgstr "Kapitel"
 
+msgid "Chapter beginning"
+msgstr "Kapitelanfang"
+
 msgid "Chapter descriptions"
 msgstr "Kapitelbeschreibungen"
 
@@ -186,6 +195,9 @@ msgstr "Präfix Kapitelnummer"
 
 msgid "Chapter number suffix"
 msgstr "Suffix Kapitelnummer"
+
+msgid "Chapter_20_beginning"
+msgstr "Kapitelanfang"
 
 msgid "Chapters belonging to plot line"
 msgstr "Kapitel gehören zur Plotlinie"
@@ -510,6 +522,12 @@ msgstr "Ziele"
 
 msgid "HTML Plot list"
 msgstr "HTML-Plotliste"
+
+msgid "Heading 3 invisible"
+msgstr "Überschrift 3 unsichtbar"
+
+msgid "Heading_20_3_20_invisible"
+msgstr "Überschrift_20_3_20_unsichtbar"
 
 msgid "Help"
 msgstr "Hilfe"
@@ -973,11 +991,23 @@ msgstr "Abschnittsliste"
 msgid "Section list (export only)"
 msgstr "Abschnittsliste (nur Export)"
 
+msgid "Section mark"
+msgstr "Abschnittsmarke"
+
+msgid "Section mark unused"
+msgstr "Abschnittsmarke unbenutzt"
+
 msgid "Section notes"
 msgstr "Abschnittsnotizen"
 
 msgid "Section word count"
 msgstr "Wörter Abschnitt"
+
+msgid "Section_20_mark"
+msgstr "Abschnittsmarke"
+
+msgid "Section_20_mark_20_unused"
+msgstr "Abschnittsmarke_20_unbenutzt"
 
 msgid "Sections belonging to plot line"
 msgstr "Abschnitte gehören zur Plotlinie"
