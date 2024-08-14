@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.9.1\n"
-"POT-Creation-Date: 2024-08-12 10:43:40\n"
-"PO-Revision-Date: 2024-08-12 10:43:40\n"
+"Project-Id-Version: 4.9.2\n"
+"POT-Creation-Date: 2024-08-14 22:09:18\n"
+"PO-Revision-Date: 2024-08-14 22:09:18\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -159,6 +159,9 @@ msgstr "Kann Datei nicht überschreiben"
 
 msgid "Cannot parse File"
 msgstr "Kann Datei nicht parsen"
+
+msgid "Cannot process file"
+msgstr "Kann Datei nicht verarbeiten"
 
 msgid "Cannot read file"
 msgstr "Kann Datei nicht lesen"

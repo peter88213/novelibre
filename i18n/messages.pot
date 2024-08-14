@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.9.1\n"
-"POT-Creation-Date: 2024-08-11 12:56:40\n"
+"Project-Id-Version: 4.9.2\n"
+"POT-Creation-Date: 2024-08-14 22:09:18\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -65,7 +65,13 @@ msgstr ""
 msgid "Add Section"
 msgstr ""
 
+msgid "Add child"
+msgstr ""
+
 msgid "Add multiple sections"
+msgstr ""
+
+msgid "Add parent"
 msgstr ""
 
 msgid "Aka"
@@ -161,6 +167,9 @@ msgstr ""
 msgid "Cannot parse File"
 msgstr ""
 
+msgid "Cannot process file"
+msgstr ""
+
 msgid "Cannot read file"
 msgstr ""
 
@@ -182,6 +191,9 @@ msgstr ""
 msgid "Chapter"
 msgstr ""
 
+msgid "Chapter beginning"
+msgstr ""
+
 msgid "Chapter descriptions"
 msgstr ""
 
@@ -192,6 +204,9 @@ msgid "Chapter number prefix"
 msgstr ""
 
 msgid "Chapter number suffix"
+msgstr ""
+
+msgid "Chapter_20_beginning"
 msgstr ""
 
 msgid "Chapters belonging to plot line"
@@ -516,6 +531,12 @@ msgid "Goals"
 msgstr ""
 
 msgid "HTML Plot list"
+msgstr ""
+
+msgid "Heading 3 invisible"
+msgstr ""
+
+msgid "Heading_20_3_20_invisible"
 msgstr ""
 
 msgid "Help"
@@ -980,10 +1001,22 @@ msgstr ""
 msgid "Section list (export only)"
 msgstr ""
 
+msgid "Section mark"
+msgstr ""
+
+msgid "Section mark unused"
+msgstr ""
+
 msgid "Section notes"
 msgstr ""
 
 msgid "Section word count"
+msgstr ""
+
+msgid "Section_20_mark"
+msgstr ""
+
+msgid "Section_20_mark_20_unused"
 msgstr ""
 
 msgid "Sections belonging to plot line"

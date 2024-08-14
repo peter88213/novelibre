@@ -8,6 +8,15 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### v4.9.2
+
+- Handling novx XML parser error.
+- Using raw strings for regular expressions.
+- Adjusting separators in File.filePath.
+- Avoiding DeprecationWarnings by Python 3.12.
+
+Based on novxlib v4.5.7
+
 ### v4.9.1
 
 - Remove "private" tkinter imports that would not work with Linux.
