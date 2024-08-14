@@ -20,7 +20,7 @@ class ContentsViewer(RichTextNv):
     
     Show the novel contents in a text box.
     """
-    NO_TEXT = re.compile('\<note\>.*?\<\/note\>|\<comment\>.*?\<\/comment\>|\<.+?\>')
+    NO_TEXT = re.compile(r'\<note\>.*?\<\/note\>|\<comment\>.*?\<\/comment\>|\<.+?\>')
 
     def __init__(self, parent, model, view, controller):
         """Put a text box to the specified window.
