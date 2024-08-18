@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.9.5
+
+- Rejecting malformed .nvcx files.
+
+Based on novxlib 4.6.3
+
 ### Version 4.9.4
 
 - Text box discarding illegal characters.
