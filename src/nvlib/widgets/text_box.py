@@ -2,10 +2,12 @@
 
 Copyright (c) 2024 Peter Triesberger
 https://github.com/peter88213
-Published under the MIT License (https://opensource.org/licenses/mit-license.php)
+License: GNU LGPLv3 (https://www.gnu.org/licenses/lgpl-3.0.en.html)
 """
-import tkinter as tk
 from tkinter import ttk
+
+from novxlib.xml.xml_filter import strip_illegal_characters
+import tkinter as tk
 
 
 class TextBox(tk.Text):
@@ -54,7 +56,8 @@ class TextBox(tk.Text):
 
     def get_text(self):
         """Return the whole text."""
-        return self.get('1.0', 'end').strip(' \n')
+        text = self.get('1.0', 'end').strip(' \n')
+        return strip_illegal_characters(text)
 
     def set_text(self, text):
         """Clear the box, reset the change flag, and load text."""

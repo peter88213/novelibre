@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.9.4
+
+- Text box discarding illegal characters.
+- novxlib update for safe XML reading and writing.
+
+Based on novxlib 4.6.2
+
 ### Version 4.9.3
 
 - Refactor for future Python versions.
