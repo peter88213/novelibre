@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### Version 4.9.5
 
-- Rejecting malformed .nvcx files.
+- Rejecting malformed .novx files.
 
 Based on novxlib 4.6.3
 
