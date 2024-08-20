@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.9.6
+
+- Set limits for the application's window size.
+- Refactor: Replace global constants with class constants.
+
+Based on novxlib 4.6.3
+
 ### Version 4.9.5
 
 - Rejecting malformed .novx files.

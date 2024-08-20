@@ -55,14 +55,13 @@ from nvlib.view.view_options_window import ViewOptionsWindow
 from nvlib.widgets.nv_simpledialog import askinteger
 import tkinter as tk
 
-MAX_NR_NEW_SECTIONS = 20
-# maximum number of sections to add in bulk
-INI_NR_NEW_SECTIONS = 1
-# initial value when asking for the number of sections to add
-
 
 class NvView:
     """Main view of the tkinter GUI framework for novelibre."""
+    _MIN_WINDOW_WIDTH = 400
+    _MIN_WINDOW_HEIGHT = 200
+    # minimum size of the application's main window
+
     _KEY_ADD_CHILD = ('<Control-Alt-n>', 'Ctrl-Alt-N')
     _KEY_ADD_ELEMENT = ('<Control-n>', 'Ctrl-N')
     _KEY_ADD_PARENT = ('<Control-Alt-Shift-N>', 'Ctrl-Alt-Shift-N')
@@ -82,6 +81,11 @@ class NvView:
     _KEY_TOGGLE_PROPERTIES = ('<Control-Alt-t>', 'Ctrl-Alt-T')
     _KEY_TOGGLE_VIEWER = ('<Control-t>', 'Ctrl-T')
     _KEY_UNLOCK_PROJECT = ('<Control-u>', 'Ctrl-U')
+
+    _MAX_NR_NEW_SECTIONS = 20
+    # maximum number of sections to add in bulk
+    _INI_NR_NEW_SECTIONS = 1
+    # initial value when asking for the number of sections to add
 
     def __init__(self, model, controller, title):
         """Set up the application's user interface.
@@ -114,6 +118,7 @@ class NvView:
         if prefs.get('root_geometry', None):
             self.root.geometry(prefs['root_geometry'])
         set_icon(self.root, icon='nLogo32')
+        self.root.minsize(self._MIN_WINDOW_WIDTH, self._MIN_WINDOW_HEIGHT)
 
         #---  Add en empty main menu to the root window.
         self.mainMenu = tk.Menu(self.root)
@@ -565,9 +570,9 @@ class NvView:
         n = askinteger(
             title=_('New'),
             prompt=_('How many sections to add?'),
-            initialvalue=INI_NR_NEW_SECTIONS,
+            initialvalue=self._INI_NR_NEW_SECTIONS,
             minvalue=0,
-            maxvalue=MAX_NR_NEW_SECTIONS
+            maxvalue=self._MAX_NR_NEW_SECTIONS
             )
         if n is not None:
             for __ in range(n):
