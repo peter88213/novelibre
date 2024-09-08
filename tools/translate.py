@@ -6,7 +6,8 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import build
 
-build.build_app()
-build.build_translation()
-build.clean_up()
+ab = build.ApplicationBuilder(build.VERSION)
+ab.build_script()
+ab.build_translation()
+ab.clean_up()
 
