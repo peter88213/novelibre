@@ -17,15 +17,14 @@ import build_tools
 import translate_de
 
 VERSION = 'x.x.x'
+PRJ_NAME = 'novelibre'
 
-APP = 'novelibre'
-RELEASE = f'{APP}_v{VERSION}'
-MO_FILE = 'novelibre.mo'
-
+RELEASE = f'{PRJ_NAME}_v{VERSION}'
+MO_FILE = f'{PRJ_NAME}.mo'
 SOURCE_DIR = '../src/'
 TEST_DIR = '../test/'
-SOURCE_FILE = f'{SOURCE_DIR}novelibre_.py'
-TEST_FILE = f'{TEST_DIR}novelibre.py'
+SOURCE_FILE = f'{SOURCE_DIR}{PRJ_NAME}_.py'
+TEST_FILE = f'{TEST_DIR}{PRJ_NAME}.py'
 BUILD_BASE = '../build'
 BUILD_DIR = f'{BUILD_BASE}/{RELEASE}'
 DIST_DIR = '../dist'
@@ -59,11 +58,11 @@ def build_translation():
     if not MO_FILE:
         return
 
-    if not build_tools.make_pot(TEST_FILE, app=APP, version=VERSION):
+    if not build_tools.make_pot(TEST_FILE, app=PRJ_NAME, version=VERSION):
         sys.exit(1)
 
     translation = translate_de.main(
-        MO_FILE, app=APP, version=VERSION)
+        MO_FILE, app=PRJ_NAME, version=VERSION)
     if translation is None:
         sys.exit(1)
 
