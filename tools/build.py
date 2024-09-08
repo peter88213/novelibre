@@ -1,4 +1,4 @@
-"""Build a python script for the novelibre distribution.
+"""Build the novelibre distribution.
         
 In order to distribute a single script without dependencies, 
 this script "inlines" all modules imported from the novxlib package.
@@ -10,16 +10,15 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
-from shutil import copy2
 from shutil import rmtree
 import sys
-
 sys.path.insert(0, f'{os.getcwd()}/../../novxlib/src')
 import build_tools
 import translate_de
 
+VERSION = 'x.x.x'
+
 APP = 'novelibre'
-VERSION = '4.7.0'
 RELEASE = f'{APP}_v{VERSION}'
 MO_FILE = 'novelibre.mo'
 
@@ -39,7 +38,7 @@ distFiles = [
 ]
 
 
-def build_app():
+def build_application():
     os.makedirs(TEST_DIR, exist_ok=True)
     build_tools.inline_modules(SOURCE_FILE, TEST_FILE)
     build_tools.insert_version_number(TEST_FILE, version=VERSION)
@@ -64,10 +63,7 @@ def build_translation():
         sys.exit(1)
 
     translation = translate_de.main(
-        MO_FILE,
-        app='novelibre',
-        version=VERSION
-        )
+        MO_FILE, app=APP, version=VERSION)
     if translation is None:
         sys.exit(1)
 
@@ -96,7 +92,7 @@ def prepare_package():
 
 
 def main():
-    build_app()
+    build_application()
     build_translation()
     prepare_package()
     build_package()
