@@ -42,7 +42,8 @@ download_link = https://github.com/peter88213/{self.PRJ_NAME}/raw/main/dist/{sel
         self.buildDir = f'{self.buildBase}/{self.release}'
         self.distDir = '../dist'
         self.iconDir = f'{self.sourceDir}icons'
-        self.sampleDir = '../sample'
+        self.sampleSource = '../sample'
+        self.sampleTarget = f'{self.buildDir}/sample'
 
         self.distFiles = [
             (self.testFile, self.buildDir),
@@ -59,8 +60,7 @@ download_link = https://github.com/peter88213/{self.PRJ_NAME}/raw/main/dist/{sel
 
     def add_sample(self):
         print('\nAdding sample files ...')
-        SAMPLE_DIR = '../sample'
-        copytree(SAMPLE_DIR, f'{self.buildDir}/{self.PRJ_NAME}_sample')
+        copytree(self.sampleSource, self.sampleTarget)
 
     def build_package(self):
         print(f'\nProviding empty "{self.distDir}" ...')
