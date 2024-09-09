@@ -77,7 +77,7 @@ An easy way may be to put a posting in the [novelibre forum](https://github.com/
 
 *novelibre* depends on the [novxlib](https://github.com/peter88213/novxlib) library which must be present in your file system. It is organized as an Eclipse PyDev project. The official release branch on GitHub is *main*.
 
-### Mandatory directory structure for building the application
+### Mandatory directory structure for building the application package
 
 ```
 .
@@ -87,13 +87,13 @@ An easy way may be to put a posting in the [novelibre forum](https://github.com/
 │       ├── inliner.py
 │       ├── pgettext.py
 │       ├── translations.py
-│       ├── build_tools.py
+│       ├── translate_de.py
+│       ├── package_builder.py
 │       └── msgfmt.py
 └── novelibre/
     ├── src/
     └── tools/ 
-        ├── build.py
-        └── translate_de.py
+        └── build.py
 ```
 
 ### Conventions
@@ -102,10 +102,8 @@ See https://github.com/peter88213/novxlib/blob/main/docs/conventions.md
 
 ## Development tools
 
-- [Python](https://python.org) version 3.11.
+- [Python](https://python.org) version 3.12.
 - **build.py** starts the building and packaging process.
-- **translate_de.py** is called by the build script to provide 
-  a German translation with the regular release.
 
 ### Optional IDE
 - [Eclipse IDE](https://eclipse.org) with [PyDev](https://pydev.org) and *EGit*.

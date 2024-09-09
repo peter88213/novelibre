@@ -13,7 +13,7 @@ from shutil import copytree
 import os
 import sys
 
-sys.path.insert(0, f'{os.getcwd()}/../../novxlib/src')
+sys.path.insert(0, f'{os.getcwd()}/../../novelibre/tools')
 from package_builder import PackageBuilder
 
 VERSION = '4.9.6'
