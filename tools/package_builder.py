@@ -1,7 +1,7 @@
 """Provide a class for novelibre application and plugin package building. 
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/novxlib
+For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from abc import ABC
@@ -73,6 +73,7 @@ download_link = https://github.com/peter88213/{self.PRJ_NAME}/raw/main/dist/{sel
         self.make_zip(self.buildDir, self.distDir, self.release)
 
     def build_script(self):
+        print(f'\nInlining the code of the non-standard libraries ...')
         os.makedirs(self.testDir, exist_ok=True)
         inliner.run(self.sourceFile, self.testFile, self.LOCAL_LIB, self.sourceDir)
         self.inline_modules(self.testFile, self.testFile)
@@ -82,9 +83,11 @@ download_link = https://github.com/peter88213/{self.PRJ_NAME}/raw/main/dist/{sel
         if not self.GERMAN_TRANSLATION:
             return
 
+        print('\nCollecting the strings to translate ...')
         if not self.make_pot(self.testFile, app=self.PRJ_NAME, version=self.version):
             sys.exit(1)
 
+        print('Creating/updating the translations')
         translation = translate_de.main(
             self.moFile, app=self.PRJ_NAME, version=self.version)
         if translation is None:
@@ -107,12 +110,18 @@ download_link = https://github.com/peter88213/{self.PRJ_NAME}/raw/main/dist/{sel
 
     def inline_modules(self, source, target):
         """Inline all non-standard library modules."""
-        NVLIB = 'nvlib'
-        NV_PATH = '../../novelibre/src/'
-        NOVXLIB = 'novxlib'
-        NOVX_PATH = '../../novxlib/src/'
-        inliner.run(source, target, NVLIB, NV_PATH)
-        inliner.run(target, target, NOVXLIB, NOVX_PATH)
+        inliner.run(
+            source,
+            target,
+            'nvlib',
+            '../../novelibre/src/'
+            )
+        inliner.run(
+            target,
+            target,
+            'novxlib',
+            '../../novxlib/src/'
+            )
 
     def insert_version_number(self, source, version='unknown'):
         """Write the actual version string and make sure that Unix EOL is used."""
@@ -182,6 +191,7 @@ download_link = https://github.com/peter88213/{self.PRJ_NAME}/raw/main/dist/{sel
             f.write(text)
 
     def run(self):
+        print(f'*** Building the {self.PRJ_NAME} version {self.version} distribution ***')
         self.build_script()
         self.build_translation()
         self.prepare_package()
