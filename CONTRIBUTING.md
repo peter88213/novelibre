@@ -83,17 +83,18 @@ An easy way may be to put a posting in the [novelibre forum](https://github.com/
 .
 ├── novxlib/
 │   └── src/
-│       ├── novxlib/
-│       ├── inliner.py
-│       ├── pgettext.py
-│       ├── translations.py
-│       ├── translate_de.py
-│       ├── package_builder.py
-│       └── msgfmt.py
+│       └── novxlib/
 └── novelibre/
+    ├── i18n/
     ├── src/
     └── tools/ 
-        └── build.py
+        ├── build.py
+        ├── inliner.py
+        ├── msgfmt.py
+        ├── package_builder.py
+        ├── pgettext.py
+        ├── translate_de.py
+        └── translations.py
 ```
 
 ### Conventions
