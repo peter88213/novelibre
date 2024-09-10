@@ -28,6 +28,11 @@ class PackageBuilder(ABC):
 version = {self.version}
 download_link = https://github.com/peter88213/{self.PRJ_NAME}/raw/main/dist/{self.PRJ_NAME}_v{self.version}.pyzw
 '''
+        self.setupScript = '''#!/usr/bin/python3
+import setuplib
+
+setuplib.main(False)
+'''
         self.versionIniPath = '../VERSION'
         self.landingPage = '../README.md'
         self.landingPageTemplate = '../docs/template/README.md'
@@ -52,17 +57,21 @@ download_link = https://github.com/peter88213/{self.PRJ_NAME}/raw/main/dist/{sel
         ]
 
     def add_extras(self):
+        """Hook for project specific content."""
         pass
 
     def add_icons(self):
+        """Copy icon files into the package directory."""
         print('\nAdding icon files ...')
         copytree(self.iconDir, f'{self.buildDir}/icons')
 
     def add_sample(self):
+        """Copy sample files into the package directory."""
         print('\nAdding sample files ...')
         copytree(self.sampleSource, self.sampleTarget)
 
     def build_package(self):
+        """Pack the contents of the package directory."""
         print(f'\nProviding empty "{self.distDir}" ...')
         try:
             rmtree(self.distDir)
@@ -73,6 +82,7 @@ download_link = https://github.com/peter88213/{self.PRJ_NAME}/raw/main/dist/{sel
         self.make_zip(self.buildDir, self.distDir, self.release)
 
     def build_script(self):
+        """Generate the application/plugin script in the test directory."""
         print(f'\nInlining the code of the non-standard libraries ...')
         os.makedirs(self.testDir, exist_ok=True)
         inliner.run(self.sourceFile, self.testFile, self.LOCAL_LIB, self.sourceDir)
@@ -80,6 +90,7 @@ download_link = https://github.com/peter88213/{self.PRJ_NAME}/raw/main/dist/{sel
         self.insert_version_number(self.testFile, version=self.version)
 
     def build_translation(self):
+        """Generate the German language file for the distribution."""
         if not self.GERMAN_TRANSLATION:
             return
 
@@ -99,10 +110,12 @@ download_link = https://github.com/peter88213/{self.PRJ_NAME}/raw/main/dist/{sel
             )
 
     def clean_up(self):
+        """Remove the application/plugin script from the test directory."""
         print(f'\nRemoving "{self.testFile}" ...')
         os.remove(self.testFile)
 
     def collect_dist_files(self, distFiles):
+        """Copy the listed distribution files into the package directory."""
         for file, targetDir in distFiles:
             os.makedirs(targetDir, exist_ok=True)
             print(f'Copying "{file}" to "{targetDir}" ...')
@@ -155,6 +168,7 @@ download_link = https://github.com/peter88213/{self.PRJ_NAME}/raw/main/dist/{sel
             return False
 
     def make_pyz(self, sourceDir, targetDir, release):
+        """Create the self-extracting installation file."""
         targetFile = f'{targetDir}/{release}.pyzw'
         print(f'Writing "{targetFile}" ...')
         zipapp.create_archive(
@@ -165,13 +179,15 @@ download_link = https://github.com/peter88213/{self.PRJ_NAME}/raw/main/dist/{sel
             )
 
     def make_zip(self, sourceDir, targetDir, release):
-        copy2('../src/setup.pyw', sourceDir)
+        """Create the alternative zip file."""
+        self.write_setup_script(sourceDir)
         copy2('../docs/usage.md', f'{sourceDir}/README.md')
         target = f'{targetDir}/{release}'
         print(f'Writing "{target}.zip" ...')
         make_archive(target, 'zip', sourceDir)
 
     def prepare_package(self):
+        """Create the package directory and populate it with the basic files."""
         print(f'\nProviding empty "{self.buildDir}" ...')
         try:
             rmtree(self.buildBase)
@@ -183,13 +199,6 @@ download_link = https://github.com/peter88213/{self.PRJ_NAME}/raw/main/dist/{sel
             version=self.version
             )
 
-    def rewrite_landing_page(self):
-        print(f'\nRewriting "{self.landingPage}" ...')
-        with open(self.landingPageTemplate, 'r', encoding='utf_8') as f:
-            text = f.read().replace('0.99.0', self.version)
-        with open(self.landingPage, 'w', encoding='utf_8', newline='\n') as f:
-            f.write(text)
-
     def run(self):
         print(f'*** Building the {self.PRJ_NAME} version {self.version} distribution ***')
         self.build_script()
@@ -199,10 +208,25 @@ download_link = https://github.com/peter88213/{self.PRJ_NAME}/raw/main/dist/{sel
         self.build_package()
         self.clean_up()
         self.write_version_ini()
-        self.rewrite_landing_page()
+        self.update_landing_page()
         print('\nDone')
 
+    def update_landing_page(self):
+        """Update the version numbers for download link and documantation."""
+        print(f'\nUpdating "{self.landingPage}" ...')
+        with open(self.landingPageTemplate, 'r', encoding='utf_8') as f:
+            text = f.read().replace('0.99.0', self.version)
+        with open(self.landingPage, 'w', encoding='utf_8', newline='\n') as f:
+            f.write(text)
+
+    def write_setup_script(self, filePath):
+        """Create the setup script for manual installatin from the zip file."""
+        print(f'\nCreating the setup script ...')
+        with open(f'{filePath}/setup.pyw', 'w', encoding='utf_8', newline='\n') as f:
+            f.write(self.setupScript)
+
     def write_version_ini(self):
+        """Create an INI file with version information and download link."""
         print(f'\nRewriting "{self.versionIniPath}" ...')
         with open(self.versionIniPath, 'w', encoding='utf_8', newline='\n') as f:
             f.write(self.versionIni)

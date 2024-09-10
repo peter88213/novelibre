@@ -1,4 +1,4 @@
-"""Move the noveltree installation directory
+"""Move and rename a noveltree installation directory, if any.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
