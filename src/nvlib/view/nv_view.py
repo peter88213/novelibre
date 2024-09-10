@@ -92,6 +92,14 @@ class NvView:
         self._mdl.register_client(self)
         self.views = []
 
+        #--- Select platform specific keys.
+        if PLATFORM == 'win':
+            self.keys = WindowsKeys()
+        elif PLATFORM == 'mac':
+            self.keys = MacKeys()
+        else:
+            self.keys = GenericKeys()
+
         #--- Create the tk root window and set the size.
         self.title = title
         self._statusText = ''
@@ -114,7 +122,7 @@ class NvView:
         #--- Create the status bar.
         self.statusBar = tk.Label(self.root, text='', anchor='w', padx=5, pady=2)
         self.statusBar.pack(expand=False, fill='both')
-        self.statusBar.bind('<Button-1>', self.restore_status)
+        self.statusBar.bind(self.keys.LEFT_CLICK, self.restore_status)
         self.infoWhatText = ''
         self.infoHowText = ''
 
@@ -166,14 +174,6 @@ class NvView:
         if prefs['detach_prop_win']:
             self.detach_properties_frame()
         self.register_view(self.propertiesView)
-
-        #--- Select platform specific keys.
-        if PLATFORM == 'win':
-            self.keys = WindowsKeys()
-        elif PLATFORM == 'mac':
-            self.keys = MacKeys()
-        else:
-            self.keys = GenericKeys()
 
         #--- Add commands and submenus to the main menu.
         self._build_menu()

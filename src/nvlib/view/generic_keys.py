@@ -27,3 +27,8 @@ class GenericKeys:
     TOGGLE_PROPERTIES = ('<Control-Alt-t>', 'Ctrl-Alt-T')
     TOGGLE_VIEWER = ('<Control-t>', 'Ctrl-T')
     UNLOCK_PROJECT = ('<Control-u>', 'Ctrl-U')
+
+    LEFT_CLICK = '<Button-1>'
+    RIGHT_CLICK = '<Button-3>'
+
+    MOVE_NODE = '<Alt-B1-Motion>'

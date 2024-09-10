@@ -25,3 +25,5 @@ class MacKeys(GenericKeys):
     TOGGLE_PROPERTIES = ('<Command-Alt-t>', 'Cmd-Alt-T')
     TOGGLE_VIEWER = ('<Command-t>', 'Cmd-T')
     UNLOCK_PROJECT = ('<Command-u>', 'Cmd-U')
+
+    RIGHT_CLICK = '<Button-2>'
