@@ -15,7 +15,7 @@ class CustomEntry(Entry):
     
     Modifications: 
     - Initialize the buffer empty, so the last "Ctrl-Z" would not clear the entry.
-    - Restore the cursor position when undoint/redoing changes.
+    - Restore the cursor position when undoing/redoing changes.
     """
 
     def __init__(self, parent, *args, **kwargs):
