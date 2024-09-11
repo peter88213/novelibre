@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.10.0\n"
-"POT-Creation-Date: 2024-09-10 11:54:20\n"
-"PO-Revision-Date: 2024-09-10 11:54:20\n"
+"Project-Id-Version: 4.10.1\n"
+"POT-Creation-Date: 2024-09-11 13:31:46\n"
+"PO-Revision-Date: 2024-09-11 13:31:46\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -312,6 +312,9 @@ msgstr "Querverweise"
 
 msgid "Cross references (export only)"
 msgstr "Querverweise (nur Export)"
+
+msgid "Ctrl"
+msgstr "Strg"
 
 msgid "Date"
 msgstr "Datum"
@@ -1035,6 +1038,9 @@ msgstr "Typ wählen"
 
 msgid "Set actual wordcount as start"
 msgstr "Aktuelle Wortzahl als Anfangswert setzen"
+
+msgid "Shift"
+msgstr "Umschalt"
 
 msgid "Short name"
 msgstr "Kurzname"

@@ -70,7 +70,7 @@ class ExportOptionsWindow(tk.Toplevel):
             ).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
-        self.bind('<F1>', self._open_help)
+        self.bind(view.keys.OPEN_HELP[0], self._open_help)
 
     def _change_ask_doc_open(self, *args):
         prefs['ask_doc_open'] = self._askDocOpen.get()

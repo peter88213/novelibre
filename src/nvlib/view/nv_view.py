@@ -589,8 +589,8 @@ class NvView:
         self.root.bind(self.keys.ADD_CHILD[0], self._ctrl.add_child)
         self.root.bind(self.keys.ADD_PARENT[0], self._ctrl.add_parent)
         if PLATFORM == 'win':
-            self.root.bind('<4>', self.tv.go_back)
-            self.root.bind('<5>', self.tv.go_forward)
+            self.root.bind(self.keys.BACK_CLICK, self.tv.go_back)
+            self.root.bind(self.keys.FORWARD_CLICK, self.tv.go_forward)
         else:
             self.root.bind(self.keys.QUIT_PROGRAM[0], self._ctrl.on_quit)
         self.root.bind(self.keys.OPEN_HELP[0], self._open_help)

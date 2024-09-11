@@ -8,6 +8,17 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.10.1
+
+- Translate accelerators.
+
+Refactor:
+- Add right-click event to the key definitions.
+- Using the NvView.key definitions instead of hard-coded key bindings.
+- Define mouse operations with the NvView.key definitions.
+
+Based on novxlib 4.6.3
+
 ### Version 4.10.0
 
 - Provide shortcuts and key bindings for Mac OS.

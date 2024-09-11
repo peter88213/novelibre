@@ -97,7 +97,7 @@ class PrjUpdater(tk.Toplevel):
             ).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
-        self.bind('<F1>', self._open_help)
+        self.bind(self._ui.keys.OPEN_HELP, self._open_help)
         self._documentCollection.bind('<Double-1>', self._import_document)
         self._documentCollection.bind('<Return>', self._import_document)
 

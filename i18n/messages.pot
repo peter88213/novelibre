@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.10.0\n"
-"POT-Creation-Date: 2024-09-10 11:54:20\n"
+"Project-Id-Version: 4.10.1\n"
+"POT-Creation-Date: 2024-09-11 13:31:46\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -318,6 +318,9 @@ msgid "Cross reference"
 msgstr ""
 
 msgid "Cross references (export only)"
+msgstr ""
+
+msgid "Ctrl"
 msgstr ""
 
 msgid "Date"
@@ -1041,6 +1044,9 @@ msgid "Set Type"
 msgstr ""
 
 msgid "Set actual wordcount as start"
+msgstr ""
+
+msgid "Shift"
 msgstr ""
 
 msgid "Short name"
