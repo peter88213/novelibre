@@ -624,7 +624,7 @@ class NvView:
         self.fileMenu.add_command(label=_('Close'), command=self._ctrl.close_project)
         if PLATFORM == 'win':
             self.fileMenu.add_command(label=_('Exit'), accelerator=self.keys.QUIT_PROGRAM[1], command=self._ctrl.on_quit)
-        elif PLATFORM != 'mac':
+        else:
             self.fileMenu.add_command(label=_('Quit'), accelerator=self.keys.QUIT_PROGRAM[1], command=self._ctrl.on_quit)
 
         # View
