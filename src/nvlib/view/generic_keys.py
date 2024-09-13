@@ -30,9 +30,3 @@ class GenericKeys:
     TOGGLE_VIEWER = ('<Control-t>', f'{_("Ctrl")}-T')
     UNLOCK_PROJECT = ('<Control-u>', f'{_("Ctrl")}-U')
 
-    LEFT_CLICK = '<Button-1>'
-    BACK_CLICK = '<Button-4>'
-    FORWARD_CLICK = '<Button-5>'
-    RIGHT_CLICK = '<Button-3>'
-
-    MOVE_NODE = '<Alt-B1-Motion>'

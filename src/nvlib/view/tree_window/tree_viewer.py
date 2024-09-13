@@ -30,7 +30,8 @@ from nvlib.model.nv_treeview import NvTreeview
 from nvlib.nv_globals import get_section_date_str
 from nvlib.nv_globals import prefs
 from nvlib.nv_globals import to_string
-from nvlib.view.key_definitions import KEYS
+from nvlib.view.platform_settings import KEYS
+from nvlib.view.platform_settings import MOUSE
 from nvlib.view.tree_window.history_list import HistoryList
 from nvlib.widgets.context_menu import ContextMenu
 import tkinter as tk
@@ -431,8 +432,8 @@ class TreeViewer(ttk.Frame):
         self.tree.bind('<<TreeviewOpen>>', self._on_open_branch)
         self.tree.bind('<<TreeviewClose>>', self._on_close_branch)
         self.tree.bind(KEYS.DELETE[0], self._ctrl.delete_elements)
-        self.tree.bind(KEYS.RIGHT_CLICK, self._on_open_context_menu)
-        self.tree.bind(KEYS.MOVE_NODE, self._on_move_node)
+        self.tree.bind(MOUSE.RIGHT_CLICK, self._on_open_context_menu)
+        self.tree.bind(MOUSE.MOVE_NODE, self._on_move_node)
 
     def _browse_tree(self, node):
         """Select and show node. 

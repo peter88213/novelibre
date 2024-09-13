@@ -16,7 +16,7 @@ from novxlib.novx_globals import PL_ROOT
 from novxlib.novx_globals import PN_ROOT
 from novxlib.novx_globals import _
 from nvlib.nv_globals import prefs
-from nvlib.view.key_definitions import KEYS
+from nvlib.view.platform_settings import KEYS
 import tkinter as tk
 
 

@@ -43,12 +43,13 @@ from novxlib.novx_globals import _
 from novxlib.ui.set_icon_tk import set_icon
 from nvlib.exporter.export_options_window import ExportOptionsWindow
 from nvlib.nv_globals import HOME_URL
-from nvlib.nv_globals import PLATFORM
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
 from nvlib.view.contents_window.contents_viewer import ContentsViewer
 from nvlib.view.icons import Icons
-from nvlib.view.key_definitions import KEYS
+from nvlib.view.platform_settings import KEYS
+from nvlib.view.platform_settings import MOUSE
+from nvlib.view.platform_settings import PLATFORM
 from nvlib.view.properties_window.properties_viewer import PropertiesViewer
 from nvlib.view.toolbar import Toolbar
 from nvlib.view.tree_window.tree_viewer import TreeViewer
@@ -112,7 +113,7 @@ class NvView:
         #--- Create the status bar.
         self.statusBar = tk.Label(self.root, text='', anchor='w', padx=5, pady=2)
         self.statusBar.pack(expand=False, fill='both')
-        self.statusBar.bind(KEYS.LEFT_CLICK, self.restore_status)
+        self.statusBar.bind(MOUSE.LEFT_CLICK, self.restore_status)
         self.infoWhatText = ''
         self.infoHowText = ''
 
@@ -579,8 +580,8 @@ class NvView:
         self.root.bind(KEYS.ADD_CHILD[0], self._ctrl.add_child)
         self.root.bind(KEYS.ADD_PARENT[0], self._ctrl.add_parent)
         if PLATFORM == 'win':
-            self.root.bind(KEYS.BACK_CLICK, self.tv.go_back)
-            self.root.bind(KEYS.FORWARD_CLICK, self.tv.go_forward)
+            self.root.bind(MOUSE.BACK_CLICK, self.tv.go_back)
+            self.root.bind(MOUSE.FORWARD_CLICK, self.tv.go_forward)
         else:
             self.root.bind(KEYS.QUIT_PROGRAM[0], self._ctrl.on_quit)
         self.root.bind(KEYS.OPEN_HELP[0], self._open_help)

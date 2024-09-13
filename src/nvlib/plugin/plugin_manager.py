@@ -9,7 +9,7 @@ import webbrowser
 
 from novxlib.novx_globals import _
 from nvlib.nv_globals import open_help
-from nvlib.view.key_definitions import KEYS
+from nvlib.view.platform_settings import KEYS
 import tkinter as tk
 
 
