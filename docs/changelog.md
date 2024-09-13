@@ -8,6 +8,17 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.11.0
+
+- Add tooltips.
+- Fix a regression from version 4.10.1 where the "F1" key does not work with the import dialog.
+
+Refactor:
+- Separate keyboard settings and mouse operation settings.
+- Put everything in the new platform_settings module.
+
+Based on novxlib 4.6.4
+
 ### Version 4.10.3
 
 - Refactor the event bindings.

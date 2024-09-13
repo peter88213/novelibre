@@ -156,7 +156,7 @@ class CollectionBox(ttk.Frame):
             return
 
         try:
-            from nvlib.widgets.tooltip import Hovertip
+            from idlelib.tooltip import Hovertip
         except ModuleNotFoundError:
             return
 

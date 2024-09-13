@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.10.3\n"
-"POT-Creation-Date: 2024-09-13 14:08:01\n"
+"Project-Id-Version: 4.11.0\n"
+"POT-Creation-Date: 2024-09-13 20:28:02\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -978,9 +978,6 @@ msgid "Restore backup"
 msgstr ""
 
 msgid "Restore the latest backup?"
-msgstr ""
-
-msgid "Return"
 msgstr ""
 
 msgid "Save"

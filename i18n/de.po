@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.10.3\n"
-"POT-Creation-Date: 2024-09-13 14:08:01\n"
-"PO-Revision-Date: 2024-09-13 14:08:01\n"
+"Project-Id-Version: 4.11.0\n"
+"POT-Creation-Date: 2024-09-13 20:28:02\n"
+"PO-Revision-Date: 2024-09-13 20:28:02\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -972,9 +972,6 @@ msgstr "Sicherungskopie wiederherstellen"
 
 msgid "Restore the latest backup?"
 msgstr "Die letzte Sicherungskopie wiederherstellen?"
-
-msgid "Return"
-msgstr "Eingabe"
 
 msgid "Save"
 msgstr "Speichern"
