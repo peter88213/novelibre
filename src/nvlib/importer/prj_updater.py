@@ -13,6 +13,7 @@ from novxlib.novx_globals import _
 from novxlib.odf.check_odf import odf_is_locked
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
+from nvlib.view.key_definitions import KEYS
 import tkinter as tk
 
 
@@ -97,7 +98,7 @@ class PrjUpdater(tk.Toplevel):
             ).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
-        self.bind(self._ui.keys.OPEN_HELP, self._open_help)
+        self.bind(KEYS.OPEN_HELP, self._open_help)
         self._documentCollection.bind('<Double-1>', self._import_document)
         self._documentCollection.bind('<Return>', self._import_document)
 

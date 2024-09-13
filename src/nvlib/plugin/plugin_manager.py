@@ -9,6 +9,7 @@ import webbrowser
 
 from novxlib.novx_globals import _
 from nvlib.nv_globals import open_help
+from nvlib.view.key_definitions import KEYS
 import tkinter as tk
 
 
@@ -91,7 +92,7 @@ class PluginManager(tk.Toplevel):
             ).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
-        self.bind(self._ui.keys.OPEN_HELP[0], self._open_help)
+        self.bind(KEYS.OPEN_HELP[0], self._open_help)
 
     def _delete_module(self, event=None):
         moduleName = self._moduleCollection.selection()[0]

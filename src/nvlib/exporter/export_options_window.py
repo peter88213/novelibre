@@ -9,6 +9,7 @@ from tkinter import ttk
 from novxlib.novx_globals import _
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
+from nvlib.view.key_definitions import KEYS
 import tkinter as tk
 
 
@@ -70,7 +71,7 @@ class ExportOptionsWindow(tk.Toplevel):
             ).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
-        self.bind(view.keys.OPEN_HELP[0], self._open_help)
+        self.bind(KEYS.OPEN_HELP[0], self._open_help)
 
     def _change_ask_doc_open(self, *args):
         prefs['ask_doc_open'] = self._askDocOpen.get()

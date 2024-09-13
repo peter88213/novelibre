@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.10.3
+
+- Refactor the event bindings.
+
+Based on novxlib 4.6.4
+
 ### Version 4.10.2
 
 - Restore the "Quit" menu command for the Mac (#28).

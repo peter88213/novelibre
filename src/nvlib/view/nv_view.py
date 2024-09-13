@@ -48,13 +48,11 @@ from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
 from nvlib.view.contents_window.contents_viewer import ContentsViewer
 from nvlib.view.icons import Icons
-from nvlib.view.generic_keys import GenericKeys
-from nvlib.view.mac_keys import MacKeys
+from nvlib.view.key_definitions import KEYS
 from nvlib.view.properties_window.properties_viewer import PropertiesViewer
 from nvlib.view.toolbar import Toolbar
 from nvlib.view.tree_window.tree_viewer import TreeViewer
 from nvlib.view.view_options_window import ViewOptionsWindow
-from nvlib.view.windows_keys import WindowsKeys
 from nvlib.widgets.nv_simpledialog import askinteger
 import tkinter as tk
 
@@ -92,14 +90,6 @@ class NvView:
         self._mdl.register_client(self)
         self.views = []
 
-        #--- Select platform specific keys.
-        if PLATFORM == 'win':
-            self.keys = WindowsKeys()
-        elif PLATFORM == 'mac':
-            self.keys = MacKeys()
-        else:
-            self.keys = GenericKeys()
-
         #--- Create the tk root window and set the size.
         self.title = title
         self._statusText = ''
@@ -122,7 +112,7 @@ class NvView:
         #--- Create the status bar.
         self.statusBar = tk.Label(self.root, text='', anchor='w', padx=5, pady=2)
         self.statusBar.pack(expand=False, fill='both')
-        self.statusBar.bind(self.keys.LEFT_CLICK, self.restore_status)
+        self.statusBar.bind(KEYS.LEFT_CLICK, self.restore_status)
         self.infoWhatText = ''
         self.infoHowText = ''
 
@@ -570,30 +560,30 @@ class NvView:
                 self._ctrl.add_section()
 
     def _bind_events(self):
-        self.root.bind(self.keys.RESTORE_STATUS[0], self.restore_status)
-        self.root.bind(self.keys.OPEN_PROJECT[0], self._ctrl.open_project)
+        self.root.bind(KEYS.RESTORE_STATUS[0], self.restore_status)
+        self.root.bind(KEYS.OPEN_PROJECT[0], self._ctrl.open_project)
 
-        self.root.bind(self.keys.LOCK_PROJECT[0], self._ctrl.lock)
-        self.root.bind(self.keys.UNLOCK_PROJECT[0], self._ctrl.unlock)
-        self.root.bind(self.keys.RELOAD_PROJECT[0], self._ctrl.reload_project)
-        self.root.bind(self.keys.RESTORE_BACKUP[0], self._ctrl.restore_backup)
-        self.root.bind(self.keys.FOLDER[0], self._ctrl.open_project_folder)
-        self.root.bind(self.keys.REFRESH_TREE[0], self._ctrl.refresh_views)
-        self.root.bind(self.keys.SAVE_PROJECT[0], self._ctrl.save_project)
-        self.root.bind(self.keys.SAVE_AS[0], self._ctrl.save_as)
-        self.root.bind(self.keys.CHAPTER_LEVEL[0], self.tv.show_chapter_level)
-        self.root.bind(self.keys.TOGGLE_VIEWER[0], self.toggle_contents_view)
-        self.root.bind(self.keys.TOGGLE_PROPERTIES[0], self.toggle_properties_view)
-        self.root.bind(self.keys.DETACH_PROPERTIES[0], self.toggle_properties_window)
-        self.root.bind(self.keys.ADD_ELEMENT[0], self._ctrl.add_element)
-        self.root.bind(self.keys.ADD_CHILD[0], self._ctrl.add_child)
-        self.root.bind(self.keys.ADD_PARENT[0], self._ctrl.add_parent)
+        self.root.bind(KEYS.LOCK_PROJECT[0], self._ctrl.lock)
+        self.root.bind(KEYS.UNLOCK_PROJECT[0], self._ctrl.unlock)
+        self.root.bind(KEYS.RELOAD_PROJECT[0], self._ctrl.reload_project)
+        self.root.bind(KEYS.RESTORE_BACKUP[0], self._ctrl.restore_backup)
+        self.root.bind(KEYS.FOLDER[0], self._ctrl.open_project_folder)
+        self.root.bind(KEYS.REFRESH_TREE[0], self._ctrl.refresh_views)
+        self.root.bind(KEYS.SAVE_PROJECT[0], self._ctrl.save_project)
+        self.root.bind(KEYS.SAVE_AS[0], self._ctrl.save_as)
+        self.root.bind(KEYS.CHAPTER_LEVEL[0], self.tv.show_chapter_level)
+        self.root.bind(KEYS.TOGGLE_VIEWER[0], self.toggle_contents_view)
+        self.root.bind(KEYS.TOGGLE_PROPERTIES[0], self.toggle_properties_view)
+        self.root.bind(KEYS.DETACH_PROPERTIES[0], self.toggle_properties_window)
+        self.root.bind(KEYS.ADD_ELEMENT[0], self._ctrl.add_element)
+        self.root.bind(KEYS.ADD_CHILD[0], self._ctrl.add_child)
+        self.root.bind(KEYS.ADD_PARENT[0], self._ctrl.add_parent)
         if PLATFORM == 'win':
-            self.root.bind(self.keys.BACK_CLICK, self.tv.go_back)
-            self.root.bind(self.keys.FORWARD_CLICK, self.tv.go_forward)
+            self.root.bind(KEYS.BACK_CLICK, self.tv.go_back)
+            self.root.bind(KEYS.FORWARD_CLICK, self.tv.go_forward)
         else:
-            self.root.bind(self.keys.QUIT_PROGRAM[0], self._ctrl.on_quit)
-        self.root.bind(self.keys.OPEN_HELP[0], self._open_help)
+            self.root.bind(KEYS.QUIT_PROGRAM[0], self._ctrl.on_quit)
+        self.root.bind(KEYS.OPEN_HELP[0], self._open_help)
 
     def _build_menu(self):
         """Add commands and submenus to the main menu."""
@@ -607,30 +597,30 @@ class NvView:
         self.fileMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('File'), menu=self.fileMenu)
         self.fileMenu.add_cascade(label=_('New'), menu=self.newMenu)
-        self.fileMenu.add_command(label=_('Open...'), accelerator=self.keys.OPEN_PROJECT[1], command=self._ctrl.open_project)
-        self.fileMenu.add_command(label=_('Reload'), accelerator=self.keys.RELOAD_PROJECT[1], command=self._ctrl.reload_project)
-        self.fileMenu.add_command(label=_('Restore backup'), accelerator=self.keys.RESTORE_BACKUP[1], command=self._ctrl.restore_backup)
+        self.fileMenu.add_command(label=_('Open...'), accelerator=KEYS.OPEN_PROJECT[1], command=self._ctrl.open_project)
+        self.fileMenu.add_command(label=_('Reload'), accelerator=KEYS.RELOAD_PROJECT[1], command=self._ctrl.reload_project)
+        self.fileMenu.add_command(label=_('Restore backup'), accelerator=KEYS.RESTORE_BACKUP[1], command=self._ctrl.restore_backup)
         self.fileMenu.add_separator()
-        self.fileMenu.add_command(label=_('Refresh Tree'), accelerator=self.keys.REFRESH_TREE[1], command=self._ctrl.refresh_views)
-        self.fileMenu.add_command(label=_('Lock'), accelerator=self.keys.LOCK_PROJECT[1], command=self._ctrl.lock)
-        self.fileMenu.add_command(label=_('Unlock'), accelerator=self.keys.UNLOCK_PROJECT[1], command=self._ctrl.unlock)
+        self.fileMenu.add_command(label=_('Refresh Tree'), accelerator=KEYS.REFRESH_TREE[1], command=self._ctrl.refresh_views)
+        self.fileMenu.add_command(label=_('Lock'), accelerator=KEYS.LOCK_PROJECT[1], command=self._ctrl.lock)
+        self.fileMenu.add_command(label=_('Unlock'), accelerator=KEYS.UNLOCK_PROJECT[1], command=self._ctrl.unlock)
         self.fileMenu.add_separator()
-        self.fileMenu.add_command(label=_('Open Project folder'), accelerator=self.keys.FOLDER[1], command=self._ctrl.open_project_folder)
+        self.fileMenu.add_command(label=_('Open Project folder'), accelerator=KEYS.FOLDER[1], command=self._ctrl.open_project_folder)
         self.fileMenu.add_command(label=_('Copy style sheet'), command=self._ctrl.copy_css)
         self.fileMenu.add_command(label=_('Discard manuscript'), command=self._ctrl.discard_manuscript)
         self.fileMenu.add_separator()
-        self.fileMenu.add_command(label=_('Save'), accelerator=self.keys.SAVE_PROJECT[1], command=self._ctrl.save_project)
-        self.fileMenu.add_command(label=_('Save as...'), accelerator=self.keys.SAVE_AS[1], command=self._ctrl.save_as)
+        self.fileMenu.add_command(label=_('Save'), accelerator=KEYS.SAVE_PROJECT[1], command=self._ctrl.save_project)
+        self.fileMenu.add_command(label=_('Save as...'), accelerator=KEYS.SAVE_AS[1], command=self._ctrl.save_as)
         self.fileMenu.add_command(label=_('Close'), command=self._ctrl.close_project)
         if PLATFORM == 'win':
-            self.fileMenu.add_command(label=_('Exit'), accelerator=self.keys.QUIT_PROGRAM[1], command=self._ctrl.on_quit)
+            self.fileMenu.add_command(label=_('Exit'), accelerator=KEYS.QUIT_PROGRAM[1], command=self._ctrl.on_quit)
         else:
-            self.fileMenu.add_command(label=_('Quit'), accelerator=self.keys.QUIT_PROGRAM[1], command=self._ctrl.on_quit)
+            self.fileMenu.add_command(label=_('Quit'), accelerator=KEYS.QUIT_PROGRAM[1], command=self._ctrl.on_quit)
 
         # View
         self.viewMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('View'), menu=self.viewMenu)
-        self.viewMenu.add_command(label=_('Chapter level'), accelerator=self.keys.CHAPTER_LEVEL[1], command=self.tv.show_chapter_level)
+        self.viewMenu.add_command(label=_('Chapter level'), accelerator=KEYS.CHAPTER_LEVEL[1], command=self.tv.show_chapter_level)
         self.viewMenu.add_command(label=_('Expand selected'), command=lambda: self.tv.open_children(self.tv.tree.selection()[0]))
         self.viewMenu.add_command(label=_('Collapse selected'), command=lambda: self.tv.close_children(self.tv.tree.selection()[0]))
         self.viewMenu.add_command(label=_('Expand all'), command=lambda: self.tv.open_children(''))
@@ -643,9 +633,9 @@ class NvView:
         self.viewMenu.add_command(label=_('Show Plot lines'), command=lambda: self.tv.show_branch(PL_ROOT))
         self.viewMenu.add_command(label=_('Show Project notes'), command=lambda: self.tv.show_branch(PN_ROOT))
         self.viewMenu.add_separator()
-        self.viewMenu.add_command(label=_('Toggle Text viewer'), accelerator=self.keys.TOGGLE_VIEWER[1], command=self.toggle_contents_view)
-        self.viewMenu.add_command(label=_('Toggle Properties'), accelerator=self.keys.TOGGLE_PROPERTIES[1], command=self.toggle_properties_view)
-        self.viewMenu.add_command(label=_('Detach/Dock Properties'), accelerator=self.keys.DETACH_PROPERTIES[1], command=self.toggle_properties_window)
+        self.viewMenu.add_command(label=_('Toggle Text viewer'), accelerator=KEYS.TOGGLE_VIEWER[1], command=self.toggle_contents_view)
+        self.viewMenu.add_command(label=_('Toggle Properties'), accelerator=KEYS.TOGGLE_PROPERTIES[1], command=self.toggle_properties_view)
+        self.viewMenu.add_command(label=_('Detach/Dock Properties'), accelerator=KEYS.DETACH_PROPERTIES[1], command=self.toggle_properties_window)
         self.viewMenu.add_separator()
         self.viewMenu.add_command(label=_('Options'), command=self._view_options)
 
@@ -763,7 +753,7 @@ class NvView:
         # "Help" menu.
         self.helpMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Help'), menu=self.helpMenu)
-        self.helpMenu.add_command(label=_('Online help'), accelerator=self.keys.OPEN_HELP[1], command=self._open_help)
+        self.helpMenu.add_command(label=_('Online help'), accelerator=KEYS.OPEN_HELP[1], command=self._open_help)
         self.helpMenu.add_command(label=f"novelibre {_('Home page')}", command=lambda: webbrowser.open(HOME_URL))
 
     def _export_options(self, event=None):

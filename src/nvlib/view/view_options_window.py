@@ -10,6 +10,7 @@ from novxlib.novx_globals import _
 from novxlib.novx_globals import list_to_string
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
+from nvlib.view.key_definitions import KEYS
 from nvlib.widgets.drag_drop_listbox import DragDropListbox
 import tkinter as tk
 
@@ -114,7 +115,7 @@ class ViewOptionsWindow(tk.Toplevel):
             ).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
-        self.bind(self._ui.keys.OPEN_HELP[0], self._open_help)
+        self.bind(KEYS.OPEN_HELP[0], self._open_help)
 
     def _change_colors(self, *args, **kwargs):
         cmStr = self._coloringModeStr.get()
