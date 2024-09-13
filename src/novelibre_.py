@@ -77,6 +77,7 @@ SETTINGS = dict(
 OPTIONS = dict(
     ask_doc_open=True,
     detach_prop_win=False,
+    enable_hovertips=True,
     large_icons=False,
     localize_date=True,
     lock_on_export=False,

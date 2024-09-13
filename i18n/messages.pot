@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.10.3\n"
-"POT-Creation-Date: 2024-09-13 11:42:36\n"
+"POT-Creation-Date: 2024-09-13 14:08:01\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -339,6 +339,9 @@ msgid "Days"
 msgstr ""
 
 msgid "Death date"
+msgstr ""
+
+msgid "Del"
 msgstr ""
 
 msgid "Delete"
@@ -975,6 +978,9 @@ msgid "Restore backup"
 msgstr ""
 
 msgid "Restore the latest backup?"
+msgstr ""
+
+msgid "Return"
 msgstr ""
 
 msgid "Save"

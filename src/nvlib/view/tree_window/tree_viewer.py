@@ -430,7 +430,7 @@ class TreeViewer(ttk.Frame):
         self.tree.bind('<<TreeviewSelect>>', self._on_select_node)
         self.tree.bind('<<TreeviewOpen>>', self._on_open_branch)
         self.tree.bind('<<TreeviewClose>>', self._on_close_branch)
-        self.tree.bind('<Delete>', self._ctrl.delete_elements)
+        self.tree.bind(KEYS.DELETE[0], self._ctrl.delete_elements)
         self.tree.bind(KEYS.RIGHT_CLICK, self._on_open_context_menu)
         self.tree.bind(KEYS.MOVE_NODE, self._on_move_node)
 
@@ -490,7 +490,7 @@ class TreeViewer(ttk.Frame):
         self._nvCtxtMenu.add_command(label=_('Insert Stage'), command=self._ctrl.add_stage)
         self._nvCtxtMenu.add_cascade(label=_('Change Level'), menu=self.selectLevelMenu)
         self._nvCtxtMenu.add_separator()
-        self._nvCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
+        self._nvCtxtMenu.add_command(label=_('Delete'), accelerator=KEYS.DELETE[1], command=self._ctrl.delete_elements)
         self._nvCtxtMenu.add_separator()
         self._nvCtxtMenu.add_cascade(label=_('Set Type'), menu=self.selectTypeMenu)
         self._nvCtxtMenu.add_cascade(label=_('Set Status'), menu=self.scStatusMenu)
@@ -510,7 +510,7 @@ class TreeViewer(ttk.Frame):
         self._wrCtxtMenu.add_command(label=_('Export manuscript filtered by viewpoint'), command=self._export_manuscript)
         self._wrCtxtMenu.add_command(label=_('Export synopsis filtered by viewpoint'), command=self._export_synopsis)
         self._wrCtxtMenu.add_separator()
-        self._wrCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
+        self._wrCtxtMenu.add_command(label=_('Delete'), accelerator=KEYS.DELETE[1], command=self._ctrl.delete_elements)
         self._wrCtxtMenu.add_separator()
         self._wrCtxtMenu.add_cascade(label=_('Set Status'), menu=self.crStatusMenu)
 
@@ -522,13 +522,13 @@ class TreeViewer(ttk.Frame):
         self._plCtxtMenu.add_command(label=_('Export manuscript filtered by plot line'), command=self._export_manuscript)
         self._plCtxtMenu.add_command(label=_('Export synopsis filtered by plot line'), command=self._export_synopsis)
         self._plCtxtMenu.add_separator()
-        self._plCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
+        self._plCtxtMenu.add_command(label=_('Delete'), accelerator=KEYS.DELETE[1], command=self._ctrl.delete_elements)
 
         #--- Create a project note context menu.
         self._pnCtxtMenu = ContextMenu(self.tree, tearoff=0)
         self._pnCtxtMenu.add_command(label=_('Add Project note'), command=self._ctrl.add_project_note)
         self._pnCtxtMenu.add_separator()
-        self._pnCtxtMenu.add_command(label=_('Delete'), command=self._ctrl.delete_elements)
+        self._pnCtxtMenu.add_command(label=_('Delete'), accelerator=KEYS.DELETE[1], command=self._ctrl.delete_elements)
 
     def _collect_ch_note_indicators(self, chId):
         """Return a string that indicates section notes within the chapter.

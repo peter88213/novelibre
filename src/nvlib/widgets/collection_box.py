@@ -7,6 +7,8 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 
 from novxlib.novx_globals import _
+from nvlib.nv_globals import prefs
+from nvlib.view.key_definitions import KEYS
 import tkinter as tk
 
 
@@ -127,7 +129,9 @@ class CollectionBox(ttk.Frame):
         if cmdRemove is not None:
             self.btnRemove.pack(fill='x', expand=True)
             self.inputWidgets.append(self.btnRemove)
-            self.cListbox.bind('<Delete>', cmdRemove)
+            self.cListbox.bind(KEYS.DELETE[0], cmdRemove)
+
+        self._set_hovertips()
 
     def enable_buttons(self, event=None):
         """Activate the group of activatable buttons."""
@@ -146,3 +150,16 @@ class CollectionBox(ttk.Frame):
                 self._cmdSelect(self.cListbox.curselection()[0])
             except:
                 pass
+
+    def _set_hovertips(self):
+        if not prefs['enable_hovertips']:
+            return
+
+        try:
+            from nvlib.widgets.tooltip import Hovertip
+        except ModuleNotFoundError:
+            return
+
+        Hovertip(self.btnAdd, self.btnAdd['text'])
+        Hovertip(self.btnOpen, self.btnOpen['text'])
+        Hovertip(self.btnRemove, f"{self.btnRemove['text']} ({KEYS.DELETE[1]})")

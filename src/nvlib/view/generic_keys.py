@@ -13,6 +13,7 @@ class GenericKeys:
     ADD_ELEMENT = ('<Control-n>', f'{_("Ctrl")}-N')
     ADD_PARENT = ('<Control-Alt-N>', f'{_("Ctrl")}-Alt-{_("Shift")}-N')
     CHAPTER_LEVEL = ('<Control-Alt-c>', f'{_("Ctrl")}-Alt-C')
+    DELETE = ('<Delete>', _('Del'))
     DETACH_PROPERTIES = ('<Control-Alt-d>', f'{_("Ctrl")}-Alt-D')
     FOLDER = ('<Control-p>', f'{_("Ctrl")}-P')
     LOCK_PROJECT = ('<Control-l>', f'{_("Ctrl")}-L')

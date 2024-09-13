@@ -66,7 +66,8 @@ organization of their work.
 - [Python](https://www.python.org/) version 3.6+. 
      - For current Windows versions, use version 3.9.10 or above.
      - For Vista and Windows 7, use version 3.7.2.
-     - Linux users: Make sure you have the *python3-tk* package installed.
+     - Linux users: Make sure you have the *python3-tk* package installed. 
+       To see the tooltips, make sure that you have the *idle3* package installed.
 - Either [LibreOffice](https://www.libreoffice.org/) or [OpenOffice](https://www.openoffice.org).
 
 ## General note about the fitness for use

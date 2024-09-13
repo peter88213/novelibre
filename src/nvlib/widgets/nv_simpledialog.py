@@ -23,7 +23,8 @@ Copyright (c) 1997 by Fredrik Lundh
 fredrik@pythonware.com
 http://www.pythonware.com
 
-modifications for novelibre:
+Modifications for the use with novelibre:
+
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)

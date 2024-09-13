@@ -15,6 +15,8 @@ from novxlib.novx_globals import MANUSCRIPT_SUFFIX
 from novxlib.novx_globals import PL_ROOT
 from novxlib.novx_globals import PN_ROOT
 from novxlib.novx_globals import _
+from nvlib.nv_globals import prefs
+from nvlib.view.key_definitions import KEYS
 import tkinter as tk
 
 
@@ -193,15 +195,15 @@ class Toolbar:
         self._addParentButton.pack(side='left')
         self._addParentButton.image = self._ui.icons.addParentIcon
 
-        # "Remove" button.
-        self._removeElementButton = ttk.Button(
+        # "Delete" button.
+        self._deleteElementButton = ttk.Button(
             self.buttonBar,
-            text=_('Remove'),
+            text=_('Delete'),
             image=self._ui.icons.removeIcon,
             command=self._ctrl.delete_elements
             )
-        self._removeElementButton.pack(side='left')
-        self._removeElementButton.image = self._ui.icons.removeIcon
+        self._deleteElementButton.pack(side='left')
+        self._deleteElementButton.image = self._ui.icons.removeIcon
 
         # Reverse order (side='right').
 
@@ -226,55 +228,85 @@ class Toolbar:
         self._viewerButton.image = self._ui.icons.viewerIcon
 
         self.buttonBar.pack(expand=False, before=self._ui.appWindow, fill='both')
+        self._set_hovertips()
 
     def disable_menu(self):
         """Disable toolbar buttons when no project is open."""
-        self._saveButton.config(state='disabled')
-        self._lockButton.config(state='disabled')
-        self._updateButton.config(state='disabled')
-        self._manuscriptButton.config(state='disabled')
-        self._viewBookButton.config(state='disabled')
-        self._viewCharactersButton.config(state='disabled')
-        self._viewLocationsButton.config(state='disabled')
-        self._viewItemsButton.config(state='disabled')
-        self._viewPlotLinesButton.config(state='disabled')
-        self._viewProjectnotesButton.config(state='disabled')
+        self._addChildButton.config(state='disabled')
+        self._addElementButton.config(state='disabled')
+        self._addParentButton.config(state='disabled')
         self._goBackButton.config(state='disabled')
         self._goForwardButton.config(state='disabled')
-        self._addElementButton.config(state='disabled')
-        self._addChildButton.config(state='disabled')
-        self._addParentButton.config(state='disabled')
-        self._removeElementButton.config(state='disabled')
+        self._lockButton.config(state='disabled')
+        self._manuscriptButton.config(state='disabled')
+        self._deleteElementButton.config(state='disabled')
+        self._saveButton.config(state='disabled')
+        self._updateButton.config(state='disabled')
+        self._viewBookButton.config(state='disabled')
+        self._viewCharactersButton.config(state='disabled')
+        self._viewItemsButton.config(state='disabled')
+        self._viewLocationsButton.config(state='disabled')
+        self._viewPlotLinesButton.config(state='disabled')
+        self._viewProjectnotesButton.config(state='disabled')
 
     def enable_menu(self):
         """Enable toolbar buttons when a project is open."""
-        self._saveButton.config(state='normal')
-        self._lockButton.config(state='normal')
-        self._updateButton.config(state='normal')
-        self._manuscriptButton.config(state='normal')
-        self._viewBookButton.config(state='normal')
-        self._viewCharactersButton.config(state='normal')
-        self._viewLocationsButton.config(state='normal')
-        self._viewItemsButton.config(state='normal')
-        self._viewPlotLinesButton.config(state='normal')
-        self._viewProjectnotesButton.config(state='normal')
+        self._addChildButton.config(state='normal')
+        self._addElementButton.config(state='normal')
+        self._addParentButton.config(state='normal')
         self._goBackButton.config(state='normal')
         self._goForwardButton.config(state='normal')
-        self._addElementButton.config(state='normal')
-        self._addChildButton.config(state='normal')
-        self._addParentButton.config(state='normal')
-        self._removeElementButton.config(state='normal')
+        self._lockButton.config(state='normal')
+        self._manuscriptButton.config(state='normal')
+        self._deleteElementButton.config(state='normal')
+        self._saveButton.config(state='normal')
+        self._updateButton.config(state='normal')
+        self._viewBookButton.config(state='normal')
+        self._viewCharactersButton.config(state='normal')
+        self._viewItemsButton.config(state='normal')
+        self._viewLocationsButton.config(state='normal')
+        self._viewPlotLinesButton.config(state='normal')
+        self._viewProjectnotesButton.config(state='normal')
 
     def lock(self):
         self._manuscriptButton.config(state='disabled')
         self._addElementButton.config(state='disabled')
         self._addChildButton.config(state='disabled')
         self._addParentButton.config(state='disabled')
-        self._removeElementButton.config(state='disabled')
+        self._deleteElementButton.config(state='disabled')
 
     def unlock(self):
         self._manuscriptButton.config(state='normal')
         self._addElementButton.config(state='normal')
         self._addChildButton.config(state='normal')
         self._addParentButton.config(state='normal')
-        self._removeElementButton.config(state='normal')
+        self._deleteElementButton.config(state='normal')
+
+    def _set_hovertips(self):
+        if not prefs['enable_hovertips']:
+            return
+
+        try:
+            from idlelib.tooltip import Hovertip
+        except ModuleNotFoundError:
+            return
+
+        Hovertip(self._addChildButton, f"{self._addChildButton['text']} ({KEYS.ADD_CHILD[1]})")
+        Hovertip(self._addElementButton, f"{self._addElementButton['text']} ({KEYS.ADD_ELEMENT[1]})")
+        Hovertip(self._addParentButton, f"{self._addParentButton['text']} ({KEYS.ADD_PARENT[1]})")
+        Hovertip(self._goBackButton, self._goBackButton['text'])
+        Hovertip(self._goForwardButton, self._goForwardButton['text'])
+        Hovertip(self._lockButton, self._lockButton['text'])
+        Hovertip(self._manuscriptButton, self._manuscriptButton['text'])
+        Hovertip(self._propertiesButton, self._propertiesButton['text'])
+        Hovertip(self._saveButton, f"{self._saveButton['text']} ({KEYS.SAVE_PROJECT[1]})")
+        Hovertip(self._deleteElementButton, f"{self._deleteElementButton['text']} ({KEYS.DELETE[1]})")
+        Hovertip(self._updateButton, self._updateButton['text'])
+        Hovertip(self._viewBookButton, self._viewBookButton['text'])
+        Hovertip(self._viewCharactersButton, self._viewCharactersButton['text'])
+        Hovertip(self._viewItemsButton, self._viewItemsButton['text'])
+        Hovertip(self._viewLocationsButton, self._viewLocationsButton['text'])
+        Hovertip(self._viewPlotLinesButton, self._viewPlotLinesButton['text'])
+        Hovertip(self._viewProjectnotesButton, self._viewProjectnotesButton['text'])
+        Hovertip(self._viewerButton, self._viewerButton['text'])
+
