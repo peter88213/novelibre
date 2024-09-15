@@ -62,7 +62,7 @@ organization of their work.
 
 ## Requirements
 
-- Windows or Linux.
+- Windows or Linux. Mac OS support is experimental, see [discussion](#29).
 - [Python](https://www.python.org/) version 3.6+. 
      - For current Windows versions, use version 3.9.10 or above.
      - For Vista and Windows 7, use version 3.7.2.
