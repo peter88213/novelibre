@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.11.1
+
+- No longer displaying empty "stage" paragraphs in the content viewer.
+
+Based on novxlib 4.6.5
+
 ### Version 4.11.0
 
 - Add tooltips.
