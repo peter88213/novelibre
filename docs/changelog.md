@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.11.2
+
+- Handle formatted headings when importing work-in-progress or outline.
+
+Based on novxlib 4.6.7
+
 ### Version 4.11.1
 
 - No longer displaying empty "stage" paragraphs in the content viewer.
