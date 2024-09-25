@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.11.4
+
+- Fix a bug where an unhandled exception is raised when trying to open the project folder while no project is open.
+
+Based on novxlib 4.6.7
+
 ### Version 4.11.3
 
 - Fix a bug where an unhandled exception is raised when trying automatically unlock an unnamed new project.

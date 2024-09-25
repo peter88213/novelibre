@@ -883,21 +883,30 @@ class NvController:
 
     def open_project_folder(self, event=None):
         """Open the project folder with the OS file manager."""
-        if (self._mdl and self._mdl.prjFile.filePath is not None) or self.save_project():
-            projectDir, __ = os.path.split(self._mdl.prjFile.filePath)
+        if not self.save_project():
+            if not self._mdl:
+                return
+
+            if not self._mdl.prjFile:
+                return
+
+            if self._mdl.prjFile.filePath is None:
+                return
+
+        projectDir, __ = os.path.split(self._mdl.prjFile.filePath)
+        try:
+            os.startfile(norm_path(projectDir))
+            # Windows
+        except:
             try:
-                os.startfile(norm_path(projectDir))
-                # Windows
+                os.system('xdg-open "%s"' % norm_path(projectDir))
+                # Linux
             except:
                 try:
-                    os.system('xdg-open "%s"' % norm_path(projectDir))
-                    # Linux
+                    os.system('open "%s"' % norm_path(projectDir))
+                    # Mac
                 except:
-                    try:
-                        os.system('open "%s"' % norm_path(projectDir))
-                        # Mac
-                    except:
-                        pass
+                    pass
         return 'break'
 
     def refresh(self):
