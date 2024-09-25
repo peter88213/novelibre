@@ -75,7 +75,7 @@ class NvDocImporter:
         """
         self.newFile = None
         if not os.path.isfile(sourcePath):
-            raise Error(f'!{_("File not found")}: "{norm_path(sourcePath)}".')
+            raise Error(f'{_("File not found")}: "{norm_path(sourcePath)}".')
 
         try:
             source, __ = self.importSourceFactory.make_file_objects(sourcePath, **kwargs)
@@ -85,7 +85,7 @@ class NvDocImporter:
             source, target = self.newProjectFactory.make_file_objects(sourcePath, **kwargs)
             if os.path.isfile(target.filePath):
                 # do not overwrite an existing novelibre project with a non-tagged document
-                raise Error(f'!{_("File already exists")}: "{norm_path(target.filePath)}".')
+                raise Error(f'{_("File already exists")}: "{norm_path(target.filePath)}".')
 
             self._check(source, target)
             source.novel = kwargs['nv_service'].make_novel()

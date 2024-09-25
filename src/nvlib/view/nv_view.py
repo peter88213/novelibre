@@ -414,7 +414,7 @@ class NvView:
                 if message.startswith('!'):
                     self.statusBar.config(bg='red')
                     self.statusBar.config(fg='white')
-                    self.infoHowText = message.split('!', maxsplit=1)[1].strip()
+                    self.infoHowText = message.lstrip('!').strip()
                 else:
                     self.statusBar.config(bg='green')
                     self.statusBar.config(fg='white')

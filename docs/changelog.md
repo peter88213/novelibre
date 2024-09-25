@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.11.3
+
+- Fix a bug where an unhandled exception is raised when trying automatically unlock an unnamed new project.
+- Refactor the error messaging system.
+
+Based on novxlib 4.6.7
+
 ### Version 4.11.2
 
 - Handle formatted headings when importing work-in-progress or outline.
