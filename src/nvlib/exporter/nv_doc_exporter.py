@@ -97,6 +97,7 @@ class NvDocExporter:
                     defaultButton = 0
             except:
                 timeStatus = ''
+                defaultButton = 0
             self._targetFileDate = datetime.fromtimestamp(targetTimestamp).strftime('%c')
             title = _('Export document')
             message = _('{0} already exists.\n(last saved on {2})\n{1}.\n\nOpen this document instead of overwriting it?').format(
