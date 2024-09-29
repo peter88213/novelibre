@@ -47,13 +47,13 @@ from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
 from nvlib.view.contents_window.contents_viewer import ContentsViewer
 from nvlib.view.icons import Icons
-from nvlib.view.platform_settings import KEYS
-from nvlib.view.platform_settings import MOUSE
-from nvlib.view.platform_settings import PLATFORM
+from nvlib.view.platform.platform_settings import KEYS
+from nvlib.view.platform.platform_settings import MOUSE
+from nvlib.view.platform.platform_settings import PLATFORM
 from nvlib.view.properties_window.properties_viewer import PropertiesViewer
-from nvlib.view.toolbar import Toolbar
+from nvlib.view.toolbar.toolbar import Toolbar
 from nvlib.view.tree_window.tree_viewer import TreeViewer
-from nvlib.view.view_options_window import ViewOptionsWindow
+from nvlib.view.options.view_options_window import ViewOptionsWindow
 from nvlib.widgets.nv_simpledialog import askinteger
 import tkinter as tk
 

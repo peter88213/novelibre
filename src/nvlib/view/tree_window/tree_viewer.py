@@ -30,8 +30,8 @@ from nvlib.model.nv_treeview import NvTreeview
 from nvlib.nv_globals import get_section_date_str
 from nvlib.nv_globals import prefs
 from nvlib.nv_globals import to_string
-from nvlib.view.platform_settings import KEYS
-from nvlib.view.platform_settings import MOUSE
+from nvlib.view.platform.platform_settings import KEYS
+from nvlib.view.platform.platform_settings import MOUSE
 from nvlib.view.tree_window.history_list import HistoryList
 from nvlib.widgets.context_menu import ContextMenu
 import tkinter as tk

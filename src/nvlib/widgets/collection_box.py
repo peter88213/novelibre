@@ -8,7 +8,7 @@ from tkinter import ttk
 
 from novxlib.novx_globals import _
 from nvlib.nv_globals import prefs
-from nvlib.view.platform_settings import KEYS
+from nvlib.view.platform.platform_settings import KEYS
 import tkinter as tk
 
 

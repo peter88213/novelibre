@@ -10,7 +10,7 @@ from novxlib.novx_globals import _
 from novxlib.novx_globals import list_to_string
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
-from nvlib.view.platform_settings import KEYS
+from nvlib.view.platform.platform_settings import KEYS
 from nvlib.widgets.drag_drop_listbox import DragDropListbox
 import tkinter as tk
 
