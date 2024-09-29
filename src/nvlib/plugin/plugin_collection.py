@@ -141,6 +141,8 @@ class PluginCollection(dict):
             return False
 
         # Set Key bindings to be used by all plugins.
+        # Deprecated!
+        # Plugins are expected to configure their open_node() method locally, if any.
         self._ui.tv.tree.bind('<Double-1>', self.open_node)
         self._ui.tv.tree.bind('<Return>', self.open_node)
 
@@ -207,6 +209,8 @@ class PluginCollection(dict):
 
     def open_node(self, event=None):
         """Actions on double-clicking on a node or pressing the Return key."""
+        # Deprecated!
+        # Plugins are expected to configure their open_node() method locally, if any.
         for moduleName in self:
             if self[moduleName].isActive:
                 try:

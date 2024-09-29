@@ -66,10 +66,6 @@ class PluginBase(ABC):
         """Actions to be performed when novelibre is closed."""
         pass
 
-    def open_node(self):
-        """Actions on double-clicking on a node or pressing the Return key."""
-        pass
-
     def unlock(self):
         """Enable changes on the model."""
         pass
