@@ -569,6 +569,7 @@
   "Required": "Erforderlich",
   "Research": "Recherche",
   "Reset chapter number when starting a new part": "Kapitelnummerierung per Teil",
+  "Restart chapter numbering at part beginning": "Kapitelnummerierung in jedem Teil neu beginnen",
   "Restore backup": "Sicherungskopie wiederherstellen",
   "Restore the latest backup?": "Die letzte Sicherungskopie wiederherstellen?",
   "Return": "Eingabe",

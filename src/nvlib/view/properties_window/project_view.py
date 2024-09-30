@@ -133,7 +133,7 @@ class ProjectView(BasicView):
         self._renumberWithinParts = tk.BooleanVar()
         self._renumberWithinPartsCheckbox = ttk.Checkbutton(
             self._numberingFrame,
-            text=_('Reset chapter number when starting a new part'),
+            text=_('Restart chapter numbering at part beginning'),
             variable=self._renumberWithinParts,
             onvalue=True,
             offvalue=False,

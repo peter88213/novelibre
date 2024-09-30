@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.11.5
+
+- Update UI text.
+- Refactor: defensive programming and re-structuring of packages.
+
+Based on novxlib 4.6.7
+
 ### Version 4.11.4
 
 - Fix a bug where an unhandled exception is raised when trying to open the project folder while no project is open.

@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.11.4\n"
-"POT-Creation-Date: 2024-09-25 18:15:37\n"
+"Project-Id-Version: 4.11.5\n"
+"POT-Creation-Date: 2024-09-30 09:49:40\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -971,7 +971,7 @@ msgstr ""
 msgid "Required"
 msgstr ""
 
-msgid "Reset chapter number when starting a new part"
+msgid "Restart chapter numbering at part beginning"
 msgstr ""
 
 msgid "Restore backup"

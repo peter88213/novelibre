@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.11.4\n"
-"POT-Creation-Date: 2024-09-25 18:15:37\n"
-"PO-Revision-Date: 2024-09-25 18:15:37\n"
+"Project-Id-Version: 4.11.5\n"
+"POT-Creation-Date: 2024-09-30 09:49:40\n"
+"PO-Revision-Date: 2024-09-30 09:49:40\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -964,8 +964,8 @@ msgstr "Umbenennungen"
 msgid "Required"
 msgstr "Erforderlich"
 
-msgid "Reset chapter number when starting a new part"
-msgstr "Kapitelnummerierung per Teil"
+msgid "Restart chapter numbering at part beginning"
+msgstr "Kapitelnummerierung in jedem Teil neu beginnen"
 
 msgid "Restore backup"
 msgstr "Sicherungskopie wiederherstellen"
