@@ -470,7 +470,7 @@ msgid "Export story structure description for editing"
 msgstr "Erzählstruktur-Beschreibung zum Bearbeiten exportieren"
 
 msgid "Export synopsis filtered by plot line"
-msgstr "Zusammenfassung nach Plottlinie gefiltert exportieren"
+msgstr "Zusammenfassung nach Plotlinie gefiltert exportieren"
 
 msgid "Export synopsis filtered by viewpoint"
 msgstr "Zusammenfassung nach Perspektive gefiltert exportieren"
