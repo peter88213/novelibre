@@ -298,7 +298,7 @@ class Toolbar:
         Hovertip(self._goForwardButton, self._goForwardButton['text'])
         Hovertip(self._lockButton, self._lockButton['text'])
         Hovertip(self._manuscriptButton, self._manuscriptButton['text'])
-        Hovertip(self._propertiesButton, self._propertiesButton['text'])
+        Hovertip(self._propertiesButton, f"{self._propertiesButton['text']} ({KEYS.TOGGLE_PROPERTIES[1]})")
         Hovertip(self._saveButton, f"{self._saveButton['text']} ({KEYS.SAVE_PROJECT[1]})")
         Hovertip(self._deleteElementButton, f"{self._deleteElementButton['text']} ({KEYS.DELETE[1]})")
         Hovertip(self._updateButton, self._updateButton['text'])
@@ -308,5 +308,5 @@ class Toolbar:
         Hovertip(self._viewLocationsButton, self._viewLocationsButton['text'])
         Hovertip(self._viewPlotLinesButton, self._viewPlotLinesButton['text'])
         Hovertip(self._viewProjectnotesButton, self._viewProjectnotesButton['text'])
-        Hovertip(self._viewerButton, self._viewerButton['text'])
+        Hovertip(self._viewerButton, f"{self._viewerButton['text']} ({KEYS.TOGGLE_VIEWER[1]})")
 

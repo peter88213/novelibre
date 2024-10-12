@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.11.6
+
+- Add accelerators to hovertips.
+- Fix typo in German translation.
+
+Based on novxlib 4.7.1
+
 ### Version 4.11.5
 
 - Update UI text.
