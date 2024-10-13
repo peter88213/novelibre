@@ -122,13 +122,6 @@ See the [online user guide](https://peter88213.github.io/nvhelp-en/)
 
 ![Screenshot](docs/Screenshots/help01.png)
 
-There are also PDF versions of the user guide:
-
-* [Download the English manual as PDF](https://github.com/peter88213/nvhelp-en/raw/main/pdf/novelibreuserguide.pdf)
-* [Download the German manual as PDF](https://github.com/peter88213/nvhelp-de/raw/main/pdf/novelibrebenutzerhandbuch.pdf)
-
-![Screenshot](docs/Screenshots/manual01.png)
-
 ## Credits
 
 - The logos and file icons are made using the free *Pusab* font by Ryoichi Tsunekawa, [Flat-it](http://flat-it.com/).
