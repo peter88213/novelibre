@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.11.8
+
+- Fix a bug where an exception is raised when trying to add a parent element to the tree while the project is locked. 
+
+Based on novxlib 4.7.2
+
 ### Version 4.11.7
 
 - Fix HTML report title display.

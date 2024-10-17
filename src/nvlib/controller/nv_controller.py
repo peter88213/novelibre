@@ -303,11 +303,13 @@ class NvController:
         if self._mdl.prjFile is None:
             return
 
-        if not self.check_lock():
-            try:
-                selection = self._ui.tv.tree.selection()[0]
-            except:
-                return
+        if self.check_lock():
+            return
+
+        try:
+            selection = self._ui.tv.tree.selection()[0]
+        except:
+            return
 
         if selection.startswith(SECTION_PREFIX):
             self.add_chapter(targetNode=selection)
@@ -1069,15 +1071,17 @@ class NvController:
             isMajor: bool -- If True, make the characters major. Otherwise, make them minor.
             elemIds: list of character IDs to process.
         """
-        if not self.check_lock():
-            if elemIds is None:
-                try:
-                    elemIds = self._ui.tv.tree.selection()
-                except:
-                    return
+        if self.check_lock():
+            return
 
-            self._ui.tv.open_children(CR_ROOT)
-            self._mdl.set_character_status(isMajor, elemIds)
+        if elemIds is None:
+            try:
+                elemIds = self._ui.tv.tree.selection()
+            except:
+                return
+
+        self._ui.tv.open_children(CR_ROOT)
+        self._mdl.set_character_status(isMajor, elemIds)
 
     def set_level(self, newLevel, elemIds=None):
         """Set chapter or stage level.
@@ -1086,14 +1090,16 @@ class NvController:
             newLevel: int -- New level to be set.
             elemIds: list of IDs to process.
         """
-        if not self.check_lock():
-            if elemIds is None:
-                try:
-                    elemIds = self._ui.tv.tree.selection()
-                except:
-                    return
+        if self.check_lock():
+            return
 
-            self._mdl.set_level(newLevel, elemIds)
+        if elemIds is None:
+            try:
+                elemIds = self._ui.tv.tree.selection()
+            except:
+                return
+
+        self._mdl.set_level(newLevel, elemIds)
 
     def set_completion_status(self, newStatus, elemIds=None):
         """Set section completion status (Outline/Draft..).
@@ -1102,15 +1108,17 @@ class NvController:
             newStatus: int -- New section status to be set.        
             elemIds: list of IDs to process.            
         """
-        if not self.check_lock():
-            if elemIds is None:
-                try:
-                    elemIds = self._ui.tv.tree.selection()
-                except:
-                    return
+        if self.check_lock():
+            return
 
-            self._ui.tv.open_children(elemIds[0])
-            self._mdl.set_completion_status(newStatus, elemIds)
+        if elemIds is None:
+            try:
+                elemIds = self._ui.tv.tree.selection()
+            except:
+                return
+
+        self._ui.tv.open_children(elemIds[0])
+        self._mdl.set_completion_status(newStatus, elemIds)
 
     def set_type(self, newType, elemIds=None):
         """Set section or chapter type Normal).
@@ -1119,15 +1127,17 @@ class NvController:
             newType: int -- New type to be set.
             elemIds: list of IDs to process.
         """
-        if not self.check_lock():
-            if elemIds is None:
-                try:
-                    elemIds = self._ui.tv.tree.selection()
-                except:
-                    return
+        if self.check_lock():
+            return
 
-            self._ui.tv.open_children(elemIds[0])
-            self._mdl.set_type(newType, elemIds)
+        if elemIds is None:
+            try:
+                elemIds = self._ui.tv.tree.selection()
+            except:
+                return
+
+        self._ui.tv.open_children(elemIds[0])
+        self._mdl.set_type(newType, elemIds)
 
     def show_report(self, suffix):
         """Create HTML report for the web browser.
