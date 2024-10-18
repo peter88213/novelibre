@@ -74,7 +74,7 @@ organization of their work.
 
 At present, the development phase is coming to an end. Nevertheless it is recommended to check for updates from time to time, as well as for the plugins. 
 
-I use the program myself and fix errors immediately if I notice any. As far as I can tell, *novelibre* runs fast and reliably under Windows and Linux. It should also under other operating systems for which there is a reasonably up-to-date *Python 3* installation. However, there is a lack of a broad user base, which is why one cannot speak of real proven operation. 
+I use the program myself and fix bugs immediately if I notice any. As far as I can tell, *novelibre* runs fast and reliably under Windows and Linux. It should also under other operating systems for which there is a reasonably up-to-date *Python 3* installation. However, there is a lack of a broad user base, which is why one cannot speak of real proven operation. 
 
 
 ## Download and install
