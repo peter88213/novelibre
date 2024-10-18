@@ -51,18 +51,7 @@ class NvController:
     
         Positional arguments:
             title: str -- Application title to be displayed at the window frame.
-            tempDir: str -- Path of the temporary directory, used for e.g. packing zipfiles. 
-         
-        Processed keyword arguments:
-            root_geometry: str -- geometry of the root window.
-            coloring_mode: str -- tree coloring mode.
-        
-        Operation:
-        - Create a main menu to be extended by subclasses.
-        - Create a title bar for the project title.
-        - Open a main window frame to be used by subclasses.
-        - Create a status bar to be used by subclasses.
-        - Create a path bar for the project file path.
+            tempDir: str -- Path of the temporary directory, used for e.g. packing zipfiles.          
         """
         self.tempDir = tempDir
         self._internalLockFlag = False

@@ -70,22 +70,7 @@ class NvView:
     # initial value when asking for the number of sections to add
 
     def __init__(self, model, controller, title):
-        """Set up the application's user interface.
-    
-        Positional arguments:
-            title: str -- Application title to be displayed at the window frame.
-         
-        Processed keyword arguments:
-            root_geometry: str -- geometry of the root window.
-            coloring_mode: str -- tree coloring mode.
-        
-        Operation:
-        - Create a main menu to be extended by subclasses.
-        - Create a title bar for the project title.
-        - Open a main window frame to be used by subclasses.
-        - Create a status bar to be used by subclasses.
-        - Create a path bar for the project file path.
-        """
+        """Set up the application's user interface."""
         self._mdl = model
         self._ctrl = controller
         self._mdl.register_client(self)
