@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.11.10
+
+- Fix the 'Plot points' label to enable theming.
+
+Based on novxlib 4.7.3
+
 ### Version 4.11.9
 
 - Fix a bug where the project notes are displayed in the HTML report without linebreaks.

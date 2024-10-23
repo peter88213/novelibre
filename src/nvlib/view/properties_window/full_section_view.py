@@ -124,9 +124,8 @@ class FullSectionView(DatedSectionView):
         self._plotNotesWindow.pack(fill='x')
         inputWidgets.append(self._plotNotesWindow)
 
-        tk.Label(self._plotFrame, text=_('Plot points')).pack(anchor='w')
-
         #--- 'Plot points' label.
+        ttk.Label(self._plotFrame, text=_('Plot points')).pack(anchor='w')
         self._plotPointsDisplay = tk.Label(self._plotFrame, anchor='w', bg='white')
         self._plotPointsDisplay.pack(anchor='w', fill='x')
 
