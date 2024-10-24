@@ -1,4 +1,4 @@
-"""Provide a tkinter GUI framework for novelibre.
+"""Provide a controller class for novelibre.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -32,13 +32,13 @@ from nvlib.exporter.nv_doc_exporter import NvDocExporter
 from nvlib.exporter.nv_html_reporter import NvHtmlReporter
 from nvlib.importer.nv_data_importer import NvDataImporter
 from nvlib.importer.nv_doc_importer import NvDocImporter
-from nvlib.importer.prj_updater import PrjUpdater
 from nvlib.model.nv_model import NvModel
 from nvlib.model.nv_work_file import NvWorkFile
 from nvlib.nv_globals import prefs
 from nvlib.plugin.plugin_collection import PluginCollection
-from nvlib.plugin.plugin_manager import PluginManager
+from nvlib.view.pop_up.plugin_manager import PluginManager
 from nvlib.view.nv_view import NvView
+from nvlib.view.pop_up.prj_updater import PrjUpdater
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 
@@ -587,7 +587,7 @@ class NvController:
                     # Do not export a document from an unsaved project.
                     return
 
-            exporter = NvDocExporter()
+            exporter = NvDocExporter(self._ui)
             try:
                 self._ui.set_status(exporter.run(self._mdl.prjFile, suffix, **kwargs))
             except Error as ex:
@@ -643,7 +643,7 @@ class NvController:
             if self._mdl.isModified:
                 if self._ui.ask_yes_no(_('Save changes?')):
                     self.save_project()
-        importer = NvDocImporter()
+        importer = NvDocImporter(self._ui)
         try:
             message = importer.run(sourcePath, nv_service=self._mdl.nvService)
         except Error as ex:

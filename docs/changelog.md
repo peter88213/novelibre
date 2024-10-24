@@ -8,6 +8,14 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.11.11
+
+- Refactor: Use the view's API instead of tkinter imports.
+- Refactor: Move the project-specific tk.Toplevel subclasses to the new view.pop_up package.
+- Update docstrings.
+
+Based on novxlib 4.7.3
+
 ### Version 4.11.10
 
 - Fix the 'Plot points' label to enable theming.

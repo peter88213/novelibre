@@ -1,4 +1,4 @@
-"""Provide a tkinter GUI framework for novelibre.
+"""Provide a tkinter based GUI for novelibre.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -41,7 +41,6 @@ from novxlib.novx_globals import STAGES_SUFFIX
 from novxlib.novx_globals import XREF_SUFFIX
 from novxlib.novx_globals import _
 from novxlib.ui.set_icon_tk import set_icon
-from nvlib.exporter.export_options_window import ExportOptionsWindow
 from nvlib.nv_globals import HOME_URL
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
@@ -50,16 +49,17 @@ from nvlib.view.icons import Icons
 from nvlib.view.platform.platform_settings import KEYS
 from nvlib.view.platform.platform_settings import MOUSE
 from nvlib.view.platform.platform_settings import PLATFORM
+from nvlib.view.pop_up.export_options_window import ExportOptionsWindow
+from nvlib.view.pop_up.view_options_window import ViewOptionsWindow
 from nvlib.view.properties_window.properties_viewer import PropertiesViewer
 from nvlib.view.toolbar.toolbar import Toolbar
 from nvlib.view.tree_window.tree_viewer import TreeViewer
-from nvlib.view.options.view_options_window import ViewOptionsWindow
 from nvlib.widgets.nv_simpledialog import askinteger
 import tkinter as tk
 
 
 class NvView:
-    """Main view of the tkinter GUI framework for novelibre."""
+    """View for the novelibre application."""
     _MIN_WINDOW_WIDTH = 400
     _MIN_WINDOW_HEIGHT = 200
     # minimum size of the application's main window

@@ -5,7 +5,6 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU LGPLv3 (https://www.gnu.org/licenses/lgpl-3.0.en.html)
 """
 import os
-from tkinter import messagebox
 
 from novxlib.converter.import_source_factory import ImportSourceFactory
 from novxlib.converter.import_target_factory import ImportTargetFactory
@@ -55,8 +54,9 @@ class NvDocImporter:
         ]
     CREATE_SOURCE_CLASSES = []
 
-    def __init__(self):
+    def __init__(self, ui):
         """Set up the Factory strategies."""
+        self._ui = ui
         self.importSourceFactory = ImportSourceFactory(self.IMPORT_SOURCE_CLASSES)
         self.newProjectFactory = NewProjectFactory(self.CREATE_SOURCE_CLASSES)
         self.importTargetFactory = ImportTargetFactory([NovxFile])
@@ -110,9 +110,9 @@ class NvDocImporter:
                 raise Error(f'{_("Please close the document first")}.')
 
             if os.path.isfile(target.filePath):
-                if not messagebox.askyesno(
+                if not self._ui.ask_yes_no(
+                    _('Update the project?'),
                     title=source.DESCRIPTION,
-                    message=_('Update the project?')
                     ):
                     raise Error(f'{_("Action canceled by user")}.')
 
