@@ -10,7 +10,7 @@ import os
 from novxlib.converter.export_target_factory import ExportTargetFactory
 from novxlib.file.doc_open import open_document
 from novxlib.novx.data_writer import DataWriter
-from novxlib.novx_globals import Error
+from novxlib.novx_globals import Notification
 from novxlib.novx_globals import _
 from novxlib.novx_globals import norm_path
 from novxlib.ods.ods_w_charlist import OdsWCharList
@@ -113,15 +113,15 @@ class NvDocExporter:
             values = [False, True, None]
             openExisting = values[askOverwrite.go()]
             if openExisting is None:
-                raise Error(f'{_("Action canceled by user")}.')
+                raise Notification(f'{_("Action canceled by user")}.')
 
             elif openExisting:
                 open_document(self._target.filePath)
                 if self._isNewer:
                     prefix = ''
                 else:
-                    prefix = '!'
-                    # warn the user, if a document is open that might be outdated
+                    prefix = '#'
+                    # warning the user, if a document is open that might be outdated
                 return f'{prefix}{_("Opened existing {0} (last saved on {1})").format(self._target.DESCRIPTION, self._targetFileDate)}.'
 
         # Generate a new document. Overwrite the existing document, if any.

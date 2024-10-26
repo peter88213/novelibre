@@ -19,6 +19,7 @@ from novxlib.novx_globals import IT_ROOT
 from novxlib.novx_globals import LC_ROOT
 from novxlib.novx_globals import LOCATION_PREFIX
 from novxlib.novx_globals import MANUSCRIPT_SUFFIX
+from novxlib.novx_globals import Notification
 from novxlib.novx_globals import PLOT_LINE_PREFIX
 from novxlib.novx_globals import PLOT_POINT_PREFIX
 from novxlib.novx_globals import PL_ROOT
@@ -579,22 +580,28 @@ class NvController:
         """
         self._ui.restore_status()
         self._ui.propertiesView.apply_changes()
-        if self._mdl.prjFile.filePath is not None or self.save_project():
-            if self._mdl.isModified:
-                if self._ui.ask_yes_no(_('Save changes?')):
-                    self.save_project()
-                else:
-                    # Do not export a document from an unsaved project.
-                    return
+        if self._mdl.prjFile.filePath is None:
+            if not self.save_project():
+                return
 
-            exporter = NvDocExporter(self._ui)
-            try:
-                self._ui.set_status(exporter.run(self._mdl.prjFile, suffix, **kwargs))
-            except Error as ex:
-                self._ui.set_status(f'!{str(ex)}')
+        if self._mdl.isModified:
+            if self._ui.ask_yes_no(_('Save changes?')):
+                self.save_project()
             else:
-                if kwargs.get('lock', True) and prefs['lock_on_export']:
-                    self.lock()
+                # Do not export a document from an unsaved project.
+                self._ui.set_status(f'#{_("Action canceled by user")}.')
+                return
+
+        exporter = NvDocExporter(self._ui)
+        try:
+            self._ui.set_status(exporter.run(self._mdl.prjFile, suffix, **kwargs))
+        except Notification as ex:
+            self._ui.set_status(f'#{str(ex)}')
+        except Error as ex:
+            self._ui.set_status(f'!{str(ex)}')
+        else:
+            if kwargs.get('lock', True) and prefs['lock_on_export']:
+                self.lock()
 
     def get_preferences(self):
         """Return the global preferences dictionary."""
@@ -646,6 +653,10 @@ class NvController:
         importer = NvDocImporter(self._ui)
         try:
             message = importer.run(sourcePath, nv_service=self._mdl.nvService)
+        except Notification as ex:
+            self._ui.set_status(f'#{str(ex)}')
+            return 'break'
+
         except Error as ex:
             self._ui.set_status(f'!{str(ex)}')
             return 'break'

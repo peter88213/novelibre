@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.11.11\n"
-"POT-Creation-Date: 2024-10-24 13:32:50\n"
+"Project-Id-Version: 4.12.0\n"
+"POT-Creation-Date: 2024-10-26 22:17:28\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -1188,6 +1188,9 @@ msgid "Undefined"
 msgstr ""
 
 msgid "Unknown author"
+msgstr ""
+
+msgid "Unknown element in File"
 msgstr ""
 
 msgid "Unlock"

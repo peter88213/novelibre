@@ -1,4 +1,4 @@
-[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v4.11.11.pyzw)
+[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v4.12.0.pyzw)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
 [![News](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions/1)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
@@ -81,10 +81,10 @@ I use the program myself and fix bugs immediately if I notice any. As far as I c
 
 ### Default: Executable Python zip archive
 
-Download the latest release [novelibre_v4.11.11.pyzw](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v4.11.11.pyzw)
+Download the latest release [novelibre_v4.12.0.pyzw](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v4.12.0.pyzw)
 
-- Launch *novelibre_v4.11.11.pyzw* by double-clicking (Windows/Linux desktop),
-- or execute `python novelibre_v4.11.11.pyzw` (Windows), resp. `python3 novelibre_v4.11.11.pyzw` (Linux) on the command line.
+- Launch *novelibre_v4.12.0.pyzw* by double-clicking (Windows/Linux desktop),
+- or execute `python novelibre_v4.12.0.pyzw` (Windows), resp. `python3 novelibre_v4.12.0.pyzw` (Linux) on the command line.
 
 #### Important
 
@@ -100,9 +100,9 @@ the zip file.
 
 ### Alternative: Zip file
 
-The package is also available in zip format: [novelibre_v4.11.11.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v4.11.11.zip)
+The package is also available in zip format: [novelibre_v4.12.0.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v4.12.0.zip)
 
-- Extract the *novelibre_v4.11.11* folder from the downloaded zipfile "novelibre_v4.11.11.zip".
+- Extract the *novelibre_v4.12.0* folder from the downloaded zipfile "novelibre_v4.12.0.zip".
 - Move into this new folder and launch *setup.pyw* by double-clicking (Windows/Linux desktop), 
 - or execute `python setup.pyw` (Windows), resp. `python3 setup.pyw` (Linux) on the command line.
 

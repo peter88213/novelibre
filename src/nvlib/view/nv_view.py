@@ -388,7 +388,8 @@ class NvView:
         Optional arguments:
             colors: tuple -- (background color, foreground color).
 
-        Default status bar color is red if the message starts with "!", otherwise green.
+        Default status bar color is red if the message starts with "!", 
+        yellow, if the message starts with "#", otherwise green.
         """
         if message is not None:
             try:
@@ -397,10 +398,17 @@ class NvView:
                 self.infoHowText = message
             except:
                 if message.startswith('!'):
+                    # error
                     self.statusBar.config(bg='red')
                     self.statusBar.config(fg='white')
                     self.infoHowText = message.lstrip('!').strip()
+                elif message.startswith('#'):
+                    # notification/warning
+                    self.statusBar.config(bg='yellow')
+                    self.statusBar.config(fg='black')
+                    self.infoHowText = message.lstrip('#').strip()
                 else:
+                    # success
                     self.statusBar.config(bg='green')
                     self.statusBar.config(fg='white')
                     self.infoHowText = message

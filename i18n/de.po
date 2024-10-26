@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.11.11\n"
-"POT-Creation-Date: 2024-10-24 13:32:50\n"
-"PO-Revision-Date: 2024-10-24 13:32:50\n"
+"Project-Id-Version: 4.12.0\n"
+"POT-Creation-Date: 2024-10-26 22:17:28\n"
+"PO-Revision-Date: 2024-10-26 22:17:28\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1182,6 +1182,9 @@ msgstr "Nicht definiert"
 
 msgid "Unknown author"
 msgstr "Unbekannter Autor"
+
+msgid "Unknown element in File"
+msgstr "Unbekanntes Element in Datei"
 
 msgid "Unlock"
 msgstr "Entsperren"

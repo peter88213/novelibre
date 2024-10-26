@@ -11,6 +11,7 @@ from novxlib.converter.import_target_factory import ImportTargetFactory
 from novxlib.converter.new_project_factory import NewProjectFactory
 from novxlib.novx.novx_file import NovxFile
 from novxlib.novx_globals import Error
+from novxlib.novx_globals import Notification
 from novxlib.novx_globals import _
 from novxlib.novx_globals import norm_path
 from novxlib.ods.ods_r_charlist import OdsRCharList
@@ -114,7 +115,7 @@ class NvDocImporter:
                     _('Update the project?'),
                     title=source.DESCRIPTION,
                     ):
-                    raise Error(f'{_("Action canceled by user")}.')
+                    raise Notification(f'{_("Action canceled by user")}.')
 
             target.novel = source.novel
             target.write()

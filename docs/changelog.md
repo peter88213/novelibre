@@ -8,6 +8,15 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.12.0
+
+- Add a notification mode to the status bar (yellow).
+- Show a notification instead of an error, if the user opens an existing document instead of exporting.
+- Show a notification if the document export is canceled due to unsaved changes.
+- Provide a specific error message if an odt import document contains an unknown model element (novxlib).
+
+Based on novxlib 4.8.0
+
 ### Version 4.11.11
 
 - Refactor: Use the view's API instead of tkinter imports.
