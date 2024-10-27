@@ -21,7 +21,7 @@ import tkinter as tk
 
 
 class Toolbar:
-    """Toolbar plugin class."""
+    """Toolbar class."""
 
     def __init__(self, view, controller):
         """Add a toolbar.

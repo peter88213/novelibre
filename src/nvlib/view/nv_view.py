@@ -74,7 +74,8 @@ class NvView:
         self._mdl = model
         self._ctrl = controller
         self._mdl.register_client(self)
-        self.views = []
+        self._viewObjects = []
+        # list of composed view objects
 
         #--- Create the tk root window and set the size.
         self.title = title
@@ -236,9 +237,9 @@ class NvView:
         self.viewMenu.entryconfig(_('Show Items'), state='disabled')
         self.viewMenu.entryconfig(_('Show Plot lines'), state='disabled')
         self.viewMenu.entryconfig(_('Show Project notes'), state='disabled')
-        for view in self.views:
+        for viewObject in self._viewObjects:
             try:
-                view.disable_menu()
+                viewObject.disable_menu()
             except AttributeError:
                 pass
 
@@ -303,9 +304,9 @@ class NvView:
         self.viewMenu.entryconfig(_('Show Items'), state='normal')
         self.viewMenu.entryconfig(_('Show Plot lines'), state='normal')
         self.viewMenu.entryconfig(_('Show Project notes'), state='normal')
-        for view in self.views:
+        for viewObject in self._viewObjects:
             try:
-                view.enable_menu()
+                viewObject.enable_menu()
             except AttributeError:
                 pass
 
@@ -325,7 +326,7 @@ class NvView:
         self.mainMenu.entryconfig(_('Plot'), state='disabled')
         self.mainMenu.entryconfig(_('Project notes'), state='disabled')
         self.mainMenu.entryconfig(_('Export'), state='disabled')
-        for view in self.views:
+        for view in self._viewObjects:
             try:
                 view.lock()
             except AttributeError:
@@ -353,23 +354,24 @@ class NvView:
         self.root.quit()
 
     def refresh(self):
-        """Update children."""
+        """Set the path bar colors and refresh the composed objects."""
         if self._mdl.isModified:
             self.pathBar.config(bg=prefs['color_modified_bg'])
             self.pathBar.config(fg=prefs['color_modified_fg'])
         else:
             self.pathBar.config(bg=self.root.cget('background'))
             self.pathBar.config(fg='black')
-        for view in self.views:
+        for viewObject in self._viewObjects:
             try:
-                view.refresh()
+                viewObject.refresh()
             except AttributeError:
                 pass
         self.set_title()
 
-    def register_view(self, view):
-        if not view in self.views:
-            self.views.append(view)
+    def register_view(self, viewOject):
+        """Add a view object to the composite list."""
+        if not viewOject in self._viewObjects:
+            self._viewObjects.append(viewOject)
 
     def restore_status(self, event=None):
         """Overwrite error message with the status before."""
@@ -399,18 +401,18 @@ class NvView:
             except:
                 if message.startswith('!'):
                     # error
-                    self.statusBar.config(bg='red')
-                    self.statusBar.config(fg='white')
+                    self.statusBar.config(bg=prefs['color_status_error_bg'])
+                    self.statusBar.config(fg=prefs['color_status_error_fg'])
                     self.infoHowText = message.lstrip('!').strip()
                 elif message.startswith('#'):
                     # notification/warning
-                    self.statusBar.config(bg='yellow')
-                    self.statusBar.config(fg='black')
+                    self.statusBar.config(bg=prefs['color_status_notification_bg'])
+                    self.statusBar.config(fg=prefs['color_status_notification_fg'])
                     self.infoHowText = message.lstrip('#').strip()
                 else:
                     # success
-                    self.statusBar.config(bg='green')
-                    self.statusBar.config(fg='white')
+                    self.statusBar.config(bg=prefs['color_status_success_bg'])
+                    self.statusBar.config(fg=prefs['color_status_success_fg'])
                     self.infoHowText = message
             self.statusBar.config(text=self.infoHowText)
 
@@ -529,19 +531,21 @@ class NvView:
         self.mainMenu.entryconfig(_('Plot'), state='normal')
         self.mainMenu.entryconfig(_('Project notes'), state='normal')
         self.mainMenu.entryconfig(_('Export'), state='normal')
-        for view in self.views:
+        for viewObject in self._viewObjects:
             try:
-                view.unlock()
+                viewObject.unlock()
             except AttributeError:
                 pass
 
-    def unregister_view(self, view):
+    def unregister_view(self, viewObject):
+        """Revove a view object from the composite list."""
         try:
-            self.views.remove(view)
+            self._viewObjects.remove(viewObject)
         except:
             pass
 
     def _add_multiple_sections(self):
+        """Ask how many sections are to be added, then call the controller."""
         n = askinteger(
             title=_('New'),
             prompt=_('How many sections to add?'),
@@ -631,7 +635,7 @@ class NvView:
         self.viewMenu.add_command(label=_('Toggle Properties'), accelerator=KEYS.TOGGLE_PROPERTIES[1], command=self.toggle_properties_view)
         self.viewMenu.add_command(label=_('Detach/Dock Properties'), accelerator=KEYS.DETACH_PROPERTIES[1], command=self.toggle_properties_window)
         self.viewMenu.add_separator()
-        self.viewMenu.add_command(label=_('Options'), command=self._view_options)
+        self.viewMenu.add_command(label=_('Options'), command=self._open_view_options)
 
         # Part
         self.partMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -732,7 +736,7 @@ class NvView:
         self.exportMenu.add_separator()
         self.exportMenu.add_command(label=_('Characters/locations/items data files'), command=lambda: self._ctrl.export_document(DATA_SUFFIX, lock=False, show=False))
         self.exportMenu.add_separator()
-        self.exportMenu.add_command(label=_('Options'), command=self._export_options)
+        self.exportMenu.add_command(label=_('Options'), command=self._open_export_options)
 
         # "Update" menu.
         self.mainMenu.add_command(label=_('Import'), command=self._ctrl.update_project)
@@ -750,7 +754,7 @@ class NvView:
         self.helpMenu.add_command(label=_('Online help'), accelerator=KEYS.OPEN_HELP[1], command=self._open_help)
         self.helpMenu.add_command(label=f"novelibre {_('Home page')}", command=lambda: webbrowser.open(HOME_URL))
 
-    def _export_options(self, event=None):
+    def _open_export_options(self, event=None):
         """Open a toplevel window to edit the export options."""
         offset = 300
         __, x, y = self.root.geometry().split('+')
@@ -761,7 +765,7 @@ class NvView:
     def _open_help(self, event=None):
         open_help('')
 
-    def _view_options(self, event=None):
+    def _open_view_options(self, event=None):
         """Open a toplevel window to edit the view options."""
         offset = 300
         __, x, y = self.root.geometry().split('+')
