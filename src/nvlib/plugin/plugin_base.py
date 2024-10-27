@@ -44,7 +44,9 @@ class PluginBase(ABC):
         Optional arguments:
             prefs -- deprecated. Please use controller.get_preferences() instead.
         """
-        pass
+        self._mdl = model
+        self._ui = view
+        self._ctrl = controller
 
     def disable_menu(self):
         """Disable menu entries when no project is open."""

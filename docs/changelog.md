@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.13.1
+
+- Fix a regression from version 4.13.0 where plugins cannot add toolbar buttons.
+- Extend the PluginBase constructor.
+
+Based on novxlib 4.8.0
+
 ### Version 4.13.0
 
 - Make the status bar colors configurable.

@@ -21,7 +21,7 @@ from nvlib.view.view_component_base import ViewComponentBase
 import tkinter as tk
 
 
-class Toolbar(ViewComponentBase, ttk.Frame):
+class Toolbar(ViewComponentBase):
     """Toolbar class."""
 
     def __init__(self, parent, model, view, controller):
@@ -32,11 +32,13 @@ class Toolbar(ViewComponentBase, ttk.Frame):
             controller -- reference to the main controller instance of the application.
         """
         ViewComponentBase.__init__(self, model, view, controller)
-        ttk.Frame.__init__(self, parent)
+
+        # Add a toolbar to the editor window.
+        self.buttonBar = tk.Frame(self._ui.mainWindow)
 
         # "Go back" button.
         self._goBackButton = ttk.Button(
-            self,
+            self.buttonBar,
             text=_('Back'),
             image=self._ui.icons.goBackIcon,
             command=self._ui.tv.go_back
@@ -46,7 +48,7 @@ class Toolbar(ViewComponentBase, ttk.Frame):
 
         # "Go forward" button.
         self._goForwardButton = ttk.Button(
-            self,
+            self.buttonBar,
             text=_('Forward'),
             image=self._ui.icons.goForwardIcon,
             command=self._ui.tv.go_forward
@@ -55,11 +57,11 @@ class Toolbar(ViewComponentBase, ttk.Frame):
         self._goForwardButton.image = self._ui.icons.goForwardIcon
 
         # Separator.
-        tk.Frame(self, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
+        tk.Frame(self.buttonBar, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
 
         # "View Book" button.
         self._viewBookButton = ttk.Button(
-            self,
+            self.buttonBar,
             text=_('Book'),
             image=self._ui.icons.viewBookIcon,
             command=lambda: self._ui.tv.show_branch(CH_ROOT)
@@ -69,7 +71,7 @@ class Toolbar(ViewComponentBase, ttk.Frame):
 
         # "View Characters" button.
         self._viewCharactersButton = ttk.Button(
-            self,
+            self.buttonBar,
             text=_('Characters'),
             image=self._ui.icons.viewCharactersIcon,
             command=lambda: self._ui.tv.show_branch(CR_ROOT)
@@ -79,7 +81,7 @@ class Toolbar(ViewComponentBase, ttk.Frame):
 
         # "View Locations" button.
         self._viewLocationsButton = ttk.Button(
-            self,
+            self.buttonBar,
             text=_('Locations'),
             image=self._ui.icons.viewLocationsIcon,
             command=lambda: self._ui.tv.show_branch(LC_ROOT)
@@ -89,7 +91,7 @@ class Toolbar(ViewComponentBase, ttk.Frame):
 
         # "View Items" button.
         self._viewItemsButton = ttk.Button(
-            self,
+            self.buttonBar,
             text=_('Items'),
             image=self._ui.icons.viewItemsIcon,
             command=lambda: self._ui.tv.show_branch(IT_ROOT)
@@ -99,7 +101,7 @@ class Toolbar(ViewComponentBase, ttk.Frame):
 
         # "View Plot lines" button.
         self._viewPlotLinesButton = ttk.Button(
-            self,
+            self.buttonBar,
             text=_('Plot lines'),
             image=self._ui.icons.viewPlotLinesIcon,
             command=lambda: self._ui.tv.show_branch(PL_ROOT)
@@ -109,7 +111,7 @@ class Toolbar(ViewComponentBase, ttk.Frame):
 
         # "View Projectnotes" button.
         self._viewProjectnotesButton = ttk.Button(
-            self,
+            self.buttonBar,
             text=_('Project notes'),
             image=self._ui.icons.viewProjectnotesIcon,
             command=lambda: self._ui.tv.show_branch(PN_ROOT)
@@ -118,11 +120,11 @@ class Toolbar(ViewComponentBase, ttk.Frame):
         self._viewProjectnotesButton.image = self._ui.icons.viewProjectnotesIcon
 
         # Separator.
-        tk.Frame(self, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
+        tk.Frame(self.buttonBar, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
 
         # "Save" button.
         self._saveButton = ttk.Button(
-            self,
+            self.buttonBar,
             text=_('Save'),
             image=self._ui.icons.saveIcon,
             command=self._ctrl.save_project
@@ -132,7 +134,7 @@ class Toolbar(ViewComponentBase, ttk.Frame):
 
         # "Lock/Unlock" button.
         self._lockButton = ttk.Button(
-            self,
+            self.buttonBar,
             text=_('Lock/unlock'),
             image=self._ui.icons.lockIcon,
             command=self._ctrl.toggle_lock
@@ -142,7 +144,7 @@ class Toolbar(ViewComponentBase, ttk.Frame):
 
         # "Update from manuscript" button.
         self._updateButton = ttk.Button(
-            self,
+            self.buttonBar,
             text=_('Update from manuscript'),
             image=self._ui.icons.updateFromManuscriptIcon,
             command=lambda: self._ctrl.update_from_odt(suffix=MANUSCRIPT_SUFFIX)
@@ -152,7 +154,7 @@ class Toolbar(ViewComponentBase, ttk.Frame):
 
         # "Manuscript" button.
         self._manuscriptButton = ttk.Button(
-            self,
+            self.buttonBar,
             text=_('Export Manuscript'),
             image=self._ui.icons.manuscriptIcon,
             command=lambda:self._ctrl.export_document(MANUSCRIPT_SUFFIX, ask=False)
@@ -161,11 +163,11 @@ class Toolbar(ViewComponentBase, ttk.Frame):
         self._manuscriptButton.image = self._ui.icons.manuscriptIcon
 
         # Separator.
-        tk.Frame(self, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
+        tk.Frame(self.buttonBar, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
 
         # "Add" button.
         self._addElementButton = ttk.Button(
-            self,
+            self.buttonBar,
             text=_('Add'),
             image=self._ui.icons.addIcon,
             command=self._ctrl.add_element
@@ -175,7 +177,7 @@ class Toolbar(ViewComponentBase, ttk.Frame):
 
         # "Add Child" button.
         self._addChildButton = ttk.Button(
-            self,
+            self.buttonBar,
             text=_('Add child'),
             image=self._ui.icons.addChildIcon,
             command=self._ctrl.add_child
@@ -185,7 +187,7 @@ class Toolbar(ViewComponentBase, ttk.Frame):
 
         # "Add Parent" button.
         self._addParentButton = ttk.Button(
-            self,
+            self.buttonBar,
             text=_('Add parent'),
             image=self._ui.icons.addParentIcon,
             command=self._ctrl.add_parent
@@ -195,7 +197,7 @@ class Toolbar(ViewComponentBase, ttk.Frame):
 
         # "Delete" button.
         self._deleteElementButton = ttk.Button(
-            self,
+            self.buttonBar,
             text=_('Delete'),
             image=self._ui.icons.removeIcon,
             command=self._ctrl.delete_elements
@@ -207,7 +209,7 @@ class Toolbar(ViewComponentBase, ttk.Frame):
 
         # "Toggle properties" button.
         self._propertiesButton = ttk.Button(
-            self,
+            self.buttonBar,
             text=_('Toggle Properties'),
             image=self._ui.icons.propertiesIcon,
             command=self._ui.toggle_properties_view
@@ -217,7 +219,7 @@ class Toolbar(ViewComponentBase, ttk.Frame):
 
         # "Toggle content viewer" button.
         self._viewerButton = ttk.Button(
-            self,
+            self.buttonBar,
             text=_('Toggle Text viewer'),
             image=self._ui.icons.viewerIcon,
             command=self._ui.toggle_contents_view
@@ -225,7 +227,7 @@ class Toolbar(ViewComponentBase, ttk.Frame):
         self._viewerButton.pack(side='right')
         self._viewerButton.image = self._ui.icons.viewerIcon
 
-        self.pack(expand=False, before=self._ui.appWindow, fill='both')
+        self.buttonBar.pack(expand=False, before=self._ui.appWindow, fill='both')
         self._set_hovertips()
 
     def disable_menu(self):
