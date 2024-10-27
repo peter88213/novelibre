@@ -37,7 +37,6 @@ from nvlib.model.nv_model import NvModel
 from nvlib.model.nv_work_file import NvWorkFile
 from nvlib.nv_globals import prefs
 from nvlib.plugin.plugin_collection import PluginCollection
-from nvlib.view.pop_up.plugin_manager import PluginManager
 from nvlib.view.nv_view import NvView
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
@@ -723,14 +722,6 @@ class NvController:
             return True
         else:
             return False
-
-    def manage_plugins(self, event=None):
-        """Open a toplevel window to manage the plugins."""
-        offset = 300
-        __, x, y = self._ui.root.geometry().split('+')
-        windowGeometry = f'+{int(x)+offset}+{int(y)+offset}'
-        PluginManager(windowGeometry, self._ui, self)
-        return 'break'
 
     def move_node(self, node, targetNode):
         """Move a node to another position.

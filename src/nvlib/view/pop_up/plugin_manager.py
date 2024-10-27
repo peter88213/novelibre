@@ -10,21 +10,21 @@ import webbrowser
 from novxlib.novx_globals import _
 from nvlib.nv_globals import open_help
 from nvlib.view.platform.platform_settings import KEYS
+from nvlib.view.view_component_base import ViewComponentBase
 import tkinter as tk
 
 
-class PluginManager(tk.Toplevel):
-    """Plugin manager. 
+class PluginManager(ViewComponentBase, tk.Toplevel):
+    """A pop-up window displaying a list of all plugins found on application startup."""
 
-    A pop-up window displaying a list of all plugins found on application startup.
-    """
-
-    def __init__(self, size, view, controller, **kw):
-        self._ui = view
-        self._ctrl = controller
-        super().__init__(**kw)
+    def __init__(self, parent, model, view, controller, **kw):
+        ViewComponentBase.__init__(self, model, view, controller)
+        tk.Toplevel.__init__(self, **kw)
         self.title(f'{_("Installed plugins")} - novelibre @release')
-        self.geometry(size)
+        offset = 300
+        __, x, y = parent.geometry().split('+')
+        windowGeometry = f'+{int(x)+offset}+{int(y)+offset}'
+        self.geometry(windowGeometry)
         self.grab_set()
         self.focus()
         window = ttk.Frame(self)

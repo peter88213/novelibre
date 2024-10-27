@@ -57,6 +57,7 @@ from nvlib.view.toolbar.toolbar import Toolbar
 from nvlib.view.tree_window.tree_viewer import TreeViewer
 from nvlib.widgets.nv_simpledialog import askinteger
 import tkinter as tk
+from nvlib.view.pop_up.plugin_manager import PluginManager
 
 
 class NvView:
@@ -344,14 +345,6 @@ class NvView:
         self.tv.on_quit()
         prefs['root_geometry'] = self.root.winfo_geometry()
         self.root.quit()
-
-    def open_project_updater(self, event=None):
-        """Update the project from a previously exported document.
-        
-        Using a toplevel window with a pick list of refresh sources.
-        """
-        PrjUpdater(self.root, self._mdl, self, self._ctrl)
-        return 'break'
 
     def refresh(self):
         """Set the path bar colors and refresh the composed objects."""
@@ -733,12 +726,12 @@ class NvView:
         self.exportMenu.add_command(label=_('Options'), command=self._open_export_options)
 
         # "Update" menu.
-        self.mainMenu.add_command(label=_('Import'), command=self.open_project_updater)
+        self.mainMenu.add_command(label=_('Import'), command=self._open_project_updater)
 
         # "Tools" menu.
         self.toolsMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Tools'), menu=self.toolsMenu)
-        self.toolsMenu.add_command(label=_('Plugin Manager'), command=self._ctrl.manage_plugins)
+        self.toolsMenu.add_command(label=_('Plugin Manager'), command=self._open_plugin_manager)
         self.toolsMenu.add_command(label=_('Open installation folder'), command=self._ctrl.open_installationFolder)
         self.toolsMenu.add_separator()
 
@@ -755,6 +748,19 @@ class NvView:
 
     def _open_help(self, event=None):
         open_help('')
+
+    def _open_plugin_manager(self, event=None):
+        """Open a toplevel window to manage the plugins."""
+        PluginManager(self.root, self._mdl, self, self._ctrl)
+        return 'break'
+
+    def _open_project_updater(self, event=None):
+        """Update the project from a previously exported document.
+        
+        Using a toplevel window with a pick list of refresh sources.
+        """
+        PrjUpdater(self.root, self._mdl, self, self._ctrl)
+        return 'break'
 
     def _open_view_options(self, event=None):
         """Open a toplevel window to edit the view options."""
