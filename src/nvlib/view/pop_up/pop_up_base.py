@@ -13,10 +13,10 @@ class PopUpBase(ViewComponentBase, tk.Toplevel):
     OFFSET = 300
 
     @abstractmethod
-    def __init__(self, parent, model, view, controller, **kw):
+    def __init__(self, model, view, controller, **kw):
         ViewComponentBase.__init__(self, model, view, controller)
         tk.Toplevel.__init__(self, **kw)
-        __, x, y = parent.geometry().split('+')
+        __, x, y = self._ui.root.geometry().split('+')
         windowGeometry = f'+{int(x)+self.OFFSET}+{int(y)+self.OFFSET}'
         self.geometry(windowGeometry)
         self.grab_set()

@@ -743,7 +743,7 @@ class NvView:
 
     def _open_export_options(self, event=None):
         """Open a toplevel window to edit the export options."""
-        ExportOptionsWindow(self.root, self._mdl, self, self._ctrl)
+        ExportOptionsWindow(self._mdl, self, self._ctrl)
         return 'break'
 
     def _open_help(self, event=None):
@@ -751,7 +751,7 @@ class NvView:
 
     def _open_plugin_manager(self, event=None):
         """Open a toplevel window to manage the plugins."""
-        PluginManager(self.root, self._mdl, self, self._ctrl)
+        PluginManager(self._mdl, self, self._ctrl)
         return 'break'
 
     def _open_project_updater(self, event=None):
@@ -759,11 +759,11 @@ class NvView:
         
         Using a toplevel window with a pick list of refresh sources.
         """
-        PrjUpdater(self.root, self._mdl, self, self._ctrl)
+        PrjUpdater(self._mdl, self, self._ctrl)
         return 'break'
 
     def _open_view_options(self, event=None):
         """Open a toplevel window to edit the view options."""
-        ViewOptionsWindow(self.root, self._mdl, self, self._ctrl)
+        ViewOptionsWindow(self._mdl, self, self._ctrl)
         return 'break'
 

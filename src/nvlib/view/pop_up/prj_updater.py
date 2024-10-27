@@ -25,11 +25,11 @@ class PrjUpdater(PopUpBase):
     for re-import.
     """
 
-    def __init__(self, parent, model, view, controller, **kw):
+    def __init__(self, model, view, controller, **kw):
         if model.prjFile.filePath is None:
             return
 
-        PopUpBase.__init__(self, parent, model, view, controller, **kw)
+        PopUpBase.__init__(self, model, view, controller, **kw)
         self.title(f'{_("Exported documents")} - novelibre @release')
         window = ttk.Frame(self)
         window.pack(fill='both', expand=True)

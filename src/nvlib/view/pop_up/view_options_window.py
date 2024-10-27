@@ -19,8 +19,8 @@ import tkinter as tk
 class ViewOptionsWindow(PopUpBase):
     """A pop-up window with view preference settings."""
 
-    def __init__(self, parent, model, view, controller, **kw):
-        PopUpBase.__init__(self, parent, model, view, controller, **kw)
+    def __init__(self, model, view, controller, **kw):
+        PopUpBase.__init__(self, model, view, controller, **kw)
         self.title(_('"View" options'))
         window = ttk.Frame(self)
         window.pack(

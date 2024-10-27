@@ -16,8 +16,8 @@ from nvlib.view.pop_up.pop_up_base import PopUpBase
 class PluginManager(PopUpBase):
     """A pop-up window displaying a list of all plugins found on application startup."""
 
-    def __init__(self, parent, model, view, controller, **kw):
-        PopUpBase.__init__(self, parent, model, view, controller, **kw)
+    def __init__(self, model, view, controller, **kw):
+        PopUpBase.__init__(self, model, view, controller, **kw)
         self.title(f'{_("Installed plugins")} - novelibre @release')
         window = ttk.Frame(self)
         window.pack(fill='both', expand=True)
