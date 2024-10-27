@@ -8,6 +8,16 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.13.0
+
+- Make the status bar colors configurable.
+- Rename local variables.
+- Update docstrings.
+- Provide an abstract base class for the view components.
+- Make the tree viewer, contents ciewer, toolbar, and properties viewer ViewComponentBase classes.
+
+Based on novxlib 4.8.0
+
 ### Version 4.12.0
 
 - Add a notification mode to the status bar (yellow).
