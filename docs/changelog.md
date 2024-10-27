@@ -21,7 +21,7 @@ Based on novxlib 4.8.0
 - Rename local variables.
 - Update docstrings.
 - Provide an abstract base class for the view components.
-- Make the tree viewer, contents ciewer, toolbar, and properties viewer ViewComponentBase classes.
+- Make the tree viewer, contents viewer, toolbar, and properties viewer ViewComponentBase subclasses.
 
 Based on novxlib 4.8.0
 
