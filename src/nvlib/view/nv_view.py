@@ -744,7 +744,7 @@ class NvView:
         offset = 300
         __, x, y = self.root.geometry().split('+')
         windowGeometry = f'+{int(x)+offset}+{int(y)+offset}'
-        ExportOptionsWindow(windowGeometry, self)
+        ExportOptionsWindow(self.root, self._mdl, self, self._ctrl)
         return 'break'
 
     def _open_help(self, event=None):
