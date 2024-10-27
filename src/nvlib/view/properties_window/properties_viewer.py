@@ -6,36 +6,35 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from nvlib.view.properties_window.plot_line_view import PlotLineView
+from novxlib.novx_globals import CHAPTER_PREFIX
+from novxlib.novx_globals import CHARACTER_PREFIX
+from novxlib.novx_globals import CH_ROOT
+from novxlib.novx_globals import ITEM_PREFIX
+from novxlib.novx_globals import LOCATION_PREFIX
+from novxlib.novx_globals import PLOT_LINE_PREFIX
+from novxlib.novx_globals import PLOT_POINT_PREFIX
+from novxlib.novx_globals import PRJ_NOTE_PREFIX
+from novxlib.novx_globals import SECTION_PREFIX
 from nvlib.view.properties_window.chapter_view import ChapterView
 from nvlib.view.properties_window.character_view import CharacterView
 from nvlib.view.properties_window.full_section_view import FullSectionView
 from nvlib.view.properties_window.item_view import ItemView
 from nvlib.view.properties_window.location_view import LocationView
 from nvlib.view.properties_window.no_view import NoView
-from nvlib.view.properties_window.project_view import ProjectView
-from nvlib.view.properties_window.project_note_view import ProjectNoteView
-from nvlib.view.properties_window.stage_view import StageView
+from nvlib.view.properties_window.plot_line_view import PlotLineView
 from nvlib.view.properties_window.plot_point_view import TurningPointView
-from novxlib.novx_globals import PLOT_POINT_PREFIX
-from novxlib.novx_globals import PLOT_LINE_PREFIX
-from novxlib.novx_globals import CHAPTER_PREFIX
-from novxlib.novx_globals import CHARACTER_PREFIX
-from novxlib.novx_globals import CH_ROOT
-from novxlib.novx_globals import ITEM_PREFIX
-from novxlib.novx_globals import LOCATION_PREFIX
-from novxlib.novx_globals import PRJ_NOTE_PREFIX
-from novxlib.novx_globals import SECTION_PREFIX
+from nvlib.view.properties_window.project_note_view import ProjectNoteView
+from nvlib.view.properties_window.project_view import ProjectView
+from nvlib.view.properties_window.stage_view import StageView
+from nvlib.view.view_component_base import ViewComponentBase
 
 
-class PropertiesViewer(ttk.Frame):
+class PropertiesViewer(ViewComponentBase, ttk.Frame):
     """A window viewing the selected element's properties."""
 
     def __init__(self, parent, model, view, controller, **kw):
-        super().__init__(parent, **kw)
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
+        ViewComponentBase.__init__(self, model, view, controller)
+        ttk.Frame.__init__(self, parent, **kw)
         self._noView = NoView(self, self._mdl, self._ui, self._ctrl)
         self._projectView = ProjectView(self, self._mdl, self._ui, self._ctrl)
         self._chapterView = ChapterView(self, self._mdl, self._ui, self._ctrl)

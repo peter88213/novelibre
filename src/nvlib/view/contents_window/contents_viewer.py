@@ -7,15 +7,16 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import re
 from tkinter import ttk
 
+from novxlib.novx_globals import CH_ROOT
+from novxlib.novx_globals import _
 from nvlib.nv_globals import prefs
 from nvlib.view.contents_window.content_view_parser import ContentViewParser
 from nvlib.view.contents_window.rich_text_nv import RichTextNv
-from novxlib.novx_globals import CH_ROOT
-from novxlib.novx_globals import _
+from nvlib.view.view_component_base import ViewComponentBase
 import tkinter as tk
 
 
-class ContentsViewer(RichTextNv):
+class ContentsViewer(ViewComponentBase, RichTextNv):
     """A tkinter text box class for novelibre file viewing.
     
     Show the novel contents in a text box.
@@ -34,11 +35,8 @@ class ContentsViewer(RichTextNv):
         Required keyword arguments:
             show_markup: bool 
         """
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
-
-        super().__init__(parent, **prefs)
+        ViewComponentBase.__init__(self, model, view, controller)
+        RichTextNv.__init__(self, parent, **prefs)
         self.pack(expand=True, fill='both')
         self.showMarkup = tk.BooleanVar(parent, value=prefs['show_markup'])
         ttk.Checkbutton(parent, text=_('Show markup'), variable=self.showMarkup).pack(anchor='w')

@@ -74,7 +74,7 @@ class NvView:
         self._mdl = model
         self._ctrl = controller
         self._mdl.register_client(self)
-        self._viewObjects = []
+        self._viewComponents = []
         # list of composed view objects
 
         #--- Create the tk root window and set the size.
@@ -156,7 +156,7 @@ class NvView:
         self._build_menu()
 
         #--- Add a toolbar.
-        self.toolbar = Toolbar(self, self._ctrl)
+        self.toolbar = Toolbar(self.mainWindow, self._mdl, self, self._ctrl)
         self.register_view(self.toolbar)
 
         #--- tk root event bindings.
@@ -237,11 +237,8 @@ class NvView:
         self.viewMenu.entryconfig(_('Show Items'), state='disabled')
         self.viewMenu.entryconfig(_('Show Plot lines'), state='disabled')
         self.viewMenu.entryconfig(_('Show Project notes'), state='disabled')
-        for viewObject in self._viewObjects:
-            try:
-                viewObject.disable_menu()
-            except AttributeError:
-                pass
+        for viewComponent in self._viewComponents:
+            viewComponent.disable_menu()
 
     def dock_properties_frame(self, event=None):
         """Dock the properties window at the right pane, if detached."""
@@ -304,11 +301,8 @@ class NvView:
         self.viewMenu.entryconfig(_('Show Items'), state='normal')
         self.viewMenu.entryconfig(_('Show Plot lines'), state='normal')
         self.viewMenu.entryconfig(_('Show Project notes'), state='normal')
-        for viewObject in self._viewObjects:
-            try:
-                viewObject.enable_menu()
-            except AttributeError:
-                pass
+        for viewComponent in self._viewComponents:
+            viewComponent.enable_menu()
 
     def lock(self):
         """Make the "locked" state visible."""
@@ -326,11 +320,8 @@ class NvView:
         self.mainMenu.entryconfig(_('Plot'), state='disabled')
         self.mainMenu.entryconfig(_('Project notes'), state='disabled')
         self.mainMenu.entryconfig(_('Export'), state='disabled')
-        for view in self._viewObjects:
-            try:
-                view.lock()
-            except AttributeError:
-                pass
+        for viewComponent in self._viewComponents:
+            viewComponent.lock()
 
     def on_change_selection(self, nodeId):
         """Event handler for element selection.
@@ -361,17 +352,14 @@ class NvView:
         else:
             self.pathBar.config(bg=self.root.cget('background'))
             self.pathBar.config(fg='black')
-        for viewObject in self._viewObjects:
-            try:
-                viewObject.refresh()
-            except AttributeError:
-                pass
+        for viewComponent in self._viewComponents:
+            viewComponent.refresh()
         self.set_title()
 
-    def register_view(self, viewOject):
+    def register_view(self, viewComponent):
         """Add a view object to the composite list."""
-        if not viewOject in self._viewObjects:
-            self._viewObjects.append(viewOject)
+        if not viewComponent in self._viewComponents:
+            self._viewComponents.append(viewComponent)
 
     def restore_status(self, event=None):
         """Overwrite error message with the status before."""
@@ -531,16 +519,13 @@ class NvView:
         self.mainMenu.entryconfig(_('Plot'), state='normal')
         self.mainMenu.entryconfig(_('Project notes'), state='normal')
         self.mainMenu.entryconfig(_('Export'), state='normal')
-        for viewObject in self._viewObjects:
-            try:
-                viewObject.unlock()
-            except AttributeError:
-                pass
+        for viewComponent in self._viewComponents:
+            viewComponent.unlock()
 
-    def unregister_view(self, viewObject):
+    def unregister_view(self, viewComponent):
         """Revove a view object from the composite list."""
         try:
-            self._viewObjects.remove(viewObject)
+            self._viewComponents.remove(viewComponent)
         except:
             pass
 
