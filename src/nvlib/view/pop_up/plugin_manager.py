@@ -11,7 +11,6 @@ from novxlib.novx_globals import _
 from nvlib.nv_globals import open_help
 from nvlib.view.platform.platform_settings import KEYS
 from nvlib.view.pop_up.pop_up_base import PopUpBase
-import tkinter as tk
 
 
 class PluginManager(PopUpBase):
@@ -25,6 +24,12 @@ class PluginManager(PopUpBase):
 
         columns = 'Module', 'Version', 'novelibre API', 'Description'
         self._moduleCollection = ttk.Treeview(window, columns=columns, show='headings', selectmode='browse')
+
+        # scrollY = ttk.Scrollbar(self._moduleCollection, orient='vertical', command=self._moduleCollection.yview)
+        # self._moduleCollection.configure(yscrollcommand=scrollY.set)
+        # scrollY.pack(side='right', fill='y')
+        #--- unsolved problem: adding a scollbar makes the window shrink to minimum
+
         self._moduleCollection.pack(fill='both', expand=True)
         self._moduleCollection.bind('<<TreeviewSelect>>', self._on_select_module)
         self._moduleCollection.tag_configure('rejected', foreground='red')

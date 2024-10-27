@@ -8,6 +8,16 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.14.0
+
+Refactor the code for better maintainability:
+- Provide an abstract base class for pop-up windows.
+- Make ExportOptionsWindow, ViewOptionsWindow, PluginManager, and PrjUpdater PopUpBase subclasses.
+- Move and rename the update_project method.
+- Move and rename the manage_plugins method.
+
+Based on novxlib 4.8.0
+
 ### Version 4.13.1
 
 - Fix a regression from version 4.13.0 where plugins cannot add toolbar buttons.
@@ -18,10 +28,12 @@ Based on novxlib 4.8.0
 ### Version 4.13.0
 
 - Make the status bar colors configurable.
-- Rename local variables.
-- Update docstrings.
+
+Refactor the code for better maintainability:
 - Provide an abstract base class for the view components.
 - Make the tree viewer, contents viewer, toolbar, and properties viewer ViewComponentBase subclasses.
+- Rename local variables.
+- Update docstrings.
 
 Based on novxlib 4.8.0
 
