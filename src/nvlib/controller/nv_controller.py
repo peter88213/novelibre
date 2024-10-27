@@ -39,7 +39,6 @@ from nvlib.nv_globals import prefs
 from nvlib.plugin.plugin_collection import PluginCollection
 from nvlib.view.pop_up.plugin_manager import PluginManager
 from nvlib.view.nv_view import NvView
-from nvlib.view.pop_up.prj_updater import PrjUpdater
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 
@@ -1200,16 +1199,6 @@ class NvController:
         """
         fileName, __ = os.path.splitext(self._mdl.prjFile.filePath)
         self.import_odf(sourcePath=f'{fileName}{suffix}.odt')
-        return 'break'
-
-    def update_project(self, event=None):
-        """Update the project from a previously exported document.
-        
-        Using a toplevel window with a pick list of refresh sources.
-        """
-        offset = 300
-        __, x, y = self._ui.root.geometry().split('+')
-        PrjUpdater(self._mdl, self._ui, self, f'+{int(x)+offset}+{int(y)+offset}')
         return 'break'
 
     def _view_new_element(self, newNode):

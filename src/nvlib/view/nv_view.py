@@ -50,6 +50,7 @@ from nvlib.view.platform.platform_settings import KEYS
 from nvlib.view.platform.platform_settings import MOUSE
 from nvlib.view.platform.platform_settings import PLATFORM
 from nvlib.view.pop_up.export_options_window import ExportOptionsWindow
+from nvlib.view.pop_up.prj_updater import PrjUpdater
 from nvlib.view.pop_up.view_options_window import ViewOptionsWindow
 from nvlib.view.properties_window.properties_viewer import PropertiesViewer
 from nvlib.view.toolbar.toolbar import Toolbar
@@ -343,6 +344,14 @@ class NvView:
         self.tv.on_quit()
         prefs['root_geometry'] = self.root.winfo_geometry()
         self.root.quit()
+
+    def open_project_updater(self, event=None):
+        """Update the project from a previously exported document.
+        
+        Using a toplevel window with a pick list of refresh sources.
+        """
+        PrjUpdater(self.root, self._mdl, self, self._ctrl)
+        return 'break'
 
     def refresh(self):
         """Set the path bar colors and refresh the composed objects."""
@@ -724,7 +733,7 @@ class NvView:
         self.exportMenu.add_command(label=_('Options'), command=self._open_export_options)
 
         # "Update" menu.
-        self.mainMenu.add_command(label=_('Import'), command=self._ctrl.update_project)
+        self.mainMenu.add_command(label=_('Import'), command=self.open_project_updater)
 
         # "Tools" menu.
         self.toolsMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -741,9 +750,6 @@ class NvView:
 
     def _open_export_options(self, event=None):
         """Open a toplevel window to edit the export options."""
-        offset = 300
-        __, x, y = self.root.geometry().split('+')
-        windowGeometry = f'+{int(x)+offset}+{int(y)+offset}'
         ExportOptionsWindow(self.root, self._mdl, self, self._ctrl)
         return 'break'
 
@@ -752,9 +758,6 @@ class NvView:
 
     def _open_view_options(self, event=None):
         """Open a toplevel window to edit the view options."""
-        offset = 300
-        __, x, y = self.root.geometry().split('+')
-        windowGeometry = f'+{int(x)+offset}+{int(y)+offset}'
-        ViewOptionsWindow(windowGeometry, self)
+        ViewOptionsWindow(self.root, self._mdl, self, self._ctrl)
         return 'break'
 

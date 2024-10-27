@@ -18,11 +18,6 @@ class ExportOptionsWindow(ViewComponentBase, tk.Toplevel):
     """A pop-up window with export preference settings."""
 
     def __init__(self, parent, model, view, controller, **kw):
-        """Open a pop-up window to edit the export options.
-        
-        Positional arguments:
-            size -- str: Window size and coordinates.
-        """
         ViewComponentBase.__init__(self, model, view, controller)
         tk.Toplevel.__init__(self, **kw)
         self.title(_('"Export" options'))

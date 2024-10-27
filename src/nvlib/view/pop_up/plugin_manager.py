@@ -14,12 +14,12 @@ import tkinter as tk
 
 
 class PluginManager(tk.Toplevel):
+    """Plugin manager. 
+
+    A pop-up window displaying a list of all plugins found on application startup.
+    """
 
     def __init__(self, size, view, controller, **kw):
-        """Plugin manager. 
-
-        A pop-up window displaying a list of all plugins found on application startup.
-        """
         self._ui = view
         self._ctrl = controller
         super().__init__(**kw)
