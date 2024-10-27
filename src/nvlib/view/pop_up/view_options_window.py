@@ -11,24 +11,17 @@ from novxlib.novx_globals import list_to_string
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
 from nvlib.view.platform.platform_settings import KEYS
-from nvlib.view.view_component_base import ViewComponentBase
+from nvlib.view.pop_up.pop_up_base import PopUpBase
 from nvlib.widgets.drag_drop_listbox import DragDropListbox
 import tkinter as tk
 
 
-class ViewOptionsWindow(ViewComponentBase, tk.Toplevel):
+class ViewOptionsWindow(PopUpBase):
     """A pop-up window with view preference settings."""
 
     def __init__(self, parent, model, view, controller, **kw):
-        ViewComponentBase.__init__(self, model, view, controller)
-        tk.Toplevel.__init__(self, **kw)
+        PopUpBase.__init__(self, parent, model, view, controller, **kw)
         self.title(_('"View" options'))
-        offset = 300
-        __, x, y = parent.geometry().split('+')
-        windowGeometry = f'+{int(x)+offset}+{int(y)+offset}'
-        self.geometry(windowGeometry)
-        self.grab_set()
-        self.focus()
         window = ttk.Frame(self)
         window.pack(
             fill='both',

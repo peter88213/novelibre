@@ -14,11 +14,11 @@ from novxlib.odf.check_odf import odf_is_locked
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
 from nvlib.view.platform.platform_settings import KEYS
-from nvlib.view.view_component_base import ViewComponentBase
+from nvlib.view.pop_up.pop_up_base import PopUpBase
 import tkinter as tk
 
 
-class PrjUpdater(ViewComponentBase, tk.Toplevel):
+class PrjUpdater(PopUpBase):
     """Project update manager.
     
     A pop-up window displaying a picklist of previously exported documents
@@ -26,18 +26,11 @@ class PrjUpdater(ViewComponentBase, tk.Toplevel):
     """
 
     def __init__(self, parent, model, view, controller, **kw):
-        ViewComponentBase.__init__(self, model, view, controller)
-        if self._mdl.prjFile.filePath is None:
+        if model.prjFile.filePath is None:
             return
 
-        tk.Toplevel.__init__(self, **kw)
+        PopUpBase.__init__(self, parent, model, view, controller, **kw)
         self.title(f'{_("Exported documents")} - novelibre @release')
-        offset = 300
-        __, x, y = parent.geometry().split('+')
-        windowGeometry = f'+{int(x)+offset}+{int(y)+offset}'
-        self.geometry(windowGeometry)
-        self.grab_set()
-        self.focus()
         window = ttk.Frame(self)
         window.pack(fill='both', expand=True)
 
