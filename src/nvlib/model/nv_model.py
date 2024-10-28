@@ -4,6 +4,7 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from apptk.model.model_base import ModelBase
 from novxlib.model.id_generator import create_id
 from novxlib.novx_globals import CHAPTER_PREFIX
 from novxlib.novx_globals import CHARACTER_PREFIX
@@ -25,33 +26,23 @@ from nvlib.model.nv_service import NvService
 from nvlib.model.nv_work_file import NvWorkFile
 
 
-class NvModel:
+class NvModel(ModelBase):
     """novelibre model representation."""
 
     def __init__(self):
+        """Extends the superclass constructor."""
+        super().__init__()
+
         self.tree = None
         # strategy class
         self.prjFile = None
         self.novel = None
-        self._clients = []
         # objects to be updated on model change
 
         self.trashBin = None
         self.wordCount = 0
-        self._internalModificationFlag = False
 
         self.nvService = NvService()
-
-    @property
-    def isModified(self):
-        # Boolean -- True if there are unsaved changes.
-        return self._internalModificationFlag
-
-    @isModified.setter
-    def isModified(self, setFlag):
-        self._internalModificationFlag = setFlag
-        for client in self._clients:
-            client.refresh()
 
     def add_chapter(self, **kwargs):
         """Add a chapter to the novel.
@@ -757,10 +748,6 @@ class NvModel:
         self.prjFile.novel = self.novel
         self._initialize_tree(self.on_element_change)
 
-    def on_element_change(self):
-        """Callback function to report model element modifications."""
-        self.isModified = True
-
     def open_project(self, filePath):
         """Initialize instance variables.
         
@@ -776,10 +763,6 @@ class NvModel:
         else:
             self.isModified = False
         self._initialize_tree(self.on_element_change)
-
-    def register_client(self, client):
-        if not client in self._clients:
-            self._clients.append(client)
 
     def renumber_chapters(self):
         """Modify chapter headings."""
@@ -936,12 +919,6 @@ class NvModel:
                 if newType > 0:
                     self.set_type(newType, self.tree.get_children(elemId))
                     # going one level down
-
-    def unregister_client(self, client):
-        try:
-            self._clients.remove(client)
-        except:
-            pass
 
     def _initialize_tree(self, on_element_change):
         """Iterate the tree and configure the elements."""
