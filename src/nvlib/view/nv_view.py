@@ -7,6 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 import webbrowser
 
+from apptk.view.set_icon_tk import set_icon
 from apptk.view.view_base import ViewBase
 from novxlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from novxlib.novx_globals import CHAPTERS_SUFFIX
@@ -40,7 +41,6 @@ from novxlib.novx_globals import SECTIONS_SUFFIX
 from novxlib.novx_globals import STAGES_SUFFIX
 from novxlib.novx_globals import XREF_SUFFIX
 from novxlib.novx_globals import _
-from novxlib.ui.set_icon_tk import set_icon
 from nvlib.nv_globals import HOME_URL
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
@@ -357,7 +357,7 @@ class NvView(ViewBase):
         pass
 
     def set_status(self, message, colors=None):
-        """SDisplay a message at the status bar.
+        """Display a message on the status bar.
         
         Positional arguments:
             message -- message to be displayed. 
