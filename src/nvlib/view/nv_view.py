@@ -290,7 +290,10 @@ class NvView(ViewBase):
         super().enable_menu()
 
     def lock(self):
-        """Make the "locked" state visible."""
+        """Make the "locked" state visible.
+        
+        Extends the superclass method.
+        """
         self.pathBar.config(bg=prefs['color_locked_bg'])
         self.pathBar.config(fg=prefs['color_locked_fg'])
         self.fileMenu.entryconfig(_('Save'), state='disabled')
@@ -305,8 +308,7 @@ class NvView(ViewBase):
         self.mainMenu.entryconfig(_('Plot'), state='disabled')
         self.mainMenu.entryconfig(_('Project notes'), state='disabled')
         self.mainMenu.entryconfig(_('Export'), state='disabled')
-        for viewComponent in self._viewComponents:
-            viewComponent.lock()
+        super().lock()
 
     def on_change_selection(self, nodeId):
         """Event handler for element selection.
@@ -452,7 +454,10 @@ class NvView(ViewBase):
         return 'break'
 
     def unlock(self):
-        """Make the "unlocked" state visible."""
+        """Make the "unlocked" state visible.
+        
+        Extends the superclass method.
+        """
         self.pathBar.config(bg=self.root.cget('background'))
         self.pathBar.config(fg='black')
         self.fileMenu.entryconfig(_('Save'), state='normal')
@@ -467,8 +472,7 @@ class NvView(ViewBase):
         self.mainMenu.entryconfig(_('Plot'), state='normal')
         self.mainMenu.entryconfig(_('Project notes'), state='normal')
         self.mainMenu.entryconfig(_('Export'), state='normal')
-        for viewComponent in self._viewComponents:
-            viewComponent.unlock()
+        super().unlock()
 
     def _add_multiple_sections(self):
         """Ask how many sections are to be added, then call the controller."""
