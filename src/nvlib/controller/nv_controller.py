@@ -9,6 +9,7 @@ from shutil import copy2
 import sys
 from tkinter import filedialog
 
+from apptk.controller.controller_base import ControllerBase
 from novxlib.novx_globals import CHAPTER_PREFIX
 from novxlib.novx_globals import CHARACTER_PREFIX
 from novxlib.novx_globals import CH_ROOT
@@ -42,7 +43,7 @@ from nvlib.view.nv_view import NvView
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 
 
-class NvController:
+class NvController(ControllerBase):
     """Controller for the novelibre application."""
 
     def __init__(self, title, tempDir):
@@ -545,11 +546,6 @@ class NvController:
                 self._view_new_element(self._ui.tv.tree.parent(elemId))
             self._mdl.delete_element(elemId)
 
-    def disable_menu(self):
-        """Disable menu entries when no project is open."""
-        self._ui.disable_menu()
-        self.plugins.disable_menu()
-
     def discard_manuscript(self):
         """Rename the current editable manuscript. 
         
@@ -564,11 +560,6 @@ class NvController:
             elif self._ui.ask_yes_no(f"{_('Discard manuscript')}?", self._mdl.novel.title):
                 os.replace(manuscriptPath, f'{fileName}{MANUSCRIPT_SUFFIX}.odt.bak')
                 self._ui.set_status(f"{_('Manuscript discarded')}.")
-
-    def enable_menu(self):
-        """Enable menu entries when a project is open."""
-        self._ui.enable_menu()
-        self.plugins.enable_menu()
 
     def export_document(self, suffix, **kwargs):
         """Export a document.
@@ -604,10 +595,6 @@ class NvController:
     def get_preferences(self):
         """Return the global preferences dictionary."""
         return prefs
-
-    def get_view(self):
-        """Return a reference to the application's main view object."""
-        return self._ui
 
     def import_world_elements(self, prefix):
         """Import characters/locations/items from an XML data file.
@@ -753,12 +740,14 @@ class NvController:
         return 'break'
 
     def on_quit(self, event=None):
-        """Save changes and keyword arguments before exiting the program."""
+        """Save changes and keyword arguments before exiting the program.
+        
+        Extends the superclass method.
+        """
         try:
             if self._mdl.prjFile is not None:
                 self.close_project()
-            self.plugins.on_quit()
-            self._ui.on_quit()
+            super().on_quit()
         except Exception as ex:
             self._ui.show_error(str(ex), title='ERROR: Unhandled exception on exit')
             self._ui.root.quit()
