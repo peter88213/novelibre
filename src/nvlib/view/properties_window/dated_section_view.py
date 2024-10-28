@@ -17,9 +17,9 @@ from nvlib.nv_globals import datestr
 from nvlib.nv_globals import get_section_date_str
 from nvlib.nv_globals import prefs
 from nvlib.view.properties_window.related_section_view import RelatedSectionView
-from nvlib.widgets.folding_frame import FoldingFrame
-from nvlib.widgets.label_entry import LabelEntry
-from nvlib.widgets.my_string_var import MyStringVar
+from apptk.widgets.folding_frame import FoldingFrame
+from apptk.widgets.label_entry import LabelEntry
+from apptk.widgets.my_string_var import MyStringVar
 
 
 class DatedSectionView(RelatedSectionView):

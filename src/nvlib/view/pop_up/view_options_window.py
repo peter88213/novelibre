@@ -12,7 +12,7 @@ from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
 from nvlib.view.platform.platform_settings import KEYS
 from nvlib.view.pop_up.pop_up_base import PopUpBase
-from nvlib.widgets.drag_drop_listbox import DragDropListbox
+from apptk.widgets.drag_drop_listbox import DragDropListbox
 import tkinter as tk
 
 

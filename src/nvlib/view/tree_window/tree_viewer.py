@@ -34,7 +34,7 @@ from nvlib.view.platform.platform_settings import KEYS
 from nvlib.view.platform.platform_settings import MOUSE
 from nvlib.view.tree_window.history_list import HistoryList
 from nvlib.view.view_component_base import ViewComponentBase
-from nvlib.widgets.context_menu import ContextMenu
+from apptk.widgets.context_menu import ContextMenu
 import tkinter as tk
 import tkinter.font as tkFont
 

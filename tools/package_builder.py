@@ -135,6 +135,12 @@ setuplib.main(False)
             'novxlib',
             '../../novxlib/src/'
             )
+        inliner.run(
+            target,
+            target,
+            'apptk',
+            '../../apptk/src/'
+            )
 
     def insert_version_number(self, source, version='unknown'):
         """Write the actual version string and make sure that Unix EOL is used."""

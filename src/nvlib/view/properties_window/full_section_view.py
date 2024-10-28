@@ -9,10 +9,10 @@ from tkinter import ttk
 from nvlib.nv_globals import prefs
 from nvlib.view.properties_window.dated_section_view import DatedSectionView
 from nvlib.widgets.collection_box import CollectionBox
-from nvlib.widgets.folding_frame import FoldingFrame
-from nvlib.widgets.label_combo import LabelCombo
-from nvlib.widgets.my_string_var import MyStringVar
-from nvlib.widgets.text_box import TextBox
+from apptk.widgets.folding_frame import FoldingFrame
+from apptk.widgets.label_combo import LabelCombo
+from apptk.widgets.my_string_var import MyStringVar
+from apptk.widgets.text_box import TextBox
 from novxlib.novx_globals import CR_ROOT
 from novxlib.novx_globals import PL_ROOT
 from novxlib.novx_globals import PLOT_LINE_PREFIX

@@ -12,9 +12,9 @@ from tkinter import ttk
 from novxlib.novx_globals import _
 from nvlib.nv_globals import prefs
 from nvlib.widgets.collection_box import CollectionBox
-from nvlib.widgets.folding_frame import FoldingFrame
-from nvlib.widgets.index_card import IndexCard
-from nvlib.widgets.text_box import TextBox
+from apptk.widgets.folding_frame import FoldingFrame
+from apptk.widgets.index_card import IndexCard
+from apptk.widgets.text_box import TextBox
 
 
 class BasicView(ttk.Frame, ABC):

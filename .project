@@ -3,6 +3,7 @@
 	<name>novelibre</name>
 	<comment></comment>
 	<projects>
+		<project>apptk</project>
 		<project>novxlib</project>
 		<project>nv_aeon2</project>
 		<project>nv_clipboard</project>

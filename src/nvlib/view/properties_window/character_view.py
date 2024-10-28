@@ -9,10 +9,10 @@ from tkinter import ttk
 
 from nvlib.nv_globals import prefs
 from nvlib.view.properties_window.world_element_view import WorldElementView
-from nvlib.widgets.folding_frame import FoldingFrame
-from nvlib.widgets.label_entry import LabelEntry
-from nvlib.widgets.my_string_var import MyStringVar
-from nvlib.widgets.text_box import TextBox
+from apptk.widgets.folding_frame import FoldingFrame
+from apptk.widgets.label_entry import LabelEntry
+from apptk.widgets.my_string_var import MyStringVar
+from apptk.widgets.text_box import TextBox
 from novxlib.novx_globals import _
 
 

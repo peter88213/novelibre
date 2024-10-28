@@ -4,7 +4,7 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.widgets.pick_list import PickList
+from apptk.widgets.pick_list import PickList
 from novxlib.model.id_generator import create_id
 from novxlib.novx.character_data_reader import CharacterDataReader
 from novxlib.novx.item_data_reader import ItemDataReader
