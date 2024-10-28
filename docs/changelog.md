@@ -8,6 +8,14 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+
+### Version 4.15.0
+
+- Refactor the MVC implementation for better maintainability.
+
+Based on novxlib 4.8.0
+Based on apptk 1.0.0
+
 ### Version 4.14.1
 
 Refactor the code for better maintainability:
