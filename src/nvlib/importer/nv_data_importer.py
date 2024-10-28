@@ -4,7 +4,6 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from apptk.widgets.pick_list import PickList
 from novxlib.model.id_generator import create_id
 from novxlib.novx.character_data_reader import CharacterDataReader
 from novxlib.novx.item_data_reader import ItemDataReader
@@ -17,6 +16,7 @@ from novxlib.novx_globals import LC_ROOT
 from novxlib.novx_globals import LOCATION_PREFIX
 from novxlib.novx_globals import _
 from novxlib.novx_globals import norm_path
+from nvlib.widgets.pick_list import PickList
 
 
 class NvDataImporter:
