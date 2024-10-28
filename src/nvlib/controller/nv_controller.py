@@ -52,9 +52,11 @@ class NvController(ControllerBase):
         Positional arguments:
             title: str -- Application title to be displayed at the window frame.
             tempDir: str -- Path of the temporary directory, used for e.g. packing zipfiles.          
+        
+        Extends the superclass constructor.
         """
+        super().__init__(title)
         self.tempDir = tempDir
-        self._internalLockFlag = False
 
         #--- Create the model
         self._mdl = NvModel()
@@ -693,6 +695,7 @@ class NvController(ControllerBase):
         """Lock the project.
         
         Return True on success, otherwise return False.
+        Extends the superclass method.
         """
         if self._mdl.isModified and not self._internalLockFlag:
             if self._ui.ask_yes_no(_('Save and lock?')):
@@ -701,9 +704,7 @@ class NvController(ControllerBase):
                 return False
 
         if self._mdl.prjFile.filePath is not None:
-            self._internalLockFlag = True
-            self._ui.lock()
-            self.plugins.lock()
+            super().lock()
             self._mdl.prjFile.lock()
             # make it persistent
             return True
@@ -1160,10 +1161,9 @@ class NvController(ControllerBase):
         
         If the project file was modified from the outside while it was 
         locked in the application, reload it after confirmation.
+        Extends the superclass method.
         """
-        self._internalLockFlag = False
-        self._ui.unlock()
-        self.plugins.unlock()
+        super().unlock()
         self._mdl.prjFile.unlock()
         # make it persistent
         if self._mdl.prjFile.has_changed_on_disk():
