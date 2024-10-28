@@ -8,13 +8,13 @@ from datetime import datetime
 import os
 from tkinter import ttk
 
+from apptk.view.pop_up_base import PopUpBase
 from novxlib.converter.novx_converter import NovxConverter
 from novxlib.novx_globals import _
 from novxlib.odf.check_odf import odf_is_locked
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
 from nvlib.view.platform.platform_settings import KEYS
-from nvlib.view.pop_up.pop_up_base import PopUpBase
 import tkinter as tk
 
 

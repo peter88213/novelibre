@@ -4,7 +4,6 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from tkinter import messagebox
 from tkinter import ttk
 import webbrowser
 
@@ -51,6 +50,7 @@ from nvlib.view.platform.platform_settings import KEYS
 from nvlib.view.platform.platform_settings import MOUSE
 from nvlib.view.platform.platform_settings import PLATFORM
 from nvlib.view.pop_up.export_options_window import ExportOptionsWindow
+from nvlib.view.pop_up.plugin_manager import PluginManager
 from nvlib.view.pop_up.prj_updater import PrjUpdater
 from nvlib.view.pop_up.view_options_window import ViewOptionsWindow
 from nvlib.view.properties_window.properties_viewer import PropertiesViewer
@@ -58,7 +58,6 @@ from nvlib.view.toolbar.toolbar import Toolbar
 from nvlib.view.tree_window.tree_viewer import TreeViewer
 from nvlib.widgets.nv_simpledialog import askinteger
 import tkinter as tk
-from nvlib.view.pop_up.plugin_manager import PluginManager
 
 
 class NvView(ViewBase):

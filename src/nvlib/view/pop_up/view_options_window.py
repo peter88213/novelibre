@@ -6,13 +6,13 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
+from apptk.view.pop_up_base import PopUpBase
+from apptk.widgets.drag_drop_listbox import DragDropListbox
 from novxlib.novx_globals import _
 from novxlib.novx_globals import list_to_string
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
 from nvlib.view.platform.platform_settings import KEYS
-from nvlib.view.pop_up.pop_up_base import PopUpBase
-from apptk.widgets.drag_drop_listbox import DragDropListbox
 import tkinter as tk
 
 

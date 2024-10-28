@@ -6,6 +6,8 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
+from apptk.view.view_component_base import ViewComponentBase
+from apptk.widgets.context_menu import ContextMenu
 from novxlib.novx_globals import CHAPTER_PREFIX
 from novxlib.novx_globals import CHARACTER_PREFIX
 from novxlib.novx_globals import CH_ROOT
@@ -33,8 +35,6 @@ from nvlib.nv_globals import to_string
 from nvlib.view.platform.platform_settings import KEYS
 from nvlib.view.platform.platform_settings import MOUSE
 from nvlib.view.tree_window.history_list import HistoryList
-from nvlib.view.view_component_base import ViewComponentBase
-from apptk.widgets.context_menu import ContextMenu
 import tkinter as tk
 import tkinter.font as tkFont
 

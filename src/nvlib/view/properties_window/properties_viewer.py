@@ -6,6 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
+from apptk.view.view_component_base import ViewComponentBase
 from novxlib.novx_globals import CHAPTER_PREFIX
 from novxlib.novx_globals import CHARACTER_PREFIX
 from novxlib.novx_globals import CH_ROOT
@@ -26,7 +27,6 @@ from nvlib.view.properties_window.plot_point_view import TurningPointView
 from nvlib.view.properties_window.project_note_view import ProjectNoteView
 from nvlib.view.properties_window.project_view import ProjectView
 from nvlib.view.properties_window.stage_view import StageView
-from nvlib.view.view_component_base import ViewComponentBase
 
 
 class PropertiesViewer(ViewComponentBase, ttk.Frame):
