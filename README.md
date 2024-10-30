@@ -59,6 +59,7 @@ organization of their work.
 - [A yw7 file importer/exporter](https://github.com/peter88213/nv_yw7/)
 - [A simple "markup" section editor](https://github.com/peter88213/nv_editor/)
 - [A clipboard plugin](https://github.com/peter88213/nv_clipboard/)
+- [A project statistics view plugin](https://github.com/peter88213/nv_statistics/)
 
 ## Requirements
 
