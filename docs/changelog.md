@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+Version 4.15.2
+
+- Restore the plugin_manager module from version 4.14.1.
+
+Based on novxlib 4.8.0
+Based on apptk 1.1.0
+
 ### Version 4.15.1
 
 - Change the pop-up window titles.

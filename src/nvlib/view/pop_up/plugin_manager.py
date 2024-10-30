@@ -18,7 +18,7 @@ class PluginManager(PopUpBase):
 
     def __init__(self, model, view, controller, **kw):
         PopUpBase.__init__(self, model, view, controller, **kw)
-        self.title(_('Installed plugins'))
+        self.title(f'{_("Installed plugins")} - novelibre @release')
         window = ttk.Frame(self)
         window.pack(fill='both', expand=True)
 
