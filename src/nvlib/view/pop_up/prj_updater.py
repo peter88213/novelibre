@@ -30,7 +30,7 @@ class PrjUpdater(PopUpBase):
             return
 
         PopUpBase.__init__(self, model, view, controller, **kw)
-        self.title(f'{_("Exported documents")} - novelibre')
+        self.title(_('Exported documents'))
         window = ttk.Frame(self)
         window.pack(fill='both', expand=True)
 

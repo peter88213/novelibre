@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.15.1
+
+- Change the pop-up window titles.
+
+Based on novxlib 4.8.0
+Based on apptk 1.1.0
 
 ### Version 4.15.0
 
