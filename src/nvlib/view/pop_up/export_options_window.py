@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from apptk.view.pop_up_base import PopUpBase
+from apptk.view.modal_dialog import ModalDialog
 from novxlib.novx_globals import _
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
@@ -14,11 +14,11 @@ from nvlib.view.platform.platform_settings import KEYS
 import tkinter as tk
 
 
-class ExportOptionsWindow(PopUpBase):
+class ExportOptionsWindow(ModalDialog):
     """A pop-up window with export preference settings."""
 
     def __init__(self, model, view, controller, **kw):
-        PopUpBase.__init__(self, model, view, controller, **kw)
+        ModalDialog.__init__(self, model, view, controller, **kw)
         self.title(_('"Export" options'))
         window = ttk.Frame(self)
         window.pack(

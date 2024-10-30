@@ -118,7 +118,7 @@ class NvView(ViewBase):
         self.leftFrame.pack(side='left', expand=True, fill='both')
 
         #--- Create a novel tree window in the left frame.
-        self.tv = TreeViewer(self.leftFrame, self._mdl, self, self._ctrl, prefs)
+        self.tv = TreeViewer(self.leftFrame, self._mdl, self, self._ctrl)
         self.register_view(self.tv)
         self.tv.pack(expand=True, fill='both')
 

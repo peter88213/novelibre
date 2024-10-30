@@ -17,13 +17,29 @@ class NoView(BasicView):
         """
         pass
 
+    def lock(self):
+        """Inhibit element change.
+
+        Overrides the superclass method.
+        """
+
     def set_data(self, elementId):
         """Update the view with element's data.
         
-        Extends the superclass constructor.
+        Overrides the superclass method.
         """
-        super().set_data(elementId)
+        pass
+
+    def unlock(self):
+        """Enable element change.
+
+        Overrides the superclass method.
+        """
 
     def _create_frames(self):
-        """Template method for creating the frames in the right pane."""
+        """Template method for creating the frames in the right pane.
+
+        Overrides the superclass method.
+        """
         pass
+

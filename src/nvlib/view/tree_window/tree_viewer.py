@@ -79,7 +79,7 @@ class TreeViewer(ViewComponentBase, ttk.Frame):
 
     _NOTE_INDICATOR = _('N')
 
-    def __init__(self, parent, model, view, controller, kwargs, **kw):
+    def __init__(self, parent, model, view, controller, **kw):
         """Put a tkinter tree in the specified parent widget.
         
         Positional arguments:
@@ -107,23 +107,23 @@ class TreeViewer(ViewComponentBase, ttk.Frame):
         #--- configure tree row display.
         fontSize = tkFont.nametofont('TkDefaultFont').actual()['size']
         self.tree.tag_configure('root', font=('', fontSize, 'bold'))
-        self.tree.tag_configure('chapter', foreground=kwargs['color_chapter'])
-        self.tree.tag_configure('arc', font=('', fontSize, 'bold'), foreground=kwargs['color_arc'])
-        self.tree.tag_configure('plot_point', foreground=kwargs['color_arc'])
-        self.tree.tag_configure('unused', foreground=kwargs['color_unused'])
-        self.tree.tag_configure('stage1', font=('', fontSize, 'bold'), foreground=kwargs['color_stage'])
-        self.tree.tag_configure('stage2', foreground=kwargs['color_stage'])
+        self.tree.tag_configure('chapter', foreground=prefs['color_chapter'])
+        self.tree.tag_configure('arc', font=('', fontSize, 'bold'), foreground=prefs['color_arc'])
+        self.tree.tag_configure('plot_point', foreground=prefs['color_arc'])
+        self.tree.tag_configure('unused', foreground=prefs['color_unused'])
+        self.tree.tag_configure('stage1', font=('', fontSize, 'bold'), foreground=prefs['color_stage'])
+        self.tree.tag_configure('stage2', foreground=prefs['color_stage'])
         self.tree.tag_configure('part', font=('', fontSize, 'bold'))
-        self.tree.tag_configure('major', foreground=kwargs['color_major'])
-        self.tree.tag_configure('minor', foreground=kwargs['color_minor'])
-        self.tree.tag_configure('status1', foreground=kwargs['color_outline'])
-        self.tree.tag_configure('status2', foreground=kwargs['color_draft'])
-        self.tree.tag_configure('status3', foreground=kwargs['color_1st_edit'])
-        self.tree.tag_configure('status4', foreground=kwargs['color_2nd_edit'])
-        self.tree.tag_configure('status5', foreground=kwargs['color_done'])
-        self.tree.tag_configure('On_schedule', foreground=kwargs['color_on_schedule'])
-        self.tree.tag_configure('Behind_schedule', foreground=kwargs['color_behind_schedule'])
-        self.tree.tag_configure('Before_schedule', foreground=kwargs['color_before_schedule'])
+        self.tree.tag_configure('major', foreground=prefs['color_major'])
+        self.tree.tag_configure('minor', foreground=prefs['color_minor'])
+        self.tree.tag_configure('status1', foreground=prefs['color_outline'])
+        self.tree.tag_configure('status2', foreground=prefs['color_draft'])
+        self.tree.tag_configure('status3', foreground=prefs['color_1st_edit'])
+        self.tree.tag_configure('status4', foreground=prefs['color_2nd_edit'])
+        self.tree.tag_configure('status5', foreground=prefs['color_done'])
+        self.tree.tag_configure('On_schedule', foreground=prefs['color_on_schedule'])
+        self.tree.tag_configure('Behind_schedule', foreground=prefs['color_behind_schedule'])
+        self.tree.tag_configure('Before_schedule', foreground=prefs['color_before_schedule'])
 
         #--- Browsing history.
         self._history = HistoryList()
@@ -140,7 +140,7 @@ class TreeViewer(ViewComponentBase, ttk.Frame):
         self._build_menus()
 
         #--- Bind events.
-        self._bind_events(**kwargs)
+        self._bind_events()
 
     def close_children(self, parent):
         """Recursively close children nodes.
@@ -426,7 +426,7 @@ class TreeViewer(ViewComponentBase, ttk.Frame):
             update_branch('')
             self.tree.configure(selectmode='extended')
 
-    def _bind_events(self, **kwargs):
+    def _bind_events(self):
         self.tree.bind('<<TreeviewSelect>>', self._on_select_node)
         self.tree.bind('<<TreeviewOpen>>', self._on_open_branch)
         self.tree.bind('<<TreeviewClose>>', self._on_close_branch)

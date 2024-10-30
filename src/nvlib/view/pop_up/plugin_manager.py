@@ -7,17 +7,17 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 import webbrowser
 
-from apptk.view.pop_up_base import PopUpBase
+from apptk.view.modal_dialog import ModalDialog
 from novxlib.novx_globals import _
 from nvlib.nv_globals import open_help
 from nvlib.view.platform.platform_settings import KEYS
 
 
-class PluginManager(PopUpBase):
+class PluginManager(ModalDialog):
     """A pop-up window displaying a list of all plugins found on application startup."""
 
     def __init__(self, model, view, controller, **kw):
-        PopUpBase.__init__(self, model, view, controller, **kw)
+        ModalDialog.__init__(self, model, view, controller, **kw)
         self.title(f'{_("Installed plugins")} - novelibre @release')
         window = ttk.Frame(self)
         window.pack(fill='both', expand=True)

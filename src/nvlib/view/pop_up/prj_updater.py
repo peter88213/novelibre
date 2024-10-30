@@ -8,7 +8,7 @@ from datetime import datetime
 import os
 from tkinter import ttk
 
-from apptk.view.pop_up_base import PopUpBase
+from apptk.view.modal_dialog import ModalDialog
 from novxlib.converter.novx_converter import NovxConverter
 from novxlib.novx_globals import _
 from novxlib.odf.check_odf import odf_is_locked
@@ -18,7 +18,7 @@ from nvlib.view.platform.platform_settings import KEYS
 import tkinter as tk
 
 
-class PrjUpdater(PopUpBase):
+class PrjUpdater(ModalDialog):
     """Project update manager.
     
     A pop-up window displaying a picklist of previously exported documents
@@ -29,7 +29,7 @@ class PrjUpdater(PopUpBase):
         if model.prjFile.filePath is None:
             return
 
-        PopUpBase.__init__(self, model, view, controller, **kw)
+        ModalDialog.__init__(self, model, view, controller, **kw)
         self.title(_('Exported documents'))
         window = ttk.Frame(self)
         window.pack(fill='both', expand=True)
