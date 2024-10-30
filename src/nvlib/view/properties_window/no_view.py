@@ -22,6 +22,7 @@ class NoView(BasicView):
 
         Overrides the superclass method.
         """
+        pass
 
     def set_data(self, elementId):
         """Update the view with element's data.
@@ -35,6 +36,7 @@ class NoView(BasicView):
 
         Overrides the superclass method.
         """
+        pass
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane.
