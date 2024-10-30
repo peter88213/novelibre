@@ -4,11 +4,12 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 import os
 from tkinter import filedialog
 from tkinter import ttk
 
+from apptk.view.view_component_base import ViewComponentBase
 from novxlib.novx_globals import _
 from nvlib.nv_globals import prefs
 from nvlib.widgets.collection_box import CollectionBox
@@ -17,7 +18,7 @@ from apptk.widgets.index_card import IndexCard
 from apptk.widgets.text_box import TextBox
 
 
-class BasicView(ttk.Frame, ABC):
+class BasicView(ViewComponentBase, ttk.Frame):
     """Abstract base class for viewing tree element properties.
     
     Adds to the right pane:
@@ -30,7 +31,7 @@ class BasicView(ttk.Frame, ABC):
     _LBL_X = 10
     # Width of left-placed labels.
 
-    def __init__(self, parent, model, view, controller):
+    def __init__(self, parent, model, view, controller, **kw):
         """Initialize the view once before element data is available.
         
         Positional arguments:
@@ -42,11 +43,8 @@ class BasicView(ttk.Frame, ABC):
         - Initialize element-specific tk entry data.
         - Place element-specific widgets in the element's info window.
         """
-        super().__init__(parent)
-
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
+        ViewComponentBase.__init__(self, model, view, controller)
+        ttk.Frame.__init__(self, parent, **kw)
 
         self._elementId = None
         self._element = None

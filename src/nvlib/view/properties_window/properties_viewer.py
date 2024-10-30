@@ -35,49 +35,35 @@ class PropertiesViewer(ViewComponentBase, ttk.Frame):
     def __init__(self, parent, model, view, controller, **kw):
         ViewComponentBase.__init__(self, model, view, controller)
         ttk.Frame.__init__(self, parent, **kw)
-        self._noView = NoView(self, self._mdl, self._ui, self._ctrl)
-        self._projectView = ProjectView(self, self._mdl, self._ui, self._ctrl)
-        self._chapterView = ChapterView(self, self._mdl, self._ui, self._ctrl)
-        self._stageView = StageView(self, self._mdl, self._ui, self._ctrl)
-        self._sectionView = FullSectionView(self, self._mdl, self._ui, self._ctrl)
-        self._characterView = CharacterView(self, self._mdl, self._ui, self._ctrl)
-        self._locationView = LocationView(self, self._mdl, self._ui, self._ctrl)
-        self._itemView = ItemView(self, self._mdl, self._ui, self._ctrl)
-        self._arcView = PlotLineView(self, self._mdl, self._ui, self._ctrl)
-        self._plotPointView = TurningPointView(self, self._mdl, self._ui, self._ctrl)
-        self._projectnoteView = ProjectNoteView(self, self._mdl, self._ui, self._ctrl)
-        self._elementView = self._noView
-        self._elementView.set_data(None)
-        self._elementView.doNotUpdate = False
-        self._allViews = [
-            self._projectView,
-            self._chapterView,
-            self._stageView,
-            self._sectionView,
-            self._characterView,
-            self._locationView,
-            self._itemView,
-            self._arcView,
-            self._plotPointView,
-            self._projectnoteView,
-            ]
+
+        # Call a factory method to instantiate one view per element type.
+        self._noView = self._make_view(NoView, isClient=False)
+        self._projectView = self._make_view(ProjectView)
+        self._chapterView = self._make_view(ChapterView)
+        self._stageView = self._make_view(StageView)
+        self._sectionView = self._make_view(FullSectionView)
+        self._characterView = self._make_view(CharacterView)
+        self._locationView = self._make_view(LocationView)
+        self._itemView = self._make_view(ItemView)
+        self._plotlineView = self._make_view(PlotLineView)
+        self._plotPointView = self._make_view(TurningPointView)
+        self._projectnoteView = self._make_view(ProjectNoteView)
+
+        self._activeView = self._noView
+        self._activeView.set_data(None)
+        self._activeView.doNotUpdate = False
 
     def apply_changes(self, event=None):
         # This is called by the controller to make sure changes take effect
         # e.g. when starting an export while a property entry still has the focus.
         if not self._ctrl.isLocked:
-            self._elementView.doNotUpdate = True
-            self._elementView.apply_changes()
-            self._elementView.doNotUpdate = False
+            self._activeView.doNotUpdate = True
+            self._activeView.apply_changes()
+            self._activeView.doNotUpdate = False
 
     def focus_title(self):
         """Prepare the current element's title entry for manual input."""
-        self._elementView.focus_title()
-
-    def lock(self):
-        """Inhibit element change."""
-        for view in self._allViews:
-            view.lock()
+        self._activeView.focus_title()
 
     def show_properties(self, nodeId):
         """Show the properties of the selected element."""
@@ -98,47 +84,56 @@ class PropertiesViewer(ViewComponentBase, ttk.Frame):
         elif nodeId.startswith(ITEM_PREFIX):
             self._view_item(nodeId)
         elif nodeId.startswith(PLOT_LINE_PREFIX):
-            self._view_arc(nodeId)
+            self._view_plotline(nodeId)
         elif nodeId.startswith(PLOT_POINT_PREFIX):
             self._view_plot_point(nodeId)
         elif nodeId.startswith(PRJ_NOTE_PREFIX):
             self._view_projectnote(nodeId)
         else:
             self._view_nothing()
-        self._elementView.doNotUpdate = False
-
-    def unlock(self):
-        """enable element change."""
-        for view in self._allViews:
-            view.unlock()
+        self._activeView.doNotUpdate = False
 
     def refresh(self):
-        """Refresh the view after changes have been made "outsides"."""
-        if not self._elementView.doNotUpdate:
+        """Refresh the active view after changes have been made "outsides"."""
+        if not self._activeView.doNotUpdate:
             try:
-                self.show_properties(self._elementView._elementId)
+                self.show_properties(self._activeView._elementId)
             except:
                 pass
+
+    def _make_view(self, viewClass, isClient=True):
+        """Return a viewClass instance.
+        
+        Positional arguments:
+            viewClass: BasicView subclass.
+            
+        Optional arguments:
+            isClient: Boolean -- If True, register the Object as a view.
+        """
+        newView = viewClass(self, self._mdl, self._ui, self._ctrl)
+        if isClient:
+            self._ui.register_view(newView)
+        return newView
 
     def _set_data(self, elemId):
         """Fill the widgets with the data of the element to view and change."""
         if self._ctrl.isLocked:
-            self._elementView.unlock()
-            self._elementView.set_data(elemId)
-            self._elementView.lock()
+            self._activeView.unlock()
+            self._activeView.set_data(elemId)
+            self._activeView.lock()
         else:
-            self._elementView.set_data(elemId)
+            self._activeView.set_data(elemId)
 
-    def _view_arc(self, plId):
+    def _view_plotline(self, plId):
         """Show the selected plot line.
         
         Positional arguments:
             plId: str -- Plot line ID
         """
-        if not self._elementView is self._arcView:
-            self._elementView.hide()
-            self._elementView = self._arcView
-            self._elementView.show()
+        if not self._activeView is self._plotlineView:
+            self._activeView.hide()
+            self._activeView = self._plotlineView
+            self._activeView.show()
         self._set_data(plId)
 
     def _view_chapter(self, chId):
@@ -147,10 +142,10 @@ class PropertiesViewer(ViewComponentBase, ttk.Frame):
         Positional arguments:
             chId: str -- chapter ID
         """
-        if not self._elementView is self._chapterView:
-            self._elementView.hide()
-            self._elementView = self._chapterView
-            self._elementView.show()
+        if not self._activeView is self._chapterView:
+            self._activeView.hide()
+            self._activeView = self._chapterView
+            self._activeView.show()
         self._set_data(chId)
 
     def _view_character(self, crId):
@@ -159,10 +154,10 @@ class PropertiesViewer(ViewComponentBase, ttk.Frame):
         Positional arguments:
             crId: str -- character ID
         """
-        if not self._elementView is self._characterView:
-            self._elementView.hide()
-            self._elementView = self._characterView
-            self._elementView.show()
+        if not self._activeView is self._characterView:
+            self._activeView.hide()
+            self._activeView = self._characterView
+            self._activeView.show()
         self._set_data(crId)
 
     def _view_item(self, itId):
@@ -171,10 +166,10 @@ class PropertiesViewer(ViewComponentBase, ttk.Frame):
         Positional arguments:
             itId: str -- item ID
         """
-        if not self._elementView is self._itemView:
-            self._elementView.hide()
-            self._elementView = self._itemView
-            self._elementView.show()
+        if not self._activeView is self._itemView:
+            self._activeView.hide()
+            self._activeView = self._itemView
+            self._activeView.show()
         self._set_data(itId)
 
     def _view_location(self, lcId):
@@ -183,25 +178,25 @@ class PropertiesViewer(ViewComponentBase, ttk.Frame):
         Positional arguments:
             lcId: str -- location ID
         """
-        if not self._elementView is self._locationView:
-            self._elementView.hide()
-            self._elementView = self._locationView
-            self._elementView.show()
+        if not self._activeView is self._locationView:
+            self._activeView.hide()
+            self._activeView = self._locationView
+            self._activeView.show()
         self._set_data(lcId)
 
     def _view_nothing(self):
         """Reset properties if nothing valid is selected."""
-        if not self._elementView is self._noView:
-            self._elementView.hide()
-            self._elementView = self._noView
-            self._elementView.show()
+        if not self._activeView is self._noView:
+            self._activeView.hide()
+            self._activeView = self._noView
+            self._activeView.show()
 
     def _view_project(self):
         """Show the project's properties."""
-        if not self._elementView is self._projectView:
-            self._elementView.hide()
-            self._elementView = self._projectView
-            self._elementView.show()
+        if not self._activeView is self._projectView:
+            self._activeView.hide()
+            self._activeView = self._projectView
+            self._activeView.show()
         self._set_data(CH_ROOT)
 
     def _view_projectnote(self, pnId):
@@ -210,10 +205,10 @@ class PropertiesViewer(ViewComponentBase, ttk.Frame):
         Positional arguments:
             pnId: str -- Project note ID
         """
-        if not self._elementView is self._projectnoteView:
-            self._elementView.hide()
-            self._elementView = self._projectnoteView
-            self._elementView.show()
+        if not self._activeView is self._projectnoteView:
+            self._activeView.hide()
+            self._activeView = self._projectnoteView
+            self._activeView.show()
         self._set_data(pnId)
 
     def _view_section(self, scId):
@@ -223,15 +218,15 @@ class PropertiesViewer(ViewComponentBase, ttk.Frame):
             scId: str -- section ID
         """
         if self._mdl.novel.sections[scId].scType > 1:
-            if not self._elementView is self._stageView:
-                self._elementView.hide()
-                self._elementView = self._stageView
-                self._elementView.show()
+            if not self._activeView is self._stageView:
+                self._activeView.hide()
+                self._activeView = self._stageView
+                self._activeView.show()
         else:
-            if not self._elementView is self._sectionView:
-                self._elementView.hide()
-                self._elementView = self._sectionView
-                self._elementView.show()
+            if not self._activeView is self._sectionView:
+                self._activeView.hide()
+                self._activeView = self._sectionView
+                self._activeView.show()
         self._set_data(scId)
 
     def _view_plot_point(self, ppId):
@@ -239,9 +234,9 @@ class PropertiesViewer(ViewComponentBase, ttk.Frame):
         Positional arguments:
             ppId: str -- Plot point ID
         """
-        if not self._elementView is self._plotPointView:
-            self._elementView.hide()
-            self._elementView = self._plotPointView
-            self._elementView.show()
+        if not self._activeView is self._plotPointView:
+            self._activeView.hide()
+            self._activeView = self._plotPointView
+            self._activeView.show()
         self._set_data(ppId)
 
