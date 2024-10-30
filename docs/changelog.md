@@ -8,7 +8,7 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
-Version 4.15.2
+### Version 4.15.2
 
 - Restore the plugin_manager module from version 4.14.1.
 
