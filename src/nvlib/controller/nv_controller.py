@@ -88,15 +88,6 @@ class NvController(ControllerBase):
 
         self._ui.tv.reset_view()
 
-    @property
-    def isLocked(self):
-        # Boolean -- True if a lock file exists for the current project.
-        return self._internalLockFlag
-
-    @isLocked.setter
-    def isLocked(self, setFlag):
-        raise NotImplementedError
-
     def add_chapter(self, **kwargs):
         """Add a chapter to the novel.
              

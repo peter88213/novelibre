@@ -8,6 +8,14 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.15.4
+
+Refactor the code for better maintainability
+
+- Remove the isLocked property from the NvController class.
+
+Based on novxlib 4.8.0
+Based on apptk 2.2.0
 
 ### Version 4.15.3
 
