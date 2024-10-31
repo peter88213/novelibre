@@ -15,11 +15,17 @@ from novxlib.novx_globals import _
 
 
 class PluginCollection(dict):
-    """A plugin registry class.
-    
+    """A collection of plugin modules.
+        
     Represents a dictionary with 
         key: str -- The module name.
-        value: object -- The module's Plugin() instance.
+        value: object -- The module's Plugin instance.
+    
+    Passes down the following commands to the plugins:
+        - close
+        - quit
+        - enable/disable menu
+        - lock  
     
     Public instance variables:
         majorVersion: int -- The application's major version number.
@@ -77,6 +83,24 @@ class PluginCollection(dict):
             except Exception as ex:
                 print(str(ex))
         return False
+
+    def disable_menu(self):
+        """Disable menu entries when no project is open."""
+        for moduleName in self:
+            if self[moduleName].isActive:
+                try:
+                    self[moduleName].disable_menu()
+                except:
+                    pass
+
+    def enable_menu(self):
+        """Enable menu entries when a project is open."""
+        for moduleName in self:
+            if self[moduleName].isActive:
+                try:
+                    self[moduleName].enable_menu()
+                except:
+                    pass
 
     def load_file(self, filePath):
         """Load and register a single plugin.
@@ -153,48 +177,12 @@ class PluginCollection(dict):
 
         return True
 
-    def disable_menu(self):
-        """Disable menu entries when no project is open."""
-        for moduleName in self:
-            if self[moduleName].isActive:
-                try:
-                    self[moduleName].disable_menu()
-                except:
-                    pass
-
-    def enable_menu(self):
-        """Enable menu entries when a project is open."""
-        for moduleName in self:
-            if self[moduleName].isActive:
-                try:
-                    self[moduleName].enable_menu()
-                except:
-                    pass
-
     def lock(self):
         """Prevent the plugins from changing the model."""
         for moduleName in self:
             if self[moduleName].isActive:
                 try:
                     self[moduleName].lock()
-                except:
-                    pass
-
-    def unlock(self):
-        """Allow the plugins changing the model."""
-        for moduleName in self:
-            if self[moduleName].isActive:
-                try:
-                    self[moduleName].unlock()
-                except:
-                    pass
-
-    def on_quit(self):
-        """Perform actions before the application is closed."""
-        for moduleName in self:
-            if self[moduleName].isActive:
-                try:
-                    self[moduleName].on_quit()
                 except:
                     pass
 
@@ -207,6 +195,15 @@ class PluginCollection(dict):
                 except:
                     pass
 
+    def on_quit(self):
+        """Perform actions before the application is closed."""
+        for moduleName in self:
+            if self[moduleName].isActive:
+                try:
+                    self[moduleName].on_quit()
+                except:
+                    pass
+
     def open_node(self, event=None):
         """Actions on double-clicking on a node or pressing the Return key."""
         # Deprecated!
@@ -215,6 +212,15 @@ class PluginCollection(dict):
             if self[moduleName].isActive:
                 try:
                     self[moduleName].open_node()
+                except:
+                    pass
+
+    def unlock(self):
+        """Allow the plugins changing the model."""
+        for moduleName in self:
+            if self[moduleName].isActive:
+                try:
+                    self[moduleName].unlock()
                 except:
                     pass
 

@@ -8,6 +8,17 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+
+### Version 4.15.3
+
+Refactor the code for better maintainability
+
+- PropertiesViewer now using the new ViewComponentBase methods of apptk 2.1.0.
+- Update docstrings and code comments.
+
+Based on novxlib 4.8.0
+Based on apptk 2.1.0
+
 ### Version 4.15.2
 
 - Restore the plugin_manager module from version 4.14.1.

@@ -10,6 +10,12 @@ from abc import ABC, abstractmethod
 class PluginBase(ABC):
     """Abstract Plugin base class.
     
+    Accepts commands from the plugin collection:
+        - close
+        - quit
+        - enable/disable menu
+        - lock  
+    
     Public class constants:
         VERSION: str -- Version string.
         NOVELYST_API: str -- API compatibility indicator.
