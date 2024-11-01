@@ -14,7 +14,7 @@ Refactor the code for better maintainability
 
 - Remove the isLocked property from the NvController class.
 
-Based on novxlib 4.8.0
+Based on novxlib 5.0.0
 Based on apptk 2.2.0
 
 ### Version 4.15.3
