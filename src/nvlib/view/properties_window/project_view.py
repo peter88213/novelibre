@@ -8,16 +8,16 @@ from datetime import date
 import os
 from tkinter import ttk
 
+from mvclib.widgets.folding_frame import FoldingFrame
+from mvclib.widgets.label_combo import LabelCombo
+from mvclib.widgets.label_disp import LabelDisp
+from mvclib.widgets.label_entry import LabelEntry
+from mvclib.widgets.my_string_var import MyStringVar
+from novxlib.novx_globals import WEEKDAYS
+from novxlib.novx_globals import _
 from nvlib.nv_globals import datestr
 from nvlib.nv_globals import prefs
 from nvlib.view.properties_window.basic_view import BasicView
-from apptk.widgets.folding_frame import FoldingFrame
-from apptk.widgets.label_combo import LabelCombo
-from apptk.widgets.label_disp import LabelDisp
-from apptk.widgets.label_entry import LabelEntry
-from apptk.widgets.my_string_var import MyStringVar
-from novxlib.novx_globals import WEEKDAYS
-from novxlib.novx_globals import _
 import tkinter as tk
 
 

@@ -6,6 +6,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
+from mvclib.widgets.folding_frame import FoldingFrame
+from mvclib.widgets.label_entry import LabelEntry
+from mvclib.widgets.my_string_var import MyStringVar
 from novxlib.model.date_time_tools import get_age
 from novxlib.model.date_time_tools import get_specific_date
 from novxlib.novx_globals import CHARACTER_PREFIX
@@ -21,9 +24,6 @@ from nvlib.nv_globals import datestr
 from nvlib.nv_globals import prefs
 from nvlib.view.properties_window.basic_view import BasicView
 from nvlib.widgets.collection_box import CollectionBox
-from apptk.widgets.folding_frame import FoldingFrame
-from apptk.widgets.label_entry import LabelEntry
-from apptk.widgets.my_string_var import MyStringVar
 
 
 class RelatedSectionView(BasicView):

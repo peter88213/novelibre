@@ -9,13 +9,13 @@ import os
 from tkinter import filedialog
 from tkinter import ttk
 
-from apptk.view.view_component_base import ViewComponentBase
+from mvclib.view.view_component_base import ViewComponentBase
+from mvclib.widgets.folding_frame import FoldingFrame
+from mvclib.widgets.index_card import IndexCard
+from mvclib.widgets.text_box import TextBox
 from novxlib.novx_globals import _
 from nvlib.nv_globals import prefs
 from nvlib.widgets.collection_box import CollectionBox
-from apptk.widgets.folding_frame import FoldingFrame
-from apptk.widgets.index_card import IndexCard
-from apptk.widgets.text_box import TextBox
 
 
 class BasicView(ViewComponentBase, ttk.Frame):

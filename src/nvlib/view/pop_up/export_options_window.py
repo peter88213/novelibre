@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from apptk.view.modal_dialog import ModalDialog
+from mvclib.view.modal_dialog import ModalDialog
 from novxlib.novx_globals import _
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs

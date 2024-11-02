@@ -1,11 +1,12 @@
 """Provide a class for a BasicElement pick list.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/apptk
+For further information see https://github.com/peter88213/mvclib
 License: GNU LGPLv3 (https://www.gnu.org/licenses/lgpl-3.0.en.html)
 """
-import tkinter as tk
 from tkinter import ttk
+
+import tkinter as tk
 
 
 class PickList(tk.Toplevel):

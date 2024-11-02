@@ -7,8 +7,8 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 import webbrowser
 
-from apptk.view.set_icon_tk import set_icon
-from apptk.view.view_base import ViewBase
+from mvclib.view.set_icon_tk import set_icon
+from mvclib.view.view_base import ViewBase
 from novxlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from novxlib.novx_globals import CHAPTERS_SUFFIX
 from novxlib.novx_globals import CHARACTERS_SUFFIX
@@ -73,7 +73,7 @@ class NvView(ViewBase):
 
     def __init__(self, model, controller, title):
         """Extends the superclass constructor."""
-        super().__init__(model, controller, title)
+        ViewBase.__init__(self, model, controller, title)
 
         #--- Create the tk root window and set the size.
         self._statusText = ''
@@ -119,7 +119,7 @@ class NvView(ViewBase):
 
         #--- Create a novel tree window in the left frame.
         self.tv = TreeViewer(self.leftFrame, self._mdl, self, self._ctrl)
-        self.register_view(self.tv)
+        self.register_client(self.tv)
         self.tv.pack(expand=True, fill='both')
 
         #--- Middle frame (intended for the content viewer).
@@ -128,7 +128,7 @@ class NvView(ViewBase):
 
         #--- Create a text viewer in the middle frame.
         self.contentsView = ContentsViewer(self.middleFrame, self._mdl, self, self._ctrl)
-        self.register_view(self.contentsView)
+        self.register_client(self.contentsView)
         if prefs['show_contents']:
             self.middleFrame.pack(side='left', expand=False, fill='both')
 
@@ -144,14 +144,14 @@ class NvView(ViewBase):
         self._propWinDetached = False
         if prefs['detach_prop_win']:
             self.detach_properties_frame()
-        self.register_view(self.propertiesView)
+        self.register_client(self.propertiesView)
 
         #--- Add commands and submenus to the main menu.
         self._build_menu()
 
         #--- Add a toolbar.
         self.toolbar = Toolbar(self.mainWindow, self._mdl, self, self._ctrl)
-        self.register_view(self.toolbar)
+        self.register_client(self.toolbar)
 
         #--- tk root event bindings.
         self._bind_events()
@@ -170,9 +170,9 @@ class NvView(ViewBase):
 
         # "Re-parent" the Properties viewer.
         self.propertiesView.pack_forget()
-        self.unregister_view(self.propertiesView)
+        self.unregister_client(self.propertiesView)
         self.propertiesView = PropertiesViewer(self._propertiesWindow, self._mdl, self, self._ctrl)
-        self.register_view(self.propertiesView)
+        self.register_client(self.propertiesView)
         self.propertiesView.pack(expand=True, fill='both')
 
         self._propertiesWindow.protocol("WM_DELETE_WINDOW", self.dock_properties_frame)
@@ -236,9 +236,9 @@ class NvView(ViewBase):
 
         # "Re-parent" the Properties viewer.
         self._propertiesWindow.destroy()
-        self.unregister_view(self.propertiesView)
+        self.unregister_client(self.propertiesView)
         self.propertiesView = PropertiesViewer(self.rightFrame, self._mdl, self, self._ctrl)
-        self.register_view(self.propertiesView)
+        self.register_client(self.propertiesView)
         self.propertiesView.pack(expand=True, fill='both')
         self.root.lift()
 

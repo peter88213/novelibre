@@ -6,10 +6,10 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from nvlib.view.properties_window.basic_view import BasicView
 from novxlib.novx_globals import CH_ROOT
 from novxlib.novx_globals import SECTION_PREFIX
 from novxlib.novx_globals import _
+from nvlib.view.properties_window.basic_view import BasicView
 import tkinter as tk
 
 

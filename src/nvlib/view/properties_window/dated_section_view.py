@@ -10,6 +10,9 @@ from datetime import time
 from datetime import timedelta
 from tkinter import ttk
 
+from mvclib.widgets.folding_frame import FoldingFrame
+from mvclib.widgets.label_entry import LabelEntry
+from mvclib.widgets.my_string_var import MyStringVar
 from novxlib.model.date_time_tools import get_specific_date
 from novxlib.novx_globals import WEEKDAYS
 from novxlib.novx_globals import _
@@ -17,9 +20,6 @@ from nvlib.nv_globals import datestr
 from nvlib.nv_globals import get_section_date_str
 from nvlib.nv_globals import prefs
 from nvlib.view.properties_window.related_section_view import RelatedSectionView
-from apptk.widgets.folding_frame import FoldingFrame
-from apptk.widgets.label_entry import LabelEntry
-from apptk.widgets.my_string_var import MyStringVar
 
 
 class DatedSectionView(RelatedSectionView):

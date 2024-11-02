@@ -138,8 +138,8 @@ setuplib.main(False)
         inliner.run(
             target,
             target,
-            'apptk',
-            '../../apptk/src/'
+            'mvclib',
+            '../../novelibre/src/'
             )
 
     def insert_version_number(self, source, version='unknown'):

@@ -6,19 +6,19 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from nvlib.nv_globals import prefs
-from nvlib.view.properties_window.dated_section_view import DatedSectionView
-from nvlib.widgets.collection_box import CollectionBox
-from apptk.widgets.folding_frame import FoldingFrame
-from apptk.widgets.label_combo import LabelCombo
-from apptk.widgets.my_string_var import MyStringVar
-from apptk.widgets.text_box import TextBox
+from mvclib.widgets.folding_frame import FoldingFrame
+from mvclib.widgets.label_combo import LabelCombo
+from mvclib.widgets.my_string_var import MyStringVar
+from mvclib.widgets.text_box import TextBox
 from novxlib.novx_globals import CR_ROOT
-from novxlib.novx_globals import PL_ROOT
 from novxlib.novx_globals import PLOT_LINE_PREFIX
+from novxlib.novx_globals import PL_ROOT
 from novxlib.novx_globals import _
 from novxlib.novx_globals import list_to_string
 from novxlib.novx_globals import string_to_list
+from nvlib.nv_globals import prefs
+from nvlib.view.properties_window.dated_section_view import DatedSectionView
+from nvlib.widgets.collection_box import CollectionBox
 import tkinter as tk
 
 

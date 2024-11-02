@@ -7,13 +7,13 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from datetime import date
 from tkinter import ttk
 
+from mvclib.widgets.folding_frame import FoldingFrame
+from mvclib.widgets.label_entry import LabelEntry
+from mvclib.widgets.my_string_var import MyStringVar
+from mvclib.widgets.text_box import TextBox
+from novxlib.novx_globals import _
 from nvlib.nv_globals import prefs
 from nvlib.view.properties_window.world_element_view import WorldElementView
-from apptk.widgets.folding_frame import FoldingFrame
-from apptk.widgets.label_entry import LabelEntry
-from apptk.widgets.my_string_var import MyStringVar
-from apptk.widgets.text_box import TextBox
-from novxlib.novx_globals import _
 
 
 class CharacterView(WorldElementView):

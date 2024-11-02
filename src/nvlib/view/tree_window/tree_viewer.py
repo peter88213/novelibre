@@ -6,8 +6,8 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from apptk.view.view_component_base import ViewComponentBase
-from apptk.widgets.context_menu import ContextMenu
+from mvclib.view.view_component_base import ViewComponentBase
+from mvclib.widgets.context_menu import ContextMenu
 from novxlib.novx_globals import CHAPTER_PREFIX
 from novxlib.novx_globals import CHARACTER_PREFIX
 from novxlib.novx_globals import CH_ROOT

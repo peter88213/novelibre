@@ -9,7 +9,7 @@ from shutil import copy2
 import sys
 from tkinter import filedialog
 
-from apptk.controller.controller_base import ControllerBase
+from mvclib.controller.controller_base import ControllerBase
 from novxlib.novx_globals import CHAPTER_PREFIX
 from novxlib.novx_globals import CHARACTER_PREFIX
 from novxlib.novx_globals import CH_ROOT

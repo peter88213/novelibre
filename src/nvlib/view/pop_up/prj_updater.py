@@ -8,7 +8,7 @@ from datetime import datetime
 import os
 from tkinter import ttk
 
-from apptk.view.modal_dialog import ModalDialog
+from mvclib.view.modal_dialog import ModalDialog
 from novxlib.converter.novx_converter import NovxConverter
 from novxlib.novx_globals import _
 from novxlib.odf.check_odf import odf_is_locked

@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from apptk.view.view_component_base import ViewComponentBase
+from mvclib.view.view_component_node import ViewComponentNode
 from novxlib.novx_globals import CHAPTER_PREFIX
 from novxlib.novx_globals import CHARACTER_PREFIX
 from novxlib.novx_globals import CH_ROOT
@@ -29,11 +29,11 @@ from nvlib.view.properties_window.project_view import ProjectView
 from nvlib.view.properties_window.stage_view import StageView
 
 
-class PropertiesViewer(ViewComponentBase, ttk.Frame):
+class PropertiesViewer(ViewComponentNode, ttk.Frame):
     """A window viewing the selected element's properties."""
 
     def __init__(self, parent, model, view, controller, **kw):
-        ViewComponentBase.__init__(self, model, view, controller)
+        ViewComponentNode.__init__(self, model, view, controller)
         ttk.Frame.__init__(self, parent, **kw)
 
         # Call a factory method to instantiate and register one view component per element type.
@@ -94,7 +94,10 @@ class PropertiesViewer(ViewComponentBase, ttk.Frame):
         self._activeView.doNotUpdate = False
 
     def refresh(self):
-        """Refresh the active view after changes have been made "outsides"."""
+        """Refresh the active view after changes have been made "outsides".
+        
+        Overrides the superclass method.
+        """
         if not self._activeView.doNotUpdate:
             try:
                 self.show_properties(self._activeView._elementId)
@@ -108,7 +111,7 @@ class PropertiesViewer(ViewComponentBase, ttk.Frame):
             viewClass: BasicView subclass.
         """
         newView = viewClass(self, self._mdl, self._ui, self._ctrl)
-        self.register_view(newView)
+        self.register_client(newView)
         # NOTE: the new view component must not be registered by the main view,
         # because the PropertiesViewer instance may be deleted and recreated
         # due to re-parenting when docking the properties window.

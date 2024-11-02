@@ -5,7 +5,8 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import font as tkFont
-from apptk.widgets.rich_text_tk import RichTextTk
+
+from mvclib.widgets.rich_text_tk import RichTextTk
 
 
 class RichTextNv(RichTextTk):
