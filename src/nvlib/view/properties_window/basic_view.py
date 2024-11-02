@@ -15,7 +15,7 @@ from mvclib.widgets.index_card import IndexCard
 from mvclib.widgets.text_box import TextBox
 from novxlib.novx_globals import _
 from nvlib.nv_globals import prefs
-from nvlib.widgets.collection_box import CollectionBox
+from nvlib.view.widgets.collection_box import CollectionBox
 
 
 class BasicView(ViewComponentBase, ttk.Frame):

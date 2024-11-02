@@ -16,7 +16,7 @@ from novxlib.novx_globals import LC_ROOT
 from novxlib.novx_globals import LOCATION_PREFIX
 from novxlib.novx_globals import _
 from novxlib.novx_globals import norm_path
-from nvlib.widgets.pick_list import PickList
+from nvlib.view.widgets.pick_list import PickList
 
 
 class NvDataImporter:

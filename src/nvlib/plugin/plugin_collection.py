@@ -9,7 +9,6 @@ import importlib
 import os
 import sys
 
-from nvlib.nv_globals import prefs
 from nvlib.plugin.rejected_plugin import RejectedPlugin
 from novxlib.novx_globals import _
 
@@ -134,7 +133,7 @@ class PluginCollection(dict):
                 isCompatible = False
             if isCompatible:
                 # Install the plugin by calling its constructor substitute.
-                pluginObject.install(self._mdl, self._ui, self._ctrl, prefs)
+                pluginObject.install(self._mdl, self._ui, self._ctrl)
 
             # Change flags to indicate the installation.
             # Plugin classes that don't inherit from PluginBase may be monkey-patched.
@@ -201,17 +200,6 @@ class PluginCollection(dict):
             if self[moduleName].isActive:
                 try:
                     self[moduleName].on_quit()
-                except:
-                    pass
-
-    def open_node(self, event=None):
-        """Actions on double-clicking on a node or pressing the Return key."""
-        # Deprecated!
-        # Plugins are expected to configure their open_node() method locally, if any.
-        for moduleName in self:
-            if self[moduleName].isActive:
-                try:
-                    self[moduleName].open_node()
                 except:
                     pass
 

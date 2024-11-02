@@ -34,7 +34,7 @@ from novxlib.odt.odt_w_stages import OdtWStages
 from novxlib.odt.odt_w_xref import OdtWXref
 from nvlib.exporter.filter_factory import FilterFactory
 from nvlib.nv_globals import prefs
-from nvlib.widgets.nv_simpledialog import SimpleDialog
+from nvlib.view.widgets.nv_simpledialog import SimpleDialog
 
 
 class NvDocExporter:

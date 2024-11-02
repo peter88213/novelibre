@@ -23,7 +23,7 @@ from novxlib.novx_globals import string_to_list
 from nvlib.nv_globals import datestr
 from nvlib.nv_globals import prefs
 from nvlib.view.properties_window.basic_view import BasicView
-from nvlib.widgets.collection_box import CollectionBox
+from nvlib.view.widgets.collection_box import CollectionBox
 
 
 class RelatedSectionView(BasicView):
