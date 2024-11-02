@@ -163,12 +163,6 @@ class PluginCollection(dict):
             print('Plugin directory not found.')
             return False
 
-        # Set Key bindings to be used by all plugins.
-        # Deprecated!
-        # Plugins are expected to configure their open_node() method locally, if any.
-        self._ui.tv.tree.bind('<Double-1>', self.open_node)
-        self._ui.tv.tree.bind('<Return>', self.open_node)
-
         # Load all plugins in the Plugin path.
         sys.path.append(pluginPath)
         for file in glob.iglob(f'{pluginPath}/nv_*.py'):
