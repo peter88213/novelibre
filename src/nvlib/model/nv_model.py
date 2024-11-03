@@ -513,7 +513,7 @@ class NvModel(ModelBase):
                     title=_('Trash'),
                     desc='',
                     chLevel=2,
-                    chType=3,
+                    chType=1,
                     noNumber=True,
                     isTrash=True,
                     on_element_change=self.on_element_change,
@@ -532,7 +532,7 @@ class NvModel(ModelBase):
                 waste_sections(elemId)
                 self.tree.delete(elemId)
             # Make sure the whole "trash bin" is unused.
-            self.set_type(3, [self.trashBin])
+            self.set_type(1, [self.trashBin])
 
     def get_counts(self):
         """Return a tuple with total numbers:
