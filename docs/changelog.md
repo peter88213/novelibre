@@ -8,6 +8,15 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.15.5
+
+- Fix a bug where an exception is raised when closing a project
+immediately after deleting a section.
+- Assign the correct type when moving a section to the "trash bin".
+
+Based on novxlib 5.0.0
+Based on apptk 2.2.0
+
 ### Version 4.15.4
 
 Refactor the code for better maintainability

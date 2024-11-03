@@ -534,9 +534,9 @@ class NvController(ControllerBase):
                 return
 
             if self._ui.tv.tree.prev(elemId):
-                self._view_new_element(self._ui.tv.tree.prev(elemId))
+                self._ui.tv.go_to_node(self._ui.tv.tree.prev(elemId))
             else:
-                self._view_new_element(self._ui.tv.tree.parent(elemId))
+                self._ui.tv.go_to_node(self._ui.tv.tree.parent(elemId))
             self._mdl.delete_element(elemId)
 
     def discard_manuscript(self):
