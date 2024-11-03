@@ -12,7 +12,7 @@ from nvlib.model.nv_treeview import NvTreeview
 
 
 class NvService(NovxService):
-    """Getters and factory methods for novxlib objects."""
+    """Getters and factory methods for nvlib model objects."""
 
     def get_moon_phase_str(self, isoDate):
         return get_moon_phase_string(isoDate)

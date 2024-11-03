@@ -17,7 +17,7 @@ from nvlib.model.novx.novx_file import NovxFile
 
 
 class NovxService:
-    """Getters and factory methods for novxlib model objects."""
+    """Getters and factory methods for model elements."""
 
     def get_novx_file_extension(self):
         return NovxFile.EXTENSION

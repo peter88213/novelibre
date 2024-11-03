@@ -6,6 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from mvclib.model.model_base import ModelBase
 from nvlib.model.data.id_generator import create_id
+from nvlib.model.nv_work_file import NvWorkFile
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
@@ -22,8 +23,7 @@ from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import _
-from nvlib.model.nv_service import NvService
-from nvlib.model.nv_work_file import NvWorkFile
+from nvlib.nv_service import NvService
 
 
 class NvModel(ModelBase):
