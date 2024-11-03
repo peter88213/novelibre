@@ -10,7 +10,7 @@ import os
 import sys
 
 from nvlib.plugin.rejected_plugin import RejectedPlugin
-from novxlib.novx_globals import _
+from nvlib.novx_globals import _
 
 
 class PluginCollection(dict):

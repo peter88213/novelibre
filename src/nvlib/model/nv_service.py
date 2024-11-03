@@ -4,10 +4,10 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from novxlib.config.configuration import Configuration
-from novxlib.model.moonphase import get_moon_phase_string
-from novxlib.model.novel import Novel
-from novxlib.novx_service import NovxService
+from nvlib.configuration.configuration import Configuration
+from nvlib.model.data.moonphase import get_moon_phase_string
+from nvlib.model.data.novel import Novel
+from nvlib.novx_service import NovxService
 from nvlib.model.nv_treeview import NvTreeview
 
 

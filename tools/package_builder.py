@@ -132,12 +132,6 @@ setuplib.main(False)
         inliner.run(
             target,
             target,
-            'novxlib',
-            '../../novxlib/src/'
-            )
-        inliner.run(
-            target,
-            target,
             'mvclib',
             '../../novelibre/src/'
             )

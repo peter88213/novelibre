@@ -1,8 +1,8 @@
 """Provide a class for a BasicElement pick list.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/mvclib
-License: GNU LGPLv3 (https://www.gnu.org/licenses/lgpl-3.0.en.html)
+For further information see https://github.com/peter88213/novelibre
+License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 

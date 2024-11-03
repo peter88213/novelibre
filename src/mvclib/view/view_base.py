@@ -1,20 +1,22 @@
 """Provide a view base class for a MVC framework.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/mvclib
-License: GNU LGPLv3 (https://www.gnu.org/licenses/lgpl-3.0.en.html)
+For further information see https://github.com/peter88213/novelibre
+License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from abc import abstractmethod
 from tkinter import messagebox
 
+from mvclib.view.ui import Ui
 from mvclib.view.view_component_node import ViewComponentNode
 import tkinter as tk
 
 
-class ViewBase(ViewComponentNode):
+class ViewBase(Ui, ViewComponentNode):
 
     @abstractmethod
     def __init__(self, model, controller, title):
+        Ui.__init__(self, title)
         ViewComponentNode.__init__(self, model, self, controller)
 
         self.root = tk.Tk()
@@ -43,28 +45,6 @@ class ViewBase(ViewComponentNode):
     def on_quit(self):
         """Gracefully close the user interface."""
         self.root.quit()
-
-    def set_info(self, message):
-        """Set a buffered message for display in any info area.
-        
-        Positional arguments:
-            message -- message to be buffered.
-        """
-        self.infoWhatText = message
-
-    def set_status(self, message):
-        """Set a buffered message for display in any status area.
-        
-        Positional arguments:
-            message -- message to be buffered.
-            
-        Replace error/notification markers, if any.
-        """
-        if message.startswith('!'):
-            message = f'Error: {message.split("!", maxsplit=1)[1].strip()}'
-        elif message.startswith('#'):
-            message = f'Notification: {message.split("#", maxsplit=1)[1].strip()}'
-        self.infoHowText = message
 
     def show_error(self, message, title=None):
         """Display an error message box.

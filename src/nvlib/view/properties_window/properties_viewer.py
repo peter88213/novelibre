@@ -7,15 +7,15 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 
 from mvclib.view.view_component_node import ViewComponentNode
-from novxlib.novx_globals import CHAPTER_PREFIX
-from novxlib.novx_globals import CHARACTER_PREFIX
-from novxlib.novx_globals import CH_ROOT
-from novxlib.novx_globals import ITEM_PREFIX
-from novxlib.novx_globals import LOCATION_PREFIX
-from novxlib.novx_globals import PLOT_LINE_PREFIX
-from novxlib.novx_globals import PLOT_POINT_PREFIX
-from novxlib.novx_globals import PRJ_NOTE_PREFIX
-from novxlib.novx_globals import SECTION_PREFIX
+from nvlib.novx_globals import CHAPTER_PREFIX
+from nvlib.novx_globals import CHARACTER_PREFIX
+from nvlib.novx_globals import CH_ROOT
+from nvlib.novx_globals import ITEM_PREFIX
+from nvlib.novx_globals import LOCATION_PREFIX
+from nvlib.novx_globals import PLOT_LINE_PREFIX
+from nvlib.novx_globals import PLOT_POINT_PREFIX
+from nvlib.novx_globals import PRJ_NOTE_PREFIX
+from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.view.properties_window.chapter_view import ChapterView
 from nvlib.view.properties_window.character_view import CharacterView
 from nvlib.view.properties_window.full_section_view import FullSectionView

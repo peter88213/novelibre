@@ -9,9 +9,9 @@ import os
 from tkinter import ttk
 
 from mvclib.view.modal_dialog import ModalDialog
-from novxlib.converter.novx_converter import NovxConverter
-from novxlib.novx_globals import _
-from novxlib.odf.check_odf import odf_is_locked
+from nvlib.model.converter.novx_converter import NovxConverter
+from nvlib.novx_globals import _
+from nvlib.model.odf.check_odf import odf_is_locked
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
 from nvlib.view.platform.platform_settings import KEYS

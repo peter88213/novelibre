@@ -13,9 +13,9 @@ from tkinter import ttk
 from mvclib.widgets.folding_frame import FoldingFrame
 from mvclib.widgets.label_entry import LabelEntry
 from mvclib.widgets.my_string_var import MyStringVar
-from novxlib.model.date_time_tools import get_specific_date
-from novxlib.novx_globals import WEEKDAYS
-from novxlib.novx_globals import _
+from nvlib.model.data.date_time_tools import get_specific_date
+from nvlib.novx_globals import WEEKDAYS
+from nvlib.novx_globals import _
 from nvlib.nv_globals import datestr
 from nvlib.nv_globals import get_section_date_str
 from nvlib.nv_globals import prefs

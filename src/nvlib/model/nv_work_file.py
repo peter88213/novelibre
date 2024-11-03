@@ -7,9 +7,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from datetime import datetime
 import os
 
-from novxlib.novx.novx_file import NovxFile
-from novxlib.novx_globals import CH_ROOT
-from novxlib.novx_globals import _
+from nvlib.model.novx.novx_file import NovxFile
+from nvlib.novx_globals import CH_ROOT
+from nvlib.novx_globals import _
 
 
 class NvWorkFile(NovxFile):

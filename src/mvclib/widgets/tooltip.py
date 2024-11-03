@@ -11,7 +11,7 @@ Copyright (c) 2001-2024 Python Software Foundation; All Rights Reserved
 https://github.com/python/cpython/blob/main/LICENSE
 
 Modifications for the use with mvclib:
-For further information see https://github.com/peter88213/mvclib
+For further information see https://github.com/peter88213/novelibre
 
 - Change the tkinter import to avoid namespace issues when packaging.
 - Replace some tk constants with simple strings.

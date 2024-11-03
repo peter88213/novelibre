@@ -105,7 +105,7 @@ which must be present in your file system.
 
 ### Conventions
 
-See https://github.com/peter88213/novxlib/blob/main/docs/conventions.md
+See https://github.com/peter88213/novelibre/blob/main/docs/conventions.md
 
 ## Development tools
 

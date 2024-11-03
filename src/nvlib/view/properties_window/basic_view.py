@@ -13,7 +13,7 @@ from mvclib.view.view_component_base import ViewComponentBase
 from mvclib.widgets.folding_frame import FoldingFrame
 from mvclib.widgets.index_card import IndexCard
 from mvclib.widgets.text_box import TextBox
-from novxlib.novx_globals import _
+from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
 from nvlib.view.widgets.collection_box import CollectionBox
 

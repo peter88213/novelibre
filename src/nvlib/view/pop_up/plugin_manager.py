@@ -8,7 +8,7 @@ from tkinter import ttk
 import webbrowser
 
 from mvclib.view.modal_dialog import ModalDialog
-from novxlib.novx_globals import _
+from nvlib.novx_globals import _
 from nvlib.nv_globals import open_help
 from nvlib.view.platform.platform_settings import KEYS
 

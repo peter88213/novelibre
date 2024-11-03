@@ -6,9 +6,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 
 import sys
-from novxlib.model.novel import Novel
-from novxlib.model.nv_tree import NvTree
-from novxlib.novx.location_data_reader import LocationDataReader
+from nvlib.model.data.novel import Novel
+from nvlib.model.data.nv_tree import NvTree
+from nvlib.model.novx.location_data_reader import LocationDataReader
 
 filePath = sys.argv[1]
 dataSet = LocationDataReader(filePath)

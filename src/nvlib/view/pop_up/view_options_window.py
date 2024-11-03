@@ -8,8 +8,8 @@ from tkinter import ttk
 
 from mvclib.view.modal_dialog import ModalDialog
 from mvclib.widgets.drag_drop_listbox import DragDropListbox
-from novxlib.novx_globals import _
-from novxlib.novx_globals import list_to_string
+from nvlib.novx_globals import _
+from nvlib.novx_globals import list_to_string
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
 from nvlib.view.platform.platform_settings import KEYS

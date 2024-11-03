@@ -13,8 +13,8 @@ from mvclib.widgets.label_combo import LabelCombo
 from mvclib.widgets.label_disp import LabelDisp
 from mvclib.widgets.label_entry import LabelEntry
 from mvclib.widgets.my_string_var import MyStringVar
-from novxlib.novx_globals import WEEKDAYS
-from novxlib.novx_globals import _
+from nvlib.novx_globals import WEEKDAYS
+from nvlib.novx_globals import _
 from nvlib.nv_globals import datestr
 from nvlib.nv_globals import prefs
 from nvlib.view.properties_window.basic_view import BasicView

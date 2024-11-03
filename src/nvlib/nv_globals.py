@@ -7,7 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from datetime import date
 import webbrowser
 
-from novxlib.novx_globals import _
+from nvlib.novx_globals import _
 
 prefs = {}
 

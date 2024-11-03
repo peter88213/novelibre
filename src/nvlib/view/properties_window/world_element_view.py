@@ -9,9 +9,9 @@ from tkinter import ttk
 
 from mvclib.widgets.label_entry import LabelEntry
 from mvclib.widgets.my_string_var import MyStringVar
-from novxlib.novx_globals import _
-from novxlib.novx_globals import list_to_string
-from novxlib.novx_globals import string_to_list
+from nvlib.novx_globals import _
+from nvlib.novx_globals import list_to_string
+from nvlib.novx_globals import string_to_list
 from nvlib.view.properties_window.basic_view import BasicView
 
 

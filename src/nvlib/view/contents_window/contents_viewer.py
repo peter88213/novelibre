@@ -8,8 +8,8 @@ import re
 from tkinter import ttk
 
 from mvclib.view.view_component_base import ViewComponentBase
-from novxlib.novx_globals import CH_ROOT
-from novxlib.novx_globals import _
+from nvlib.novx_globals import CH_ROOT
+from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
 from nvlib.view.contents_window.content_view_parser import ContentViewParser
 from nvlib.view.contents_window.rich_text_nv import RichTextNv

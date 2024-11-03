@@ -11,7 +11,7 @@ from mvclib.widgets.folding_frame import FoldingFrame
 from mvclib.widgets.label_entry import LabelEntry
 from mvclib.widgets.my_string_var import MyStringVar
 from mvclib.widgets.text_box import TextBox
-from novxlib.novx_globals import _
+from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
 from nvlib.view.properties_window.world_element_view import WorldElementView
 

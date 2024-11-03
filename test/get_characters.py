@@ -6,9 +6,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 
 import sys
-from novxlib.model.novel import Novel
-from novxlib.model.nv_tree import NvTree
-from novxlib.novx.character_data_reader import CharacterDataReader
+from nvlib.model.data.novel import Novel
+from nvlib.model.data.nv_tree import NvTree
+from nvlib.model.novx.character_data_reader import CharacterDataReader
 
 filePath = sys.argv[1]
 dataSet = CharacterDataReader(filePath)

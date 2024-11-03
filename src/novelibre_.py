@@ -21,7 +21,7 @@ import os
 from pathlib import Path
 import sys
 
-from novxlib.config.configuration import Configuration
+from nvlib.configuration.configuration import Configuration
 from nvlib.configuration.nv_configuration import NvConfiguration
 from nvlib.controller.nv_controller import NvController
 from nvlib.nv_globals import prefs
