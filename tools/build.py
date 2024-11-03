@@ -29,7 +29,7 @@ class ApplicationBuilder(PackageBuilder):
 
     def add_css(self):
         print('\nAdding css ...')
-        copytree(f'../../novxlib/css', f'{self.buildDir}/css')
+        copytree(f'../css', f'{self.buildDir}/css')
 
     def add_extras(self):
         self.add_css()

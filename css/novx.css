@@ -1,0 +1,191 @@
+novx {
+   max-width:960px;
+   margin:0 auto;
+}
+PROJECT {
+    display: block;
+}
+Title, ShortName, Author {
+    text-align: center;
+    display: block;
+}
+Title, ShortName, Author {
+    font-family: sans-serif;
+    font-size: 1.8em;
+}
+CHAPTER, SECTION, ARC, POINT {
+    display: block;
+}
+CHARACTER, LOCATION, ITEM, ARC {
+    display: block;
+    padding: 1em;
+    border-width: 1px;
+    border-style: solid;
+    border-color: gray;
+}
+CHARACTERS, LOCATIONS, ITEMS, ARCS {
+    display: block;
+    padding: 1em;
+    border-width: 1em;
+    border-style: solid;
+}
+CHARACTERS {
+    border-color: gray;
+    font-family: sans-serif;
+}
+LOCATIONS {
+    border-color: green;
+    font-family: sans-serif;
+}
+ITEMS {
+    border-color: orange;
+    font-family: sans-serif;
+}
+ARCS {
+    border-color: maroon;
+    font-family: sans-serif;
+}
+Title {
+    margin: 1em;
+    text-align: center;
+    display: block;
+    font-size: 1.5em;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+PROJECT > Title {
+    font-size: 3em;
+}
+CHAPTER[level="1"] > Title, ARC > Title {
+    font-size: 2.4em;
+}
+CHAPTER[level="2"] > Title {
+    font-size: 1.8em;
+}
+SECTION > Title {font-size: 1.2em;
+    font-weight: normal;
+    font-style: italic;
+}
+Tags, Aka, FullName {
+    text-align: center;
+    display: block;
+    margin-right: 8em;
+    margin-left: 8em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+Desc,  Goal, Conflict, Outcome, Bio, Goals, PlotlineNotes {
+    display: block;
+    margin-right: 8em;
+    margin-left: 8em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 1em;
+}
+Goal, Conflict, Outcome {
+    background: bisque;
+}
+PlotlineNotes {
+    background: Seashell 
+}
+CHAPTER > Desc {
+    background: lightgray;
+}
+SECTION > Desc {
+    background: lavender;
+}
+SECTION[type="2"] > Desc {
+    background: white;
+}
+SECTION[type="3"] > Desc {
+    background: white;
+}
+Notes {
+    display: block;
+    margin-right: 16em;
+    margin-left: 16em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 1em;
+}
+Notes, comment {
+    font-family: monospace;
+    font-style: italic;
+    color: indigo;
+    background: lemonchiffon;
+}
+comment {
+    display: block;
+    font-size: 0.8em;
+    padding: 0.1em;
+}
+Tags {
+    color: magenta;
+}
+Day, Date, Time, LastsDays, LastsHours, LastsMinutes, BirthDate, DeathDate {
+    display: block;
+    margin-left: 8em;
+}
+Day:before {
+    content: "d "
+}
+LastsDays:after {
+    content: " d"
+}
+LastsHours:after {
+    content: " h"
+}
+LastsMinutes:after {
+    content: " m"
+}
+BirthDate:before {
+    content: "*"
+}
+DeathDate:before {
+    content: "+"
+}
+CHAPTER[type="1"] {
+    color:gray;
+}
+SECTION[type="1"] {
+    color:gray;
+}
+SECTION[type="2"] {
+    color:red;
+}
+SECTION[type="2"] > Title {
+    font-weight: bold;
+    font-size: 1.8em;
+}
+SECTION[type="2"] > Desc {
+    background: white;
+}
+SECTION[type="3"] {
+    color:red;
+}
+Content {
+    display: block;
+    padding: 2em;
+    margin-left: 3em;
+    margin-right: 3em;
+}
+p {
+    display: block;
+}
+p+p {
+    text-indent: 1em;
+}
+em {
+    font-style: italic;
+}
+strong {
+    text-transform: uppercase;
+}
+ChapterHeadingPrefix, ChapterHeadingSuffix, 
+PartHeadingPrefix, PartHeadingSuffix, 
+CustomGoal, CustomConflict, CustomOutcome, 
+CustomChrBio, CustomChrGoals,
+WordCountStart, WordTarget, ReferenceDate, 
+PROGRESS {
+    visibility: hidden;
+}
