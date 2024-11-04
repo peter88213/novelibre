@@ -25,10 +25,6 @@ class ViewBase(Ui, ViewComponentNode):
         self.title = title
         self._mdl.register_client(self)
 
-        self.infoWhatText = ''
-        self.infoHowText = ''
-        # message buffers
-
     def ask_yes_no(self, text, title=None):
         """Query yes or no with a pop-up box.
         

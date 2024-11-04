@@ -39,10 +39,6 @@ class ViewComponentBase(Observer):
         """Actions to be performed when novelibre is closed."""
         pass
 
-    def refresh(self):
-        """Refresh all view components."""
-        pass
-
     def unlock(self):
         """Enable changes on the model."""
         pass

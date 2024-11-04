@@ -14,14 +14,10 @@ controlflow {
 </StyleSheet>
 <Package id="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed">
 <name>
-<val>novelibre</val>
+<val>mvclib</val>
 </name>
 <nestedPackage>
 <reflist>
-<ref refid="a021290e-71b1-11ec-a409-f47b099bf663"/>
-<ref refid="c254a76c-71b1-11ec-a409-f47b099bf663"/>
-<ref refid="cccf183a-71b1-11ec-a409-f47b099bf663"/>
-<ref refid="f3a82730-71b1-11ec-a409-f47b099bf663"/>
 <ref refid="bafd1da1-9ada-11ef-a467-70d82353e511"/>
 <ref refid="c348ec15-9ada-11ef-9cee-70d82353e511"/>
 <ref refid="6c503e05-9adb-11ef-a5cd-70d82353e511"/>
@@ -39,399 +35,6 @@ controlflow {
 </reflist>
 </ownedType>
 </Package>
-<Package id="a021290e-71b1-11ec-a409-f47b099bf663">
-<name>
-<val>1. Anwendungsfälle</val>
-</name>
-<ownedDiagram>
-<reflist>
-<ref refid="0c81912e-71b2-11ec-a409-f47b099bf663"/>
-<ref refid="3132c19a-71b3-11ec-a409-f47b099bf663"/>
-</reflist>
-</ownedDiagram>
-<package>
-<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
-</package>
-</Package>
-<Package id="c254a76c-71b1-11ec-a409-f47b099bf663">
-<name>
-<val>2. Domänenanalyse</val>
-</name>
-<ownedDiagram>
-<reflist>
-<ref refid="06ecc092-71b4-11ec-a409-f47b099bf663"/>
-</reflist>
-</ownedDiagram>
-<package>
-<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
-</package>
-</Package>
-<Package id="cccf183a-71b1-11ec-a409-f47b099bf663">
-<name>
-<val>3. Architektonisches Design</val>
-</name>
-<ownedDiagram>
-<reflist>
-<ref refid="37edd9b4-71b5-11ec-a409-f47b099bf663"/>
-<ref refid="ad3969b8-71b5-11ec-a409-f47b099bf663"/>
-</reflist>
-</ownedDiagram>
-<ownedType>
-<reflist>
-<ref refid="b73251a0-71b5-11ec-a409-f47b099bf663"/>
-</reflist>
-</ownedType>
-<package>
-<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
-</package>
-</Package>
-<Package id="f3a82730-71b1-11ec-a409-f47b099bf663">
-<name>
-<val>4. Detailliertes Design</val>
-</name>
-<ownedDiagram>
-<reflist>
-<ref refid="585f224c-71b6-11ec-a409-f47b099bf663"/>
-<ref refid="0b5ba60e-71b7-11ec-a409-f47b099bf663"/>
-</reflist>
-</ownedDiagram>
-<package>
-<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
-</package>
-</Package>
-<Diagram id="0c81912e-71b2-11ec-a409-f47b099bf663">
-<diagramType>
-<val>uc</val>
-</diagramType>
-<element>
-<ref refid="a021290e-71b1-11ec-a409-f47b099bf663"/>
-</element>
-<name>
-<val>Anwendungsfälle</val>
-</name>
-<ownedPresentation>
-<reflist>
-<ref refid="fe29995e-71b2-11ec-a409-f47b099bf663"/>
-</reflist>
-</ownedPresentation>
-</Diagram>
-<Comment id="fe29884c-71b2-11ec-a409-f47b099bf663">
-<body>
-<val>Analysieren Sie die funktionalen Anforderungen durch 
-Identifizierung der Benutzerrollen – Akteure – um sie 
-mit ihren Anwendungsfällen in Verbindung bringen.</val>
-</body>
-<presentation>
-<reflist>
-<ref refid="fe29995e-71b2-11ec-a409-f47b099bf663"/>
-</reflist>
-</presentation>
-</Comment>
-<CommentItem id="fe29995e-71b2-11ec-a409-f47b099bf663">
-<matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 93.76953125, 79.1953125)</val>
-</matrix>
-<top-left>
-<val>(0.0, 0.0)</val>
-</top-left>
-<width>
-<val>258.0</val>
-</width>
-<height>
-<val>110.0</val>
-</height>
-<diagram>
-<ref refid="0c81912e-71b2-11ec-a409-f47b099bf663"/>
-</diagram>
-<subject>
-<ref refid="fe29884c-71b2-11ec-a409-f47b099bf663"/>
-</subject>
-</CommentItem>
-<Diagram id="3132c19a-71b3-11ec-a409-f47b099bf663">
-<diagramType>
-<val>act</val>
-</diagramType>
-<element>
-<ref refid="a021290e-71b1-11ec-a409-f47b099bf663"/>
-</element>
-<name>
-<val>Anwendungsfall Szenarien</val>
-</name>
-<ownedPresentation>
-<reflist>
-<ref refid="7ff4998e-71b3-11ec-a409-f47b099bf663"/>
-</reflist>
-</ownedPresentation>
-</Diagram>
-<Comment id="7ff48ef8-71b3-11ec-a409-f47b099bf663">
-<body>
-<val>Modellieren Sie eine abstrakte Anwendungsfallimplementierung, indem Sie Aktivitätsdiagramme erstellen, die Aktivitätsflüsse für primäre und sekundäre Anwendungsfallszenarien visualisieren.</val>
-</body>
-<presentation>
-<reflist>
-<ref refid="7ff4998e-71b3-11ec-a409-f47b099bf663"/>
-</reflist>
-</presentation>
-</Comment>
-<CommentItem id="7ff4998e-71b3-11ec-a409-f47b099bf663">
-<matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 58.0, 79.0)</val>
-</matrix>
-<top-left>
-<val>(0.0, 0.0)</val>
-</top-left>
-<width>
-<val>364.0</val>
-</width>
-<height>
-<val>95.0</val>
-</height>
-<diagram>
-<ref refid="3132c19a-71b3-11ec-a409-f47b099bf663"/>
-</diagram>
-<subject>
-<ref refid="7ff48ef8-71b3-11ec-a409-f47b099bf663"/>
-</subject>
-</CommentItem>
-<Diagram id="06ecc092-71b4-11ec-a409-f47b099bf663">
-<diagramType>
-<val>cls</val>
-</diagramType>
-<element>
-<ref refid="c254a76c-71b1-11ec-a409-f47b099bf663"/>
-</element>
-<name>
-<val>Domain-Entitäten</val>
-</name>
-<ownedPresentation>
-<reflist>
-<ref refid="b2b559de-71b4-11ec-a409-f47b099bf663"/>
-</reflist>
-</ownedPresentation>
-</Diagram>
-<Comment id="b2b54e26-71b4-11ec-a409-f47b099bf663">
-<body>
-<val>Führen Sie eine Domänenanalyse durch, indem Sie Domänenentitäten und ihre Beziehungen mithilfe eines vereinfachten Klassendiagramms modellieren. Dieses Diagramm dient als visuelles Wörterbuch der Konzepte. Es dient auch als Ausgangspunkt für Ihr Datenmodell auf Entwurfsebene.</val>
-</body>
-<presentation>
-<reflist>
-<ref refid="b2b559de-71b4-11ec-a409-f47b099bf663"/>
-</reflist>
-</presentation>
-</Comment>
-<CommentItem id="b2b559de-71b4-11ec-a409-f47b099bf663">
-<matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 46.015625, 81.69921875)</val>
-</matrix>
-<top-left>
-<val>(0.0, 0.0)</val>
-</top-left>
-<width>
-<val>400.0</val>
-</width>
-<height>
-<val>110.0</val>
-</height>
-<diagram>
-<ref refid="06ecc092-71b4-11ec-a409-f47b099bf663"/>
-</diagram>
-<subject>
-<ref refid="b2b54e26-71b4-11ec-a409-f47b099bf663"/>
-</subject>
-</CommentItem>
-<Diagram id="37edd9b4-71b5-11ec-a409-f47b099bf663">
-<diagramType>
-<val>pkg</val>
-</diagramType>
-<element>
-<ref refid="cccf183a-71b1-11ec-a409-f47b099bf663"/>
-</element>
-<name>
-<val>Paketabhängigkeiten</val>
-</name>
-<ownedPresentation>
-<reflist>
-<ref refid="098cfa2c-71b6-11ec-a409-f47b099bf663"/>
-</reflist>
-</ownedPresentation>
-</Diagram>
-<Diagram id="ad3969b8-71b5-11ec-a409-f47b099bf663">
-<diagramType>
-<val>sd</val>
-</diagramType>
-<element>
-<ref refid="cccf183a-71b1-11ec-a409-f47b099bf663"/>
-</element>
-<name>
-<val>Interaktionen</val>
-</name>
-<ownedPresentation>
-<reflist>
-<ref refid="2d10bd3a-71b6-11ec-a409-f47b099bf663"/>
-</reflist>
-</ownedPresentation>
-</Diagram>
-<Interaction id="b73251a0-71b5-11ec-a409-f47b099bf663">
-<name>
-<val>Interaktion</val>
-</name>
-<package>
-<ref refid="cccf183a-71b1-11ec-a409-f47b099bf663"/>
-</package>
-</Interaction>
-<Comment id="098cef6e-71b6-11ec-a409-f47b099bf663">
-<body>
-<val>Bereiten Sie ein Diagramm der Paketabhängigkeiten vor, um Ihre Implementierungsklassen auf geeignete Weise zu gruppieren. Dies wird Ihnen helfen, den Code gut zu strukturieren und Designfehler wie zyklische Abhängigkeiten oder Abhängigkeiten von instabilen Teilen zu vermeiden</val>
-</body>
-<presentation>
-<reflist>
-<ref refid="098cfa2c-71b6-11ec-a409-f47b099bf663"/>
-</reflist>
-</presentation>
-</Comment>
-<CommentItem id="098cfa2c-71b6-11ec-a409-f47b099bf663">
-<matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 106.71484375, 51.49999999999997)</val>
-</matrix>
-<top-left>
-<val>(0.0, 0.0)</val>
-</top-left>
-<width>
-<val>271.5703125</val>
-</width>
-<height>
-<val>178.0</val>
-</height>
-<diagram>
-<ref refid="37edd9b4-71b5-11ec-a409-f47b099bf663"/>
-</diagram>
-<subject>
-<ref refid="098cef6e-71b6-11ec-a409-f47b099bf663"/>
-</subject>
-</CommentItem>
-<Comment id="2d10b29a-71b6-11ec-a409-f47b099bf663">
-<body>
-<val>Modellieren Sie Komponenteninteraktionen für Anwendungsszenarien, um neue Methoden in
-bestehenden Klassen oder sogar neue Klassen mit spezifischen Verantwortlichkeiten zu finden.</val>
-</body>
-<presentation>
-<reflist>
-<ref refid="2d10bd3a-71b6-11ec-a409-f47b099bf663"/>
-</reflist>
-</presentation>
-</Comment>
-<CommentItem id="2d10bd3a-71b6-11ec-a409-f47b099bf663">
-<matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 43.0, 73.0)</val>
-</matrix>
-<top-left>
-<val>(0.0, 0.0)</val>
-</top-left>
-<width>
-<val>322.0</val>
-</width>
-<height>
-<val>127.0</val>
-</height>
-<diagram>
-<ref refid="ad3969b8-71b5-11ec-a409-f47b099bf663"/>
-</diagram>
-<subject>
-<ref refid="2d10b29a-71b6-11ec-a409-f47b099bf663"/>
-</subject>
-</CommentItem>
-<Diagram id="585f224c-71b6-11ec-a409-f47b099bf663">
-<diagramType>
-<val>cls</val>
-</diagramType>
-<element>
-<ref refid="f3a82730-71b1-11ec-a409-f47b099bf663"/>
-</element>
-<name>
-<val>Design detaillierter Klassen</val>
-</name>
-<ownedPresentation>
-<reflist>
-<ref refid="6e4703fe-71b6-11ec-a409-f47b099bf663"/>
-</reflist>
-</ownedPresentation>
-</Diagram>
-<Comment id="6e46f7ba-71b6-11ec-a409-f47b099bf663">
-<body>
-<val>Erstellen Sie detaillierte Klassendiagramme, um Ihr objektorientiertes Datenmodell zu erfassen.</val>
-</body>
-<presentation>
-<reflist>
-<ref refid="6e4703fe-71b6-11ec-a409-f47b099bf663"/>
-</reflist>
-</presentation>
-</Comment>
-<CommentItem id="6e4703fe-71b6-11ec-a409-f47b099bf663">
-<matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 72.0, 76.5)</val>
-</matrix>
-<top-left>
-<val>(0.0, 0.0)</val>
-</top-left>
-<width>
-<val>215.0</val>
-</width>
-<height>
-<val>76.0</val>
-</height>
-<diagram>
-<ref refid="585f224c-71b6-11ec-a409-f47b099bf663"/>
-</diagram>
-<subject>
-<ref refid="6e46f7ba-71b6-11ec-a409-f47b099bf663"/>
-</subject>
-</CommentItem>
-<Diagram id="0b5ba60e-71b7-11ec-a409-f47b099bf663">
-<diagramType>
-<val>cmp</val>
-</diagramType>
-<element>
-<ref refid="f3a82730-71b1-11ec-a409-f47b099bf663"/>
-</element>
-<name>
-<val>Architektur der Implementierung</val>
-</name>
-<ownedPresentation>
-<reflist>
-<ref refid="6203ccac-71b7-11ec-a409-f47b099bf663"/>
-</reflist>
-</ownedPresentation>
-</Diagram>
-<Comment id="6203b92e-71b7-11ec-a409-f47b099bf663">
-<body>
-<val>Definieren Sie die wichtigsten Artefakte, welche die Implementierung Ihrer Komponenten darstellen. Geben Sie an, wie sie auf den Hardware-Knoten eingesetzt werden, ihre gegenseitige Abhängigkeiten und die Kommunikationsprotokolle.</val>
-</body>
-<presentation>
-<reflist>
-<ref refid="6203ccac-71b7-11ec-a409-f47b099bf663"/>
-</reflist>
-</presentation>
-</Comment>
-<CommentItem id="6203ccac-71b7-11ec-a409-f47b099bf663">
-<matrix>
-<val>(1.0, 0.0, 0.0, 1.0, -7.59375, 75.08984375)</val>
-</matrix>
-<top-left>
-<val>(0.0, 0.0)</val>
-</top-left>
-<width>
-<val>271.0</val>
-</width>
-<height>
-<val>144.0</val>
-</height>
-<diagram>
-<ref refid="0b5ba60e-71b7-11ec-a409-f47b099bf663"/>
-</diagram>
-<subject>
-<ref refid="6203b92e-71b7-11ec-a409-f47b099bf663"/>
-</subject>
-</CommentItem>
 <Diagram id="ad1fbc3a-9ad9-11ef-ac89-70d82353e511">
 <diagramType>
 <val>cls</val>
@@ -459,6 +62,7 @@ bestehenden Klassen oder sogar neue Klassen mit spezifischen Verantwortlichkeite
 <ref refid="9ee4e926-9ae0-11ef-9938-70d82353e511"/>
 <ref refid="c460a6a5-9ae0-11ef-8735-70d82353e511"/>
 <ref refid="1357eb61-9ae1-11ef-855f-70d82353e511"/>
+<ref refid="b8068545-9ae3-11ef-b05a-70d82353e511"/>
 <ref refid="492a4b52-9adb-11ef-981a-70d82353e511"/>
 <ref refid="12194c08-9adc-11ef-bb27-70d82353e511"/>
 <ref refid="bf765a6d-9adc-11ef-9a34-70d82353e511"/>
@@ -467,6 +71,7 @@ bestehenden Klassen oder sogar neue Klassen mit spezifischen Verantwortlichkeite
 <ref refid="e7087e9d-9add-11ef-ab14-70d82353e511"/>
 <ref refid="cb8852a5-9ae0-11ef-aabf-70d82353e511"/>
 <ref refid="2aa36bef-9ae1-11ef-9413-70d82353e511"/>
+<ref refid="e029112c-9ae3-11ef-a5a8-70d82353e511"/>
 </reflist>
 </ownedPresentation>
 </Diagram>
@@ -940,7 +545,7 @@ bestehenden Klassen oder sogar neue Klassen mit spezifischen Verantwortlichkeite
 </Package>
 <PackageItem id="6c50da38-9adb-11ef-8de1-70d82353e511">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 122.5, 505.0)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 122.5, 503.40277268008003)</val>
 </matrix>
 <top-left>
 <val>(-95.0, 0.0)</val>
@@ -1103,7 +708,6 @@ bestehenden Klassen oder sogar neue Klassen mit spezifischen Verantwortlichkeite
 <ref refid="516750ca-9adc-11ef-acfd-70d82353e511"/>
 <ref refid="56c10760-9adc-11ef-a4b5-70d82353e511"/>
 <ref refid="5aed0f1f-9adc-11ef-9ec7-70d82353e511"/>
-<ref refid="5e5a9e07-9adc-11ef-9e54-70d82353e511"/>
 <ref refid="60df3700-9adc-11ef-8fdb-70d82353e511"/>
 </reflist>
 </ownedOperation>
@@ -1161,7 +765,7 @@ bestehenden Klassen oder sogar neue Klassen mit spezifischen Verantwortlichkeite
 <val>(1.0, 0.0, 0.0, 1.0, 454.0, 169.0)</val>
 </matrix>
 <points>
-<val>[(190.5, 654.0), (192.25, 566.0)]</val>
+<val>[(190.5, 652.40277268008), (192.25, 564.40277268008)]</val>
 </points>
 <head-connection>
 <ref refid="face906d-9adb-11ef-a09f-70d82353e511"/>
@@ -1245,14 +849,6 @@ bestehenden Klassen oder sogar neue Klassen mit spezifischen Verantwortlichkeite
 </class_>
 <name>
 <val>on_quit</val>
-</name>
-</Operation>
-<Operation id="5e5a9e07-9adc-11ef-9e54-70d82353e511">
-<class_>
-<ref refid="face1b3e-9adb-11ef-8352-70d82353e511"/>
-</class_>
-<name>
-<val>refresh</val>
 </name>
 </Operation>
 <Operation id="60df3700-9adc-11ef-8fdb-70d82353e511">
@@ -1394,7 +990,7 @@ bestehenden Klassen oder sogar neue Klassen mit spezifischen Verantwortlichkeite
 <val>(1.0, 0.0, 0.0, 1.0, 536.0, 355.0)</val>
 </matrix>
 <points>
-<val>[(-96.0, 380.0), (-100.875, -81.5)]</val>
+<val>[(-96.0, 378.40277268008003), (-100.875, -81.5)]</val>
 </points>
 <head-connection>
 <ref refid="7f97af3c-9adc-11ef-8e6e-70d82353e511"/>
@@ -1433,7 +1029,7 @@ bestehenden Klassen oder sogar neue Klassen mit spezifischen Verantwortlichkeite
 <val>(1.0, 0.0, 0.0, 1.0, 291.0, 875.0)</val>
 </matrix>
 <points>
-<val>[(181.5, -8.5), (240.5, -9.0)]</val>
+<val>[(181.5, -10.097227319919966), (240.5, -10.597227319919966)]</val>
 </points>
 <head-connection>
 <ref refid="7f97af3c-9adc-11ef-8e6e-70d82353e511"/>
@@ -1469,8 +1065,6 @@ bestehenden Klassen oder sogar neue Klassen mit spezifischen Verantwortlichkeite
 <reflist>
 <ref refid="1369d588-9add-11ef-a53a-70d82353e511"/>
 <ref refid="1587dbbf-9add-11ef-a914-70d82353e511"/>
-<ref refid="1a797344-9add-11ef-9c6d-70d82353e511"/>
-<ref refid="9c6177df-9add-11ef-ae80-70d82353e511"/>
 <ref refid="2bc779c2-9ae1-11ef-ac86-70d82353e511"/>
 </reflist>
 </ownedAttribute>
@@ -1534,7 +1128,7 @@ bestehenden Klassen oder sogar neue Klassen mit spezifischen Verantwortlichkeite
 <val>(1.0, 0.0, 0.0, 1.0, 99.0, 740.0)</val>
 </matrix>
 <points>
-<val>[(33.06, 79.90277268008003), (35.75, 3.0)]</val>
+<val>[(33.06, 78.30554536016007), (35.75, 1.4027726800800338)]</val>
 </points>
 <head-connection>
 <ref refid="fec83c1c-9adc-11ef-aa54-70d82353e511"/>
@@ -1572,14 +1166,6 @@ bestehenden Klassen oder sogar neue Klassen mit spezifischen Verantwortlichkeite
 <val>title</val>
 </name>
 </Property>
-<Property id="1a797344-9add-11ef-9c6d-70d82353e511">
-<class_>
-<ref refid="fec7c6c5-9adc-11ef-b304-70d82353e511"/>
-</class_>
-<name>
-<val>infoWhatText</val>
-</name>
-</Property>
 <Operation id="1f63e14e-9add-11ef-a8ea-70d82353e511">
 <class_>
 <ref refid="fec7c6c5-9adc-11ef-b304-70d82353e511"/>
@@ -1588,14 +1174,6 @@ bestehenden Klassen oder sogar neue Klassen mit spezifischen Verantwortlichkeite
 <val>ask_yes_no</val>
 </name>
 </Operation>
-<Property id="9c6177df-9add-11ef-ae80-70d82353e511">
-<class_>
-<ref refid="fec7c6c5-9adc-11ef-b304-70d82353e511"/>
-</class_>
-<name>
-<val>infoHowtext</val>
-</name>
-</Property>
 <Operation id="a5d11f66-9add-11ef-85ad-70d82353e511">
 <class_>
 <ref refid="fec7c6c5-9adc-11ef-b304-70d82353e511"/>
@@ -1661,7 +1239,7 @@ bestehenden Klassen oder sogar neue Klassen mit spezifischen Verantwortlichkeite
 <val>(1.0, 0.0, 0.0, 1.0, 289.0, 873.0)</val>
 </matrix>
 <points>
-<val>[(-59.5, -31.097227319919966), (5.5, -31.097227319919966)]</val>
+<val>[(-59.5, -32.69445463983993), (5.5, -32.69445463983993)]</val>
 </points>
 <head-connection>
 <ref refid="fec83c1c-9adc-11ef-aa54-70d82353e511"/>
@@ -1873,7 +1451,7 @@ bestehenden Klassen oder sogar neue Klassen mit spezifischen Verantwortlichkeite
 <val>(1.0, 0.0, 0.0, 1.0, 838.0, 1087.0)</val>
 </matrix>
 <points>
-<val>[(-527.0, 44.97398356359986), (-991.0, 41.53861638983858)]</val>
+<val>[(-527.0, 43.37675624367989), (-991.0, 41.53861638983858)]</val>
 </points>
 <head-connection>
 <ref refid="5e98c3ef-9ae0-11ef-8986-70d82353e511"/>
@@ -1967,7 +1545,7 @@ bestehenden Klassen oder sogar neue Klassen mit spezifischen Verantwortlichkeite
 <val>(1.0, 0.0, 0.0, 1.0, 71.96879925099842, 896.0787709653298)</val>
 </matrix>
 <points>
-<val>[(-10.468799250998401, -47.57877096532991), (-210.47329042101677, -47.57877096532991)]</val>
+<val>[(-10.468799250998401, -49.175998285249875), (-210.47329042101677, -49.175998285249875)]</val>
 </points>
 <head-connection>
 <ref refid="fec83c1c-9adc-11ef-aa54-70d82353e511"/>
@@ -2052,4 +1630,75 @@ bestehenden Klassen oder sogar neue Klassen mit spezifischen Verantwortlichkeite
 <val>protocol</val>
 </name>
 </Operation>
+<Comment id="b8068544-9ae3-11ef-b2f0-70d82353e511">
+<body>
+<val>This is used like an interface by the model's converter classes</val>
+</body>
+<presentation>
+<reflist>
+<ref refid="b8068545-9ae3-11ef-b05a-70d82353e511"/>
+</reflist>
+</presentation>
+</Comment>
+<CommentItem id="b8068545-9ae3-11ef-b05a-70d82353e511">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 244.49999999999994, 565.40277268008)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>155.52184033091294</val>
+</width>
+<height>
+<val>89.19445463984016</val>
+</height>
+<diagram>
+<ref refid="ad1fbc3a-9ad9-11ef-ac89-70d82353e511"/>
+</diagram>
+<subject>
+<ref refid="b8068544-9ae3-11ef-b2f0-70d82353e511"/>
+</subject>
+</CommentItem>
+<CommentLineItem id="e029112c-9ae3-11ef-a5a8-70d82353e511">
+<diagram>
+<ref refid="ad1fbc3a-9ad9-11ef-ac89-70d82353e511"/>
+</diagram>
+<horizontal>
+<val>0</val>
+</horizontal>
+<orthogonal>
+<val>0</val>
+</orthogonal>
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 187.02184033091288, 598.7260955283245)</val>
+</matrix>
+<points>
+<val>[(8.478159669087063, 46.00000000000006), (57.47815966908706, -0.4027726800798064)]</val>
+</points>
+<tail-connection>
+<ref refid="b8068545-9ae3-11ef-b05a-70d82353e511"/>
+</tail-connection>
+</CommentLineItem>
+<Package id="eed33f8d-9ae5-11ef-8e3f-70d82353e511">
+<name>
+<val>nvlib</val>
+</name>
+<ownedDiagram>
+<reflist>
+<ref refid="057140eb-9ae6-11ef-838b-70d82353e511"/>
+</reflist>
+</ownedDiagram>
+</Package>
+<Diagram id="057140eb-9ae6-11ef-838b-70d82353e511">
+<diagramType>
+<val>cls</val>
+</diagramType>
+<element>
+<ref refid="eed33f8d-9ae5-11ef-8e3f-70d82353e511"/>
+</element>
+<name>
+<val>nvlib</val>
+</name>
+</Diagram>
 </gaphor>

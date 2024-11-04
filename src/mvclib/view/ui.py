@@ -24,6 +24,7 @@ class Ui:
         """
         self.infoWhatText = ''
         self.infoHowText = ''
+        # message buffers
 
     def ask_yes_no(self, text):
         """Return True or False.
