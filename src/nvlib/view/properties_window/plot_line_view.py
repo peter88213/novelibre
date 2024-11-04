@@ -63,6 +63,9 @@ class PlotLineView(BasicView):
         
         Extends the superclass method.
         """
+        if self._element is None:
+            return
+
         super().apply_changes()
 
         # 'Short name' entry.

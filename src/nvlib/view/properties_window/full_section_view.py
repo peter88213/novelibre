@@ -250,6 +250,9 @@ class FullSectionView(DatedSectionView):
         
         Extends the superclass method.
         """
+        if self._element is None:
+            return
+
         super().apply_changes()
         # updating the character list before the viewpoints
 

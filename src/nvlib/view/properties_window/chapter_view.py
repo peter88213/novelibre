@@ -62,6 +62,9 @@ class ChapterView(BasicView):
         
         Extends the superclass method.
         """
+        if self._element is None:
+            return
+
         if self._element.isTrash:
             return
 

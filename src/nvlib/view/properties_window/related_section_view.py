@@ -132,6 +132,9 @@ class RelatedSectionView(BasicView):
         
         Extends the superclass method.
         """
+        if self._element is None:
+            return
+
         super().apply_changes()
 
         # 'Tags' entry.

@@ -100,6 +100,7 @@ class BasicView(ViewComponentBase, ttk.Frame):
 
     def hide(self):
         """Hide the view."""
+        self._element = None
         self.pack_forget()
 
     def lock(self):
