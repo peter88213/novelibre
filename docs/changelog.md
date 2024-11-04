@@ -8,6 +8,14 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.15.6
+
+- Fix a bug where an exception is raised when closing a project
+while a property view widget still has the focus. 
+
+Based on novxlib 5.0.0
+Based on apptk 2.2.0
+
 ### Version 4.15.5
 
 - Fix a bug where an exception is raised when closing a project
