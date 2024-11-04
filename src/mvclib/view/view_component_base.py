@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from abc import abstractmethod
 
-from mvclib.model.observer import Observer
+from mvclib.view.observer import Observer
 
 
 class ViewComponentBase(Observer):
