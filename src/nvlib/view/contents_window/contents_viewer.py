@@ -59,17 +59,9 @@ class ContentsViewer(ViewComponentBase, RichTextNv):
         self.delete('1.0', 'end')
         self.config(state='disabled')
 
-    def see(self, idStr):
-        """Scroll the text to the position of the idStr node.
-        
-        Positional arguments:
-            idStr: str -- Chapter or section node (tree selection).
-        """
-        try:
-            self._index = self._textMarks[idStr]
-            super().see(self._index)
-        except KeyError:
-            pass
+    def on_close(self):
+        """Actions to be performed when a project is closed."""
+        self.reset_view()
 
     def refresh(self, event=None, *args):
         """Reload the text to view."""
@@ -82,6 +74,18 @@ class ContentsViewer(ViewComponentBase, RichTextNv):
                 super().see(self._index)
             except KeyError:
                 pass
+
+    def see(self, idStr):
+        """Scroll the text to the position of the idStr node.
+        
+        Positional arguments:
+            idStr: str -- Chapter or section node (tree selection).
+        """
+        try:
+            self._index = self._textMarks[idStr]
+            super().see(self._index)
+        except KeyError:
+            pass
 
     def view_text(self):
         """Build a list of "tagged text" tuples and send it to the text box."""

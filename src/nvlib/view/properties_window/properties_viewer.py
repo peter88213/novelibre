@@ -65,6 +65,10 @@ class PropertiesViewer(ViewComponentNode, ttk.Frame):
         """Prepare the current element's title entry for manual input."""
         self._activeView.focus_title()
 
+    def on_close(self):
+        """Actions to be performed when a project is closed."""
+        self._view_nothing()
+
     def show_properties(self, nodeId):
         """Show the properties of the selected element."""
         if self._mdl is None:

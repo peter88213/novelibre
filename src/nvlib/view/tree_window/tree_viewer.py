@@ -270,6 +270,10 @@ class TreeViewer(ViewComponentBase, ttk.Frame):
         nextNode, __ = search_tree(root, None, False)
         return nextNode
 
+    def on_close(self):
+        """Actions to be performed when a project is closed."""
+        self.reset_view()
+
     def on_quit(self):
         """Write the applicaton's keyword arguments."""
         prefs['title_width'] = self.tree.column('#0', 'width')

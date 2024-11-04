@@ -31,6 +31,14 @@ class ViewComponentBase(Observer):
         """Inhibit changes on the model."""
         pass
 
+    def on_close(self):
+        """Actions to be performed when a project is closed."""
+        pass
+
+    def on_quit(self):
+        """Actions to be performed when novelibre is closed."""
+        pass
+
     def refresh(self):
         """Refresh all view components."""
         pass

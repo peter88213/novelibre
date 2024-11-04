@@ -393,7 +393,8 @@ class NvModel(ModelBase):
         return scId
 
     def close_project(self):
-        self.isModified = False
+        self._isModified = False
+        # writing the public isModified property here would trigger a refresh
         self.tree.on_element_change = self.tree.do_nothing
         self.novel = None
         self.prjFile = None

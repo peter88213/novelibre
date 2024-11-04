@@ -462,20 +462,18 @@ class NvController(ControllerBase):
         - trigger plugins.
         """
         self._ui.propertiesView.apply_changes()
-        self.plugins.on_close()
-        # closing the current element _view after checking for modifications
         if self._mdl.isModified and not doNotSave:
             if self._ui.ask_yes_no(_('Save changes?')):
                 if not self.save_project():
                     self._ui.show_error(_('Cannot save the project'), _('Critical Error'))
+                    return 'break'
 
-        self._ui.propertiesView._view_nothing()
+        self.plugins.on_close()
+        self._ui.on_close()
         self._mdl.close_project()
-        self._ui.tv.reset_view()
-        self._ui.contentsView.reset_view()
         self._internalLockFlag = False
-        # CAUTION: calling self.unlock() here would clear the lockfile.
         self._ui.unlock()
+        # calling the public unlock() method here would clear the lockfile
         self._ui.root.title(self._ui.title)
         self.show_status('')
         self._ui.show_path('')

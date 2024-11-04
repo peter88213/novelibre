@@ -41,6 +41,16 @@ class ViewComponentNode(Observable, ViewComponentBase):
         for client in self._clients:
             client.lock()
 
+    def on_close(self):
+        """Actions to be performed when a project is closed."""
+        for client in self._clients:
+            client.on_close()
+
+    def on_quit(self):
+        """Actions to be performed when novelibre is closed."""
+        for client in self._clients:
+            client.on_quit()
+
     def refresh(self):
         """Refresh all view components."""
         self.refresh_clients()
