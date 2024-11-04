@@ -461,12 +461,17 @@ class NvController(ControllerBase):
         - reset flags
         - trigger plugins.
         """
+        self.show_status()
         self._ui.propertiesView.apply_changes()
         if self._mdl.isModified and not doNotSave:
-            if self._ui.ask_yes_no(_('Save changes?')):
+            doSave = self._ui.ask_yes_no_cancel(_('Save changes?'))
+            if doSave is None:
+                return None
+
+            elif doSave:
                 if not self.save_project():
                     self._ui.show_error(_('Cannot save the project'), _('Critical Error'))
-                    return 'break'
+                    return False
 
         self.plugins.on_close()
         self._ui.on_close()
@@ -478,7 +483,7 @@ class NvController(ControllerBase):
         self.show_status('')
         self._ui.show_path('')
         self.disable_menu()
-        return 'break'
+        return True
 
     def copy_css(self, event=None):
         """Copy the provided css style sheet into the project directory."""
@@ -736,7 +741,9 @@ class NvController(ControllerBase):
         """
         try:
             if self._mdl.prjFile is not None:
-                self.close_project()
+                if not self.close_project():
+                    return 'break'
+
             super().on_quit()
         except Exception as ex:
             self._ui.show_error(str(ex), title='ERROR: Unhandled exception on exit')
