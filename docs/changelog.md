@@ -14,7 +14,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Do not close a project if saving fails.
 
 Based on novxlib 5.0.0
-Based on apptk 2.2.0
+Based on apptk 2.3.0
 
 ### Version 4.15.6
 
