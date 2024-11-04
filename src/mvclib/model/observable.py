@@ -25,7 +25,8 @@ class Observable(ABC):
     @isModified.setter
     def isModified(self, setFlag):
         self._isModified = setFlag
-        self.refresh_clients()
+        if setFlag:
+            self.refresh_clients()
 
     def on_element_change(self):
         """Callback function that reports changes."""

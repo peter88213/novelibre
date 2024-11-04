@@ -4,7 +4,7 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from mvclib.model.model_base import ModelBase
+from mvclib.model.observable import Observable
 from nvlib.model.data.id_generator import create_id
 from nvlib.model.nv_work_file import NvWorkFile
 from nvlib.novx_globals import CHAPTER_PREFIX
@@ -26,7 +26,7 @@ from nvlib.novx_globals import _
 from nvlib.nv_service import NvService
 
 
-class NvModel(ModelBase):
+class NvModel(Observable):
     """novelibre model representation."""
 
     def __init__(self):
