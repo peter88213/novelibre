@@ -42,6 +42,19 @@ class ViewBase(Ui, ViewComponentNode):
             title = self.title
         return messagebox.askyesno(title, text)
 
+    def ask_yes_no_cancel(self, text, title=None):
+        """Query yes or no or cancel with a pop-up box.
+        
+        Positional arguments:
+            text -- question to be asked in the pop-up box. 
+            
+        Optional arguments:
+            title -- title to be displayed on the window frame.            
+        """
+        if title is None:
+            title = self.title
+        return messagebox.askyesnocancel(title, text)
+
     def on_quit(self):
         """Gracefully close the user interface."""
         self.root.quit()
