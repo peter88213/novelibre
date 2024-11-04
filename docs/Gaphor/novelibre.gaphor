@@ -51,7 +51,6 @@ controlflow {
 <ref refid="b9b0adbc-9ad9-11ef-9d1a-70d82353e511"/>
 <ref refid="c34987de-9ada-11ef-b67a-70d82353e511"/>
 <ref refid="ee68de8d-9ada-11ef-a5a4-70d82353e511"/>
-<ref refid="25061262-9adb-11ef-948c-70d82353e511"/>
 <ref refid="6c50da38-9adb-11ef-8de1-70d82353e511"/>
 <ref refid="91a6bbf3-9ada-11ef-b88c-70d82353e511"/>
 <ref refid="ae0c2e16-9adb-11ef-aeb4-70d82353e511"/>
@@ -63,7 +62,6 @@ controlflow {
 <ref refid="c460a6a5-9ae0-11ef-8735-70d82353e511"/>
 <ref refid="1357eb61-9ae1-11ef-855f-70d82353e511"/>
 <ref refid="b8068545-9ae3-11ef-b05a-70d82353e511"/>
-<ref refid="492a4b52-9adb-11ef-981a-70d82353e511"/>
 <ref refid="12194c08-9adc-11ef-bb27-70d82353e511"/>
 <ref refid="bf765a6d-9adc-11ef-9a34-70d82353e511"/>
 <ref refid="cd099034-9adc-11ef-803a-70d82353e511"/>
@@ -109,7 +107,7 @@ controlflow {
 </Class>
 <ClassItem id="b9b0adbc-9ad9-11ef-9d1a-70d82353e511">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 20.5, 42.0)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 37.059999999999974, 99.0)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -271,16 +269,16 @@ controlflow {
 </Package>
 <PackageItem id="bafd95bd-9ada-11ef-b89b-70d82353e511">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 32.0, 160.0)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 27.75000000000003, 160.0)</val>
 </matrix>
 <top-left>
-<val>(0.0, -28.5)</val>
+<val>(0.0, 33.599257863982075)</val>
 </top-left>
 <width>
-<val>205.5</val>
+<val>235.49999999999997</val>
 </width>
 <height>
-<val>331.0</val>
+<val>296.0</val>
 </height>
 <children>
 <reflist>
@@ -301,7 +299,6 @@ controlflow {
 <ownedType>
 <reflist>
 <ref refid="ee68168a-9ada-11ef-8853-70d82353e511"/>
-<ref refid="2505c48e-9adb-11ef-8d3e-70d82353e511"/>
 </reflist>
 </ownedType>
 <package>
@@ -318,18 +315,17 @@ controlflow {
 <val>(1.0, 0.0, 0.0, 1.0, 407.0, 56.5)</val>
 </matrix>
 <top-left>
-<val>(-118.0, 0.0)</val>
+<val>(-117.0, 137.09925786398207)</val>
 </top-left>
 <width>
-<val>439.0</val>
+<val>330.0</val>
 </width>
 <height>
-<val>448.5</val>
+<val>301.0</val>
 </height>
 <children>
 <reflist>
 <ref refid="ee68de8d-9ada-11ef-a5a4-70d82353e511"/>
-<ref refid="25061262-9adb-11ef-948c-70d82353e511"/>
 </reflist>
 </children>
 <diagram>
@@ -369,14 +365,13 @@ controlflow {
 </presentation>
 <specialization>
 <reflist>
-<ref refid="49f8cb67-9adb-11ef-9ba4-70d82353e511"/>
 <ref refid="c066a1f7-9adc-11ef-b17e-70d82353e511"/>
 </reflist>
 </specialization>
 </Class>
 <ClassItem id="ee68de8d-9ada-11ef-a5a4-70d82353e511">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, -23.5, 75.0)</val>
+<val>(1.0, 0.0, 0.0, 1.0, -18.0, 220.0)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -437,89 +432,6 @@ controlflow {
 <val>unregister_client</val>
 </name>
 </Operation>
-<Class id="2505c48e-9adb-11ef-8d3e-70d82353e511">
-<generalization>
-<reflist>
-<ref refid="49f8cb67-9adb-11ef-9ba4-70d82353e511"/>
-</reflist>
-</generalization>
-<isAbstract>
-<val>1</val>
-</isAbstract>
-<name>
-<val>ModelBase</val>
-</name>
-<package>
-<ref refid="c348ec15-9ada-11ef-9cee-70d82353e511"/>
-</package>
-<presentation>
-<reflist>
-<ref refid="25061262-9adb-11ef-948c-70d82353e511"/>
-</reflist>
-</presentation>
-</Class>
-<ClassItem id="25061262-9adb-11ef-948c-70d82353e511">
-<matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 65.5, 321.0)</val>
-</matrix>
-<top-left>
-<val>(0.0, 0.0)</val>
-</top-left>
-<width>
-<val>100.0</val>
-</width>
-<height>
-<val>57.0</val>
-</height>
-<diagram>
-<ref refid="ad1fbc3a-9ad9-11ef-ac89-70d82353e511"/>
-</diagram>
-<parent>
-<ref refid="c34987de-9ada-11ef-b67a-70d82353e511"/>
-</parent>
-<subject>
-<ref refid="2505c48e-9adb-11ef-8d3e-70d82353e511"/>
-</subject>
-</ClassItem>
-<GeneralizationItem id="492a4b52-9adb-11ef-981a-70d82353e511">
-<diagram>
-<ref refid="ad1fbc3a-9ad9-11ef-ac89-70d82353e511"/>
-</diagram>
-<horizontal>
-<val>0</val>
-</horizontal>
-<orthogonal>
-<val>0</val>
-</orthogonal>
-<subject>
-<ref refid="49f8cb67-9adb-11ef-9ba4-70d82353e511"/>
-</subject>
-<matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 601.0, 455.0)</val>
-</matrix>
-<points>
-<val>[(-73.0, -77.5), (-73.0, -181.5)]</val>
-</points>
-<head-connection>
-<ref refid="25061262-9adb-11ef-948c-70d82353e511"/>
-</head-connection>
-<tail-connection>
-<ref refid="ee68de8d-9ada-11ef-a5a4-70d82353e511"/>
-</tail-connection>
-</GeneralizationItem>
-<Generalization id="49f8cb67-9adb-11ef-9ba4-70d82353e511">
-<general>
-<ref refid="ee68168a-9ada-11ef-8853-70d82353e511"/>
-</general>
-<presentation>
-<reflist>
-<ref refid="492a4b52-9adb-11ef-981a-70d82353e511"/>
-</reflist>
-</presentation>
-<specific>
-<ref refid="2505c48e-9adb-11ef-8d3e-70d82353e511"/>
-</specific>
-</Generalization>
 <Package id="6c503e05-9adb-11ef-a5cd-70d82353e511">
 <name>
 <val>view</val>
@@ -990,7 +902,7 @@ controlflow {
 <val>(1.0, 0.0, 0.0, 1.0, 536.0, 355.0)</val>
 </matrix>
 <points>
-<val>[(-96.0, 378.40277268008003), (-100.875, -81.5)]</val>
+<val>[(-96.0, 378.40277268008003), (-95.375, 63.5)]</val>
 </points>
 <head-connection>
 <ref refid="7f97af3c-9adc-11ef-8e6e-70d82353e511"/>

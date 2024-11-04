@@ -116,6 +116,10 @@ See https://github.com/peter88213/novelibre/blob/main/docs/conventions.md
 - [Eclipse IDE](https://eclipse.org) with [PyDev](https://pydev.org) and *EGit*.
 - Apache Ant can be used for starting the **build.py** script.
 
+### Documentation tools
+- [Gaphor](https://gaphor.org/) UML modeler. 
+- [Sphinx](https://www.sphinx-doc.org) website generator for the online documentation.
+
 ## Plugin development
 
 If you want to develop a novelibre plugin, you may want to start with a repository on GitHub using [nv_plugin](https://github.com/peter88213/nv_plugin) as a template repository. After setting up your new repository 
