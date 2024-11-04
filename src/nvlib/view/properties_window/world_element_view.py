@@ -64,6 +64,9 @@ class WorldElementView(BasicView, ABC):
 
     def apply_changes(self, event=None):
         """Apply changes of element title, description and notes."""
+        if self._element is None:
+            return
+
         super().apply_changes()
 
         # 'AKA' entry.

@@ -121,6 +121,9 @@ class CharacterView(WorldElementView):
         
         Extends the superclass method.
         """
+        if self._element is None:
+            return
+
         super().apply_changes()
 
         # 'Full name' entry.
