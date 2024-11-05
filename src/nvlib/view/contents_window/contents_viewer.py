@@ -53,12 +53,6 @@ class ContentsViewer(ViewComponentBase, RichTextNv):
         self._contentParser.noteTag = self.NOTE_TAG
         self._contentParser.noteXmlTag = self.NOTE_XML_TAG
 
-    def reset_view(self):
-        """Clear the text box."""
-        self.config(state='normal')
-        self.delete('1.0', 'end')
-        self.config(state='disabled')
-
     def on_close(self):
         """Actions to be performed when a project is closed."""
         self.reset_view()
@@ -74,6 +68,12 @@ class ContentsViewer(ViewComponentBase, RichTextNv):
                 super().see(self._index)
             except KeyError:
                 pass
+
+    def reset_view(self):
+        """Clear the text box."""
+        self.config(state='normal')
+        self.delete('1.0', 'end')
+        self.config(state='disabled')
 
     def see(self, idStr):
         """Scroll the text to the position of the idStr node.

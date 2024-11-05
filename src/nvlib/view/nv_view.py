@@ -94,8 +94,6 @@ class NvView(ViewBase):
         self.statusBar = tk.Label(self.root, text='', anchor='w', padx=5, pady=2)
         self.statusBar.pack(expand=False, fill='both')
         self.statusBar.bind(MOUSE.LEFT_CLICK, self.restore_status)
-        self.infoWhatText = ''
-        self.infoHowText = ''
 
         #--- Create the path bar.
         self.pathBar = tk.Label(self.root, text='', anchor='w', padx=5, pady=3)
