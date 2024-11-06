@@ -6,7 +6,8 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from mvclib.view.view_component_base import ViewComponentBase
+from mvclib.controller.sub_controller import SubController
+from mvclib.view.observer import Observer
 from mvclib.widgets.context_menu import ContextMenu
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
@@ -39,7 +40,7 @@ import tkinter as tk
 import tkinter.font as tkFont
 
 
-class TreeViewer(ViewComponentBase, ttk.Frame):
+class TreeViewer(SubController, Observer, ttk.Frame):
     """Widget for novelibre tree view."""
     COLORING_MODES = [_('None'), _('Status'), _('Work phase')]
     # List[str] -- Section row coloring modes.
@@ -86,7 +87,7 @@ class TreeViewer(ViewComponentBase, ttk.Frame):
             parent -- parent widget for displaying the tree view.
             view -- GUI class reference.        
         """
-        ViewComponentBase.__init__(self, model, view, controller)
+        SubController.__init__(self, model, view, controller)
         ttk.Frame.__init__(self, parent, **kw)
         self._wordsTotal = None
         self.skipUpdate = False

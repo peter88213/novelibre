@@ -1,4 +1,4 @@
-"""Provide an abstract view component node class.
+"""Provide an abstract controller node class.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -6,11 +6,11 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from abc import abstractmethod
 
+from mvclib.controller.sub_controller import SubController
 from mvclib.model.observable import Observable
-from mvclib.view.view_component_base import ViewComponentBase
 
 
-class ViewComponentNode(Observable, ViewComponentBase):
+class ControllerNode(SubController, Observable):
     """A node in the view composite structure tree.
     
     Subordinate leaves can be registered and unregistered.
@@ -24,7 +24,7 @@ class ViewComponentNode(Observable, ViewComponentBase):
     @abstractmethod
     def __init__(self, model, view, controller):
         Observable.__init__(self)
-        ViewComponentBase.__init__(self, model, view, controller)
+        SubController.__init__(self, model, view, controller)
 
     def disable_menu(self):
         """Disable UI widgets, e.g. when no project is open."""

@@ -9,7 +9,8 @@ import os
 from tkinter import filedialog
 from tkinter import ttk
 
-from mvclib.view.view_component_base import ViewComponentBase
+from mvclib.controller.sub_controller import SubController
+from mvclib.view.observer import Observer
 from mvclib.widgets.folding_frame import FoldingFrame
 from mvclib.widgets.index_card import IndexCard
 from mvclib.widgets.text_box import TextBox
@@ -18,7 +19,7 @@ from nvlib.nv_globals import prefs
 from nvlib.view.widgets.collection_box import CollectionBox
 
 
-class BasicView(ViewComponentBase, ttk.Frame):
+class BasicView(SubController, Observer, ttk.Frame):
     """Abstract base class for viewing tree element properties.
     
     Adds to the right pane:
@@ -43,7 +44,7 @@ class BasicView(ViewComponentBase, ttk.Frame):
         - Initialize element-specific tk entry data.
         - Place element-specific widgets in the element's info window.
         """
-        ViewComponentBase.__init__(self, model, view, controller)
+        SubController.__init__(self, model, view, controller)
         ttk.Frame.__init__(self, parent, **kw)
 
         self._elementId = None

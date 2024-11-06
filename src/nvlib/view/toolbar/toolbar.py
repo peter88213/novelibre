@@ -7,7 +7,8 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from mvclib.view.view_component_base import ViewComponentBase
+from mvclib.controller.sub_controller import SubController
+from mvclib.view.observer import Observer
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
 from nvlib.novx_globals import IT_ROOT
@@ -21,7 +22,7 @@ from nvlib.view.platform.platform_settings import KEYS
 import tkinter as tk
 
 
-class Toolbar(ViewComponentBase):
+class Toolbar(SubController, Observer):
     """Toolbar class."""
 
     def __init__(self, parent, model, view, controller):
@@ -31,7 +32,7 @@ class Toolbar(ViewComponentBase):
             view -- reference to the main view instance of the application.
             controller -- reference to the main controller instance of the application.
         """
-        ViewComponentBase.__init__(self, model, view, controller)
+        SubController.__init__(self, model, view, controller)
 
         # Add a toolbar to the editor window.
         self.buttonBar = tk.Frame(self._ui.mainWindow)

@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from mvclib.view.view_component_node import ViewComponentNode
+from mvclib.controller.controller_node import ControllerNode
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
@@ -29,11 +29,11 @@ from nvlib.view.properties_window.project_view import ProjectView
 from nvlib.view.properties_window.stage_view import StageView
 
 
-class PropertiesViewer(ViewComponentNode, ttk.Frame):
+class PropertiesViewer(ControllerNode, ttk.Frame):
     """A window viewing the selected element's properties."""
 
     def __init__(self, parent, model, view, controller, **kw):
-        ViewComponentNode.__init__(self, model, view, controller)
+        ControllerNode.__init__(self, model, view, controller)
         ttk.Frame.__init__(self, parent, **kw)
 
         # Call a factory method to instantiate and register one view component per element type.

@@ -19,11 +19,9 @@ class PluginManager(ModalDialog):
     def __init__(self, model, view, controller, **kw):
         ModalDialog.__init__(self, model, view, controller, **kw)
         self.title(f'{_("Installed plugins")} - novelibre @release')
-        window = ttk.Frame(self)
-        window.pack(fill='both', expand=True)
 
         columns = 'Module', 'Version', 'novelibre API', 'Description'
-        self._moduleCollection = ttk.Treeview(window, columns=columns, show='headings', selectmode='browse')
+        self._moduleCollection = ttk.Treeview(self, columns=columns, show='headings', selectmode='browse')
 
         # scrollY = ttk.Scrollbar(self._moduleCollection, orient='vertical', command=self._moduleCollection.yview)
         # self._moduleCollection.configure(yscrollcommand=scrollY.set)
@@ -71,20 +69,37 @@ class PluginManager(ModalDialog):
                 # Mark loaded yet incompatible modules.
             self._moduleCollection.insert('', 'end', moduleName, values=columns, tags=tuple(nodeTags))
 
+        self._footer = ttk.Frame(self)
+        self._footer.pack(fill='both', expand=False)
+
         # "Home page" button.
-        self._homeButton = ttk.Button(window, text=_('Home page'), command=self._open_home_page, state='disabled')
+        self._homeButton = ttk.Button(
+            self._footer,
+            text=_('Home page'),
+            command=self._open_home_page,
+            state='disabled'
+            )
         self._homeButton.pack(padx=5, pady=5, side='left')
 
         # "Delete" button.
-        self._deleteButton = ttk.Button(window, text=_('Delete'), command=self._delete_module, state='disabled')
+        self._deleteButton = ttk.Button(
+            self._footer,
+            text=_('Delete'),
+            command=self._delete_module,
+            state='disabled'
+            )
         self._deleteButton.pack(padx=5, pady=5, side='left')
 
         # "Close" button.
-        ttk.Button(window, text=_('Close'), command=self.destroy).pack(padx=5, pady=5, side='right')
+        ttk.Button(
+            self._footer,
+            text=_('Close'),
+            command=self.destroy
+            ).pack(padx=5, pady=5, side='right')
 
         # "Help" button.
         ttk.Button(
-            window,
+            self._footer,
             text=_('Online help'),
             command=self._open_help
             ).pack(padx=5, pady=5, side='right')

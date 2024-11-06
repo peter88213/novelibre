@@ -7,7 +7,8 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import re
 from tkinter import ttk
 
-from mvclib.view.view_component_base import ViewComponentBase
+from mvclib.controller.sub_controller import SubController
+from mvclib.view.observer import Observer
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
@@ -16,7 +17,7 @@ from nvlib.view.contents_window.rich_text_nv import RichTextNv
 import tkinter as tk
 
 
-class ContentsViewer(ViewComponentBase, RichTextNv):
+class ContentsViewer(SubController, Observer, RichTextNv):
     """A tkinter text box class for novelibre file viewing.
     
     Show the novel contents in a text box.
@@ -35,7 +36,7 @@ class ContentsViewer(ViewComponentBase, RichTextNv):
         Required keyword arguments:
             show_markup: bool 
         """
-        ViewComponentBase.__init__(self, model, view, controller)
+        SubController.__init__(self, model, view, controller)
         RichTextNv.__init__(self, parent, **prefs)
         self.pack(expand=True, fill='both')
         self.showMarkup = tk.BooleanVar(parent, value=prefs['show_markup'])
