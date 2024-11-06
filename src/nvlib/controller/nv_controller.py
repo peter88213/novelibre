@@ -60,7 +60,7 @@ class NvController(ControllerBase):
 
         #--- Create the model
         self._mdl = NvModel()
-        self._mdl.register_client(self)
+        self._mdl.add_observer(self)
 
         self.launchers = {}
         # launchers for opening linked non-standard filetypes.

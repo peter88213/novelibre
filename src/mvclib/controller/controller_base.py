@@ -16,7 +16,7 @@ class ControllerBase(ABC):
 
         #--- Example code:
         # self._mdl = MyModel()
-        # self._mdl.register_client(self)
+        # self._mdl.add_observer(self)
         # self._ui = MyView(self._mdl, self, title)
         # self.plugins = PluginCollection(self._mdl, self._ui, self)
 

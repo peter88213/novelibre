@@ -22,7 +22,7 @@ class ViewBase(UiFacade, ControllerNode):
         self.root.protocol("WM_DELETE_WINDOW", self._ctrl.on_quit)
         self.root.title(title)
         self.title = title
-        self._mdl.register_client(self)
+        self._mdl.add_observer(self)
 
     def on_quit(self):
         """Gracefully close the user interface."""

@@ -7,10 +7,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from abc import abstractmethod
 
 from mvclib.controller.sub_controller import SubController
-from mvclib.model.observable import Observable
 
 
-class ControllerNode(SubController, Observable):
+class ControllerNode(SubController):
     """A node in the view composite structure tree.
     
     Subordinate leaves can be registered and unregistered.
@@ -23,8 +22,8 @@ class ControllerNode(SubController, Observable):
 
     @abstractmethod
     def __init__(self, model, view, controller):
-        Observable.__init__(self)
         SubController.__init__(self, model, view, controller)
+        self._clients = []
 
     def disable_menu(self):
         """Disable UI widgets, e.g. when no project is open."""
@@ -51,12 +50,17 @@ class ControllerNode(SubController, Observable):
         for client in self._clients:
             client.on_quit()
 
-    def refresh(self):
-        """Refresh all view components."""
-        self.refresh_clients()
+    def register_client(self, client):
+        """Add a sub controller instance to the list."""
+        if not client in self._clients:
+            self._clients.append(client)
 
     def unlock(self):
         """Enable changes on the model."""
         for client in self._clients:
             client.unlock()
 
+    def unregister_client(self, client):
+        """Remove an Observer instance from the list."""
+        if client in self._clients:
+            self._clients.remove(client)

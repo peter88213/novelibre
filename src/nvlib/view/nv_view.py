@@ -117,6 +117,7 @@ class NvView(ViewBase):
 
         #--- Create a novel tree window in the left frame.
         self.tv = TreeViewer(self.leftFrame, self._mdl, self, self._ctrl)
+        self._mdl.add_observer(self.tv)
         self.register_client(self.tv)
         self.tv.pack(expand=True, fill='both')
 
@@ -126,6 +127,7 @@ class NvView(ViewBase):
 
         #--- Create a text viewer in the middle frame.
         self.contentsView = ContentsViewer(self.middleFrame, self._mdl, self, self._ctrl)
+        self._mdl.add_observer(self.contentsView)
         self.register_client(self.contentsView)
         if prefs['show_contents']:
             self.middleFrame.pack(side='left', expand=False, fill='both')
@@ -142,6 +144,7 @@ class NvView(ViewBase):
         self._propWinDetached = False
         if prefs['detach_prop_win']:
             self.detach_properties_frame()
+        self._mdl.add_observer(self.propertiesView)
         self.register_client(self.propertiesView)
 
         #--- Add commands and submenus to the main menu.
@@ -149,6 +152,7 @@ class NvView(ViewBase):
 
         #--- Add a toolbar.
         self.toolbar = Toolbar(self.mainWindow, self._mdl, self, self._ctrl)
+        self._mdl.add_observer(self.toolbar)
         self.register_client(self.toolbar)
 
         #--- tk root event bindings.
@@ -168,8 +172,10 @@ class NvView(ViewBase):
 
         # "Re-parent" the Properties viewer.
         self.propertiesView.pack_forget()
+        self._mdl.delete_observer(self.propertiesView)
         self.unregister_client(self.propertiesView)
         self.propertiesView = PropertiesViewer(self._propertiesWindow, self._mdl, self, self._ctrl)
+        self._mdl.add_observer(self.propertiesView)
         self.register_client(self.propertiesView)
         self.propertiesView.pack(expand=True, fill='both')
 
@@ -234,8 +240,10 @@ class NvView(ViewBase):
 
         # "Re-parent" the Properties viewer.
         self._propertiesWindow.destroy()
+        self._mdl.delete_observer(self.propertiesView)
         self.unregister_client(self.propertiesView)
         self.propertiesView = PropertiesViewer(self.rightFrame, self._mdl, self, self._ctrl)
+        self._mdl.add_observer(self.propertiesView)
         self.register_client(self.propertiesView)
         self.propertiesView.pack(expand=True, fill='both')
         self.root.lift()
@@ -337,7 +345,6 @@ class NvView(ViewBase):
         
         Extends the superclass method.
         """
-        super().refresh()
         if self._mdl.isModified:
             self.pathBar.config(bg=prefs['color_modified_bg'])
             self.pathBar.config(fg=prefs['color_modified_fg'])
