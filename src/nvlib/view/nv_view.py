@@ -108,6 +108,7 @@ class NvView(ViewBase, ControllerNode):
         self._mdl.add_observer(self.tv)
         self.register_client(self.tv)
         self.tv.pack(expand=True, fill='both')
+        self._selection = None
 
         #--- Middle frame (intended for the content viewer).
         self.middleFrame = ttk.Frame(self.appWindow, width=prefs['middle_frame_width'])
@@ -145,6 +146,14 @@ class NvView(ViewBase, ControllerNode):
 
         #--- tk root event bindings.
         self._bind_events()
+
+    @property
+    def selectedNode(self):
+        return self._selection[0]
+
+    @property
+    def selectedNodes(self):
+        return self._selection
 
     def detach_properties_frame(self, event=None):
         """View the properties in its own window."""
@@ -306,8 +315,9 @@ class NvView(ViewBase, ControllerNode):
     def on_change_selection(self, nodeId):
         """Event handler for element selection.
         
-        Show the properties of the selected element.
+        Show the properties/contents of the selected element.
         """
+        self._selection = self.tv.tree.selection()
         self.propertiesView.show_properties(nodeId)
         self.contentsView.see(nodeId)
 

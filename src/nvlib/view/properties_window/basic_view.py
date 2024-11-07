@@ -283,7 +283,7 @@ class BasicView(SubController, Observer, ttk.Frame):
 
     def _load_next(self):
         """Load the next tree element of the same type."""
-        thisNode = self._ui.tv.tree.selection()[0]
+        thisNode = self._ui.selectedNode
         nextNode = self._ui.tv.next_node(thisNode)
         if nextNode:
             self._ui.tv.see_node(nextNode)
@@ -291,7 +291,7 @@ class BasicView(SubController, Observer, ttk.Frame):
 
     def _load_prev(self):
         """Load the next tree element of the same type."""
-        thisNode = self._ui.tv.tree.selection()[0]
+        thisNode = self._ui.selectedNode
         prevNode = self._ui.tv.prev_node(thisNode)
         if prevNode:
             self._ui.tv.see_node(prevNode)
@@ -344,7 +344,7 @@ class BasicView(SubController, Observer, ttk.Frame):
         """
         self._pickCommand = command
         if not self._pickingMode:
-            self._lastSelected = self._ui.tv.tree.selection()[0]
+            self._lastSelected = self._ui.selectedNode
             self._ui.tv.config(cursor='plus')
             self._ui.tv.open_children('')
             self._uiEscBinding = self._ui.root.bind('<Escape>')

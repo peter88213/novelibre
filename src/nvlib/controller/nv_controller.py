@@ -105,7 +105,7 @@ class NvController(ControllerBase):
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
-                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+                kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
         newNode = self._mdl.add_chapter(**kwargs)
@@ -128,7 +128,7 @@ class NvController(ControllerBase):
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
-                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+                kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
         newNode = self._mdl.add_character(**kwargs)
@@ -147,7 +147,7 @@ class NvController(ControllerBase):
             return
 
         try:
-            selection = self._ui.tv.tree.selection()[0]
+            selection = self._ui.selectedNode
         except:
             return
 
@@ -194,7 +194,7 @@ class NvController(ControllerBase):
             return
 
         try:
-            selection = self._ui.tv.tree.selection()[0]
+            selection = self._ui.selectedNode
         except:
             return
 
@@ -248,7 +248,7 @@ class NvController(ControllerBase):
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
-                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+                kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
         newNode = self._mdl.add_item(**kwargs)
@@ -270,7 +270,7 @@ class NvController(ControllerBase):
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
-                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+                kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
         newNode = self._mdl.add_location(**kwargs)
@@ -289,7 +289,7 @@ class NvController(ControllerBase):
             return
 
         try:
-            selection = self._ui.tv.tree.selection()[0]
+            selection = self._ui.selectedNode
         except:
             return
 
@@ -315,7 +315,7 @@ class NvController(ControllerBase):
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
-                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+                kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
         newNode = self._mdl.add_part(**kwargs)
@@ -337,7 +337,7 @@ class NvController(ControllerBase):
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
-                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+                kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
         newNode = self._mdl.add_plot_line(**kwargs)
@@ -359,7 +359,7 @@ class NvController(ControllerBase):
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
-                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+                kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
         newNode = self._mdl.add_plot_point(**kwargs)
@@ -378,7 +378,7 @@ class NvController(ControllerBase):
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
-                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+                kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
         newNode = self._mdl.add_project_note(**kwargs)
@@ -408,7 +408,7 @@ class NvController(ControllerBase):
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
-                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+                kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
         newNode = self._mdl.add_section(**kwargs)
@@ -432,7 +432,7 @@ class NvController(ControllerBase):
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
-                kwargs['targetNode'] = self._ui.tv.tree.selection()[0]
+                kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
         newNode = self._mdl.add_stage(**kwargs)
@@ -506,7 +506,7 @@ class NvController(ControllerBase):
 
         if elements is None:
             try:
-                elements = self._ui.tv.tree.selection()
+                elements = self._ui.selectedNodes
             except:
                 return
 
@@ -664,7 +664,7 @@ class NvController(ControllerBase):
 
         if scId0 is None or scId1 is None:
             try:
-                scId1 = self._ui.tv.tree.selection()[0]
+                scId1 = self._ui.selectedNode
             except:
                 return
 
@@ -1052,7 +1052,7 @@ class NvController(ControllerBase):
 
         if elemIds is None:
             try:
-                elemIds = self._ui.tv.tree.selection()
+                elemIds = self._ui.selectedNodes
             except:
                 return
 
@@ -1071,7 +1071,7 @@ class NvController(ControllerBase):
 
         if elemIds is None:
             try:
-                elemIds = self._ui.tv.tree.selection()
+                elemIds = self._ui.selectedNodes
             except:
                 return
 
@@ -1089,7 +1089,7 @@ class NvController(ControllerBase):
 
         if elemIds is None:
             try:
-                elemIds = self._ui.tv.tree.selection()
+                elemIds = self._ui.selectedNodes
             except:
                 return
 
@@ -1108,7 +1108,7 @@ class NvController(ControllerBase):
 
         if elemIds is None:
             try:
-                elemIds = self._ui.tv.tree.selection()
+                elemIds = self._ui.selectedNodes
             except:
                 return
 
