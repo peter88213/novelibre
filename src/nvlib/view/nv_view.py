@@ -7,6 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 import webbrowser
 
+from mvclib.controller.controller_node import ControllerNode
 from mvclib.view.set_icon_tk import set_icon
 from mvclib.view.view_base import ViewBase
 from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
@@ -57,8 +58,9 @@ from nvlib.view.properties_window.properties_viewer import PropertiesViewer
 from nvlib.view.toolbar.toolbar import Toolbar
 from nvlib.view.tree_window.tree_viewer import TreeViewer
 from nvlib.view.widgets.nv_simpledialog import askinteger
+from nvlib.view.widgets.path_bar import PathBar
+from nvlib.view.widgets.status_bar import StatusBar
 import tkinter as tk
-from mvclib.controller.controller_node import ControllerNode
 
 
 class NvView(ViewBase, ControllerNode):
@@ -78,7 +80,6 @@ class NvView(ViewBase, ControllerNode):
         ControllerNode.__init__(self, model, self, controller)
 
         #--- Create the tk root window and set the size.
-        self._statusText = ''
         if prefs.get('root_geometry', None):
             self.root.geometry(prefs['root_geometry'])
         set_icon(self.root, icon='nLogo32')
@@ -92,14 +93,9 @@ class NvView(ViewBase, ControllerNode):
         self.mainWindow = tk.Frame()
         self.mainWindow.pack(expand=True, fill='both')
 
-        #--- Create the status bar.
-        self.statusBar = tk.Label(self.root, text='', anchor='w', padx=5, pady=2)
-        self.statusBar.pack(expand=False, fill='both')
-        self.statusBar.bind(MOUSE.LEFT_CLICK, self.restore_status)
-
-        #--- Create the path bar.
-        self.pathBar = tk.Label(self.root, text='', anchor='w', padx=5, pady=3)
-        self.pathBar.pack(expand=False, fill='both')
+        #--- Create the footer bars.
+        self._create_status_bar()
+        self._create_path_bar()
 
         #--- Initialize GUI theme.
         self.guiStyle = ttk.Style()
@@ -302,8 +298,7 @@ class NvView(ViewBase, ControllerNode):
         
         Extends the superclass method.
         """
-        self.pathBar.config(bg=prefs['color_locked_bg'])
-        self.pathBar.config(fg=prefs['color_locked_fg'])
+        self.pathBar.set_locked()
         self.fileMenu.entryconfig(_('Save'), state='disabled')
         self.fileMenu.entryconfig(_('Lock'), state='disabled')
         self.fileMenu.entryconfig(_('Unlock'), state='normal')
@@ -345,23 +340,13 @@ class NvView(ViewBase, ControllerNode):
     def refresh(self):
         """Update view components and path bar.
         
-        Extends the superclass method.
+        Overrides the superclass method.
         """
-        if self._mdl.isModified:
-            self.pathBar.config(bg=prefs['color_modified_bg'])
-            self.pathBar.config(fg=prefs['color_modified_fg'])
-        else:
-            self.pathBar.config(bg=self.root.cget('background'))
-            self.pathBar.config(fg='black')
         self.set_title()
 
     def restore_status(self, event=None):
         """Overwrite error message with the status before."""
-        self.show_status(self._statusText)
-
-    def set_info(self, message):
-        """This is a stub, just for compatibility with several converters."""
-        pass
+        self.statusBar.restore_status()
 
     def set_status(self, message, colors=None):
         """Display a message on the status bar.
@@ -426,10 +411,7 @@ class NvView(ViewBase, ControllerNode):
         Optional arguments:
             message: str -- Message to be displayed instead of the statistics.
         """
-        self._statusText = message
-        self.statusBar.config(bg=self.root.cget('background'))
-        self.statusBar.config(fg='black')
-        self.statusBar.config(text=message)
+        self.statusBar.show_status(message)
 
     def toggle_contents_view(self, event=None):
         """Show/hide the contents viewer text box."""
@@ -465,8 +447,7 @@ class NvView(ViewBase, ControllerNode):
         
         Extends the superclass method.
         """
-        self.pathBar.config(bg=self.root.cget('background'))
-        self.pathBar.config(fg='black')
+        self.pathBar.set_normal()
         self.fileMenu.entryconfig(_('Save'), state='normal')
         self.fileMenu.entryconfig(_('Lock'), state='normal')
         self.fileMenu.entryconfig(_('Unlock'), state='disabled')
@@ -690,6 +671,23 @@ class NvView(ViewBase, ControllerNode):
         self.mainMenu.add_cascade(label=_('Help'), menu=self.helpMenu)
         self.helpMenu.add_command(label=_('Online help'), accelerator=KEYS.OPEN_HELP[1], command=self._open_help)
         self.helpMenu.add_command(label=f"novelibre {_('Home page')}", command=lambda: webbrowser.open(HOME_URL))
+
+    def _create_path_bar(self):
+        self.pathBar = PathBar(self.root, self._mdl, text='', anchor='w', padx=5, pady=3)
+        self.pathBar.COLOR_MODIFIED_BG = prefs['color_modified_bg']
+        self.pathBar.COLOR_MODIFIED_FG = prefs['color_modified_fg']
+        self.pathBar.COLOR_NORMAL_BG = self.root.cget('background')
+        self.pathBar.COLOR_LOCKED_BG = prefs['color_locked_bg']
+        self.pathBar.COLOR_LOCKED_FG = prefs['color_locked_fg']
+        self._mdl.add_observer(self.pathBar)
+        self.pathBar.pack(expand=False, fill='both')
+
+    def _create_status_bar(self):
+        self.statusBar = StatusBar(self.root, text='', anchor='w', padx=5, pady=2)
+        self.statusBar.COLOR_NORMAL_BG = self.root.cget('background')
+        self.statusBar.COLOR_LOCKED_BG = prefs['color_locked_bg']
+        self.statusBar.pack(expand=False, fill='both')
+        self.statusBar.bind(MOUSE.LEFT_CLICK, self.statusBar.restore_status)
 
     def _open_export_options(self, event=None):
         """Open a toplevel window to edit the export options."""
