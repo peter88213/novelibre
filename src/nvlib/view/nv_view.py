@@ -8,6 +8,7 @@ from tkinter import ttk
 import webbrowser
 
 from mvclib.controller.controller_node import ControllerNode
+from mvclib.view.path_bar import PathBar
 from mvclib.view.set_icon_tk import set_icon
 from mvclib.view.view_base import ViewBase
 from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
@@ -58,8 +59,6 @@ from nvlib.view.properties_window.properties_viewer import PropertiesViewer
 from nvlib.view.toolbar.toolbar import Toolbar
 from nvlib.view.tree_window.tree_viewer import TreeViewer
 from nvlib.view.widgets.nv_simpledialog import askinteger
-from nvlib.view.widgets.path_bar import PathBar
-from nvlib.view.widgets.status_bar import StatusBar
 import tkinter as tk
 
 
@@ -85,16 +84,7 @@ class NvView(ViewBase, ControllerNode):
         set_icon(self.root, icon='nLogo32')
         self.root.minsize(self._MIN_WINDOW_WIDTH, self._MIN_WINDOW_HEIGHT)
 
-        #---  Add en empty main menu to the root window.
-        self.mainMenu = tk.Menu(self.root)
-        self.root.config(menu=self.mainMenu)
-
-        #--- Create the main window.
-        self.mainWindow = tk.Frame()
-        self.mainWindow.pack(expand=True, fill='both')
-
-        #--- Create the footer bars.
-        self._create_status_bar()
+        #--- Create the path bar below the status bar.
         self._create_path_bar()
 
         #--- Initialize GUI theme.
@@ -344,26 +334,6 @@ class NvView(ViewBase, ControllerNode):
         """
         self.set_title()
 
-    def restore_status(self, event=None):
-        """Overwrite error message with the status before."""
-        self.statusBar.restore_status()
-
-    def set_status(self, message, colors=None):
-        """Display a message on the status bar.
-        
-        Positional arguments:
-            message -- message to be displayed. 
-            
-        Optional arguments:
-            colors: tuple -- (background color, foreground color).
-
-        Default status bar color is red if the message starts with "!", 
-        yellow, if the message starts with "#", otherwise green.
-        """
-        if message is not None:
-            self.infoHowText = self.statusBar.show_message(message, colors)
-            # inherited message buffer
-
     def set_title(self):
         """Set the main window title. 
         
@@ -385,14 +355,6 @@ class NvView(ViewBase, ControllerNode):
     def show_path(self, message):
         """Put text on the path bar."""
         self.pathBar.config(text=message)
-
-    def update_status(self, statusText=''):
-        """Update the project status information on the status bar.
-        
-        Optional arguments:
-            statusText: str -- Text to be displayed on the status bar.
-        """
-        self.statusBar.update_status(statusText)
 
     def toggle_contents_view(self, event=None):
         """Show/hide the contents viewer text box."""
@@ -654,21 +616,30 @@ class NvView(ViewBase, ControllerNode):
         self.helpMenu.add_command(label=f"novelibre {_('Home page')}", command=lambda: webbrowser.open(HOME_URL))
 
     def _create_path_bar(self):
+        """Extends the superclass method."""
         self.pathBar = PathBar(self.root, self._mdl, text='', anchor='w', padx=5, pady=3)
+        self.pathBar.pack(expand=False, fill='both')
+        self._mdl.add_observer(self.pathBar)
+
+        self.pathBar.COLOR_NORMAL_BG = self.mainMenu.cget('background')
+        self.pathBar.COLOR_NORMAL_FG = self.mainMenu.cget('foreground')
         self.pathBar.COLOR_MODIFIED_BG = prefs['color_modified_bg']
         self.pathBar.COLOR_MODIFIED_FG = prefs['color_modified_fg']
-        self.pathBar.COLOR_NORMAL_BG = self.root.cget('background')
         self.pathBar.COLOR_LOCKED_BG = prefs['color_locked_bg']
         self.pathBar.COLOR_LOCKED_FG = prefs['color_locked_fg']
-        self._mdl.add_observer(self.pathBar)
-        self.pathBar.pack(expand=False, fill='both')
 
     def _create_status_bar(self):
-        self.statusBar = StatusBar(self.root, text='', anchor='w', padx=5, pady=2)
-        self.statusBar.COLOR_NORMAL_BG = self.root.cget('background')
-        self.statusBar.COLOR_LOCKED_BG = prefs['color_locked_bg']
-        self.statusBar.pack(expand=False, fill='both')
+        """Extends the superclass method."""
+        super()._create_status_bar()
         self.statusBar.bind(MOUSE.LEFT_CLICK, self.statusBar.restore_status)
+        self.statusBar.COLOR_NORMAL_BG = self.mainMenu.cget('background')
+        self.statusBar.COLOR_NORMAL_FG = self.mainMenu.cget('foreground')
+        self.statusBar.COLOR_SUCCESS_BG = prefs['color_status_success_bg']
+        self.statusBar.COLOR_SUCCESS_FG = prefs['color_status_success_fg']
+        self.statusBar.COLOR_ERROR_BG = prefs['color_status_error_bg']
+        self.statusBar.COLOR_ERROR_FG = prefs['color_status_error_fg']
+        self.statusBar.COLOR_NOTIFICATION_BG = prefs['color_status_notification_bg']
+        self.statusBar.COLOR_NOTIFICATION_FG = prefs['color_status_notification_fg']
 
     def _open_export_options(self, event=None):
         """Open a toplevel window to edit the export options."""

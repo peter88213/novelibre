@@ -1,18 +1,22 @@
-"""Provide a class for the novelibre status bar.
+"""Provide a class for a status bar.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from mvclib.view.observer import Observer
-from nvlib.nv_globals import prefs
 import tkinter as tk
 
 
-class StatusBar(Observer, tk.Label):
+class StatusBar(tk.Label):
 
     COLOR_NORMAL_BG = 'light gray'
     COLOR_NORMAL_FG = 'black'
+    COLOR_SUCCESS_BG = 'green'
+    COLOR_SUCCESS_FG = 'white'
+    COLOR_ERROR_BG = 'red'
+    COLOR_ERROR_FG = 'white'
+    COLOR_NOTIFICATION_BG = 'yellow'
+    COLOR_NOTIFICATION_FG = 'black'
 
     def __init__(self, master, **kw):
         tk.Label.__init__(self, master, **kw)
@@ -44,18 +48,18 @@ class StatusBar(Observer, tk.Label):
         except:
             if message.startswith('!'):
                 # error
-                self.config(bg=prefs['color_status_error_bg'])
-                self.config(fg=prefs['color_status_error_fg'])
+                self.config(bg=self.COLOR_ERROR_BG)
+                self.config(fg=self.COLOR_ERROR_FG)
                 message = message.lstrip('!').strip()
             elif message.startswith('#'):
                 # notification/warning
-                self.config(bg=prefs['color_status_notification_bg'])
-                self.config(fg=prefs['color_status_notification_fg'])
+                self.config(bg=self.COLOR_NOTIFICATION_BG)
+                self.config(fg=self.COLOR_NOTIFICATION_FG)
                 message = message.lstrip('#').strip()
             else:
                 # success
-                self.config(bg=prefs['color_status_success_bg'])
-                self.config(fg=prefs['color_status_success_fg'])
+                self.config(bg=self.COLOR_SUCCESS_BG)
+                self.config(fg=self.COLOR_SUCCESS_FG)
         self.config(text=message)
         return message
 
