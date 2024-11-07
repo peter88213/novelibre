@@ -1132,17 +1132,17 @@ class NvController(ControllerBase):
         except Error as ex:
             self._ui.set_status(f'!{str(ex)}')
 
-    def show_status(self, message=None):
+    def show_status(self, statusText=None):
         """Display project statistics at the status bar.
         
         Optional arguments:
-            message: str -- Message to be displayed instead of the statistics.
+            statusText: str -- Message to be displayed instead of the statistics.
         """
-        if self._mdl.novel is not None and not message:
+        if self._mdl.novel is not None and not statusText:
             wordCount, sectionCount, chapterCount, partCount = self._mdl.get_counts()
-            message = _('{0} parts, {1} chapters, {2} sections, {3} words').format(partCount, chapterCount, sectionCount, wordCount)
+            statusText = _('{0} parts, {1} chapters, {2} sections, {3} words').format(partCount, chapterCount, sectionCount, wordCount)
             self.wordCount = wordCount
-        self._ui.show_status(message)
+        self._ui.show_status(statusText)
 
     def toggle_lock(self, event=None):
         """Toggle the 'locked' status."""

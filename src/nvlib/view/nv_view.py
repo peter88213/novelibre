@@ -360,30 +360,8 @@ class NvView(ViewBase, ControllerNode):
         Default status bar color is red if the message starts with "!", 
         yellow, if the message starts with "#", otherwise green.
         """
-        if message is None:
-            return
-
-        try:
-            self.statusBar.config(bg=colors[0])
-            self.statusBar.config(fg=colors[1])
-            self.infoHowText = message
-        except:
-            if message.startswith('!'):
-                # error
-                self.statusBar.config(bg=prefs['color_status_error_bg'])
-                self.statusBar.config(fg=prefs['color_status_error_fg'])
-                self.infoHowText = message.lstrip('!').strip()
-            elif message.startswith('#'):
-                # notification/warning
-                self.statusBar.config(bg=prefs['color_status_notification_bg'])
-                self.statusBar.config(fg=prefs['color_status_notification_fg'])
-                self.infoHowText = message.lstrip('#').strip()
-            else:
-                # success
-                self.statusBar.config(bg=prefs['color_status_success_bg'])
-                self.statusBar.config(fg=prefs['color_status_success_fg'])
-                self.infoHowText = message
-        self.statusBar.config(text=self.infoHowText)
+        if message is not None:
+            self.infoHowText = self.statusBar.set_status(message, colors)
 
     def set_title(self):
         """Set the main window title. 
@@ -407,13 +385,13 @@ class NvView(ViewBase, ControllerNode):
         """Put text on the path bar."""
         self.pathBar.config(text=message)
 
-    def show_status(self, message=''):
-        """Display project statistics at the status bar.
+    def show_status(self, statusText=''):
+        """Display a statusText on the status bar.
         
         Optional arguments:
-            message: str -- Message to be displayed instead of the statistics.
+            statusText: str -- Text to be displayed on the status bar.
         """
-        self.statusBar.show_status(message)
+        self.statusBar.show_status(statusText)
 
     def toggle_contents_view(self, event=None):
         """Show/hide the contents viewer text box."""
