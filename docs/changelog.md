@@ -8,6 +8,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.16.1
+
+- If an element title is empty, replace it with the element ID.
+
+Based on novxlib 5.0.0
+Based on apptk 2.3.0
+
 ### Version 4.16.0
 
 - Add a "Cancel" option to the quit/close dialog.

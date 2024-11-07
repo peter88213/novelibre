@@ -82,6 +82,8 @@ class BasicView(ViewComponentBase, ttk.Frame):
         titleStr = self._indexCard.title.get()
         if titleStr:
             titleStr = titleStr.strip()
+        else:
+            titleStr = self._elementId
         self._element.title = titleStr
 
         # Description entry.
