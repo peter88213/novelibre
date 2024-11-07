@@ -17,14 +17,14 @@ class StatusBar(Observer, tk.Label):
     def __init__(self, master, **kw):
         tk.Label.__init__(self, master, **kw)
         self._statusText = ''
-        # text buffer; the status bar can be overwritten temporarily with messages
+        # text buffer; the regular status information can be overwritten temporarily with messages
 
     def restore_status(self, event=None):
         """Overwrite error message with the status before."""
-        self.show_status(self._statusText)
+        self.update_status(self._statusText)
 
-    def set_status(self, message, colors=None):
-        """Display a message on the status bar.
+    def show_message(self, message, colors=None):
+        """Overwrite the status text temporarily with a message to be returned.
         
         Positional arguments:
             message -- message to be displayed. 
@@ -59,8 +59,8 @@ class StatusBar(Observer, tk.Label):
         self.config(text=message)
         return message
 
-    def show_status(self, statusText=''):
-        """Display a statusText on the status bar.
+    def update_status(self, statusText=''):
+        """Update the regular status text on the status bar.
         
         Optional arguments:
             statusText: str -- Text to be displayed on the status bar.

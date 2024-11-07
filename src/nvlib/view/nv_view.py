@@ -361,7 +361,8 @@ class NvView(ViewBase, ControllerNode):
         yellow, if the message starts with "#", otherwise green.
         """
         if message is not None:
-            self.infoHowText = self.statusBar.set_status(message, colors)
+            self.infoHowText = self.statusBar.show_message(message, colors)
+            # inherited message buffer
 
     def set_title(self):
         """Set the main window title. 
@@ -385,13 +386,13 @@ class NvView(ViewBase, ControllerNode):
         """Put text on the path bar."""
         self.pathBar.config(text=message)
 
-    def show_status(self, statusText=''):
-        """Display a statusText on the status bar.
+    def update_status(self, statusText=''):
+        """Update the project status information on the status bar.
         
         Optional arguments:
             statusText: str -- Text to be displayed on the status bar.
         """
-        self.statusBar.show_status(statusText)
+        self.statusBar.update_status(statusText)
 
     def toggle_contents_view(self, event=None):
         """Show/hide the contents viewer text box."""

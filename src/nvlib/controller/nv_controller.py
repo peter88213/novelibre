@@ -461,7 +461,7 @@ class NvController(ControllerBase):
         - reset flags
         - trigger plugins.
         """
-        self.show_status()
+        self.update_status()
         self._ui.propertiesView.apply_changes()
         if self._mdl.isModified and not doNotSave:
             doSave = self._ui.ask_yes_no_cancel(_('Save changes?'))
@@ -480,7 +480,7 @@ class NvController(ControllerBase):
         self._ui.unlock()
         # calling the public unlock() method here would clear the lockfile
         self._ui.root.title(self._ui.title)
-        self.show_status('')
+        self.update_status('')
         self._ui.show_path('')
         self.disable_menu()
         return True
@@ -625,7 +625,7 @@ class NvController(ControllerBase):
                 return 'break'
 
         if self._mdl.prjFile is not None:
-            self.show_status()
+            self.update_status()
             self.refresh_views()
             self.unlock()
             if self._mdl.isModified:
@@ -727,7 +727,7 @@ class NvController(ControllerBase):
         self._ui.show_path(_('Unnamed'))
         # setting the path bar
         self.enable_menu()
-        self.show_status()
+        self.update_status()
         # setting the status bar
         self._ui.tv.go_to_node(CH_ROOT)
         self.refresh_views()
@@ -852,7 +852,7 @@ class NvController(ControllerBase):
 
         self.refresh_views()
         self._ui.show_path(_('{0} (last saved on {1})').format(norm_path(self._mdl.prjFile.filePath), self._mdl.prjFile.fileDate))
-        self.show_status()
+        self.update_status()
         self._ui.contentsView.view_text()
         if self._mdl.prjFile.has_lockfile():
             self.lock()
@@ -889,7 +889,7 @@ class NvController(ControllerBase):
 
     def refresh(self):
         """Callback function to report model element modifications."""
-        self.show_status()
+        self.update_status()
 
     def refresh_views(self, event=None):
         """Update all registered views."""
@@ -1132,7 +1132,7 @@ class NvController(ControllerBase):
         except Error as ex:
             self._ui.set_status(f'!{str(ex)}')
 
-    def show_status(self, statusText=None):
+    def update_status(self, statusText=None):
         """Display project statistics at the status bar.
         
         Optional arguments:
@@ -1142,7 +1142,7 @@ class NvController(ControllerBase):
             wordCount, sectionCount, chapterCount, partCount = self._mdl.get_counts()
             statusText = _('{0} parts, {1} chapters, {2} sections, {3} words').format(partCount, chapterCount, sectionCount, wordCount)
             self.wordCount = wordCount
-        self._ui.show_status(statusText)
+        self._ui.update_status(statusText)
 
     def toggle_lock(self, event=None):
         """Toggle the 'locked' status."""
