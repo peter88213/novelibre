@@ -58,9 +58,10 @@ from nvlib.view.toolbar.toolbar import Toolbar
 from nvlib.view.tree_window.tree_viewer import TreeViewer
 from nvlib.view.widgets.nv_simpledialog import askinteger
 import tkinter as tk
+from mvclib.controller.controller_node import ControllerNode
 
 
-class NvView(ViewBase):
+class NvView(ViewBase, ControllerNode):
     """View for the novelibre application."""
     _MIN_WINDOW_WIDTH = 400
     _MIN_WINDOW_HEIGHT = 200
@@ -74,6 +75,7 @@ class NvView(ViewBase):
     def __init__(self, model, controller, title):
         """Extends the superclass constructor."""
         ViewBase.__init__(self, model, controller, title)
+        ControllerNode.__init__(self, model, self, controller)
 
         #--- Create the tk root window and set the size.
         self._statusText = ''

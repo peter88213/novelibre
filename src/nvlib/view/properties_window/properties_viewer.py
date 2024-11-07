@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from mvclib.controller.controller_node import ControllerNode
+from mvclib.controller.sub_controller import SubController
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
@@ -29,11 +29,13 @@ from nvlib.view.properties_window.project_view import ProjectView
 from nvlib.view.properties_window.stage_view import StageView
 
 
-class PropertiesViewer(ControllerNode, ttk.Frame):
+class PropertiesViewer(SubController, ttk.Frame):
     """A window viewing the selected element's properties."""
 
     def __init__(self, parent, model, view, controller, **kw):
-        ControllerNode.__init__(self, model, view, controller)
+        SubController.__init__(self, model, view, controller)
+        self._clients = []
+
         ttk.Frame.__init__(self, parent, **kw)
 
         # Call a factory method to instantiate and register one view component per element type.
@@ -65,9 +67,19 @@ class PropertiesViewer(ControllerNode, ttk.Frame):
         """Prepare the current element's title entry for manual input."""
         self._activeView.focus_title()
 
+    def lock(self):
+        """Inhibit changes on the model."""
+        for client in self._clients:
+            client.lock()
+
     def on_close(self):
         """Actions to be performed when a project is closed."""
         self._view_nothing()
+
+    def unlock(self):
+        """Enable changes on the model."""
+        for client in self._clients:
+            client.unlock()
 
     def show_properties(self, nodeId):
         """Show the properties of the selected element."""
@@ -115,7 +127,7 @@ class PropertiesViewer(ControllerNode, ttk.Frame):
             viewClass: BasicView subclass.
         """
         newView = viewClass(self, self._mdl, self._ui, self._ctrl)
-        self.register_client(newView)
+        self._clients.append(newView)
         # NOTE: the new view component must not be registered by the main view,
         # because the PropertiesViewer instance may be deleted and recreated
         # due to re-parenting when docking the properties window.
