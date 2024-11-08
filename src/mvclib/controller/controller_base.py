@@ -25,10 +25,6 @@ class ControllerBase(ABC):
         # Boolean -- True if the project is locked.
         return self._internalLockFlag
 
-    @isLocked.setter
-    def isLocked(self, setFlag):
-        raise NotImplementedError
-
     def disable_menu(self):
         """Disable UI widgets when no project is open."""
         self._ui.disable_menu()
