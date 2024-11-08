@@ -15,12 +15,7 @@ from nvlib.model.ods.ods_writer import OdsWriter
 
 
 class OdsWPlotList(OdsWriter):
-    """html plot list representation.
-
-    Public instance variables:
-        filePath: str -- path to the file (property with getter and setter). 
-
-    """
+    """html plot list representation."""
     DESCRIPTION = _('ODS Plot list')
     SUFFIX = PLOTLIST_SUFFIX
 

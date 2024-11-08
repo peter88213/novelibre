@@ -95,7 +95,7 @@ class NvView(ViewBase, ControllerNode):
 
         #--- Build the GUI frames.
 
-        # Create an application window with three frames.
+        #--- Create an application window with three frames.
         self.appWindow = ttk.Frame(self.mainWindow)
         self.appWindow.pack(expand=True, fill='both')
 
@@ -141,7 +141,6 @@ class NvView(ViewBase, ControllerNode):
 
         #--- Add a toolbar.
         self.toolbar = Toolbar(self.mainWindow, self._mdl, self, self._ctrl)
-        self._mdl.add_observer(self.toolbar)
         self.register_client(self.toolbar)
 
         #--- tk root event bindings.
