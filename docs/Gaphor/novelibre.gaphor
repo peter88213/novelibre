@@ -34,6 +34,7 @@ controlflow {
 <ref refid="2bc70492-9ae1-11ef-8e36-70d82353e511"/>
 <ref refid="c995da45-9edb-11ef-bcdd-70d82353e511"/>
 <ref refid="bbfb753f-9ee1-11ef-9a91-70d82353e511"/>
+<ref refid="ed95e13e-9eef-11ef-a5da-70d82353e511"/>
 </reflist>
 </ownedType>
 </Package>
@@ -68,6 +69,7 @@ controlflow {
 <ref refid="1357eb61-9ae1-11ef-855f-70d82353e511"/>
 <ref refid="2b129139-9edb-11ef-941d-70d82353e511"/>
 <ref refid="ae206b30-9ee1-11ef-a2a3-70d82353e511"/>
+<ref refid="eb3f0443-9eef-11ef-9995-70d82353e511"/>
 <ref refid="b8068545-9ae3-11ef-b05a-70d82353e511"/>
 <ref refid="cd099034-9adc-11ef-803a-70d82353e511"/>
 <ref refid="0a45c86f-9add-11ef-a8d4-70d82353e511"/>
@@ -943,6 +945,7 @@ controlflow {
 <ref refid="c99651e3-9edb-11ef-aab2-70d82353e511"/>
 <ref refid="d9c61d7c-9edb-11ef-94a8-70d82353e511"/>
 <ref refid="bbfbbd88-9ee1-11ef-888f-70d82353e511"/>
+<ref refid="ed965673-9eef-11ef-89ab-70d82353e511"/>
 </reflist>
 </ownedAttribute>
 <ownedOperation>
@@ -1179,6 +1182,7 @@ controlflow {
 <ref refid="1357eb61-9ae1-11ef-855f-70d82353e511"/>
 <ref refid="2b129139-9edb-11ef-941d-70d82353e511"/>
 <ref refid="ae206b30-9ee1-11ef-a2a3-70d82353e511"/>
+<ref refid="eb3f0443-9eef-11ef-9995-70d82353e511"/>
 </reflist>
 </children>
 <diagram>
@@ -1536,10 +1540,10 @@ controlflow {
 <ref refid="03750884-9ede-11ef-b7b8-70d82353e511"/>
 <ref refid="e4af2dca-9ee4-11ef-8481-70d82353e511"/>
 <ref refid="fbbdbc19-9ee5-11ef-b6f4-70d82353e511"/>
-<ref refid="8a90246a-9b68-11ef-8a59-70d82353e511"/>
 <ref refid="fd0e9afd-9b60-11ef-ac76-70d82353e511"/>
 <ref refid="058ce96c-9b61-11ef-b2a9-70d82353e511"/>
 <ref refid="8a83d261-9b61-11ef-9716-70d82353e511"/>
+<ref refid="8a90246a-9b68-11ef-8a59-70d82353e511"/>
 <ref refid="6e05c3a9-9b66-11ef-a35e-70d82353e511"/>
 <ref refid="6d52f10e-9b6b-11ef-9638-70d82353e511"/>
 <ref refid="b987f256-9b6b-11ef-92f9-70d82353e511"/>
@@ -3022,6 +3026,7 @@ controlflow {
 <reflist>
 <ref refid="27887633-9b6b-11ef-afab-70d82353e511"/>
 <ref refid="1272f45a-9eed-11ef-be7b-70d82353e511"/>
+<ref refid="eb3f0443-9eef-11ef-9995-70d82353e511"/>
 </reflist>
 </presentation>
 <specialization>
@@ -5312,21 +5317,33 @@ controlflow {
 <diagram>
 <ref refid="ad1fbc3a-9ad9-11ef-ac89-70d82353e511"/>
 </diagram>
+<head_subject>
+<ref refid="ed965672-9eef-11ef-aa0d-70d82353e511"/>
+</head_subject>
 <horizontal>
 <val>0</val>
 </horizontal>
 <orthogonal>
 <val>0</val>
 </orthogonal>
+<subject>
+<ref refid="ed95e13e-9eef-11ef-a5da-70d82353e511"/>
+</subject>
+<tail_subject>
+<ref refid="ed965673-9eef-11ef-89ab-70d82353e511"/>
+</tail_subject>
 <matrix>
 <val>(1.0, 0.0, 0.0, 1.0, 74.3685714285715, 775.8994694817076)</val>
 </matrix>
 <points>
-<val>[(-5.693995157384833, 0.0), (-225.87306259858997, -65.4015979577656)]</val>
+<val>[(-5.693995157384833, 0.0), (-225.37306259858997, -88.89946948170757)]</val>
 </points>
 <head-connection>
 <ref refid="fec83c1c-9adc-11ef-aa54-70d82353e511"/>
 </head-connection>
+<tail-connection>
+<ref refid="eb3f0443-9eef-11ef-9995-70d82353e511"/>
+</tail-connection>
 </AssociationItem>
 <Operation id="11ab6cbc-9ee2-11ef-94aa-70d82353e511">
 <class_>
@@ -6057,10 +6074,10 @@ controlflow {
 <ref refid="a34f5791-9ee7-11ef-b1b1-70d82353e511"/>
 <ref refid="acd485e7-9ee7-11ef-a04f-70d82353e511"/>
 <ref refid="ce9c8365-9ee8-11ef-b977-70d82353e511"/>
-<ref refid="74aa298d-9ee8-11ef-9fc7-70d82353e511"/>
 <ref refid="de8e474b-9ee7-11ef-b57f-70d82353e511"/>
 <ref refid="045051f2-9ee8-11ef-8497-70d82353e511"/>
 <ref refid="ed49569c-9ee8-11ef-8639-70d82353e511"/>
+<ref refid="74aa298d-9ee8-11ef-9fc7-70d82353e511"/>
 </reflist>
 </ownedPresentation>
 </Diagram>
@@ -7006,4 +7023,76 @@ controlflow {
 <ref refid="bafd1da1-9ada-11ef-a467-70d82353e511"/>
 </subject>
 </PackageItem>
+<ClassItem id="eb3f0443-9eef-11ef-9995-70d82353e511">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, -29.00449117001847, -171.0)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>100.0</val>
+</width>
+<height>
+<val>70.0</val>
+</height>
+<diagram>
+<ref refid="ad1fbc3a-9ad9-11ef-ac89-70d82353e511"/>
+</diagram>
+<parent>
+<ref refid="9ee4e926-9ae0-11ef-9938-70d82353e511"/>
+</parent>
+<subject>
+<ref refid="2787b32d-9b6b-11ef-8975-70d82353e511"/>
+</subject>
+</ClassItem>
+<Association id="ed95e13e-9eef-11ef-a5da-70d82353e511">
+<memberEnd>
+<reflist>
+<ref refid="ed965672-9eef-11ef-aa0d-70d82353e511"/>
+<ref refid="ed965673-9eef-11ef-89ab-70d82353e511"/>
+</reflist>
+</memberEnd>
+<ownedEnd>
+<reflist>
+<ref refid="ed965672-9eef-11ef-aa0d-70d82353e511"/>
+</reflist>
+</ownedEnd>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="e846a05d-9ee1-11ef-84e3-70d82353e511"/>
+</reflist>
+</presentation>
+</Association>
+<Property id="ed965672-9eef-11ef-aa0d-70d82353e511">
+<association>
+<ref refid="ed95e13e-9eef-11ef-a5da-70d82353e511"/>
+</association>
+<owningAssociation>
+<ref refid="ed95e13e-9eef-11ef-a5da-70d82353e511"/>
+</owningAssociation>
+<type>
+<ref refid="fec7c6c5-9adc-11ef-b304-70d82353e511"/>
+</type>
+</Property>
+<Property id="ed965673-9eef-11ef-89ab-70d82353e511">
+<aggregation>
+<val>composite</val>
+</aggregation>
+<association>
+<ref refid="ed95e13e-9eef-11ef-a5da-70d82353e511"/>
+</association>
+<class_>
+<ref refid="fec7c6c5-9adc-11ef-b304-70d82353e511"/>
+</class_>
+<name>
+<val>mainWindow</val>
+</name>
+<type>
+<ref refid="2787b32d-9b6b-11ef-8975-70d82353e511"/>
+</type>
+</Property>
 </gaphor>
