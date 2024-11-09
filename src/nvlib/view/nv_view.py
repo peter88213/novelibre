@@ -87,9 +87,6 @@ class NvView(ViewBase, ControllerNode):
         #--- Create the path bar below the status bar.
         self._create_path_bar()
 
-        #--- Initialize GUI theme.
-        self.guiStyle = ttk.Style()
-
         #--- Initalize icons.
         self.icons = Icons()
 

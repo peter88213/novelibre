@@ -11,17 +11,9 @@ from mvclib.widgets.rich_text_tk import RichTextTk
 
 class RichTextNv(RichTextTk):
     """A text box applying novelibre formatting."""
-    H1_NOTES_TAG = 'h1Notes'
-    H1_TODO_TAG = 'h1Todo'
     H1_UNUSED_TAG = 'h1Unused'
-    H2_NOTES_TAG = 'h2Notes'
-    H2_TODO_TAG = 'h2Todo'
     H2_UNUSED_TAG = 'h2Unused'
-    H3_NOTES_TAG = 'h3Notes'
-    H3_TODO_TAG = 'h3Todo'
     H3_UNUSED_TAG = 'h3Unused'
-    TODO_TAG = 'todo'
-    NOTES_TAG = 'notes'
     UNUSED_TAG = 'unused'
     STAGE1_TAG = 'stage1'
     STAGE2_TAG = 'stage2'
