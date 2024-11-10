@@ -60,8 +60,8 @@ class PluginCollection(SubController, dict):
             self.patchlevel = int(patchStr)
         except ValueError:
             # Set defaults for testing.
-            self.majorVersion = 4
-            self.minorVersion = 15
+            self.majorVersion = 5
+            self.minorVersion = 0
             self.patchlevel = 0
 
     def delete_file(self, moduleName):
