@@ -73,6 +73,7 @@ class NvController(ControllerBase):
 
         #--- Build the GUI.
         self._ui = NvView(self._mdl, self, title)
+        self.register_client(self._ui)
 
         # Link the model to the view.
         # Strictly speaking, this breaks the MVC pattern, since the
@@ -84,6 +85,7 @@ class NvController(ControllerBase):
         # Dict-like Container for registered plugin objects.
 
         self.plugins.load_plugins(PLUGIN_PATH)
+        self.register_client(self.plugins)
         self.disable_menu()
 
         self._ui.tv.reset_view()

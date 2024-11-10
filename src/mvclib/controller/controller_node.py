@@ -21,7 +21,7 @@ class ControllerNode(SubController):
     """
 
     @abstractmethod
-    def __init__(self, model, view, controller):
+    def __init__(self, model=None, view=None, controller=None):
         SubController.__init__(self, model, view, controller)
         self._clients = []
 

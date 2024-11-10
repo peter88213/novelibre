@@ -11,7 +11,7 @@ class SubController:
     """A leaf in the view composite structure tree."""
 
     @abstractmethod
-    def __init__(self, model, view, controller):
+    def __init__(self, model=None, view=None, controller=None):
         self._mdl = model
         self._ui = view
         self._ctrl = controller

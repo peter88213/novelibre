@@ -1,4 +1,4 @@
 ## Class diagram
 
-![Class diagram](../../docs/UML/mvclib/mvclib.svg)
+![Class diagram](../../docs/UML/mvclib/mvclib.png)
 
