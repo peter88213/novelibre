@@ -435,7 +435,7 @@ class FullSectionView(DatedSectionView):
     def _add_plotline(self, event=None):
         # Add the selected element to the collection, if applicable.
         plotlineList = self._element.scPlotLines
-        plId = self._ui.selectedNode
+        plId = self._ui.tv.tree.selection()[0]
         if plId.startswith(PLOT_LINE_PREFIX) and not plId in plotlineList:
             plotlineList.append(plId)
             self._element.scPlotLines = plotlineList

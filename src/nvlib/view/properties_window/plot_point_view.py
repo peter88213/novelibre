@@ -77,7 +77,7 @@ class TurningPointView(BasicView):
         
         End the picking mode after the section is assigned.
         """
-        nodeId = self._ui.selectedNode
+        nodeId = self._ui.tv.tree.selection()[0]
         if nodeId.startswith(SECTION_PREFIX):
             if self._mdl.novel.sections[nodeId].scType == 0:
                 self._clear_assignment()

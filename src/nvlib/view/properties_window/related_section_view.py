@@ -211,7 +211,7 @@ class RelatedSectionView(BasicView):
     def _add_character(self, event=None):
         # Add the selected element to the collection, if applicable.
         crList = self._element.characters
-        crId = self._ui.selectedNode
+        crId = self._ui.tv.tree.selection()[0]
         if crId.startswith(CHARACTER_PREFIX) and not crId in crList:
             crList.append(crId)
             self._element.characters = crList
@@ -219,7 +219,7 @@ class RelatedSectionView(BasicView):
     def _add_location(self, event=None):
         # Add the selected element to the collection, if applicable.
         lcList = self._element.locations
-        lcId = self._ui.selectedNode
+        lcId = self._ui.tv.tree.selection()[0]
         if lcId.startswith(LOCATION_PREFIX)and not lcId in lcList:
             lcList.append(lcId)
             self._element.locations = lcList
@@ -227,7 +227,7 @@ class RelatedSectionView(BasicView):
     def _add_item(self, event=None):
         # Add the selected element to the collection, if applicable.
         itList = self._element.items
-        itId = self._ui.selectedNode
+        itId = self._ui.tv.tree.selection()[0]
         if itId.startswith(ITEM_PREFIX)and not itId in itList:
             itList.append(itId)
             self._element.items = itList
