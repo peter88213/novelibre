@@ -34,7 +34,7 @@ class Toolbar(SubController):
         SubController.__init__(self, model, view, controller)
 
         # Add a toolbar to the editor window.
-        self.buttonBar = tk.Frame(self._ui.mainWindow)
+        self.buttonBar = ttk.Frame(self._ui.mainWindow)
 
         # "Go back" button.
         self._goBackButton = ttk.Button(

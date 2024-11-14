@@ -53,7 +53,7 @@ class SimpleDialog:
 
         self.message = tk.Message(self.root, text=text, aspect=400, bg='white')
         self.message.pack(expand=1, fill='both')
-        self.frame = tk.Frame(self.root)
+        self.frame = ttk.Frame(self.root)
         self.frame.pack()
         self.num = default
         self.cancel = cancel
@@ -132,7 +132,7 @@ class Dialog(tk.Toplevel):
 
         self.result = None
 
-        body = tk.Frame(self)
+        body = ttk.Frame(self)
         self.initial_focus = self.body(body)
         body.pack(padx=5, pady=5)
 
@@ -175,7 +175,7 @@ class Dialog(tk.Toplevel):
         override if you do not want the standard buttons
         """
 
-        box = tk.Frame(self)
+        box = ttk.Frame(self)
 
         w = ttk.Button(box, text=_('OK'), width=10, command=self.ok, default='active')
         w.pack(side='left', padx=5, pady=10)

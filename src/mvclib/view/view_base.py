@@ -30,7 +30,7 @@ class ViewBase(Observer, UiFacade):
         self.root.config(menu=self.mainMenu)
 
         #--- Create the main window within the root window.
-        self.mainWindow = tk.Frame()
+        self.mainWindow = ttk.Frame()
         self.mainWindow.pack(expand=True, fill='both')
 
         #--- Create the status bar below the main window.
