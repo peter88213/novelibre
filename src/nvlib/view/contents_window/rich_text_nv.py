@@ -128,14 +128,16 @@ class RichTextNv(RichTextTk):
         self.tag_configure(self.STAGE1_TAG,
                            font=h1Font,
                            spacing3=defaultSize,
-                           foreground=kwargs['color_stage'],
+                           foreground=kwargs['color_stage_fg'],
+                           background=kwargs['color_stage_bg'],
                            justify='center',
                            spacing1=defaultSize * self.H1_SPACING,
                            )
         self.tag_configure(self.STAGE2_TAG,
                            font=h3Font,
                            spacing3=defaultSize,
-                           foreground=kwargs['color_stage'],
+                           foreground=kwargs['color_stage_fg'],
+                           background=kwargs['color_stage_bg'],
                            justify='center',
                            spacing1=defaultSize * self.H3_SPACING,
                            )
