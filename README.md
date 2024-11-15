@@ -1,6 +1,6 @@
 [![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v4.16.1.pyzw)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
-[![News](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions/1)
+[![News/Feedback](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
 
 
@@ -113,7 +113,7 @@ You may wish to install plugins; the [update checker](https://github.com/peter88
 
 [Changelog](docs/changelog.md)
 
-[News](https://github.com/peter88213/novelibre/discussions/1)
+[News](https://github.com/peter88213/novelibre/discussions)
 
 [Discussions](https://github.com/peter88213/novelibre/discussions)
 
