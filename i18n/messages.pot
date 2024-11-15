@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.15.4\n"
-"POT-Creation-Date: 2024-10-31 19:54:08\n"
+"Project-Id-Version: 4.99.0\n"
+"POT-Creation-Date: 2024-11-15 15:11:01\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -1295,6 +1295,9 @@ msgstr ""
 msgid "hh:mm"
 msgstr ""
 
+msgid "https://peter88213.github.io/nvhelp-en"
+msgstr ""
+
 msgid "last saved on"
 msgstr ""
 
@@ -1311,9 +1314,6 @@ msgid "novelibre XML data files"
 msgstr ""
 
 msgid "novelibre project"
-msgstr ""
-
-msgid "nvhelp-en"
 msgstr ""
 
 msgid "options"

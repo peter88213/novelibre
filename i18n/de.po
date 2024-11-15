@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.15.4\n"
-"POT-Creation-Date: 2024-10-31 19:54:08\n"
-"PO-Revision-Date: 2024-10-31 19:54:08\n"
+"Project-Id-Version: 4.99.0\n"
+"POT-Creation-Date: 2024-11-15 15:11:01\n"
+"PO-Revision-Date: 2024-11-15 15:11:01\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1294,6 +1294,9 @@ msgstr "Elemente importiert"
 msgid "hh:mm"
 msgstr "hh:mm"
 
+msgid "https://peter88213.github.io/nvhelp-en"
+msgstr "https://peter88213.github.io/nvhelp-de"
+
 msgid "last saved on"
 msgstr "zuletzt gespeichert:"
 
@@ -1311,9 +1314,6 @@ msgstr "novelibre XML-Datendateien"
 
 msgid "novelibre project"
 msgstr "novelibre-Projekt"
-
-msgid "nvhelp-en"
-msgstr "nvhelp-de"
 
 msgid "options"
 msgstr "Optionen"

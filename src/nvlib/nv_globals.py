@@ -11,7 +11,7 @@ from nvlib.novx_globals import _
 
 prefs = {}
 
-HELP_URL = f'https://peter88213.github.io/{_("nvhelp-en")}/'
+HELP_URL = f'{_("https://peter88213.github.io/nvhelp-en")}/'
 HOME_URL = 'https://github.com/peter88213/novelibre/'
 
 
