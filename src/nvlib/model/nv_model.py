@@ -24,10 +24,14 @@ from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import _
 from nvlib.nv_service import NvService
+from nvlib.version4.nv_model_v4 import NvModelV4
 
 
-class NvModel(Observable):
-    """novelibre model representation."""
+class NvModel(Observable, NvModelV4):
+    """novelibre model representation.
+    
+    TODO: Remove the compatibility mixin.
+    """
 
     def __init__(self):
         """Extends the superclass constructor."""
@@ -765,14 +769,6 @@ class NvModel(Observable):
             self.isModified = False
         self._initialize_tree(self.on_element_change)
 
-    def register_client(self, client):
-        """Ensure compatibility with version 4 API.
-        
-        Deprecated.
-        TODO: Remove when upgrading to version 5.
-        """
-        self.add_observer(client)
-
     def renumber_chapters(self):
         """Modify chapter headings."""
         ROMAN = [
@@ -928,14 +924,6 @@ class NvModel(Observable):
                 if newType > 0:
                     self.set_type(newType, self.tree.get_children(elemId))
                     # going one level down
-
-    def unregister_client(self, client):
-        """Ensure compatibility with version 4 API.
-        
-        Deprecated.
-        TODO: Remove when upgrading to version 5.
-        """
-        self.delete_observer(client)
 
     def _initialize_tree(self, on_element_change):
         """Iterate the tree and configure the elements."""

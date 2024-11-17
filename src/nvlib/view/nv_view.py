@@ -60,10 +60,14 @@ from nvlib.view.toolbar.toolbar import Toolbar
 from nvlib.view.tree_window.tree_viewer import TreeViewer
 from nvlib.view.widgets.nv_simpledialog import askinteger
 import tkinter as tk
+from nvlib.version4.nv_view_v4 import NvView4
 
 
-class NvView(ViewBase, ControllerNode):
-    """View for the novelibre application."""
+class NvView(ViewBase, ControllerNode, NvView4):
+    """View for the novelibre application.
+    
+    TODO: Remove the compatibility mixin.
+    """
     _MIN_WINDOW_WIDTH = 400
     _MIN_WINDOW_HEIGHT = 200
     # minimum size of the application's main window
@@ -340,15 +344,6 @@ class NvView(ViewBase, ControllerNode):
         """
         self.set_title()
 
-    def register_view(self, client):
-        """Ensure compatibility with version 4 API.
-        
-        Deprecated.
-        TODO: Remove when upgrading to version 5.
-        """
-        self.register_client(client)
-        self._mdl.add_observer(client)
-
     def set_title(self):
         """Set the main window title. 
         
@@ -419,15 +414,6 @@ class NvView(ViewBase, ControllerNode):
         self.mainMenu.entryconfig(_('Project notes'), state='normal')
         self.mainMenu.entryconfig(_('Export'), state='normal')
         super().unlock()
-
-    def unregister_view(self, client):
-        """Ensure compatibility with version 4 API.
-        
-        Deprecated.
-        TODO: Remove when upgrading to version 5.
-        """
-        self.unregister_client(client)
-        self._mdl.delete_observer(client)
 
     def _add_multiple_sections(self):
         """Ask how many sections are to be added, then call the controller."""
