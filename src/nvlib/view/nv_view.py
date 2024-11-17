@@ -7,7 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 import webbrowser
 
-from mvclib.controller.controller_node import ControllerNode
+from mvclib.controller.sub_controller import SubController
 from mvclib.view.path_bar import PathBar
 from mvclib.view.set_icon_tk import set_icon
 from mvclib.view.view_base import ViewBase
@@ -63,7 +63,7 @@ import tkinter as tk
 from nvlib.version4.nv_view_v4 import NvView4
 
 
-class NvView(ViewBase, ControllerNode, NvView4):
+class NvView(ViewBase, SubController, NvView4):
     """View for the novelibre application.
     
     TODO: Remove the compatibility mixin.
@@ -80,7 +80,7 @@ class NvView(ViewBase, ControllerNode, NvView4):
     def __init__(self, model, controller, title):
         """Extends the superclass constructor."""
         ViewBase.__init__(self, model, controller, title)
-        ControllerNode.__init__(self, model, self, controller)
+        SubController.__init__(self, model, self, controller)
 
         #--- Create the tk root window and set the size.
         if prefs.get('root_geometry', None):
@@ -107,7 +107,7 @@ class NvView(ViewBase, ControllerNode, NvView4):
         #--- Create a novel tree window in the left frame.
         self.tv = TreeViewer(self.leftFrame, self._mdl, self, self._ctrl)
         self._mdl.add_observer(self.tv)
-        self.register_client(self.tv)
+        self._ctrl.register_client(self.tv)
         self.tv.pack(expand=True, fill='both')
         self._selection = None
 
@@ -118,7 +118,7 @@ class NvView(ViewBase, ControllerNode, NvView4):
         #--- Create a text viewer in the middle frame.
         self.contentsView = ContentsViewer(self.middleFrame, self._mdl, self, self._ctrl)
         self._mdl.add_observer(self.contentsView)
-        self.register_client(self.contentsView)
+        self._ctrl.register_client(self.contentsView)
         if prefs['show_contents']:
             self.middleFrame.pack(side='left', expand=False, fill='both')
 
@@ -135,14 +135,14 @@ class NvView(ViewBase, ControllerNode, NvView4):
         if prefs['detach_prop_win']:
             self.detach_properties_frame()
         self._mdl.add_observer(self.propertiesView)
-        self.register_client(self.propertiesView)
+        self._ctrl.register_client(self.propertiesView)
 
         #--- Add commands and submenus to the main menu.
         self._build_menu()
 
         #--- Add a toolbar.
         self.toolbar = Toolbar(self.mainWindow, self._mdl, self, self._ctrl)
-        self.register_client(self.toolbar)
+        self._ctrl.register_client(self.toolbar)
 
         #--- tk root event bindings.
         self._bind_events()
@@ -170,10 +170,10 @@ class NvView(ViewBase, ControllerNode, NvView4):
         # "Re-parent" the Properties viewer.
         self.propertiesView.pack_forget()
         self._mdl.delete_observer(self.propertiesView)
-        self.unregister_client(self.propertiesView)
+        self._ctrl.unregister_client(self.propertiesView)
         self.propertiesView = PropertiesViewer(self._propertiesWindow, self._mdl, self, self._ctrl)
         self._mdl.add_observer(self.propertiesView)
-        self.register_client(self.propertiesView)
+        self._ctrl.register_client(self.propertiesView)
         self.propertiesView.pack(expand=True, fill='both')
 
         self._propertiesWindow.protocol("WM_DELETE_WINDOW", self.dock_properties_frame)
@@ -238,10 +238,10 @@ class NvView(ViewBase, ControllerNode, NvView4):
         # "Re-parent" the Properties viewer.
         self._propertiesWindow.destroy()
         self._mdl.delete_observer(self.propertiesView)
-        self.unregister_client(self.propertiesView)
+        self._ctrl.unregister_client(self.propertiesView)
         self.propertiesView = PropertiesViewer(self.rightFrame, self._mdl, self, self._ctrl)
         self._mdl.add_observer(self.propertiesView)
-        self.register_client(self.propertiesView)
+        self._ctrl.register_client(self.propertiesView)
         self.propertiesView.pack(expand=True, fill='both')
         self.root.lift()
 
@@ -333,7 +333,6 @@ class NvView(ViewBase, ControllerNode, NvView4):
         # Save windows size and position.
         if self._propWinDetached:
             prefs['prop_win_geometry'] = self._propertiesWindow.winfo_geometry()
-        self.tv.on_quit()
         prefs['root_geometry'] = self.root.winfo_geometry()
         super().on_quit()
 

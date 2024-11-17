@@ -475,12 +475,17 @@ class NvController(ControllerBase):
                     self._ui.show_error(_('Cannot save the project'), _('Critical Error'))
                     return False
 
-        self.plugins.on_close()
-        self._ui.on_close()
+        # Close the sub-controllers.
+        super().on_close()
+
+        # Close the model.
         self._mdl.close_project()
+
+        # Unlock the controller and sub-controllers.
         self._internalLockFlag = False
-        self._ui.unlock()
+        super().unlock()
         # calling the public unlock() method here would clear the lockfile
+
         self._ui.root.title(self._ui.title)
         self.update_status('')
         self._ui.show_path('')
