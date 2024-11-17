@@ -8,6 +8,46 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.17.0
+
+Preparations for the upcoming version 5
+
+- Make the stage background color configurable.
+- Refactor and revise the code for better maintainability.
+- Release the dependency on the novxlib and apptk libraries.
+
+### Version 4.16.1
+
+- If an element title is empty, replace it with the element ID.
+
+Based on novxlib 5.0.0
+Based on apptk 2.3.0
+
+### Version 4.16.0
+
+- Add a "Cancel" option to the quit/close dialog.
+- Do not close a project if saving fails.
+
+Based on novxlib 5.0.0
+Based on apptk 2.3.0
+
+### Version 4.15.6
+
+- Fix a bug where an exception is raised when closing a project
+while a property view widget still has the focus. 
+
+Based on novxlib 5.0.0
+Based on apptk 2.2.0
+
+### Version 4.15.5
+
+- Fix a bug where an exception is raised when closing a project
+immediately after deleting a section.
+- Assign the correct type when moving a section to the "trash bin".
+
+Based on novxlib 5.0.0
+Based on apptk 2.2.0
+
 ### Version 4.15.4
 
 Refactor the code for better maintainability

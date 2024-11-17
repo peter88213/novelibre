@@ -75,21 +75,12 @@ An easy way may be to put a posting in the [novelibre forum](https://github.com/
 
 ## Development
 
-*novelibre* depends on the [novxlib](https://github.com/peter88213/novxlib) 
-and the [apptk](https://github.com/peter88213/apptk) libraries 
-which must be present in your file system. 
 *novelibre* is organized as an Eclipse PyDev project. The official release branch on GitHub is *main*.
 
 ### Mandatory directory structure for building the application package
 
 ```
 .
-├── novxlib/
-│   └── src/
-│       └── novxlib/
-├── apptk/
-│   └── src/
-│       └── apptk/
 └── novelibre/
     ├── i18n/
     ├── src/

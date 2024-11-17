@@ -340,6 +340,15 @@ class NvView(ViewBase, ControllerNode):
         """
         self.set_title()
 
+    def register_view(self, client):
+        """Ensure compatibility with version 4 API.
+        
+        Deprecated.
+        TODO: Remove when upgrading to version 5.
+        """
+        self.register_client(client)
+        self._mdl.add_observer(client)
+
     def set_title(self):
         """Set the main window title. 
         
@@ -410,6 +419,15 @@ class NvView(ViewBase, ControllerNode):
         self.mainMenu.entryconfig(_('Project notes'), state='normal')
         self.mainMenu.entryconfig(_('Export'), state='normal')
         super().unlock()
+
+    def unregister_view(self, client):
+        """Ensure compatibility with version 4 API.
+        
+        Deprecated.
+        TODO: Remove when upgrading to version 5.
+        """
+        self.unregister_client(client)
+        self._mdl.delete_observer(client)
 
     def _add_multiple_sections(self):
         """Ask how many sections are to be added, then call the controller."""
