@@ -39,16 +39,13 @@ class PluginBase(ABC):
         self.isRejected = False
 
     @abstractmethod
-    def install(self, model, view, controller, prefs=None):
+    def install(self, model, view, controller):
         """Install the plugin.
         
         Positional arguments:
             model -- reference to the main model instance of the application.
             view -- reference to the main view instance of the application.
             controller -- reference to the main controller instance of the application.
-
-        Optional arguments:
-            prefs -- deprecated. Please use controller.get_preferences() instead.
         """
         self._mdl = model
         self._ui = view
