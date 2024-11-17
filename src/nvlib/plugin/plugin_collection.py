@@ -135,7 +135,8 @@ class PluginCollection(SubController, dict):
                 isCompatible = False
             if isCompatible:
                 # Install the plugin by calling its constructor substitute.
-                pluginObject.install(self._mdl, self._ui, self._ctrl)
+                pluginObject.install(self._mdl, self._ui, self._ctrl, prefs=self._ctrl.get_preferences())
+                # TODO: remove the prefs argument
 
             # Change flags to indicate the installation.
             # Plugin classes that don't inherit from PluginBase may be monkey-patched.

@@ -8,6 +8,10 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.17.1
+
+- Restore version 4 plugin installation parameter.
+
 ### Version 4.17.0
 
 Preparations for the upcoming version 5
