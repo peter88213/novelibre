@@ -8,6 +8,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+### Version 4.17.2
+
+Preparations for the upcoming version 5
+
+- Refactor the code for better maintainability.
+
 ### Version 4.17.1
 
 Preparations for the upcoming version 5

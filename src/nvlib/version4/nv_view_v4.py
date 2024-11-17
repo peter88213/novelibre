@@ -8,13 +8,13 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 class NvView4:
 
-    def register_view(self, client):
+    def register_view(self, view):
         """Ensure compatibility with version 4 API."""
-        self.register_client(client)
-        self._mdl.add_observer(client)
+        self._ctrl.register_client(view)
+        self._mdl.add_observer(view)
 
-    def unregister_view(self, client):
+    def unregister_view(self, view):
         """Ensure compatibility with version 4 API."""
-        self.unregister_client(client)
-        self._mdl.delete_observer(client)
+        self._ctrl.unregister_client(view)
+        self._mdl.delete_observer(view)
 
