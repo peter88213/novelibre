@@ -1,7 +1,7 @@
 /src/locale/
 /test/work/
+/test/tmp/
 /test/novelibre.py
 /build/
-/build-ref/
 *.pyc
 *.bak

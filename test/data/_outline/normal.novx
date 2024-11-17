@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE novx SYSTEM "novx_1_4.dtd">
+<?xml-stylesheet href="novx.css" type="text/css"?>
+<novx version="1.4" xml:lang="en-AU">
+  <PROJECT>
+    <Title>Hal Spacejock book one - Sample yWriter Project</Title>
+    <Desc>
+      <p>An incompetent, accident-prone pilot is given one last chance to save his ship. An ageing robot is trusted with a midnight landing in a deserted field. And a desperate businessman is prepared to sacrifice both of them to get what he wants...</p>
+      <p />
+      <p>Combining relentless action with non-stop laughs, Hal Spacejock explodes onto the science fiction scene with the subtlety of a meteor strike and the hushed reverence of a used car salesman.</p>
+    </Desc>
+    <Author>Simon Haynes</Author>
+  </PROJECT>
+  <CHAPTERS>
+    <CHAPTER id="ch1" level="1">
+      <Title>Part 1</Title>
+      <Desc>
+        <p>The first part of the novel.</p>
+      </Desc>
+    </CHAPTER>
+    <CHAPTER id="ch2">
+      <Title>Chapter 1</Title>
+      <Desc>
+        <p>The first chapter of the novel.</p>
+      </Desc>
+      <SECTION id="sc1">
+        <Title>Meet Hal, threatened by Vurdi</Title>
+        <Desc>
+          <p>Hal Spacejock is aboard his ship, the Black Gull, which is parked at the spaceport on planet Lamira. Hal's waiting for a cargo job, he's not fussy as long as it's legal. So far, after several days, the only jobs he's been offered have involved smuggling, gun-running or drugs.</p>
+          <p>Always short of money, Hal has arranged an interview with his financial backers in the hope of increasing his loan. There's a knock, but when Hal goes to let the loan people in he's confronted by a large robot which pins him to the deck. It's Brutus, an enforcer belonging to Vurdi the debt collector. Vurdi enters and explains that he's arrived to collect overdue payments on behalf of the loan company. Hal is confused, he thought they were supposed to be lending him money. Vurdi explains that it was a ploy to get aboard, since the company has had trouble getting face-to-face with Hal.</p>
+          <p>Hal doesn't have any money, so Vurdi says he'll take an arm or leg instead, and sets Brutus on him.</p>
+          <p>During the scuffle, Hal manages to tell Vurdi that he accepted a cargo job earlier in the day, and will use the proceeds to settle his debts. Vurdi is suspicious, but calls Brutus off and gives Hal 24 hours.</p>
+          <p>After Vurdi leaves, Hal discusses things with the Black Gull's onboard computer (the Navcom), reviewing the cargo jobs he's been offered. He chooses the one which sounds less risky than the others, a freight job offered by the Jerling corporation. The Navcom objects, reminding Hal that he turned it down earlier because he thought it involved stolen goods. Hal doesn't care - he can't afford to be choosy any more.</p>
+        </Desc>
+      </SECTION>
+    </CHAPTER>
+    <CHAPTER id="ch3">
+      <Title>Chapter 2</Title>
+      <Desc>
+        <p>The second chapter of the novel.</p>
+      </Desc>
+      <SECTION id="sc2">
+        <Title>Jerling buys team. Discusses Seraph.</Title>
+        <Desc>
+          <p>Walter Jerling is a businessman on Forg, a planet in the same star system as Lamira. He owns several enterprises - real estate, factories, etc. We meet him at the grand opening of a new sky hockey stadium, puffing on his cigar and finishing off the ceremony without much enthusiasm. After a smattering of polite applause from the small crowd, he departs in his limo.</p>
+          <p>In the car he complains that he's little more than a figurehead, hopping from one PR exercise to the next. He recalls the early days, when he was personally involved in everything. His assistant, Carina, reminds him that he was running himself ragged before he mastered the art of delegating. Jerling replies that delegating can lead to people ripping him off or revealing company secrets to the Hinchfigs (competitors). Moans that the Hinchfigs get bigger crowds at their openings, Carina points out that they pay the crowds more to turn up.</p>
+          <p>Jerling catches up on a few minor business matters. He reluctantly approves the recycling of older company equipment (including several robots), then digs until Carina gives him something more interesting to think about. He discovers there's a freight job which is going wrong, and as the limo draws into the head office carpark Jerling decides to handle it himself.</p>
+          <p>He examines the Seraph file. There's a shipment of robot parts ordered and paid for, but the source planet (Seraph IV) is in the middle of war games and the massed ships of the Seraph Space Corps have already shot down three unarmed freighters by mistake. The parts are needed urgently by Jerling's assembly line, they're putting together a last-minute order of robots for the Emperor's summer palace. Late delivery isn't an option.</p>
+          <p>Carina explains that they can't risk their own ships, they wouldn't be covered by insurance and anyway, none of their pilots will fly into the danger zone. They tried to hire a freelancer but none of them wanted the job either - they were all warned off by a Spacers Guild bulletin. Jerling asks why they didn't try non-Guild pilots, Carina explains that they could only locate one and he turned it down because he was convinced it was a stolen goods racket. Jerling is annoyed that his staff hid the problem from him. Carina explains that they didn't want to worry him. Jerling says they should have come to him before, this is important, if they lose preferred supplier status his business is at risk, and worse still the Hinchfigs will gain on him.</p>
+          <p>Jerling asks Carina to call the idiot, the one who thought it was stolen goods. Before the assistant makes the call, she discovers that there's a message from the 'idiot' already - he wants the job. Carina tries to pursuade Jerling that others can deal with the issue but Jerling's fired up and won't let go, it's his pet project.</p>
+        </Desc>
+      </SECTION>
+      <SECTION id="sc3">
+        <Title>Hal takes a call from Jerling</Title>
+        <Desc>
+          <p>Back with Hal, Jerling's call comes through and the businessman explains about his cargo, reassures Hal it's not stolen goods, then explains he has a pilot at the Lamira Spaceport (the same location as Hal) who needs a lift to Seraph IV. If Hal can take him, the pilot will return the favour by landing Hal's ship when they arrive at the destination.</p>
+          <p>Hal says he doesn't need help, Jerling explains that the landing is at night, with no guidance. This makes Hal suspicious about the job again, but he decides that nothing could be worse than another session with Brutus. Jerling reassures him that the pilot can handle everything and reminds him that delivery is to his premises on Forg. Hal agrees to the job, starts to ask for an advance but Jerling disconnects.</p>
+        </Desc>
+      </SECTION>
+    </CHAPTER>
+    <CHAPTER id="ch4">
+      <Title>Chapter 3</Title>
+      <SECTION id="sc4">
+        <Title>Clunk arrives</Title>
+        <Desc>
+          <p>The Navcom tells Hal someone is waiting outside the ship. Hal assumes it's the new pilot and goes to the airlock to admit them. Instead of a human, there's a robot outside, and for a moment Hal thinks Brutus has returned. It isn't though, it's a run-down, obsolete robot with mismatched legs and a squashy, furrowed face. The geriatric robot smiles at Hal and explains politely that it's Jerling's pilot.</p>
+          <p>Hal closes the airlock in its face, runs to the flight deck and calls Jerling. He protests that an old robot like that can't possibly land his valuable ship. Jerling explains that the robot is an experienced pilot. After some discussion, Hal accepts the situation. He goes back to the airlock, lets Clunk in but sends him to the cargo hold.</p>
+          <p>Hal prepares the ship for takeoff, but ground control won't let him leave. The Port Commander wants to see him in person. Hal leaves the ship, putting Clunk in charge.</p>
+        </Desc>
+      </SECTION>
+    </CHAPTER>
+    <CHAPTER id="ch5">
+      <Title>Chapter 4</Title>
+      <SECTION id="sc5">
+        <Title>Hal going to port control</Title>
+        <Desc>
+          <p>Hal leaves his ship via the boarding ramp. (The Black Gull has two ramps - a large, heavy-duty cargo ramp which vehicles and robots use to load the ship, and a smaller boarding ramp which folds out from the side of the ship and admits visitors to the flight deck via an airlock.)</p>
+          <p>He has to get to ground control, but they won't send a cab because of his unpaid account. He spots a robot mending fuel pipes near the back of the ship and asks whether he can borrow its vehicle (A battered old jet-powered ute). The robot refuses.</p>
+          <p>Hal decides to walk and sets off across the field towards the distant buildings, but the field is covered in thick shoulder-high grasses with spore pods (Like knotted pampas grass). After struggling heroically, Hal gives up and returns in a bad temper. Approaching the landing pad again, he ducks down in the grass and sneaks towards the maintenance robot's vehicle, intending to borrow it. He's about to clamber aboard when the robot snaps something on the fuel pipes, causing a gushing leak. Hal ducks as the robot returns to the vehicle and grabs a tool kit.</p>
+          <p>While the robot is busy mending the pipes, Hal leaps into the vehicle and starts it up. The robot spots him and pursues. The vehicle accelerates, but the robot manages to grab hold and swing itself aboard. Hal wiggles the joystick and the wild movements throw the robot from side to side, battering it against the sides of the tray. One last violent twist of the controls hurls the robot from the back of the vehicle, and it cartwheels through the grass before coming to a halt in a sparking, smoking huddle.</p>
+          <p>Hal drives off, oblivious to the flames starting to flicker around the fallen robot.</p>
+        </Desc>
+      </SECTION>
+      <SECTION id="sc6">
+        <Title>Clunk checking computer for Incubots.</Title>
+        <Desc>
+          <p>Aboard the Black Gull, Clunk is curious. He knows he's being sent to Incubots on Seraph IV, but nobody has told him why. He searches the Black Gull's outdated computer for information on the company. (There's an equivalent to the internet called Galnet, but Hal can't afford the fees so his ship has a snapshot about 5 or 6 years old.) Clunk discovers that Incubots makes parts for new robots and replacement parts for older models. He's relieved, because Jerling's staff were vague about the reason for his trip, and it's fairly common for Jerling's older, obsolete robots to be sent to out-of-the-way planets, never to return. Now it seems he's to be upgraded, which is good news because he's got long list of worn parts which need replacements.</p>
+          <p>Sitting at the console, Clunk uses the Black Gull's simulation mode to practice a couple of landings, then veers off and dreams he's flying the ship to a mythical robot planet.</p>
+        </Desc>
+      </SECTION>
+      <SECTION id="sc7">
+        <Title>Hal talking to the Portmaster</Title>
+        <Desc>
+          <p>Hal is waiting in reception outside the Portmaster's office, browsing a magazine. He reads an article about overclocked robot brains being used in new robots, saving money but leading to risk of explosion. Hal wonders if Clunk is fitted with a defective brain - if any - and figures it would be just his luck if Jerling's robot turned his ship into a fiery wreck while he was sitting around waiting for petty officials.</p>
+          <p>The Portmaster invites him into his office, and Hal discovers there are overdue landing fees, stamp duty, fuel, snacks, etc etc to pay for. The Port of Lamira is going to auction Hal's ship to recover debts. Hal protests that he has a job which will cover the fees, but the Portmaster doesn't believe him.</p>
+          <p>Hal decides to call his brand new best buddy Clunk, thinking the robot can ask Jerling for an advance on his fee.</p>
+        </Desc>
+      </SECTION>
+      <SECTION id="sc8">
+        <Title>Clunk takes call from Hal. Calls Jerling. Fire.</Title>
+        <Desc>
+          <p>Clunk tells Hal that Jerling won't advance any money, but Hal tells him to ask anyway. Clunk calls Jerling, who won't advance any money. Clunk mentions that he's found out what Incubots is all about, Jerling hangs up quickly.</p>
+          <p>Clunk notices smoke in the air. He runs to the airlock and discovers the landing field is on fire.</p>
+        </Desc>
+      </SECTION>
+    </CHAPTER>
+  </CHAPTERS>
+  <CHARACTERS />
+  <LOCATIONS />
+  <ITEMS />
+  <ARCS />
+  <PROJECTNOTES />
+</novx>

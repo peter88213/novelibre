@@ -1,0 +1,95 @@
+PROJECT {
+	display: block;
+	}
+Title {
+	text-align: center;
+	display: block;
+	}
+CHAPTER, SCENE {
+	display: block;
+	}
+CHARACTER, LOCATION, ITEM {
+	display: block;
+	padding: 1em;
+	border-width: 1px;
+	border-style: solid;
+	border-color: gray;
+	}
+CHARACTERS, LOCATIONS, ITEMS {
+	display: block;
+	padding: 1em;
+	border-width: 1em;
+	border-style: solid;
+	}
+CHARACTERS {
+	border-color: blue;
+	}
+LOCATIONS {
+	border-color: green;
+	}
+ITEMS {
+	border-color: orange;
+	}
+Title {
+	margin: 1.5em;
+	text-align: center;
+	display: block;
+	font-size: 1.5em;
+	font-family: sans-serif;
+	font-weight: bold;
+	}
+PROJECT > Title {
+	font-size: 3em;
+	}
+CHAPTER[level="1"] > Title {
+	font-size: 2.4em;
+	}
+CHAPTER[level="2"] > Title {
+	font-size: 1.8em;
+	}
+SCENE > Title {font-size: 1.2em;
+	font-weight: normal;
+	font-style: italic;
+	}
+Desc, Bio, Goals, Tags, AKA, FullName {
+	display: block;
+	margin-right: 8em;
+	margin-left: 8em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	font-family: sans-serif;
+	}
+CHAPTER[type="1"] {
+	color:blue;
+	}
+CHAPTER[type="2"] {
+	color:red;
+	}
+CHAPTER[type="3"] {
+	color:gray;
+	}
+SCENE[type="1"] {
+	color:blue;
+	}
+SCENE[type="2"] {
+	color:red;
+	}
+SCENE[type="3"] {
+	color:gray;
+	}
+SceneContent {
+	display: block;
+	padding: 2em;
+	}
+p {
+	display: block;
+	}
+p+p {
+	text-indent: 1em;
+	}
+em {
+	font-style: italic;
+	}
+strong {
+	text-transform: uppercase;
+	}

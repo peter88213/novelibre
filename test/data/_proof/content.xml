@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<office:document-content xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rpt="http://openoffice.org/2005/report" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" office:version="1.2">
+ <office:scripts/>
+ <office:font-face-decls>
+  <style:font-face style:name="StarSymbol" svg:font-family="StarSymbol" style:font-charset="x-symbol"/>
+  <style:font-face style:name="Consolas" svg:font-family="Consolas" style:font-adornments="Standard" style:font-family-generic="modern" style:font-pitch="fixed"/>
+  <style:font-face style:name="Courier New" svg:font-family="&apos;Courier New&apos;" style:font-adornments="Standard" style:font-family-generic="modern" style:font-pitch="fixed"/>
+ </office:font-face-decls>
+ <office:automatic-styles/>
+ <office:body>
+  <office:text text:use-soft-page-breaks="true">
+
+<text:p text:style-name="Title">Hal Spacejock book one - Sample yWriter Project</text:p>
+<text:p text:style-name="Subtitle">Simon Haynes</text:p>
+<text:h text:style-name="Heading_20_1" text:outline-level="1">Part 1</text:h>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 1</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Meet Hal, threatened by Vurdi</text:h>
+<text:p text:style-name="Section_20_mark">[sc1]</text:p>
+<text:p text:style-name="Text_20_body">Hal Spacejock was sitting at the Black Gull's flight console, his attention riveted to a small chessboard balanced amongst the toggle switches, flashing lights and status displays. a few weeks earlier he'd read an article extolling the benefits of the ancient game: how playing it would sharpen his mind, improve his memory and increase his attraction to the opposite sex. Chess had been an important part of his daily routine ever since, but after two hundred and seventy-six losses in a row Hal was beginning to doubt the article's claims. He didn't feel any smarter and he couldn't remember the last time he'd spoken to a member of the opposite sex, let alone had one attracted to him. Briefly, he wondered whether it had been such a clever idea to play against the Navcom, the Black Gull's onboard computer. Underpowered and outdated, it was still more than capable of running the ship's accounts, navigation and life support systems while beating humans at simple board games. However, since Hal was the only human aboard the Black Gull, his choice of opponents was limited.</text:p><text:p text:style-name="First_20_line_20_indent">"Your turn," said the Navcom, in a neutral female voice.</text:p><text:p text:style-name="First_20_line_20_indent">"I'm thinking."</text:p><text:p text:style-name="First_20_line_20_indent">"While you're planning your opening move, can I tell you about a special offer?"</text:p><text:p text:style-name="First_20_line_20_indent">"What kind of offer?" asked Hal suspiciously.</text:p><text:p text:style-name="First_20_line_20_indent">"Planet books have a chess title on sale."</text:p><text:p text:style-name="First_20_line_20_indent">"Really? Put it on main."</text:p><text:p text:style-name="First_20_line_20_indent">The wide viewscreen above the console turned red, and the word '[lang=zxx]SaLE[/lang=zxx]' appeared in vibrating yellow text. The letters grew legs and marched off the screen, bringing a wire basket on wheels into view.</text:p><text:p text:style-name="First_20_line_20_indent">"I don't need all this crap," said Hal. "Just show me the deal."</text:p><text:p text:style-name="First_20_line_20_indent">"Almost there," said the Navcom. "Keep watching."</text:p><text:p text:style-name="First_20_line_20_indent">A flock of pigeons burst from the basket, leaving a tumbling cloud of feathers which dropped to the ground and formed the words 'Special Offer'. a gust of wind blew the feathers away, and a book title flashed up on the screen.</text:p><text:p text:style-name="First_20_line_20_indent">"Chess for the intellectually challenged?" said Hal, staring at the cover in disbelief. "Is this some kind of joke?"</text:p><text:p text:style-name="First_20_line_20_indent">"It's part of a popular series," said the Navcom.</text:p><text:p text:style-name="First_20_line_20_indent">"What are the others? Interstellar navigation for nutters? Moon landings for morons?"</text:p><text:p text:style-name="First_20_line_20_indent">"Shall I add those titles to your basket?"</text:p><text:p text:style-name="First_20_line_20_indent"></text:p><text:p text:style-name="Text_20_body">. . .</text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 2</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Jerling buys team. Discusses Seraph.</text:h>
+<text:p text:style-name="Section_20_mark">[sc2]</text:p>
+<text:p text:style-name="Text_20_body">On planet Forg, a small crowd had gathered outside the local sky hockey stadium. South Forgberg was not a prosperous area - the semi-detached houses were modest and the residents faced a constant struggle to live within their means. It was unusual to see building work or renovations, so the extensive refurbishment to the decrepit old stadium had been a talking point for months.</text:p><text:p text:style-name="First_20_line_20_indent">. . .</text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Hal takes a call from Jerling</text:h>
+<text:p text:style-name="Section_20_mark">[sc3]</text:p>
+<text:p text:style-name="Text_20_body">Hal was pacing the Black Gull's flight deck, ready to put his fist through the nearest wall. "What do you mean, you can't call Jerling back? What do you mean you didn't save his details?"</text:p><text:p text:style-name="First_20_line_20_indent">"I erased the record after you turned the job down."</text:p><text:p text:style-name="First_20_line_20_indent">"So look it up again!"</text:p><text:p text:style-name="First_20_line_20_indent">"Negative, we can't afford the search fees." The Navcom hesitated. "Incidentally, it's your move."</text:p><text:p text:style-name="First_20_line_20_indent">"How can you think of a bloody chess game at a time like this?"</text:p><text:p text:style-name="First_20_line_20_indent">"You're only saying that because you're losing."</text:p><text:p text:style-name="First_20_line_20_indent"></text:p><text:p text:style-name="Text_20_body">. . .</text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 4</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Hal going to port control</text:h>
+<text:p text:style-name="Section_20_mark">[sc5]</text:p>
+<text:p text:style-name="Text_20_body">Hal emerged from the Black Gull's airlock, blinking in the sudden light. On the far side of the landing field the sun was setting behind the Lamira spaceport's administration block, which shimmered in the late afternoon heat. Clustered around the spaceport buildings were the 'A' list - modern, powerful ships fitted with every comfort. Parked close to the amenities, their crews could dine at one of several restaurants, enjoy the heated swimming pool and browse the shopping arcade at their leisure.</text:p><text:p text:style-name="First_20_line_20_indent">Hal's ship was somewhat further down the alphabet, and was therefore sitting in a disused corner of the field about as far from the amenities as the nearest moon. The area around the <text:span text:style-name="Emphasis">Black Gull</text:span> was little more than a graveyard for derelicts, and most of the landing pads nearby were occupied by graffiti-splashed wrecks with jagged gaps in their crumpled hulls. Some of the ships seemed familiar, and when Hal looked closer he realised the rusted hulks were Rigel-class freighters like his own. One or two were actually in better shape.</text:p><text:p text:style-name="First_20_line_20_indent"></text:p><text:p text:style-name="Text_20_body">. . .</text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Clunk checking computer for Incubots.</text:h>
+<text:p text:style-name="Section_20_mark">[sc6]</text:p>
+<text:p text:style-name="Text_20_body">Clunk dropped the last chess piece into the small wooden box and looked around the flight deck. Despite his best efforts with the mop, it didn't look particularly clean, but compared to its previous state it was as sterile as a hospital ward. After a moment's hesitation, he sat in the pilot's chair. "Navcom, do you have a business directory?"</text:p><text:p text:style-name="First_20_line_20_indent">"Yes."</text:p><text:p text:style-name="First_20_line_20_indent">"Run a search, please. All details on a company called Incubots."</text:p><text:p text:style-name="First_20_line_20_indent">There was a brief pause. "Owned by Redge Muller. Incubots specialises in robot programming and advanced pilot training."</text:p><text:p text:style-name="First_20_line_20_indent">Clunk looked relieved. "So that's what Mr. Jerling has in store for me. When I questioned him on the subject he was rather evasive."</text:p><text:p text:style-name="First_20_line_20_indent">"Humans tell lies about the most trivial matters."</text:p><text:p text:style-name="First_20_line_20_indent"></text:p><text:p text:style-name="Text_20_body">. . .</text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Hal talking to the Portmaster</text:h>
+<text:p text:style-name="Section_20_mark">[sc7]</text:p>
+<text:p text:style-name="Text_20_body">Hal left the maintenance vehicle in the spaceport's outer carpark and walked to the admin block. An information kiosk directed him to an elevator, where he pressed the button marked 'Portmaster'.</text:p><text:p text:style-name="First_20_line_20_indent">Hal watched the floor numbers changing as he dropped further and further underground. He'd expected the Portmaster to have a spacious office with a view of the whole landing field, but instead he seemed to have an office in the basement. Below the basement, amended Hal, eying the elevator's control panel. He'd passed that already.</text:p><text:p text:style-name="First_20_line_20_indent"></text:p><text:p text:style-name="Text_20_body">. . .</text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Clunk takes call from Hal. Calls Jerling. Fire.</text:h>
+<text:p text:style-name="Section_20_mark">[sc8]</text:p>
+<text:p text:style-name="Text_20_body">"Simulation suspended, incoming message."</text:p><text:p text:style-name="First_20_line_20_indent">The cloud cities of Aklam faded from Clunk's vision. "What?"</text:p><text:p text:style-name="First_20_line_20_indent">"Incoming message."</text:p><text:p text:style-name="First_20_line_20_indent">"Are we meant to answer it?"</text:p><text:p text:style-name="First_20_line_20_indent">"It's Mr. Spacejock," said the Navcom.</text:p><text:p text:style-name="First_20_line_20_indent">Clunk sat up straight. "Please open the connection."</text:p><text:p text:style-name="First_20_line_20_indent">"Hey, robot!" called Hal.</text:p><text:p text:style-name="First_20_line_20_indent">"Yes, sir?"</text:p><text:p text:style-name="First_20_line_20_indent">"Call Jerling and get me a loan. I need three hundred in cash for landing fees and fuel."</text:p><text:p text:style-name="First_20_line_20_indent">"I don't think he'll lend you any money," said Clunk dubiously.</text:p><text:p text:style-name="First_20_line_20_indent">. . .</text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 5</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Clunk fighting the fire, ends up face-down</text:h>
+<text:p text:style-name="Section_20_mark">[sc10]</text:p>
+<text:p text:style-name="Text_20_body">"Deploy fire hose!" shouted Clunk.</text:p><text:p text:style-name="First_20_line_20_indent">"Deploying." There was a whining sound outside the hull, which stopped with a sharp crack.</text:p><text:p text:style-name="First_20_line_20_indent">"What was that?"</text:p><text:p text:style-name="First_20_line_20_indent">"The reel just fell off," said the Navcom.</text:p><text:p text:style-name="First_20_line_20_indent"></text:p><text:p text:style-name="Text_20_body">. . .</text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 7</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Hal finds Clunk on rope, falls out after him.</text:h>
+<text:p text:style-name="Section_20_mark">[sc15]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 8</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Climb up rope to safety. Back in ship for hyperspace.</text:h>
+<text:p text:style-name="Section_20_mark">[sc17]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 9</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">In his office. Gordon OKs the deal</text:h>
+<text:p text:style-name="Section_20_mark">[sc19]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 10</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Exits the ship to meet Bevan</text:h>
+<text:p text:style-name="Section_20_mark">[sc22]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 11</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Getting food out. Frozen puddings.</text:h>
+<text:p text:style-name="Section_20_mark">[sc25]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Says goodbye to Clunk</text:h>
+<text:p text:style-name="Section_20_mark">[sc27]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 12</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Hal depressed. No escape from here.</text:h>
+<text:p text:style-name="Section_20_mark">[sc29]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Lighten the ship. Preparing for liftoff.</text:h>
+<text:p text:style-name="Section_20_mark">[sc31]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 13</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Karl and Terry awaiting Hal. They take a call from their spy, intercept is at the orbiter.</text:h>
+<text:p text:style-name="Section_20_mark">[sc34]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 14</text:h>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 15</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Karl waiting impatiently</text:h>
+<text:p text:style-name="Section_20_mark">[sc38]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Karl and Terry confused about 'Chunk'</text:h>
+<text:p text:style-name="Section_20_mark">[sc40]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 16</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Clunk slips out the back.</text:h>
+<text:p text:style-name="Section_20_mark">[sc43]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Karl and Terry waiting.</text:h>
+<text:p text:style-name="Section_20_mark">[sc45]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 17</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Clunk in orbit</text:h>
+<text:p text:style-name="Section_20_mark">[sc47]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Clunk uses cylinder</text:h>
+<text:p text:style-name="Section_20_mark">[sc49]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_1" text:outline-level="1">Part 2</text:h>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 18</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Terry places the 'bomb'</text:h>
+<text:p text:style-name="Section_20_mark">[sc51]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Hal buys food</text:h>
+<text:p text:style-name="Section_20_mark">[sc53]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 19</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Karl leaves a note, takes Clunk.</text:h>
+<text:p text:style-name="Section_20_mark">[sc55]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Hal about to hyperspace.</text:h>
+<text:p text:style-name="Section_20_mark">[sc57]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 20</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Hal gets real Jerling's call. Has to get cargo and robot back.</text:h>
+<text:p text:style-name="Section_20_mark">[sc60]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Hal sets course for Forg.</text:h>
+<text:p text:style-name="Section_20_mark">[sc62]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Land on Forg, in rubbish.</text:h>
+<text:p text:style-name="Section_20_mark">[sc64]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 21</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Hal rents a car in Jerling's name and heads towards Forgberg and the Casino.</text:h>
+<text:p text:style-name="Section_20_mark">[sc66]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Hal after almost running Clunk down. Picks him up.</text:h>
+<text:p text:style-name="Section_20_mark">[sc68]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 22</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Find car, go to find clothes.</text:h>
+<text:p text:style-name="Section_20_mark">[sc71]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 23</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Hal sells Clunk</text:h>
+<text:p text:style-name="Section_20_mark">[sc74]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 24</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Hal annoyed at Clunk for buying only the best.</text:h>
+<text:p text:style-name="Section_20_mark">[sc77]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Clunk gambling. Fight with human couple.</text:h>
+<text:p text:style-name="Section_20_mark">[sc79]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Sitting on the steps, battered and bruised. Limo arrives for Karl.</text:h>
+<text:p text:style-name="Section_20_mark">[sc81]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 25</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Clunk travelling on the back of Karl's limo</text:h>
+<text:p text:style-name="Section_20_mark">[sc84]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Clunk sees Hal catching up again. Limo stops.</text:h>
+<text:p text:style-name="Section_20_mark">[sc86]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 26</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Clunk uploads the Navcom into the ship.</text:h>
+<text:p text:style-name="Section_20_mark">[sc89]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 27</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">The shop robots want Clunk to escape with them. Mention Hal's capture.</text:h>
+<text:p text:style-name="Section_20_mark">[sc92]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Clunk steals armoured car, drives it into the house.</text:h>
+<text:p text:style-name="Section_20_mark">[sc94]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 28</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Karl and Terry take the limo</text:h>
+<text:p text:style-name="Section_20_mark">[sc96]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Karl and Terry overtake and head for Spaceport. Looking for Volante.</text:h>
+<text:p text:style-name="Section_20_mark">[sc98]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 29</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Hal and Clunk fleeing in Gull</text:h>
+<text:p text:style-name="Section_20_mark">[sc101]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Clunk wants to throw stuff at the flyer</text:h>
+<text:p text:style-name="Section_20_mark">[sc103]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Hal fetches the puddings.</text:h>
+<text:p text:style-name="Section_20_mark">[sc105]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 30</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Hal yells at Jerling, then cargo arrives on truck.</text:h>
+<text:p text:style-name="Section_20_mark">[sc108]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Clunk outside, depressed.</text:h>
+<text:p text:style-name="Section_20_mark">[sc110]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Karl bursts in, armed.</text:h>
+<text:p text:style-name="Section_20_mark">[sc112]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 31</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Terry ties Hal in hold, leaves back doors open.</text:h>
+<text:p text:style-name="Section_20_mark">[sc114]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Hal dodges Brutus, escapes the hold.</text:h>
+<text:p text:style-name="Section_20_mark">[sc116]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+<text:h text:style-name="Heading_20_2" text:outline-level="2">Chapter 32</text:h>
+<text:h text:style-name="Heading_20_3" text:outline-level="3">Black Gull hyperspaces to oblivion</text:h>
+<text:p text:style-name="Section_20_mark">[sc119]</text:p>
+<text:p text:style-name="Text_20_body"></text:p>
+<text:p text:style-name="Section_20_mark">[/sc]</text:p>
+  </office:text>
+ </office:body>
+</office:document-content>

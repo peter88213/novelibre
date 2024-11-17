@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE novx SYSTEM "novx_1_0.dtd">
+<?xml-stylesheet href="novx.css" type="text/css"?>
+<novx version="1.0" xml:lang="en-US">
+  <PROJECT renumberChapters="1" workPhase="1">
+    <ChapterHeadingPrefix>Chapter </ChapterHeadingPrefix>
+  </PROJECT>
+  <CHAPTERS>
+    <CHAPTER id="ch6" type="0" level="2">
+      <Title>Chapter 1</Title>
+      <SECTION id="sc1" type="3">
+        <Title>ACT 1</Title>
+      </SECTION>
+      <SECTION id="sc15" type="0">
+        <Title>New Scene (ID15)</Title>
+      </SECTION>
+      <SECTION id="sc16" type="0">
+        <Title>New Scene (ID16)</Title>
+      </SECTION>
+    </CHAPTER>
+    <CHAPTER id="ch9" type="0" level="2">
+      <Title>Chapter 2</Title>
+      <SECTION id="sc17" type="0">
+        <Title>New Scene (ID17)</Title>
+      </SECTION>
+      <SECTION id="sc18" type="0">
+        <Title>New Scene (ID18)</Title>
+      </SECTION>
+    </CHAPTER>
+    <CHAPTER id="ch7" type="0" level="2">
+      <Title>Chapter 3</Title>
+      <SECTION id="sc2" type="3">
+        <Title>ACT 2</Title>
+      </SECTION>
+      <SECTION id="sc19" type="0">
+        <Title>New Scene (ID19)</Title>
+      </SECTION>
+      <SECTION id="sc20" type="0">
+        <Title>New Scene (ID20)</Title>
+      </SECTION>
+    </CHAPTER>
+    <CHAPTER id="ch10" type="0" level="2">
+      <Title>Chapter 4</Title>
+      <SECTION id="sc21" type="0">
+        <Title>New Scene (ID21)</Title>
+      </SECTION>
+      <SECTION id="sc22" type="0">
+        <Title>New Scene (ID22)</Title>
+      </SECTION>
+    </CHAPTER>
+    <CHAPTER id="ch8" type="0" level="2">
+      <Title>Chapter 5</Title>
+      <SECTION id="sc25" type="0">
+        <Title>New Scene (ID25)</Title>
+      </SECTION>
+      <SECTION id="sc23" type="0">
+        <Title>New Scene (ID23)</Title>
+      </SECTION>
+    </CHAPTER>
+    <CHAPTER id="ch11" type="0" level="2">
+      <Title>Chapter 6</Title>
+      <SECTION id="sc24" type="0">
+        <Title>New Scene (ID24)</Title>
+      </SECTION>
+      <SECTION id="sc26" type="0">
+        <Title>New Scene (ID26)</Title>
+      </SECTION>
+    </CHAPTER>
+    <CHAPTER id="ch12" type="0" level="2">
+      <Title>Chapter 7</Title>
+      <SECTION id="sc3" type="3">
+        <Title>ACT 3</Title>
+      </SECTION>
+      <SECTION id="sc27" type="0">
+        <Title>New Scene (ID27)</Title>
+      </SECTION>
+      <SECTION id="sc28" type="0">
+        <Title>New Scene (ID28)</Title>
+      </SECTION>
+      <SECTION id="sc29" type="0">
+        <Title>New Scene (ID29)</Title>
+      </SECTION>
+    </CHAPTER>
+    <CHAPTER id="ch5" type="3" level="2" isTrash="1" noNumber="1">
+      <Title>Papierkorb</Title>
+    </CHAPTER>
+  </CHAPTERS>
+  <CHARACTERS />
+  <LOCATIONS />
+  <ITEMS />
+  <ARCS>
+    <ARC id="ac5">
+      <Title>A-Storyline</Title>
+      <ShortName>A</ShortName>
+      <Desc><p>Applying the pattern as described in &quot;The 1-3-5 Story Structure Made Simple&quot; by Donna Michelle Anderson.</p></Desc>
+      <Sections ids="sc15 sc16 sc17 sc18 sc19 sc20 sc21 sc22 sc23 sc24 sc25 sc26 sc27 sc28 sc29" />
+      <POINT id="ap1">
+        <Title>The Setup</Title>
+        <Desc><p>First, establish the normal existence and expectations of your Main Character - but only enough to give context and meaning to the Unexpected Change that is about to occur.</p></Desc>
+        <Section id="sc15" />
+      </POINT>
+      <POINT id="ap2">
+        <Title>The Unexpected Change</Title>
+        <Desc><p>Next, a single event must occur that upsets your Main Character’s expectations and experience of normal life and launches his or her journey.</p></Desc>
+        <Section id="sc16" />
+      </POINT>
+      <POINT id="ap3">
+        <Title>The Rejection</Title>
+        <Desc><p>&quot;I don&apos;t want&quot; - No one likes or accepts change in the instant it happens! Your Main Character now must exert the least possible effort to restore life to exactly the way it was before.</p></Desc>
+        <Section id="sc17" />
+      </POINT>
+      <POINT id="ap4">
+        <Title>The Commitment</Title>
+        <Desc><p>Your main character eventually accepts that the Unexpected Change is not going to go away and commits to reluctantly struggling through this new life.</p></Desc>
+        <Section id="sc18" />
+      </POINT>
+      <POINT id="ap5">
+        <Title>The Reversal</Title>
+        <Desc><p>Halfway through your script, your Main Character must fully embrace the Unexpected Change for purely self-serving reasons.</p></Desc>
+        <Section id="sc19" />
+      </POINT>
+      <POINT id="ap6">
+        <Title>The Embrace</Title>
+        <Desc><p>&quot;I DO want&quot; - The Embrace is best seen, not heard.  In a comedy, it is typically a montage to a hot track.  In romance, it is typically a love scene.  In action, it is typically a high-energy action sequence with the Main Character in full control and engagement.  Keep dialogue to a minimum!</p></Desc>
+        <Section id="sc20" />
+      </POINT>
+      <POINT id="ap7">
+        <Title>The Return Of The Main Opponent</Title>
+        <Desc><p>Now that your Main Character embraces his or her new life, it is time to surprise him or her with a significant obstacle - which is always the Main Opponent with newly heightened powers.</p></Desc>
+        <Section id="sc21" />
+      </POINT>
+      <POINT id="ap8">
+        <Title>The Escalation</Title>
+        <Desc><p>The entire second half of your script will feature an increasingly focused and escalating duel between your Main Character and the Main Opponent.</p></Desc>
+        <Section id="sc22" />
+      </POINT>
+      <POINT id="ap9">
+        <Title>The Final Battle</Title>
+        <Desc><p>Ultimately, your Main Character must physically face off against the Main Opponent and fight on behalf of self and a greater cause.</p></Desc>
+        <Section id="sc25" />
+      </POINT>
+      <POINT id="ap10">
+        <Title>The Twist</Title>
+        <Desc><p>To heighten jeopardy for your Main Character, you may want to add a surprise “reveal” (built on earlier hints) that further challenges, limits or weakens your Main Character during the Final Battle.</p></Desc>
+        <Section id="sc23" />
+      </POINT>
+      <POINT id="ap11">
+        <Title>Rock Bottom</Title>
+        <Desc><p>At the end of the Final Battle, your Main Character must be at his or her greatest point of weakness, with no support and seemingly no way out, while your Main Opponent is at his/her/its greatest point of power.</p></Desc>
+        <Section id="sc24" />
+      </POINT>
+      <POINT id="ap12">
+        <Title>The Final Choice</Title>
+        <Desc><p>In the last moment of the Final Battle, give your Main Character precisely the choice he or she had to make after the Unexpected Change, now with far greater consequences.</p></Desc>
+        <Section id="sc27" />
+      </POINT>
+      <POINT id="ap13">
+        <Title>The Sacrifice</Title>
+        <Desc><p>&quot;I reluctantly give up&quot; - Your Main Character should choose to reluctantly give up what he or she wants to become a better person and make the world a better place.</p></Desc>
+        <Section id="sc28" />
+      </POINT>
+      <POINT id="ap14">
+        <Title>The Reward</Title>
+        <Section id="sc29" />
+      </POINT>
+    </ARC>
+  </ARCS>
+</novx>
