@@ -4,8 +4,6 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from abc import abstractmethod
-
 from mvclib.controller.sub_controller import SubController
 
 
@@ -20,9 +18,7 @@ class ControllerNode(SubController):
         - emable/disable menu    
     """
 
-    @abstractmethod
-    def __init__(self, model=None, view=None, controller=None):
-        SubController.__init__(self, model, view, controller)
+    def __init__(self):
         self._clients = []
 
     def disable_menu(self):

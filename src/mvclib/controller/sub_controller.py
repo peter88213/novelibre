@@ -1,20 +1,13 @@
-"""Provide a sub-controller base class.
+"""Provide a sub-controller mixin base class.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from abc import abstractmethod
 
 
 class SubController:
-    """A leaf in the view composite structure tree."""
-
-    @abstractmethod
-    def __init__(self, model=None, view=None, controller=None):
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
+    """A mixin providing controller methods for views."""
 
     def disable_menu(self):
         """Disable UI widgets, e.g. when no project is open."""

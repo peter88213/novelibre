@@ -13,16 +13,17 @@ from mvclib.view.ui_facade import UiFacade
 import tkinter as tk
 
 
-class ViewBase(Observer, UiFacade):
+class ViewBase(UiFacade, Observer):
     """Base class for a view with a main menu, a main window, and a status bar."""
 
     def __init__(self, model, controller, title):
+        super().__init__(title)
+
         self.root = tk.Tk()
         self.root.protocol("WM_DELETE_WINDOW", controller.on_quit)
         self.root.title(title)
         self.title = title
 
-        UiFacade.__init__(self, title)
         model.add_observer(self)
 
         #---  Add en empty main menu to the root window.

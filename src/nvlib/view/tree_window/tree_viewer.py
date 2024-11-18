@@ -40,7 +40,7 @@ import tkinter as tk
 import tkinter.font as tkFont
 
 
-class TreeViewer(SubController, Observer, ttk.Frame):
+class TreeViewer(ttk.Frame, Observer, SubController):
     """Widget for novelibre tree view."""
     COLORING_MODES = [_('None'), _('Status'), _('Work phase')]
     # List[str] -- Section row coloring modes.
@@ -87,8 +87,12 @@ class TreeViewer(SubController, Observer, ttk.Frame):
             parent -- parent widget for displaying the tree view.
             view -- GUI class reference.        
         """
-        SubController.__init__(self, model, view, controller)
-        ttk.Frame.__init__(self, parent, **kw)
+        super().__init__(parent, **kw)
+
+        self._mdl = model
+        self._ui = view
+        self._ctrl = controller
+
         self._wordsTotal = None
         self.skipUpdate = False
 

@@ -29,14 +29,16 @@ from nvlib.view.properties_window.project_view import ProjectView
 from nvlib.view.properties_window.stage_view import StageView
 
 
-class PropertiesViewer(SubController, ttk.Frame):
+class PropertiesViewer(ttk.Frame, SubController):
     """A window viewing the selected element's properties."""
 
     def __init__(self, parent, model, view, controller, **kw):
-        SubController.__init__(self, model, view, controller)
-        self._clients = []
-
         ttk.Frame.__init__(self, parent, **kw)
+        self._mdl = model
+        self._ui = view
+        self._ctrl = controller
+
+        self._clients = []
 
         # Call a factory method to instantiate and register one view component per element type.
         self._noView = self._make_view(NoView)

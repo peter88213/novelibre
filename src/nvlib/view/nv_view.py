@@ -75,8 +75,10 @@ class NvView(ViewBase, SubController):
 
     def __init__(self, model, controller, title):
         """Extends the superclass constructor."""
-        ViewBase.__init__(self, model, controller, title)
-        SubController.__init__(self, model, self, controller)
+        super().__init__(model, controller, title)
+
+        self._mdl = model
+        self._ctrl = controller
 
         #--- Create the tk root window and set the size.
         if prefs.get('root_geometry', None):

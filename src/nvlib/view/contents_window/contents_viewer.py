@@ -17,7 +17,7 @@ from nvlib.view.contents_window.rich_text_nv import RichTextNv
 import tkinter as tk
 
 
-class ContentsViewer(SubController, Observer, RichTextNv):
+class ContentsViewer(RichTextNv, Observer, SubController):
     """A tkinter text box class for novelibre file viewing.
     
     Show the novel contents in a text box.
@@ -36,8 +36,11 @@ class ContentsViewer(SubController, Observer, RichTextNv):
         Required keyword arguments:
             show_markup: bool 
         """
-        SubController.__init__(self, model, view, controller)
         RichTextNv.__init__(self, parent, **prefs)
+        self._mdl = model
+        self._ui = view
+        self._ctrl = controller
+
         self.pack(expand=True, fill='both')
         self.showMarkup = tk.BooleanVar(parent, value=prefs['show_markup'])
         ttk.Checkbutton(parent, text=_('Show markup'), variable=self.showMarkup).pack(anchor='w')

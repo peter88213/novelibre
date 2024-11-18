@@ -14,7 +14,7 @@ from nvlib.plugin.rejected_plugin import RejectedPlugin
 from nvlib.novx_globals import _
 
 
-class PluginCollection(SubController, dict):
+class PluginCollection(dict, SubController):
     """A collection of plugin modules.
         
     Represents a dictionary with 
@@ -43,7 +43,6 @@ class PluginCollection(SubController, dict):
         Extends the superclass constructor.
         """
         dict.__init__(self)
-        SubController.__init__(self, model, view, controller)
         self._mdl = model
         self._ui = view
         self._ctrl = controller

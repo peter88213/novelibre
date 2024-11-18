@@ -19,7 +19,7 @@ from nvlib.nv_globals import prefs
 from nvlib.view.widgets.collection_box import CollectionBox
 
 
-class BasicView(SubController, Observer, ttk.Frame):
+class BasicView(ttk.Frame, Observer, SubController):
     """Abstract base class for viewing tree element properties.
     
     Adds to the right pane:
@@ -44,8 +44,11 @@ class BasicView(SubController, Observer, ttk.Frame):
         - Initialize element-specific tk entry data.
         - Place element-specific widgets in the element's info window.
         """
-        SubController.__init__(self, model, view, controller)
-        ttk.Frame.__init__(self, parent, **kw)
+        super().__init__(parent, **kw)
+
+        self._mdl = model
+        self._ui = view
+        self._ctrl = controller
 
         self._elementId = None
         self._element = None
