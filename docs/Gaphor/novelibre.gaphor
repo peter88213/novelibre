@@ -162,6 +162,7 @@ controlflow {
 <ref refid="7f9739df-9adc-11ef-af09-70d82353e511"/>
 <ref refid="3acaa884-9f38-11ef-b671-70d82353e511"/>
 <ref refid="face1b3e-9adb-11ef-8352-70d82353e511"/>
+<ref refid="b21df70c-a581-11ef-bb08-70d82353e511"/>
 </reflist>
 </ownedType>
 <package>
@@ -551,7 +552,7 @@ controlflow {
 <ref refid="4587e989-9b68-11ef-8eb2-70d82353e511"/>
 <ref refid="30f74fa5-9d18-11ef-9720-70d82353e511"/>
 <ref refid="eb50d9c5-9edf-11ef-bbb9-70d82353e511"/>
-<ref refid="d6a049ba-a515-11ef-b9a5-70d82353e511"/>
+<ref refid="cdc1b159-a581-11ef-aae7-70d82353e511"/>
 </reflist>
 </specialization>
 </Class>
@@ -1401,9 +1402,10 @@ controlflow {
 <ref refid="03750884-9ede-11ef-b7b8-70d82353e511"/>
 <ref refid="e4af2dca-9ee4-11ef-8481-70d82353e511"/>
 <ref refid="fbbdbc19-9ee5-11ef-b6f4-70d82353e511"/>
+<ref refid="be98b077-a581-11ef-8ffb-70d82353e511"/>
+<ref refid="8a90246a-9b68-11ef-8a59-70d82353e511"/>
 <ref refid="fd0e9afd-9b60-11ef-ac76-70d82353e511"/>
 <ref refid="058ce96c-9b61-11ef-b2a9-70d82353e511"/>
-<ref refid="8a90246a-9b68-11ef-8a59-70d82353e511"/>
 <ref refid="6e05c3a9-9b66-11ef-a35e-70d82353e511"/>
 <ref refid="6d52f10e-9b6b-11ef-9638-70d82353e511"/>
 <ref refid="b987f256-9b6b-11ef-92f9-70d82353e511"/>
@@ -1420,6 +1422,7 @@ controlflow {
 <ref refid="243a08bf-9ee6-11ef-8401-70d82353e511"/>
 <ref refid="3194254a-9ee6-11ef-acf8-70d82353e511"/>
 <ref refid="71863e1b-a577-11ef-ac5f-70d82353e511"/>
+<ref refid="cce8cc03-a581-11ef-843f-70d82353e511"/>
 </reflist>
 </ownedPresentation>
 </Diagram>
@@ -1427,11 +1430,11 @@ controlflow {
 <generalization>
 <reflist>
 <ref refid="061ba653-9b61-11ef-a4af-70d82353e511"/>
-<ref refid="d6a049ba-a515-11ef-b9a5-70d82353e511"/>
+<ref refid="c58760f4-a581-11ef-a0e1-70d82353e511"/>
 </reflist>
 </generalization>
 <name>
-<val>NvView</val>
+<val>NvMainView</val>
 </name>
 <ownedAttribute>
 <reflist>
@@ -1571,19 +1574,19 @@ controlflow {
 <val>0</val>
 </orthogonal>
 <subject>
-<ref refid="d6a049ba-a515-11ef-b9a5-70d82353e511"/>
+<ref refid="c58760f4-a581-11ef-a0e1-70d82353e511"/>
 </subject>
 <matrix>
 <val>(1.0, 0.0, 0.0, 1.0, 782.0, 187.0)</val>
 </matrix>
 <points>
-<val>[(194.0, 560.1130574644203), (433.18029739776966, 422.0321753786418)]</val>
+<val>[(194.0, 560.1130574644203), (194.0, 315.5)]</val>
 </points>
 <head-connection>
 <ref refid="c1bdcb3b-9b60-11ef-9de6-70d82353e511"/>
 </head-connection>
 <tail-connection>
-<ref refid="87157060-9b61-11ef-ae5a-70d82353e511"/>
+<ref refid="be98b077-a581-11ef-8ffb-70d82353e511"/>
 </tail-connection>
 </GeneralizationItem>
 <GeneralizationItem id="058ce96c-9b61-11ef-b2a9-70d82353e511">
@@ -7573,19 +7576,6 @@ controlflow {
 <ref refid="face1b3e-9adb-11ef-8352-70d82353e511"/>
 </subject>
 </ClassItem>
-<Generalization id="d6a049ba-a515-11ef-b9a5-70d82353e511">
-<general>
-<ref refid="face1b3e-9adb-11ef-8352-70d82353e511"/>
-</general>
-<presentation>
-<reflist>
-<ref refid="fd0e9afd-9b60-11ef-ac76-70d82353e511"/>
-</reflist>
-</presentation>
-<specific>
-<ref refid="c1bd54d0-9b60-11ef-8736-70d82353e511"/>
-</specific>
-</Generalization>
 <Property id="22b6ea46-a573-11ef-9651-70d82353e511">
 <class_>
 <ref refid="7f9739df-9adc-11ef-af09-70d82353e511"/>
@@ -7830,4 +7820,99 @@ controlflow {
 <val>_ctrl</val>
 </name>
 </Property>
+<Class id="b21df70c-a581-11ef-bb08-70d82353e511">
+<generalization>
+<reflist>
+<ref refid="cdc1b159-a581-11ef-aae7-70d82353e511"/>
+</reflist>
+</generalization>
+<name>
+<val>NvMainViewCtrl</val>
+</name>
+<package>
+<ref refid="bafd1da1-9ada-11ef-a467-70d82353e511"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="be98b077-a581-11ef-8ffb-70d82353e511"/>
+</reflist>
+</presentation>
+<specialization>
+<reflist>
+<ref refid="c58760f4-a581-11ef-a0e1-70d82353e511"/>
+</reflist>
+</specialization>
+</Class>
+<ClassItem id="be98b077-a581-11ef-8ffb-70d82353e511">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 924.5, 432.5)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>134.0</val>
+</width>
+<height>
+<val>70.0</val>
+</height>
+<diagram>
+<ref refid="057140eb-9ae6-11ef-838b-70d82353e511"/>
+</diagram>
+<subject>
+<ref refid="b21df70c-a581-11ef-bb08-70d82353e511"/>
+</subject>
+</ClassItem>
+<Generalization id="c58760f4-a581-11ef-a0e1-70d82353e511">
+<general>
+<ref refid="b21df70c-a581-11ef-bb08-70d82353e511"/>
+</general>
+<presentation>
+<reflist>
+<ref refid="fd0e9afd-9b60-11ef-ac76-70d82353e511"/>
+</reflist>
+</presentation>
+<specific>
+<ref refid="c1bd54d0-9b60-11ef-8736-70d82353e511"/>
+</specific>
+</Generalization>
+<GeneralizationItem id="cce8cc03-a581-11ef-843f-70d82353e511">
+<diagram>
+<ref refid="057140eb-9ae6-11ef-838b-70d82353e511"/>
+</diagram>
+<horizontal>
+<val>0</val>
+</horizontal>
+<orthogonal>
+<val>0</val>
+</orthogonal>
+<subject>
+<ref refid="cdc1b159-a581-11ef-aae7-70d82353e511"/>
+</subject>
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 1225.0, 462.1055013277497)</val>
+</matrix>
+<points>
+<val>[(-166.5, 0.0), (-9.819702602230336, 0.0)]</val>
+</points>
+<head-connection>
+<ref refid="be98b077-a581-11ef-8ffb-70d82353e511"/>
+</head-connection>
+<tail-connection>
+<ref refid="87157060-9b61-11ef-ae5a-70d82353e511"/>
+</tail-connection>
+</GeneralizationItem>
+<Generalization id="cdc1b159-a581-11ef-aae7-70d82353e511">
+<general>
+<ref refid="face1b3e-9adb-11ef-8352-70d82353e511"/>
+</general>
+<presentation>
+<reflist>
+<ref refid="cce8cc03-a581-11ef-843f-70d82353e511"/>
+</reflist>
+</presentation>
+<specific>
+<ref refid="b21df70c-a581-11ef-bb08-70d82353e511"/>
+</specific>
+</Generalization>
 </gaphor>

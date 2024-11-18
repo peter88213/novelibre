@@ -13,7 +13,7 @@ from nvlib.view.properties_window.basic_view import BasicView
 import tkinter as tk
 
 
-class TurningPointView(BasicView):
+class PlotPointView(BasicView):
     """Class for viewing and editing plot points.
 
     Adds to the right pane:
