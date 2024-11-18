@@ -3,7 +3,7 @@
 Test the odt export.
 
 For further information see https://github.com/peter88213/novelibre
-License: GNU LGPLv3 (https://www.gnu.org/licenses/lgpl-3.0.en.html)
+License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.model.odt.odt_w_export import OdtWExport
 from testlib.export_test import ExportTest
