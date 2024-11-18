@@ -36,7 +36,8 @@ class ContentsViewer(RichTextNv, Observer, SubController):
         Required keyword arguments:
             show_markup: bool 
         """
-        RichTextNv.__init__(self, parent, **prefs)
+        super().__init__(parent, **prefs)
+
         self._mdl = model
         self._ui = view
         self._ctrl = controller

@@ -4,10 +4,11 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from nvlib.controller.item_view_ctrl import ItemViewCtrl
 from nvlib.view.properties_window.world_element_view import WorldElementView
 
 
-class ItemView(WorldElementView):
+class ItemView(WorldElementView, ItemViewCtrl):
     """Class for viewing and editing item properties."""
 
     def __init__(self, parent, model, view, controller):
@@ -18,10 +19,3 @@ class ItemView(WorldElementView):
         super().__init__(parent, model, view, controller)
         self._prefsShowLinks = 'show_it_links'
 
-    def set_data(self, elementId):
-        """Update the view with element's data.
-        
-        Extends the superclass constructor.
-        """
-        self._element = self._mdl.novel.items[elementId]
-        super().set_data(elementId)

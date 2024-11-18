@@ -86,7 +86,7 @@ class NvMainViewCtrl(SubController):
         self.viewMenu.entryconfig(_('Show Project notes'), state='normal')
 
     def lock(self):
-        """Make the "locked" state visible.
+        """Make the "locked" state take effect.
         
         Overrides the superclass method.
         """
@@ -105,7 +105,7 @@ class NvMainViewCtrl(SubController):
         self.mainMenu.entryconfig(_('Export'), state='disabled')
 
     def unlock(self):
-        """Make the "unlocked" state visible.
+        """Make the "unlocked" state take effect.
         
         Overrides the superclass method.
         """

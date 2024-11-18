@@ -10,7 +10,7 @@ import webbrowser
 from mvclib.view.path_bar import PathBar
 from mvclib.view.set_icon_tk import set_icon
 from mvclib.view.view_base import ViewBase
-from nvlib.controller.nv_main_view_ctrl import NvMainViewCtrl
+from nvlib.controller.main_view.nv_main_view_ctrl import NvMainViewCtrl
 from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from nvlib.novx_globals import CHAPTERS_SUFFIX
 from nvlib.novx_globals import CHARACTERS_SUFFIX

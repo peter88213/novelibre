@@ -5,36 +5,16 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.view.properties_window.basic_view import BasicView
+from nvlib.controller.properties_window.no_view_ctrl import NoViewCtrl
 
 
-class NoView(BasicView):
-    """Class for viewing and editing location properties."""
+class NoView(BasicView, NoViewCtrl):
+    """Class for viewing nothing."""
 
     def focus_title(self):
         """Do not try to give the focus to a non-existent entry.
         
         Overwrites the superclass method.
-        """
-        pass
-
-    def lock(self):
-        """Inhibit element change.
-
-        Overrides the superclass method.
-        """
-        pass
-
-    def set_data(self, elementId):
-        """Update the view with element's data.
-        
-        Overrides the superclass method.
-        """
-        pass
-
-    def unlock(self):
-        """Enable element change.
-
-        Overrides the superclass method.
         """
         pass
 

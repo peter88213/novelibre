@@ -8,11 +8,12 @@ from tkinter import ttk
 
 from mvclib.widgets.label_entry import LabelEntry
 from mvclib.widgets.my_string_var import MyStringVar
+from nvlib.controller.properties_window.plot_line_view_ctrl import PlotLineViewCtrl
 from nvlib.novx_globals import _
 from nvlib.view.properties_window.basic_view import BasicView
 
 
-class PlotLineView(BasicView):
+class PlotLineView(BasicView, PlotLineViewCtrl):
     """Class for viewing and editing plot line properties.
     
     Adds to the right pane:
@@ -34,7 +35,7 @@ class PlotLineView(BasicView):
         # 'Short name' entry.
         self._shortName = MyStringVar()
         self._shortNameEntry = LabelEntry(
-            self._elementInfoWindow,
+            self.elementInfoWindow,
             text=_('Short name'),
             textvariable=self._shortName,
             command=self.apply_changes,
@@ -44,7 +45,7 @@ class PlotLineView(BasicView):
         inputWidgets.append(self._shortNameEntry)
 
         # Frame for plot line specific widgets.
-        self._plotFrame = ttk.Frame(self._elementInfoWindow)
+        self._plotFrame = ttk.Frame(self.elementInfoWindow)
         self._plotFrame.pack(fill='x')
         self._nrSections = ttk.Label(self._plotFrame)
         self._nrSections.pack(side='left')
@@ -54,37 +55,9 @@ class PlotLineView(BasicView):
 
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)
-            self._inputWidgets.append(widget)
+            self.inputWidgets.append(widget)
 
         self._prefsShowLinks = 'show_pl_links'
-
-    def apply_changes(self, event=None):
-        """Apply changes.
-        
-        Extends the superclass method.
-        """
-        if self._element is None:
-            return
-
-        super().apply_changes()
-
-        # 'Short name' entry.
-        self._element.shortName = self._shortName.get()
-
-    def set_data(self, elementId):
-        """Update the view with element's data.
-        
-        Extends the superclass constructor.
-        """
-        self._element = self._mdl.novel.plotLines[elementId]
-        super().set_data(elementId)
-
-        # 'Plot line name' entry.
-        self._shortName.set(self._element.shortName)
-
-        # Frame for plot line specific widgets.
-        if self._element.sections is not None:
-            self._nrSections['text'] = f'{_("Number of sections")}: {len(self._element.sections)}'
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""
@@ -94,24 +67,4 @@ class PlotLineView(BasicView):
         self._add_separator()
         self._create_notes_window()
         self._create_button_bar()
-
-    def _remove_sections(self):
-        """Remove all section references.
-        
-        Remove also all section associations from the children points.
-        """
-        if self._ui.ask_yes_no(f'{_("Remove all sections from the plot line")} "{self._element.shortName}"?'):
-            # Remove section back references.
-            if self._element.sections:
-                self.doNotUpdate = True
-                for scId in self._element.sections:
-                    self._mdl.novel.sections[scId].scPlotLines.remove(self._elementId)
-                for ppId in self._mdl.novel.tree.get_children(self._elementId):
-                    scId = self._mdl.novel.plotPoints[ppId].sectionAssoc
-                    if scId is not None:
-                        del(self._mdl.novel.sections[scId].scPlotPoints[ppId])
-                        self._mdl.novel.plotPoints[ppId].sectionAssoc = None
-                self._element.sections = []
-                self.set_data(self._elementId)
-                self.doNotUpdate = False
 

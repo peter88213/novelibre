@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from nvlib.controller.properties_viewer_ctrl import PropertiesViewerCtrl
+from nvlib.controller.properties_window.properties_viewer_ctrl import PropertiesViewerCtrl
 
 
 class PropertiesViewer(ttk.Frame, PropertiesViewerCtrl):

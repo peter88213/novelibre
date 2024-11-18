@@ -4,7 +4,6 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from datetime import date
 from tkinter import ttk
 
 from mvclib.widgets.folding_frame import FoldingFrame
@@ -14,9 +13,10 @@ from mvclib.widgets.text_box import TextBox
 from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
 from nvlib.view.properties_window.world_element_view import WorldElementView
+from nvlib.controller.properties_window.character_view_ctrl import CharacterViewCtrl
 
 
-class CharacterView(WorldElementView):
+class CharacterView(WorldElementView, CharacterViewCtrl):
     """Class for viewing and editing character properties.
 
     Adds to the right pane:
@@ -47,10 +47,10 @@ class CharacterView(WorldElementView):
         self._fullNameEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._fullNameEntry)
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- 'Bio' frame
-        self._bioFrame = FoldingFrame(self._elementInfoWindow, '', self._toggle_bio_window)
+        self._bioFrame = FoldingFrame(self.elementInfoWindow, '', self._toggle_bio_window)
 
         self._birthDate = MyStringVar()
         self._birthDateEntry = LabelEntry(
@@ -90,10 +90,10 @@ class CharacterView(WorldElementView):
         self._bioEntry.pack(fill='x')
         inputWidgets.append(self._bioEntry)
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- 'Goals' entry.
-        self._goalsFrame = FoldingFrame(self._elementInfoWindow, '', self._toggle_goals_window)
+        self._goalsFrame = FoldingFrame(self.elementInfoWindow, '', self._toggle_goals_window)
         self._goalsEntry = TextBox(self._goalsFrame,
             wrap='word',
             undo=True,
@@ -112,97 +112,9 @@ class CharacterView(WorldElementView):
 
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)
-            self._inputWidgets.append(widget)
+            self.inputWidgets.append(widget)
 
         self._prefsShowLinks = 'show_cr_links'
-
-    def apply_changes(self, event=None):
-        """Apply changes.
-        
-        Extends the superclass method.
-        """
-        if self._element is None:
-            return
-
-        super().apply_changes()
-
-        # 'Full name' entry.
-        self._element.fullName = self._fullName.get()
-
-        # 'Bio' frame.
-        if self._bioEntry.hasChanged:
-            self._element.bio = self._bioEntry.get_text()
-
-        birthDateStr = self._birthDate.get()
-        if not birthDateStr:
-            self._element.birthDate = None
-        elif birthDateStr != self._element.birthDate:
-            try:
-                date.fromisoformat(birthDateStr)
-            except:
-                self._birthDate.set(self._element.birthDate)
-                self._ui.show_error(
-                    f'{_("Wrong date")}: "{birthDateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}',
-                    title=_('Input rejected')
-                    )
-            else:
-                self._element.birthDate = birthDateStr
-
-        deathDateStr = self._deathDate.get()
-        if not deathDateStr:
-            self._element.deathDate = None
-        elif deathDateStr != self._element.deathDate:
-            try:
-                date.fromisoformat(deathDateStr)
-            except:
-                self._deathDate.set(self._element.deathDate)
-                self._ui.show_error(
-                    f'{_("Wrong date")}: "{deathDateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}',
-                    title=_('Input rejected')
-                    )
-            else:
-                self._element.deathDate = deathDateStr
-
-        # 'Goals' entry.
-        if self._goalsEntry.hasChanged:
-            self._element.goals = self._goalsEntry.get_text()
-
-    def set_data(self, elementId):
-        """Update the view with element's data.
-        
-        Extends the superclass constructor.
-        """
-        self._element = self._mdl.novel.characters[elementId]
-        super().set_data(elementId)
-
-        # 'Full name' entry.
-        self._fullName.set(self._element.fullName)
-
-        #--- 'Bio' entry
-        if self._mdl.novel.customChrBio:
-            self._bioFrame.buttonText = self._mdl.novel.customChrBio
-        else:
-            self._bioFrame.buttonText = _('Bio')
-        if prefs['show_cr_bio']:
-            self._bioFrame.show()
-        else:
-            self._bioFrame.hide()
-        self._bioEntry.set_text(self._element.bio)
-
-        #--- Birth date/death date.
-        self._birthDate.set(self._element.birthDate)
-        self._deathDate.set(self._element.deathDate)
-
-        #--- 'Goals' entry.
-        if self._mdl.novel.customChrGoals:
-            self._goalsFrame.buttonText = self._mdl.novel.customChrGoals
-        else:
-            self._goalsFrame.buttonText = _('Goals')
-        if prefs['show_cr_goals']:
-            self._goalsFrame.show()
-        else:
-            self._goalsFrame.hide()
-        self._goalsEntry.set_text(self._element.goals)
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""

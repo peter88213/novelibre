@@ -11,7 +11,10 @@ from mvclib.controller.sub_controller import SubController
 class ToolbarCtrl(SubController):
 
     def disable_menu(self):
-        """Disable toolbar buttons when no project is open."""
+        """Disable toolbar buttons when no project is open.        
+        
+        Overrides the superclass method.
+        """
         self.addChildButton.config(state='disabled')
         self.addElementButton.config(state='disabled')
         self.addParentButton.config(state='disabled')
@@ -30,7 +33,10 @@ class ToolbarCtrl(SubController):
         self.viewProjectnotesButton.config(state='disabled')
 
     def enable_menu(self):
-        """Enable toolbar buttons when a project is open."""
+        """Enable toolbar buttons when a project is open.        
+        
+        Overrides the superclass method.
+        """
         self.addChildButton.config(state='normal')
         self.addElementButton.config(state='normal')
         self.addParentButton.config(state='normal')
@@ -49,6 +55,10 @@ class ToolbarCtrl(SubController):
         self.viewProjectnotesButton.config(state='normal')
 
     def lock(self):
+        """Make the "locked" state take effect.
+        
+        Overrides the superclass method.
+        """
         self.manuscriptButton.config(state='disabled')
         self.addElementButton.config(state='disabled')
         self.addChildButton.config(state='disabled')
@@ -56,6 +66,10 @@ class ToolbarCtrl(SubController):
         self.deleteElementButton.config(state='disabled')
 
     def unlock(self):
+        """Make the "unlocked" state take effect.
+        
+        Overrides the superclass method.
+        """
         self.manuscriptButton.config(state='normal')
         self.addElementButton.config(state='normal')
         self.addChildButton.config(state='normal')

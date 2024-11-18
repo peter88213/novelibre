@@ -6,14 +6,13 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from nvlib.novx_globals import CH_ROOT
-from nvlib.novx_globals import SECTION_PREFIX
+from nvlib.controller.properties_window.plot_point_view_ctrl import PlotPointViewCtrl
 from nvlib.novx_globals import _
 from nvlib.view.properties_window.basic_view import BasicView
 import tkinter as tk
 
 
-class PlotPointView(BasicView):
+class PlotPointView(BasicView, PlotPointViewCtrl):
     """Class for viewing and editing plot points.
 
     Adds to the right pane:
@@ -33,10 +32,10 @@ class PlotPointView(BasicView):
         self._treeSelectBinding = None
         self._uiEscBinding = None
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
         # Associated section display.
-        self._sectionFrame = ttk.Frame(self._elementInfoWindow)
+        self._sectionFrame = ttk.Frame(self.elementInfoWindow)
         self._sectionFrame.pack(anchor='w', fill='x')
         ttk.Label(self._sectionFrame, text=f"{_('Section')}:").pack(anchor='w')
         self.sectionAssocTitle = tk.Label(self._sectionFrame, anchor='w', bg='white')
@@ -53,53 +52,9 @@ class PlotPointView(BasicView):
         ttk.Button(self._sectionFrame, text=_('Go to section'), command=self._select_assigned_section).pack(side='left', fill='x', expand=True)
 
         for widget in inputWidgets:
-            self._inputWidgets.append(widget)
+            self.inputWidgets.append(widget)
 
         self._prefsShowLinks = 'show_pp_links'
-
-    def set_data(self, elementId):
-        """Update the widgets with element's data.
-        
-        Extends the superclass constructor.
-        """
-        self._element = self._mdl.novel.plotPoints[elementId]
-        super().set_data(elementId)
-
-        # Associated section display.
-        try:
-            sectionTitle = self._mdl.novel.sections[self._element.sectionAssoc].title
-        except:
-            sectionTitle = ''
-        self.sectionAssocTitle['text'] = sectionTitle
-
-    def _assign_section(self, event=None):
-        """Associate the selected section with the Plot point.
-        
-        End the picking mode after the section is assigned.
-        """
-        nodeId = self._ui.tv.tree.selection()[0]
-        if nodeId.startswith(SECTION_PREFIX):
-            if self._mdl.novel.sections[nodeId].scType == 0:
-                self._clear_assignment()
-                # Associate the point with the section.
-                plId = self._ui.tv.tree.parent(self._elementId)
-                arcSections = self._mdl.novel.plotLines[plId].sections
-                if arcSections is None:
-                    arcSections = [nodeId]
-                elif not nodeId in arcSections:
-                    arcSections.append(nodeId)
-                self._mdl.novel.plotLines[plId].sections = arcSections
-                self._mdl.novel.sections[nodeId].scPlotPoints[self._elementId] = plId
-                if not plId in self._mdl.novel.sections[nodeId].scPlotLines:
-                    self._mdl.novel.sections[nodeId].scPlotLines.append(plId)
-                self._element.sectionAssoc = nodeId
-
-    def _clear_assignment(self):
-        """Unassign a section from the Plot point."""
-        scId = self._element.sectionAssoc
-        if scId is not None:
-            del(self._mdl.novel.sections[scId].scPlotPoints[self._elementId])
-            self._element.sectionAssoc = None
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""
@@ -109,16 +64,4 @@ class PlotPointView(BasicView):
         self._add_separator()
         self._create_notes_window()
         self._create_button_bar()
-
-    def _select_assigned_section(self):
-        """Select the section assigned to the plot point."""
-        if self._element.sectionAssoc is not None:
-            targetNode = self._element.sectionAssoc
-            self._ui.tv.see_node(targetNode)
-            self._ui.tv.tree.selection_set(targetNode)
-
-    def _pick_section(self):
-        """Enter the "associate section" selection mode."""
-        self._start_picking_mode(command=self._assign_section)
-        self._ui.tv.see_node(CH_ROOT)
 

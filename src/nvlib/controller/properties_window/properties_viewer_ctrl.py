@@ -29,7 +29,6 @@ from nvlib.view.properties_window.stage_view import StageView
 
 
 class PropertiesViewerCtrl(SubController):
-    """A window viewing the selected element's properties."""
 
     def apply_changes(self, event=None):
         # This is called by the controller to make sure changes take effect
@@ -112,7 +111,7 @@ class PropertiesViewerCtrl(SubController):
         """
         if not self._activeView.doNotUpdate:
             try:
-                self.show_properties(self._activeView._elementId)
+                self.show_properties(self._activeView.elementId)
             except:
                 pass
 

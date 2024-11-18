@@ -7,7 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from nvlib.controller.toolbar_ctrl import ToolbarCtrl
+from nvlib.controller.toolbar.toolbar_ctrl import ToolbarCtrl
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
 from nvlib.novx_globals import IT_ROOT
