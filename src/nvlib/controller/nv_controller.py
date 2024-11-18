@@ -488,7 +488,7 @@ class NvController(ControllerBase):
         - trigger plugins.
         """
         self.update_status()
-        self._ui.propertiesView.get_data()
+        self._ui.propertiesView.apply_changes()
         if self._mdl.isModified and not doNotSave:
             doSave = self._ui.ask_yes_no_cancel(_('Save changes?'))
             if doSave is None:
@@ -595,7 +595,7 @@ class NvController(ControllerBase):
             suffix -- str: Document type suffix.
         """
         self._ui.restore_status()
-        self._ui.propertiesView.get_data()
+        self._ui.propertiesView.apply_changes()
         if self._mdl.prjFile.filePath is None:
             if not self.save_project():
                 return
@@ -950,7 +950,7 @@ class NvController(ControllerBase):
 
     def refresh_views(self, event=None):
         """Update all registered views."""
-        self._ui.propertiesView.get_data()
+        self._ui.propertiesView.apply_changes()
         self._mdl.renumber_chapters()
         self._mdl.prjFile.adjust_section_types()
         self._mdl.novel.update_plot_lines()
@@ -1024,7 +1024,7 @@ class NvController(ControllerBase):
             )
         if fileName:
             if self._mdl.prjFile is not None:
-                self._ui.propertiesView.get_data()
+                self._ui.propertiesView.apply_changes()
                 try:
                     self._mdl.save_project(fileName)
                 except Error as ex:
@@ -1056,7 +1056,7 @@ class NvController(ControllerBase):
         if self._mdl.prjFile.has_changed_on_disk() and not self._ui.ask_yes_no(_('File has changed on disk. Save anyway?')):
             return False
 
-        self._ui.propertiesView.get_data()
+        self._ui.propertiesView.apply_changes()
         try:
             self._mdl.save_project()
         except Error as ex:
@@ -1182,7 +1182,7 @@ class NvController(ControllerBase):
             return False
 
         self._ui.restore_status()
-        self._ui.propertiesView.get_data()
+        self._ui.propertiesView.apply_changes()
         reporter = NvHtmlReporter()
         try:
             reporter.run(self._mdl.prjFile, suffix, tempdir=self.tempDir)

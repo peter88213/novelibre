@@ -30,12 +30,12 @@ from nvlib.view.properties_window.stage_view import StageView
 
 class PropertiesViewerCtrl(SubController):
 
-    def get_data(self, event=None):
+    def apply_changes(self, event=None):
         # This is called by the controller to make sure changes take effect
         # e.g. when starting an export while a property entry still has the focus.
         if not self._ctrl.isLocked:
             self._activeView.doNotUpdate = True
-            self._activeView.get_data()
+            self._activeView.apply_changes()
             self._activeView.doNotUpdate = False
 
     def focus_title(self):
@@ -70,11 +70,6 @@ class PropertiesViewerCtrl(SubController):
         self._activeView = self._noView
         self._activeView.set_data(None)
         self._activeView.doNotUpdate = False
-
-    def unlock(self):
-        """Enable changes on the model."""
-        for client in self._clients:
-            client.unlock()
 
     def show_properties(self, nodeId):
         """Show the properties of the selected element."""
@@ -114,6 +109,11 @@ class PropertiesViewerCtrl(SubController):
                 self.show_properties(self._activeView.elementId)
             except:
                 pass
+
+    def unlock(self):
+        """Enable changes on the model."""
+        for client in self._clients:
+            client.unlock()
 
     def _make_view(self, viewClass):
         """Return a viewClass instance that is registered as a local view..

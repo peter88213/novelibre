@@ -9,7 +9,7 @@ from mvclib.controller.sub_controller import SubController
 
 class NoViewCtrl(SubController):
 
-    def get_data(self, event=None):
+    def apply_changes(self, event=None):
         """Apply changes."""
         pass
 

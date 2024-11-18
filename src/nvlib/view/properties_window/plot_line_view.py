@@ -38,7 +38,7 @@ class PlotLineView(BasicView, PlotLineViewCtrl):
             self._elementInfoWindow,
             text=_('Short name'),
             textvariable=self.shortNameVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=22
             )
         self._shortNameEntry.pack(anchor='w')
@@ -54,7 +54,7 @@ class PlotLineView(BasicView, PlotLineViewCtrl):
         inputWidgets.append(self._clearButton)
 
         for widget in inputWidgets:
-            widget.bind('<FocusOut>', self.get_data)
+            widget.bind('<FocusOut>', self.apply_changes)
             self.inputWidgets.append(widget)
 
         self.prefsShowLinks = 'show_pl_links'

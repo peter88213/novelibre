@@ -41,7 +41,7 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
             self._fullNameFrame,
             text=_('Full name'),
             textvariable=self.fullNameVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=self._LBL_X
             )
         self._fullNameEntry.pack(anchor='w', pady=2)
@@ -57,7 +57,7 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
             self.bioFrame,
             text=_('Birth date'),
             textvariable=self._birthDate,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=self._LBL_X
             )
         self._birthDateEntry.pack(anchor='w', pady=2)
@@ -68,7 +68,7 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
             self.bioFrame,
             text=_('Death date'),
             textvariable=self._deathDate,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=self._LBL_X
             )
         self._deathDateEntry.pack(anchor='w', pady=2)
@@ -111,7 +111,7 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
         inputWidgets.append(self._goalsEntry)
 
         for widget in inputWidgets:
-            widget.bind('<FocusOut>', self.get_data)
+            widget.bind('<FocusOut>', self.apply_changes)
             self.inputWidgets.append(widget)
 
         self.prefsShowLinks = 'show_cr_links'

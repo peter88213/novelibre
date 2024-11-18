@@ -15,7 +15,7 @@ class ChapterViewCtrl(BasicViewCtrl):
     - A "Do not auto-number" checkbox.
     """
 
-    def get_data(self, event=None):
+    def apply_changes(self, event=None):
         """Apply changes.
         
         Extends the superclass method.
@@ -26,7 +26,7 @@ class ChapterViewCtrl(BasicViewCtrl):
         if self.element.isTrash:
             return
 
-        super().get_data()
+        super().apply_changes()
 
         #--- 'Unused' checkbox.
         if self.isUnusedVar.get():

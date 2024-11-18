@@ -36,7 +36,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self._elementInfoWindow,
             text=_('Author'),
             textvariable=self.authorNameVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=20
             )
         self._authorNameEntry.pack(anchor='w')
@@ -55,7 +55,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self.languageFrame,
             text=_('Language code'),
             textvariable=self.languageCodeVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=20
             )
         self._languageCodeEntry.pack(anchor='w')
@@ -66,7 +66,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self.languageFrame,
             text=_('Country code'),
             textvariable=self.countryCodeVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=20
             )
         self._countryCodeEntry.pack(anchor='w')
@@ -85,7 +85,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             variable=self.renumberChaptersVar,
             onvalue=True,
             offvalue=False,
-            command=self.get_data,
+            command=self.apply_changes,
             )
         self._renumberChaptersCheckbox.pack(anchor='w')
         inputWidgets.append(self._renumberChaptersCheckbox)
@@ -96,7 +96,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self.numberingFrame,
             text=_('Chapter number prefix'),
             textvariable=self.chapterHeadingPrefixVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=20
             )
         self._chapterHeadingPrefixEntry.pack(anchor='w')
@@ -108,7 +108,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self.numberingFrame,
             text=_('Chapter number suffix'),
             textvariable=self.chapterHeadingSuffixVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=20
             )
         self._chapterHeadingSuffixEntry.pack(anchor='w')
@@ -122,7 +122,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             variable=self.romanChapterNumbersVar,
             onvalue=True,
             offvalue=False,
-            command=self.get_data,
+            command=self.apply_changes,
             )
         self._romanChapterNumbersCheckbox.pack(anchor='w')
         inputWidgets.append(self._romanChapterNumbersCheckbox)
@@ -135,7 +135,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             variable=self.renumberWithinPartsVar,
             onvalue=True,
             offvalue=False,
-            command=self.get_data,
+            command=self.apply_changes,
             )
         self._renumberWithinPartsCheckbox.pack(anchor='w')
         inputWidgets.append(self._renumberWithinPartsCheckbox)
@@ -148,7 +148,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             variable=self.renumberPartsVar,
             onvalue=True,
             offvalue=False,
-            command=self.get_data,
+            command=self.apply_changes,
             )
         self._renumberPartsCheckbox.pack(anchor='w')
         inputWidgets.append(self._renumberPartsCheckbox)
@@ -159,7 +159,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self.numberingFrame,
             text=_('Part number prefix'),
             textvariable=self.partHeadingPrefixVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=20
             )
         self._partHeadingPrefixEntry.pack(anchor='w')
@@ -171,7 +171,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self.numberingFrame,
             text=_('Part number suffix'),
             textvariable=self.partHeadingSuffixVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=20
             )
         self._partHeadingSuffixEntry.pack(anchor='w')
@@ -185,7 +185,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             variable=self.romanPartNumbersVar,
             onvalue=True,
             offvalue=False,
-            command=self.get_data,
+            command=self.apply_changes,
             )
         self._romanPartNumbersCheckbox.pack(anchor='w')
         inputWidgets.append(self._romanPartNumbersCheckbox)
@@ -202,7 +202,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self.renamingsFrame,
             text=_('Plot progress'),
             textvariable=self.customPlotProgressVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=20
             )
         self._customPlotProgressEntry.pack(anchor='w')
@@ -214,7 +214,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self.renamingsFrame,
             text=_('Characterization'),
             textvariable=self.customCharacterizationVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=20
             )
         self._customCharacterizationEntry.pack(anchor='w')
@@ -226,7 +226,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self.renamingsFrame,
             text=_('World building'),
             textvariable=self.customWorldBuildingVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=20
             )
         self._customWorldBuildingEntry.pack(anchor='w')
@@ -241,7 +241,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self.renamingsFrame,
             text=_('Opening'),
             textvariable=self.customGoalVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=20
             )
         self._customGoalEntry.pack(anchor='w')
@@ -253,7 +253,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self.renamingsFrame,
             text=_('Peak em. moment'),
             textvariable=self.customConflictVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=20
             )
         self._customConflictEntry.pack(anchor='w')
@@ -265,7 +265,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self.renamingsFrame,
             text=_('Ending'),
             textvariable=self.customOutcomeVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=20
             )
         self._customOutcomeEntry.pack(anchor='w')
@@ -280,7 +280,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self.renamingsFrame,
             text=_('Bio'),
             textvariable=self.customChrBioVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=20
             )
         self._customChrBioEntry.pack(anchor='w')
@@ -292,7 +292,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self.renamingsFrame,
             text=_('Goals'),
             textvariable=self.customChrGoalsVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=20
             )
         self._customChrGoalsEntry.pack(anchor='w')
@@ -309,7 +309,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self.narrativeTimeFrame,
             text=_('Reference date'),
             textvariable=self.referenceDateVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=20
             )
         self._referenceDateEntry.pack(anchor='w')
@@ -344,7 +344,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             variable=self.saveWordCountVar,
             onvalue=True,
             offvalue=False,
-            command=self.get_data,
+            command=self.apply_changes,
             )
         self._saveWordCountEntry.pack(anchor='w')
         inputWidgets.append(self._saveWordCountEntry)
@@ -357,7 +357,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self.progressFrame,
             text=_('Words to write'),
             textvariable=self.wordTargetVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=20
             )
         self._wordTargetEntry.pack(anchor='w')
@@ -369,7 +369,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self.progressFrame,
             text=_('Starting count'),
             textvariable=self.wordCountStartVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=20
             )
         self._wordCountStartEntry.pack(anchor='w')
@@ -411,13 +411,13 @@ class ProjectView(BasicView, ProjectViewCtrl):
         self.phaseCombobox = LabelCombo(self.progressFrame, lblWidth=20, text=_('Work phase'), textvariable=self.phaseVar, values=[])
         self.phaseCombobox.pack(anchor='w')
         inputWidgets.append(self.phaseCombobox)
-        self.phaseCombobox.bind('<Return>', self.get_data)
+        self.phaseCombobox.bind('<Return>', self.apply_changes)
 
         #--- Cover display
         self._coverFile = None
 
         for widget in inputWidgets:
-            widget.bind('<FocusOut>', self.get_data)
+            widget.bind('<FocusOut>', self.apply_changes)
             self.inputWidgets.append(widget)
 
         self.prefsShowLinks = 'show_pr_links'

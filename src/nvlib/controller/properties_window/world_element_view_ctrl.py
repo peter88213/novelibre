@@ -13,12 +13,12 @@ from nvlib.novx_globals import string_to_list
 
 class WorldElementViewCtrl(BasicViewCtrl, ABC):
 
-    def get_data(self, event=None):
+    def apply_changes(self, event=None):
         """Apply changes of element title, description and notes."""
         if self.element is None:
             return
 
-        super().get_data()
+        super().apply_changes()
 
         # 'AKA' entry.
         self.element.aka = self.akaVar.get()

@@ -123,9 +123,9 @@ class BasicView(ttk.Frame, Observer):
             )
         self.indexCard.bodyBox['height'] = prefs['index_card_height']
         self.indexCard.pack(expand=False, fill='both')
-        self.indexCard.titleEntry.bind('<Return>', self.get_data)
-        self.indexCard.titleEntry.bind('<FocusOut>', self.get_data)
-        self.indexCard.bodyBox.bind('<FocusOut>', self.get_data)
+        self.indexCard.titleEntry.bind('<Return>', self.apply_changes)
+        self.indexCard.titleEntry.bind('<FocusOut>', self.apply_changes)
+        self.indexCard.bodyBox.bind('<FocusOut>', self.apply_changes)
 
     def _create_links_window(self):
         """A folding frame with a "Links" listbox and control buttons."""
@@ -134,7 +134,7 @@ class BasicView(ttk.Frame, Observer):
         self.linksWindow.pack(fill='x')
         self.linkCollection = CollectionBox(
             self.linksWindow,
-            cmdAdd=self._add_link,
+            cmdAdd=self.add_link,
             cmdRemove=self.remove_link,
             cmdOpen=self.open_link,
             cmdActivate=self._activate_link_buttons,
@@ -163,7 +163,7 @@ class BasicView(ttk.Frame, Observer):
             insertbackground=prefs['color_notes_fg'],
             )
         self.notesWindow.pack(expand=True, fill='both')
-        self.notesWindow.bind('<FocusOut>', self.get_data)
+        self.notesWindow.bind('<FocusOut>', self.apply_changes)
 
     def _end_picking_mode(self, event=None):
         if self._pickingMode:

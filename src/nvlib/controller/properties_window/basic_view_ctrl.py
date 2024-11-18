@@ -15,7 +15,7 @@ from nvlib.nv_globals import prefs
 class BasicViewCtrl(SubController):
     _HEIGHT_LIMIT = 10
 
-    def _add_link(self):
+    def add_link(self):
         """Select a link and add it to the list."""
         fileTypes = [
             (_('Image file'), '.jpg'),
@@ -37,7 +37,7 @@ class BasicViewCtrl(SubController):
             links[shortPath] = selectedPath
             self.element.links = links
 
-    def get_data(self, event=None):
+    def apply_changes(self, event=None):
         """Apply changes of element title, description, and notes."""
         if self.element is None:
             return

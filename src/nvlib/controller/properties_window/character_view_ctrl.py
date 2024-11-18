@@ -13,7 +13,7 @@ from nvlib.nv_globals import prefs
 
 class CharacterViewCtrl(WorldElementViewCtrl):
 
-    def get_data(self, event=None):
+    def apply_changes(self, event=None):
         """Apply changes.
         
         Extends the superclass method.
@@ -21,7 +21,7 @@ class CharacterViewCtrl(WorldElementViewCtrl):
         if self.element is None:
             return
 
-        super().get_data()
+        super().apply_changes()
 
         # 'Full name' entry.
         self.element.fullName = self.fullNameVar.get()

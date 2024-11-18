@@ -50,7 +50,7 @@ class SectionView(BasicView, SectionViewCtrl):
             self._elementInfoWindow,
             text=_('Tags'),
             textvariable=self.tagsVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=self._LBL_X
             )
         self._tagsEntry.pack(anchor='w', pady=2)
@@ -145,7 +145,7 @@ class SectionView(BasicView, SectionViewCtrl):
             sectionStartFrame,
             text=_('Date'),
             textvariable=self.startDateVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=self._DATE_TIME_LBL_X
             )
         self._startDateEntry.pack(anchor='w')
@@ -157,7 +157,7 @@ class SectionView(BasicView, SectionViewCtrl):
             sectionStartFrame,
             text=_('Time'),
             textvariable=self.startTimeVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=self._DATE_TIME_LBL_X
             )
         self._startTimeEntry.pack(anchor='w')
@@ -169,7 +169,7 @@ class SectionView(BasicView, SectionViewCtrl):
             sectionStartFrame,
             text=_('Day'),
             textvariable=self.startDayVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=self._DATE_TIME_LBL_X
             )
         self._startDayEntry.pack(anchor='w')
@@ -233,7 +233,7 @@ class SectionView(BasicView, SectionViewCtrl):
             sectionDurationFrame,
             text=_('Days'),
             textvariable=self.lastsDaysVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=self._DATE_TIME_LBL_X
             )
         self._lastsDaysEntry.pack(anchor='w')
@@ -245,7 +245,7 @@ class SectionView(BasicView, SectionViewCtrl):
             sectionDurationFrame,
             text=_('Hours'),
             textvariable=self.lastsHoursVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=self._DATE_TIME_LBL_X
             )
         self._lastsHoursEntry.pack(anchor='w')
@@ -257,7 +257,7 @@ class SectionView(BasicView, SectionViewCtrl):
             sectionDurationFrame,
             text=_('Minutes'),
             textvariable=self.lastsMinutesVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=self._DATE_TIME_LBL_X
             )
         self._lastsMinutesEntry.pack(anchor='w')
@@ -293,7 +293,7 @@ class SectionView(BasicView, SectionViewCtrl):
             )
         self._characterCombobox.pack(anchor='w', pady=2)
         inputWidgets.append(self._characterCombobox)
-        self._characterCombobox.combo.bind('<<ComboboxSelected>>', self.get_data)
+        self._characterCombobox.combo.bind('<<ComboboxSelected>>', self.apply_changes)
         self._vpList = []
 
         #--- 'Unused' checkbox.
@@ -304,7 +304,7 @@ class SectionView(BasicView, SectionViewCtrl):
             variable=self.isUnusedVar,
             onvalue=True,
             offvalue=False,
-            command=self.get_data,
+            command=self.apply_changes,
             )
         self._isUnusedCheckbox.pack(anchor='w')
         inputWidgets.append(self._isUnusedCheckbox)
@@ -317,7 +317,7 @@ class SectionView(BasicView, SectionViewCtrl):
             variable=self.appendToPrevVar,
             onvalue=True,
             offvalue=False,
-            command=self.get_data,
+            command=self.apply_changes,
             )
         self._appendToPrevCheckbox.pack(anchor='w')
         inputWidgets.append(self._appendToPrevCheckbox)
@@ -484,7 +484,7 @@ class SectionView(BasicView, SectionViewCtrl):
         inputWidgets.append(self.outcomeWindow)
 
         for widget in inputWidgets:
-            widget.bind('<FocusOut>', self.get_data)
+            widget.bind('<FocusOut>', self.apply_changes)
             self.inputWidgets.append(widget)
 
     def _activate_arc_buttons(self, event=None):

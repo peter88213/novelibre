@@ -16,37 +16,7 @@ from nvlib.nv_globals import prefs
 class ProjectViewCtrl(BasicViewCtrl):
     """Class for viewing and editing project properties."""
 
-    def dates_to_days(self):
-        """Convert specific section dates to days."""
-        buttonText = self.datesToDaysButton['text']
-        self.datesToDaysButton['text'] = _('Please wait ...')
-        # changing the button text is less time consuming than showing a progress bar
-        if self._mdl.novel.referenceDate:
-            if self._ui.ask_yes_no(_('Convert all section dates to days relative to the reference date?')):
-                self.doNotUpdate = True
-                for scId in self._mdl.novel.sections:
-                    self._mdl.novel.sections[scId].date_to_day(self._mdl.novel.referenceDate)
-                self.doNotUpdate = False
-        else:
-            self._report_missing_reference_date()
-        self.datesToDaysButton['text'] = buttonText
-
-    def days_to_dates(self):
-        """Convert section days to specific dates."""
-        buttonText = self.daysToDatesButton['text']
-        self.daysToDatesButton['text'] = _('Please wait ...')
-        # changing the button text is less time consuming than showing a progress bar
-        if self._mdl.novel.referenceDate:
-            if self._ui.ask_yes_no(_('Convert all section days to dates using the reference date?')):
-                self.doNotUpdate = True
-                for scId in self._mdl.novel.sections:
-                    self._mdl.novel.sections[scId].day_to_date(self._mdl.novel.referenceDate)
-                self.doNotUpdate = False
-        else:
-            self._report_missing_reference_date()
-        self.daysToDatesButton['text'] = buttonText
-
-    def get_data(self, event=None):
+    def apply_changes(self, event=None):
         """Apply changes.
         
         Extends the superclass method.
@@ -54,7 +24,7 @@ class ProjectViewCtrl(BasicViewCtrl):
         if self.element is None:
             return
 
-        super().get_data()
+        super().apply_changes()
 
         # Author
         authorName = self.authorNameVar.get()
@@ -137,6 +107,36 @@ class ProjectViewCtrl(BasicViewCtrl):
         else:
             entry = self.phaseCombobox.current()
         self.element.workPhase = entry
+
+    def dates_to_days(self):
+        """Convert specific section dates to days."""
+        buttonText = self.datesToDaysButton['text']
+        self.datesToDaysButton['text'] = _('Please wait ...')
+        # changing the button text is less time consuming than showing a progress bar
+        if self._mdl.novel.referenceDate:
+            if self._ui.ask_yes_no(_('Convert all section dates to days relative to the reference date?')):
+                self.doNotUpdate = True
+                for scId in self._mdl.novel.sections:
+                    self._mdl.novel.sections[scId].date_to_day(self._mdl.novel.referenceDate)
+                self.doNotUpdate = False
+        else:
+            self._report_missing_reference_date()
+        self.datesToDaysButton['text'] = buttonText
+
+    def days_to_dates(self):
+        """Convert section days to specific dates."""
+        buttonText = self.daysToDatesButton['text']
+        self.daysToDatesButton['text'] = _('Please wait ...')
+        # changing the button text is less time consuming than showing a progress bar
+        if self._mdl.novel.referenceDate:
+            if self._ui.ask_yes_no(_('Convert all section days to dates using the reference date?')):
+                self.doNotUpdate = True
+                for scId in self._mdl.novel.sections:
+                    self._mdl.novel.sections[scId].day_to_date(self._mdl.novel.referenceDate)
+                self.doNotUpdate = False
+        else:
+            self._report_missing_reference_date()
+        self.daysToDatesButton['text'] = buttonText
 
     def set_data(self, elementId):
         """Update the widgets with element's data.

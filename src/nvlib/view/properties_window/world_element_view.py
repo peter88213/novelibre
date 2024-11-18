@@ -37,7 +37,7 @@ class WorldElementView(BasicView):
             self._elementInfoWindow,
             text=_('AKA'),
             textvariable=self.akaVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=self._LBL_X
             )
         self._akaEntry.pack(anchor='w', pady=2)
@@ -49,14 +49,14 @@ class WorldElementView(BasicView):
             self._elementInfoWindow,
             text=_('Tags'),
             textvariable=self.tagsVar,
-            command=self.get_data,
+            command=self.apply_changes,
             lblWidth=self._LBL_X
             )
         self._tagsEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._tagsEntry)
 
         for widget in inputWidgets:
-            widget.bind('<FocusOut>', self.get_data)
+            widget.bind('<FocusOut>', self.apply_changes)
             self.inputWidgets.append(widget)
 
     def _create_frames(self):

@@ -35,7 +35,7 @@ class ChapterView(BasicView, ChapterViewCtrl):
             variable=self.isUnusedVar,
             onvalue=True,
             offvalue=False,
-            command=self.get_data,
+            command=self.apply_changes,
             )
         self.isUnusedCheckbox.pack(anchor='w')
         inputWidgets.append(self.isUnusedCheckbox)
@@ -47,13 +47,13 @@ class ChapterView(BasicView, ChapterViewCtrl):
             variable=self.noNumberVar,
             onvalue=True,
             offvalue=False,
-            command=self.get_data,
+            command=self.apply_changes,
             )
         self.noNumberCheckbox.pack(anchor='w')
         inputWidgets.append(self.noNumberCheckbox)
 
         for widget in inputWidgets:
-            widget.bind('<FocusOut>', self.get_data)
+            widget.bind('<FocusOut>', self.apply_changes)
             self.inputWidgets.append(widget)
 
         self.prefsShowLinks = 'show_ch_links'

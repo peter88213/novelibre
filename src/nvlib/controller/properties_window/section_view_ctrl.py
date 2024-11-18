@@ -31,157 +31,7 @@ from nvlib.nv_globals import prefs
 
 class SectionViewCtrl(BasicViewCtrl):
 
-    def auto_set_date(self):
-        """Set section start to the end of the previous section."""
-        prevScId = self._ui.tv.prev_node(self.elementId)
-        if not prevScId:
-            return
-
-        newDate, newTime, newDay = self._mdl.novel.sections[prevScId].get_end_date_time()
-        if newTime is None:
-            self._ui.show_error(
-                _('The previous section has no time set.'),
-                title=_('Cannot generate date/time')
-                )
-            return
-
-        # self.doNotUpdate = True
-        self.element.date = newDate
-        self.element.time = newTime
-        self.element.day = newDay
-        # self.doNotUpdate = False
-        self.startDateVar.set(newDate)
-        self.startTimeVar.set(newTime.rsplit(':', 1)[0])
-        self.startDayVar.set(newDay)
-
-    def auto_set_duration(self):
-        """Calculate section duration from the start of the next section."""
-
-        def day_to_date(day, refDate):
-            deltaDays = timedelta(days=int(day))
-            return date.isoformat(refDate + deltaDays)
-
-        nextScId = self._ui.tv.next_node(self.elementId)
-        if not nextScId:
-            return
-
-        thisTimeIso = self.element.time
-        if not thisTimeIso:
-            self._ui.show_error(
-                _('This section has no time set.'),
-                title=_('Cannot generate duration')
-                )
-            return
-
-        nextTimeIso = self._mdl.novel.sections[nextScId].time
-        if not nextTimeIso:
-            self._ui.show_error(
-                _('The next section has no time set.'),
-                title=_('Cannot generate duration')
-                )
-            return
-
-        try:
-            refDateIso = self._mdl.novel.referenceDate
-            refDate = date.fromisoformat(refDateIso)
-        except:
-            refDate = date.today()
-            refDateIso = date.isoformat(refDate)
-        if self._mdl.novel.sections[nextScId].date:
-            nextDateIso = self._mdl.novel.sections[nextScId].date
-        elif self._mdl.novel.sections[nextScId].day:
-            nextDateIso = day_to_date(self._mdl.novel.sections[nextScId].day, refDate)
-        elif self.element.day:
-            nextDateIso = self.element.day
-        else:
-            nextDateIso = refDateIso
-        if self.element.date:
-            thisDateIso = self.element.date
-        elif self.element.day:
-            thisDateIso = day_to_date(self.element.day, refDate)
-        else:
-            thisDateIso = nextDateIso
-
-        StartDateTime = datetime.fromisoformat(f'{thisDateIso}T{thisTimeIso}')
-        endDateTime = datetime.fromisoformat(f'{nextDateIso}T{nextTimeIso}')
-        sectionDuration = endDateTime - StartDateTime
-        lastsHours = sectionDuration.seconds // 3600
-        lastsMinutes = (sectionDuration.seconds % 3600) // 60
-        if sectionDuration.days:
-            newDays = str(sectionDuration.days)
-        else:
-            newDays = None
-        if lastsHours:
-            newHours = str(lastsHours)
-        else:
-            newHours = None
-        if lastsMinutes:
-            newMinutes = str(lastsMinutes)
-        else:
-            newMinutes = None
-
-        self.doNotUpdate = True
-        self.element.lastsDays = newDays
-        self.element.lastsHours = newHours
-        self.element.lastsMinutes = newMinutes
-        self.doNotUpdate = False
-        self.lastsDaysVar.set(newDays)
-        self.lastsHoursVar.set(newHours)
-        self.lastsMinutesVar.set(newMinutes)
-
-    def change_day(self, event=None):
-        # 'Day' entry. If valid, clear the start date.
-            dayStr = self.startDayVar.get()
-            if dayStr or self.element.day:
-                if dayStr != self.element.day:
-                    if not dayStr:
-                        self.element.day = None
-                    else:
-                        try:
-                            int(dayStr)
-                        except ValueError:
-                            self.startDayVar.set(self.element.day)
-                            self._ui.show_error(
-                                f'{_("Wrong entry: number required")}.',
-                                title=_('Input rejected')
-                                )
-                        else:
-                            self.element.day = dayStr
-                            self.element.date = None
-
-    def clear_duration(self):
-        """Remove duration data from the section."""
-        durationData = [
-            self.element.lastsDays,
-            self.element.lastsHours,
-            self.element.lastsMinutes,
-            ]
-        hasData = False
-        for dataElement in durationData:
-            if dataElement:
-                hasData = True
-        if hasData and self._ui.ask_yes_no(_('Clear duration from this section?')):
-            self.element.lastsDays = None
-            self.element.lastsHours = None
-            self.element.lastsMinutes = None
-
-    def clear_start(self):
-        """Remove start data from the section."""
-        startData = [
-            self.element.date,
-            self.element.time,
-            self.element.day,
-            ]
-        hasData = False
-        for dataElement in startData:
-            if dataElement:
-                hasData = True
-        if hasData and self._ui.ask_yes_no(_('Clear date/time from this section?')):
-            self.element.date = None
-            self.element.time = None
-            self.element.day = None
-
-    def get_data(self, event=None):
+    def apply_changes(self, event=None):
         """Apply changes.
         
         Extends the superclass method.
@@ -189,7 +39,7 @@ class SectionViewCtrl(BasicViewCtrl):
         if self.element is None:
             return
 
-        super().get_data()
+        super().apply_changes()
 
         #--- Section start.
 
@@ -364,6 +214,156 @@ class SectionViewCtrl(BasicViewCtrl):
         #--- 'Outcome/Choice' window.
         if self.outcomeWindow.hasChanged:
             self.element.outcome = self.outcomeWindow.get_text()
+
+    def auto_set_date(self):
+        """Set section start to the end of the previous section."""
+        prevScId = self._ui.tv.prev_node(self.elementId)
+        if not prevScId:
+            return
+
+        newDate, newTime, newDay = self._mdl.novel.sections[prevScId].get_end_date_time()
+        if newTime is None:
+            self._ui.show_error(
+                _('The previous section has no time set.'),
+                title=_('Cannot generate date/time')
+                )
+            return
+
+        # self.doNotUpdate = True
+        self.element.date = newDate
+        self.element.time = newTime
+        self.element.day = newDay
+        # self.doNotUpdate = False
+        self.startDateVar.set(newDate)
+        self.startTimeVar.set(newTime.rsplit(':', 1)[0])
+        self.startDayVar.set(newDay)
+
+    def auto_set_duration(self):
+        """Calculate section duration from the start of the next section."""
+
+        def day_to_date(day, refDate):
+            deltaDays = timedelta(days=int(day))
+            return date.isoformat(refDate + deltaDays)
+
+        nextScId = self._ui.tv.next_node(self.elementId)
+        if not nextScId:
+            return
+
+        thisTimeIso = self.element.time
+        if not thisTimeIso:
+            self._ui.show_error(
+                _('This section has no time set.'),
+                title=_('Cannot generate duration')
+                )
+            return
+
+        nextTimeIso = self._mdl.novel.sections[nextScId].time
+        if not nextTimeIso:
+            self._ui.show_error(
+                _('The next section has no time set.'),
+                title=_('Cannot generate duration')
+                )
+            return
+
+        try:
+            refDateIso = self._mdl.novel.referenceDate
+            refDate = date.fromisoformat(refDateIso)
+        except:
+            refDate = date.today()
+            refDateIso = date.isoformat(refDate)
+        if self._mdl.novel.sections[nextScId].date:
+            nextDateIso = self._mdl.novel.sections[nextScId].date
+        elif self._mdl.novel.sections[nextScId].day:
+            nextDateIso = day_to_date(self._mdl.novel.sections[nextScId].day, refDate)
+        elif self.element.day:
+            nextDateIso = self.element.day
+        else:
+            nextDateIso = refDateIso
+        if self.element.date:
+            thisDateIso = self.element.date
+        elif self.element.day:
+            thisDateIso = day_to_date(self.element.day, refDate)
+        else:
+            thisDateIso = nextDateIso
+
+        StartDateTime = datetime.fromisoformat(f'{thisDateIso}T{thisTimeIso}')
+        endDateTime = datetime.fromisoformat(f'{nextDateIso}T{nextTimeIso}')
+        sectionDuration = endDateTime - StartDateTime
+        lastsHours = sectionDuration.seconds // 3600
+        lastsMinutes = (sectionDuration.seconds % 3600) // 60
+        if sectionDuration.days:
+            newDays = str(sectionDuration.days)
+        else:
+            newDays = None
+        if lastsHours:
+            newHours = str(lastsHours)
+        else:
+            newHours = None
+        if lastsMinutes:
+            newMinutes = str(lastsMinutes)
+        else:
+            newMinutes = None
+
+        self.doNotUpdate = True
+        self.element.lastsDays = newDays
+        self.element.lastsHours = newHours
+        self.element.lastsMinutes = newMinutes
+        self.doNotUpdate = False
+        self.lastsDaysVar.set(newDays)
+        self.lastsHoursVar.set(newHours)
+        self.lastsMinutesVar.set(newMinutes)
+
+    def change_day(self, event=None):
+        # 'Day' entry. If valid, clear the start date.
+            dayStr = self.startDayVar.get()
+            if dayStr or self.element.day:
+                if dayStr != self.element.day:
+                    if not dayStr:
+                        self.element.day = None
+                    else:
+                        try:
+                            int(dayStr)
+                        except ValueError:
+                            self.startDayVar.set(self.element.day)
+                            self._ui.show_error(
+                                f'{_("Wrong entry: number required")}.',
+                                title=_('Input rejected')
+                                )
+                        else:
+                            self.element.day = dayStr
+                            self.element.date = None
+
+    def clear_duration(self):
+        """Remove duration data from the section."""
+        durationData = [
+            self.element.lastsDays,
+            self.element.lastsHours,
+            self.element.lastsMinutes,
+            ]
+        hasData = False
+        for dataElement in durationData:
+            if dataElement:
+                hasData = True
+        if hasData and self._ui.ask_yes_no(_('Clear duration from this section?')):
+            self.element.lastsDays = None
+            self.element.lastsHours = None
+            self.element.lastsMinutes = None
+
+    def clear_start(self):
+        """Remove start data from the section."""
+        startData = [
+            self.element.date,
+            self.element.time,
+            self.element.day,
+            ]
+        hasData = False
+        for dataElement in startData:
+            if dataElement:
+                hasData = True
+        if hasData and self._ui.ask_yes_no(_('Clear date/time from this section?')):
+            self.element.date = None
+            self.element.time = None
+            self.element.day = None
 
     def go_to_character(self, event=None):
         """Go to the character selected in the listbox."""
