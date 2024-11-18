@@ -39,12 +39,23 @@ from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import prefs
 from nvlib.plugin.plugin_collection import PluginCollection
 from nvlib.view.nv_main_view import NvMainView
+from nvlib.view.pop_up.prj_updater import PrjUpdater
+from nvlib.view.pop_up.view_options_window import ViewOptionsWindow
+from nvlib.view.widgets.nv_simpledialog import askinteger
+from nvlib.nv_globals import open_help
+from nvlib.view.pop_up.export_options_window import ExportOptionsWindow
+from nvlib.view.pop_up.plugin_manager import PluginManager
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 
 
 class NvController(ControllerBase):
     """Controller for the novelibre application."""
+
+    _MAX_NR_NEW_SECTIONS = 20
+    # maximum number of sections to add in bulk
+    _INI_NR_NEW_SECTIONS = 1
+    # initial value when asking for the number of sections to add
 
     def __init__(self, title, tempDir):
         """Initialize the model, set up the application's user interface, and load plugins.
@@ -278,6 +289,19 @@ class NvController(ControllerBase):
         newNode = self._mdl.add_location(**kwargs)
         self._view_new_element(newNode)
         return newNode
+
+    def add_multiple_sections(self):
+        """Ask how many sections are to be added, then call the controller."""
+        n = askinteger(
+            title=_('New'),
+            prompt=_('How many sections to add?'),
+            initialvalue=self._INI_NR_NEW_SECTIONS,
+            minvalue=0,
+            maxvalue=self._MAX_NR_NEW_SECTIONS
+            )
+        if n is not None:
+            for __ in range(n):
+                self.add_section()
 
     def add_parent(self, event=None):
         """Add a parent element to an element.
@@ -757,6 +781,19 @@ class NvController(ControllerBase):
             self._ui.root.quit()
         return 'break'
 
+    def open_export_options(self, event=None):
+        """Open a toplevel window to edit the export options."""
+        ExportOptionsWindow(self._mdl, self._ui, self)
+        return 'break'
+
+    def open_help(self, event=None):
+        open_help('')
+
+    def open_plugin_manager(self, event=None):
+        """Open a toplevel window to manage the plugins."""
+        PluginManager(self._mdl, self._ui, self)
+        return 'break'
+
     def open_installationFolder(self, event=None):
         """Open the installation folder with the OS file manager."""
         installDir = os.path.dirname(sys.argv[0])
@@ -892,6 +929,19 @@ class NvController(ControllerBase):
                     # Mac
                 except:
                     pass
+        return 'break'
+
+    def open_project_updater(self, event=None):
+        """Update the project from a previously exported document.
+        
+        Using a toplevel window with a pick list of refresh sources.
+        """
+        PrjUpdater(self._mdl, self._ui, self)
+        return 'break'
+
+    def open_view_options(self, event=None):
+        """Open a toplevel window to edit the view options."""
+        ViewOptionsWindow(self._mdl, self._ui, self)
         return 'break'
 
     def refresh(self):

@@ -125,7 +125,7 @@ class NvMainView(ViewBase, NvMainViewCtrl):
         self._ctrl.register_client(self.propertiesView)
 
         #--- Add commands and submenus to the main menu.
-        self._build_menu()
+        self._create_menu()
 
         #--- Add a toolbar.
         self.toolbar = Toolbar(self.mainWindow, self._mdl, self, self._ctrl)
@@ -308,9 +308,9 @@ class NvMainView(ViewBase, NvMainViewCtrl):
             self.root.bind(MOUSE.FORWARD_CLICK, self.tv.go_forward)
         else:
             self.root.bind(KEYS.QUIT_PROGRAM[0], self._ctrl.on_quit)
-        self.root.bind(KEYS.OPEN_HELP[0], self.open_help)
+        self.root.bind(KEYS.OPEN_HELP[0], self._ctrl.open_help)
 
-    def _build_menu(self):
+    def _create_menu(self):
         """Add commands and submenus to the main menu."""
 
         # "New" submenu
@@ -362,7 +362,7 @@ class NvMainView(ViewBase, NvMainViewCtrl):
         self.viewMenu.add_command(label=_('Toggle Properties'), accelerator=KEYS.TOGGLE_PROPERTIES[1], command=self.toggle_properties_view)
         self.viewMenu.add_command(label=_('Detach/Dock Properties'), accelerator=KEYS.DETACH_PROPERTIES[1], command=self.toggle_properties_window)
         self.viewMenu.add_separator()
-        self.viewMenu.add_command(label=_('Options'), command=self.open_view_options)
+        self.viewMenu.add_command(label=_('Options'), command=self._ctrl.open_view_options)
 
         # Part
         self.partMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -385,7 +385,7 @@ class NvMainView(ViewBase, NvMainViewCtrl):
         self.sectionMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Section'), menu=self.sectionMenu)
         self.sectionMenu.add_command(label=_('Add'), command=self._ctrl.add_section)
-        self.sectionMenu.add_command(label=_('Add multiple sections'), command=self.add_multiple_sections)
+        self.sectionMenu.add_command(label=_('Add multiple sections'), command=self._ctrl.add_multiple_sections)
         self.sectionMenu.add_separator()
         self.sectionMenu.add_cascade(label=_('Set Type'), menu=self.tv.selectTypeMenu)
         self.sectionMenu.add_cascade(label=_('Set Status'), menu=self.tv.scStatusMenu)
@@ -463,22 +463,22 @@ class NvMainView(ViewBase, NvMainViewCtrl):
         self.exportMenu.add_separator()
         self.exportMenu.add_command(label=_('Characters/locations/items data files'), command=lambda: self._ctrl.export_document(DATA_SUFFIX, lock=False, show=False))
         self.exportMenu.add_separator()
-        self.exportMenu.add_command(label=_('Options'), command=self.open_export_options)
+        self.exportMenu.add_command(label=_('Options'), command=self._ctrl.open_export_options)
 
         # "Update" menu.
-        self.mainMenu.add_command(label=_('Import'), command=self.open_project_updater)
+        self.mainMenu.add_command(label=_('Import'), command=self._ctrl.open_project_updater)
 
         # "Tools" menu.
         self.toolsMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Tools'), menu=self.toolsMenu)
-        self.toolsMenu.add_command(label=_('Plugin Manager'), command=self.open_plugin_manager)
+        self.toolsMenu.add_command(label=_('Plugin Manager'), command=self._ctrl.open_plugin_manager)
         self.toolsMenu.add_command(label=_('Open installation folder'), command=self._ctrl.open_installationFolder)
         self.toolsMenu.add_separator()
 
         # "Help" menu.
         self.helpMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Help'), menu=self.helpMenu)
-        self.helpMenu.add_command(label=_('Online help'), accelerator=KEYS.OPEN_HELP[1], command=self.open_help)
+        self.helpMenu.add_command(label=_('Online help'), accelerator=KEYS.OPEN_HELP[1], command=self._ctrl.open_help)
         self.helpMenu.add_command(label=f"novelibre {_('Home page')}", command=lambda: webbrowser.open(HOME_URL))
 
     def _create_path_bar(self):
