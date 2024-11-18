@@ -101,11 +101,11 @@ class PluginManager(ModalDialog):
         ttk.Button(
             self._footer,
             text=_('Online help'),
-            command=self._open_help
+            command=self.open_help
             ).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
-        self.bind(KEYS.OPEN_HELP[0], self._open_help)
+        self.bind(KEYS.OPEN_HELP[0], self.open_help)
 
     def _delete_module(self, event=None):
         moduleName = self._moduleCollection.selection()[0]
@@ -135,7 +135,7 @@ class PluginManager(ModalDialog):
         self._homeButton.configure(state=homeButtonState)
         self._deleteButton.configure(state=deleteButtonState)
 
-    def _open_help(self, event=None):
+    def open_help(self, event=None):
         open_help(f'tools_menu.html#{_("plugin-manager").lower()}')
 
     def _open_home_page(self, event=None):

@@ -7,10 +7,10 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 import webbrowser
 
-from mvclib.controller.sub_controller import SubController
 from mvclib.view.path_bar import PathBar
 from mvclib.view.set_icon_tk import set_icon
 from mvclib.view.view_base import ViewBase
+from nvlib.controller.nv_main_view_ctrl import NvMainViewCtrl
 from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from nvlib.novx_globals import CHAPTERS_SUFFIX
 from nvlib.novx_globals import CHARACTERS_SUFFIX
@@ -44,34 +44,23 @@ from nvlib.novx_globals import STAGES_SUFFIX
 from nvlib.novx_globals import XREF_SUFFIX
 from nvlib.novx_globals import _
 from nvlib.nv_globals import HOME_URL
-from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
 from nvlib.view.contents_window.contents_viewer import ContentsViewer
 from nvlib.view.icons import Icons
 from nvlib.view.platform.platform_settings import KEYS
 from nvlib.view.platform.platform_settings import MOUSE
 from nvlib.view.platform.platform_settings import PLATFORM
-from nvlib.view.pop_up.export_options_window import ExportOptionsWindow
-from nvlib.view.pop_up.plugin_manager import PluginManager
-from nvlib.view.pop_up.prj_updater import PrjUpdater
-from nvlib.view.pop_up.view_options_window import ViewOptionsWindow
 from nvlib.view.properties_window.properties_viewer import PropertiesViewer
 from nvlib.view.toolbar.toolbar import Toolbar
 from nvlib.view.tree_window.tree_viewer import TreeViewer
-from nvlib.view.widgets.nv_simpledialog import askinteger
 import tkinter as tk
 
 
-class NvView(ViewBase, SubController):
+class NvMainView(ViewBase, NvMainViewCtrl):
     """View for the novelibre application."""
     _MIN_WINDOW_WIDTH = 400
     _MIN_WINDOW_HEIGHT = 200
     # minimum size of the application's main window
-
-    _MAX_NR_NEW_SECTIONS = 20
-    # maximum number of sections to add in bulk
-    _INI_NR_NEW_SECTIONS = 1
-    # initial value when asking for the number of sections to add
 
     def __init__(self, model, controller, title):
         """Extends the superclass constructor."""
@@ -183,45 +172,6 @@ class NvView(ViewBase, SubController):
             pass
         return 'break'
 
-    def disable_menu(self):
-        """Disable menu entries when no project is open.        
-        
-        Extends the superclass method.
-        """
-        self.fileMenu.entryconfig(_('Close'), state='disabled')
-        self.mainMenu.entryconfig(_('Part'), state='disabled')
-        self.mainMenu.entryconfig(_('Chapter'), state='disabled')
-        self.mainMenu.entryconfig(_('Section'), state='disabled')
-        self.mainMenu.entryconfig(_('Characters'), state='disabled')
-        self.mainMenu.entryconfig(_('Locations'), state='disabled')
-        self.mainMenu.entryconfig(_('Items'), state='disabled')
-        self.mainMenu.entryconfig(_('Plot'), state='disabled')
-        self.mainMenu.entryconfig(_('Project notes'), state='disabled')
-        self.mainMenu.entryconfig(_('Export'), state='disabled')
-        self.mainMenu.entryconfig(_('Import'), state='disabled')
-        self.fileMenu.entryconfig(_('Reload'), state='disabled')
-        self.fileMenu.entryconfig(_('Restore backup'), state='disabled')
-        self.fileMenu.entryconfig(_('Refresh Tree'), state='disabled')
-        self.fileMenu.entryconfig(_('Lock'), state='disabled')
-        self.fileMenu.entryconfig(_('Unlock'), state='disabled')
-        self.fileMenu.entryconfig(_('Open Project folder'), state='disabled')
-        self.fileMenu.entryconfig(_('Copy style sheet'), state='disabled')
-        self.fileMenu.entryconfig(_('Save'), state='disabled')
-        self.fileMenu.entryconfig(_('Save as...'), state='disabled')
-        self.fileMenu.entryconfig(_('Discard manuscript'), state='disabled')
-        self.viewMenu.entryconfig(_('Chapter level'), state='disabled')
-        self.viewMenu.entryconfig(_('Expand selected'), state='disabled')
-        self.viewMenu.entryconfig(_('Collapse selected'), state='disabled')
-        self.viewMenu.entryconfig(_('Expand all'), state='disabled')
-        self.viewMenu.entryconfig(_('Collapse all'), state='disabled')
-        self.viewMenu.entryconfig(_('Show Book'), state='disabled')
-        self.viewMenu.entryconfig(_('Show Characters'), state='disabled')
-        self.viewMenu.entryconfig(_('Show Locations'), state='disabled')
-        self.viewMenu.entryconfig(_('Show Items'), state='disabled')
-        self.viewMenu.entryconfig(_('Show Plot lines'), state='disabled')
-        self.viewMenu.entryconfig(_('Show Project notes'), state='disabled')
-        super().disable_menu()
-
     def dock_properties_frame(self, event=None):
         """Dock the properties window at the right pane, if detached."""
         self.propertiesView.apply_changes()
@@ -251,64 +201,6 @@ class NvView(ViewBase, SubController):
         except IndexError:
             pass
         return 'break'
-
-    def enable_menu(self):
-        """Enable menu entries when a project is open.
-        
-        Extends the superclass method.
-        """
-        self.fileMenu.entryconfig(_('Close'), state='normal')
-        self.mainMenu.entryconfig(_('Part'), state='normal')
-        self.mainMenu.entryconfig(_('Chapter'), state='normal')
-        self.mainMenu.entryconfig(_('Section'), state='normal')
-        self.mainMenu.entryconfig(_('Characters'), state='normal')
-        self.mainMenu.entryconfig(_('Locations'), state='normal')
-        self.mainMenu.entryconfig(_('Items'), state='normal')
-        self.mainMenu.entryconfig(_('Plot'), state='normal')
-        self.mainMenu.entryconfig(_('Project notes'), state='normal')
-        self.mainMenu.entryconfig(_('Export'), state='normal')
-        self.mainMenu.entryconfig(_('Import'), state='normal')
-        self.fileMenu.entryconfig(_('Reload'), state='normal')
-        self.fileMenu.entryconfig(_('Restore backup'), state='normal')
-        self.fileMenu.entryconfig(_('Refresh Tree'), state='normal')
-        self.fileMenu.entryconfig(_('Lock'), state='normal')
-        self.fileMenu.entryconfig(_('Open Project folder'), state='normal')
-        self.fileMenu.entryconfig(_('Copy style sheet'), state='normal')
-        self.fileMenu.entryconfig(_('Save'), state='normal')
-        self.fileMenu.entryconfig(_('Save as...'), state='normal')
-        self.fileMenu.entryconfig(_('Discard manuscript'), state='normal')
-        self.viewMenu.entryconfig(_('Chapter level'), state='normal')
-        self.viewMenu.entryconfig(_('Expand selected'), state='normal')
-        self.viewMenu.entryconfig(_('Collapse selected'), state='normal')
-        self.viewMenu.entryconfig(_('Expand all'), state='normal')
-        self.viewMenu.entryconfig(_('Collapse all'), state='normal')
-        self.viewMenu.entryconfig(_('Show Book'), state='normal')
-        self.viewMenu.entryconfig(_('Show Characters'), state='normal')
-        self.viewMenu.entryconfig(_('Show Locations'), state='normal')
-        self.viewMenu.entryconfig(_('Show Items'), state='normal')
-        self.viewMenu.entryconfig(_('Show Plot lines'), state='normal')
-        self.viewMenu.entryconfig(_('Show Project notes'), state='normal')
-        super().enable_menu()
-
-    def lock(self):
-        """Make the "locked" state visible.
-        
-        Extends the superclass method.
-        """
-        self.pathBar.set_locked()
-        self.fileMenu.entryconfig(_('Save'), state='disabled')
-        self.fileMenu.entryconfig(_('Lock'), state='disabled')
-        self.fileMenu.entryconfig(_('Unlock'), state='normal')
-        self.mainMenu.entryconfig(_('Part'), state='disabled')
-        self.mainMenu.entryconfig(_('Chapter'), state='disabled')
-        self.mainMenu.entryconfig(_('Section'), state='disabled')
-        self.mainMenu.entryconfig(_('Characters'), state='disabled')
-        self.mainMenu.entryconfig(_('Locations'), state='disabled')
-        self.mainMenu.entryconfig(_('Items'), state='disabled')
-        self.mainMenu.entryconfig(_('Plot'), state='disabled')
-        self.mainMenu.entryconfig(_('Project notes'), state='disabled')
-        self.mainMenu.entryconfig(_('Export'), state='disabled')
-        super().lock()
 
     def on_change_selection(self, nodeId):
         """Event handler for element selection.
@@ -392,39 +284,6 @@ class NvView(ViewBase, SubController):
             self.detach_properties_frame()
         return 'break'
 
-    def unlock(self):
-        """Make the "unlocked" state visible.
-        
-        Extends the superclass method.
-        """
-        self.pathBar.set_normal()
-        self.fileMenu.entryconfig(_('Save'), state='normal')
-        self.fileMenu.entryconfig(_('Lock'), state='normal')
-        self.fileMenu.entryconfig(_('Unlock'), state='disabled')
-        self.mainMenu.entryconfig(_('Part'), state='normal')
-        self.mainMenu.entryconfig(_('Chapter'), state='normal')
-        self.mainMenu.entryconfig(_('Section'), state='normal')
-        self.mainMenu.entryconfig(_('Characters'), state='normal')
-        self.mainMenu.entryconfig(_('Locations'), state='normal')
-        self.mainMenu.entryconfig(_('Items'), state='normal')
-        self.mainMenu.entryconfig(_('Plot'), state='normal')
-        self.mainMenu.entryconfig(_('Project notes'), state='normal')
-        self.mainMenu.entryconfig(_('Export'), state='normal')
-        super().unlock()
-
-    def _add_multiple_sections(self):
-        """Ask how many sections are to be added, then call the controller."""
-        n = askinteger(
-            title=_('New'),
-            prompt=_('How many sections to add?'),
-            initialvalue=self._INI_NR_NEW_SECTIONS,
-            minvalue=0,
-            maxvalue=self._MAX_NR_NEW_SECTIONS
-            )
-        if n is not None:
-            for __ in range(n):
-                self._ctrl.add_section()
-
     def _bind_events(self):
         self.root.bind(KEYS.RESTORE_STATUS[0], self.restore_status)
         self.root.bind(KEYS.OPEN_PROJECT[0], self._ctrl.open_project)
@@ -449,7 +308,7 @@ class NvView(ViewBase, SubController):
             self.root.bind(MOUSE.FORWARD_CLICK, self.tv.go_forward)
         else:
             self.root.bind(KEYS.QUIT_PROGRAM[0], self._ctrl.on_quit)
-        self.root.bind(KEYS.OPEN_HELP[0], self._open_help)
+        self.root.bind(KEYS.OPEN_HELP[0], self.open_help)
 
     def _build_menu(self):
         """Add commands and submenus to the main menu."""
@@ -503,7 +362,7 @@ class NvView(ViewBase, SubController):
         self.viewMenu.add_command(label=_('Toggle Properties'), accelerator=KEYS.TOGGLE_PROPERTIES[1], command=self.toggle_properties_view)
         self.viewMenu.add_command(label=_('Detach/Dock Properties'), accelerator=KEYS.DETACH_PROPERTIES[1], command=self.toggle_properties_window)
         self.viewMenu.add_separator()
-        self.viewMenu.add_command(label=_('Options'), command=self._open_view_options)
+        self.viewMenu.add_command(label=_('Options'), command=self.open_view_options)
 
         # Part
         self.partMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -526,7 +385,7 @@ class NvView(ViewBase, SubController):
         self.sectionMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Section'), menu=self.sectionMenu)
         self.sectionMenu.add_command(label=_('Add'), command=self._ctrl.add_section)
-        self.sectionMenu.add_command(label=_('Add multiple sections'), command=self._add_multiple_sections)
+        self.sectionMenu.add_command(label=_('Add multiple sections'), command=self.add_multiple_sections)
         self.sectionMenu.add_separator()
         self.sectionMenu.add_cascade(label=_('Set Type'), menu=self.tv.selectTypeMenu)
         self.sectionMenu.add_cascade(label=_('Set Status'), menu=self.tv.scStatusMenu)
@@ -604,22 +463,22 @@ class NvView(ViewBase, SubController):
         self.exportMenu.add_separator()
         self.exportMenu.add_command(label=_('Characters/locations/items data files'), command=lambda: self._ctrl.export_document(DATA_SUFFIX, lock=False, show=False))
         self.exportMenu.add_separator()
-        self.exportMenu.add_command(label=_('Options'), command=self._open_export_options)
+        self.exportMenu.add_command(label=_('Options'), command=self.open_export_options)
 
         # "Update" menu.
-        self.mainMenu.add_command(label=_('Import'), command=self._open_project_updater)
+        self.mainMenu.add_command(label=_('Import'), command=self.open_project_updater)
 
         # "Tools" menu.
         self.toolsMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Tools'), menu=self.toolsMenu)
-        self.toolsMenu.add_command(label=_('Plugin Manager'), command=self._open_plugin_manager)
+        self.toolsMenu.add_command(label=_('Plugin Manager'), command=self.open_plugin_manager)
         self.toolsMenu.add_command(label=_('Open installation folder'), command=self._ctrl.open_installationFolder)
         self.toolsMenu.add_separator()
 
         # "Help" menu.
         self.helpMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Help'), menu=self.helpMenu)
-        self.helpMenu.add_command(label=_('Online help'), accelerator=KEYS.OPEN_HELP[1], command=self._open_help)
+        self.helpMenu.add_command(label=_('Online help'), accelerator=KEYS.OPEN_HELP[1], command=self.open_help)
         self.helpMenu.add_command(label=f"novelibre {_('Home page')}", command=lambda: webbrowser.open(HOME_URL))
 
     def _create_path_bar(self):
@@ -647,30 +506,4 @@ class NvView(ViewBase, SubController):
         self.statusBar.COLOR_ERROR_FG = prefs['color_status_error_fg']
         self.statusBar.COLOR_NOTIFICATION_BG = prefs['color_status_notification_bg']
         self.statusBar.COLOR_NOTIFICATION_FG = prefs['color_status_notification_fg']
-
-    def _open_export_options(self, event=None):
-        """Open a toplevel window to edit the export options."""
-        ExportOptionsWindow(self._mdl, self, self._ctrl)
-        return 'break'
-
-    def _open_help(self, event=None):
-        open_help('')
-
-    def _open_plugin_manager(self, event=None):
-        """Open a toplevel window to manage the plugins."""
-        PluginManager(self._mdl, self, self._ctrl)
-        return 'break'
-
-    def _open_project_updater(self, event=None):
-        """Update the project from a previously exported document.
-        
-        Using a toplevel window with a pick list of refresh sources.
-        """
-        PrjUpdater(self._mdl, self, self._ctrl)
-        return 'break'
-
-    def _open_view_options(self, event=None):
-        """Open a toplevel window to edit the view options."""
-        ViewOptionsWindow(self._mdl, self, self._ctrl)
-        return 'break'
 

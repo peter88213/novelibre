@@ -89,11 +89,11 @@ class PrjUpdater(ModalDialog):
         ttk.Button(
             window,
             text=_('Online help'),
-            command=self._open_help
+            command=self.open_help
             ).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
-        self.bind(KEYS.OPEN_HELP[0], self._open_help)
+        self.bind(KEYS.OPEN_HELP[0], self.open_help)
         self._documentCollection.bind('<Double-1>', self._import_document)
         self._documentCollection.bind('<Return>', self._import_document)
 
@@ -169,7 +169,7 @@ class PrjUpdater(ModalDialog):
         self._importButton.configure(state=importButtonState)
         self.list_documents()
 
-    def _open_help(self, event=None):
+    def open_help(self, event=None):
         open_help(f'import_menu.html')
 
     def _update_project(self, event=None):

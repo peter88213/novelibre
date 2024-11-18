@@ -102,11 +102,11 @@ class ViewOptionsWindow(ModalDialog):
         ttk.Button(
             self,
             text=_('Online help'),
-            command=self._open_help
+            command=self.open_help
             ).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
-        self.bind(KEYS.OPEN_HELP[0], self._open_help)
+        self.bind(KEYS.OPEN_HELP[0], self.open_help)
 
     def _change_colors(self, *args, **kwargs):
         cmStr = self._coloringModeStr.get()
@@ -131,5 +131,5 @@ class ViewOptionsWindow(ModalDialog):
         self._ui.tv.refresh()
         self._ui.propertiesView.refresh()
 
-    def _open_help(self, event=None):
+    def open_help(self, event=None):
         open_help(f'view_menu.html#{_("options").lower()}')

@@ -38,7 +38,7 @@ from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import prefs
 from nvlib.plugin.plugin_collection import PluginCollection
-from nvlib.view.nv_view import NvView
+from nvlib.view.nv_main_view import NvMainView
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 
@@ -72,7 +72,7 @@ class NvController(ControllerBase):
         self.importFiletypes = [(_('ODF Text document'), '.odt'), (_('ODF Spreadsheet document'), '.ods')]
 
         #--- Build the GUI.
-        self._ui = NvView(self._mdl, self, title)
+        self._ui = NvMainView(self._mdl, self, title)
         self.register_client(self._ui)
 
         # Link the model to the view.
