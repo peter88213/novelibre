@@ -45,94 +45,94 @@ class SectionView(BasicView, SectionViewCtrl):
         inputWidgets = []
 
         #--- 'Tags' entry.
-        self.tags = MyStringVar()
+        self.tagsVar = MyStringVar()
         self._tagsEntry = LabelEntry(
-            self.elementInfoWindow,
+            self._elementInfoWindow,
             text=_('Tags'),
-            textvariable=self.tags,
-            command=self.apply_changes,
+            textvariable=self.tagsVar,
+            command=self.get_data,
             lblWidth=self._LBL_X
             )
         self._tagsEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._tagsEntry)
 
         #--- Frame for section specific properties.
-        self._sectionExtraFrame = ttk.Frame(self.elementInfoWindow)
+        self._sectionExtraFrame = ttk.Frame(self._elementInfoWindow)
         self._sectionExtraFrame.pack(anchor='w', fill='x')
 
-        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- Frame for 'Relationships'.
         # updating the character list before the viewpoints
-        self._relationFrame = FoldingFrame(self.elementInfoWindow, _('Relationships'), self._toggle_relation_frame)
+        self._relationFrame = FoldingFrame(self._elementInfoWindow, _('Relationships'), self._toggle_relation_frame)
 
         # 'Characters' listbox.
-        self._crTitles = ''
+        self.crTitles = ''
         crHeading = ttk.Frame(self._relationFrame)
         self._characterLabel = ttk.Label(crHeading, text=_('Characters'))
         self._characterLabel.pack(anchor='w', side='left')
-        ttk.Button(crHeading, text=_('Show ages'), command=self._show_ages).pack(anchor='e')
+        ttk.Button(crHeading, text=_('Show ages'), command=self.show_ages).pack(anchor='e')
         crHeading.pack(fill='x')
-        self._characterCollection = CollectionBox(
+        self.characterCollection = CollectionBox(
             self._relationFrame,
-            cmdAdd=self._pick_character,
-            cmdRemove=self._remove_character,
-            cmdOpen=self._go_to_character,
+            cmdAdd=self.pick_character,
+            cmdRemove=self.remove_character,
+            cmdOpen=self.go_to_character,
             cmdActivate=self._activate_character_buttons,
             lblOpen=_('Go to'),
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
             iconOpen=self._ui.icons.gotoIcon
             )
-        self._characterCollection.pack(fill='x')
-        inputWidgets.extend(self._characterCollection.inputWidgets)
+        self.characterCollection.pack(fill='x')
+        inputWidgets.extend(self.characterCollection.inputWidgets)
 
         # 'Locations' listbox.
-        self._lcTitles = ''
+        self.lcTitles = ''
         self._locationLabel = ttk.Label(self._relationFrame, text=_('Locations'))
         self._locationLabel.pack(anchor='w')
-        self._locationCollection = CollectionBox(
+        self.locationCollection = CollectionBox(
             self._relationFrame,
-            cmdAdd=self._pick_location,
-            cmdRemove=self._remove_location,
-            cmdOpen=self._go_to_location,
+            cmdAdd=self.pick_location,
+            cmdRemove=self.remove_location,
+            cmdOpen=self.go_to_location,
             cmdActivate=self._activate_location_buttons,
             lblOpen=_('Go to'),
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
             iconOpen=self._ui.icons.gotoIcon
             )
-        self._locationCollection.pack(fill='x')
-        inputWidgets.extend(self._locationCollection.inputWidgets)
+        self.locationCollection.pack(fill='x')
+        inputWidgets.extend(self.locationCollection.inputWidgets)
 
         # 'Items' listbox.
-        self._itTitles = ''
+        self.itTitles = ''
         self._itemLabel = ttk.Label(self._relationFrame, text=_('Items'))
         self._itemLabel.pack(anchor='w')
-        self._itemCollection = CollectionBox(
+        self.itemCollection = CollectionBox(
             self._relationFrame,
-            cmdAdd=self._pick_item,
-            cmdRemove=self._remove_item,
-            cmdOpen=self._go_to_item,
+            cmdAdd=self.pick_item,
+            cmdRemove=self.remove_item,
+            cmdOpen=self.go_to_item,
             cmdActivate=self._activate_item_buttons,
             lblOpen=_('Go to'),
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
             iconOpen=self._ui.icons.gotoIcon
             )
-        self._itemCollection.pack(fill='x')
-        inputWidgets.extend(self._itemCollection.inputWidgets)
+        self.itemCollection.pack(fill='x')
+        inputWidgets.extend(self.itemCollection.inputWidgets)
 
-        self._prefsShowLinks = 'show_sc_links'
+        self.prefsShowLinks = 'show_sc_links'
 
-        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- Frame for date/time/duration.
-        self._dateTimeFrame = FoldingFrame(
-            self.elementInfoWindow,
+        self.dateTimeFrame = FoldingFrame(
+            self._elementInfoWindow,
             _('Date/Time'),
             self._toggle_date_time_frame)
-        sectionStartFrame = ttk.Frame(self._dateTimeFrame
+        sectionStartFrame = ttk.Frame(self.dateTimeFrame
                                       )
         sectionStartFrame.pack(fill='x')
         localeDateFrame = ttk.Frame(sectionStartFrame)
@@ -140,65 +140,65 @@ class SectionView(BasicView, SectionViewCtrl):
         ttk.Label(localeDateFrame, text=_('Start'), width=self._DATE_TIME_LBL_X).pack(side='left')
 
         # 'Start date' entry.
-        self._startDate = MyStringVar()
+        self.startDateVar = MyStringVar()
         self._startDateEntry = LabelEntry(
             sectionStartFrame,
             text=_('Date'),
-            textvariable=self._startDate,
-            command=self.apply_changes,
+            textvariable=self.startDateVar,
+            command=self.get_data,
             lblWidth=self._DATE_TIME_LBL_X
             )
         self._startDateEntry.pack(anchor='w')
         inputWidgets.append(self._startDateEntry)
 
         # 'Start time' entry.
-        self._startTime = MyStringVar()
+        self.startTimeVar = MyStringVar()
         self._startTimeEntry = LabelEntry(
             sectionStartFrame,
             text=_('Time'),
-            textvariable=self._startTime,
-            command=self.apply_changes,
+            textvariable=self.startTimeVar,
+            command=self.get_data,
             lblWidth=self._DATE_TIME_LBL_X
             )
         self._startTimeEntry.pack(anchor='w')
         inputWidgets.append(self._startTimeEntry)
 
         # 'Start day' entry.
-        self._startDay = MyStringVar()
+        self.startDayVar = MyStringVar()
         self._startDayEntry = LabelEntry(
             sectionStartFrame,
             text=_('Day'),
-            textvariable=self._startDay,
-            command=self.apply_changes,
+            textvariable=self.startDayVar,
+            command=self.get_data,
             lblWidth=self._DATE_TIME_LBL_X
             )
         self._startDayEntry.pack(anchor='w')
         inputWidgets.append(self._startDayEntry)
-        self._startDayEntry.entry.bind('<Return>', self._change_day)
+        self._startDayEntry.entry.bind('<Return>', self.change_day)
 
         # Day of the week display.
-        self._weekDay = MyStringVar()
-        ttk.Label(localeDateFrame, textvariable=self._weekDay).pack(side='left')
+        self.weekDayVar = MyStringVar()
+        ttk.Label(localeDateFrame, textvariable=self.weekDayVar).pack(side='left')
 
         # Localized date display.
-        self._localeDate = MyStringVar()
-        ttk.Label(localeDateFrame, textvariable=self._localeDate).pack(side='left')
+        self.localeDateVar = MyStringVar()
+        ttk.Label(localeDateFrame, textvariable=self.localeDateVar).pack(side='left')
 
         # Time display.
-        ttk.Label(localeDateFrame, textvariable=self._startTime).pack(side='left')
+        ttk.Label(localeDateFrame, textvariable=self.startTimeVar).pack(side='left')
 
         # 'Moon phase' button.
         ttk.Button(
             localeDateFrame,
             text=_('Moon phase'),
-            command=self._show_moonphase
+            command=self.show_moonphase
             ).pack(anchor='e')
 
         # 'Clear date/time' button.
         self._clearDateButton = ttk.Button(
             sectionStartFrame,
             text=_('Clear date/time'),
-            command=self._clear_start
+            command=self.clear_start
             )
         self._clearDateButton.pack(side='left', fill='x', expand=True, padx=1, pady=2)
         inputWidgets.append(self._clearDateButton)
@@ -207,7 +207,7 @@ class SectionView(BasicView, SectionViewCtrl):
         self._generateDateButton = ttk.Button(
             sectionStartFrame,
             text=_('Generate'),
-            command=self._auto_set_date
+            command=self.auto_set_date
             )
         self._generateDateButton.pack(side='left', fill='x', expand=True, padx=1, pady=2)
         inputWidgets.append(self._generateDateButton)
@@ -216,48 +216,48 @@ class SectionView(BasicView, SectionViewCtrl):
         self._toggleDateButton = ttk.Button(
             sectionStartFrame,
             text=_('Convert date/day'),
-            command=self._toggle_date
+            command=self.toggle_date
             )
         self._toggleDateButton.pack(side='left', fill='x', expand=True, padx=1, pady=2)
         inputWidgets.append(self._toggleDateButton)
 
-        ttk.Separator(self._dateTimeFrame, orient='horizontal').pack(fill='x', pady=2)
+        ttk.Separator(self.dateTimeFrame, orient='horizontal').pack(fill='x', pady=2)
 
-        sectionDurationFrame = ttk.Frame(self._dateTimeFrame)
+        sectionDurationFrame = ttk.Frame(self.dateTimeFrame)
         sectionDurationFrame.pack(fill='x')
         ttk.Label(sectionDurationFrame, text=_('Duration')).pack(anchor='w')
 
         # 'Duration days' entry.
-        self._lastsDays = MyStringVar()
+        self.lastsDaysVar = MyStringVar()
         self._lastsDaysEntry = LabelEntry(
             sectionDurationFrame,
             text=_('Days'),
-            textvariable=self._lastsDays,
-            command=self.apply_changes,
+            textvariable=self.lastsDaysVar,
+            command=self.get_data,
             lblWidth=self._DATE_TIME_LBL_X
             )
         self._lastsDaysEntry.pack(anchor='w')
         inputWidgets.append(self._lastsDaysEntry)
 
         # 'Duration hours' entry.
-        self._lastsHours = MyStringVar()
+        self.lastsHoursVar = MyStringVar()
         self._lastsHoursEntry = LabelEntry(
             sectionDurationFrame,
             text=_('Hours'),
-            textvariable=self._lastsHours,
-            command=self.apply_changes,
+            textvariable=self.lastsHoursVar,
+            command=self.get_data,
             lblWidth=self._DATE_TIME_LBL_X
             )
         self._lastsHoursEntry.pack(anchor='w')
         inputWidgets.append(self._lastsHoursEntry)
 
         # 'Duration minutes' entry.
-        self._lastsMinutes = MyStringVar()
+        self.lastsMinutesVar = MyStringVar()
         self._lastsMinutesEntry = LabelEntry(
             sectionDurationFrame,
             text=_('Minutes'),
-            textvariable=self._lastsMinutes,
-            command=self.apply_changes,
+            textvariable=self.lastsMinutesVar,
+            command=self.get_data,
             lblWidth=self._DATE_TIME_LBL_X
             )
         self._lastsMinutesEntry.pack(anchor='w')
@@ -267,7 +267,7 @@ class SectionView(BasicView, SectionViewCtrl):
         self._clearDurationButton = ttk.Button(
             sectionDurationFrame,
             text=_('Clear duration'),
-            command=self._clear_duration
+            command=self.clear_duration
             )
         self._clearDurationButton.pack(side='left', padx=1, pady=2)
         inputWidgets.append(self._clearDurationButton)
@@ -276,48 +276,48 @@ class SectionView(BasicView, SectionViewCtrl):
         self._generatDurationButton = ttk.Button(
             sectionDurationFrame,
             text=_('Generate'),
-            command=self._auto_set_duration
+            command=self.auto_set_duration
             )
         self._generatDurationButton.pack(side='left', padx=1, pady=2)
         inputWidgets.append(self._generatDurationButton)
 
-        # ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
+        # ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- 'Viewpoint' combobox.
-        self._viewpoint = MyStringVar()
+        self.viewpointVar = MyStringVar()
         self._characterCombobox = LabelCombo(
             self._sectionExtraFrame,
             text=_('Viewpoint'),
-            textvariable=self._viewpoint,
+            textvariable=self.viewpointVar,
             values=[],
             )
         self._characterCombobox.pack(anchor='w', pady=2)
         inputWidgets.append(self._characterCombobox)
-        self._characterCombobox.combo.bind('<<ComboboxSelected>>', self.apply_changes)
+        self._characterCombobox.combo.bind('<<ComboboxSelected>>', self.get_data)
         self._vpList = []
 
         #--- 'Unused' checkbox.
-        self._isUnused = tk.BooleanVar()
+        self.isUnusedVar = tk.BooleanVar()
         self._isUnusedCheckbox = ttk.Checkbutton(
             self._sectionExtraFrame,
             text=_('Unused'),
-            variable=self._isUnused,
+            variable=self.isUnusedVar,
             onvalue=True,
             offvalue=False,
-            command=self.apply_changes,
+            command=self.get_data,
             )
         self._isUnusedCheckbox.pack(anchor='w')
         inputWidgets.append(self._isUnusedCheckbox)
 
         #--- 'Append to previous section' checkbox.
-        self._appendToPrev = tk.BooleanVar()
+        self.appendToPrevVar = tk.BooleanVar()
         self._appendToPrevCheckbox = ttk.Checkbutton(
             self._sectionExtraFrame,
             text=_('Append to previous section'),
-            variable=self._appendToPrev,
+            variable=self.appendToPrevVar,
             onvalue=True,
             offvalue=False,
-            command=self.apply_changes,
+            command=self.get_data,
             )
         self._appendToPrevCheckbox.pack(anchor='w')
         inputWidgets.append(self._appendToPrevCheckbox)
@@ -325,33 +325,33 @@ class SectionView(BasicView, SectionViewCtrl):
         ttk.Separator(self._sectionExtraFrame, orient='horizontal').pack(fill='x')
 
         #--- Frame for 'Plot'.
-        self._plotFrame = FoldingFrame(self._sectionExtraFrame, _('Plot'), self._toggle_plot_frame)
+        self.plotFrame = FoldingFrame(self._sectionExtraFrame, _('Plot'), self._toggle_plot_frame)
 
         # 'Plot lines' listbox.
-        self._plotlineTitles = ''
-        self._plotlineLabel = ttk.Label(self._plotFrame, text=_('Plot lines'))
+        self.plotlineTitles = ''
+        self._plotlineLabel = ttk.Label(self.plotFrame, text=_('Plot lines'))
         self._plotlineLabel.pack(anchor='w')
-        self._plotlineCollection = CollectionBox(
-            self._plotFrame,
-            cmdAdd=self._pick_plotline,
-            cmdRemove=self._remove_plotline,
-            cmdOpen=self._go_to_arc,
+        self.plotlineCollection = CollectionBox(
+            self.plotFrame,
+            cmdAdd=self.pick_plotline,
+            cmdRemove=self.remove_plotline,
+            cmdOpen=self.go_to_plotline,
             cmdActivate=self._activate_arc_buttons,
-            cmdSelect=self._on_select_plotline,
+            cmdSelect=self.on_select_plotline,
             lblOpen=_('Go to'),
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
             iconOpen=self._ui.icons.gotoIcon
             )
-        self._plotlineCollection.pack(fill='x')
-        inputWidgets.extend(self._plotlineCollection.inputWidgets)
-        self._selectedPlotline = None
+        self.plotlineCollection.pack(fill='x')
+        inputWidgets.extend(self.plotlineCollection.inputWidgets)
+        self.selectedPlotline = None
 
         #--- 'Plot line notes' text box for entering self.element.plotlineNotes[plId],
         #    where plId is the ID of the selected plot line in the'Plot lines' listbox.
-        ttk.Label(self._plotFrame, text=_('Notes on the selected plot line')).pack(anchor='w')
-        self._plotNotesWindow = TextBox(
-            self._plotFrame,
+        ttk.Label(self.plotFrame, text=_('Notes on the selected plot line')).pack(anchor='w')
+        self.plotNotesWindow = TextBox(
+            self.plotFrame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -363,34 +363,34 @@ class SectionView(BasicView, SectionViewCtrl):
             fg=prefs['color_text_fg'],
             insertbackground=prefs['color_text_fg'],
             )
-        self._plotNotesWindow.pack(fill='x')
-        inputWidgets.append(self._plotNotesWindow)
+        self.plotNotesWindow.pack(fill='x')
+        inputWidgets.append(self.plotNotesWindow)
 
         #--- 'Plot points' label.
-        ttk.Label(self._plotFrame, text=_('Plot points')).pack(anchor='w')
-        self._plotPointsDisplay = tk.Label(self._plotFrame, anchor='w', bg='white')
-        self._plotPointsDisplay.pack(anchor='w', fill='x')
+        ttk.Label(self.plotFrame, text=_('Plot points')).pack(anchor='w')
+        self.plotPointsDisplay = tk.Label(self.plotFrame, anchor='w', bg='white')
+        self.plotPointsDisplay.pack(anchor='w', fill='x')
 
         ttk.Separator(self._sectionExtraFrame, orient='horizontal').pack(fill='x')
 
         #--- Frame for 'Scene'.
-        self._sceneFrame = FoldingFrame(self._sectionExtraFrame, _('Scene'), self._toggle_scene_frame)
+        self.sceneFrame = FoldingFrame(self._sectionExtraFrame, _('Scene'), self._toggle_scene_frame)
 
         # Scene radiobuttons.
-        selectionFrame = ttk.Frame(self._sceneFrame)
-        self._customPlotProgress = ''
-        self._customCharacterization = ''
-        self._customWorldBuilding = ''
-        self._customGoal = ''
-        self._customConflict = ''
-        self._customOutcome = ''
-        self._scene = tk.IntVar()
+        selectionFrame = ttk.Frame(self.sceneFrame)
+        self.customPlotProgressVar = ''
+        self.customCharacterizationVar = ''
+        self.customWorldBuildingVar = ''
+        self.customGoalVar = ''
+        self.customConflictVar = ''
+        self.customOutcomeVar = ''
+        self.sceneVar = tk.IntVar()
 
         self._notApplicableRadiobutton = ttk.Radiobutton(
             selectionFrame,
             text=_('Not a scene'),
-            variable=self._scene,
-            value=0, command=self._set_not_applicable,
+            variable=self.sceneVar,
+            value=0, command=self.set_not_applicable,
             )
         self._notApplicableRadiobutton.pack(side='left', anchor='w')
         inputWidgets.append(self._notApplicableRadiobutton)
@@ -398,8 +398,8 @@ class SectionView(BasicView, SectionViewCtrl):
         self._actionRadiobutton = ttk.Radiobutton(
             selectionFrame,
             text=_('Action'),
-            variable=self._scene,
-            value=1, command=self._set_action_scene,
+            variable=self.sceneVar,
+            value=1, command=self.set_action_scene,
             )
         self._actionRadiobutton.pack(side='left', anchor='w')
         inputWidgets.append(self._actionRadiobutton)
@@ -407,9 +407,9 @@ class SectionView(BasicView, SectionViewCtrl):
         self._reactionRadiobutton = ttk.Radiobutton(
             selectionFrame,
             text=_('Reaction'),
-            variable=self._scene,
+            variable=self.sceneVar,
             value=2,
-            command=self._set_reaction_scene,
+            command=self.set_reaction_scene,
             )
         self._reactionRadiobutton.pack(side='left', anchor='w')
         inputWidgets.append(self._reactionRadiobutton)
@@ -417,9 +417,9 @@ class SectionView(BasicView, SectionViewCtrl):
         self._customRadiobutton = ttk.Radiobutton(
             selectionFrame,
             text=_('Other'),
-            variable=self._scene,
+            variable=self.sceneVar,
             value=3,
-            command=self._set_custom_scene
+            command=self.set_custom_scene
             )
         self._customRadiobutton.pack(anchor='w')
         inputWidgets.append(self._customRadiobutton)
@@ -427,10 +427,10 @@ class SectionView(BasicView, SectionViewCtrl):
         selectionFrame.pack(fill='x')
 
         # 'Goal/Reaction' window. The labels are configured dynamically.
-        self._goalLabel = ttk.Label(self._sceneFrame)
-        self._goalLabel.pack(anchor='w')
-        self._goalWindow = TextBox(
-            self._sceneFrame,
+        self.goalLabel = ttk.Label(self.sceneFrame)
+        self.goalLabel.pack(anchor='w')
+        self.goalWindow = TextBox(
+            self.sceneFrame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -442,14 +442,14 @@ class SectionView(BasicView, SectionViewCtrl):
             fg=prefs['color_text_fg'],
             insertbackground=prefs['color_text_fg'],
             )
-        self._goalWindow.pack(fill='x')
-        inputWidgets.append(self._goalWindow)
+        self.goalWindow.pack(fill='x')
+        inputWidgets.append(self.goalWindow)
 
         # 'Conflict/Dilemma' window. The labels are configured dynamically.
-        self._conflictLabel = ttk.Label(self._sceneFrame)
-        self._conflictLabel.pack(anchor='w')
-        self._conflictWindow = TextBox(
-            self._sceneFrame,
+        self.conflictLabel = ttk.Label(self.sceneFrame)
+        self.conflictLabel.pack(anchor='w')
+        self.conflictWindow = TextBox(
+            self.sceneFrame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -461,14 +461,14 @@ class SectionView(BasicView, SectionViewCtrl):
             fg=prefs['color_text_fg'],
             insertbackground=prefs['color_text_fg'],
             )
-        self._conflictWindow.pack(fill='x')
-        inputWidgets.append(self._conflictWindow)
+        self.conflictWindow.pack(fill='x')
+        inputWidgets.append(self.conflictWindow)
 
         # 'Outcome/Choice' window. The labels are configured dynamically.
-        self._outcomeLabel = ttk.Label(self._sceneFrame)
-        self._outcomeLabel.pack(anchor='w')
-        self._outcomeWindow = TextBox(
-            self._sceneFrame,
+        self.outcomeLabel = ttk.Label(self.sceneFrame)
+        self.outcomeLabel.pack(anchor='w')
+        self.outcomeWindow = TextBox(
+            self.sceneFrame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -480,36 +480,36 @@ class SectionView(BasicView, SectionViewCtrl):
             fg=prefs['color_text_fg'],
             insertbackground=prefs['color_text_fg'],
             )
-        self._outcomeWindow.pack(fill='x')
-        inputWidgets.append(self._outcomeWindow)
+        self.outcomeWindow.pack(fill='x')
+        inputWidgets.append(self.outcomeWindow)
 
         for widget in inputWidgets:
-            widget.bind('<FocusOut>', self.apply_changes)
+            widget.bind('<FocusOut>', self.get_data)
             self.inputWidgets.append(widget)
 
     def _activate_arc_buttons(self, event=None):
         if self.element.scPlotLines:
-            self._plotlineCollection.enable_buttons()
+            self.plotlineCollection.enable_buttons()
         else:
-            self._plotlineCollection.disable_buttons()
+            self.plotlineCollection.disable_buttons()
 
     def _activate_character_buttons(self, event=None):
         if self.element.characters:
-            self._characterCollection.enable_buttons()
+            self.characterCollection.enable_buttons()
         else:
-            self._characterCollection.disable_buttons()
+            self.characterCollection.disable_buttons()
 
     def _activate_item_buttons(self, event=None):
         if self.element.items:
-            self._itemCollection.enable_buttons()
+            self.itemCollection.enable_buttons()
         else:
-            self._itemCollection.disable_buttons()
+            self.itemCollection.disable_buttons()
 
     def _activate_location_buttons(self, event=None):
         if self.element.locations:
-            self._locationCollection.enable_buttons()
+            self.locationCollection.enable_buttons()
         else:
-            self._locationCollection.disable_buttons()
+            self.locationCollection.disable_buttons()
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""
@@ -520,71 +520,22 @@ class SectionView(BasicView, SectionViewCtrl):
         self._create_notes_window()
         self._create_button_bar()
 
-    def _go_to_arc(self, event=None):
-        """Go to the plot line selected in the listbox."""
-        try:
-            selection = self._plotlineCollection.cListbox.curselection()[0]
-        except:
-            return
-
-        self._ui.tv.go_to_node(self.element.scPlotLines[selection])
-
-    def _go_to_character(self, event=None):
-        """Go to the character selected in the listbox."""
-        try:
-            selection = self._characterCollection.cListbox.curselection()[0]
-        except:
-            return
-
-        self._ui.tv.go_to_node(self.element.characters[selection])
-
-    def _go_to_location(self, event=None):
-        """Go to the location selected in the listbox."""
-        try:
-            selection = self._locationCollection.cListbox.curselection()[0]
-        except:
-            return
-
-        self._ui.tv.go_to_node(self.element.locations[selection])
-
-    def _go_to_item(self, event=None):
-        """Go to the item selected in the listbox."""
-        try:
-            selection = self._itemCollection.cListbox.curselection()[0]
-        except:
-            return
-
-        self._ui.tv.go_to_node(self.element.items[selection])
-
-    def _on_select_plotline(self, selection):
-        """Callback routine for section plot line list selection."""
-        self._save_plot_notes()
-        self._selectedPlotline = self.element.scPlotLines[selection]
-        self._plotNotesWindow.config(state='normal')
-        if self.element.plotlineNotes:
-            self._plotNotesWindow.set_text(self.element.plotlineNotes.get(self._selectedPlotline, ''))
-        else:
-            self._plotNotesWindow.clear()
-        if self.isLocked:
-            self._plotNotesWindow.config(state='disabled')
-        self._plotNotesWindow.config(bg='white')
-
     def _toggle_date_time_frame(self, event=None):
         """Hide/show the 'Date/Time' frame."""
         if prefs['show_date_time']:
-            self._dateTimeFrame.hide()
+            self.dateTimeFrame.hide()
             prefs['show_date_time'] = False
         else:
-            self._dateTimeFrame.show()
+            self.dateTimeFrame.show()
             prefs['show_date_time'] = True
 
     def _toggle_plot_frame(self, event=None):
         """Hide/show the 'Plot' frame."""
         if prefs['show_plot']:
-            self._plotFrame.hide()
+            self.plotFrame.hide()
             prefs['show_plot'] = False
         else:
-            self._plotFrame.show()
+            self.plotFrame.show()
             prefs['show_plot'] = True
 
     def _toggle_relation_frame(self, event=None):
@@ -599,9 +550,9 @@ class SectionView(BasicView, SectionViewCtrl):
     def _toggle_scene_frame(self, event=None):
         """Hide/show the 'Scene' frame."""
         if prefs['show_scene']:
-            self._sceneFrame.hide()
+            self.sceneFrame.hide()
             prefs['show_scene'] = False
         else:
-            self._sceneFrame.show()
+            self.sceneFrame.show()
             prefs['show_scene'] = True
 

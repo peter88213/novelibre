@@ -30,12 +30,12 @@ from nvlib.view.properties_window.stage_view import StageView
 
 class PropertiesViewerCtrl(SubController):
 
-    def apply_changes(self, event=None):
+    def get_data(self, event=None):
         # This is called by the controller to make sure changes take effect
         # e.g. when starting an export while a property entry still has the focus.
         if not self._ctrl.isLocked:
             self._activeView.doNotUpdate = True
-            self._activeView.apply_changes()
+            self._activeView.get_data()
             self._activeView.doNotUpdate = False
 
     def focus_title(self):

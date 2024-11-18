@@ -17,7 +17,7 @@ class PlotLineViewCtrl(BasicViewCtrl):
     - A button to remove all section assigments to this arc.
     """
 
-    def apply_changes(self, event=None):
+    def get_data(self, event=None):
         """Apply changes.
         
         Extends the superclass method.
@@ -25,21 +25,21 @@ class PlotLineViewCtrl(BasicViewCtrl):
         if self.element is None:
             return
 
-        super().apply_changes()
+        super().get_data()
 
         # 'Short name' entry.
-        self.element.shortName = self._shortName.get()
+        self.element.shortName = self.shortNameVar.get()
 
     def set_data(self, elementId):
         """Update the view with element's data.
         
-        Extends the superclass constructor.
+        Extends the superclass method.
         """
         self.element = self._mdl.novel.plotLines[elementId]
         super().set_data(elementId)
 
         # 'Plot line name' entry.
-        self._shortName.set(self.element.shortName)
+        self.shortNameVar.set(self.element.shortName)
 
         # Frame for plot line specific widgets.
         if self.element.sections is not None:

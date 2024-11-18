@@ -13,35 +13,35 @@ from nvlib.novx_globals import string_to_list
 
 class WorldElementViewCtrl(BasicViewCtrl, ABC):
 
-    def apply_changes(self, event=None):
+    def get_data(self, event=None):
         """Apply changes of element title, description and notes."""
         if self.element is None:
             return
 
-        super().apply_changes()
+        super().get_data()
 
         # 'AKA' entry.
-        self.element.aka = self._aka.get()
+        self.element.aka = self.akaVar.get()
 
         # 'Tags' entry.
-        newTags = self.tags.get()
+        newTags = self.tagsVar.get()
         self.element.tags = string_to_list(newTags)
 
     @abstractmethod
     def set_data(self, elementId):
         """Update the widgets with element's data.
         
-        Extends the superclass constructor.
+        Extends the superclass method.
         """
         super().set_data(elementId)
 
         # 'AKA' entry.
-        self._aka.set(self.element.aka)
+        self.akaVar.set(self.element.aka)
 
         # 'Tags' entry.
         if self.element.tags is not None:
             self.tagsStr = list_to_string(self.element.tags)
         else:
             self.tagsStr = ''
-        self.tags.set(self.tagsStr)
+        self.tagsVar.set(self.tagsStr)
 

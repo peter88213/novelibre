@@ -15,7 +15,7 @@ class ChapterViewCtrl(BasicViewCtrl):
     - A "Do not auto-number" checkbox.
     """
 
-    def apply_changes(self, event=None):
+    def get_data(self, event=None):
         """Apply changes.
         
         Extends the superclass method.
@@ -26,16 +26,16 @@ class ChapterViewCtrl(BasicViewCtrl):
         if self.element.isTrash:
             return
 
-        super().apply_changes()
+        super().get_data()
 
         #--- 'Unused' checkbox.
-        if self._isUnused.get():
+        if self.isUnusedVar.get():
             self._ctrl.set_type(1, [self.elementId])
         else:
             self._ctrl.set_type(0, [self.elementId])
 
         #--- 'Do not auto-number...' checkbox.
-        self.element.noNumber = self._noNumber.get()
+        self.element.noNumber = self.noNumberVar.get()
 
     def set_data(self, elementId):
         """Update the view with element's data.
@@ -48,18 +48,18 @@ class ChapterViewCtrl(BasicViewCtrl):
 
         #--- 'Unused' checkbox.
         if self.element.chType > 0:
-            self._isUnused.set(True)
+            self.isUnusedVar.set(True)
         else:
-            self._isUnused.set(False)
+            self.isUnusedVar.set(False)
 
         #--- 'Do not auto-number...' checkbox.
         if self.element.chLevel == 1:
             labelText = _('Do not auto-number this part')
         else:
             labelText = _('Do not auto-number this chapter')
-        self._noNumberCheckbox.configure(text=labelText)
+        self.noNumberCheckbox.configure(text=labelText)
         if self.element.noNumber:
-            self._noNumber.set(True)
+            self.noNumberVar.set(True)
         else:
-            self._noNumber.set(False)
+            self.noNumberVar.set(False)
 

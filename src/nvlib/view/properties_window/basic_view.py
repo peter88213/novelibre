@@ -64,14 +64,8 @@ class BasicView(ttk.Frame, Observer):
         self._propertiesFrame = ttk.Frame(self)
         self._propertiesFrame.pack(expand=True, fill='both')
 
-        self._prefsShowLinks = None
+        self.prefsShowLinks = None
         self._create_frames()
-
-    def _activate_link_buttons(self, event=None):
-        if self.element.links:
-            self._linkCollection.enable_buttons()
-        else:
-            self._linkCollection.disable_buttons()
 
     def focus_title(self):
         """Prepare the title entry for manual input."""
@@ -88,6 +82,12 @@ class BasicView(ttk.Frame, Observer):
         """Make the view visible."""
         self.pack(expand=True, fill='both')
 
+    def _activate_link_buttons(self, event=None):
+        if self.element.links:
+            self.linkCollection.enable_buttons()
+        else:
+            self.linkCollection.disable_buttons()
+
     def _add_separator(self):
         ttk.Separator(self._propertiesFrame, orient='horizontal').pack(fill='x')
 
@@ -97,15 +97,15 @@ class BasicView(ttk.Frame, Observer):
         self._buttonBar.pack(fill='x')
 
         # "Previous" button.
-        ttk.Button(self._buttonBar, text=_('Previous'), command=self._load_prev).pack(side='left', fill='x', expand=True, padx=1, pady=2)
+        ttk.Button(self._buttonBar, text=_('Previous'), command=self.load_prev).pack(side='left', fill='x', expand=True, padx=1, pady=2)
 
         # "Next" button.
-        ttk.Button(self._buttonBar, text=_('Next'), command=self._load_next).pack(side='left', fill='x', expand=True, padx=1, pady=2)
+        ttk.Button(self._buttonBar, text=_('Next'), command=self.load_next).pack(side='left', fill='x', expand=True, padx=1, pady=2)
 
     def _create_element_info_window(self):
         """Create a window for element specific information."""
-        self.elementInfoWindow = ttk.Frame(self._propertiesFrame)
-        self.elementInfoWindow.pack(fill='x')
+        self._elementInfoWindow = ttk.Frame(self._propertiesFrame)
+        self._elementInfoWindow.pack(fill='x')
 
     @abstractmethod
     def _create_frames(self):
@@ -123,28 +123,28 @@ class BasicView(ttk.Frame, Observer):
             )
         self.indexCard.bodyBox['height'] = prefs['index_card_height']
         self.indexCard.pack(expand=False, fill='both')
-        self.indexCard.titleEntry.bind('<Return>', self.apply_changes)
-        self.indexCard.titleEntry.bind('<FocusOut>', self.apply_changes)
-        self.indexCard.bodyBox.bind('<FocusOut>', self.apply_changes)
+        self.indexCard.titleEntry.bind('<Return>', self.get_data)
+        self.indexCard.titleEntry.bind('<FocusOut>', self.get_data)
+        self.indexCard.bodyBox.bind('<FocusOut>', self.get_data)
 
     def _create_links_window(self):
         """A folding frame with a "Links" listbox and control buttons."""
         ttk.Separator(self._propertiesFrame, orient='horizontal').pack(fill='x')
-        self._linksWindow = FoldingFrame(self._propertiesFrame, _('Links'), self._toggle_links_window)
-        self._linksWindow.pack(fill='x')
-        self._linkCollection = CollectionBox(
-            self._linksWindow,
+        self.linksWindow = FoldingFrame(self._propertiesFrame, _('Links'), self._toggle_links_window)
+        self.linksWindow.pack(fill='x')
+        self.linkCollection = CollectionBox(
+            self.linksWindow,
             cmdAdd=self._add_link,
-            cmdRemove=self._remove_link,
-            cmdOpen=self._open_link,
+            cmdRemove=self.remove_link,
+            cmdOpen=self.open_link,
             cmdActivate=self._activate_link_buttons,
             lblOpen=_('Open link'),
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
             iconOpen=self._ui.icons.gotoIcon
             )
-        self.inputWidgets.extend(self._linkCollection.inputWidgets)
-        self._linkCollection.pack(fill='x')
+        self.inputWidgets.extend(self.linkCollection.inputWidgets)
+        self.linkCollection.pack(fill='x')
 
     def _create_notes_window(self):
         """Create a text box for element notes."""
@@ -163,7 +163,7 @@ class BasicView(ttk.Frame, Observer):
             insertbackground=prefs['color_notes_fg'],
             )
         self.notesWindow.pack(expand=True, fill='both')
-        self.notesWindow.bind('<FocusOut>', self.apply_changes)
+        self.notesWindow.bind('<FocusOut>', self.get_data)
 
     def _end_picking_mode(self, event=None):
         if self._pickingMode:
@@ -178,17 +178,7 @@ class BasicView(ttk.Frame, Observer):
             self._pickingMode = False
         self._ui.restore_status()
 
-    def _show_missing_date_message(self):
-        self._ui.show_error(
-            _('Please enter either a section date or a day and a reference date.'),
-            title=_('Date information is missing'))
-
-    def _show_missing_reference_date_message(self):
-        self._ui.show_error(
-            _('Please enter a reference date.'),
-            title=_('Cannot convert date/days'))
-
-    def _start_picking_mode(self, event=None, command=None):
+    def start_picking_mode(self, event=None, command=None):
         """Start the picking mode for element selection.        
         
         Change the mouse cursor to "+" and expand the "Book" subtree.
@@ -214,10 +204,10 @@ class BasicView(ttk.Frame, Observer):
         
         Callback procedure for the FoldingFrame's button.
         """
-        if prefs[self._prefsShowLinks]:
-            self._linksWindow.hide()
-            prefs[self._prefsShowLinks] = False
+        if prefs[self.prefsShowLinks]:
+            self.linksWindow.hide()
+            prefs[self.prefsShowLinks] = False
         else:
-            self._linksWindow.show()
-            prefs[self._prefsShowLinks] = True
+            self.linksWindow.show()
+            prefs[self.prefsShowLinks] = True
 

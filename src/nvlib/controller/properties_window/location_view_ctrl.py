@@ -12,7 +12,7 @@ class LocationViewCtrl(WorldElementViewCtrl):
     def set_data(self, elementId):
         """Update the view with element's data.
         
-        Extends the superclass constructor.
+        Extends the superclass method.
         """
         self.element = self._mdl.novel.locations[elementId]
         super().set_data(elementId)

@@ -33,31 +33,31 @@ class PlotLineView(BasicView, PlotLineViewCtrl):
         self._lastSelected = ''
 
         # 'Short name' entry.
-        self._shortName = MyStringVar()
+        self.shortNameVar = MyStringVar()
         self._shortNameEntry = LabelEntry(
-            self.elementInfoWindow,
+            self._elementInfoWindow,
             text=_('Short name'),
-            textvariable=self._shortName,
-            command=self.apply_changes,
+            textvariable=self.shortNameVar,
+            command=self.get_data,
             lblWidth=22
             )
         self._shortNameEntry.pack(anchor='w')
         inputWidgets.append(self._shortNameEntry)
 
         # Frame for plot line specific widgets.
-        self._plotFrame = ttk.Frame(self.elementInfoWindow)
-        self._plotFrame.pack(fill='x')
-        self._nrSections = ttk.Label(self._plotFrame)
+        self.plotFrame = ttk.Frame(self._elementInfoWindow)
+        self.plotFrame.pack(fill='x')
+        self._nrSections = ttk.Label(self.plotFrame)
         self._nrSections.pack(side='left')
-        self._clearButton = ttk.Button(self._plotFrame, text=_('Clear section assignments'), command=self._remove_sections)
+        self._clearButton = ttk.Button(self.plotFrame, text=_('Clear section assignments'), command=self._remove_sections)
         self._clearButton.pack(padx=1, pady=2)
         inputWidgets.append(self._clearButton)
 
         for widget in inputWidgets:
-            widget.bind('<FocusOut>', self.apply_changes)
+            widget.bind('<FocusOut>', self.get_data)
             self.inputWidgets.append(widget)
 
-        self._prefsShowLinks = 'show_pl_links'
+        self.prefsShowLinks = 'show_pl_links'
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""

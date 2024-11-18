@@ -37,7 +37,7 @@ class BasicViewCtrl(SubController):
             links[shortPath] = selectedPath
             self.element.links = links
 
-    def apply_changes(self, event=None):
+    def get_data(self, event=None):
         """Apply changes of element title, description, and notes."""
         if self.element is None:
             return
@@ -58,6 +58,22 @@ class BasicViewCtrl(SubController):
         if hasattr(self.element, 'notes') and self.notesWindow.hasChanged:
             self.element.notes = self.notesWindow.get_text()
 
+    def load_next(self):
+        """Load the next tree element of the same type."""
+        thisNode = self._ui.selectedNode
+        nextNode = self._ui.tv.next_node(thisNode)
+        if nextNode:
+            self._ui.tv.see_node(nextNode)
+            self._ui.tv.tree.selection_set(nextNode)
+
+    def load_prev(self):
+        """Load the next tree element of the same type."""
+        thisNode = self._ui.selectedNode
+        prevNode = self._ui.tv.prev_node(thisNode)
+        if prevNode:
+            self._ui.tv.see_node(prevNode)
+            self._ui.tv.tree.selection_set(prevNode)
+
     def lock(self):
         """Inhibit element change."""
         self.indexCard.lock()
@@ -69,69 +85,19 @@ class BasicViewCtrl(SubController):
             widget.config(state='disabled')
         self.isLocked = True
 
-    @abstractmethod
-    def set_data(self, elementId):
-        """Update the view with element's data.
-        
-        Note: subclasses must set self.element before calling this method.
-        """
-        self.elementId = elementId
-        self.tagsStr = ''
-        if self.element is not None:
-
-            # Title entry.
-            self.indexCard.title.set(self.element.title)
-
-            # Description entry.
-            self.indexCard.bodyBox.clear()
-            self.indexCard.bodyBox.set_text(self.element.desc)
-
-            # Links window.
-            if hasattr(self.element, 'links'):
-                if prefs[self._prefsShowLinks]:
-                    self._linksWindow.show()
-                else:
-                    self._linksWindow.hide()
-                linkList = []
-                for path in self.element.links:
-                    linkList.append(os.path.split(path)[1])
-                self._linkCollection.cList.set(linkList)
-                listboxSize = len(linkList)
-                if listboxSize > self._HEIGHT_LIMIT:
-                    listboxSize = self._HEIGHT_LIMIT
-                self._linkCollection.cListbox.config(height=listboxSize)
-                if not self._linkCollection.cListbox.curselection() or not self._linkCollection.cListbox.focus_get():
-                    self._linkCollection.disable_buttons()
-
-            # Notes entry (if any).
-            if hasattr(self.element, 'notes'):
-                self.notesWindow.clear()
-                self.notesWindow.set_text(self.element.notes)
-
-    def unlock(self):
-        """Enable element change."""
-        self.indexCard.unlock()
-        try:
-            self.notesWindow.config(state='normal')
-        except:
-            pass
-        for widget in self.inputWidgets:
-            widget.config(state='normal')
-        self.isLocked = False
-
-    def _open_link(self, event=None):
+    def open_link(self, event=None):
         """Open the selected link."""
         try:
-            selection = self._linkCollection.cListbox.curselection()[0]
+            selection = self.linkCollection.cListbox.curselection()[0]
         except:
             return
 
         self._ctrl.open_link(self.element, selection)
 
-    def _remove_link(self, event=None):
+    def remove_link(self, event=None):
         """Remove a link from the list."""
         try:
-            selection = self._linkCollection.cListbox.curselection()[0]
+            selection = self.linkCollection.cListbox.curselection()[0]
         except:
             return
 
@@ -145,19 +111,58 @@ class BasicViewCtrl(SubController):
             else:
                 self.element.links = links
 
-    def _load_next(self):
-        """Load the next tree element of the same type."""
-        thisNode = self._ui.selectedNode
-        nextNode = self._ui.tv.next_node(thisNode)
-        if nextNode:
-            self._ui.tv.see_node(nextNode)
-            self._ui.tv.tree.selection_set(nextNode)
+    @abstractmethod
+    def set_data(self, elementId):
+        """Update the view with element's data.
+        
+        Note: subclasses must set self.element before calling this method.
+        """
+        self.elementId = elementId
+        self.tagsStr = ''
+        if self.element is None:
+            return
 
-    def _load_prev(self):
-        """Load the next tree element of the same type."""
-        thisNode = self._ui.selectedNode
-        prevNode = self._ui.tv.prev_node(thisNode)
-        if prevNode:
-            self._ui.tv.see_node(prevNode)
-            self._ui.tv.tree.selection_set(prevNode)
+        # Title entry.
+        self.indexCard.title.set(self.element.title)
 
+        # Description entry.
+        self.indexCard.bodyBox.clear()
+        self.indexCard.bodyBox.set_text(self.element.desc)
+
+        # Links window.
+        if hasattr(self.element, 'links'):
+            if prefs[self.prefsShowLinks]:
+                self.linksWindow.show()
+            else:
+                self.linksWindow.hide()
+            linkList = []
+            for path in self.element.links:
+                linkList.append(os.path.split(path)[1])
+            self.linkCollection.cList.set(linkList)
+            listboxSize = len(linkList)
+            if listboxSize > self._HEIGHT_LIMIT:
+                listboxSize = self._HEIGHT_LIMIT
+            self.linkCollection.cListbox.config(height=listboxSize)
+            if not self.linkCollection.cListbox.curselection() or not self.linkCollection.cListbox.focus_get():
+                self.linkCollection.disable_buttons()
+
+        # Notes entry (if any).
+        if hasattr(self.element, 'notes'):
+            self.notesWindow.clear()
+            self.notesWindow.set_text(self.element.notes)
+
+    def unlock(self):
+        """Enable element change."""
+        self.indexCard.unlock()
+        try:
+            self.notesWindow.config(state='normal')
+        except:
+            pass
+        for widget in self.inputWidgets:
+            widget.config(state='normal')
+        self.isLocked = False
+
+    def _report_missing_reference_date(self):
+        self._ui.show_error(
+            _('Please enter a reference date.'),
+            title=_('Cannot convert date/days'))

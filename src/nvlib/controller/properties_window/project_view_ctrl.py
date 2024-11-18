@@ -7,7 +7,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from datetime import date
 
 from nvlib.controller.properties_window.basic_view_ctrl import BasicViewCtrl
-from mvclib.widgets.my_string_var import MyStringVar
 from nvlib.novx_globals import WEEKDAYS
 from nvlib.novx_globals import _
 from nvlib.nv_globals import datestr
@@ -17,7 +16,37 @@ from nvlib.nv_globals import prefs
 class ProjectViewCtrl(BasicViewCtrl):
     """Class for viewing and editing project properties."""
 
-    def apply_changes(self, event=None):
+    def dates_to_days(self):
+        """Convert specific section dates to days."""
+        buttonText = self.datesToDaysButton['text']
+        self.datesToDaysButton['text'] = _('Please wait ...')
+        # changing the button text is less time consuming than showing a progress bar
+        if self._mdl.novel.referenceDate:
+            if self._ui.ask_yes_no(_('Convert all section dates to days relative to the reference date?')):
+                self.doNotUpdate = True
+                for scId in self._mdl.novel.sections:
+                    self._mdl.novel.sections[scId].date_to_day(self._mdl.novel.referenceDate)
+                self.doNotUpdate = False
+        else:
+            self._report_missing_reference_date()
+        self.datesToDaysButton['text'] = buttonText
+
+    def days_to_dates(self):
+        """Convert section days to specific dates."""
+        buttonText = self.daysToDatesButton['text']
+        self.daysToDatesButton['text'] = _('Please wait ...')
+        # changing the button text is less time consuming than showing a progress bar
+        if self._mdl.novel.referenceDate:
+            if self._ui.ask_yes_no(_('Convert all section days to dates using the reference date?')):
+                self.doNotUpdate = True
+                for scId in self._mdl.novel.sections:
+                    self._mdl.novel.sections[scId].day_to_date(self._mdl.novel.referenceDate)
+                self.doNotUpdate = False
+        else:
+            self._report_missing_reference_date()
+        self.daysToDatesButton['text'] = buttonText
+
+    def get_data(self, event=None):
         """Apply changes.
         
         Extends the superclass method.
@@ -25,51 +54,51 @@ class ProjectViewCtrl(BasicViewCtrl):
         if self.element is None:
             return
 
-        super().apply_changes()
+        super().get_data()
 
         # Author
-        authorName = self._authorName.get()
+        authorName = self.authorNameVar.get()
         if authorName:
             authorName = authorName.strip()
         self.element.authorName = authorName
 
         #--- "Language settings" frame.
-        self.element.languageCode = self._languageCode.get()
-        self.element.countryCode = self._countryCode.get()
+        self.element.languageCode = self.languageCodeVar.get()
+        self.element.countryCode = self.countryCodeVar.get()
 
         #--- "Auto numbering" frame.
-        self.element.renumberChapters = self._renumberChapters.get()
-        self.element.renumberParts = self._renumberParts.get()
-        self.element.renumberWithinParts = self._renumberWithinParts.get()
-        self.element.romanChapterNumbers = self._romanChapterNumbers.get()
-        self.element.romanPartNumbers = self._romanPartNumbers.get()
-        self.element.saveWordCount = self._saveWordCount.get()
+        self.element.renumberChapters = self.renumberChaptersVar.get()
+        self.element.renumberParts = self.renumberPartsVar.get()
+        self.element.renumberWithinParts = self.renumberWithinPartsVar.get()
+        self.element.romanChapterNumbers = self.romanChapterNumbersVar.get()
+        self.element.romanPartNumbers = self.romanPartNumbersVar.get()
+        self.element.saveWordCount = self.saveWordCountVar.get()
 
         #--- "Renamings" frame.
-        self.element.chapterHeadingPrefix = self._chapterHeadingPrefix.get()
-        self.element.chapterHeadingSuffix = self._chapterHeadingSuffix.get()
-        self.element.partHeadingPrefix = self._partHeadingPrefix.get()
-        self.element.partHeadingSuffix = self._partHeadingSuffix.get()
-        self.element.customPlotProgress = self._customPlotProgress.get()
-        self.element.customCharacterization = self._customCharacterization.get()
-        self.element.customWorldBuilding = self._customWorldBuilding.get()
-        self.element.customGoal = self._customGoal.get()
-        self.element.customConflict = self._customConflict.get()
-        self.element.customOutcome = self._customOutcome.get()
-        self.element.customChrBio = self._customChrBio.get()
-        self.element.customChrGoals = self._customChrGoals.get()
+        self.element.chapterHeadingPrefix = self.chapterHeadingPrefixVar.get()
+        self.element.chapterHeadingSuffix = self.chapterHeadingSuffixVar.get()
+        self.element.partHeadingPrefix = self.partHeadingPrefixVar.get()
+        self.element.partHeadingSuffix = self.partHeadingSuffixVar.get()
+        self.element.customPlotProgress = self.customPlotProgressVar.get()
+        self.element.customCharacterization = self.customCharacterizationVar.get()
+        self.element.customWorldBuilding = self.customWorldBuildingVar.get()
+        self.element.customGoal = self.customGoalVar.get()
+        self.element.customConflict = self.customConflictVar.get()
+        self.element.customOutcome = self.customOutcomeVar.get()
+        self.element.customChrBio = self.customChrBioVar.get()
+        self.element.customChrGoals = self.customChrGoalsVar.get()
 
         #--- "Narrative time" frame.
-        refDateStr = self._referenceDate.get()
+        refDateStr = self.referenceDateVar.get()
         if not refDateStr:
             self.element.referenceDate = None
-            self._referenceWeekDay.set('')
-            self._localeDate.set('')
+            self.referenceWeekDayVar.set('')
+            self.localeDateVar.set('')
         elif refDateStr != self.element.referenceDate:
             try:
                 date.fromisoformat(refDateStr)
             except ValueError:
-                self._referenceDate.set(self.element.referenceDate)
+                self.referenceDateVar.set(self.element.referenceDate)
                 self._ui.show_error(
                     f'{_("Wrong date")}: "{refDateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}',
                     title=_('Input rejected')
@@ -77,14 +106,14 @@ class ProjectViewCtrl(BasicViewCtrl):
             else:
                 self.element.referenceDate = refDateStr
                 if self.element.referenceWeekDay is not None:
-                    self._referenceWeekDay.set(WEEKDAYS[self.element.referenceWeekDay])
+                    self.referenceWeekDayVar.set(WEEKDAYS[self.element.referenceWeekDay])
                 else:
-                    self._referenceWeekDay.set('')
-                    self._localeDate.set('')
+                    self.referenceWeekDayVar.set('')
+                    self.localeDateVar.set('')
 
         #--- "Writing progress" frame.
         try:
-            entry = self._wordTarget.get()
+            entry = self.wordTargetVar.get()
             # entry must be an integer
             if self.element.wordTarget or entry:
                 if self.element.wordTarget != entry:
@@ -93,7 +122,7 @@ class ProjectViewCtrl(BasicViewCtrl):
             # entry is no integer
             pass
         try:
-            entry = self._wordCountStart.get()
+            entry = self.wordCountStartVar.get()
             # entry must be an integer
             if self.element.wordCountStart or entry:
                 if self.element.wordCountStart != entry:
@@ -103,214 +132,184 @@ class ProjectViewCtrl(BasicViewCtrl):
             pass
 
         # Get work phase.
-        if not self._phaseCombobox.current():
+        if not self.phaseCombobox.current():
             entry = None
         else:
-            entry = self._phaseCombobox.current()
+            entry = self.phaseCombobox.current()
         self.element.workPhase = entry
 
     def set_data(self, elementId):
         """Update the widgets with element's data.
         
-        Extends the superclass constructor.
+        Extends the superclass method.
         """
         self.element = self._mdl.novel
         super().set_data(elementId)
 
         #--- Author entry.
-        self._authorName.set(self.element.authorName)
+        self.authorNameVar.set(self.element.authorName)
 
         #--- "Language settings" frame.
         if prefs['show_language_settings']:
-            self._languageFrame.show()
+            self.languageFrame.show()
         else:
-            self._languageFrame.hide()
+            self.languageFrame.hide()
 
         # 'Language code' entry.
-        self._languageCode.set(self.element.languageCode)
+        self.languageCodeVar.set(self.element.languageCode)
 
         # 'Country code' entry.
-        self._countryCode.set(self.element.countryCode)
+        self.countryCodeVar.set(self.element.countryCode)
 
         #--- "Auto numbering" frame.
         if prefs['show_auto_numbering']:
-            self._numberingFrame.show()
+            self.numberingFrame.show()
         else:
-            self._numberingFrame.hide()
+            self.numberingFrame.hide()
 
         # 'Auto number chapters' checkbox.
         if self.element.renumberChapters:
-            self._renumberChapters.set(True)
+            self.renumberChaptersVar.set(True)
         else:
-            self._renumberChapters.set(False)
+            self.renumberChaptersVar.set(False)
             # applies also to uninitialized values.
 
         # 'Chapter number prefix' entry.
-        self._chapterHeadingPrefix.set(self.element.chapterHeadingPrefix)
+        self.chapterHeadingPrefixVar.set(self.element.chapterHeadingPrefix)
 
         # 'Chapter number suffix' entry.
-        self._chapterHeadingSuffix = MyStringVar(value=self.element.chapterHeadingSuffix)
+        self.chapterHeadingSuffixVar.set(self.element.chapterHeadingSuffix)
 
         # 'Use Roman chapter numbers' checkbox.
         if self.element.romanChapterNumbers:
-            self._romanChapterNumbers.set(True)
+            self.romanChapterNumbersVar.set(True)
         else:
-            self._romanChapterNumbers.set(False)
+            self.romanChapterNumbersVar.set(False)
 
         # 'Reset chapter number..." checkbox
         if self.element.renumberWithinParts:
-            self._renumberWithinParts.set(True)
+            self.renumberWithinPartsVar.set(True)
         else:
-            self._renumberWithinParts.set(False)
+            self.renumberWithinPartsVar.set(False)
 
         # 'Auto number parts' checkbox.
         if self.element.renumberParts:
-            self._renumberParts.set(True)
+            self.renumberPartsVar.set(True)
         else:
-            self._renumberParts.set(False)
+            self.renumberPartsVar.set(False)
 
         # 'Part number prefix' entry.
-        self._partHeadingPrefix.set(self.element.partHeadingPrefix)
+        self.partHeadingPrefixVar.set(self.element.partHeadingPrefix)
 
         # 'Part number suffix' entry.
-        self._partHeadingSuffix.set(self.element.partHeadingSuffix)
+        self.partHeadingSuffixVar.set(self.element.partHeadingSuffix)
 
         # 'Use Roman part numbers' checkbox.
         if self.element.romanPartNumbers:
-            self._romanPartNumbers.set(True)
+            self.romanPartNumbersVar.set(True)
         else:
-            self._romanPartNumbers.set(False)
+            self.romanPartNumbersVar.set(False)
 
         #--- "Renamings" frame.
         if prefs['show_renamings']:
-            self._renamingsFrame.show()
+            self.renamingsFrame.show()
         else:
-            self._renamingsFrame.hide()
+            self.renamingsFrame.hide()
 
-        self._customPlotProgress.set(self.element.customPlotProgress)
-        self._customCharacterization.set(self.element.customCharacterization)
-        self._customWorldBuilding.set(self.element.customWorldBuilding)
-        self._customGoal.set(self.element.customGoal)
-        self._customConflict.set(self.element.customConflict)
-        self._customOutcome.set(self.element.customOutcome)
-        self._customChrBio.set(self.element.customChrBio)
-        self._customChrGoals.set(self.element.customChrGoals)
+        self.customPlotProgressVar.set(self.element.customPlotProgress)
+        self.customCharacterizationVar.set(self.element.customCharacterization)
+        self.customWorldBuildingVar.set(self.element.customWorldBuilding)
+        self.customGoalVar.set(self.element.customGoal)
+        self.customConflictVar.set(self.element.customConflict)
+        self.customOutcomeVar.set(self.element.customOutcome)
+        self.customChrBioVar.set(self.element.customChrBio)
+        self.customChrGoalsVar.set(self.element.customChrGoals)
 
         #--- "Narrative time" frame
         if prefs['show_narrative_time']:
-            self._narrativeTimeFrame.show()
+            self.narrativeTimeFrame.show()
         else:
-            self._narrativeTimeFrame.hide()
+            self.narrativeTimeFrame.hide()
 
         if self.element.referenceDate and self.element.referenceWeekDay is not None:
-            self._referenceWeekDay.set(
+            self.referenceWeekDayVar.set(
                 WEEKDAYS[self.element.referenceWeekDay]
                 )
-            self._localeDate.set(
+            self.localeDateVar.set(
                 datestr(self.element.referenceDate)
                 )
         else:
-            self._referenceWeekDay.set('')
-            self._localeDate.set('')
-        self._referenceDate.set(self.element.referenceDate)
+            self.referenceWeekDayVar.set('')
+            self.localeDateVar.set('')
+        self.referenceDateVar.set(self.element.referenceDate)
 
         #--- "Writing progress" frame.
         if prefs['show_writing_progress']:
-            self._progressFrame.show()
+            self.progressFrame.show()
         else:
-            self._progressFrame.hide()
+            self.progressFrame.hide()
 
         # 'Save word count' checkbox.
         if self.element.saveWordCount:
-            self._saveWordCount.set(True)
+            self.saveWordCountVar.set(True)
         else:
-            self._saveWordCount.set(False)
+            self.saveWordCountVar.set(False)
 
         # 'Words to write' entry.
         if self.element.wordTarget is not None:
-            self._wordTarget.set(self.element.wordTarget)
+            self.wordTargetVar.set(self.element.wordTarget)
         else:
-            self._wordTarget.set(0)
+            self.wordTargetVar.set(0)
 
         # 'Starting count' entry.
         if self.element.wordCountStart is not None:
-            self._wordCountStart.set(self.element.wordCountStart)
+            self.wordCountStartVar.set(self.element.wordCountStart)
         else:
-            self._wordCountStart.set(0)
+            self.wordCountStartVar.set(0)
 
         # Status counts.
         normalWordsTotal, allWordsTotal = self._mdl.prjFile.count_words()
-        self._totalWords.set(allWordsTotal)
-        self._totalUsed.set(normalWordsTotal)
-        self._totalUnused.set(allWordsTotal - normalWordsTotal)
+        self.totalWordsVar.set(allWordsTotal)
+        self.totalUsedVar.set(normalWordsTotal)
+        self.totalUnusedVar.set(allWordsTotal - normalWordsTotal)
         statusCounts = self._mdl.get_status_counts()
-        self._totalOutline.set(statusCounts[1])
-        self._totalDraft.set(statusCounts[2])
-        self._total1stEdit.set(statusCounts[3])
-        self._total2ndEdit.set(statusCounts[4])
-        self._totalDone.set(statusCounts[5])
+        self.totalOutlineVar.set(statusCounts[1])
+        self.totalDraftVar.set(statusCounts[2])
+        self.total1stEditVar.set(statusCounts[3])
+        self.total2ndEditVar.set(statusCounts[4])
+        self.totalDoneVar.set(statusCounts[5])
 
         # 'Work phase' combobox.
         phases = [_('Undefined'), _('Outline'), _('Draft'), _('1st Edit'), _('2nd Edit'), _('Done')]
-        self._phaseCombobox.configure(values=phases)
+        self.phaseCombobox.configure(values=phases)
         try:
             workPhase = int(self.element.workPhase)
         except:
             workPhase = 0
-        self._phase.set(value=phases[workPhase])
+        self.phaseVar.set(value=phases[workPhase])
 
-    def _set_initial_wc(self):
+    def set_initial_wc(self):
         """Set actual wordcount as start.
         
         Callback procedure for the related button.
         """
-        self._wordCountStart.set(self._mdl.wordCount)
+        self.wordCountStartVar.set(self._mdl.wordCount)
 
-    def _dates_to_days(self):
-        """Convert specific section dates to days."""
-        buttonText = self._datesToDaysButton['text']
-        self._datesToDaysButton['text'] = _('Please wait ...')
-        # changing the button text is less time consuming than showing a progress bar
-        if self._mdl.novel.referenceDate:
-            if self._ui.ask_yes_no(_('Convert all section dates to days relative to the reference date?')):
-                self.doNotUpdate = True
-                for scId in self._mdl.novel.sections:
-                    self._mdl.novel.sections[scId].date_to_day(self._mdl.novel.referenceDate)
-                self.doNotUpdate = False
-        else:
-            self._show_missing_reference_date_message()
-        self._datesToDaysButton['text'] = buttonText
-
-    def _days_to_dates(self):
-        """Convert section days to specific dates."""
-        buttonText = self._daysToDatesButton['text']
-        self._daysToDatesButton['text'] = _('Please wait ...')
-        # changing the button text is less time consuming than showing a progress bar
-        if self._mdl.novel.referenceDate:
-            if self._ui.ask_yes_no(_('Convert all section days to dates using the reference date?')):
-                self.doNotUpdate = True
-                for scId in self._mdl.novel.sections:
-                    self._mdl.novel.sections[scId].day_to_date(self._mdl.novel.referenceDate)
-                self.doNotUpdate = False
-        else:
-            self._show_missing_reference_date_message()
-        self._daysToDatesButton['text'] = buttonText
-
-    def _update_words_written(self, n, m, x):
+    def update_words_written(self, n, m, x):
         """Calculate the percentage of written words.
         
         Callback procedure for traced variables:
-        - self._wordCountStart
-        - self._wordTarget
+        - self.wordCountStartVar
+        - self.wordTargetVar
         """
         try:
-            ww = self._mdl.wordCount - self._wordCountStart.get()
-            wt = self._wordTarget.get()
+            ww = self._mdl.wordCount - self.wordCountStartVar.get()
+            wt = self.wordTargetVar.get()
             try:
                 wp = f'({round(100*ww/wt)}%)'
             except ZeroDivisionError:
                 wp = ''
-            self._wordsWritten.set(f'{ww} {wp}')
+            self.wordsWrittenVar.set(f'{ww} {wp}')
         except:
             pass
 

@@ -13,7 +13,7 @@ class ProjectNoteView(BasicView, ProjectNoteViewCtrl):
 
     def __init__(self, parent, model, view, controller):
         super().__init__(parent, model, view, controller)
-        self._prefsShowLinks = 'show_pn_links'
+        self.prefsShowLinks = 'show_pn_links'
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""

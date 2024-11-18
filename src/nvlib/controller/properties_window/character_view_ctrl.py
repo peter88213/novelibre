@@ -13,7 +13,7 @@ from nvlib.nv_globals import prefs
 
 class CharacterViewCtrl(WorldElementViewCtrl):
 
-    def apply_changes(self, event=None):
+    def get_data(self, event=None):
         """Apply changes.
         
         Extends the superclass method.
@@ -21,10 +21,10 @@ class CharacterViewCtrl(WorldElementViewCtrl):
         if self.element is None:
             return
 
-        super().apply_changes()
+        super().get_data()
 
         # 'Full name' entry.
-        self.element.fullName = self._fullName.get()
+        self.element.fullName = self.fullNameVar.get()
 
         # 'Bio' frame.
         if self._bioEntry.hasChanged:
@@ -67,23 +67,23 @@ class CharacterViewCtrl(WorldElementViewCtrl):
     def set_data(self, elementId):
         """Update the view with element's data.
         
-        Extends the superclass constructor.
+        Extends the superclass method.
         """
         self.element = self._mdl.novel.characters[elementId]
         super().set_data(elementId)
 
         # 'Full name' entry.
-        self._fullName.set(self.element.fullName)
+        self.fullNameVar.set(self.element.fullName)
 
         #--- 'Bio' entry
         if self._mdl.novel.customChrBio:
-            self._bioFrame.buttonText = self._mdl.novel.customChrBio
+            self.bioFrame.buttonText = self._mdl.novel.customChrBio
         else:
-            self._bioFrame.buttonText = _('Bio')
+            self.bioFrame.buttonText = _('Bio')
         if prefs['show_cr_bio']:
-            self._bioFrame.show()
+            self.bioFrame.show()
         else:
-            self._bioFrame.hide()
+            self.bioFrame.hide()
         self._bioEntry.set_text(self.element.bio)
 
         #--- Birth date/death date.
@@ -92,12 +92,12 @@ class CharacterViewCtrl(WorldElementViewCtrl):
 
         #--- 'Goals' entry.
         if self._mdl.novel.customChrGoals:
-            self._goalsFrame.buttonText = self._mdl.novel.customChrGoals
+            self.goalsFrame.buttonText = self._mdl.novel.customChrGoals
         else:
-            self._goalsFrame.buttonText = _('Goals')
+            self.goalsFrame.buttonText = _('Goals')
         if prefs['show_cr_goals']:
-            self._goalsFrame.show()
+            self.goalsFrame.show()
         else:
-            self._goalsFrame.hide()
+            self.goalsFrame.hide()
         self._goalsEntry.set_text(self.element.goals)
 

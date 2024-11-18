@@ -144,7 +144,7 @@ class NvMainView(ViewBase, NvMainViewCtrl):
 
     def detach_properties_frame(self, event=None):
         """View the properties in its own window."""
-        self.propertiesView.apply_changes()
+        self.propertiesView.get_data()
         if self._propWinDetached:
             return
 
@@ -174,7 +174,7 @@ class NvMainView(ViewBase, NvMainViewCtrl):
 
     def dock_properties_frame(self, event=None):
         """Dock the properties window at the right pane, if detached."""
-        self.propertiesView.apply_changes()
+        self.propertiesView.get_data()
         if not self._propWinDetached:
             return
 
@@ -268,7 +268,7 @@ class NvMainView(ViewBase, NvMainViewCtrl):
     def toggle_properties_view(self, event=None):
         """Show/hide the element properties frame."""
         if self.rightFrame.winfo_manager():
-            self.propertiesView.apply_changes()
+            self.propertiesView.get_data()
             self.rightFrame.pack_forget()
             prefs['show_properties'] = False
         elif not self._propWinDetached:

@@ -28,35 +28,35 @@ class WorldElementView(BasicView):
         super().__init__(parent, model, view, controller)
         inputWidgets = []
 
-        self._fullNameFrame = ttk.Frame(self.elementInfoWindow)
+        self._fullNameFrame = ttk.Frame(self._elementInfoWindow)
         self._fullNameFrame.pack(anchor='w', fill='x')
 
         # 'AKA' entry.
-        self._aka = MyStringVar()
+        self.akaVar = MyStringVar()
         self._akaEntry = LabelEntry(
-            self.elementInfoWindow,
+            self._elementInfoWindow,
             text=_('AKA'),
-            textvariable=self._aka,
-            command=self.apply_changes,
+            textvariable=self.akaVar,
+            command=self.get_data,
             lblWidth=self._LBL_X
             )
         self._akaEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._akaEntry)
 
         # 'Tags' entry.
-        self.tags = MyStringVar()
+        self.tagsVar = MyStringVar()
         self._tagsEntry = LabelEntry(
-            self.elementInfoWindow,
+            self._elementInfoWindow,
             text=_('Tags'),
-            textvariable=self.tags,
-            command=self.apply_changes,
+            textvariable=self.tagsVar,
+            command=self.get_data,
             lblWidth=self._LBL_X
             )
         self._tagsEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._tagsEntry)
 
         for widget in inputWidgets:
-            widget.bind('<FocusOut>', self.apply_changes)
+            widget.bind('<FocusOut>', self.get_data)
             self.inputWidgets.append(widget)
 
     def _create_frames(self):

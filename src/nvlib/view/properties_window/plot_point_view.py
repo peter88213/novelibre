@@ -32,29 +32,29 @@ class PlotPointView(BasicView, PlotPointViewCtrl):
         self._treeSelectBinding = None
         self._uiEscBinding = None
 
-        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
 
         # Associated section display.
-        self._sectionFrame = ttk.Frame(self.elementInfoWindow)
+        self._sectionFrame = ttk.Frame(self._elementInfoWindow)
         self._sectionFrame.pack(anchor='w', fill='x')
         ttk.Label(self._sectionFrame, text=f"{_('Section')}:").pack(anchor='w')
         self.sectionAssocTitle = tk.Label(self._sectionFrame, anchor='w', bg='white')
         self.sectionAssocTitle.pack(anchor='w', pady=2, fill='x')
 
-        self._assignSectionButton = ttk.Button(self._sectionFrame, text=_('Assign section'), command=self._pick_section)
+        self._assignSectionButton = ttk.Button(self._sectionFrame, text=_('Assign section'), command=self.pick_section)
         self._assignSectionButton.pack(side='left', fill='x', expand=True)
         inputWidgets.append(self._assignSectionButton)
 
-        self._clearAssignmentButton = ttk.Button(self._sectionFrame, text=_('Clear assignment'), command=self._clear_assignment)
+        self._clearAssignmentButton = ttk.Button(self._sectionFrame, text=_('Clear assignment'), command=self.clear_assignment)
         self._clearAssignmentButton.pack(side='left', fill='x', expand=True)
         inputWidgets.append(self._clearAssignmentButton)
 
-        ttk.Button(self._sectionFrame, text=_('Go to section'), command=self._select_assigned_section).pack(side='left', fill='x', expand=True)
+        ttk.Button(self._sectionFrame, text=_('Go to section'), command=self.go_to_assigned_section).pack(side='left', fill='x', expand=True)
 
         for widget in inputWidgets:
             self.inputWidgets.append(widget)
 
-        self._prefsShowLinks = 'show_pp_links'
+        self.prefsShowLinks = 'show_pp_links'
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""

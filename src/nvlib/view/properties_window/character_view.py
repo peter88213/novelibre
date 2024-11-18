@@ -36,28 +36,28 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
         inputWidgets = []
 
         #--- 'Full name' entry.
-        self._fullName = MyStringVar()
+        self.fullNameVar = MyStringVar()
         self._fullNameEntry = LabelEntry(
             self._fullNameFrame,
             text=_('Full name'),
-            textvariable=self._fullName,
-            command=self.apply_changes,
+            textvariable=self.fullNameVar,
+            command=self.get_data,
             lblWidth=self._LBL_X
             )
         self._fullNameEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._fullNameEntry)
 
-        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- 'Bio' frame
-        self._bioFrame = FoldingFrame(self.elementInfoWindow, '', self._toggle_bio_window)
+        self.bioFrame = FoldingFrame(self._elementInfoWindow, '', self._toggle_bio_window)
 
         self._birthDate = MyStringVar()
         self._birthDateEntry = LabelEntry(
-            self._bioFrame,
+            self.bioFrame,
             text=_('Birth date'),
             textvariable=self._birthDate,
-            command=self.apply_changes,
+            command=self.get_data,
             lblWidth=self._LBL_X
             )
         self._birthDateEntry.pack(anchor='w', pady=2)
@@ -65,16 +65,16 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
 
         self._deathDate = MyStringVar()
         self._deathDateEntry = LabelEntry(
-            self._bioFrame,
+            self.bioFrame,
             text=_('Death date'),
             textvariable=self._deathDate,
-            command=self.apply_changes,
+            command=self.get_data,
             lblWidth=self._LBL_X
             )
         self._deathDateEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._deathDateEntry)
 
-        self._bioEntry = TextBox(self._bioFrame,
+        self._bioEntry = TextBox(self.bioFrame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -90,11 +90,11 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
         self._bioEntry.pack(fill='x')
         inputWidgets.append(self._bioEntry)
 
-        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- 'Goals' entry.
-        self._goalsFrame = FoldingFrame(self.elementInfoWindow, '', self._toggle_goals_window)
-        self._goalsEntry = TextBox(self._goalsFrame,
+        self.goalsFrame = FoldingFrame(self._elementInfoWindow, '', self._toggle_goals_window)
+        self._goalsEntry = TextBox(self.goalsFrame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -111,10 +111,10 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
         inputWidgets.append(self._goalsEntry)
 
         for widget in inputWidgets:
-            widget.bind('<FocusOut>', self.apply_changes)
+            widget.bind('<FocusOut>', self.get_data)
             self.inputWidgets.append(widget)
 
-        self._prefsShowLinks = 'show_cr_links'
+        self.prefsShowLinks = 'show_cr_links'
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""
@@ -128,18 +128,18 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
     def _toggle_bio_window(self, event=None):
         """Hide/show the 'Bio' textbox."""
         if prefs['show_cr_bio']:
-            self._bioFrame.hide()
+            self.bioFrame.hide()
             prefs['show_cr_bio'] = False
         else:
-            self._bioFrame.show()
+            self.bioFrame.show()
             prefs['show_cr_bio'] = True
 
     def _toggle_goals_window(self, event=None):
         """Hide/show the 'Goals' textbox."""
         if prefs['show_cr_goals']:
-            self._goalsFrame.hide()
+            self.goalsFrame.hide()
             prefs['show_cr_goals'] = False
         else:
-            self._goalsFrame.show()
+            self.goalsFrame.show()
             prefs['show_cr_goals'] = True
 

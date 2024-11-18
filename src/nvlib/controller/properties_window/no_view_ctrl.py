@@ -9,14 +9,11 @@ from mvclib.controller.sub_controller import SubController
 
 class NoViewCtrl(SubController):
 
-    def apply_changes(self, event=None):
+    def get_data(self, event=None):
         """Apply changes."""
         pass
 
     def set_data(self, elementId):
-        """Update the view with element's data.
-        
-        Overrides the superclass method.
-        """
+        """Update the view with element's data."""
         pass
 

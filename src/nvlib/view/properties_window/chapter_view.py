@@ -28,35 +28,35 @@ class ChapterView(BasicView, ChapterViewCtrl):
         inputWidgets = []
 
         #--- 'Unused' checkbox.
-        self._isUnused = tk.BooleanVar()
-        self._isUnusedCheckbox = ttk.Checkbutton(
-            self.elementInfoWindow,
+        self.isUnusedVar = tk.BooleanVar()
+        self.isUnusedCheckbox = ttk.Checkbutton(
+            self._elementInfoWindow,
             text=_('Unused'),
-            variable=self._isUnused,
+            variable=self.isUnusedVar,
             onvalue=True,
             offvalue=False,
-            command=self.apply_changes,
+            command=self.get_data,
             )
-        self._isUnusedCheckbox.pack(anchor='w')
-        inputWidgets.append(self._isUnusedCheckbox)
+        self.isUnusedCheckbox.pack(anchor='w')
+        inputWidgets.append(self.isUnusedCheckbox)
 
         #--- 'Do not auto-number...' checkbox.
-        self._noNumber = tk.BooleanVar()
-        self._noNumberCheckbox = ttk.Checkbutton(
-            self.elementInfoWindow,
-            variable=self._noNumber,
+        self.noNumberVar = tk.BooleanVar()
+        self.noNumberCheckbox = ttk.Checkbutton(
+            self._elementInfoWindow,
+            variable=self.noNumberVar,
             onvalue=True,
             offvalue=False,
-            command=self.apply_changes,
+            command=self.get_data,
             )
-        self._noNumberCheckbox.pack(anchor='w')
-        inputWidgets.append(self._noNumberCheckbox)
+        self.noNumberCheckbox.pack(anchor='w')
+        inputWidgets.append(self.noNumberCheckbox)
 
         for widget in inputWidgets:
-            widget.bind('<FocusOut>', self.apply_changes)
+            widget.bind('<FocusOut>', self.get_data)
             self.inputWidgets.append(widget)
 
-        self._prefsShowLinks = 'show_ch_links'
+        self.prefsShowLinks = 'show_ch_links'
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""
