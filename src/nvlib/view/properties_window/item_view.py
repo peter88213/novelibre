@@ -4,7 +4,7 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.controller.item_view_ctrl import ItemViewCtrl
+from nvlib.controller.properties_window.item_view_ctrl import ItemViewCtrl
 from nvlib.view.properties_window.world_element_view import WorldElementView
 
 
