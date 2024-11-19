@@ -9,11 +9,32 @@ import os
 from tkinter import filedialog
 
 from mvclib.controller.sub_controller import SubController
+from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
 
 
 class BasicViewCtrl(SubController):
     _HEIGHT_LIMIT = 10
+
+    def initialize_controller(self, model, view, controller):
+        super().initialize_controller(model, view, controller)
+
+        self.element = None
+        self._elementId = None
+        self._tagsStr = ''
+        self._pickingMode = False
+        self._pickCommand = None
+        self._isLocked = False
+        self._uiEscBinding = ''
+        self._uiBtn1Binding = ''
+        self._lastSelected = ''
+        self.doNotUpdate = False
+
+    def activate_link_buttons(self, event=None):
+        if self.element.links:
+            self.linkCollection.enable_buttons()
+        else:
+            self.linkCollection.disable_buttons()
 
     def add_link(self):
         """Select a link and add it to the list."""
@@ -47,7 +68,7 @@ class BasicViewCtrl(SubController):
         if titleStr:
             titleStr = titleStr.strip()
         else:
-            titleStr = self.elementId
+            titleStr = self._elementId
         self.element.title = titleStr
 
         # Description entry.
@@ -83,7 +104,7 @@ class BasicViewCtrl(SubController):
             pass
         for widget in self.inputWidgets:
             widget.config(state='disabled')
-        self.isLocked = True
+        self._isLocked = True
 
     def open_link(self, event=None):
         """Open the selected link."""
@@ -117,8 +138,8 @@ class BasicViewCtrl(SubController):
         
         Note: subclasses must set self.element before calling this method.
         """
-        self.elementId = elementId
-        self.tagsStr = ''
+        self._elementId = elementId
+        self._tagsStr = ''
         if self.element is None:
             return
 
@@ -160,9 +181,44 @@ class BasicViewCtrl(SubController):
             pass
         for widget in self.inputWidgets:
             widget.config(state='normal')
-        self.isLocked = False
+        self._isLocked = False
+
+    def _end_picking_mode(self, event=None):
+        if self._pickingMode:
+            if self._pickCommand is not None:
+                self._pickCommand()
+                self._pickCommand = None
+            self._ui.root.bind('<Button-1>', self._uiBtn1Binding)
+            self._ui.root.bind('<Escape>', self._uiEscBinding)
+            self._ui.tv.config(cursor='arrow')
+            self._ui.tv.see_node(self._lastSelected)
+            self._ui.tv.tree.selection_set(self._lastSelected)
+            self._pickingMode = False
+        self._ui.restore_status()
 
     def _report_missing_reference_date(self):
         self._ui.show_error(
             _('Please enter a reference date.'),
             title=_('Cannot convert date/days'))
+
+    def _start_picking_mode(self, event=None, command=None):
+        """Start the picking mode for element selection.        
+        
+        Change the mouse cursor to "+" and expand the "Book" subtree.
+        Now the tree selection does not trigger the viewer, 
+        but tries to add the selected element to the collection.  
+        
+        To end the picking mode, press the Escape key.
+        """
+        self._pickCommand = command
+        if not self._pickingMode:
+            self._lastSelected = self._ui.selectedNode
+            self._ui.tv.config(cursor='plus')
+            self._ui.tv.open_children('')
+            self._uiEscBinding = self._ui.root.bind('<Escape>')
+            self._ui.root.bind('<Escape>', self._end_picking_mode)
+            self._uiBtn1Binding = self._ui.root.bind('<Button-1>')
+            self._ui.root.bind('<Button-1>', self._end_picking_mode)
+            self._pickingMode = True
+        self._ui.set_status(_('Pick Mode (click here or press Esc to exit)'), colors=('maroon', 'white'))
+

@@ -55,13 +55,13 @@ class PlotLineViewCtrl(BasicViewCtrl):
             if self.element.sections:
                 self.doNotUpdate = True
                 for scId in self.element.sections:
-                    self._mdl.novel.sections[scId].scPlotLines.remove(self.elementId)
-                for ppId in self._mdl.novel.tree.get_children(self.elementId):
+                    self._mdl.novel.sections[scId].scPlotLines.remove(self._elementId)
+                for ppId in self._mdl.novel.tree.get_children(self._elementId):
                     scId = self._mdl.novel.plotPoints[ppId].sectionAssoc
                     if scId is not None:
                         del(self._mdl.novel.sections[scId].scPlotPoints[ppId])
                         self._mdl.novel.plotPoints[ppId].sectionAssoc = None
                 self.element.sections = []
-                self.set_data(self.elementId)
+                self.set_data(self._elementId)
                 self.doNotUpdate = False
 

@@ -50,12 +50,8 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
             view -- GUI class reference.        
         """
         super().__init__(parent, **kw)
+        self.initialize_controller(model, view, controller)
 
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
-
-        self.wordsTotal = None
         self.skipUpdate = False
 
         # Create a novel tree.
@@ -210,8 +206,7 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
         if self._mdl.prjFile is None:
             return
 
-        self.wordsTotal = self._mdl.get_counts()[0]
-        self.update_branch('')
+        self.update_tree()
         self.tree.configure(selectmode='extended')
 
     def reset_view(self):

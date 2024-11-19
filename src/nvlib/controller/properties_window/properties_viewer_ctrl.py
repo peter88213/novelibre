@@ -30,6 +30,27 @@ from nvlib.view.properties_window.stage_view import StageView
 
 class PropertiesViewerCtrl(SubController):
 
+    def initialize_controller(self, model, view, controller):
+        super().initialize_controller(model, view, controller)
+        self._clients = []
+
+        # Call a factory method to instantiate and register one view component per element type.
+        self._noView = self._make_view(NoView)
+        self._projectView = self._make_view(ProjectView)
+        self._chapterView = self._make_view(ChapterView)
+        self._stageView = self._make_view(StageView)
+        self._sectionView = self._make_view(SectionView)
+        self._characterView = self._make_view(CharacterView)
+        self._locationView = self._make_view(LocationView)
+        self._itemView = self._make_view(ItemView)
+        self._plotlineView = self._make_view(PlotLineView)
+        self._plotPointView = self._make_view(PlotPointView)
+        self._projectnoteView = self._make_view(ProjectNoteView)
+
+        self._activeView = self._noView
+        self._activeView.set_data(None)
+        self._activeView.doNotUpdate = False
+
     def apply_changes(self, event=None):
         # This is called by the controller to make sure changes take effect
         # e.g. when starting an export while a property entry still has the focus.
@@ -50,26 +71,6 @@ class PropertiesViewerCtrl(SubController):
     def on_close(self):
         """Actions to be performed when a project is closed."""
         self._view_nothing()
-
-    def prepare_views(self):
-        self._clients = []
-
-        # Call a factory method to instantiate and register one view component per element type.
-        self._noView = self._make_view(NoView)
-        self._projectView = self._make_view(ProjectView)
-        self._chapterView = self._make_view(ChapterView)
-        self._stageView = self._make_view(StageView)
-        self._sectionView = self._make_view(SectionView)
-        self._characterView = self._make_view(CharacterView)
-        self._locationView = self._make_view(LocationView)
-        self._itemView = self._make_view(ItemView)
-        self._plotlineView = self._make_view(PlotLineView)
-        self._plotPointView = self._make_view(PlotPointView)
-        self._projectnoteView = self._make_view(ProjectNoteView)
-
-        self._activeView = self._noView
-        self._activeView.set_data(None)
-        self._activeView.doNotUpdate = False
 
     def show_properties(self, nodeId):
         """Show the properties of the selected element."""
@@ -106,7 +107,7 @@ class PropertiesViewerCtrl(SubController):
         """
         if not self._activeView.doNotUpdate:
             try:
-                self.show_properties(self._activeView.elementId)
+                self.show_properties(self._activeView._elementId)
             except:
                 pass
 

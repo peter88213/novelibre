@@ -28,10 +28,6 @@ class PlotPointView(BasicView, PlotPointViewCtrl):
         super().__init__(parent, model, view, controller)
         inputWidgets = []
 
-        self._lastSelected = ''
-        self._treeSelectBinding = None
-        self._uiEscBinding = None
-
         ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
 
         # Associated section display.

@@ -48,6 +48,10 @@ class TreeViewerCtrl(SubController):
 
     _NOTE_INDICATOR = _('N')
 
+    def initialize_controller(self, model, view, controller):
+        super().initialize_controller(model, view, controller)
+        self._wordsTotal = None
+
     def export_manuscript(self, event=None):
         self._ctrl.export_document(MANUSCRIPT_SUFFIX, filter=self.tree.selection()[0], ask=False)
 
@@ -309,50 +313,6 @@ class TreeViewerCtrl(SubController):
         show_chapters(CH_ROOT)
         return 'break'
 
-    def update_branch(self, node, scnPos=0):
-        """Recursive tree walker.
-        
-        Positional arguments: 
-            node: str -- Node ID to start from.
-        Optional arguments:
-            scnPos: int -- Word count so far.
-        
-        Return the incremented word count.
-        """
-        for elemId in self.tree.get_children(node):
-            if elemId.startswith(SECTION_PREFIX):
-                title, nodeValues, nodeTags = self._get_section_row_data(elemId, position=scnPos)
-                if self._mdl.novel.sections[elemId].scType == 0:
-                    scnPos += self._mdl.novel.sections[elemId].wordCount
-            elif elemId.startswith(CHARACTER_PREFIX):
-                title, nodeValues, nodeTags = self._get_character_row_data(elemId)
-            elif elemId.startswith(LOCATION_PREFIX):
-                title, nodeValues, nodeTags = self._get_location_row_data(elemId)
-            elif elemId.startswith(ITEM_PREFIX):
-                title, nodeValues, nodeTags = self._get_item_row_data(elemId)
-            elif elemId.startswith(CHAPTER_PREFIX):
-                chpPos = scnPos
-                # save chapter start position, because the positions of the
-                # chapters sections will now be added to scnPos.
-                scnPos = self.update_branch(elemId, scnPos)
-                isCollapsed = not self.tree.item(elemId, 'open')
-                title, nodeValues, nodeTags = self._get_chapter_row_data(elemId, position=chpPos, collect=isCollapsed)
-            elif elemId.startswith(PLOT_LINE_PREFIX):
-                self.update_branch(elemId, scnPos)
-                isCollapsed = not self.tree.item(elemId, 'open')
-                title, nodeValues, nodeTags = self._get_plot_line_row_data(elemId, collect=isCollapsed)
-            elif elemId.startswith(PLOT_POINT_PREFIX):
-                title, nodeValues, nodeTags = self._get_plot_point_row_data(elemId)
-            elif elemId.startswith(PRJ_NOTE_PREFIX):
-                title, nodeValues, nodeTags = self._get_prj_note_row_data(elemId)
-            else:
-                title = self._ROOT_TITLES[elemId]
-                nodeValues = []
-                nodeTags = 'root'
-                self.update_branch(elemId, scnPos)
-            self.tree.item(elemId, text=title, values=nodeValues, tags=nodeTags)
-        return scnPos
-
     def update_node_values(self, nodeId, collect=False):
         """Add/remove node values collected from the node's children.
         
@@ -373,6 +333,55 @@ class TreeViewerCtrl(SubController):
             __, nodeValues, __ = self._get_plot_line_row_data(nodeId, collect=collect)
             self.tree.item(nodeId, values=nodeValues)
             return
+
+    def update_tree(self):
+
+        def update_branch(node, scnPos=0):
+            """Recursive tree walker.
+            
+            Positional arguments: 
+                node: str -- Node ID to start from.
+            Optional arguments:
+                scnPos: int -- Word count so far.
+            
+            Return the incremented word count.
+            """
+            for elemId in self.tree.get_children(node):
+                if elemId.startswith(SECTION_PREFIX):
+                    title, nodeValues, nodeTags = self._get_section_row_data(elemId, position=scnPos)
+                    if self._mdl.novel.sections[elemId].scType == 0:
+                        scnPos += self._mdl.novel.sections[elemId].wordCount
+                elif elemId.startswith(CHARACTER_PREFIX):
+                    title, nodeValues, nodeTags = self._get_character_row_data(elemId)
+                elif elemId.startswith(LOCATION_PREFIX):
+                    title, nodeValues, nodeTags = self._get_location_row_data(elemId)
+                elif elemId.startswith(ITEM_PREFIX):
+                    title, nodeValues, nodeTags = self._get_item_row_data(elemId)
+                elif elemId.startswith(CHAPTER_PREFIX):
+                    chpPos = scnPos
+                    # save chapter start position, because the positions of the
+                    # chapters sections will now be added to scnPos.
+                    scnPos = update_branch(elemId, scnPos)
+                    isCollapsed = not self.tree.item(elemId, 'open')
+                    title, nodeValues, nodeTags = self._get_chapter_row_data(elemId, position=chpPos, collect=isCollapsed)
+                elif elemId.startswith(PLOT_LINE_PREFIX):
+                    update_branch(elemId, scnPos)
+                    isCollapsed = not self.tree.item(elemId, 'open')
+                    title, nodeValues, nodeTags = self._get_plot_line_row_data(elemId, collect=isCollapsed)
+                elif elemId.startswith(PLOT_POINT_PREFIX):
+                    title, nodeValues, nodeTags = self._get_plot_point_row_data(elemId)
+                elif elemId.startswith(PRJ_NOTE_PREFIX):
+                    title, nodeValues, nodeTags = self._get_prj_note_row_data(elemId)
+                else:
+                    title = self._ROOT_TITLES[elemId]
+                    nodeValues = []
+                    nodeTags = 'root'
+                    update_branch(elemId, scnPos)
+                self.tree.item(elemId, text=title, values=nodeValues, tags=nodeTags)
+            return scnPos
+
+        self._wordsTotal = self._mdl.get_counts()[0]
+        update_branch('')
 
     def _collect_ch_note_indicators(self, chId):
         """Return a string that indicates section notes within the chapter.
@@ -520,7 +529,7 @@ class TreeViewerCtrl(SubController):
             # Chapter is Normal type (or other).
             nodeTags.append('chapter')
             try:
-                positionStr = f'{round(100 * position / self.wordsTotal, 1)}%'
+                positionStr = f'{round(100 * position / self._wordsTotal, 1)}%'
             except:
                 positionStr = ''
             wordCount = self._count_words(chId)
@@ -571,7 +580,7 @@ class TreeViewerCtrl(SubController):
 
             # Words percentage per viewpoint character
             try:
-                percentageStr = f'{round(100 * wordCount / self.wordsTotal, 1)}%'
+                percentageStr = f'{round(100 * wordCount / self._wordsTotal, 1)}%'
             except:
                 percentageStr = ''
             nodeValues[self._colPos['vp']] = percentageStr
@@ -752,7 +761,7 @@ class TreeViewerCtrl(SubController):
                     else:
                         nodeTags.append('Before_schedule')
                 try:
-                    positionStr = f'{round(100 * position / self.wordsTotal, 1)}%'
+                    positionStr = f'{round(100 * position / self._wordsTotal, 1)}%'
                 except:
                     pass
             nodeValues[self._colPos['po']] = positionStr

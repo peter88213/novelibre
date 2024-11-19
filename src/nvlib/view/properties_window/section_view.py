@@ -78,7 +78,7 @@ class SectionView(BasicView, SectionViewCtrl):
             cmdAdd=self.pick_character,
             cmdRemove=self.remove_character,
             cmdOpen=self.go_to_character,
-            cmdActivate=self._activate_character_buttons,
+            cmdActivate=self.activate_character_buttons,
             lblOpen=_('Go to'),
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
@@ -96,7 +96,7 @@ class SectionView(BasicView, SectionViewCtrl):
             cmdAdd=self.pick_location,
             cmdRemove=self.remove_location,
             cmdOpen=self.go_to_location,
-            cmdActivate=self._activate_location_buttons,
+            cmdActivate=self.activate_location_buttons,
             lblOpen=_('Go to'),
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
@@ -114,7 +114,7 @@ class SectionView(BasicView, SectionViewCtrl):
             cmdAdd=self.pick_item,
             cmdRemove=self.remove_item,
             cmdOpen=self.go_to_item,
-            cmdActivate=self._activate_item_buttons,
+            cmdActivate=self.activate_item_buttons,
             lblOpen=_('Go to'),
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
@@ -336,7 +336,7 @@ class SectionView(BasicView, SectionViewCtrl):
             cmdAdd=self.pick_plotline,
             cmdRemove=self.remove_plotline,
             cmdOpen=self.go_to_plotline,
-            cmdActivate=self._activate_arc_buttons,
+            cmdActivate=self.activate_arc_buttons,
             cmdSelect=self.on_select_plotline,
             lblOpen=_('Go to'),
             iconAdd=self._ui.icons.addIcon,
@@ -347,7 +347,7 @@ class SectionView(BasicView, SectionViewCtrl):
         inputWidgets.extend(self.plotlineCollection.inputWidgets)
         self.selectedPlotline = None
 
-        #--- 'Plot line notes' text box for entering self.element.plotlineNotes[plId],
+        #--- 'Plot line notes' text box for entering element.plotlineNotes[plId],
         #    where plId is the ID of the selected plot line in the'Plot lines' listbox.
         ttk.Label(self.plotFrame, text=_('Notes on the selected plot line')).pack(anchor='w')
         self.plotNotesWindow = TextBox(
@@ -486,30 +486,6 @@ class SectionView(BasicView, SectionViewCtrl):
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)
             self.inputWidgets.append(widget)
-
-    def _activate_arc_buttons(self, event=None):
-        if self.element.scPlotLines:
-            self.plotlineCollection.enable_buttons()
-        else:
-            self.plotlineCollection.disable_buttons()
-
-    def _activate_character_buttons(self, event=None):
-        if self.element.characters:
-            self.characterCollection.enable_buttons()
-        else:
-            self.characterCollection.disable_buttons()
-
-    def _activate_item_buttons(self, event=None):
-        if self.element.items:
-            self.itemCollection.enable_buttons()
-        else:
-            self.itemCollection.disable_buttons()
-
-    def _activate_location_buttons(self, event=None):
-        if self.element.locations:
-            self.locationCollection.enable_buttons()
-        else:
-            self.locationCollection.disable_buttons()
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""

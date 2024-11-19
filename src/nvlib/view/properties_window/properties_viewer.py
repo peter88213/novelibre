@@ -14,9 +14,5 @@ class PropertiesViewer(ttk.Frame, PropertiesViewerCtrl):
 
     def __init__(self, parent, model, view, controller, **kw):
         super().__init__(parent, **kw)
-
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
-        self.prepare_views()
+        self.initialize_controller(model, view, controller)
 

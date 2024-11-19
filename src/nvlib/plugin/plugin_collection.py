@@ -43,9 +43,7 @@ class PluginCollection(dict, SubController):
         Extends the superclass constructor.
         """
         dict.__init__(self)
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
+        self.initialize_controller(model, view, controller)
 
         # Get the major and minor version numbers for API compatibility check.
         # The version number is inserted on building the script.

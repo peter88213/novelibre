@@ -30,8 +30,6 @@ class PlotLineView(BasicView, PlotLineViewCtrl):
         super().__init__(parent, model, view, controller)
         inputWidgets = []
 
-        self._lastSelected = ''
-
         # 'Short name' entry.
         self.shortNameVar = MyStringVar()
         self._shortNameEntry = LabelEntry(

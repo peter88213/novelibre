@@ -31,8 +31,7 @@ class Toolbar(ToolbarCtrl):
             view -- reference to the main view instance of the application.
             controller -- reference to the main controller instance of the application.
         """
-        self._ui = view
-        self._ctrl = controller
+        self.initialize_controller(model, view, controller)
 
         # Add a toolbar to the editor window.
         self.buttonBar = ttk.Frame(self._ui.mainWindow)

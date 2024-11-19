@@ -41,24 +41,10 @@ class BasicView(ttk.Frame, Observer):
         - Place element-specific widgets in the element's info window.
         """
         super().__init__(parent, **kw)
+        self.initialize_controller(model, view, controller)
 
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
-
-        self.elementId = None
-        self.element = None
-        self.tagsStr = ''
         self._parent = parent
         self.inputWidgets = []
-
-        self._pickingMode = False
-        self._pickCommand = None
-        self._uiEscBinding = ''
-        self._uiBtn1Binding = ''
-
-        self.doNotUpdate = False
-        self.isLocked = False
 
         # Frame for element specific informations.
         self._propertiesFrame = ttk.Frame(self)
@@ -81,12 +67,6 @@ class BasicView(ttk.Frame, Observer):
     def show(self):
         """Make the view visible."""
         self.pack(expand=True, fill='both')
-
-    def _activate_link_buttons(self, event=None):
-        if self.element.links:
-            self.linkCollection.enable_buttons()
-        else:
-            self.linkCollection.disable_buttons()
 
     def _add_separator(self):
         ttk.Separator(self._propertiesFrame, orient='horizontal').pack(fill='x')
@@ -137,7 +117,7 @@ class BasicView(ttk.Frame, Observer):
             cmdAdd=self.add_link,
             cmdRemove=self.remove_link,
             cmdOpen=self.open_link,
-            cmdActivate=self._activate_link_buttons,
+            cmdActivate=self.activate_link_buttons,
             lblOpen=_('Open link'),
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
@@ -164,40 +144,6 @@ class BasicView(ttk.Frame, Observer):
             )
         self.notesWindow.pack(expand=True, fill='both')
         self.notesWindow.bind('<FocusOut>', self.apply_changes)
-
-    def _end_picking_mode(self, event=None):
-        if self._pickingMode:
-            if self._pickCommand is not None:
-                self._pickCommand()
-                self._pickCommand = None
-            self._ui.root.bind('<Button-1>', self._uiBtn1Binding)
-            self._ui.root.bind('<Escape>', self._uiEscBinding)
-            self._ui.tv.config(cursor='arrow')
-            self._ui.tv.see_node(self._lastSelected)
-            self._ui.tv.tree.selection_set(self._lastSelected)
-            self._pickingMode = False
-        self._ui.restore_status()
-
-    def start_picking_mode(self, event=None, command=None):
-        """Start the picking mode for element selection.        
-        
-        Change the mouse cursor to "+" and expand the "Book" subtree.
-        Now the tree selection does not trigger the viewer, 
-        but tries to add the selected element to the collection.  
-        
-        To end the picking mode, press the Escape key.
-        """
-        self._pickCommand = command
-        if not self._pickingMode:
-            self._lastSelected = self._ui.selectedNode
-            self._ui.tv.config(cursor='plus')
-            self._ui.tv.open_children('')
-            self._uiEscBinding = self._ui.root.bind('<Escape>')
-            self._ui.root.bind('<Escape>', self._end_picking_mode)
-            self._uiBtn1Binding = self._ui.root.bind('<Button-1>')
-            self._ui.root.bind('<Button-1>', self._end_picking_mode)
-            self._pickingMode = True
-        self._ui.set_status(_('Pick Mode (click here or press Esc to exit)'), colors=('maroon', 'white'))
 
     def _toggle_links_window(self, event=None):
         """Hide/show the "links" window.

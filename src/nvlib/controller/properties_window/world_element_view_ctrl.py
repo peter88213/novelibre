@@ -40,8 +40,8 @@ class WorldElementViewCtrl(BasicViewCtrl, ABC):
 
         # 'Tags' entry.
         if self.element.tags is not None:
-            self.tagsStr = list_to_string(self.element.tags)
+            self._tagsStr = list_to_string(self.element.tags)
         else:
-            self.tagsStr = ''
-        self.tagsVar.set(self.tagsStr)
+            self._tagsStr = ''
+        self.tagsVar.set(self._tagsStr)
 

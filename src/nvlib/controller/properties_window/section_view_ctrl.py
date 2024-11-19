@@ -31,6 +31,30 @@ from nvlib.nv_globals import prefs
 
 class SectionViewCtrl(BasicViewCtrl):
 
+    def activate_arc_buttons(self, event=None):
+        if self.element.scPlotLines:
+            self.plotlineCollection.enable_buttons()
+        else:
+            self.plotlineCollection.disable_buttons()
+
+    def activate_character_buttons(self, event=None):
+        if self.element.characters:
+            self.characterCollection.enable_buttons()
+        else:
+            self.characterCollection.disable_buttons()
+
+    def activate_item_buttons(self, event=None):
+        if self.element.items:
+            self.itemCollection.enable_buttons()
+        else:
+            self.itemCollection.disable_buttons()
+
+    def activate_location_buttons(self, event=None):
+        if self.element.locations:
+            self.locationCollection.enable_buttons()
+        else:
+            self.locationCollection.disable_buttons()
+
     def apply_changes(self, event=None):
         """Apply changes.
         
@@ -45,7 +69,7 @@ class SectionViewCtrl(BasicViewCtrl):
 
         # 'Tags' entry.
         newTags = self.tagsVar.get()
-        if self.tagsStr or newTags:
+        if self._tagsStr or newTags:
             self.element.tags = string_to_list(newTags)
 
         # Date and time are checked separately.
@@ -217,7 +241,7 @@ class SectionViewCtrl(BasicViewCtrl):
 
     def auto_set_date(self):
         """Set section start to the end of the previous section."""
-        prevScId = self._ui.tv.prev_node(self.elementId)
+        prevScId = self._ui.tv.prev_node(self._elementId)
         if not prevScId:
             return
 
@@ -245,7 +269,7 @@ class SectionViewCtrl(BasicViewCtrl):
             deltaDays = timedelta(days=int(day))
             return date.isoformat(refDate + deltaDays)
 
-        nextScId = self._ui.tv.next_node(self.elementId)
+        nextScId = self._ui.tv.next_node(self._elementId)
         if not nextScId:
             return
 
@@ -410,28 +434,28 @@ class SectionViewCtrl(BasicViewCtrl):
             self.plotNotesWindow.set_text(self.element.plotlineNotes.get(self.selectedPlotline, ''))
         else:
             self.plotNotesWindow.clear()
-        if self.isLocked:
+        if self._isLocked:
             self.plotNotesWindow.config(state='disabled')
         self.plotNotesWindow.config(bg='white')
 
     def pick_character(self, event=None):
         """Enter the "add character" selection mode."""
-        self.start_picking_mode(command=self._add_character)
+        self._start_picking_mode(command=self._add_character)
         self._ui.tv.see_node(CR_ROOT)
 
     def pick_item(self, event=None):
         """Enter the "add item" selection mode."""
-        self.start_picking_mode(command=self._add_item)
+        self._start_picking_mode(command=self._add_item)
         self._ui.tv.see_node(IT_ROOT)
 
     def pick_location(self, event=None):
         """Enter the "add location" selection mode."""
-        self.start_picking_mode(command=self._add_location)
+        self._start_picking_mode(command=self._add_location)
         self._ui.tv.see_node(LC_ROOT)
 
     def pick_plotline(self, event=None):
         """Enter the "add plot line" selection mode."""
-        self.start_picking_mode(command=self._add_plotline)
+        self._start_picking_mode(command=self._add_plotline)
         self._ui.tv.see_node(PL_ROOT)
 
     def remove_character(self, event=None):
@@ -495,8 +519,8 @@ class SectionViewCtrl(BasicViewCtrl):
 
         # Remove the section from the plot line's list.
         arcSections = self._mdl.novel.plotLines[plId].sections
-        if self.elementId in arcSections:
-            arcSections.remove(self.elementId)
+        if self._elementId in arcSections:
+            arcSections.remove(self._elementId)
             self._mdl.novel.plotLines[plId].sections = arcSections
 
             # Remove plot point assignments, if any.
@@ -551,8 +575,8 @@ class SectionViewCtrl(BasicViewCtrl):
         super().set_data(elementId)
 
         # 'Tags' entry.
-        self.tagsStr = list_to_string(self.element.tags)
-        self.tagsVar.set(self.tagsStr)
+        self._tagsStr = list_to_string(self.element.tags)
+        self.tagsVar.set(self._tagsStr)
 
         #--- Frame for 'Relationships'.
         if prefs['show_relationships']:
@@ -838,7 +862,7 @@ class SectionViewCtrl(BasicViewCtrl):
             return
 
         self.doNotUpdate = False
-        self.set_data(self.elementId)
+        self.set_data(self._elementId)
 
     def unlock(self):
         """Enable plot line notes only if a plot line is selected."""
@@ -878,8 +902,8 @@ class SectionViewCtrl(BasicViewCtrl):
             plotlineList.append(plId)
             self.element.scPlotLines = plotlineList
             plotlineSections = self._mdl.novel.plotLines[plId].sections
-            if not self.elementId in plotlineSections:
-                plotlineSections.append(self.elementId)
+            if not self._elementId in plotlineSections:
+                plotlineSections.append(self._elementId)
                 self._mdl.novel.plotLines[plId].sections = plotlineSections
 
             # TODO: Select the new plot line entry.
