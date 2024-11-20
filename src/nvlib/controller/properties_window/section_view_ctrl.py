@@ -68,9 +68,7 @@ class SectionViewCtrl(BasicViewCtrl):
         #--- Section start.
 
         # 'Tags' entry.
-        newTags = self.tagsVar.get()
-        if self._tagsStr or newTags:
-            self.element.tags = string_to_list(newTags)
+        self.element.tags = string_to_list(self.tagsVar.get())
 
         # Date and time are checked separately.
         # If an invalid date is entered, the old value is kept.
@@ -203,7 +201,7 @@ class SectionViewCtrl(BasicViewCtrl):
             self.element.lastsDays = lastsDaysStr
 
         #--- 'Viewpoint' combobox.
-        option = self._characterCombobox.current()
+        option = self.characterCombobox.current()
         if option >= 0:
             # Put the selected character at the first position of related characters.
             vpId = self._vpList[option]
@@ -575,14 +573,13 @@ class SectionViewCtrl(BasicViewCtrl):
         super().set_data(elementId)
 
         # 'Tags' entry.
-        self._tagsStr = list_to_string(self.element.tags)
-        self.tagsVar.set(self._tagsStr)
+        self.tagsVar.set(list_to_string(self.element.tags))
 
         #--- Frame for 'Relationships'.
         if prefs['show_relationships']:
-            self._relationFrame.show()
+            self.relationFrame.show()
         else:
-            self._relationFrame.hide()
+            self.relationFrame.hide()
 
         # 'Characters' window.
         self.crTitles = self._get_element_titles(self.element.characters, self._mdl.novel.characters)
@@ -654,7 +651,7 @@ class SectionViewCtrl(BasicViewCtrl):
         for crId in self._mdl.novel.tree.get_children(CR_ROOT):
             charNames.append(self._mdl.novel.characters[crId].title)
             self._vpList.append(crId)
-        self._characterCombobox.configure(values=charNames)
+        self.characterCombobox.configure(values=charNames)
         if self.element.characters:
             vp = self._mdl.novel.characters[self.element.characters[0]].title
         else:

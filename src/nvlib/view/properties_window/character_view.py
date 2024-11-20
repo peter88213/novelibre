@@ -52,29 +52,29 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
         #--- 'Bio' frame
         self.bioFrame = FoldingFrame(self._elementInfoWindow, '', self._toggle_bio_window)
 
-        self._birthDate = MyStringVar()
+        self.birthDateVar = MyStringVar()
         self._birthDateEntry = LabelEntry(
             self.bioFrame,
             text=_('Birth date'),
-            textvariable=self._birthDate,
+            textvariable=self.birthDateVar,
             command=self.apply_changes,
             lblWidth=self._LBL_X
             )
         self._birthDateEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._birthDateEntry)
 
-        self._deathDate = MyStringVar()
+        self.deathDateVar = MyStringVar()
         self._deathDateEntry = LabelEntry(
             self.bioFrame,
             text=_('Death date'),
-            textvariable=self._deathDate,
+            textvariable=self.deathDateVar,
             command=self.apply_changes,
             lblWidth=self._LBL_X
             )
         self._deathDateEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._deathDateEntry)
 
-        self._bioEntry = TextBox(self.bioFrame,
+        self.bioEntry = TextBox(self.bioFrame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -87,14 +87,14 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
             fg=prefs['color_text_fg'],
             insertbackground=prefs['color_text_fg'],
             )
-        self._bioEntry.pack(fill='x')
-        inputWidgets.append(self._bioEntry)
+        self.bioEntry.pack(fill='x')
+        inputWidgets.append(self.bioEntry)
 
         ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- 'Goals' entry.
         self.goalsFrame = FoldingFrame(self._elementInfoWindow, '', self._toggle_goals_window)
-        self._goalsEntry = TextBox(self.goalsFrame,
+        self.goalsEntry = TextBox(self.goalsFrame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -107,8 +107,8 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
             fg=prefs['color_text_fg'],
             insertbackground=prefs['color_text_fg'],
             )
-        self._goalsEntry.pack(fill='x')
-        inputWidgets.append(self._goalsEntry)
+        self.goalsEntry.pack(fill='x')
+        inputWidgets.append(self.goalsEntry)
 
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)

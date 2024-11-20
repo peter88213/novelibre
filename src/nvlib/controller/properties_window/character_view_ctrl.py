@@ -27,17 +27,17 @@ class CharacterViewCtrl(WorldElementViewCtrl):
         self.element.fullName = self.fullNameVar.get()
 
         # 'Bio' frame.
-        if self._bioEntry.hasChanged:
-            self.element.bio = self._bioEntry.get_text()
+        if self.bioEntry.hasChanged:
+            self.element.bio = self.bioEntry.get_text()
 
-        birthDateStr = self._birthDate.get()
+        birthDateStr = self.birthDateVar.get()
         if not birthDateStr:
             self.element.birthDate = None
         elif birthDateStr != self.element.birthDate:
             try:
                 date.fromisoformat(birthDateStr)
             except:
-                self._birthDate.set(self.element.birthDate)
+                self.birthDateVar.set(self.element.birthDate)
                 self._ui.show_error(
                     f'{_("Wrong date")}: "{birthDateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}',
                     title=_('Input rejected')
@@ -45,14 +45,14 @@ class CharacterViewCtrl(WorldElementViewCtrl):
             else:
                 self.element.birthDate = birthDateStr
 
-        deathDateStr = self._deathDate.get()
+        deathDateStr = self.deathDateVar.get()
         if not deathDateStr:
             self.element.deathDate = None
         elif deathDateStr != self.element.deathDate:
             try:
                 date.fromisoformat(deathDateStr)
             except:
-                self._deathDate.set(self.element.deathDate)
+                self.deathDateVar.set(self.element.deathDate)
                 self._ui.show_error(
                     f'{_("Wrong date")}: "{deathDateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}',
                     title=_('Input rejected')
@@ -61,8 +61,8 @@ class CharacterViewCtrl(WorldElementViewCtrl):
                 self.element.deathDate = deathDateStr
 
         # 'Goals' entry.
-        if self._goalsEntry.hasChanged:
-            self.element.goals = self._goalsEntry.get_text()
+        if self.goalsEntry.hasChanged:
+            self.element.goals = self.goalsEntry.get_text()
 
     def set_data(self, elementId):
         """Update the view with element's data.
@@ -84,11 +84,11 @@ class CharacterViewCtrl(WorldElementViewCtrl):
             self.bioFrame.show()
         else:
             self.bioFrame.hide()
-        self._bioEntry.set_text(self.element.bio)
+        self.bioEntry.set_text(self.element.bio)
 
         #--- Birth date/death date.
-        self._birthDate.set(self.element.birthDate)
-        self._deathDate.set(self.element.deathDate)
+        self.birthDateVar.set(self.element.birthDate)
+        self.deathDateVar.set(self.element.deathDate)
 
         #--- 'Goals' entry.
         if self._mdl.novel.customChrGoals:
@@ -99,5 +99,5 @@ class CharacterViewCtrl(WorldElementViewCtrl):
             self.goalsFrame.show()
         else:
             self.goalsFrame.hide()
-        self._goalsEntry.set_text(self.element.goals)
+        self.goalsEntry.set_text(self.element.goals)
 

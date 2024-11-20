@@ -64,17 +64,17 @@ class SectionView(BasicView, SectionViewCtrl):
 
         #--- Frame for 'Relationships'.
         # updating the character list before the viewpoints
-        self._relationFrame = FoldingFrame(self._elementInfoWindow, _('Relationships'), self._toggle_relation_frame)
+        self.relationFrame = FoldingFrame(self._elementInfoWindow, _('Relationships'), self._toggle_relation_frame)
 
         # 'Characters' listbox.
         self.crTitles = ''
-        crHeading = ttk.Frame(self._relationFrame)
+        crHeading = ttk.Frame(self.relationFrame)
         self._characterLabel = ttk.Label(crHeading, text=_('Characters'))
         self._characterLabel.pack(anchor='w', side='left')
         ttk.Button(crHeading, text=_('Show ages'), command=self.show_ages).pack(anchor='e')
         crHeading.pack(fill='x')
         self.characterCollection = CollectionBox(
-            self._relationFrame,
+            self.relationFrame,
             cmdAdd=self.pick_character,
             cmdRemove=self.remove_character,
             cmdOpen=self.go_to_character,
@@ -89,10 +89,10 @@ class SectionView(BasicView, SectionViewCtrl):
 
         # 'Locations' listbox.
         self.lcTitles = ''
-        self._locationLabel = ttk.Label(self._relationFrame, text=_('Locations'))
+        self._locationLabel = ttk.Label(self.relationFrame, text=_('Locations'))
         self._locationLabel.pack(anchor='w')
         self.locationCollection = CollectionBox(
-            self._relationFrame,
+            self.relationFrame,
             cmdAdd=self.pick_location,
             cmdRemove=self.remove_location,
             cmdOpen=self.go_to_location,
@@ -107,10 +107,10 @@ class SectionView(BasicView, SectionViewCtrl):
 
         # 'Items' listbox.
         self.itTitles = ''
-        self._itemLabel = ttk.Label(self._relationFrame, text=_('Items'))
+        self._itemLabel = ttk.Label(self.relationFrame, text=_('Items'))
         self._itemLabel.pack(anchor='w')
         self.itemCollection = CollectionBox(
-            self._relationFrame,
+            self.relationFrame,
             cmdAdd=self.pick_item,
             cmdRemove=self.remove_item,
             cmdOpen=self.go_to_item,
@@ -285,15 +285,15 @@ class SectionView(BasicView, SectionViewCtrl):
 
         #--- 'Viewpoint' combobox.
         self.viewpointVar = MyStringVar()
-        self._characterCombobox = LabelCombo(
+        self.characterCombobox = LabelCombo(
             self._sectionExtraFrame,
             text=_('Viewpoint'),
             textvariable=self.viewpointVar,
             values=[],
             )
-        self._characterCombobox.pack(anchor='w', pady=2)
-        inputWidgets.append(self._characterCombobox)
-        self._characterCombobox.combo.bind('<<ComboboxSelected>>', self.apply_changes)
+        self.characterCombobox.pack(anchor='w', pady=2)
+        inputWidgets.append(self.characterCombobox)
+        self.characterCombobox.combo.bind('<<ComboboxSelected>>', self.apply_changes)
         self._vpList = []
 
         #--- 'Unused' checkbox.
@@ -517,10 +517,10 @@ class SectionView(BasicView, SectionViewCtrl):
     def _toggle_relation_frame(self, event=None):
         """Hide/show the 'Relationships' frame."""
         if prefs['show_relationships']:
-            self._relationFrame.hide()
+            self.relationFrame.hide()
             prefs['show_relationships'] = False
         else:
-            self._relationFrame.show()
+            self.relationFrame.show()
             prefs['show_relationships'] = True
 
     def _toggle_scene_frame(self, event=None):

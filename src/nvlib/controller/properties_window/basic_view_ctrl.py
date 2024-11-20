@@ -21,7 +21,6 @@ class BasicViewCtrl(SubController):
 
         self.element = None
         self._elementId = None
-        self._tagsStr = ''
         self._pickingMode = False
         self._pickCommand = None
         self._isLocked = False
@@ -139,7 +138,6 @@ class BasicViewCtrl(SubController):
         Note: subclasses must set self.element before calling this method.
         """
         self._elementId = elementId
-        self._tagsStr = ''
         if self.element is None:
             return
 

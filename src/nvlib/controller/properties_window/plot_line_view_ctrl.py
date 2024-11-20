@@ -43,7 +43,7 @@ class PlotLineViewCtrl(BasicViewCtrl):
 
         # Frame for plot line specific widgets.
         if self.element.sections is not None:
-            self._nrSections['text'] = f'{_("Number of sections")}: {len(self.element.sections)}'
+            self.nrSectionsView['text'] = f'{_("Number of sections")}: {len(self.element.sections)}'
 
     def _remove_sections(self):
         """Remove all section references.

@@ -24,8 +24,7 @@ class WorldElementViewCtrl(BasicViewCtrl, ABC):
         self.element.aka = self.akaVar.get()
 
         # 'Tags' entry.
-        newTags = self.tagsVar.get()
-        self.element.tags = string_to_list(newTags)
+        self.element.tags = string_to_list(self.tagsVar.get())
 
     @abstractmethod
     def set_data(self, elementId):
@@ -39,9 +38,5 @@ class WorldElementViewCtrl(BasicViewCtrl, ABC):
         self.akaVar.set(self.element.aka)
 
         # 'Tags' entry.
-        if self.element.tags is not None:
-            self._tagsStr = list_to_string(self.element.tags)
-        else:
-            self._tagsStr = ''
-        self.tagsVar.set(self._tagsStr)
+        self.tagsVar.set(list_to_string(self.element.tags))
 
