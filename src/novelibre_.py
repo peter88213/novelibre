@@ -80,7 +80,7 @@ SETTINGS = dict(
     title_width=400,
     vp_width=100,
     wc_width=50,
-    )
+)
 OPTIONS = dict(
     ask_doc_open=True,
     detach_prop_win=False,

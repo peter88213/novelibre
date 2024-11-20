@@ -28,23 +28,26 @@ class DataWriter(NovxFile):
     XML_HEADER = '''<?xml version="1.0" encoding="utf-8"?>
 '''
 
+    def __init__(self, filePath, **kwargs):
+        super().__init__(filePath, **kwargs)
+        path, __ = os.path.splitext(filePath)
+        self._dataFiles = dict(
+            CHARACTERS=f'{path}_Characters.xml',
+            LOCATIONS=f'{path}_Locations.xml',
+            ITEMS=f'{path}_Items.xml',
+        )
+
     def _postprocess_xml_file(self, filePath):
         '''Postprocess three xml files created by ElementTree.
         
         Positional argument:
-            filePath: str -- path to .novx xml file.
+            filePath: str -- not used by this method.
             
-        Generate the xml file paths from the .novx path. 
-        Read, postprocess and write the characters, locations, and items xml files.        
+        Postprocess and write the xml data files.        
         Extends the superclass method.
         '''
-        path, __ = os.path.splitext(filePath)
-        characterPath = f'{path}_Characters.xml'
-        super()._postprocess_xml_file(characterPath)
-        locationPath = f'{path}_Locations.xml'
-        super()._postprocess_xml_file(locationPath)
-        itemPath = f'{path}_Items.xml'
-        super()._postprocess_xml_file(itemPath)
+        for xmlBranch in self._dataFiles:
+            super()._postprocess_xml_file(self._dataFiles[xmlBranch])
 
     def _write_element_tree(self, xmlProject):
         """Save the characters/locations/items subtrees as separate xml files
@@ -53,31 +56,14 @@ class DataWriter(NovxFile):
             xmlProject -- NovxFile instance.
             
         Extract the characters/locations/items xml subtrees from a novelibre project.
-        Generate the xml file paths from the .novx path and write each subtree to an xml file.
+        Generate the xml file paths from the .novx path and write each xmlBranch to an xml file.
         Raise the "Error" exception in case of error. 
         """
-        path, __ = os.path.splitext(xmlProject.filePath)
-        characterPath = f'{path}_Characters.xml'
-        characterSubtree = xmlProject.xmlTree.find('CHARACTERS')
-        characterTree = ET.ElementTree(characterSubtree)
-        try:
-            characterTree.write(characterPath, xml_declaration=False, encoding='utf-8')
-        except(PermissionError):
-            raise Error(f'{_("File is write protected")}: "{norm_path(characterPath)}".')
-
-        locationPath = f'{path}_Locations.xml'
-        locationSubtree = xmlProject.xmlTree.find('LOCATIONS')
-        locationTree = ET.ElementTree(locationSubtree)
-        try:
-            locationTree.write(locationPath, xml_declaration=False, encoding='utf-8')
-        except(PermissionError):
-            raise Error(f'{_("File is write protected")}: "{norm_path(locationPath)}".')
-
-        itemPath = f'{path}_Items.xml'
-        itemSubtree = xmlProject.xmlTree.find('ITEMS')
-        itemTree = ET.ElementTree(itemSubtree)
-        try:
-            itemTree.write(itemPath, xml_declaration=False, encoding='utf-8')
-        except(PermissionError):
-            raise Error(f'{_("File is write protected")}: "{norm_path(itemPath)}".')
+        for xmlBranch in self._dataFiles:
+            elementSubtree = xmlProject.xmlTree.find(xmlBranch)
+            elementTree = ET.ElementTree(elementSubtree)
+            try:
+                elementTree.write(self._dataFiles[xmlBranch], xml_declaration=False, encoding='utf-8')
+            except(PermissionError):
+                raise Error(f'{_("File is write protected")}: "{norm_path(self._dataFiles[xmlBranch])}".')
 
