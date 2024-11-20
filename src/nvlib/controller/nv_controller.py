@@ -10,11 +10,11 @@ import sys
 from tkinter import filedialog
 
 from mvclib.controller.controller_base import ControllerBase
+from nvlib.controller.importer.nv_data_importer import NvDataImporter
+from nvlib.controller.importer.nv_doc_importer import NvDocImporter
 from nvlib.controller.link_processor import LinkProcessor
 from nvlib.model.exporter.nv_doc_exporter import NvDocExporter
 from nvlib.model.exporter.nv_html_reporter import NvHtmlReporter
-from nvlib.model.importer.nv_data_importer import NvDataImporter
-from nvlib.model.importer.nv_doc_importer import NvDocImporter
 from nvlib.model.nv_model import NvModel
 from nvlib.model.nv_work_file import NvWorkFile
 from nvlib.novx_globals import CHAPTER_PREFIX
@@ -36,15 +36,15 @@ from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
+from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
 from nvlib.plugin.plugin_collection import PluginCollection
 from nvlib.view.nv_main_view import NvMainView
+from nvlib.view.pop_up.export_options_window import ExportOptionsWindow
+from nvlib.view.pop_up.plugin_manager import PluginManager
 from nvlib.view.pop_up.prj_updater import PrjUpdater
 from nvlib.view.pop_up.view_options_window import ViewOptionsWindow
 from nvlib.view.widgets.nv_simpledialog import askinteger
-from nvlib.nv_globals import open_help
-from nvlib.view.pop_up.export_options_window import ExportOptionsWindow
-from nvlib.view.pop_up.plugin_manager import PluginManager
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 
@@ -662,23 +662,8 @@ class NvController(ControllerBase):
             if self._mdl.isModified:
                 if self._ui.ask_yes_no(_('Save changes?')):
                     self.save_project()
-        importer = NvDocImporter(self._ui)
-        try:
-            message = importer.run(sourcePath, nv_service=self._mdl.nvService)
-        except Notification as ex:
-            self._ui.set_status(f'#{str(ex)}')
-            return 'break'
-
-        except Error as ex:
-            self._ui.set_status(f'!{str(ex)}')
-            return 'break'
-
-        if importer.newFile:
-            self.open_project(filePath=importer.newFile)
-            if os.path.isfile(sourcePath) and prefs['import_mode'] == '1':
-                os.replace(sourcePath, f'{sourcePath}.bak')
-                message = f'{message} - {_("Source document deleted")}.'
-            self._ui.set_status(message)
+        importer = NvDocImporter(self._mdl, self._ui, self)
+        importer.import_document(sourcePath)
         return 'break'
 
     def join_sections(self, event=None, scId0=None, scId1=None):

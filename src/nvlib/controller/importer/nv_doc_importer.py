@@ -1,4 +1,4 @@
-"""Provide a converter class for novelibre universal import and export.
+"""Provide a converter class for novelibre universal import.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -6,6 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
 
+from mvclib.controller.sub_controller import SubController
 from nvlib.model.converter.import_source_factory import ImportSourceFactory
 from nvlib.model.converter.import_target_factory import ImportTargetFactory
 from nvlib.model.converter.new_project_factory import NewProjectFactory
@@ -31,7 +32,7 @@ from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import prefs
 
 
-class NvDocImporter:
+class NvDocImporter(SubController):
     """A converter for universal import.
 
     Support novelibre projects and most of the File subclasses 
@@ -55,15 +56,33 @@ class NvDocImporter:
         ]
     CREATE_SOURCE_CLASSES = []
 
-    def __init__(self, ui):
+    def __init__(self, model, view, controller):
         """Set up the Factory strategies."""
-        self._ui = ui
+        SubController.initialize_controller(self, model, view, controller)
         self.importSourceFactory = ImportSourceFactory(self.IMPORT_SOURCE_CLASSES)
         self.newProjectFactory = NewProjectFactory(self.CREATE_SOURCE_CLASSES)
         self.importTargetFactory = ImportTargetFactory([NovxFile])
         self.newFile = None
 
-    def run(self, sourcePath, **kwargs):
+    def import_document(self, sourcePath):
+        try:
+            message = self._run(sourcePath)
+        except Notification as ex:
+            self._ui.set_status(f'#{str(ex)}')
+            return
+
+        except Error as ex:
+            self._ui.set_status(f'!{str(ex)}')
+            return
+
+        if self.newFile:
+            self._ctrl.open_project(filePath=self.newFile)
+            if os.path.isfile(sourcePath) and prefs['import_mode'] == '1':
+                os.replace(sourcePath, f'{sourcePath}.bak')
+                message = f'{message} - {_("Source document deleted")}.'
+            self._ui.set_status(message)
+
+    def _run(self, sourcePath, **kwargs):
         """Create source and target objects and run conversion.
 
         Positional arguments: 
@@ -89,7 +108,7 @@ class NvDocImporter:
                 raise Error(f'{_("File already exists")}: "{norm_path(target.filePath)}".')
 
             self._check(source, target)
-            source.novel = kwargs['nv_service'].make_novel()
+            source.novel = self._mdl.nvService.make_novel()
             source.read()
             target.novel = source.novel
             target.write()
@@ -103,7 +122,7 @@ class NvDocImporter:
             __, target = self.importTargetFactory.make_file_objects(sourcePath, **kwargs)
             self.newFile = None
             self._check(source, target)
-            target.novel = kwargs['nv_service'].make_novel()
+            target.novel = self._mdl.nvService.make_novel()
             target.read()
             source.novel = target.novel
             source.read()

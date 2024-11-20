@@ -4,6 +4,7 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from mvclib.controller.sub_controller import SubController
 from nvlib.model.data.id_generator import create_id
 from nvlib.model.novx.character_data_reader import CharacterDataReader
 from nvlib.model.novx.item_data_reader import ItemDataReader
@@ -19,7 +20,7 @@ from nvlib.novx_globals import norm_path
 from nvlib.view.widgets.pick_list import PickList
 
 
-class NvDataImporter:
+class NvDataImporter(SubController):
     """Characters/locations/items importer with a pick list."""
 
     def __init__(self, model, view, controller, filePath, elemPrefix):
@@ -30,9 +31,7 @@ class NvDataImporter:
             filePath: str -- Path of the XML data file.
             elemPrefix: str -- Prefix of the new element IDs.
         """
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
+        SubController.initialize_controller(self, model, view, controller)
         sources = {
             CHARACTER_PREFIX:CharacterDataReader,
             LOCATION_PREFIX:LocationDataReader,
