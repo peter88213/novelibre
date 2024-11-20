@@ -8,6 +8,7 @@
 		<project>nv_collection</project>
 		<project>nv_editor</project>
 		<project>nv_matrix</project>
+		<project>nv_plotlines</project>
 		<project>nv_progress</project>
 		<project>nv_statistics</project>
 		<project>nv_templates</project>
