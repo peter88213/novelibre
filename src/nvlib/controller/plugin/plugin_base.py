@@ -6,8 +6,10 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from abc import ABC, abstractmethod
 
+from mvclib.controller.sub_controller import SubController
 
-class PluginBase(ABC):
+
+class PluginBase(ABC, SubController):
     """Abstract Plugin base class.
     
     Accepts commands from the plugin collection:
@@ -47,9 +49,7 @@ class PluginBase(ABC):
             view -- reference to the main view instance of the application.
             controller -- reference to the main controller instance of the application.
         """
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
+        self.initialize_controller(model, view, controller)
 
     def disable_menu(self):
         """Disable menu entries when no project is open."""

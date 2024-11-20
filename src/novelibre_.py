@@ -23,7 +23,7 @@ import sys
 
 from nvlib.configuration.configuration import Configuration
 from nvlib.configuration.nv_configuration import NvConfiguration
-from nvlib.controller.nv_controller import NvController
+from nvlib.controller.main_controller import MainController
 from nvlib.nv_globals import prefs
 
 SETTINGS = dict(
@@ -136,7 +136,7 @@ def main():
     prefs.update(configuration.options)
 
     #--- Instantiate the app object.
-    app = NvController('novelibre @release', tempDir)
+    app = MainController('novelibre @release', tempDir)
     ui = app.get_view()
 
     #--- Launchers for opening linked non-standard filetypes.

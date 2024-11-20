@@ -10,7 +10,7 @@ import webbrowser
 from mvclib.view.path_bar import PathBar
 from mvclib.view.set_icon_tk import set_icon
 from mvclib.view.view_base import ViewBase
-from nvlib.controller.main_view.nv_main_view_ctrl import NvMainViewCtrl
+from nvlib.controller.main_view.main_view_ctrl import MainViewCtrl
 from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from nvlib.novx_globals import CHAPTERS_SUFFIX
 from nvlib.novx_globals import CHARACTERS_SUFFIX
@@ -56,7 +56,7 @@ from nvlib.view.tree_window.tree_viewer import TreeViewer
 import tkinter as tk
 
 
-class NvMainView(ViewBase, NvMainViewCtrl):
+class MainView(ViewBase, MainViewCtrl):
     """View for the novelibre application."""
     _MIN_WINDOW_WIDTH = 400
     _MIN_WINDOW_HEIGHT = 200

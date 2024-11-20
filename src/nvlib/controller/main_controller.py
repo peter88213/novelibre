@@ -1,4 +1,4 @@
-"""Provide a controller class for novelibre.
+"""Provide a main controller class for novelibre.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -13,6 +13,7 @@ from mvclib.controller.controller_base import ControllerBase
 from nvlib.controller.importer.nv_data_importer import NvDataImporter
 from nvlib.controller.importer.nv_doc_importer import NvDocImporter
 from nvlib.controller.link_processor import LinkProcessor
+from nvlib.controller.plugin.plugin_collection import PluginCollection
 from nvlib.model.exporter.nv_doc_exporter import NvDocExporter
 from nvlib.model.exporter.nv_html_reporter import NvHtmlReporter
 from nvlib.model.nv_model import NvModel
@@ -38,8 +39,7 @@ from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
-from nvlib.plugin.plugin_collection import PluginCollection
-from nvlib.view.nv_main_view import NvMainView
+from nvlib.view.main_view import MainView
 from nvlib.view.pop_up.export_options_window import ExportOptionsWindow
 from nvlib.view.pop_up.plugin_manager import PluginManager
 from nvlib.view.pop_up.prj_updater import PrjUpdater
@@ -49,7 +49,7 @@ from nvlib.view.widgets.nv_simpledialog import askinteger
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 
 
-class NvController(ControllerBase):
+class MainController(ControllerBase):
     """Controller for the novelibre application."""
 
     _MAX_NR_NEW_SECTIONS = 20
@@ -83,7 +83,7 @@ class NvController(ControllerBase):
         self.importFiletypes = [(_('ODF Text document'), '.odt'), (_('ODF Spreadsheet document'), '.ods')]
 
         #--- Build the GUI.
-        self._ui = NvMainView(self._mdl, self, title)
+        self._ui = MainView(self._mdl, self, title)
         self.register_client(self._ui)
 
         # Link the model to the view.

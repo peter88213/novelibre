@@ -8,7 +8,7 @@ from mvclib.controller.sub_controller import SubController
 from nvlib.novx_globals import _
 
 
-class NvMainViewCtrl(SubController):
+class MainViewCtrl(SubController):
 
     def disable_menu(self):
         """Disable menu entries when no project is open.        

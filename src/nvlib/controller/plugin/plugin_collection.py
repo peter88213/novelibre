@@ -10,7 +10,7 @@ import os
 import sys
 
 from mvclib.controller.sub_controller import SubController
-from nvlib.plugin.rejected_plugin import RejectedPlugin
+from nvlib.controller.plugin.rejected_plugin import RejectedPlugin
 from nvlib.novx_globals import _
 
 
