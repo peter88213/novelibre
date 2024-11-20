@@ -623,18 +623,6 @@ class NvController(ControllerBase):
         """Return the global preferences dictionary."""
         return prefs
 
-    def import_world_elements(self, prefix):
-        """Import characters/locations/items from an XML data file.
-        
-        Positional arguments:
-            prefix: str -- Prefix specifying the WorldElement type to be imported.
-        """
-        self._ui.restore_status()
-        fileTypes = [(_('XML data file'), '.xml')]
-        filePath = filedialog.askopenfilename(filetypes=fileTypes)
-        if filePath:
-            NvDataImporter(self._mdl, self._ui, self, filePath, prefix)
-
     def import_odf(self, event=None, sourcePath=None, defaultExtension='.odt'):
         """Update or create the project from an ODF document.
         
@@ -653,7 +641,7 @@ class NvController(ControllerBase):
                 initialdir=startDir,
                 )
             if not sourcePath:
-                return 'break'
+                return
 
         if self._mdl.prjFile is not None:
             self.update_status()
@@ -664,7 +652,18 @@ class NvController(ControllerBase):
                     self.save_project()
         importer = NvDocImporter(self._mdl, self._ui, self)
         importer.import_document(sourcePath)
-        return 'break'
+
+    def import_world_elements(self, prefix):
+        """Import characters/locations/items from an XML data file.
+        
+        Positional arguments:
+            prefix: str -- Prefix specifying the WorldElement type to be imported.
+        """
+        self._ui.restore_status()
+        fileTypes = [(_('XML data file'), '.xml')]
+        filePath = filedialog.askopenfilename(filetypes=fileTypes)
+        if filePath:
+            NvDataImporter(self._mdl, self._ui, self, filePath, prefix)
 
     def join_sections(self, event=None, scId0=None, scId1=None):
         """Join section 0 with section 1.
