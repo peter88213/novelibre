@@ -5,42 +5,43 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
-import webbrowser
 
 from mvclib.view.modal_dialog import ModalDialog
+from nvlib.controller.pop_up.plugin_manager_ctrl import PluginManagerCtrl
 from nvlib.novx_globals import _
-from nvlib.nv_globals import open_help
 from nvlib.view.platform.platform_settings import KEYS
 
 
-class PluginManager(ModalDialog):
+class PluginManager(ModalDialog, PluginManagerCtrl):
     """A pop-up window displaying a list of all plugins found on application startup."""
 
     def __init__(self, model, view, controller, **kw):
-        ModalDialog.__init__(self, model, view, controller, **kw)
+        super().__init__(view, **kw)
+        self.initialize_controller(model, view, controller)
+
         self.title(f'{_("Installed plugins")} - novelibre @release')
 
         columns = 'Module', 'Version', 'novelibre API', 'Description'
-        self._moduleCollection = ttk.Treeview(self, columns=columns, show='headings', selectmode='browse')
+        self.moduleCollection = ttk.Treeview(self, columns=columns, show='headings', selectmode='browse')
 
-        # scrollY = ttk.Scrollbar(self._moduleCollection, orient='vertical', command=self._moduleCollection.yview)
-        # self._moduleCollection.configure(yscrollcommand=scrollY.set)
+        # scrollY = ttk.Scrollbar(self.moduleCollection, orient='vertical', command=self.moduleCollection.yview)
+        # self.moduleCollection.configure(yscrollcommand=scrollY.set)
         # scrollY.pack(side='right', fill='y')
         #--- unsolved problem: adding a scollbar makes the window shrink to minimum
 
-        self._moduleCollection.pack(fill='both', expand=True)
-        self._moduleCollection.bind('<<TreeviewSelect>>', self._on_select_module)
-        self._moduleCollection.tag_configure('rejected', foreground='red')
-        self._moduleCollection.tag_configure('inactive', foreground='gray')
+        self.moduleCollection.pack(fill='both', expand=True)
+        self.moduleCollection.bind('<<TreeviewSelect>>', self.on_select_module)
+        self.moduleCollection.tag_configure('rejected', foreground='red')
+        self.moduleCollection.tag_configure('inactive', foreground='gray')
 
-        self._moduleCollection.column('Module', width=150, minwidth=120, stretch=False)
-        self._moduleCollection.heading('Module', text=_('Module'), anchor='w')
-        self._moduleCollection.column('Version', width=100, minwidth=100, stretch=False)
-        self._moduleCollection.heading('Version', text=_('Version'), anchor='w')
-        self._moduleCollection.column('novelibre API', width=100, minwidth=100, stretch=False)
-        self._moduleCollection.heading('novelibre API', text=_('novelibre API'), anchor='w')
-        self._moduleCollection.column('Description', width=400, stretch=True)
-        self._moduleCollection.heading('Description', text=_('Description'), anchor='w')
+        self.moduleCollection.column('Module', width=150, minwidth=120, stretch=False)
+        self.moduleCollection.heading('Module', text=_('Module'), anchor='w')
+        self.moduleCollection.column('Version', width=100, minwidth=100, stretch=False)
+        self.moduleCollection.heading('Version', text=_('Version'), anchor='w')
+        self.moduleCollection.column('novelibre API', width=100, minwidth=100, stretch=False)
+        self.moduleCollection.heading('novelibre API', text=_('novelibre API'), anchor='w')
+        self.moduleCollection.column('Description', width=400, stretch=True)
+        self.moduleCollection.heading('Description', text=_('Description'), anchor='w')
 
         for moduleName in self._ctrl.plugins:
             nodeTags = []
@@ -67,28 +68,28 @@ class PluginManager(ModalDialog):
             elif not self._ctrl.plugins[moduleName].isActive:
                 nodeTags.append('inactive')
                 # Mark loaded yet incompatible modules.
-            self._moduleCollection.insert('', 'end', moduleName, values=columns, tags=tuple(nodeTags))
+            self.moduleCollection.insert('', 'end', moduleName, values=columns, tags=tuple(nodeTags))
 
         self._footer = ttk.Frame(self)
         self._footer.pack(fill='both', expand=False)
 
         # "Home page" button.
-        self._homeButton = ttk.Button(
+        self.homeButton = ttk.Button(
             self._footer,
             text=_('Home page'),
-            command=self._open_home_page,
+            command=self.open_home_page,
             state='disabled'
             )
-        self._homeButton.pack(padx=5, pady=5, side='left')
+        self.homeButton.pack(padx=5, pady=5, side='left')
 
         # "Delete" button.
-        self._deleteButton = ttk.Button(
+        self.deleteButton = ttk.Button(
             self._footer,
             text=_('Delete'),
-            command=self._delete_module,
+            command=self.delete_module,
             state='disabled'
             )
-        self._deleteButton.pack(padx=5, pady=5, side='left')
+        self.deleteButton.pack(padx=5, pady=5, side='left')
 
         # "Close" button.
         ttk.Button(
@@ -106,45 +107,4 @@ class PluginManager(ModalDialog):
 
         # Set Key bindings.
         self.bind(KEYS.OPEN_HELP[0], self.open_help)
-
-    def _delete_module(self, event=None):
-        moduleName = self._moduleCollection.selection()[0]
-        if moduleName:
-            if self._ctrl.plugins.delete_file(moduleName):
-                self._deleteButton.configure(state='disabled')
-                if self._ctrl.plugins[moduleName].isActive:
-                    self._ui.show_info(_('The plugin remains active until next start.'), title=f'{moduleName} {_("deleted")}')
-                else:
-                    self._moduleCollection.delete(moduleName)
-
-    def _on_select_module(self, event):
-        moduleName = self._moduleCollection.selection()[0]
-        homeButtonState = 'disabled'
-        deleteButtonState = 'disabled'
-        if moduleName:
-            try:
-                if self._ctrl.plugins[moduleName].URL:
-                    homeButtonState = 'normal'
-            except:
-                pass
-            try:
-                if self._ctrl.plugins[moduleName].filePath:
-                    deleteButtonState = 'normal'
-            except:
-                pass
-        self._homeButton.configure(state=homeButtonState)
-        self._deleteButton.configure(state=deleteButtonState)
-
-    def open_help(self, event=None):
-        open_help(f'tools_menu.html#{_("plugin-manager").lower()}')
-
-    def _open_home_page(self, event=None):
-        moduleName = self._moduleCollection.selection()[0]
-        if moduleName:
-            try:
-                url = self._ctrl.plugins[moduleName].URL
-                if url:
-                    webbrowser.open(url)
-            except:
-                pass
 

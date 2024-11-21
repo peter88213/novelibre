@@ -9,16 +9,16 @@ import os
 from tkinter import ttk
 
 from mvclib.view.modal_dialog import ModalDialog
+from nvlib.controller.pop_up.prj_updater_ctrl import PrjUpdaterCtrl
 from nvlib.model.converter.novx_converter import NovxConverter
-from nvlib.novx_globals import _
 from nvlib.model.odf.check_odf import odf_is_locked
-from nvlib.nv_globals import open_help
+from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
 from nvlib.view.platform.platform_settings import KEYS
 import tkinter as tk
 
 
-class PrjUpdater(ModalDialog):
+class PrjUpdater(ModalDialog, PrjUpdaterCtrl):
     """Project update manager.
     
     A pop-up window displaying a picklist of previously exported documents
@@ -29,22 +29,24 @@ class PrjUpdater(ModalDialog):
         if model.prjFile.filePath is None:
             return
 
-        ModalDialog.__init__(self, model, view, controller, **kw)
+        super().__init__(view, **kw)
+        self.initialize_controller(model, view, controller)
+
         self.title(_('Exported documents'))
         window = ttk.Frame(self)
         window.pack(fill='both', expand=True)
 
         columns = 'Document', 'Date'
-        self._documentCollection = ttk.Treeview(window, columns=columns, show='headings', selectmode='browse')
-        self._documentCollection.pack(fill='both', expand=True)
-        self._documentCollection.bind('<<TreeviewSelect>>', self._on_select_document)
-        self._documentCollection.tag_configure('newer', foreground='green')
-        self._documentCollection.tag_configure('locked', foreground='red')
+        self.documentCollection = ttk.Treeview(window, columns=columns, show='headings', selectmode='browse')
+        self.documentCollection.pack(fill='both', expand=True)
+        self.documentCollection.bind('<<TreeviewSelect>>', self.on_select_document)
+        self.documentCollection.tag_configure('newer', foreground='green')
+        self.documentCollection.tag_configure('locked', foreground='red')
 
-        self._documentCollection.column('Document', width=300, minwidth=250, stretch=True)
-        self._documentCollection.heading('Document', text=_('Document'), anchor='w')
-        self._documentCollection.column('Date', minwidth=120, stretch=False)
-        self._documentCollection.heading('Date', text=_('Date'), anchor='w')
+        self.documentCollection.column('Document', width=300, minwidth=250, stretch=True)
+        self.documentCollection.heading('Document', text=_('Document'), anchor='w')
+        self.documentCollection.column('Date', minwidth=120, stretch=False)
+        self.documentCollection.heading('Date', text=_('Date'), anchor='w')
 
         # "Discard after import" checkbox.
         IMPORT_MODES = [
@@ -59,24 +61,24 @@ class PrjUpdater(ModalDialog):
         if importMode >= len(IMPORT_MODES):
             importMode = 0
 
-        self._importMode = tk.IntVar(window, value=importMode)
+        self.importModeVar = tk.IntVar(window, value=importMode)
         for i, buttonLabel in enumerate(IMPORT_MODES):
             ttk.Radiobutton(
                 window,
                 text=buttonLabel,
-                variable=self._importMode,
+                variable=self.importModeVar,
                 value=i,
-                command=self._on_select_document
+                command=self.on_select_document
                 ).pack(padx=5, pady=1, anchor='w')
-        self._importMode.trace('w', self._save_options)
+        self.importModeVar.trace('w', self._save_options)
 
         # "Import" button.
-        self._importButton = ttk.Button(window, text=_('Import'), command=self._import_document, state='disabled')
-        self._importButton.pack(padx=5, pady=5, side='left')
+        self.importButton = ttk.Button(window, text=_('Import'), command=self.import_document, state='disabled')
+        self.importButton.pack(padx=5, pady=5, side='left')
 
         # "Discard" button.
-        self._deleteButton = ttk.Button(window, text=_('Discard'), command=self._delete_document, state='disabled')
-        self._deleteButton.pack(padx=5, pady=5, side='left')
+        self.deleteButton = ttk.Button(window, text=_('Discard'), command=self.delete_document, state='disabled')
+        self.deleteButton.pack(padx=5, pady=5, side='left')
 
         # "Refresh view" button.
         self._refreshButton = ttk.Button(window, text=_('Refresh view'), command=self.list_documents)
@@ -94,8 +96,8 @@ class PrjUpdater(ModalDialog):
 
         # Set Key bindings.
         self.bind(KEYS.OPEN_HELP[0], self.open_help)
-        self._documentCollection.bind('<Double-1>', self._import_document)
-        self._documentCollection.bind('<Return>', self._import_document)
+        self.documentCollection.bind('<Double-1>', self.import_document)
+        self.documentCollection.bind('<Return>', self.import_document)
 
         self._docTypes = {}
         for docClass in NovxConverter.IMPORT_SOURCE_CLASSES:
@@ -128,59 +130,14 @@ class PrjUpdater(ModalDialog):
                 nodeTags.append('locked')
             elif timestamp > self._mdl.prjFile.timestamp:
                 nodeTags.append('newer')
-            self._documentCollection.insert('', 'end', filePath, values=columns, tags=tuple(nodeTags))
-
-    def _delete_document(self, event=None):
-        filePath = self._documentCollection.selection()[0]
-        if filePath and self._ui.ask_yes_no(f'{_("Delete file")} "{filePath}"?'):
-            try:
-                os.remove(filePath)
-                self._documentCollection.delete(filePath)
-            except Exception as ex:
-                self._ui.set_status(f'!{str(ex)}')
-
-    def _on_select_document(self, event=None):
-        try:
-            filePath = self._documentCollection.selection()[0]
-        except IndexError:
-            delButtonState = 'disabled'
-            impButtonState = 'disabled'
-        else:
-            if odf_is_locked(filePath):
-                delButtonState = 'disabled'
-                if self._importMode.get() != 2:
-                    impButtonState = 'disabled'
-                else:
-                    impButtonState = 'normal'
-            else:
-                delButtonState = 'normal'
-                impButtonState = 'normal'
-        self._deleteButton.configure(state=delButtonState)
-        self._importButton.configure(state=impButtonState)
-
-    def _import_document(self, event=None):
-        try:
-            filePath = self._documentCollection.selection()[0]
-        except IndexError:
-            pass
-        else:
-            self._ctrl.import_odf(sourcePath=filePath)
-        importButtonState = 'disabled'
-        self._importButton.configure(state=importButtonState)
-        self.list_documents()
-
-    def open_help(self, event=None):
-        open_help(f'import_menu.html')
-
-    def _update_project(self, event=None):
-        pass
+            self.documentCollection.insert('', 'end', filePath, values=columns, tags=tuple(nodeTags))
 
     def _reset_tree(self):
         """Clear the displayed tree."""
-        for child in self._documentCollection.get_children(''):
-            self._documentCollection.delete(child)
+        for child in self.documentCollection.get_children(''):
+            self.documentCollection.delete(child)
 
     def _save_options(self, event=None, *args):
         """Save "discard temporary documents" state."""
-        prefs['import_mode'] = str(self._importMode.get())
+        prefs['import_mode'] = str(self.importModeVar.get())
 

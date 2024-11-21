@@ -368,8 +368,8 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
     def _on_select_node(self, event):
         """Event handler for node selection.
         
-        - Show the node's properties.
         - Add the node ID to the browsing history.
+        - Call the controller.
         """
         try:
             nodeId = self.tree.selection()[0]
