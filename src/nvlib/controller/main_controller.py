@@ -40,10 +40,10 @@ from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
 from nvlib.view.main_view import MainView
-from nvlib.view.pop_up.export_options_window import ExportOptionsWindow
-from nvlib.view.pop_up.plugin_manager import PluginManager
-from nvlib.view.pop_up.prj_updater import PrjUpdater
-from nvlib.view.pop_up.view_options_window import ViewOptionsWindow
+from nvlib.view.pop_up.export_options_dialog import ExportOptionsDialog
+from nvlib.view.pop_up.plugin_manager_dialog import PluginManagerDialog
+from nvlib.view.pop_up.reimport_dialog import ReimportDialog
+from nvlib.view.pop_up.view_options_dialog import ViewOptionsDialog
 from nvlib.view.widgets.nv_simpledialog import askinteger
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
@@ -767,7 +767,7 @@ class MainController(ControllerBase):
 
     def open_export_options(self, event=None):
         """Open a toplevel window to edit the export options."""
-        ExportOptionsWindow(self._mdl, self._ui, self)
+        ExportOptionsDialog(self._mdl, self._ui, self)
         return 'break'
 
     def open_help(self, event=None):
@@ -775,7 +775,7 @@ class MainController(ControllerBase):
 
     def open_plugin_manager(self, event=None):
         """Open a toplevel window to manage the plugins."""
-        PluginManager(self._mdl, self._ui, self)
+        PluginManagerDialog(self._mdl, self._ui, self)
         return 'break'
 
     def open_installationFolder(self, event=None):
@@ -920,12 +920,12 @@ class MainController(ControllerBase):
         
         Using a toplevel window with a pick list of refresh sources.
         """
-        PrjUpdater(self._mdl, self._ui, self)
+        ReimportDialog(self._mdl, self._ui, self)
         return 'break'
 
     def open_view_options(self, event=None):
         """Open a toplevel window to edit the view options."""
-        ViewOptionsWindow(self._mdl, self._ui, self)
+        ViewOptionsDialog(self._mdl, self._ui, self)
         return 'break'
 
     def refresh(self):

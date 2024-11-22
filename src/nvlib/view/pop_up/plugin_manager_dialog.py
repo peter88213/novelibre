@@ -1,4 +1,4 @@
-"""Provide a class for a plugin manager.
+"""Provide a class for a plugin manager dialog.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -12,7 +12,7 @@ from nvlib.novx_globals import _
 from nvlib.view.platform.platform_settings import KEYS
 
 
-class PluginManager(ModalDialog, PluginManagerCtrl):
+class PluginManagerDialog(ModalDialog, PluginManagerCtrl):
     """A pop-up window displaying a list of all plugins found on application startup."""
 
     def __init__(self, model, view, controller, **kw):

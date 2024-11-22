@@ -1,4 +1,4 @@
-"""Provide a class for view settings.
+"""Provide a class for a view settings and options dialog.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -8,16 +8,14 @@ from tkinter import ttk
 
 from mvclib.view.modal_dialog import ModalDialog
 from mvclib.widgets.drag_drop_listbox import DragDropListbox
-from nvlib.controller.pop_up.view_options_window_ctrl import ViewOptionsWindowCtrl
+from nvlib.controller.pop_up.view_options_window_ctrl import ViewOptionsCtrl
 from nvlib.novx_globals import _
-from nvlib.novx_globals import list_to_string
-from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
 from nvlib.view.platform.platform_settings import KEYS
 import tkinter as tk
 
 
-class ViewOptionsWindow(ModalDialog, ViewOptionsWindowCtrl):
+class ViewOptionsDialog(ModalDialog, ViewOptionsCtrl):
     """A pop-up window with view preference settings."""
 
     def __init__(self, model, view, controller, **kw):
@@ -111,28 +109,3 @@ class ViewOptionsWindow(ModalDialog, ViewOptionsWindowCtrl):
         # Set Key bindings.
         self.bind(KEYS.OPEN_HELP[0], self.open_help)
 
-    def change_colors(self, *args, **kwargs):
-        cmStr = self.coloringModeStrVar.get()
-        self._ui.tv.coloringMode = self._ui.tv.COLORING_MODES.index(cmStr)
-        self._ui.tv.refresh()
-
-    def change_column_order(self, *args, **kwargs):
-        srtColumns = []
-        titles = self.colEntriesVar.get()
-        for title in titles:
-            srtColumns.append(self._coIdsByTitle[title])
-        prefs['column_order'] = list_to_string(srtColumns)
-        self._ui.tv.configure_columns()
-        self._ui.tv.refresh()
-
-    def change_icon_size(self, *args):
-        prefs['large_icons'] = self._largeIconsVar.get()
-        self._ui.show_info(_('The change takes effect after next startup.'), title=f'{_("Change icon size")}')
-
-    def change_localize_date(self, *args):
-        prefs['localize_date'] = self._localizeDate.get()
-        self._ui.tv.refresh()
-        self._ui.propertiesView.refresh()
-
-    def open_help(self, event=None):
-        open_help(f'view_menu.html#{_("options").lower()}')

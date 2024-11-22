@@ -1,4 +1,4 @@
-"""Provide a mixin class for controlling the view settings.
+"""Provide a mixin class for a view settings and options controller.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -12,8 +12,7 @@ from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
 
 
-class ViewOptionsWindowCtrl(SubController):
-    """A pop-up window with view preference settings."""
+class ViewOptionsCtrl(SubController):
 
     def change_colors(self, *args, **kwargs):
         cmStr = self.coloringModeStrVar.get()

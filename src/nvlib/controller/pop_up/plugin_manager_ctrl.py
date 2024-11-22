@@ -12,7 +12,6 @@ from nvlib.nv_globals import open_help
 
 
 class PluginManagerCtrl(SubController):
-    """A pop-up window displaying a list of all plugins found on application startup."""
 
     def delete_module(self, event=None):
         moduleName = self.moduleCollection.selection()[0]
