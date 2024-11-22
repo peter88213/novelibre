@@ -35,6 +35,7 @@ class DataWriter(NovxFile):
             CHARACTERS=f'{path}_Characters.xml',
             LOCATIONS=f'{path}_Locations.xml',
             ITEMS=f'{path}_Items.xml',
+            ARCS=f'{path}_Plotlines.xml',
         )
 
     def _postprocess_xml_file(self, filePath):

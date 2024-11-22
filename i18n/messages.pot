@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.0.0\n"
-"POT-Creation-Date: 2024-11-20 14:30:21\n"
+"Project-Id-Version: 5.0.1\n"
+"POT-Creation-Date: 2024-11-22 13:48:19\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -228,9 +228,6 @@ msgid "Characterization"
 msgstr ""
 
 msgid "Characters"
-msgstr ""
-
-msgid "Characters/locations/items data files"
 msgstr ""
 
 msgid "Choice"
@@ -569,6 +566,9 @@ msgstr ""
 msgid "Import documents even if locked; do not discard"
 msgstr ""
 
+msgid "Import plot lines"
+msgstr ""
+
 msgid "Import selected elements"
 msgstr ""
 
@@ -738,6 +738,9 @@ msgid "No location data found"
 msgstr ""
 
 msgid "No novelibre project to write"
+msgstr ""
+
+msgid "No plot lines found"
 msgstr ""
 
 msgid "No text available"
@@ -1040,6 +1043,9 @@ msgstr ""
 msgid "Select locations"
 msgstr ""
 
+msgid "Select plot lines"
+msgstr ""
+
 msgid "Set Status"
 msgstr ""
 
@@ -1274,10 +1280,16 @@ msgstr ""
 msgid "XML data file"
 msgstr ""
 
+msgid "XML data files"
+msgstr ""
+
 msgid "XML item data file"
 msgstr ""
 
 msgid "XML location data file"
+msgstr ""
+
+msgid "XML plot line file"
 msgstr ""
 
 msgid "YYYY-MM-DD"

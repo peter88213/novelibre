@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.0.0\n"
-"POT-Creation-Date: 2024-11-20 14:30:21\n"
-"PO-Revision-Date: 2024-11-20 14:30:21\n"
+"Project-Id-Version: 5.0.1\n"
+"POT-Creation-Date: 2024-11-22 13:48:19\n"
+"PO-Revision-Date: 2024-11-22 13:48:19\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -222,9 +222,6 @@ msgstr "Charakterisierung"
 
 msgid "Characters"
 msgstr "Figuren"
-
-msgid "Characters/locations/items data files"
-msgstr "Figuren/Schauplätze/Gegenstände-Datendateien"
 
 msgid "Choice"
 msgstr "Entscheidung"
@@ -562,6 +559,9 @@ msgstr "Importieren"
 msgid "Import documents even if locked; do not discard"
 msgstr "Auch gesperrte Dokumente importieren; nicht verwerfen"
 
+msgid "Import plot lines"
+msgstr "Plotlinien importieren"
+
 msgid "Import selected elements"
 msgstr "Ausgewählte Elemente importieren"
 
@@ -732,6 +732,9 @@ msgstr "Keine Schauplatzdaten gefunden"
 
 msgid "No novelibre project to write"
 msgstr "Kein novelibre-Projekt zum Schreiben"
+
+msgid "No plot lines found"
+msgstr "Keine Plotlinien gefunden"
 
 msgid "No text available"
 msgstr "Kein Text vorhanden"
@@ -1033,6 +1036,9 @@ msgstr "Gegenstände auswählen"
 msgid "Select locations"
 msgstr "Schauplätze auswählen"
 
+msgid "Select plot lines"
+msgstr "Plotlinien auswählen"
+
 msgid "Set Status"
 msgstr "Status setzen"
 
@@ -1267,11 +1273,17 @@ msgstr "XML-Figurendatei"
 msgid "XML data file"
 msgstr "XML-Datendatei"
 
+msgid "XML data files"
+msgstr "XML-Datendateien "
+
 msgid "XML item data file"
 msgstr "XML-Gegenstandsdatei"
 
 msgid "XML location data file"
 msgstr "XML-Schauplatzdatei"
+
+msgid "XML plot line file"
+msgstr "XML-Plotliniendatei"
 
 msgid "YYYY-MM-DD"
 msgstr "JJJJ-MM-TT"

@@ -653,11 +653,11 @@ class MainController(ControllerBase):
         importer = NvDocImporter(self._mdl, self._ui, self)
         importer.import_document(sourcePath)
 
-    def import_world_elements(self, prefix):
-        """Import characters/locations/items from an XML data file.
+    def import_elements(self, prefix):
+        """Import elements from an XML data file.
         
         Positional arguments:
-            prefix: str -- Prefix specifying the WorldElement type to be imported.
+            prefix: str -- Prefix specifying the element type to be imported.
         """
         self._ui.restore_status()
         fileTypes = [(_('XML data file'), '.xml')]

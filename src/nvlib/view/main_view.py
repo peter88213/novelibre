@@ -34,6 +34,7 @@ from nvlib.novx_globals import LOCLIST_SUFFIX
 from nvlib.novx_globals import MANUSCRIPT_SUFFIX
 from nvlib.novx_globals import PARTS_SUFFIX
 from nvlib.novx_globals import PLOTLINES_SUFFIX
+from nvlib.novx_globals import PLOT_LINE_PREFIX
 from nvlib.novx_globals import PLOTLIST_SUFFIX
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import PN_ROOT
@@ -398,7 +399,7 @@ class MainView(ViewBase, MainViewCtrl):
         self.characterMenu.add_separator()
         self.characterMenu.add_cascade(label=_('Set Status'), menu=self.tv.crStatusMenu)
         self.characterMenu.add_separator()
-        self.characterMenu.add_command(label=_('Import'), command=lambda: self._ctrl.import_world_elements(CHARACTER_PREFIX))
+        self.characterMenu.add_command(label=_('Import'), command=lambda: self._ctrl.import_elements(CHARACTER_PREFIX))
         self.characterMenu.add_separator()
         self.characterMenu.add_command(label=_('Export character descriptions for editing'), command=lambda: self._ctrl.export_document(CHARACTERS_SUFFIX))
         self.characterMenu.add_command(label=_('Export character list (spreadsheet)'), command=lambda: self._ctrl.export_document(CHARLIST_SUFFIX))
@@ -409,7 +410,7 @@ class MainView(ViewBase, MainViewCtrl):
         self.mainMenu.add_cascade(label=_('Locations'), menu=self.locationMenu)
         self.locationMenu.add_command(label=_('Add'), command=self._ctrl.add_location)
         self.locationMenu.add_separator()
-        self.locationMenu.add_command(label=_('Import'), command=lambda: self._ctrl.import_world_elements(LOCATION_PREFIX))
+        self.locationMenu.add_command(label=_('Import'), command=lambda: self._ctrl.import_elements(LOCATION_PREFIX))
         self.locationMenu.add_separator()
         self.locationMenu.add_command(label=_('Export location descriptions for editing'), command=lambda: self._ctrl.export_document(LOCATIONS_SUFFIX))
         self.locationMenu.add_command(label=_('Export location list (spreadsheet)'), command=lambda: self._ctrl.export_document(LOCLIST_SUFFIX))
@@ -420,7 +421,7 @@ class MainView(ViewBase, MainViewCtrl):
         self.mainMenu.add_cascade(label=_('Items'), menu=self.itemMenu)
         self.itemMenu.add_command(label=_('Add'), command=self._ctrl.add_item)
         self.itemMenu.add_separator()
-        self.itemMenu.add_command(label=_('Import'), command=lambda: self._ctrl.import_world_elements(ITEM_PREFIX))
+        self.itemMenu.add_command(label=_('Import'), command=lambda: self._ctrl.import_elements(ITEM_PREFIX))
         self.itemMenu.add_separator()
         self.itemMenu.add_command(label=_('Export item descriptions for editing'), command=lambda: self._ctrl.export_document(ITEMS_SUFFIX))
         self.itemMenu.add_command(label=_('Export item list (spreadsheet)'), command=lambda: self._ctrl.export_document(ITEMLIST_SUFFIX))
@@ -434,6 +435,8 @@ class MainView(ViewBase, MainViewCtrl):
         self.plotMenu.add_separator()
         self.plotMenu.add_command(label=_('Insert Stage'), command=self._ctrl.add_stage)
         self.plotMenu.add_cascade(label=_('Change Level'), menu=self.tv.selectLevelMenu)
+        self.plotMenu.add_separator()
+        self.plotMenu.add_command(label=_('Import plot lines'), command=lambda: self._ctrl.import_elements(PLOT_LINE_PREFIX))
         self.plotMenu.add_separator()
         self.plotMenu.add_command(label=_('Export plot grid for editing'), command=lambda:self._ctrl.export_document(GRID_SUFFIX))
         self.plotMenu.add_command(label=_('Export story structure description for editing'), command=lambda:self._ctrl.export_document(STAGES_SUFFIX))
@@ -459,7 +462,7 @@ class MainView(ViewBase, MainViewCtrl):
         self.exportMenu.add_command(label=_('Brief synopsis (export only)'), command=lambda: self._ctrl.export_document(BRF_SYNOPSIS_SUFFIX, lock=False))
         self.exportMenu.add_command(label=_('Cross references (export only)'), command=lambda: self._ctrl.export_document(XREF_SUFFIX, lock=False))
         self.exportMenu.add_separator()
-        self.exportMenu.add_command(label=_('Characters/locations/items data files'), command=lambda: self._ctrl.export_document(DATA_SUFFIX, lock=False, show=False))
+        self.exportMenu.add_command(label=_('XML data files'), command=lambda: self._ctrl.export_document(DATA_SUFFIX, lock=False, show=False))
         self.exportMenu.add_separator()
         self.exportMenu.add_command(label=_('Options'), command=self._ctrl.open_export_options)
 

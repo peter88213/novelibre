@@ -8,8 +8,9 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
-### Version 5.0.0
+### Version 5.0.1
 
+- Importing and exporting plot lines with plot points. 
 - Refactor the code for better maintainability.
 
 ### Version 4.17.2
