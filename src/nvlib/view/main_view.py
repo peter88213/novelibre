@@ -20,7 +20,6 @@ from nvlib.novx_globals import CHARLIST_SUFFIX
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
 from nvlib.novx_globals import DATA_SUFFIX
-from nvlib.novx_globals import GRID_SUFFIX
 from nvlib.novx_globals import ITEMLIST_SUFFIX
 from nvlib.novx_globals import ITEMS_SUFFIX
 from nvlib.novx_globals import ITEM_PREFIX
@@ -33,15 +32,11 @@ from nvlib.novx_globals import LOCATION_REPORT_SUFFIX
 from nvlib.novx_globals import LOCLIST_SUFFIX
 from nvlib.novx_globals import MANUSCRIPT_SUFFIX
 from nvlib.novx_globals import PARTS_SUFFIX
-from nvlib.novx_globals import PLOTLINES_SUFFIX
-from nvlib.novx_globals import PLOT_LINE_PREFIX
-from nvlib.novx_globals import PLOTLIST_SUFFIX
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import PROOF_SUFFIX
 from nvlib.novx_globals import SECTIONLIST_SUFFIX
 from nvlib.novx_globals import SECTIONS_SUFFIX
-from nvlib.novx_globals import STAGES_SUFFIX
 from nvlib.novx_globals import XREF_SUFFIX
 from nvlib.novx_globals import _
 from nvlib.nv_globals import HOME_URL
@@ -292,7 +287,7 @@ class MainView(ViewBase, MainViewCtrl):
         self.root.bind(KEYS.RELOAD_PROJECT[0], self._ctrl.reload_project)
         self.root.bind(KEYS.RESTORE_BACKUP[0], self._ctrl.restore_backup)
         self.root.bind(KEYS.FOLDER[0], self._ctrl.open_project_folder)
-        self.root.bind(KEYS.REFRESH_TREE[0], self._ctrl.refresh_views)
+        self.root.bind(KEYS.REFRESH_TREE[0], self._ctrl.refresh_tree)
         self.root.bind(KEYS.SAVE_PROJECT[0], self._ctrl.save_project)
         self.root.bind(KEYS.SAVE_AS[0], self._ctrl.save_as)
         self.root.bind(KEYS.CHAPTER_LEVEL[0], self.tv.show_chapter_level)
@@ -325,7 +320,7 @@ class MainView(ViewBase, MainViewCtrl):
         self.fileMenu.add_command(label=_('Reload'), accelerator=KEYS.RELOAD_PROJECT[1], command=self._ctrl.reload_project)
         self.fileMenu.add_command(label=_('Restore backup'), accelerator=KEYS.RESTORE_BACKUP[1], command=self._ctrl.restore_backup)
         self.fileMenu.add_separator()
-        self.fileMenu.add_command(label=_('Refresh Tree'), accelerator=KEYS.REFRESH_TREE[1], command=self._ctrl.refresh_views)
+        self.fileMenu.add_command(label=_('Refresh Tree'), accelerator=KEYS.REFRESH_TREE[1], command=self._ctrl.refresh_tree)
         self.fileMenu.add_command(label=_('Lock'), accelerator=KEYS.LOCK_PROJECT[1], command=self._ctrl.lock)
         self.fileMenu.add_command(label=_('Unlock'), accelerator=KEYS.UNLOCK_PROJECT[1], command=self._ctrl.unlock)
         self.fileMenu.add_separator()
@@ -436,14 +431,14 @@ class MainView(ViewBase, MainViewCtrl):
         self.plotMenu.add_command(label=_('Insert Stage'), command=self._ctrl.add_stage)
         self.plotMenu.add_cascade(label=_('Change Level'), menu=self.tv.selectLevelMenu)
         self.plotMenu.add_separator()
-        self.plotMenu.add_command(label=_('Import plot lines'), command=lambda: self._ctrl.import_elements(PLOT_LINE_PREFIX))
+        self.plotMenu.add_command(label=_('Import plot lines'), command=self._ctrl.import_plot_lines)
         self.plotMenu.add_separator()
-        self.plotMenu.add_command(label=_('Export plot grid for editing'), command=lambda:self._ctrl.export_document(GRID_SUFFIX))
-        self.plotMenu.add_command(label=_('Export story structure description for editing'), command=lambda:self._ctrl.export_document(STAGES_SUFFIX))
-        self.plotMenu.add_command(label=_('Export plot line descriptions for editing'), command=lambda: self._ctrl.export_document(PLOTLINES_SUFFIX, lock=False))
+        self.plotMenu.add_command(label=_('Export plot grid for editing'), command=self._ctrl.export_plot_grid)
+        self.plotMenu.add_command(label=_('Export story structure description for editing'), command=self._ctrl.export_story_structure_desc)
+        self.plotMenu.add_command(label=_('Export plot line descriptions for editing'), command=self._ctrl.export_plot_lines_desc)
         self.plotMenu.add_separator()
-        self.plotMenu.add_command(label=_('Export plot list (spreadsheet)'), command=lambda: self._ctrl.export_document(PLOTLIST_SUFFIX, lock=False))
-        self.plotMenu.add_command(label=_('Show Plot list'), command=lambda: self._ctrl.show_report(PLOTLIST_SUFFIX))
+        self.plotMenu.add_command(label=_('Export plot list (spreadsheet)'), command=self._ctrl.export_plot_list)
+        self.plotMenu.add_command(label=_('Show Plot list'), command=self._ctrl.show_plot_list)
 
         # Project notes
         self.prjNoteMenu = tk.Menu(self.mainMenu, tearoff=0)

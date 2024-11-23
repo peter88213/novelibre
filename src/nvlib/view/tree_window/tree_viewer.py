@@ -216,7 +216,7 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
             self.tree.item(rootElement, text='')
             # Make the root element "invisible".
         self.tree.configure({'selectmode': 'none'})
-        self._ctrl.reset_tree()
+        self._mdl.reset_tree()
 
     def see_node(self, node):
         """View a node.
