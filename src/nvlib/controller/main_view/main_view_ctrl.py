@@ -104,6 +104,24 @@ class MainViewCtrl(SubController):
         self.mainMenu.entryconfig(_('Project notes'), state='disabled')
         self.mainMenu.entryconfig(_('Export'), state='disabled')
 
+    def set_title(self):
+        """Set the main window title. 
+        
+        'Document title by author - application'
+        """
+        if self._mdl.novel is None:
+            return
+
+        if self._mdl.novel.title:
+            titleView = self._mdl.novel.title
+        else:
+            titleView = _('Untitled project')
+        if self._mdl.novel.authorName:
+            authorView = self._mdl.novel.authorName
+        else:
+            authorView = _('Unknown author')
+        self.root.title(f'{titleView} {_("by")} {authorView} - {self.title}')
+
     def unlock(self):
         """Make the "unlocked" state take effect.
         
