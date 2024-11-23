@@ -44,7 +44,7 @@ class PluginManagerCtrl(SubController):
     def open_help(self, event=None):
         open_help(f'tools_menu.html#{_("plugin-manager").lower()}')
 
-    def open_home_page(self, event=None):
+    def open_homepage(self, event=None):
         moduleName = self.moduleCollection.selection()[0]
         if moduleName:
             try:

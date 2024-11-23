@@ -8,18 +8,32 @@ import os
 from shutil import copy2
 import sys
 from tkinter import filedialog
+import webbrowser
 
+from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
+from nvlib.novx_globals import CHAPTERS_SUFFIX
 from nvlib.novx_globals import CHAPTER_PREFIX
+from nvlib.novx_globals import CHARACTERS_SUFFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
+from nvlib.novx_globals import CHARACTER_REPORT_SUFFIX
+from nvlib.novx_globals import CHARLIST_SUFFIX
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
+from nvlib.novx_globals import DATA_SUFFIX
 from nvlib.novx_globals import Error
 from nvlib.novx_globals import GRID_SUFFIX
+from nvlib.novx_globals import ITEMLIST_SUFFIX
+from nvlib.novx_globals import ITEMS_SUFFIX
 from nvlib.novx_globals import ITEM_PREFIX
+from nvlib.novx_globals import ITEM_REPORT_SUFFIX
 from nvlib.novx_globals import IT_ROOT
 from nvlib.novx_globals import LC_ROOT
+from nvlib.novx_globals import LOCATIONS_SUFFIX
 from nvlib.novx_globals import LOCATION_PREFIX
+from nvlib.novx_globals import LOCATION_REPORT_SUFFIX
+from nvlib.novx_globals import LOCLIST_SUFFIX
 from nvlib.novx_globals import MANUSCRIPT_SUFFIX
+from nvlib.novx_globals import PARTS_SUFFIX
 from nvlib.novx_globals import PLOTLINES_SUFFIX
 from nvlib.novx_globals import PLOTLIST_SUFFIX
 from nvlib.novx_globals import PLOT_LINE_PREFIX
@@ -27,8 +41,12 @@ from nvlib.novx_globals import PLOT_POINT_PREFIX
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import PRJ_NOTE_PREFIX
+from nvlib.novx_globals import PROOF_SUFFIX
+from nvlib.novx_globals import SECTIONLIST_SUFFIX
+from nvlib.novx_globals import SECTIONS_SUFFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import STAGES_SUFFIX
+from nvlib.novx_globals import XREF_SUFFIX
 from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import open_help
@@ -39,6 +57,7 @@ from nvlib.view.pop_up.reimport_dialog import ReimportDialog
 from nvlib.view.pop_up.view_options_dialog import ViewOptionsDialog
 from nvlib.view.widgets.nv_simpledialog import SimpleDialog
 from nvlib.view.widgets.nv_simpledialog import askinteger
+from nvlib.nv_globals import HOME_URL
 
 
 class Commands:
@@ -604,10 +623,8 @@ class Commands:
     def open_help(self, event=None):
         open_help('')
 
-    def open_plugin_manager(self, event=None):
-        """Open a toplevel window to manage the plugins."""
-        PluginManagerDialog(self._mdl, self._ui, self)
-        return 'break'
+    def open_homepage(self, event=None):
+        webbrowser.open(HOME_URL)
 
     def open_installationFolder(self, event=None):
         """Open the installation folder with the OS file manager."""
@@ -679,6 +696,11 @@ class Commands:
                 links[linkPath] = pathOk
                 element.links = links
                 self._ui.set_status(_('Broken link fixed'))
+
+    def open_plugin_manager(self, event=None):
+        """Open a toplevel window to manage the plugins."""
+        PluginManagerDialog(self._mdl, self._ui, self)
+        return 'break'
 
     def open_project(self, event=None, filePath='', doNotSave=False):
         """Create a novelibre project instance and read the file.

@@ -5,7 +5,6 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
-import webbrowser
 
 from mvclib.view.path_bar import PathBar
 from mvclib.view.set_icon_tk import set_icon
@@ -39,7 +38,6 @@ from nvlib.novx_globals import SECTIONLIST_SUFFIX
 from nvlib.novx_globals import SECTIONS_SUFFIX
 from nvlib.novx_globals import XREF_SUFFIX
 from nvlib.novx_globals import _
-from nvlib.nv_globals import HOME_URL
 from nvlib.nv_globals import prefs
 from nvlib.view.contents_window.contents_viewer import ContentsViewer
 from nvlib.view.icons import Icons
@@ -457,7 +455,7 @@ class MainView(ViewBase, MainViewCtrl):
         self.helpMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Help'), menu=self.helpMenu)
         self.helpMenu.add_command(label=_('Online help'), accelerator=KEYS.OPEN_HELP[1], command=self._ctrl.open_help)
-        self.helpMenu.add_command(label=f"novelibre {_('Home page')}", command=lambda: webbrowser.open(HOME_URL))
+        self.helpMenu.add_command(label=f"novelibre {_('Home page')}", command=self._ctrl.open_homepage)
 
     def _create_path_bar(self):
         """Extends the superclass method."""

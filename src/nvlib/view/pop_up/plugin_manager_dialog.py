@@ -77,7 +77,7 @@ class PluginManagerDialog(ModalDialog, PluginManagerCtrl):
         self.homeButton = ttk.Button(
             self._footer,
             text=_('Home page'),
-            command=self.open_home_page,
+            command=self.open_homepage,
             state='disabled'
             )
         self.homeButton.pack(padx=5, pady=5, side='left')
