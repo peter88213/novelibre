@@ -99,19 +99,17 @@ class NvDocExporter:
                 timeStatus = ''
                 defaultButton = 0
             self._targetFileDate = datetime.fromtimestamp(targetTimestamp).strftime('%c')
-            title = _('Export document')
             message = _('{0} already exists.\n(last saved on {2})\n{1}.\n\nOpen this document instead of overwriting it?').format(
                         norm_path(self._target.DESCRIPTION), timeStatus, self._targetFileDate)
-            askOverwrite = SimpleDialog(
+            result = SimpleDialog(
                 None,
-                text=message,
+                text=f"\n\n{message}\n\n",
                 buttons=[_('Overwrite'), _('Open existing'), _('Cancel')],
                 default=defaultButton,
                 cancel=2,
-                title=title
-                )
-            values = [False, True, None]
-            openExisting = values[askOverwrite.go()]
+                title=_('Export document')
+                ).go()
+            openExisting = [False, True, None][result]
             if openExisting is None:
                 raise Notification(f'{_("Action canceled by user")}.')
 

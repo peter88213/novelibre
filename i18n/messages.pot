@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.0.1\n"
-"POT-Creation-Date: 2024-11-22 13:48:19\n"
+"Project-Id-Version: 5.0.2\n"
+"POT-Creation-Date: 2024-11-23 11:29:08\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -345,6 +345,9 @@ msgid "Delete"
 msgstr ""
 
 msgid "Delete file"
+msgstr ""
+
+msgid "Delete multiple elements"
 msgstr ""
 
 msgid "Delete {}?"
@@ -717,6 +720,9 @@ msgid "Newer than the project file"
 msgstr ""
 
 msgid "Next"
+msgstr ""
+
+msgid "No"
 msgstr ""
 
 msgid "No backup available"
@@ -1293,6 +1299,9 @@ msgid "XML plot line file"
 msgstr ""
 
 msgid "YYYY-MM-DD"
+msgstr ""
+
+msgid "Yes"
 msgstr ""
 
 msgid "by"

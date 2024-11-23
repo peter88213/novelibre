@@ -75,6 +75,8 @@ class SimpleDialog:
 
     def go(self):
         self.root.wait_visibility()
+        self.root.lift()
+        self.root.focus_force()
         self.root.grab_set()
         self.root.mainloop()
         self.root.destroy()

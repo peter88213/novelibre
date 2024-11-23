@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.0.1\n"
-"POT-Creation-Date: 2024-11-22 13:48:19\n"
-"PO-Revision-Date: 2024-11-22 13:48:19\n"
+"Project-Id-Version: 5.0.2\n"
+"POT-Creation-Date: 2024-11-23 11:29:08\n"
+"PO-Revision-Date: 2024-11-23 11:29:08\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -339,6 +339,9 @@ msgstr "Löschen"
 
 msgid "Delete file"
 msgstr "Lösche Datei"
+
+msgid "Delete multiple elements"
+msgstr "Mehrere Elemente löschen"
 
 msgid "Delete {}?"
 msgstr "{} löschen?"
@@ -711,6 +714,9 @@ msgstr "Neuer als die Projektdatei"
 
 msgid "Next"
 msgstr "Vor"
+
+msgid "No"
+msgstr "Nein"
 
 msgid "No backup available"
 msgstr "Keine Sicherungskopie verfügbar"
@@ -1287,6 +1293,9 @@ msgstr "XML-Plotliniendatei"
 
 msgid "YYYY-MM-DD"
 msgstr "JJJJ-MM-TT"
+
+msgid "Yes"
+msgstr "Ja"
 
 msgid "\"Export\" options"
 msgstr "\"Export\"-Optionen"
