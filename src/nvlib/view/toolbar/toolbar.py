@@ -12,7 +12,6 @@ from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
 from nvlib.novx_globals import IT_ROOT
 from nvlib.novx_globals import LC_ROOT
-from nvlib.novx_globals import MANUSCRIPT_SUFFIX
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import _
@@ -147,7 +146,7 @@ class Toolbar(ToolbarCtrl):
             self.buttonBar,
             text=_('Update from manuscript'),
             image=self._ui.icons.updateFromManuscriptIcon,
-            command=lambda: self._ctrl.update_from_odt(suffix=MANUSCRIPT_SUFFIX)
+            command=self._ctrl.update_from_manuscript
             )
         self.updateButton.pack(side='left')
         self.updateButton.image = self._ui.icons.updateFromManuscriptIcon
@@ -157,7 +156,7 @@ class Toolbar(ToolbarCtrl):
             self.buttonBar,
             text=_('Export Manuscript'),
             image=self._ui.icons.manuscriptIcon,
-            command=lambda:self._ctrl.export_document(MANUSCRIPT_SUFFIX, ask=False)
+            command=self._ctrl.open_manuscript
             )
         self.manuscriptButton.pack(side='left')
         self.manuscriptButton.image = self._ui.icons.manuscriptIcon

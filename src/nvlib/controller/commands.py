@@ -543,6 +543,42 @@ class Commands:
                 os.replace(manuscriptPath, f'{fileName}{MANUSCRIPT_SUFFIX}.odt.bak')
                 self._ui.set_status(f"{_('Manuscript discarded')}.")
 
+    def export_brief_synopsis(self, event=None):
+        self.export_document(BRF_SYNOPSIS_SUFFIX, lock=False)
+
+    def export_chapter_desc(self, event=None):
+        self.export_document(CHAPTERS_SUFFIX)
+
+    def export_character_desc(self, event=None):
+        self.export_document(CHARACTERS_SUFFIX)
+
+    def export_character_list(self, event=None):
+        self.export_document(CHARLIST_SUFFIX)
+
+    def export_cross_references(self, event=None):
+        self.export_document(XREF_SUFFIX, lock=False)
+
+    def export_final_document(self, event=None):
+        self._ctrl.export_document('', lock=False)
+
+    def export_item_desc(self, event=None):
+        self.export_document(ITEMS_SUFFIX)
+
+    def export_item_list(self, event=None):
+        self.export_document(ITEMLIST_SUFFIX)
+
+    def export_location_desc(self, event=None):
+        self.export_document(LOCATIONS_SUFFIX)
+
+    def export_location_list(self, event=None):
+        self.export_document(LOCLIST_SUFFIX)
+
+    def export_part_desc(self, event=None):
+        self.export_document(PARTS_SUFFIX)
+
+    def export_manuscript(self, event=None):
+        self.export_document(MANUSCRIPT_SUFFIX)
+
     def export_plot_grid(self, event=None):
         self.export_document(GRID_SUFFIX)
 
@@ -552,8 +588,29 @@ class Commands:
     def export_plot_list(self, event=None):
         self.export_document(PLOTLIST_SUFFIX, lock=False)
 
+    def export_proofing_manuscript(self, event=None):
+        self.export_document(PROOF_SUFFIX)
+
+    def export_section_desc(self, event=None):
+        self.export_document(SECTIONS_SUFFIX)
+
+    def export_section_list(self, event=None):
+        self.export_document(SECTIONLIST_SUFFIX)
+
     def export_story_structure_desc(self, event=None):
         self.export_document(STAGES_SUFFIX)
+
+    def export_xml_data_files(self, event=None):
+        self.export_document(DATA_SUFFIX, lock=False, show=False)
+
+    def import_character_data(self, event=None):
+        self.import_elements(CHARACTER_PREFIX)
+
+    def import_item_data(self, event=None):
+        self.import_elements(ITEM_PREFIX)
+
+    def import_location_data(self, event=None):
+        self.import_elements(LOCATION_PREFIX)
 
     def import_plot_lines(self, event=None):
         self.import_elements(PLOT_LINE_PREFIX)
@@ -688,6 +745,10 @@ class Commands:
                 links[linkPath] = pathOk
                 element.links = links
                 self._ui.set_status(_('Broken link fixed'))
+
+    def open_manuscript(self, event=None):
+        """Export a manuscript document and open it for editing."""
+        self.export_document(MANUSCRIPT_SUFFIX, ask=False)
 
     def open_plugin_manager(self, event=None):
         """Open a toplevel window to manage the plugins."""
@@ -889,80 +950,47 @@ class Commands:
         prefs['last_open'] = self._mdl.prjFile.filePath
         return True
 
-    def set_character_status(self, isMajor, elemIds=None):
-        """Set character status to Major.
-        
-        Optional arguments:
-            isMajor: bool -- If True, make the characters major. Otherwise, make them minor.
-            elemIds: list of character IDs to process.
-        """
-        if self.check_lock():
-            return
+    def set_chr_status_major(self, event=None):
+        self.set_character_status(True)
 
-        if elemIds is None:
-            try:
-                elemIds = self._ui.selectedNodes
-            except:
-                return
+    def set_chr_status_minor(self, event=None):
+        self.set_character_status(False)
 
-        self._ui.tv.open_children(CR_ROOT)
-        self._mdl.set_character_status(isMajor, elemIds)
+    def set_level_1(self, event=None):
+        self.set_level(1)
 
-    def set_level(self, newLevel, elemIds=None):
-        """Set chapter or stage level.
-        
-        Positional arguments:
-            newLevel: int -- New level to be set.
-            elemIds: list of IDs to process.
-        """
-        if self.check_lock():
-            return
+    def set_level_2(self, event=None):
+        self.set_level(2)
 
-        if elemIds is None:
-            try:
-                elemIds = self._ui.selectedNodes
-            except:
-                return
+    def set_scn_status_outline(self, event=None):
+        self.set_completion_status(1)
 
-        self._mdl.set_level(newLevel, elemIds)
+    def set_scn_status_draft(self, event=None):
+        self.set_completion_status(2)
 
-    def set_completion_status(self, newStatus, elemIds=None):
-        """Set section completion status (Outline/Draft..).
-        
-        Positional arguments:
-            newStatus: int -- New section status to be set.        
-            elemIds: list of IDs to process.            
-        """
-        if self.check_lock():
-            return
+    def set_scn_status_1st_edit(self, event=None):
+        self.set_completion_status(3)
 
-        if elemIds is None:
-            try:
-                elemIds = self._ui.selectedNodes
-            except:
-                return
+    def set_scn_status_2nd_edit(self, event=None):
+        self.set_completion_status(4)
 
-        self._ui.tv.open_children(elemIds[0])
-        self._mdl.set_completion_status(newStatus, elemIds)
+    def set_scn_status_done(self, event=None):
+        self.set_completion_status(5)
 
-    def set_type(self, newType, elemIds=None):
-        """Set section or chapter type Normal).
-        
-        Positional arguments:
-            newType: int -- New type to be set.
-            elemIds: list of IDs to process.
-        """
-        if self.check_lock():
-            return
+    def set_type_normal(self, event=None):
+        self.set_type(0)
 
-        if elemIds is None:
-            try:
-                elemIds = self._ui.selectedNodes
-            except:
-                return
+    def set_type_unused(self, event=None):
+        self.set_type(1)
 
-        self._ui.tv.open_children(elemIds[0])
-        self._mdl.set_type(newType, elemIds)
+    def show_character_list(self, event=None):
+        self.show_report(CHARACTER_REPORT_SUFFIX)
+
+    def show_item_list(self, event=None):
+        self.show_report(ITEM_REPORT_SUFFIX)
+
+    def show_location_list(self, event=None):
+        self.show_report(LOCATION_REPORT_SUFFIX)
 
     def show_plot_list(self, event=None):
         self.show_report(PLOTLIST_SUFFIX)
@@ -975,13 +1003,9 @@ class Commands:
             self.lock()
         return 'break'
 
-    def update_from_odt(self, suffix='', event=None):
-        """Update the project from an exported ODT document specified by suffix. 
-        
-        Optional arguments:
-            suffix: str -- the document's file name suffix, indicating the document type.        
-        """
+    def update_from_manuscript(self, event=None):
+        """Update the project from the previously exported manuscript document."""
         fileName, __ = os.path.splitext(self._mdl.prjFile.filePath)
-        self.import_odf(sourcePath=f'{fileName}{suffix}.odt')
+        self.import_odf(sourcePath=f'{fileName}{MANUSCRIPT_SUFFIX}.odt')
         return 'break'
 

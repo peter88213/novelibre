@@ -280,26 +280,26 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
 
         #--- Create a section type submenu.
         self.selectTypeMenu = tk.Menu(self.tree, tearoff=0)
-        self.selectTypeMenu.add_command(label=_('Normal'), command=lambda:self._ctrl.set_type(0))
-        self.selectTypeMenu.add_command(label=_('Unused'), command=lambda:self._ctrl.set_type(1))
+        self.selectTypeMenu.add_command(label=_('Normal'), command=self._ctrl.set_type_normal)
+        self.selectTypeMenu.add_command(label=_('Unused'), command=self._ctrl.set_type_unused)
 
         #--- Create a chapter/stage level submenu.
         self.selectLevelMenu = tk.Menu(self.tree, tearoff=0)
-        self.selectLevelMenu.add_command(label=_('1st Level'), command=lambda:self._ctrl.set_level(1))
-        self.selectLevelMenu.add_command(label=_('2nd Level'), command=lambda:self._ctrl.set_level(2))
+        self.selectLevelMenu.add_command(label=_('1st Level'), command=self._ctrl.set_level_1)
+        self.selectLevelMenu.add_command(label=_('2nd Level'), command=self._ctrl.set_level_2)
 
         #--- Create a section status submenu.
         self.scStatusMenu = tk.Menu(self.tree, tearoff=0)
-        self.scStatusMenu.add_command(label=_('Outline'), command=lambda:self._ctrl.set_completion_status(1))
-        self.scStatusMenu.add_command(label=_('Draft'), command=lambda:self._ctrl.set_completion_status(2))
-        self.scStatusMenu.add_command(label=_('1st Edit'), command=lambda:self._ctrl.set_completion_status(3))
-        self.scStatusMenu.add_command(label=_('2nd Edit'), command=lambda:self._ctrl.set_completion_status(4))
-        self.scStatusMenu.add_command(label=_('Done'), command=lambda:self._ctrl.set_completion_status(5))
+        self.scStatusMenu.add_command(label=_('Outline'), command=self._ctrl.set_scn_status_outline)
+        self.scStatusMenu.add_command(label=_('Draft'), command=self._ctrl.set_scn_status_draft)
+        self.scStatusMenu.add_command(label=_('1st Edit'), command=self._ctrl.set_scn_status_1st_edit)
+        self.scStatusMenu.add_command(label=_('2nd Edit'), command=self._ctrl.set_scn_status_2nd_edit)
+        self.scStatusMenu.add_command(label=_('Done'), command=self._ctrl.set_scn_status_done)
 
         #--- Create a character status submenu.
         self.crStatusMenu = tk.Menu(self.tree, tearoff=0)
-        self.crStatusMenu.add_command(label=_('Major Character'), command=lambda:self._ctrl.set_character_status(True))
-        self.crStatusMenu.add_command(label=_('Minor Character'), command=lambda:self._ctrl.set_character_status(False))
+        self.crStatusMenu.add_command(label=_('Major Character'), command=self._ctrl.set_chr_status_major)
+        self.crStatusMenu.add_command(label=_('Minor Character'), command=self._ctrl.set_chr_status_minor)
 
         #--- Create local context menus.
 

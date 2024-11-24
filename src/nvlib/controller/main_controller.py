@@ -23,6 +23,7 @@ from nvlib.novx_globals import Notification
 from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
 from nvlib.view.main_view import MainView
+from nvlib.novx_globals import CR_ROOT
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 
@@ -275,6 +276,81 @@ class MainController(ControllerBase, Commands):
             return ''
 
         return fileName
+
+    def set_character_status(self, isMajor, elemIds=None):
+        """Set character status to Major.
+        
+        Optional arguments:
+            isMajor: bool -- If True, make the characters major. Otherwise, make them minor.
+            elemIds: list of character IDs to process.
+        """
+        if self.check_lock():
+            return
+
+        if elemIds is None:
+            try:
+                elemIds = self._ui.selectedNodes
+            except:
+                return
+
+        self._ui.tv.open_children(CR_ROOT)
+        self._mdl.set_character_status(isMajor, elemIds)
+
+    def set_completion_status(self, newStatus, elemIds=None):
+        """Set section completion status (Outline/Draft..).
+        
+        Positional arguments:
+            newStatus: int -- New section status to be set.        
+            elemIds: list of IDs to process.            
+        """
+        if self.check_lock():
+            return
+
+        if elemIds is None:
+            try:
+                elemIds = self._ui.selectedNodes
+            except:
+                return
+
+        self._ui.tv.open_children(elemIds[0])
+        self._mdl.set_completion_status(newStatus, elemIds)
+
+    def set_level(self, newLevel, elemIds=None):
+        """Set chapter or stage level.
+        
+        Positional arguments:
+            newLevel: int -- New level to be set.
+            elemIds: list of IDs to process.
+        """
+        if self.check_lock():
+            return
+
+        if elemIds is None:
+            try:
+                elemIds = self._ui.selectedNodes
+            except:
+                return
+
+        self._mdl.set_level(newLevel, elemIds)
+
+    def set_type(self, newType, elemIds=None):
+        """Set section or chapter type Normal).
+        
+        Positional arguments:
+            newType: int -- New type to be set.
+            elemIds: list of IDs to process.
+        """
+        if self.check_lock():
+            return
+
+        if elemIds is None:
+            try:
+                elemIds = self._ui.selectedNodes
+            except:
+                return
+
+        self._ui.tv.open_children(elemIds[0])
+        self._mdl.set_type(newType, elemIds)
 
     def show_report(self, suffix):
         """Create HTML report for the web browser.

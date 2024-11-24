@@ -10,33 +10,15 @@ from mvclib.view.path_bar import PathBar
 from mvclib.view.set_icon_tk import set_icon
 from mvclib.view.view_base import ViewBase
 from nvlib.controller.main_view.main_view_ctrl import MainViewCtrl
-from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
-from nvlib.novx_globals import CHAPTERS_SUFFIX
-from nvlib.novx_globals import CHARACTERS_SUFFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
-from nvlib.novx_globals import CHARACTER_REPORT_SUFFIX
-from nvlib.novx_globals import CHARLIST_SUFFIX
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
-from nvlib.novx_globals import DATA_SUFFIX
-from nvlib.novx_globals import ITEMLIST_SUFFIX
-from nvlib.novx_globals import ITEMS_SUFFIX
 from nvlib.novx_globals import ITEM_PREFIX
-from nvlib.novx_globals import ITEM_REPORT_SUFFIX
 from nvlib.novx_globals import IT_ROOT
 from nvlib.novx_globals import LC_ROOT
-from nvlib.novx_globals import LOCATIONS_SUFFIX
 from nvlib.novx_globals import LOCATION_PREFIX
-from nvlib.novx_globals import LOCATION_REPORT_SUFFIX
-from nvlib.novx_globals import LOCLIST_SUFFIX
-from nvlib.novx_globals import MANUSCRIPT_SUFFIX
-from nvlib.novx_globals import PARTS_SUFFIX
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import PN_ROOT
-from nvlib.novx_globals import PROOF_SUFFIX
-from nvlib.novx_globals import SECTIONLIST_SUFFIX
-from nvlib.novx_globals import SECTIONS_SUFFIX
-from nvlib.novx_globals import XREF_SUFFIX
 from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
 from nvlib.view.contents_window.contents_viewer import ContentsViewer
@@ -343,7 +325,7 @@ class MainView(ViewBase, MainViewCtrl):
         self.mainMenu.add_cascade(label=_('Part'), menu=self.partMenu)
         self.partMenu.add_command(label=_('Add'), command=self._ctrl.add_new_part)
         self.partMenu.add_separator()
-        self.partMenu.add_command(label=_('Export part descriptions for editing'), command=lambda: self._ctrl.export_document(PARTS_SUFFIX))
+        self.partMenu.add_command(label=_('Export part descriptions for editing'), command=self._ctrl.export_part_desc)
 
         # Chapter
         self.chapterMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -353,7 +335,7 @@ class MainView(ViewBase, MainViewCtrl):
         self.chapterMenu.add_cascade(label=_('Set Type'), menu=self.tv.selectTypeMenu)
         self.chapterMenu.add_cascade(label=_('Change Level'), menu=self.tv.selectLevelMenu)
         self.chapterMenu.add_separator()
-        self.chapterMenu.add_command(label=_('Export chapter descriptions for editing'), command=lambda: self._ctrl.export_document(CHAPTERS_SUFFIX))
+        self.chapterMenu.add_command(label=_('Export chapter descriptions for editing'), command=self._ctrl.export_chapter_desc)
 
         # Section
         self.sectionMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -364,8 +346,8 @@ class MainView(ViewBase, MainViewCtrl):
         self.sectionMenu.add_cascade(label=_('Set Type'), menu=self.tv.selectTypeMenu)
         self.sectionMenu.add_cascade(label=_('Set Status'), menu=self.tv.scStatusMenu)
         self.sectionMenu.add_separator()
-        self.sectionMenu.add_command(label=_('Export section descriptions for editing'), command=lambda: self._ctrl.export_document(SECTIONS_SUFFIX))
-        self.sectionMenu.add_command(label=_('Section list (export only)'), command=lambda: self._ctrl.export_document(SECTIONLIST_SUFFIX))
+        self.sectionMenu.add_command(label=_('Export section descriptions for editing'), command=self._ctrl.export_section_desc)
+        self.sectionMenu.add_command(label=_('Section list (export only)'), command=self._ctrl.export_section_list)
 
         # Character
         self.characterMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -374,33 +356,33 @@ class MainView(ViewBase, MainViewCtrl):
         self.characterMenu.add_separator()
         self.characterMenu.add_cascade(label=_('Set Status'), menu=self.tv.crStatusMenu)
         self.characterMenu.add_separator()
-        self.characterMenu.add_command(label=_('Import'), command=lambda: self._ctrl.import_elements(CHARACTER_PREFIX))
+        self.characterMenu.add_command(label=_('Import'), command=self._ctrl.import_character_data)
         self.characterMenu.add_separator()
-        self.characterMenu.add_command(label=_('Export character descriptions for editing'), command=lambda: self._ctrl.export_document(CHARACTERS_SUFFIX))
-        self.characterMenu.add_command(label=_('Export character list (spreadsheet)'), command=lambda: self._ctrl.export_document(CHARLIST_SUFFIX))
-        self.characterMenu.add_command(label=_('Show list'), command=lambda: self._ctrl.show_report(CHARACTER_REPORT_SUFFIX))
+        self.characterMenu.add_command(label=_('Export character descriptions for editing'), command=self._ctrl.export_character_desc)
+        self.characterMenu.add_command(label=_('Export character list (spreadsheet)'), command=self._ctrl.export_character_list)
+        self.characterMenu.add_command(label=_('Show list'), command=self._ctrl.show_character_list)
 
         # Location
         self.locationMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Locations'), menu=self.locationMenu)
         self.locationMenu.add_command(label=_('Add'), command=self._ctrl.add_new_location)
         self.locationMenu.add_separator()
-        self.locationMenu.add_command(label=_('Import'), command=lambda: self._ctrl.import_elements(LOCATION_PREFIX))
+        self.locationMenu.add_command(label=_('Import'), command=lambda: self._ctrl.import_location_data)
         self.locationMenu.add_separator()
-        self.locationMenu.add_command(label=_('Export location descriptions for editing'), command=lambda: self._ctrl.export_document(LOCATIONS_SUFFIX))
-        self.locationMenu.add_command(label=_('Export location list (spreadsheet)'), command=lambda: self._ctrl.export_document(LOCLIST_SUFFIX))
-        self.locationMenu.add_command(label=_('Show list'), command=lambda: self._ctrl.show_report(LOCATION_REPORT_SUFFIX))
+        self.locationMenu.add_command(label=_('Export location descriptions for editing'), command=self._ctrl.export_location_desc)
+        self.locationMenu.add_command(label=_('Export location list (spreadsheet)'), command=self._ctrl.export_location_list)
+        self.locationMenu.add_command(label=_('Show list'), command=self._ctrl.show_location_list)
 
         # "Item" menu.
         self.itemMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Items'), menu=self.itemMenu)
         self.itemMenu.add_command(label=_('Add'), command=self._ctrl.add_new_item)
         self.itemMenu.add_separator()
-        self.itemMenu.add_command(label=_('Import'), command=lambda: self._ctrl.import_elements(ITEM_PREFIX))
+        self.itemMenu.add_command(label=_('Import'), command=self._ctrl.import_item_data)
         self.itemMenu.add_separator()
-        self.itemMenu.add_command(label=_('Export item descriptions for editing'), command=lambda: self._ctrl.export_document(ITEMS_SUFFIX))
-        self.itemMenu.add_command(label=_('Export item list (spreadsheet)'), command=lambda: self._ctrl.export_document(ITEMLIST_SUFFIX))
-        self.itemMenu.add_command(label=_('Show list'), command=lambda: self._ctrl.show_report(ITEM_REPORT_SUFFIX))
+        self.itemMenu.add_command(label=_('Export item descriptions for editing'), command=self._ctrl.export_item_desc)
+        self.itemMenu.add_command(label=_('Export item list (spreadsheet)'), command=self._ctrl.export_item_list)
+        self.itemMenu.add_command(label=_('Show list'), command=self._ctrl.show_item_list)
 
         # "Plot" menu.
         self.plotMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -430,14 +412,14 @@ class MainView(ViewBase, MainViewCtrl):
         # "Export" menu.
         self.exportMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Export'), menu=self.exportMenu)
-        self.exportMenu.add_command(label=_('Manuscript for editing'), command=lambda:self._ctrl.export_document(MANUSCRIPT_SUFFIX))
-        self.exportMenu.add_command(label=_('Manuscript for third-party word processing'), command=lambda: self._ctrl.export_document(PROOF_SUFFIX))
+        self.exportMenu.add_command(label=_('Manuscript for editing'), command=self._ctrl.export_manuscript)
+        self.exportMenu.add_command(label=_('Manuscript for third-party word processing'), command=self._ctrl.export_proofing_manuscript)
         self.exportMenu.add_separator()
-        self.exportMenu.add_command(label=_('Manuscript for printing (export only)'), command=lambda: self._ctrl.export_document('', lock=False))
-        self.exportMenu.add_command(label=_('Brief synopsis (export only)'), command=lambda: self._ctrl.export_document(BRF_SYNOPSIS_SUFFIX, lock=False))
-        self.exportMenu.add_command(label=_('Cross references (export only)'), command=lambda: self._ctrl.export_document(XREF_SUFFIX, lock=False))
+        self.exportMenu.add_command(label=_('Final manuscript document (export only)'), command=self._ctrl.export_final_document)
+        self.exportMenu.add_command(label=_('Brief synopsis (export only)'), command=self._ctrl.export_brief_synopsis)
+        self.exportMenu.add_command(label=_('Cross references (export only)'), command=self._ctrl.export_cross_references)
         self.exportMenu.add_separator()
-        self.exportMenu.add_command(label=_('XML data files'), command=lambda: self._ctrl.export_document(DATA_SUFFIX, lock=False, show=False))
+        self.exportMenu.add_command(label=_('XML data files'), command=self._ctrl.export_xml_data_files)
         self.exportMenu.add_separator()
         self.exportMenu.add_command(label=_('Options'), command=self._ctrl.open_export_options)
 
