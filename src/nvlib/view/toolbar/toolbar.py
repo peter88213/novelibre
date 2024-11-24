@@ -63,7 +63,7 @@ class Toolbar(ToolbarCtrl):
             self.buttonBar,
             text=_('Book'),
             image=self._ui.icons.viewBookIcon,
-            command=lambda: self._ui.tv.show_branch(CH_ROOT)
+            command=self._ui.tv.show_book
             )
         self.viewBookButton.pack(side='left')
         self.viewBookButton.image = self._ui.icons.viewBookIcon
@@ -73,7 +73,7 @@ class Toolbar(ToolbarCtrl):
             self.buttonBar,
             text=_('Characters'),
             image=self._ui.icons.viewCharactersIcon,
-            command=lambda: self._ui.tv.show_branch(CR_ROOT)
+            command=self._ui.tv.show_characters
             )
         self.viewCharactersButton.pack(side='left')
         self.viewCharactersButton.image = self._ui.icons.viewCharactersIcon
@@ -83,7 +83,7 @@ class Toolbar(ToolbarCtrl):
             self.buttonBar,
             text=_('Locations'),
             image=self._ui.icons.viewLocationsIcon,
-            command=lambda: self._ui.tv.show_branch(LC_ROOT)
+            command=self._ui.tv.show_locations
             )
         self.viewLocationsButton.pack(side='left')
         self.viewLocationsButton.image = self._ui.icons.viewLocationsIcon
@@ -93,7 +93,7 @@ class Toolbar(ToolbarCtrl):
             self.buttonBar,
             text=_('Items'),
             image=self._ui.icons.viewItemsIcon,
-            command=lambda: self._ui.tv.show_branch(IT_ROOT)
+            command=self._ui.tv.show_items
             )
         self.viewItemsButton.pack(side='left')
         self.viewItemsButton.image = self._ui.icons.viewItemsIcon
@@ -103,7 +103,7 @@ class Toolbar(ToolbarCtrl):
             self.buttonBar,
             text=_('Plot lines'),
             image=self._ui.icons.viewPlotLinesIcon,
-            command=lambda: self._ui.tv.show_branch(PL_ROOT)
+            command=self._ui.tv.show_plot_lines
             )
         self.viewPlotLinesButton.pack(side='left')
         self.viewPlotLinesButton.image = self._ui.icons.viewPlotLinesIcon
@@ -113,7 +113,7 @@ class Toolbar(ToolbarCtrl):
             self.buttonBar,
             text=_('Project notes'),
             image=self._ui.icons.viewProjectnotesIcon,
-            command=lambda: self._ui.tv.show_branch(PN_ROOT)
+            command=self._ui.tv.show_project_notes
             )
         self.viewProjectnotesButton.pack(side='left')
         self.viewProjectnotesButton.image = self._ui.icons.viewProjectnotesIcon

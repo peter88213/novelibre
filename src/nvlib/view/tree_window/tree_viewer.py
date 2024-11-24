@@ -319,10 +319,10 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
         self.nvCtxtMenu.add_command(label=_('Join with previous'), command=self._ctrl.join_sections)
         self.nvCtxtMenu.add_separator()
         self.nvCtxtMenu.add_command(label=_('Chapter level'), command=self.show_chapter_level)
-        self.nvCtxtMenu.add_command(label=_('Expand'), command=lambda: self.open_children(self.tree.selection()[0]))
-        self.nvCtxtMenu.add_command(label=_('Collapse'), command=lambda: self.close_children(self.tree.selection()[0]))
-        self.nvCtxtMenu.add_command(label=_('Expand all'), command=lambda: self.open_children(''))
-        self.nvCtxtMenu.add_command(label=_('Collapse all'), command=lambda: self.close_children(''))
+        self.nvCtxtMenu.add_command(label=_('Expand'), command=self.expand_selected)
+        self.nvCtxtMenu.add_command(label=_('Collapse'), command=self.collapse_selected)
+        self.nvCtxtMenu.add_command(label=_('Expand all'), command=self.expand_all)
+        self.nvCtxtMenu.add_command(label=_('Collapse all'), command=self.collapse_all)
 
         #--- Create a world element context menu.
         self.wrCtxtMenu = ContextMenu(self.tree, tearoff=0)

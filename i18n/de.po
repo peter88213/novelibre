@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.0.3\n"
-"POT-Creation-Date: 2024-11-24 10:29:30\n"
-"PO-Revision-Date: 2024-11-24 10:29:30\n"
+"Project-Id-Version: 5.0.4\n"
+"POT-Creation-Date: 2024-11-24 14:12:54\n"
+"PO-Revision-Date: 2024-11-24 14:12:54\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -508,6 +508,9 @@ msgstr "Dateityp wird nicht unterstützt"
 msgid "File written"
 msgstr "Datei gespeichert"
 
+msgid "Final manuscript document (export only)"
+msgstr "Endgültiges Manuskriptdokument (nur Export)"
+
 msgid "Forward"
 msgstr "Vor"
 
@@ -645,9 +648,6 @@ msgstr "Manuskript verworfen"
 
 msgid "Manuscript for editing"
 msgstr "Manuskript zum Bearbeiten"
-
-msgid "Manuscript for printing (export only)"
-msgstr "Manuskript zum Drucken (nur Export)"
 
 msgid "Manuscript for third-party word processing"
 msgstr "Manuskript für fremde Textverarbeitung"
@@ -1280,7 +1280,7 @@ msgid "XML data file"
 msgstr "XML-Datendatei"
 
 msgid "XML data files"
-msgstr "XML-Datendateien "
+msgstr "XML-Datendateien"
 
 msgid "XML item data file"
 msgstr "XML-Gegenstandsdatei"

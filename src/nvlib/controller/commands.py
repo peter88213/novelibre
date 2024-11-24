@@ -41,6 +41,7 @@ from nvlib.novx_globals import PLOT_POINT_PREFIX
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import PRJ_NOTE_PREFIX
+from nvlib.novx_globals import PROJECTNOTES_SUFFIX
 from nvlib.novx_globals import PROOF_SUFFIX
 from nvlib.novx_globals import SECTIONLIST_SUFFIX
 from nvlib.novx_globals import SECTIONS_SUFFIX
@@ -994,6 +995,9 @@ class Commands:
 
     def show_plot_list(self, event=None):
         self.show_report(PLOTLIST_SUFFIX)
+
+    def show_projectnotes_list(self, event=None):
+        self.show_report(PROJECTNOTES_SUFFIX)
 
     def toggle_lock(self, event=None):
         """Toggle the 'locked' status."""

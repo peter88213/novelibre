@@ -52,6 +52,18 @@ class TreeViewerCtrl(SubController):
         super().initialize_controller(model, view, controller)
         self._wordsTotal = None
 
+    def collapse_all(self, event=None):
+        self.close_children('')
+
+    def collapse_selected(self, event=None):
+        self.close_children(self.tree.selection()[0])
+
+    def expand_all(self, event=None):
+        self.open_children('')
+
+    def expand_selected(self, event=None):
+        self.open_children(self.tree.selection()[0])
+
     def export_manuscript(self, event=None):
         self._ctrl.export_document(MANUSCRIPT_SUFFIX, filter=self.tree.selection()[0], ask=False)
 
@@ -298,6 +310,9 @@ class TreeViewerCtrl(SubController):
         prevNode, __ = search_tree(root, None, None)
         return prevNode
 
+    def show_book(self, event=None):
+        self.show_branch(CH_ROOT)
+
     def show_chapter_level(self, event=None):
         """Open all Book/part nodes and close all chapter nodes in the tree viewer."""
 
@@ -312,6 +327,21 @@ class TreeViewerCtrl(SubController):
 
         show_chapters(CH_ROOT)
         return 'break'
+
+    def show_characters(self, event=None):
+        self.show_branch(CR_ROOT)
+
+    def show_items(self, event=None):
+        self.show_branch(IT_ROOT)
+
+    def show_locations(self, event=None):
+        self.show_branch(LC_ROOT)
+
+    def show_plot_lines(self, event=None):
+        self.show_branch(PL_ROOT)
+
+    def show_project_notes(self, event=None):
+        self.show_branch(PN_ROOT)
 
     def update_node_values(self, nodeId, collect=False):
         """Add/remove node values collected from the node's children.

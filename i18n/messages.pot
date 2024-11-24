@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.0.3\n"
-"POT-Creation-Date: 2024-11-24 10:29:30\n"
+"Project-Id-Version: 5.0.4\n"
+"POT-Creation-Date: 2024-11-24 14:12:54\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -515,6 +515,9 @@ msgstr ""
 msgid "File written"
 msgstr ""
 
+msgid "Final manuscript document (export only)"
+msgstr ""
+
 msgid "Forward"
 msgstr ""
 
@@ -651,9 +654,6 @@ msgid "Manuscript discarded"
 msgstr ""
 
 msgid "Manuscript for editing"
-msgstr ""
-
-msgid "Manuscript for printing (export only)"
 msgstr ""
 
 msgid "Manuscript for third-party word processing"

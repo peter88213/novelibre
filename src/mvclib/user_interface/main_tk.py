@@ -288,7 +288,7 @@ class MainTk(Ui):
         """
         self.fileMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('File'), menu=self.fileMenu)
-        self.fileMenu.add_command(label=_('Open...'), accelerator=self._KEY_OPEN_PROJECT[1], command=lambda: self.open_project(''))
+        self.fileMenu.add_command(label=_('Open...'), accelerator=self._KEY_OPEN_PROJECT[1], command=self._open_project)
         self.fileMenu.add_command(label=_('Close'), command=self.close_project)
         self.fileMenu.entryconfig(_('Close'), state='disabled')
         self.fileMenu.add_command(label=_('Exit'), accelerator=self._KEY_QUIT_PROGRAM[1], command=self.on_quit)
