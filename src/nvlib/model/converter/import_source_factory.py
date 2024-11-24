@@ -12,7 +12,7 @@ from nvlib.novx_globals import _
 class ImportSourceFactory(FileFactory):
     """A factory class that instantiates a documente object to read."""
 
-    def make_file_objects(self, sourcePath, **kwargs):
+    def new_file_objects(self, sourcePath, **kwargs):
         """Instantiate a source object for conversion to a novelibre project.       
 
         Positional arguments:

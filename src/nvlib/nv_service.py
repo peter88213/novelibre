@@ -17,14 +17,14 @@ class NvService(NovxService):
     def get_moon_phase_str(self, isoDate):
         return get_moon_phase_string(isoDate)
 
-    def make_configuration(self, **kwargs):
+    def new_configuration(self, **kwargs):
         return Configuration(**kwargs)
 
-    def make_novel(self, **kwargs):
+    def new_novel(self, **kwargs):
         """Overrides the superclass method."""
         kwargs['tree'] = kwargs.get('tree', NvTreeview())
         return Novel(**kwargs)
 
-    def make_nv_tree(self, **kwargs):
+    def new_nv_tree(self, **kwargs):
         """Overrides the superclass method."""
         return NvTreeview(**kwargs)

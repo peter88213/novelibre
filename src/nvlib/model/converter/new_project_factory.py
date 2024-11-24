@@ -27,7 +27,7 @@ class NewProjectFactory(FileFactory):
     """
     DO_NOT_IMPORT = [XREF_SUFFIX, BRF_SYNOPSIS_SUFFIX]
 
-    def make_file_objects(self, sourcePath, **kwargs):
+    def new_file_objects(self, sourcePath, **kwargs):
         """Instantiate a source and a target object for creation of a new novelibre project.
 
         Positional arguments:

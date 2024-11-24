@@ -68,15 +68,15 @@ class ConverterFf(Converter):
             return
 
         try:
-            source, __ = self.exportSourceFactory.make_file_objects(sourcePath, **kwargs)
+            source, __ = self.exportSourceFactory.new_file_objects(sourcePath, **kwargs)
         except Error:
             # The source file is not a novelibre project.
             try:
-                source, __ = self.importSourceFactory.make_file_objects(sourcePath, **kwargs)
+                source, __ = self.importSourceFactory.new_file_objects(sourcePath, **kwargs)
             except Error:
                 # A new novelibre project might be required.
                 try:
-                    source, target = self.newProjectFactory.make_file_objects(sourcePath, **kwargs)
+                    source, target = self.newProjectFactory.new_file_objects(sourcePath, **kwargs)
                 except Error as ex:
                     self.ui.set_status(f'!{str(ex)}')
                 else:
@@ -85,7 +85,7 @@ class ConverterFf(Converter):
                 # Try to update an existing novelibre project.
                 kwargs['suffix'] = source.SUFFIX
                 try:
-                    __, target = self.importTargetFactory.make_file_objects(sourcePath, **kwargs)
+                    __, target = self.importTargetFactory.new_file_objects(sourcePath, **kwargs)
                 except Error as ex:
                     self.ui.set_status(f'!{str(ex)}')
                 else:
@@ -93,7 +93,7 @@ class ConverterFf(Converter):
         else:
             # The source file is a novelibre project.
             try:
-                __, target = self.exportTargetFactory.make_file_objects(sourcePath, **kwargs)
+                __, target = self.exportTargetFactory.new_file_objects(sourcePath, **kwargs)
             except Error as ex:
                 self.ui.set_status(f'!{str(ex)}')
             else:

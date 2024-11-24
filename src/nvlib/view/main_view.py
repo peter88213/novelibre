@@ -274,9 +274,9 @@ class MainView(ViewBase, MainViewCtrl):
         self.root.bind(KEYS.TOGGLE_VIEWER[0], self.toggle_contents_view)
         self.root.bind(KEYS.TOGGLE_PROPERTIES[0], self.toggle_properties_view)
         self.root.bind(KEYS.DETACH_PROPERTIES[0], self.toggle_properties_window)
-        self.root.bind(KEYS.ADD_ELEMENT[0], self._ctrl.add_element)
-        self.root.bind(KEYS.ADD_CHILD[0], self._ctrl.add_child)
-        self.root.bind(KEYS.ADD_PARENT[0], self._ctrl.add_parent)
+        self.root.bind(KEYS.ADD_ELEMENT[0], self._ctrl.add_new_element)
+        self.root.bind(KEYS.ADD_CHILD[0], self._ctrl.add_new_child)
+        self.root.bind(KEYS.ADD_PARENT[0], self._ctrl.add_new_parent)
         if PLATFORM == 'win':
             self.root.bind(MOUSE.BACK_CLICK, self.tv.go_back)
             self.root.bind(MOUSE.FORWARD_CLICK, self.tv.go_forward)
@@ -289,7 +289,7 @@ class MainView(ViewBase, MainViewCtrl):
 
         # "New" submenu
         self.newMenu = tk.Menu(self.mainMenu, tearoff=0)
-        self.newMenu.add_command(label=_('Empty project'), command=self._ctrl.new_project)
+        self.newMenu.add_command(label=_('Empty project'), command=self._ctrl.create_project)
         self.newMenu.add_command(label=_('Create from ODT...'), command=self._ctrl.import_odf)
 
         # Files
@@ -341,14 +341,14 @@ class MainView(ViewBase, MainViewCtrl):
         # Part
         self.partMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Part'), menu=self.partMenu)
-        self.partMenu.add_command(label=_('Add'), command=self._ctrl.add_part)
+        self.partMenu.add_command(label=_('Add'), command=self._ctrl.add_new_part)
         self.partMenu.add_separator()
         self.partMenu.add_command(label=_('Export part descriptions for editing'), command=lambda: self._ctrl.export_document(PARTS_SUFFIX))
 
         # Chapter
         self.chapterMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Chapter'), menu=self.chapterMenu)
-        self.chapterMenu.add_command(label=_('Add'), command=self._ctrl.add_chapter)
+        self.chapterMenu.add_command(label=_('Add'), command=self._ctrl.add_new_chapter)
         self.chapterMenu.add_separator()
         self.chapterMenu.add_cascade(label=_('Set Type'), menu=self.tv.selectTypeMenu)
         self.chapterMenu.add_cascade(label=_('Change Level'), menu=self.tv.selectLevelMenu)
@@ -358,8 +358,8 @@ class MainView(ViewBase, MainViewCtrl):
         # Section
         self.sectionMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Section'), menu=self.sectionMenu)
-        self.sectionMenu.add_command(label=_('Add'), command=self._ctrl.add_section)
-        self.sectionMenu.add_command(label=_('Add multiple sections'), command=self._ctrl.add_multiple_sections)
+        self.sectionMenu.add_command(label=_('Add'), command=self._ctrl.add_new_section)
+        self.sectionMenu.add_command(label=_('Add multiple sections'), command=self._ctrl.add_multiple_new_sections)
         self.sectionMenu.add_separator()
         self.sectionMenu.add_cascade(label=_('Set Type'), menu=self.tv.selectTypeMenu)
         self.sectionMenu.add_cascade(label=_('Set Status'), menu=self.tv.scStatusMenu)
@@ -370,7 +370,7 @@ class MainView(ViewBase, MainViewCtrl):
         # Character
         self.characterMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Characters'), menu=self.characterMenu)
-        self.characterMenu.add_command(label=_('Add'), command=self._ctrl.add_character)
+        self.characterMenu.add_command(label=_('Add'), command=self._ctrl.add_new_character)
         self.characterMenu.add_separator()
         self.characterMenu.add_cascade(label=_('Set Status'), menu=self.tv.crStatusMenu)
         self.characterMenu.add_separator()
@@ -383,7 +383,7 @@ class MainView(ViewBase, MainViewCtrl):
         # Location
         self.locationMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Locations'), menu=self.locationMenu)
-        self.locationMenu.add_command(label=_('Add'), command=self._ctrl.add_location)
+        self.locationMenu.add_command(label=_('Add'), command=self._ctrl.add_new_location)
         self.locationMenu.add_separator()
         self.locationMenu.add_command(label=_('Import'), command=lambda: self._ctrl.import_elements(LOCATION_PREFIX))
         self.locationMenu.add_separator()
@@ -394,7 +394,7 @@ class MainView(ViewBase, MainViewCtrl):
         # "Item" menu.
         self.itemMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Items'), menu=self.itemMenu)
-        self.itemMenu.add_command(label=_('Add'), command=self._ctrl.add_item)
+        self.itemMenu.add_command(label=_('Add'), command=self._ctrl.add_new_item)
         self.itemMenu.add_separator()
         self.itemMenu.add_command(label=_('Import'), command=lambda: self._ctrl.import_elements(ITEM_PREFIX))
         self.itemMenu.add_separator()
@@ -405,10 +405,10 @@ class MainView(ViewBase, MainViewCtrl):
         # "Plot" menu.
         self.plotMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Plot'), menu=self.plotMenu)
-        self.plotMenu.add_command(label=_('Add Plot line'), command=self._ctrl.add_plot_line)
-        self.plotMenu.add_command(label=_('Add Plot point'), command=self._ctrl.add_plot_point)
+        self.plotMenu.add_command(label=_('Add Plot line'), command=self._ctrl.add_new_plot_line)
+        self.plotMenu.add_command(label=_('Add Plot point'), command=self._ctrl.add_new_plot_point)
         self.plotMenu.add_separator()
-        self.plotMenu.add_command(label=_('Insert Stage'), command=self._ctrl.add_stage)
+        self.plotMenu.add_command(label=_('Insert Stage'), command=self._ctrl.add_new_stage)
         self.plotMenu.add_cascade(label=_('Change Level'), menu=self.tv.selectLevelMenu)
         self.plotMenu.add_separator()
         self.plotMenu.add_command(label=_('Import plot lines'), command=self._ctrl.import_plot_lines)
@@ -423,7 +423,7 @@ class MainView(ViewBase, MainViewCtrl):
         # Project notes
         self.prjNoteMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Project notes'), menu=self.prjNoteMenu)
-        self.prjNoteMenu.add_command(label=_('Add'), command=self._ctrl.add_project_note)
+        self.prjNoteMenu.add_command(label=_('Add'), command=self._ctrl.add_new_project_note)
         self.prjNoteMenu.add_separator()
         self.prjNoteMenu.add_command(label=_('Show list'), command=lambda: self._ctrl.show_report('_projectnote_report'))
 

@@ -145,7 +145,7 @@ def cp_tree(sourceDir, targetDir):
     copytree(sourceDir, f'{targetDir}/{sourceDir}', dirs_exist_ok=True)
 
 
-def make_context_menu(installPath):
+def create_explorer_context_menu(installPath):
     """Generate ".reg" files to extend the novelibre context menu."""
 
     def save_reg_file(filePath, template, mapping):
@@ -265,7 +265,7 @@ def install(installDir, zipped):
 
     #--- Generate registry entries for the context menu (Windows only).
     if platform.system() == 'Windows':
-        make_context_menu(installDir)
+        create_explorer_context_menu(installDir)
 
     #--- Display a success message.
     mapping = {'Appname': APPNAME, 'Apppath': f'{installDir}/{START_UP_SCRIPT}'}

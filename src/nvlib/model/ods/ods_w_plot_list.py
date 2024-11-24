@@ -56,15 +56,6 @@ class OdsWPlotList(OdsWriter):
         Extends the superclass method.
         """
 
-        def create_cell(text, attr='', link=''):
-            """Return the markup for a table cell with text and attributes."""
-            if link:
-                attr = f'{attr} table:formula="of:=HYPERLINK(&quot;file:///{self.projectPath}/{self._convert_from_novx(self.projectName)}{link}&quot;;&quot;{self._convert_from_novx(text, isLink=True)}&quot;)"'
-                text = ''
-            else:
-                text = f'\n      <text:p>{self._convert_from_novx(text)}</text:p>'
-            return f'     <table:table-cell {attr} office:value-type="string">{text}\n     </table:table-cell>'
-
         odsText = [
             self._fileHeader,
             '<table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>',
@@ -85,11 +76,11 @@ class OdsWPlotList(OdsWriter):
 
         # Title row.
         odsText.append('   <table:table-row table:style-name="ro2">')
-        odsText.append(create_cell(''))
+        odsText.append(self._new_cell(''))
         for i, plId in enumerate(plotLines):
             colorIndex = (i % plotLineColorsTotal) + self._CE_OFFSET
             odsText.append(
-                create_cell(
+                self._new_cell(
                     self.novel.plotLines[plId].title,
                     attr=f'table:style-name="ce{colorIndex}"',
                     link=f'{PLOTLINES_SUFFIX}.odt#{plId}'
@@ -104,7 +95,7 @@ class OdsWPlotList(OdsWriter):
                 if self.novel.sections[scId].scType == 0:
                     odsText.append('   <table:table-row table:style-name="ro2">')
                     odsText.append(
-                        create_cell(
+                        self._new_cell(
                             self.novel.sections[scId].title,
                             link=f'{MANUSCRIPT_SUFFIX}.odt#{scId}%7Cregion'
                         )
@@ -117,15 +108,25 @@ class OdsWPlotList(OdsWriter):
                                 if scId == self.novel.plotPoints[ppId].sectionAssoc:
                                     plotPoints.append(self.novel.plotPoints[ppId].title)
                             odsText.append(
-                                create_cell(
+                                self._new_cell(
                                     list_to_string(plotPoints),
                                     attr=f'table:style-name="ce{colorIndex}" '
                                 )
                             )
                         else:
-                            odsText.append(create_cell(''))
+                            odsText.append(self._new_cell(''))
                     odsText.append(f'    </table:table-row>')
 
         odsText.append(self._CONTENT_XML_FOOTER)
         with open(self.filePath, 'w', encoding='utf-8') as f:
             f.write('\n'.join(odsText))
+
+    def _new_cell(self, text, attr='', link=''):
+        """Return the markup for a table cell with text and attributes."""
+        if link:
+            attr = f'{attr} table:formula="of:=HYPERLINK(&quot;file:///{self.projectPath}/{self._convert_from_novx(self.projectName)}{link}&quot;;&quot;{self._convert_from_novx(text, isLink=True)}&quot;)"'
+            text = ''
+        else:
+            text = f'\n      <text:p>{self._convert_from_novx(text)}</text:p>'
+        return f'     <table:table-cell {attr} office:value-type="string">{text}\n     </table:table-cell>'
+

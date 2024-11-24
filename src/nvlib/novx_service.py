@@ -22,34 +22,34 @@ class NovxService:
     def get_novx_file_extension(self):
         return NovxFile.EXTENSION
 
-    def make_basic_element(self, **kwargs):
+    def new_basic_element(self, **kwargs):
         return BasicElement(**kwargs)
 
-    def make_chapter(self, **kwargs):
+    def new_chapter(self, **kwargs):
         return Chapter(**kwargs)
 
-    def make_character(self, **kwargs):
+    def new_character(self, **kwargs):
         return Character(**kwargs)
 
-    def make_novel(self, **kwargs):
+    def new_novel(self, **kwargs):
         kwargs['tree'] = kwargs.get('tree', NvTree())
         return Novel(**kwargs)
 
-    def make_nv_tree(self, **kwargs):
+    def new_nv_tree(self, **kwargs):
         return NvTree(**kwargs)
 
-    def make_plot_line(self, **kwargs):
+    def new_plot_line(self, **kwargs):
         return PlotLine(**kwargs)
 
-    def make_plot_point(self, **kwargs):
+    def new_plot_point(self, **kwargs):
         return PlotPoint(**kwargs)
 
-    def make_section(self, **kwargs):
+    def new_section(self, **kwargs):
         return Section(**kwargs)
 
-    def make_world_element(self, **kwargs):
+    def new_world_element(self, **kwargs):
         return WorldElement(**kwargs)
 
-    def make_novx_file(self, filePath, **kwargs):
+    def new_novx_file(self, filePath, **kwargs):
         return NovxFile(filePath, **kwargs)
 

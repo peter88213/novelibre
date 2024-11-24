@@ -5,7 +5,7 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from mvclib.model.observable import Observable
-from nvlib.model.data.id_generator import create_id
+from nvlib.model.data.id_generator import new_id
 from nvlib.model.nv_work_file import NvWorkFile
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
@@ -44,8 +44,8 @@ class NvModel(Observable):
 
         self.nvService = NvService()
 
-    def add_chapter(self, **kwargs):
-        """Add a chapter to the novel.
+    def add_new_chapter(self, **kwargs):
+        """Create a chapter instance and add it to the novel.
              
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -65,8 +65,8 @@ class NvModel(Observable):
         if targetNode.startswith(CHAPTER_PREFIX):
             index = self.tree.index(targetNode) + 1
             targetNode = self.tree.parent(targetNode)
-        chId = create_id(self.novel.chapters, prefix=CHAPTER_PREFIX)
-        self.novel.chapters[chId] = self.nvService.make_chapter(
+        chId = new_id(self.novel.chapters, prefix=CHAPTER_PREFIX)
+        self.novel.chapters[chId] = self.nvService.new_chapter(
             title=kwargs.get('title', f'{_("New Chapter")} ({chId})'),
             desc='',
             chLevel=2,
@@ -79,8 +79,8 @@ class NvModel(Observable):
         self.tree.insert(CH_ROOT, index, chId)
         return chId
 
-    def add_character(self, **kwargs):
-        """Add a character to the novel.
+    def add_new_character(self, **kwargs):
+        """Create a character instance and add it to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -97,8 +97,8 @@ class NvModel(Observable):
         index = 'end'
         if targetNode.startswith(CHARACTER_PREFIX):
             index = self.tree.index(targetNode) + 1
-        crId = create_id(self.novel.characters, prefix=CHARACTER_PREFIX)
-        self.novel.characters[crId] = self.nvService.make_character(
+        crId = new_id(self.novel.characters, prefix=CHARACTER_PREFIX)
+        self.novel.characters[crId] = self.nvService.new_character(
             title=kwargs.get('title', f'{_("New Character")} ({crId})'),
             desc='',
             aka='',
@@ -114,8 +114,8 @@ class NvModel(Observable):
         self.tree.insert(CR_ROOT, index, crId)
         return crId
 
-    def add_item(self, **kwargs):
-        """Add an item to the novel.
+    def add_new_item(self, **kwargs):
+        """Create an item instance and add it to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -131,8 +131,8 @@ class NvModel(Observable):
         index = 'end'
         if targetNode.startswith(ITEM_PREFIX):
             index = self.tree.index(targetNode) + 1
-        itId = create_id(self.novel.items, prefix=ITEM_PREFIX)
-        self.novel.items[itId] = self.nvService.make_world_element(
+        itId = new_id(self.novel.items, prefix=ITEM_PREFIX)
+        self.novel.items[itId] = self.nvService.new_world_element(
             title=kwargs.get('title', f'{_("New Item")} ({itId})'),
             desc='',
             aka='',
@@ -143,8 +143,8 @@ class NvModel(Observable):
         self.tree.insert(IT_ROOT, index, itId)
         return itId
 
-    def add_location(self, **kwargs):
-        """Add a location to the novel.
+    def add_new_location(self, **kwargs):
+        """Create a location instance and add it to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -160,8 +160,8 @@ class NvModel(Observable):
         index = 'end'
         if targetNode.startswith(LOCATION_PREFIX):
             index = self.tree.index(targetNode) + 1
-        lcId = create_id(self.novel.locations, prefix=LOCATION_PREFIX)
-        self.novel.locations[lcId] = self.nvService.make_world_element(
+        lcId = new_id(self.novel.locations, prefix=LOCATION_PREFIX)
+        self.novel.locations[lcId] = self.nvService.new_world_element(
             title=kwargs.get('title', f'{_("New Location")} ({lcId})'),
             desc='',
             aka='',
@@ -172,8 +172,8 @@ class NvModel(Observable):
         self.tree.insert(LC_ROOT, index, lcId)
         return lcId
 
-    def add_part(self, **kwargs):
-        """Add a part to the novel.
+    def add_new_part(self, **kwargs):
+        """Create a part instance and add it to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -193,8 +193,8 @@ class NvModel(Observable):
         if targetNode.startswith(CHAPTER_PREFIX):
             index = self.tree.index(targetNode) + 1
             targetNode = self.tree.parent(targetNode)
-        chId = create_id(self.novel.chapters, prefix=CHAPTER_PREFIX)
-        self.novel.chapters[chId] = self.nvService.make_chapter(
+        chId = new_id(self.novel.chapters, prefix=CHAPTER_PREFIX)
+        self.novel.chapters[chId] = self.nvService.new_chapter(
             title=kwargs.get('title', f'{_("New Part")} ({chId})'),
             desc='',
             chLevel=1,
@@ -207,8 +207,8 @@ class NvModel(Observable):
         self.tree.insert(CH_ROOT, index, chId)
         return chId
 
-    def add_plot_line(self, **kwargs):
-        """Add a plot line to the novel.
+    def add_new_plot_line(self, **kwargs):
+        """Create a plot line instance and add it to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -224,8 +224,8 @@ class NvModel(Observable):
         index = 'end'
         if targetNode.startswith(PLOT_LINE_PREFIX):
             index = self.tree.index(targetNode) + 1
-        plId = create_id(self.novel.plotLines, prefix=PLOT_LINE_PREFIX)
-        self.novel.plotLines[plId] = self.nvService.make_plot_line(
+        plId = new_id(self.novel.plotLines, prefix=PLOT_LINE_PREFIX)
+        self.novel.plotLines[plId] = self.nvService.new_plot_line(
             title=kwargs.get('title', f'{_("New Plot line")} ({plId})'),
             desc='',
             shortName=plId,
@@ -236,8 +236,8 @@ class NvModel(Observable):
         self.tree.insert(PL_ROOT, index, plId)
         return plId
 
-    def add_plot_point(self, **kwargs):
-        """Add a plot point to the novel.
+    def add_new_plot_point(self, **kwargs):
+        """Create a plot point instance and add it to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -261,8 +261,8 @@ class NvModel(Observable):
         else:
             return
 
-        ppId = create_id(self.novel.plotPoints, prefix=PLOT_POINT_PREFIX)
-        self.novel.plotPoints[ppId] = self.nvService.make_plot_point(
+        ppId = new_id(self.novel.plotPoints, prefix=PLOT_POINT_PREFIX)
+        self.novel.plotPoints[ppId] = self.nvService.new_plot_point(
             title=kwargs.get('title', f'{_("New Plot point")} ({ppId})'),
             desc='',
             links={},
@@ -271,8 +271,8 @@ class NvModel(Observable):
         self.tree.insert(parent, index, ppId)
         return ppId
 
-    def add_project_note(self, **kwargs):
-        """Add a project note to the novel.
+    def add_new_project_note(self, **kwargs):
+        """Create a project note instance and add it to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -288,8 +288,8 @@ class NvModel(Observable):
         index = 'end'
         if targetNode.startswith(PRJ_NOTE_PREFIX):
             index = self.tree.index(targetNode) + 1
-        pnId = create_id(self.novel.projectNotes, prefix=PRJ_NOTE_PREFIX)
-        self.novel.projectNotes[pnId] = self.nvService.make_basic_element(
+        pnId = new_id(self.novel.projectNotes, prefix=PRJ_NOTE_PREFIX)
+        self.novel.projectNotes[pnId] = self.nvService.new_basic_element(
             title=kwargs.get('title', f'{_("New Note")} ({pnId})'),
             desc='',
             links={},
@@ -298,8 +298,8 @@ class NvModel(Observable):
         self.tree.insert(PN_ROOT, index, pnId)
         return pnId
 
-    def add_section(self, **kwargs):
-        """Add a section to the novel.
+    def add_new_section(self, **kwargs):
+        """Create a section instance and add it to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -334,8 +334,8 @@ class NvModel(Observable):
             newType = parentType
         else:
             newType = kwargs.get('scType', 0)
-        scId = create_id(self.novel.sections, prefix=SECTION_PREFIX)
-        self.novel.sections[scId] = self.nvService.make_section(
+        scId = new_id(self.novel.sections, prefix=SECTION_PREFIX)
+        self.novel.sections[scId] = self.nvService.new_section(
             title=kwargs.get('title', f'{_("New Section")} ({scId})'),
             desc=kwargs.get('desc', ''),
             scType=newType,
@@ -352,8 +352,8 @@ class NvModel(Observable):
         self.tree.insert(parent, index, scId)
         return scId
 
-    def add_stage(self, **kwargs):
-        """Add a stage to the novel.
+    def add_new_stage(self, **kwargs):
+        """Create a stage instance and add it to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -379,8 +379,8 @@ class NvModel(Observable):
         else:
             return
 
-        scId = create_id(self.novel.sections, prefix=SECTION_PREFIX)
-        self.novel.sections[scId] = self.nvService.make_section(
+        scId = new_id(self.novel.sections, prefix=SECTION_PREFIX)
+        self.novel.sections[scId] = self.nvService.new_section(
             title=kwargs.get('title', f'{_("Stage")}'),
             desc=kwargs.get('desc', ''),
             scType=kwargs.get('scType', 3),
@@ -398,6 +398,42 @@ class NvModel(Observable):
         self.tree.on_element_change = self.tree.do_nothing
         self.novel = None
         self.prjFile = None
+
+    def create_project(self, tree):
+        """Create a novelibre project instance."""
+        self.novel = self.nvService.new_novel(
+            title='',
+            desc='',
+            authorName='',
+            wordTarget=0,
+            wordCountStart=0,
+            languageCode='',
+            countryCode='',
+            renumberChapters=False,
+            renumberParts=False,
+            renumberWithinParts=False,
+            romanChapterNumbers=False,
+            romanPartNumbers=False,
+            saveWordCount=True,
+            workPhase=None,
+            chapterHeadingPrefix=f"{_('Chapter')} ",
+            chapterHeadingSuffix='',
+            partHeadingPrefix=f"{_('Part')} ",
+            partHeadingSuffix='',
+            customGoal='',
+            customConflict='',
+            customOutcome='',
+            customChrBio='',
+            customChrGoals='',
+            links=[],
+            tree=tree,
+            on_element_change=self.on_element_change,
+            )
+        self.novel.check_locale()
+        # setting the the system locale as document language/country
+        self.prjFile = NvWorkFile('')
+        self.prjFile.novel = self.novel
+        self._initialize_tree(self.on_element_change)
 
     def delete_element(self, elemId):
         """Delete an element and its children.
@@ -509,8 +545,8 @@ class NvModel(Observable):
             # Part/chapter/section selected.
             if self.trashBin is None:
                 # Create a "trash bin"; use the first free chapter ID.
-                self.trashBin = create_id(self.novel.chapters, prefix=CHAPTER_PREFIX)
-                self.novel.chapters[self.trashBin] = self.nvService.make_chapter(
+                self.trashBin = new_id(self.novel.chapters, prefix=CHAPTER_PREFIX)
+                self.novel.chapters[self.trashBin] = self.nvService.new_chapter(
                     title=_('Trash'),
                     desc='',
                     chLevel=2,
@@ -713,49 +749,13 @@ class NvModel(Observable):
             elif self.tree.prev(targetNode):
                 self.tree.move(node, self.tree.prev(targetNode), 'end')
 
-    def new_project(self, tree):
-        """Create a novelibre project instance."""
-        self.novel = self.nvService.make_novel(
-            title='',
-            desc='',
-            authorName='',
-            wordTarget=0,
-            wordCountStart=0,
-            languageCode='',
-            countryCode='',
-            renumberChapters=False,
-            renumberParts=False,
-            renumberWithinParts=False,
-            romanChapterNumbers=False,
-            romanPartNumbers=False,
-            saveWordCount=True,
-            workPhase=None,
-            chapterHeadingPrefix=f"{_('Chapter')} ",
-            chapterHeadingSuffix='',
-            partHeadingPrefix=f"{_('Part')} ",
-            partHeadingSuffix='',
-            customGoal='',
-            customConflict='',
-            customOutcome='',
-            customChrBio='',
-            customChrGoals='',
-            links=[],
-            tree=tree,
-            on_element_change=self.on_element_change,
-            )
-        self.novel.check_locale()
-        # setting the the system locale as document language/country
-        self.prjFile = NvWorkFile('')
-        self.prjFile.novel = self.novel
-        self._initialize_tree(self.on_element_change)
-
     def open_project(self, filePath):
         """Initialize instance variables.
         
         Positional arguments:
             filePath: str -- path to the prjFile file.
         """
-        self.novel = self.nvService.make_novel(tree=self.tree, links={})
+        self.novel = self.nvService.new_novel(tree=self.tree, links={})
         self.prjFile = NvWorkFile(filePath)
         self.prjFile.novel = self.novel
         self.prjFile.read()

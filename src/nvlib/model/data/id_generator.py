@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 
 
-def create_id(elements, prefix=''):
+def new_id(elements, prefix=''):
     """Return an unused ID for a new element.
     
     Positional arguments:

@@ -15,7 +15,7 @@ from nvlib.novx_globals import norm_path
 class ExportSourceFactory(FileFactory):
     """A factory class that instantiates a novx file object to read."""
 
-    def make_file_objects(self, sourcePath, **kwargs):
+    def new_file_objects(self, sourcePath, **kwargs):
         """Instantiate a source object for conversion from a novelibre project.
 
         Positional arguments:

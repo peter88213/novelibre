@@ -8,10 +8,11 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
-### Version 5.0.2
+### Version 5.0.3
 
 - Importing and exporting plot lines with plot points. 
 - Make it easier to delete multiple elements.
+- Create multiple sections always in ascending order.
 - Refactor the code for better maintainability.
 
 ### Version 4.17.2

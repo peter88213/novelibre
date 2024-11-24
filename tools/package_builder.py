@@ -78,7 +78,7 @@ setuplib.main(False)
         except FileNotFoundError:
             pass
         os.makedirs(self.distDir)
-        self.make_pyz(self.buildDir, self.distDir, self.release)
+        self.create_pyz(self.buildDir, self.distDir, self.release)
         self.make_zip(self.buildDir, self.distDir, self.release)
 
     def build_script(self):
@@ -95,7 +95,7 @@ setuplib.main(False)
             return
 
         print('\nCollecting the strings to translate ...')
-        if not self.make_pot(self.testFile, app=self.PRJ_NAME, version=self.version):
+        if not self.create_pot(self.testFile, app=self.PRJ_NAME, version=self.version):
             sys.exit(1)
 
         print('Creating/updating the translations')
@@ -144,7 +144,7 @@ setuplib.main(False)
             f.write(text)
         print(f'Version {version} set.')
 
-    def make_pot(self, sourcefile, app='', version='unknown'):
+    def create_pot(self, sourcefile, app='', version='unknown'):
         """Generate a pot file for translations from the source file."""
         I18_DIR = '../i18n'
         potFile = f'{I18_DIR}/messages.pot'
@@ -167,7 +167,7 @@ setuplib.main(False)
             print(str(ex))
             return False
 
-    def make_pyz(self, sourceDir, targetDir, release):
+    def create_pyz(self, sourceDir, targetDir, release):
         """Create the self-extracting installation file."""
         targetFile = f'{targetDir}/{release}.pyzw'
         print(f'Writing "{targetFile}" ...')

@@ -171,6 +171,7 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
             self.tree.selection_set(node)
             self.see_node(node)
             self.tree.focus(node)
+            self._ui.on_change_selection(node)
         except:
             pass
 
@@ -304,10 +305,10 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
 
         #--- Create a narrative context menu.
         self.nvCtxtMenu = ContextMenu(self.tree, tearoff=0)
-        self.nvCtxtMenu.add_command(label=_('Add Section'), command=self._ctrl.add_section)
-        self.nvCtxtMenu.add_command(label=_('Add Chapter'), command=self._ctrl.add_chapter)
-        self.nvCtxtMenu.add_command(label=_('Add Part'), command=self._ctrl.add_part)
-        self.nvCtxtMenu.add_command(label=_('Insert Stage'), command=self._ctrl.add_stage)
+        self.nvCtxtMenu.add_command(label=_('Add Section'), command=self._ctrl.add_new_section)
+        self.nvCtxtMenu.add_command(label=_('Add Chapter'), command=self._ctrl.add_new_chapter)
+        self.nvCtxtMenu.add_command(label=_('Add Part'), command=self._ctrl.add_new_part)
+        self.nvCtxtMenu.add_command(label=_('Insert Stage'), command=self._ctrl.add_new_stage)
         self.nvCtxtMenu.add_cascade(label=_('Change Level'), menu=self.selectLevelMenu)
         self.nvCtxtMenu.add_separator()
         self.nvCtxtMenu.add_command(label=_('Delete'), accelerator=KEYS.DELETE[1], command=self._ctrl.delete_elements)
@@ -325,7 +326,7 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
 
         #--- Create a world element context menu.
         self.wrCtxtMenu = ContextMenu(self.tree, tearoff=0)
-        self.wrCtxtMenu.add_command(label=_('Add'), command=self._ctrl.add_element)
+        self.wrCtxtMenu.add_command(label=_('Add'), command=self._ctrl.add_new_element)
         self.wrCtxtMenu.add_separator()
         self.wrCtxtMenu.add_command(label=_('Export manuscript filtered by viewpoint'), command=self.export_manuscript)
         self.wrCtxtMenu.add_command(label=_('Export synopsis filtered by viewpoint'), command=self.export_synopsis)
@@ -336,8 +337,8 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
 
         #--- Create a plot line context menu.
         self.plCtxtMenu = ContextMenu(self.tree, tearoff=0)
-        self.plCtxtMenu.add_command(label=_('Add Plot line'), command=self._ctrl.add_plot_line)
-        self.plCtxtMenu.add_command(label=_('Add Plot point'), command=self._ctrl.add_plot_point)
+        self.plCtxtMenu.add_command(label=_('Add Plot line'), command=self._ctrl.add_new_plot_line)
+        self.plCtxtMenu.add_command(label=_('Add Plot point'), command=self._ctrl.add_new_plot_point)
         self.plCtxtMenu.add_separator()
         self.plCtxtMenu.add_command(label=_('Export manuscript filtered by plot line'), command=self.export_manuscript)
         self.plCtxtMenu.add_command(label=_('Export synopsis filtered by plot line'), command=self.export_synopsis)
@@ -346,7 +347,7 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
 
         #--- Create a project note context menu.
         self.pnCtxtMenu = ContextMenu(self.tree, tearoff=0)
-        self.pnCtxtMenu.add_command(label=_('Add Project note'), command=self._ctrl.add_project_note)
+        self.pnCtxtMenu.add_command(label=_('Add Project note'), command=self._ctrl.add_new_project_note)
         self.pnCtxtMenu.add_separator()
         self.pnCtxtMenu.add_command(label=_('Delete'), accelerator=KEYS.DELETE[1], command=self._ctrl.delete_elements)
 

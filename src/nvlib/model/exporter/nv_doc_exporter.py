@@ -84,7 +84,7 @@ class NvDocExporter:
         """
         self._source = source
         self._isNewer = False
-        __, self._target = self.exportTargetFactory.make_file_objects(self._source.filePath, suffix=suffix)
+        __, self._target = self.exportTargetFactory.new_file_objects(self._source.filePath, suffix=suffix)
         if os.path.isfile(self._target.filePath):
             targetTimestamp = os.path.getmtime(self._target.filePath)
             try:

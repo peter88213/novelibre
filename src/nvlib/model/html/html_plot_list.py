@@ -24,10 +24,6 @@ class HtmlPlotList(HtmlReport):
         Extends the superclass method.
         """
 
-        def create_cell(text, attr=''):
-            """Return the markup for a table cell with text and attributes."""
-            return f'<td {attr}>{self._convert_from_novx(text)}</td>'
-
         htmlText = [self._fileHeader]
         htmlText.append(f'''<title>{self.novel.title}</title>
 </head>
@@ -51,10 +47,10 @@ class HtmlPlotList(HtmlReport):
 
         # Title row.
         htmlText.append('<tr class="heading">')
-        htmlText.append(create_cell(''))
+        htmlText.append(self._new_cell(''))
         for i, plId in enumerate(plotLines):
             colorIndex = i % len(plotLineColors)
-            htmlText.append(create_cell(self.novel.plotLines[plId].title, attr=f'style="background: {plotLineColors[colorIndex]}"'))
+            htmlText.append(self._new_cell(self.novel.plotLines[plId].title, attr=f'style="background: {plotLineColors[colorIndex]}"'))
         htmlText.append('</tr>')
 
         # Section rows.
@@ -63,7 +59,7 @@ class HtmlPlotList(HtmlReport):
                 # Section row
                 if self.novel.sections[scId].scType == 0:
                     htmlText.append(f'<tr>')
-                    htmlText.append(create_cell(self.novel.sections[scId].title))
+                    htmlText.append(self._new_cell(self.novel.sections[scId].title))
                     for i, plId in enumerate(plotLines):
                         colorIndex = i % len(plotLineColors)
                         if scId in self.novel.plotLines[plId].sections:
@@ -71,11 +67,16 @@ class HtmlPlotList(HtmlReport):
                             for ppId in self.novel.tree.get_children(plId):
                                 if scId == self.novel.plotPoints[ppId].sectionAssoc:
                                     plotPoints.append(self.novel.plotPoints[ppId].title)
-                            htmlText.append(create_cell(list_to_string(plotPoints), attr=f'style="background: {plotLineColors[colorIndex]}"'))
+                            htmlText.append(self._new_cell(list_to_string(plotPoints), attr=f'style="background: {plotLineColors[colorIndex]}"'))
                         else:
-                            htmlText.append(create_cell(''))
+                            htmlText.append(self._new_cell(''))
                     htmlText.append(f'</tr>')
 
         htmlText.append(self._fileFooter)
         with open(self.filePath, 'w', encoding='utf-8') as f:
             f.write('\n'.join(htmlText))
+
+    def _new_cell(self, text, attr=''):
+        """Return the markup for a table cell with text and attributes."""
+        return f'<td {attr}>{self._convert_from_novx(text)}</td>'
+

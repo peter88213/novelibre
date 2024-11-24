@@ -5,7 +5,7 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from mvclib.controller.sub_controller import SubController
-from nvlib.model.data.id_generator import create_id
+from nvlib.model.data.id_generator import new_id
 from nvlib.model.novx.character_data_reader import CharacterDataReader
 from nvlib.model.novx.item_data_reader import ItemDataReader
 from nvlib.model.novx.location_data_reader import LocationDataReader
@@ -43,7 +43,7 @@ class NvDataImporter(SubController):
             PLOT_LINE_PREFIX:PlotLineReader,
         }
         source = sources[elemPrefix](filePath)
-        source.novel = self._mdl.nvService.make_novel()
+        source.novel = self._mdl.nvService.new_novel()
         errorMessages = {
             CHARACTER_PREFIX:_('No character data found'),
             LOCATION_PREFIX:_('No location data found'),
@@ -108,7 +108,7 @@ class NvDataImporter(SubController):
         """Add the selected elements to the novel."""
         i = 0
         for  elemId in elements:
-            newId = create_id(self._targetElements, prefix=self._elemPrefix)
+            newId = new_id(self._targetElements, prefix=self._elemPrefix)
             self._targetElements[newId] = self._sourceElements[elemId]
             self._mdl.novel.tree.append(self._elemParent, newId)
             self._add_children[self._elemPrefix](newId, elemId)
@@ -122,7 +122,7 @@ class NvDataImporter(SubController):
         srcPlotPoints = self._srcNovel.tree.get_children(srcPlId)
         if srcPlotPoints:
             for srcPpId in srcPlotPoints:
-                ppId = create_id(self._mdl.novel.plotPoints, prefix=PLOT_POINT_PREFIX)
+                ppId = new_id(self._mdl.novel.plotPoints, prefix=PLOT_POINT_PREFIX)
                 self._mdl.novel.plotPoints[ppId] = self._srcNovel.plotPoints[srcPpId]
                 self._mdl.novel.tree.append(plId, ppId)
 

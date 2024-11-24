@@ -21,7 +21,7 @@ class FileFactory(ABC):
         self._fileClasses = fileClasses
 
     @abstractmethod
-    def make_file_objects(self, sourcePath, **kwargs):
+    def new_file_objects(self, sourcePath, **kwargs):
         """Instantiate a source object for conversion from a novelibre project.
 
         Positional arguments:

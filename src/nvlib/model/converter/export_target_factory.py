@@ -14,7 +14,7 @@ from nvlib.novx_globals import _
 class ExportTargetFactory(FileFactory):
     """A factory class that instantiates a document object to write."""
 
-    def make_file_objects(self, sourcePath, **kwargs):
+    def new_file_objects(self, sourcePath, **kwargs):
         """Instantiate a target object for conversion from a novelibre project.
 
         Positional arguments:

@@ -7,7 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import re
 
 from nvlib.model.data.chapter import Chapter
-from nvlib.model.data.id_generator import create_id
+from nvlib.model.data.id_generator import new_id
 from nvlib.model.data.section import Section
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
@@ -153,7 +153,7 @@ class Splitter:
                             novel.sections[scId].sectionContent = ''.join(newLines)
                         newLines = []
                         sectionSplitCount += 1
-                        newScId = create_id(novel.sections, prefix=SECTION_PREFIX)
+                        newScId = new_id(novel.sections, prefix=SECTION_PREFIX)
                         create_section(
                             newScId,
                             novel.sections[scId],
@@ -174,7 +174,7 @@ class Splitter:
                             newLines = []
                             sectionSplitCount = 0
                             inSection = False
-                        newChId = create_id(novel.chapters, prefix=CHAPTER_PREFIX)
+                        newChId = new_id(novel.chapters, prefix=CHAPTER_PREFIX)
                         if not title:
                             title = _('New Chapter')
                         create_chapter(newChId, title, desc, 2)
@@ -190,7 +190,7 @@ class Splitter:
                             newLines = []
                             sectionSplitCount = 0
                             inSection = False
-                        newChId = create_id(novel.chapters, prefix=CHAPTER_PREFIX)
+                        newChId = new_id(novel.chapters, prefix=CHAPTER_PREFIX)
                         if not title:
                             title = _('New Part')
                         create_chapter(newChId, title, desc, 1)
@@ -202,7 +202,7 @@ class Splitter:
                         # Append a section without heading to a new chapter or part.
                         newLines.append(line)
                         sectionSplitCount += 1
-                        newScId = create_id(novel.sections, prefix=SECTION_PREFIX)
+                        newScId = new_id(novel.sections, prefix=SECTION_PREFIX)
                         create_section(newScId, novel.sections[scId], sectionSplitCount, '', '', False)
                         novel.tree.append(chId, newScId)
                         scId = newScId

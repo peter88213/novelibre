@@ -170,7 +170,7 @@ class Toolbar(ToolbarCtrl):
             self.buttonBar,
             text=_('Add'),
             image=self._ui.icons.addIcon,
-            command=self._ctrl.add_element
+            command=self._ctrl.add_new_element
             )
         self.addElementButton.pack(side='left')
         self.addElementButton.image = self._ui.icons.addIcon
@@ -180,7 +180,7 @@ class Toolbar(ToolbarCtrl):
             self.buttonBar,
             text=_('Add child'),
             image=self._ui.icons.addChildIcon,
-            command=self._ctrl.add_child
+            command=self._ctrl.add_new_child
             )
         self.addChildButton.pack(side='left')
         self.addChildButton.image = self._ui.icons.addChildIcon
@@ -190,7 +190,7 @@ class Toolbar(ToolbarCtrl):
             self.buttonBar,
             text=_('Add parent'),
             image=self._ui.icons.addParentIcon,
-            command=self._ctrl.add_parent
+            command=self._ctrl.add_new_parent
             )
         self.addParentButton.pack(side='left')
         self.addParentButton.image = self._ui.icons.addParentIcon

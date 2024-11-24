@@ -48,7 +48,7 @@ class NvHtmlReporter:
             tempdir: str -- Path to the directory where the HTML file is created.
         """
         kwargs = {'suffix':suffix}
-        __, target = self._exportTargetFactory.make_file_objects(source.filePath, **kwargs)
+        __, target = self._exportTargetFactory.new_file_objects(source.filePath, **kwargs)
         # Adjust HTML file path to the temp directory, if any
         # (the target factory sets the project directory; this is overridden here).
         __, filename = os.path.split(target.filePath)

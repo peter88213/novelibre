@@ -98,17 +98,17 @@ class NvDocImporter(SubController):
             raise Error(f'{_("File not found")}: "{norm_path(sourcePath)}".')
 
         try:
-            source, __ = self.importSourceFactory.make_file_objects(sourcePath, **kwargs)
+            source, __ = self.importSourceFactory.new_file_objects(sourcePath, **kwargs)
         except Error:
 
             #--- Import a document without section markers.
-            source, target = self.newProjectFactory.make_file_objects(sourcePath, **kwargs)
+            source, target = self.newProjectFactory.new_file_objects(sourcePath, **kwargs)
             if os.path.isfile(target.filePath):
                 # do not overwrite an existing novelibre project with a non-tagged document
                 raise Error(f'{_("File already exists")}: "{norm_path(target.filePath)}".')
 
             self._check(source, target)
-            source.novel = self._mdl.nvService.make_novel()
+            source.novel = self._mdl.nvService.new_novel()
             source.read()
             target.novel = source.novel
             target.write()
@@ -119,10 +119,10 @@ class NvDocImporter(SubController):
 
             #--- Import a document with section markers.
             kwargs['suffix'] = source.SUFFIX
-            __, target = self.importTargetFactory.make_file_objects(sourcePath, **kwargs)
+            __, target = self.importTargetFactory.new_file_objects(sourcePath, **kwargs)
             self.newFile = None
             self._check(source, target)
-            target.novel = self._mdl.nvService.make_novel()
+            target.novel = self._mdl.nvService.new_novel()
             target.read()
             source.novel = target.novel
             source.read()

@@ -15,6 +15,12 @@
 - Each novelibre class is implemented in its own module.
 - novelibre classes are imported with `from <module> import <class>`.
 
+#### Method naming conventions
+
+- `new_...`: Create an instance and return the object reference.
+- `add_new_...`: Create an instance and add it to the novel. Return the element ID.
+- `create_...`: Create anything.
+
 ## How to use the library with plugins and other applications
 
 The *nvlib* package is not intended to be installed by the user, e.g. via *pip*. 

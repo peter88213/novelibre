@@ -67,8 +67,8 @@ class Commands:
     _INI_NR_NEW_SECTIONS = 1
     # initial value when asking for the number of sections to add
 
-    def add_chapter(self, **kwargs):
-        """Add a chapter to the novel.
+    def add_new_chapter(self, **kwargs):
+        """Create a chapter instance and add it to the novel.
              
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -87,12 +87,12 @@ class Commands:
                 kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
-        newNode = self._mdl.add_chapter(**kwargs)
+        newNode = self._mdl.add_new_chapter(**kwargs)
         self.view_new_element(newNode)
         return newNode
 
-    def add_character(self, **kwargs):
-        """Add a character to the novel.
+    def add_new_character(self, **kwargs):
+        """Create a character instance and add it to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -110,11 +110,11 @@ class Commands:
                 kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
-        newNode = self._mdl.add_character(**kwargs)
+        newNode = self._mdl.add_new_character(**kwargs)
         self.view_new_element(newNode)
         return newNode
 
-    def add_child(self, event=None):
+    def add_new_child(self, event=None):
         """Add a child element to an element.
         
         What kind of element is added, depends on the selection's prefix.
@@ -131,38 +131,31 @@ class Commands:
             return
 
         if selection == CH_ROOT:
-            self.add_chapter(targetNode=selection)
-            return
+            return self.add_new_chapter(targetNode=selection)
 
         if selection.startswith(CHAPTER_PREFIX):
-            self.add_section(targetNode=selection)
-            return
+            return self.add_new_section(targetNode=selection)
 
         if selection.startswith(PLOT_LINE_PREFIX):
-            self.add_plot_point(targetNode=selection)
-            return
+            return self.add_new_plot_point(targetNode=selection)
 
         if selection == CR_ROOT:
-            self.add_character(targetNode=selection)
-            return
+            return self.add_new_character(targetNode=selection)
 
         if selection == LC_ROOT:
-            self.add_location(targetNode=selection)
-            return
+            return self.add_new_location(targetNode=selection)
 
         if selection == IT_ROOT:
-            self.add_item(targetNode=selection)
-            return
+            return self.add_new_item(targetNode=selection)
 
         if selection == PL_ROOT:
-            self.add_plot_line(targetNode=selection)
-            return
+            return self.add_new_plot_line(targetNode=selection)
 
         if selection == PN_ROOT:
-            self.add_project_note(targetNode=selection)
+            return self.add_new_project_note(targetNode=selection)
 
-    def add_element(self, event=None):
-        """Add an element to the novel.
+    def add_new_element(self, event=None):
+        """Create an element instance and add it to the novel.
         
         What kind of element is added, depends on the selection's prefix.
         """
@@ -179,41 +172,33 @@ class Commands:
 
         if selection.startswith(SECTION_PREFIX):
             if self._mdl.novel.sections[selection].scType < 2:
-                self.add_section(targetNode=selection)
-                return
+                return self.add_new_section(targetNode=selection)
 
-            self.add_stage(targetNode=selection)
-            return
+            return self.add_new_stage(targetNode=selection)
 
         if CHAPTER_PREFIX in selection:
-            self.add_chapter(targetNode=selection)
-            return
+            return self.add_new_chapter(targetNode=selection)
 
         if CHARACTER_PREFIX in selection:
-            self.add_character(targetNode=selection)
-            return
+            return self.add_new_character(targetNode=selection)
 
         if LOCATION_PREFIX in selection:
-            self.add_location(targetNode=selection)
-            return
+            return self.add_new_location(targetNode=selection)
 
         if ITEM_PREFIX in selection:
-            self.add_item(targetNode=selection)
-            return
+            return self.add_new_item(targetNode=selection)
 
         if PLOT_LINE_PREFIX in selection:
-            self.add_plot_line(targetNode=selection)
-            return
+            return self.add_new_plot_line(targetNode=selection)
 
         if PRJ_NOTE_PREFIX in selection:
-            self.add_project_note(targetNode=selection)
-            return
+            return self.add_new_project_note(targetNode=selection)
 
         if selection.startswith(PLOT_POINT_PREFIX):
-            self.add_plot_point(targetNode=selection)
+            return self.add_new_plot_point(targetNode=selection)
 
-    def add_item(self, **kwargs):
-        """Add an item to the novel.
+    def add_new_item(self, **kwargs):
+        """Create an item instance and add it to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -230,12 +215,12 @@ class Commands:
                 kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
-        newNode = self._mdl.add_item(**kwargs)
+        newNode = self._mdl.add_new_item(**kwargs)
         self.view_new_element(newNode)
         return newNode
 
-    def add_location(self, **kwargs):
-        """Add a location to the novel.
+    def add_new_location(self, **kwargs):
+        """Create a location instance and add it to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -252,11 +237,11 @@ class Commands:
                 kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
-        newNode = self._mdl.add_location(**kwargs)
+        newNode = self._mdl.add_new_location(**kwargs)
         self.view_new_element(newNode)
         return newNode
 
-    def add_multiple_sections(self):
+    def add_multiple_new_sections(self):
         """Ask how many sections are to be added, then call the controller."""
         n = askinteger(
             title=_('New'),
@@ -266,10 +251,12 @@ class Commands:
             maxvalue=self._MAX_NR_NEW_SECTIONS
             )
         if n is not None:
+            newNodes = []
             for __ in range(n):
-                self.add_section()
+                newNodes.append(self.add_new_section())
+            return newNodes
 
-    def add_parent(self, event=None):
+    def add_new_parent(self, event=None):
         """Add a parent element to an element.
         
         What kind of element is added, depends on the selection's prefix.
@@ -286,12 +273,13 @@ class Commands:
             return
 
         if selection.startswith(SECTION_PREFIX):
-            self.add_chapter(targetNode=selection)
-        elif selection.startswith(PLOT_POINT_PREFIX):
-            self.add_plot_line(targetNode=selection)
+            return self.add_new_chapter(targetNode=selection)
 
-    def add_part(self, **kwargs):
-        """Add a part to the novel.
+        if selection.startswith(PLOT_POINT_PREFIX):
+            return self.add_new_plot_line(targetNode=selection)
+
+    def add_new_part(self, **kwargs):
+        """Create a part instance and add it to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -310,12 +298,12 @@ class Commands:
                 kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
-        newNode = self._mdl.add_part(**kwargs)
+        newNode = self._mdl.add_new_part(**kwargs)
         self.view_new_element(newNode)
         return newNode
 
-    def add_plot_line(self, **kwargs):
-        """Add a plot line to the novel.
+    def add_new_plot_line(self, **kwargs):
+        """Create a plot line instance and add it to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -332,12 +320,12 @@ class Commands:
                 kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
-        newNode = self._mdl.add_plot_line(**kwargs)
+        newNode = self._mdl.add_new_plot_line(**kwargs)
         self.view_new_element(newNode)
         return newNode
 
-    def add_plot_point(self, **kwargs):
-        """Add a plot point to the novel.
+    def add_new_plot_point(self, **kwargs):
+        """Create a plot point instance and add it to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -354,12 +342,12 @@ class Commands:
                 kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
-        newNode = self._mdl.add_plot_point(**kwargs)
+        newNode = self._mdl.add_new_plot_point(**kwargs)
         self.view_new_element(newNode)
         return newNode
 
-    def add_project_note(self, **kwargs):
-        """Add a Project note to the novel.
+    def add_new_project_note(self, **kwargs):
+        """Create a Project note instance and add it to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -373,12 +361,12 @@ class Commands:
                 kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
-        newNode = self._mdl.add_project_note(**kwargs)
+        newNode = self._mdl.add_new_project_note(**kwargs)
         self.view_new_element(newNode)
         return newNode
 
-    def add_section(self, **kwargs):
-        """Add a section to the novel.
+    def add_new_section(self, **kwargs):
+        """Create a section instance and add it to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -403,12 +391,12 @@ class Commands:
                 kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
-        newNode = self._mdl.add_section(**kwargs)
+        newNode = self._mdl.add_new_section(**kwargs)
         self.view_new_element(newNode)
         return newNode
 
-    def add_stage(self, **kwargs):
-        """Add a stage to the novel.
+    def add_new_stage(self, **kwargs):
+        """Create a stage instance and add it to the novel.
         
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
@@ -427,7 +415,7 @@ class Commands:
                 kwargs['targetNode'] = self._ui.selectedNode
             except:
                 pass
-        newNode = self._mdl.add_stage(**kwargs)
+        newNode = self._mdl.add_new_stage(**kwargs)
         self.view_new_element(newNode)
         return newNode
 
@@ -443,6 +431,25 @@ class Commands:
         except Exception as ex:
             message = f'!{str(ex)}'
         self._ui.set_status(message)
+
+    def create_project(self, event=None):
+        """Create a novelibre project instance."""
+        if self._mdl.prjFile is not None:
+            self.close_project()
+        self._mdl.create_project(self._ui.tv.tree)
+        self.refresh_tree()
+        self._ui.show_path(_('Unnamed'))
+        # setting the path bar
+        self.enable_menu()
+        self.update_status()
+        # setting the status bar
+        self._ui.tv.update_tree()
+        # making the root element titles visible
+        self._ui.tv.refresh()
+        # enabling selecting
+        self._ui.tv.go_to_node(CH_ROOT)
+        self.save_project()
+        return 'break'
 
     def delete_elements(self, event=None, elements=None):
         """Delete elements and their children.
@@ -599,21 +606,6 @@ class Commands:
                 self._ui.tv.open_children(targetNode)
             self._ui.tv.skipUpdate = True
             self._mdl.move_node(node, targetNode)
-
-    def new_project(self, event=None):
-        """Create a novelibre project instance."""
-        if self._mdl.prjFile is not None:
-            self.close_project()
-        self._mdl.new_project(self._ui.tv.tree)
-        self._ui.show_path(_('Unnamed'))
-        # setting the path bar
-        self.enable_menu()
-        self.update_status()
-        # setting the status bar
-        self._ui.tv.go_to_node(CH_ROOT)
-        self.refresh_tree()
-        self.save_project()
-        return 'break'
 
     def open_export_options(self, event=None):
         """Open a toplevel window to edit the export options."""
