@@ -12,6 +12,8 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 - Importing and exporting plot lines with plot points. 
 - Make it easier to delete multiple elements.
+- Fix a regression from version 4.17.1 where the root element titles are invisible
+  when creating a project without saving it immediately.
 - Create multiple sections always in ascending order.
 - Refactor the code for better maintainability.
 
