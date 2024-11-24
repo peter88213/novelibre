@@ -10,15 +10,6 @@ from mvclib.view.path_bar import PathBar
 from mvclib.view.set_icon_tk import set_icon
 from mvclib.view.view_base import ViewBase
 from nvlib.controller.main_view.main_view_ctrl import MainViewCtrl
-from nvlib.novx_globals import CHARACTER_PREFIX
-from nvlib.novx_globals import CH_ROOT
-from nvlib.novx_globals import CR_ROOT
-from nvlib.novx_globals import ITEM_PREFIX
-from nvlib.novx_globals import IT_ROOT
-from nvlib.novx_globals import LC_ROOT
-from nvlib.novx_globals import LOCATION_PREFIX
-from nvlib.novx_globals import PL_ROOT
-from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
 from nvlib.view.contents_window.contents_viewer import ContentsViewer
