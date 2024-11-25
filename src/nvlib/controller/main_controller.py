@@ -14,16 +14,16 @@ from nvlib.controller.importer.nv_data_importer import NvDataImporter
 from nvlib.controller.importer.nv_doc_importer import NvDocImporter
 from nvlib.controller.link_processor import LinkProcessor
 from nvlib.controller.plugin.plugin_collection import PluginCollection
+from nvlib.gui.main_view import MainView
 from nvlib.model.exporter.nv_doc_exporter import NvDocExporter
 from nvlib.model.exporter.nv_html_reporter import NvHtmlReporter
 from nvlib.model.nv_model import NvModel
 from nvlib.model.nv_work_file import NvWorkFile
+from nvlib.novx_globals import CR_ROOT
 from nvlib.novx_globals import Error
 from nvlib.novx_globals import Notification
 from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
-from nvlib.view.main_view import MainView
-from nvlib.novx_globals import CR_ROOT
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 

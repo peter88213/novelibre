@@ -34,7 +34,6 @@ from nvlib.novx_globals import Notification
 from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import prefs
-from nvlib.view.widgets.nv_simpledialog import SimpleDialog
 
 
 class NvDocExporter:
@@ -73,14 +72,15 @@ class NvDocExporter:
         """Create a target object and run conversion.
         
         Keyword arguments:
+            filter: str -- element ID for filtering chapters and sections.
             show: Boolean -- If True, open the exported document after creation.
             ask: Boolean -- If True, ask before opening the created document.
 
         Positional arguments: 
             source -- NovxFile instance.
             suffix: str -- Target file name suffix.
-            
-        On success, return a message. Otherwise raise the Error exception.
+                        
+        On success, return a message. Otherwise raise an Error or Notification exception.
         """
         self._source = source
         self._isNewer = False
@@ -91,29 +91,25 @@ class NvDocExporter:
                 if  targetTimestamp > self._source.timestamp:
                     timeStatus = _('Newer than the project file')
                     self._isNewer = True
-                    defaultButton = 1
+                    defaultChoice = 1
                 else:
                     timeStatus = _('Older than the project file')
-                    defaultButton = 0
+                    defaultChoice = 0
             except:
                 timeStatus = ''
-                defaultButton = 0
+                defaultChoice = 0
             self._targetFileDate = datetime.fromtimestamp(targetTimestamp).strftime('%c')
             message = _('{0} already exists.\n(last saved on {2})\n{1}.\n\nOpen this document instead of overwriting it?').format(
                         norm_path(self._target.DESCRIPTION), timeStatus, self._targetFileDate)
-            result = SimpleDialog(
-                None,
+            result = self._ui.ask_overwrite_open_cancel(
                 text=f"\n\n{message}\n\n",
-                buttons=[_('Overwrite'), _('Open existing'), _('Cancel')],
-                default=defaultButton,
-                cancel=2,
+                default=defaultChoice,
                 title=_('Export document')
-                ).go()
-            openExisting = [False, True, None][result]
-            if openExisting is None:
+                )
+            if result == 2:
                 raise Notification(f'{_("Action canceled by user")}.')
 
-            elif openExisting:
+            elif result == 1:
                 open_document(self._target.filePath)
                 if self._isNewer:
                     prefix = ''

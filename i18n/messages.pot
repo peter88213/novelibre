@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.4\n"
-"POT-Creation-Date: 2024-11-24 14:12:54\n"
+"POT-Creation-Date: 2024-11-25 10:07:11\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -722,9 +722,6 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-msgid "No"
-msgstr ""
-
 msgid "No backup available"
 msgstr ""
 
@@ -1097,6 +1094,9 @@ msgstr ""
 msgid "Show markup"
 msgstr ""
 
+msgid "Skip"
+msgstr ""
+
 msgid "Source document deleted"
 msgstr ""
 
@@ -1299,9 +1299,6 @@ msgid "XML plot line file"
 msgstr ""
 
 msgid "YYYY-MM-DD"
-msgstr ""
-
-msgid "Yes"
 msgstr ""
 
 msgid "by"

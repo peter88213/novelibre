@@ -5,23 +5,23 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from mvclib.controller.sub_controller import SubController
+from nvlib.gui.widgets.pick_list import PickList
 from nvlib.model.data.id_generator import new_id
 from nvlib.model.novx.character_data_reader import CharacterDataReader
 from nvlib.model.novx.item_data_reader import ItemDataReader
 from nvlib.model.novx.location_data_reader import LocationDataReader
 from nvlib.model.novx.plot_line_reader import PlotLineReader
 from nvlib.novx_globals import CHARACTER_PREFIX
-from nvlib.novx_globals import PLOT_POINT_PREFIX
 from nvlib.novx_globals import CR_ROOT
 from nvlib.novx_globals import ITEM_PREFIX
 from nvlib.novx_globals import IT_ROOT
 from nvlib.novx_globals import LC_ROOT
 from nvlib.novx_globals import LOCATION_PREFIX
 from nvlib.novx_globals import PLOT_LINE_PREFIX
+from nvlib.novx_globals import PLOT_POINT_PREFIX
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
-from nvlib.view.widgets.pick_list import PickList
 
 
 class NvDataImporter(SubController):

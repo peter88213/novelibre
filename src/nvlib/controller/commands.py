@@ -10,6 +10,11 @@ import sys
 from tkinter import filedialog
 import webbrowser
 
+from nvlib.gui.pop_up.export_options_dialog import ExportOptionsDialog
+from nvlib.gui.pop_up.plugin_manager_dialog import PluginManagerDialog
+from nvlib.gui.pop_up.reimport_dialog import ReimportDialog
+from nvlib.gui.pop_up.view_options_dialog import ViewOptionsDialog
+from nvlib.gui.widgets.nv_simpledialog import askinteger
 from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from nvlib.novx_globals import CHAPTERS_SUFFIX
 from nvlib.novx_globals import CHAPTER_PREFIX
@@ -50,18 +55,13 @@ from nvlib.novx_globals import STAGES_SUFFIX
 from nvlib.novx_globals import XREF_SUFFIX
 from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
+from nvlib.nv_globals import HOME_URL
 from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
-from nvlib.view.pop_up.export_options_dialog import ExportOptionsDialog
-from nvlib.view.pop_up.plugin_manager_dialog import PluginManagerDialog
-from nvlib.view.pop_up.reimport_dialog import ReimportDialog
-from nvlib.view.pop_up.view_options_dialog import ViewOptionsDialog
-from nvlib.view.widgets.nv_simpledialog import SimpleDialog
-from nvlib.view.widgets.nv_simpledialog import askinteger
-from nvlib.nv_globals import HOME_URL
 
 
 class Commands:
+    """Methods for callback functions."""
 
     _MAX_NR_NEW_SECTIONS = 20
     # maximum number of sections to add in bulk
@@ -508,14 +508,11 @@ class Commands:
                     return
 
             elif ask:
-                result = SimpleDialog(
-                    None,
+                result = self._ui.ask_delete_all_skip_cancel(
                     text=f"\n\n{_('Delete {}?').format(candidate)}\n\n",
-                    buttons=[_('Yes'), _('All'), _('No'), _('Cancel')],
                     default=0,
-                    cancel=3,
                     title=_('Delete multiple elements')
-                    ).go()
+                    )
                 if result == 3:
                     return
 
