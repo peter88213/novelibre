@@ -10,6 +10,7 @@ import sys
 from tkinter import filedialog
 import webbrowser
 
+from nvlib.controller.components.nv_file_splitter import NvFileSplitter
 from nvlib.gui.pop_up.export_options_dialog import ExportOptionsDialog
 from nvlib.gui.pop_up.plugin_manager_dialog import PluginManagerDialog
 from nvlib.gui.pop_up.reimport_dialog import ReimportDialog
@@ -999,6 +1000,9 @@ class Commands:
 
     def show_projectnotes_list(self, event=None):
         self.show_report(PROJECTNOTES_SUFFIX)
+
+    def split_file(self, event=None):
+        NvFileSplitter(self._mdl, self._ui, self).split_project()
 
     def toggle_lock(self, event=None):
         """Toggle the 'locked' status."""

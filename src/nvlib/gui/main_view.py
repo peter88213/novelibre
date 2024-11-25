@@ -373,6 +373,8 @@ class MainView(ViewBase, MainViewCtrl):
         self.chapterMenu.add_cascade(label=_('Set Type'), menu=self.tv.selectTypeMenu)
         self.chapterMenu.add_cascade(label=_('Change Level'), menu=self.tv.selectLevelMenu)
         self.chapterMenu.add_separator()
+        self.chapterMenu.add_command(label=_('Move selected chapters to new project'), command=self._ctrl.split_file)
+        self.chapterMenu.add_separator()
         self.chapterMenu.add_command(label=_('Export chapter descriptions for editing'), command=self._ctrl.export_chapter_desc)
 
         # Section

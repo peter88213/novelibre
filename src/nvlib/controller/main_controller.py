@@ -10,9 +10,9 @@ from tkinter import filedialog
 
 from mvclib.controller.controller_base import ControllerBase
 from nvlib.controller.commands import Commands
-from nvlib.controller.importer.nv_data_importer import NvDataImporter
-from nvlib.controller.importer.nv_doc_importer import NvDocImporter
-from nvlib.controller.link_processor import LinkProcessor
+from nvlib.controller.components.link_processor import LinkProcessor
+from nvlib.controller.components.nv_data_importer import NvDataImporter
+from nvlib.controller.components.nv_doc_importer import NvDocImporter
 from nvlib.controller.plugin.plugin_collection import PluginCollection
 from nvlib.gui.main_view import MainView
 from nvlib.model.exporter.nv_doc_exporter import NvDocExporter

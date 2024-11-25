@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.0.5\n"
-"POT-Creation-Date: 2024-11-25 18:59:13\n"
-"PO-Revision-Date: 2024-11-25 18:59:13\n"
+"Project-Id-Version: 5.0.6\n"
+"POT-Creation-Date: 2024-11-25 23:44:27\n"
+"PO-Revision-Date: 2024-11-25 23:44:27\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -208,6 +208,9 @@ msgstr "Kapitel gehören zur Plotlinie"
 msgid "Chapters from viewpoint"
 msgstr "Kapitel aus Perspektive"
 
+msgid "Chapters moved to new file"
+msgstr "Kapitel in neue Datei verschoben"
+
 msgid "Character"
 msgstr "Figur"
 
@@ -291,6 +294,9 @@ msgstr "Projektdaten fehlerhaft"
 
 msgid "Country code"
 msgstr "Ländercode"
+
+msgid "Create a new project and move the selected chapters there?"
+msgstr "Ein neues Projekt erstellen und die ausgewählten Kapitel dorthin verschieben?"
 
 msgid "Create a novelibre project file from {0}\nNew project: \"{1}\""
 msgstr "Erzeuge eine novelibre-Projektdatei aus {0}\nNeues Projekt: \"{1}\""
@@ -664,6 +670,9 @@ msgstr "Modul"
 msgid "Moon phase"
 msgstr "Mondphase"
 
+msgid "Move selected chapters to new project"
+msgstr "Ausgewählte Kapitel in ein neues Projekt verschieben"
+
 msgid "N"
 msgstr "N"
 
@@ -874,6 +883,9 @@ msgstr "Geben Sie bitte ein Bezugsdatum ein."
 msgid "Please enter either a section date or a day and a reference date."
 msgstr "Geben Sie bitte entweder ein Abschnittsdatum ein, oder einen Tag und ein Bezugsdatum."
 
+msgid "Please save now"
+msgstr "Bitte jetzt speichern"
+
 msgid "Please try again"
 msgstr "Bitte noch einmal versuchen"
 
@@ -915,6 +927,9 @@ msgstr "Projektnotiz"
 
 msgid "Project notes"
 msgstr "Projektnotizen"
+
+msgid "Project path unknown"
+msgstr "Projektpfad unbekannt"
 
 msgid "Project successfully restored from disk."
 msgstr "Zuletzt gespeicherte Fassung erfolgreich wiederhergestellt."

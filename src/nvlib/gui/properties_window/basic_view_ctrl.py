@@ -9,6 +9,7 @@ import os
 from tkinter import filedialog
 
 from mvclib.controller.sub_controller import SubController
+from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
 
@@ -66,7 +67,7 @@ class BasicViewCtrl(SubController):
         titleStr = self.indexCard.title.get()
         if titleStr:
             titleStr = titleStr.strip()
-        else:
+        elif self._elementId != CH_ROOT:
             titleStr = self._elementId
         self.element.title = titleStr
 
