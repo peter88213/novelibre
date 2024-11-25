@@ -473,21 +473,19 @@ class Commands:
             newSelection = self._ui.tv.tree.parent(elements[0])
         # node to be selected if the first selected element is deleted
         selectAfterDeleting = elements[0]
-        chapterInElements = False
+        deletedChildren = []
         ask = True
         for  elemId in elements:
-            if elemId.startswith(SECTION_PREFIX):
-                if chapterInElements and self._ui.tv.tree.parent(elemId) == self._mdl.trashBin:
-                    # the section has belonged to a chapter that is already deleted
-                    continue
+            if elemId in deletedChildren:
+                continue
 
+            if elemId.startswith(SECTION_PREFIX):
                 if self._mdl.novel.sections[elemId].scType < 2:
                     candidate = f'{_("Section")} "{self._mdl.novel.sections[elemId].title}"'
                 else:
                     candidate = f'{_("Stage")} "{self._mdl.novel.sections[elemId].title}"'
             elif elemId.startswith(CHAPTER_PREFIX):
                 candidate = f'{_("Chapter")} "{self._mdl.novel.chapters[elemId].title}"'
-                chapterInElements = True
             elif elemId.startswith(CHARACTER_PREFIX):
                 candidate = f'{_("Character")} "{self._mdl.novel.characters[elemId].title}"'
             elif elemId.startswith(LOCATION_PREFIX):
@@ -521,6 +519,8 @@ class Commands:
 
                 if result == 1:
                     ask = False
+            if elemId.startswith(CHAPTER_PREFIX) or elemId.startswith(PLOT_LINE_PREFIX):
+                deletedChildren.extend(self._ui.tv.tree.get_children(elemId))
             self._mdl.delete_element(elemId)
             if elemId == elements[0]:
                 selectAfterDeleting = newSelection

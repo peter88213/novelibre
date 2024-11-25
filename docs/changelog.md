@@ -8,12 +8,14 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
-### Version 5.0.3
+### Version 5.0.5
 
 - Importing and exporting plot lines with plot points. 
 - Make it easier to delete multiple elements.
+- Fix a bug where an unhandled exception is raised when trying to delete child elements of already deleted parent elements. 
 - Fix a regression from version 4.17.1 where the root element titles are invisible
   when creating a project without saving it immediately.
+- Change the menu title for exporting the final document.
 - Create multiple sections always in ascending order.
 - Refactor the code for better maintainability.
 
