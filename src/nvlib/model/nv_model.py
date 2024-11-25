@@ -435,7 +435,7 @@ class NvModel(Observable):
         self.prjFile.novel = self.novel
         self._initialize_tree(self.on_element_change)
 
-    def delete_element(self, elemId):
+    def delete_element(self, elemId, trash=True):
         """Delete an element and its children.
         
         Positional arguments:
@@ -450,13 +450,10 @@ class NvModel(Observable):
         - Delete project notes.
         """
 
-        def waste_sections(elemId):
+        def waste_sections(elemId, trash):
             """Move all sections under the element specified by elemId to the 'trash bin'."""
             if elemId.startswith(SECTION_PREFIX):
                 if self.novel.sections[elemId].scType < 2:
-                    # Move the section to the trash bin.
-                    self.tree.move(elemId, self.trashBin, 0)
-                    self.novel.sections[elemId].scType = 1
                     # Remove plot point and plot line references.
                     arcReferences = self.novel.sections[elemId].scPlotLines
                     tpReferences = self.novel.sections[elemId].scPlotPoints
@@ -468,6 +465,14 @@ class NvModel(Observable):
                         self.novel.plotLines[plId].sections = sections
                     for ppId in tpReferences:
                         self.novel.plotPoints[ppId].sectionAssoc = None
+                    if trash:
+                        # Move the section to the trash bin.
+                        self.tree.move(elemId, self.trashBin, 0)
+                        self.novel.sections[elemId].scType = 1
+                    else:
+                        # Delete the section.
+                        self.tree.delete(elemId)
+                        del self.novel.sections[elemId]
                 else:
                     # Delete the stage.
                     self.tree.delete(elemId)
@@ -475,7 +480,7 @@ class NvModel(Observable):
             else:
                 # Delete chapter and go one level down.
                 for childNode in self.tree.get_children(elemId):
-                    waste_sections(childNode)
+                    waste_sections(childNode, trash)
                 del self.novel.chapters[elemId]
 
         if elemId == self.trashBin:
@@ -543,7 +548,7 @@ class NvModel(Observable):
             del self.novel.projectNotes[elemId]
         else:
             # Part/chapter/section selected.
-            if self.trashBin is None:
+            if trash and self.trashBin is None:
                 # Create a "trash bin"; use the first free chapter ID.
                 self.trashBin = new_id(self.novel.chapters, prefix=CHAPTER_PREFIX)
                 self.novel.chapters[self.trashBin] = self.nvService.new_chapter(
@@ -563,13 +568,14 @@ class NvModel(Observable):
                     del self.novel.sections[elemId]
                 else:
                     # Move section to the "trash bin".
-                    waste_sections(elemId)
+                    waste_sections(elemId, trash)
             else:
                 # Delete part/chapter and move child sections to the "trash bin".
-                waste_sections(elemId)
+                waste_sections(elemId, trash)
                 self.tree.delete(elemId)
-            # Make sure the whole "trash bin" is unused.
-            self.set_type(1, [self.trashBin])
+            if trash:
+                # Make sure the whole "trash bin" is unused.
+                self.set_type(1, [self.trashBin])
 
     def get_counts(self):
         """Return a tuple with total numbers:

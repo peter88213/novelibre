@@ -793,15 +793,18 @@ class Commands:
 
     def open_project_folder(self, event=None):
         """Open the project folder with the OS file manager."""
-        if not self.save_project():
-            if not self._mdl:
-                return
+        if not self._mdl:
+            return 'break'
 
-            if not self._mdl.prjFile:
-                return
+        if not self._mdl.prjFile:
+            return 'break'
 
-            if self._mdl.prjFile.filePath is None:
-                return
+        if self._mdl.prjFile.filePath is None:
+            if not self._ui.ask_ok_cancel(_('Please save now'), title=_('Project path unknown')):
+                return 'break'
+
+            if not self.save_project():
+                return 'break'
 
         projectDir, __ = os.path.split(self._mdl.prjFile.filePath)
         try:
@@ -898,25 +901,26 @@ class Commands:
         else:
             startDir = '.'
         fileName = filedialog.asksaveasfilename(
-            filetypes=self._fileTypes,
-            defaultextension=self._fileTypes[0][1],
+            filetypes=self.fileTypes,
+            defaultextension=self.fileTypes[0][1],
             initialdir=startDir,
             )
-        if fileName:
-            if self._mdl.prjFile is not None:
-                self._ui.propertiesView.apply_changes()
-                try:
-                    self._mdl.save_project(fileName)
-                except Error as ex:
-                    self._ui.set_status(f'!{str(ex)}')
-                else:
-                    self.unlock()
-                    self._ui.show_path(f'{norm_path(self._mdl.prjFile.filePath)} ({_("last saved on")} {self._mdl.prjFile.fileDate})')
-                    self._ui.restore_status()
-                    prefs['last_open'] = self._mdl.prjFile.filePath
-                    return True
+        if not fileName:
+            return False
 
-        return False
+        self._ui.propertiesView.apply_changes()
+        try:
+            self._mdl.save_project(fileName)
+        except Error as ex:
+            self._ui.set_status(f'!{str(ex)}')
+            return False
+
+        else:
+            self.unlock()
+            self._ui.show_path(f'{norm_path(self._mdl.prjFile.filePath)} ({_("last saved on")} {self._mdl.prjFile.fileDate})')
+            self._ui.restore_status()
+            prefs['last_open'] = self._mdl.prjFile.filePath
+            return True
 
     def save_project(self, event=None):
         """Save the novelibre project to disk.

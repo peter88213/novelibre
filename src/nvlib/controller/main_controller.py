@@ -58,7 +58,7 @@ class MainController(ControllerBase, Commands):
         self.linkProcessor = LinkProcessor(self._mdl)
         # strategy for processing links
 
-        self._fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
+        self.fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
         self.importFiletypes = [(_('ODF Text document'), '.odt'), (_('ODF Spreadsheet document'), '.ods')]
 
         #--- Build the GUI.
@@ -268,7 +268,7 @@ class MainController(ControllerBase, Commands):
             initDir = './'
         if not fileName or not os.path.isfile(fileName):
             fileName = filedialog.askopenfilename(
-                filetypes=self._fileTypes,
+                filetypes=self.fileTypes,
                 defaultextension=NvWorkFile.EXTENSION,
                 initialdir=initDir
                 )

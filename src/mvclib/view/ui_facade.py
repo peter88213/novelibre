@@ -14,6 +14,19 @@ class UiFacade(Ui):
     def __init__(self, title):
         Ui.__init__(self, title)
 
+    def ask_ok_cancel(self, text, title=None):
+        """Query ok or cancel with a pop-up box.
+        
+        Positional arguments:
+            text -- question to be asked in the pop-up box. 
+            
+        Optional arguments:
+            title -- title to be displayed on the window frame.            
+        """
+        if title is None:
+            title = self.title
+        return messagebox.askokcancel(title, text)
+
     def ask_yes_no(self, text, title=None):
         """Query yes or no with a pop-up box.
         
