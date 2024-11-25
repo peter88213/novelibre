@@ -108,16 +108,20 @@ There are plugins installed.
 You may want to run the Plugin Manager for compatibility check.
 '''
 
-START_UP_CODE = f'''import {APPNAME}
-import tkinter as tk
+START_UP_CODE = f'''import logging
 from tkinter import messagebox
 import traceback
 
+import {APPNAME}
+import tkinter as tk
+
 def show_error(self, *args):
     err = traceback.format_exception(*args)
-    messagebox.showerror('Exception', err)
+    logger.error('{APPNAME} @release\\n' + ''.join(err))
+    messagebox.showerror('A critical error has occurred', 'Better close the application.\\nSee "error.log" in the installation directory.' )
 
-
+logger = logging.getLogger(__name__)
+logging.basicConfig(filename='error.log', level=logging.ERROR)
 tk.Tk.report_callback_exception = show_error
 {APPNAME}.main()
 '''
