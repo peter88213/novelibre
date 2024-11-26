@@ -21,6 +21,7 @@ class LinkProcessor:
     def __init__(self, model):
         self._mdl = model
         # holding the project path
+        # TODO: Make this a self-contained service with access to the UI and to the controller's launchers dict.
 
     def shorten_path(self, linkPath):
         """Return a shortened path string. 

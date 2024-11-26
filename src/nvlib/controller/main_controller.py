@@ -10,10 +10,11 @@ from tkinter import filedialog
 
 from mvclib.controller.controller_base import ControllerBase
 from nvlib.controller.commands import Commands
+from nvlib.controller.plugin.plugin_collection import PluginCollection
 from nvlib.controller.services.link_processor import LinkProcessor
 from nvlib.controller.services.nv_data_importer import NvDataImporter
 from nvlib.controller.services.nv_doc_importer import NvDocImporter
-from nvlib.controller.plugin.plugin_collection import PluginCollection
+from nvlib.controller.services.nv_file_splitter import NvFileSplitter
 from nvlib.gui.main_view import MainView
 from nvlib.model.exporter.nv_doc_exporter import NvDocExporter
 from nvlib.model.exporter.nv_html_reporter import NvHtmlReporter
@@ -52,18 +53,21 @@ class MainController(ControllerBase, Commands):
         self._mdl = NvModel()
         self._mdl.add_observer(self)
 
+        #--- Build the GUI.
+        self._ui = MainView(self._mdl, self, title)
+        self.register_client(self._ui)
+
+        #--- Initialize services.
+        self.fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
+        self.importFiletypes = [(_('ODF Text document'), '.odt'), (_('ODF Spreadsheet document'), '.ods')]
+
         self.launchers = {}
         # launchers for opening linked non-standard filetypes.
 
         self.linkProcessor = LinkProcessor(self._mdl)
-        # strategy for processing links
-
-        self.fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
-        self.importFiletypes = [(_('ODF Text document'), '.odt'), (_('ODF Spreadsheet document'), '.ods')]
-
-        #--- Build the GUI.
-        self._ui = MainView(self._mdl, self, title)
-        self.register_client(self._ui)
+        self.dataImporter = NvDataImporter(self._mdl, self._ui, self)
+        self.docImporter = NvDocImporter(self._mdl, self._ui, self)
+        self.fileSplitter = NvFileSplitter(self._mdl, self._ui, self)
 
         # Link the model to the view.
         # Strictly speaking, this breaks the MVC pattern, since the
@@ -156,8 +160,7 @@ class MainController(ControllerBase, Commands):
             if self._mdl.isModified:
                 if self._ui.ask_yes_no(_('Save changes?')):
                     self.save_project()
-        importer = NvDocImporter(self._mdl, self._ui, self)
-        importer.import_document(sourcePath)
+        self.docImporter.import_document(sourcePath)
 
     def import_elements(self, prefix):
         """Import elements from an XML data file.
@@ -169,7 +172,7 @@ class MainController(ControllerBase, Commands):
         fileTypes = [(_('XML data file'), '.xml')]
         filePath = filedialog.askopenfilename(filetypes=fileTypes)
         if filePath:
-            NvDataImporter(self._mdl, self._ui, self).open_dialog(filePath, prefix)
+            self.dataImporter.open_dialog(filePath, prefix)
 
     def lock(self, event=None):
         """Lock the project.
