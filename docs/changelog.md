@@ -8,7 +8,7 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
-### Version 5.0.6
+### Version 5.0.7
 
 - New feature: "Move selected chapters to new project"
 - Importing and exporting plot lines with plot points. 

@@ -7,6 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 from tkinter import filedialog
 
+from mvclib.controller.service_base import ServiceBase
 from nvlib.model.data.novel import Novel
 from nvlib.model.data.nv_tree import NvTree
 from nvlib.novx_globals import CHAPTER_PREFIX
@@ -20,12 +21,7 @@ from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
 
 
-class NvFileSplitter:
-
-    def __init__(self, model, view, controller):
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
+class NvFileSplitter(ServiceBase):
 
     def split_project(self):
         """Create a new project and move the selected chapters there."""

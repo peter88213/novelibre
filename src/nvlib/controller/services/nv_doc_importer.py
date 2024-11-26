@@ -6,6 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
 
+from mvclib.controller.service_base import ServiceBase
 from nvlib.model.converter.import_source_factory import ImportSourceFactory
 from nvlib.model.converter.import_target_factory import ImportTargetFactory
 from nvlib.model.converter.new_project_factory import NewProjectFactory
@@ -31,7 +32,7 @@ from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import prefs
 
 
-class NvDocImporter:
+class NvDocImporter(ServiceBase):
     """A converter for universal import.
 
     Support novelibre projects and most of the File subclasses 
@@ -57,9 +58,7 @@ class NvDocImporter:
 
     def __init__(self, model, view, controller):
         """Set up the Factory strategies."""
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
+        super().__init__(model, view, controller)
         self.importSourceFactory = ImportSourceFactory(self.IMPORT_SOURCE_CLASSES)
         self.newProjectFactory = NewProjectFactory(self.CREATE_SOURCE_CLASSES)
         self.importTargetFactory = ImportTargetFactory([NovxFile])

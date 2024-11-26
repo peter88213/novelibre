@@ -9,19 +9,15 @@ import os
 from pathlib import Path
 import subprocess
 
+from mvclib.controller.service_base import ServiceBase
 from nvlib.model.file.doc_open import open_document
 from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
 
 
-class LinkProcessor:
+class LinkProcessor(ServiceBase):
     """Strategy class for link processing."""
     ZIM_NOTE_EXTENSION = '.txt'
-
-    def __init__(self, model):
-        self._mdl = model
-        # holding the project path
-        # TODO: Make this a self-contained service with access to the UI and to the controller's launchers dict.
 
     def shorten_path(self, linkPath):
         """Return a shortened path string. 
@@ -56,7 +52,58 @@ class LinkProcessor:
             linkPath = os.path.join(projectDir, linkPath)
         return os.path.realpath(linkPath).replace('\\', '/')
 
-    def open_link(self, linkPath, launchers):
+    def open_link_by_index(self, element, linkIndex):
+        """Open a linked file.
+        
+        Positional arguments:
+            element: BasicElement or subclass.
+            linkIndex: int -- Index of the link to open.
+            
+        First try to open the link using its relative path.
+        If this fails, try to open it using the "full" path. 
+        On success, fix the link. 
+        Otherwise, show an error message. 
+        """
+        self._ui.restore_status()
+        relativePath = list(element.links)[linkIndex]
+        fullPath = element.links[relativePath]
+        try:
+            self.open_link(relativePath)
+        except:
+
+            # The relative link seems to be broken. Try the full path.
+            if fullPath is not None:
+                newPath = self.shorten_path(fullPath)
+            else:
+                newPath = ''
+            # fixing the link using the full path
+            try:
+                self.open_link(newPath)
+            except Exception as ex:
+
+                # The full path is also broken.
+                self._ui.show_error(
+                    str(ex),
+                    title=_('Cannot open link')
+                    )
+            else:
+                # Replace the broken link with the fixed one.
+                links = element.links
+                del links[relativePath]
+                links[newPath] = fullPath
+                element.links = links
+                self._ui.set_status(_('Broken link fixed'))
+        else:
+            # Relative path is o.k. -- now check the full path.
+            pathOk = self.expand_path(relativePath)
+            if fullPath != pathOk:
+                # Replace the broken full path.
+                links = element.links
+                links[relativePath] = pathOk
+                element.links = links
+                self._ui.set_status(_('Broken link fixed'))
+
+    def open_link(self, linkPath):
         """Open a link specified by linkPath. Return True on success.
         
         If linkPath is in a Zim wiki subdirectory, 
@@ -64,14 +111,13 @@ class LinkProcessor:
         
         Positional arguments:
             linkPath: str -- Link path as stored in novx.
-            launchers: dict -- key: extension, value: path to application.
         """
         linkPath = self.expand_path(linkPath)
         extension = None
         try:
             filePath, extension = os.path.splitext(linkPath)
             if extension == self.ZIM_NOTE_EXTENSION:
-                launcher = launchers['.zim']
+                launcher = self._ctrl.launchers['.zim']
                 if os.path.isfile(launcher):
                     pagePath = filePath.split('/')
                     zimPages = []
@@ -89,7 +135,7 @@ class LinkProcessor:
 
         except:
             pass
-        launcher = launchers.get(extension, '')
+        launcher = self._ctrl.launchers.get(extension, '')
         if os.path.isfile(launcher):
             subprocess.Popen([launcher, linkPath])
             return

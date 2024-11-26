@@ -4,6 +4,7 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from mvclib.controller.service_base import ServiceBase
 from nvlib.gui.widgets.pick_list import PickList
 from nvlib.model.data.id_generator import new_id
 from nvlib.model.novx.character_data_reader import CharacterDataReader
@@ -23,13 +24,8 @@ from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
 
 
-class NvDataImporter:
+class NvDataImporter(ServiceBase):
     """Elements importer with a pick list."""
-
-    def __init__(self, model, view, controller):
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
 
     def open_dialog(self, filePath, elemPrefix):
         """Open a pick list with the elements of the XML data file specified by filePath.

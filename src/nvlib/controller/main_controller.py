@@ -57,22 +57,23 @@ class MainController(ControllerBase, Commands):
         self._ui = MainView(self._mdl, self, title)
         self.register_client(self._ui)
 
+        # Link the model to the view.
+        # Strictly speaking, this breaks the MVC pattern, since the
+        # model depends on a data structure defined by the GUI framework.
+        self._mdl.tree = self._ui.tv.tree
+
         #--- Initialize services.
         self.fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
         self.importFiletypes = [(_('ODF Text document'), '.odt'), (_('ODF Spreadsheet document'), '.ods')]
 
         self.launchers = {}
         # launchers for opening linked non-standard filetypes.
+        # key: extension, value: path to application
 
-        self.linkProcessor = LinkProcessor(self._mdl)
+        self.linkProcessor = LinkProcessor(self._mdl, self._ui, self)
         self.dataImporter = NvDataImporter(self._mdl, self._ui, self)
         self.docImporter = NvDocImporter(self._mdl, self._ui, self)
         self.fileSplitter = NvFileSplitter(self._mdl, self._ui, self)
-
-        # Link the model to the view.
-        # Strictly speaking, this breaks the MVC pattern, since the
-        # model depends on a data structure defined by the GUI framework.
-        self._mdl.tree = self._ui.tv.tree
 
         #--- Load the plugins.
         self.plugins = PluginCollection(self._mdl, self._ui, self)
@@ -80,8 +81,8 @@ class MainController(ControllerBase, Commands):
 
         self.plugins.load_plugins(PLUGIN_PATH)
         self.register_client(self.plugins)
-        self.disable_menu()
 
+        self.disable_menu()
         self._ui.tv.reset_view()
 
     def check_lock(self):
