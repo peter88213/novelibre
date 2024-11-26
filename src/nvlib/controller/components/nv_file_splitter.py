@@ -90,11 +90,14 @@ class NvFileSplitter:
                     if not ppId in newNovel.plotPoints:
                         newNovel.plotPoints[ppId] = sourceNovel.plotPoints[ppId]
                         newNovel.tree.append(sourceNovel.plotPoints[ppId], ppId)
-            self._mdl.delete_element(chId, trash=False)
         newProject.novel = newNovel
         try:
             newProject.write()
         except Error as ex:
             self._ui.set_status(f'!{str(ex)}')
-        self._ui.set_status(f'{_("Chapters moved to new file")}: {norm_path(fileName)}')
-        self._ctrl.refresh_tree()
+        else:
+            for chId in elements:
+                if chId.startswith(CHAPTER_PREFIX):
+                    self._mdl.delete_element(chId, trash=False)
+            self._ctrl.refresh_tree()
+            self._ui.set_status(f'{_("Chapters moved to new file")}: {norm_path(fileName)}')
