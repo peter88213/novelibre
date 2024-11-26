@@ -1,4 +1,4 @@
-"""Provide a class with getters and factory methods for novxlib model objects.
+"""Provide a class with getters and factory methods for data model objects.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre

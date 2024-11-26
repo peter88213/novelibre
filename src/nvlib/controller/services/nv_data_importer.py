@@ -26,17 +26,18 @@ from nvlib.novx_globals import norm_path
 class NvDataImporter:
     """Elements importer with a pick list."""
 
-    def __init__(self, model, view, controller, filePath, elemPrefix):
-        """Open a pick list with the elements of the XML data file specified by filePath.
-        
-        Positional arguments:
-            view -- the caller.
-            filePath: str -- Path of the XML data file.
-            elemPrefix: str -- Prefix of the new element IDs.
-        """
+    def __init__(self, model, view, controller):
         self._mdl = model
         self._ui = view
         self._ctrl = controller
+
+    def open_dialog(self, filePath, elemPrefix):
+        """Open a pick list with the elements of the XML data file specified by filePath.
+        
+        Positional arguments:
+            filePath: str -- Path of the XML data file.
+            elemPrefix: str -- Prefix of the new element IDs.
+        """
         sources = {
             CHARACTER_PREFIX:CharacterDataReader,
             LOCATION_PREFIX:LocationDataReader,

@@ -23,7 +23,7 @@ from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import _
-from nvlib.nv_service import NvService
+from nvlib.controller.services.nv_service import NvService
 
 
 class NvModel(Observable):

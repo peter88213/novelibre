@@ -1,4 +1,4 @@
-"""Provide a class with getters and factory methods for novxlib objects.
+"""Provide a class with getters and factory methods for data model objects.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -7,7 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from nvlib.configuration.configuration import Configuration
 from nvlib.model.data.moonphase import get_moon_phase_string
 from nvlib.model.data.novel import Novel
-from nvlib.novx_service import NovxService
+from nvlib.controller.services.novx_service import NovxService
 from nvlib.model.nv_treeview import NvTreeview
 
 

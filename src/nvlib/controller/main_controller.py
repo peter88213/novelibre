@@ -10,9 +10,9 @@ from tkinter import filedialog
 
 from mvclib.controller.controller_base import ControllerBase
 from nvlib.controller.commands import Commands
-from nvlib.controller.components.link_processor import LinkProcessor
-from nvlib.controller.components.nv_data_importer import NvDataImporter
-from nvlib.controller.components.nv_doc_importer import NvDocImporter
+from nvlib.controller.services.link_processor import LinkProcessor
+from nvlib.controller.services.nv_data_importer import NvDataImporter
+from nvlib.controller.services.nv_doc_importer import NvDocImporter
 from nvlib.controller.plugin.plugin_collection import PluginCollection
 from nvlib.gui.main_view import MainView
 from nvlib.model.exporter.nv_doc_exporter import NvDocExporter
@@ -169,7 +169,7 @@ class MainController(ControllerBase, Commands):
         fileTypes = [(_('XML data file'), '.xml')]
         filePath = filedialog.askopenfilename(filetypes=fileTypes)
         if filePath:
-            NvDataImporter(self._mdl, self._ui, self, filePath, prefix)
+            NvDataImporter(self._mdl, self._ui, self).open_dialog(filePath, prefix)
 
     def lock(self, event=None):
         """Lock the project.

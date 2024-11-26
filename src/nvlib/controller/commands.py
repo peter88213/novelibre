@@ -10,7 +10,7 @@ import sys
 from tkinter import filedialog
 import webbrowser
 
-from nvlib.controller.components.nv_file_splitter import NvFileSplitter
+from nvlib.controller.services.nv_file_splitter import NvFileSplitter
 from nvlib.gui.pop_up.export_options_dialog import ExportOptionsDialog
 from nvlib.gui.pop_up.plugin_manager_dialog import PluginManagerDialog
 from nvlib.gui.pop_up.reimport_dialog import ReimportDialog
