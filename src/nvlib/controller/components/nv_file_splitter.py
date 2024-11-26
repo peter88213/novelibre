@@ -7,6 +7,8 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 from tkinter import filedialog
 
+from nvlib.model.data.novel import Novel
+from nvlib.model.data.nv_tree import NvTree
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
@@ -58,9 +60,37 @@ class NvFileSplitter:
         self._ui.tv.go_to_node(newSelection)
 
         self._ui.propertiesView.apply_changes()
-        newProject = self._mdl.nvService.new_novx_file(fileName)
-        newNovel = self._mdl.nvService.new_novel()
+
         sourceNovel = self._mdl.novel
+        newProject = self._mdl.nvService.new_novx_file(fileName)
+        newNovel = Novel(
+            links=sourceNovel.links,
+            authorName=sourceNovel.authorName,
+            languageCode=sourceNovel.languageCode,
+            countryCode=sourceNovel.countryCode,
+            renumberChapters=sourceNovel.renumberChapters,
+            renumberParts=sourceNovel.renumberParts,
+            renumberWithinParts=sourceNovel.renumberWithinParts,
+            romanChapterNumbers=sourceNovel.romanChapterNumbers,
+            romanPartNumbers=sourceNovel.romanPartNumbers,
+            saveWordCount=sourceNovel.saveWordCount,
+            workPhase=sourceNovel.workPhase,
+            chapterHeadingPrefix=sourceNovel.chapterHeadingPrefix,
+            chapterHeadingSuffix=sourceNovel.chapterHeadingSuffix,
+            partHeadingPrefix=sourceNovel.partHeadingPrefix,
+            partHeadingSuffix=sourceNovel.partHeadingSuffix,
+            customPlotProgress=sourceNovel.customPlotProgress,
+            customCharacterization=sourceNovel.customCharacterization,
+            customWorldBuilding=sourceNovel.customWorldBuilding,
+            customGoal=sourceNovel.customGoal,
+            customConflict=sourceNovel.customConflict,
+            customOutcome=sourceNovel.customOutcome,
+            customChrBio=sourceNovel.customChrBio,
+            customChrGoals=sourceNovel.customChrGoals,
+            referenceDate=sourceNovel.referenceDate,
+            tree=NvTree(),
+            )
+
         for chId in elements:
             if not chId.startswith(CHAPTER_PREFIX):
                 continue
@@ -101,3 +131,4 @@ class NvFileSplitter:
                     self._mdl.delete_element(chId, trash=False)
             self._ctrl.refresh_tree()
             self._ui.set_status(f'{_("Chapters moved to new file")}: {norm_path(fileName)}')
+
