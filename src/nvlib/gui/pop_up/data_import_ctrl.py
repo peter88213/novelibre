@@ -9,6 +9,6 @@ from mvclib.controller.sub_controller import SubController
 
 class DataImportCtrl(SubController):
 
-    def add_elements(self, selectedIds):
+    def import_selected_elements(self, selectedIds):
         """Callback function for the data import pick list."""
         self._ctrl.dataImporter.add_elements(selectedIds)

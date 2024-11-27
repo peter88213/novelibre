@@ -20,10 +20,14 @@ class DataImportDialog(DataImportCtrl):
     MIN_HEIGHT = 200
 
     def __init__(self, model, view, controller, sourceElements, prefix):
-        """Open a pick list with the elements of the XML data file specified by filePath.
+        """Open a pick list with source elements of type specified by prefix.
+        
+        The "Import selected elements" button is linked to the 
+        import_selected_elements() method.
         
         Positional arguments:
-            elemPrefix: str -- Prefix of the new element IDs.
+            sourceElements: dict (tag: element ID, value: element)
+            prefix: str -- Prefix of the new element IDs.
         """
         if not sourceElements:
             return
@@ -43,7 +47,7 @@ class DataImportDialog(DataImportCtrl):
             windowGeometry,
             sourceElements,
             _('Import selected elements'),
-            self.add_elements
+            self.import_selected_elements
             )
         pickList.minsize(self.MIN_WIDTH, self.MIN_HEIGHT)
 
