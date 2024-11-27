@@ -30,9 +30,9 @@ class ChapterViewCtrl(BasicViewCtrl):
 
         #--- 'Unused' checkbox.
         if self.isUnusedVar.get():
-            self._ctrl.set_type(1, [self._elementId])
+            self._ctrl.set_type_unused()
         else:
-            self._ctrl.set_type(0, [self._elementId])
+            self._ctrl.set_type_normal()
 
         #--- 'Do not auto-number...' checkbox.
         self.element.noNumber = self.noNumberVar.get()

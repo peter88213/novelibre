@@ -216,9 +216,12 @@ class SectionViewCtrl(BasicViewCtrl):
 
         #--- 'Unused' checkbox.
         if self.isUnusedVar.get():
-            self.element.scType = 1
+            self._ctrl.set_type_unused()
         else:
-            self.element.scType = 0
+            self._ctrl.set_type_normal()
+        if self.element.scType > 0:
+            self.isUnusedVar.set(True)
+            # adjustment for section in an unused chapter
 
         #--- 'Append to previous section' checkbox.
         self.element.appendToPrev = self.appendToPrevVar.get()

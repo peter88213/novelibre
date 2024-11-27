@@ -16,6 +16,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Fix a bug where an unhandled exception is raised when trying to delete child elements of already deleted parent elements. 
 - Fix a regression from version 4.17.1 where the root element titles are invisible
   when creating a project without saving it immediately.
+- Prevent setting a section in an unused chapter "normal" via the properties checkbox.
 - Change the menu title for exporting the final document.
 - Create multiple sections always in ascending order.
 - Refactor the code for better maintainability.

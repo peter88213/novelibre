@@ -14,16 +14,13 @@ from nvlib.gui.pop_up.export_options_dialog import ExportOptionsDialog
 from nvlib.gui.pop_up.plugin_manager_dialog import PluginManagerDialog
 from nvlib.gui.pop_up.reimport_dialog import ReimportDialog
 from nvlib.gui.pop_up.view_options_dialog import ViewOptionsDialog
-from nvlib.gui.widgets.nv_simpledialog import askinteger
 from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from nvlib.novx_globals import CHAPTERS_SUFFIX
-from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTERS_SUFFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CHARACTER_REPORT_SUFFIX
 from nvlib.novx_globals import CHARLIST_SUFFIX
 from nvlib.novx_globals import CH_ROOT
-from nvlib.novx_globals import CR_ROOT
 from nvlib.novx_globals import DATA_SUFFIX
 from nvlib.novx_globals import Error
 from nvlib.novx_globals import GRID_SUFFIX
@@ -31,8 +28,6 @@ from nvlib.novx_globals import ITEMLIST_SUFFIX
 from nvlib.novx_globals import ITEMS_SUFFIX
 from nvlib.novx_globals import ITEM_PREFIX
 from nvlib.novx_globals import ITEM_REPORT_SUFFIX
-from nvlib.novx_globals import IT_ROOT
-from nvlib.novx_globals import LC_ROOT
 from nvlib.novx_globals import LOCATIONS_SUFFIX
 from nvlib.novx_globals import LOCATION_PREFIX
 from nvlib.novx_globals import LOCATION_REPORT_SUFFIX
@@ -42,15 +37,10 @@ from nvlib.novx_globals import PARTS_SUFFIX
 from nvlib.novx_globals import PLOTLINES_SUFFIX
 from nvlib.novx_globals import PLOTLIST_SUFFIX
 from nvlib.novx_globals import PLOT_LINE_PREFIX
-from nvlib.novx_globals import PLOT_POINT_PREFIX
-from nvlib.novx_globals import PL_ROOT
-from nvlib.novx_globals import PN_ROOT
-from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import PROJECTNOTES_SUFFIX
 from nvlib.novx_globals import PROOF_SUFFIX
 from nvlib.novx_globals import SECTIONLIST_SUFFIX
 from nvlib.novx_globals import SECTIONS_SUFFIX
-from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import STAGES_SUFFIX
 from nvlib.novx_globals import XREF_SUFFIX
 from nvlib.novx_globals import _
@@ -63,11 +53,6 @@ from nvlib.nv_globals import prefs
 class Commands:
     """Methods for callback functions."""
 
-    _MAX_NR_NEW_SECTIONS = 20
-    # maximum number of sections to add in bulk
-    _INI_NR_NEW_SECTIONS = 1
-    # initial value when asking for the number of sections to add
-
     def add_new_chapter(self, **kwargs):
         """Create a chapter instance and add it to the novel.
              
@@ -79,18 +64,7 @@ class Commands:
             
         Return the chapter ID, if successful.
         """
-        if self.check_lock():
-            return
-
-        targetNode = kwargs.get('targetNode', None)
-        if targetNode is None:
-            try:
-                kwargs['targetNode'] = self._ui.selectedNode
-            except:
-                pass
-        newNode = self._mdl.add_new_chapter(**kwargs)
-        self.view_new_element(newNode)
-        return newNode
+        return self.elementManager.add_new_chapter(**kwargs)
 
     def add_new_character(self, **kwargs):
         """Create a character instance and add it to the novel.
@@ -102,101 +76,21 @@ class Commands:
             
         Return the element's ID, if successful.
         """
-        if self.check_lock():
-            return
-
-        targetNode = kwargs.get('targetNode', None)
-        if targetNode is None:
-            try:
-                kwargs['targetNode'] = self._ui.selectedNode
-            except:
-                pass
-        newNode = self._mdl.add_new_character(**kwargs)
-        self.view_new_element(newNode)
-        return newNode
+        return self.elementManager.add_new_character(**kwargs)
 
     def add_new_child(self, event=None):
         """Add a child element to an element.
         
         What kind of element is added, depends on the selection's prefix.
         """
-        if self._mdl.prjFile is None:
-            return
-
-        if self.check_lock():
-            return
-
-        try:
-            selection = self._ui.selectedNode
-        except:
-            return
-
-        if selection == CH_ROOT:
-            return self.add_new_chapter(targetNode=selection)
-
-        if selection.startswith(CHAPTER_PREFIX):
-            return self.add_new_section(targetNode=selection)
-
-        if selection.startswith(PLOT_LINE_PREFIX):
-            return self.add_new_plot_point(targetNode=selection)
-
-        if selection == CR_ROOT:
-            return self.add_new_character(targetNode=selection)
-
-        if selection == LC_ROOT:
-            return self.add_new_location(targetNode=selection)
-
-        if selection == IT_ROOT:
-            return self.add_new_item(targetNode=selection)
-
-        if selection == PL_ROOT:
-            return self.add_new_plot_line(targetNode=selection)
-
-        if selection == PN_ROOT:
-            return self.add_new_project_note(targetNode=selection)
+        return self.elementManager.add_new_child()
 
     def add_new_element(self, event=None):
         """Create an element instance and add it to the novel.
         
         What kind of element is added, depends on the selection's prefix.
         """
-        if self._mdl.prjFile is None:
-            return
-
-        if self.check_lock():
-            return
-
-        try:
-            selection = self._ui.selectedNode
-        except:
-            return
-
-        if selection.startswith(SECTION_PREFIX):
-            if self._mdl.novel.sections[selection].scType < 2:
-                return self.add_new_section(targetNode=selection)
-
-            return self.add_new_stage(targetNode=selection)
-
-        if CHAPTER_PREFIX in selection:
-            return self.add_new_chapter(targetNode=selection)
-
-        if CHARACTER_PREFIX in selection:
-            return self.add_new_character(targetNode=selection)
-
-        if LOCATION_PREFIX in selection:
-            return self.add_new_location(targetNode=selection)
-
-        if ITEM_PREFIX in selection:
-            return self.add_new_item(targetNode=selection)
-
-        if PLOT_LINE_PREFIX in selection:
-            return self.add_new_plot_line(targetNode=selection)
-
-        if PRJ_NOTE_PREFIX in selection:
-            return self.add_new_project_note(targetNode=selection)
-
-        if selection.startswith(PLOT_POINT_PREFIX):
-            return self.add_new_plot_point(targetNode=selection)
+        return self.elementManager.add_new_element()
 
     def add_new_item(self, **kwargs):
         """Create an item instance and add it to the novel.
@@ -207,18 +101,7 @@ class Commands:
             
         Return the element's ID, if successful.
         """
-        if self.check_lock():
-            return
-
-        targetNode = kwargs.get('targetNode', None)
-        if targetNode is None:
-            try:
-                kwargs['targetNode'] = self._ui.selectedNode
-            except:
-                pass
-        newNode = self._mdl.add_new_item(**kwargs)
-        self.view_new_element(newNode)
-        return newNode
+        return self.elementManager.add_new_item(**kwargs)
 
     def add_new_location(self, **kwargs):
         """Create a location instance and add it to the novel.
@@ -229,55 +112,18 @@ class Commands:
             
         Return the element's ID, if successful.
         """
-        if self.check_lock():
-            return
-
-        targetNode = kwargs.get('targetNode', None)
-        if targetNode is None:
-            try:
-                kwargs['targetNode'] = self._ui.selectedNode
-            except:
-                pass
-        newNode = self._mdl.add_new_location(**kwargs)
-        self.view_new_element(newNode)
-        return newNode
+        return self.elementManager.add_new_location(**kwargs)
 
     def add_multiple_new_sections(self):
         """Ask how many sections are to be added, then call the controller."""
-        n = askinteger(
-            title=_('New'),
-            prompt=_('How many sections to add?'),
-            initialvalue=self._INI_NR_NEW_SECTIONS,
-            minvalue=0,
-            maxvalue=self._MAX_NR_NEW_SECTIONS
-            )
-        if n is not None:
-            newNodes = []
-            for __ in range(n):
-                newNodes.append(self.add_new_section())
-            return newNodes
+        return self.elementManager.add_multiple_new_sections()
 
     def add_new_parent(self, event=None):
         """Add a parent element to an element.
         
         What kind of element is added, depends on the selection's prefix.
         """
-        if self._mdl.prjFile is None:
-            return
-
-        if self.check_lock():
-            return
-
-        try:
-            selection = self._ui.selectedNode
-        except:
-            return
-
-        if selection.startswith(SECTION_PREFIX):
-            return self.add_new_chapter(targetNode=selection)
-
-        if selection.startswith(PLOT_POINT_PREFIX):
-            return self.add_new_plot_line(targetNode=selection)
+        return self.elementManager.add_new_parent()
 
     def add_new_part(self, **kwargs):
         """Create a part instance and add it to the novel.
@@ -290,18 +136,7 @@ class Commands:
            
         Return the chapter ID, if successful.
         """
-        if self.check_lock():
-            return
-
-        targetNode = kwargs.get('targetNode', None)
-        if targetNode is None:
-            try:
-                kwargs['targetNode'] = self._ui.selectedNode
-            except:
-                pass
-        newNode = self._mdl.add_new_part(**kwargs)
-        self.view_new_element(newNode)
-        return newNode
+        return self.elementManager.add_new_part(**kwargs)
 
     def add_new_plot_line(self, **kwargs):
         """Create a plot line instance and add it to the novel.
@@ -312,18 +147,7 @@ class Commands:
             
         Return the plot line ID, if successful.
         """
-        if self.check_lock():
-            return
-
-        targetNode = kwargs.get('targetNode', None)
-        if targetNode is None:
-            try:
-                kwargs['targetNode'] = self._ui.selectedNode
-            except:
-                pass
-        newNode = self._mdl.add_new_plot_line(**kwargs)
-        self.view_new_element(newNode)
-        return newNode
+        return self.elementManager.add_new_plot_line(**kwargs)
 
     def add_new_plot_point(self, **kwargs):
         """Create a plot point instance and add it to the novel.
@@ -334,18 +158,7 @@ class Commands:
             
         Return the plot point ID, if successful.
         """
-        if self.check_lock():
-            return
-
-        targetNode = kwargs.get('targetNode', None)
-        if targetNode is None:
-            try:
-                kwargs['targetNode'] = self._ui.selectedNode
-            except:
-                pass
-        newNode = self._mdl.add_new_plot_point(**kwargs)
-        self.view_new_element(newNode)
-        return newNode
+        return self.elementManager.add_new_plot_point(**kwargs)
 
     def add_new_project_note(self, **kwargs):
         """Create a Project note instance and add it to the novel.
@@ -356,15 +169,7 @@ class Commands:
             
         Return the element's ID, if successful.
         """
-        targetNode = kwargs.get('targetNode', None)
-        if targetNode is None:
-            try:
-                kwargs['targetNode'] = self._ui.selectedNode
-            except:
-                pass
-        newNode = self._mdl.add_new_project_note(**kwargs)
-        self.view_new_element(newNode)
-        return newNode
+        return self.elementManager.add_new_project_note(**kwargs)
 
     def add_new_section(self, **kwargs):
         """Create a section instance and add it to the novel.
@@ -383,18 +188,7 @@ class Commands:
         
         Return the section ID, if successful.
         """
-        if self.check_lock():
-            return
-
-        targetNode = kwargs.get('targetNode', None)
-        if targetNode is None:
-            try:
-                kwargs['targetNode'] = self._ui.selectedNode
-            except:
-                pass
-        newNode = self._mdl.add_new_section(**kwargs)
-        self.view_new_element(newNode)
-        return newNode
+        return self.elementManager.add_new_section(**kwargs)
 
     def add_new_stage(self, **kwargs):
         """Create a stage instance and add it to the novel.
@@ -407,18 +201,7 @@ class Commands:
             
         Return the section ID, if successful.
         """
-        if self.check_lock():
-            return
-
-        targetNode = kwargs.get('targetNode', None)
-        if targetNode is None:
-            try:
-                kwargs['targetNode'] = self._ui.selectedNode
-            except:
-                pass
-        newNode = self._mdl.add_new_stage(**kwargs)
-        self.view_new_element(newNode)
-        return newNode
+        return self.elementManager.add_new_stage(**kwargs)
 
     def close_project(self, event=None, doNotSave=False):
         return self.on_close(doNotSave)
@@ -458,73 +241,7 @@ class Commands:
         Optional arguments:
             elements: list of IDs of the elements to delete.        
         """
-        if self.check_lock():
-            return
-
-        if elements is None:
-            try:
-                elements = self._ui.selectedNodes
-            except:
-                return
-
-        if self._ui.tv.tree.prev(elements[0]):
-            newSelection = self._ui.tv.tree.prev(elements[0])
-        else:
-            newSelection = self._ui.tv.tree.parent(elements[0])
-        # node to be selected if the first selected element is deleted
-        selectAfterDeleting = elements[0]
-        deletedChildren = []
-        ask = True
-        for  elemId in elements:
-            if elemId in deletedChildren:
-                continue
-
-            if elemId.startswith(SECTION_PREFIX):
-                if self._mdl.novel.sections[elemId].scType < 2:
-                    candidate = f'{_("Section")} "{self._mdl.novel.sections[elemId].title}"'
-                else:
-                    candidate = f'{_("Stage")} "{self._mdl.novel.sections[elemId].title}"'
-            elif elemId.startswith(CHAPTER_PREFIX):
-                candidate = f'{_("Chapter")} "{self._mdl.novel.chapters[elemId].title}"'
-            elif elemId.startswith(CHARACTER_PREFIX):
-                candidate = f'{_("Character")} "{self._mdl.novel.characters[elemId].title}"'
-            elif elemId.startswith(LOCATION_PREFIX):
-                candidate = f'{_("Location")} "{self._mdl.novel.locations[elemId].title}"'
-            elif elemId.startswith(ITEM_PREFIX):
-                candidate = f'{_("Item")} "{self._mdl.novel.items[elemId].title}"'
-            elif elemId.startswith(PLOT_LINE_PREFIX):
-                candidate = f'{_("Plot line")} "{self._mdl.novel.plotLines[elemId].title}"'
-            elif elemId.startswith(PLOT_POINT_PREFIX):
-                candidate = f'{_("Plot point")} "{self._mdl.novel.plotPoints[elemId].title}"'
-            elif elemId.startswith(PRJ_NOTE_PREFIX):
-                candidate = f'{_("Project note")} "{self._mdl.novel.projectNotes[elemId].title}"'
-            else:
-                return
-
-            if len(elements) == 1:
-                if not self._ui.ask_yes_no(_('Delete {}?').format(candidate)):
-                    return
-
-            elif ask:
-                result = self._ui.ask_delete_all_skip_cancel(
-                    text=f"\n\n{_('Delete {}?').format(candidate)}\n\n",
-                    default=0,
-                    title=_('Delete multiple elements')
-                    )
-                if result == 3:
-                    return
-
-                if result == 2:
-                    continue
-
-                if result == 1:
-                    ask = False
-            if elemId.startswith(CHAPTER_PREFIX) or elemId.startswith(PLOT_LINE_PREFIX):
-                deletedChildren.extend(self._ui.tv.tree.get_children(elemId))
-            self._mdl.delete_element(elemId)
-            if elemId == elements[0]:
-                selectAfterDeleting = newSelection
-        self._ui.tv.go_to_node(selectAfterDeleting)
+        self.elementManager.delete_elements(elements)
 
     def discard_manuscript(self):
         """Rename the current editable manuscript. 
@@ -622,31 +339,7 @@ class Commands:
             
         If not both arguments are given, determine them from the tree selection.
         """
-        if self.check_lock():
-            return
-
-        if scId0 is None or scId1 is None:
-            try:
-                scId1 = self._ui.selectedNode
-            except:
-                return
-
-            if not scId1.startswith(SECTION_PREFIX):
-                return
-
-            scId0 = self._ui.tv.prev_node(scId1)
-            if not scId0:
-                self._ui.show_error(_('There is no previous section'), title=_('Cannot join sections'))
-                return
-
-        if self._ui.ask_yes_no(f'{_("Join with previous")}?'):
-            try:
-                self._mdl.join_sections(scId0, scId1)
-            except Error as ex:
-                self._ui.show_error(str(ex), title=_('Cannot join sections'))
-                return
-
-            self.view_new_element(scId0)
+        self.elementManager.join_sections(scId0, scId1)
 
     def move_node(self, node, targetNode):
         """Move a node to another position.
@@ -655,12 +348,7 @@ class Commands:
             node: str - ID of the node to move.
             targetNode: str -- ID of the new parent/predecessor of the node.
         """
-        if not self.isLocked:
-            if (node.startswith(SECTION_PREFIX) and targetNode.startswith(CHAPTER_PREFIX)
-                ) or (node.startswith(PLOT_POINT_PREFIX) and targetNode.startswith(PLOT_LINE_PREFIX)):
-                self._ui.tv.open_children(targetNode)
-            self._ui.tv.skipUpdate = True
-            self._mdl.move_node(node, targetNode)
+        self.elementManager.move_node(node, targetNode)
 
     def open_export_options(self, event=None):
         """Open a toplevel window to edit the export options."""
@@ -911,37 +599,37 @@ class Commands:
         return True
 
     def set_chr_status_major(self, event=None):
-        self.set_character_status(True)
+        self.elementManager.set_character_status(True)
 
     def set_chr_status_minor(self, event=None):
-        self.set_character_status(False)
+        self.elementManager.set_character_status(False)
 
     def set_level_1(self, event=None):
-        self.set_level(1)
+        self.elementManager.set_level(1)
 
     def set_level_2(self, event=None):
-        self.set_level(2)
+        self.elementManager.set_level(2)
 
     def set_scn_status_outline(self, event=None):
-        self.set_completion_status(1)
+        self.elementManager.set_completion_status(1)
 
     def set_scn_status_draft(self, event=None):
-        self.set_completion_status(2)
+        self.elementManager.set_completion_status(2)
 
     def set_scn_status_1st_edit(self, event=None):
-        self.set_completion_status(3)
+        self.elementManager.set_completion_status(3)
 
     def set_scn_status_2nd_edit(self, event=None):
-        self.set_completion_status(4)
+        self.elementManager.set_completion_status(4)
 
     def set_scn_status_done(self, event=None):
-        self.set_completion_status(5)
+        self.elementManager.set_completion_status(5)
 
     def set_type_normal(self, event=None):
-        self.set_type(0)
+        self.elementManager.set_type(0)
 
     def set_type_unused(self, event=None):
-        self.set_type(1)
+        self.elementManager.set_type(1)
 
     def show_character_list(self, event=None):
         self.show_report(CHARACTER_REPORT_SUFFIX)
