@@ -8,15 +8,17 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from abc import ABC
 
+from nvlib.model.odf.odf_reader import OdfReader
+from nvlib.model.odt.odt_parser import OdtParser
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import Error
+from nvlib.novx_globals import ITEM_PREFIX
+from nvlib.novx_globals import LOCATION_PREFIX
 from nvlib.novx_globals import PLOT_LINE_PREFIX
 from nvlib.novx_globals import PLOT_POINT_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
-from nvlib.model.odf.odf_reader import OdfReader
-from nvlib.model.odt.odt_parser import OdtParser
 
 
 class OdtReader(OdfReader, ABC):
@@ -94,7 +96,16 @@ class OdtReader(OdfReader, ABC):
 
                 if attrs[0][1].startswith(PLOT_POINT_PREFIX):
                     self._ppId = attrs[0][1]
-            return
+                    return
+
+                if attrs[0][1].startswith(LOCATION_PREFIX):
+                    self._lcId = attrs[0][1]
+                    return
+
+                if attrs[0][1].startswith(ITEM_PREFIX):
+                    self._itId = attrs[0][1]
+
+                return
 
         if tag == 's':
             self._lines.append(' ')
