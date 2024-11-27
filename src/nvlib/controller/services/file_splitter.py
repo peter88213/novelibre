@@ -42,8 +42,8 @@ class FileSplitter(ServiceBase):
         else:
             startDir = '.'
         fileName = filedialog.asksaveasfilename(
-            filetypes=self._ctrl.fileTypes,
-            defaultextension=self._ctrl.fileTypes[0][1],
+            filetypes=self._ctrl.fileManager.fileTypes,
+            defaultextension=self._ctrl.fileManager.fileTypes[0][1],
             initialdir=startDir,
             )
         if not fileName:

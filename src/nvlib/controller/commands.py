@@ -399,12 +399,11 @@ class Commands:
         return 'break'
 
     def refresh_tree(self, event=None):
-        """Update all registered views."""
+        """Update the project structure."""
         self._ui.propertiesView.apply_changes()
         self._mdl.renumber_chapters()
         self._mdl.prjFile.adjust_section_types()
         self._mdl.novel.update_plot_lines()
-        self._ui.refresh()
         return 'break'
 
     def reload_project(self, event=None):
