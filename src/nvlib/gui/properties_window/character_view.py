@@ -14,6 +14,7 @@ from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
 from nvlib.gui.properties_window.world_element_view import WorldElementView
 from nvlib.gui.properties_window.character_view_ctrl import CharacterViewCtrl
+import tkinter as tk
 
 
 class CharacterView(WorldElementView, CharacterViewCtrl):
@@ -46,6 +47,19 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
             )
         self._fullNameEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._fullNameEntry)
+
+        #--- Character status checkbox.
+        self.isMajorVar = tk.BooleanVar()
+        self._isMajorCheckbox = ttk.Checkbutton(
+            self._elementInfoWindow,
+            text=_('Major Character'),
+            variable=self.isMajorVar,
+            onvalue=True,
+            offvalue=False,
+            command=self.apply_changes,
+            )
+        self._isMajorCheckbox.pack(anchor='w')
+        inputWidgets.append(self._isMajorCheckbox)
 
         ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
 

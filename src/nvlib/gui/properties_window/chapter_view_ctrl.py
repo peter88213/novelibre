@@ -58,8 +58,5 @@ class ChapterViewCtrl(BasicViewCtrl):
         else:
             labelText = _('Do not auto-number this chapter')
         self.noNumberCheckbox.configure(text=labelText)
-        if self.element.noNumber:
-            self.noNumberVar.set(True)
-        else:
-            self.noNumberVar.set(False)
+        self.noNumberVar.set(self.element.noNumber)
 

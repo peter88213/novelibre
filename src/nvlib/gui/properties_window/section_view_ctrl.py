@@ -697,10 +697,7 @@ class SectionViewCtrl(BasicViewCtrl):
             self.isUnusedVar.set(False)
 
         #--- 'Append to previous section' checkbox.
-        if self.element.appendToPrev:
-            self.appendToPrevVar.set(True)
-        else:
-            self.appendToPrevVar.set(False)
+        self.appendToPrevVar.set(self.element.appendToPrev)
 
         # Customized Goal/Conflict/Outcome configuration.
         if self._mdl.novel.customPlotProgress:

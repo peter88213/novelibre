@@ -10,6 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### Version 5.0.7
 
+- Add a "Main character" checkbox to the character properties view. 
 - New feature: "Move selected chapters to new project"
 - Importing and exporting plot lines with plot points. 
 - Make it easier to delete multiple elements.

@@ -26,6 +26,9 @@ class CharacterViewCtrl(WorldElementViewCtrl):
         # 'Full name' entry.
         self.element.fullName = self.fullNameVar.get()
 
+        #--- Character status checkbox.
+        self.element.isMajor = self.isMajorVar.get()
+
         # 'Bio' frame.
         if self.bioEntry.hasChanged:
             self.element.bio = self.bioEntry.get_text()
@@ -74,6 +77,9 @@ class CharacterViewCtrl(WorldElementViewCtrl):
 
         # 'Full name' entry.
         self.fullNameVar.set(self.element.fullName)
+
+        #--- Character status checkbox.
+        self.isMajorVar.set(self.element.isMajor)
 
         #--- 'Bio' entry
         if self._mdl.novel.customChrBio:
