@@ -199,7 +199,12 @@ class Commands:
         return self.elementManager.add_new_stage(**kwargs)
 
     def close_project(self, event=None, doNotSave=False):
-        return self.on_close(doNotSave)
+        """Close the current project.
+        
+        Optional arguments:
+            doNotSave: Boolean -- If True, close the current project without saving.
+        """
+        return self.on_close(doNotSave=doNotSave)
 
     def copy_css(self, event=None):
         """Copy the provided css style sheet into the project directory."""

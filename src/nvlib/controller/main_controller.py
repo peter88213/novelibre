@@ -116,6 +116,9 @@ class MainController(ControllerBase, Commands):
 
     def on_close(self, doNotSave=False):
         """Close the current project.
+
+        Optional arguments:
+            doNotSave: Boolean -- If True, close the current project without saving.
         
         - Save changes
         - clear all views

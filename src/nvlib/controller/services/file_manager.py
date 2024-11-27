@@ -147,6 +147,7 @@ class FileManager(ServiceBase):
         
         Optional arguments:
             filePath: str -- The new project's file name.
+            doNotSave: Boolean -- If True, close the current project without saving.
         
         If no file name is given, a file picker is opened.
         Display project title, description and status.
@@ -170,7 +171,6 @@ class FileManager(ServiceBase):
 
         self._ui.show_path(f'{norm_path(self._mdl.prjFile.filePath)}')
         self._ctrl.enable_menu()
-
         self._ctrl.refresh_tree()
         self._ui.show_path(_('{0} (last saved on {1})').format(norm_path(self._mdl.prjFile.filePath), self._mdl.prjFile.fileDate))
         self._ctrl.update_status()
@@ -280,9 +280,6 @@ class FileManager(ServiceBase):
         Positional arguments:
             fileName: str -- project file path.
             
-        Optional arguments:
-            fileTypes -- list of tuples for file selection (display text, extension).
-
         Priority:
         1. use file name argument
         2. open file select dialog
