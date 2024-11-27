@@ -25,6 +25,7 @@ from nvlib.novx_globals import Error
 from nvlib.novx_globals import Notification
 from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
+from nvlib.gui.pop_up.data_import_dialog import DataImportDialog
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 
@@ -172,8 +173,20 @@ class MainController(ControllerBase, Commands):
         self._ui.restore_status()
         fileTypes = [(_('XML data file'), '.xml')]
         filePath = filedialog.askopenfilename(filetypes=fileTypes)
-        if filePath:
-            self.dataImporter.open_dialog(filePath, prefix)
+        if not filePath:
+            return
+
+        try:
+            self.dataImporter.read_source(filePath, prefix)
+        except Exception as ex:
+            self._ui.set_status(f'!{str(ex)}')
+            return
+
+        DataImportDialog(
+            self._mdl, self._ui, self,
+            self.dataImporter.sourceElements,
+            prefix,
+            )
 
     def lock(self, event=None):
         """Lock the project.

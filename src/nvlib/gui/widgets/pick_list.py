@@ -21,10 +21,6 @@ class PickList(tk.Toplevel):
             sourceElements: dict -- Key=ID, value=BasicElement reference.
             pickButtonLabel: str -- Text to be displayed on the "Pick element" button.
             command -- External callback function on picking elements.
-            
-        public instance variables:
-            targetElements: list of picked IDs.
-       
         """
         super().__init__()
         self._command = command
@@ -37,11 +33,11 @@ class PickList(tk.Toplevel):
         self.pickList.configure(yscrollcommand=scrollY.set)
         scrollY.pack(side='right', fill='y')
         self.pickList.pack(fill='both', expand=True)
-        ttk.Button(self, text=pickButtonLabel, command=self._pick_element).pack()
+        ttk.Button(self, text=pickButtonLabel, command=self._pick_elements).pack()
         for elemId in sourceElements:
             self.pickList.insert('', 'end', elemId, text=sourceElements[elemId].title)
 
-    def _pick_element(self):
+    def _pick_elements(self):
         """Internal callback function on picking elements."""
         selection = self.pickList.selection()
         self.destroy()
