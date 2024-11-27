@@ -319,16 +319,16 @@ class Commands:
         self.export_document(DATA_SUFFIX, lock=False, show=False)
 
     def import_character_data(self, event=None):
-        self.import_elements(CHARACTER_PREFIX)
+        self.elementManager.import_elements(CHARACTER_PREFIX)
 
     def import_item_data(self, event=None):
-        self.import_elements(ITEM_PREFIX)
+        self.elementManager.import_elements(ITEM_PREFIX)
 
     def import_location_data(self, event=None):
-        self.import_elements(LOCATION_PREFIX)
+        self.elementManager.import_elements(LOCATION_PREFIX)
 
     def import_plot_lines(self, event=None):
-        self.import_elements(PLOT_LINE_PREFIX)
+        self.elementManager.import_elements(PLOT_LINE_PREFIX)
 
     def join_sections(self, event=None, scId0=None, scId1=None):
         """Join section 0 with section 1.

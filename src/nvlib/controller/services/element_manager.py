@@ -4,6 +4,10 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from tkinter import filedialog
+
+from mvclib.controller.service_base import ServiceBase
+from nvlib.gui.pop_up.data_import_dialog import DataImportDialog
 from nvlib.gui.widgets.nv_simpledialog import askinteger
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
@@ -21,7 +25,6 @@ from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import _
-from mvclib.controller.service_base import ServiceBase
 
 
 class ElementManager(ServiceBase):
@@ -456,6 +459,31 @@ class ElementManager(ServiceBase):
             if elemId == elements[0]:
                 selectAfterDeleting = newSelection
         self._ui.tv.go_to_node(selectAfterDeleting)
+
+    def import_elements(self, prefix):
+        """Import elements from an XML data file.
+        
+        Positional arguments:
+            prefix: str -- Prefix specifying the element type to be imported.
+        """
+        self._ui.restore_status()
+        filePath = filedialog.askopenfilename(
+            filetypes=[(_('XML data file'), '.xml')]
+            )
+        if not filePath:
+            return
+
+        try:
+            self._ctrl.dataImporter.read_source(filePath, prefix)
+        except Exception as ex:
+            self._ui.set_status(f'!{str(ex)}')
+            return
+
+        DataImportDialog(
+            self._mdl, self._ui, self._ctrl,
+            self._ctrl.dataImporter.sourceElements,
+            prefix,
+            )
 
     def join_sections(self, scId0=None, scId1=None):
         """Join section 0 with section 1.

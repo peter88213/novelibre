@@ -17,7 +17,6 @@ from nvlib.controller.services.element_manager import ElementManager
 from nvlib.controller.services.file_splitter import FileSplitter
 from nvlib.controller.services.link_processor import LinkProcessor
 from nvlib.gui.main_view import MainView
-from nvlib.gui.pop_up.data_import_dialog import DataImportDialog
 from nvlib.model.exporter.nv_doc_exporter import NvDocExporter
 from nvlib.model.exporter.nv_html_reporter import NvHtmlReporter
 from nvlib.model.nv_model import NvModel
@@ -166,30 +165,6 @@ class MainController(ControllerBase, Commands):
                 if self._ui.ask_yes_no(_('Save changes?')):
                     self.save_project()
         self.docImporter.import_document(sourcePath)
-
-    def import_elements(self, prefix):
-        """Import elements from an XML data file.
-        
-        Positional arguments:
-            prefix: str -- Prefix specifying the element type to be imported.
-        """
-        self._ui.restore_status()
-        fileTypes = [(_('XML data file'), '.xml')]
-        filePath = filedialog.askopenfilename(filetypes=fileTypes)
-        if not filePath:
-            return
-
-        try:
-            self.dataImporter.read_source(filePath, prefix)
-        except Exception as ex:
-            self._ui.set_status(f'!{str(ex)}')
-            return
-
-        DataImportDialog(
-            self._mdl, self._ui, self,
-            self.dataImporter.sourceElements,
-            prefix,
-            )
 
     def lock(self, event=None):
         """Lock the project.
