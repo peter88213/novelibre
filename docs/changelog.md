@@ -8,13 +8,15 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
-### Version 5.0.8
+### Version 5.0.9
 
 - Add a "Main character" checkbox to the character properties view. 
 - New feature: "Move selected chapters to new project"
 - Importing and exporting plot lines with plot points. 
 - Make it easier to delete multiple elements.
-- Fix a bug where an unhandled exception is raised when trying to delete child elements of already deleted parent elements. 
+- Fix a bug where the project is not updated from location and item descriptions.
+- Fix a bug where an unhandled exception is raised when trying to delete child elements 
+  of already deleted parent elements. 
 - Fix a regression from version 4.17.1 where the root element titles are invisible
   when creating a project without saving it immediately.
 - Prevent setting a section in an unused chapter "normal" via the properties checkbox.

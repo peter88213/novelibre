@@ -26,6 +26,10 @@ class FileManager(ServiceBase):
     def __init__(self, model, view, controller):
         super().__init__(model, view, controller)
         self.fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
+        self.importFiletypes = [
+            (_('ODF Text document'), '.odt'),
+            (_('ODF Spreadsheet document'), '.ods')
+        ]
         self.exporter = NvDocExporter(self._ui)
         self.reporter = NvHtmlReporter()
 

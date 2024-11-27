@@ -54,18 +54,17 @@ class MainController(ControllerBase, Commands):
         #--- Initialize services.
         # Services are strategy classes used to implement the application's main features.
         # Basically, they can be exchanged by plugins.
-        self.importFiletypes = [(_('ODF Text document'), '.odt'), (_('ODF Spreadsheet document'), '.ods')]
 
-        self.launchers = {}
-        # launchers for opening linked non-standard filetypes.
-        # key: extension, value: path to application
-
-        self.linkProcessor = LinkProcessor(self._mdl, self._ui, self)
         self.dataImporter = DataImporter(self._mdl, self._ui, self)
         self.docImporter = DocImporter(self._mdl, self._ui, self)
         self.fileSplitter = FileSplitter(self._mdl, self._ui, self)
         self.fileManager = FileManager(self._mdl, self._ui, self)
         self.elementManager = ElementManager(self._mdl, self._ui, self)
+        self.linkProcessor = LinkProcessor(self._mdl, self._ui, self)
+        self.launchers = {}
+        # launchers for opening linked non-standard filetypes.
+        # key: extension, value: path to application
+        # this dictionary is populated by novelibre.py after reading the configuration file
 
         #--- Load the plugins.
         self.plugins = PluginCollection(self._mdl, self._ui, self)
@@ -122,6 +121,7 @@ class MainController(ControllerBase, Commands):
         - clear all views
         - reset flags
         - trigger plugins.
+        Extends the superclass method.
         """
         self.update_status()
         self._ui.propertiesView.apply_changes()
