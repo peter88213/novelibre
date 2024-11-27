@@ -11,22 +11,21 @@ from tkinter import filedialog
 from mvclib.controller.controller_base import ControllerBase
 from nvlib.controller.commands import Commands
 from nvlib.controller.plugin.plugin_collection import PluginCollection
+from nvlib.controller.services.data_importer import DataImporter
+from nvlib.controller.services.doc_importer import DocImporter
+from nvlib.controller.services.element_manager import ElementManager
+from nvlib.controller.services.file_splitter import FileSplitter
 from nvlib.controller.services.link_processor import LinkProcessor
-from nvlib.controller.services.nv_data_importer import NvDataImporter
-from nvlib.controller.services.nv_doc_importer import NvDocImporter
-from nvlib.controller.services.nv_file_splitter import NvFileSplitter
 from nvlib.gui.main_view import MainView
+from nvlib.gui.pop_up.data_import_dialog import DataImportDialog
 from nvlib.model.exporter.nv_doc_exporter import NvDocExporter
 from nvlib.model.exporter.nv_html_reporter import NvHtmlReporter
 from nvlib.model.nv_model import NvModel
 from nvlib.model.nv_work_file import NvWorkFile
-from nvlib.novx_globals import CR_ROOT
 from nvlib.novx_globals import Error
 from nvlib.novx_globals import Notification
 from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
-from nvlib.gui.pop_up.data_import_dialog import DataImportDialog
-from nvlib.controller.services.element_manager import ElementManager
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 
@@ -65,6 +64,8 @@ class MainController(ControllerBase, Commands):
         self._mdl.tree = self._ui.tv.tree
 
         #--- Initialize services.
+        # Services are strategy classes used to implement the application's main features.
+        # Basically, they can be exchanged by plugins.
         self.fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
         self.importFiletypes = [(_('ODF Text document'), '.odt'), (_('ODF Spreadsheet document'), '.ods')]
 
@@ -73,9 +74,9 @@ class MainController(ControllerBase, Commands):
         # key: extension, value: path to application
 
         self.linkProcessor = LinkProcessor(self._mdl, self._ui, self)
-        self.dataImporter = NvDataImporter(self._mdl, self._ui, self)
-        self.docImporter = NvDocImporter(self._mdl, self._ui, self)
-        self.fileSplitter = NvFileSplitter(self._mdl, self._ui, self)
+        self.dataImporter = DataImporter(self._mdl, self._ui, self)
+        self.docImporter = DocImporter(self._mdl, self._ui, self)
+        self.fileSplitter = FileSplitter(self._mdl, self._ui, self)
         self.elementManager = ElementManager(self._mdl, self._ui, self)
 
         #--- Load the plugins.

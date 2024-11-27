@@ -32,7 +32,7 @@ from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import prefs
 
 
-class NvDocImporter(ServiceBase):
+class DocImporter(ServiceBase):
     """A converter for universal import.
 
     Support novelibre projects and most of the File subclasses 

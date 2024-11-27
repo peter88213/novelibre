@@ -21,7 +21,7 @@ from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
 
 
-class NvFileSplitter(ServiceBase):
+class FileSplitter(ServiceBase):
 
     def split_project(self):
         """Create a new project and move the selected chapters there."""

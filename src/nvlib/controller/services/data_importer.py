@@ -24,7 +24,7 @@ from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
 
 
-class NvDataImporter(ServiceBase):
+class DataImporter(ServiceBase):
 
     def __init__(self, model, view, controller):
         super().__init__(model, view, controller)
