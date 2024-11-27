@@ -8,7 +8,7 @@ from tkinter import ttk
 
 from mvclib.view.modal_dialog import ModalDialog
 from mvclib.widgets.drag_drop_listbox import DragDropListbox
-from nvlib.gui.pop_up.view_options_window_ctrl import ViewOptionsCtrl
+from nvlib.gui.pop_up.view_options_ctrl import ViewOptionsCtrl
 from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
 from nvlib.gui.platform.platform_settings import KEYS
