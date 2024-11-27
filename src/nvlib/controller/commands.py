@@ -7,7 +7,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 from shutil import copy2
 import sys
-from tkinter import filedialog
 import webbrowser
 
 from nvlib.gui.pop_up.export_options_dialog import ExportOptionsDialog
@@ -20,9 +19,7 @@ from nvlib.novx_globals import CHARACTERS_SUFFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CHARACTER_REPORT_SUFFIX
 from nvlib.novx_globals import CHARLIST_SUFFIX
-from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import DATA_SUFFIX
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import GRID_SUFFIX
 from nvlib.novx_globals import ITEMLIST_SUFFIX
 from nvlib.novx_globals import ITEMS_SUFFIX
@@ -44,10 +41,8 @@ from nvlib.novx_globals import SECTIONS_SUFFIX
 from nvlib.novx_globals import STAGES_SUFFIX
 from nvlib.novx_globals import XREF_SUFFIX
 from nvlib.novx_globals import _
-from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import HOME_URL
 from nvlib.nv_globals import open_help
-from nvlib.nv_globals import prefs
 
 
 class Commands:
@@ -56,7 +51,7 @@ class Commands:
     def add_new_chapter(self, **kwargs):
         """Create a chapter instance and add it to the novel.
              
-        Keyword arguments:
+        Optional keyword arguments:
             targetNode: str -- Tree position where to place a new node.
             title: str -- Section title. Default: Auto-generated title. 
             chType: int -- Chapter type. Default: 0.
@@ -69,7 +64,7 @@ class Commands:
     def add_new_character(self, **kwargs):
         """Create a character instance and add it to the novel.
         
-        Keyword arguments:
+        Optional keyword arguments:
             targetNode: str -- Tree position where to place a new node.
             title: str -- Element title. Default: Auto-generated title.
             isMajor: bool -- If True, make the new character a major character. Default: False.
@@ -95,7 +90,7 @@ class Commands:
     def add_new_item(self, **kwargs):
         """Create an item instance and add it to the novel.
         
-        Keyword arguments:
+        Optional keyword arguments:
             targetNode: str -- Tree position where to place a new node.
             title: str -- Element title. Default: Auto-generated title. 
             
@@ -106,7 +101,7 @@ class Commands:
     def add_new_location(self, **kwargs):
         """Create a location instance and add it to the novel.
         
-        Keyword arguments:
+        Optional keyword arguments:
             targetNode: str -- Tree position where to place a new node.
             title: str -- Element title. Default: Auto-generated title. 
             
@@ -128,7 +123,7 @@ class Commands:
     def add_new_part(self, **kwargs):
         """Create a part instance and add it to the novel.
         
-        Keyword arguments:
+        Optional keyword arguments:
             targetNode: str -- Tree position where to place a new node.
             title: str: Part title. Default -- Auto-generated title. 
             chType: int: Part type. Default -- 0.  
@@ -141,7 +136,7 @@ class Commands:
     def add_new_plot_line(self, **kwargs):
         """Create a plot line instance and add it to the novel.
         
-        Keyword arguments:
+        Optional keyword arguments:
             targetNode: str -- Tree position where to place a new node.
             title: str -- Element title. Default: Auto-generated title. 
             
@@ -152,7 +147,7 @@ class Commands:
     def add_new_plot_point(self, **kwargs):
         """Create a plot point instance and add it to the novel.
         
-        Keyword arguments:
+        Optional keyword arguments:
             targetNode: str -- Tree position where to place a new node.
             title: str -- Section title. Default: Auto-generated title. 
             
@@ -163,7 +158,7 @@ class Commands:
     def add_new_project_note(self, **kwargs):
         """Create a Project note instance and add it to the novel.
         
-        Keyword arguments:
+        Optional keyword arguments:
             targetNode: str -- Tree position where to place a new node.
             title: str -- Element title. Default: Auto-generated title. 
             
@@ -174,7 +169,7 @@ class Commands:
     def add_new_section(self, **kwargs):
         """Create a section instance and add it to the novel.
         
-        Keyword arguments:
+        Optional keyword arguments:
             targetNode: str -- Tree position where to place a new node.
             title: str -- Section title. Default: Auto-generated title. 
             desc: str -- Description.
@@ -193,7 +188,7 @@ class Commands:
     def add_new_stage(self, **kwargs):
         """Create a stage instance and add it to the novel.
         
-        Keyword arguments:
+        Optional keyword arguments:
             targetNode: str -- Tree position where to place a new node.
             title: str -- Stage title. Default: Auto-generated title. 
             desc: str -- Description.
@@ -218,21 +213,7 @@ class Commands:
 
     def create_project(self, event=None):
         """Create a novelibre project instance."""
-        if self._mdl.prjFile is not None:
-            self.close_project()
-        self._mdl.create_project(self._ui.tv.tree)
-        self.refresh_tree()
-        self._ui.show_path(_('Unnamed'))
-        # setting the path bar
-        self.enable_menu()
-        self.update_status()
-        # setting the status bar
-        self._ui.tv.update_tree()
-        # making the root element titles visible
-        self._ui.tv.refresh()
-        # enabling selecting
-        self._ui.tv.go_to_node(CH_ROOT)
-        self.save_project()
+        self.fileManager.create_project()
         return 'break'
 
     def delete_elements(self, event=None, elements=None):
@@ -248,75 +229,67 @@ class Commands:
         
         This might be useful to avoid confusion in certain cases.
         """
-        fileName, __ = os.path.splitext(self._mdl.prjFile.filePath)
-        manuscriptPath = f'{fileName}{MANUSCRIPT_SUFFIX}.odt'
-        if os.path.isfile(manuscriptPath):
-            prjPath, manuscriptName = os.path.split(manuscriptPath)
-            if os.path.isfile(f'{prjPath}/.~lock.{manuscriptName}#'):
-                self._ui.set_status(f"!{_('Please close the manuscript first')}.")
-            elif self._ui.ask_yes_no(f"{_('Discard manuscript')}?", self._mdl.novel.title):
-                os.replace(manuscriptPath, f'{fileName}{MANUSCRIPT_SUFFIX}.odt.bak')
-                self._ui.set_status(f"{_('Manuscript discarded')}.")
+        self.fileManager.discard_manuscript()
 
     def export_brief_synopsis(self, event=None):
-        self.export_document(BRF_SYNOPSIS_SUFFIX, lock=False)
+        self.fileManager.export_document(BRF_SYNOPSIS_SUFFIX, lock=False)
 
     def export_chapter_desc(self, event=None):
-        self.export_document(CHAPTERS_SUFFIX)
+        self.fileManager.export_document(CHAPTERS_SUFFIX)
 
     def export_character_desc(self, event=None):
-        self.export_document(CHARACTERS_SUFFIX)
+        self.fileManager.export_document(CHARACTERS_SUFFIX)
 
     def export_character_list(self, event=None):
-        self.export_document(CHARLIST_SUFFIX)
+        self.fileManager.export_document(CHARLIST_SUFFIX)
 
     def export_cross_references(self, event=None):
-        self.export_document(XREF_SUFFIX, lock=False)
+        self.fileManager.export_document(XREF_SUFFIX, lock=False)
 
     def export_final_document(self, event=None):
         self._ctrl.export_document('', lock=False)
 
     def export_item_desc(self, event=None):
-        self.export_document(ITEMS_SUFFIX)
+        self.fileManager.export_document(ITEMS_SUFFIX)
 
     def export_item_list(self, event=None):
-        self.export_document(ITEMLIST_SUFFIX)
+        self.fileManager.export_document(ITEMLIST_SUFFIX)
 
     def export_location_desc(self, event=None):
-        self.export_document(LOCATIONS_SUFFIX)
+        self.fileManager.export_document(LOCATIONS_SUFFIX)
 
     def export_location_list(self, event=None):
-        self.export_document(LOCLIST_SUFFIX)
+        self.fileManager.export_document(LOCLIST_SUFFIX)
 
     def export_part_desc(self, event=None):
-        self.export_document(PARTS_SUFFIX)
+        self.fileManager.export_document(PARTS_SUFFIX)
 
     def export_manuscript(self, event=None):
-        self.export_document(MANUSCRIPT_SUFFIX)
+        self.fileManager.export_document(MANUSCRIPT_SUFFIX)
 
     def export_plot_grid(self, event=None):
-        self.export_document(GRID_SUFFIX)
+        self.fileManager.export_document(GRID_SUFFIX)
 
     def export_plot_lines_desc(self, event=None):
-        self.export_document(PLOTLINES_SUFFIX, lock=False)
+        self.fileManager.export_document(PLOTLINES_SUFFIX, lock=False)
 
     def export_plot_list(self, event=None):
-        self.export_document(PLOTLIST_SUFFIX, lock=False)
+        self.fileManager.export_document(PLOTLIST_SUFFIX, lock=False)
 
     def export_proofing_manuscript(self, event=None):
-        self.export_document(PROOF_SUFFIX)
+        self.fileManager.export_document(PROOF_SUFFIX)
 
     def export_section_desc(self, event=None):
-        self.export_document(SECTIONS_SUFFIX)
+        self.fileManager.export_document(SECTIONS_SUFFIX)
 
     def export_section_list(self, event=None):
-        self.export_document(SECTIONLIST_SUFFIX)
+        self.fileManager.export_document(SECTIONLIST_SUFFIX)
 
     def export_story_structure_desc(self, event=None):
-        self.export_document(STAGES_SUFFIX)
+        self.fileManager.export_document(STAGES_SUFFIX)
 
     def export_xml_data_files(self, event=None):
-        self.export_document(DATA_SUFFIX, lock=False, show=False)
+        self.fileManager.export_document(DATA_SUFFIX, lock=False, show=False)
 
     def import_character_data(self, event=None):
         self.elementManager.import_elements(CHARACTER_PREFIX)
@@ -326,6 +299,15 @@ class Commands:
 
     def import_location_data(self, event=None):
         self.elementManager.import_elements(LOCATION_PREFIX)
+
+    def import_odf(self, sourcePath=None, defaultExtension='.odt'):
+        """Update or create the project from an ODF document.
+        
+        Optional arguments:
+            sourcePath: str -- Path specifying the source document. If None, a file picker is used.
+            defaultExtension: str -- Extension to be preset in the file picker.
+        """
+        self.fileManager.import_odf(sourcePath, defaultExtension)
 
     def import_plot_lines(self, event=None):
         self.elementManager.import_elements(PLOT_LINE_PREFIX)
@@ -363,20 +345,7 @@ class Commands:
 
     def open_installationFolder(self, event=None):
         """Open the installation folder with the OS file manager."""
-        installDir = os.path.dirname(sys.argv[0])
-        try:
-            os.startfile(norm_path(installDir))
-            # Windows
-        except:
-            try:
-                os.system('xdg-open "%s"' % norm_path(installDir))
-                # Linux
-            except:
-                try:
-                    os.system('open "%s"' % norm_path(installDir))
-                    # Mac
-                except:
-                    pass
+        self.fileManager.open_installationFolder()
         return 'break'
 
     def open_link(self, element, linkIndex):
@@ -392,7 +361,7 @@ class Commands:
 
     def open_manuscript(self, event=None):
         """Export a manuscript document and open it for editing."""
-        self.export_document(MANUSCRIPT_SUFFIX, ask=False)
+        self.fileManager.export_document(MANUSCRIPT_SUFFIX, ask=False)
 
     def open_plugin_manager(self, event=None):
         """Open a toplevel window to manage the plugins."""
@@ -409,63 +378,11 @@ class Commands:
         Display project title, description and status.
         Return True on success, otherwise return False.
         """
-        self._ui.restore_status()
-        filePath = self.select_project(filePath)
-        if not filePath:
-            return False
-
-        prefs['last_open'] = filePath
-
-        if self._mdl.prjFile is not None:
-            self.close_project(doNotSave=doNotSave)
-        try:
-            self._mdl.open_project(filePath)
-        except Error as ex:
-            self.close_project(doNotSave=doNotSave)
-            self._ui.set_status(f'!{str(ex)}')
-            return False
-
-        self._ui.show_path(f'{norm_path(self._mdl.prjFile.filePath)}')
-        self.enable_menu()
-
-        self.refresh_tree()
-        self._ui.show_path(_('{0} (last saved on {1})').format(norm_path(self._mdl.prjFile.filePath), self._mdl.prjFile.fileDate))
-        self.update_status()
-        self._ui.contentsView.view_text()
-        if self._mdl.prjFile.has_lockfile():
-            self.lock()
-        self._ui.tv.show_branch(CH_ROOT)
-        return True
+        return self.fileManager.open_project(filePath=filePath, doNotSave=doNotSave)
 
     def open_project_folder(self, event=None):
         """Open the project folder with the OS file manager."""
-        if not self._mdl:
-            return 'break'
-
-        if not self._mdl.prjFile:
-            return 'break'
-
-        if self._mdl.prjFile.filePath is None:
-            if not self._ui.ask_ok_cancel(_('Please save now'), title=_('Project path unknown')):
-                return 'break'
-
-            if not self.save_project():
-                return 'break'
-
-        projectDir, __ = os.path.split(self._mdl.prjFile.filePath)
-        try:
-            os.startfile(norm_path(projectDir))
-            # Windows
-        except:
-            try:
-                os.system('xdg-open "%s"' % norm_path(projectDir))
-                # Linux
-            except:
-                try:
-                    os.system('open "%s"' % norm_path(projectDir))
-                    # Mac
-                except:
-                    pass
+        self.fileManager.open_project_folder()
         return 'break'
 
     def open_project_updater(self, event=None):
@@ -539,64 +456,14 @@ class Commands:
         
         Return True on success, otherwise return False.
         """
-        if self._mdl.prjFile is None:
-            return False
-
-        if prefs['last_open']:
-            startDir, __ = os.path.split(prefs['last_open'])
-        else:
-            startDir = '.'
-        fileName = filedialog.asksaveasfilename(
-            filetypes=self.fileTypes,
-            defaultextension=self.fileTypes[0][1],
-            initialdir=startDir,
-            )
-        if not fileName:
-            return False
-
-        self._ui.propertiesView.apply_changes()
-        try:
-            self._mdl.save_project(fileName)
-        except Error as ex:
-            self._ui.set_status(f'!{str(ex)}')
-            return False
-
-        else:
-            self.unlock()
-            self._ui.show_path(f'{norm_path(self._mdl.prjFile.filePath)} ({_("last saved on")} {self._mdl.prjFile.fileDate})')
-            self._ui.restore_status()
-            prefs['last_open'] = self._mdl.prjFile.filePath
-            return True
+        return self.fileManager.save_as()
 
     def save_project(self, event=None):
         """Save the novelibre project to disk.
         
         Return True on success, otherwise return False.
         """
-        if self._mdl.prjFile is None:
-            return False
-
-        if self.check_lock():
-            self._ui.set_status(f'!{_("Cannot save: The project is locked")}.')
-            return False
-
-        if self._mdl.prjFile.filePath is None:
-            return self.save_as()
-
-        if self._mdl.prjFile.has_changed_on_disk() and not self._ui.ask_yes_no(_('File has changed on disk. Save anyway?')):
-            return False
-
-        self._ui.propertiesView.apply_changes()
-        try:
-            self._mdl.save_project()
-        except Error as ex:
-            self._ui.set_status(f'!{str(ex)}')
-            return False
-
-        self._ui.show_path(f'{norm_path(self._mdl.prjFile.filePath)} ({_("last saved on")} {self._mdl.prjFile.fileDate})')
-        self._ui.restore_status()
-        prefs['last_open'] = self._mdl.prjFile.filePath
-        return True
+        return self.fileManager.save_project()
 
     def set_chr_status_major(self, event=None):
         self.elementManager.set_character_status(True)
@@ -632,19 +499,19 @@ class Commands:
         self.elementManager.set_type(1)
 
     def show_character_list(self, event=None):
-        self.show_report(CHARACTER_REPORT_SUFFIX)
+        self.fileManager.show_report(CHARACTER_REPORT_SUFFIX)
 
     def show_item_list(self, event=None):
-        self.show_report(ITEM_REPORT_SUFFIX)
+        self.fileManager.show_report(ITEM_REPORT_SUFFIX)
 
     def show_location_list(self, event=None):
-        self.show_report(LOCATION_REPORT_SUFFIX)
+        self.fileManager.show_report(LOCATION_REPORT_SUFFIX)
 
     def show_plot_list(self, event=None):
-        self.show_report(PLOTLIST_SUFFIX)
+        self.fileManager.show_report(PLOTLIST_SUFFIX)
 
     def show_projectnotes_list(self, event=None):
-        self.show_report(PROJECTNOTES_SUFFIX)
+        self.fileManager.show_report(PROJECTNOTES_SUFFIX)
 
     def split_file(self, event=None):
         self.fileSplitter.split_project()
@@ -660,6 +527,6 @@ class Commands:
     def update_from_manuscript(self, event=None):
         """Update the project from the previously exported manuscript document."""
         fileName, __ = os.path.splitext(self._mdl.prjFile.filePath)
-        self.import_odf(sourcePath=f'{fileName}{MANUSCRIPT_SUFFIX}.odt')
+        self.fileManager.import_odf(sourcePath=f'{fileName}{MANUSCRIPT_SUFFIX}.odt')
         return 'break'
 

@@ -4,9 +4,7 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-import os
 import sys
-from tkinter import filedialog
 
 from mvclib.controller.controller_base import ControllerBase
 from nvlib.controller.commands import Commands
@@ -14,15 +12,11 @@ from nvlib.controller.plugin.plugin_collection import PluginCollection
 from nvlib.controller.services.data_importer import DataImporter
 from nvlib.controller.services.doc_importer import DocImporter
 from nvlib.controller.services.element_manager import ElementManager
+from nvlib.controller.services.file_manager import FileManager
 from nvlib.controller.services.file_splitter import FileSplitter
 from nvlib.controller.services.link_processor import LinkProcessor
 from nvlib.gui.main_view import MainView
-from nvlib.model.exporter.nv_doc_exporter import NvDocExporter
-from nvlib.model.exporter.nv_html_reporter import NvHtmlReporter
 from nvlib.model.nv_model import NvModel
-from nvlib.model.nv_work_file import NvWorkFile
-from nvlib.novx_globals import Error
-from nvlib.novx_globals import Notification
 from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
 
@@ -31,11 +25,6 @@ PLUGIN_PATH = f'{sys.path[0]}/plugin'
 
 class MainController(ControllerBase, Commands):
     """Controller for the novelibre application."""
-
-    _MAX_NR_NEW_SECTIONS = 20
-    # maximum number of sections to add in bulk
-    _INI_NR_NEW_SECTIONS = 1
-    # initial value when asking for the number of sections to add
 
     def __init__(self, title, tempDir):
         """Initialize the model, set up the application's user interface, and load plugins.
@@ -65,7 +54,6 @@ class MainController(ControllerBase, Commands):
         #--- Initialize services.
         # Services are strategy classes used to implement the application's main features.
         # Basically, they can be exchanged by plugins.
-        self.fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
         self.importFiletypes = [(_('ODF Text document'), '.odt'), (_('ODF Spreadsheet document'), '.ods')]
 
         self.launchers = {}
@@ -76,6 +64,7 @@ class MainController(ControllerBase, Commands):
         self.dataImporter = DataImporter(self._mdl, self._ui, self)
         self.docImporter = DocImporter(self._mdl, self._ui, self)
         self.fileSplitter = FileSplitter(self._mdl, self._ui, self)
+        self.fileManager = FileManager(self._mdl, self._ui, self)
         self.elementManager = ElementManager(self._mdl, self._ui, self)
 
         #--- Load the plugins.
@@ -102,69 +91,9 @@ class MainController(ControllerBase, Commands):
         else:
             return False
 
-    def export_document(self, suffix, **kwargs):
-        """Export a document.
-        
-        Required arguments:
-            suffix -- str: Document type suffix.
-        """
-        self._ui.restore_status()
-        self._ui.propertiesView.apply_changes()
-        if self._mdl.prjFile.filePath is None:
-            if not self.save_project():
-                return
-
-        if self._mdl.isModified:
-            if self._ui.ask_yes_no(_('Save changes?')):
-                self.save_project()
-            else:
-                # Do not export a document from an unsaved project.
-                self._ui.set_status(f'#{_("Action canceled by user")}.')
-                return
-
-        exporter = NvDocExporter(self._ui)
-        try:
-            self._ui.set_status(exporter.run(self._mdl.prjFile, suffix, **kwargs))
-        except Notification as ex:
-            self._ui.set_status(f'#{str(ex)}')
-        except Error as ex:
-            self._ui.set_status(f'!{str(ex)}')
-        else:
-            if kwargs.get('lock', True) and prefs['lock_on_export']:
-                self.lock()
-
     def get_preferences(self):
         """Return the global preferences dictionary."""
         return prefs
-
-    def import_odf(self, sourcePath=None, defaultExtension='.odt'):
-        """Update or create the project from an ODF document.
-        
-        Optional arguments:
-            sourcePath: str -- Path specifying the source document. If None, a file picker is used.
-            defaultExtension: str -- Extension to be preset in the file picker.
-        """
-        if sourcePath is None:
-            if prefs['last_open']:
-                startDir, __ = os.path.split(prefs['last_open'])
-            else:
-                startDir = '.'
-            sourcePath = filedialog.askopenfilename(
-                filetypes=self.importFiletypes,
-                defaultextension=defaultExtension,
-                initialdir=startDir,
-                )
-            if not sourcePath:
-                return
-
-        if self._mdl.prjFile is not None:
-            self.update_status()
-            self.refresh_tree()
-            self.unlock()
-            if self._mdl.isModified:
-                if self._ui.ask_yes_no(_('Save changes?')):
-                    self.save_project()
-        self.docImporter.import_document(sourcePath)
 
     def lock(self, event=None):
         """Lock the project.
@@ -202,7 +131,7 @@ class MainController(ControllerBase, Commands):
                 return None
 
             elif doSave:
-                if not self.save_project():
+                if not self.fileManager.save_project():
                     self._ui.show_error(_('Cannot save the project'), _('Critical Error'))
                     return False
 
@@ -230,7 +159,7 @@ class MainController(ControllerBase, Commands):
         """
         try:
             if self._mdl.prjFile is not None:
-                if not self.close_project():
+                if not self.on_close():
                     return 'break'
 
             super().on_quit()
@@ -242,52 +171,6 @@ class MainController(ControllerBase, Commands):
     def refresh(self):
         """Callback function to report model element modifications."""
         self.update_status()
-
-    def select_project(self, fileName):
-        """Return a project file path.
-
-        Positional arguments:
-            fileName: str -- project file path.
-            
-        Optional arguments:
-            fileTypes -- list of tuples for file selection (display text, extension).
-
-        Priority:
-        1. use file name argument
-        2. open file select dialog
-
-        On error, return an empty string.
-        """
-        initDir = os.path.dirname(prefs.get('last_open', ''))
-        if not initDir:
-            initDir = './'
-        if not fileName or not os.path.isfile(fileName):
-            fileName = filedialog.askopenfilename(
-                filetypes=self.fileTypes,
-                defaultextension=NvWorkFile.EXTENSION,
-                initialdir=initDir
-                )
-        if not fileName:
-            return ''
-
-        return fileName
-
-    def show_report(self, suffix):
-        """Create HTML report for the web browser.
-        
-        Positional arguments:
-            suffix: str -- the HTML file name suffix, indicating the report type.        
-        """
-        if self._mdl.prjFile.filePath is None:
-            return False
-
-        self._ui.restore_status()
-        self._ui.propertiesView.apply_changes()
-        reporter = NvHtmlReporter()
-        try:
-            reporter.run(self._mdl.prjFile, suffix, tempdir=self.tempDir)
-        except Error as ex:
-            self._ui.set_status(f'!{str(ex)}')
 
     def unlock(self, event=None):
         """Unlock the project.
