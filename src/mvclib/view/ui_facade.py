@@ -14,7 +14,7 @@ class UiFacade(Ui):
     def __init__(self, title):
         Ui.__init__(self, title)
 
-    def ask_ok_cancel(self, text, title=None):
+    def ask_ok_cancel(self, text, title=None, **options):
         """Query ok or cancel with a pop-up box.
         
         Positional arguments:
@@ -25,9 +25,9 @@ class UiFacade(Ui):
         """
         if title is None:
             title = self.title
-        return messagebox.askokcancel(title, text)
+        return messagebox.askokcancel(title, text, **options)
 
-    def ask_yes_no(self, text, title=None):
+    def ask_yes_no(self, text, title=None, **options):
         """Query yes or no with a pop-up box.
         
         Positional arguments:
@@ -38,9 +38,9 @@ class UiFacade(Ui):
         """
         if title is None:
             title = self.title
-        return messagebox.askyesno(title, text)
+        return messagebox.askyesno(title, text, **options)
 
-    def ask_yes_no_cancel(self, text, title=None):
+    def ask_yes_no_cancel(self, text, title=None, **options):
         """Query yes or no or cancel with a pop-up box.
         
         Positional arguments:
@@ -51,9 +51,9 @@ class UiFacade(Ui):
         """
         if title is None:
             title = self.title
-        return messagebox.askyesnocancel(title, text)
+        return messagebox.askyesnocancel(title, text, **options)
 
-    def show_error(self, message, title=None):
+    def show_error(self, message, title=None, **options):
         """Display an error message box.
         
         Positional arguments:
@@ -64,9 +64,9 @@ class UiFacade(Ui):
         """
         if title is None:
             title = self.title
-        messagebox.showerror(title, message)
+        messagebox.showerror(title, message, **options)
 
-    def show_info(self, message, title=None):
+    def show_info(self, message, title=None, **options):
         """Display an informational message box.
         
         Positional arguments:
@@ -77,9 +77,9 @@ class UiFacade(Ui):
         """
         if title is None:
             title = self.title
-        messagebox.showinfo(title, message)
+        messagebox.showinfo(title, message, **options)
 
-    def show_warning(self, message, title=None):
+    def show_warning(self, message, title=None, **options):
         """Display a warning message box.
         
         Optional arguments:
@@ -87,5 +87,5 @@ class UiFacade(Ui):
         """
         if title is None:
             title = self.title
-        messagebox.showwarning(title, message)
+        messagebox.showwarning(title, message, **options)
 

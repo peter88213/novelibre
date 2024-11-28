@@ -59,7 +59,8 @@ class Commands:
             
         Return the chapter ID, if successful.
         """
-        return self.elementManager.add_new_chapter(**kwargs)
+        if not self.check_lock():
+            return self.elementManager.add_new_chapter(**kwargs)
 
     def add_new_character(self, **kwargs):
         """Create a character instance and add it to the novel.
@@ -71,21 +72,24 @@ class Commands:
             
         Return the element's ID, if successful.
         """
-        return self.elementManager.add_new_character(**kwargs)
+        if not self.check_lock():
+            return self.elementManager.add_new_character(**kwargs)
 
     def add_new_child(self, event=None):
         """Add a child element to an element.
         
         What kind of element is added, depends on the selection's prefix.
         """
-        return self.elementManager.add_new_child()
+        if not self.check_lock():
+            return self.elementManager.add_new_child()
 
     def add_new_element(self, event=None):
         """Create an element instance and add it to the novel.
         
         What kind of element is added, depends on the selection's prefix.
         """
-        return self.elementManager.add_new_element()
+        if not self.check_lock():
+            return self.elementManager.add_new_element()
 
     def add_new_item(self, **kwargs):
         """Create an item instance and add it to the novel.
@@ -96,7 +100,8 @@ class Commands:
             
         Return the element's ID, if successful.
         """
-        return self.elementManager.add_new_item(**kwargs)
+        if not self.check_lock():
+            return self.elementManager.add_new_item(**kwargs)
 
     def add_new_location(self, **kwargs):
         """Create a location instance and add it to the novel.
@@ -107,18 +112,21 @@ class Commands:
             
         Return the element's ID, if successful.
         """
-        return self.elementManager.add_new_location(**kwargs)
+        if not self.check_lock():
+            return self.elementManager.add_new_location(**kwargs)
 
     def add_multiple_new_sections(self):
         """Ask how many sections are to be added, then call the controller."""
-        return self.elementManager.add_multiple_new_sections()
+        if not self.check_lock():
+            return self.elementManager.add_multiple_new_sections()
 
     def add_new_parent(self, event=None):
         """Add a parent element to an element.
         
         What kind of element is added, depends on the selection's prefix.
         """
-        return self.elementManager.add_new_parent()
+        if not self.check_lock():
+            return self.elementManager.add_new_parent()
 
     def add_new_part(self, **kwargs):
         """Create a part instance and add it to the novel.
@@ -131,7 +139,8 @@ class Commands:
            
         Return the chapter ID, if successful.
         """
-        return self.elementManager.add_new_part(**kwargs)
+        if not self.check_lock():
+            return self.elementManager.add_new_part(**kwargs)
 
     def add_new_plot_line(self, **kwargs):
         """Create a plot line instance and add it to the novel.
@@ -142,7 +151,8 @@ class Commands:
             
         Return the plot line ID, if successful.
         """
-        return self.elementManager.add_new_plot_line(**kwargs)
+        if not self.check_lock():
+            return self.elementManager.add_new_plot_line(**kwargs)
 
     def add_new_plot_point(self, **kwargs):
         """Create a plot point instance and add it to the novel.
@@ -153,7 +163,8 @@ class Commands:
             
         Return the plot point ID, if successful.
         """
-        return self.elementManager.add_new_plot_point(**kwargs)
+        if not self.check_lock():
+            return self.elementManager.add_new_plot_point(**kwargs)
 
     def add_new_project_note(self, **kwargs):
         """Create a Project note instance and add it to the novel.
@@ -164,7 +175,8 @@ class Commands:
             
         Return the element's ID, if successful.
         """
-        return self.elementManager.add_new_project_note(**kwargs)
+        if not self.check_lock():
+            return self.elementManager.add_new_project_note(**kwargs)
 
     def add_new_section(self, **kwargs):
         """Create a section instance and add it to the novel.
@@ -183,7 +195,8 @@ class Commands:
         
         Return the section ID, if successful.
         """
-        return self.elementManager.add_new_section(**kwargs)
+        if not self.check_lock():
+            return self.elementManager.add_new_section(**kwargs)
 
     def add_new_stage(self, **kwargs):
         """Create a stage instance and add it to the novel.
@@ -196,7 +209,8 @@ class Commands:
             
         Return the section ID, if successful.
         """
-        return self.elementManager.add_new_stage(**kwargs)
+        if not self.check_lock():
+            return self.elementManager.add_new_stage(**kwargs)
 
     def close_project(self, event=None, doNotSave=False):
         """Close the current project.
@@ -227,7 +241,8 @@ class Commands:
         Optional arguments:
             elements: list of IDs of the elements to delete.        
         """
-        self.elementManager.delete_elements(elements)
+        if not self.check_lock():
+            self.elementManager.delete_elements(elements)
 
     def discard_manuscript(self):
         """Rename the current editable manuscript. 
@@ -252,7 +267,7 @@ class Commands:
         self.fileManager.export_document(XREF_SUFFIX, lock=False)
 
     def export_final_document(self, event=None):
-        self._ctrl.export_document('', lock=False)
+        self.export_document('', lock=False)
 
     def export_item_desc(self, event=None):
         self.fileManager.export_document(ITEMS_SUFFIX)
@@ -297,13 +312,16 @@ class Commands:
         self.fileManager.export_document(DATA_SUFFIX, lock=False, show=False)
 
     def import_character_data(self, event=None):
-        self.elementManager.import_elements(CHARACTER_PREFIX)
+        if not self.check_lock():
+            self.elementManager.import_elements(CHARACTER_PREFIX)
 
     def import_item_data(self, event=None):
-        self.elementManager.import_elements(ITEM_PREFIX)
+        if not self.check_lock():
+            self.elementManager.import_elements(ITEM_PREFIX)
 
     def import_location_data(self, event=None):
-        self.elementManager.import_elements(LOCATION_PREFIX)
+        if not self.check_lock():
+            self.elementManager.import_elements(LOCATION_PREFIX)
 
     def import_odf(self, sourcePath=None, defaultExtension='.odt'):
         """Update or create the project from an ODF document.
@@ -312,10 +330,12 @@ class Commands:
             sourcePath: str -- Path specifying the source document. If None, a file picker is used.
             defaultExtension: str -- Extension to be preset in the file picker.
         """
-        self.fileManager.import_odf(sourcePath, defaultExtension)
+        if not self.check_lock():
+            self.fileManager.import_odf(sourcePath, defaultExtension)
 
     def import_plot_lines(self, event=None):
-        self.elementManager.import_elements(PLOT_LINE_PREFIX)
+        if not self.check_lock():
+            self.elementManager.import_elements(PLOT_LINE_PREFIX)
 
     def join_sections(self, event=None, scId0=None, scId1=None):
         """Join section 0 with section 1.
@@ -326,7 +346,8 @@ class Commands:
             
         If not both arguments are given, determine them from the tree selection.
         """
-        self.elementManager.join_sections(scId0, scId1)
+        if not self.check_lock():
+            self.elementManager.join_sections(scId0, scId1)
 
     def move_node(self, node, targetNode):
         """Move a node to another position.
@@ -335,7 +356,8 @@ class Commands:
             node: str - ID of the node to move.
             targetNode: str -- ID of the new parent/predecessor of the node.
         """
-        self.elementManager.move_node(node, targetNode)
+        if not self.isLocked:
+            self.elementManager.move_node(node, targetNode)
 
     def open_export_options(self, event=None):
         """Open a toplevel window to edit the export options."""
@@ -395,7 +417,8 @@ class Commands:
         
         Using a toplevel window with a pick list of refresh sources.
         """
-        ReimportDialog(self._mdl, self._ui, self)
+        if not self.check_lock():
+            ReimportDialog(self._mdl, self._ui, self)
         return 'break'
 
     def open_view_options(self, event=None):
@@ -470,37 +493,48 @@ class Commands:
         return self.fileManager.save_project()
 
     def set_chr_status_major(self, event=None):
-        self.elementManager.set_character_status(True)
+        if not self.check_lock():
+            self.elementManager.set_character_status(True)
 
     def set_chr_status_minor(self, event=None):
-        self.elementManager.set_character_status(False)
+        if not self.check_lock():
+            self.elementManager.set_character_status(False)
 
     def set_level_1(self, event=None):
-        self.elementManager.set_level(1)
+        if not self.check_lock():
+            self.elementManager.set_level(1)
 
     def set_level_2(self, event=None):
-        self.elementManager.set_level(2)
+        if not self.check_lock():
+            self.elementManager.set_level(2)
 
     def set_scn_status_outline(self, event=None):
-        self.elementManager.set_completion_status(1)
+        if not self.check_lock():
+            self.elementManager.set_completion_status(1)
 
     def set_scn_status_draft(self, event=None):
-        self.elementManager.set_completion_status(2)
+        if not self.check_lock():
+            self.elementManager.set_completion_status(2)
 
     def set_scn_status_1st_edit(self, event=None):
-        self.elementManager.set_completion_status(3)
+        if not self.check_lock():
+            self.elementManager.set_completion_status(3)
 
     def set_scn_status_2nd_edit(self, event=None):
-        self.elementManager.set_completion_status(4)
+        if not self.check_lock():
+            self.elementManager.set_completion_status(4)
 
     def set_scn_status_done(self, event=None):
-        self.elementManager.set_completion_status(5)
+        if not self.check_lock():
+            self.elementManager.set_completion_status(5)
 
     def set_type_normal(self, event=None):
-        self.elementManager.set_type(0)
+        if not self.check_lock():
+            self.elementManager.set_type(0)
 
     def set_type_unused(self, event=None):
-        self.elementManager.set_type(1)
+        if not self.check_lock():
+            self.elementManager.set_type(1)
 
     def show_character_list(self, event=None):
         self.fileManager.show_report(CHARACTER_REPORT_SUFFIX)
@@ -518,7 +552,8 @@ class Commands:
         self.fileManager.show_report(PROJECTNOTES_SUFFIX)
 
     def split_file(self, event=None):
-        self.fileSplitter.split_project()
+        if not self.check_lock():
+            self.fileSplitter.split_project()
 
     def toggle_lock(self, event=None):
         """Toggle the 'locked' status."""
@@ -530,7 +565,8 @@ class Commands:
 
     def update_from_manuscript(self, event=None):
         """Update the project from the previously exported manuscript document."""
-        fileName, __ = os.path.splitext(self._mdl.prjFile.filePath)
-        self.fileManager.import_odf(sourcePath=f'{fileName}{MANUSCRIPT_SUFFIX}.odt')
+        if not self.check_lock():
+            fileName, __ = os.path.splitext(self._mdl.prjFile.filePath)
+            self.fileManager.import_odf(sourcePath=f'{fileName}{MANUSCRIPT_SUFFIX}.odt')
         return 'break'
 

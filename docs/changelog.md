@@ -8,7 +8,7 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
-### Version 5.0.9
+### Version 5.0.12
 
 - Add a "Main character" checkbox to the character properties view. 
 - New feature: "Move selected chapters to new project"

@@ -45,7 +45,7 @@ class ElementManager(ServiceBase):
             
         Return the chapter ID, if successful.
         """
-        if self._ctrl.check_lock():
+        if self._mdl.prjFile is None:
             return
 
         targetNode = kwargs.get('targetNode', None)
@@ -68,7 +68,7 @@ class ElementManager(ServiceBase):
             
         Return the element's ID, if successful.
         """
-        if self._ctrl.check_lock():
+        if self._mdl.prjFile is None:
             return
 
         targetNode = kwargs.get('targetNode', None)
@@ -87,9 +87,6 @@ class ElementManager(ServiceBase):
         What kind of element is added, depends on the selection's prefix.
         """
         if self._mdl.prjFile is None:
-            return
-
-        if self._ctrl.check_lock():
             return
 
         try:
@@ -127,9 +124,6 @@ class ElementManager(ServiceBase):
         What kind of element is added, depends on the selection's prefix.
         """
         if self._mdl.prjFile is None:
-            return
-
-        if self._ctrl.check_lock():
             return
 
         try:
@@ -173,7 +167,7 @@ class ElementManager(ServiceBase):
             
         Return the element's ID, if successful.
         """
-        if self._ctrl.check_lock():
+        if self._mdl.prjFile is None:
             return
 
         targetNode = kwargs.get('targetNode', None)
@@ -195,7 +189,7 @@ class ElementManager(ServiceBase):
             
         Return the element's ID, if successful.
         """
-        if self._ctrl.check_lock():
+        if self._mdl.prjFile is None:
             return
 
         targetNode = kwargs.get('targetNode', None)
@@ -231,9 +225,6 @@ class ElementManager(ServiceBase):
         if self._mdl.prjFile is None:
             return
 
-        if self._ctrl.check_lock():
-            return
-
         try:
             selection = self._ui.selectedNode
         except:
@@ -256,7 +247,7 @@ class ElementManager(ServiceBase):
            
         Return the chapter ID, if successful.
         """
-        if self._ctrl.check_lock():
+        if self._mdl.prjFile is None:
             return
 
         targetNode = kwargs.get('targetNode', None)
@@ -278,7 +269,7 @@ class ElementManager(ServiceBase):
             
         Return the plot line ID, if successful.
         """
-        if self._ctrl.check_lock():
+        if self._mdl.prjFile is None:
             return
 
         targetNode = kwargs.get('targetNode', None)
@@ -300,7 +291,7 @@ class ElementManager(ServiceBase):
             
         Return the plot point ID, if successful.
         """
-        if self._ctrl.check_lock():
+        if self._mdl.prjFile is None:
             return
 
         targetNode = kwargs.get('targetNode', None)
@@ -349,7 +340,7 @@ class ElementManager(ServiceBase):
         
         Return the section ID, if successful.
         """
-        if self._ctrl.check_lock():
+        if self._mdl.prjFile is None:
             return
 
         targetNode = kwargs.get('targetNode', None)
@@ -373,7 +364,7 @@ class ElementManager(ServiceBase):
             
         Return the section ID, if successful.
         """
-        if self._ctrl.check_lock():
+        if self._mdl.prjFile is None:
             return
 
         targetNode = kwargs.get('targetNode', None)
@@ -392,7 +383,7 @@ class ElementManager(ServiceBase):
         Optional arguments:
             elements: list of IDs of the elements to delete.        
         """
-        if self._ctrl.check_lock():
+        if self._mdl.prjFile is None:
             return
 
         if elements is None:
@@ -494,7 +485,7 @@ class ElementManager(ServiceBase):
             
         If not both arguments are given, determine them from the tree selection.
         """
-        if self._ctrl.check_lock():
+        if self._mdl.prjFile is None:
             return
 
         if scId0 is None or scId1 is None:
@@ -527,7 +518,7 @@ class ElementManager(ServiceBase):
             node: str - ID of the node to move.
             targetNode: str -- ID of the new parent/predecessor of the node.
         """
-        if self._ctrl.isLocked:
+        if self._mdl.prjFile is None:
             return
 
         if (node.startswith(SECTION_PREFIX) and targetNode.startswith(CHAPTER_PREFIX)
@@ -543,7 +534,7 @@ class ElementManager(ServiceBase):
             isMajor: bool -- If True, make the characters major. Otherwise, make them minor.
             elemIds: list of character IDs to process.
         """
-        if self._ctrl.check_lock():
+        if self._mdl.prjFile is None:
             return
 
         if elemIds is None:
@@ -562,7 +553,7 @@ class ElementManager(ServiceBase):
             newStatus: int -- New section status to be set.        
             elemIds: list of IDs to process.            
         """
-        if self._ctrl.check_lock():
+        if self._mdl.prjFile is None:
             return
 
         if elemIds is None:
@@ -581,7 +572,7 @@ class ElementManager(ServiceBase):
             newLevel: int -- New level to be set.
             elemIds: list of IDs to process.
         """
-        if self._ctrl.check_lock():
+        if self._mdl.prjFile is None:
             return
 
         if elemIds is None:
@@ -599,7 +590,7 @@ class ElementManager(ServiceBase):
             newType: int -- New type to be set.
             elemIds: list of IDs to process.
         """
-        if self._ctrl.check_lock():
+        if self._mdl.prjFile is None:
             return
 
         if elemIds is None:
