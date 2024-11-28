@@ -10,6 +10,7 @@ from tkinter import filedialog
 from mvclib.controller.service_base import ServiceBase
 from nvlib.model.data.novel import Novel
 from nvlib.model.data.nv_tree import NvTree
+from nvlib.model.nv_work_file import NvWorkFile
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
@@ -41,9 +42,10 @@ class FileSplitter(ServiceBase):
             startDir, __ = os.path.split(lastOpen)
         else:
             startDir = '.'
+        fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
         fileName = filedialog.asksaveasfilename(
-            filetypes=self._ctrl.fileManager.fileTypes,
-            defaultextension=self._ctrl.fileManager.fileTypes[0][1],
+            filetypes=fileTypes,
+            defaultextension=fileTypes[0][1],
             initialdir=startDir,
             )
         if not fileName:

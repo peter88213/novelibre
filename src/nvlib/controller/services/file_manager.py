@@ -25,11 +25,6 @@ class FileManager(ServiceBase):
 
     def __init__(self, model, view, controller):
         super().__init__(model, view, controller)
-        self.fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
-        self.importFiletypes = [
-            (_('ODF Text document'), '.odt'),
-            (_('ODF Spreadsheet document'), '.ods')
-        ]
         self.exporter = NvDocExporter(self._ui)
         self.reporter = NvHtmlReporter()
 
@@ -109,7 +104,7 @@ class FileManager(ServiceBase):
             else:
                 startDir = '.'
             sourcePath = filedialog.askopenfilename(
-                filetypes=self.importFiletypes,
+                filetypes=[(_('ODF Text document'), '.odt'), (_('ODF Spreadsheet document'), '.ods')],
                 defaultextension=defaultExtension,
                 initialdir=startDir,
                 )
@@ -222,9 +217,10 @@ class FileManager(ServiceBase):
             startDir, __ = os.path.split(prefs['last_open'])
         else:
             startDir = '.'
+        fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
         fileName = filedialog.asksaveasfilename(
-            filetypes=self.fileTypes,
-            defaultextension=self.fileTypes[0][1],
+            filetypes=fileTypes,
+            defaultextension=fileTypes[0][1],
             initialdir=startDir,
             )
         if not fileName:
@@ -290,9 +286,10 @@ class FileManager(ServiceBase):
         if not initDir:
             initDir = './'
         if not fileName or not os.path.isfile(fileName):
+            fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
             fileName = filedialog.askopenfilename(
-                filetypes=self.fileTypes,
-                defaultextension=NvWorkFile.EXTENSION,
+                filetypes=fileTypes,
+                defaultextension=fileTypes[0][1],
                 initialdir=initDir
                 )
         if not fileName:
