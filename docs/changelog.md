@@ -8,34 +8,47 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/14).
 
+---
+
 ### Version 5.0.12
 
-- Add a "Main character" checkbox to the character properties view. 
-- New feature: "Move selected chapters to new project"
-- Importing and exporting plot lines with plot points. 
-- Make it easier to delete multiple elements.
-- Fix a bug where the project is not updated from location and item descriptions.
-- Fix a bug where an unhandled exception is raised when trying to delete child elements 
-  of already deleted parent elements. 
-- Fix a regression from version 4.17.1 where the root element titles are invisible
-  when creating a project without saving it immediately.
-- Prevent setting a section in an unused chapter "normal" via the properties checkbox.
-- Change the menu title for exporting the final document.
-- Create multiple sections always in ascending order.
-- Refactor the code for better maintainability.
+#### New features
+- Added a **Main character** checkbox to the character properties view. 
+- New Chapter menu entry: **Move selected chapters to new project**. This creates a new project containing the moved chapters/sections and all related elements and plot lines/plot points.
+- Importing and exporting plot lines with plot points via XML data files. 
+- Making it easier to delete multiple elements.
+- Added a **Cut** command to the *nv_clipboard* plugin.
+- Updated the sample templates included with the *nv_templates* plugin.
+- The *nv_collection* plugin now always asks before saving.
+- In case of program errors, a log file is created that can be used for bug reporting. 
+
+#### Bugfixes
+- Fixed a bug where the project is not updated from ODT location and item descriptions.
+- Fixed a bug where an unhandled exception is raised when trying to delete chapters that contain stages.
+- Fixed a regression from version 4.17.1 where the root element titles are invisible when creating a project without saving it immediately.
+- Preventing setting a section in an unused chapter "normal" via the properties checkbox.
+- Changed the menu title for exporting the final document.
+- Creating multiple sections always in ascending order.
+- Preventing loading templates with the *nv_templates* plugin while the project is locked.
+
+#### Other
+- Changed the menu title for exporting the final document.
+- Creating multiple sections always in ascending order.
+- Refactored the code for better maintainability.
+- The API is updated to version 5.0, so all plugins must be updated.
 
 ### Version 4.17.2
 
 Preparations for the upcoming version 5
 
-- Refactor the code for better maintainability.
+- Refactored the code for better maintainability.
 
 ### Version 4.17.1
 
 Preparations for the upcoming version 5
 
-- Make the stage background color configurable.
-- Refactor and revise the code for better maintainability.
+- Making the stage background color configurable.
+- Refactored and revise the code for better maintainability.
 - Release the dependency on the novxlib and apptk libraries.
 
 ### Version 4.16.1
@@ -47,7 +60,7 @@ Based on apptk 2.3.0
 
 ### Version 4.16.0
 
-- Add a "Cancel" option to the quit/close dialog.
+- Added a "Cancel" option to the quit/close dialog.
 - Do not close a project if saving fails.
 
 Based on novxlib 5.0.0
@@ -55,7 +68,7 @@ Based on apptk 2.3.0
 
 ### Version 4.15.6
 
-- Fix a bug where an exception is raised when closing a project
+- Fixed a bug where an exception is raised when closing a project
 while a property view widget still has the focus. 
 
 Based on novxlib 5.0.0
@@ -63,7 +76,7 @@ Based on apptk 2.2.0
 
 ### Version 4.15.5
 
-- Fix a bug where an exception is raised when closing a project
+- Fixed a bug where an exception is raised when closing a project
 immediately after deleting a section.
 - Assign the correct type when moving a section to the "trash bin".
 
@@ -72,19 +85,19 @@ Based on apptk 2.2.0
 
 ### Version 4.15.4
 
-Refactor the code for better maintainability
+Refactored the code for better maintainability
 
-- Remove the isLocked property from the NvController class.
+- Removed the isLocked property from the NvController class.
 
 Based on novxlib 5.0.0
 Based on apptk 2.2.0
 
 ### Version 4.15.3
 
-Refactor the code for better maintainability
+Refactored the code for better maintainability
 
 - PropertiesViewer now using the new ViewComponentBase methods of apptk 2.1.0.
-- Update docstrings and code comments.
+- Updated docstrings and code comments.
 
 Based on novxlib 4.8.0
 Based on apptk 2.1.0
@@ -98,125 +111,125 @@ Based on apptk 1.1.0
 
 ### Version 4.15.1
 
-- Change the pop-up window titles.
+- Changed the pop-up window titles.
 
 Based on novxlib 4.8.0
 Based on apptk 1.1.0
 
 ### Version 4.15.0
 
-- Refactor the MVC implementation for better maintainability.
+- Refactored the MVC implementation for better maintainability.
 
 Based on novxlib 4.8.0
 Based on apptk 1.0.0
 
 ### Version 4.14.1
 
-Refactor the code for better maintainability:
-- Simplify the PopUpBase API.
+Refactored the code for better maintainability:
+- Simplified the PopUpBase API.
 
 Based on novxlib 4.8.0
 
 ### Version 4.14.0
 
-Refactor the code for better maintainability:
-- Provide an abstract base class for pop-up windows.
-- Make ExportOptionsWindow, ViewOptionsWindow, PluginManager, and PrjUpdater PopUpBase subclasses.
-- Move and rename the update_project method.
-- Move and rename the manage_plugins method.
+Refactored the code for better maintainability:
+- Providing an abstract base class for pop-up windows.
+- Made ExportOptionsWindow, ViewOptionsWindow, PluginManager, and PrjUpdater PopUpBase subclasses.
+- Moved and renamed the update_project method.
+- Moved and renamed the manage_plugins method.
 
 Based on novxlib 4.8.0
 
 ### Version 4.13.1
 
-- Fix a regression from version 4.13.0 where plugins cannot add toolbar buttons.
-- Extend the PluginBase constructor.
+- Fixed a regression from version 4.13.0 where plugins cannot add toolbar buttons.
+- Extended the PluginBase constructor.
 
 Based on novxlib 4.8.0
 
 ### Version 4.13.0
 
-- Make the status bar colors configurable.
+- Made the status bar colors configurable.
 
-Refactor the code for better maintainability:
-- Provide an abstract base class for the view components.
-- Make the tree viewer, contents viewer, toolbar, and properties viewer ViewComponentBase subclasses.
-- Rename local variables.
-- Update docstrings.
+Refactored the code for better maintainability:
+- Providing an abstract base class for the view components.
+- Made the tree viewer, contents viewer, toolbar, and properties viewer ViewComponentBase subclasses.
+- Renamed local variables.
+- Updated docstrings.
 
 Based on novxlib 4.8.0
 
 ### Version 4.12.0
 
-- Add a notification mode to the status bar (yellow).
-- Show a notification instead of an error, if the user opens an existing document instead of exporting.
-- Show a notification if the document export is canceled due to unsaved changes.
-- Provide a specific error message if an odt import document contains an unknown model element (novxlib).
+- Added a notification mode to the status bar (yellow).
+- Showing a notification instead of an error, if the user opens an existing document instead of exporting.
+- Showing a notification if the document export is canceled due to unsaved changes.
+- Providing a specific error message if an odt import document contains an unknown model element (novxlib).
 
 Based on novxlib 4.8.0
 
 ### Version 4.11.11
 
-- Refactor: Use the view's API instead of tkinter imports.
-- Refactor: Move the project-specific tk.Toplevel subclasses to the new view.pop_up package.
-- Update docstrings.
+- Refactored: Use the view's API instead of tkinter imports.
+- Refactored: Move the project-specific tk.Toplevel subclasses to the new view.pop_up package.
+- Updated docstrings.
 
 Based on novxlib 4.7.3
 
 ### Version 4.11.10
 
-- Fix the 'Plot points' label to enable theming.
+- Fixed the 'Plot points' label to enable theming.
 
 Based on novxlib 4.7.3
 
 ### Version 4.11.9
 
-- Fix a bug where the project notes are displayed in the HTML report without linebreaks.
+- Fixed a bug where the project notes are displayed in the HTML report without linebreaks.
 
 Based on novxlib 4.7.3
 
 ### Version 4.11.8
 
-- Fix a bug where an exception is raised when trying to add a parent element to the tree while the project is locked. 
+- Fixed a bug where an exception is raised when trying to add a parent element to the tree while the project is locked. 
 
 Based on novxlib 4.7.2
 
 ### Version 4.11.7
 
-- Fix HTML report title display.
+- Fixed HTML report title display.
 
 Based on novxlib 4.7.2
 
 ### Version 4.11.6
 
-- Add accelerators to hovertips.
-- Fix typo in German translation.
+- Added accelerators to hovertips.
+- Fixed typo in German translation.
 
 Based on novxlib 4.7.1
 
 ### Version 4.11.5
 
-- Update UI text.
-- Refactor: defensive programming and re-structuring of packages.
+- Updated UI text.
+- Refactored: defensive programming and re-structuring of packages.
 
 Based on novxlib 4.6.7
 
 ### Version 4.11.4
 
-- Fix a bug where an unhandled exception is raised when trying to open the project folder while no project is open.
+- Fixed a bug where an unhandled exception is raised when trying to open the project folder while no project is open.
 
 Based on novxlib 4.6.7
 
 ### Version 4.11.3
 
-- Fix a bug where an unhandled exception is raised when trying automatically unlock an unnamed new project.
-- Refactor the error messaging system.
+- Fixed a bug where an unhandled exception is raised when trying automatically unlock an unnamed new project.
+- Refactored the error messaging system.
 
 Based on novxlib 4.6.7
 
 ### Version 4.11.2
 
-- Handle formatted headings when importing work-in-progress or outline.
+- Handling formatted headings when importing work-in-progress or outline.
 
 Based on novxlib 4.6.7
 
@@ -228,8 +241,8 @@ Based on novxlib 4.6.5
 
 ### Version 4.11.0
 
-- Add tooltips.
-- Fix a regression from version 4.10.1 where the "F1" key does not work with the import dialog.
+- Added tooltips.
+- Fixed a regression from version 4.10.1 where the "F1" key does not work with the import dialog.
 
 Refactor:
 - Separate keyboard settings and mouse operation settings.
@@ -239,7 +252,7 @@ Based on novxlib 4.6.4
 
 ### Version 4.10.3
 
-- Refactor the event bindings.
+- Refactored the event bindings.
 
 Based on novxlib 4.6.4
 
@@ -254,7 +267,7 @@ Based on novxlib 4.6.4
 - Translate accelerators.
 
 Refactor:
-- Add right-click event to the key definitions.
+- Added right-click event to the key definitions.
 - Using the NvView.key definitions instead of hard-coded key bindings.
 - Define mouse operations with the NvView.key definitions.
 
@@ -262,16 +275,16 @@ Based on novxlib 4.6.3
 
 ### Version 4.10.0
 
-- Provide shortcuts and key bindings for Mac OS.
+- Providing shortcuts and key bindings for Mac OS.
 - The zipfile setup script is now generated by the PackageBuilder class.
-- Add/update docstrings.
+- Added/update docstrings.
 
 Based on novxlib 4.6.3
 
 ### Version 4.9.6
 
 - Set limits for the application's window size.
-- Refactor: Replace global constants with class constants.
+- Refactored: Replace global constants with class constants.
 
 Based on novxlib 4.6.3
 
@@ -290,7 +303,7 @@ Based on novxlib 4.6.2
 
 ### Version 4.9.3
 
-- Refactor for future Python versions.
+- Refactored for future Python versions.
 
 Based on novxlib 4.5.9
 
@@ -299,26 +312,26 @@ Based on novxlib 4.5.9
 - Handling novx XML parser error.
 - Using raw strings for regular expressions.
 - Adjusting separators in File.filePath.
-- Refactor for future Python versions.
+- Refactored for future Python versions.
 
 Based on novxlib 4.5.7
 
 ### Version 4.9.1
 
-- Remove "private" tkinter imports that would not work with Linux.
+- Removed "private" tkinter imports that would not work with Linux.
 
 Based on novxlib 4.5.3
 
 ### Version 4.9.0
 
-- Make the right mouse button work under Mac OS.
-- Extend the API, providing a global PLATFORM constant.
+- Made the right mouse button work under Mac OS.
+- Extended the API, providing a global PLATFORM constant.
 
 Based on novxlib 4.5.3
 
 ### Version 4.8.3
 
-- Fix a regression from version 4.8.2 where project files could be mistakenly rejected as corrupted.
+- Fixed a regression from version 4.8.2 where project files could be mistakenly rejected as corrupted.
 
 Based on novxlib 4.5.3
 
@@ -345,31 +358,31 @@ Based on novxlib 4.5.0
 ### Version 4.7.0
 
 - API change: New option "localize_date".
-- Make date localization optional (Closes #26).
+- Made date localization optional.
 
 Based on novxlib 4.4.2
 
 ### Version 4.6.2
 
-- Fix a bug where no modification is indicated when the reference date is cleared.
+- Fixed a bug where no modification is indicated when the reference date is cleared.
 
 Based on novxlib 4.4.1
 
 ### Version 4.6.1
 
-- Add accelerator key to the "Online help" menu entry.
+- Added accelerator key to the "Online help" menu entry.
 
 Based on novxlib 4.4.0
 
 ### Version 4.6.0
 
-- Provide context sensitive help via F1 key and several mouse buttons.
+- Providing context sensitive help via F1 key and several mouse buttons.
 
 Based on novxlib 4.4.0
 
 ### Version 4.5.2
 
-- Update messages for wrong date/time entry.
+- Updated messages for wrong date/time entry.
 
 Based on novxlib 4.4.0
 
@@ -394,7 +407,7 @@ Based on novxlib 4.3.0
 ### Version 4.4.0
 
 - Show section moon phase on demand.
-- Extend the API, providing a service for moonphase calculation.
+- Extended the API, providing a service for moonphase calculation.
 
 Based on novxlib 4.3.0
 
@@ -423,10 +436,10 @@ Based on novxlib 4.2.0
 
 ### Version 4.3.1
 
-- Fix a bug in PluginCollection.load_file(), where the plugin's file path gets lost 
+- Fixed a bug in PluginCollection.load_file(), where the plugin's file path gets lost 
   if the plugin inherits from PluginBase.
-- Refactor the nv_controller module.
-- Update the PluginBase class.
+- Refactored the nv_controller module.
+- Updated the PluginBase class.
 
 Based on novxlib 4.1.0
 
@@ -434,16 +447,16 @@ Based on novxlib 4.1.0
 
 Extend the API for the nv_clipboard plugin.
 
-- Make the toolbar delegate in NvView a "public" instance variable.
-- Make the Toolbar buttonBar a "public" instance variable.
-- Add a service to the controller that returns the global preferences.
-- Remove unused imports; update docstrings.
+- Made the toolbar delegate in NvView a "public" instance variable.
+- Made the Toolbar buttonBar a "public" instance variable.
+- Added a service to the controller that returns the global preferences.
+- Removed unused imports; update docstrings.
 
 Based on novxlib 4.1.0
 
 ### Version 4.2.1
 
-- Make sure that critical errors do not happen silently. 
+- Made sure that critical errors do not happen silently. 
   In case of unhandled exceptions, show a popup window with the stack trace.
   This is only part of the "run.pyw" starter script generated during setup. 
 
@@ -459,65 +472,65 @@ Based on novxlib 4.1.0
 
 ### Version 4.1.2
 
-- Fix a regression from version 4.1.1 where plot points cannot be created.
-- Refactor: make nvService inherit from novxService.
-- Refactor: use nvService factory methods for model object instantiation.
-- Refactor: convert TreeViewer local functions into methods.
+- Fixed a regression from version 4.1.1 where plot points cannot be created.
+- Refactored: make nvService inherit from novxService.
+- Refactored: use nvService factory methods for model object instantiation.
+- Refactored: convert TreeViewer local functions into methods.
 
 Based on novxlib 4.1.0
 
 ### Version 4.1.1
 
 - Library update. Now reading and writing *.novx* version 1.4 files.
-- Make the Action/Reaction scheme more general (#22).
-- Refactor, changing the API.
-- Provide a service class with factory methods and getters for the novxlib model.
+- Made the Action/Reaction scheme more general (#22).
+- Refactored, changing the API.
+- Providing a service class with factory methods and getters for the novxlib model.
 
 Based on novxlib 4.0.2
 
 ### Version 3.9.2
 
-- Make sure not to read back redundant language tags from ODT.
+- Made sure not to read back redundant language tags from ODT.
 
 Based on novxlib 3.7.4
 
 ### Version 3.9.1
 
-- Change the view settings of generated ODT documents to single page per column.
-- Leave empty plot notes out when writing novx files.
+- Changing the view settings of generated ODT documents to single page per column.
+- Leaving empty plot notes out when writing novx files.
 
 Based on novxlib 3.7.3
 
 ### Version 3.9.0
 
-- Fix a regression from version 3.8.0 where data export raises an unhandled exception due to a bug in novxlib.
+- Fixed a regression from version 3.8.0 where data export raises an unhandled exception due to a bug in novxlib.
 - novxlib API is extended: new global function intersection().
 
 Based on novxlib 3.7.2
 
 ### Version 3.8.0
 
-- Improve the novx file read/write process.
-- Change toolbar button positions.
+- Improved the novx file read/write process.
+- Changed toolbar button positions.
 
 Based on novxlib 3.6.0
 
 ### Version 3.7.8
 
-- Make sure that collected values are hidden when a parent node is expanded, for whatever reason.
-- Refactor the tree_viewer module.
+- Made sure that collected values are hidden when a parent node is expanded, for whatever reason.
+- Refactored the tree_viewer module.
 
 Based on novxlib 3.5.4
 
 ### Version 3.7.7
 
-- Fix a bug where the status bar cannot be restored with the "Esc" key after having used the pick mode.
+- Fixed a bug where the status bar cannot be restored with the "Esc" key after having used the pick mode.
 
 Based on novxlib 3.5.3
 
 ### Version 3.7.6
 
-- Improve the "pick mode".
+- Improved the "pick mode".
 - When updating the section view, select the last plot line.
 
 Based on novxlib 3.5.3
@@ -531,7 +544,7 @@ Based on novxlib 3.5.3
 
 ### Version 3.7.4
 
-- Fix a bug where scenes might get lost during splitting, if split markers are not placed as intended. 
+- Fixed a bug where scenes might get lost during splitting, if split markers are not placed as intended. 
 
 Based on novxlib 3.5.3
 
@@ -543,14 +556,14 @@ Based on novxlib 3.5.1
 
 ### Version 3.7.2
 
-- Fix a bug where single spaces between emphasized text in section content are lost when writing novx files.
+- Fixed a bug where single spaces between emphasized text in section content are lost when writing novx files.
 
 Based on novxlib 3.5.0
 
 ### Version 3.7.1
 
-- Update plot line hyperlinks in the plotlist.
-- Add plot line hyperlinks to the plot grid.
+- Updated plot line hyperlinks in the plotlist.
+- Added plot line hyperlinks to the plot grid.
 
 Based on novxlib 3.4.1
 
@@ -565,20 +578,20 @@ Based on novxlib 3.4.0
 
 ### Version 3.6.3
 
-- Fix a regression from version 3.5.0 where the book settings of the last opened project are preset in newly created projects.
+- Fixed a regression from version 3.5.0 where the book settings of the last opened project are preset in newly created projects.
 
 Based on novxlib 3.3.0
 
 ### Version 3.6.2
 
-- Fix a bug where the viewpoint can not be set if no character is related.
+- Fixed a bug where the viewpoint can not be set if no character is related.
 
 Based on novxlib 3.3.0
 
 ### Version 3.6.1
 
-- Fix a regression from version 1.4.1 where changing the chapter type may also affect the next chapter selected.
-- Fix a regression from version 3.5.0 where the chapter properties are displayed in the wrong order after selecting the "Trash bin". 
+- Fixed a regression from version 1.4.1 where changing the chapter type may also affect the next chapter selected.
+- Fixed a regression from version 3.5.0 where the chapter properties are displayed in the wrong order after selecting the "Trash bin". 
 
 Based on novxlib 3.3.0
 
@@ -606,7 +619,7 @@ Based on novxlib 3.2.0
 
 ### Version 3.5.1
 
-- Fix a regression from version 3.0.0 where plot lines and plot points cannot be deleted.
+- Fixed a regression from version 3.0.0 where plot lines and plot points cannot be deleted.
 
 Based on novxlib 3.2.0
 
@@ -625,27 +638,27 @@ The DTD has been upgraded to version 1.2, due to the following changes:
 
 #### Add "Sticky notes" to the chapters, locations, items, and plot lines (#15)
 
-- Add notes text boxes to the properties views.
+- Added notes text boxes to the properties views.
 - Show collected stage note indicators for collapsed chapters.
 - Show collected plot point note indicators for collapsed plot lines.
 
 #### Add links to chapters, sections, plot lines, plot points, and project notes (#16).
 
-- Add link frames to all properties views
+- Added link frames to all properties views
 - Abbreviate links in the project path.
 
 Based on novxlib 3.2.0
 
 ### Version 3.4.1
 
-- Fix a regression from version 3.4.0 where links cannot be added.
+- Fixed a regression from version 3.4.0 where links cannot be added.
 
 Based on novxlib 3.1.0
 
 ### Version 3.4.0
 
 - Open Zim links the correct way.
-- Add ODF documents to the link file types.
+- Added ODF documents to the link file types.
 
 Based on novxlib 3.1.0
 
@@ -657,22 +670,22 @@ Based on novxlib 3.1.0
 
 ### Version 3.3.0
 
-- Update section list structure.
+- Updated section list structure.
 - Import tags from Plot Grid even if empty.
-- Refactor for novxlib update.
+- Refactored for novxlib update.
 
 Based on novxlib 3.1.0
 
 ### Version 3.2.4
 
-- Refactor: Add "Return" keybinding to the LabelEntry widget.
-- Improve the "Import" dialog layout.
+- Refactored: Add "Return" keybinding to the LabelEntry widget.
+- Improved the "Import" dialog layout.
 
 Based on novxlib 3.0.1
 
 ### Version 3.2.3
 
-- Fix the "Import" dialog button activation.
+- Fixed the "Import" dialog button activation.
 
 Based on novxlib 3.0.1
 
@@ -680,13 +693,13 @@ Based on novxlib 3.0.1
 
 - Option for importing documents even if open in OO/LO.
 - Show localized file date/time instead of ISO-formatted date/time.
-- Add translation to the content viewer.
+- Added translation to the content viewer.
 
 Based on novxlib 3.0.1
 
 ### Version 3.1.2
 
-- Update message.
+- Updated message.
 
 Based on novxlib 3.0.1
 
@@ -694,7 +707,7 @@ Based on novxlib 3.0.1
 
 - Display localized time in the "Show ages" title bar.
 - Display localized time in the "Reference date" frame.
-- Provide weekday names and month names for all languages.
+- Providing weekday names and month names for all languages.
 
 Based on novxlib 3.0.1
 
@@ -702,7 +715,7 @@ Based on novxlib 3.0.1
 
 - Display the localized date in the tree view.
 - Display the localized date with the week day in the properties view.
-- Refactor the section date/day display.
+- Refactored the section date/day display.
 
 Based on novxlib 3.0.0
 
@@ -714,7 +727,7 @@ Based on novxlib 2.0.1
 
 ### Version 3.0.5
 
-- Make the initial value for adding multiple sections a constant and set it to 1.
+- Made the initial value for adding multiple sections a constant and set it to 1.
 - Show an error message if a new element cannot be created.
 
 Based on novxlib 2.0.1
@@ -727,28 +740,28 @@ Based on novxlib 2.0.1
 
 ### Version 3.0.3
 
-- Improve the "Export document" and the "New sections" 
+- Improved the "Export document" and the "New sections" 
   dialogs with a custom dialog box. 
 
 Based on novxlib 2.0.1
 
 ### Version 3.0.2
 
-- Fix a bug where imported sections are split at the 
+- Fixed a bug where imported sections are split at the 
   "####" mark, but not appended as they should. 
 
 Based on novxlib 2.0.1
 
 ### Version 3.0.1
 
-- Refactor the code.
+- Refactored the code.
 
 Based on novxlib 2.0.0
 
 ### Version 3.0.0
 
-- Fix a regression from version 2.7.0 where faulty plot lists are generated. 
-- Refactor the code, using the new "plot line/plot point" 
+- Fixed a regression from version 2.7.0 where faulty plot lists are generated. 
+- Refactored the code, using the new "plot line/plot point" 
   wording for the variables and methods. 
 - Upgrade the API to version 3 due to the DTD changes. Otherwise, plugins
   with v2.x API might not be able to read the novx files.
@@ -762,16 +775,16 @@ Based on novxlib 2.0.0
 - Up to 20 sections can now be added at once.
 - New option: Ask whether documents should be opened straight after export.
 - New option: Lock the project after document export.
-- Add "Export" options dialog. 
+- Added "Export" options dialog. 
 - In the section properties view, provide a text box to enter notes for the selected arc.
-- Add the ODS Plot grid to the document types for export and import.
-- Make the ODS Section list export-only.
+- Added the ODS Plot grid to the document types for export and import.
+- Made the ODS Section list export-only.
 
 Based on novxlib 1.5.0
 
 ### Version 2.6.1
 
-- Provide translated headers for ODS export.
+- Providing translated headers for ODS export.
 - Label the plugin manager exit button "Close".
 - Label the view options exit button "Close".
 
@@ -779,27 +792,27 @@ Based on novxlib 1.4.2
 
 ### Version 2.6.0
 
-- Add a button for creating the section duration from date/time difference.
+- Added a button for creating the section duration from date/time difference.
 - More robust ODS file reading.
 
 Based on novxlib 1.4.1
 
 ### Version 2.5.0
 
-- Add date/time information to the section list.
+- Added date/time information to the section list.
 
 Based on novxlib 1.4.0
 
 ### Version 2.4.1
 
 - Replace the "Segoe UI 10" font with "Calibri 10.5" for ODF document export.
-- Fix a bug where links do not work in the ODS plot list for section titles containing false double quotes.
+- Fixed a bug where links do not work in the ODS plot list for section titles containing false double quotes.
 
 Based on novxlib 1.3.1
 
 ### Version 2.4.0
 
-- Fix a bug where the plot list cannot be generated if an arc has no plot point.
+- Fixed a bug where the plot list cannot be generated if an arc has no plot point.
 - Reword/Refactor replacing "Turning point" with "Plot point" without affecting the API.
 
 Based on novxlib 1.3.0
@@ -807,7 +820,7 @@ Based on novxlib 1.3.0
 ### Version 2.3.1
 
 - Require changes to be saved before document export.
-- Fix a bug where document import is aborted silently on error. 
+- Fixed a bug where document import is aborted silently on error. 
 
 Based on novxlib 1.2.1
 
@@ -840,10 +853,10 @@ Based on novxlib 1.1.0
 See [this message](https://github.com/peter88213/noveltree/discussions/1#discussioncomment-8526314).
 
 Preparations for renaming the application:
-- Refactor the code for v2.0 API.
-- Change the installation directory in the setup and registry scripts.
-- Rename packages that have "noveltree" in their name.
-- Refactor the code for v2.0 API.
+- Refactored the code for v2.0 API.
+- Changed the installation directory in the setup and registry scripts.
+- Renamed packages that have "noveltree" in their name.
+- Refactored the code for v2.0 API.
 
 Based on novxlib 1.1.0
 
@@ -871,7 +884,7 @@ Based on novxlib 1.1.0
 ### Version 1.7.1
 
 - If a section has a "day" instead of a date, calculate the age of the related characters based on the reference date, if any.
-- Extend messaging.
+- Extended messaging.
 
 Based on novxlib 1.1.0
 
@@ -885,85 +898,83 @@ Based on novxlib 1.1.0
 
 Fix a bug where detaching and re-docking the Properties view causes malfunction.
 
-- Neatly reparent the Properties viewer when detaching/docking it.
-- Catch all exceptions that might be raised on shutdown. 
-- Never disable Text viewer and Properties buttons.
+- Neatly reparenting the Properties viewer when detaching/docking it.
+- Catching all exceptions that might be raised on shutdown. 
+- Never disabling Text viewer and Properties buttons.
 
 Based on novxlib 1.0.1
 
 ### Version 1.6.10
 
-- Deactivate the detached mode for the Properties window to avoid problems
-  caused by a bug yet to fix.
+- Deactivated the detached mode for the Properties window to avoid problems caused by a bug yet to fix.
 
 Based on novxlib 1.0.1
 
 ### Version 1.6.9
 
-- Fix a bug where the writing progress is unclear because the overall word count is not provided by the model.
+- Fixed a bug where the writing progress is unclear because the overall word count is not provided by the model.
 
 Based on novxlib 1.0.1
 
 ### Version 1.6.8
 
-- Fix a bug in novxlib where turning points appear in the wrong columns
-of the plot list ods export and html report.
+- Fixed a bug in novxlib where turning points appear in the wrong columns of the plot list ods export and html report.
 
 Based on novxlib 1.0.1
 
 ### Version 1.6.7
 
-- Fix a bug where locked documents are not highlighted in the import list.
+- Fixed a bug where locked documents are not highlighted in the import list.
 
 Based on novxlib 1.0.0
 
 ### Version 1.6.6
 
-- Mark turning points with "notes" in the tree.
+- Marked turning points with "notes" in the tree.
 
 Based on novxlib 1.0.0
 
 ### Version 1.6.5
 
-- Add a "noveltree Home page" entry to the help menu.
+- Added a "noveltree Home page" entry to the help menu.
 
 Based on novxlib 1.0.0
 
 ### Version 1.6.4
 
-- Switch the online help to https://peter88213.github.io/noveltree-help/.
+- Switched the online help to https://peter88213.github.io/noveltree-help/.
 
 Based on novxlib 1.0.0
 
 ### Version 1.6.3
 
-- Update icons.
-. Update German translation.
+- Updated icons.
+- Updated German translation.
 
 Based on novxlib 1.0.0
 
 ### Version 1.6.2
 
-- Make the context menus close under Linux when losing the focus.
+- Made the context menus close under Linux when losing the focus.
 
 Based on novxlib 1.0.0
 
 ### Version 1.6.1
 
-- Add the short names to the section arcs view.
+- Added the short names to the section arcs view.
 
 Based on novxlib 1.0.0
 
 ### Version 1.6.0
 
-- Add "File > Copy style sheet" menu entry.
+- Added "File > Copy style sheet" menu entry.
 
 Based on novxlib 1.0.0
 
 ### Version 1.5.0
 
 - Under Windows, exit the program with Alt-F4 instead of Ctrl-Q.
-- No longer use the hotkeys F1..F4, F6...F12.
+- No longer using the hotkeys F1..F4, F6...F12.
 
 Based on novxlib 1.0.0
 
@@ -975,20 +986,20 @@ Based on novxlib 1.0.0
 
 ### Version 1.4.2
 
-- Fix a bug where property changes might be lost when pressing the F5 key.
+- Fixed a bug where property changes might be lost when pressing the F5 key.
 
 Based on novxlib 1.0.0
 
 ### Version 1.4.1
 
-- Add "Unused" checkboxes to the chapter/section properties view.
+- Added "Unused" checkboxes to the chapter/section properties view.
 
 Based on novxlib 1.0.0
 
 ### Version 1.4.0
 
-- Fix a bug where the project structure of a newly created project is invisible until the first element is created.
-- Save new empty projects right after creation.
+- Fixed a bug where the project structure of a newly created project is invisible until the first element is created.
+- Saving new empty projects right after creation.
 
 Extend the toolbar and change key bindings:
 
@@ -1005,36 +1016,36 @@ Based on novxlib 1.0.0
 
 ### Version 1.3.1
 
-- Fix a bug where the HTML lists are not generated.
+- Fixed a bug where the HTML lists are not generated.
 
 Based on novxlib 1.0.0
 
 ### Version 1.3.0
 
-- Provide icons for the collection list buttons.
-- Make the icons available for the entire GUI.
+- Providing icons for the collection list buttons.
+- Made the icons available for the entire GUI.
 
 Based on novxlib 1.0.0
 
 ### Version 1.2.2
 
-- Fix "View" menu control.
-- Add "Import" menu control.
-- Add "Project notes" menu control.
+- Fixed "View" menu control.
+- Added "Import" menu control.
+- Added "Project notes" menu control.
 
 Based on novxlib 1.0.0
 
 ### Version 1.2.1
 
-- Make it easier to exit the Pick Mode.
+- Making it easier to exit the Pick Mode.
 
 Based on novxlib 1.0.0
 
 ### Version 1.2.0
 
-- Change the view of the arcs associated with a section into a list.
-- Improve the usability by indicating the Pick Mode.
-- Extend the API: NvView.set_status() takes a custom colors argument.
+- Changed the view of the arcs associated with a section into a list.
+- Improved the usability by indicating the Pick Mode.
+- Extended the API: NvView.set_status() takes a custom colors argument.
 
 Based on novxlib 1.0.0
 
@@ -1046,28 +1057,28 @@ Based on novxlib 1.0.0
 
 ### Version 1.1.2
 
-- Fix a regression where the contents viewer is not reset on closing a project.
-- Fix a bug where the stage level cannot be changed".
+- Fixed a regression where the contents viewer is not reset on closing a project.
+- Fixed a bug where the stage level cannot be changed".
 
 Based on novxlib 1.0.0
 
 ### Version 1.1.1
 
-- Handle missing toolbar icon files.
+- Handling missing toolbar icon files.
 
 Based on novxlib 1.0.0
 
 ### Version 1.1.0
 
-- Integrate the toolbar. 
+- Integrated the toolbar. 
   If the *noveltree_toolbar* plugin is installed, please delete it with the Plugin manager.
-- Refactor.
+- Refactored.
 
 Based on novxlib 1.0.0
 
 ### Version 1.0.1
 
-- Fix the plugin API version constant.
+- Fixed the plugin API version constant.
 
 Based on novxlib 1.0.0
 
