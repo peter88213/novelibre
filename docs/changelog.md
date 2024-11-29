@@ -36,6 +36,8 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Creating multiple sections always in ascending order.
 - Refactored the code for better maintainability.
 - The API is updated to version 5.0, so all plugins must be updated.
+- Allowing arbitrary link openers to be added to the link processor.
+- Moved the Zim Wiki page link processing to the *nv_zim* plugin.
 
 ### Version 4.17.2
 

@@ -17,6 +17,7 @@
 		<project>nv_tlview</project>
 		<project>nv_updater</project>
 		<project>nv_yw7</project>
+		<project>nv_zim</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

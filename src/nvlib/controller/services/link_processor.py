@@ -4,7 +4,6 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-import glob
 import os
 from pathlib import Path
 import subprocess
@@ -17,23 +16,13 @@ from nvlib.novx_globals import norm_path
 
 class LinkProcessor(ServiceBase):
     """Strategy class for link processing."""
-    ZIM_NOTE_EXTENSION = '.txt'
 
-    def shorten_path(self, linkPath):
-        """Return a shortened path string. 
-        
-        Positional arguments:
-            linkPath: str -- Full link path.
-            
-        If linkPath is on the same drive as the project path,
-        the shortened path is relative to the project path.            
-        """
-        projectDir = os.path.split(self._mdl.prjFile.filePath)[0]
-        try:
-            linkPath = os.path.relpath(linkPath, projectDir)
-        except ValueError:
-            pass
-        return linkPath.replace('\\', '/')
+    def __init__(self, model, view, controller):
+        super().__init__(model, view, controller)
+        self.specialOpeners = []
+
+    def add_special_opener(self, method):
+        self.specialOpeners.append(method)
 
     def expand_path(self, linkPath):
         """Return an expanded path string.
@@ -113,28 +102,11 @@ class LinkProcessor(ServiceBase):
             linkPath: str -- Link path as stored in novx.
         """
         linkPath = self.expand_path(linkPath)
-        extension = None
-        try:
-            filePath, extension = os.path.splitext(linkPath)
-            if extension == self.ZIM_NOTE_EXTENSION:
-                launcher = self._ctrl.launchers['.zim']
-                if os.path.isfile(launcher):
-                    pagePath = filePath.split('/')
-                    zimPages = []
-                    # this is for the page path in Zim notation
+        filePath, extension = os.path.splitext(linkPath)
+        for specialOpener in self.specialOpeners:
+            if specialOpener(filePath, extension):
+                return
 
-                    # Search backwards through the file branch.
-                    while pagePath:
-                        zimPages.insert(0, pagePath.pop())
-                        zimPath = '/'.join(pagePath)
-                        zimNotebook = glob.glob(norm_path(f'{zimPath}/*.zim'))
-                        if zimNotebook:
-                            # the link path belongs to a Zim wiki
-                            subprocess.Popen([launcher, zimNotebook[0], ":".join(zimPages)])
-                            return
-
-        except:
-            pass
         launcher = self._ctrl.launchers.get(extension, '')
         if os.path.isfile(launcher):
             subprocess.Popen([launcher, linkPath])
@@ -145,4 +117,20 @@ class LinkProcessor(ServiceBase):
             return
 
         raise FileNotFoundError(f"{_('File not found')}: {norm_path(linkPath)}")
+
+    def shorten_path(self, linkPath):
+        """Return a shortened path string. 
+        
+        Positional arguments:
+            linkPath: str -- Full link path.
+            
+        If linkPath is on the same drive as the project path,
+        the shortened path is relative to the project path.            
+        """
+        projectDir = os.path.split(self._mdl.prjFile.filePath)[0]
+        try:
+            linkPath = os.path.relpath(linkPath, projectDir)
+        except ValueError:
+            pass
+        return linkPath.replace('\\', '/')
 
