@@ -19,10 +19,11 @@ class LinkProcessor(ServiceBase):
 
     def __init__(self, model, view, controller):
         super().__init__(model, view, controller)
-        self.specialOpeners = []
+        self.externalOpeners = []
+        # list of callback functions
 
-    def add_special_opener(self, method):
-        self.specialOpeners.append(method)
+    def add_opener(self, method):
+        self.externalOpeners.append(method)
 
     def expand_path(self, linkPath):
         """Return an expanded path string.
@@ -103,10 +104,14 @@ class LinkProcessor(ServiceBase):
         """
         linkPath = self.expand_path(linkPath)
         filePath, extension = os.path.splitext(linkPath)
-        for specialOpener in self.specialOpeners:
-            if specialOpener(filePath, extension):
-                return
+        for externalOpener in self.externalOpeners:
+            try:
+                if externalOpener(filePath, extension):
+                    # the link is opened by an external function
+                    return
 
+            except:
+                pass
         launcher = self._ctrl.launchers.get(extension, '')
         if os.path.isfile(launcher):
             subprocess.Popen([launcher, linkPath])
