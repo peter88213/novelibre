@@ -47,8 +47,8 @@ class BasicView(ttk.Frame, Observer):
         self.inputWidgets = []
 
         # Frame for element specific informations.
-        self._propertiesFrame = ttk.Frame(self)
-        self._propertiesFrame.pack(expand=True, fill='both')
+        self.propertiesFrame = ttk.Frame(self)
+        self.propertiesFrame.pack(expand=True, fill='both')
 
         self.prefsShowLinks = None
         self._create_frames()
@@ -69,7 +69,7 @@ class BasicView(ttk.Frame, Observer):
         self.pack(expand=True, fill='both')
 
     def _add_separator(self):
-        ttk.Separator(self._propertiesFrame, orient='horizontal').pack(fill='x')
+        ttk.Separator(self.propertiesFrame, orient='horizontal').pack(fill='x')
 
     def _create_button_bar(self):
         """Create a button bar at the bottom."""
@@ -84,8 +84,8 @@ class BasicView(ttk.Frame, Observer):
 
     def _create_element_info_window(self):
         """Create a window for element specific information."""
-        self._elementInfoWindow = ttk.Frame(self._propertiesFrame)
-        self._elementInfoWindow.pack(fill='x')
+        self.elementInfoWindow = ttk.Frame(self.propertiesFrame)
+        self.elementInfoWindow.pack(fill='x')
 
     @abstractmethod
     def _create_frames(self):
@@ -95,7 +95,7 @@ class BasicView(ttk.Frame, Observer):
     def _create_index_card(self):
         """Create an "index card" for element title and description."""
         self.indexCard = IndexCard(
-            self._propertiesFrame,
+            self.propertiesFrame,
             bd=2,
             fg=prefs['color_text_fg'],
             bg=prefs['color_text_bg'],
@@ -109,8 +109,8 @@ class BasicView(ttk.Frame, Observer):
 
     def _create_links_window(self):
         """A folding frame with a "Links" listbox and control buttons."""
-        ttk.Separator(self._propertiesFrame, orient='horizontal').pack(fill='x')
-        self.linksWindow = FoldingFrame(self._propertiesFrame, _('Links'), self._toggle_links_window)
+        ttk.Separator(self.propertiesFrame, orient='horizontal').pack(fill='x')
+        self.linksWindow = FoldingFrame(self.propertiesFrame, _('Links'), self._toggle_links_window)
         self.linksWindow.pack(fill='x')
         self.linkCollection = CollectionBox(
             self.linksWindow,
@@ -129,7 +129,7 @@ class BasicView(ttk.Frame, Observer):
     def _create_notes_window(self):
         """Create a text box for element notes."""
         self.notesWindow = TextBox(
-            self._propertiesFrame,
+            self.propertiesFrame,
             wrap='word',
             undo=True,
             autoseparators=True,

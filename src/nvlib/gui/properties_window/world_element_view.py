@@ -28,13 +28,13 @@ class WorldElementView(BasicView):
         super().__init__(parent, model, view, controller)
         inputWidgets = []
 
-        self._fullNameFrame = ttk.Frame(self._elementInfoWindow)
+        self._fullNameFrame = ttk.Frame(self.elementInfoWindow)
         self._fullNameFrame.pack(anchor='w', fill='x')
 
         # 'AKA' entry.
         self.akaVar = MyStringVar()
         self._akaEntry = LabelEntry(
-            self._elementInfoWindow,
+            self.elementInfoWindow,
             text=_('AKA'),
             textvariable=self.akaVar,
             command=self.apply_changes,
@@ -46,7 +46,7 @@ class WorldElementView(BasicView):
         # 'Tags' entry.
         self.tagsVar = MyStringVar()
         self._tagsEntry = LabelEntry(
-            self._elementInfoWindow,
+            self.elementInfoWindow,
             text=_('Tags'),
             textvariable=self.tagsVar,
             command=self.apply_changes,

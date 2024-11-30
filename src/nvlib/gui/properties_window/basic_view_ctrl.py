@@ -21,7 +21,7 @@ class BasicViewCtrl(SubController):
         super().initialize_controller(model, view, controller)
 
         self.element = None
-        self._elementId = None
+        self.elementId = None
         self._pickingMode = False
         self._pickCommand = None
         self._isLocked = False
@@ -67,8 +67,8 @@ class BasicViewCtrl(SubController):
         titleStr = self.indexCard.title.get()
         if titleStr:
             titleStr = titleStr.strip()
-        elif self._elementId != CH_ROOT:
-            titleStr = self._elementId
+        elif self.elementId != CH_ROOT:
+            titleStr = self.elementId
         self.element.title = titleStr
 
         # Description entry.
@@ -138,7 +138,7 @@ class BasicViewCtrl(SubController):
         
         Note: subclasses must set self.element before calling this method.
         """
-        self._elementId = elementId
+        self.elementId = elementId
         if self.element is None:
             return
 

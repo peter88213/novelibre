@@ -35,33 +35,33 @@ class PropertiesViewerCtrl(SubController):
         self._clients = []
 
         # Call a factory method to instantiate and register one view component per element type.
-        self._noView = self._make_view(NoView)
-        self._projectView = self._make_view(ProjectView)
-        self._chapterView = self._make_view(ChapterView)
-        self._stageView = self._make_view(StageView)
-        self._sectionView = self._make_view(SectionView)
-        self._characterView = self._make_view(CharacterView)
-        self._locationView = self._make_view(LocationView)
-        self._itemView = self._make_view(ItemView)
-        self._plotlineView = self._make_view(PlotLineView)
-        self._plotPointView = self._make_view(PlotPointView)
-        self._projectnoteView = self._make_view(ProjectNoteView)
+        self.noView = self._make_view(NoView)
+        self.projectView = self._make_view(ProjectView)
+        self.chapterView = self._make_view(ChapterView)
+        self.stageView = self._make_view(StageView)
+        self.sectionView = self._make_view(SectionView)
+        self.characterView = self._make_view(CharacterView)
+        self.locationView = self._make_view(LocationView)
+        self.itemView = self._make_view(ItemView)
+        self.plotlineView = self._make_view(PlotLineView)
+        self.plotPointView = self._make_view(PlotPointView)
+        self.projectnoteView = self._make_view(ProjectNoteView)
 
-        self._activeView = self._noView
-        self._activeView.set_data(None)
-        self._activeView.doNotUpdate = False
+        self.activeView = self.noView
+        self.activeView.set_data(None)
+        self.activeView.doNotUpdate = False
 
     def apply_changes(self, event=None):
         # This is called by the controller to make sure changes take effect
         # e.g. when starting an export while a property entry still has the focus.
         if not self._ctrl.isLocked:
-            self._activeView.doNotUpdate = True
-            self._activeView.apply_changes()
-            self._activeView.doNotUpdate = False
+            self.activeView.doNotUpdate = True
+            self.activeView.apply_changes()
+            self.activeView.doNotUpdate = False
 
     def focus_title(self):
         """Prepare the current element's title entry for manual input."""
-        self._activeView.focus_title()
+        self.activeView.focus_title()
 
     def lock(self):
         """Inhibit changes on the model."""
@@ -98,16 +98,16 @@ class PropertiesViewerCtrl(SubController):
             self._view_projectnote(nodeId)
         else:
             self._view_nothing()
-        self._activeView.doNotUpdate = False
+        self.activeView.doNotUpdate = False
 
     def refresh(self):
         """Refresh the active view after changes have been made "outsides".
         
         Overrides the superclass method.
         """
-        if not self._activeView.doNotUpdate:
+        if not self.activeView.doNotUpdate:
             try:
-                self.show_properties(self._activeView._elementId)
+                self.show_properties(self.activeView.elementId)
             except:
                 pass
 
@@ -132,11 +132,11 @@ class PropertiesViewerCtrl(SubController):
     def _set_data(self, elemId):
         """Fill the widgets with the data of the element to view and change."""
         if self._ctrl.isLocked:
-            self._activeView.unlock()
-            self._activeView.set_data(elemId)
-            self._activeView.lock()
+            self.activeView.unlock()
+            self.activeView.set_data(elemId)
+            self.activeView.lock()
         else:
-            self._activeView.set_data(elemId)
+            self.activeView.set_data(elemId)
 
     def _view_plotline(self, plId):
         """Show the selected plot line.
@@ -144,10 +144,10 @@ class PropertiesViewerCtrl(SubController):
         Positional arguments:
             plId: str -- Plot line ID
         """
-        if not self._activeView is self._plotlineView:
-            self._activeView.hide()
-            self._activeView = self._plotlineView
-            self._activeView.show()
+        if not self.activeView is self.plotlineView:
+            self.activeView.hide()
+            self.activeView = self.plotlineView
+            self.activeView.show()
         self._set_data(plId)
 
     def _view_chapter(self, chId):
@@ -156,10 +156,10 @@ class PropertiesViewerCtrl(SubController):
         Positional arguments:
             chId: str -- chapter ID
         """
-        if not self._activeView is self._chapterView:
-            self._activeView.hide()
-            self._activeView = self._chapterView
-            self._activeView.show()
+        if not self.activeView is self.chapterView:
+            self.activeView.hide()
+            self.activeView = self.chapterView
+            self.activeView.show()
         self._set_data(chId)
 
     def _view_character(self, crId):
@@ -168,10 +168,10 @@ class PropertiesViewerCtrl(SubController):
         Positional arguments:
             crId: str -- character ID
         """
-        if not self._activeView is self._characterView:
-            self._activeView.hide()
-            self._activeView = self._characterView
-            self._activeView.show()
+        if not self.activeView is self.characterView:
+            self.activeView.hide()
+            self.activeView = self.characterView
+            self.activeView.show()
         self._set_data(crId)
 
     def _view_item(self, itId):
@@ -180,10 +180,10 @@ class PropertiesViewerCtrl(SubController):
         Positional arguments:
             itId: str -- item ID
         """
-        if not self._activeView is self._itemView:
-            self._activeView.hide()
-            self._activeView = self._itemView
-            self._activeView.show()
+        if not self.activeView is self.itemView:
+            self.activeView.hide()
+            self.activeView = self.itemView
+            self.activeView.show()
         self._set_data(itId)
 
     def _view_location(self, lcId):
@@ -192,25 +192,25 @@ class PropertiesViewerCtrl(SubController):
         Positional arguments:
             lcId: str -- location ID
         """
-        if not self._activeView is self._locationView:
-            self._activeView.hide()
-            self._activeView = self._locationView
-            self._activeView.show()
+        if not self.activeView is self.locationView:
+            self.activeView.hide()
+            self.activeView = self.locationView
+            self.activeView.show()
         self._set_data(lcId)
 
     def _view_nothing(self):
         """Reset properties if nothing valid is selected."""
-        if not self._activeView is self._noView:
-            self._activeView.hide()
-            self._activeView = self._noView
-            self._activeView.show()
+        if not self.activeView is self.noView:
+            self.activeView.hide()
+            self.activeView = self.noView
+            self.activeView.show()
 
     def _view_project(self):
         """Show the project's properties."""
-        if not self._activeView is self._projectView:
-            self._activeView.hide()
-            self._activeView = self._projectView
-            self._activeView.show()
+        if not self.activeView is self.projectView:
+            self.activeView.hide()
+            self.activeView = self.projectView
+            self.activeView.show()
         self._set_data(CH_ROOT)
 
     def _view_projectnote(self, pnId):
@@ -219,10 +219,10 @@ class PropertiesViewerCtrl(SubController):
         Positional arguments:
             pnId: str -- Project note ID
         """
-        if not self._activeView is self._projectnoteView:
-            self._activeView.hide()
-            self._activeView = self._projectnoteView
-            self._activeView.show()
+        if not self.activeView is self.projectnoteView:
+            self.activeView.hide()
+            self.activeView = self.projectnoteView
+            self.activeView.show()
         self._set_data(pnId)
 
     def _view_section(self, scId):
@@ -232,15 +232,15 @@ class PropertiesViewerCtrl(SubController):
             scId: str -- section ID
         """
         if self._mdl.novel.sections[scId].scType > 1:
-            if not self._activeView is self._stageView:
-                self._activeView.hide()
-                self._activeView = self._stageView
-                self._activeView.show()
+            if not self.activeView is self.stageView:
+                self.activeView.hide()
+                self.activeView = self.stageView
+                self.activeView.show()
         else:
-            if not self._activeView is self._sectionView:
-                self._activeView.hide()
-                self._activeView = self._sectionView
-                self._activeView.show()
+            if not self.activeView is self.sectionView:
+                self.activeView.hide()
+                self.activeView = self.sectionView
+                self.activeView.show()
         self._set_data(scId)
 
     def _view_plot_point(self, ppId):
@@ -248,9 +248,9 @@ class PropertiesViewerCtrl(SubController):
         Positional arguments:
             ppId: str -- Plot point ID
         """
-        if not self._activeView is self._plotPointView:
-            self._activeView.hide()
-            self._activeView = self._plotPointView
-            self._activeView.show()
+        if not self.activeView is self.plotPointView:
+            self.activeView.hide()
+            self.activeView = self.plotPointView
+            self.activeView.show()
         self._set_data(ppId)
 

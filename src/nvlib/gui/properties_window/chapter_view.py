@@ -30,7 +30,7 @@ class ChapterView(BasicView, ChapterViewCtrl):
         #--- 'Unused' checkbox.
         self.isUnusedVar = tk.BooleanVar()
         self.isUnusedCheckbox = ttk.Checkbutton(
-            self._elementInfoWindow,
+            self.elementInfoWindow,
             text=_('Unused'),
             variable=self.isUnusedVar,
             onvalue=True,
@@ -43,7 +43,7 @@ class ChapterView(BasicView, ChapterViewCtrl):
         #--- 'Do not auto-number...' checkbox.
         self.noNumberVar = tk.BooleanVar()
         self.noNumberCheckbox = ttk.Checkbutton(
-            self._elementInfoWindow,
+            self.elementInfoWindow,
             variable=self.noNumberVar,
             onvalue=True,
             offvalue=False,

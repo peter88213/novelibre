@@ -242,7 +242,7 @@ class SectionViewCtrl(BasicViewCtrl):
 
     def auto_set_date(self):
         """Set section start to the end of the previous section."""
-        prevScId = self._ui.tv.prev_node(self._elementId)
+        prevScId = self._ui.tv.prev_node(self.elementId)
         if not prevScId:
             return
 
@@ -270,7 +270,7 @@ class SectionViewCtrl(BasicViewCtrl):
             deltaDays = timedelta(days=int(day))
             return date.isoformat(refDate + deltaDays)
 
-        nextScId = self._ui.tv.next_node(self._elementId)
+        nextScId = self._ui.tv.next_node(self.elementId)
         if not nextScId:
             return
 
@@ -520,8 +520,8 @@ class SectionViewCtrl(BasicViewCtrl):
 
         # Remove the section from the plot line's list.
         arcSections = self._mdl.novel.plotLines[plId].sections
-        if self._elementId in arcSections:
-            arcSections.remove(self._elementId)
+        if self.elementId in arcSections:
+            arcSections.remove(self.elementId)
             self._mdl.novel.plotLines[plId].sections = arcSections
 
             # Remove plot point assignments, if any.
@@ -859,7 +859,7 @@ class SectionViewCtrl(BasicViewCtrl):
             return
 
         self.doNotUpdate = False
-        self.set_data(self._elementId)
+        self.set_data(self.elementId)
 
     def unlock(self):
         """Enable plot line notes only if a plot line is selected."""
@@ -899,8 +899,8 @@ class SectionViewCtrl(BasicViewCtrl):
             plotlineList.append(plId)
             self.element.scPlotLines = plotlineList
             plotlineSections = self._mdl.novel.plotLines[plId].sections
-            if not self._elementId in plotlineSections:
-                plotlineSections.append(self._elementId)
+            if not self.elementId in plotlineSections:
+                plotlineSections.append(self.elementId)
                 self._mdl.novel.plotLines[plId].sections = plotlineSections
 
             # TODO: Select the new plot line entry.

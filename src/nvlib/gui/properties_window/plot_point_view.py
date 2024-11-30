@@ -28,10 +28,10 @@ class PlotPointView(BasicView, PlotPointViewCtrl):
         super().__init__(parent, model, view, controller)
         inputWidgets = []
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
         # Associated section display.
-        self._sectionFrame = ttk.Frame(self._elementInfoWindow)
+        self._sectionFrame = ttk.Frame(self.elementInfoWindow)
         self._sectionFrame.pack(anchor='w', fill='x')
         ttk.Label(self._sectionFrame, text=f"{_('Section')}:").pack(anchor='w')
         self.sectionAssocTitle = tk.Label(self._sectionFrame, anchor='w', bg='white')

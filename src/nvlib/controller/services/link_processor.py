@@ -103,15 +103,15 @@ class LinkProcessor(ServiceBase):
             linkPath: str -- Link path as stored in novx.
         """
         linkPath = self.expand_path(linkPath)
-        filePath, extension = os.path.splitext(linkPath)
         for externalOpener in self.externalOpeners:
             try:
-                if externalOpener(filePath, extension):
+                if externalOpener(linkPath):
                     # the link is opened by an external function
                     return
 
             except:
                 pass
+        __, extension = os.path.splitext(linkPath)
         launcher = self._ctrl.launchers.get(extension, '')
         if os.path.isfile(launcher):
             subprocess.Popen([launcher, linkPath])

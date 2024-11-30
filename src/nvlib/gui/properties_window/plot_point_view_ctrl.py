@@ -15,7 +15,7 @@ class PlotPointViewCtrl(BasicViewCtrl):
         """Unassign a section from the Plot point."""
         scId = self.element.sectionAssoc
         if scId is not None:
-            del(self._mdl.novel.sections[scId].scPlotPoints[self._elementId])
+            del(self._mdl.novel.sections[scId].scPlotPoints[self.elementId])
             self.element.sectionAssoc = None
 
     def go_to_assigned_section(self):
@@ -55,14 +55,14 @@ class PlotPointViewCtrl(BasicViewCtrl):
             if self._mdl.novel.sections[nodeId].scType == 0:
                 self.clear_assignment()
                 # Associate the point with the section.
-                plId = self._ui.tv.tree.parent(self._elementId)
+                plId = self._ui.tv.tree.parent(self.elementId)
                 arcSections = self._mdl.novel.plotLines[plId].sections
                 if arcSections is None:
                     arcSections = [nodeId]
                 elif not nodeId in arcSections:
                     arcSections.append(nodeId)
                 self._mdl.novel.plotLines[plId].sections = arcSections
-                self._mdl.novel.sections[nodeId].scPlotPoints[self._elementId] = plId
+                self._mdl.novel.sections[nodeId].scPlotPoints[self.elementId] = plId
                 if not plId in self._mdl.novel.sections[nodeId].scPlotLines:
                     self._mdl.novel.sections[nodeId].scPlotLines.append(plId)
                 self.element.sectionAssoc = nodeId

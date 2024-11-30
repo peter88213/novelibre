@@ -51,7 +51,7 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
         #--- Character status checkbox.
         self.isMajorVar = tk.BooleanVar()
         self._isMajorCheckbox = ttk.Checkbutton(
-            self._elementInfoWindow,
+            self.elementInfoWindow,
             text=_('Major Character'),
             variable=self.isMajorVar,
             onvalue=True,
@@ -61,10 +61,10 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
         self._isMajorCheckbox.pack(anchor='w')
         inputWidgets.append(self._isMajorCheckbox)
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- 'Bio' frame
-        self.bioFrame = FoldingFrame(self._elementInfoWindow, '', self._toggle_bio_window)
+        self.bioFrame = FoldingFrame(self.elementInfoWindow, '', self._toggle_bio_window)
 
         self.birthDateVar = MyStringVar()
         self._birthDateEntry = LabelEntry(
@@ -104,10 +104,10 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
         self.bioEntry.pack(fill='x')
         inputWidgets.append(self.bioEntry)
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- 'Goals' entry.
-        self.goalsFrame = FoldingFrame(self._elementInfoWindow, '', self._toggle_goals_window)
+        self.goalsFrame = FoldingFrame(self.elementInfoWindow, '', self._toggle_goals_window)
         self.goalsEntry = TextBox(self.goalsFrame,
             wrap='word',
             undo=True,

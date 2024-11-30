@@ -47,7 +47,7 @@ class SectionView(BasicView, SectionViewCtrl):
         #--- 'Tags' entry.
         self.tagsVar = MyStringVar()
         self._tagsEntry = LabelEntry(
-            self._elementInfoWindow,
+            self.elementInfoWindow,
             text=_('Tags'),
             textvariable=self.tagsVar,
             command=self.apply_changes,
@@ -57,14 +57,14 @@ class SectionView(BasicView, SectionViewCtrl):
         inputWidgets.append(self._tagsEntry)
 
         #--- Frame for section specific properties.
-        self._sectionExtraFrame = ttk.Frame(self._elementInfoWindow)
+        self._sectionExtraFrame = ttk.Frame(self.elementInfoWindow)
         self._sectionExtraFrame.pack(anchor='w', fill='x')
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- Frame for 'Relationships'.
         # updating the character list before the viewpoints
-        self.relationFrame = FoldingFrame(self._elementInfoWindow, _('Relationships'), self._toggle_relation_frame)
+        self.relationFrame = FoldingFrame(self.elementInfoWindow, _('Relationships'), self._toggle_relation_frame)
 
         # 'Characters' listbox.
         self.crTitles = ''
@@ -125,11 +125,11 @@ class SectionView(BasicView, SectionViewCtrl):
 
         self.prefsShowLinks = 'show_sc_links'
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- Frame for date/time/duration.
         self.dateTimeFrame = FoldingFrame(
-            self._elementInfoWindow,
+            self.elementInfoWindow,
             _('Date/Time'),
             self._toggle_date_time_frame)
         sectionStartFrame = ttk.Frame(self.dateTimeFrame
@@ -281,7 +281,7 @@ class SectionView(BasicView, SectionViewCtrl):
         self._generatDurationButton.pack(side='left', padx=1, pady=2)
         inputWidgets.append(self._generatDurationButton)
 
-        # ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        # ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- 'Viewpoint' combobox.
         self.viewpointVar = MyStringVar()

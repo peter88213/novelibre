@@ -33,7 +33,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
         #--- Author entry.
         self.authorNameVar = MyStringVar()
         self._authorNameEntry = LabelEntry(
-            self._elementInfoWindow,
+            self.elementInfoWindow,
             text=_('Author'),
             textvariable=self.authorNameVar,
             command=self.apply_changes,
@@ -42,12 +42,12 @@ class ProjectView(BasicView, ProjectViewCtrl):
         self._authorNameEntry.pack(anchor='w')
         inputWidgets.append(self._authorNameEntry)
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- "Language settings" frame.
-        self.languageFrame = FoldingFrame(self._elementInfoWindow, _('Document language'), self._toggle_language_frame)
+        self.languageFrame = FoldingFrame(self.elementInfoWindow, _('Document language'), self._toggle_language_frame)
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
         # Language and country code.
         self.languageCodeVar = MyStringVar()
@@ -73,9 +73,9 @@ class ProjectView(BasicView, ProjectViewCtrl):
         inputWidgets.append(self._countryCodeEntry)
 
         #--- "Auto numbering" frame.
-        self.numberingFrame = FoldingFrame(self._elementInfoWindow, _('Auto numbering'), self._toggle_numbering_frame)
+        self.numberingFrame = FoldingFrame(self.elementInfoWindow, _('Auto numbering'), self._toggle_numbering_frame)
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
         # 'Auto number chapters...' checkbox.
         self.renumberChaptersVar = tk.BooleanVar(value=False)
@@ -191,9 +191,9 @@ class ProjectView(BasicView, ProjectViewCtrl):
         inputWidgets.append(self._romanPartNumbersCheckbox)
 
         #--- "Renamings" frame.
-        self.renamingsFrame = FoldingFrame(self._elementInfoWindow, _('Renamings'), self._toggle_renamings_frame)
+        self.renamingsFrame = FoldingFrame(self.elementInfoWindow, _('Renamings'), self._toggle_renamings_frame)
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
         ttk.Label(self.renamingsFrame, text=_('Not a scene')).pack(anchor='w')
 
         # Custom 'Plot progress' entry.
@@ -299,9 +299,9 @@ class ProjectView(BasicView, ProjectViewCtrl):
         inputWidgets.append(self._customChrGoalsEntry)
 
         #--- "Narrative time" frame.
-        self.narrativeTimeFrame = FoldingFrame(self._elementInfoWindow, _('Narrative time'), self._toggle_narrative_time_frame)
+        self.narrativeTimeFrame = FoldingFrame(self.elementInfoWindow, _('Narrative time'), self._toggle_narrative_time_frame)
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
         # 'Reference date' entry.
         self.referenceDateVar = MyStringVar()
@@ -334,7 +334,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
         inputWidgets.append(self.daysToDatesButton)
 
         #--- "Writing progress" frame.
-        self.progressFrame = FoldingFrame(self._elementInfoWindow, _('Writing progress'), self._toggle_progress_frame)
+        self.progressFrame = FoldingFrame(self.elementInfoWindow, _('Writing progress'), self._toggle_progress_frame)
 
         # 'Log writing progress' checkbox.
         self.saveWordCountVar = tk.BooleanVar()
@@ -442,7 +442,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
 
     def _create_cover_window(self):
         """Create a text box for element notes."""
-        self._cover = tk.Label(self._propertiesFrame)
+        self._cover = tk.Label(self.propertiesFrame)
         self._cover.pack()
 
     def _create_frames(self):
