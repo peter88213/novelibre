@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.0.12
+### Version 5.0.14
 
 #### New features
 - Added a **Main character** checkbox to the character properties view. 
@@ -38,6 +38,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - The API is updated to version 5.0, so all plugins must be updated.
 - Allowing arbitrary link openers to be added to the link processor.
 - Moved the Zim Wiki page link processing to the *nv_zim* plugin.
+- novx file format update to version 1.5: Added a "Field" element for custom data.
 
 ### Version 4.17.2
 

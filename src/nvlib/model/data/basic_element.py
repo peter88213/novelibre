@@ -42,6 +42,7 @@ class BasicElement:
             self._links = {}
         else:
             self._links = links
+        self._fields = {}
 
     @property
     def title(self):
@@ -86,6 +87,16 @@ class BasicElement:
             self._links = newVal
             self.on_element_change()
 
+    @property
+    def fields(self):
+        return self._fields.copy()
+
+    @fields.setter
+    def fields(self, newVal):
+        if self._fields != newVal:
+            self._fields = newVal
+            self.on_element_change()
+
     def do_nothing(self):
         """Standard callback routine for element changes."""
         pass
@@ -94,18 +105,22 @@ class BasicElement:
         self.title = self._get_element_text(xmlElement, 'Title')
         self.desc = self._xml_element_to_text(xmlElement.find('Desc'))
         self.links = self._get_link_dict(xmlElement)
+        self.fields = self._get_fields(xmlElement)
 
     def to_xml(self, xmlElement):
         if self.title:
             ET.SubElement(xmlElement, 'Title').text = self.title
         if self.desc:
             xmlElement.append(self._text_to_xml_element('Desc', self.desc))
-        if self.links:
-            for path in self.links:
-                xmlLink = ET.SubElement(xmlElement, 'Link')
-                ET.SubElement(xmlLink, 'Path').text = path
-                if self.links[path]:
-                    ET.SubElement(xmlLink, 'FullPath').text = self.links[path]
+        for path in self.links:
+            xmlLink = ET.SubElement(xmlElement, 'Link')
+            ET.SubElement(xmlLink, 'Path').text = path
+            if self.links[path]:
+                ET.SubElement(xmlLink, 'FullPath').text = self.links[path]
+        for tag in self.fields:
+            xmlField = ET.SubElement(xmlElement, 'Field')
+            xmlField.set('tag', tag)
+            xmlField.text = self.fields[tag]
 
     def _get_element_text(self, xmlElement, tag, default=None):
         """Return the text field of an XML element.
@@ -116,6 +131,14 @@ class BasicElement:
             return xmlElement.find(tag).text
         else:
             return default
+
+    def _get_fields(self, xmlElement):
+        fields = {}
+        for xmlField in xmlElement.iterfind('Field'):
+            tag = xmlField.get('tag', None)
+            if tag is not None:
+                fields[tag] = xmlField.text
+        return fields
 
     def _get_link_dict(self, xmlElement):
         """Return a dictionary of links.
