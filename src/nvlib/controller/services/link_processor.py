@@ -12,6 +12,7 @@ from mvclib.controller.service_base import ServiceBase
 from nvlib.model.file.doc_open import open_document
 from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
+from nvlib.nv_globals import launchers
 
 
 class LinkProcessor(ServiceBase):
@@ -112,7 +113,7 @@ class LinkProcessor(ServiceBase):
             except:
                 pass
         __, extension = os.path.splitext(linkPath)
-        launcher = self._ctrl.launchers.get(extension, '')
+        launcher = launchers.get(extension, '')
         if os.path.isfile(launcher):
             subprocess.Popen([launcher, linkPath])
             return

@@ -9,19 +9,19 @@ from tkinter import ttk
 from mvclib.view.path_bar import PathBar
 from mvclib.view.set_icon_tk import set_icon
 from mvclib.view.view_base import ViewBase
-from nvlib.gui.main_view_ctrl import MainViewCtrl
-from nvlib.novx_globals import _
-from nvlib.nv_globals import prefs
 from nvlib.gui.contents_window.contents_viewer import ContentsViewer
 from nvlib.gui.icons import Icons
+from nvlib.gui.main_view_ctrl import MainViewCtrl
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.platform.platform_settings import MOUSE
 from nvlib.gui.platform.platform_settings import PLATFORM
 from nvlib.gui.properties_window.properties_viewer import PropertiesViewer
 from nvlib.gui.toolbar.toolbar import Toolbar
 from nvlib.gui.tree_window.tree_viewer import TreeViewer
-import tkinter as tk
 from nvlib.gui.widgets.nv_simpledialog import SimpleDialog
+from nvlib.novx_globals import _
+from nvlib.nv_globals import prefs
+import tkinter as tk
 
 
 class MainView(ViewBase, MainViewCtrl):

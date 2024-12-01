@@ -24,6 +24,7 @@ import sys
 from nvlib.configuration.configuration import Configuration
 from nvlib.configuration.nv_configuration import NvConfiguration
 from nvlib.controller.main_controller import MainController
+from nvlib.nv_globals import launchers
 from nvlib.nv_globals import prefs
 
 SETTINGS = dict(
@@ -135,14 +136,14 @@ def main():
     prefs.update(configuration.settings)
     prefs.update(configuration.options)
 
-    #--- Instantiate the app object.
-    app = MainController('novelibre @release', tempDir)
-    ui = app.get_view()
-
     #--- Launchers for opening linked non-standard filetypes.
     launcherConfig = NvConfiguration()
     launcherConfig.read(f'{configDir}/launchers.ini')
-    app.launchers = launcherConfig.settings
+    launchers.update(launcherConfig.settings)
+
+    #--- Instantiate the app object.
+    app = MainController('novelibre @release', tempDir)
+    ui = app.get_view()
 
     #--- Load a project, if specified.
     try:
@@ -164,6 +165,10 @@ def main():
         elif keyword in configuration.settings:
             configuration.settings[keyword] = prefs[keyword]
     configuration.write(iniFile)
+
+    #--- Save launchers.
+    launcherConfig.settings = launchers
+    launcherConfig.write(f'{configDir}/launchers.ini')
 
     #--- Delete the temporary files.
     # Note: Do not remove the temp directory itself,

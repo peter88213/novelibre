@@ -61,10 +61,6 @@ class MainController(ControllerBase, Commands):
         self.fileManager = FileManager(self._mdl, self._ui, self)
         self.elementManager = ElementManager(self._mdl, self._ui, self)
         self.linkProcessor = LinkProcessor(self._mdl, self._ui, self)
-        self.launchers = {}
-        # launchers for opening linked non-standard filetypes.
-        # key: extension, value: path to application
-        # this dictionary is populated by novelibre.py after reading the configuration file
 
         #--- Load the plugins.
         self.plugins = PluginCollection(self._mdl, self._ui, self)
