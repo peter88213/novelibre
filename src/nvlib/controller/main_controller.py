@@ -18,6 +18,7 @@ from nvlib.controller.services.link_processor import LinkProcessor
 from nvlib.gui.main_view import MainView
 from nvlib.model.nv_model import NvModel
 from nvlib.novx_globals import _
+from nvlib.nv_globals import launchers
 from nvlib.nv_globals import prefs
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
@@ -85,6 +86,10 @@ class MainController(ControllerBase, Commands):
                 return True
         else:
             return False
+
+    def get_launchers(self):
+        """Return the global launchers dictionary."""
+        return launchers
 
     def get_preferences(self):
         """Return the global preferences dictionary."""
