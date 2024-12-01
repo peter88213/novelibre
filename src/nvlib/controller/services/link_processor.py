@@ -91,7 +91,7 @@ class LinkProcessor(ServiceBase):
                 links = element.links
                 links[relativePath] = pathOk
                 element.links = links
-                self._ui.set_status(_('Broken link fixed'))
+                self._ui.set_status(f"#{_('Broken link fixed')}")
 
     def open_link(self, linkPath):
         """Open a link specified by linkPath. Return True on success.

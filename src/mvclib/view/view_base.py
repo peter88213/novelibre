@@ -40,10 +40,6 @@ class ViewBase(UiFacade, Observer):
         #--- Initialize GUI theme.
         self.guiStyle = ttk.Style()
 
-    def _create_status_bar(self):
-        self.statusBar = StatusBar(self.root, text='', anchor='w', padx=5, pady=2)
-        self.statusBar.pack(expand=False, fill='both')
-
     def on_quit(self):
         """Gracefully close the user interface."""
         self.root.quit()
@@ -84,4 +80,8 @@ class ViewBase(UiFacade, Observer):
             statusText: str -- Text to be displayed on the status bar.
         """
         self.statusBar.update_status(statusText)
+
+    def _create_status_bar(self):
+        self.statusBar = StatusBar(self.root, text='', anchor='w', padx=5, pady=2)
+        self.statusBar.pack(expand=False, fill='both')
 
