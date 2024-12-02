@@ -16,9 +16,9 @@ from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import Error
 from nvlib.novx_globals import MANUSCRIPT_SUFFIX
 from nvlib.novx_globals import Notification
-from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import prefs
+from nvlib.nv_locale import _
 
 
 class FileManager(ServiceBase):

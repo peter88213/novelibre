@@ -31,7 +31,7 @@ from nvlib.model.odt.odt_w_sectiondesc import OdtWSectionDesc
 from nvlib.model.odt.odt_w_stages import OdtWStages
 from nvlib.model.odt.odt_w_xref import OdtWXref
 from nvlib.novx_globals import Notification
-from nvlib.novx_globals import _
+from nvlib.nv_locale import _
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import prefs
 

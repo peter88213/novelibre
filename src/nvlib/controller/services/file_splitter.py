@@ -1,7 +1,7 @@
 """Provide a class for splitting project files.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/
+For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
@@ -18,8 +18,8 @@ from nvlib.novx_globals import Error
 from nvlib.novx_globals import IT_ROOT
 from nvlib.novx_globals import LC_ROOT
 from nvlib.novx_globals import PL_ROOT
-from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
+from nvlib.nv_locale import _
 
 
 class FileSplitter(ServiceBase):

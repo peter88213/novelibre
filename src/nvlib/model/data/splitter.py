@@ -12,7 +12,7 @@ from nvlib.model.data.section import Section
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import SECTION_PREFIX
-from nvlib.novx_globals import _
+from nvlib.nv_locale import _
 
 
 class Splitter:

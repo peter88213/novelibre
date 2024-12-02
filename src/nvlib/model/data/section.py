@@ -13,11 +13,11 @@ import re
 from nvlib.model.data.basic_element_tags import BasicElementTags
 from nvlib.model.data.date_time_tools import get_specific_date
 from nvlib.model.data.date_time_tools import get_unspecific_date
-from nvlib.novx_globals import _
 from nvlib.novx_globals import string_to_list
 from nvlib.novx_globals import verified_date
 from nvlib.novx_globals import verified_int_string
 from nvlib.novx_globals import verified_time
+from nvlib.nv_locale import _
 import xml.etree.ElementTree as ET
 
 # Regular expressions for counting words and characters like in LibreOffice.

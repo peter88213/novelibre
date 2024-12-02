@@ -14,10 +14,10 @@ import tempfile
 import zipfile
 
 from nvlib.model.file.file_export import FileExport
-from nvlib.novx_globals import Error
-from nvlib.novx_globals import _
-from nvlib.novx_globals import norm_path
 from nvlib.model.odf.check_odf import odf_is_locked
+from nvlib.novx_globals import Error
+from nvlib.novx_globals import norm_path
+from nvlib.nv_locale import _
 
 
 class OdfFile(FileExport):

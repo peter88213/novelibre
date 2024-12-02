@@ -9,10 +9,10 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from abc import ABC, abstractmethod
 
 from nvlib.model.file.file_export import FileExport
-from nvlib.novx_globals import Error
-from nvlib.novx_globals import _
 from nvlib.model.odf.odf_reader import OdfReader
 from nvlib.model.ods.ods_parser import OdsParser
+from nvlib.novx_globals import Error
+from nvlib.nv_locale import _
 
 
 class OdsReader(OdfReader, ABC):

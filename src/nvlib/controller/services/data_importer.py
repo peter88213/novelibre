@@ -20,8 +20,8 @@ from nvlib.novx_globals import LOCATION_PREFIX
 from nvlib.novx_globals import PLOT_LINE_PREFIX
 from nvlib.novx_globals import PLOT_POINT_PREFIX
 from nvlib.novx_globals import PL_ROOT
-from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
+from nvlib.nv_locale import _
 
 
 class DataImporter(ServiceBase):

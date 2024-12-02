@@ -8,8 +8,8 @@ from nvlib.model.html.html_report import HtmlReport
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import PLOTLIST_SUFFIX
 from nvlib.novx_globals import PL_ROOT
-from nvlib.novx_globals import _
 from nvlib.novx_globals import list_to_string
+from nvlib.nv_locale import _
 
 
 class HtmlPlotList(HtmlReport):

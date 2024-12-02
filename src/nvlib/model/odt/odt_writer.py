@@ -8,10 +8,10 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from xml.sax.saxutils import escape
 
-from nvlib.novx_globals import Error
-from nvlib.novx_globals import _
 from nvlib.model.odf.odf_file import OdfFile
 from nvlib.model.odt.novx_to_odt import NovxToOdt
+from nvlib.novx_globals import Error
+from nvlib.nv_locale import _
 
 
 class OdtWriter(OdfFile):

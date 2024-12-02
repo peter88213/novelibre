@@ -32,7 +32,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import messagebox
 from tkinter import ttk
 
-from nvlib.novx_globals import _
+from nvlib.nv_locale import _
 import tkinter as tk
 
 

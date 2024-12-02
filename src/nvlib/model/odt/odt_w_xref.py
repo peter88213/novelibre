@@ -7,10 +7,10 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from string import Template
 
 from nvlib.model.data.cross_references import CrossReferences
+from nvlib.model.odt.odt_writer import OdtWriter
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import XREF_SUFFIX
-from nvlib.novx_globals import _
-from nvlib.model.odt.odt_writer import OdtWriter
+from nvlib.nv_locale import _
 
 
 class OdtWXref(OdtWriter):

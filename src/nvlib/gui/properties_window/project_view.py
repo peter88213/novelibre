@@ -12,10 +12,10 @@ from mvclib.widgets.label_combo import LabelCombo
 from mvclib.widgets.label_disp import LabelDisp
 from mvclib.widgets.label_entry import LabelEntry
 from mvclib.widgets.my_string_var import MyStringVar
-from nvlib.gui.properties_window.project_view_ctrl import ProjectViewCtrl
-from nvlib.novx_globals import _
-from nvlib.nv_globals import prefs
 from nvlib.gui.properties_window.basic_view import BasicView
+from nvlib.gui.properties_window.project_view_ctrl import ProjectViewCtrl
+from nvlib.nv_globals import prefs
+from nvlib.nv_locale import _
 import tkinter as tk
 
 

@@ -9,6 +9,7 @@ from shutil import copy2
 import sys
 import webbrowser
 
+from nvlib.controller.services.nv_help import NvHelp
 from nvlib.gui.pop_up.export_options_dialog import ExportOptionsDialog
 from nvlib.gui.pop_up.plugin_manager_dialog import PluginManagerDialog
 from nvlib.gui.pop_up.reimport_dialog import ReimportDialog
@@ -40,9 +41,8 @@ from nvlib.novx_globals import SECTIONLIST_SUFFIX
 from nvlib.novx_globals import SECTIONS_SUFFIX
 from nvlib.novx_globals import STAGES_SUFFIX
 from nvlib.novx_globals import XREF_SUFFIX
-from nvlib.novx_globals import _
 from nvlib.nv_globals import HOME_URL
-from nvlib.nv_globals import open_help
+from nvlib.nv_locale import _
 
 
 class Commands:
@@ -365,7 +365,7 @@ class Commands:
         return 'break'
 
     def open_help(self, event=None):
-        open_help('')
+        NvHelp.open_help_page('')
 
     def open_homepage(self, event=None):
         webbrowser.open(HOME_URL)

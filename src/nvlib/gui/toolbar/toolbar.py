@@ -9,8 +9,8 @@ from tkinter import ttk
 
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.toolbar.toolbar_ctrl import ToolbarCtrl
-from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
+from nvlib.nv_locale import _
 import tkinter as tk
 
 

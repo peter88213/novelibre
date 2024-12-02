@@ -11,9 +11,9 @@ from mvclib.view.observer import Observer
 from mvclib.widgets.folding_frame import FoldingFrame
 from mvclib.widgets.index_card import IndexCard
 from mvclib.widgets.text_box import TextBox
-from nvlib.novx_globals import _
-from nvlib.nv_globals import prefs
 from nvlib.gui.widgets.collection_box import CollectionBox
+from nvlib.nv_globals import prefs
+from nvlib.nv_locale import _
 
 
 class BasicView(ttk.Frame, Observer):

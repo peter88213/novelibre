@@ -7,11 +7,11 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from datetime import date, time
 
 from nvlib.model.data.section import Section
+from nvlib.model.ods.ods_reader import OdsReader
 from nvlib.novx_globals import GRID_SUFFIX, PL_ROOT
 from nvlib.novx_globals import SECTION_PREFIX
-from nvlib.novx_globals import _
 from nvlib.novx_globals import string_to_list
-from nvlib.model.ods.ods_reader import OdsReader
+from nvlib.nv_locale import _
 
 
 class OdsRGrid(OdsReader):

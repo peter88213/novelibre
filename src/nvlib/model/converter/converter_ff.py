@@ -12,8 +12,8 @@ from nvlib.model.converter.export_target_factory import ExportTargetFactory
 from nvlib.model.converter.import_source_factory import ImportSourceFactory
 from nvlib.model.converter.import_target_factory import ImportTargetFactory
 from nvlib.novx_globals import Error
-from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
+from nvlib.nv_locale import _
 
 
 class ConverterFf(Converter):

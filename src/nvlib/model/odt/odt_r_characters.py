@@ -7,11 +7,11 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import re
 
 from nvlib.model.data.character import Character
+from nvlib.model.odt.odt_reader import OdtReader
 from nvlib.novx_globals import CHARACTERS_SUFFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CR_ROOT
-from nvlib.novx_globals import _
-from nvlib.model.odt.odt_reader import OdtReader
+from nvlib.nv_locale import _
 
 
 class OdtRCharacters(OdtReader):

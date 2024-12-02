@@ -6,11 +6,11 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from string import Template
 
+from nvlib.model.ods.ods_writer import OdsWriter
 from nvlib.novx_globals import GRID_SUFFIX
 from nvlib.novx_globals import PLOTLINES_SUFFIX
 from nvlib.novx_globals import PL_ROOT
-from nvlib.novx_globals import _
-from nvlib.model.ods.ods_writer import OdsWriter
+from nvlib.nv_locale import _
 
 
 class OdsWGrid(OdsWriter):

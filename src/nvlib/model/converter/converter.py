@@ -15,8 +15,8 @@ from nvlib.model.data.nv_tree import NvTree
 from nvlib.model.file.doc_open import open_document
 from nvlib.novx_globals import Error
 from nvlib.novx_globals import Notification
-from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
+from nvlib.nv_locale import _
 
 
 class Converter:

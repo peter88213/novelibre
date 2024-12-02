@@ -8,9 +8,9 @@ from tkinter import ttk
 
 from mvclib.widgets.label_entry import LabelEntry
 from mvclib.widgets.my_string_var import MyStringVar
-from nvlib.gui.properties_window.plot_line_view_ctrl import PlotLineViewCtrl
-from nvlib.novx_globals import _
 from nvlib.gui.properties_window.basic_view import BasicView
+from nvlib.gui.properties_window.plot_line_view_ctrl import PlotLineViewCtrl
+from nvlib.nv_locale import _
 
 
 class PlotLineView(BasicView, PlotLineViewCtrl):

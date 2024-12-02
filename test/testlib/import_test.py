@@ -10,7 +10,7 @@ import os
 from shutil import copyfile
 
 from nvlib.model.converter.novx_converter import NovxConverter
-from nvlib.novx_globals import _
+from nvlib.nv_locale import _
 from nvlib.novx_globals import norm_path
 from testlib.helper import read_file
 

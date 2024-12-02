@@ -9,7 +9,7 @@ import os
 
 from nvlib.model.novx.novx_file import NovxFile
 from nvlib.novx_globals import CH_ROOT
-from nvlib.novx_globals import _
+from nvlib.nv_locale import _
 
 
 class NvWorkFile(NovxFile):

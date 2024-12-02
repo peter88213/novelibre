@@ -7,11 +7,11 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import re
 
 from nvlib.model.data.splitter import Splitter
+from nvlib.model.odt.odt_r_formatted import OdtRFormatted
 from nvlib.novx_globals import Error
 from nvlib.novx_globals import PROOF_SUFFIX
 from nvlib.novx_globals import SECTION_PREFIX
-from nvlib.novx_globals import _
-from nvlib.model.odt.odt_r_formatted import OdtRFormatted
+from nvlib.nv_locale import _
 
 
 class OdtRProof(OdtRFormatted):

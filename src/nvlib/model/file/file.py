@@ -10,7 +10,7 @@ from abc import ABC
 import os
 from urllib.parse import quote
 
-from nvlib.novx_globals import _
+from nvlib.nv_locale import _
 
 
 class File(ABC):

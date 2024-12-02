@@ -12,7 +12,7 @@ from nvlib.model.novx.novx_file import NovxFile
 from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from nvlib.novx_globals import Error
 from nvlib.novx_globals import XREF_SUFFIX
-from nvlib.novx_globals import _
+from nvlib.nv_locale import _
 from nvlib.novx_globals import norm_path
 from nvlib.model.odt.odt_r_import import OdtRImport
 from nvlib.model.odt.odt_r_outline import OdtROutline

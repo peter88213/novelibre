@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.model.html.html_report import HtmlReport
 from nvlib.novx_globals import ITEM_REPORT_SUFFIX
-from nvlib.novx_globals import _
+from nvlib.nv_locale import _
 
 
 class HtmlItems(HtmlReport):

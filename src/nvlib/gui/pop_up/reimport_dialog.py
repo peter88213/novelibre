@@ -7,11 +7,11 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 
 from mvclib.view.modal_dialog import ModalDialog
+from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.pop_up.reimport_ctrl import ReimportCtrl
 from nvlib.model.converter.novx_converter import NovxConverter
-from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
-from nvlib.gui.platform.platform_settings import KEYS
+from nvlib.nv_locale import _
 import tkinter as tk
 
 

@@ -7,9 +7,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 
 from mvclib.view.modal_dialog import ModalDialog
-from nvlib.gui.pop_up.plugin_manager_ctrl import PluginManagerCtrl
-from nvlib.novx_globals import _
 from nvlib.gui.platform.platform_settings import KEYS
+from nvlib.gui.pop_up.plugin_manager_ctrl import PluginManagerCtrl
+from nvlib.nv_locale import _
 
 
 class PluginManagerDialog(ModalDialog, PluginManagerCtrl):

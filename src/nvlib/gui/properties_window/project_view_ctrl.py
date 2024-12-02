@@ -7,10 +7,10 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from datetime import date
 
 from nvlib.gui.properties_window.basic_view_ctrl import BasicViewCtrl
-from nvlib.novx_globals import WEEKDAYS
-from nvlib.novx_globals import _
 from nvlib.nv_globals import datestr
 from nvlib.nv_globals import prefs
+from nvlib.nv_locale import WEEKDAYS
+from nvlib.nv_locale import _
 
 
 class ProjectViewCtrl(BasicViewCtrl):

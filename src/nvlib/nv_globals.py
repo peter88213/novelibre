@@ -5,9 +5,6 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from datetime import date
-import webbrowser
-
-from nvlib.novx_globals import _
 
 prefs = {}
 launchers = {}
@@ -15,21 +12,7 @@ launchers = {}
 # key: extension, value: path to application
 # this dictionary is populated by novelibre.py after reading the configuration file
 
-HELP_URL = f'{_("https://peter88213.github.io/nvhelp-en")}/'
 HOME_URL = 'https://github.com/peter88213/novelibre/'
-
-
-def to_string(text):
-    """Return text, converted to a string."""
-    if text is None:
-        return ''
-
-    return str(text)
-
-
-def open_help(page):
-    """Show the online help page specified by page."""
-    webbrowser.open(f'{HELP_URL}{page}')
 
 
 def datestr(isoDate):
@@ -52,3 +35,12 @@ def get_section_date_str(section):
         return section.localeDate
     else:
         return section.date
+
+
+def to_string(text):
+    """Return text, converted to a string."""
+    if text is None:
+        return ''
+
+    return str(text)
+

@@ -11,11 +11,11 @@ from mvclib.widgets.label_combo import LabelCombo
 from mvclib.widgets.label_entry import LabelEntry
 from mvclib.widgets.my_string_var import MyStringVar
 from mvclib.widgets.text_box import TextBox
-from nvlib.gui.properties_window.section_view_ctrl import SectionViewCtrl
-from nvlib.novx_globals import _
-from nvlib.nv_globals import prefs
 from nvlib.gui.properties_window.basic_view import BasicView
+from nvlib.gui.properties_window.section_view_ctrl import SectionViewCtrl
 from nvlib.gui.widgets.collection_box import CollectionBox
+from nvlib.nv_globals import prefs
+from nvlib.nv_locale import _
 import tkinter as tk
 
 

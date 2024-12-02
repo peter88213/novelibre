@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.model.converter.file_factory import FileFactory
 from nvlib.novx_globals import Error
-from nvlib.novx_globals import _
+from nvlib.nv_locale import _
 
 
 class ImportSourceFactory(FileFactory):

@@ -11,7 +11,7 @@ import sys
 
 from mvclib.controller.sub_controller import SubController
 from nvlib.controller.plugin.rejected_plugin import RejectedPlugin
-from nvlib.novx_globals import _
+from nvlib.nv_locale import _
 
 
 class PluginCollection(dict, SubController):

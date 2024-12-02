@@ -14,7 +14,7 @@ from nvlib.model.data.novel import Novel
 from nvlib.model.data.nv_tree import NvTree
 from nvlib.model.novx.novx_file import NovxFile
 from nvlib.novx_globals import Error
-from nvlib.novx_globals import _
+from nvlib.nv_locale import _
 from nvlib.novx_globals import norm_path
 import tkinter as tk
 

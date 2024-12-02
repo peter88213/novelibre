@@ -9,8 +9,8 @@ import os
 from nvlib.model.novx.novx_file import NovxFile
 from nvlib.novx_globals import DATA_SUFFIX
 from nvlib.novx_globals import Error
-from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
+from nvlib.nv_locale import _
 import xml.etree.ElementTree as ET
 
 

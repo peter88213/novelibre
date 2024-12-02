@@ -7,8 +7,8 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import webbrowser
 
 from mvclib.controller.sub_controller import SubController
-from nvlib.novx_globals import _
-from nvlib.nv_globals import open_help
+from nvlib.controller.services.nv_help import NvHelp
+from nvlib.nv_locale import _
 
 
 class PluginManagerCtrl(SubController):
@@ -42,7 +42,7 @@ class PluginManagerCtrl(SubController):
         self.deleteButton.configure(state=deleteButtonState)
 
     def open_help(self, event=None):
-        open_help(f'tools_menu.html#{_("plugin-manager").lower()}')
+        NvHelp.open_help_page(f'tools_menu.html#{_("plugin-manager").lower()}')
 
     def open_homepage(self, event=None):
         moduleName = self.moduleCollection.selection()[0]

@@ -6,9 +6,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from nvlib.novx_globals import _
-from nvlib.nv_globals import prefs
 from nvlib.gui.platform.platform_settings import KEYS
+from nvlib.nv_globals import prefs
+from nvlib.nv_locale import _
 import tkinter as tk
 
 

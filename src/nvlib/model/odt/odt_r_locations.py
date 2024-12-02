@@ -4,11 +4,9 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.model.data.world_element import WorldElement
 from nvlib.model.odt.odt_reader import OdtReader
-from nvlib.novx_globals import LC_ROOT
 from nvlib.novx_globals import LOCATIONS_SUFFIX
-from nvlib.novx_globals import _
+from nvlib.nv_locale import _
 
 
 class OdtRLocations(OdtReader):

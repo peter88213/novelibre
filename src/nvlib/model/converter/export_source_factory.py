@@ -8,8 +8,8 @@ import os
 
 from nvlib.model.converter.file_factory import FileFactory
 from nvlib.novx_globals import Error
-from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
+from nvlib.nv_locale import _
 
 
 class ExportSourceFactory(FileFactory):

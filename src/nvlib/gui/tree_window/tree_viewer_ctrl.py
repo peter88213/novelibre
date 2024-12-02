@@ -22,10 +22,10 @@ from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import ROOT_PREFIX
 from nvlib.novx_globals import SECTIONS_SUFFIX
 from nvlib.novx_globals import SECTION_PREFIX
-from nvlib.novx_globals import _
 from nvlib.novx_globals import list_to_string
 from nvlib.nv_globals import get_section_date_str
 from nvlib.nv_globals import to_string
+from nvlib.nv_locale import _
 
 
 class TreeViewerCtrl(SubController):

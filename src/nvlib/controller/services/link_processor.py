@@ -10,9 +10,9 @@ import subprocess
 
 from mvclib.controller.service_base import ServiceBase
 from nvlib.model.file.doc_open import open_document
-from nvlib.novx_globals import _
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import launchers
+from nvlib.nv_locale import _
 
 
 class LinkProcessor(ServiceBase):

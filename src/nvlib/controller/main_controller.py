@@ -17,9 +17,9 @@ from nvlib.controller.services.file_splitter import FileSplitter
 from nvlib.controller.services.link_processor import LinkProcessor
 from nvlib.gui.main_view import MainView
 from nvlib.model.nv_model import NvModel
-from nvlib.novx_globals import _
 from nvlib.nv_globals import launchers
 from nvlib.nv_globals import prefs
+from nvlib.nv_locale import _
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 

@@ -8,14 +8,14 @@ from tkinter import ttk
 
 from mvclib.view.observer import Observer
 from mvclib.widgets.context_menu import ContextMenu
-from nvlib.gui.tree_window.tree_viewer_ctrl import TreeViewerCtrl
-from nvlib.model.nv_treeview import NvTreeview
-from nvlib.novx_globals import _
-from nvlib.novx_globals import string_to_list
-from nvlib.nv_globals import prefs
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.platform.platform_settings import MOUSE
 from nvlib.gui.tree_window.history_list import HistoryList
+from nvlib.gui.tree_window.tree_viewer_ctrl import TreeViewerCtrl
+from nvlib.model.nv_treeview import NvTreeview
+from nvlib.novx_globals import string_to_list
+from nvlib.nv_globals import prefs
+from nvlib.nv_locale import _
 import tkinter as tk
 import tkinter.font as tkFont
 

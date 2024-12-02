@@ -12,16 +12,16 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from xml.sax.saxutils import unescape
 import re
+from xml.sax.saxutils import unescape
 
 from nvlib.model.data.chapter import Chapter
 from nvlib.model.data.section import Section
+from nvlib.model.odt.odt_reader import OdtReader
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import SECTION_PREFIX
-from nvlib.novx_globals import _
-from nvlib.model.odt.odt_reader import OdtReader
+from nvlib.nv_locale import _
 
 
 class OdtROutline(OdtReader):

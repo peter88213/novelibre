@@ -4,14 +4,14 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/yw-table
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from nvlib.model.ods.ods_writer import OdsWriter
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import MANUSCRIPT_SUFFIX
 from nvlib.novx_globals import PLOTLINES_SUFFIX
 from nvlib.novx_globals import PLOTLIST_SUFFIX
 from nvlib.novx_globals import PL_ROOT
-from nvlib.novx_globals import _
 from nvlib.novx_globals import list_to_string
-from nvlib.model.ods.ods_writer import OdsWriter
+from nvlib.nv_locale import _
 
 
 class OdsWPlotList(OdsWriter):

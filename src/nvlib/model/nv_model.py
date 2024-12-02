@@ -5,6 +5,7 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from mvclib.model.observable import Observable
+from nvlib.controller.services.nv_service import NvService
 from nvlib.model.data.id_generator import new_id
 from nvlib.model.nv_work_file import NvWorkFile
 from nvlib.novx_globals import CHAPTER_PREFIX
@@ -22,8 +23,7 @@ from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
-from nvlib.novx_globals import _
-from nvlib.controller.services.nv_service import NvService
+from nvlib.nv_locale import _
 
 
 class NvModel(Observable):

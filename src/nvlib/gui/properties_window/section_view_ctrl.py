@@ -1,7 +1,7 @@
 """Provide a mixin class for controlling the section properties view.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/
+For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from datetime import date
@@ -20,13 +20,13 @@ from nvlib.novx_globals import LC_ROOT
 from nvlib.novx_globals import LOCATION_PREFIX
 from nvlib.novx_globals import PLOT_LINE_PREFIX
 from nvlib.novx_globals import PL_ROOT
-from nvlib.novx_globals import WEEKDAYS
-from nvlib.novx_globals import _
 from nvlib.novx_globals import list_to_string
 from nvlib.novx_globals import string_to_list
 from nvlib.nv_globals import datestr
 from nvlib.nv_globals import get_section_date_str
 from nvlib.nv_globals import prefs
+from nvlib.nv_locale import WEEKDAYS
+from nvlib.nv_locale import _
 
 
 class SectionViewCtrl(BasicViewCtrl):

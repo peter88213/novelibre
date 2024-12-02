@@ -19,8 +19,8 @@ from nvlib.gui.properties_window.properties_viewer import PropertiesViewer
 from nvlib.gui.toolbar.toolbar import Toolbar
 from nvlib.gui.tree_window.tree_viewer import TreeViewer
 from nvlib.gui.widgets.nv_simpledialog import SimpleDialog
-from nvlib.novx_globals import _
 from nvlib.nv_globals import prefs
+from nvlib.nv_locale import _
 import tkinter as tk
 
 

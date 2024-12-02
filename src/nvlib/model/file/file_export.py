@@ -9,10 +9,10 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 from string import Template
 
-from nvlib.model.file.file import File
-from nvlib.model.file.filter import Filter
 from nvlib.model.data.character import Character
 from nvlib.model.data.section import Section
+from nvlib.model.file.file import File
+from nvlib.model.file.filter import Filter
 from nvlib.novx_globals import CHARACTERS_SUFFIX
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
@@ -22,14 +22,14 @@ from nvlib.novx_globals import IT_ROOT
 from nvlib.novx_globals import LC_ROOT
 from nvlib.novx_globals import LOCATIONS_SUFFIX
 from nvlib.novx_globals import MANUSCRIPT_SUFFIX
-from nvlib.novx_globals import MONTHS
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import SECTIONS_SUFFIX
-from nvlib.novx_globals import WEEKDAYS
-from nvlib.novx_globals import _
 from nvlib.novx_globals import list_to_string
 from nvlib.novx_globals import norm_path
+from nvlib.nv_locale import MONTHS
+from nvlib.nv_locale import WEEKDAYS
+from nvlib.nv_locale import _
 
 
 class FileExport(File):

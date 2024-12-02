@@ -10,7 +10,7 @@ from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import ITEM_PREFIX
 from nvlib.novx_globals import LOCATION_PREFIX
 from nvlib.novx_globals import PLOT_LINE_PREFIX
-from nvlib.novx_globals import _
+from nvlib.nv_locale import _
 
 
 class DataImportDialog(DataImportCtrl):

@@ -8,10 +8,10 @@ from datetime import datetime
 import os
 
 from mvclib.controller.sub_controller import SubController
+from nvlib.controller.services.nv_help import NvHelp
 from nvlib.model.odf.check_odf import odf_is_locked
-from nvlib.novx_globals import _
-from nvlib.nv_globals import open_help
 from nvlib.nv_globals import prefs
+from nvlib.nv_locale import _
 
 
 class ReimportCtrl(SubController):
@@ -83,7 +83,7 @@ class ReimportCtrl(SubController):
         self.importButton.configure(state=impButtonState)
 
     def open_help(self, event=None):
-        open_help(f'import_menu.html')
+        NvHelp.open_help_page(f'import_menu.html')
 
     def save_options(self, event=None, *args):
         """Save "discard temporary documents" state."""
