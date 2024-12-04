@@ -25,7 +25,7 @@ class BasicView(ttk.Frame, Observer):
     - Navigation buttons (go to next/previous element). 
     """
 
-    _LBL_X = 10
+    _LBL_X = 15
     # Width of left-placed labels.
 
     def __init__(self, parent, model, view, controller, **kw):

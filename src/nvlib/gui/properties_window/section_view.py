@@ -290,6 +290,7 @@ class SectionView(BasicView, SectionViewCtrl):
             text=_('Viewpoint'),
             textvariable=self.viewpointVar,
             values=[],
+            lblWidth=self._LBL_X
             )
         self.characterCombobox.pack(anchor='w', pady=2)
         inputWidgets.append(self.characterCombobox)

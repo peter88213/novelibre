@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.0.18\n"
-"POT-Creation-Date: 2024-12-04 16:32:14\n"
-"PO-Revision-Date: 2024-12-04 16:32:14\n"
+"Project-Id-Version: 5.0.19\n"
+"POT-Creation-Date: 2024-12-04 23:36:11\n"
+"PO-Revision-Date: 2024-12-04 23:36:11\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1130,7 +1130,7 @@ msgid "Tagged manuscript for proofing"
 msgstr "Manuskript mit Markierungen zum Überarbeiten"
 
 msgid "Tags"
-msgstr "Tags"
+msgstr "Schlagworte"
 
 msgid "Text"
 msgstr "Text"
