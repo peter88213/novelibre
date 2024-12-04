@@ -51,26 +51,3 @@ class PluginBase(ABC, SubController):
         """
         self.initialize_controller(model, view, controller)
 
-    def disable_menu(self):
-        """Disable menu entries when no project is open."""
-        pass
-
-    def enable_menu(self):
-        """Enable menu entries when a project is open."""
-        pass
-
-    def lock(self):
-        """Inhibit changes on the model."""
-        pass
-
-    def on_close(self):
-        """Actions to be performed when a project is closed."""
-        pass
-
-    def on_quit(self):
-        """Actions to be performed when novelibre is closed."""
-        pass
-
-    def unlock(self):
-        """Enable changes on the model."""
-        pass
