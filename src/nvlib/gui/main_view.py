@@ -276,6 +276,8 @@ class MainView(ViewBase, MainViewCtrl):
             self.dock_properties_frame()
         else:
             self.detach_properties_frame()
+        self.root.event_generate('<<RebuildPropertiesView>>')
+        # this is for plugins that modify the properties view
         return 'break'
 
     def _bind_events(self):
