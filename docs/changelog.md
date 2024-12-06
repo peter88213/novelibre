@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.0.20
+### Version 5.0.21
 
 #### New features
 - Added a **Main character** checkbox to the character properties view. 
@@ -30,6 +30,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Changed the menu title for exporting the final document.
 - Creating multiple sections always in ascending order.
 - Preventing loading templates with the *nv_templates* plugin while the project is locked.
+- No longer auto-fix broken links while the project is locked. 
 
 #### Other
 - Changed the menu title for exporting the final document.

@@ -78,21 +78,23 @@ class LinkProcessor(ServiceBase):
                     title=_('Cannot open link')
                     )
             else:
-                # Replace the broken link with the fixed one.
-                links = element.links
-                del links[relativePath]
-                links[newPath] = fullPath
-                element.links = links
-                self._ui.set_status(_('Broken link fixed'))
+                if not self._ctrl.isLocked:
+                    # Replace the broken link with the fixed one.
+                    links = element.links
+                    del links[relativePath]
+                    links[newPath] = fullPath
+                    element.links = links
+                    self._ui.set_status(f"#{_('Broken link fixed')}")
         else:
-            # Relative path is o.k. -- now check the full path.
-            pathOk = self.expand_path(relativePath)
-            if fullPath != pathOk:
-                # Replace the broken full path.
-                links = element.links
-                links[relativePath] = pathOk
-                element.links = links
-                self._ui.set_status(f"#{_('Broken link fixed')}")
+            if not self._ctrl.isLocked:
+                # Relative path is o.k. -- now check the full path.
+                pathOk = self.expand_path(relativePath)
+                if fullPath != pathOk:
+                    # Replace the broken full path.
+                    links = element.links
+                    links[relativePath] = pathOk
+                    element.links = links
+                    self._ui.set_status(f"#{_('Broken link fixed')}")
 
     def open_link(self, linkPath):
         """Open a link specified by linkPath. Return True on success.
