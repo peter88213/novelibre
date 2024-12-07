@@ -99,9 +99,6 @@ class LinkProcessor(ServiceBase):
     def open_link(self, linkPath):
         """Open a link specified by linkPath. Return True on success.
         
-        If linkPath is in a Zim wiki subdirectory, 
-        start Zim with the specified page.   
-        
         Positional arguments:
             linkPath: str -- Link path as stored in novx.
         """
