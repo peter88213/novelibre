@@ -52,6 +52,7 @@ organization of their work.
 - [An on-demand update checker](https://github.com/peter88213/nv_updater/)
 - [A daily progress log viewer](https://github.com/peter88213/nv_progress/)
 - [A Story Template management plugin](https://github.com/peter88213/nv_templates/)
+- [A plugin to connect novelibre with the Zim Desktop Wiki](https://github.com/peter88213/nv_zim)
 - [A Timeline viewer plugin](https://github.com/peter88213/nv_tlview/)
 - [A Timeline sync plugin](https://github.com/peter88213/nv_timeline/)
 - [An Aeon Timeline 2 sync plugin](https://github.com/peter88213/nv_aeon2/)
