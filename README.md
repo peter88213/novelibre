@@ -1,4 +1,4 @@
-[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.0.21.pyzw)
+[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.0.22.pyzw)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
 [![News/Feedback](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
@@ -14,7 +14,7 @@ organization of their work.
 
 What distinguishes *novelibre* from other writing software is the integration 
 of other applications into the workflow, which are powerful and proven. 
-*novelibre* is not an "all-in-one" solution, but a novel management software that
+*novelibre* is not an "all-in-one" solution, but a novel organizer that
 is embedded in a customizable ecosystem. 
 
 ![The novelibre ecosystem](docs/Screenshots/ecosystem.png)
@@ -90,10 +90,10 @@ I use the program myself and fix bugs immediately if I notice any. As far as I c
 
 ### Default: Executable Python zip archive
 
-Download the latest release [novelibre_v5.0.21.pyzw](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.0.21.pyzw)
+Download the latest release [novelibre_v5.0.22.pyzw](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.0.22.pyzw)
 
-- Launch *novelibre_v5.0.21.pyzw* by double-clicking (Windows/Linux desktop),
-- or execute `python novelibre_v5.0.21.pyzw` (Windows), resp. `python3 novelibre_v5.0.21.pyzw` (Linux) on the command line.
+- Launch *novelibre_v5.0.22.pyzw* by double-clicking (Windows/Linux desktop),
+- or execute `python novelibre_v5.0.22.pyzw` (Windows), resp. `python3 novelibre_v5.0.22.pyzw` (Linux) on the command line.
 
 #### Important
 
@@ -109,9 +109,9 @@ the zip file.
 
 ### Alternative: Zip file
 
-The package is also available in zip format: [novelibre_v5.0.21.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.0.21.zip)
+The package is also available in zip format: [novelibre_v5.0.22.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.0.22.zip)
 
-- Extract the *novelibre_v5.0.21* folder from the downloaded zipfile "novelibre_v5.0.21.zip".
+- Extract the *novelibre_v5.0.22* folder from the downloaded zipfile "novelibre_v5.0.22.zip".
 - Move into this new folder and launch *setup.pyw* by double-clicking (Windows/Linux desktop), 
 - or execute `python setup.pyw` (Windows), resp. `python3 setup.pyw` (Linux) on the command line.
 

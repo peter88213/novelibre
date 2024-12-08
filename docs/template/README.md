@@ -14,7 +14,7 @@ organization of their work.
 
 What distinguishes *novelibre* from other writing software is the integration 
 of other applications into the workflow, which are powerful and proven. 
-*novelibre* is not an "all-in-one" solution, but a novel management software that
+*novelibre* is not an "all-in-one" solution, but a novel organizer that
 is embedded in a customizable ecosystem. 
 
 ![The novelibre ecosystem](docs/Screenshots/ecosystem.png)
