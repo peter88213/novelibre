@@ -31,7 +31,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Creating multiple sections always in ascending order.
 - Preventing loading templates with the *nv_templates* plugin while the project is locked.
 - No longer auto-fix broken links while the project is locked. 
-- Fix a bug where the cover image may be not be displayed when opening an existing project after discarding a new project.
+- Fixed a bug where the cover image may not be displayed when opening an existing project after discarding a new project.
 
 #### Other
 - Changed the menu title for exporting the final document.
