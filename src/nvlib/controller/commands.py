@@ -252,7 +252,7 @@ class Commands:
         self.fileManager.discard_manuscript()
 
     def export_brief_synopsis(self, event=None):
-        self.fileManager.export_document(BRF_SYNOPSIS_SUFFIX, lock=False)
+        self.fileManager.export_document(BRF_SYNOPSIS_SUFFIX, lock=False, overwrite=True)
 
     def export_chapter_desc(self, event=None):
         self.fileManager.export_document(CHAPTERS_SUFFIX)
@@ -264,7 +264,7 @@ class Commands:
         self.fileManager.export_document(CHARLIST_SUFFIX)
 
     def export_cross_references(self, event=None):
-        self.fileManager.export_document(XREF_SUFFIX, lock=False)
+        self.fileManager.export_document(XREF_SUFFIX, lock=False, overwrite=True)
 
     def export_final_document(self, event=None):
         self.export_document('', lock=False)
@@ -303,7 +303,7 @@ class Commands:
         self.fileManager.export_document(SECTIONS_SUFFIX)
 
     def export_section_list(self, event=None):
-        self.fileManager.export_document(SECTIONLIST_SUFFIX)
+        self.fileManager.export_document(SECTIONLIST_SUFFIX, lock=False)
 
     def export_story_structure_desc(self, event=None):
         self.fileManager.export_document(STAGES_SUFFIX)

@@ -21,12 +21,12 @@ class OdtWXref(OdtWriter):
     _fileHeader = f'''{OdtWriter._CONTENT_XML_HEADER}<text:p text:style-name="Title">$Title</text:p>
 <text:p text:style-name="Subtitle">$AuthorName</text:p>
 '''
-    _sectionTemplate = f'''<text:p text:style-name="{_('Section_20_mark')}">
-<text:a xlink:href="../$ProjectName$ManuscriptSuffix.odt#$ID%7Cregion">$SectionNumber</text:a> (Ch $Chapter) $Title
+    _sectionTemplate = f'''<text:p text:style-name="Text_20_body">
+<text:a xlink:href="../$ProjectName$ManuscriptSuffix.odt#$ID%7Cregion">$SectionNumber </text:a>({_("Chp.")}$Chapter) $Title
 </text:p>
 '''
-    _unusedSectionTemplate = f'''<text:p text:style-name="{_('Section_20_mark_20_unused')}">
-$SectionNumber (Ch $Chapter) $Title (Unused)
+    _unusedSectionTemplate = f'''<text:p text:style-name="Text_20_body">
+$SectionNumber ({_("Chp.")}$Chapter) $Title ({_("Unused")})
 </text:p>
 '''
     _characterTemplate = '''<text:p text:style-name="Text_20_body">
@@ -41,19 +41,19 @@ $SectionNumber (Ch $Chapter) $Title (Unused)
 <text:a xlink:href="../$ProjectName$ItemsSuffix.odt#$ID%7Cregion">$Title</text:a>
 </text:p>
 '''
-    _scnPerChrTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">Sections with Character $Title:</text:h>
+    _scnPerChrTemplate = f'''<text:h text:style-name="Heading_20_2" text:outline-level="2">{_("Sections")} {_("with")} {_("Character")} $Title:</text:h>
 '''
-    _scnPerLocTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">Sections with Location $Title:</text:h>
+    _scnPerLocTemplate = f'''<text:h text:style-name="Heading_20_2" text:outline-level="2">{_("Sections")} {_("with")} {_("Location")} $Title:</text:h>
 '''
-    _scnPerItmTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">Sections with Item $Title:</text:h>
+    _scnPerItmTemplate = f'''<text:h text:style-name="Heading_20_2" text:outline-level="2">{_("Sections")} {_("with")} {_("Item")} $Title:</text:h>
 '''
-    _chrPerTagTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">Characters tagged $Tag:</text:h>
+    _chrPerTagTemplate = f'''<text:h text:style-name="Heading_20_2" text:outline-level="2">{_("Characters")} {_("with")} {_("tag")} $Tag:</text:h>
 '''
-    _locPerTagTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">Locations tagged $Tag:</text:h>
+    _locPerTagTemplate = f'''<text:h text:style-name="Heading_20_2" text:outline-level="2">{_("Locations")} {_("with")} {_("tag")} $Tag:</text:h>
 '''
-    _itmPerTagTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">Items tagged $Tag:</text:h>
+    _itmPerTagTemplate = f'''<text:h text:style-name="Heading_20_2" text:outline-level="2">{_("Items")} {_("with")} {_("tag")} $Tag:</text:h>
 '''
-    _scnPerTagtemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">Sections tagged $Tag:</text:h>
+    _scnPerTagtemplate = f'''<text:h text:style-name="Heading_20_2" text:outline-level="2">{_("Sections")} {_("with")} {_("tag")} $Tag:</text:h>
 '''
     _fileFooter = OdtWriter._CONTENT_XML_FOOTER
 

@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.0.22
+### Version 5.0.23
 
 #### New features
 - Added a **Major character** checkbox to the character properties view. 
@@ -34,13 +34,16 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Fixed a bug where the cover image may not be displayed when opening an existing project after discarding a new project.
 
 #### Other
+- novx file format update to version 1.5: Added a "Field" element for custom data.
 - Changed the menu title for exporting the final document.
 - Creating multiple sections always in ascending order.
 - Refactored the code for better maintainability.
 - The API is updated to version 5.0, so all plugins must be updated.
 - Allowing arbitrary link openers to be added to the link processor.
 - Moved the Zim Wiki page link processing to the *nv_zim* plugin.
-- novx file format update to version 1.5: Added a "Field" element for custom data.
+- Improved the cross reference export.
+- Extended and improved the user guide.
+
 
 ### Version 4.17.2
 

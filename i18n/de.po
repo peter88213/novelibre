@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.0.22\n"
-"POT-Creation-Date: 2024-12-08 13:35:21\n"
-"PO-Revision-Date: 2024-12-08 13:35:21\n"
+"Project-Id-Version: 5.0.23\n"
+"POT-Creation-Date: 2024-12-09 18:01:52\n"
+"PO-Revision-Date: 2024-12-09 18:01:52\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -228,6 +228,9 @@ msgstr "Figuren"
 
 msgid "Choice"
 msgstr "Entscheidung"
+
+msgid "Chp."
+msgstr "Kap."
 
 msgid "Clear assignment"
 msgstr "Zuordnung löschen"
@@ -1039,6 +1042,9 @@ msgstr "Abschnittsmarke"
 msgid "Section_20_mark_20_unused"
 msgstr "Abschnittsmarke_20_unbenutzt"
 
+msgid "Sections"
+msgstr "Abschnitte"
+
 msgid "Sections belonging to plot line"
 msgstr "Abschnitte gehören zur Plotlinie"
 
@@ -1354,8 +1360,14 @@ msgstr "Optionen"
 msgid "plugin-manager"
 msgstr "pluginmanager"
 
+msgid "tag"
+msgstr "Schlagwort"
+
 msgid "unknown"
 msgstr "unbekannt"
+
+msgid "with"
+msgstr "mit"
 
 msgid "years after death"
 msgstr "Jahre seit dem Todesfall"

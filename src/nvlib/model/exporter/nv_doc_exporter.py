@@ -79,13 +79,16 @@ class NvDocExporter:
         Positional arguments: 
             source -- NovxFile instance.
             suffix: str -- Target file name suffix.
+            overwrite: Boolean --Overwrite existing files without confirmation. 
+            ask: Boolean -- Ask before opening the document.
                         
         On success, return a message. Otherwise raise an Error or Notification exception.
         """
         self._source = source
         self._isNewer = False
+        overwrite = kwargs.get('overwrite', False)
         __, self._target = self.exportTargetFactory.new_file_objects(self._source.filePath, suffix=suffix)
-        if os.path.isfile(self._target.filePath):
+        if os.path.isfile(self._target.filePath) and not overwrite:
             targetTimestamp = os.path.getmtime(self._target.filePath)
             try:
                 if  targetTimestamp > self._source.timestamp:
