@@ -7,6 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from nvlib.model.html.html_report import HtmlReport
 from nvlib.novx_globals import CHARACTER_REPORT_SUFFIX
 from nvlib.nv_locale import _
+from datetime import date
 
 
 class HtmlCharacters(HtmlReport):
@@ -30,6 +31,8 @@ class HtmlCharacters(HtmlReport):
 <td>{_('Description')}</td>
 <td>$CustomChrBio</td>
 <td>$CustomChrGoals</td>
+<td>{_('Birth date')}</td>
+<td>{_('Death date')}</td>
 <td>{_('Notes')}</td>
 </tr>
 '''
@@ -42,7 +45,21 @@ class HtmlCharacters(HtmlReport):
 <td>$Desc</td>
 <td>$Bio</td>
 <td>$Goals</td>
+<td>$BirthDate</td>
+<td>$DeathDate</td>
 <td>$Notes</td>
 </tr>
 '''
 
+    def _get_characterMapping(self, crId):
+        characterMapping = super()._get_characterMapping(crId)
+        if self.localizeDate:
+            try:
+                characterMapping['BirthDate'] = date.fromisoformat(characterMapping['BirthDate']).strftime('%x')
+            except:
+                pass
+            try:
+                characterMapping['DeathDate'] = date.fromisoformat(characterMapping['DeathDate']).strftime('%x')
+            except:
+                pass
+        return characterMapping

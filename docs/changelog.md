@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.0.23
+### Version 5.0.24
 
 #### New features
 - Added a **Major character** checkbox to the character properties view. 
@@ -21,6 +21,8 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Updated the sample templates included with the *nv_templates* plugin.
 - The *nv_collection* plugin now always asks before saving.
 - In case of program errors, a log file is created that can be used for bug reporting. 
+- Added birth and death dates to the ODS character list.
+- Added birth and death dates to the HTML character list.
 
 #### Bugfixes
 - Fixed a bug where the project is not updated from ODT location and item descriptions.

@@ -61,6 +61,7 @@ class FileExport(File):
     _arcTemplate = ''
 
     _DIVIDER = ', '
+    localizeDate = False
 
     def __init__(self, filePath, **kwargs):
         """Initialize filter strategy class instances.

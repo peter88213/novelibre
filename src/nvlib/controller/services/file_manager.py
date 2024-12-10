@@ -11,6 +11,7 @@ from tkinter import filedialog
 from mvclib.controller.service_base import ServiceBase
 from nvlib.model.exporter.nv_doc_exporter import NvDocExporter
 from nvlib.model.exporter.nv_html_reporter import NvHtmlReporter
+from nvlib.model.html.html_report import HtmlReport
 from nvlib.model.nv_work_file import NvWorkFile
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import Error
@@ -308,6 +309,7 @@ class FileManager(ServiceBase):
 
         self._ui.restore_status()
         self._ui.propertiesView.apply_changes()
+        HtmlReport.localizeDate = prefs['localize_date']
         try:
             self.reporter.run(self._mdl.prjFile, suffix, tempdir=self._ctrl.tempDir)
         except Error as ex:
