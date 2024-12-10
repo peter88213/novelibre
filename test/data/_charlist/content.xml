@@ -52,6 +52,8 @@
     <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co4" table:number-columns-repeated="3" table:default-cell-style-name="Default"/>
+    <table:table-column table:style-name="co2" table:default-cell-style-name="ce2"/>
+    <table:table-column table:style-name="co2" table:default-cell-style-name="ce2"/>
     <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
@@ -78,10 +80,10 @@
      <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>Goals</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
+     <table:table-cell table:style-name="ce1" office:value-type="string">
       <text:p>Birth date</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
+     <table:table-cell table:style-name="ce1" office:value-type="string">
       <text:p>Death date</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Heading" office:value-type="string">
@@ -157,12 +159,8 @@
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
+     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>     
      <table:table-cell office:value-type="string">
       <text:p>Minor</text:p>
      </table:table-cell>
@@ -197,12 +195,12 @@
      <table:table-cell office:value-type="string">
       <text:p>One of his companies needs an urgent shipment of parts to complete a set of new robots for the Emperor.</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
+     <table:table-cell office:value-type="date" office:date-value="2963-04-21">
       <text:p>2963-04-21</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
+     </table:table-cell>     
+     <table:table-cell office:value-type="date" office:date-value="3030-11-11">
       <text:p>3030-11-11</text:p>
-     </table:table-cell>
+     </table:table-cell>     
      <table:table-cell office:value-type="string">
       <text:p>Minor</text:p>
      </table:table-cell>
@@ -237,12 +235,8 @@
      <table:table-cell office:value-type="string">
       <text:p>Undergo a refit and advanced pilot training, making him even more useful to his owner.</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
+     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>     
      <table:table-cell office:value-type="string">
       <text:p>Minor</text:p>
      </table:table-cell>
@@ -277,12 +271,8 @@
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
+     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>     
      <table:table-cell office:value-type="string">
       <text:p>Minor</text:p>
      </table:table-cell>
@@ -317,12 +307,8 @@
      <table:table-cell office:value-type="string">
       <text:p>Pay off his gambling debts</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
+     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>     
      <table:table-cell office:value-type="string">
       <text:p>Minor</text:p>
      </table:table-cell>
@@ -357,12 +343,8 @@
      <table:table-cell office:value-type="string">
       <text:p>Whatever Farrell wants.</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
+     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>     
      <table:table-cell office:value-type="string">
       <text:p>Minor</text:p>
      </table:table-cell>
@@ -397,12 +379,8 @@
      <table:table-cell office:value-type="string">
       <text:p>Bit player</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
+     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>     
      <table:table-cell office:value-type="string">
       <text:p>Minor</text:p>
      </table:table-cell>
@@ -437,12 +415,8 @@
      <table:table-cell office:value-type="string">
       <text:p>Bit player</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
+     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>     
      <table:table-cell office:value-type="string">
       <text:p>Minor</text:p>
      </table:table-cell>
@@ -477,12 +451,8 @@
      <table:table-cell office:value-type="string">
       <text:p>Revitalise the company</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
+     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>     
      <table:table-cell office:value-type="string">
       <text:p>Minor</text:p>
      </table:table-cell>
@@ -517,12 +487,8 @@
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
+     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>     
      <table:table-cell office:value-type="string">
       <text:p>Minor</text:p>
      </table:table-cell>
@@ -557,12 +523,8 @@
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
+     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>     
      <table:table-cell office:value-type="string">
       <text:p>Minor</text:p>
      </table:table-cell>
@@ -597,12 +559,8 @@
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
+     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>     
      <table:table-cell office:value-type="string">
       <text:p>Minor</text:p>
      </table:table-cell>

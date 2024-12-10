@@ -4,6 +4,8 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from string import Template
+
 from nvlib.model.ods.ods_writer import OdsWriter
 from nvlib.novx_globals import CHARLIST_SUFFIX
 from nvlib.nv_locale import _
@@ -21,6 +23,8 @@ class OdsWCharList(OdsWriter):
     <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co4" table:number-columns-repeated="3" table:default-cell-style-name="Default"/>
+    <table:table-column table:style-name="co2" table:default-cell-style-name="ce2"/>
+    <table:table-column table:style-name="co2" table:default-cell-style-name="ce2"/>
     <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
@@ -47,10 +51,10 @@ class OdsWCharList(OdsWriter):
      <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>Goals</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
+     <table:table-cell table:style-name="ce1" office:value-type="string">
       <text:p>Birth date</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
+     <table:table-cell table:style-name="ce1" office:value-type="string">
       <text:p>Death date</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Heading" office:value-type="string">
@@ -127,12 +131,8 @@ class OdsWCharList(OdsWriter):
      <table:table-cell office:value-type="string">
       <text:p>$Goals</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$BirthDate</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$DeathDate</text:p>
-     </table:table-cell>
+$BirthDateCell     
+$DeathDateCell     
      <table:table-cell office:value-type="string">
       <text:p>$Status</text:p>
      </table:table-cell>
@@ -148,3 +148,29 @@ class OdsWCharList(OdsWriter):
 '''
 
     _fileFooter = OdsWriter._CONTENT_XML_FOOTER
+
+    _emptyDateCell = '     <table:table-cell table:style-name="ce2"/>'
+    _validBirthDateCell = '''     <table:table-cell office:value-type="date" office:date-value="$BirthDate">
+      <text:p>$BirthDate</text:p>
+     </table:table-cell>'''
+    _validDeathDateCell = '''     <table:table-cell office:value-type="date" office:date-value="$DeathDate">
+      <text:p>$DeathDate</text:p>
+     </table:table-cell>'''
+
+    def _get_characterMapping(self, crId):
+        characterMapping = super()._get_characterMapping(crId)
+
+        #--- $BirthDateCell: if no section date is given, the whole cell must be empty.
+        if characterMapping['BirthDate']:
+            characterMapping['BirthDateCell'] = Template(self._validBirthDateCell).safe_substitute(characterMapping)
+        else:
+            characterMapping['BirthDateCell'] = self._emptyDateCell
+
+        #--- $DeathDateCell: if no section date is given, the whole cell must be empty.
+        if characterMapping['DeathDate']:
+            characterMapping['DeathDateCell'] = Template(self._validDeathDateCell).safe_substitute(characterMapping)
+        else:
+            characterMapping['DeathDateCell'] = self._emptyDateCell
+
+        return characterMapping
+
