@@ -48,6 +48,12 @@ class OdsWCharList(OdsWriter):
       <text:p>Goals</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Heading" office:value-type="string">
+      <text:p>Birth date</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="Heading" office:value-type="string">
+      <text:p>Death date</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>Importance</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Heading" office:value-type="string">
@@ -79,6 +85,12 @@ class OdsWCharList(OdsWriter):
      </table:table-cell>
      <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>$CustomChrGoals</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="Heading" office:value-type="string">
+      <text:p>{_("Birth date")}</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="Heading" office:value-type="string">
+      <text:p>{_("Death date")}</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>{_("Importance")}</text:p>
@@ -114,6 +126,12 @@ class OdsWCharList(OdsWriter):
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>$Goals</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>$BirthDate</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>$DeathDate</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>$Status</text:p>

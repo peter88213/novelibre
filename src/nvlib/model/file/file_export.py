@@ -254,6 +254,12 @@ class FileExport(File):
             characterStatus = Character.MAJOR_MARKER
         else:
             characterStatus = Character.MINOR_MARKER
+        birthDateStr = self.novel.characters[crId].birthDate
+        if birthDateStr is None:
+            birthDateStr = ''
+        deathDateStr = self.novel.characters[crId].deathDate
+        if deathDateStr is None:
+            deathDateStr = ''
 
         __, __, __, __, __, __, chrBio, chrGls = self._get_renamings()
 
@@ -272,7 +278,9 @@ class FileExport(File):
             ProjectPath=self.projectPath,
             CharactersSuffix=CHARACTERS_SUFFIX,
             CustomChrBio=chrBio,
-            CustomChrGoals=chrGls
+            CustomChrGoals=chrGls,
+            BirthDate=birthDateStr,
+            DeathDate=deathDateStr,
         )
         return characterMapping
 

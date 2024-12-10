@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE novx SYSTEM "novx_1_0.dtd">
+<!DOCTYPE novx SYSTEM "novx_1_5.dtd">
 <?xml-stylesheet href="novx.css" type="text/css"?>
-<novx version="1.0" xml:lang="de-DE">
+<novx version="1.5" xml:lang="de-DE">
   <PROJECT>
     <Title>Hal Spacejock book one - Sample yWriter Project</Title>
-    <Author>Simon Haynes</Author>
     <Desc>
       <p>An incompetent, accident-prone pilot is given one last chance to save his ship. An ageing robot is trusted with a midnight landing in a deserted field. And a desperate businessman is prepared to sacrifice both of them to get what he wants...</p>
       <p />
       <p>Combining relentless action with non-stop laughs, Hal Spacejock explodes onto the science fiction scene with the subtlety of a meteor strike and the hushed reverence of a used car salesman.</p>
     </Desc>
+    <Author>Simon Haynes</Author>
   </PROJECT>
   <CHAPTERS>
     <CHAPTER id="ch33" type="1">
@@ -576,27 +576,29 @@
   <CHARACTERS>
     <CHARACTER id="cr1">
       <Title>Hal</Title>
-      <FullName>Hal Spacejock</FullName>
       <Aka>Spacejock</Aka>
+      <FullName>Hal Spacejock</FullName>
       <Bio>
         <p>Somehow, Hal Spacejock ended up in the cargo game. With a loan from a dodgy operator and a ship from the wrong side of the nearest junkyard he works the back reaches of the galaxy. A couple of important things about Hal - he's determined to stay on the right side of the law, and he has a strong sense of justice.</p>
       </Bio>
     </CHARACTER>
     <CHARACTER id="cr2">
       <Title>Jerling</Title>
-      <FullName>Walter Jerling</FullName>
       <Aka>Walter</Aka>
+      <FullName>Walter Jerling</FullName>
       <Bio>
         <p>Walter Jerling runs a conglomerate spanning several planets. Ruthless and wealthy, he's never forgotten his more modest roots and watches his money carefully.</p>
       </Bio>
       <Goals>
         <p>One of his companies needs an urgent shipment of parts to complete a set of new robots for the Emperor.</p>
       </Goals>
+      <BirthDate>2963-04-21</BirthDate>
+      <DeathDate>3030-11-11</DeathDate>
     </CHARACTER>
     <CHARACTER id="cr3">
       <Title>Clunk</Title>
-      <FullName>Clunk XG99</FullName>
       <Aka>XG99</Aka>
+      <FullName>Clunk XG99</FullName>
       <Bio>
         <p>Aging humanoid robot owned by Walter Jerling's company, Clunk is being shipped off for reprogramming and advanced pilot training.</p>
       </Bio>

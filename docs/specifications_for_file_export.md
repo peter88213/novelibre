@@ -142,6 +142,9 @@ There are two options:
 - **$CharactersSuffix** - File name suffix of the character descriptions
 - **$CustomChrBio** - Custom character "Bio" field title
 - **$CustomChrGoals** - Custom character "Goals" field title
+- **$BirthDate - Character's birth date
+- **$DeathDate - Character's death date
+
 
 ### "Location template" placeholders
 

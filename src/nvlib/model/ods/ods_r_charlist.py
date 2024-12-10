@@ -93,6 +93,22 @@ class OdsRCharList(OdsReader):
             else:
                 self.novel.characters[crId].bio = bio.rstrip()
 
+            #--- birthDate
+            try:
+                birthDate = self._columns['Birth date'][crId]
+            except:
+                pass
+            else:
+                self.novel.characters[crId].birthDate = birthDate.rstrip()
+
+            #--- deathDate
+            try:
+                deathDate = self._columns['Death date'][crId]
+            except:
+                pass
+            else:
+                self.novel.characters[crId].deathDate = deathDate.rstrip()
+
             #--- importance
             try:
                 importance = self._columns['Importance'][crId]
