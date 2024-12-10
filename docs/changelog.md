@@ -14,7 +14,9 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 #### New features
 - Added a **Major character** checkbox to the character properties view. 
-- New Chapter menu entry: **Move selected chapters to new project**. This creates a new project containing the moved chapters/sections and all related elements and plot lines/plot points.
+- New Chapter menu entry: **Move selected chapters to new project**. 
+  This creates a new project containing the moved chapters/sections 
+  and all related elements and plot lines/plot points.
 - Importing and exporting plot lines with plot points via XML data files. 
 - Making it easier to delete multiple elements.
 - Added a **Cut** command to the *nv_clipboard* plugin.
