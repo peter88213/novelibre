@@ -14,7 +14,7 @@ class NoView(BasicView, NoViewCtrl):
     def focus_title(self):
         """Do not try to give the focus to a non-existent entry.
         
-        Overwrites the superclass method.
+        Overrides the superclass method.
         """
         pass
 

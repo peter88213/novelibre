@@ -64,6 +64,10 @@ class BasicView(ttk.Frame, Observer):
         self.element = None
         self.pack_forget()
 
+    def refresh(self):
+        """ Overrides the abstract superclass method."""
+        pass
+
     def show(self):
         """Make the view visible."""
         self.pack(expand=True, fill='both')
