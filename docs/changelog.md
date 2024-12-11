@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.0.25
+### Version 5.0.26
 
 #### New features
 - Added a **Major character** checkbox to the character properties view. 
@@ -36,6 +36,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Preventing loading templates with the *nv_templates* plugin while the project is locked.
 - No longer auto-fix broken links while the project is locked. 
 - Fixed a bug where the cover image may not be displayed when opening an existing project after discarding a new project.
+- Fixed a bug where the editor window is not closed when the corresponding section is deleted. 
 
 #### Other
 - novx file format update to version 1.5: Added a "Field" element for custom data.

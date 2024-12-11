@@ -477,12 +477,12 @@ class NvModel(Observable):
                         self.novel.sections[elemId].scType = 1
                     else:
                         # Delete the section.
-                        self.tree.delete(elemId)
                         del self.novel.sections[elemId]
+                        self.tree.delete(elemId)
                 else:
                     # Delete the stage.
-                    self.tree.delete(elemId)
                     del self.novel.sections[elemId]
+                    self.tree.delete(elemId)
             else:
                 # Delete chapter and go one level down.
                 for childNode in self.tree.get_children(elemId):
@@ -498,8 +498,8 @@ class NvModel(Observable):
             self.trashBin = None
         elif elemId.startswith(CHARACTER_PREFIX):
             # Delete a character and remove references.
-            self.tree.delete(elemId)
             del self.novel.characters[elemId]
+            self.tree.delete(elemId)
             for scId in self.novel.sections:
                 try:
                     scCharacters = self.novel.sections[scId].characters
@@ -509,8 +509,8 @@ class NvModel(Observable):
                     pass
         elif elemId.startswith(LOCATION_PREFIX):
             # Delete a location and remove references.
-            self.tree.delete(elemId)
             del self.novel.locations[elemId]
+            self.tree.delete(elemId)
             for scId in self.novel.sections:
                 try:
                     scLocations = self.novel.sections[scId].locations
@@ -520,8 +520,8 @@ class NvModel(Observable):
                     pass
         elif elemId.startswith(ITEM_PREFIX):
             # Delete an item and remove references.
-            self.tree.delete(elemId)
             del self.novel.items[elemId]
+            self.tree.delete(elemId)
             for scId in self.novel.sections:
                 try:
                     scItems = self.novel.sections[scId].items
@@ -550,8 +550,8 @@ class NvModel(Observable):
             self.tree.delete(elemId)
         elif elemId.startswith(PRJ_NOTE_PREFIX):
             # Delete a project note.
-            self.tree.delete(elemId)
             del self.novel.projectNotes[elemId]
+            self.tree.delete(elemId)
         else:
             # Part/chapter/section selected.
             if trash and self.trashBin is None:
@@ -570,8 +570,8 @@ class NvModel(Observable):
             if elemId.startswith(SECTION_PREFIX):
                 if self.tree.parent(elemId) == self.trashBin:
                     # Remove section, if already in trash bin.
-                    self.tree.delete(elemId)
                     del self.novel.sections[elemId]
+                    self.tree.delete(elemId)
                 else:
                     # Move section to the "trash bin".
                     waste_sections(elemId)
