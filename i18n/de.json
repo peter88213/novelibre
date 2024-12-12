@@ -96,6 +96,7 @@
   "Cannot create file": "Kann Datei nicht erzeugen",
   "Cannot create sections, because the project is locked.": "Abschnitte können nicht erzeugt werden werden, weil das Projekt gesperrt ist.",
   "Cannot create the element at this position": "Kann das Element nicht an dieser Position erzeugen",
+  "Cannot define a project wiki without project path": "Kann ohne Projektpfad kein Projekt-Wiki definieren",
   "Cannot determine file date.": "Das Dateidatum ist nicht zu ermitteln.",
   "Cannot edit sections, because the project is locked.": "Abschnitte können nicht bearbeitet werden werden, weil das Projekt gesperrt ist.",
   "Cannot generate date/time": "Kann Datum/Zeit nicht erzeugen",
