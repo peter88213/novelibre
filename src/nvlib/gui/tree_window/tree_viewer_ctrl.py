@@ -65,10 +65,10 @@ class TreeViewerCtrl(SubController):
         self.open_children(self.tree.selection()[0])
 
     def export_manuscript(self, event=None):
-        self._ctrl.export_document(MANUSCRIPT_SUFFIX, filter=self.tree.selection()[0], ask=False)
+        self._ctrl.fileManager.export_document(MANUSCRIPT_SUFFIX, filter=self.tree.selection()[0], ask=False)
 
     def export_synopsis(self, event=None):
-        self._ctrl.export_document(SECTIONS_SUFFIX, filter=self.tree.selection()[0], ask=False)
+        self._ctrl.fileManager.export_document(SECTIONS_SUFFIX, filter=self.tree.selection()[0], ask=False)
 
     def next_node(self, thisNode):
         """Return the next node ID  of the same element type as thisNode.

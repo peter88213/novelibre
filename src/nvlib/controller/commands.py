@@ -267,7 +267,7 @@ class Commands:
         self.fileManager.export_document(XREF_SUFFIX, lock=False, overwrite=True)
 
     def export_final_document(self, event=None):
-        self.export_document('', lock=False)
+        self.fileManager.export_document('', lock=False)
 
     def export_item_desc(self, event=None):
         self.fileManager.export_document(ITEMS_SUFFIX)

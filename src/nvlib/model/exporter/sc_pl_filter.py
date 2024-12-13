@@ -7,7 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from nvlib.nv_locale import _
 
 
-class ScAcFilter:
+class ScPlFilter:
     """Filter a section by filter criteria "belongs to plot line".
     
     Strategy class, implementing filtering criteria for template-based export.

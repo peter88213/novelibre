@@ -4,9 +4,9 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.model.exporter.ch_ac_filter import ChAcFilter
+from nvlib.model.exporter.ch_pl_filter import ChPlFilter
 from nvlib.model.exporter.ch_vp_filter import ChVpFilter
-from nvlib.model.exporter.sc_ac_filter import ScAcFilter
+from nvlib.model.exporter.sc_pl_filter import ScPlFilter
 from nvlib.model.exporter.sc_vp_filter import ScVpFilter
 from nvlib.model.file.filter import Filter
 from nvlib.novx_globals import CHARACTER_PREFIX
@@ -27,7 +27,7 @@ class FilterFactory:
             return ScVpFilter(filterElementId)
 
         elif filterElementId.startswith(PLOT_LINE_PREFIX):
-            return ScAcFilter(filterElementId)
+            return ScPlFilter(filterElementId)
 
         else:
             return Filter()
@@ -44,7 +44,7 @@ class FilterFactory:
             return ChVpFilter(filterElementId)
 
         elif filterElementId.startswith(PLOT_LINE_PREFIX):
-            return ChAcFilter(filterElementId)
+            return ChPlFilter(filterElementId)
 
         else:
             return Filter()

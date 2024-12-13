@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.0.26
+### Version 5.0.27
 
 #### New features
 - Added a **Major character** checkbox to the character properties view. 
