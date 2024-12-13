@@ -13,10 +13,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ### Version 5.0.27
 
 #### New features
-- Added a **Major character** checkbox to the character properties view. 
+- Via the context menu, you can export a manuscript containing only the selected chapter.
 - New Chapter menu entry: **Move selected chapters to new project**. 
   This creates a new project containing the moved chapters/sections 
   and all related elements and plot lines/plot points.
+- Added a **Major character** checkbox to the character properties view. 
 - Importing and exporting plot lines with plot points via XML data files. 
 - Making it easier to delete multiple elements.
 - Added a **Cut** command to the *nv_clipboard* plugin.
@@ -28,7 +29,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 #### Bugfixes
 - Fixed a bug where the project is not updated from ODT location and item descriptions.
-- Fixed a bug where an unhandled exception is raised when trying to delete chapters that contain stages.
+- Fixed a bug where an exception is raised when trying to delete chapters that contain stages.
 - Fixed a regression from version 4.17.1 where the root element titles are invisible when creating a project without saving it immediately.
 - Preventing setting a section in an unused chapter "normal" via the properties checkbox.
 - Changed the menu title for exporting the final document.
@@ -46,6 +47,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - The API is updated to version 5.0, so all plugins must be updated.
 - Allowing arbitrary link openers to be added to the link processor.
 - Moved the Zim Wiki page link processing to the *nv_zim* plugin.
+- Finished the *nv_statistics* plugin.
 - Improved the cross reference export.
 - Extended and improved the user guide.
 

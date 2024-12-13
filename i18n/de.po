@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.0.26\n"
-"POT-Creation-Date: 2024-12-12 00:28:52\n"
-"PO-Revision-Date: 2024-12-12 00:28:52\n"
+"Project-Id-Version: 5.0.27\n"
+"POT-Creation-Date: 2024-12-13 10:56:10\n"
+"PO-Revision-Date: 2024-12-13 10:56:10\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -483,6 +483,9 @@ msgstr "Zusammenfassung nach Plotlinie gefiltert exportieren"
 
 msgid "Export synopsis filtered by viewpoint"
 msgstr "Zusammenfassung nach Perspektive gefiltert exportieren"
+
+msgid "Export this chapter"
+msgstr "Dieses Kapitel exportieren"
 
 msgid "Export type is not supported"
 msgstr "Exporttyp wird nicht unterstützt"

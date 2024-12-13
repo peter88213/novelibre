@@ -157,6 +157,7 @@ class TreeViewerCtrl(SubController):
                     self.nvCtxtMenu.entryconfig(_('Insert Stage'), state='disabled')
                     self.nvCtxtMenu.entryconfig(_('Change Level'), state='disabled')
                     self.nvCtxtMenu.entryconfig(_('Join with previous'), state='disabled')
+                    self.nvCtxtMenu.entryconfig(_('Export this chapter'), state='normal')
                 else:
                     # Context is a chapter/section.
                     self.nvCtxtMenu.entryconfig(_('Delete'), state='normal')
@@ -168,6 +169,7 @@ class TreeViewerCtrl(SubController):
                     self.nvCtxtMenu.entryconfig(_('Insert Stage'), state='normal')
                     self.nvCtxtMenu.entryconfig(_('Change Level'), state='normal')
                     self.nvCtxtMenu.entryconfig(_('Join with previous'), state='normal')
+                    self.nvCtxtMenu.entryconfig(_('Export this chapter'), state='normal')
                     if prefix.startswith(CHAPTER_PREFIX):
                         # Context is a chapter.
                         self.nvCtxtMenu.entryconfig(_('Join with previous'), state='disabled')
@@ -180,7 +182,9 @@ class TreeViewerCtrl(SubController):
                             self.nvCtxtMenu.entryconfig(_('Add Chapter'), state='disabled')
                             self.nvCtxtMenu.entryconfig(_('Add Part'), state='disabled')
                             self.nvCtxtMenu.entryconfig(_('Insert Stage'), state='disabled')
+                            self.nvCtxtMenu.entryconfig(_('Export this chapter'), state='disabled')
                     if prefix.startswith(SECTION_PREFIX):
+                        self.nvCtxtMenu.entryconfig(_('Export this chapter'), state='disabled')
                         if self._mdl.novel.sections[row].scType < 2:
                             # Context is a section.
                             self.nvCtxtMenu.entryconfig(_('Change Level'), state='disabled')

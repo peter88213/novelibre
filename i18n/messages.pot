@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.0.26\n"
-"POT-Creation-Date: 2024-12-12 00:28:52\n"
+"Project-Id-Version: 5.0.27\n"
+"POT-Creation-Date: 2024-12-13 10:56:10\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -489,6 +489,9 @@ msgid "Export synopsis filtered by plot line"
 msgstr ""
 
 msgid "Export synopsis filtered by viewpoint"
+msgstr ""
+
+msgid "Export this chapter"
 msgstr ""
 
 msgid "Export type is not supported"

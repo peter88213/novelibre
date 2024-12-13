@@ -310,6 +310,7 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
         self.nvCtxtMenu.add_command(label=_('Add Part'), command=self._ctrl.add_new_part)
         self.nvCtxtMenu.add_command(label=_('Insert Stage'), command=self._ctrl.add_new_stage)
         self.nvCtxtMenu.add_cascade(label=_('Change Level'), menu=self.selectLevelMenu)
+        self.nvCtxtMenu.add_cascade(label=_('Export this chapter'), command=self.export_manuscript)
         self.nvCtxtMenu.add_separator()
         self.nvCtxtMenu.add_command(label=_('Delete'), accelerator=KEYS.DELETE[1], command=self._ctrl.delete_elements)
         self.nvCtxtMenu.add_separator()
