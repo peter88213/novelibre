@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.0.27
+### Version 5.0.28
 
 #### New features
 - Via the context menu, you can export a manuscript containing only the selected chapter.
