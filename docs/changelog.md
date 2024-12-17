@@ -11,6 +11,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.1.2
+
+- Making sure to save the error log file in the installation directory.
+
+
 ### Version 5.1.1
 
 - Making sure not to change the character status accidentally when reading back the character list. 

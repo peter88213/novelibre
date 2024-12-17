@@ -6,26 +6,27 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from shutil import copytree
-from shutil import copy2
-import zipfile
-import os
-import sys
-import stat
-import glob
-from pathlib import Path
-from string import Template
 import gettext
+import glob
 import locale
+import os
+from pathlib import Path
 import platform
+from shutil import copy2
+from shutil import copytree
+import stat
+from string import Template
+import sys
+from tkinter import messagebox
+import zipfile
+
+import relocate
+
 try:
     import tkinter as tk
 except ModuleNotFoundError:
     print('The tkinter module is missing. Please install the tk support package for your python3 version.')
     sys.exit(1)
-
-from tkinter import messagebox
-import relocate
 
 # Initialize localization.
 LOCALE_PATH = f'{os.path.dirname(sys.argv[0])}/locale/'
@@ -112,18 +113,18 @@ START_UP_CODE = f'''import logging
 from tkinter import messagebox
 import traceback
 
-import {APPNAME}
+import $Appname
 import tkinter as tk
 
 def show_error(self, *args):
     err = traceback.format_exception(*args)
-    logger.error('{APPNAME} @release\\n' + ''.join(err))
+    logger.error('$Appname $Release\\n' + ''.join(err))
     messagebox.showerror('A critical error has occurred', 'Better close the application.\\nSee "error.log" in the installation directory.' )
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(filename='error.log', level=logging.ERROR)
+logging.basicConfig(filename='$InstallDir/error.log', level=logging.ERROR)
 tk.Tk.report_callback_exception = show_error
-{APPNAME}.main()
+$Appname.main()
 '''
 
 root = tk.Tk()
@@ -280,12 +281,15 @@ def install(installDir, zipped):
         output(Template(SHORTCUT_MESSAGE).safe_substitute(mapping))
 
     #--- Create a start-up script.
+    mapping['InstallDir'] = installDir
+    mapping['Release'] = VERSION
     if platform.system() == 'Windows':
         shebang = ''
     else:
         shebang = '#!/usr/bin/env python3\n'
     with open(f'{installDir}/{START_UP_SCRIPT}', 'w', encoding='utf-8') as f:
-        f.write(f'{shebang}{START_UP_CODE}')
+        startupCode = Template(f'{shebang}{START_UP_CODE}').safe_substitute(mapping)
+        f.write(startupCode)
 
 
 def main(zipped=True):
