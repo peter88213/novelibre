@@ -8,6 +8,8 @@ from datetime import date
 from datetime import time
 import os
 
+from nvlib.nv_locale import _
+
 ROOT_PREFIX = 'rt'
 CHAPTER_PREFIX = 'ch'
 PLOT_LINE_PREFIX = 'ac'
@@ -37,7 +39,9 @@ ITEMS_SUFFIX = '_items_tmp'
 LOCATION_REPORT_SUFFIX = '_location_report'
 LOCATIONS_SUFFIX = '_locations_tmp'
 LOCLIST_SUFFIX = '_loclist_tmp'
+MAJOR_MARKER = _('Major Character')
 MANUSCRIPT_SUFFIX = '_manuscript_tmp'
+MINOR_MARKER = _('Minor Character')
 PARTS_SUFFIX = '_parts_tmp'
 PLOTLIST_SUFFIX = '_plotlist'
 PLOTLINES_SUFFIX = '_plotlines_tmp'

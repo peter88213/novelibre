@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.1.0
+
+- Localized the character status in the character list.
+
+
 ### Version 5.0.28
 
 #### New features

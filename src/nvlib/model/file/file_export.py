@@ -21,7 +21,9 @@ from nvlib.novx_globals import ITEMS_SUFFIX
 from nvlib.novx_globals import IT_ROOT
 from nvlib.novx_globals import LC_ROOT
 from nvlib.novx_globals import LOCATIONS_SUFFIX
+from nvlib.novx_globals import MAJOR_MARKER
 from nvlib.novx_globals import MANUSCRIPT_SUFFIX
+from nvlib.novx_globals import MINOR_MARKER
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import SECTIONS_SUFFIX
@@ -252,9 +254,9 @@ class FileExport(File):
         else:
             tags = ''
         if self.novel.characters[crId].isMajor:
-            characterStatus = Character.MAJOR_MARKER
+            characterStatus = MAJOR_MARKER
         else:
-            characterStatus = Character.MINOR_MARKER
+            characterStatus = MINOR_MARKER
         birthDateStr = self.novel.characters[crId].birthDate
         if birthDateStr is None:
             birthDateStr = ''

@@ -11,8 +11,6 @@ import xml.etree.ElementTree as ET
 
 class Character(WorldElement):
     """novelibre character representation."""
-    MAJOR_MARKER = 'Major'
-    MINOR_MARKER = 'Minor'
 
     def __init__(self,
             bio=None,
