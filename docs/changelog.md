@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+
+### Version 5.1.1
+
+- Making sure not to change the character status accidentally when reading back the character list. 
+
+
 ### Version 5.1.0
 
 - Localized the character status in the character list.

@@ -8,6 +8,7 @@ from nvlib.model.ods.ods_reader import OdsReader
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CHARLIST_SUFFIX
 from nvlib.novx_globals import MAJOR_MARKER
+from nvlib.novx_globals import MINOR_MARKER
 from nvlib.novx_globals import string_to_list
 from nvlib.nv_locale import _
 
@@ -117,6 +118,6 @@ class OdsRCharList(OdsReader):
             else:
                 if MAJOR_MARKER in importance:
                     self.novel.characters[crId].isMajor = True
-                else:
+                elif MINOR_MARKER in importance:
                     self.novel.characters[crId].isMajor = False
 
