@@ -11,6 +11,10 @@ from nvlib.nv_locale import _
 class MainViewCtrl(SubController):
 
     def about(self):
+        """Display a legal notice window.
+        
+        Important: after building the program, __doc__ will be the novelibre docstring.
+        """
         self.show_info(__doc__)
 
     def disable_menu(self):
