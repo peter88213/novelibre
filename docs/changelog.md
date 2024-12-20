@@ -10,6 +10,10 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.1.3
+
+- Added a legal notice to the user interface.
+
 
 ### Version 5.1.2
 

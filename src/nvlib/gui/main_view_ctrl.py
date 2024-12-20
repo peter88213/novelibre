@@ -10,6 +10,9 @@ from nvlib.nv_locale import _
 
 class MainViewCtrl(SubController):
 
+    def about(self):
+        self.show_info(__doc__)
+
     def disable_menu(self):
         """Disable menu entries when no project is open.        
         

@@ -479,7 +479,9 @@ class MainView(ViewBase, MainViewCtrl):
         self.helpMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Help'), menu=self.helpMenu)
         self.helpMenu.add_command(label=_('Online help'), accelerator=KEYS.OPEN_HELP[1], command=self._ctrl.open_help)
+        self.helpMenu.add_command(label=_('About novelibre'), command=self.about)
         self.helpMenu.add_command(label=f"novelibre {_('Home page')}", command=self._ctrl.open_homepage)
+        self.helpMenu.add_separator()
 
     def _create_path_bar(self):
         """Extends the superclass method."""
