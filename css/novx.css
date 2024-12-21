@@ -186,6 +186,7 @@ PartHeadingPrefix, PartHeadingSuffix,
 CustomGoal, CustomConflict, CustomOutcome, 
 CustomChrBio, CustomChrGoals,
 WordCountStart, WordTarget, ReferenceDate, 
+Link, Field,
 PROGRESS {
     visibility: hidden;
 }
