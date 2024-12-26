@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.2.0\n"
-"POT-Creation-Date: 2024-12-26 14:13:42\n"
+"Project-Id-Version: 5.2.1\n"
+"POT-Creation-Date: 2024-12-26 14:39:06\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -191,10 +191,10 @@ msgstr ""
 msgid "Change icon size"
 msgstr ""
 
-msgid "Change sections to Unused"
+msgid "Change sections to Normal"
 msgstr ""
 
-msgid "Change sections to Used"
+msgid "Change sections to Unused"
 msgstr ""
 
 msgid "Chapter"

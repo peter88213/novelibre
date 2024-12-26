@@ -11,6 +11,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.2.1
+
+- Adjust the wording in the context menu.
+
+
 ### Version 5.2.0
 
 - New feature: Change the type of all sections assigned to a plot line.

@@ -471,7 +471,7 @@ class ElementManager(ServiceBase):
             self._mdl.set_type(1, sections)
 
     def include_plot_line(self, plId=None):
-        """Change the sections assigned to a plot line to Used.
+        """Change the sections assigned to a plot line to Normal.
         
         Positional arguments: 
             plId: str -- ID of the plotline; if None, the selection is used.
