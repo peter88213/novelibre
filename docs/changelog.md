@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+
+### Version 5.1.4
+
+- No longer count unused sections for plot line properties (#39).
+
+
 ### Version 5.1.3
 
 - Added a legal notice to the user interface.
