@@ -237,12 +237,16 @@ class TreeViewerCtrl(SubController):
                     self.plCtxtMenu.entryconfig(_('Delete'), state='disabled')
                     self.plCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='disabled')
                     self.plCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='disabled')
+                    self.plCtxtMenu.entryconfig(_('Change sections to Unused'), state='disabled')
+                    self.plCtxtMenu.entryconfig(_('Change sections to Used'), state='disabled')
                 elif prefix.startswith(PL_ROOT):
                     self.plCtxtMenu.entryconfig(_('Add Plot line'), state='normal')
                     self.plCtxtMenu.entryconfig(_('Add Plot point'), state='disabled')
                     self.plCtxtMenu.entryconfig(_('Delete'), state='disabled')
                     self.plCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='disabled')
                     self.plCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='disabled')
+                    self.plCtxtMenu.entryconfig(_('Change sections to Unused'), state='disabled')
+                    self.plCtxtMenu.entryconfig(_('Change sections to Used'), state='disabled')
                 else:
                     self.plCtxtMenu.entryconfig(_('Add Plot line'), state='normal')
                     self.plCtxtMenu.entryconfig(_('Add Plot point'), state='normal')
@@ -250,9 +254,13 @@ class TreeViewerCtrl(SubController):
                     if prefix == PLOT_LINE_PREFIX:
                         self.plCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='normal')
                         self.plCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='normal')
+                        self.plCtxtMenu.entryconfig(_('Change sections to Unused'), state='normal')
+                        self.plCtxtMenu.entryconfig(_('Change sections to Used'), state='normal')
                     else:
                         self.plCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='disabled')
                         self.plCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='disabled')
+                        self.plCtxtMenu.entryconfig(_('Change sections to Unused'), state='disabled')
+                        self.plCtxtMenu.entryconfig(_('Change sections to Used'), state='disabled')
                 try:
                     self.plCtxtMenu.tk_popup(event.x_root, event.y_root, 0)
                 finally:

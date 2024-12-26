@@ -451,6 +451,44 @@ class ElementManager(ServiceBase):
                 selectAfterDeleting = newSelection
         self._ui.tv.go_to_node(selectAfterDeleting)
 
+    def exclude_plot_line(self, plId=None):
+        """Change the sections assigned to a plot line to Unused.
+        
+        Positional arguments: 
+            plId: str -- ID of the plotline; if None, the selection is used.
+        """
+        if self._mdl.prjFile is None:
+            return
+
+        if plId is None:
+            plId = self._ui.selectedNode
+
+        if not plId.startswith(PLOT_LINE_PREFIX):
+            return
+
+        sections = self._mdl.novel.plotLines[plId].sections
+        if sections:
+            self._mdl.set_type(1, sections)
+
+    def include_plot_line(self, plId=None):
+        """Change the sections assigned to a plot line to Used.
+        
+        Positional arguments: 
+            plId: str -- ID of the plotline; if None, the selection is used.
+        """
+        if self._mdl.prjFile is None:
+            return
+
+        if plId is None:
+            plId = self._ui.selectedNode
+
+        if not plId.startswith(PLOT_LINE_PREFIX):
+            return
+
+        sections = self._mdl.novel.plotLines[plId].sections
+        if sections:
+            self._mdl.set_type(0, sections)
+
     def import_elements(self, prefix):
         """Import elements from an XML data file.
         

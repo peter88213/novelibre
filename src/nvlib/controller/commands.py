@@ -251,6 +251,10 @@ class Commands:
         """
         self.fileManager.discard_manuscript()
 
+    def exclude_plot_line(self, event=None):
+        if not self.check_lock():
+            self.elementManager.exclude_plot_line()
+
     def export_brief_synopsis(self, event=None):
         self.fileManager.export_document(BRF_SYNOPSIS_SUFFIX, lock=False, overwrite=True)
 
@@ -336,6 +340,10 @@ class Commands:
     def import_plot_lines(self, event=None):
         if not self.check_lock():
             self.elementManager.import_elements(PLOT_LINE_PREFIX)
+
+    def include_plot_line(self, event=None):
+        if not self.check_lock():
+            self.elementManager.include_plot_line()
 
     def join_sections(self, event=None, scId0=None, scId1=None):
         """Join section 0 with section 1.

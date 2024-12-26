@@ -11,6 +11,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.2.0
+
+- New feature: Change the type of all sections assigned to a plot line.
+
+
 ### Version 5.1.4
 
 - No longer count unused sections for plot line properties (#39).

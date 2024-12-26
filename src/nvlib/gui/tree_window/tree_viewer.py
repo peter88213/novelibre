@@ -344,6 +344,9 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
         self.plCtxtMenu.add_command(label=_('Export manuscript filtered by plot line'), command=self.export_manuscript)
         self.plCtxtMenu.add_command(label=_('Export synopsis filtered by plot line'), command=self.export_synopsis)
         self.plCtxtMenu.add_separator()
+        self.plCtxtMenu.add_command(label=_('Change sections to Unused'), command=self._ctrl.exclude_plot_line)
+        self.plCtxtMenu.add_command(label=_('Change sections to Used'), command=self._ctrl.include_plot_line)
+        self.plCtxtMenu.add_separator()
         self.plCtxtMenu.add_command(label=_('Delete'), accelerator=KEYS.DELETE[1], command=self._ctrl.delete_elements)
 
         #--- Create a project note context menu.

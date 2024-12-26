@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.1.4\n"
-"POT-Creation-Date: 2024-12-26 13:03:52\n"
-"PO-Revision-Date: 2024-12-26 13:03:52\n"
+"Project-Id-Version: 5.2.0\n"
+"POT-Creation-Date: 2024-12-26 14:13:42\n"
+"PO-Revision-Date: 2024-12-26 14:13:42\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -183,6 +183,12 @@ msgstr "Ebene ändern"
 
 msgid "Change icon size"
 msgstr "Symbolgröße ändern"
+
+msgid "Change sections to Unused"
+msgstr "Abschnitte zu Unbenutzt ändern"
+
+msgid "Change sections to Used"
+msgstr "Abschnitte zu Benutzt ändern"
 
 msgid "Chapter"
 msgstr "Kapitel"
