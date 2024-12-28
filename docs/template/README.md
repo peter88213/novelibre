@@ -132,7 +132,7 @@ You may wish to install plugins; the [update checker](https://github.com/peter88
 
 [Changelog](docs/changelog.md)
 
-[News](https://github.com/peter88213/novelibre/discussions)
+[News](https://github.com/peter88213/novelibre/discussions/1?sort=new)
 
 [Discussions](https://github.com/peter88213/novelibre/discussions)
 
