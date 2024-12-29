@@ -35,7 +35,7 @@ JSON_PATH = '../../novelibre/i18n'
 
 poHeader = '''\
 # $app Dictionary ($languages)
-# Copyright (C) 2022 $translator
+# Copyright (C) $year $translator
 #
 msgid ""
 msgstr ""
@@ -67,7 +67,7 @@ class Translations:
                  appVersion='unknown',
                  potFile='messages.pot',
                  languages='',
-                 translator='unknown'
+                 translator='unknown',
                  ):
         self.poFile = f'{POT_PATH}/{languageCode}.po'
         self.potFile = f'{POT_PATH}/{potFile}'
@@ -84,6 +84,7 @@ class Translations:
             'languages':languages,
             'translator':translator,
             'languageCode':languageCode,
+            'year':datetime.today().year,
         }
 
     def read_pot(self):
