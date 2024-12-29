@@ -7,7 +7,11 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
+import sys
 from translations import Translations
+
+if not input('Update the translations of all projects? (Y/n)') == 'Y':
+    sys.exit()
 
 START_DIR = os.getcwd()
 ROOT = '../../'
