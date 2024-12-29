@@ -21,6 +21,9 @@ characters, locations, and items to the sections.
 *novelibre* can hold information about plot lines and plot points that are
 assigned to the sections.
 
+[Read more](https://peter88213.github.io/nvhelp-en/introduction.html) 
+about the idea and purpose of novelibre. 
+
 ![Screenshot](docs/Screenshots/screen01.png)
 
 What distinguishes *novelibre* from other writing software is the integration 
