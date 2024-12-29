@@ -12,7 +12,7 @@ File structure:
 │   │   └── <language>.json
 │   └── tools/
 │       └── translations.py
-└── <project>/
+└── <plugin>/
     ├── i18n/ 
     │   ├── messages.pot
     │   └── <language>.po
@@ -34,15 +34,15 @@ POT_PATH = '../i18n'
 JSON_PATH = '../../novelibre/i18n'
 
 poHeader = '''\
-# ${app} Dictionary (English-German)
-# Copyright (C) 2022 Peter Triesberger
+# $app Dictionary ($languages)
+# Copyright (C) 2022 $translator
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ${appVersion}\\n"
-${pot_creation}
-"PO-Revision-Date: ${datetime}\\n"
-"Last-Translator: Peter Triesberger\\n"
+"Project-Id-Version: $appVersion\\n"
+$potCreationLine
+"PO-Revision-Date: $datetime\\n"
+"Last-Translator: $translator\\n"
 "Language: de\\n"
 "MIME-Version: 1.0\\n"
 "Content-Type: text/plain; charset=UTF-8\\n"
@@ -61,17 +61,29 @@ class Translations:
     - The JSON dictionary is updated by translations found in the initial '.po' file.
     """
 
-    def __init__(self, languageCode, app='', appVersion='unknown', potFile='messages.pot'):
+    def __init__(self,
+                 languageCode,
+                 app='',
+                 appVersion='unknown',
+                 potFile='messages.pot',
+                 languages='',
+                 translator='unknown'
+                 ):
         self.poFile = f'{POT_PATH}/{languageCode}.po'
         self.potFile = f'{POT_PATH}/{potFile}'
         self.lngFile = f'{JSON_PATH}/{languageCode}.json'
         self.msgDict = {}
         self.msgList = []
         self.header = ''
-        self.app = app
-        self.appVersion = appVersion
-        self.currentDateTime = datetime.today().replace(microsecond=0).isoformat(sep=" ")
-        self.potCreation = f'"POT-Creation-Date: {self.currentDateTime}\\n"'
+        currentDateTime = datetime.today().replace(microsecond=0).isoformat(sep=" ")
+        self.msgMap = {
+            'app': app,
+            'appVersion': appVersion,
+            'datetime':currentDateTime,
+            'potCreationLine':f'"POT-Creation-Date: {currentDateTime}\\n"',
+            'languages':languages,
+            'translator':translator
+        }
 
     def read_pot(self):
         """Read the messages of the '.pot' file.
@@ -89,7 +101,7 @@ class Translations:
                 pass
             elif inHeader:
                 if line.startswith('"POT-Creation-Date'):
-                    self.potCreation = line
+                    self.msgMap['potCreationLine'] = line
                 elif line.startswith('msgid "'):
                     inHeader = False
             if not inHeader:
@@ -155,13 +167,8 @@ class Translations:
         """
 
         # Create the header.
-        msgMap = {'app': self.app,
-                  'appVersion': self.appVersion,
-                  'datetime':self.currentDateTime,
-                  'pot_creation': self.potCreation,
-                  }
         hdTemplate = Template(poHeader)
-        self.header = hdTemplate.safe_substitute(msgMap)
+        self.header = hdTemplate.safe_substitute(self.msgMap)
 
         print(f'Reading "{self.poFile}" ...')
         try:
@@ -239,7 +246,14 @@ class Translations:
         return message
 
 
-def main(languageCode, app='', appVersion='unknown', potFile='messages.pot', json=False):
+def main(languageCode,
+         app='',
+         appVersion='unknown',
+         potFile='messages.pot',
+         json=False,
+         languages='',
+         translator='unknown'
+         ):
     """Update a '.po' translation file.
     
     - Add missing entries from the '.pot' template file.
@@ -251,7 +265,14 @@ def main(languageCode, app='', appVersion='unknown', potFile='messages.pot', jso
     Return True, if all messages have translations.
     Return False, if messages need to be translated. 
     """
-    translations = Translations(languageCode, app, appVersion, potFile)
+    translations = Translations(
+        languageCode,
+        app=app,
+        appVersion=appVersion,
+        potFile=potFile,
+        languages=languages,
+        translator=translator,
+        )
     if json:
         translations.read_json()
     translations.read_pot()

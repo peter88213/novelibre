@@ -41,8 +41,15 @@ PO_FILE = 'de.po'
 MO_COPY_DIR = '../../novelibre/src/locale/de/LC_MESSAGES'
 
 
-def main(moFile, app='', version='unknown'):
-    if not translations.main('de', app=app, appVersion=version, json=True):
+def main(moFile, app='', version='unknown', languages='', translator='unknown'):
+    if not translations.main(
+        'de',
+        app=app,
+        appVersion=version,
+        json=True,
+        languages=languages,
+        translator=translator
+        ):
         sys.exit(1)
 
     moDir = f'{I18_DIR}/{MO_DIR}'

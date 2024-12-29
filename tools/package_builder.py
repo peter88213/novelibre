@@ -100,7 +100,12 @@ setuplib.main(False)
 
         print('Creating/updating the translations')
         translation = translate_de.main(
-            self.moFile, app=self.PRJ_NAME, version=self.version)
+            self.moFile,
+            app=self.PRJ_NAME,
+            version=self.version,
+            languages='English-German',
+            translator='Peter Triesberger'
+            )
         if translation is None:
             sys.exit(1)
 
