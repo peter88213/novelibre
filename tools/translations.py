@@ -115,7 +115,7 @@ class Translations:
             return True
 
         except Exception as ex:
-            print(ex)
+            print(str(ex))
             return False
 
     def write_json(self):
@@ -145,7 +145,7 @@ class Translations:
         except Exception as ex:
             if backedUp:
                 os.replace(f'{self.lngFile}.bak', self.lngFile)
-            print(f'ERROR: Cannot write file: "{self.lngFile}".\n{ex}')
+            print(f'ERROR: Cannot write file: "{self.lngFile}".\n{str(ex)}')
             return False
 
     def read_po(self):
@@ -222,7 +222,7 @@ class Translations:
         except Exception as ex:
             if backedUp:
                 os.replace(f'{self.poFile}.bak', self.poFile)
-            print(f'ERROR: Cannot write file: "{self.poFile}".\n{ex}')
+            print(f'ERROR: Cannot write file: "{self.poFile}".\n{str(ex)}')
             return False
 
         if missingCount > 0:
