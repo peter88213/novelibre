@@ -9,7 +9,7 @@ of third-party applications and tools that read or write *.novx* files.
 
 ### Documentation
 
-See the [novxlib documentation](https://peter88213.github.io/novxlib-docs/the_novx_file_format.html).
+See the [novx file format documentation](https://peter88213.github.io/novxlib-docs/the_novx_file_format.html).
 
 
 ### Versioning
