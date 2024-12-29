@@ -43,7 +43,7 @@ msgstr ""
 $potCreationLine
 "PO-Revision-Date: $datetime\\n"
 "Last-Translator: $translator\\n"
-"Language: de\\n"
+"Language: $languageCode\\n"
 "MIME-Version: 1.0\\n"
 "Content-Type: text/plain; charset=UTF-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
@@ -82,7 +82,8 @@ class Translations:
             'datetime':currentDateTime,
             'potCreationLine':f'"POT-Creation-Date: {currentDateTime}\\n"',
             'languages':languages,
-            'translator':translator
+            'translator':translator,
+            'languageCode':languageCode,
         }
 
     def read_pot(self):
