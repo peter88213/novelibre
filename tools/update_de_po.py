@@ -10,7 +10,7 @@ import os
 import sys
 from translations import Translations
 
-if not input('Update the translations of all projects? (Y/n)') == 'Y':
+if input('Update the translations of all projects? (Y/n)') != 'Y':
     sys.exit()
 
 START_DIR = os.getcwd()
