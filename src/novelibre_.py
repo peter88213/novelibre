@@ -47,8 +47,7 @@ SETTINGS = dict(
     color_notes_fg='black',
     color_on_schedule='black',
     color_outline='dark orchid',
-    color_stage_fg='red',
-    color_stage_bg='white',
+    color_stage='red',
     color_status_error_bg='red',
     color_status_error_fg='white',
     color_status_notification_bg='yellow',
@@ -132,7 +131,11 @@ def main():
     #--- Load configuration.
     iniFile = f'{configDir}/novx.ini'
     configuration = Configuration(SETTINGS, OPTIONS)
-    configuration.read(iniFile)
+    try:
+        configuration.read(iniFile)
+    except:
+        pass
+        # skipping the configuraton if faulty
     prefs.update(configuration.settings)
     prefs.update(configuration.options)
 
