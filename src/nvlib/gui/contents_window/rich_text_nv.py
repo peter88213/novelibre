@@ -25,10 +25,6 @@ class RichTextNv(RichTextTk):
     EM_TAG = 'emTag'
     STRONG_TAG = 'strongTag'
 
-    COLOR_XML_TAG = 'cornflower blue'
-    COLOR_COMMENT_TAG = 'lemon chiffon'
-    COLOR_NOTE_TAG = 'bisque'
-
     def __init__(self, *args, **kwargs):
         """Define some tags for novelibre-specific colors.
         
@@ -65,7 +61,7 @@ class RichTextNv(RichTextTk):
                          slant='italic',
                          )
         self.tag_configure(self.XML_TAG,
-                           foreground=self.COLOR_XML_TAG,
+                           foreground=kwargs['color_xml_tag'],
                            )
         self.tag_configure(self.EM_TAG,
                            font=italicFont,
@@ -74,18 +70,18 @@ class RichTextNv(RichTextTk):
                            font=boldFont,
                            )
         self.tag_configure(self.COMMENT_TAG,
-                           background=self.COLOR_COMMENT_TAG,
+                           background=kwargs['color_comment_tag'],
                            )
         self.tag_configure(self.COMMENT_XML_TAG,
-                           foreground=self.COLOR_XML_TAG,
-                           background=self.COLOR_COMMENT_TAG,
+                           foreground=kwargs['color_xml_tag'],
+                           background=kwargs['color_comment_tag'],
                            )
         self.tag_configure(self.NOTE_TAG,
-                           background=self.COLOR_NOTE_TAG,
+                           background=kwargs['color_comment_tag'],
                            )
         self.tag_configure(self.NOTE_XML_TAG,
-                           foreground=self.COLOR_XML_TAG,
-                           background=self.COLOR_NOTE_TAG,
+                           foreground=kwargs['color_xml_tag'],
+                           background=kwargs['color_note_tag'],
                            )
         self.tag_configure(self.H1_TAG,
                            font=h1Font,

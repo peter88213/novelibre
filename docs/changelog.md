@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.4.0
+
+- To better support themes, the RichTextNv "tag" colors are configurable now. 
+
+
 ### Version 5.3.0
 
 - Skipping the configuration in case of error.
