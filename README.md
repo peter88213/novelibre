@@ -77,6 +77,7 @@ is embedded in a customizable ecosystem.
 - [A Timeline viewer plugin](https://github.com/peter88213/nv_tlview/)
 - [A Timeline sync plugin](https://github.com/peter88213/nv_timeline/)
 - [An Aeon Timeline 2 sync plugin](https://github.com/peter88213/nv_aeon2/)
+- [A dark mode (experimental)](https://github.com/peter88213/nv_dark/)
 - [A theme changer](https://github.com/peter88213/nv_themes/)
 - [A yw7 file importer/exporter](https://github.com/peter88213/nv_yw7/)
 - [A simple "markup" section editor](https://github.com/peter88213/nv_editor/)
