@@ -65,7 +65,7 @@ On Linux, create a launcher on your desktop. With xfce for instance, the launche
 python3 '$Apppath' %f
 '''
 
-ADD_TO_REGISTRY = f'''Windows Registry Editor Version 5.00
+ADD_TO_REGISTRY = fr'''Windows Registry Editor Version 5.00
 
 [-HKEY_CURRENT_USER\Software\Classes\\noveltree]
 [-HKEY_CURRENT_USER\Software\Classes\\novelibre]
@@ -91,7 +91,7 @@ ADD_TO_REGISTRY = f'''Windows Registry Editor Version 5.00
 
 '''
 
-REMOVE_FROM_REGISTRY = f'''Windows Registry Editor Version 5.00
+REMOVE_FROM_REGISTRY = fr'''Windows Registry Editor Version 5.00
 
 [-HKEY_CURRENT_USER\Software\Classes\\noveltree]
 [-HKEY_CURRENT_USER\Software\Classes\\nv5Collection]
@@ -217,22 +217,23 @@ def install(installDir, zipped):
     #--- Delete the old version, but retain configuration, if any.
     # Do not remove the locale folder, because it may contain plugin data.
     # Do not remove the icons folder, because it may contain plugin data.
-    with os.scandir(installDir) as files:
-        for file in files:
-            try:
-                os.remove(file)
-                output(f'"{file.name}" removed.')
-            except:
-                pass
+    filesToDelete = [
+        f'{installDir}/{APP}',
+        f'{installDir}/{START_UP_SCRIPT}',
+        f'{installDir}/add_novelibre.reg',
+        f'{installDir}/remove_novelibre.reg',
+        f'{installDir}/error.log'
+        ]
+    for file in filesToDelete:
+        try:
+            os.remove(file)
+            output(f'"{file}" removed.')
+        except:
+            pass
 
     #--- Install the new version.
     output(f'Copying "{APP}" ...')
     copy_file(APP, installDir)
-
-    # Create a starter script.
-    output('Creating starter script ...')
-    with open(f'{installDir}/{START_UP_SCRIPT}', 'w', encoding='utf-8') as f:
-        f.write(f'import {APPNAME}\n{APPNAME}.main()')
 
     # Install the localization files.
     output('Copying locale ...')
@@ -245,12 +246,6 @@ def install(installDir, zipped):
     # Install the css files.
     output('Copying css stylesheet ...')
     copy_tree('css', installDir)
-
-    #--- Make the scripts executable under Linux.
-    st = os.stat(f'{installDir}/{APP}')
-    os.chmod(f'{installDir}/{APP}', st.st_mode | stat.S_IEXEC)
-    st = os.stat(f'{installDir}/{START_UP_SCRIPT}')
-    os.chmod(f'{installDir}/{START_UP_SCRIPT}', st.st_mode | stat.S_IEXEC)
 
     #--- Create a plugin directory.
 
@@ -272,15 +267,9 @@ def install(installDir, zipped):
     if platform.system() == 'Windows':
         create_explorer_context_menu(installDir)
 
-    #--- Display a success message.
-    mapping = {'Appname': APPNAME, 'Apppath': f'{installDir}/{START_UP_SCRIPT}'}
-    output(Template(SUCCESS_MESSAGE).safe_substitute(mapping))
-
-    #--- Ask for shortcut creation.
-    if not simpleUpdate:
-        output(Template(SHORTCUT_MESSAGE).safe_substitute(mapping))
-
     #--- Create a start-up script.
+    output('Creating starter script ...')
+    mapping = {'Appname': APPNAME, 'Apppath': f'{installDir}/{START_UP_SCRIPT}'}
     mapping['InstallDir'] = installDir
     mapping['Release'] = VERSION
     if platform.system() == 'Windows':
@@ -290,6 +279,19 @@ def install(installDir, zipped):
     with open(f'{installDir}/{START_UP_SCRIPT}', 'w', encoding='utf-8') as f:
         startupCode = Template(f'{shebang}{START_UP_CODE}').safe_substitute(mapping)
         f.write(startupCode)
+
+    #--- Make the scripts executable under Linux.
+    st = os.stat(f'{installDir}/{APP}')
+    os.chmod(f'{installDir}/{APP}', st.st_mode | stat.S_IEXEC)
+    st = os.stat(f'{installDir}/{START_UP_SCRIPT}')
+    os.chmod(f'{installDir}/{START_UP_SCRIPT}', st.st_mode | stat.S_IEXEC)
+
+    #--- Display a success message.
+    output(Template(SUCCESS_MESSAGE).safe_substitute(mapping))
+
+    #--- Ask for shortcut creation.
+    if not simpleUpdate:
+        output(Template(SHORTCUT_MESSAGE).safe_substitute(mapping))
 
 
 def main(zipped=True):
