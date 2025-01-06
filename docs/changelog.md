@@ -10,6 +10,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.4.1
+
+- Setting the user's home directory as default for new projects. Closes #40.
+- Revised the installation routine in order not to delete files that
+  aren't part of the release package.
+
+
 ### Version 5.4.0
 
 - To better support themes, the RichTextNv "tag" colors are configurable now. 

@@ -5,6 +5,7 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
+from pathlib import Path
 import sys
 from tkinter import filedialog
 
@@ -217,7 +218,7 @@ class FileManager(ServiceBase):
         if prefs['last_open']:
             startDir, __ = os.path.split(prefs['last_open'])
         else:
-            startDir = '.'
+            startDir = str(Path.home()).replace('\\', '/')
         fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
         fileName = filedialog.asksaveasfilename(
             filetypes=fileTypes,
@@ -285,7 +286,7 @@ class FileManager(ServiceBase):
         """
         initDir = os.path.dirname(prefs.get('last_open', ''))
         if not initDir:
-            initDir = './'
+            initDir = str(Path.home()).replace('\\', '/')
         if not fileName or not os.path.isfile(fileName):
             fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
             fileName = filedialog.askopenfilename(
