@@ -222,6 +222,8 @@ class MainView(ViewBase, MainViewCtrl):
         self._selection = self.tv.tree.selection()
         self.propertiesView.show_properties(nodeId)
         self.contentsView.see(nodeId)
+        self.root.event_generate('<<selection_changed>>', when='tail')
+        # this event can be used by plugins
 
     def on_quit(self):
         """Gracefully close the user interface.
