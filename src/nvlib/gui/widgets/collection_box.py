@@ -1,6 +1,6 @@
 """Provide a widget for displaying and modifying a collection of list items.
 
-Copyright (c) 2024 Peter Triesberger
+Copyright (c) 2025 Peter Triesberger
 https://github.com/peter88213
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """

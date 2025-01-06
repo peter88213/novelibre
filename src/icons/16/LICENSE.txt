@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 2024 Peter Triesberger
+Copyright (c) 2025 Peter Triesberger
 Copyright (c) 2018 Akveo.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
