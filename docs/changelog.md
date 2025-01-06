@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.6.0
+
+- ContentsViewer using a service to get the preferences (#31).
+- Generating an event when changing the selection.
+
 
 ### Version 5.5.0
 

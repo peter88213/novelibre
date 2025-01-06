@@ -9,7 +9,6 @@ from tkinter import ttk
 from mvclib.view.observer import Observer
 from nvlib.gui.contents_window.contents_viewer_ctrl import ContentsViewerCtrl
 from nvlib.gui.contents_window.rich_text_nv import RichTextNv
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
 
@@ -32,6 +31,7 @@ class ContentsViewer(RichTextNv, Observer, ContentsViewerCtrl):
         Required keyword arguments:
             show_markup: bool 
         """
+        prefs = controller.get_preferences()
         super().__init__(parent, **prefs)
         self.initialize_controller(model, view, controller)
 
