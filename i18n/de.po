@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.4.1\n"
-"POT-Creation-Date: 2025-01-06 13:37:41\n"
-"PO-Revision-Date: 2025-01-06 13:37:41\n"
+"Project-Id-Version: 5.5.0\n"
+"POT-Creation-Date: 2025-01-06 18:20:13\n"
+"PO-Revision-Date: 2025-01-06 18:20:13\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -295,6 +295,9 @@ msgstr "Datum in Tage umwandeln"
 msgid "Convert days to dates"
 msgstr "Tage in Datum umwandeln"
 
+msgid "Copy"
+msgstr "Kopieren"
+
 msgid "Copy style sheet"
 msgstr "Style sheet kopieren"
 
@@ -330,6 +333,9 @@ msgstr "Querverweise (nur Export)"
 
 msgid "Ctrl"
 msgstr "Strg"
+
+msgid "Cut"
+msgstr "Ausschneiden"
 
 msgid "Date"
 msgstr "Datum"
@@ -876,6 +882,9 @@ msgstr "Präfix Teilenummer"
 
 msgid "Part number suffix"
 msgstr "Suffix Teilenummer"
+
+msgid "Paste"
+msgstr "Einfügen"
 
 msgid "Peak em. moment"
 msgstr "Em. Höhepunkt"

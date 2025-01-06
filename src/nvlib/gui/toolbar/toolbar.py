@@ -198,6 +198,39 @@ class Toolbar(ToolbarCtrl):
         self.deleteElementButton.pack(side='left')
         self.deleteElementButton.image = self._ui.icons.removeIcon
 
+        # Put a Separator on the toolbar.
+        tk.Frame(self.buttonBar, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
+
+        # Put a "Cut" button on the toolbar.
+        self.cutButton = ttk.Button(
+            self.buttonBar,
+            text=f"{_('Cut')} ({KEYS.CUT[1]})",
+            image=self._ui.icons.cutIcon,
+            command=self._ctrl.cut_element
+            )
+        self.cutButton.pack(side='left')
+        self.cutButton.image = self._ui.icons.cutIcon
+
+        # Put a "Copy" button on the toolbar.
+        self.copyButton = ttk.Button(
+            self.buttonBar,
+            text=f"{_('Copy')} ({KEYS.COPY[1]})",
+            image=self._ui.icons.copyIcon,
+            command=self._ctrl.copy_element
+            )
+        self.copyButton.pack(side='left')
+        self.copyButton.image = self._ui.icons.copyIcon
+
+        # Put a "Paste" button on the toolbar.
+        self.pasteButton = ttk.Button(
+            self.buttonBar,
+            text=f"{_('Paste')} ({KEYS.PASTE[1]})",
+            image=self._ui.icons.pasteIcon,
+            command=self._ctrl.paste_element
+            )
+        self.pasteButton.pack(side='left')
+        self.pasteButton.image = self._ui.icons.pasteIcon
+
         # Reverse order (side='right').
 
         # "Toggle properties" button.
@@ -250,4 +283,7 @@ class Toolbar(ToolbarCtrl):
         Hovertip(self.viewPlotLinesButton, self.viewPlotLinesButton['text'])
         Hovertip(self.viewProjectnotesButton, self.viewProjectnotesButton['text'])
         Hovertip(self.viewerButton, f"{self.viewerButton['text']} ({KEYS.TOGGLE_VIEWER[1]})")
+        Hovertip(self.cutButton, self.cutButton['text'])
+        Hovertip(self.copyButton, self.copyButton['text'])
+        Hovertip(self.pasteButton, self.pasteButton['text'])
 

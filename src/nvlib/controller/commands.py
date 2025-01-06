@@ -235,6 +235,12 @@ class Commands:
         self.fileManager.create_project()
         return 'break'
 
+    def cut_element(self, event=None):
+        self.clipboardManager.cut_element()
+
+    def copy_element(self, event=None):
+        self.clipboardManager.copy_element()
+
     def delete_elements(self, event=None, elements=None):
         """Delete elements and their children.
         
@@ -433,6 +439,9 @@ class Commands:
         """Open a toplevel window to edit the view options."""
         ViewOptionsDialog(self._mdl, self._ui, self)
         return 'break'
+
+    def paste_element(self, event=None):
+        self.clipboardManager.paste_element()
 
     def refresh_tree(self, event=None):
         """Update the project structure."""

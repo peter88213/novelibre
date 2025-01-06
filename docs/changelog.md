@@ -10,6 +10,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+
+### Version 5.5.0
+
+- Copy/Cut/Paste included.
+- If the nv_clipboard plugin is installed, it will be removed during installation.
+
+
 ### Version 5.4.1
 
 - Setting the user's home directory as default for new projects. Closes #40.

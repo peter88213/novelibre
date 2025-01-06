@@ -31,6 +31,9 @@ class ToolbarCtrl(SubController):
         self.viewLocationsButton.config(state='disabled')
         self.viewPlotLinesButton.config(state='disabled')
         self.viewProjectnotesButton.config(state='disabled')
+        self.cutButton.config(state='disabled')
+        self.copyButton.config(state='disabled')
+        self.pasteButton.config(state='disabled')
 
     def enable_menu(self):
         """Enable toolbar buttons when a project is open.        
@@ -53,6 +56,9 @@ class ToolbarCtrl(SubController):
         self.viewLocationsButton.config(state='normal')
         self.viewPlotLinesButton.config(state='normal')
         self.viewProjectnotesButton.config(state='normal')
+        self.cutButton.config(state='normal')
+        self.copyButton.config(state='normal')
+        self.pasteButton.config(state='normal')
 
     def lock(self):
         """Make the "locked" state take effect.
@@ -64,6 +70,8 @@ class ToolbarCtrl(SubController):
         self.addChildButton.config(state='disabled')
         self.addParentButton.config(state='disabled')
         self.deleteElementButton.config(state='disabled')
+        self.cutButton.config(state='disabled')
+        self.pasteButton.config(state='disabled')
 
     def unlock(self):
         """Make the "unlocked" state take effect.
@@ -75,4 +83,6 @@ class ToolbarCtrl(SubController):
         self.addChildButton.config(state='normal')
         self.addParentButton.config(state='normal')
         self.deleteElementButton.config(state='normal')
+        self.cutButton.config(state='normal')
+        self.pasteButton.config(state='normal')
 

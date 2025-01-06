@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.4.1\n"
-"POT-Creation-Date: 2025-01-06 13:37:41\n"
+"Project-Id-Version: 5.5.0\n"
+"POT-Creation-Date: 2025-01-06 18:20:13\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -302,6 +302,9 @@ msgstr ""
 msgid "Convert days to dates"
 msgstr ""
 
+msgid "Copy"
+msgstr ""
+
 msgid "Copy style sheet"
 msgstr ""
 
@@ -336,6 +339,9 @@ msgid "Cross references (export only)"
 msgstr ""
 
 msgid "Ctrl"
+msgstr ""
+
+msgid "Cut"
 msgstr ""
 
 msgid "Date"
@@ -882,6 +888,9 @@ msgid "Part number prefix"
 msgstr ""
 
 msgid "Part number suffix"
+msgstr ""
+
+msgid "Paste"
 msgstr ""
 
 msgid "Peak em. moment"

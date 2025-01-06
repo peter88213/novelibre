@@ -98,3 +98,15 @@ class Icons:
             self.viewerIcon = tk.PhotoImage(file=f'{iconPath}/viewer.png')
         except:
             self.viewerIcon = None
+        try:
+            self.cutIcon = tk.PhotoImage(file=f'{iconPath}/cut.png')
+        except:
+            self.cutIcon = None
+        try:
+            self.copyIcon = tk.PhotoImage(file=f'{iconPath}/copy.png')
+        except:
+            self.copyIcon = None
+        try:
+            self.pasteIcon = tk.PhotoImage(file=f'{iconPath}/paste.png')
+        except:
+            self.pasteIcon = None

@@ -4,7 +4,6 @@
 	<comment></comment>
 	<projects>
 		<project>nv_aeon2</project>
-		<project>nv_clipboard</project>
 		<project>nv_collection</project>
 		<project>nv_editor</project>
 		<project>nv_matrix</project>

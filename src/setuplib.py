@@ -100,10 +100,6 @@ REMOVE_FROM_REGISTRY = fr'''Windows Registry Editor Version 5.00
 
 '''
 
-PLUGIN_OUTDATED = '''There are outdated plugins installed, which will be ignored by novelibre from now on. 
-Please update your plugins.
-'''
-
 PLUGIN_WARNING = '''
 There are plugins installed. 
 You may want to run the Plugin Manager for compatibility check.
@@ -126,6 +122,10 @@ logging.basicConfig(filename='$InstallDir/error.log', level=logging.ERROR)
 tk.Tk.report_callback_exception = show_error
 $Appname.main()
 '''
+
+OBSOLETE_PLUGINS = [
+    'nv_clipboard',
+]
 
 root = tk.Tk()
 processInfo = tk.Label(root, text='')
@@ -260,8 +260,11 @@ def install(installDir, zipped):
     for filePath in files:
         moduleName = os.path.split(filePath)[1][:-3]
         if not moduleName.startswith('nv_'):
-            messagebox.showwarning('Plugin check', PLUGIN_OUTDATED)
-            break
+            os.remove(filePath)
+            output(f'"{filePath}" removed.')
+        if moduleName in OBSOLETE_PLUGINS:
+            os.remove(filePath)
+            output(f'"{filePath}" removed.')
 
     #--- Generate registry entries for the context menu (Windows only).
     if platform.system() == 'Windows':

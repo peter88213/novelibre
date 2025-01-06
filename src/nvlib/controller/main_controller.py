@@ -9,6 +9,7 @@ import sys
 from mvclib.controller.controller_base import ControllerBase
 from nvlib.controller.commands import Commands
 from nvlib.controller.plugin.plugin_collection import PluginCollection
+from nvlib.controller.services.clipboard_manager import ClipboardManager
 from nvlib.controller.services.data_importer import DataImporter
 from nvlib.controller.services.doc_importer import DocImporter
 from nvlib.controller.services.element_manager import ElementManager
@@ -62,6 +63,7 @@ class MainController(ControllerBase, Commands):
         self.fileManager = FileManager(self._mdl, self._ui, self)
         self.elementManager = ElementManager(self._mdl, self._ui, self)
         self.linkProcessor = LinkProcessor(self._mdl, self._ui, self)
+        self.clipboardManager = ClipboardManager(self._mdl, self._ui, self)
 
         #--- Load the plugins.
         self.plugins = PluginCollection(self._mdl, self._ui, self)
