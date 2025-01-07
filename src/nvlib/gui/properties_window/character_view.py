@@ -12,7 +12,6 @@ from mvclib.widgets.my_string_var import MyStringVar
 from mvclib.widgets.text_box import TextBox
 from nvlib.gui.properties_window.character_view_ctrl import CharacterViewCtrl
 from nvlib.gui.properties_window.world_element_view import WorldElementView
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
 
@@ -97,9 +96,9 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
             width=10,
             padx=5,
             pady=5,
-            bg=prefs['color_text_bg'],
-            fg=prefs['color_text_fg'],
-            insertbackground=prefs['color_text_fg'],
+            bg=self._ctrl.prefs['color_text_bg'],
+            fg=self._ctrl.prefs['color_text_fg'],
+            insertbackground=self._ctrl.prefs['color_text_fg'],
             )
         self.bioEntry.pack(fill='x')
         inputWidgets.append(self.bioEntry)
@@ -117,9 +116,9 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
             width=10,
             padx=5,
             pady=5,
-            bg=prefs['color_text_bg'],
-            fg=prefs['color_text_fg'],
-            insertbackground=prefs['color_text_fg'],
+            bg=self._ctrl.prefs['color_text_bg'],
+            fg=self._ctrl.prefs['color_text_fg'],
+            insertbackground=self._ctrl.prefs['color_text_fg'],
             )
         self.goalsEntry.pack(fill='x')
         inputWidgets.append(self.goalsEntry)
@@ -141,19 +140,19 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
 
     def _toggle_bio_window(self, event=None):
         """Hide/show the 'Bio' textbox."""
-        if prefs['show_cr_bio']:
+        if self._ctrl.prefs['show_cr_bio']:
             self.bioFrame.hide()
-            prefs['show_cr_bio'] = False
+            self._ctrl.prefs['show_cr_bio'] = False
         else:
             self.bioFrame.show()
-            prefs['show_cr_bio'] = True
+            self._ctrl.prefs['show_cr_bio'] = True
 
     def _toggle_goals_window(self, event=None):
         """Hide/show the 'Goals' textbox."""
-        if prefs['show_cr_goals']:
+        if self._ctrl.prefs['show_cr_goals']:
             self.goalsFrame.hide()
-            prefs['show_cr_goals'] = False
+            self._ctrl.prefs['show_cr_goals'] = False
         else:
             self.goalsFrame.show()
-            prefs['show_cr_goals'] = True
+            self._ctrl.prefs['show_cr_goals'] = True
 

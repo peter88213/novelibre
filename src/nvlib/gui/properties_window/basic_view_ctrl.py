@@ -10,7 +10,6 @@ from tkinter import filedialog
 
 from mvclib.controller.sub_controller import SubController
 from nvlib.novx_globals import CH_ROOT
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
 
@@ -151,7 +150,7 @@ class BasicViewCtrl(SubController):
 
         # Links window.
         if hasattr(self.element, 'links'):
-            if prefs[self.prefsShowLinks]:
+            if self._ctrl.prefs[self.prefsShowLinks]:
                 self.linksWindow.show()
             else:
                 self.linksWindow.hide()

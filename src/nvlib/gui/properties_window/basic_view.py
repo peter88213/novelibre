@@ -12,7 +12,6 @@ from mvclib.widgets.folding_frame import FoldingFrame
 from mvclib.widgets.index_card import IndexCard
 from mvclib.widgets.text_box import TextBox
 from nvlib.gui.widgets.collection_box import CollectionBox
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
 
@@ -101,11 +100,11 @@ class BasicView(ttk.Frame, Observer):
         self.indexCard = IndexCard(
             self.propertiesFrame,
             bd=2,
-            fg=prefs['color_text_fg'],
-            bg=prefs['color_text_bg'],
+            fg=self._ctrl.prefs['color_text_fg'],
+            bg=self._ctrl.prefs['color_text_bg'],
             relief='ridge'
             )
-        self.indexCard.bodyBox['height'] = prefs['index_card_height']
+        self.indexCard.bodyBox['height'] = self._ctrl.prefs['index_card_height']
         self.indexCard.pack(expand=False, fill='both')
         self.indexCard.titleEntry.bind('<Return>', self.apply_changes)
         self.indexCard.titleEntry.bind('<FocusOut>', self.apply_changes)
@@ -142,9 +141,9 @@ class BasicView(ttk.Frame, Observer):
             width=10,
             padx=5,
             pady=5,
-            bg=prefs['color_notes_bg'],
-            fg=prefs['color_notes_fg'],
-            insertbackground=prefs['color_notes_fg'],
+            bg=self._ctrl.prefs['color_notes_bg'],
+            fg=self._ctrl.prefs['color_notes_fg'],
+            insertbackground=self._ctrl.prefs['color_notes_fg'],
             )
         self.notesWindow.pack(expand=True, fill='both')
         self.notesWindow.bind('<FocusOut>', self.apply_changes)
@@ -154,10 +153,10 @@ class BasicView(ttk.Frame, Observer):
         
         Callback procedure for the FoldingFrame's button.
         """
-        if prefs[self.prefsShowLinks]:
+        if self._ctrl.prefs[self.prefsShowLinks]:
             self.linksWindow.hide()
-            prefs[self.prefsShowLinks] = False
+            self._ctrl.prefs[self.prefsShowLinks] = False
         else:
             self.linksWindow.show()
-            prefs[self.prefsShowLinks] = True
+            self._ctrl.prefs[self.prefsShowLinks] = True
 

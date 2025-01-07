@@ -8,7 +8,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from mvclib.controller.sub_controller import SubController
 from nvlib.controller.services.nv_help import NvHelp
 from nvlib.novx_globals import list_to_string
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
 
@@ -24,16 +23,16 @@ class ViewOptionsCtrl(SubController):
         titles = self.colEntriesVar.get()
         for title in titles:
             srtColumns.append(self._coIdsByTitle[title])
-        prefs['column_order'] = list_to_string(srtColumns)
+        self._ctrl.prefs['column_order'] = list_to_string(srtColumns)
         self._ui.tv.configure_columns()
         self._ui.tv.refresh()
 
     def change_icon_size(self, *args):
-        prefs['large_icons'] = self._largeIconsVar.get()
+        self._ctrl.prefs['large_icons'] = self._largeIconsVar.get()
         self._ui.show_info(_('The change takes effect after next startup.'), title=f'{_("Change icon size")}')
 
     def change_localize_date(self, *args):
-        prefs['localize_date'] = self._localizeDate.get()
+        self._ctrl.prefs['localize_date'] = self._localizeDate.get()
         self._ui.tv.refresh()
         self._ui.propertiesView.refresh()
 

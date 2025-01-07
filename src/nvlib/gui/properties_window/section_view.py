@@ -14,7 +14,6 @@ from mvclib.widgets.text_box import TextBox
 from nvlib.gui.properties_window.basic_view import BasicView
 from nvlib.gui.properties_window.section_view_ctrl import SectionViewCtrl
 from nvlib.gui.widgets.collection_box import CollectionBox
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
 
@@ -357,12 +356,12 @@ class SectionView(BasicView, SectionViewCtrl):
             undo=True,
             autoseparators=True,
             maxundo=-1,
-            height=prefs['gco_height'],
+            height=self._ctrl.prefs['gco_height'],
             padx=5,
             pady=5,
-            bg=prefs['color_text_bg'],
-            fg=prefs['color_text_fg'],
-            insertbackground=prefs['color_text_fg'],
+            bg=self._ctrl.prefs['color_text_bg'],
+            fg=self._ctrl.prefs['color_text_fg'],
+            insertbackground=self._ctrl.prefs['color_text_fg'],
             )
         self.plotNotesWindow.pack(fill='x')
         inputWidgets.append(self.plotNotesWindow)
@@ -436,12 +435,12 @@ class SectionView(BasicView, SectionViewCtrl):
             undo=True,
             autoseparators=True,
             maxundo=-1,
-            height=prefs['gco_height'],
+            height=self._ctrl.prefs['gco_height'],
             padx=5,
             pady=5,
-            bg=prefs['color_text_bg'],
-            fg=prefs['color_text_fg'],
-            insertbackground=prefs['color_text_fg'],
+            bg=self._ctrl.prefs['color_text_bg'],
+            fg=self._ctrl.prefs['color_text_fg'],
+            insertbackground=self._ctrl.prefs['color_text_fg'],
             )
         self.goalWindow.pack(fill='x')
         inputWidgets.append(self.goalWindow)
@@ -455,12 +454,12 @@ class SectionView(BasicView, SectionViewCtrl):
             undo=True,
             autoseparators=True,
             maxundo=-1,
-            height=prefs['gco_height'],
+            height=self._ctrl.prefs['gco_height'],
             padx=5,
             pady=5,
-            bg=prefs['color_text_bg'],
-            fg=prefs['color_text_fg'],
-            insertbackground=prefs['color_text_fg'],
+            bg=self._ctrl.prefs['color_text_bg'],
+            fg=self._ctrl.prefs['color_text_fg'],
+            insertbackground=self._ctrl.prefs['color_text_fg'],
             )
         self.conflictWindow.pack(fill='x')
         inputWidgets.append(self.conflictWindow)
@@ -474,12 +473,12 @@ class SectionView(BasicView, SectionViewCtrl):
             undo=True,
             autoseparators=True,
             maxundo=-1,
-            height=prefs['gco_height'],
+            height=self._ctrl.prefs['gco_height'],
             padx=5,
             pady=5,
-            bg=prefs['color_text_bg'],
-            fg=prefs['color_text_fg'],
-            insertbackground=prefs['color_text_fg'],
+            bg=self._ctrl.prefs['color_text_bg'],
+            fg=self._ctrl.prefs['color_text_fg'],
+            insertbackground=self._ctrl.prefs['color_text_fg'],
             )
         self.outcomeWindow.pack(fill='x')
         inputWidgets.append(self.outcomeWindow)
@@ -499,37 +498,37 @@ class SectionView(BasicView, SectionViewCtrl):
 
     def _toggle_date_time_frame(self, event=None):
         """Hide/show the 'Date/Time' frame."""
-        if prefs['show_date_time']:
+        if self._ctrl.prefs['show_date_time']:
             self.dateTimeFrame.hide()
-            prefs['show_date_time'] = False
+            self._ctrl.prefs['show_date_time'] = False
         else:
             self.dateTimeFrame.show()
-            prefs['show_date_time'] = True
+            self._ctrl.prefs['show_date_time'] = True
 
     def _toggle_plot_frame(self, event=None):
         """Hide/show the 'Plot' frame."""
-        if prefs['show_plot']:
+        if self._ctrl.prefs['show_plot']:
             self.plotFrame.hide()
-            prefs['show_plot'] = False
+            self._ctrl.prefs['show_plot'] = False
         else:
             self.plotFrame.show()
-            prefs['show_plot'] = True
+            self._ctrl.prefs['show_plot'] = True
 
     def _toggle_relation_frame(self, event=None):
         """Hide/show the 'Relationships' frame."""
-        if prefs['show_relationships']:
+        if self._ctrl.prefs['show_relationships']:
             self.relationFrame.hide()
-            prefs['show_relationships'] = False
+            self._ctrl.prefs['show_relationships'] = False
         else:
             self.relationFrame.show()
-            prefs['show_relationships'] = True
+            self._ctrl.prefs['show_relationships'] = True
 
     def _toggle_scene_frame(self, event=None):
         """Hide/show the 'Scene' frame."""
-        if prefs['show_scene']:
+        if self._ctrl.prefs['show_scene']:
             self.sceneFrame.hide()
-            prefs['show_scene'] = False
+            self._ctrl.prefs['show_scene'] = False
         else:
             self.sceneFrame.show()
-            prefs['show_scene'] = True
+            self._ctrl.prefs['show_scene'] = True
 

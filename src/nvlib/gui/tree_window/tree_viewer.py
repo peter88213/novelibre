@@ -14,7 +14,6 @@ from nvlib.gui.tree_window.history_list import HistoryList
 from nvlib.gui.tree_window.tree_viewer_ctrl import TreeViewerCtrl
 from nvlib.model.nv_treeview import NvTreeview
 from nvlib.novx_globals import string_to_list
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
 import tkinter.font as tkFont
@@ -70,30 +69,30 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
         #--- configure tree row display.
         fontSize = tkFont.nametofont('TkDefaultFont').actual()['size']
         self.tree.tag_configure('root', font=('', fontSize, 'bold'))
-        self.tree.tag_configure('chapter', foreground=prefs['color_chapter'])
-        self.tree.tag_configure('arc', font=('', fontSize, 'bold'), foreground=prefs['color_arc'])
-        self.tree.tag_configure('plot_point', foreground=prefs['color_arc'])
-        self.tree.tag_configure('unused', foreground=prefs['color_unused'])
-        self.tree.tag_configure('stage1', font=('', fontSize, 'bold'), foreground=prefs['color_stage'])
-        self.tree.tag_configure('stage2', foreground=prefs['color_stage'])
+        self.tree.tag_configure('chapter', foreground=self._ctrl.prefs['color_chapter'])
+        self.tree.tag_configure('arc', font=('', fontSize, 'bold'), foreground=self._ctrl.prefs['color_arc'])
+        self.tree.tag_configure('plot_point', foreground=self._ctrl.prefs['color_arc'])
+        self.tree.tag_configure('unused', foreground=self._ctrl.prefs['color_unused'])
+        self.tree.tag_configure('stage1', font=('', fontSize, 'bold'), foreground=self._ctrl.prefs['color_stage'])
+        self.tree.tag_configure('stage2', foreground=self._ctrl.prefs['color_stage'])
         self.tree.tag_configure('part', font=('', fontSize, 'bold'))
-        self.tree.tag_configure('major', foreground=prefs['color_major'])
-        self.tree.tag_configure('minor', foreground=prefs['color_minor'])
-        self.tree.tag_configure('status1', foreground=prefs['color_outline'])
-        self.tree.tag_configure('status2', foreground=prefs['color_draft'])
-        self.tree.tag_configure('status3', foreground=prefs['color_1st_edit'])
-        self.tree.tag_configure('status4', foreground=prefs['color_2nd_edit'])
-        self.tree.tag_configure('status5', foreground=prefs['color_done'])
-        self.tree.tag_configure('On_schedule', foreground=prefs['color_on_schedule'])
-        self.tree.tag_configure('Behind_schedule', foreground=prefs['color_behind_schedule'])
-        self.tree.tag_configure('Before_schedule', foreground=prefs['color_before_schedule'])
+        self.tree.tag_configure('major', foreground=self._ctrl.prefs['color_major'])
+        self.tree.tag_configure('minor', foreground=self._ctrl.prefs['color_minor'])
+        self.tree.tag_configure('status1', foreground=self._ctrl.prefs['color_outline'])
+        self.tree.tag_configure('status2', foreground=self._ctrl.prefs['color_draft'])
+        self.tree.tag_configure('status3', foreground=self._ctrl.prefs['color_1st_edit'])
+        self.tree.tag_configure('status4', foreground=self._ctrl.prefs['color_2nd_edit'])
+        self.tree.tag_configure('status5', foreground=self._ctrl.prefs['color_done'])
+        self.tree.tag_configure('On_schedule', foreground=self._ctrl.prefs['color_on_schedule'])
+        self.tree.tag_configure('Behind_schedule', foreground=self._ctrl.prefs['color_behind_schedule'])
+        self.tree.tag_configure('Before_schedule', foreground=self._ctrl.prefs['color_before_schedule'])
 
         #--- Browsing history.
         self._history = HistoryList()
 
         # -- Section coloring mode.
         try:
-            self.coloringMode = int(prefs['coloring_mode'])
+            self.coloringMode = int(self._ctrl.prefs['coloring_mode'])
         except:
             self.coloringMode = 0
         if self.coloringMode > len(self.COLORING_MODES):
@@ -130,7 +129,7 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
         self._colPos = {}
         self.columns = []
         titles = []
-        srtColumns = string_to_list(prefs['column_order'])
+        srtColumns = string_to_list(self._ctrl.prefs['column_order'])
 
         # Check data integrity.
         for coId in self._COLUMNS:
@@ -149,8 +148,8 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
         self.tree.configure(columns=tuple(titles))
         for column in self.columns:
             self.tree.heading(column[1], text=column[1], anchor='w')
-            self.tree.column(column[1], width=int(prefs[column[2]]), minwidth=3, stretch=False)
-        self.tree.column('#0', width=int(prefs['title_width']), stretch=False)
+            self.tree.column(column[1], width=int(self._ctrl.prefs[column[2]]), minwidth=3, stretch=False)
+        self.tree.column('#0', width=int(self._ctrl.prefs['title_width']), stretch=False)
 
     def go_back(self, event=None):
         """Select a node back in the tree browsing history."""
@@ -177,12 +176,12 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
 
     def on_quit(self):
         """Write the applicaton's keyword arguments."""
-        prefs['title_width'] = self.tree.column('#0', 'width')
+        self._ctrl.prefs['title_width'] = self.tree.column('#0', 'width')
         for i, column in enumerate(self.columns):
-            prefs[column[2]] = self.tree.column(i, 'width')
+            self._ctrl.prefs[column[2]] = self.tree.column(i, 'width')
 
         # Save section coloring mode.
-        prefs['coloring_mode'] = self.coloringMode
+        self._ctrl.prefs['coloring_mode'] = self.coloringMode
 
     def open_children(self, parent):
         """Recursively show children nodes.

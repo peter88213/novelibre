@@ -7,7 +7,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from datetime import date
 
 from nvlib.gui.properties_window.world_element_view_ctrl import WorldElementViewCtrl
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
 
@@ -86,7 +85,7 @@ class CharacterViewCtrl(WorldElementViewCtrl):
             self.bioFrame.buttonText = self._mdl.novel.customChrBio
         else:
             self.bioFrame.buttonText = _('Bio')
-        if prefs['show_cr_bio']:
+        if self._ctrl.prefs['show_cr_bio']:
             self.bioFrame.show()
         else:
             self.bioFrame.hide()
@@ -101,7 +100,7 @@ class CharacterViewCtrl(WorldElementViewCtrl):
             self.goalsFrame.buttonText = self._mdl.novel.customChrGoals
         else:
             self.goalsFrame.buttonText = _('Goals')
-        if prefs['show_cr_goals']:
+        if self._ctrl.prefs['show_cr_goals']:
             self.goalsFrame.show()
         else:
             self.goalsFrame.hide()

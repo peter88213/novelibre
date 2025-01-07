@@ -10,7 +10,6 @@ from mvclib.view.modal_dialog import ModalDialog
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.pop_up.reimport_ctrl import ReimportCtrl
 from nvlib.model.converter.novx_converter import NovxConverter
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
 
@@ -52,7 +51,7 @@ class ReimportDialog(ModalDialog, ReimportCtrl):
             _("Import documents even if locked; do not discard")
             ]
         try:
-            importMode = int(prefs['import_mode'])
+            importMode = int(self._ctrl.prefs['import_mode'])
         except:
             importMode = 0
         if importMode >= len(IMPORT_MODES):

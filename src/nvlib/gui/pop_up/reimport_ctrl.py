@@ -10,7 +10,6 @@ import os
 from mvclib.controller.sub_controller import SubController
 from nvlib.controller.services.nv_help import NvHelp
 from nvlib.model.odf.check_odf import odf_is_locked
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
 
@@ -87,7 +86,7 @@ class ReimportCtrl(SubController):
 
     def save_options(self, event=None, *args):
         """Save "discard temporary documents" state."""
-        prefs['import_mode'] = str(self.importModeVar.get())
+        self._ctrl.prefs['import_mode'] = str(self.importModeVar.get())
 
     def _reset_tree(self):
         """Clear the displayed tree."""

@@ -8,7 +8,6 @@ from datetime import date
 
 from nvlib.gui.properties_window.basic_view_ctrl import BasicViewCtrl
 from nvlib.nv_globals import datestr
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import WEEKDAYS
 from nvlib.nv_locale import _
 
@@ -150,7 +149,7 @@ class ProjectViewCtrl(BasicViewCtrl):
         self.authorNameVar.set(self.element.authorName)
 
         #--- "Language settings" frame.
-        if prefs['show_language_settings']:
+        if self._ctrl.prefs['show_language_settings']:
             self.languageFrame.show()
         else:
             self.languageFrame.hide()
@@ -162,7 +161,7 @@ class ProjectViewCtrl(BasicViewCtrl):
         self.countryCodeVar.set(self.element.countryCode)
 
         #--- "Auto numbering" frame.
-        if prefs['show_auto_numbering']:
+        if self._ctrl.prefs['show_auto_numbering']:
             self.numberingFrame.show()
         else:
             self.numberingFrame.hide()
@@ -211,7 +210,7 @@ class ProjectViewCtrl(BasicViewCtrl):
             self.romanPartNumbersVar.set(False)
 
         #--- "Renamings" frame.
-        if prefs['show_renamings']:
+        if self._ctrl.prefs['show_renamings']:
             self.renamingsFrame.show()
         else:
             self.renamingsFrame.hide()
@@ -226,7 +225,7 @@ class ProjectViewCtrl(BasicViewCtrl):
         self.customChrGoalsVar.set(self.element.customChrGoals)
 
         #--- "Narrative time" frame
-        if prefs['show_narrative_time']:
+        if self._ctrl.prefs['show_narrative_time']:
             self.narrativeTimeFrame.show()
         else:
             self.narrativeTimeFrame.hide()
@@ -244,7 +243,7 @@ class ProjectViewCtrl(BasicViewCtrl):
         self.referenceDateVar.set(self.element.referenceDate)
 
         #--- "Writing progress" frame.
-        if prefs['show_writing_progress']:
+        if self._ctrl.prefs['show_writing_progress']:
             self.progressFrame.show()
         else:
             self.progressFrame.hide()

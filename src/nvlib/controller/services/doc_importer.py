@@ -28,7 +28,6 @@ from nvlib.model.odt.odt_r_stages import OdtRStages
 from nvlib.novx_globals import Error
 from nvlib.novx_globals import Notification
 from nvlib.novx_globals import norm_path
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
 
@@ -77,7 +76,7 @@ class DocImporter(ServiceBase):
 
         if self.newFile:
             self._ctrl.open_project(filePath=self.newFile)
-            if os.path.isfile(sourcePath) and prefs['import_mode'] == '1':
+            if os.path.isfile(sourcePath) and self._ctrl.get_preferences()['import_mode'] == '1':
                 os.replace(sourcePath, f'{sourcePath}.bak')
                 message = f'{message} - {_("Source document deleted")}.'
             self._ui.set_status(message)
@@ -157,6 +156,6 @@ class DocImporter(ServiceBase):
 
         if source.is_locked():
             # the document might be open in the Office application
-            if not prefs['import_mode'] == '2':
+            if not self._ctrl.prefs['import_mode'] == '2':
                 raise Error(f'{_("Please close the document first")}.')
 

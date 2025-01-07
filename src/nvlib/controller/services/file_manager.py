@@ -19,7 +19,6 @@ from nvlib.novx_globals import Error
 from nvlib.novx_globals import MANUSCRIPT_SUFFIX
 from nvlib.novx_globals import Notification
 from nvlib.novx_globals import norm_path
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
 
@@ -90,7 +89,7 @@ class FileManager(ServiceBase):
         except Error as ex:
             self._ui.set_status(f'!{str(ex)}')
         else:
-            if kwargs.get('lock', True) and prefs['lock_on_export']:
+            if kwargs.get('lock', True) and self._ctrl.prefs['lock_on_export']:
                 self._ctrl.lock()
 
     def import_odf(self, sourcePath=None, defaultExtension='.odt'):
@@ -101,8 +100,8 @@ class FileManager(ServiceBase):
             defaultExtension: str -- Extension to be preset in the file picker.
         """
         if sourcePath is None:
-            if prefs['last_open']:
-                startDir, __ = os.path.split(prefs['last_open'])
+            if self._ctrl.prefs['last_open']:
+                startDir, __ = os.path.split(self._ctrl.prefs['last_open'])
             else:
                 startDir = '.'
             sourcePath = filedialog.askopenfilename(
@@ -155,7 +154,7 @@ class FileManager(ServiceBase):
         if not filePath:
             return False
 
-        prefs['last_open'] = filePath
+        self._ctrl.prefs['last_open'] = filePath
 
         if self._mdl.prjFile is not None:
             self._ctrl.on_close(doNotSave=doNotSave)
@@ -215,8 +214,8 @@ class FileManager(ServiceBase):
         if self._mdl.prjFile is None:
             return False
 
-        if prefs['last_open']:
-            startDir, __ = os.path.split(prefs['last_open'])
+        if self._ctrl.prefs['last_open']:
+            startDir, __ = os.path.split(self._ctrl.prefs['last_open'])
         else:
             startDir = str(Path.home()).replace('\\', '/')
         fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
@@ -239,7 +238,7 @@ class FileManager(ServiceBase):
             self._ctrl.unlock()
             self._ui.show_path(f'{norm_path(self._mdl.prjFile.filePath)} ({_("last saved on")} {self._mdl.prjFile.fileDate})')
             self._ui.restore_status()
-            prefs['last_open'] = self._mdl.prjFile.filePath
+            self._ctrl.prefs['last_open'] = self._mdl.prjFile.filePath
             return True
 
     def save_project(self):
@@ -269,7 +268,7 @@ class FileManager(ServiceBase):
 
         self._ui.show_path(f'{norm_path(self._mdl.prjFile.filePath)} ({_("last saved on")} {self._mdl.prjFile.fileDate})')
         self._ui.restore_status()
-        prefs['last_open'] = self._mdl.prjFile.filePath
+        self._ctrl.prefs['last_open'] = self._mdl.prjFile.filePath
         return True
 
     def select_project(self, fileName):
@@ -284,7 +283,7 @@ class FileManager(ServiceBase):
 
         On error, return an empty string.
         """
-        initDir = os.path.dirname(prefs.get('last_open', ''))
+        initDir = os.path.dirname(self._ctrl.prefs.get('last_open', ''))
         if not initDir:
             initDir = str(Path.home()).replace('\\', '/')
         if not fileName or not os.path.isfile(fileName):
@@ -310,7 +309,7 @@ class FileManager(ServiceBase):
 
         self._ui.restore_status()
         self._ui.propertiesView.apply_changes()
-        HtmlReport.localizeDate = prefs['localize_date']
+        HtmlReport.localizeDate = self._ctrl.prefs['localize_date']
         try:
             self.reporter.run(self._mdl.prjFile, suffix, tempdir=self._ctrl.tempDir)
         except Error as ex:

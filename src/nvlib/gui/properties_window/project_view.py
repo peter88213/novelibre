@@ -14,7 +14,6 @@ from mvclib.widgets.label_entry import LabelEntry
 from mvclib.widgets.my_string_var import MyStringVar
 from nvlib.gui.properties_window.basic_view import BasicView
 from nvlib.gui.properties_window.project_view_ctrl import ProjectViewCtrl
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
 
@@ -459,58 +458,58 @@ class ProjectView(BasicView, ProjectViewCtrl):
         
         Callback procedure for the FoldingFrame's button.
         """
-        if prefs['show_language_settings']:
+        if self._ctrl.prefs['show_language_settings']:
             self.languageFrame.hide()
-            prefs['show_language_settings'] = False
+            self._ctrl.prefs['show_language_settings'] = False
         else:
             self.languageFrame.show()
-            prefs['show_language_settings'] = True
+            self._ctrl.prefs['show_language_settings'] = True
 
     def _toggle_narrative_time_frame(self, event=None):
         """Hide/show the "Narrative time" frame.
         
         Callback procedure for the FoldingFrame's button.
         """
-        if prefs['show_narrative_time']:
+        if self._ctrl.prefs['show_narrative_time']:
             self.narrativeTimeFrame.hide()
-            prefs['show_narrative_time'] = False
+            self._ctrl.prefs['show_narrative_time'] = False
         else:
             self.narrativeTimeFrame.show()
-            prefs['show_narrative_time'] = True
+            self._ctrl.prefs['show_narrative_time'] = True
 
     def _toggle_numbering_frame(self, event=None):
         """Hide/show the "Auto numbering" frame.
         
         Callback procedure for the FoldingFrame's button.
         """
-        if prefs['show_auto_numbering']:
+        if self._ctrl.prefs['show_auto_numbering']:
             self.numberingFrame.hide()
-            prefs['show_auto_numbering'] = False
+            self._ctrl.prefs['show_auto_numbering'] = False
         else:
             self.numberingFrame.show()
-            prefs['show_auto_numbering'] = True
+            self._ctrl.prefs['show_auto_numbering'] = True
 
     def _toggle_progress_frame(self, event=None):
         """Hide/show the "Writing progress" frame.
         
         Callback procedure for the FoldingFrame's button.
         """
-        if prefs['show_writing_progress']:
+        if self._ctrl.prefs['show_writing_progress']:
             self.progressFrame.hide()
-            prefs['show_writing_progress'] = False
+            self._ctrl.prefs['show_writing_progress'] = False
         else:
             self.progressFrame.show()
-            prefs['show_writing_progress'] = True
+            self._ctrl.prefs['show_writing_progress'] = True
 
     def _toggle_renamings_frame(self, event=None):
         """Hide/show the "Renamings" frame.
         
         Callback procedure for the FoldingFrame's button.
         """
-        if prefs['show_renamings']:
+        if self._ctrl.prefs['show_renamings']:
             self.renamingsFrame.hide()
-            prefs['show_renamings'] = False
+            self._ctrl.prefs['show_renamings'] = False
         else:
             self.renamingsFrame.show()
-            prefs['show_renamings'] = True
+            self._ctrl.prefs['show_renamings'] = True
 

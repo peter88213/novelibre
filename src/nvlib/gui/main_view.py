@@ -19,7 +19,6 @@ from nvlib.gui.properties_window.properties_viewer import PropertiesViewer
 from nvlib.gui.toolbar.toolbar import Toolbar
 from nvlib.gui.tree_window.tree_viewer import TreeViewer
 from nvlib.gui.widgets.nv_simpledialog import SimpleDialog
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
 
@@ -32,12 +31,12 @@ class MainView(ViewBase, MainViewCtrl):
 
     def __init__(self, model, controller, title):
         """Extends the superclass constructor."""
-        super().__init__(model, controller, title)
         self.initialize_controller(model, self, controller)
+        super().__init__(model, controller, title)
 
         #--- Create the tk root window and set the size.
-        if prefs.get('root_geometry', None):
-            self.root.geometry(prefs['root_geometry'])
+        if self._ctrl.prefs.get('root_geometry', None):
+            self.root.geometry(self._ctrl.prefs['root_geometry'])
         set_icon(self.root, icon='nLogo32')
         self.root.minsize(self._MIN_WINDOW_WIDTH, self._MIN_WINDOW_HEIGHT)
 
@@ -65,27 +64,27 @@ class MainView(ViewBase, MainViewCtrl):
         self._selection = None
 
         #--- Middle frame (intended for the content viewer).
-        self.middleFrame = ttk.Frame(self.appWindow, width=prefs['middle_frame_width'])
+        self.middleFrame = ttk.Frame(self.appWindow, width=self._ctrl.prefs['middle_frame_width'])
         self.middleFrame.pack_propagate(0)
 
         #--- Create a text viewer in the middle frame.
         self.contentsView = ContentsViewer(self.middleFrame, self._mdl, self, self._ctrl)
         self._mdl.add_observer(self.contentsView)
         self._ctrl.register_client(self.contentsView)
-        if prefs['show_contents']:
+        if self._ctrl.prefs['show_contents']:
             self.middleFrame.pack(side='left', expand=False, fill='both')
 
         #--- Right frame for for the element properties view.
-        self.rightFrame = ttk.Frame(self.appWindow, width=prefs['right_frame_width'])
+        self.rightFrame = ttk.Frame(self.appWindow, width=self._ctrl.prefs['right_frame_width'])
         self.rightFrame.pack_propagate(0)
-        if prefs['show_properties']:
+        if self._ctrl.prefs['show_properties']:
             self.rightFrame.pack(expand=True, fill='both')
 
         #--- Create an element properties view in the right frame.
         self.propertiesView = PropertiesViewer(self.rightFrame, self._mdl, self, self._ctrl)
         self.propertiesView.pack(expand=True, fill='both')
         self._propWinDetached = False
-        if prefs['detach_prop_win']:
+        if self._ctrl.prefs['detach_prop_win']:
             self.detach_properties_frame()
         self._mdl.add_observer(self.propertiesView)
         self._ctrl.register_client(self.propertiesView)
@@ -163,7 +162,7 @@ class MainView(ViewBase, MainViewCtrl):
         if self.rightFrame.winfo_manager():
             self.rightFrame.pack_forget()
         self._propertiesWindow = tk.Toplevel()
-        self._propertiesWindow.geometry(prefs['prop_win_geometry'])
+        self._propertiesWindow.geometry(self._ctrl.prefs['prop_win_geometry'])
         set_icon(self._propertiesWindow, icon='pLogo32', default=False)
 
         # "Re-parent" the Properties viewer.
@@ -176,7 +175,7 @@ class MainView(ViewBase, MainViewCtrl):
         self.propertiesView.pack(expand=True, fill='both')
 
         self._propertiesWindow.protocol("WM_DELETE_WINDOW", self.dock_properties_frame)
-        prefs['detach_prop_win'] = True
+        self._ctrl.prefs['detach_prop_win'] = True
         self._propWinDetached = True
         try:
             self.propertiesView.show_properties(self.tv.tree.selection()[0])
@@ -193,7 +192,7 @@ class MainView(ViewBase, MainViewCtrl):
         if not self.rightFrame.winfo_manager():
             self.rightFrame.pack(side='left', expand=False, fill='both')
 
-        prefs['prop_win_geometry'] = self._propertiesWindow.winfo_geometry()
+        self._ctrl.prefs['prop_win_geometry'] = self._propertiesWindow.winfo_geometry()
 
         # "Re-parent" the Properties viewer.
         self._propertiesWindow.destroy()
@@ -205,8 +204,8 @@ class MainView(ViewBase, MainViewCtrl):
         self.propertiesView.pack(expand=True, fill='both')
         self.root.lift()
 
-        prefs['show_properties'] = True
-        prefs['detach_prop_win'] = False
+        self._ctrl.prefs['show_properties'] = True
+        self._ctrl.prefs['detach_prop_win'] = False
         self._propWinDetached = False
         try:
             self.propertiesView.show_properties(self.tv.tree.selection()[0])
@@ -232,12 +231,12 @@ class MainView(ViewBase, MainViewCtrl):
         """
 
         # Save contents window "show markup" state.
-        prefs['show_markup'] = self.contentsView.showMarkup.get()
+        self._ctrl.prefs['show_markup'] = self.contentsView.showMarkup.get()
 
         # Save windows size and position.
         if self._propWinDetached:
-            prefs['prop_win_geometry'] = self._propertiesWindow.winfo_geometry()
-        prefs['root_geometry'] = self.root.winfo_geometry()
+            self._ctrl.prefs['prop_win_geometry'] = self._propertiesWindow.winfo_geometry()
+        self._ctrl.prefs['root_geometry'] = self.root.winfo_geometry()
         super().on_quit()
 
     def refresh(self):
@@ -255,10 +254,10 @@ class MainView(ViewBase, MainViewCtrl):
         """Show/hide the contents viewer text box."""
         if self.middleFrame.winfo_manager():
             self.middleFrame.pack_forget()
-            prefs['show_contents'] = False
+            self._ctrl.prefs['show_contents'] = False
         else:
             self.middleFrame.pack(after=self.leftFrame, side='left', expand=False, fill='both')
-            prefs['show_contents'] = True
+            self._ctrl.prefs['show_contents'] = True
         return 'break'
 
     def toggle_properties_view(self, event=None):
@@ -266,10 +265,10 @@ class MainView(ViewBase, MainViewCtrl):
         if self.rightFrame.winfo_manager():
             self.propertiesView.apply_changes()
             self.rightFrame.pack_forget()
-            prefs['show_properties'] = False
+            self._ctrl.prefs['show_properties'] = False
         elif not self._propWinDetached:
             self.rightFrame.pack(side='left', expand=False, fill='both')
-            prefs['show_properties'] = True
+            self._ctrl.prefs['show_properties'] = True
         return 'break'
 
     def toggle_properties_window(self, event=None):
@@ -493,10 +492,10 @@ class MainView(ViewBase, MainViewCtrl):
 
         self.pathBar.COLOR_NORMAL_BG = self.mainMenu.cget('background')
         self.pathBar.COLOR_NORMAL_FG = self.mainMenu.cget('foreground')
-        self.pathBar.COLOR_MODIFIED_BG = prefs['color_modified_bg']
-        self.pathBar.COLOR_MODIFIED_FG = prefs['color_modified_fg']
-        self.pathBar.COLOR_LOCKED_BG = prefs['color_locked_bg']
-        self.pathBar.COLOR_LOCKED_FG = prefs['color_locked_fg']
+        self.pathBar.COLOR_MODIFIED_BG = self._ctrl.prefs['color_modified_bg']
+        self.pathBar.COLOR_MODIFIED_FG = self._ctrl.prefs['color_modified_fg']
+        self.pathBar.COLOR_LOCKED_BG = self._ctrl.prefs['color_locked_bg']
+        self.pathBar.COLOR_LOCKED_FG = self._ctrl.prefs['color_locked_fg']
 
     def _create_status_bar(self):
         """Extends the superclass method."""
@@ -504,10 +503,10 @@ class MainView(ViewBase, MainViewCtrl):
         self.statusBar.bind(MOUSE.LEFT_CLICK, self.statusBar.restore_status)
         self.statusBar.COLOR_NORMAL_BG = self.mainMenu.cget('background')
         self.statusBar.COLOR_NORMAL_FG = self.mainMenu.cget('foreground')
-        self.statusBar.COLOR_SUCCESS_BG = prefs['color_status_success_bg']
-        self.statusBar.COLOR_SUCCESS_FG = prefs['color_status_success_fg']
-        self.statusBar.COLOR_ERROR_BG = prefs['color_status_error_bg']
-        self.statusBar.COLOR_ERROR_FG = prefs['color_status_error_fg']
-        self.statusBar.COLOR_NOTIFICATION_BG = prefs['color_status_notification_bg']
-        self.statusBar.COLOR_NOTIFICATION_FG = prefs['color_status_notification_fg']
+        self.statusBar.COLOR_SUCCESS_BG = self._ctrl.prefs['color_status_success_bg']
+        self.statusBar.COLOR_SUCCESS_FG = self._ctrl.prefs['color_status_success_fg']
+        self.statusBar.COLOR_ERROR_BG = self._ctrl.prefs['color_status_error_bg']
+        self.statusBar.COLOR_ERROR_FG = self._ctrl.prefs['color_status_error_fg']
+        self.statusBar.COLOR_NOTIFICATION_BG = self._ctrl.prefs['color_status_notification_bg']
+        self.statusBar.COLOR_NOTIFICATION_FG = self._ctrl.prefs['color_status_notification_fg']
 

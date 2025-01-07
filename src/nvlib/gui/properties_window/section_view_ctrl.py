@@ -24,7 +24,6 @@ from nvlib.novx_globals import list_to_string
 from nvlib.novx_globals import string_to_list
 from nvlib.nv_globals import datestr
 from nvlib.nv_globals import get_section_date_str
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import WEEKDAYS
 from nvlib.nv_locale import _
 
@@ -579,7 +578,7 @@ class SectionViewCtrl(BasicViewCtrl):
         self.tagsVar.set(list_to_string(self.element.tags))
 
         #--- Frame for 'Relationships'.
-        if prefs['show_relationships']:
+        if self._ctrl.prefs['show_relationships']:
             self.relationFrame.show()
         else:
             self.relationFrame.hide()
@@ -643,7 +642,7 @@ class SectionViewCtrl(BasicViewCtrl):
         self.lastsMinutesVar.set(self.element.lastsMinutes)
 
         #--- Frame for date/time.
-        if prefs['show_date_time']:
+        if self._ctrl.prefs['show_date_time']:
             self.dateTimeFrame.show()
         else:
             self.dateTimeFrame.hide()
@@ -731,13 +730,13 @@ class SectionViewCtrl(BasicViewCtrl):
             self.customOutcomeVar = ''
 
         #--- Frame for 'Plot'.
-        if prefs['show_plot']:
+        if self._ctrl.prefs['show_plot']:
             self.plotFrame.show()
         else:
             self.plotFrame.hide()
 
         #--- Frame for 'Scene'.
-        if prefs['show_scene']:
+        if self._ctrl.prefs['show_scene']:
             self.sceneFrame.show()
         else:
             self.sceneFrame.hide()

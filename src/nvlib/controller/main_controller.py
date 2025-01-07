@@ -39,6 +39,7 @@ class MainController(ControllerBase, Commands):
         """
         super().__init__(title)
         self.tempDir = tempDir
+        self.prefs = prefs
 
         #--- Create the model
         self._mdl = NvModel()

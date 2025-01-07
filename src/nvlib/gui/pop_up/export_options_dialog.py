@@ -9,7 +9,6 @@ from tkinter import ttk
 from mvclib.view.modal_dialog import ModalDialog
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.pop_up.export_options_ctrl import ExportOptionsCtrl
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
 
@@ -18,8 +17,8 @@ class ExportOptionsDialog(ModalDialog, ExportOptionsCtrl):
     """A pop-up window with export preference settings."""
 
     def __init__(self, model, view, controller, **kw):
-        super().__init__(view, **kw)
         self.initialize_controller(model, view, controller)
+        super().__init__(view, **kw)
 
         self.title(_('"Export" options'))
         window = ttk.Frame(self)
@@ -32,7 +31,7 @@ class ExportOptionsDialog(ModalDialog, ExportOptionsCtrl):
         frame1.pack(fill='both', side='left')
 
         # Checkbox: Ask whether documents should be opened straight after export.
-        self.askDocOpenVar = tk.BooleanVar(frame1, value=prefs['ask_doc_open'])
+        self.askDocOpenVar = tk.BooleanVar(frame1, value=self._ctrl.prefs['ask_doc_open'])
         ttk.Checkbutton(
             frame1,
             text=_('Ask before opening exported documents'),
@@ -41,7 +40,7 @@ class ExportOptionsDialog(ModalDialog, ExportOptionsCtrl):
         self.askDocOpenVar.trace('w', self.change_ask_doc_open)
 
         # Checkbox: Lock the project after document export.
-        self.lockOnExportVar = tk.BooleanVar(frame1, value=prefs['lock_on_export'])
+        self.lockOnExportVar = tk.BooleanVar(frame1, value=self._ctrl.prefs['lock_on_export'])
         ttk.Checkbutton(
             frame1,
             text=_('Lock the project after document export for editing'),

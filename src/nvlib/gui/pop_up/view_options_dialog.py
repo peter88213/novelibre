@@ -10,7 +10,6 @@ from mvclib.view.modal_dialog import ModalDialog
 from mvclib.widgets.drag_drop_listbox import DragDropListbox
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.pop_up.view_options_ctrl import ViewOptionsCtrl
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
 
@@ -53,7 +52,7 @@ class ViewOptionsDialog(ModalDialog, ViewOptionsCtrl):
         ttk.Separator(frame1, orient='horizontal').pack(fill='x', pady=10)
 
         # Checkbox for large toolbar buttons.
-        self._largeIconsVar = tk.BooleanVar(frame1, value=prefs['large_icons'])
+        self._largeIconsVar = tk.BooleanVar(frame1, value=self._ctrl.prefs['large_icons'])
         ttk.Checkbutton(
             frame1,
             text=_('Large toolbar icons'),
@@ -62,7 +61,7 @@ class ViewOptionsDialog(ModalDialog, ViewOptionsCtrl):
             ).pack(padx=5, pady=5, anchor='w')
 
         # Checkbox for ISO-formatted date display.
-        self._localizeDate = tk.BooleanVar(frame1, value=prefs['localize_date'])
+        self._localizeDate = tk.BooleanVar(frame1, value=self._ctrl.prefs['localize_date'])
         ttk.Checkbutton(
             frame1,
             text=_('Display localized dates'),
