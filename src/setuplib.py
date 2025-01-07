@@ -50,9 +50,8 @@ START_UP_SCRIPT = 'run.pyw'
 INI_FILE = f'{APPNAME}.ini'
 INI_PATH = '/config/'
 SUCCESS_MESSAGE = '''
-
+*** Installation successful ***
 $Appname is installed here:
-
 $Apppath'''
 
 SHORTCUT_MESSAGE = '''
@@ -239,14 +238,6 @@ def install(installDir, zipped):
     output('Copying locale ...')
     copy_tree('locale', installDir)
 
-    # Install the icon files.
-    output('Copying icons ...')
-    copy_tree('icons', installDir)
-
-    # Install the css files.
-    output('Copying css stylesheet ...')
-    copy_tree('css', installDir)
-
     #--- Create a plugin directory.
 
     pluginDir = f'{installDir}/plugin'
@@ -266,10 +257,6 @@ def install(installDir, zipped):
             os.remove(filePath)
             output(f'"{filePath}" removed.')
 
-    #--- Generate registry entries for the context menu (Windows only).
-    if platform.system() == 'Windows':
-        create_explorer_context_menu(installDir)
-
     #--- Create a start-up script.
     output('Creating starter script ...')
     mapping = {'Appname': APPNAME, 'Apppath': f'{installDir}/{START_UP_SCRIPT}'}
@@ -288,6 +275,18 @@ def install(installDir, zipped):
     os.chmod(f'{installDir}/{APP}', st.st_mode | stat.S_IEXEC)
     st = os.stat(f'{installDir}/{START_UP_SCRIPT}')
     os.chmod(f'{installDir}/{START_UP_SCRIPT}', st.st_mode | stat.S_IEXEC)
+
+    # Install the css files.
+    output('Copying css stylesheet ...')
+    copy_tree('css', installDir)
+
+    #--- Generate registry entries for the context menu (Windows only).
+    if platform.system() == 'Windows':
+        create_explorer_context_menu(installDir)
+
+    # Install the icon files.
+    output('Copying icons ...')
+    copy_tree('icons', installDir)
 
     #--- Display a success message.
     output(Template(SUCCESS_MESSAGE).safe_substitute(mapping))
