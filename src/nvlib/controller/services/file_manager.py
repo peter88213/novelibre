@@ -7,7 +7,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 from pathlib import Path
 import sys
+from shutil import copy2
 from tkinter import filedialog
+import zipapp
 
 from mvclib.controller.service_base import ServiceBase
 from nvlib.model.exporter.nv_doc_exporter import NvDocExporter
@@ -47,6 +49,17 @@ class FileManager(ServiceBase):
         # enabling selecting
         self._ui.tv.go_to_node(CH_ROOT)
         self.save_project()
+
+    def copy_to_backup(self, filePath):
+        """Create a self-extracting backup file."""
+        prefs = self._ctrl.get_preferences()
+        backupDir = prefs['backup_dir']
+        if os.path.isdir(backupDir):
+            try:
+                __, tail = os.path.split(filePath)
+                copy2(filePath, f'{backupDir}/{tail}.copy')
+            except Exception as ex:
+                self._ui.set_status(f"!{_('Backup error')}: {str(ex)}")
 
     def discard_manuscript(self):
         """Rename the current editable manuscript. 
@@ -240,6 +253,7 @@ class FileManager(ServiceBase):
             self._ui.show_path(f'{norm_path(self._mdl.prjFile.filePath)} ({_("last saved on")} {self._mdl.prjFile.fileDate})')
             self._ui.restore_status()
             prefs['last_open'] = self._mdl.prjFile.filePath
+            self.copy_to_backup(self._mdl.prjFile.filePath)
             return True
 
     def save_project(self):
@@ -270,6 +284,7 @@ class FileManager(ServiceBase):
         self._ui.show_path(f'{norm_path(self._mdl.prjFile.filePath)} ({_("last saved on")} {self._mdl.prjFile.fileDate})')
         self._ui.restore_status()
         prefs['last_open'] = self._mdl.prjFile.filePath
+        self.copy_to_backup(self._mdl.prjFile.filePath)
         return True
 
     def select_project(self, fileName):

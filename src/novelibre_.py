@@ -29,6 +29,7 @@ from nvlib.nv_globals import prefs
 
 SETTINGS = dict(
     arcs_width=55,
+    backup_dir='',
     color_1st_edit='DarkGoldenrod4',
     color_2nd_edit='DarkGoldenrod3',
     color_arc='maroon',
@@ -118,6 +119,17 @@ OPTIONS = dict(
 )
 
 
+def set_backup_directory(defaultDir):
+    backupDir = prefs['backup_dir']
+    if not os.path.isdir(backupDir):
+        backupDir = defaultDir
+        try:
+            os.makedirs(backupDir, exist_ok=True)
+        except:
+            backupDir = ''
+        prefs['backup_dir'] = backupDir
+
+
 def main():
     #--- Set up the directories for configuration and temporary files.
     try:
@@ -146,6 +158,9 @@ def main():
     launcherConfig = NvConfiguration()
     launcherConfig.read(f'{configDir}/launchers.ini')
     launchers.update(launcherConfig.settings)
+
+    #--- Central backup directory.
+    set_backup_directory(f'{installDir}/backup')
 
     #--- Instantiate the app object.
     app = MainController('novelibre @release', tempDir)
