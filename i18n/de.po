@@ -12,6 +12,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+msgid "novelibre project binary"
+msgstr "novelibre Projekt-Binärdatei"
 
 msgid "1st Edit"
 msgstr "1. Überarbeitung"
