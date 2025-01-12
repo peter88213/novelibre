@@ -81,10 +81,18 @@ class BasicView(ttk.Frame, Observer):
         self._buttonBar.pack(fill='x')
 
         # "Previous" button.
-        ttk.Button(self._buttonBar, text=_('Previous'), command=self.load_prev).pack(side='left', fill='x', expand=True, padx=1, pady=2)
+        ttk.Button(
+            self._buttonBar,
+            text=_('Previous'),
+            command=self._ui.tv.load_prev
+            ).pack(side='left', fill='x', expand=True, padx=1, pady=2)
 
         # "Next" button.
-        ttk.Button(self._buttonBar, text=_('Next'), command=self.load_next).pack(side='left', fill='x', expand=True, padx=1, pady=2)
+        ttk.Button(
+            self._buttonBar,
+            text=_('Next'),
+            command=self._ui.tv.load_next
+            ).pack(side='left', fill='x', expand=True, padx=1, pady=2)
 
     def _create_element_info_window(self):
         """Create a window for element specific information."""

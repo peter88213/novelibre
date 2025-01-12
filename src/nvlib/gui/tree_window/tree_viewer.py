@@ -257,6 +257,8 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
         self.tree.bind(KEYS.CUT[0], self._ctrl.cut_element)
         self.tree.bind(KEYS.COPY[0], self._ctrl.copy_element)
         self.tree.bind(KEYS.PASTE[0], self._ctrl.paste_element)
+        self.tree.bind('<Alt-Up>', self.load_prev)
+        self.tree.bind('<Alt-Down>', self.load_next)
 
     def _browse_tree(self, node):
         """Select and show node. 

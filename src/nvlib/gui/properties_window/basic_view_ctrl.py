@@ -79,22 +79,6 @@ class BasicViewCtrl(SubController):
         if hasattr(self.element, 'notes') and self.notesWindow.hasChanged:
             self.element.notes = self.notesWindow.get_text()
 
-    def load_next(self):
-        """Load the next tree element of the same type."""
-        thisNode = self._ui.selectedNode
-        nextNode = self._ui.tv.next_node(thisNode)
-        if nextNode:
-            self._ui.tv.see_node(nextNode)
-            self._ui.tv.tree.selection_set(nextNode)
-
-    def load_prev(self):
-        """Load the next tree element of the same type."""
-        thisNode = self._ui.selectedNode
-        prevNode = self._ui.tv.prev_node(thisNode)
-        if prevNode:
-            self._ui.tv.see_node(prevNode)
-            self._ui.tv.tree.selection_set(prevNode)
-
     def lock(self):
         """Inhibit element change."""
         self.indexCard.lock()
