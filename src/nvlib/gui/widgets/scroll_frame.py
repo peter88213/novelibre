@@ -32,6 +32,7 @@ class ScrollFrame(ttk.Frame):
             fill='both',
             expand=True
             )
+        # self.canvas.bind('<Configure>', self.resize_frame)
         self.canvas.xview_moveto(0)
         self.canvas.yview_moveto(0)
 
@@ -47,7 +48,7 @@ class ScrollFrame(ttk.Frame):
 
         # Provide an interior frame.
         self.interior = ttk.Frame(self.canvas)
-        self.canvas.create_window(0, 0, window=self.interior, anchor='nw')
+        self._frame_id = self.canvas.create_window(0, 0, window=self.interior, anchor='nw')
 
     def destroy(self):
         """Destructor for deleting event bindings."""
@@ -76,6 +77,9 @@ class ScrollFrame(ttk.Frame):
         self.canvas.xview(*args)
 
     def yview(self, *args):
+        if self.canvas.yview() == (0.0, 1.0):
+            return
+
         self.canvas.yview(*args)
 
     def yview_scroll(self, *args):
@@ -84,3 +88,11 @@ class ScrollFrame(ttk.Frame):
 
         self.canvas.yview_scroll(*args)
 
+    def adjust_scrollbar(self):
+        totalBounds = self.canvas.bbox('all')
+        if totalBounds is not None:
+            self.canvas.configure(scrollregion=(0, 0, 0, totalBounds[3]))
+
+    def resize_frame(self, e):
+        self.canvas.itemconfig(self._frame_id, height=e.height, width=e.width)
+        self.adjust_scrollbar()

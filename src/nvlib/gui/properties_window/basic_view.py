@@ -98,7 +98,7 @@ class BasicView(ttk.Frame, Observer):
     def _create_element_info_window(self):
         """Create a window for element specific information."""
         self.scrollWindow = ScrollFrame(self.propertiesFrame)
-        self.scrollWindow.pack(fill='x')
+        self.scrollWindow.pack(fill='x', expand=True)
         self.elementInfoWindow = self.scrollWindow.interior
 
     @abstractmethod
@@ -170,4 +170,4 @@ class BasicView(ttk.Frame, Observer):
         else:
             self.linksWindow.show()
             prefs[self.prefsShowLinks] = True
-
+        self.scrollWindow.adjust_scrollbar()
