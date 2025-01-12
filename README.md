@@ -85,6 +85,7 @@ is embedded in a customizable ecosystem.
 
 ## Requirements
 
+- Screen resolution of at least 900 pixels in height.
 - Windows or Linux. Mac OS support is experimental, see [discussion](https://github.com/peter88213/novelibre/discussions/29).
 - [Python](https://www.python.org/) version 3.6+. 
      - For current Windows versions, use version 3.9.10 or above.
