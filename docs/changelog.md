@@ -10,9 +10,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.7.0
+### Version 5.7.1
 
-- `Alt`-`Up` and `Alt`-`Down` lets you navigate to the previous/next node of the same kind. 
+Enhanced keyboard navigation.
+- `Alt`-`Left`: Go back in history.
+- `Alt`-`Right`: Go forward in history.
+- `Alt`-`Up`: Go to the previous node of the same kind.
+- `Alt`-`Down`: Go to the next node of the same kind. 
 
 Refactoring for this:
 - Moved BasicViewCtrl.load_next() to TreeViewerCtrl.load_next().

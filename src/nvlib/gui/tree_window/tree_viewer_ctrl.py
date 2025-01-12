@@ -75,9 +75,7 @@ class TreeViewerCtrl(SubController):
         thisNode = self.tree.selection()[0]
         nextNode = self.next_node(thisNode)
         if nextNode:
-            self.see_node(nextNode)
-            self.tree.selection_set(nextNode)
-            self.tree.focus(nextNode)
+            self.go_to_node(nextNode)
         return('break')
 
     def load_prev(self, event=None):
@@ -85,9 +83,7 @@ class TreeViewerCtrl(SubController):
         thisNode = self.tree.selection()[0]
         prevNode = self.prev_node(thisNode)
         if prevNode:
-            self.see_node(prevNode)
-            self.tree.selection_set(prevNode)
-            self.tree.focus(prevNode)
+            self.go_to_node(prevNode)
         return('break')
 
     def next_node(self, thisNode):

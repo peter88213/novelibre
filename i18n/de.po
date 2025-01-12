@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.7.0\n"
-"POT-Creation-Date: 2025-01-12 17:08:27\n"
-"PO-Revision-Date: 2025-01-12 17:08:27\n"
+"Project-Id-Version: 5.7.1\n"
+"POT-Creation-Date: 2025-01-12 22:10:47\n"
+"PO-Revision-Date: 2025-01-12 22:10:47\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -78,6 +78,18 @@ msgstr "Alle"
 
 msgid "All files"
 msgstr "Alle Dateien"
+
+msgid "Alt-Down"
+msgstr "Alt-Ab"
+
+msgid "Alt-Left"
+msgstr "Alt-Links"
+
+msgid "Alt-Right"
+msgstr "Alt-Rechts"
+
+msgid "Alt-Up"
+msgstr "Alt-Auf"
 
 msgid "Always discard documents after import"
 msgstr "Dokumente nach dem Import immer verwerfen"

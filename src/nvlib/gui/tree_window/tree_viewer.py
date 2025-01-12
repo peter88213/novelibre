@@ -155,10 +155,12 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
     def go_back(self, event=None):
         """Select a node back in the tree browsing history."""
         self._browse_tree(self._history.go_back())
+        return('break')
 
     def go_forward(self, event=None):
         """Select a node forward in the tree browsing history."""
         self._browse_tree(self._history.go_forward())
+        return('break')
 
     def go_to_node(self, node):
         """Select and view a node.
@@ -257,8 +259,10 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
         self.tree.bind(KEYS.CUT[0], self._ctrl.cut_element)
         self.tree.bind(KEYS.COPY[0], self._ctrl.copy_element)
         self.tree.bind(KEYS.PASTE[0], self._ctrl.paste_element)
-        self.tree.bind('<Alt-Up>', self.load_prev)
-        self.tree.bind('<Alt-Down>', self.load_next)
+        self.tree.bind(KEYS.PREVIOUS[0], self.load_prev)
+        self.tree.bind(KEYS.NEXT[0], self.load_next)
+        self.tree.bind(KEYS.FORWARD[0], self.go_forward)
+        self.tree.bind(KEYS.BACK[0], self.go_back)
 
     def _browse_tree(self, node):
         """Select and show node. 
