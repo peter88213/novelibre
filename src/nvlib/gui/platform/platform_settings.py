@@ -8,6 +8,7 @@ import platform
 
 from nvlib.gui.platform.generic_keys import GenericKeys
 from nvlib.gui.platform.generic_mouse import GenericMouse
+from nvlib.gui.platform.linux_mouse import LinuxMouse
 from nvlib.gui.platform.mac_keys import MacKeys
 from nvlib.gui.platform.mac_mouse import MacMouse
 from nvlib.gui.platform.windows_keys import WindowsKeys
@@ -20,7 +21,7 @@ if platform.system() == 'Windows':
 elif platform.system() in ('Linux', 'FreeBSD'):
     PLATFORM = 'ix'
     KEYS = GenericKeys()
-    MOUSE = GenericMouse()
+    MOUSE = LinuxMouse()
 elif platform.system() == 'Darwin':
     PLATFORM = 'mac'
     KEYS = MacKeys()

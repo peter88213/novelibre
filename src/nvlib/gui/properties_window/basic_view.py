@@ -14,6 +14,7 @@ from mvclib.widgets.text_box import TextBox
 from nvlib.gui.widgets.collection_box import CollectionBox
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
+from nvlib.gui.widgets.scroll_frame import ScrollFrame
 
 
 class BasicView(ttk.Frame, Observer):
@@ -96,8 +97,9 @@ class BasicView(ttk.Frame, Observer):
 
     def _create_element_info_window(self):
         """Create a window for element specific information."""
-        self.elementInfoWindow = ttk.Frame(self.propertiesFrame)
-        self.elementInfoWindow.pack(fill='x')
+        self.scrollWindow = ScrollFrame(self.propertiesFrame)
+        self.scrollWindow.pack(fill='x')
+        self.elementInfoWindow = self.scrollWindow.interior
 
     @abstractmethod
     def _create_frames(self):
