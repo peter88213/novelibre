@@ -10,6 +10,15 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.7.0
+
+- `Alt`-`Up` and `Alt`-`Down` lets you navigate to the previous/next node of the same kind. 
+
+Refactoring for this:
+- Moved BasicViewCtrl.load_next() to TreeViewerCtrl.load_next().
+- Moved BasicViewCtrl.load_prev() to TreeViewerCtrl.load_prev().
+
+
 ### Version 5.6.0
 
 - ContentsViewer using a service to get the preferences (#31).
