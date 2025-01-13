@@ -12,9 +12,9 @@ from mvclib.widgets.folding_frame import FoldingFrame
 from mvclib.widgets.index_card import IndexCard
 from mvclib.widgets.text_box import TextBox
 from nvlib.gui.widgets.collection_box import CollectionBox
+from nvlib.gui.widgets.scrolled_window import ScrolledWindow
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
-from nvlib.gui.widgets.scroll_frame import ScrollFrame
 
 
 class BasicView(ttk.Frame, Observer):
@@ -97,9 +97,9 @@ class BasicView(ttk.Frame, Observer):
 
     def _create_element_info_window(self):
         """Create a window for element specific information."""
-        self.scrollWindow = ScrollFrame(self.propertiesFrame)
+        self.scrollWindow = ScrolledWindow(self.propertiesFrame)
         self.scrollWindow.pack(fill='x', expand=True)
-        self.elementInfoWindow = self.scrollWindow.interior
+        self.elementInfoWindow = self.scrollWindow.scrollwindow
 
     @abstractmethod
     def _create_frames(self):
