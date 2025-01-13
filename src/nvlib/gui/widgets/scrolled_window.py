@@ -40,8 +40,6 @@ class ScrolledWindow(tk.Frame):
         self.parent = parent
 
         # creating a scrollbars
-        self.xscrlbr = ttk.Scrollbar(self.parent, orient='horizontal')
-        self.xscrlbr.grid(column=0, row=1, sticky='ew', columnspan=2)
         self.yscrlbr = ttk.Scrollbar(self.parent)
         self.yscrlbr.grid(column=1, row=0, sticky='ns')
         # creating a canvas
@@ -52,7 +50,6 @@ class ScrolledWindow(tk.Frame):
         # placing a canvas into frame
         self.canv.grid(column=0, row=0, sticky='nsew')
         # accociating scrollbar comands to canvas scroling
-        self.xscrlbr.config(command=self.canv.xview)
         self.yscrlbr.config(command=self.canv.yview)
 
         # creating a frame to inserto to canvas
@@ -60,12 +57,11 @@ class ScrolledWindow(tk.Frame):
 
         self.canv.create_window(0, 0, window=self.scrollwindow, anchor='nw')
 
-        self.canv.config(xscrollcommand=self.xscrlbr.set,
-                         yscrollcommand=self.yscrlbr.set,
-                         scrollregion=(0, 0, 100, 100))
+        self.canv.config(
+             yscrollcommand=self.yscrlbr.set,
+             scrollregion=(0, 0, 100, 100))
 
         self.yscrlbr.lift(self.scrollwindow)
-        self.xscrlbr.lift(self.scrollwindow)
         self.scrollwindow.bind('<Configure>', self._configure_window)
         self.scrollwindow.bind('<Enter>', self._bound_to_mousewheel)
         self.scrollwindow.bind('<Leave>', self._unbound_to_mousewheel)
