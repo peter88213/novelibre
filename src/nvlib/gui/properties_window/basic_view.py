@@ -170,4 +170,4 @@ class BasicView(ttk.Frame, Observer):
         else:
             self.linksWindow.show()
             prefs[self.prefsShowLinks] = True
-        self.scrollWindow.adjust_scrollbar()
+        
