@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.7.1\n"
-"POT-Creation-Date: 2025-01-12 22:10:47\n"
-"PO-Revision-Date: 2025-01-12 22:10:47\n"
+"Project-Id-Version: 5.8.0\n"
+"POT-Creation-Date: 2025-01-13 13:05:26\n"
+"PO-Revision-Date: 2025-01-13 13:05:26\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1320,9 +1320,6 @@ msgstr "Fehleingabe: Zahl erforderlich"
 
 msgid "Wrong name"
 msgstr "Falscher Name"
-
-msgid "Wrong table structure"
-msgstr "Falsche Tabellenstruktur"
 
 msgid "Wrong time"
 msgstr "Falsche Zeit"

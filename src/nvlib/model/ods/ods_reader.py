@@ -46,20 +46,13 @@ class OdsReader(OdfReader, ABC):
         """Parse the file and get the instance variables.
         
         Parse the ODS file located at filePath, fetching the rows.
-        Check the number of fields in each row.
-        Raise the "Error" exception in case of error. 
+
         Overrides the superclass method.
         """
         self._rows = []
         cellsPerRow = len(self._columnTitles)
         parser = OdsParser()
         rows = parser.get_rows(self.filePath, cellsPerRow)
-        for row in rows:
-            if len(row) != cellsPerRow:
-                print(row)
-                print(len(row), cellsPerRow)
-                raise Error(f'{_("Wrong table structure")}.')
-
         for title in rows[0]:
             self._columns[title] = {}
         for row in rows:

@@ -31,6 +31,7 @@ class OdsWGrid(OdsWriter):
     # Date
     # Time
     # Day
+    # Duration
     # Title
     # Description
     # Viewpoint
@@ -48,12 +49,14 @@ class OdsWGrid(OdsWriter):
     <table:table-column table:style-name="co2" table:default-cell-style-name="ce2"/>
     <table:table-column table:style-name="co1" table:default-cell-style-name="ce4"/>
     <table:table-column table:style-name="co1" table:default-cell-style-name="Default"/>
+    <table:table-column table:style-name="co1" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>
 $ArcColumns
     <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co1" table:default-cell-style-name="Default"/>
+    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
@@ -73,6 +76,9 @@ $ArcColumns
      </table:table-cell>
      <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>Day</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="Heading" office:value-type="string">
+      <text:p>Duration</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>Title</text:p>
@@ -121,6 +127,9 @@ $ArcIdCells
       <text:p>{_("Day")}</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Heading" office:value-type="string">
+      <text:p>{_("Duration")}</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>{_("Title")}</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Heading" office:value-type="string">
@@ -164,6 +173,9 @@ $DateCell
 $TimeCell
      <table:table-cell office:value-type="string">
       <text:p>$Day</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>$Duration</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>$Title</text:p>

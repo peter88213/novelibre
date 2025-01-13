@@ -7,6 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from datetime import date, time
 
 from nvlib.model.data.section import Section
+from nvlib.model.ods.duration_parser import DurationParser
 from nvlib.model.ods.ods_reader import OdsReader
 from nvlib.novx_globals import GRID_SUFFIX, PL_ROOT
 from nvlib.novx_globals import SECTION_PREFIX
@@ -18,12 +19,13 @@ class OdsRGrid(OdsReader):
     """ODS section list reader. """
     DESCRIPTION = _('Plot grid')
     SUFFIX = GRID_SUFFIX
-    _columnTitles = [
+    COLUMN_TITLES = [
         'Link',
         'Section',
         'Date',
         'Time',
         'Day',
+        'Duration',
         'Title',
         'Description',
         'Viewpoint',
@@ -42,9 +44,11 @@ class OdsRGrid(OdsReader):
         Extends the superclass method.
         """
         plotLines = self.novel.tree.get_children(PL_ROOT)
+        self._columnTitles = self.COLUMN_TITLES[:]
         for plId in plotLines:
             self._columnTitles.append(plId)
         super().read()
+        durationParser = DurationParser()
         for scId in self.novel.sections:
 
             #--- plot line notes
@@ -93,6 +97,17 @@ class OdsRGrid(OdsReader):
                 pass
             else:
                 self.novel.sections[scId].day = day.strip()
+
+            #--- duration
+            try:
+                durationStr = self._columns['Duration'][scId]
+                d, h, m = durationParser.get_duration(durationStr)
+            except:
+                pass
+            else:
+                self.novel.sections[scId].lastsDays = str(d)
+                self.novel.sections[scId].lastsHours = str(h)
+                self.novel.sections[scId].lastsMinutes = str(m)
 
             #--- title
             try:

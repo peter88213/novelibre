@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.8.0
+
+- Fixed a bug in OdsRGrid where the grid cannot be re-imported repeatedly.
+- Added the section duration to the Plot Grid. Closes #49.
+
+
 ### Version 5.7.1
 
 Enhanced keyboard navigation.
