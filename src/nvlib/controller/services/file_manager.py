@@ -5,14 +5,14 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
-from pathlib import Path
-import sys
 from shutil import copy2
+import sys
 from tkinter import filedialog
 
 from mvclib.controller.service_base import ServiceBase
 from nvlib.model.exporter.nv_doc_exporter import NvDocExporter
 from nvlib.model.exporter.nv_html_reporter import NvHtmlReporter
+from nvlib.model.file.doc_open import open_document
 from nvlib.model.html.html_report import HtmlReport
 from nvlib.model.nv_work_file import NvWorkFile
 from nvlib.novx_globals import CH_ROOT
@@ -20,6 +20,8 @@ from nvlib.novx_globals import Error
 from nvlib.novx_globals import MANUSCRIPT_SUFFIX
 from nvlib.novx_globals import Notification
 from nvlib.novx_globals import norm_path
+from nvlib.nv_globals import HOME_DIR
+from nvlib.nv_globals import INSTALL_DIR
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
@@ -152,20 +154,7 @@ class FileManager(ServiceBase):
 
     def open_installationFolder(self):
         """Open the installation folder with the OS file manager."""
-        installDir = os.path.dirname(sys.argv[0])
-        try:
-            os.startfile(norm_path(installDir))
-            # Windows
-        except:
-            try:
-                os.system('xdg-open "%s"' % norm_path(installDir))
-                # Linux
-            except:
-                try:
-                    os.system('open "%s"' % norm_path(installDir))
-                    # Mac
-                except:
-                    pass
+        open_document(INSTALL_DIR)
 
     def open_project(self, filePath='', doNotSave=False):
         """Create a novelibre project instance and read the file.
@@ -220,20 +209,8 @@ class FileManager(ServiceBase):
             if not self.save_project():
                 return 'break'
 
-        projectDir, __ = os.path.split(self._mdl.prjFile.filePath)
-        try:
-            os.startfile(norm_path(projectDir))
-            # Windows
-        except:
-            try:
-                os.system('xdg-open "%s"' % norm_path(projectDir))
-                # Linux
-            except:
-                try:
-                    os.system('open "%s"' % norm_path(projectDir))
-                    # Mac
-                except:
-                    pass
+        open_document(os.path.split(self._mdl.prjFile.filePath)[0])
+        return 'break'
 
     def save_as(self):
         """Rename the project file and save it to disk.
@@ -244,14 +221,14 @@ class FileManager(ServiceBase):
             return False
 
         if prefs['last_open']:
-            startDir, __ = os.path.split(prefs['last_open'])
+            initDir, __ = os.path.split(prefs['last_open'])
         else:
-            startDir = str(Path.home()).replace('\\', '/')
+            initDir = HOME_DIR
         fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
         fileName = filedialog.asksaveasfilename(
             filetypes=fileTypes,
             defaultextension=fileTypes[0][1],
-            initialdir=startDir,
+            initialdir=initDir,
             )
         if not fileName:
             return False
@@ -316,7 +293,7 @@ class FileManager(ServiceBase):
         """
         initDir = os.path.dirname(prefs.get('last_open', ''))
         if not initDir:
-            initDir = str(Path.home()).replace('\\', '/')
+            initDir = HOME_DIR
         if not fileName or not os.path.isfile(fileName):
             fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
             fileName = filedialog.askopenfilename(

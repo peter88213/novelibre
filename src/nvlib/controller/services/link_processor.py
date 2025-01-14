@@ -5,12 +5,12 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
-from pathlib import Path
 import subprocess
 
 from mvclib.controller.service_base import ServiceBase
 from nvlib.model.file.doc_open import open_document
 from nvlib.novx_globals import norm_path
+from nvlib.nv_globals import HOME_DIR
 from nvlib.nv_globals import launchers
 from nvlib.nv_locale import _
 
@@ -36,8 +36,7 @@ class LinkProcessor(ServiceBase):
         A path relative to the project path is expanded to a full path.
         """
         if linkPath.startswith('~'):
-            homeDir = str(Path.home())
-            linkPath = linkPath.replace('~', homeDir, 1)
+            linkPath = linkPath.replace('~', HOME_DIR, 1)
         else:
             projectDir = os.path.split(self._mdl.prjFile.filePath)[0]
             linkPath = os.path.join(projectDir, linkPath)

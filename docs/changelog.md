@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.9.1
+
+- Integrating the online help with the "Backup options" dialog (#46).
+- Refactored the use of the install/home path (#44).
+
+
 ### Version 5.9.0
 
 - Every time, *novelibre* saves the project, 

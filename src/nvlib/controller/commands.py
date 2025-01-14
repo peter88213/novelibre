@@ -6,7 +6,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
 from shutil import copy2
-import sys
 import webbrowser
 
 from nvlib.controller.services.nv_help import NvHelp
@@ -43,6 +42,7 @@ from nvlib.novx_globals import SECTIONS_SUFFIX
 from nvlib.novx_globals import STAGES_SUFFIX
 from nvlib.novx_globals import XREF_SUFFIX
 from nvlib.nv_globals import HOME_URL
+from nvlib.nv_globals import INSTALL_DIR
 from nvlib.nv_locale import _
 
 
@@ -225,7 +225,7 @@ class Commands:
         """Copy the provided css style sheet into the project directory."""
         try:
             projectDir, __ = os.path.split(self._mdl.prjFile.filePath)
-            copy2(f'{os.path.dirname(sys.argv[0])}/css/novx.css', projectDir)
+            copy2(f'{INSTALL_DIR}/css/novx.css', projectDir)
             message = _('Style sheet copied into the project folder.')
         except Exception as ex:
             message = f'!{str(ex)}'

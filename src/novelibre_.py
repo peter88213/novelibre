@@ -18,12 +18,12 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the \
 GNU General Public License for more details.
 """
 import os
-from pathlib import Path
 import sys
 
 from nvlib.configuration.configuration import Configuration
 from nvlib.configuration.nv_configuration import NvConfiguration
 from nvlib.controller.main_controller import MainController
+from nvlib.nv_globals import INSTALL_DIR
 from nvlib.nv_globals import launchers
 from nvlib.nv_globals import prefs
 
@@ -124,15 +124,10 @@ OPTIONS = dict(
 
 def main():
     #--- Set up the directories for configuration and temporary files.
-    try:
-        homeDir = str(Path.home()).replace('\\', '/')
-        installDir = f'{homeDir}/.novx'
-    except:
-        installDir = '.'
-    os.makedirs(installDir, exist_ok=True)
-    configDir = f'{installDir}/config'
+    os.makedirs(INSTALL_DIR, exist_ok=True)
+    configDir = f'{INSTALL_DIR}/config'
     os.makedirs(configDir, exist_ok=True)
-    tempDir = f'{installDir}/temp'
+    tempDir = f'{INSTALL_DIR}/temp'
     os.makedirs(tempDir, exist_ok=True)
 
     #--- Load configuration.

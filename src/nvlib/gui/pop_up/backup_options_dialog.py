@@ -7,6 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 
 from mvclib.view.modal_dialog import ModalDialog
+from nvlib.gui.platform.platform_settings import KEYS
 from mvclib.widgets.label_disp import LabelDisp
 from nvlib.gui.pop_up.backup_options_ctrl import BackupOptionsCtrl
 from nvlib.nv_globals import prefs
@@ -71,3 +72,14 @@ class BackupOptionsDialog(ModalDialog, BackupOptionsCtrl):
             text=_('Close'),
             command=self.destroy
             ).pack(padx=5, pady=5, side='right')
+
+        # "Help" button.
+        ttk.Button(
+            self,
+            text=_('Online help'),
+            command=self.open_help
+            ).pack(padx=5, pady=5, side='right')
+
+        # Set Key bindings.
+        self.bind(KEYS.OPEN_HELP[0], self.open_help)
+

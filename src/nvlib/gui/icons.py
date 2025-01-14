@@ -4,9 +4,7 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-import os
-import sys
-
+from nvlib.nv_globals import PROGRAM_DIR
 from nvlib.nv_globals import prefs
 import tkinter as tk
 
@@ -19,7 +17,7 @@ class Icons:
         else:
             size = 16
         try:
-            iconPath = f'{os.path.dirname(sys.argv[0])}/icons/{size}'
+            iconPath = f'{PROGRAM_DIR}/icons/{size}'
         except:
             iconPath = None
         try:

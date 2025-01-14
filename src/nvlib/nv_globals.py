@@ -5,6 +5,9 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from datetime import date
+import os
+from pathlib import Path
+import sys
 
 prefs = {}
 launchers = {}
@@ -13,6 +16,12 @@ launchers = {}
 # this dictionary is populated by novelibre.py after reading the configuration file
 
 HOME_URL = 'https://github.com/peter88213/novelibre/'
+
+HOME_DIR = str(Path.home()).replace('\\', '/')
+INSTALL_DIR = f'{HOME_DIR}/.novx'
+PROGRAM_DIR = os.path.dirname(sys.argv[0])
+if not PROGRAM_DIR:
+    PROGRAM_DIR = '.'
 
 
 def datestr(isoDate):
