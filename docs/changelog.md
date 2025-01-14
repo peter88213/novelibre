@@ -10,6 +10,14 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.9.0
+
+- Every time, *novelibre* saves the project, 
+  it also saves a copy to a user-defined directory, if any.
+  The file name of the copy gets the suffix `#`.
+  Closes #46.
+
+
 ### Version 5.8.0
 
 - Fixed a bug in OdsRGrid where the grid cannot be re-imported repeatedly.
