@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.8.0\n"
-"POT-Creation-Date: 2025-01-14 13:03:48\n"
+"Project-Id-Version: 5.9.0\n"
+"POT-Creation-Date: 2025-01-14 15:00:12\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -128,10 +128,19 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
+msgid "Backup directory"
+msgstr ""
+
 msgid "Backup directory not found"
 msgstr ""
 
+msgid "Backup directory not set"
+msgstr ""
+
 msgid "Backup failed"
+msgstr ""
+
+msgid "Backup options"
 msgstr ""
 
 msgid "Bio"
@@ -204,6 +213,9 @@ msgid "Cannot write file"
 msgstr ""
 
 msgid "Change Level"
+msgstr ""
+
+msgid "Change backup directory"
 msgstr ""
 
 msgid "Change icon size"
@@ -339,6 +351,9 @@ msgid "Create a new project and move the selected chapters there?"
 msgstr ""
 
 msgid "Create a novelibre project file from {0}\nNew project: \"{1}\""
+msgstr ""
+
+msgid "Create backup copies"
 msgstr ""
 
 msgid "Create from ODT..."
@@ -855,6 +870,9 @@ msgid "Open"
 msgstr ""
 
 msgid "Open Project folder"
+msgstr ""
+
+msgid "Open backup directory"
 msgstr ""
 
 msgid "Open existing"

@@ -473,8 +473,11 @@ class MainView(ViewBase, MainViewCtrl):
         # "Tools" menu.
         self.toolsMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Tools'), menu=self.toolsMenu)
-        self.toolsMenu.add_command(label=_('Plugin Manager'), command=self._ctrl.open_plugin_manager)
+        self.toolsMenu.add_command(label=_('Backup options'), command=self._ctrl.open_backup_options)
+        self.toolsMenu.add_separator()
         self.toolsMenu.add_command(label=_('Open installation folder'), command=self._ctrl.open_installationFolder)
+        self.toolsMenu.add_separator()
+        self.toolsMenu.add_command(label=_('Plugin Manager'), command=self._ctrl.open_plugin_manager)
         self.toolsMenu.add_separator()
 
         # "Help" menu.

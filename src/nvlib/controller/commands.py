@@ -10,6 +10,7 @@ import sys
 import webbrowser
 
 from nvlib.controller.services.nv_help import NvHelp
+from nvlib.gui.pop_up.backup_options_dialog import BackupOptionsDialog
 from nvlib.gui.pop_up.export_options_dialog import ExportOptionsDialog
 from nvlib.gui.pop_up.plugin_manager_dialog import PluginManagerDialog
 from nvlib.gui.pop_up.reimport_dialog import ReimportDialog
@@ -372,6 +373,11 @@ class Commands:
         """
         if not self.isLocked:
             self.elementManager.move_node(node, targetNode)
+
+    def open_backup_options(self, event=None):
+        """Open a toplevel window to edit the backup options."""
+        BackupOptionsDialog(self._mdl, self._ui, self)
+        return 'break'
 
     def open_export_options(self, event=None):
         """Open a toplevel window to edit the export options."""

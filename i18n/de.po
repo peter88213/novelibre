@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.8.0\n"
-"POT-Creation-Date: 2025-01-14 13:03:48\n"
-"PO-Revision-Date: 2025-01-14 13:03:48\n"
+"Project-Id-Version: 5.9.0\n"
+"POT-Creation-Date: 2025-01-14 15:00:12\n"
+"PO-Revision-Date: 2025-01-14 15:00:12\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -121,11 +121,20 @@ msgstr "Automatische Nummerierung"
 msgid "Back"
 msgstr "Zurück"
 
+msgid "Backup directory"
+msgstr "Sicherungsverzeichnis"
+
 msgid "Backup directory not found"
 msgstr "Sicherungsverzeichnis nicht gefunden"
 
+msgid "Backup directory not set"
+msgstr "Sicherungsverzeichnis nicht festgelegt"
+
 msgid "Backup failed"
 msgstr "Sicherung fehlgeschlagen"
+
+msgid "Backup options"
+msgstr "Sicherungseinstellungen"
 
 msgid "Bio"
 msgstr "Biographie"
@@ -198,6 +207,9 @@ msgstr "Kann Datei nicht schreiben"
 
 msgid "Change Level"
 msgstr "Ebene ändern"
+
+msgid "Change backup directory"
+msgstr "Sicherungsverzeichnis ändern"
 
 msgid "Change icon size"
 msgstr "Symbolgröße ändern"
@@ -333,6 +345,9 @@ msgstr "Ein neues Projekt erstellen und die ausgewählten Kapitel dorthin versch
 
 msgid "Create a novelibre project file from {0}\nNew project: \"{1}\""
 msgstr "Erzeuge eine novelibre-Projektdatei aus {0}\nNeues Projekt: \"{1}\""
+
+msgid "Create backup copies"
+msgstr "Sicherungskopien erzeugen"
 
 msgid "Create from ODT..."
 msgstr "Aus ODT erzeugen..."
@@ -849,6 +864,9 @@ msgstr "Öffnen"
 
 msgid "Open Project folder"
 msgstr "Projektordner öffnen"
+
+msgid "Open backup directory"
+msgstr "Sicherungsverzeichnis öffnen"
 
 msgid "Open existing"
 msgstr "Bestehendes öffnen"
