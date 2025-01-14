@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.8.0\n"
-"POT-Creation-Date: 2025-01-13 13:05:26\n"
-"PO-Revision-Date: 2025-01-13 13:05:26\n"
+"POT-Creation-Date: 2025-01-14 13:03:48\n"
+"PO-Revision-Date: 2025-01-14 13:03:48\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -120,6 +120,12 @@ msgstr "Automatische Nummerierung"
 
 msgid "Back"
 msgstr "Zurück"
+
+msgid "Backup directory not found"
+msgstr "Sicherungsverzeichnis nicht gefunden"
+
+msgid "Backup failed"
+msgstr "Sicherung fehlgeschlagen"
 
 msgid "Bio"
 msgstr "Biographie"
@@ -906,6 +912,9 @@ msgstr "Emotionaler Höhepunkt"
 
 msgid "Pick Mode (click here or press Esc to exit)"
 msgstr "Auswahlmodus (zum Verlassen hier klicken oder Esc drücken)"
+
+msgid "Please check the setting"
+msgstr "Bitte die Einstellung prüfen"
 
 msgid "Please close the document first"
 msgstr "Bitte zuerst das Dokument schließen"

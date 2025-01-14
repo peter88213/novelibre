@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.8.0\n"
-"POT-Creation-Date: 2025-01-13 13:05:26\n"
+"POT-Creation-Date: 2025-01-14 13:03:48\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -126,6 +126,12 @@ msgid "Auto numbering"
 msgstr ""
 
 msgid "Back"
+msgstr ""
+
+msgid "Backup directory not found"
+msgstr ""
+
+msgid "Backup failed"
 msgstr ""
 
 msgid "Bio"
@@ -912,6 +918,9 @@ msgid "Peak emotional moment"
 msgstr ""
 
 msgid "Pick Mode (click here or press Esc to exit)"
+msgstr ""
+
+msgid "Please check the setting"
 msgstr ""
 
 msgid "Please close the document first"

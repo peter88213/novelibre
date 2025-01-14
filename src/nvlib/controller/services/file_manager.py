@@ -9,7 +9,6 @@ from pathlib import Path
 import sys
 from shutil import copy2
 from tkinter import filedialog
-import zipapp
 
 from mvclib.controller.service_base import ServiceBase
 from nvlib.model.exporter.nv_doc_exporter import NvDocExporter
@@ -31,6 +30,7 @@ class FileManager(ServiceBase):
         super().__init__(model, view, controller)
         self.exporter = NvDocExporter(self._ui)
         self.reporter = NvHtmlReporter()
+        self.prefs = self._ctrl.get_preferences()
 
     def create_project(self):
         """Create a novelibre project instance."""
@@ -51,15 +51,25 @@ class FileManager(ServiceBase):
         self.save_project()
 
     def copy_to_backup(self, filePath):
-        """Create a self-extracting backup file."""
-        prefs = self._ctrl.get_preferences()
-        backupDir = prefs['backup_dir']
-        if os.path.isdir(backupDir):
-            try:
-                __, tail = os.path.split(filePath)
-                copy2(filePath, f'{backupDir}/{tail}.copy')
-            except Exception as ex:
-                self._ui.set_status(f"!{_('Backup error')}: {str(ex)}")
+        """Copy the file specified by filePath to the backup directory.
+        
+        The backup file name gets a suffix in order not to be worked on by accident.
+        If no valid backup directory is specified, do nothing.
+        If the backup fails, show a notification on the status bar.
+        """
+        backupDir = self.prefs['backup_dir']
+        if not backupDir:
+            return
+
+        if not os.path.isdir(backupDir):
+            self._ui.set_status(f'#{_("Backup directory not found")}: "{norm_path(backupDir)}". {_("Please check the setting")}.')
+            return
+
+        try:
+            __, tail = os.path.split(filePath)
+            copy2(filePath, f'{backupDir}/{tail}{prefs["backup_suffix"]}')
+        except Exception as ex:
+            self._ui.set_status(f"#{_('Backup failed')}: {str(ex)}")
 
     def discard_manuscript(self):
         """Rename the current editable manuscript. 
