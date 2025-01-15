@@ -141,7 +141,7 @@ class BasicViewCtrl(SubController):
                 self.linksWindow.hide()
             linkList = []
             for path in self.element.links:
-                linkList.append(os.path.split(path)[1])
+                linkList.append(os.path.basename(path))
             self.linkCollection.cList.set(linkList)
             listboxSize = len(linkList)
             if listboxSize > self._HEIGHT_LIMIT:

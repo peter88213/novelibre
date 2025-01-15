@@ -38,7 +38,7 @@ class LinkProcessor(ServiceBase):
         if linkPath.startswith('~'):
             linkPath = linkPath.replace('~', HOME_DIR, 1)
         else:
-            projectDir = os.path.split(self._mdl.prjFile.filePath)[0]
+            projectDir = os.path.dirname(self._mdl.prjFile.filePath)
             linkPath = os.path.join(projectDir, linkPath)
         return os.path.realpath(linkPath).replace('\\', '/')
 
@@ -134,7 +134,7 @@ class LinkProcessor(ServiceBase):
         If linkPath is on the same drive as the project path,
         the shortened path is relative to the project path.            
         """
-        projectDir = os.path.split(self._mdl.prjFile.filePath)[0]
+        projectDir = os.path.dirname(self._mdl.prjFile.filePath)
         try:
             linkPath = os.path.relpath(linkPath, projectDir)
         except ValueError:

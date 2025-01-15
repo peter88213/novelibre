@@ -249,7 +249,7 @@ def install(installDir, zipped):
     if files:
         output(PLUGIN_WARNING)
     for filePath in files:
-        moduleName = os.path.split(filePath)[1][:-3]
+        moduleName, __ = os.path.splitext(os.path.basename(filePath))
         if not moduleName.startswith('nv_'):
             os.remove(filePath)
             output(f'"{filePath}" removed.')

@@ -109,7 +109,7 @@ class PluginCollection(dict, SubController):
         Return True on success, otherwise return False. 
         """
         try:
-            moduleName = os.path.split(filePath)[1][:-3]
+            moduleName, __ = os.path.splitext(os.path.basename(filePath))
 
             # Import the module.
             module = importlib.import_module(moduleName)

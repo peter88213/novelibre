@@ -51,7 +51,7 @@ class NvHtmlReporter:
         __, target = self._exportTargetFactory.new_file_objects(source.filePath, **kwargs)
         # Adjust HTML file path to the temp directory, if any
         # (the target factory sets the project directory; this is overridden here).
-        __, filename = os.path.split(target.filePath)
+        filename = os.path.basename(target.filePath)
         target.filePath = f'{tempdir}/{filename}'
         target.novel = source.novel
         target.write()

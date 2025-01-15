@@ -20,7 +20,7 @@ def inline_module(file, package, packagePath, text, processedModules, copyNovxli
         print(f'Processing "{file}"...')
         if copyNovxlib:
             target = file.replace('/../novxlib', '')
-            targetDir = os.path.split(target)[0]
+            targetDir = os.path.dirname(target)
             os.makedirs(targetDir, exist_ok=True)
             if not os.path.isfile(target):
                 copyfile(file, target)

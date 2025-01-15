@@ -6,7 +6,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
 from shutil import copy2
-import sys
 from tkinter import filedialog
 
 from mvclib.controller.service_base import ServiceBase
@@ -74,8 +73,8 @@ class FileManager(ServiceBase):
             return
 
         try:
-            __, tail = os.path.split(filePath)
-            copy2(filePath, f'{backupDir}/{tail}{prefs["backup_suffix"]}')
+            basename = os.path.basename(filePath)
+            copy2(filePath, f'{backupDir}/{basename}{prefs["backup_suffix"]}')
         except Exception as ex:
             self._ui.set_status(f"#{_('Backup failed')}: {str(ex)}")
 
@@ -135,7 +134,7 @@ class FileManager(ServiceBase):
         self._ui.restore_status()
         if sourcePath is None:
             if prefs['last_open']:
-                startDir, __ = os.path.split(prefs['last_open'])
+                startDir = os.path.dirname(prefs['last_open'])
             else:
                 startDir = '.'
             sourcePath = filedialog.askopenfilename(
@@ -219,7 +218,7 @@ class FileManager(ServiceBase):
                 return 'break'
 
         try:
-            open_document(os.path.split(self._mdl.prjFile.filePath)[0])
+            open_document(os.path.dirname(self._mdl.prjFile.filePath))
         except Exception as ex:
             self._ui.set_status(f'!{str(ex)}')
         return 'break'
@@ -234,7 +233,7 @@ class FileManager(ServiceBase):
             return False
 
         if prefs['last_open']:
-            initDir, __ = os.path.split(prefs['last_open'])
+            initDir = os.path.dirname(prefs['last_open'])
         else:
             initDir = HOME_DIR
         fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]

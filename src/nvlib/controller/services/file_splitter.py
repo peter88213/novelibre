@@ -39,7 +39,7 @@ class FileSplitter(ServiceBase):
 
         lastOpen = self._ctrl.get_preferences()['last_open']
         if lastOpen:
-            startDir, __ = os.path.split(lastOpen)
+            startDir = os.path.dirname(lastOpen)
         else:
             startDir = '.'
         fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]

@@ -224,7 +224,7 @@ class Commands:
     def copy_css(self, event=None):
         """Copy the provided css style sheet into the project directory."""
         try:
-            projectDir, __ = os.path.split(self._mdl.prjFile.filePath)
+            projectDir = os.path.dirname(self._mdl.prjFile.filePath)
             copy2(f'{INSTALL_DIR}/css/novx.css', projectDir)
             message = _('Style sheet copied into the project folder.')
         except Exception as ex:
