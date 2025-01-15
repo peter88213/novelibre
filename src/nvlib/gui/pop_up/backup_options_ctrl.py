@@ -33,7 +33,10 @@ class BackupOptionsCtrl(SubController):
             self._ui.set_status(f'#{_("Backup directory not found")}. {_("Please check the setting")}.')
             return
 
-        open_document(prefs['backup_dir'])
+        try:
+            open_document(prefs['backup_dir'])
+        except Exception as ex:
+            self._ui.set_status(f'!{str(ex)}')
 
     def open_help(self, event=None):
         NvHelp.open_help_page(f'tools_menu.html#{_("Backup options").lower()}')

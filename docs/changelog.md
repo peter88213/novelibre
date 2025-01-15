@@ -10,6 +10,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.9.2
+
+- Making a backup copy immediately after creating a new project by ODF import (#46).
+- Handling exceptions that may be raised when open_document() fails.
+- Restoring the status bar before executing file related commands.
+
+
 ### Version 5.9.1
 
 - Integrating the online help with the "Backup options" dialog (#46).

@@ -117,8 +117,11 @@ class LinkProcessor(ServiceBase):
             return
 
         if os.path.isfile(linkPath):
-            open_document(linkPath)
-            return
+            try:
+                open_document(linkPath)
+            except Exception as ex:
+                self._ui.set_status(f'!{str(ex)}')
+        return
 
         raise FileNotFoundError(f"{_('File not found')}: {norm_path(linkPath)}")
 

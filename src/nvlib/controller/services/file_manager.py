@@ -36,6 +36,7 @@ class FileManager(ServiceBase):
 
     def create_project(self):
         """Create a novelibre project instance."""
+        self._ui.restore_status()
         if self._mdl.prjFile is not None:
             self._ctrl.on_close()
         self._mdl.create_project(self._ui.tv.tree)
@@ -83,6 +84,7 @@ class FileManager(ServiceBase):
         
         This might be useful to avoid confusion in certain cases.
         """
+        self._ui.restore_status()
         fileName, __ = os.path.splitext(self._mdl.prjFile.filePath)
         manuscriptPath = f'{fileName}{MANUSCRIPT_SUFFIX}.odt'
         if os.path.isfile(manuscriptPath):
@@ -130,6 +132,7 @@ class FileManager(ServiceBase):
             sourcePath: str -- Path specifying the source document. If None, a file picker is used.
             defaultExtension: str -- Extension to be preset in the file picker.
         """
+        self._ui.restore_status()
         if sourcePath is None:
             if prefs['last_open']:
                 startDir, __ = os.path.split(prefs['last_open'])
@@ -151,10 +154,15 @@ class FileManager(ServiceBase):
                 if self._ui.ask_yes_no(_('Save changes?')):
                     self.save_project()
         self._ctrl.docImporter.import_document(sourcePath)
+        self.copy_to_backup(self._mdl.prjFile.filePath)
 
     def open_installationFolder(self):
         """Open the installation folder with the OS file manager."""
-        open_document(INSTALL_DIR)
+        self._ui.restore_status()
+        try:
+            open_document(INSTALL_DIR)
+        except Exception as ex:
+            self._ui.set_status(f'!{str(ex)}')
 
     def open_project(self, filePath='', doNotSave=False):
         """Create a novelibre project instance and read the file.
@@ -196,6 +204,7 @@ class FileManager(ServiceBase):
 
     def open_project_folder(self):
         """Open the project folder with the OS file manager."""
+        self._ui.restore_status()
         if not self._mdl:
             return 'break'
 
@@ -209,7 +218,10 @@ class FileManager(ServiceBase):
             if not self.save_project():
                 return 'break'
 
-        open_document(os.path.split(self._mdl.prjFile.filePath)[0])
+        try:
+            open_document(os.path.split(self._mdl.prjFile.filePath)[0])
+        except Exception as ex:
+            self._ui.set_status(f'!{str(ex)}')
         return 'break'
 
     def save_as(self):
@@ -217,6 +229,7 @@ class FileManager(ServiceBase):
         
         Return True on success, otherwise return False.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return False
 
@@ -253,6 +266,7 @@ class FileManager(ServiceBase):
         
         Return True on success, otherwise return False.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return False
 
@@ -291,6 +305,7 @@ class FileManager(ServiceBase):
 
         On error, return an empty string.
         """
+        self._ui.restore_status()
         initDir = os.path.dirname(prefs.get('last_open', ''))
         if not initDir:
             initDir = HOME_DIR
@@ -312,10 +327,10 @@ class FileManager(ServiceBase):
         Positional arguments:
             suffix: str -- the HTML file name suffix, indicating the report type.        
         """
+        self._ui.restore_status()
         if self._mdl.prjFile.filePath is None:
             return False
 
-        self._ui.restore_status()
         self._ui.propertiesView.apply_changes()
         HtmlReport.localizeDate = prefs['localize_date']
         try:
