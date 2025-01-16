@@ -479,6 +479,8 @@ class MainView(ViewBase, MainViewCtrl):
         self.toolsMenu.add_separator()
         self.toolsMenu.add_command(label=_('Plugin Manager'), command=self._ctrl.open_plugin_manager)
         self.toolsMenu.add_separator()
+        self.toolsMenu.add_command(label=_('Show notes'), command=self._ctrl.show_notes_list)
+        self.toolsMenu.add_separator()
 
         # "Help" menu.
         self.helpMenu = tk.Menu(self.mainMenu, tearoff=0)

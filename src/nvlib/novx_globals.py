@@ -32,6 +32,7 @@ CHARACTER_REPORT_SUFFIX = '_character_report'
 CHARACTERS_SUFFIX = '_characters_tmp'
 CHARLIST_SUFFIX = '_charlist_tmp'
 DATA_SUFFIX = '_data'
+ELEMENT_NOTES_SUFFIX = '_element_note_report',
 GRID_SUFFIX = '_grid_tmp'
 ITEM_REPORT_SUFFIX = '_item_report'
 ITEMLIST_SUFFIX = '_itemlist_tmp'

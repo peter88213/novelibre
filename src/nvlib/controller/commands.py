@@ -14,7 +14,7 @@ from nvlib.gui.pop_up.export_options_dialog import ExportOptionsDialog
 from nvlib.gui.pop_up.plugin_manager_dialog import PluginManagerDialog
 from nvlib.gui.pop_up.reimport_dialog import ReimportDialog
 from nvlib.gui.pop_up.view_options_dialog import ViewOptionsDialog
-from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
+from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX, ELEMENT_NOTES_SUFFIX
 from nvlib.novx_globals import CHAPTERS_SUFFIX
 from nvlib.novx_globals import CHARACTERS_SUFFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
@@ -22,6 +22,7 @@ from nvlib.novx_globals import CHARACTER_REPORT_SUFFIX
 from nvlib.novx_globals import CHARLIST_SUFFIX
 from nvlib.novx_globals import DATA_SUFFIX
 from nvlib.novx_globals import GRID_SUFFIX
+from nvlib.novx_globals import ELEMENT_NOTES_SUFFIX
 from nvlib.novx_globals import ITEMLIST_SUFFIX
 from nvlib.novx_globals import ITEMS_SUFFIX
 from nvlib.novx_globals import ITEM_PREFIX
@@ -561,6 +562,9 @@ class Commands:
 
     def show_character_list(self, event=None):
         self.fileManager.show_report(CHARACTER_REPORT_SUFFIX)
+
+    def show_notes_list(self, event=None):
+        self.fileManager.show_report(ELEMENT_NOTES_SUFFIX)
 
     def show_item_list(self, event=None):
         self.fileManager.show_report(ITEM_REPORT_SUFFIX)

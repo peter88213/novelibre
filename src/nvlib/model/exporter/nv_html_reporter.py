@@ -13,6 +13,7 @@ from nvlib.model.html.html_items import HtmlItems
 from nvlib.model.html.html_locations import HtmlLocations
 from nvlib.model.html.html_plot_list import HtmlPlotList
 from nvlib.model.html.html_project_notes import HtmlProjectNotes
+from nvlib.model.html.html_element_notes import HtmlElementNotes
 
 
 class NvHtmlReporter:
@@ -24,6 +25,7 @@ class NvHtmlReporter:
     """
     EXPORT_TARGET_CLASSES = [
         HtmlCharacters,
+        HtmlElementNotes,
         HtmlLocations,
         HtmlItems,
         HtmlPlotList,
