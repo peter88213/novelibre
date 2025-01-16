@@ -16,11 +16,11 @@ class HtmlElementNotes(HtmlReport):
     SUFFIX = ELEMENT_NOTES_SUFFIX
 
     _fileHeader = f'''{HtmlReport._fileHeader}
-<title>{_('Project notes')} ($Title)</title>
+<title>{_('Notes')} ($Title)</title>
 </head>
 
 <body>
-<p class=title>$Title {_('by')} $AuthorName - {_('Project notes')}</p>
+<p class=title>$Title {_('by')} $AuthorName - {_('Notes')}</p>
 <table>
 <tr class="heading">
 <td class="chtitle">{_('Title')}</td>
