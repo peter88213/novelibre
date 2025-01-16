@@ -39,29 +39,31 @@ class FileExport(File):
     This class is generic and contains no conversion algorithm and no templates.
     """
     SUFFIX = ''
-    _fileHeader = ''
-    _partTemplate = ''
+    _DIVIDER = ', '
+    _assocSectionTemplate = ''
+    _chapterEndTemplate = ''
     _chapterTemplate = ''
-    _unusedChapterTemplate = ''
-    _sectionTemplate = ''
+    _characterHeadingTemplate = ''
+    _characterTemplate = ''
+    _fileFooter = ''
+    _fileHeader = ''
     _firstSectionTemplate = ''
-    _unusedSectionTemplate = ''
+    _itemHeadingTemplate = ''
+    _itemTemplate = ''
+    _locationHeadingTemplate = ''
+    _locationTemplate = ''
+    _partTemplate = ''
+    _plotLineHeadingTemplate = ''
+    _plotLineTemplate = ''
+    _plotPointTemplate = ''
+    _projectNoteTemplate = ''
+    _sectionDivider = ''
+    _sectionTemplate = ''
     _stage1Template = ''
     _stage2Template = ''
-    _sectionDivider = ''
-    _chapterEndTemplate = ''
     _unusedChapterEndTemplate = ''
-    _characterSectionHeading = ''
-    _characterTemplate = ''
-    _locationSectionHeading = ''
-    _locationTemplate = ''
-    _itemSectionHeading = ''
-    _itemTemplate = ''
-    _fileFooter = ''
-    _projectNoteTemplate = ''
-    _arcTemplate = ''
-
-    _DIVIDER = ', '
+    _unusedChapterTemplate = ''
+    _unusedSectionTemplate = ''
     localizeDate = False
 
     def __init__(self, filePath, **kwargs):
@@ -125,43 +127,6 @@ class FileExport(File):
         if text is None:
             text = ''
         return(text)
-
-    def _get_arcMapping(self, plId):
-        """Return a mapping dictionary for a plot line section.
-        
-        Positional arguments:
-            plId: str -- plot line ID.
-        
-        This is a template method that can be extended or overridden by subclasses.
-        """
-        arcMapping = dict(
-            ID=plId,
-            Title=self._convert_from_novx(self.novel.plotLines[plId].title, quick=True),
-            Desc=self._convert_from_novx(self.novel.plotLines[plId].desc),
-            Notes=self._convert_from_novx(self.novel.plotLines[plId].notes),
-            ProjectName=self._convert_from_novx(self.projectName, quick=True),
-            ProjectPath=self.projectPath,
-            Language=self.novel.languageCode,
-            Country=self.novel.countryCode,
-        )
-        return arcMapping
-
-    def _get_arcs(self):
-        """Process the plot lines. 
-        
-        Iterate through the sorted plot line list and apply the template, 
-        substituting placeholders according to the plot line mapping dictionary.
-        Skip plot lines not accepted by the plot line filter.
-        Return a list of strings.
-        This is a template method that can be extended or overridden by subclasses.
-        """
-        lines = []
-        for plId in self.novel.tree.get_children(PL_ROOT):
-            if self.arcFilter.accept(self, plId):
-                if self._arcTemplate:
-                    template = Template(self._arcTemplate)
-                    lines.append(template.safe_substitute(self._get_arcMapping(plId)))
-        return lines
 
     def _get_chapterMapping(self, chId, chapterNumber):
         """Return a mapping dictionary for a chapter section.
@@ -295,8 +260,8 @@ class FileExport(File):
         Return a list of strings.
         This is a template method that can be extended or overridden by subclasses.
         """
-        if self._characterSectionHeading:
-            lines = [self._characterSectionHeading]
+        if self._characterHeadingTemplate:
+            lines = [self._characterHeadingTemplate]
         else:
             lines = []
         template = Template(self._characterTemplate)
@@ -414,8 +379,8 @@ class FileExport(File):
         Return a list of strings.
         This is a template method that can be extended or overridden by subclasses.
         """
-        if self._itemSectionHeading:
-            lines = [self._itemSectionHeading]
+        if self._itemHeadingTemplate:
+            lines = [self._itemHeadingTemplate]
         else:
             lines = []
         template = Template(self._itemTemplate)
@@ -459,8 +424,8 @@ class FileExport(File):
         Return a list of strings.
         This is a template method that can be extended or overridden by subclasses.
         """
-        if self._locationSectionHeading:
-            lines = [self._locationSectionHeading]
+        if self._locationHeadingTemplate:
+            lines = [self._locationHeadingTemplate]
         else:
             lines = []
         template = Template(self._locationTemplate)
@@ -468,6 +433,80 @@ class FileExport(File):
             if self.locationFilter.accept(self, lcId):
                 lines.append(template.safe_substitute(self._get_locationMapping(lcId)))
         return lines
+
+    def _get_plotLineMapping(self, plId):
+        """Return a mapping dictionary for a plot line.
+        
+        Positional arguments:
+            plId: str -- plot line ID.
+        
+        This is a template method that can be extended or overridden by subclasses.
+        """
+        plotlineMapping = dict(
+            ID=plId,
+            Title=self._convert_from_novx(self.novel.plotLines[plId].title, quick=True),
+            Desc=self._convert_from_novx(self.novel.plotLines[plId].desc),
+            Notes=self._convert_from_novx(self.novel.plotLines[plId].notes),
+            ProjectName=self._convert_from_novx(self.projectName, quick=True),
+            ProjectPath=self.projectPath,
+            Language=self.novel.languageCode,
+            Country=self.novel.countryCode,
+        )
+        return plotlineMapping
+
+    def _get_plotlines(self):
+        """Process the plot lines. 
+        
+        Iterate through the sorted plot line list and apply the template, 
+        substituting placeholders according to the plot line mapping dictionary.
+        Skip plot lines not accepted by the plot line filter.
+        Return a list of strings.
+        This is a template method that can be extended or overridden by subclasses.
+        """
+        if self._plotLineHeadingTemplate:
+            lines = [self._plotLineHeadingTemplate]
+        else:
+            lines = []
+        for plId in self.novel.tree.get_children(PL_ROOT):
+            if self.arcFilter.accept(self, plId):
+                if self._plotLineTemplate:
+                    template = Template(self._plotLineTemplate)
+                    lines.append(template.safe_substitute(self._get_plotLineMapping(plId)))
+
+            #--- Process plot points.
+            for ppId in self.novel.tree.get_children(plId):
+                if self._plotPointTemplate:
+                    template = Template(self._plotPointTemplate)
+                    plotPointMapping = self._get_plotPointMapping(ppId)
+                    lines.append(template.safe_substitute(plotPointMapping))
+        return lines
+
+    def _get_plotPointMapping(self, ppId):
+        """Return a mapping dictionary for a plot point.
+        
+        Positional arguments:
+            ppId: str -- plot point ID.
+        
+        This is a template method that can be extended or overridden by subclasses.
+        """
+        plotPointMapping = dict(
+            ID=ppId,
+            Title=self._convert_from_novx(self.novel.plotPoints[ppId].title, quick=True),
+            Desc=self._convert_from_novx(self.novel.plotPoints[ppId].desc),
+            Notes=self._convert_from_novx(self.novel.plotPoints[ppId].notes),
+            Section='',
+            scID='',
+            SectionTitle='',
+            ProjectName=self._convert_from_novx(self.projectName, quick=True),
+            ProjectPath=self.projectPath,
+            Language=self.novel.languageCode,
+            Country=self.novel.countryCode,
+        )
+        scId = self.novel.plotPoints[ppId].sectionAssoc
+        if scId:
+            template = Template(self._assocSectionTemplate)
+            plotPointMapping['Section'] = template.safe_substitute(self._get_sectionAssocMapping(scId))
+        return plotPointMapping
 
     def _get_renamings(self):
         if self.novel.customPlotProgress:
@@ -503,6 +542,23 @@ class FileExport(File):
         else:
             chrGls = _('Goals')
         return pltPrgs, chrczn, wrldbld, goal, cflct, outcm, chrBio, chrGls
+
+    def _get_sectionAssocMapping(self, scId):
+        """Return a mapping dictionary for a section that is associated to a plot point.
+        
+        Positional arguments:
+            scId: str -- section ID.
+        
+        Extends the superclass method.
+        """
+        sectionAssocMapping = dict(
+            SectionTitle=self.novel.sections[scId].title,
+            ProjectName=self._convert_from_novx(self.projectName, True),
+            scID=scId,
+            ManuscriptSuffix=MANUSCRIPT_SUFFIX,
+            SectionsSuffix=SECTIONS_SUFFIX,
+        )
+        return sectionAssocMapping
 
     def _get_sectionMapping(self, scId, sectionNumber, wordsTotal, firstInChapter=False):
         """Return a mapping dictionary for a section section.
@@ -790,7 +846,7 @@ class FileExport(File):
         lines.extend(self._get_characters())
         lines.extend(self._get_locations())
         lines.extend(self._get_items())
-        lines.extend(self._get_arcs())
+        lines.extend(self._get_plotlines())
         lines.extend(self._get_projectNotes())
         lines.extend(self._get_fileFooter())
         return ''.join(lines)
