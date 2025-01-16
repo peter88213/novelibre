@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.9.2\n"
-"POT-Creation-Date: 2025-01-15 12:55:04\n"
+"POT-Creation-Date: 2025-01-16 17:58:06\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -1173,6 +1173,9 @@ msgid "Show list"
 msgstr ""
 
 msgid "Show markup"
+msgstr ""
+
+msgid "Show notes"
 msgstr ""
 
 msgid "Skip"

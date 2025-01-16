@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.9.2\n"
-"POT-Creation-Date: 2025-01-15 12:55:04\n"
-"PO-Revision-Date: 2025-01-15 12:55:04\n"
+"POT-Creation-Date: 2025-01-16 17:58:06\n"
+"PO-Revision-Date: 2025-01-16 17:58:06\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1167,6 +1167,9 @@ msgstr "Liste anzeigen"
 
 msgid "Show markup"
 msgstr "Markup anzeigen"
+
+msgid "Show notes"
+msgstr "Notizen anzeigen"
 
 msgid "Skip"
 msgstr "Überspringen"
