@@ -45,15 +45,36 @@ class HtmlElementNotes(HtmlReport):
 </tr>
 '''
 
+    _characterHeadingTemplate = f'''
+<tr class="heading">
+<td>{_("Characters")}</td>
+<td />
+</tr>
+'''
+
     _characterTemplate = '''<tr>
 <td>$Title</td>
 <td>$Notes</td>
 </tr>
 '''
 
+    _locationHeadingTemplate = f'''
+<tr class="heading">
+<td>{_("Locations")}</td>
+<td />
+</tr>
+'''
+
     _locationTemplate = '''<tr>
 <td>$Title</td>
 <td>$Notes</td>
+</tr>
+'''
+
+    _itemHeadingTemplate = f'''
+<tr class="heading">
+<td>{_("Items")}</td>
+<td />
 </tr>
 '''
 
@@ -72,6 +93,13 @@ class HtmlElementNotes(HtmlReport):
     _stage2Template = '''<tr>
 <td>$Title</td>
 <td>$Notes</td>
+</tr>
+'''
+
+    _plotLineHeadingTemplate = f'''
+<tr class="heading">
+<td>{_("Plot lines")}</td>
+<td />
 </tr>
 '''
 
