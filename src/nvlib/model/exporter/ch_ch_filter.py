@@ -4,13 +4,13 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from nvlib.model.file.filter import Filter
 
 
-class ChChFilter:
+class ChChFilter(Filter):
     """Filter a chapter by filter criteria "has ID".
     
     Strategy class, implementing filtering criteria for template-based export.
-    This is a stub with no filter criteria specified.
     """
 
     def __init__(self, chId):
@@ -31,6 +31,3 @@ class ChChFilter:
 
         return False
 
-    def get_message(self, source):
-        """Return a message about how the document exported from source is filtered."""
-        return ''

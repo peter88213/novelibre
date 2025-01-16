@@ -9,7 +9,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 from string import Template
 
-from nvlib.model.data.character import Character
 from nvlib.model.data.section import Section
 from nvlib.model.file.file import File
 from nvlib.model.file.filter import Filter

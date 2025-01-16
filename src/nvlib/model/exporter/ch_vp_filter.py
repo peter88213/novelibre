@@ -4,14 +4,14 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from nvlib.model.file.filter import Filter
 from nvlib.nv_locale import _
 
 
-class ChVpFilter:
+class ChVpFilter(Filter):
     """Filter a chapter by filter criteria "has viewpoint".
     
     Strategy class, implementing filtering criteria for template-based export.
-    This is a stub with no filter criteria specified.
     """
 
     def __init__(self, crId):
