@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.10.0
+
+- Added a "Show notes" HTML report.
+- Refactored the code for better maintainability.
+
+
 ### Version 5.9.2
 
 - Making a backup copy immediately after creating a new project by ODF import (#46).

@@ -27,91 +27,37 @@ class HtmlElementNotes(HtmlReport):
 <td>{_('Text')}</td>
 </tr>
 '''
-
-    _partTemplate = '''<tr>
-<td class="chtitle">$Title</td>
-<td>$Notes</td>
-</tr>
-'''
-
-    _chapterTemplate = '''<tr>
-<td class="chtitle">$Title</td>
-<td>$Notes</td>
-</tr>
-'''
-    _sectionTemplate = '''<tr>
-<td>$Title</td>
-<td>$Notes</td>
-</tr>
-'''
-
     _characterHeadingTemplate = f'''
 <tr class="heading">
 <td>{_("Characters")}</td>
 <td />
 </tr>
 '''
-
-    _characterTemplate = '''<tr>
-<td>$Title</td>
-<td>$Notes</td>
-</tr>
-'''
-
     _locationHeadingTemplate = f'''
 <tr class="heading">
 <td>{_("Locations")}</td>
 <td />
 </tr>
 '''
-
-    _locationTemplate = '''<tr>
-<td>$Title</td>
-<td>$Notes</td>
-</tr>
-'''
-
     _itemHeadingTemplate = f'''
 <tr class="heading">
 <td>{_("Items")}</td>
 <td />
 </tr>
 '''
-
-    _itemTemplate = '''<tr>
-<td>$Title</td>
-<td>$Notes</td>
-</tr>
-'''
-
-    _stage1Template = '''<tr>
-<td class="chtitle">$Title</td>
-<td>$Notes</td>
-</tr>
-'''
-
-    _stage2Template = '''<tr>
-<td>$Title</td>
-<td>$Notes</td>
-</tr>
-'''
-
     _plotLineHeadingTemplate = f'''
 <tr class="heading">
 <td>{_("Plot lines")}</td>
 <td />
 </tr>
 '''
-
-    _plotLineTemplate = '''<tr>
+    _partTemplate = _chapterTemplate = _stage1Template = _plotLineTemplate = '''<tr>
 <td class="chtitle">$Title</td>
 <td>$Notes</td>
 </tr>
 '''
-
-    _plotPointTemplate = '''<tr>
+    _sectionTemplate = _characterTemplate = _locationTemplate = _itemTemplate = _stage2Template = _plotPointTemplate = '''<tr>
 <td>$Title</td>
 <td>$Notes</td>
 </tr>
 '''
-
