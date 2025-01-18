@@ -224,13 +224,8 @@ class Commands:
 
     def copy_css(self, event=None):
         """Copy the provided css style sheet into the project directory."""
-        try:
-            projectDir = os.path.dirname(self._mdl.prjFile.filePath)
-            copy2(f'{INSTALL_DIR}/css/novx.css', projectDir)
-            message = _('Style sheet copied into the project folder.')
-        except Exception as ex:
-            message = f'!{str(ex)}'
-        self._ui.set_status(message)
+        self.fileManager.copy_css()
+        return 'break'
 
     def create_project(self, event=None):
         """Create a novelibre project instance."""
@@ -460,46 +455,12 @@ class Commands:
 
     def reload_project(self, event=None):
         """Discard changes and reload the project."""
-        if self._mdl.prjFile is None:
-            return 'break'
-
-        if self._mdl.isModified and not self._ui.ask_yes_no(_('Discard changes and reload the project?')):
-            return 'break'
-
-        if self._mdl.prjFile.has_changed_on_disk() and not self._ui.ask_yes_no(_('File has changed on disk. Reload anyway?')):
-            return 'break'
-
-        # this is to avoid saving when closing the project
-        if self.open_project(filePath=self._mdl.prjFile.filePath, doNotSave=True):
-            # includes closing
-            self._ui.set_status(_('Project successfully restored from disk.'))
+        self.fileManager.reload_project()
         return 'break'
 
     def restore_backup(self, event=None):
         """Discard changes and restore the latest backup file."""
-        if self._mdl.prjFile is None:
-            return 'break'
-
-        latestBackup = f'{self._mdl.prjFile.filePath}.bak'
-        if not os.path.isfile(latestBackup):
-            self._ui.set_status(f'!{_("No backup available")}')
-            return 'break'
-
-        if self._mdl.isModified:
-            if not self._ui.ask_yes_no(_('Discard changes and restore the latest backup?')):
-                return 'break'
-
-        elif not self._ui.ask_yes_no(_('Restore the latest backup?')):
-            return 'break'
-
-        try:
-            os.replace(latestBackup, self._mdl.prjFile.filePath)
-        except Exception as ex:
-            self._ui.set_status(str(ex))
-        else:
-            if self.open_project(filePath=self._mdl.prjFile.filePath, doNotSave=True):
-                # Includes closing
-                self._ui.set_status(_('Latest backup successfully restored.'))
+        self.fileManager.restore_backup()
         return 'break'
 
     def save_as(self, event=None):

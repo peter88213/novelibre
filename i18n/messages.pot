@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.10.0\n"
-"POT-Creation-Date: 2025-01-17 08:52:13\n"
+"Project-Id-Version: 5.11.0\n"
+"POT-Creation-Date: 2025-01-18 19:20:41\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -422,10 +422,10 @@ msgstr ""
 msgid "Discard"
 msgstr ""
 
-msgid "Discard changes and reload the project?"
+msgid "Discard changes and load the \".bak\" file?"
 msgstr ""
 
-msgid "Discard changes and restore the latest backup?"
+msgid "Discard changes and reload the project?"
 msgstr ""
 
 msgid "Discard documents only when sections are split"
@@ -1061,9 +1061,6 @@ msgstr ""
 msgid "Restore backup"
 msgstr ""
 
-msgid "Restore the latest backup?"
-msgstr ""
-
 msgid "Save"
 msgstr ""
 
@@ -1254,6 +1251,9 @@ msgid "This document is not meant to be written back"
 msgstr ""
 
 msgid "This section has no time set."
+msgstr ""
+
+msgid "This will overwrite the last saved project file with the \".bak\" file"
 msgstr ""
 
 msgid "Time"

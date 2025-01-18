@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.10.0\n"
-"POT-Creation-Date: 2025-01-17 08:52:13\n"
-"PO-Revision-Date: 2025-01-17 08:52:13\n"
+"Project-Id-Version: 5.11.0\n"
+"POT-Creation-Date: 2025-01-18 19:20:41\n"
+"PO-Revision-Date: 2025-01-18 19:20:41\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -415,11 +415,11 @@ msgstr "Dilemma"
 msgid "Discard"
 msgstr "Verwerfen"
 
+msgid "Discard changes and load the \".bak\" file?"
+msgstr "Änderungen verwerfen und die \".bak\"-Datei laden?"
+
 msgid "Discard changes and reload the project?"
 msgstr "Änderungen verwerfen und das Projekt neu laden?"
-
-msgid "Discard changes and restore the latest backup?"
-msgstr "Änderungen verwerfen und die letzte Sicherungskopie wiederherstellen?"
 
 msgid "Discard documents only when sections are split"
 msgstr "Dokumente nur verwerfen, falls Abschnitte geteilt wurden"
@@ -1054,9 +1054,6 @@ msgstr "Kapitelnummerierung in jedem Teil neu beginnen"
 msgid "Restore backup"
 msgstr "Sicherungskopie wiederherstellen"
 
-msgid "Restore the latest backup?"
-msgstr "Die letzte Sicherungskopie wiederherstellen?"
-
 msgid "Save"
 msgstr "Speichern"
 
@@ -1248,6 +1245,9 @@ msgstr "Dieses Dokument ist nicht zum Zurückschreiben gedacht"
 
 msgid "This section has no time set."
 msgstr "Dieser Abschnitt hat keine Zeitangabe"
+
+msgid "This will overwrite the last saved project file with the \".bak\" file"
+msgstr "Die zuletzt gespeicherte Projektdatei wird mit der \".bak\"-Datei überschrieben"
 
 msgid "Time"
 msgstr "Zeit"

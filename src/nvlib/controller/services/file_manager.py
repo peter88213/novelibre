@@ -52,6 +52,17 @@ class FileManager(ServiceBase):
         self._ui.tv.go_to_node(CH_ROOT)
         self.save_project()
 
+    def copy_css(self):
+        """Copy the provided css style sheet into the project directory."""
+        self._ui.restore_status()
+        try:
+            projectDir = os.path.dirname(self._mdl.prjFile.filePath)
+            copy2(f'{INSTALL_DIR}/css/novx.css', projectDir)
+            message = _('Style sheet copied into the project folder.')
+        except Exception as ex:
+            message = f'!{str(ex)}'
+        self._ui.set_status(message)
+
     def copy_to_backup(self, filePath):
         """Copy the file specified by filePath to the backup directory.
         
@@ -222,6 +233,52 @@ class FileManager(ServiceBase):
         except Exception as ex:
             self._ui.set_status(f'!{str(ex)}')
         return 'break'
+
+    def reload_project(self):
+        """Discard changes and reload the project."""
+        self._ui.restore_status()
+        if self._mdl.prjFile is None:
+            return
+
+        if self._mdl.isModified and not self._ui.ask_yes_no(_('Discard changes and reload the project?')):
+            return
+
+        if self._mdl.prjFile.has_changed_on_disk() and not self._ui.ask_yes_no(_('File has changed on disk. Reload anyway?')):
+            return
+
+        # this is to avoid saving when closing the project
+        if self.open_project(filePath=self._mdl.prjFile.filePath, doNotSave=True):
+            # includes closing
+            self._ui.set_status(_('Project successfully restored from disk.'))
+        return
+
+    def restore_backup(self):
+        """Discard changes and restore the latest backup file."""
+        self._ui.restore_status()
+        if self._mdl.prjFile is None:
+            return
+
+        latestBackup = f'{self._mdl.prjFile.filePath}.bak'
+        if not os.path.isfile(latestBackup):
+            self._ui.set_status(f'!{_("No backup available")}')
+            return
+
+        if self._mdl.isModified:
+            if not self._ui.ask_yes_no(_('Discard changes and load the ".bak" file?')):
+                return
+
+        elif not self._ui.ask_ok_cancel(_('This will overwrite the last saved project file with the ".bak" file')):
+            return
+
+        try:
+            os.replace(latestBackup, self._mdl.prjFile.filePath)
+        except Exception as ex:
+            self._ui.set_status(str(ex))
+        else:
+            if self.open_project(filePath=self._mdl.prjFile.filePath, doNotSave=True):
+                # Includes closing
+                self._ui.set_status(_('Latest backup successfully restored.'))
+        return
 
     def save_as(self):
         """Rename the project file and save it to disk.

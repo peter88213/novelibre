@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.11.0
+
+- Changed the confirmation requests for the "Restore backup" command.
+- API update: New FileManager methods.
+
+
 ### Version 5.10.0
 
 - Added a "Show notes" HTML report.
