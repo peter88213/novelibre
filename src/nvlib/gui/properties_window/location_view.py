@@ -17,5 +17,5 @@ class LocationView(WorldElementView, LocationViewCtrl):
         Extends the superclass constructor.
         """
         super().__init__(parent, model, view, controller)
-        self.prefsShowLinks = 'show_lc_links'
+        self._prefsShowLinks = 'show_lc_links'
 

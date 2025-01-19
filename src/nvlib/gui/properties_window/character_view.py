@@ -128,7 +128,7 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
             widget.bind('<FocusOut>', self.apply_changes)
             self.inputWidgets.append(widget)
 
-        self.prefsShowLinks = 'show_cr_links'
+        self._prefsShowLinks = 'show_cr_links'
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""

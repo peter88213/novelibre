@@ -50,7 +50,7 @@ class BasicView(ttk.Frame, Observer):
         self.propertiesFrame = ttk.Frame(self)
         self.propertiesFrame.pack(expand=True, fill='both')
 
-        self.prefsShowLinks = None
+        self._prefsShowLinks = None
         self._create_frames()
 
     def focus_title(self):
@@ -162,10 +162,10 @@ class BasicView(ttk.Frame, Observer):
         
         Callback procedure for the FoldingFrame's button.
         """
-        if prefs[self.prefsShowLinks]:
+        if prefs[self._prefsShowLinks]:
             self.linksWindow.hide()
-            prefs[self.prefsShowLinks] = False
+            prefs[self._prefsShowLinks] = False
         else:
             self.linksWindow.show()
-            prefs[self.prefsShowLinks] = True
+            prefs[self._prefsShowLinks] = True
 

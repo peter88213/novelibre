@@ -50,7 +50,7 @@ class PlotPointView(BasicView, PlotPointViewCtrl):
         for widget in inputWidgets:
             self.inputWidgets.append(widget)
 
-        self.prefsShowLinks = 'show_pp_links'
+        self._prefsShowLinks = 'show_pp_links'
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""

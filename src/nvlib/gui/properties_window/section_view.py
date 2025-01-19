@@ -123,7 +123,7 @@ class SectionView(BasicView, SectionViewCtrl):
         self.itemCollection.pack(fill='x')
         inputWidgets.extend(self.itemCollection.inputWidgets)
 
-        self.prefsShowLinks = 'show_sc_links'
+        self._prefsShowLinks = 'show_sc_links'
 
         ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 

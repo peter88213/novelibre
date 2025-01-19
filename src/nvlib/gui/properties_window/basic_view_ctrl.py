@@ -135,7 +135,7 @@ class BasicViewCtrl(SubController):
 
         # Links window.
         if hasattr(self.element, 'links'):
-            if prefs[self.prefsShowLinks]:
+            if prefs[self._prefsShowLinks]:
                 self.linksWindow.show()
             else:
                 self.linksWindow.hide()

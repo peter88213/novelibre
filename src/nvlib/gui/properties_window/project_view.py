@@ -420,7 +420,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             widget.bind('<FocusOut>', self.apply_changes)
             self.inputWidgets.append(widget)
 
-        self.prefsShowLinks = 'show_pr_links'
+        self._prefsShowLinks = 'show_pr_links'
 
     def show(self):
         """Display the cover.

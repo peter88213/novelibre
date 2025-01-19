@@ -17,5 +17,5 @@ class ItemView(WorldElementView, ItemViewCtrl):
         Extends the superclass constructor.
         """
         super().__init__(parent, model, view, controller)
-        self.prefsShowLinks = 'show_it_links'
+        self._prefsShowLinks = 'show_it_links'
 
