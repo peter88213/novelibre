@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.11.1
+
+- Refactored the code for better maintainability.
+
+
 ### Version 5.11.0
 
 - Changed the confirmation requests for the "Restore backup" command.

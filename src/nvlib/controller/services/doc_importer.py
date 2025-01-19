@@ -107,7 +107,7 @@ class DocImporter(ServiceBase):
                 # do not overwrite an existing novelibre project with a non-tagged document
                 raise Error(f'{_("File already exists")}: "{norm_path(target.filePath)}".')
 
-            self._check(source, target)
+            self._check_source_file(source)
             source.novel = self._mdl.nvService.new_novel()
             source.read()
             target.novel = source.novel
@@ -121,7 +121,7 @@ class DocImporter(ServiceBase):
             kwargs['suffix'] = source.SUFFIX
             __, target = self.importTargetFactory.new_file_objects(sourcePath, **kwargs)
             self.newFile = None
-            self._check(source, target)
+            self._check_source_file(source)
             target.novel = self._mdl.nvService.new_novel()
             target.read()
             source.novel = target.novel
@@ -145,7 +145,7 @@ class DocImporter(ServiceBase):
                 message = f'{message} - {_("Source document deleted")}.'
             return message
 
-    def _check(self, source, target):
+    def _check_source_file(self, source):
         """Error handling"""
         if source.filePath is None:
             # the source is not correctly initialized
