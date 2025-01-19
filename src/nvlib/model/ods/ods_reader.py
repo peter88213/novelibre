@@ -11,8 +11,6 @@ from abc import ABC, abstractmethod
 from nvlib.model.file.file_export import FileExport
 from nvlib.model.odf.odf_reader import OdfReader
 from nvlib.model.ods.ods_parser import OdsParser
-from nvlib.novx_globals import Error
-from nvlib.nv_locale import _
 
 
 class OdsReader(OdfReader, ABC):
