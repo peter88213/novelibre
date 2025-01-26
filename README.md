@@ -16,7 +16,7 @@ large novels into parts, chapters and sections, all of which are provided with
 additional information called metadata.
 The metadata remain permanently associated with the chapters and sections 
 in the ODT manuscript throughout the work on the novel. 
-*novelibre* makes information about the story world accessible and and relates
+*novelibre* makes information about the story world accessible and relates
 characters, locations, and items to the sections.
 *novelibre* can hold information about plot lines and plot points that are
 assigned to the sections.
