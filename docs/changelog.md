@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.12.0
+
+- Refactored the code for better maintainability, abandoning the mvclib package.
+
+
 ### Version 5.11.2
 
 - Fixed a regression from version 5.9.0 where success messages may not be shown on the status bar after reimporting a document.
