@@ -5,16 +5,7 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 
-from mvclib.controller.sub_controller import SubController
-from nvlib.novx_globals import CHAPTER_PREFIX
-from nvlib.novx_globals import CHARACTER_PREFIX
-from nvlib.novx_globals import CH_ROOT
-from nvlib.novx_globals import ITEM_PREFIX
-from nvlib.novx_globals import LOCATION_PREFIX
-from nvlib.novx_globals import PLOT_LINE_PREFIX
-from nvlib.novx_globals import PLOT_POINT_PREFIX
-from nvlib.novx_globals import PRJ_NOTE_PREFIX
-from nvlib.novx_globals import SECTION_PREFIX
+from nvlib.controller.sub_controller import SubController
 from nvlib.gui.properties_window.chapter_view import ChapterView
 from nvlib.gui.properties_window.character_view import CharacterView
 from nvlib.gui.properties_window.item_view import ItemView
@@ -26,6 +17,15 @@ from nvlib.gui.properties_window.project_note_view import ProjectNoteView
 from nvlib.gui.properties_window.project_view import ProjectView
 from nvlib.gui.properties_window.section_view import SectionView
 from nvlib.gui.properties_window.stage_view import StageView
+from nvlib.novx_globals import CHAPTER_PREFIX
+from nvlib.novx_globals import CHARACTER_PREFIX
+from nvlib.novx_globals import CH_ROOT
+from nvlib.novx_globals import ITEM_PREFIX
+from nvlib.novx_globals import LOCATION_PREFIX
+from nvlib.novx_globals import PLOT_LINE_PREFIX
+from nvlib.novx_globals import PLOT_POINT_PREFIX
+from nvlib.novx_globals import PRJ_NOTE_PREFIX
+from nvlib.novx_globals import SECTION_PREFIX
 
 
 class PropertiesViewerCtrl(SubController):

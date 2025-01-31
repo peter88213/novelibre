@@ -7,8 +7,8 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from datetime import datetime
 import os
 
-from mvclib.controller.sub_controller import SubController
 from nvlib.controller.services.nv_help import NvHelp
+from nvlib.controller.sub_controller import SubController
 from nvlib.model.odf.check_odf import odf_is_locked
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _

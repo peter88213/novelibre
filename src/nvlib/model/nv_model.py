@@ -4,7 +4,6 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from mvclib.model.observable import Observable
 from nvlib.controller.services.nv_service import NvService
 from nvlib.model.data.id_generator import new_id
 from nvlib.model.nv_work_file import NvWorkFile
@@ -26,12 +25,14 @@ from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.nv_locale import _
 
 
-class NvModel(Observable):
+class NvModel:
     """novelibre model representation."""
 
     def __init__(self):
-        """Extends the superclass constructor."""
-        super().__init__()
+        self._observers = []
+        # list of Observer instance references
+        self._isModified = False
+        # internal modification flag
 
         self.tree = None
         # strategy class
@@ -43,6 +44,16 @@ class NvModel(Observable):
         self.wordCount = 0
 
         self.nvService = NvService()
+
+    @property
+    def isModified(self):
+        # Boolean -- True if there are unsaved changes.
+        return self._isModified
+
+    @isModified.setter
+    def isModified(self, setFlag):
+        self._isModified = setFlag
+        self.notify_observers()
 
     def add_new_chapter(self, **kwargs):
         """Create a chapter instance and add it to the novel.
@@ -392,6 +403,11 @@ class NvModel(Observable):
         self.tree.insert(parent, index, scId)
         return scId
 
+    def add_observer(self, client):
+        """Add an Observer instance to the list."""
+        if not client in self._observers:
+            self._observers.append(client)
+
     def close_project(self):
         self._isModified = False
         # writing the public isModified property here would trigger a refresh
@@ -583,6 +599,11 @@ class NvModel(Observable):
                 # Make sure the whole "trash bin" is unused.
                 self.set_type(1, [self.trashBin])
 
+    def delete_observer(self, client):
+        """Remove an Observer instance from the list."""
+        if client in self._observers:
+            self._observers.remove(client)
+
     def get_counts(self):
         """Return a tuple with total numbers:
         
@@ -760,6 +781,14 @@ class NvModel(Observable):
                 self.tree.move(node, targetNode, 0)
             elif self.tree.prev(targetNode):
                 self.tree.move(node, self.tree.prev(targetNode), 'end')
+
+    def notify_observers(self):
+        for client in self._observers:
+            client.refresh()
+
+    def on_element_change(self):
+        """Callback function that reports changes."""
+        self.isModified = True
 
     def open_project(self, filePath):
         """Initialize instance variables.

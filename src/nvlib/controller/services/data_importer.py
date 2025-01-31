@@ -4,7 +4,7 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from mvclib.controller.service_base import ServiceBase
+from nvlib.controller.services.service_base import ServiceBase
 from nvlib.model.data.id_generator import new_id
 from nvlib.model.novx.character_data_reader import CharacterDataReader
 from nvlib.model.novx.item_data_reader import ItemDataReader

@@ -134,12 +134,6 @@ setuplib.main(False)
             'nvlib',
             '../../novelibre/src/'
             )
-        inliner.run(
-            target,
-            target,
-            'mvclib',
-            '../../novelibre/src/'
-            )
 
     def insert_version_number(self, source, version='unknown'):
         """Write the actual version string and make sure that Unix EOL is used."""

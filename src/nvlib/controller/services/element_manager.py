@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import filedialog
 
-from mvclib.controller.service_base import ServiceBase
+from nvlib.controller.services.service_base import ServiceBase
 from nvlib.gui.pop_up.data_import_dialog import DataImportDialog
 from nvlib.gui.widgets.nv_simpledialog import askinteger
 from nvlib.novx_globals import CHAPTER_PREFIX

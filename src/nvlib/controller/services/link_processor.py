@@ -7,7 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 import subprocess
 
-from mvclib.controller.service_base import ServiceBase
+from nvlib.controller.services.service_base import ServiceBase
 from nvlib.model.file.doc_open import open_document
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import HOME_DIR

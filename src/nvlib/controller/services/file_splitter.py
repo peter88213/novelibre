@@ -7,7 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 from tkinter import filedialog
 
-from mvclib.controller.service_base import ServiceBase
+from nvlib.controller.services.service_base import ServiceBase
 from nvlib.model.data.novel import Novel
 from nvlib.model.data.nv_tree import NvTree
 from nvlib.model.nv_work_file import NvWorkFile

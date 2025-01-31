@@ -5,8 +5,8 @@ For further information see https://github.com/peter88213/novelibre
 Published under the MIT License (https://opensource.org/licenses/mit-license.php)
 """
 import tkinter as tk
-from mvclib.widgets.text_box import TextBox
-from mvclib.widgets.my_string_var import MyStringVar
+from nvlib.gui.widgets.text_box import TextBox
+from nvlib.gui.widgets.my_string_var import MyStringVar
 
 
 class IndexCard(tk.Frame):

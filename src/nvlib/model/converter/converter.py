@@ -9,7 +9,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 import sys
 
-from mvclib.view.ui import Ui
+from nvlib.gui.user_interface.ui import Ui
 from nvlib.model.data.novel import Novel
 from nvlib.model.data.nv_tree import NvTree
 from nvlib.model.file.doc_open import open_document

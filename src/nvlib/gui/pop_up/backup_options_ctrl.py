@@ -7,8 +7,8 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 from tkinter import filedialog
 
-from mvclib.controller.sub_controller import SubController
 from nvlib.controller.services.nv_help import NvHelp
+from nvlib.controller.sub_controller import SubController
 from nvlib.model.file.doc_open import open_document
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import HOME_DIR

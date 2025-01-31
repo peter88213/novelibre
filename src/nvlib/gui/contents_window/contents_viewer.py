@@ -6,9 +6,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from mvclib.view.observer import Observer
 from nvlib.gui.contents_window.contents_viewer_ctrl import ContentsViewerCtrl
 from nvlib.gui.contents_window.rich_text_nv import RichTextNv
+from nvlib.gui.observer import Observer
 from nvlib.nv_locale import _
 import tkinter as tk
 

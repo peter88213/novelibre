@@ -4,8 +4,8 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from mvclib.controller.sub_controller import SubController
 from nvlib.controller.services.nv_help import NvHelp
+from nvlib.controller.sub_controller import SubController
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 

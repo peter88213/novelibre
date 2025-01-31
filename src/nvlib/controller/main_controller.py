@@ -6,7 +6,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import sys
 
-from mvclib.controller.controller_base import ControllerBase
 from nvlib.controller.commands import Commands
 from nvlib.controller.plugin.plugin_collection import PluginCollection
 from nvlib.controller.services.clipboard_manager import ClipboardManager
@@ -16,6 +15,7 @@ from nvlib.controller.services.element_manager import ElementManager
 from nvlib.controller.services.file_manager import FileManager
 from nvlib.controller.services.file_splitter import FileSplitter
 from nvlib.controller.services.link_processor import LinkProcessor
+from nvlib.controller.sub_controller import SubController
 from nvlib.gui.main_view import MainView
 from nvlib.model.nv_model import NvModel
 from nvlib.nv_globals import launchers
@@ -25,7 +25,7 @@ from nvlib.nv_locale import _
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 
 
-class MainController(ControllerBase, Commands):
+class MainController(SubController, Commands):
     """Controller for the novelibre application."""
 
     def __init__(self, title, tempDir):
@@ -37,7 +37,9 @@ class MainController(ControllerBase, Commands):
         
         Extends the superclass constructor.
         """
-        super().__init__(title)
+        super().__init__()
+        self._internalLockFlag = False
+        self._clients = []
         self.tempDir = tempDir
 
         #--- Create the model
@@ -75,6 +77,11 @@ class MainController(ControllerBase, Commands):
         self.disable_menu()
         self._ui.tv.reset_view()
 
+    @property
+    def isLocked(self):
+        # Boolean -- True if the project is locked.
+        return self._internalLockFlag
+
     def check_lock(self):
         """If the project is locked, unlock it on demand.
 
@@ -89,6 +96,16 @@ class MainController(ControllerBase, Commands):
         else:
             return False
 
+    def disable_menu(self):
+        """Disable UI widgets, e.g. when no project is open."""
+        for client in self._clients:
+            client.disable_menu()
+
+    def enable_menu(self):
+        """Enable UI widgets, e.g. when a project is opened."""
+        for client in self._clients:
+            client.enable_menu()
+
     def get_launchers(self):
         """Return the global launchers dictionary."""
         return launchers
@@ -97,11 +114,14 @@ class MainController(ControllerBase, Commands):
         """Return the global preferences dictionary."""
         return prefs
 
+    def get_view(self):
+        """Return a reference to the application's main view object."""
+        return self._ui
+
     def lock(self, event=None):
         """Lock the project.
         
         Return True on success, otherwise return False.
-        Extends the superclass method.
         """
         if self._mdl.isModified and not self._internalLockFlag:
             if self._ui.ask_yes_no(_('Save and lock?')):
@@ -109,13 +129,15 @@ class MainController(ControllerBase, Commands):
             else:
                 return False
 
-        if self._mdl.prjFile.filePath is not None:
-            super().lock()
-            self._mdl.prjFile.lock()
-            # make it persistent
-            return True
-        else:
+        if self._mdl.prjFile.filePath is None:
             return False
+
+        self._internalLockFlag = True
+        for client in self._clients:
+            client.lock()
+        self._mdl.prjFile.lock()
+        # make it persistent
+        return True
 
     def on_close(self, doNotSave=False):
         """Close the current project.
@@ -127,7 +149,6 @@ class MainController(ControllerBase, Commands):
         - clear all views
         - reset flags
         - trigger plugins.
-        Extends the superclass method.
         """
         self.update_status()
         self._ui.propertiesView.apply_changes()
@@ -142,7 +163,8 @@ class MainController(ControllerBase, Commands):
                     return False
 
         # Close the sub-controllers.
-        super().on_close()
+        for client in self._clients:
+            client.on_close()
 
         # Close the model.
         self._mdl.close_project()
@@ -168,11 +190,17 @@ class MainController(ControllerBase, Commands):
                 if not self.on_close():
                     return 'break'
 
-            super().on_quit()
+            for client in self._clients:
+                client.on_quit()
         except Exception as ex:
             self._ui.show_error(str(ex), title='ERROR: Unhandled exception on exit')
             self._ui.root.quit()
         return 'break'
+
+    def register_client(self, client):
+        """Add a sub controller instance to the list."""
+        if not client in self._clients:
+            self._clients.append(client)
 
     def refresh(self):
         """Callback function to report model element modifications."""
@@ -183,15 +211,21 @@ class MainController(ControllerBase, Commands):
         
         If the project file was modified from the outside while it was 
         locked in the application, reload it after confirmation.
-        Extends the superclass method.
         """
-        super().unlock()
+        self._internalLockFlag = False
+        for client in self._clients:
+            client.unlock()
         self._mdl.prjFile.unlock()
-        # make it persistent
+        # making it persistent
         if self._mdl.prjFile.has_changed_on_disk():
             if self._ui.ask_yes_no(_('File has changed on disk. Reload?')):
                 self.open_project(filePath=self._mdl.prjFile.filePath)
         return 'break'
+
+    def unregister_client(self, client):
+        """Remove a sub controller instance from the list."""
+        if client in self._clients:
+            self._clients.remove(client)
 
     def update_status(self, statusText=None):
         """Display project statistics at the status bar.

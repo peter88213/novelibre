@@ -4,7 +4,7 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from mvclib.controller.sub_controller import SubController
+from nvlib.controller.sub_controller import SubController
 from nvlib.gui.contents_window.content_view_parser import ContentViewParser
 from nvlib.novx_globals import CH_ROOT
 from nvlib.nv_locale import _

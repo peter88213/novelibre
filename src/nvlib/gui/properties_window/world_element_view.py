@@ -6,9 +6,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from mvclib.widgets.label_entry import LabelEntry
-from mvclib.widgets.my_string_var import MyStringVar
 from nvlib.gui.properties_window.basic_view import BasicView
+from nvlib.gui.widgets.label_entry import LabelEntry
+from nvlib.gui.widgets.my_string_var import MyStringVar
 from nvlib.nv_locale import _
 
 

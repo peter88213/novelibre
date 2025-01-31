@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import messagebox
 
-from mvclib.view.ui import Ui
+from nvlib.gui.user_interface.ui import Ui
 
 
 class UiFacade(Ui):

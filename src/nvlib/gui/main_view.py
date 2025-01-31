@@ -6,18 +6,18 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from mvclib.view.path_bar import PathBar
-from mvclib.view.set_icon_tk import set_icon
-from mvclib.view.view_base import ViewBase
 from nvlib.gui.contents_window.contents_viewer import ContentsViewer
+from nvlib.gui.footers.path_bar import PathBar
 from nvlib.gui.icons import Icons
 from nvlib.gui.main_view_ctrl import MainViewCtrl
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.platform.platform_settings import MOUSE
 from nvlib.gui.platform.platform_settings import PLATFORM
 from nvlib.gui.properties_window.properties_viewer import PropertiesViewer
+from nvlib.gui.set_icon_tk import set_icon
 from nvlib.gui.toolbar.toolbar import Toolbar
 from nvlib.gui.tree_window.tree_viewer import TreeViewer
+from nvlib.gui.view_base import ViewBase
 from nvlib.gui.widgets.nv_simpledialog import SimpleDialog
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _

@@ -4,7 +4,7 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from mvclib.view.ui import Ui
+from nvlib.gui.user_interface.ui import Ui
 from nvlib.nv_locale import _
 
 

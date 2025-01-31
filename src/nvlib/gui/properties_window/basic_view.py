@@ -7,11 +7,11 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from abc import abstractmethod
 from tkinter import ttk
 
-from mvclib.view.observer import Observer
-from mvclib.widgets.folding_frame import FoldingFrame
-from mvclib.widgets.index_card import IndexCard
-from mvclib.widgets.text_box import TextBox
+from nvlib.gui.observer import Observer
 from nvlib.gui.widgets.collection_box import CollectionBox
+from nvlib.gui.widgets.folding_frame import FoldingFrame
+from nvlib.gui.widgets.index_card import IndexCard
+from nvlib.gui.widgets.text_box import TextBox
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 

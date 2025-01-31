@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from mvclib.view.modal_dialog import ModalDialog
+from nvlib.gui.widgets.modal_dialog import ModalDialog
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.pop_up.reimport_ctrl import ReimportCtrl
 from nvlib.model.converter.novx_converter import NovxConverter

@@ -5,7 +5,7 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 
-from mvclib.controller.sub_controller import SubController
+from nvlib.controller.sub_controller import SubController
 
 
 class ToolbarCtrl(SubController):

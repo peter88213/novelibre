@@ -8,7 +8,7 @@ import os
 from shutil import copy2
 from tkinter import filedialog
 
-from mvclib.controller.service_base import ServiceBase
+from nvlib.controller.services.service_base import ServiceBase
 from nvlib.model.exporter.nv_doc_exporter import NvDocExporter
 from nvlib.model.exporter.nv_html_reporter import NvHtmlReporter
 from nvlib.model.file.doc_open import open_document

@@ -6,8 +6,8 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import webbrowser
 
-from mvclib.controller.sub_controller import SubController
 from nvlib.controller.services.nv_help import NvHelp
+from nvlib.controller.sub_controller import SubController
 from nvlib.nv_locale import _
 
 

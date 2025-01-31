@@ -8,7 +8,7 @@ from abc import abstractmethod
 import os
 from tkinter import filedialog
 
-from mvclib.controller.sub_controller import SubController
+from nvlib.controller.sub_controller import SubController
 from nvlib.novx_globals import CH_ROOT
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _

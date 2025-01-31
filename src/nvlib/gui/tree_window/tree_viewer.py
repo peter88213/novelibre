@@ -6,12 +6,12 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from mvclib.view.observer import Observer
-from mvclib.widgets.context_menu import ContextMenu
+from nvlib.gui.observer import Observer
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.platform.platform_settings import MOUSE
 from nvlib.gui.tree_window.history_list import HistoryList
 from nvlib.gui.tree_window.tree_viewer_ctrl import TreeViewerCtrl
+from nvlib.gui.widgets.context_menu import ContextMenu
 from nvlib.model.nv_treeview import NvTreeview
 from nvlib.novx_globals import string_to_list
 from nvlib.nv_globals import prefs

@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
 
-from mvclib.controller.service_base import ServiceBase
+from nvlib.controller.services.service_base import ServiceBase
 from nvlib.model.converter.import_source_factory import ImportSourceFactory
 from nvlib.model.converter.import_target_factory import ImportTargetFactory
 from nvlib.model.converter.new_project_factory import NewProjectFactory

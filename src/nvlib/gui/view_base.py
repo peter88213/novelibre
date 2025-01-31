@@ -7,9 +7,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 from tkinter import ttk
 
-from mvclib.view.observer import Observer
-from mvclib.view.status_bar import StatusBar
-from mvclib.view.ui_facade import UiFacade
+from nvlib.gui.footers.status_bar import StatusBar
+from nvlib.gui.observer import Observer
+from nvlib.gui.user_interface.ui_facade import UiFacade
 import tkinter as tk
 
 

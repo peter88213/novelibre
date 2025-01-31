@@ -9,17 +9,17 @@ from tkinter import filedialog
 from tkinter import messagebox
 from tkinter import ttk
 
-from mvclib.view.ui import Ui
+from nvlib.gui.user_interface.ui import Ui
 from nvlib.model.data.novel import Novel
 from nvlib.model.data.nv_tree import NvTree
 from nvlib.model.novx.novx_file import NovxFile
 from nvlib.novx_globals import Error
-from nvlib.nv_locale import _
 from nvlib.novx_globals import norm_path
+from nvlib.nv_locale import _
 import tkinter as tk
 
 
-class MainTk(Ui):
+class SimpleGui(Ui):
     """A tkinter GUI root class.
 
     Public instance variables: 
