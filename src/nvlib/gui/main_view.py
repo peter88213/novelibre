@@ -8,43 +8,62 @@ from tkinter import ttk
 
 from nvlib.gui.contents_window.contents_viewer import ContentsViewer
 from nvlib.gui.footers.path_bar import PathBar
+from nvlib.gui.footers.status_bar import StatusBar
 from nvlib.gui.icons import Icons
 from nvlib.gui.main_view_ctrl import MainViewCtrl
+from nvlib.gui.observer import Observer
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.platform.platform_settings import MOUSE
 from nvlib.gui.platform.platform_settings import PLATFORM
+from nvlib.gui.pop_up.msg_boxes import MsgBoxes
 from nvlib.gui.properties_window.properties_viewer import PropertiesViewer
 from nvlib.gui.set_icon_tk import set_icon
 from nvlib.gui.toolbar.toolbar import Toolbar
 from nvlib.gui.tree_window.tree_viewer import TreeViewer
-from nvlib.gui.view_base import ViewBase
-from nvlib.gui.widgets.nv_simpledialog import SimpleDialog
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
 
 
-class MainView(ViewBase, MainViewCtrl):
+class MainView(Observer, MsgBoxes, MainViewCtrl):
     """View for the novelibre application."""
     _MIN_WINDOW_WIDTH = 400
     _MIN_WINDOW_HEIGHT = 200
     # minimum size of the application's main window
 
     def __init__(self, model, controller, title):
-        """Extends the superclass constructor."""
-        super().__init__(model, controller, title)
         self.initialize_controller(model, self, controller)
 
         #--- Create the tk root window and set the size.
+        self.root = tk.Tk()
+        self.root.minsize(self._MIN_WINDOW_WIDTH, self._MIN_WINDOW_HEIGHT)
+        self.root.protocol("WM_DELETE_WINDOW", controller.on_quit)
+        self.root.title(title)
+        self.title = title
+
+        model.add_observer(self)
+
+        #---  Add en empty main menu to the root window.
+        self.mainMenu = tk.Menu(self.root)
+        self.root.config(menu=self.mainMenu)
+
+        #--- Create the main window within the root window.
+        self.mainWindow = ttk.Frame()
+        self.mainWindow.pack(expand=True, fill='both')
+
+        #--- Create the status bar below the main window.
+        self._create_status_bar()
+
+        #--- Initialize GUI theme.
+        self.guiStyle = ttk.Style()
         if prefs.get('root_geometry', None):
             self.root.geometry(prefs['root_geometry'])
-        set_icon(self.root, icon='nLogo32')
-        self.root.minsize(self._MIN_WINDOW_WIDTH, self._MIN_WINDOW_HEIGHT)
 
         #--- Create the path bar below the status bar.
         self._create_path_bar()
 
         #--- Initalize icons.
+        set_icon(self.root, icon='nLogo32')
         self.icons = Icons()
 
         #--- Build the GUI frames.
@@ -107,52 +126,6 @@ class MainView(ViewBase, MainViewCtrl):
     @property
     def selectedNodes(self):
         return self._selection
-
-    def ask_delete_all_skip_cancel(self, text, default=0, title=None):
-        """Query delete, all, skip, or cancel with a pop-up box. 
-        
-        Positional arguments:
-            text -- question to be asked in the pop-up box. 
-            
-        Optional arguments:
-            title -- title to be displayed on the window frame.            
-        
-        Return:
-        - 0 for overwrite,
-        - 1 for open existing, 
-        - 2 for cancel. 
-        """
-        return SimpleDialog(
-                    None,
-                    text=text,
-                    buttons=[_('Delete'), _('All'), _('Skip'), _('Cancel')],
-                    default=0,
-                    cancel=3,
-                    title=title
-                    ).go()
-
-    def ask_overwrite_open_cancel(self, text, default=0, title=None):
-        """Query overwrite, open existing, or cancel with a pop-up box. 
-        
-        Positional arguments:
-            text -- question to be asked in the pop-up box. 
-            
-        Optional arguments:
-            title -- title to be displayed on the window frame.            
-        
-        Return:
-        - 0 for overwrite,
-        - 1 for open existing, 
-        - 2 for cancel. 
-        """
-        return SimpleDialog(
-            None,
-            text=text,
-            buttons=[_('Overwrite'), _('Open existing'), _('Cancel')],
-            default=default,
-            cancel=2,
-            title=title
-            ).go()
 
     def detach_properties_frame(self, event=None):
         """View the properties in its own window."""
@@ -226,10 +199,7 @@ class MainView(ViewBase, MainViewCtrl):
         # this event can be used by plugins
 
     def on_quit(self):
-        """Gracefully close the user interface.
-        
-        Extends the superclass method.
-        """
+        """Gracefully close the user interface."""
 
         # Save contents window "show markup" state.
         prefs['show_markup'] = self.contentsView.showMarkup.get()
@@ -238,7 +208,7 @@ class MainView(ViewBase, MainViewCtrl):
         if self._propWinDetached:
             prefs['prop_win_geometry'] = self._propertiesWindow.winfo_geometry()
         prefs['root_geometry'] = self.root.winfo_geometry()
-        super().on_quit()
+        self.root.quit()
 
     def refresh(self):
         """Update view components and path bar.
@@ -247,9 +217,37 @@ class MainView(ViewBase, MainViewCtrl):
         """
         self.set_title()
 
+    def restore_status(self, event=None):
+        """Overwrite error message with the status before."""
+        self.statusBar.restore_status()
+
+    def set_status(self, message, colors=None):
+        """Display a message on the status bar.
+        
+        Positional arguments:
+            message -- message to be displayed. 
+            
+        Optional arguments:
+            colors: tuple -- (background color, foreground color).
+
+        Default status bar color is red if the message starts with "!", 
+        yellow, if the message starts with "#", otherwise green.
+        
+        """
+        if message is not None:
+            self.infoHowText = self.statusBar.show_message(message, colors)
+            # inherited message buffer
+
     def show_path(self, message):
         """Put text on the path bar."""
         self.pathBar.config(text=message)
+
+    def start(self):
+        """Start the Tk main loop.
+        
+        Note: This can not be done in the constructor method.
+        """
+        self.root.mainloop()
 
     def toggle_contents_view(self, event=None):
         """Show/hide the contents viewer text box."""
@@ -281,6 +279,14 @@ class MainView(ViewBase, MainViewCtrl):
         self.root.event_generate('<<RebuildPropertiesView>>')
         # this is for plugins that modify the properties view
         return 'break'
+
+    def update_status(self, statusText=''):
+        """Update the project status information on the status bar.
+        
+        Optional arguments:
+            statusText: str -- Text to be displayed on the status bar.
+        """
+        self.statusBar.update_status(statusText)
 
     def _bind_events(self):
         self.root.bind(KEYS.RESTORE_STATUS[0], self.restore_status)
@@ -491,7 +497,6 @@ class MainView(ViewBase, MainViewCtrl):
         self.helpMenu.add_separator()
 
     def _create_path_bar(self):
-        """Extends the superclass method."""
         self.pathBar = PathBar(self.root, self._mdl, text='', anchor='w', padx=5, pady=3)
         self.pathBar.pack(expand=False, fill='both')
         self._mdl.add_observer(self.pathBar)
@@ -504,8 +509,8 @@ class MainView(ViewBase, MainViewCtrl):
         self.pathBar.COLOR_LOCKED_FG = prefs['color_locked_fg']
 
     def _create_status_bar(self):
-        """Extends the superclass method."""
-        super()._create_status_bar()
+        self.statusBar = StatusBar(self.root, text='', anchor='w', padx=5, pady=2)
+        self.statusBar.pack(expand=False, fill='both')
         self.statusBar.bind(MOUSE.LEFT_CLICK, self.statusBar.restore_status)
         self.statusBar.COLOR_NORMAL_BG = self.mainMenu.cget('background')
         self.statusBar.COLOR_NORMAL_FG = self.mainMenu.cget('foreground')

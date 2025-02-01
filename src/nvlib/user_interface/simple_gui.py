@@ -9,13 +9,13 @@ from tkinter import filedialog
 from tkinter import messagebox
 from tkinter import ttk
 
-from nvlib.gui.user_interface.ui import Ui
 from nvlib.model.data.novel import Novel
 from nvlib.model.data.nv_tree import NvTree
 from nvlib.model.novx.novx_file import NovxFile
 from nvlib.novx_globals import Error
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
+from nvlib.user_interface.ui import Ui
 import tkinter as tk
 
 
