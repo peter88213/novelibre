@@ -9,10 +9,10 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 from shutil import copyfile
 
-from nvlib.model.converter.novx_converter import NovxConverter
-from nvlib.nv_locale import _
 from nvlib.novx_globals import norm_path
+from nvlib.nv_locale import _
 from testlib.helper import read_file
+from testlib.novx_converter import NovxConverter
 
 UPDATE = False
 

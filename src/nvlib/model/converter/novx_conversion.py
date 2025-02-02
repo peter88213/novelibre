@@ -1,11 +1,10 @@
-"""Provide a converter class for novelibre universal import and export.
+"""Provide a mixin class with conversion lists.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.model.converter.converter import Converter
-from nvlib.model.converter.new_project_factory import NewProjectFactory
+from nvlib.model.novx.data_writer import DataWriter
 from nvlib.model.novx.novx_file import NovxFile
 from nvlib.model.ods.ods_r_charlist import OdsRCharList
 from nvlib.model.ods.ods_r_grid import OdsRGrid
@@ -42,21 +41,19 @@ from nvlib.model.odt.odt_w_stages import OdtWStages
 from nvlib.model.odt.odt_w_xref import OdtWXref
 
 
-class NovxConverter(Converter):
-    """A converter for universal import and export.
-
-    Support novelibre projects and most of the File subclasses 
-    that can be read or written by OpenOffice/LibreOffice.
-
-    Overrides the superclass constants EXPORT_SOURCE_CLASSES,
-    EXPORT_TARGET_CLASSES, IMPORT_SOURCE_CLASSES, IMPORT_TARGET_CLASSES.
+class NovxConversion:
+    """A mixin class with conversion lists.
 
     Class constants:
-        CREATE_SOURCE_CLASSES -- list of classes that - additional to HtmlImport
-                        and HtmlOutline - can be exported to a new novelibre project.
+        EXPORT_SOURCE_CLASSES -- list of NovxFile subclasses from which can be exported.
+        EXPORT_TARGET_CLASSES -- list of FileExport subclasses to which export is possible.
+        IMPORT_SOURCE_CLASSES -- list of File subclasses from which can be imported.
+        IMPORT_TARGET_CLASSES -- list of NovxFile subclasses to which import is possible.
+        CREATE_SOURCE_CLASSES -- list of additional classes that can converted to a new novelibre project.
     """
     EXPORT_SOURCE_CLASSES = [NovxFile]
     EXPORT_TARGET_CLASSES = [
+        DataWriter,
         OdsWCharList,
         OdsWGrid,
         OdsWItemList,
@@ -96,10 +93,3 @@ class NovxConverter(Converter):
     IMPORT_TARGET_CLASSES = [NovxFile]
     CREATE_SOURCE_CLASSES = []
 
-    def __init__(self):
-        """Change the newProjectFactory strategy.
-        
-        Extends the superclass constructor.
-        """
-        super().__init__()
-        self.newProjectFactory = NewProjectFactory(self.CREATE_SOURCE_CLASSES)

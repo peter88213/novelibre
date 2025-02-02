@@ -10,50 +10,20 @@ from nvlib.controller.services.service_base import ServiceBase
 from nvlib.model.converter.import_source_factory import ImportSourceFactory
 from nvlib.model.converter.import_target_factory import ImportTargetFactory
 from nvlib.model.converter.new_project_factory import NewProjectFactory
+from nvlib.model.converter.novx_conversion import NovxConversion
 from nvlib.model.novx.novx_file import NovxFile
-from nvlib.model.ods.ods_r_charlist import OdsRCharList
-from nvlib.model.ods.ods_r_grid import OdsRGrid
-from nvlib.model.ods.ods_r_itemlist import OdsRItemList
-from nvlib.model.ods.ods_r_loclist import OdsRLocList
-from nvlib.model.odt.odt_r_chapterdesc import OdtRChapterDesc
-from nvlib.model.odt.odt_r_characters import OdtRCharacters
-from nvlib.model.odt.odt_r_items import OdtRItems
-from nvlib.model.odt.odt_r_locations import OdtRLocations
-from nvlib.model.odt.odt_r_manuscript import OdtRManuscript
-from nvlib.model.odt.odt_r_partdesc import OdtRPartDesc
-from nvlib.model.odt.odt_r_plotlines import OdtRPlotlines
-from nvlib.model.odt.odt_r_proof import OdtRProof
-from nvlib.model.odt.odt_r_sectiondesc import OdtRSectionDesc
-from nvlib.model.odt.odt_r_stages import OdtRStages
 from nvlib.novx_globals import Error
 from nvlib.novx_globals import Notification
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
 
 
-class DocImporter(ServiceBase):
+class DocImporter(ServiceBase, NovxConversion):
     """A converter for universal import.
 
     Support novelibre projects and most of the File subclasses 
     that are written with OpenOffice/LibreOffice Writer or Calc.
     """
-    IMPORT_SOURCE_CLASSES = [
-        OdsRCharList,
-        OdsRGrid,
-        OdsRItemList,
-        OdsRLocList,
-        OdtRChapterDesc,
-        OdtRCharacters,
-        OdtRItems,
-        OdtRLocations,
-        OdtRManuscript,
-        OdtRPartDesc,
-        OdtRPlotlines,
-        OdtRProof,
-        OdtRSectionDesc,
-        OdtRStages,
-        ]
-    CREATE_SOURCE_CLASSES = []
 
     def __init__(self, model, view, controller):
         """Set up the Factory strategies."""

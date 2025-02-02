@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.12.2\n"
-"POT-Creation-Date: 2025-02-02 09:07:48\n"
-"PO-Revision-Date: 2025-02-02 09:07:48\n"
+"Project-Id-Version: 5.12.3\n"
+"POT-Creation-Date: 2025-02-02 13:36:14\n"
+"PO-Revision-Date: 2025-02-02 13:36:14\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -343,9 +343,6 @@ msgstr "Ländercode"
 msgid "Create a new project and move the selected chapters there?"
 msgstr "Ein neues Projekt erstellen und die ausgewählten Kapitel dorthin verschieben?"
 
-msgid "Create a novelibre project file from {0}\nNew project: \"{1}\""
-msgstr "Erzeuge eine novelibre-Projektdatei aus {0}\nNeues Projekt: \"{1}\""
-
 msgid "Create backup copies"
 msgstr "Sicherungskopien erzeugen"
 
@@ -637,9 +634,6 @@ msgstr "Bedeutung"
 msgid "Input rejected"
 msgstr "Eingabe abgelehnt"
 
-msgid "Input: {0} \"{1}\"\nOutput: {2} \"{3}\""
-msgstr "Quelle: {0} \"{1}\"\nZiel: {2} \"{3}\""
-
 msgid "Insert Stage"
 msgstr "Stadium einfügen"
 
@@ -903,9 +897,6 @@ msgstr "Gliederung"
 
 msgid "Overwrite"
 msgstr "Überschreiben"
-
-msgid "Overwrite existing file \"{}\"?"
-msgstr "Bestehende Datei \"{}\" überschreiben?"
 
 msgid "Part"
 msgstr "Teil"

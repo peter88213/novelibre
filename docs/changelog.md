@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.12.3
+
+- Refactored the code for better maintainability, replacing NovxConverter by the NovxConversion mixin.
+
+
 ### Version 5.12.2
 
 - Refactored the code for better maintainability, simplifying the class hierarchy of the converter.

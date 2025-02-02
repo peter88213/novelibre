@@ -9,9 +9,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 from shutil import copyfile
 
-from nvlib.model.converter.novx_converter import NovxConverter
 from testlib.export_test import ExportTest
 from testlib.helper import read_file
+from testlib.novx_converter import NovxConverter
 
 UPDATE = False
 

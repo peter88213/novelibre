@@ -5,7 +5,6 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
-from shutil import copy2
 import webbrowser
 
 from nvlib.controller.services.nv_help import NvHelp
@@ -14,7 +13,7 @@ from nvlib.gui.pop_up.export_options_dialog import ExportOptionsDialog
 from nvlib.gui.pop_up.plugin_manager_dialog import PluginManagerDialog
 from nvlib.gui.pop_up.reimport_dialog import ReimportDialog
 from nvlib.gui.pop_up.view_options_dialog import ViewOptionsDialog
-from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX, ELEMENT_NOTES_SUFFIX
+from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from nvlib.novx_globals import CHAPTERS_SUFFIX
 from nvlib.novx_globals import CHARACTERS_SUFFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
@@ -22,7 +21,6 @@ from nvlib.novx_globals import CHARACTER_REPORT_SUFFIX
 from nvlib.novx_globals import CHARLIST_SUFFIX
 from nvlib.novx_globals import DATA_SUFFIX
 from nvlib.novx_globals import GRID_SUFFIX
-from nvlib.novx_globals import ELEMENT_NOTES_SUFFIX
 from nvlib.novx_globals import ITEMLIST_SUFFIX
 from nvlib.novx_globals import ITEMS_SUFFIX
 from nvlib.novx_globals import ITEM_PREFIX
@@ -43,8 +41,6 @@ from nvlib.novx_globals import SECTIONS_SUFFIX
 from nvlib.novx_globals import STAGES_SUFFIX
 from nvlib.novx_globals import XREF_SUFFIX
 from nvlib.nv_globals import HOME_URL
-from nvlib.nv_globals import INSTALL_DIR
-from nvlib.nv_locale import _
 
 
 class Commands:

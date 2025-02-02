@@ -8,58 +8,17 @@ from datetime import datetime
 import os
 
 from nvlib.model.converter.export_target_factory import ExportTargetFactory
+from nvlib.model.converter.novx_conversion import NovxConversion
 from nvlib.model.exporter.filter_factory import FilterFactory
 from nvlib.model.file.doc_open import open_document
-from nvlib.model.novx.data_writer import DataWriter
-from nvlib.model.ods.ods_w_charlist import OdsWCharList
-from nvlib.model.ods.ods_w_grid import OdsWGrid
-from nvlib.model.ods.ods_w_itemlist import OdsWItemList
-from nvlib.model.ods.ods_w_loclist import OdsWLocList
-from nvlib.model.ods.ods_w_plot_list import OdsWPlotList
-from nvlib.model.ods.ods_w_sectionlist import OdsWSectionList
-from nvlib.model.odt.odt_w_brief_synopsis import OdtWBriefSynopsis
-from nvlib.model.odt.odt_w_chapterdesc import OdtWChapterDesc
-from nvlib.model.odt.odt_w_characters import OdtWCharacters
-from nvlib.model.odt.odt_w_export import OdtWExport
-from nvlib.model.odt.odt_w_items import OdtWItems
-from nvlib.model.odt.odt_w_locations import OdtWLocations
-from nvlib.model.odt.odt_w_manuscript import OdtWManuscript
-from nvlib.model.odt.odt_w_partdesc import OdtWPartDesc
-from nvlib.model.odt.odt_w_plotlines import OdtWPlotlines
-from nvlib.model.odt.odt_w_proof import OdtWProof
-from nvlib.model.odt.odt_w_sectiondesc import OdtWSectionDesc
-from nvlib.model.odt.odt_w_stages import OdtWStages
-from nvlib.model.odt.odt_w_xref import OdtWXref
 from nvlib.novx_globals import Notification
-from nvlib.nv_locale import _
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import prefs
+from nvlib.nv_locale import _
 
 
-class NvDocExporter:
+class NvDocExporter(NovxConversion):
     """Converter class for document export."""
-    EXPORT_TARGET_CLASSES = [
-        DataWriter,
-        OdsWCharList,
-        OdsWGrid,
-        OdsWItemList,
-        OdsWLocList,
-        OdsWPlotList,
-        OdsWSectionList,
-        OdtWBriefSynopsis,
-        OdtWChapterDesc,
-        OdtWCharacters,
-        OdtWExport,
-        OdtWItems,
-        OdtWLocations,
-        OdtWManuscript,
-        OdtWPartDesc,
-        OdtWPlotlines,
-        OdtWProof,
-        OdtWSectionDesc,
-        OdtWStages,
-        OdtWXref,
-        ]
 
     def __init__(self, ui):
         """Create strategy class instances."""
