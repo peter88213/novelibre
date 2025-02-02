@@ -4,7 +4,7 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.model.converter.converter_ff import ConverterFf
+from nvlib.model.converter.converter import Converter
 from nvlib.model.converter.new_project_factory import NewProjectFactory
 from nvlib.model.novx.novx_file import NovxFile
 from nvlib.model.ods.ods_r_charlist import OdsRCharList
@@ -42,7 +42,7 @@ from nvlib.model.odt.odt_w_stages import OdtWStages
 from nvlib.model.odt.odt_w_xref import OdtWXref
 
 
-class NovxConverter(ConverterFf):
+class NovxConverter(Converter):
     """A converter for universal import and export.
 
     Support novelibre projects and most of the File subclasses 

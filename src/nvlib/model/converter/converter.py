@@ -1,17 +1,17 @@
-"""Provide a base class for Novel file conversion with user interface.
-
-All converters with a user interface inherit from this class. 
+"""Provide a class for Novel file conversion.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
-import sys
 
+from nvlib.model.converter.export_source_factory import ExportSourceFactory
+from nvlib.model.converter.export_target_factory import ExportTargetFactory
+from nvlib.model.converter.import_source_factory import ImportSourceFactory
+from nvlib.model.converter.import_target_factory import ImportTargetFactory
 from nvlib.model.data.novel import Novel
 from nvlib.model.data.nv_tree import NvTree
-from nvlib.model.file.doc_open import open_document
 from nvlib.novx_globals import Error
 from nvlib.novx_globals import Notification
 from nvlib.novx_globals import norm_path
@@ -20,151 +20,90 @@ from nvlib.user_interface.ui import Ui
 
 
 class Converter:
-    """Base class for Novel file conversion with user interface.
+    """Class for Novel file conversion using factory methods to create target and source classes.
+
+    Class constants:
+        EXPORT_SOURCE_CLASSES -- list of NovxFile subclasses from which can be exported.
+        EXPORT_TARGET_CLASSES -- list of FileExport subclasses to which export is possible.
+        IMPORT_SOURCE_CLASSES -- list of File subclasses from which can be imported.
+        IMPORT_TARGET_CLASSES -- list of NovxFile subclasses to which import is possible.
+
+    All lists are empty and meant to be overridden by subclasses.
 
     Instance variables:
-        ui -- Ui (can be overridden e.g. by subclasses).
-        newFile: str -- path to the target file in case of success.   
+        exportSourceFactory: ExportSourceFactory.
+        exportTargetFactory: ExportTargetFactory.
+        importSourceFactory: ImportSourceFactory.
+        importTargetFactory: ImportTargetFactory.
+        newProjectFactory: FileFactory (to be overridden by subclasses).
     """
+    EXPORT_SOURCE_CLASSES = []
+    EXPORT_TARGET_CLASSES = []
+    IMPORT_SOURCE_CLASSES = []
+    IMPORT_TARGET_CLASSES = []
 
     def __init__(self):
+        """Create strategy class instances."""
         """Define instance variables."""
         self.ui = Ui('')
         # Per default, 'silent mode' is active.
         self.newFile = None
         # Also indicates successful conversion.
+        self.exportSourceFactory = ExportSourceFactory(self.EXPORT_SOURCE_CLASSES)
+        self.exportTargetFactory = ExportTargetFactory(self.EXPORT_TARGET_CLASSES)
+        self.importSourceFactory = ImportSourceFactory(self.IMPORT_SOURCE_CLASSES)
+        self.importTargetFactory = ImportTargetFactory(self.IMPORT_TARGET_CLASSES)
+        self.newProjectFactory = None
 
-    def export_from_novx(self, source, target):
-        """Convert from novelibre project to other file format.
+    def run(self, sourcePath, **kwargs):
+        """Create source and target objects and run conversion.
 
-        Positional arguments:
-            source -- NovxFile subclass instance.
-            target -- Any Novel subclass instance.
+        Positional arguments: 
+            sourcePath: str -- the source file path.
+        
+        Required keyword arguments: 
+            suffix: str -- target file name suffix.
 
-        Operation:
-        1. Send specific information about the conversion to the UI.
-        2. Convert source into target.
-        3. Pass the message to the UI.
-        4. Save the new file pathname.
-
-        Error handling:
-        - If the conversion fails, newFile is set to None.
+        This is a template method that calls superclass methods as primitive operations by case.
         """
-        self.ui.set_info(
-            _('Input: {0} "{1}"\nOutput: {2} "{3}"').format(source.DESCRIPTION, norm_path(source.filePath), target.DESCRIPTION, norm_path(target.filePath)))
-        message = ''
-        try:
-            self.check(source, target)
-            source.novel = Novel(tree=NvTree())
-            source.read()
-            target.novel = source.novel
-            target.write()
-        except Error as ex:
-            message = f'!{str(ex)}'
-            self.newFile = None
-        else:
-            message = f'{_("File written")}: "{norm_path(target.filePath)}".'
-            self.newFile = target.filePath
-        finally:
-            self.ui.set_status(message)
-
-    def create_novx(self, source, target):
-        """Create target from source.
-
-        Positional arguments:
-            source -- Any Novel subclass instance.
-            target -- NovxFile subclass instance.
-
-        Operation:
-        1. Send specific information about the conversion to the UI.
-        2. Convert source into target.
-        3. Pass the message to the UI.
-        4. Save the new file pathname.
-
-        Error handling:
-        - Tf target already exists as a file, the conversion is cancelled,
-          an error message is sent to the UI.
-        - If the conversion fails, newFile is set to None.
-        """
-        self.ui.set_info(
-            _('Create a novelibre project file from {0}\nNew project: "{1}"').format(source.DESCRIPTION, norm_path(target.filePath)))
-        if os.path.isfile(target.filePath):
-            self.ui.set_status(f'!{_("File already exists")}: "{norm_path(target.filePath)}".')
-        else:
-            message = ''
-            try:
-                self.check(source, target)
-                source.novel = Novel(tree=NvTree())
-                source.novel.check_locale()
-                source.read()
-                target.novel = source.novel
-                target.write()
-            except Error as ex:
-                message = f'!{str(ex)}'
-                self.newFile = None
-            else:
-                message = f'{_("File written")}: "{norm_path(target.filePath)}".'
-                self.newFile = target.filePath
-            finally:
-                self.ui.set_status(message)
-
-    def import_to_novx(self, source, target):
-        """Convert from any file format to novelibre project.
-
-        Positional arguments:
-            source -- Any Novel subclass instance.
-            target -- NovxFile subclass instance.
-
-        Operation:
-        1. Send specific information about the conversion to the UI.
-        2. Convert source into target.
-        3. Pass the message to the UI.
-        4. Delete the temporay file, if exists.
-        5. Save the new file pathname.
-        6. If sections are split during conversion, discard the source document.
-
-        Error handling:
-        - If the conversion fails, newFile is set to None.
-        """
-        self.ui.set_info(
-            _('Input: {0} "{1}"\nOutput: {2} "{3}"').format(source.DESCRIPTION, norm_path(source.filePath), target.DESCRIPTION, norm_path(target.filePath)))
         self.newFile = None
-        message = ''
+        if not os.path.isfile(sourcePath):
+            self.ui.set_status(f'!{_("File not found")}: "{norm_path(sourcePath)}".')
+            return
+
         try:
-            self.check(source, target)
-            target.novel = Novel(tree=NvTree())
-            target.read()
-            source.novel = target.novel
-            source.read()
-            target.novel = source.novel
-            target.write()
-        except Error as ex:
-            message = f'!{str(ex)}'
+            source, __ = self.exportSourceFactory.new_file_objects(sourcePath, **kwargs)
+        except Error:
+            # The source file is not a novelibre project.
+            try:
+                source, __ = self.importSourceFactory.new_file_objects(sourcePath, **kwargs)
+            except Error:
+                # A new novelibre project might be required.
+                try:
+                    source, target = self.newProjectFactory.new_file_objects(sourcePath, **kwargs)
+                except Error as ex:
+                    self.ui.set_status(f'!{str(ex)}')
+                else:
+                    self._create_novx(source, target)
+            else:
+                # Try to update an existing novelibre project.
+                kwargs['suffix'] = source.SUFFIX
+                try:
+                    __, target = self.importTargetFactory.new_file_objects(sourcePath, **kwargs)
+                except Error as ex:
+                    self.ui.set_status(f'!{str(ex)}')
+                else:
+                    self._import_to_novx(source, target)
         else:
-            message = f'{_("File written")}: "{norm_path(target.filePath)}".'
-            self.newFile = target.filePath
-            if source.sectionsSplit:
-                os.replace(source.filePath, f'{source.filePath}.bak')
-                message = f'{message} - {_("Source document deleted")}.'
-        finally:
-            self.ui.set_status(f'{message}')
+            # The source file is a novelibre project.
+            try:
+                __, target = self.exportTargetFactory.new_file_objects(sourcePath, **kwargs)
+            except Error as ex:
+                self.ui.set_status(f'!{str(ex)}')
+            else:
+                self._export_from_novx(source, target)
 
-    def _confirm_overwrite(self, filePath):
-        """Return boolean permission to overwrite the target file.
-        
-        Positional arguments:
-            fileName -- path to the target file.
-        
-        Overrides the superclass method.
-        """
-        return self.ui.ask_yes_no(_('Overwrite existing file "{}"?').format(norm_path(filePath)))
-
-    def _open_newFile(self):
-        """Open the converted file for editing and exit the converter script."""
-        open_document(self.newFile)
-        sys.exit(0)
-
-    def check(self, source, target):
+    def _check(self, source, target):
         """Error handling:
         
         - Check if source and target are correctly initialized.
@@ -189,4 +128,129 @@ class Converter:
 
         if os.path.isfile(target.filePath) and not self._confirm_overwrite(target.filePath):
             raise Notification(f'{_("Action canceled by user")}.')
+
+    def _confirm_overwrite(self, filePath):
+        """Return boolean permission to overwrite the target file.
+        
+        Positional arguments:
+            fileName -- path to the target file.
+        
+        Overrides the superclass method.
+        """
+        return self.ui.ask_yes_no(_('Overwrite existing file "{}"?').format(norm_path(filePath)))
+
+    def _create_novx(self, source, target):
+        """Create target from source.
+
+        Positional arguments:
+            source -- Any Novel subclass instance.
+            target -- NovxFile subclass instance.
+
+        Operation:
+        1. Send specific information about the conversion to the UI.
+        2. Convert source into target.
+        3. Pass the message to the UI.
+        4. Save the new file pathname.
+
+        Error handling:
+        - Tf target already exists as a file, the conversion is cancelled,
+          an error message is sent to the UI.
+        - If the conversion fails, newFile is set to None.
+        """
+        self.ui.set_info(
+            _('Create a novelibre project file from {0}\nNew project: "{1}"').format(source.DESCRIPTION, norm_path(target.filePath)))
+        if os.path.isfile(target.filePath):
+            self.ui.set_status(f'!{_("File already exists")}: "{norm_path(target.filePath)}".')
+        else:
+            message = ''
+            try:
+                self._check(source, target)
+                source.novel = Novel(tree=NvTree())
+                source.novel.check_locale()
+                source.read()
+                target.novel = source.novel
+                target.write()
+            except Error as ex:
+                message = f'!{str(ex)}'
+                self.newFile = None
+            else:
+                message = f'{_("File written")}: "{norm_path(target.filePath)}".'
+                self.newFile = target.filePath
+            finally:
+                self.ui.set_status(message)
+
+    def _export_from_novx(self, source, target):
+        """Convert from novelibre project to other file format.
+
+        Positional arguments:
+            source -- NovxFile subclass instance.
+            target -- Any Novel subclass instance.
+
+        Operation:
+        1. Send specific information about the conversion to the UI.
+        2. Convert source into target.
+        3. Pass the message to the UI.
+        4. Save the new file pathname.
+
+        Error handling:
+        - If the conversion fails, newFile is set to None.
+        """
+        self.ui.set_info(
+            _('Input: {0} "{1}"\nOutput: {2} "{3}"').format(source.DESCRIPTION, norm_path(source.filePath), target.DESCRIPTION, norm_path(target.filePath)))
+        message = ''
+        try:
+            self._check(source, target)
+            source.novel = Novel(tree=NvTree())
+            source.read()
+            target.novel = source.novel
+            target.write()
+        except Error as ex:
+            message = f'!{str(ex)}'
+            self.newFile = None
+        else:
+            message = f'{_("File written")}: "{norm_path(target.filePath)}".'
+            self.newFile = target.filePath
+        finally:
+            self.ui.set_status(message)
+
+    def _import_to_novx(self, source, target):
+        """Convert from any file format to novelibre project.
+
+        Positional arguments:
+            source -- Any Novel subclass instance.
+            target -- NovxFile subclass instance.
+
+        Operation:
+        1. Send specific information about the conversion to the UI.
+        2. Convert source into target.
+        3. Pass the message to the UI.
+        4. Delete the temporay file, if exists.
+        5. Save the new file pathname.
+        6. If sections are split during conversion, discard the source document.
+
+        Error handling:
+        - If the conversion fails, newFile is set to None.
+        """
+        self.ui.set_info(
+            _('Input: {0} "{1}"\nOutput: {2} "{3}"').format(source.DESCRIPTION, norm_path(source.filePath), target.DESCRIPTION, norm_path(target.filePath)))
+        self.newFile = None
+        message = ''
+        try:
+            self._check(source, target)
+            target.novel = Novel(tree=NvTree())
+            target.read()
+            source.novel = target.novel
+            source.read()
+            target.novel = source.novel
+            target.write()
+        except Error as ex:
+            message = f'!{str(ex)}'
+        else:
+            message = f'{_("File written")}: "{norm_path(target.filePath)}".'
+            self.newFile = target.filePath
+            if source.sectionsSplit:
+                os.replace(source.filePath, f'{source.filePath}.bak')
+                message = f'{message} - {_("Source document deleted")}.'
+        finally:
+            self.ui.set_status(f'{message}')
 
