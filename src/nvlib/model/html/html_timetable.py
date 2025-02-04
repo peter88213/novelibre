@@ -90,6 +90,9 @@ class HtmlTimetable(HtmlReport):
         return f'<td {attr}>{self._convert_from_novx(text)}</td>'
 
     def get_timestamp(self, section, referenceDate):
+        if not section.time and not section.date and not section.day:
+            return
+
         timeStr = section.time
         if not timeStr:
             timeStr = '00:00'

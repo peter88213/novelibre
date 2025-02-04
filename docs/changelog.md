@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.13.1
+### Version 5.13.2
 
 - Exporting a section time table (#50)
 
