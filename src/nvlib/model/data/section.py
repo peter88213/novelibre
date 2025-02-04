@@ -554,40 +554,54 @@ class Section(BasicElementTags):
 
     def get_end_date_time(self):
         """Return the end (date, time, day) tuple calculated from start and duration."""
+
+        def get_duration():
+            # Return the section's duration in timedelta format.
+            if self.lastsDays:
+                lastsDays = int(self.lastsDays)
+            else:
+                lastsDays = 0
+            if self.lastsHours:
+                lastsSeconds = int(self.lastsHours) * 3600
+            else:
+                lastsSeconds = 0
+            if self.lastsMinutes:
+                lastsSeconds += int(self.lastsMinutes) * 60
+            return timedelta(days=lastsDays, seconds=lastsSeconds)
+
+        def get_end_date_time(sectionDuration):
+            # Return a tuple: (endDate, endTime) if date and time are given.
+            # sectionDuration is in timedelta format.
+            sectionStart = datetime.fromisoformat(f'{self.date} {self.time}')
+            sectionEnd = sectionStart + sectionDuration
+            return sectionEnd.isoformat().split('T')
+
+        def get_end_day_time(sectionDuration):
+            # Return a tuple: (endDay, endTime) if day and time are given.
+            # sectionDuration is in timedelta format.
+            if self.day:
+                dayInt = int(self.day)
+            else:
+                dayInt = 0
+            virtualStartDate = (date.min + timedelta(days=dayInt)).isoformat()
+            virtualSectionStart = datetime.fromisoformat(f'{virtualStartDate} {self.time}')
+            virtualSectionEnd = virtualSectionStart + sectionDuration
+            virtualEndDate, endTime = virtualSectionEnd.isoformat().split('T')
+            endDay = str((date.fromisoformat(virtualEndDate) - date.min).days)
+            return (endDay, endTime)
+
         endDate = None
         endTime = None
         endDay = None
-        if self.lastsDays:
-            lastsDays = int(self.lastsDays)
-        else:
-            lastsDays = 0
-        if self.lastsHours:
-            lastsSeconds = int(self.lastsHours) * 3600
-        else:
-            lastsSeconds = 0
-        if self.lastsMinutes:
-            lastsSeconds += int(self.lastsMinutes) * 60
-        sectionDuration = timedelta(days=lastsDays, seconds=lastsSeconds)
         if self.time:
             if self.date:
                 try:
-                    sectionStart = datetime.fromisoformat(f'{self.date} {self.time}')
-                    sectionEnd = sectionStart + sectionDuration
-                    endDate, endTime = sectionEnd.isoformat().split('T')
+                    endDate, endTime = get_end_date_time(get_duration())
                 except:
                     pass
             else:
                 try:
-                    if self.day:
-                        dayInt = int(self.day)
-                    else:
-                        dayInt = 0
-                    startDate = (date.min + timedelta(days=dayInt)).isoformat()
-                    sectionStart = datetime.fromisoformat(f'{startDate} {self.time}')
-                    sectionEnd = sectionStart + sectionDuration
-                    endDate, endTime = sectionEnd.isoformat().split('T')
-                    endDay = str((date.fromisoformat(endDate) - date.min).days)
-                    endDate = None
+                    endDay, endTime = get_end_day_time(get_duration())
                 except:
                     pass
         return endDate, endTime, endDay

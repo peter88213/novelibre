@@ -340,23 +340,23 @@ class SectionViewCtrl(BasicViewCtrl):
 
     def change_day(self, event=None):
         # 'Day' entry. If valid, clear the start date.
-            dayStr = self.startDayVar.get()
-            if dayStr or self.element.day:
-                if dayStr != self.element.day:
-                    if not dayStr:
-                        self.element.day = None
+        dayStr = self.startDayVar.get()
+        if dayStr or self.element.day:
+            if dayStr != self.element.day:
+                if not dayStr:
+                    self.element.day = None
+                else:
+                    try:
+                        int(dayStr)
+                    except ValueError:
+                        self.startDayVar.set(self.element.day)
+                        self._ui.show_error(
+                            f'{_("Wrong entry: number required")}.',
+                            title=_('Input rejected')
+                            )
                     else:
-                        try:
-                            int(dayStr)
-                        except ValueError:
-                            self.startDayVar.set(self.element.day)
-                            self._ui.show_error(
-                                f'{_("Wrong entry: number required")}.',
-                                title=_('Input rejected')
-                                )
-                        else:
-                            self.element.day = dayStr
-                            self.element.date = None
+                        self.element.day = dayStr
+                        self.element.date = None
 
     def clear_duration(self):
         """Remove duration data from the section."""
