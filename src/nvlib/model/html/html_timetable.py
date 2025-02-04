@@ -14,7 +14,7 @@ from nvlib.novx_globals import TIMETABLE_SUFFIX
 from nvlib.nv_locale import _
 
 
-class HtmlTt(HtmlReport):
+class HtmlTimetable(HtmlReport):
     """html time table representation."""
     DESCRIPTION = _('HTML Time table')
     SUFFIX = TIMETABLE_SUFFIX
@@ -37,9 +37,9 @@ class HtmlTt(HtmlReport):
         htmlText.append('<tr class="heading">')
         htmlText.append(self._new_cell(_('Date')))
         htmlText.append(self._new_cell(_('Time')))
-        htmlText.append(self._new_cell(_('Duration')))
         htmlText.append(self._new_cell(_('Section')))
         htmlText.append(self._new_cell(_('Description')))
+        htmlText.append(self._new_cell(_('Duration')))
         htmlText.append('</tr>')
 
         # Section rows.
@@ -77,9 +77,9 @@ class HtmlTt(HtmlReport):
                     dateDayStr = ''
                 htmlText.append(self._new_cell(dateDayStr))
                 htmlText.append(self._new_cell(self.get_time_str(scId)))
-                htmlText.append(self._new_cell(self.get_duration_str(scId)))
                 htmlText.append(self._new_cell(self.novel.sections[scId].title))
                 htmlText.append(self._new_cell(self.novel.sections[scId].desc))
+                htmlText.append(self._new_cell(self.get_duration_str(scId)))
                 htmlText.append(f'</tr>')
         htmlText.append(self._fileFooter)
         with open(self.filePath, 'w', encoding='utf-8') as f:
