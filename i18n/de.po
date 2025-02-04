@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.12.3\n"
-"POT-Creation-Date: 2025-02-02 13:36:14\n"
-"PO-Revision-Date: 2025-02-02 13:36:14\n"
+"Project-Id-Version: 5.13.0\n"
+"POT-Creation-Date: 2025-02-04 22:46:05\n"
+"PO-Revision-Date: 2025-02-04 22:46:05\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -592,6 +592,9 @@ msgstr "Ziele"
 msgid "HTML Plot list"
 msgstr "HTML-Plotliste"
 
+msgid "HTML Time table"
+msgstr "HTML Zeittafel"
+
 msgid "Heading 3 invisible"
 msgstr "Überschrift 3 unsichtbar"
 
@@ -1147,6 +1150,9 @@ msgstr "Plot-Liste anzeigen"
 msgid "Show Project notes"
 msgstr "Projektnotizen anzeigen"
 
+msgid "Show Time table"
+msgstr "Zeittafel anzeigen"
+
 msgid "Show ages"
 msgstr "Alter anzeigen"
 
@@ -1242,6 +1248,9 @@ msgstr "Die zuletzt gespeicherte Projektdatei wird mit der \".bak\"-Datei übers
 
 msgid "Time"
 msgstr "Zeit"
+
+msgid "Time table"
+msgstr "Zeittafel"
 
 msgid "Title"
 msgstr "Titel"

@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.12.3\n"
-"POT-Creation-Date: 2025-02-02 13:36:14\n"
+"Project-Id-Version: 5.13.0\n"
+"POT-Creation-Date: 2025-02-04 22:46:05\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -599,6 +599,9 @@ msgstr ""
 msgid "HTML Plot list"
 msgstr ""
 
+msgid "HTML Time table"
+msgstr ""
+
 msgid "Heading 3 invisible"
 msgstr ""
 
@@ -1154,6 +1157,9 @@ msgstr ""
 msgid "Show Project notes"
 msgstr ""
 
+msgid "Show Time table"
+msgstr ""
+
 msgid "Show ages"
 msgstr ""
 
@@ -1248,6 +1254,9 @@ msgid "This will overwrite the last saved project file with the \".bak\" file"
 msgstr ""
 
 msgid "Time"
+msgstr ""
+
+msgid "Time table"
 msgstr ""
 
 msgid "Title"

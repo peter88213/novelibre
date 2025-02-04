@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.13.0
+
+- Exporting a section time table (#50)
+
+
 ### Version 5.12.3
 
 - Refactored the code for better maintainability, replacing NovxConverter by the NovxConversion mixin.

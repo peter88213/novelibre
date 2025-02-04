@@ -20,6 +20,7 @@ from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CHARACTER_REPORT_SUFFIX
 from nvlib.novx_globals import CHARLIST_SUFFIX
 from nvlib.novx_globals import DATA_SUFFIX
+from nvlib.novx_globals import ELEMENT_NOTES_SUFFIX
 from nvlib.novx_globals import GRID_SUFFIX
 from nvlib.novx_globals import ITEMLIST_SUFFIX
 from nvlib.novx_globals import ITEMS_SUFFIX
@@ -39,6 +40,7 @@ from nvlib.novx_globals import PROOF_SUFFIX
 from nvlib.novx_globals import SECTIONLIST_SUFFIX
 from nvlib.novx_globals import SECTIONS_SUFFIX
 from nvlib.novx_globals import STAGES_SUFFIX
+from nvlib.novx_globals import TIMETABLE_SUFFIX
 from nvlib.novx_globals import XREF_SUFFIX
 from nvlib.nv_globals import HOME_URL
 
@@ -534,6 +536,9 @@ class Commands:
 
     def show_projectnotes_list(self, event=None):
         self.fileManager.show_report(PROJECTNOTES_SUFFIX)
+
+    def show_timetable(self, event=None):
+        self.fileManager.show_report(TIMETABLE_SUFFIX)
 
     def split_file(self, event=None):
         if not self.check_lock():

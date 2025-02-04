@@ -398,6 +398,7 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
         self.sectionMenu.add_separator()
         self.sectionMenu.add_command(label=_('Export section descriptions for editing'), command=self._ctrl.export_section_desc)
         self.sectionMenu.add_command(label=_('Section list (export only)'), command=self._ctrl.export_section_list)
+        self.sectionMenu.add_command(label=_('Show Time table'), command=self._ctrl.show_timetable)
 
         # Character
         self.characterMenu = tk.Menu(self.mainMenu, tearoff=0)

@@ -12,6 +12,7 @@ from nvlib.model.html.html_characters import HtmlCharacters
 from nvlib.model.html.html_items import HtmlItems
 from nvlib.model.html.html_locations import HtmlLocations
 from nvlib.model.html.html_plot_list import HtmlPlotList
+from nvlib.model.html.html_tt import HtmlTt
 from nvlib.model.html.html_project_notes import HtmlProjectNotes
 from nvlib.model.html.html_element_notes import HtmlElementNotes
 
@@ -30,6 +31,7 @@ class NvHtmlReporter:
         HtmlItems,
         HtmlPlotList,
         HtmlProjectNotes,
+        HtmlTt,
         ]
 
     def __init__(self):

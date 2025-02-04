@@ -51,6 +51,7 @@ PROOF_SUFFIX = '_proof_tmp'
 SECTIONLIST_SUFFIX = '_sectionlist'
 SECTIONS_SUFFIX = '_sections_tmp'
 STAGES_SUFFIX = '_structure_tmp'
+TIMETABLE_SUFFIX = '_tt_tmp'
 XREF_SUFFIX = '_xref'
 
 
