@@ -36,7 +36,7 @@ class HtmlTimetable(HtmlReport):
 
         # Build the HTML table.
         htmlText = [self._fileHeader]
-        htmlText.append(f'''<title>{self.novel.title}</title>
+        htmlText.append(f'''<title>{_('Time table')} ({self.novel.title})</title>
 </head>
 <body>
 <p class=title>{self.novel.title} {_("by")} {self.novel.authorName} - {_("Time table")}</p>

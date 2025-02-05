@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.13.3
+### Version 5.13.4
 
 - Exporting a section time table. Closes #50.
 - Do not show HTML lists if there are no list items.
