@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.13.2\n"
-"POT-Creation-Date: 2025-02-04 23:06:39\n"
-"PO-Revision-Date: 2025-02-04 23:06:39\n"
+"Project-Id-Version: 5.13.3\n"
+"POT-Creation-Date: 2025-02-05 09:21:53\n"
+"PO-Revision-Date: 2025-02-05 09:21:53\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -781,6 +781,12 @@ msgstr "Keine Sicherungskopie verfügbar"
 msgid "No character data found"
 msgstr "Keine Figurendaten gefunden"
 
+msgid "No characters found"
+msgstr "Keine figuren gefunden"
+
+msgid "No date/time data found"
+msgstr "Keine Datums-/Zeitangaben gefunden"
+
 msgid "No description"
 msgstr "Keine Beschreibung"
 
@@ -790,14 +796,23 @@ msgstr "Kein Dokumenttyp"
 msgid "No item data found"
 msgstr "Keine Gegenstandsdaten gefunden"
 
+msgid "No items found"
+msgstr "Keine Gegenstände gefunden"
+
 msgid "No location data found"
 msgstr "Keine Schauplatzdaten gefunden"
+
+msgid "No locations found"
+msgstr "Keine Schauplätze gefunden"
 
 msgid "No novelibre project to write"
 msgstr "Kein novelibre-Projekt zum Schreiben"
 
 msgid "No plot lines found"
 msgstr "Keine Plotlinien gefunden"
+
+msgid "No project notes found"
+msgstr "Keine Projektnotizen gefunden"
 
 msgid "No text available"
 msgstr "Kein Text vorhanden"

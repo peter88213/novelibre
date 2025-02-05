@@ -4,10 +4,12 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from datetime import date
+
 from nvlib.model.html.html_report import HtmlReport
 from nvlib.novx_globals import CHARACTER_REPORT_SUFFIX
+from nvlib.novx_globals import Notification
 from nvlib.nv_locale import _
-from datetime import date
 
 
 class HtmlCharacters(HtmlReport):
@@ -50,6 +52,11 @@ class HtmlCharacters(HtmlReport):
 <td>$Notes</td>
 </tr>
 '''
+
+    def write(self):
+        if not self.novel.characters:
+            raise Notification(f'{_("No characters found")}.')
+        super().write()
 
     def _get_characterMapping(self, crId):
         characterMapping = super()._get_characterMapping(crId)

@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.13.2\n"
-"POT-Creation-Date: 2025-02-04 23:06:39\n"
+"Project-Id-Version: 5.13.3\n"
+"POT-Creation-Date: 2025-02-05 09:21:53\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -788,6 +788,12 @@ msgstr ""
 msgid "No character data found"
 msgstr ""
 
+msgid "No characters found"
+msgstr ""
+
+msgid "No date/time data found"
+msgstr ""
+
 msgid "No description"
 msgstr ""
 
@@ -797,13 +803,22 @@ msgstr ""
 msgid "No item data found"
 msgstr ""
 
+msgid "No items found"
+msgstr ""
+
 msgid "No location data found"
+msgstr ""
+
+msgid "No locations found"
 msgstr ""
 
 msgid "No novelibre project to write"
 msgstr ""
 
 msgid "No plot lines found"
+msgstr ""
+
+msgid "No project notes found"
 msgstr ""
 
 msgid "No text available"

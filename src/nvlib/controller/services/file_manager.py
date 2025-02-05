@@ -389,6 +389,8 @@ class FileManager(ServiceBase):
         HtmlReport.localizeDate = self.prefs['localize_date']
         try:
             self.reporter.run(self._mdl.prjFile, suffix, tempdir=self._ctrl.tempDir)
+        except Notification as ex:
+            self._ui.set_status(f'#{str(ex)}')
         except Error as ex:
             self._ui.set_status(f'!{str(ex)}')
 
