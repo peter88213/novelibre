@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.13.5
+
+- Reworked HTML timetable timestamp generation to avoid exception for section dates outside POSIX range.
+- Added the days of the week to the HTML timetable.
+
+
 ### Version 5.13.4
 
 - Exporting a section time table. Closes #50.

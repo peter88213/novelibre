@@ -68,11 +68,11 @@ class HtmlTimetable(HtmlReport):
 
         # Section rows.
         currentDateDayStr = ''
-        for __, scIds in srtSections:
+        for timestamp, scIds in srtSections:
             for scId in scIds:
                 # Section row
                 htmlText.append(f'<tr>')
-                dateDayStr = self._get_date_day_str(scId)
+                dateDayStr = f'{self._get_date_day_str(scId)} {self._get_week_day_str(scId, timestamp)}'
                 if dateDayStr != currentDateDayStr:
                     currentDateDayStr = dateDayStr
                 else:
@@ -138,6 +138,7 @@ class HtmlTimetable(HtmlReport):
         return list_to_string(locationTitles)
 
     def _get_timestamp(self, section, referenceDate):
+        """Return a timestamp (total seconds since 0001-01-01 00:00)."""
         if not section.time and not section.date and not section.day:
             return
 
@@ -160,7 +161,7 @@ class HtmlTimetable(HtmlReport):
             except:
                 return
 
-        return datetime.timestamp(sectionStart)
+        return int((sectionStart - datetime.min).total_seconds())
 
     def _get_time_str(self, scId):
         """Return a time string for the section defined by scId."""
@@ -170,6 +171,13 @@ class HtmlTimetable(HtmlReport):
         else:
             timeStr = ''
         return timeStr
+
+    def _get_week_day_str(self, scId, timestamp):
+        """Return a week day or an empty string."""
+        if not self.novel.sections[scId].date and not self.novel.referenceDate:
+            return ''
+
+        return (datetime.min + timedelta(seconds=timestamp)).strftime('%A')
 
     def _new_cell(self, text, attr=''):
         """Return the markup for a table cell with text and attributes."""
