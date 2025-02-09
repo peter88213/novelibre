@@ -362,10 +362,6 @@ class OdtWriter(OdfFile):
 
     _MIMETYPE = 'application/vnd.oasis.opendocument.text'
 
-    userStylesXml = None
-    # str -- Path to the user's custom styles.xml file.
-    # Class variable that can be overwritten at runtime by the exporter class.
-
     def __init__(self, filePath, **kwargs):
         """Create a temporary directory for zipfile generation.
         
@@ -379,6 +375,10 @@ class OdtWriter(OdfFile):
         """
         super().__init__(filePath, **kwargs)
         self._contentParser = NovxToOdt()
+
+        self.userStylesXml = None
+        # str -- Path to the user's custom styles.xml file.
+        # This variable can be overwritten at runtime by the exporter class.
 
     def write(self):
         """Determine the languages used in the document before writing.
@@ -470,7 +470,15 @@ class OdtWriter(OdfFile):
         return sectionMapping
 
     def _get_styles_xml_str(self):
-        """Return the styles.xml data as a string."""
+        """Return the styles.xml data as a string.
+        
+        Try reading the user's custom styles.xml file, if any,
+        and add the novelibre-specific styles. 
+        If this fails, or if there is no custom file,
+        use the default styles.
+        
+        Extends the superclass method.
+        """
         if self.userStylesXml:
             try:
                 with open(self.userStylesXml, 'r', encoding='utf-8') as f:
