@@ -6,6 +6,7 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+import re
 from xml.sax.saxutils import escape
 
 from nvlib.model.odf.odf_file import OdfFile
@@ -397,10 +398,14 @@ class OdtWriter(OdfFile):
         This method uses string processing instead of XML processing 
         due to namespace issues with ElementTree.
         """
+        language = self.novel.languageCode
+        country = self.novel.countryCode
         success = False
         lines = stylesXmlStr.split('\n')
         newlines = []
         for line in lines:
+            line = re.sub(r'fo\:language=\".+?\"', f'fo:language="{language}"', line)
+            line = re.sub(r'fo\:country=\".+?\"', f'fo:country="{country}"', line)
             if '</office:styles>' in line:
                 newlines.append(self._NOVELIBRE_STYLES)
                 success = True
