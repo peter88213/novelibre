@@ -28,12 +28,16 @@ class ExportOptionsCtrl(SubController):
         NvHelp.open_help_page(f'export_menu.html#{_("options").lower()}')
 
     def restore_default_styles(self, *args):
+        self._ui.restore_status()
         try:
             os.remove(USER_STYLES_XML)
         except:
-            pass
+            self._ui.set_status(f'#{_("Default styles are already set")}.')
+        else:
+            self._ui.set_status(f'{_("Default styles are restored")}.')
 
     def set_user_styles(self, *args):
+        self._ui.restore_status()
         os.makedirs(USER_STYLES_DIR, exist_ok=True)
         fileTypes = [
             (f'{_("ODF Text Document Template")} (*.ott)', '.ott'),
@@ -46,9 +50,11 @@ class ExportOptionsCtrl(SubController):
         if not docTemplate:
             return
 
+        templateName = os.path.basename(docTemplate)
         try:
             with zipfile.ZipFile(docTemplate) as myzip:
                 myzip.extract('styles.xml', path=USER_STYLES_DIR)
         except:
-            pass
-
+            self._ui.set_status(f'!{_("Invalid document template")}: "{templateName}".')
+        else:
+            self._ui.set_status(f'{_("Document template is set")}: "{templateName}".')

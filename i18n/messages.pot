@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.13.5\n"
-"POT-Creation-Date: 2025-02-09 20:51:36\n"
+"POT-Creation-Date: 2025-02-09 21:23:41\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -392,6 +392,12 @@ msgstr ""
 msgid "Death date"
 msgstr ""
 
+msgid "Default styles are already set"
+msgstr ""
+
+msgid "Default styles are restored"
+msgstr ""
+
 msgid "Del"
 msgstr ""
 
@@ -444,6 +450,9 @@ msgid "Document"
 msgstr ""
 
 msgid "Document language"
+msgstr ""
+
+msgid "Document template is set"
 msgstr ""
 
 msgid "Done"
@@ -648,6 +657,9 @@ msgid "Insert Stage"
 msgstr ""
 
 msgid "Installed plugins"
+msgstr ""
+
+msgid "Invalid document template"
 msgstr ""
 
 msgid "Item"

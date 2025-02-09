@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.13.5\n"
-"POT-Creation-Date: 2025-02-09 20:51:36\n"
-"PO-Revision-Date: 2025-02-09 20:51:36\n"
+"POT-Creation-Date: 2025-02-09 21:23:41\n"
+"PO-Revision-Date: 2025-02-09 21:23:41\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -385,6 +385,12 @@ msgstr "Tage"
 msgid "Death date"
 msgstr "Sterbedatum"
 
+msgid "Default styles are already set"
+msgstr "Standardstile sind bereits eingestellt"
+
+msgid "Default styles are restored"
+msgstr "Standardvorlagen sind wiederhergestellt"
+
 msgid "Del"
 msgstr "Entf"
 
@@ -438,6 +444,9 @@ msgstr "Dokument"
 
 msgid "Document language"
 msgstr "Sprache des Dokuments"
+
+msgid "Document template is set"
+msgstr "Dokumentenvorlage ist eingestellt"
 
 msgid "Done"
 msgstr "Fertiggestellt"
@@ -642,6 +651,9 @@ msgstr "Stadium einfügen"
 
 msgid "Installed plugins"
 msgstr "Installierte Plugins"
+
+msgid "Invalid document template"
+msgstr "Ungültige Dokumentenvorlage"
 
 msgid "Item"
 msgstr "Gegenstand"
