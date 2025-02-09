@@ -143,6 +143,7 @@ class OdfFile(FileExport):
         )
         template = Template(self._STYLES_XML)
         text = template.safe_substitute(localeMapping)
+        text = self._add_novelibre_styles(text)
         try:
             with open(f'{self._tempDir}/styles.xml', 'w', encoding='utf-8') as f:
                 f.write(text)
