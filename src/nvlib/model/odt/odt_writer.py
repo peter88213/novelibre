@@ -362,6 +362,10 @@ class OdtWriter(OdfFile):
 
     _MIMETYPE = 'application/vnd.oasis.opendocument.text'
 
+    userStylesXml = None
+    # str -- Path to the user's custom styles.xml file.
+    # Class variable that can be overwritten at runtime by the exporter class.
+
     def __init__(self, filePath, **kwargs):
         """Create a temporary directory for zipfile generation.
         
@@ -464,6 +468,19 @@ class OdtWriter(OdfFile):
         sectionMapping = super()._get_sectionMapping(scId, sectionNumber, wordsTotal, **kwargs)
         sectionMapping['sectionTitle'] = _('Section')
         return sectionMapping
+
+    def _get_styles_xml_str(self):
+        """Return the styles.xml data as a string."""
+        if self.userStylesXml:
+            try:
+                with open(self.userStylesXml, 'r', encoding='utf-8') as f:
+                    stylesXmlStr = f.read()
+                return self._add_novelibre_styles(stylesXmlStr)
+
+            except:
+                pass
+        stylesXmlStr = super()._get_styles_xml_str()
+        return stylesXmlStr
 
     def _set_up(self):
         """Helper method for ZIP file generation.

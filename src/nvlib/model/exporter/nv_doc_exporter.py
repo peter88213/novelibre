@@ -13,6 +13,7 @@ from nvlib.model.exporter.filter_factory import FilterFactory
 from nvlib.model.file.doc_open import open_document
 from nvlib.novx_globals import Notification
 from nvlib.novx_globals import norm_path
+from nvlib.nv_globals import USER_STYLES_XML
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
@@ -47,6 +48,11 @@ class NvDocExporter(NovxConversion):
         self._isNewer = False
         overwrite = kwargs.get('overwrite', False)
         __, self._target = self.exportTargetFactory.new_file_objects(self._source.filePath, suffix=suffix)
+
+        # Set the user's custom styles.xml path.
+        if os.path.isfile(USER_STYLES_XML):
+            self._target.userStylesXml = USER_STYLES_XML
+
         if os.path.isfile(self._target.filePath) and not overwrite:
             targetTimestamp = os.path.getmtime(self._target.filePath)
             try:

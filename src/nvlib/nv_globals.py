@@ -22,6 +22,8 @@ INSTALL_DIR = f'{HOME_DIR}/.novx'
 PROGRAM_DIR = os.path.dirname(sys.argv[0])
 if not PROGRAM_DIR:
     PROGRAM_DIR = '.'
+USER_STYLES_DIR = f'{INSTALL_DIR}/styles'
+USER_STYLES_XML = f'{USER_STYLES_DIR}/styles.xml'
 
 
 def datestr(isoDate):
