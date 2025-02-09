@@ -6,7 +6,6 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from string import Template
 from xml.sax.saxutils import escape
 
 from nvlib.model.odf.odf_file import OdfFile
@@ -329,7 +328,6 @@ class OdtWriter(OdfFile):
   <style:style style:name="Strong_20_Emphasis" style:display-name="Strong Emphasis" style:family="text">
    <style:text-properties fo:text-transform="uppercase"/>
   </style:style>
-$NovelibreStyles  
  </office:styles>
  <office:automatic-styles>
   <style:page-layout style:name="Mpm1">
@@ -387,10 +385,26 @@ $NovelibreStyles
             self.novel.get_languages()
         return super().write()
 
-    def _add_novelibre_styles(self, text):
-        stylesMapping = {'NovelibreStyles': self._NOVELIBRE_STYLES}
-        template = Template(text)
-        return template.safe_substitute(stylesMapping)
+    def _add_novelibre_styles(self, stylesXmlStr):
+        """Return stylesXmlStr with the novelibre-specific styles inserted.
+        
+        The self._NOVELIBRE_STYLES string is inserted right before the
+        closing tag of the office:styles section.
+        This method uses string processing instead of XML processing 
+        due to namespace issues with ElementTree.
+        """
+        success = False
+        lines = stylesXmlStr.split('\n')
+        newlines = []
+        for line in lines:
+            if '</office:styles>' in line:
+                newlines.append(self._NOVELIBRE_STYLES)
+                success = True
+            newlines.append(line)
+        if not success:
+            raise ValueError('Invalid XML Styles data')
+
+        return '\n'.join(newlines)
 
     def _convert_from_novx(self, text, quick=False, append=False, firstInChapter=False, xml=False):
         """Return text without markup, converted to target format.
