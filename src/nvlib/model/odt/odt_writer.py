@@ -6,8 +6,8 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from string import Template
 from xml.sax.saxutils import escape
+from xml.etree import ElementTree as ET
 
 from nvlib.model.odf.odf_file import OdfFile
 from nvlib.model.odt.novx_to_odt import NovxToOdt
@@ -329,7 +329,6 @@ class OdtWriter(OdfFile):
   <style:style style:name="Strong_20_Emphasis" style:display-name="Strong Emphasis" style:family="text">
    <style:text-properties fo:text-transform="uppercase"/>
   </style:style>
-$NovelibreStyles  
  </office:styles>
  <office:automatic-styles>
   <style:page-layout style:name="Mpm1">
@@ -352,15 +351,17 @@ $NovelibreStyles
  </office:master-styles>
 </office:document-styles>
 '''
-    _NOVELIBRE_STYLES = f'''  <style:style style:name="{_('Chapter_20_beginning')}" style:display-name="{_('Chapter beginning')}" style:family="paragraph" style:parent-style-name="Text_20_body" style:next-style-name="First_20_line_20_indent" style:class="text">
-  </style:style>
-  <style:style style:name="{_('Section_20_mark')}" style:display-name="{_('Section mark')}" style:family="paragraph" style:parent-style-name="Standard" style:next-style-name="Text_20_body" style:class="text">
-   <style:text-properties fo:color="#008000" fo:font-size="10pt" fo:language="zxx" fo:country="none"/>
-  </style:style>
-  <style:style style:name="{_('Heading_20_3_20_invisible')}" style:display-name="{_('Heading 3 invisible')}" style:family="paragraph" style:parent-style-name="Heading_20_3" style:class="text">
-   <style:paragraph-properties fo:margin-top="0cm" fo:margin-bottom="0cm" fo:line-height="100%"/>
-   <style:text-properties text:display="none"/>
-  </style:style>'''
+    _NOVELIBRE_STYLES = f'''<office:styles xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:rpt="http://openoffice.org/2005/report" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0">
+<style:style style:name="{_('Chapter_20_beginning')}" style:display-name="{_('Chapter beginning')}" style:family="paragraph" style:parent-style-name="Text_20_body" style:next-style-name="First_20_line_20_indent" style:class="text">
+</style:style>
+<style:style style:name="{_('Section_20_mark')}" style:display-name="{_('Section mark')}" style:family="paragraph" style:parent-style-name="Standard" style:next-style-name="Text_20_body" style:class="text">
+<style:text-properties fo:color="#008000" fo:font-size="10pt" fo:language="zxx" fo:country="none"/>
+</style:style>
+<style:style style:name="{_('Heading_20_3_20_invisible')}" style:display-name="{_('Heading 3 invisible')}" style:family="paragraph" style:parent-style-name="Heading_20_3" style:class="text">
+<style:paragraph-properties fo:margin-top="0cm" fo:margin-bottom="0cm" fo:line-height="100%"/>
+<style:text-properties text:display="none"/>
+</style:style>
+</office:styles>'''
 
     _MIMETYPE = 'application/vnd.oasis.opendocument.text'
 
@@ -387,10 +388,22 @@ $NovelibreStyles
             self.novel.get_languages()
         return super().write()
 
-    def _add_novelibre_styles(self, text):
-        stylesMapping = {'NovelibreStyles': self._NOVELIBRE_STYLES}
-        template = Template(text)
-        return template.safe_substitute(stylesMapping)
+    def _add_novelibre_styles(self, styles):
+        namespaces = dict(
+            office='urn:oasis:names:tc:opendocument:xmlns:office:1.0',
+            style='urn:oasis:names:tc:opendocument:xmlns:style:1.0',
+            fo='urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0',
+            dc='http://purl.org/dc/elements/1.1/',
+            meta='urn:oasis:names:tc:opendocument:xmlns:meta:1.0'
+        )
+        root = ET.fromstring(styles)
+        styles = root.find('office:styles', namespaces)
+        novelibreStyles = ET.fromstring(self._NOVELIBRE_STYLES)
+        for style in novelibreStyles.iterfind('style:style', namespaces):
+            styles.append(style)
+        styles = ET.tostring(styles, encoding='utf-8')
+        print(styles)
+        return styles
 
     def _convert_from_novx(self, text, quick=False, append=False, firstInChapter=False, xml=False):
         """Return text without markup, converted to target format.
