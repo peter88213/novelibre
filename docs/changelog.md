@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.14.0
+
+- Added new settings to the **Export/Options** dialog, allowing users to provide their own document templates (#51).
+
+
 ### Version 5.13.5
 
 - Reworked HTML timetable timestamp generation to avoid exception for section dates outside POSIX range.
