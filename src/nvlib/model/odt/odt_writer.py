@@ -398,14 +398,10 @@ class OdtWriter(OdfFile):
         This method uses string processing instead of XML processing 
         due to namespace issues with ElementTree.
         """
-        language = self.novel.languageCode
-        country = self.novel.countryCode
         success = False
         lines = stylesXmlStr.split('\n')
         newlines = []
         for line in lines:
-            line = re.sub(r'fo\:language=\".+?\"', f'fo:language="{language}"', line)
-            line = re.sub(r'fo\:country=\".+?\"', f'fo:country="{country}"', line)
             if '</office:styles>' in line:
                 newlines.append(self._NOVELIBRE_STYLES)
                 success = True
@@ -488,11 +484,19 @@ class OdtWriter(OdfFile):
             try:
                 with open(self.userStylesXml, 'r', encoding='utf-8') as f:
                     stylesXmlStr = f.read()
-                return self._add_novelibre_styles(stylesXmlStr)
+                stylesXmlStr = self._set_document_language(stylesXmlStr)
+                stylesXmlStr = self._add_novelibre_styles(stylesXmlStr)
+                return stylesXmlStr
 
             except:
                 pass
         stylesXmlStr = super()._get_styles_xml_str()
+        return stylesXmlStr
+
+    def _set_document_language(self, stylesXmlStr):
+        """Return stylesXmlStr with the document language set."""
+        stylesXmlStr = re.sub(r'fo\:language=\".+?\"', f'fo:language="{self.novel.languageCode}"', stylesXmlStr)
+        stylesXmlStr = re.sub(r'fo\:country=\".+?\"', f'fo:country="{self.novel.countryCode}"', stylesXmlStr)
         return stylesXmlStr
 
     def _set_up(self):
