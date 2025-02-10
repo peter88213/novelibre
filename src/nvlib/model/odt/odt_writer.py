@@ -351,16 +351,17 @@ class OdtWriter(OdfFile):
  </office:master-styles>
 </office:document-styles>
 '''
-    _NOVELIBRE_STYLES = f'''<office:styles xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:rpt="http://openoffice.org/2005/report" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0">
-<style:style style:name="{_('Chapter_20_beginning')}" style:display-name="{_('Chapter beginning')}" style:family="paragraph" style:parent-style-name="Text_20_body" style:next-style-name="First_20_line_20_indent" style:class="text">
-</style:style>
-<style:style style:name="{_('Section_20_mark')}" style:display-name="{_('Section mark')}" style:family="paragraph" style:parent-style-name="Standard" style:next-style-name="Text_20_body" style:class="text">
-<style:text-properties fo:color="#008000" fo:font-size="10pt" fo:language="zxx" fo:country="none"/>
-</style:style>
-<style:style style:name="{_('Heading_20_3_20_invisible')}" style:display-name="{_('Heading 3 invisible')}" style:family="paragraph" style:parent-style-name="Heading_20_3" style:class="text">
-<style:paragraph-properties fo:margin-top="0cm" fo:margin-bottom="0cm" fo:line-height="100%"/>
-<style:text-properties text:display="none"/>
-</style:style>
+    _NOVELIBRE_STYLES = f'''
+<office:styles xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:rpt="http://openoffice.org/2005/report" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0">
+  <style:style style:name="{_('Chapter_20_beginning')}" style:display-name="{_('Chapter beginning')}" style:family="paragraph" style:parent-style-name="Text_20_body" style:next-style-name="First_20_line_20_indent" style:class="text">
+  </style:style>
+  <style:style style:name="{_('Section_20_mark')}" style:display-name="{_('Section mark')}" style:family="paragraph" style:parent-style-name="Standard" style:next-style-name="Text_20_body" style:class="text">
+    <style:text-properties fo:color="#008000" fo:font-size="10pt" fo:language="zxx" fo:country="none"/>
+  </style:style>
+  <style:style style:name="{_('Heading_20_3_20_invisible')}" style:display-name="{_('Heading 3 invisible')}" style:family="paragraph" style:parent-style-name="Heading_20_3" style:class="text">
+    <style:paragraph-properties fo:margin-top="0cm" fo:margin-bottom="0cm" fo:line-height="100%"/>
+    <style:text-properties text:display="none"/>
+  </style:style>
 </office:styles>'''
 
     _MIMETYPE = 'application/vnd.oasis.opendocument.text'
@@ -392,18 +393,45 @@ class OdtWriter(OdfFile):
         namespaces = dict(
             office='urn:oasis:names:tc:opendocument:xmlns:office:1.0',
             style='urn:oasis:names:tc:opendocument:xmlns:style:1.0',
+            text='urn:oasis:names:tc:opendocument:xmlns:text:1.0',
+            table='urn:oasis:names:tc:opendocument:xmlns:table:1.0',
+            draw='urn:oasis:names:tc:opendocument:xmlns:drawing:1.0',
             fo='urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0',
+            xlink='http://www.w3.org/1999/xlink',
             dc='http://purl.org/dc/elements/1.1/',
-            meta='urn:oasis:names:tc:opendocument:xmlns:meta:1.0'
+            meta='urn:oasis:names:tc:opendocument:xmlns:meta:1.0',
+            number='urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0',
+            svg='urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0',
+            chart='urn:oasis:names:tc:opendocument:xmlns:chart:1.0',
+            dr3d='urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0',
+            math='http://www.w3.org/1998/Math/MathML',
+            form='urn:oasis:names:tc:opendocument:xmlns:form:1.0',
+            script='urn:oasis:names:tc:opendocument:xmlns:script:1.0',
+            ooo='http://openoffice.org/2004/office',
+            ooow='http://openoffice.org/2004/writer',
+            oooc='http://openoffice.org/2004/calc',
+            dom='http://www.w3.org/2001/xml-events',
+            rpt='http://openoffice.org/2005/report',
+            of='urn:oasis:names:tc:opendocument:xmlns:of:1.2',
+            xhtml='http://www.w3.org/1999/xhtml',
+            grddl='http://www.w3.org/2003/g/data-view#',
+            tableooo='http://openoffice.org/2009/table',
+            loext='urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0'
         )
+        for prefix in namespaces:
+            ET.register_namespace(prefix, namespaces[prefix])
         root = ET.fromstring(styles)
-        styles = root.find('office:styles', namespaces)
+        officeStyles = root.find('office:styles', namespaces)
+        officeStyleNames = []
+        for officeStyle in officeStyles.iterfind('style:style', namespaces):
+            officeStyleNames.append(officeStyle.attrib[f"{{{namespaces['style']}}}name"])
         novelibreStyles = ET.fromstring(self._NOVELIBRE_STYLES)
-        for style in novelibreStyles.iterfind('style:style', namespaces):
-            styles.append(style)
-        styles = ET.tostring(styles, encoding='utf-8')
-        print(styles)
-        return styles
+        for novelibreStyle in novelibreStyles.iterfind('style:style', namespaces):
+            novelibreStyleName = novelibreStyle.attrib[f"{{{namespaces['style']}}}name"]
+            if not novelibreStyleName in officeStyleNames:
+                officeStyles.append(novelibreStyle)
+        stylesXmlStr = ET.tostring(officeStyles, encoding='utf-8').decode('utf-8')
+        return stylesXmlStr
 
     def _convert_from_novx(self, text, quick=False, append=False, firstInChapter=False, xml=False):
         """Return text without markup, converted to target format.
