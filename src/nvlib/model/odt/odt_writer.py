@@ -469,7 +469,7 @@ class OdtWriter(OdfFile):
 
         return f'<text:p text:style-name="Text_20_body">{text}</text:p>'
 
-    def _dispose_novelibre_styles(self, styles):
+    def _discard_novelibre_styles(self, stylesXmlStr):
         namespaces = dict(
             office='urn:oasis:names:tc:opendocument:xmlns:office:1.0',
             style='urn:oasis:names:tc:opendocument:xmlns:style:1.0',
@@ -500,18 +500,18 @@ class OdtWriter(OdfFile):
         )
         for prefix in namespaces:
             ET.register_namespace(prefix, namespaces[prefix])
-        root = ET.fromstring(styles)
+        root = ET.fromstring(stylesXmlStr)
         officeStyles = root.find('office:styles', namespaces)
         novelibreStyleNames = []
         novelibreStyles = ET.fromstring(self._NOVELIBRE_STYLES)
         for novelibreStyle in novelibreStyles.iterfind('style:style', namespaces):
             novelibreStyleNames.append(novelibreStyle.attrib[f"{{{namespaces['style']}}}name"])
-        dispose = []
+        stylesToDiscard = []
         for officeStyle in officeStyles.iterfind('style:style', namespaces):
             officeStyleName = officeStyle.attrib[f"{{{namespaces['style']}}}name"]
             if officeStyleName in novelibreStyleNames:
-                dispose.append(officeStyle)
-        for officeStyle in dispose:
+                stylesToDiscard.append(officeStyle)
+        for officeStyle in stylesToDiscard:
             officeStyles.remove(officeStyle)
         stylesXmlStr = ET.tostring(root, encoding='utf-8', xml_declaration=True).decode('utf-8')
         return stylesXmlStr
@@ -558,6 +558,7 @@ class OdtWriter(OdfFile):
             try:
                 with open(self.userStylesXml, 'r', encoding='utf-8') as f:
                     stylesXmlStr = f.read()
+                stylesXmlStr = self._discard_novelibre_styles(stylesXmlStr)
                 stylesXmlStr = self._set_document_language(stylesXmlStr)
                 stylesXmlStr = self._add_novelibre_styles(stylesXmlStr)
                 return stylesXmlStr
