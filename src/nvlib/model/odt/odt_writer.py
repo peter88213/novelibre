@@ -7,8 +7,8 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import re
-from xml.sax.saxutils import escape
 from xml.etree import ElementTree as ET
+from xml.sax.saxutils import escape
 
 from nvlib.model.odf.odf_file import OdfFile
 from nvlib.model.odt.novx_to_odt import NovxToOdt
@@ -469,53 +469,6 @@ class OdtWriter(OdfFile):
 
         return f'<text:p text:style-name="Text_20_body">{text}</text:p>'
 
-    def _discard_novelibre_styles(self, stylesXmlStr):
-        namespaces = dict(
-            office='urn:oasis:names:tc:opendocument:xmlns:office:1.0',
-            style='urn:oasis:names:tc:opendocument:xmlns:style:1.0',
-            text='urn:oasis:names:tc:opendocument:xmlns:text:1.0',
-            table='urn:oasis:names:tc:opendocument:xmlns:table:1.0',
-            draw='urn:oasis:names:tc:opendocument:xmlns:drawing:1.0',
-            fo='urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0',
-            xlink='http://www.w3.org/1999/xlink',
-            dc='http://purl.org/dc/elements/1.1/',
-            meta='urn:oasis:names:tc:opendocument:xmlns:meta:1.0',
-            number='urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0',
-            svg='urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0',
-            chart='urn:oasis:names:tc:opendocument:xmlns:chart:1.0',
-            dr3d='urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0',
-            math='http://www.w3.org/1998/Math/MathML',
-            form='urn:oasis:names:tc:opendocument:xmlns:form:1.0',
-            script='urn:oasis:names:tc:opendocument:xmlns:script:1.0',
-            ooo='http://openoffice.org/2004/office',
-            ooow='http://openoffice.org/2004/writer',
-            oooc='http://openoffice.org/2004/calc',
-            dom='http://www.w3.org/2001/xml-events',
-            rpt='http://openoffice.org/2005/report',
-            of='urn:oasis:names:tc:opendocument:xmlns:of:1.2',
-            xhtml='http://www.w3.org/1999/xhtml',
-            grddl='http://www.w3.org/2003/g/data-view#',
-            tableooo='http://openoffice.org/2009/table',
-            loext='urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0'
-        )
-        for prefix in namespaces:
-            ET.register_namespace(prefix, namespaces[prefix])
-        root = ET.fromstring(stylesXmlStr)
-        officeStyles = root.find('office:styles', namespaces)
-        novelibreStyleNames = []
-        novelibreStyles = ET.fromstring(self._NOVELIBRE_STYLES)
-        for novelibreStyle in novelibreStyles.iterfind('style:style', namespaces):
-            novelibreStyleNames.append(novelibreStyle.attrib[f"{{{namespaces['style']}}}name"])
-        stylesToDiscard = []
-        for officeStyle in officeStyles.iterfind('style:style', namespaces):
-            officeStyleName = officeStyle.attrib[f"{{{namespaces['style']}}}name"]
-            if officeStyleName in novelibreStyleNames:
-                stylesToDiscard.append(officeStyle)
-        for officeStyle in stylesToDiscard:
-            officeStyles.remove(officeStyle)
-        stylesXmlStr = ET.tostring(root, encoding='utf-8', xml_declaration=True).decode('utf-8')
-        return stylesXmlStr
-
     def _get_fileHeaderMapping(self):
         """Return a mapping dictionary for the project section.
         
@@ -558,7 +511,6 @@ class OdtWriter(OdfFile):
             try:
                 with open(self.userStylesXml, 'r', encoding='utf-8') as f:
                     stylesXmlStr = f.read()
-                stylesXmlStr = self._discard_novelibre_styles(stylesXmlStr)
                 stylesXmlStr = self._set_document_language(stylesXmlStr)
                 stylesXmlStr = self._add_novelibre_styles(stylesXmlStr)
                 return stylesXmlStr
