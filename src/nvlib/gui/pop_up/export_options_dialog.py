@@ -25,11 +25,10 @@ class ExportOptionsDialog(ModalDialog, ExportOptionsCtrl):
         window = ttk.Frame(self)
         window.pack(
             fill='both',
-            padx=5,
             pady=5
             )
         frame1 = ttk.Frame(window)
-        frame1.pack(fill='both', side='left')
+        frame1.pack(fill='both', padx=50)
 
         # Checkbox: Ask whether documents should be opened straight after export.
         self.askDocOpenVar = tk.BooleanVar(frame1, value=prefs['ask_doc_open'])
@@ -48,6 +47,25 @@ class ExportOptionsDialog(ModalDialog, ExportOptionsCtrl):
             variable=self.lockOnExportVar
             ).pack(padx=5, pady=5, anchor='w')
         self.lockOnExportVar.trace('w', self.change_lock_on_export)
+
+        ttk.Separator(window, orient='horizontal').pack(fill='x')
+
+        frame2 = ttk.Frame(window)
+        frame2.pack(fill='both', padx=50)
+
+        # "Select document template" button.
+        ttk.Button(
+            frame2,
+            text=_('Select document template'),
+            command=self.set_user_styles
+            ).pack(padx=5, pady=5, anchor='w', fill='x')
+
+        # "Restore default styles" button.
+        ttk.Button(
+            frame2,
+            text=_('Restore default styles'),
+            command=self.restore_default_styles
+            ).pack(padx=5, pady=5, anchor='w', fill='x')
 
         ttk.Separator(self, orient='horizontal').pack(fill='x')
 

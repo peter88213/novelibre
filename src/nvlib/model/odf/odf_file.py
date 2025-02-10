@@ -99,6 +99,21 @@ class OdfFile(FileExport):
         self._tear_down()
         return f'{_("File written")}: "{norm_path(self.filePath)}".'
 
+    def _add_novelibre_styles(self, stylesXmlStr):
+        """Template method for modifying the ODF styles.xml contents."""
+        return stylesXmlStr
+
+    def _get_styles_xml_str(self):
+        """Return the styles.xml data as a string."""
+        self.novel.check_locale()
+        localeMapping = dict(
+            Language=self.novel.languageCode,
+            Country=self.novel.countryCode,
+        )
+        template = Template(self._STYLES_XML)
+        stylesXmlStr = template.safe_substitute(localeMapping)
+        return self._add_novelibre_styles(stylesXmlStr)
+
     def _set_up(self):
         """Helper method for ZIP file generation.
 
@@ -136,17 +151,10 @@ class OdfFile(FileExport):
             raise Error(f'{_("Cannot write file")}: "manifest.xml"')
 
         #--- Generate styles.xml.
-        self.novel.check_locale()
-        localeMapping = dict(
-            Language=self.novel.languageCode,
-            Country=self.novel.countryCode,
-        )
-        template = Template(self._STYLES_XML)
-        text = template.safe_substitute(localeMapping)
-        text = self._add_novelibre_styles(text)
+        stylesXmlStr = self._get_styles_xml_str()
         try:
             with open(f'{self._tempDir}/styles.xml', 'w', encoding='utf-8') as f:
-                f.write(text)
+                f.write(stylesXmlStr)
         except:
             raise Error(f'{_("Cannot write file")}: "styles.xml"')
 
@@ -158,10 +166,10 @@ class OdfFile(FileExport):
             Datetime=datetime.today().replace(microsecond=0).isoformat(),
         )
         template = Template(self._META_XML)
-        text = template.safe_substitute(metaMapping)
+        stylesXmlStr = template.safe_substitute(metaMapping)
         try:
             with open(f'{self._tempDir}/meta.xml', 'w', encoding='utf-8') as f:
-                f.write(text)
+                f.write(stylesXmlStr)
         except:
             raise Error(f'{_("Cannot write file")}: "meta.xml".')
 

@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.13.5\n"
-"POT-Creation-Date: 2025-02-05 19:59:59\n"
+"Project-Id-Version: 5.14.0\n"
+"POT-Creation-Date: 2025-02-09 21:27:37\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -392,6 +392,12 @@ msgstr ""
 msgid "Death date"
 msgstr ""
 
+msgid "Default styles are already set"
+msgstr ""
+
+msgid "Default styles are restored"
+msgstr ""
+
 msgid "Del"
 msgstr ""
 
@@ -444,6 +450,9 @@ msgid "Document"
 msgstr ""
 
 msgid "Document language"
+msgstr ""
+
+msgid "Document template is set"
 msgstr ""
 
 msgid "Done"
@@ -648,6 +657,9 @@ msgid "Insert Stage"
 msgstr ""
 
 msgid "Installed plugins"
+msgstr ""
+
+msgid "Invalid document template"
 msgstr ""
 
 msgid "Item"
@@ -860,6 +872,12 @@ msgstr ""
 msgid "ODF Spreadsheet document"
 msgstr ""
 
+msgid "ODF Text Document"
+msgstr ""
+
+msgid "ODF Text Document Template"
+msgstr ""
+
 msgid "ODF Text document"
 msgstr ""
 
@@ -1070,6 +1088,9 @@ msgstr ""
 msgid "Restore backup"
 msgstr ""
 
+msgid "Restore default styles"
+msgstr ""
+
 msgid "Save"
 msgstr ""
 
@@ -1100,9 +1121,6 @@ msgstr ""
 msgid "Section mark"
 msgstr ""
 
-msgid "Section mark unused"
-msgstr ""
-
 msgid "Section notes"
 msgstr ""
 
@@ -1110,9 +1128,6 @@ msgid "Section word count"
 msgstr ""
 
 msgid "Section_20_mark"
-msgstr ""
-
-msgid "Section_20_mark_20_unused"
 msgstr ""
 
 msgid "Sections"
@@ -1125,6 +1140,9 @@ msgid "Sections from viewpoint"
 msgstr ""
 
 msgid "Select characters"
+msgstr ""
+
+msgid "Select document template"
 msgstr ""
 
 msgid "Select items"

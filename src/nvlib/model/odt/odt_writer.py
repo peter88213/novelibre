@@ -6,6 +6,7 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+import re
 from xml.sax.saxutils import escape
 from xml.etree import ElementTree as ET
 
@@ -380,6 +381,10 @@ class OdtWriter(OdfFile):
         super().__init__(filePath, **kwargs)
         self._contentParser = NovxToOdt()
 
+        self.userStylesXml = None
+        # str -- Path to the user's custom styles.xml file.
+        # This variable can be overwritten at runtime by the exporter class.
+
     def write(self):
         """Determine the languages used in the document before writing.
         
@@ -389,7 +394,7 @@ class OdtWriter(OdfFile):
             self.novel.get_languages()
         return super().write()
 
-    def _add_novelibre_styles(self, styles):
+    def _add_novelibre_styles(self, stylesXmlStr):
         namespaces = dict(
             office='urn:oasis:names:tc:opendocument:xmlns:office:1.0',
             style='urn:oasis:names:tc:opendocument:xmlns:style:1.0',
@@ -420,7 +425,7 @@ class OdtWriter(OdfFile):
         )
         for prefix in namespaces:
             ET.register_namespace(prefix, namespaces[prefix])
-        root = ET.fromstring(styles)
+        root = ET.fromstring(stylesXmlStr)
         officeStyles = root.find('office:styles', namespaces)
         officeStyleNames = []
         for officeStyle in officeStyles.iterfind('style:style', namespaces):
@@ -430,7 +435,7 @@ class OdtWriter(OdfFile):
             novelibreStyleName = novelibreStyle.attrib[f"{{{namespaces['style']}}}name"]
             if not novelibreStyleName in officeStyleNames:
                 officeStyles.append(novelibreStyle)
-        stylesXmlStr = ET.tostring(officeStyles, encoding='utf-8').decode('utf-8')
+        stylesXmlStr = ET.tostring(root, encoding='utf-8', xml_declaration=True).decode('utf-8')
         return stylesXmlStr
 
     def _convert_from_novx(self, text, quick=False, append=False, firstInChapter=False, xml=False):
@@ -508,7 +513,7 @@ class OdtWriter(OdfFile):
                 dispose.append(officeStyle)
         for officeStyle in dispose:
             officeStyles.remove(officeStyle)
-        stylesXmlStr = ET.tostring(officeStyles, encoding='utf-8').decode('utf-8')
+        stylesXmlStr = ET.tostring(root, encoding='utf-8', xml_declaration=True).decode('utf-8')
         return stylesXmlStr
 
     def _get_fileHeaderMapping(self):
@@ -538,6 +543,35 @@ class OdtWriter(OdfFile):
         sectionMapping = super()._get_sectionMapping(scId, sectionNumber, wordsTotal, **kwargs)
         sectionMapping['sectionTitle'] = _('Section')
         return sectionMapping
+
+    def _get_styles_xml_str(self):
+        """Return the styles.xml data as a string.
+        
+        Try reading the user's custom styles.xml file, if any,
+        and add the novelibre-specific styles. 
+        If this fails, or if there is no custom file,
+        use the default styles.
+        
+        Extends the superclass method.
+        """
+        if self.userStylesXml:
+            try:
+                with open(self.userStylesXml, 'r', encoding='utf-8') as f:
+                    stylesXmlStr = f.read()
+                stylesXmlStr = self._set_document_language(stylesXmlStr)
+                stylesXmlStr = self._add_novelibre_styles(stylesXmlStr)
+                return stylesXmlStr
+
+            except:
+                pass
+        stylesXmlStr = super()._get_styles_xml_str()
+        return stylesXmlStr
+
+    def _set_document_language(self, stylesXmlStr):
+        """Return stylesXmlStr with the document language set."""
+        stylesXmlStr = re.sub(r'fo\:language=\".+?\"', f'fo:language="{self.novel.languageCode}"', stylesXmlStr)
+        stylesXmlStr = re.sub(r'fo\:country=\".+?\"', f'fo:country="{self.novel.countryCode}"', stylesXmlStr)
+        return stylesXmlStr
 
     def _set_up(self):
         """Helper method for ZIP file generation.

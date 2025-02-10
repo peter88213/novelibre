@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.13.5\n"
-"POT-Creation-Date: 2025-02-05 19:59:59\n"
-"PO-Revision-Date: 2025-02-05 19:59:59\n"
+"Project-Id-Version: 5.14.0\n"
+"POT-Creation-Date: 2025-02-09 21:27:37\n"
+"PO-Revision-Date: 2025-02-09 21:27:37\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -385,6 +385,12 @@ msgstr "Tage"
 msgid "Death date"
 msgstr "Sterbedatum"
 
+msgid "Default styles are already set"
+msgstr "Standardstile sind bereits eingestellt"
+
+msgid "Default styles are restored"
+msgstr "Standardvorlagen sind wiederhergestellt"
+
 msgid "Del"
 msgstr "Entf"
 
@@ -438,6 +444,9 @@ msgstr "Dokument"
 
 msgid "Document language"
 msgstr "Sprache des Dokuments"
+
+msgid "Document template is set"
+msgstr "Dokumentenvorlage ist eingestellt"
 
 msgid "Done"
 msgstr "Fertiggestellt"
@@ -642,6 +651,9 @@ msgstr "Stadium einfügen"
 
 msgid "Installed plugins"
 msgstr "Installierte Plugins"
+
+msgid "Invalid document template"
+msgstr "Ungültige Dokumentenvorlage"
 
 msgid "Item"
 msgstr "Gegenstand"
@@ -853,6 +865,12 @@ msgstr "Anzahl Abschnitte"
 msgid "ODF Spreadsheet document"
 msgstr "ODF-Tabellendokument"
 
+msgid "ODF Text Document"
+msgstr "ODF Textdokument"
+
+msgid "ODF Text Document Template"
+msgstr "ODF Textdokumentenvorlage"
+
 msgid "ODF Text document"
 msgstr "ODF-Textdokument"
 
@@ -1063,6 +1081,9 @@ msgstr "Kapitelnummerierung in jedem Teil neu beginnen"
 msgid "Restore backup"
 msgstr "Sicherungskopie wiederherstellen"
 
+msgid "Restore default styles"
+msgstr "Standardvorlagen wiederherstellen"
+
 msgid "Save"
 msgstr "Speichern"
 
@@ -1093,9 +1114,6 @@ msgstr "Abschnittsliste (nur Export)"
 msgid "Section mark"
 msgstr "Abschnittsmarke"
 
-msgid "Section mark unused"
-msgstr "Abschnittsmarke unbenutzt"
-
 msgid "Section notes"
 msgstr "Abschnittsnotizen"
 
@@ -1104,9 +1122,6 @@ msgstr "Wörter Abschnitt"
 
 msgid "Section_20_mark"
 msgstr "Abschnittsmarke"
-
-msgid "Section_20_mark_20_unused"
-msgstr "Abschnittsmarke_20_unbenutzt"
 
 msgid "Sections"
 msgstr "Abschnitte"
@@ -1119,6 +1134,9 @@ msgstr "Abschnitte aus Perspektive"
 
 msgid "Select characters"
 msgstr "Figuren auswählen"
+
+msgid "Select document template"
+msgstr "Dokumentenvorlage auswählen"
 
 msgid "Select items"
 msgstr "Gegenstände auswählen"
