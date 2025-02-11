@@ -10,6 +10,17 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.15.0
+
+Refactored the code for better maintainability.
+
+#### API changes
+
+- New: OdfFile.NAMESPACES
+- New: OdtWriter.add_novelibre_styles() and OdtWriter.remove_novelibre_styles()
+- New: FileManager.set_user_styles() and FileManager.restore_default_styles()
+
+
 ### Version 5.14.0
 
 - Added new settings to the **Export/Options** dialog, allowing users to provide their own document templates (#51).
