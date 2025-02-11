@@ -515,6 +515,7 @@ class OdtWriter(OdfFile):
             except:
                 pass
         stylesXmlStr = super()._get_styles_xml_str()
+        stylesXmlStr = self.add_novelibre_styles(stylesXmlStr)
         return stylesXmlStr
 
     def _set_document_language(self, stylesXmlStr):
