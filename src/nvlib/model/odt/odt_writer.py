@@ -365,7 +365,7 @@ class OdtWriter(OdfFile):
   </style:style>
 </office:styles>'''
 
-    NOVELIBRE_STYLE_NAMES = (
+    _NOVELIBRE_STYLE_NAMES = (
         _('Chapter_20_beginning'),
         _('Section_20_mark'),
         _('Heading_20_3_20_invisible'),
@@ -410,7 +410,7 @@ class OdtWriter(OdfFile):
         return stylesXmlStr
 
     @classmethod
-    def discard_novelibre_styles(cls, stylesXmlStr):
+    def remove_novelibre_styles(cls, stylesXmlStr):
         """Return stylesXmlStr with the novelibre-specific styles removed."""
         for prefix in cls.NAMESPACES:
             ET.register_namespace(prefix, cls.NAMESPACES[prefix])
@@ -419,7 +419,7 @@ class OdtWriter(OdfFile):
         stylesToDiscard = []
         for officeStyle in officeStyles.iterfind('style:style', cls.NAMESPACES):
             officeStyleName = officeStyle.attrib[f"{{{cls.NAMESPACES['style']}}}name"]
-            if officeStyleName in cls.NOVELIBRE_STYLE_NAMES:
+            if officeStyleName in cls._NOVELIBRE_STYLE_NAMES:
                 stylesToDiscard.append(officeStyle)
         for officeStyle in stylesToDiscard:
             officeStyles.remove(officeStyle)

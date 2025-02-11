@@ -57,7 +57,7 @@ class ExportOptionsCtrl(SubController):
             with zipfile.ZipFile(docTemplate) as myzip:
                 with myzip.open('styles.xml') as myfile:
                     stylesXmlStr = myfile.read().decode('utf-8')
-            stylesXmlStr = OdtWriter.discard_novelibre_styles(stylesXmlStr)
+            stylesXmlStr = OdtWriter.remove_novelibre_styles(stylesXmlStr)
             with open(USER_STYLES_XML, 'w', encoding='utf-8') as f:
                 f.write(stylesXmlStr)
         except:
