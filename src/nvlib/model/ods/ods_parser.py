@@ -7,6 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import re
 import zipfile
 
+from nvlib.model.odf.odf_file import OdfFile
 from nvlib.novx_globals import Error
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
@@ -36,34 +37,28 @@ class OdsParser:
         
         First unzip the ODS file located at self.filePath, then parse content.xml.
         """
-        namespaces = dict(
-            office='urn:oasis:names:tc:opendocument:xmlns:office:1.0',
-            text='urn:oasis:names:tc:opendocument:xmlns:text:1.0',
-            table='urn:oasis:names:tc:opendocument:xmlns:table:1.0',
-        )
-        content = self._unzip_ods_file(filePath)
-        root = ET.fromstring(content)
+        root = ET.fromstring(self._unzip_ods_file(filePath))
 
         #--- Parse 'content.xml'.
-        body = root.find('office:body', namespaces)
-        spreadsheet = body.find('office:spreadsheet', namespaces)
-        table = spreadsheet.find('table:table', namespaces)
+        body = root.find('office:body', OdfFile.NAMESPACES)
+        spreadsheet = body.find('office:spreadsheet', OdfFile.NAMESPACES)
+        table = spreadsheet.find('table:table', OdfFile.NAMESPACES)
         rows = []
-        for row in table.iterfind('table:table-row', namespaces):
+        for row in table.iterfind('table:table-row', OdfFile.NAMESPACES):
             cells = []
             i = 0
-            for cell in row.iterfind('table:table-cell', namespaces):
+            for cell in row.iterfind('table:table-cell', OdfFile.NAMESPACES):
                 content = ''
-                odfDate = cell.get(f'{{{namespaces["office"]}}}date-value')
-                odfTime = cell.get(f'{{{namespaces["office"]}}}time-value')
+                odfDate = cell.get(f'{{{OdfFile.NAMESPACES["office"]}}}date-value')
+                odfTime = cell.get(f'{{{OdfFile.NAMESPACES["office"]}}}time-value')
                 if odfDate:
                     cells.append(odfDate)
                 elif odfTime:
                     t = re.search(r'PT(..)H(..)M(..)S', odfTime)
                     cells.append(f'{t.group(1)}:{t.group(2)}:{t.group(3)}')
-                elif cell.find('text:p', namespaces) is not None:
+                elif cell.find('text:p', OdfFile.NAMESPACES) is not None:
                     lines = []
-                    for paragraph in cell.iterfind('text:p', namespaces):
+                    for paragraph in cell.iterfind('text:p', OdfFile.NAMESPACES):
                         lines.append(''.join(t for t in paragraph.itertext()))
                     content = '\n'.join(lines)
                     cells.append(content)
@@ -79,7 +74,7 @@ class OdsParser:
                     break
 
                 # Add repeated cells.
-                attribute = cell.get(f'{{{namespaces["table"]}}}number-columns-repeated')
+                attribute = cell.get(f'{{{OdfFile.NAMESPACES["table"]}}}number-columns-repeated')
                 if attribute:
                     repeat = int(attribute) - 1
                     for __ in range(repeat):
@@ -95,7 +90,7 @@ class OdsParser:
         return rows
 
     def _unzip_ods_file(self, filePath):
-        """Return an xml string from the zipped ODS file."""
+        """Return an xml string from an ODS file specified by filePath."""
         try:
             with zipfile.ZipFile(filePath, 'r') as odfFile:
                 content = odfFile.read('content.xml')

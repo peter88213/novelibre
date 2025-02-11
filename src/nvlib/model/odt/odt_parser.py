@@ -7,6 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from xml import sax
 import zipfile
 
+from nvlib.model.odf.odf_file import OdfFile
 from nvlib.novx_globals import Error
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
@@ -69,16 +70,9 @@ class OdtParser(sax.ContentHandler):
         and get languageCode, countryCode, title, desc, and authorName,        
         Then call the sax parser for content.xml.
         """
-        namespaces = dict(
-            office='urn:oasis:names:tc:opendocument:xmlns:office:1.0',
-            style='urn:oasis:names:tc:opendocument:xmlns:style:1.0',
-            fo='urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0',
-            dc='http://purl.org/dc/elements/1.1/',
-            meta='urn:oasis:names:tc:opendocument:xmlns:meta:1.0'
-        )
         styles, meta, content = self._unzip_odt_file(filePath)
-        self._read_styles_xml(styles, namespaces)
-        self._read_meta_xml(meta, namespaces)
+        self._read_styles_xml(styles, OdfFile.NAMESPACES)
+        self._read_meta_xml(meta, OdfFile.NAMESPACES)
         sax.parseString(content, self)
 
     def characters(self, content):
@@ -340,7 +334,7 @@ class OdtParser(sax.ContentHandler):
                 return
 
     def _unzip_odt_file(self, filePath):
-        """Return three xml strings from the zipped ODT file."""
+        """Return three xml strings from from an ODS file specified by filePath."""
         try:
             with zipfile.ZipFile(filePath, 'r') as odfFile:
                 content = odfFile.read('content.xml')
