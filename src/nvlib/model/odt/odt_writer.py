@@ -352,18 +352,16 @@ class OdtWriter(OdfFile):
  </office:master-styles>
 </office:document-styles>
 '''
-    _NOVELIBRE_STYLES = f'''
-<office:styles xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:rpt="http://openoffice.org/2005/report" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0">
-  <style:style style:name="{_('Chapter_20_beginning')}" style:display-name="{_('Chapter beginning')}" style:family="paragraph" style:parent-style-name="Text_20_body" style:next-style-name="First_20_line_20_indent" style:class="text">
+
+    _NOVELIBRE_STYLES = f'''  <style:style style:name="{_('Chapter_20_beginning')}" style:display-name="{_('Chapter beginning')}" style:family="paragraph" style:parent-style-name="Text_20_body" style:next-style-name="First_20_line_20_indent" style:class="text">
   </style:style>
   <style:style style:name="{_('Section_20_mark')}" style:display-name="{_('Section mark')}" style:family="paragraph" style:parent-style-name="Standard" style:next-style-name="Text_20_body" style:class="text">
-    <style:text-properties fo:color="#008000" fo:font-size="10pt" fo:language="zxx" fo:country="none"/>
+   <style:text-properties fo:color="#008000" fo:font-size="10pt" fo:language="zxx" fo:country="none"/>
   </style:style>
   <style:style style:name="{_('Heading_20_3_20_invisible')}" style:display-name="{_('Heading 3 invisible')}" style:family="paragraph" style:parent-style-name="Heading_20_3" style:class="text">
-    <style:paragraph-properties fo:margin-top="0cm" fo:margin-bottom="0cm" fo:line-height="100%"/>
-    <style:text-properties text:display="none"/>
-  </style:style>
-</office:styles>'''
+   <style:paragraph-properties fo:margin-top="0cm" fo:margin-bottom="0cm" fo:line-height="100%"/>
+   <style:text-properties text:display="none"/>
+  </style:style>'''
 
     _NOVELIBRE_STYLE_NAMES = (
         _('Chapter_20_beginning'),
@@ -393,21 +391,25 @@ class OdtWriter(OdfFile):
 
     @classmethod
     def add_novelibre_styles(cls, stylesXmlStr):
-        """Return stylesXmlStr with missing novelibre-specific styles added."""
-        for prefix in cls.NAMESPACES:
-            ET.register_namespace(prefix, cls.NAMESPACES[prefix])
-        root = ET.fromstring(stylesXmlStr)
-        officeStyles = root.find('office:styles', cls.NAMESPACES)
-        officeStyleNames = []
-        for officeStyle in officeStyles.iterfind('style:style', cls.NAMESPACES):
-            officeStyleNames.append(officeStyle.attrib[f"{{{cls.NAMESPACES['style']}}}name"])
-        novelibreStyles = ET.fromstring(cls._NOVELIBRE_STYLES)
-        for novelibreStyle in novelibreStyles.iterfind('style:style', cls.NAMESPACES):
-            novelibreStyleName = novelibreStyle.attrib[f"{{{cls.NAMESPACES['style']}}}name"]
-            if not novelibreStyleName in officeStyleNames:
-                officeStyles.append(novelibreStyle)
-        stylesXmlStr = ET.tostring(root, encoding='utf-8', xml_declaration=True).decode('utf-8')
-        return stylesXmlStr
+        """Return stylesXmlStr with the novelibre-specific styles inserted.
+        
+        The _NOVELIBRE_STYLES string is inserted right before the
+        closing tag of the office:styles section.
+        This method uses string processing instead of XML processing 
+        for better performance.
+        """
+        success = False
+        lines = stylesXmlStr.split('\n')
+        newlines = []
+        for line in lines:
+            if '</office:styles>' in line:
+                newlines.append(cls._NOVELIBRE_STYLES)
+                success = True
+            newlines.append(line)
+        if not success:
+            raise ValueError('Invalid XML Styles data')
+
+        return '\n'.join(newlines)
 
     @classmethod
     def remove_novelibre_styles(cls, stylesXmlStr):

@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.15.1
+
+- Refactored the code for better performance, reverting to the string processing variant of OdtWriter.add_novelibre_styles().
+- Removed OdfFile.add_novelibre_styles()
+
 ### Version 5.15.0
 
 Refactored the code for better maintainability.
