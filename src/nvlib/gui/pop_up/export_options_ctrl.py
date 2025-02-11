@@ -57,26 +57,11 @@ class ExportOptionsCtrl(SubController):
             with zipfile.ZipFile(docTemplate) as myzip:
                 with myzip.open('styles.xml') as myfile:
                     stylesXmlStr = myfile.read().decode('utf-8')
-            stylesXmlStr = self._discard_novelibre_styles(stylesXmlStr)
+            stylesXmlStr = OdtWriter.discard_novelibre_styles(stylesXmlStr)
             with open(USER_STYLES_XML, 'w', encoding='utf-8') as f:
                 f.write(stylesXmlStr)
         except:
             self._ui.set_status(f'!{_("Invalid document template")}: "{templateName}".')
         else:
             self._ui.set_status(f'{_("Document template is set")}: "{templateName}".')
-
-    def _discard_novelibre_styles(self, stylesXmlStr):
-        for prefix in OdtWriter.NAMESPACES:
-            ET.register_namespace(prefix, OdtWriter.NAMESPACES[prefix])
-        root = ET.fromstring(stylesXmlStr)
-        officeStyles = root.find('office:styles', OdtWriter.NAMESPACES)
-        stylesToDiscard = []
-        for officeStyle in officeStyles.iterfind('style:style', OdtWriter.NAMESPACES):
-            officeStyleName = officeStyle.attrib[f"{{{OdtWriter.NAMESPACES['style']}}}name"]
-            if officeStyleName in OdtWriter.NOVELIBRE_STYLE_NAMES:
-                stylesToDiscard.append(officeStyle)
-        for officeStyle in stylesToDiscard:
-            officeStyles.remove(officeStyle)
-        stylesXmlStr = ET.tostring(root, encoding='utf-8', xml_declaration=True).decode('utf-8')
-        return stylesXmlStr
 

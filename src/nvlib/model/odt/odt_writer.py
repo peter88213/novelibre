@@ -391,6 +391,22 @@ class OdtWriter(OdfFile):
         # str -- Path to the user's custom styles.xml file.
         # This variable can be overwritten at runtime by the exporter class.
 
+    @classmethod
+    def discard_novelibre_styles(cls, stylesXmlStr):
+        for prefix in cls.NAMESPACES:
+            ET.register_namespace(prefix, cls.NAMESPACES[prefix])
+        root = ET.fromstring(stylesXmlStr)
+        officeStyles = root.find('office:styles', cls.NAMESPACES)
+        stylesToDiscard = []
+        for officeStyle in officeStyles.iterfind('style:style', cls.NAMESPACES):
+            officeStyleName = officeStyle.attrib[f"{{{cls.NAMESPACES['style']}}}name"]
+            if officeStyleName in cls.NOVELIBRE_STYLE_NAMES:
+                stylesToDiscard.append(officeStyle)
+        for officeStyle in stylesToDiscard:
+            officeStyles.remove(officeStyle)
+        stylesXmlStr = ET.tostring(root, encoding='utf-8', xml_declaration=True).decode('utf-8')
+        return stylesXmlStr
+
     def write(self):
         """Determine the languages used in the document before writing.
         
