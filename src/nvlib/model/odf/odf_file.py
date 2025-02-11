@@ -128,7 +128,7 @@ class OdfFile(FileExport):
         self._tear_down()
         return f'{_("File written")}: "{norm_path(self.filePath)}".'
 
-    def _add_novelibre_styles(self, stylesXmlStr):
+    def add_novelibre_styles(self, stylesXmlStr):
         """Template method for modifying the ODF styles.xml contents."""
         return stylesXmlStr
 
@@ -141,7 +141,7 @@ class OdfFile(FileExport):
         )
         template = Template(self._STYLES_XML)
         stylesXmlStr = template.safe_substitute(localeMapping)
-        return self._add_novelibre_styles(stylesXmlStr)
+        return self.add_novelibre_styles(stylesXmlStr)
 
     def _set_up(self):
         """Helper method for ZIP file generation.

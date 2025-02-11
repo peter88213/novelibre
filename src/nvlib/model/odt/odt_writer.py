@@ -392,7 +392,26 @@ class OdtWriter(OdfFile):
         # This variable can be overwritten at runtime by the exporter class.
 
     @classmethod
+    def add_novelibre_styles(cls, stylesXmlStr):
+        """Return stylesXmlStr with missing novelibre-specific styles added."""
+        for prefix in cls.NAMESPACES:
+            ET.register_namespace(prefix, cls.NAMESPACES[prefix])
+        root = ET.fromstring(stylesXmlStr)
+        officeStyles = root.find('office:styles', cls.NAMESPACES)
+        officeStyleNames = []
+        for officeStyle in officeStyles.iterfind('style:style', cls.NAMESPACES):
+            officeStyleNames.append(officeStyle.attrib[f"{{{cls.NAMESPACES['style']}}}name"])
+        novelibreStyles = ET.fromstring(cls._NOVELIBRE_STYLES)
+        for novelibreStyle in novelibreStyles.iterfind('style:style', cls.NAMESPACES):
+            novelibreStyleName = novelibreStyle.attrib[f"{{{cls.NAMESPACES['style']}}}name"]
+            if not novelibreStyleName in officeStyleNames:
+                officeStyles.append(novelibreStyle)
+        stylesXmlStr = ET.tostring(root, encoding='utf-8', xml_declaration=True).decode('utf-8')
+        return stylesXmlStr
+
+    @classmethod
     def discard_novelibre_styles(cls, stylesXmlStr):
+        """Return stylesXmlStr with the novelibre-specific styles removed."""
         for prefix in cls.NAMESPACES:
             ET.register_namespace(prefix, cls.NAMESPACES[prefix])
         root = ET.fromstring(stylesXmlStr)
@@ -415,22 +434,6 @@ class OdtWriter(OdfFile):
         if self.novel.languages is None:
             self.novel.get_languages()
         return super().write()
-
-    def _add_novelibre_styles(self, stylesXmlStr):
-        for prefix in self.NAMESPACES:
-            ET.register_namespace(prefix, self.NAMESPACES[prefix])
-        root = ET.fromstring(stylesXmlStr)
-        officeStyles = root.find('office:styles', self.NAMESPACES)
-        officeStyleNames = []
-        for officeStyle in officeStyles.iterfind('style:style', self.NAMESPACES):
-            officeStyleNames.append(officeStyle.attrib[f"{{{self.NAMESPACES['style']}}}name"])
-        novelibreStyles = ET.fromstring(self._NOVELIBRE_STYLES)
-        for novelibreStyle in novelibreStyles.iterfind('style:style', self.NAMESPACES):
-            novelibreStyleName = novelibreStyle.attrib[f"{{{self.NAMESPACES['style']}}}name"]
-            if not novelibreStyleName in officeStyleNames:
-                officeStyles.append(novelibreStyle)
-        stylesXmlStr = ET.tostring(root, encoding='utf-8', xml_declaration=True).decode('utf-8')
-        return stylesXmlStr
 
     def _convert_from_novx(self, text, quick=False, append=False, firstInChapter=False, xml=False):
         """Return text without markup, converted to target format.
@@ -506,7 +509,7 @@ class OdtWriter(OdfFile):
                 with open(self.userStylesXml, 'r', encoding='utf-8') as f:
                     stylesXmlStr = f.read()
                 stylesXmlStr = self._set_document_language(stylesXmlStr)
-                stylesXmlStr = self._add_novelibre_styles(stylesXmlStr)
+                stylesXmlStr = self.add_novelibre_styles(stylesXmlStr)
                 return stylesXmlStr
 
             except:
