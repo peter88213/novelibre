@@ -70,14 +70,10 @@ class ExportOptionsCtrl(SubController):
             ET.register_namespace(prefix, OdtWriter.NAMESPACES[prefix])
         root = ET.fromstring(stylesXmlStr)
         officeStyles = root.find('office:styles', OdtWriter.NAMESPACES)
-        novelibreStyleNames = []
-        novelibreStyles = ET.fromstring(OdtWriter._NOVELIBRE_STYLES)
-        for novelibreStyle in novelibreStyles.iterfind('style:style', OdtWriter.NAMESPACES):
-            novelibreStyleNames.append(novelibreStyle.attrib[f"{{{OdtWriter.NAMESPACES['style']}}}name"])
         stylesToDiscard = []
         for officeStyle in officeStyles.iterfind('style:style', OdtWriter.NAMESPACES):
             officeStyleName = officeStyle.attrib[f"{{{OdtWriter.NAMESPACES['style']}}}name"]
-            if officeStyleName in novelibreStyleNames:
+            if officeStyleName in OdtWriter.NOVELIBRE_STYLE_NAMES:
                 stylesToDiscard.append(officeStyle)
         for officeStyle in stylesToDiscard:
             officeStyles.remove(officeStyle)

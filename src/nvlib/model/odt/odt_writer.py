@@ -365,6 +365,12 @@ class OdtWriter(OdfFile):
   </style:style>
 </office:styles>'''
 
+    NOVELIBRE_STYLE_NAMES = (
+        _('Chapter_20_beginning'),
+        _('Section_20_mark'),
+        _('Heading_20_3_20_invisible'),
+    )
+
     _MIMETYPE = 'application/vnd.oasis.opendocument.text'
 
     def __init__(self, filePath, **kwargs):
