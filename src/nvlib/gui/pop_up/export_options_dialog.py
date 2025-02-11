@@ -57,14 +57,14 @@ class ExportOptionsDialog(ModalDialog, ExportOptionsCtrl):
         ttk.Button(
             frame2,
             text=_('Select document template'),
-            command=self.set_user_styles
+            command=self._ctrl.fileManager.set_user_styles
             ).pack(padx=5, pady=5, anchor='w', fill='x')
 
         # "Restore default styles" button.
         ttk.Button(
             frame2,
             text=_('Restore default styles'),
-            command=self.restore_default_styles
+            command=self._ctrl.fileManager.restore_default_styles
             ).pack(padx=5, pady=5, anchor='w', fill='x')
 
         ttk.Separator(self, orient='horizontal').pack(fill='x')

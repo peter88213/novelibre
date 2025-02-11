@@ -7,6 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 from shutil import copy2
 from tkinter import filedialog
+import zipfile
 
 from nvlib.controller.services.service_base import ServiceBase
 from nvlib.model.exporter.nv_doc_exporter import NvDocExporter
@@ -14,6 +15,7 @@ from nvlib.model.exporter.nv_html_reporter import NvHtmlReporter
 from nvlib.model.file.doc_open import open_document
 from nvlib.model.html.html_report import HtmlReport
 from nvlib.model.nv_work_file import NvWorkFile
+from nvlib.model.odt.odt_writer import OdtWriter
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import Error
 from nvlib.novx_globals import MANUSCRIPT_SUFFIX
@@ -21,6 +23,8 @@ from nvlib.novx_globals import Notification
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import HOME_DIR
 from nvlib.nv_globals import INSTALL_DIR
+from nvlib.nv_globals import USER_STYLES_DIR
+from nvlib.nv_globals import USER_STYLES_XML
 from nvlib.nv_locale import _
 
 
@@ -278,6 +282,16 @@ class FileManager(ServiceBase):
                 self._ui.set_status(_('Latest backup successfully restored.'))
         return
 
+    def restore_default_styles(self, *args):
+        """Remove the user's styles.xml file from the installation."""
+        self._ui.restore_status()
+        try:
+            os.remove(USER_STYLES_XML)
+        except:
+            self._ui.set_status(f'#{_("Default styles are already set")}.')
+        else:
+            self._ui.set_status(f'{_("Default styles are restored")}.')
+
     def save_as(self):
         """Rename the project file and save it to disk.
         
@@ -374,6 +388,39 @@ class FileManager(ServiceBase):
             return ''
 
         return fileName
+
+    def set_user_styles(self, *args):
+        """Set user styles for ODT document export.
+        
+        1. Extract styles.xml from an user-selected OTT or ODT document.
+        2. Remove novelibre-specific styles, if any.
+        3. Add styles.xml to the installation.
+        """
+        self._ui.restore_status()
+        os.makedirs(USER_STYLES_DIR, exist_ok=True)
+        fileTypes = [
+            (f'{_("ODF Text Document Template")} (*.ott)', '.ott'),
+            (f'{_("ODF Text Document")} (*.odt)', '.odt') ,
+        ]
+        docTemplate = filedialog.askopenfilename(
+            filetypes=fileTypes,
+            defaultextension=fileTypes[0][1],
+            )
+        if not docTemplate:
+            return
+
+        templateName = os.path.basename(docTemplate)
+        try:
+            with zipfile.ZipFile(docTemplate) as myzip:
+                with myzip.open('styles.xml') as myfile:
+                    stylesXmlStr = myfile.read().decode('utf-8')
+            stylesXmlStr = OdtWriter.remove_novelibre_styles(stylesXmlStr)
+            with open(USER_STYLES_XML, 'w', encoding='utf-8') as f:
+                f.write(stylesXmlStr)
+        except:
+            self._ui.set_status(f'!{_("Invalid document template")}: "{templateName}".')
+        else:
+            self._ui.set_status(f'{_("Document template is set")}: "{templateName}".')
 
     def show_report(self, suffix):
         """Create HTML report for the web browser.
