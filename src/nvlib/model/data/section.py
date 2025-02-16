@@ -103,7 +103,7 @@ class Section(BasicElementTags):
         self.scPlotLines = []
         # Back references to PlotLine.sections
         self.scPlotPoints = {}
-        # Back references to TurningPoint.sectionAssoc
+        # Back references to PlotPoint.sectionAssoc
         # key: plot point ID, value: plot line ID
 
     @property
