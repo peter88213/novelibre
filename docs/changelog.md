@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.15.2
+
+- Displaying a message if there is no manuscript to discard. 
+
+
 ### Version 5.15.1
 
 - Refactored the code for better performance, reverting to the string processing variant of OdtWriter.add_novelibre_styles().

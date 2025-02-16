@@ -99,13 +99,16 @@ class FileManager(ServiceBase):
         self._ui.restore_status()
         fileName, __ = os.path.splitext(self._mdl.prjFile.filePath)
         manuscriptPath = f'{fileName}{MANUSCRIPT_SUFFIX}.odt'
-        if os.path.isfile(manuscriptPath):
-            prjPath, manuscriptName = os.path.split(manuscriptPath)
-            if os.path.isfile(f'{prjPath}/.~lock.{manuscriptName}#'):
-                self._ui.set_status(f"!{_('Please close the manuscript first')}.")
-            elif self._ui.ask_yes_no(f"{_('Discard manuscript')}?", self._mdl.novel.title):
-                os.replace(manuscriptPath, f'{fileName}{MANUSCRIPT_SUFFIX}.odt.bak')
-                self._ui.set_status(f"{_('Manuscript discarded')}.")
+        if not os.path.isfile(manuscriptPath):
+            self._ui.set_status(f"#{_('Manuscript not found')}.")
+            return
+
+        prjPath, manuscriptName = os.path.split(manuscriptPath)
+        if os.path.isfile(f'{prjPath}/.~lock.{manuscriptName}#'):
+            self._ui.set_status(f"!{_('Please close the manuscript first')}.")
+        elif self._ui.ask_yes_no(f"{_('Discard manuscript')}?", self._mdl.novel.title):
+            os.replace(manuscriptPath, f'{fileName}{MANUSCRIPT_SUFFIX}.odt.bak')
+            self._ui.set_status(f"{_('Manuscript discarded')}.")
 
     def export_document(self, suffix, **kwargs):
         """Export a document.
