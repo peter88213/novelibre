@@ -10,8 +10,10 @@ from nvlib.novx_globals import CR_ROOT
 from nvlib.novx_globals import IT_ROOT
 from nvlib.novx_globals import LC_ROOT
 from nvlib.novx_globals import PLOT_LINE_PREFIX
+from nvlib.novx_globals import PLOT_POINT_PREFIX
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import PN_ROOT
+from nvlib.novx_globals import SECTION_PREFIX
 
 
 class NvTree:
@@ -33,7 +35,7 @@ class NvTree:
         self.srtSections = {}
         # key: chapter ID
         # value : section ID
-        self.srtTurningPoints = {}
+        self.srtPlotPoints = {}
         # key: plot line ID
         # value : plot point ID
 
@@ -44,7 +46,7 @@ class NvTree:
             if parent == CH_ROOT:
                 self.srtSections[iid] = []
             elif parent == PL_ROOT:
-                self.srtTurningPoints[iid] = []
+                self.srtPlotPoints[iid] = []
             return
 
         if parent.startswith(CHAPTER_PREFIX):
@@ -55,10 +57,10 @@ class NvTree:
             return
 
         if parent.startswith(PLOT_LINE_PREFIX):
-            if parent in self.srtTurningPoints:
-                self.srtTurningPoints[parent].append(iid)
+            if parent in self.srtPlotPoints:
+                self.srtPlotPoints[parent].append(iid)
             else:
-                self.srtTurningPoints[parent] = [iid]
+                self.srtPlotPoints[parent] = [iid]
 
     def delete(self, *items):
         """Delete all specified items and all their descendants. The root
@@ -74,7 +76,7 @@ class NvTree:
                 return
 
             if parent == PL_ROOT:
-                self.srtTurningPoints = {}
+                self.srtPlotPoints = {}
             return
 
         if parent.startswith(CHAPTER_PREFIX):
@@ -82,7 +84,7 @@ class NvTree:
             return
 
         if parent.startswith(PLOT_LINE_PREFIX):
-            self.srtTurningPoints[parent] = []
+            self.srtPlotPoints[parent] = []
 
     def get_children(self, item):
         """Returns the list of children belonging to item."""
@@ -93,7 +95,7 @@ class NvTree:
             return self.srtSections.get(item, [])
 
         if item.startswith(PLOT_LINE_PREFIX):
-            return self.srtTurningPoints.get(item, [])
+            return self.srtPlotPoints.get(item, [])
 
     def index(self, item):
         """Return the integer index of item within its parent's list
@@ -107,7 +109,7 @@ class NvTree:
             if parent == CH_ROOT:
                 self.srtSections[iid] = []
             elif parent == PL_ROOT:
-                self.srtTurningPoints[iid] = []
+                self.srtPlotPoints[iid] = []
             return
 
         if parent.startswith(CHAPTER_PREFIX):
@@ -118,10 +120,10 @@ class NvTree:
             return
 
         if parent.startswith(PLOT_LINE_PREFIX):
-            if parent in self.srtTurningPoints:
-                self.srtTurningPoints[parent].insert(index, iid)
+            if parent in self.srtPlotPoints:
+                self.srtPlotPoints[parent].insert(index, iid)
             else:
-                self.srtTurningPoints[parent] = [iid]
+                self.srtPlotPoints[parent] = [iid]
 
     def move(self, item, parent, index):
         """Move item to position index in parent's list of children.
@@ -141,7 +143,25 @@ class NvTree:
     def parent(self, item):
         """Return the ID of the parent of item, or '' if item is at the
         top level of the hierarchy."""
-        raise NotImplementedError
+        if item.startswith(PLOT_POINT_PREFIX):
+            for plId, ppIds in self.srtPlotPoints.items():
+                if item in ppIds:
+                    return plId
+
+        elif item.startswith(SECTION_PREFIX):
+            for chId, scIds in self.srtSections.items():
+                if item in scIds:
+                    return chId
+
+        elif item in self.roots:
+            return ''
+
+        else:
+            for root in self.roots:
+                if item in root:
+                    return root
+
+        raise KeyError
 
     def prev(self, item):
         """Return the identifier of item's previous sibling, or '' if
@@ -153,7 +173,7 @@ class NvTree:
         for item in self.roots:
             self.roots[item] = []
         self.srtSections = {}
-        self.srtTurningPoints = {}
+        self.srtPlotPoints = {}
 
     def set_children(self, item, newchildren):
         """Replaces item’s child with newchildren."""
@@ -164,7 +184,7 @@ class NvTree:
                 return
 
             if item == PL_ROOT:
-                self.srtTurningPoints = {}
+                self.srtPlotPoints = {}
             return
 
         if item.startswith(CHAPTER_PREFIX):
@@ -172,5 +192,5 @@ class NvTree:
             return
 
         if item.startswith(PLOT_LINE_PREFIX):
-            self.srtTurningPoints[item] = newchildren[:]
+            self.srtPlotPoints[item] = newchildren[:]
 

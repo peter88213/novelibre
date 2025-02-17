@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.16.0
+
+- API upgrade: Implemented NvTree.parent()
+
+
 ### Version 5.15.2
 
 - Displaying a message if there is no manuscript to discard. 
