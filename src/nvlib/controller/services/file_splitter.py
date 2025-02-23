@@ -27,6 +27,28 @@ class FileSplitter(ServiceBase):
     def split_project(self):
         """Create a new project and move the selected chapters there."""
 
+        def copy_related_elements():
+            for crId in newNovel.sections[scId].characters:
+                if not crId in newNovel.characters:
+                    newNovel.characters[crId] = sourceNovel.characters[crId]
+                    newNovel.tree.append(CR_ROOT, crId)
+            for lcId in newNovel.sections[scId].locations:
+                if not lcId in newNovel.locations:
+                    newNovel.locations[lcId] = sourceNovel.locations[lcId]
+                    newNovel.tree.append(LC_ROOT, lcId)
+            for itId in newNovel.sections[scId].items:
+                if not itId in newNovel.items:
+                    newNovel.items[itId] = sourceNovel.items[itId]
+                    newNovel.tree.append(IT_ROOT, itId)
+            for plId in newNovel.sections[scId].scPlotLines:
+                if not plId in newNovel.plotLines:
+                    newNovel.plotLines[plId] = sourceNovel.plotLines[plId]
+                    newNovel.tree.append(PL_ROOT, plId)
+            for ppId in newNovel.sections[scId].scPlotPoints:
+                if not ppId in newNovel.plotPoints:
+                    newNovel.plotPoints[ppId] = sourceNovel.plotPoints[ppId]
+                    newNovel.tree.append(sourceNovel.plotPoints[ppId], ppId)
+
         if self._mdl.prjFile is None:
             return
 
@@ -90,34 +112,13 @@ class FileSplitter(ServiceBase):
             )
 
         for chId in elements:
-            if not chId.startswith(CHAPTER_PREFIX):
-                continue
-
-            newNovel.chapters[chId] = sourceNovel.chapters[chId]
-            newNovel.tree.append(CH_ROOT, chId)
-            for scId in sourceNovel.tree.get_children(chId):
-                newNovel.sections[scId] = sourceNovel.sections[scId]
-                newNovel.tree.append(chId, scId)
-                for crId in newNovel.sections[scId].characters:
-                    if not crId in newNovel.characters:
-                        newNovel.characters[crId] = sourceNovel.characters[crId]
-                        newNovel.tree.append(CR_ROOT, crId)
-                for lcId in newNovel.sections[scId].locations:
-                    if not lcId in newNovel.locations:
-                        newNovel.locations[lcId] = sourceNovel.locations[lcId]
-                        newNovel.tree.append(LC_ROOT, lcId)
-                for itId in newNovel.sections[scId].items:
-                    if not itId in newNovel.items:
-                        newNovel.items[itId] = sourceNovel.items[itId]
-                        newNovel.tree.append(IT_ROOT, itId)
-                for plId in newNovel.sections[scId].scPlotLines:
-                    if not plId in newNovel.plotLines:
-                        newNovel.plotLines[plId] = sourceNovel.plotLines[plId]
-                        newNovel.tree.append(PL_ROOT, plId)
-                for ppId in newNovel.sections[scId].scPlotPoints:
-                    if not ppId in newNovel.plotPoints:
-                        newNovel.plotPoints[ppId] = sourceNovel.plotPoints[ppId]
-                        newNovel.tree.append(sourceNovel.plotPoints[ppId], ppId)
+            if chId.startswith(CHAPTER_PREFIX):
+                newNovel.chapters[chId] = sourceNovel.chapters[chId]
+                newNovel.tree.append(CH_ROOT, chId)
+                for scId in sourceNovel.tree.get_children(chId):
+                    newNovel.sections[scId] = sourceNovel.sections[scId]
+                    newNovel.tree.append(chId, scId)
+                    copy_related_elements()
         newProject.novel = newNovel
         try:
             newProject.write()
