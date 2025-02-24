@@ -49,14 +49,11 @@ class Splitter:
         """
 
         def create_chapter(chapterId, title, desc, level):
-            """Create a new chapter and add it to the novel.
-            
-            Positional arguments:
-                chapterId -- str: ID of the chapter to create.
-                title -- str: title of the chapter to create.
-                desc -- str: description of the chapter to create.
-                level -- int: chapter level (part/chapter).           
-            """
+            # Create a new chapter and add it to the novel.
+            #    chapterId -- str: ID of the chapter to create.
+            #    title -- str: title of the chapter to create.
+            #    desc -- str: description of the chapter to create.
+            #    level -- int: chapter level (part/chapter).
             newChapter = Chapter()
             newChapter.title = title
             newChapter.desc = desc
@@ -65,16 +62,13 @@ class Splitter:
             novel.chapters[chapterId] = newChapter
 
         def create_section(sectionId, parent, splitCount, title, desc, appendToPrev):
-            """Create a new section and add it to the novel.
-            
-            Positional arguments:
-                sectionId -- str: ID of the section to create.
-                parent -- Section instance: parent section.
-                splitCount -- int: number of parent's splittings.
-                title -- str: title of the section to create.
-                desc -- str: description of the section to create.
-                appendToPrev -- boolean: when exporting, append the section to the previous one without separator.
-            """
+            # Create a new section and add it to the novel.
+            #    sectionId -- str: ID of the section to create.
+            #    parent -- Section instance: parent section.
+            #    splitCount -- int: number of parent's splittings.
+            #    title -- str: title of the section to create.
+            #    desc -- str: description of the section to create.
+            #    appendToPrev -- boolean: when exporting, append the section to the previous one without separator.
             WARNING = '(!)'
 
             # Mark metadata of split sections.

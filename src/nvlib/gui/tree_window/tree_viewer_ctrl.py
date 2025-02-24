@@ -94,10 +94,11 @@ class TreeViewerCtrl(SubController):
         """
 
         def search_tree(parent, result, flag):
-            """Search the tree for the node ID after thisNode."""
+            # Search the tree for the node ID after thisNode.
             for child in self.tree.get_children(parent):
                 if result:
                     break
+
                 if child.startswith(prefix):
                     if prefix == CHAPTER_PREFIX:
                         if self._mdl.novel.chapters[child].chLevel != self._mdl.novel.chapters[thisNode].chLevel:
@@ -303,7 +304,7 @@ class TreeViewerCtrl(SubController):
         """
 
         def search_tree(parent, result, prevNode):
-            """Search the tree for the node ID before thisNode."""
+            # Search the tree for the node ID before thisNode.
             for child in self.tree.get_children(parent):
                 if result:
                     break
@@ -395,15 +396,10 @@ class TreeViewerCtrl(SubController):
     def update_tree(self):
 
         def update_branch(node, scnPos=0):
-            """Recursive tree walker.
-            
-            Positional arguments: 
-                node: str -- Node ID to start from.
-            Optional arguments:
-                scnPos: int -- Word count so far.
-            
-            Return the incremented word count.
-            """
+            # Recursive tree walker.
+            #     node: str -- Node ID to start from.
+            #     scnPos: int -- Word count so far.
+            # Return the incremented word count.
             for elemId in self.tree.get_children(node):
                 if elemId.startswith(SECTION_PREFIX):
                     title, nodeValues, nodeTags = self._get_section_row_data(elemId, position=scnPos)

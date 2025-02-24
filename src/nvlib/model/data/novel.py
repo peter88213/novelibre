@@ -522,14 +522,7 @@ class Novel(BasicElement):
         """
 
         def languages(text):
-            """Yield the language codes appearing in text.
-            
-            Positional arguments:
-                text -- novx-formatted string to scan for language codes.
-            """
-            if not text:
-                return
-
+            # Yield the language codes appearing in text.
             m = LANGUAGE_TAG.search(text)
             while m:
                 text = text[m.span()[1]:]
@@ -539,12 +532,10 @@ class Novel(BasicElement):
         self.languages = []
         for scId in self.sections:
             text = self.sections[scId].sectionContent
-            if not text:
-                continue
-
-            for language in languages(text):
-                if not language in self.languages:
-                    self.languages.append(language)
+            if text:
+                for language in languages(text):
+                    if not language in self.languages:
+                        self.languages.append(language)
 
     def to_xml(self, xmlElement):
         super().to_xml(xmlElement)

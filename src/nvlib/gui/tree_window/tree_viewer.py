@@ -142,6 +142,7 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
                 title, width = self._COLUMNS[coId]
             except:
                 continue
+
             self._colPos[coId] = i
             i += 1
             self.columns.append((coId, title, width))

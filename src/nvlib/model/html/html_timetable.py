@@ -192,16 +192,12 @@ class HtmlTimetable(HtmlReport):
 
         scIdsByDate = {}
         for scId in self.novel.sections:
-            if self.novel.sections[scId].scType != 0:
-                continue
-
-            timestamp = self._get_timestamp(self.novel.sections[scId], referenceDate)
-            if not timestamp:
-                continue
-
-            if not timestamp in scIdsByDate:
-                scIdsByDate[timestamp] = []
-            scIdsByDate[timestamp].append(scId)
+            if self.novel.sections[scId].scType == 0:
+                timestamp = self._get_timestamp(self.novel.sections[scId], referenceDate)
+                if timestamp:
+                    if not timestamp in scIdsByDate:
+                        scIdsByDate[timestamp] = []
+                    scIdsByDate[timestamp].append(scId)
 
         # Sort sections by timestamp.
         return sorted(scIdsByDate.items())

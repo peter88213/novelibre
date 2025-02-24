@@ -470,10 +470,8 @@ class NvModel:
         """
 
         def waste_sections(elemId):
-            """Move all sections under the element specified by elemId to the 'trash bin'.
-            
-            Reads the "trash" variable of the calling method.
-            """
+            # Move all sections under the element specified by elemId to the 'trash bin'.
+            # Reads the "trash" variable of the calling method.
             if elemId.startswith(SECTION_PREFIX):
                 if self.novel.sections[elemId].scType < 2:
                     # Remove plot point and plot line references.
@@ -825,11 +823,9 @@ class NvModel:
         ]
 
         def number_to_roman(n):
-            """Return n as a Roman number.
-            
-            Credit goes to the user 'Aristide' on stack overflow.
-            https://stackoverflow.com/a/47713392
-            """
+            # Return n as a Roman number.
+            # Credit goes to the user "Aristide" on stack overflow.
+            # https://stackoverflow.com/a/47713392
             result = []
             for (arabic, roman) in ROMAN:
                 (factor, n) = divmod(n, arabic)
@@ -966,11 +962,8 @@ class NvModel:
         """Iterate the tree and configure the elements."""
 
         def initialize_branch(node):
-            """Recursive tree walker.
-            
-            Positional arguments: 
-                node: str -- Node ID to start from.
-            """
+            # Recursive tree walker.
+            #    node: str -- Node ID to start from.
             for elemId in self.tree.get_children(node):
                 if elemId.startswith(SECTION_PREFIX):
                     self.novel.sections[elemId].on_element_change = on_element_change

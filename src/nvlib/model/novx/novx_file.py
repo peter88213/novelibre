@@ -227,17 +227,18 @@ class NovxFile(File):
         wcLastCount = None
         wcLastTotalCount = None
         for wc in self.wcLog:
+            wcCount, wcTotalCount = self.wcLog[wc]
             if self.novel.saveWordCount:
-                # Discard entries with unchanged word count.
-                if self.wcLog[wc][0] == wcLastCount and self.wcLog[wc][1] == wcLastTotalCount:
+                # Skip entries with unchanged word count.
+                if wcCount == wcLastCount and wcTotalCount == wcLastTotalCount:
                     continue
 
-                wcLastCount = self.wcLog[wc][0]
-                wcLastTotalCount = self.wcLog[wc][1]
+                wcLastCount = wcCount
+                wcLastTotalCount = wcTotalCount
             xmlWc = ET.SubElement(xmlWcLog, 'WC')
             ET.SubElement(xmlWc, 'Date').text = wc
-            ET.SubElement(xmlWc, 'Count').text = self.wcLog[wc][0]
-            ET.SubElement(xmlWc, 'WithUnused').text = self.wcLog[wc][1]
+            ET.SubElement(xmlWc, 'Count').text = wcCount
+            ET.SubElement(xmlWc, 'WithUnused').text = wcTotalCount
 
     def _check_id(self, elemId, elemPrefix):
         """Raise an exception if elemId does not start with the correct prefix."""
