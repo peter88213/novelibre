@@ -12,6 +12,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### Version 5.16.1
 
+- Improved message for unexpected errors.
 - Refactored the code for better maintainability.
 
 
