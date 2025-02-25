@@ -114,7 +114,7 @@ import tkinter as tk
 def show_error(self, *args):
     err = traceback.format_exception(*args)
     logger.error('$Appname $Release\\n' + ''.join(err))
-    messagebox.showerror('An unexpected error has occurred.\\nSee "error.log" in the installation directory.' )
+    messagebox.showerror('An unexpected error has occurred.', 'See "error.log" in the installation directory.' )
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename='$InstallDir/error.log', level=logging.ERROR)
