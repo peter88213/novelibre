@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.16.1
+
+- Refactored the code for better maintainability.
+
+
 ### Version 5.16.0
 
 - API upgrade: Implemented NvTree.parent()
