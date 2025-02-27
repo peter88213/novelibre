@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Versin 5.16.2
+### Version 5.16.2
 
 - Updated the Window title of "About novelibre".
 
