@@ -1,12 +1,4 @@
-"""Package for novelibre tree view.
-
-Packages:
-controller -- Modules for novelibre controller classes.
-export -- Modules for novelibre file export.
-model -- Modules for the novelibre model.
-plugin -- Modules for novelibre plugin management.
-view -- Modules for novelibre view classes.
-widgets -- Widgets for general use.
+"""Packages and modules for the novelibre novel organizer.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre

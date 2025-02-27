@@ -1,4 +1,4 @@
-"""Package for representation of novelibre's data model.
+"""Modules for representation of novelibre's data model.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
