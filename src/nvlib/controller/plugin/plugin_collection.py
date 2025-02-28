@@ -83,7 +83,7 @@ class PluginCollection(dict, SubController):
         return False
 
     def disable_menu(self):
-        """Disable menu entries when no project is open."""
+        """Disable menu entries when the module has not been activated."""
         for moduleName in self:
             if self[moduleName].isActive:
                 try:
@@ -92,7 +92,7 @@ class PluginCollection(dict, SubController):
                     pass
 
     def enable_menu(self):
-        """Enable menu entries when a project is open."""
+        """Enable menu entries when a project has been activated."""
         for moduleName in self:
             if self[moduleName].isActive:
                 try:
