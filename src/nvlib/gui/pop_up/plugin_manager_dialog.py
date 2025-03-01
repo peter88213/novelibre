@@ -15,8 +15,11 @@ from nvlib.nv_locale import _
 class PluginManagerDialog(ModalDialog, PluginManagerCtrl):
     """A pop-up window displaying a list of all plugins found on application startup."""
 
+    MIN_HEIGHT = 450
+
     def __init__(self, model, view, controller, **kw):
         super().__init__(view, **kw)
+        self.minsize(1, self.MIN_HEIGHT)
         self.initialize_controller(model, view, controller)
 
         self.title(f'{_("Installed plugins")} - novelibre @release')
