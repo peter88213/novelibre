@@ -12,7 +12,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### Version 5.16.3
 
-- Set a minimal plugin manager window height.
+- Set a minimum plugin manager window height.
 
 
 ### Version 5.16.2
