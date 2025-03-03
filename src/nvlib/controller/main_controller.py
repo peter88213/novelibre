@@ -21,6 +21,7 @@ from nvlib.model.nv_model import NvModel
 from nvlib.nv_globals import launchers
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
+from nvlib.controller.command.cmd_history import CmdHistory
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 
@@ -73,6 +74,9 @@ class MainController(SubController, Commands):
 
         self.plugins.load_plugins(PLUGIN_PATH)
         self.register_client(self.plugins)
+
+        #--- Initialize the command stack.
+        self.cmdHistory = CmdHistory()
 
         self.disable_menu()
         self._ui.tv.reset_view()
@@ -161,6 +165,9 @@ class MainController(SubController, Commands):
                 if not self.fileManager.save_project():
                     self._ui.show_error(_('Cannot save the project'), _('Critical Error'))
                     return False
+
+        # Reset the command history.
+        self.cmdHistory.clear()
 
         # Close the sub-controllers.
         for client in self._clients:
