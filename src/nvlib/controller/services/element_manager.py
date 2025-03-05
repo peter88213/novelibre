@@ -25,6 +25,7 @@ from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.nv_locale import _
+from nvlib.controller.command.cmd_move_node import CmdMoveNode
 
 
 class ElementManager(ServiceBase):
@@ -563,7 +564,7 @@ class ElementManager(ServiceBase):
             ) or (node.startswith(PLOT_POINT_PREFIX) and targetNode.startswith(PLOT_LINE_PREFIX)):
             self._ui.tv.open_children(targetNode)
         self._ui.tv.skipUpdate = True
-        self._mdl.move_node(node, targetNode)
+        self._ctrl.cmdHistory.execute(CmdMoveNode(self._mdl, node, targetNode))
 
     def set_character_status(self, isMajor, elemIds=None):
         """Set character status to Major.

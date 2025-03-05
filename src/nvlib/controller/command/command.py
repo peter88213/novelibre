@@ -14,5 +14,6 @@ class Command(ABC):
     def execute(self):
         pass
 
+    @abstractmethod
     def undo(self):
         pass
