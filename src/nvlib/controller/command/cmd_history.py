@@ -8,10 +8,13 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 class CmdHistory(list):
 
-    def execute(self, command):
+    def execute(self, command, event=None):
         self.append(command)
         command.execute()
 
-    def undo(self):
-        self.pop().undo()
+    def undo(self, event=None):
+        try:
+            self.pop().undo()
+        except:
+            pass
 

@@ -307,6 +307,7 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
         self.root.bind(KEYS.ADD_ELEMENT[0], self._ctrl.add_new_element)
         self.root.bind(KEYS.ADD_CHILD[0], self._ctrl.add_new_child)
         self.root.bind(KEYS.ADD_PARENT[0], self._ctrl.add_new_parent)
+        self.root.bind(KEYS.UNDO[0], self._ctrl.cmdHistory.undo)
         if PLATFORM == 'win':
             self.root.bind(MOUSE.BACK_CLICK, self.tv.go_back)
             self.root.bind(MOUSE.FORWARD_CLICK, self.tv.go_forward)

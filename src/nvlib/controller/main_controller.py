@@ -47,6 +47,9 @@ class MainController(SubController, Commands):
         self._mdl = NvModel()
         self._mdl.add_observer(self)
 
+        #--- Initialize the command stack.
+        self.cmdHistory = CmdHistory()
+
         #--- Build the GUI.
         self._ui = MainView(self._mdl, self, title)
         self.register_client(self._ui)
@@ -74,9 +77,6 @@ class MainController(SubController, Commands):
 
         self.plugins.load_plugins(PLUGIN_PATH)
         self.register_client(self.plugins)
-
-        #--- Initialize the command stack.
-        self.cmdHistory = CmdHistory()
 
         self.disable_menu()
         self._ui.tv.reset_view()

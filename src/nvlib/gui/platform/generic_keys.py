@@ -35,5 +35,6 @@ class GenericKeys:
     SAVE_PROJECT = ('<Control-s>', f'{_("Ctrl")}-S')
     TOGGLE_PROPERTIES = ('<Control-Alt-t>', f'{_("Ctrl")}-Alt-T')
     TOGGLE_VIEWER = ('<Control-t>', f'{_("Ctrl")}-T')
+    UNDO = ('<Control-z>', f'{_("Ctrl")}-Z')
     UNLOCK_PROJECT = ('<Control-u>', f'{_("Ctrl")}-U')
 
