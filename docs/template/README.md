@@ -96,9 +96,14 @@ is embedded in a customizable ecosystem.
 
 ## General note about the fitness for use
 
-At present, the development phase is coming to an end. Nevertheless it is recommended to check for updates from time to time, as well as for the plugins. 
+I use the program myself and fix bugs immediately if I notice any. As far as I can tell, *novelibre* runs fast and reliably under Windows and Linux. 
+The development phase has now come to an end. Nevertheless it is recommended to check for updates from time to time, as well as for the plugins. 
 
-I use the program myself and fix bugs immediately if I notice any. As far as I can tell, *novelibre* runs fast and reliably under Windows and Linux. It should also under other operating systems for which there is a reasonably up-to-date *Python 3* installation. However, there is a lack of a broad user base, which is why one cannot speak of real proven operation. 
+[Changelog](docs/changelog.md)
+
+[News](https://github.com/peter88213/novelibre/discussions/1?sort=new)
+
+[Feedback](https://github.com/peter88213/novelibre/discussions)
 
 
 ## Download and install
@@ -134,11 +139,6 @@ You may wish to install plugins; the [update checker](https://github.com/peter88
 
 ---
 
-[Changelog](docs/changelog.md)
-
-[News](https://github.com/peter88213/novelibre/discussions/1?sort=new)
-
-[Discussions](https://github.com/peter88213/novelibre/discussions)
 
 ## Usage
 
