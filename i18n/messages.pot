@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.16.4\n"
-"POT-Creation-Date: 2025-03-12 21:51:09\n"
+"Project-Id-Version: 5.16.5\n"
+"POT-Creation-Date: 2025-03-12 23:15:05\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -737,9 +737,6 @@ msgstr ""
 msgid "Minutes"
 msgstr ""
 
-msgid "Module"
-msgstr ""
-
 msgid "Moon phase"
 msgstr ""
 
@@ -1011,6 +1008,9 @@ msgid "Plot points"
 msgstr ""
 
 msgid "Plot progress"
+msgstr ""
+
+msgid "Plugin"
 msgstr ""
 
 msgid "Plugin Manager"

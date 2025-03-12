@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.16.4
+### Version 5.16.5
 
 - Refactored the code for better maintainability.
 
