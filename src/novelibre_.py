@@ -21,7 +21,7 @@ import os
 import sys
 
 from nvlib.configuration.configuration import Configuration
-from nvlib.configuration.nv_configuration import NvConfiguration
+from nvlib.configuration.just_settings import JustSettings
 from nvlib.controller.main_controller import MainController
 from nvlib.nv_globals import INSTALL_DIR
 from nvlib.nv_globals import launchers
@@ -142,7 +142,7 @@ def main():
     prefs.update(configuration.options)
 
     #--- Launchers for opening linked non-standard filetypes.
-    launcherConfig = NvConfiguration()
+    launcherConfig = JustSettings()
     launcherConfig.read(f'{configDir}/launchers.ini')
     launchers.update(launcherConfig.settings)
 
