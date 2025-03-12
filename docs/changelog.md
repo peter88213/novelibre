@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.16.4
+
+- Refactored the code for better maintainability.
+
+
 ### Version 5.16.3
 
 - Set a minimum plugin manager window height.
