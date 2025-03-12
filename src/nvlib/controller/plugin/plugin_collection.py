@@ -15,11 +15,11 @@ from nvlib.nv_locale import _
 
 
 class PluginCollection(dict, SubController):
-    """A collection of plugin modules.
+    """A collection of plugins.
         
     Represents a dictionary with 
-        key: str -- The module name.
-        value: object -- The module's Plugin instance.
+        key: str -- The plugin's module name.
+        value: object -- The imported module's Plugin instance.
     
     Passes down the following commands to the plugins:
         - close
@@ -61,21 +61,21 @@ class PluginCollection(dict, SubController):
             self.minorVersion = 16
             self.patchlevel = 0
 
-    def delete_file(self, moduleName):
-        """Remove a module from the file system.
+    def delete_file(self, pluginName):
+        """Remove a plugin module file from the file system.
         
         Positional arguments:
-            moduleName -- str: Module name as used as registry key.
+            pluginName -- str: Plugin name as used as registry key.
         
         Note: the plugin remains active until restart.
         Return True on success, otherwise return False. 
         """
-        if moduleName in self:
+        if pluginName in self:
             try:
-                if self[moduleName].filePath:
-                    if self._ui.ask_yes_no(f'{_("Delete file")} "{self[moduleName].filePath}"?'):
-                        os.remove(self[moduleName].filePath)
-                        self[moduleName].filePath = ''
+                if self[pluginName].filePath:
+                    if self._ui.ask_yes_no(f'{_("Delete file")} "{self[pluginName].filePath}"?'):
+                        os.remove(self[pluginName].filePath)
+                        self[pluginName].filePath = ''
                         return True
 
             except Exception as ex:
@@ -83,20 +83,20 @@ class PluginCollection(dict, SubController):
         return False
 
     def disable_menu(self):
-        """Disable menu entries when the module has not been activated."""
-        for moduleName in self:
-            if self[moduleName].isActive:
+        """Disable menu entries when the plugin has not been activated."""
+        for pluginName in self:
+            if self[pluginName].isActive:
                 try:
-                    self[moduleName].disable_menu()
+                    self[pluginName].disable_menu()
                 except:
                     pass
 
     def enable_menu(self):
         """Enable menu entries when a project has been activated."""
-        for moduleName in self:
-            if self[moduleName].isActive:
+        for pluginName in self:
+            if self[pluginName].isActive:
                 try:
-                    self[moduleName].enable_menu()
+                    self[pluginName].enable_menu()
                 except:
                     pass
 
@@ -104,18 +104,18 @@ class PluginCollection(dict, SubController):
         """Load and register a single plugin.
 
         Positional arguments:
-            filePath -- str: The module's location in the file system. 
+            filePath -- str: The plugin's location in the file system. 
 
         Return True on success, otherwise return False. 
         """
         try:
-            moduleName, __ = os.path.splitext(os.path.basename(filePath))
+            pluginName, __ = os.path.splitext(os.path.basename(filePath))
 
-            # Import the module.
-            module = importlib.import_module(moduleName)
+            # Import the plugin.
+            pluginModule = importlib.import_module(pluginName)
 
             # Check API compatibility.
-            pluginObject = module.Plugin()
+            pluginObject = pluginModule.Plugin()
             try:
                 apiVerStr = pluginObject.API_VERSION
                 isCompatible = True
@@ -139,15 +139,15 @@ class PluginCollection(dict, SubController):
             pluginObject.isActive = isCompatible
             pluginObject.isRejected = False
 
-            # Register the module.
-            self[moduleName] = pluginObject
+            # Register the plugin.
+            self[pluginName] = pluginObject
 
-            # Locate the module.
+            # Locate the plugin.
             pluginObject.filePath = filePath
             return True
 
         except Exception as ex:
-            self[moduleName] = RejectedPlugin(filePath, str(ex))
+            self[pluginName] = RejectedPlugin(filePath, str(ex))
             return False
 
     def load_plugins(self, pluginPath):
@@ -171,37 +171,37 @@ class PluginCollection(dict, SubController):
 
     def lock(self):
         """Prevent the plugins from changing the model."""
-        for moduleName in self:
-            if self[moduleName].isActive:
+        for pluginName in self:
+            if self[pluginName].isActive:
                 try:
-                    self[moduleName].lock()
+                    self[pluginName].lock()
                 except:
                     pass
 
     def on_close(self):
         """Perform actions before a project is closed."""
-        for moduleName in self:
-            if self[moduleName].isActive:
+        for pluginName in self:
+            if self[pluginName].isActive:
                 try:
-                    self[moduleName].on_close()
+                    self[pluginName].on_close()
                 except:
                     pass
 
     def on_quit(self):
         """Perform actions before the application is closed."""
-        for moduleName in self:
-            if self[moduleName].isActive:
+        for pluginName in self:
+            if self[pluginName].isActive:
                 try:
-                    self[moduleName].on_quit()
+                    self[pluginName].on_quit()
                 except:
                     pass
 
     def unlock(self):
         """Allow the plugins changing the model."""
-        for moduleName in self:
-            if self[moduleName].isActive:
+        for pluginName in self:
+            if self[pluginName].isActive:
                 try:
-                    self[moduleName].unlock()
+                    self[pluginName].unlock()
                 except:
                     pass
 

@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.16.4\n"
-"POT-Creation-Date: 2025-03-12 21:51:09\n"
-"PO-Revision-Date: 2025-03-12 21:51:09\n"
+"Project-Id-Version: 5.16.5\n"
+"POT-Creation-Date: 2025-03-12 23:15:05\n"
+"PO-Revision-Date: 2025-03-12 23:15:05\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -730,9 +730,6 @@ msgstr "Nebenfigur"
 msgid "Minutes"
 msgstr "Minuten"
 
-msgid "Module"
-msgstr "Modul"
-
 msgid "Moon phase"
 msgstr "Mondphase"
 
@@ -1005,6 +1002,9 @@ msgstr "Plotpunkte"
 
 msgid "Plot progress"
 msgstr "Handlungsfortschritt"
+
+msgid "Plugin"
+msgstr "Plugin"
 
 msgid "Plugin Manager"
 msgstr "Plugin-Manager"
