@@ -12,15 +12,20 @@ from nvlib.controller.sub_controller import SubController
 class PluginBase(ABC, SubController):
     """Abstract Plugin base class.
     
-    Accepts commands from the plugin collection:
-        - close
-        - quit
-        - enable/disable menu
+    Public methods:
+        - install
+        
+    Public methods (inherited from SubController):
+        - disable_menu
+        - enable_menu
         - lock  
+        - on_close
+        - on_quit
+        - unlock
     
     Public class constants:
         VERSION: str -- Version string.
-        NOVELYST_API: str -- API compatibility indicator.
+        API_VERSION: str -- API compatibility indicator.
         DESCRIPTION: str -- Description to be diplayed in the novelibre plugin list.
         URL: str -- Plugin project homepage URL.
 
