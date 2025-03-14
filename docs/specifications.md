@@ -3,18 +3,18 @@
 
 ## Requirements
 
-[Requirements Overview](specs/Requirements_Overview.md)
-[User Stories](specs/User_Stories.md)
+- [Requirements Overview](specs/requirements_overview.md)
+- [User Stories](specs/user_utories.md)
 
 
 ## Software Architecture
 
-[Components](specs/Components.md)
+- [Components](specs/components.md)
 
 
 ## Software Design
 
-[Template and placeholder specifications for file export](specs/specifications_for_file_export.md)
+- [Template and placeholder specifications for file export](specs/specifications_for_file_export.md)
 
 
 ## The .novx file format

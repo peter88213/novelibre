@@ -2,8 +2,8 @@
 
 ---
 
-[List of templates](#list-of-templates)
-[Placeholders](#placeholders)
+- [List of templates](#list-of-templates)
+- [Placeholders](#placeholders)
 
 ---
 
