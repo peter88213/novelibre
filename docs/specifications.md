@@ -4,7 +4,7 @@
 ## Requirements
 
 - [Requirements Overview](specs/requirements_overview.md)
-- [User Stories](specs/user_utories.md)
+- [User Stories](specs/user_stories.md)
 
 
 ## Software Architecture
