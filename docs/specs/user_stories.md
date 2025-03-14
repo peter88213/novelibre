@@ -1,8 +1,8 @@
-[Specifications](../specifications.md) > [Requirements](../specifications.md#requirements) > User Stories
+[Specifications](../specifications.md) > [Requirements](../specifications.md#requirements) > User stories
 
 ---
 
-# User Stories
+# User stories
 
 ## Application
 

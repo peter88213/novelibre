@@ -3,8 +3,16 @@
 
 ## Requirements
 
-- [Requirements Overview](specs/requirements_overview.md)
-- [User Stories](specs/user_stories.md)
+*novelibre* has evolved from a yw7 file converter, whereby I first had to gain experience 
+in user interface design and gradually refactored the program again and again. 
+The requirements are now to be recorded subsequently in order to be able to generate 
+test cases that are as complete as possible. 
+The aim is to expand the system of automatic tests, and ensure the quality of 
+the further development of *novelibre*.
+
+
+- [Requirements overview](specs/requirements_overview.md)
+- [User stories](specs/user_stories.md)
 
 
 ## Software Architecture
