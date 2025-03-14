@@ -1,4 +1,4 @@
-[Specifications](../specifications.md) > Components
+[Specifications](../specifications.md) > [Software Architecture](../specifications.md#software-architecture) > Components
 
 ---
 
