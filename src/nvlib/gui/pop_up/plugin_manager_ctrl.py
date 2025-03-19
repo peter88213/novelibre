@@ -19,7 +19,11 @@ class PluginManagerCtrl(SubController):
             if self._ctrl.plugins.delete_file(moduleName):
                 self.deleteButton.configure(state='disabled')
                 if self._ctrl.plugins[moduleName].isActive:
-                    self._ui.show_info(_('The plugin remains active until next start.'), title=f'{moduleName} {_("deleted")}')
+                    self._ui.show_info(
+                        message=f'{moduleName} {_("deleted")}',
+                        detail=f"{_('The plugin remains active until next start')}.",
+                        title=_('Plugin Manager')
+                        )
                 else:
                     self.pluginCollection.delete(moduleName)
 

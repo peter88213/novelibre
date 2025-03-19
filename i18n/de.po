@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.16.5\n"
-"POT-Creation-Date: 2025-03-12 23:15:05\n"
-"PO-Revision-Date: 2025-03-12 23:15:05\n"
+"Project-Id-Version: 5.17.1\n"
+"POT-Creation-Date: 2025-03-19 22:29:12\n"
+"PO-Revision-Date: 2025-03-19 22:29:12\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -154,9 +154,6 @@ msgstr "Kurzzusammenfassung (nur Export)"
 msgid "Broken link fixed"
 msgstr "Defekten Link korrigiert"
 
-msgid "Can not do"
-msgstr "Geht nicht"
-
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -210,9 +207,6 @@ msgstr "Ebene ändern"
 
 msgid "Change backup directory"
 msgstr "Sicherungsverzeichnis ändern"
-
-msgid "Change icon size"
-msgstr "Symbolgröße ändern"
 
 msgid "Change sections to Normal"
 msgstr "Abschnitte zu Normal ändern"
@@ -352,9 +346,6 @@ msgstr "Aus ODT erzeugen..."
 msgid "Created {0} on {1}."
 msgstr "{0} erzeugt am {1}."
 
-msgid "Critical Error"
-msgstr "Programmfehler"
-
 msgid "Cross reference"
 msgstr "Querverweise"
 
@@ -465,6 +456,9 @@ msgstr "Leeres Projekt"
 
 msgid "Ending"
 msgstr "Ende"
+
+msgid "Error"
+msgstr "Fehler"
 
 msgid "Exit"
 msgstr "Beenden"
@@ -621,6 +615,9 @@ msgstr "Stunden"
 
 msgid "How many sections to add?"
 msgstr "Wie viele Abschnitte hinzufügen?"
+
+msgid "Icon size changed"
+msgstr "Symbolgröße geändert"
 
 msgid "Illegal value"
 msgstr "Unzulässiger Wert"
@@ -934,6 +931,9 @@ msgstr "Gliederung"
 msgid "Overwrite"
 msgstr "Überschreiben"
 
+msgid "Overwrite the last saved project file with the \".bak\" file?"
+msgstr "Die zuletzt gespeicherte Projektdatei mit der \".bak\"-Datei überschreiben?"
+
 msgid "Part"
 msgstr "Teil"
 
@@ -967,11 +967,11 @@ msgstr "Bitte zuerst das Dokument schließen"
 msgid "Please close the manuscript first"
 msgstr "Bitte zuerst das Manuskript schließen"
 
-msgid "Please enter a reference date."
-msgstr "Geben Sie bitte ein Bezugsdatum ein."
+msgid "Please enter a reference date"
+msgstr "Geben Sie bitte ein Bezugsdatum ein"
 
-msgid "Please enter either a section date or a day and a reference date."
-msgstr "Geben Sie bitte entweder ein Abschnittsdatum ein, oder einen Tag und ein Bezugsdatum."
+msgid "Please enter either a section date or a day and a reference date"
+msgstr "Geben Sie bitte entweder ein Abschnittsdatum ein, oder einen Tag und ein Bezugsdatum"
 
 msgid "Please save now"
 msgstr "Bitte jetzt speichern"
@@ -1243,16 +1243,16 @@ msgstr "Der zulässige Höchstwert ist"
 msgid "The allowed minimum value is"
 msgstr "Der zulässige Mindestwert ist"
 
-msgid "The change takes effect after next startup."
+msgid "The change takes effect after next startup"
 msgstr "Die Änderung wird beim nächsten Programmstart wirksam"
 
-msgid "The next section has no time set."
+msgid "The next section has no time set"
 msgstr "Der nachfolgende Abschnitt hat keine Zeitangabe"
 
-msgid "The plugin remains active until next start."
-msgstr "Das Plugin bleibt bis zum nächsten Start aktiv."
+msgid "The plugin remains active until next start"
+msgstr "Das Plugin bleibt bis zum nächsten Start aktiv"
 
-msgid "The previous section has no time set."
+msgid "The previous section has no time set"
 msgstr "Der vorhergehende Abschnitt hat keine Zeitangabe"
 
 msgid "The project \"{}\" was created with a newer novelibre version."
@@ -1270,17 +1270,17 @@ msgstr "Die Abschnitte sind nicht vom selben Typ"
 msgid "The sections have different viewpoints"
 msgstr "Die Abschnitte haben unterschiedliche Perspektiven"
 
+msgid "There is no next section"
+msgstr "Es gibt keinen nachfolgenden Abschnitt"
+
 msgid "There is no previous section"
 msgstr "Es gibt keinen vorhergehenden Abschnitt"
 
 msgid "This document is not meant to be written back"
 msgstr "Dieses Dokument ist nicht zum Zurückschreiben gedacht"
 
-msgid "This section has no time set."
+msgid "This section has no time set"
 msgstr "Dieser Abschnitt hat keine Zeitangabe"
-
-msgid "This will overwrite the last saved project file with the \".bak\" file"
-msgstr "Die zuletzt gespeicherte Projektdatei wird mit der \".bak\"-Datei überschrieben"
 
 msgid "Time"
 msgstr "Zeit"
@@ -1311,6 +1311,9 @@ msgstr "Papierkorb"
 
 msgid "Undefined"
 msgstr "Nicht definiert"
+
+msgid "Unhandled exception on exit"
+msgstr "Unbehandelte Ausnahme beim Beenden"
 
 msgid "Unknown author"
 msgstr "Unbekannter Autor"

@@ -73,8 +73,8 @@ class LinkProcessor(ServiceBase):
 
                 # The full path is also broken.
                 self._ui.show_error(
-                    str(ex),
-                    title=_('Cannot open link')
+                    message=_('Cannot open link'),
+                    detail=str(ex)
                     )
             else:
                 if not self._ctrl.isLocked:
@@ -121,7 +121,7 @@ class LinkProcessor(ServiceBase):
                 open_document(linkPath)
             except Exception as ex:
                 self._ui.set_status(f'!{str(ex)}')
-        return
+            return
 
         raise FileNotFoundError(f"{_('File not found')}: {norm_path(linkPath)}")
 

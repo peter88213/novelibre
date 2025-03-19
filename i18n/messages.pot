@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.16.5\n"
-"POT-Creation-Date: 2025-03-12 23:15:05\n"
+"Project-Id-Version: 5.17.1\n"
+"POT-Creation-Date: 2025-03-19 22:29:12\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -161,9 +161,6 @@ msgstr ""
 msgid "Broken link fixed"
 msgstr ""
 
-msgid "Can not do"
-msgstr ""
-
 msgid "Cancel"
 msgstr ""
 
@@ -216,9 +213,6 @@ msgid "Change Level"
 msgstr ""
 
 msgid "Change backup directory"
-msgstr ""
-
-msgid "Change icon size"
 msgstr ""
 
 msgid "Change sections to Normal"
@@ -359,9 +353,6 @@ msgstr ""
 msgid "Created {0} on {1}."
 msgstr ""
 
-msgid "Critical Error"
-msgstr ""
-
 msgid "Cross reference"
 msgstr ""
 
@@ -471,6 +462,9 @@ msgid "Empty project"
 msgstr ""
 
 msgid "Ending"
+msgstr ""
+
+msgid "Error"
 msgstr ""
 
 msgid "Exit"
@@ -627,6 +621,9 @@ msgid "Hours"
 msgstr ""
 
 msgid "How many sections to add?"
+msgstr ""
+
+msgid "Icon size changed"
 msgstr ""
 
 msgid "Illegal value"
@@ -941,6 +938,9 @@ msgstr ""
 msgid "Overwrite"
 msgstr ""
 
+msgid "Overwrite the last saved project file with the \".bak\" file?"
+msgstr ""
+
 msgid "Part"
 msgstr ""
 
@@ -974,10 +974,10 @@ msgstr ""
 msgid "Please close the manuscript first"
 msgstr ""
 
-msgid "Please enter a reference date."
+msgid "Please enter a reference date"
 msgstr ""
 
-msgid "Please enter either a section date or a day and a reference date."
+msgid "Please enter either a section date or a day and a reference date"
 msgstr ""
 
 msgid "Please save now"
@@ -1250,16 +1250,16 @@ msgstr ""
 msgid "The allowed minimum value is"
 msgstr ""
 
-msgid "The change takes effect after next startup."
+msgid "The change takes effect after next startup"
 msgstr ""
 
-msgid "The next section has no time set."
+msgid "The next section has no time set"
 msgstr ""
 
-msgid "The plugin remains active until next start."
+msgid "The plugin remains active until next start"
 msgstr ""
 
-msgid "The previous section has no time set."
+msgid "The previous section has no time set"
 msgstr ""
 
 msgid "The project \"{}\" was created with a newer novelibre version."
@@ -1277,16 +1277,16 @@ msgstr ""
 msgid "The sections have different viewpoints"
 msgstr ""
 
+msgid "There is no next section"
+msgstr ""
+
 msgid "There is no previous section"
 msgstr ""
 
 msgid "This document is not meant to be written back"
 msgstr ""
 
-msgid "This section has no time set."
-msgstr ""
-
-msgid "This will overwrite the last saved project file with the \".bak\" file"
+msgid "This section has no time set"
 msgstr ""
 
 msgid "Time"
@@ -1317,6 +1317,9 @@ msgid "Trash"
 msgstr ""
 
 msgid "Undefined"
+msgstr ""
+
+msgid "Unhandled exception on exit"
 msgstr ""
 
 msgid "Unknown author"

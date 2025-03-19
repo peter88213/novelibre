@@ -70,8 +70,8 @@ class ProjectViewCtrl(BasicViewCtrl):
             except ValueError:
                 self.referenceDateVar.set(self.element.referenceDate)
                 self._ui.show_error(
-                    f'{_("Wrong date")}: "{refDateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}',
-                    title=_('Input rejected')
+                    message=_('Input rejected'),
+                    detail=f'{_("Wrong date")}: "{refDateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}'
                     )
             else:
                 self.element.referenceDate = refDateStr

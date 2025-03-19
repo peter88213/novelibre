@@ -88,7 +88,7 @@ class MainController(SubController, Commands):
         Return True, if the project remains locked, otherwise return False.
         """
         if self.isLocked:
-            if self._ui.ask_yes_no(_('The project is locked.\nUnlock?'), title=_('Can not do')):
+            if self._ui.ask_yes_no(_('The project is locked.\nUnlock?')):
                 self.unlock()
                 return False
             else:
@@ -159,7 +159,9 @@ class MainController(SubController, Commands):
 
             elif doSave:
                 if not self.fileManager.save_project():
-                    self._ui.show_error(_('Cannot save the project'), _('Critical Error'))
+                    self._ui.show_error(
+                        message=_('Cannot save the project')
+                        )
                     return False
 
         # Close the sub-controllers.
@@ -193,7 +195,10 @@ class MainController(SubController, Commands):
             for client in self._clients:
                 client.on_quit()
         except Exception as ex:
-            self._ui.show_error(str(ex), title='ERROR: Unhandled exception on exit')
+            self._ui.show_error(
+                message=_('Unhandled exception on exit'),
+                detail=str(ex)
+                )
             self._ui.root.quit()
         return 'break'
 

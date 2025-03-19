@@ -537,14 +537,20 @@ class ElementManager(ServiceBase):
 
             scId0 = self._ui.tv.prev_node(scId1)
             if not scId0:
-                self._ui.show_error(_('There is no previous section'), title=_('Cannot join sections'))
+                self._ui.show_error(
+                    message=_('Cannot join sections'),
+                    detail=f"{_('There is no previous section')}."
+                    )
                 return
 
         if self._ui.ask_yes_no(f'{_("Join with previous")}?'):
             try:
                 self._mdl.join_sections(scId0, scId1)
             except Error as ex:
-                self._ui.show_error(str(ex), title=_('Cannot join sections'))
+                self._ui.show_error(
+                    message=_('Cannot join sections'),
+                    detail=str(ex)
+                    )
                 return
 
             self.view_new_element(scId0)

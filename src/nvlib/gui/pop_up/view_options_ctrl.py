@@ -30,7 +30,11 @@ class ViewOptionsCtrl(SubController):
 
     def change_icon_size(self, *args):
         prefs['large_icons'] = self._largeIconsVar.get()
-        self._ui.show_info(_('The change takes effect after next startup.'), title=f'{_("Change icon size")}')
+        self._ui.show_info(
+            message=_('Icon size changed'),
+            detail=f"{_('The change takes effect after next startup')}.",
+            title=_('"View" options')
+            )
 
     def change_localize_date(self, *args):
         prefs['localize_date'] = self._localizeDate.get()

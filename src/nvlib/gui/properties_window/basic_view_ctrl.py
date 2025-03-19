@@ -181,8 +181,9 @@ class BasicViewCtrl(SubController):
 
     def _report_missing_reference_date(self):
         self._ui.show_error(
-            _('Please enter a reference date.'),
-            title=_('Cannot convert date/days'))
+            message=_('Cannot convert date/days'),
+            detail=f"{_('Please enter a reference date')}."
+            )
 
     def _start_picking_mode(self, event=None, command=None):
         """Start the picking mode for element selection.        

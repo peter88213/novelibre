@@ -86,8 +86,8 @@ class SectionViewCtrl(BasicViewCtrl):
             except ValueError:
                 self.startDateVar.set(self.element.date)
                 self._ui.show_error(
-                    f'{_("Wrong date")}: "{dateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}',
-                    title=_('Input rejected')
+                    message=_('Input rejected'),
+                    detail=f'{_("Wrong date")}: "{dateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}'
                     )
             else:
                 self.element.date = dateStr
@@ -107,8 +107,8 @@ class SectionViewCtrl(BasicViewCtrl):
                 except ValueError:
                     self.startTimeVar.set(dispTime)
                     self._ui.show_error(
-                        f'{_("Wrong time")}: "{timeStr}"\n{_("Required")}: {_("hh:mm")}',
-                        title=_('Input rejected')
+                        message=_('Input rejected'),
+                        detail=f'{_("Wrong time")}: "{timeStr}"\n{_("Required")}: {_("hh:mm")}',
                         )
                 else:
                     while timeStr.count(':') < 2:
@@ -194,7 +194,10 @@ class SectionViewCtrl(BasicViewCtrl):
             self.lastsMinutesVar.set(self.element.lastsMinutes)
             self.lastsHoursVar.set(self.element.lastsHours)
             self.lastsDaysVar.set(self.element.lastsDays)
-            self._ui.show_error(f'{_("Wrong entry: number required")}.', title=_('Input rejected'))
+            self._ui.show_error(
+                message=_('Input rejected'),
+                detail=f'{_("Wrong entry: number required")}.'
+                )
         elif newEntry:
             self.element.lastsMinutes = lastsMinutesStr
             self.element.lastsHours = lastsHoursStr
@@ -244,13 +247,17 @@ class SectionViewCtrl(BasicViewCtrl):
         """Set section start to the end of the previous section."""
         prevScId = self._ui.tv.prev_node(self.elementId)
         if not prevScId:
+            self._ui.show_error(
+                message=_('Cannot generate date/time'),
+                detail=f"{_('There is no previous section')}."
+                )
             return
 
         newDate, newTime, newDay = self._mdl.novel.sections[prevScId].get_end_date_time()
         if newTime is None:
             self._ui.show_error(
-                _('The previous section has no time set.'),
-                title=_('Cannot generate date/time')
+                message=_('Cannot generate date/time'),
+                detail=f"{_('The previous section has no time set')}."
                 )
             return
 
@@ -272,21 +279,25 @@ class SectionViewCtrl(BasicViewCtrl):
 
         nextScId = self._ui.tv.next_node(self.elementId)
         if not nextScId:
+            self._ui.show_error(
+                message=_('Cannot generate duration'),
+                detail=f"{_('There is no next section')}."
+                )
             return
 
         thisTimeIso = self.element.time
         if not thisTimeIso:
             self._ui.show_error(
-                _('This section has no time set.'),
-                title=_('Cannot generate duration')
+                message=_('Cannot generate duration'),
+                detail=f"{_('This section has no time set')}."
                 )
             return
 
         nextTimeIso = self._mdl.novel.sections[nextScId].time
         if not nextTimeIso:
             self._ui.show_error(
-                _('The next section has no time set.'),
-                title=_('Cannot generate duration')
+                message=_('Cannot generate duration'),
+                detail=f"{_('The next section has no time set')}."
                 )
             return
 
@@ -351,8 +362,8 @@ class SectionViewCtrl(BasicViewCtrl):
                     except ValueError:
                         self.startDayVar.set(self.element.day)
                         self._ui.show_error(
-                            f'{_("Wrong entry: number required")}.',
-                            title=_('Input rejected')
+                            message=_('Input rejected'),
+                            detail=f'{_("Wrong entry: number required")}.'
                             )
                     else:
                         self.element.day = dayStr
@@ -819,8 +830,9 @@ class SectionViewCtrl(BasicViewCtrl):
 
         if charList:
             self._ui.show_info(
-                '\n'.join(charList),
-                title=f'{_("Date")}: {datestr(now)}'
+                message=f'{_("Date")}: {datestr(now)}',
+                detail='\n'.join(charList),
+                title=_('Show ages')
                 )
 
     def show_moonphase(self, event=None):
@@ -838,9 +850,9 @@ class SectionViewCtrl(BasicViewCtrl):
                 return
 
         self._ui.show_info(
-            f'{_("Moon phase")}: '\
-            f'{self._mdl.nvService.get_moon_phase_str(now)}',
-            title=f'{_("Date")}: {datestr(now)}'
+            message=f'{_("Date")}: {datestr(now)}',
+            detail=f'{self._mdl.nvService.get_moon_phase_str(now)}',
+            title=_("Moon phase")
             )
 
     def toggle_date(self, event=None):
@@ -949,13 +961,17 @@ class SectionViewCtrl(BasicViewCtrl):
                             break
                     else:
                         # No break occurred: there is no element with the specified title
-                        self._ui.show_error(f'{_("Wrong name")}: "{elemTitle}"', title=_('Input rejected'))
+                        self._ui.show_error(
+                            message=_('Input rejected'),
+                            detail=f'{_("Wrong name")}: "{elemTitle}".'
+                            )
                 return elemIds
 
         return None
 
     def _report_missing_date(self):
         self._ui.show_error(
-            _('Please enter either a section date or a day and a reference date.'),
-            title=_('Date information is missing'))
+            message=_('Date information is missing'),
+            detail=f"{_('Please enter either a section date or a day and a reference date')}.",
+            )
 

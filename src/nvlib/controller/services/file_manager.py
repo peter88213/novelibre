@@ -227,7 +227,10 @@ class FileManager(ServiceBase):
             return 'break'
 
         if self._mdl.prjFile.filePath is None:
-            if not self._ui.ask_ok_cancel(_('Please save now'), title=_('Project path unknown')):
+            if not self._ui.ask_ok_cancel(
+                message=_('Please save now'),
+                detail=_('Project path unknown'),
+                ):
                 return 'break'
 
             if not self.save_project():
@@ -272,7 +275,9 @@ class FileManager(ServiceBase):
             if not self._ui.ask_yes_no(_('Discard changes and load the ".bak" file?')):
                 return
 
-        elif not self._ui.ask_ok_cancel(_('This will overwrite the last saved project file with the ".bak" file')):
+        elif not self._ui.ask_yes_no(
+            _('Overwrite the last saved project file with the ".bak" file?')
+            ):
             return
 
         try:

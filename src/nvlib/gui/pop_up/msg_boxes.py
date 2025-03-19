@@ -35,7 +35,7 @@ class MsgBoxes:
                     title=title
                     ).go()
 
-    def ask_ok_cancel(self, text, title=None, **options):
+    def ask_ok_cancel(self, message='', detail='', title=None, **options):
         """Query ok or cancel with a pop-up box.
         
         Positional arguments:
@@ -46,7 +46,12 @@ class MsgBoxes:
         """
         if title is None:
             title = self.title
-        return messagebox.askokcancel(title, text, **options)
+        return messagebox.askokcancel(
+            message=message,
+            detail=detail,
+            title=title,
+            **options
+            )
 
     def ask_overwrite_open_cancel(self, text, default=0, title=None):
         """Query overwrite, open existing, or cancel with a pop-up box. 
@@ -71,7 +76,7 @@ class MsgBoxes:
             title=title
             ).go()
 
-    def ask_yes_no(self, text, title=None, **options):
+    def ask_yes_no(self, message='', detail='', title=None, **options):
         """Query yes or no with a pop-up box.
         
         Positional arguments:
@@ -82,9 +87,14 @@ class MsgBoxes:
         """
         if title is None:
             title = self.title
-        return messagebox.askyesno(title, text, **options)
+        return messagebox.askyesno(
+            message=message,
+            detail=detail,
+            title=title,
+            **options
+            )
 
-    def ask_yes_no_cancel(self, text, title=None, **options):
+    def ask_yes_no_cancel(self, message='', detail='', title=None, **options):
         """Query yes or no or cancel with a pop-up box.
         
         Positional arguments:
@@ -95,9 +105,14 @@ class MsgBoxes:
         """
         if title is None:
             title = self.title
-        return messagebox.askyesnocancel(title, text, **options)
+        return messagebox.askyesnocancel(
+            message=message,
+            detail=detail,
+            title=title,
+            **options
+            )
 
-    def show_error(self, message, title=None, **options):
+    def show_error(self, message='', detail='', title=None, **options):
         """Display an error message box.
         
         Positional arguments:
@@ -107,10 +122,15 @@ class MsgBoxes:
             title -- title to be displayed on the window frame.
         """
         if title is None:
-            title = self.title
-        messagebox.showerror(title, message, **options)
+            title = _('Error')
+        messagebox.showerror(
+            message=message,
+            detail=detail,
+            title=title,
+            **options
+            )
 
-    def show_info(self, message, title=None, **options):
+    def show_info(self, message='', detail='', title=None, **options):
         """Display an informational message box.
         
         Positional arguments:
@@ -121,9 +141,14 @@ class MsgBoxes:
         """
         if title is None:
             title = self.title
-        messagebox.showinfo(title, message, **options)
+        messagebox.showinfo(
+            message=message,
+            detail=detail,
+            title=title,
+            **options
+            )
 
-    def show_warning(self, message, title=None, **options):
+    def show_warning(self, message='', detail='', title=None, **options):
         """Display a warning message box.
         
         Optional arguments:
@@ -131,5 +156,10 @@ class MsgBoxes:
         """
         if title is None:
             title = self.title
-        messagebox.showwarning(title, message, **options)
+        messagebox.showwarning(
+            message=message,
+            detail=detail,
+            title=title,
+            **options
+            )
 

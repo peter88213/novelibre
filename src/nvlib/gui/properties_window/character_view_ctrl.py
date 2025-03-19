@@ -42,8 +42,8 @@ class CharacterViewCtrl(WorldElementViewCtrl):
             except:
                 self.birthDateVar.set(self.element.birthDate)
                 self._ui.show_error(
-                    f'{_("Wrong date")}: "{birthDateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}',
-                    title=_('Input rejected')
+                    message=_('Input rejected'),
+                    detail=f'{_("Wrong date")}: "{birthDateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}'
                     )
             else:
                 self.element.birthDate = birthDateStr
@@ -57,8 +57,8 @@ class CharacterViewCtrl(WorldElementViewCtrl):
             except:
                 self.deathDateVar.set(self.element.deathDate)
                 self._ui.show_error(
-                    f'{_("Wrong date")}: "{deathDateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}',
-                    title=_('Input rejected')
+                    message=_('Input rejected'),
+                    detail=f'{_("Wrong date")}: "{deathDateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}'
                     )
             else:
                 self.element.deathDate = deathDateStr

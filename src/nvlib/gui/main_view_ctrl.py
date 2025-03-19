@@ -15,7 +15,11 @@ class MainViewCtrl(SubController):
         
         Important: after building the program, __doc__ will be the novelibre docstring.
         """
-        self.show_info(__doc__, title=_('About novelibre'))
+        self.show_info(
+            message=f'novelibre {self._ctrl.plugins.majorVersion}',
+            detail=__doc__,
+            title=_('About novelibre')
+            )
 
     def disable_menu(self):
         """Disable menu entries when no project is open.        
