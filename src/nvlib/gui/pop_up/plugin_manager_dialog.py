@@ -25,26 +25,26 @@ class PluginManagerDialog(ModalDialog, PluginManagerCtrl):
         self.title(f'{_("Installed plugins")} - novelibre @release')
 
         columns = 'Plugin', 'Version', 'novelibre API', 'Description'
-        self.pluginCollection = ttk.Treeview(self, columns=columns, show='headings', selectmode='browse')
+        self.pluginTree = ttk.Treeview(self, columns=columns, show='headings', selectmode='browse')
 
-        # scrollY = ttk.Scrollbar(self.pluginCollection, orient='vertical', command=self.pluginCollection.yview)
-        # self.pluginCollection.configure(yscrollcommand=scrollY.set)
+        # scrollY = ttk.Scrollbar(self.pluginTree, orient='vertical', command=self.pluginTree.yview)
+        # self.pluginTree.configure(yscrollcommand=scrollY.set)
         # scrollY.pack(side='right', fill='y')
         #--- unsolved problem: adding a scollbar makes the window shrink to minimum
 
-        self.pluginCollection.pack(fill='both', expand=True)
-        self.pluginCollection.bind('<<TreeviewSelect>>', self.on_select_plugin)
-        self.pluginCollection.tag_configure('rejected', foreground='red')
-        self.pluginCollection.tag_configure('inactive', foreground='gray')
+        self.pluginTree.pack(fill='both', expand=True)
+        self.pluginTree.bind('<<TreeviewSelect>>', self.on_select_plugin)
+        self.pluginTree.tag_configure('rejected', foreground='red')
+        self.pluginTree.tag_configure('inactive', foreground='gray')
 
-        self.pluginCollection.column('Plugin', width=150, minwidth=120, stretch=False)
-        self.pluginCollection.heading('Plugin', text=_('Plugin'), anchor='w')
-        self.pluginCollection.column('Version', width=100, minwidth=100, stretch=False)
-        self.pluginCollection.heading('Version', text=_('Version'), anchor='w')
-        self.pluginCollection.column('novelibre API', width=100, minwidth=100, stretch=False)
-        self.pluginCollection.heading('novelibre API', text=_('novelibre API'), anchor='w')
-        self.pluginCollection.column('Description', width=400, stretch=True)
-        self.pluginCollection.heading('Description', text=_('Description'), anchor='w')
+        self.pluginTree.column('Plugin', width=150, minwidth=120, stretch=False)
+        self.pluginTree.heading('Plugin', text=_('Plugin'), anchor='w')
+        self.pluginTree.column('Version', width=100, minwidth=100, stretch=False)
+        self.pluginTree.heading('Version', text=_('Version'), anchor='w')
+        self.pluginTree.column('novelibre API', width=100, minwidth=100, stretch=False)
+        self.pluginTree.heading('novelibre API', text=_('novelibre API'), anchor='w')
+        self.pluginTree.column('Description', width=400, stretch=True)
+        self.pluginTree.heading('Description', text=_('Description'), anchor='w')
 
         for pluginName in self._ctrl.plugins:
             nodeTags = []
@@ -71,7 +71,7 @@ class PluginManagerDialog(ModalDialog, PluginManagerCtrl):
             elif not self._ctrl.plugins[pluginName].isActive:
                 nodeTags.append('inactive')
                 # Mark loaded yet incompatible modules.
-            self.pluginCollection.insert('', 'end', pluginName, values=columns, tags=tuple(nodeTags))
+            self.pluginTree.insert('', 'end', pluginName, values=columns, tags=tuple(nodeTags))
 
         self._footer = ttk.Frame(self)
         self._footer.pack(fill='both', expand=False)

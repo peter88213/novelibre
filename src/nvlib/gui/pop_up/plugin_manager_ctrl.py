@@ -9,26 +9,49 @@ import webbrowser
 from nvlib.controller.services.nv_help import NvHelp
 from nvlib.controller.sub_controller import SubController
 from nvlib.nv_locale import _
+from pip._vendor.typing_extensions import Self
 
 
 class PluginManagerCtrl(SubController):
 
     def delete_plugin(self, event=None):
-        moduleName = self.pluginCollection.selection()[0]
-        if moduleName:
-            if self._ctrl.plugins.delete_file(moduleName):
-                self.deleteButton.configure(state='disabled')
-                if self._ctrl.plugins[moduleName].isActive:
-                    self._ui.show_info(
-                        message=f'{moduleName} {_("deleted")}',
-                        detail=f"{_('The plugin remains active until next start')}.",
-                        title=_('Plugin Manager')
-                        )
-                else:
-                    self.pluginCollection.delete(moduleName)
+        pluginName = self.pluginTree.selection()[0]
+        if not pluginName:
+            return
+
+        if not pluginName in self._ctrl.plugins:
+            return
+
+        if not self._ctrl.plugins[pluginName].filePath:
+            return
+
+        if not self._ui.ask_yes_no(
+            message=f'{_("Delete file")}?',
+            detail=self._ctrl.plugins[pluginName].filePath,
+            title=_('Plugin Manager'),
+            parent=self
+            ):
+            return
+
+        if self._ctrl.plugins.delete_file(pluginName):
+            self.deleteButton.configure(state='disabled')
+            if self._ctrl.plugins[pluginName].isActive:
+                self._ui.show_info(
+                    message=f'{pluginName} {_("deleted")}',
+                    detail=f"{_('The plugin remains active until next start')}.",
+                    title=_('Plugin Manager'),
+                    parent=self
+                    )
+            else:
+                self.pluginTree.delete(pluginName)
 
     def on_select_plugin(self, event):
-        pluginName = self.pluginCollection.selection()[0]
+        try:
+            pluginName = self.pluginTree.selection()[0]
+        except IndexError:
+            # can happen after plugin deletion
+            return
+
         homeButtonState = 'disabled'
         deleteButtonState = 'disabled'
         if pluginName:
@@ -49,7 +72,7 @@ class PluginManagerCtrl(SubController):
         NvHelp.open_help_page(f'tools_menu.html#{_("plugin-manager").lower()}')
 
     def open_homepage(self, event=None):
-        pluginName = self.pluginCollection.selection()[0]
+        pluginName = self.pluginTree.selection()[0]
         if pluginName:
             try:
                 url = self._ctrl.plugins[pluginName].URL

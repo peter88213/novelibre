@@ -34,9 +34,9 @@ class DocImporter(ServiceBase, NovxConversion):
         self.newFile = None
         self.prefs = self._ctrl.get_preferences()
 
-    def import_document(self, sourcePath):
+    def import_document(self, sourcePath, parent=None):
         try:
-            message = self._run(sourcePath)
+            message = self._run(sourcePath, parent=parent)
         except Notification as ex:
             self._ui.set_status(f'#{str(ex)}')
             return
@@ -101,8 +101,9 @@ class DocImporter(ServiceBase, NovxConversion):
 
             if os.path.isfile(target.filePath):
                 if not self._ui.ask_yes_no(
-                    _('Update the project?'),
-                    title=source.DESCRIPTION,
+                    message=_('Update the project?'),
+                    detail=source.DESCRIPTION,
+                    parent=kwargs.get('parent', None)
                     ):
                     raise Notification(f'{_("Action canceled by user")}.')
 

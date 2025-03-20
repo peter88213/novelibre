@@ -33,7 +33,8 @@ class ViewOptionsCtrl(SubController):
         self._ui.show_info(
             message=_('Icon size changed'),
             detail=f"{_('The change takes effect after next startup')}.",
-            title=_('"View" options')
+            title=_('"View" options'),
+            parent=self
             )
 
     def change_localize_date(self, *args):

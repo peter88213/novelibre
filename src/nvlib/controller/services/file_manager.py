@@ -140,7 +140,7 @@ class FileManager(ServiceBase):
             if kwargs.get('lock', True) and self.prefs['lock_on_export']:
                 self._ctrl.lock()
 
-    def import_odf(self, sourcePath=None, defaultExtension='.odt'):
+    def import_odf(self, sourcePath=None, defaultExtension='.odt', parent=None):
         """Update or create the project from an ODF document.
         
         Optional arguments:
@@ -166,9 +166,12 @@ class FileManager(ServiceBase):
             self._ctrl.refresh_tree()
             self._ctrl.unlock()
             if self._mdl.isModified:
-                if self._ui.ask_yes_no(_('Save changes?')):
+                if self._ui.ask_yes_no(
+                    message=_('Save changes?'),
+                    parent=parent
+                    ):
                     self.save_project()
-        self._ctrl.docImporter.import_document(sourcePath)
+        self._ctrl.docImporter.import_document(sourcePath, parent=parent)
         self.copy_to_backup(self._mdl.prjFile.filePath)
 
     def open_installationFolder(self):

@@ -73,10 +73,9 @@ class PluginCollection(dict, SubController):
         if pluginName in self:
             try:
                 if self[pluginName].filePath:
-                    if self._ui.ask_yes_no(f'{_("Delete file")} "{self[pluginName].filePath}"?'):
-                        os.remove(self[pluginName].filePath)
-                        self[pluginName].filePath = ''
-                        return True
+                    os.remove(self[pluginName].filePath)
+                    self[pluginName].filePath = ''
+                    return True
 
             except Exception as ex:
                 print(str(ex))

@@ -22,14 +22,18 @@ class ReimportCtrl(SubController):
         except IndexError:
             pass
         else:
-            self._ctrl.import_odf(sourcePath=filePath)
+            self._ctrl.import_odf(sourcePath=filePath, parent=self)
         importButtonState = 'disabled'
         self.importButton.configure(state=importButtonState)
         self.list_documents()
 
     def delete_document(self, event=None):
         filePath = self.documentCollection.selection()[0]
-        if filePath and self._ui.ask_yes_no(f'{_("Delete file")} "{filePath}"?'):
+        if filePath and self._ui.ask_yes_no(
+            message=f'{_("Delete file")}?',
+            detail=filePath,
+            parent=self
+            ):
             try:
                 os.remove(filePath)
                 self.documentCollection.delete(filePath)

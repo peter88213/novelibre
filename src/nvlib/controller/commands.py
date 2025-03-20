@@ -328,7 +328,7 @@ class Commands:
         if not self.check_lock():
             self.elementManager.import_elements(LOCATION_PREFIX)
 
-    def import_odf(self, sourcePath=None, defaultExtension='.odt'):
+    def import_odf(self, sourcePath=None, defaultExtension='.odt', parent=None):
         """Update or create the project from an ODF document.
         
         Optional arguments:
@@ -336,7 +336,7 @@ class Commands:
             defaultExtension: str -- Extension to be preset in the file picker.
         """
         if not self.check_lock():
-            self.fileManager.import_odf(sourcePath, defaultExtension)
+            self.fileManager.import_odf(sourcePath, defaultExtension, parent)
 
     def import_plot_lines(self, event=None):
         if not self.check_lock():

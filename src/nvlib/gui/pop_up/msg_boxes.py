@@ -12,7 +12,7 @@ from nvlib.nv_locale import _
 
 class MsgBoxes:
 
-    def ask_delete_all_skip_cancel(self, text, default=0, title=None):
+    def ask_delete_all_skip_cancel(self, text, default=0, title='novelibre'):
         """Query delete, all, skip, or cancel with a pop-up box. 
         
         Positional arguments:
@@ -30,12 +30,12 @@ class MsgBoxes:
                     None,
                     text=text,
                     buttons=[_('Delete'), _('All'), _('Skip'), _('Cancel')],
-                    default=0,
+                    default=default,
                     cancel=3,
                     title=title
                     ).go()
 
-    def ask_ok_cancel(self, message='', detail='', title=None, **options):
+    def ask_ok_cancel(self, message='', detail='', title='novelibre', **options):
         """Query ok or cancel with a pop-up box.
         
         Positional arguments:
@@ -44,8 +44,6 @@ class MsgBoxes:
         Optional arguments:
             title -- title to be displayed on the window frame.            
         """
-        if title is None:
-            title = self.title
         return messagebox.askokcancel(
             message=message,
             detail=detail,
@@ -53,7 +51,7 @@ class MsgBoxes:
             **options
             )
 
-    def ask_overwrite_open_cancel(self, text, default=0, title=None):
+    def ask_overwrite_open_cancel(self, text, default=0, title='novelibre'):
         """Query overwrite, open existing, or cancel with a pop-up box. 
         
         Positional arguments:
@@ -76,7 +74,7 @@ class MsgBoxes:
             title=title
             ).go()
 
-    def ask_yes_no(self, message='', detail='', title=None, **options):
+    def ask_yes_no(self, message='', detail='', title='novelibre', **options):
         """Query yes or no with a pop-up box.
         
         Positional arguments:
@@ -85,8 +83,6 @@ class MsgBoxes:
         Optional arguments:
             title -- title to be displayed on the window frame.            
         """
-        if title is None:
-            title = self.title
         return messagebox.askyesno(
             message=message,
             detail=detail,
@@ -94,7 +90,7 @@ class MsgBoxes:
             **options
             )
 
-    def ask_yes_no_cancel(self, message='', detail='', title=None, **options):
+    def ask_yes_no_cancel(self, message='', detail='', title='novelibre', **options):
         """Query yes or no or cancel with a pop-up box.
         
         Positional arguments:
@@ -103,8 +99,6 @@ class MsgBoxes:
         Optional arguments:
             title -- title to be displayed on the window frame.            
         """
-        if title is None:
-            title = self.title
         return messagebox.askyesnocancel(
             message=message,
             detail=detail,
@@ -112,7 +106,7 @@ class MsgBoxes:
             **options
             )
 
-    def show_error(self, message='', detail='', title=None, **options):
+    def show_error(self, message='', detail='', title='novelibre', **options):
         """Display an error message box.
         
         Positional arguments:
@@ -121,8 +115,6 @@ class MsgBoxes:
         Optional arguments:
             title -- title to be displayed on the window frame.
         """
-        if title is None:
-            title = _('Error')
         messagebox.showerror(
             message=message,
             detail=detail,
@@ -130,7 +122,7 @@ class MsgBoxes:
             **options
             )
 
-    def show_info(self, message='', detail='', title=None, **options):
+    def show_info(self, message='', detail='', title='novelibre', **options):
         """Display an informational message box.
         
         Positional arguments:
@@ -139,8 +131,6 @@ class MsgBoxes:
         Optional arguments:
             title -- title to be displayed on the window frame.
         """
-        if title is None:
-            title = self.title
         messagebox.showinfo(
             message=message,
             detail=detail,
