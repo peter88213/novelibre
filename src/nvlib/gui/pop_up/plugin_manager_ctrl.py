@@ -9,7 +9,6 @@ import webbrowser
 from nvlib.controller.services.nv_help import NvHelp
 from nvlib.controller.sub_controller import SubController
 from nvlib.nv_locale import _
-from pip._vendor.typing_extensions import Self
 
 
 class PluginManagerCtrl(SubController):

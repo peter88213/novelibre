@@ -10,6 +10,7 @@ from tkinter import filedialog
 
 from nvlib.controller.sub_controller import SubController
 from nvlib.novx_globals import CH_ROOT
+from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
@@ -107,7 +108,10 @@ class BasicViewCtrl(SubController):
             return
 
         linkPath = list(self.element.links)[selection]
-        if self._ui.ask_yes_no(f'{_("Remove link")}: "{self.element.links[linkPath]}"?'):
+        if self._ui.ask_yes_no(
+            message=f'{_("Remove link")}?',
+            detail=norm_path(self.element.links[linkPath]),
+            ):
             links = self.element.links
             try:
                 del links[linkPath]

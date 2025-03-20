@@ -10,6 +10,7 @@ import os
 from nvlib.controller.services.nv_help import NvHelp
 from nvlib.controller.sub_controller import SubController
 from nvlib.model.odf.check_odf import odf_is_locked
+from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
@@ -31,7 +32,8 @@ class ReimportCtrl(SubController):
         filePath = self.documentCollection.selection()[0]
         if filePath and self._ui.ask_yes_no(
             message=f'{_("Delete file")}?',
-            detail=filePath,
+            detail=norm_path(filePath),
+            title=_('Discard'),
             parent=self
             ):
             try:

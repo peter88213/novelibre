@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.17.1\n"
-"POT-Creation-Date: 2025-03-19 22:29:12\n"
-"PO-Revision-Date: 2025-03-19 22:29:12\n"
+"POT-Creation-Date: 2025-03-20 21:36:25\n"
+"PO-Revision-Date: 2025-03-20 21:36:25\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -389,7 +389,7 @@ msgid "Delete"
 msgstr "Löschen"
 
 msgid "Delete file"
-msgstr "Lösche Datei"
+msgstr "Datei löschen"
 
 msgid "Delete multiple elements"
 msgstr "Mehrere Elemente löschen"
@@ -456,9 +456,6 @@ msgstr "Leeres Projekt"
 
 msgid "Ending"
 msgstr "Ende"
-
-msgid "Error"
-msgstr "Fehler"
 
 msgid "Exit"
 msgstr "Beenden"

@@ -11,7 +11,6 @@ import sys
 
 from nvlib.controller.plugin.rejected_plugin import RejectedPlugin
 from nvlib.controller.sub_controller import SubController
-from nvlib.nv_locale import _
 
 
 class PluginCollection(dict, SubController):
