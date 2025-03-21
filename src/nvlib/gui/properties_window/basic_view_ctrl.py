@@ -109,7 +109,7 @@ class BasicViewCtrl(SubController):
 
         linkPath = list(self.element.links)[selection]
         if self._ui.ask_yes_no(
-            message=f'{_("Remove link")}?',
+            message=_('Remove link?'),
             detail=norm_path(self.element.links[linkPath]),
             ):
             links = self.element.links

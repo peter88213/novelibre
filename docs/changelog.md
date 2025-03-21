@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.17.2
+### Version 5.17.3
 
 - Fixed a bug where no error message appears when trying to open a broken link.
 - Revised the messaging for a better look under Linux.

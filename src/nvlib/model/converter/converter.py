@@ -137,7 +137,10 @@ class Converter:
         
         Overrides the superclass method.
         """
-        return self.ui.ask_yes_no(_('Overwrite existing file "{}"?').format(norm_path(filePath)))
+        return self.ui.ask_yes_no(
+            message=_('Overwrite existing file?'),
+            detail=norm_path(filePath)
+            )
 
     def _create_novx(self, source, target):
         """Create target from source.
@@ -149,7 +152,7 @@ class Converter:
         Operation:
         1. Send specific information about the conversion to the UI.
         2. Convert source into target.
-        3. Pass the message to the UI.
+        3. Pass the status message to the UI.
         4. Save the new file pathname.
 
         Error handling:
@@ -162,7 +165,7 @@ class Converter:
         if os.path.isfile(target.filePath):
             self.ui.set_status(f'!{_("File already exists")}: "{norm_path(target.filePath)}".')
         else:
-            message = ''
+            statusMsg = ''
             try:
                 self._check(source, target)
                 source.novel = Novel(tree=NvTree())
@@ -171,13 +174,13 @@ class Converter:
                 target.novel = source.novel
                 target.write()
             except Error as ex:
-                message = f'!{str(ex)}'
+                statusMsg = f'!{str(ex)}'
                 self.newFile = None
             else:
-                message = f'{_("File written")}: "{norm_path(target.filePath)}".'
+                statusMsg = f'{_("File written")}: "{norm_path(target.filePath)}".'
                 self.newFile = target.filePath
             finally:
-                self.ui.set_status(message)
+                self.ui.set_status(statusMsg)
 
     def _export_from_novx(self, source, target):
         """Convert from novelibre project to other file format.
@@ -189,7 +192,7 @@ class Converter:
         Operation:
         1. Send specific information about the conversion to the UI.
         2. Convert source into target.
-        3. Pass the message to the UI.
+        3. Pass the status message to the UI.
         4. Save the new file pathname.
 
         Error handling:
@@ -197,7 +200,7 @@ class Converter:
         """
         self.ui.set_info(
             _('Input: {0} "{1}"\nOutput: {2} "{3}"').format(source.DESCRIPTION, norm_path(source.filePath), target.DESCRIPTION, norm_path(target.filePath)))
-        message = ''
+        statusMsg = ''
         try:
             self._check(source, target)
             source.novel = Novel(tree=NvTree())
@@ -205,13 +208,13 @@ class Converter:
             target.novel = source.novel
             target.write()
         except Error as ex:
-            message = f'!{str(ex)}'
+            statusMsg = f'!{str(ex)}'
             self.newFile = None
         else:
-            message = f'{_("File written")}: "{norm_path(target.filePath)}".'
+            statusMsg = f'{_("File written")}: "{norm_path(target.filePath)}".'
             self.newFile = target.filePath
         finally:
-            self.ui.set_status(message)
+            self.ui.set_status(statusMsg)
 
     def _import_to_novx(self, source, target):
         """Convert from any file format to novelibre project.
@@ -223,7 +226,7 @@ class Converter:
         Operation:
         1. Send specific information about the conversion to the UI.
         2. Convert source into target.
-        3. Pass the message to the UI.
+        3. Pass the status message to the UI.
         4. Delete the temporay file, if exists.
         5. Save the new file pathname.
         6. If sections are split during conversion, discard the source document.
@@ -234,7 +237,7 @@ class Converter:
         self.ui.set_info(
             _('Input: {0} "{1}"\nOutput: {2} "{3}"').format(source.DESCRIPTION, norm_path(source.filePath), target.DESCRIPTION, norm_path(target.filePath)))
         self.newFile = None
-        message = ''
+        statusMsg = ''
         try:
             self._check(source, target)
             target.novel = Novel(tree=NvTree())
@@ -244,13 +247,13 @@ class Converter:
             target.novel = source.novel
             target.write()
         except Error as ex:
-            message = f'!{str(ex)}'
+            statusMsg = f'!{str(ex)}'
         else:
-            message = f'{_("File written")}: "{norm_path(target.filePath)}".'
+            statusMsg = f'{_("File written")}: "{norm_path(target.filePath)}".'
             self.newFile = target.filePath
             if source.sectionsSplit:
                 os.replace(source.filePath, f'{source.filePath}.bak')
-                message = f'{message} - {_("Source document deleted")}.'
+                statusMsg = f'{statusMsg} - {_("Source document deleted")}.'
         finally:
-            self.ui.set_status(f'{message}')
+            self.ui.set_status(f'{statusMsg}')
 

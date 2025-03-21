@@ -380,7 +380,9 @@ class SectionViewCtrl(BasicViewCtrl):
         for dataElement in durationData:
             if dataElement:
                 hasData = True
-        if hasData and self._ui.ask_yes_no(_('Clear duration from this section?')):
+        if hasData and self._ui.ask_yes_no(
+            message=_('Clear duration from this section?')
+            ):
             self.element.lastsDays = None
             self.element.lastsHours = None
             self.element.lastsMinutes = None
@@ -396,7 +398,9 @@ class SectionViewCtrl(BasicViewCtrl):
         for dataElement in startData:
             if dataElement:
                 hasData = True
-        if hasData and self._ui.ask_yes_no(_('Clear date/time from this section?')):
+        if hasData and self._ui.ask_yes_no(
+            message=_('Clear date/time from this section?')
+            ):
             self.element.date = None
             self.element.time = None
             self.element.day = None
@@ -478,8 +482,10 @@ class SectionViewCtrl(BasicViewCtrl):
             return
 
         crId = self.element.characters[selection]
-        title = self._mdl.novel.characters[crId].title
-        if self._ui.ask_yes_no(f'{_("Remove character")}: "{title}"?'):
+        if self._ui.ask_yes_no(
+            message=_('Remove character from the list?'),
+            detail=self._mdl.novel.characters[crId].title
+            ):
             crList = self.element.characters
             del crList[selection]
             self.element.characters = crList
@@ -492,8 +498,10 @@ class SectionViewCtrl(BasicViewCtrl):
             return
 
         itId = self.element.items[selection]
-        title = self._mdl.novel.items[itId].title
-        if self._ui.ask_yes_no(f'{_("Remove item")}: "{title}"?'):
+        if self._ui.ask_yes_no(
+            message=_('Remove item from the list?'),
+            detail=self._mdl.novel.items[itId].title
+            ):
             itList = self.element.items
             del itList[selection]
             self.element.items = itList
@@ -506,8 +514,10 @@ class SectionViewCtrl(BasicViewCtrl):
             return
 
         lcId = self.element.locations[selection]
-        title = self._mdl.novel.locations[lcId].title
-        if self._ui.ask_yes_no(f'{_("Remove location")}: "{title}"?'):
+        if self._ui.ask_yes_no(
+            message=_('Remove location from the list?'),
+            detail=self._mdl.novel.locations[lcId].title
+            ):
             lcList = self.element.locations
             del lcList[selection]
             self.element.locations = lcList
@@ -520,8 +530,10 @@ class SectionViewCtrl(BasicViewCtrl):
             return
 
         plId = self.element.scPlotLines[selection]
-        title = self._mdl.novel.plotLines[plId].title
-        if not self._ui.ask_yes_no(f'{_("Remove plot line")}: "{title}"?'):
+        if not self._ui.ask_yes_no(
+            message=_('Remove plot line from the list?'),
+            detail=f"({self._mdl.novel.plotLines[plId].shortName}) {self._mdl.novel.plotLines[plId].title}"
+            ):
             return
 
         # Remove the plot line from the section's list.

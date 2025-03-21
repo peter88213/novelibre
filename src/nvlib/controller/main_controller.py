@@ -88,7 +88,10 @@ class MainController(SubController, Commands):
         Return True, if the project remains locked, otherwise return False.
         """
         if self.isLocked:
-            if self._ui.ask_yes_no(_('The project is locked.\nUnlock?')):
+            if self._ui.ask_yes_no(
+                message=_('Unlock?'),
+                detail=f"{_('The project is locked')}."
+                ):
                 self.unlock()
                 return False
             else:
@@ -124,7 +127,10 @@ class MainController(SubController, Commands):
         Return True on success, otherwise return False.
         """
         if self._mdl.isModified and not self._internalLockFlag:
-            if self._ui.ask_yes_no(_('Save and lock?')):
+            if self._ui.ask_yes_no(
+                message=_('Save and lock?'),
+                detail=f"{_('There are unsaved changes')}."
+                ):
                 self.save_project()
             else:
                 return False
@@ -223,7 +229,9 @@ class MainController(SubController, Commands):
         self._mdl.prjFile.unlock()
         # making it persistent
         if self._mdl.prjFile.has_changed_on_disk():
-            if self._ui.ask_yes_no(_('File has changed on disk. Reload?')):
+            if self._ui.ask_yes_no(
+                message=_('File has changed on disk. Reload?')
+                ):
                 self.open_project(filePath=self._mdl.prjFile.filePath)
         return 'break'
 

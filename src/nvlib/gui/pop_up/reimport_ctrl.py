@@ -31,7 +31,7 @@ class ReimportCtrl(SubController):
     def delete_document(self, event=None):
         filePath = self.documentCollection.selection()[0]
         if filePath and self._ui.ask_yes_no(
-            message=f'{_("Delete file")}?',
+            message=_('Delete file?'),
             detail=norm_path(filePath),
             title=_('Discard'),
             parent=self

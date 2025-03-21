@@ -102,7 +102,7 @@ class DocImporter(ServiceBase, NovxConversion):
             if os.path.isfile(target.filePath):
                 if not self._ui.ask_yes_no(
                     message=_('Update the project?'),
-                    detail=source.DESCRIPTION,
+                    detail=f"{_('Source document')}: {source.DESCRIPTION}",
                     parent=kwargs.get('parent', None)
                     ):
                     raise Notification(f'{_("Action canceled by user")}.')

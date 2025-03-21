@@ -25,7 +25,7 @@ class PluginManagerCtrl(SubController):
             return
 
         if not self._ui.ask_yes_no(
-            message=f'{_("Delete file")}?',
+            message=_('Delete file?'),
             detail=self._ctrl.plugins[pluginName].filePath,
             title=_('Plugin Manager'),
             parent=self

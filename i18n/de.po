@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.17.2\n"
-"POT-Creation-Date: 2025-03-20 22:31:14\n"
-"PO-Revision-Date: 2025-03-20 22:31:14\n"
+"Project-Id-Version: 5.17.3\n"
+"POT-Creation-Date: 2025-03-21 19:16:51\n"
+"PO-Revision-Date: 2025-03-21 19:16:51\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -370,6 +370,9 @@ msgstr "Datum/Zeit"
 msgid "Day"
 msgstr "Tag"
 
+msgid "Day 0"
+msgstr "Tag 0"
+
 msgid "Days"
 msgstr "Tage"
 
@@ -388,8 +391,8 @@ msgstr "Entf"
 msgid "Delete"
 msgstr "Löschen"
 
-msgid "Delete file"
-msgstr "Datei löschen"
+msgid "Delete file?"
+msgstr "Datei löschen?"
 
 msgid "Delete multiple elements"
 msgstr "Mehrere Elemente löschen"
@@ -420,6 +423,9 @@ msgstr "Dokumente nur verwerfen, falls Abschnitte geteilt wurden"
 
 msgid "Discard manuscript"
 msgstr "Manuskript verwerfen"
+
+msgid "Discard manuscript?"
+msgstr "Manuskript verwerfen?"
 
 msgid "Display localized dates"
 msgstr "Lokalisierte Datumsangaben anzeigen"
@@ -664,6 +670,9 @@ msgstr "Gegenstände"
 msgid "Join with previous"
 msgstr "Mit dem vorhergehenden zusammenfassen"
 
+msgid "Join with previous?"
+msgstr "Mit dem vorhergehenden zusammenfassen?"
+
 msgid "Language code"
 msgstr "Sprachencode"
 
@@ -901,6 +910,9 @@ msgstr "Installationsordner öffnen"
 msgid "Open link"
 msgstr "Link öffnen"
 
+msgid "Open the created document?"
+msgstr "Das erzeugte Dokument öffnen?"
+
 msgid "Open..."
 msgstr "Öffnen..."
 
@@ -1051,23 +1063,23 @@ msgstr "Neu laden"
 msgid "Remove"
 msgstr "Entfernen"
 
-msgid "Remove all sections from the plot line"
-msgstr "Alle Abschnitte vom Handlungsbogen entfernen"
+msgid "Remove all sections from the plot line?"
+msgstr "Alle Abschnitte vom Handlungsbogen entfernen?"
 
-msgid "Remove character"
-msgstr "Figur entfernen"
+msgid "Remove character from the list?"
+msgstr "Figur aus der Liste entfernen?"
 
-msgid "Remove item"
-msgstr "Gegenstand entfernen"
+msgid "Remove item from the list?"
+msgstr "Gegenstand aus der Liste entfernen?"
 
-msgid "Remove link"
-msgstr "Link entfernen"
+msgid "Remove link?"
+msgstr "Link entfernen?"
 
-msgid "Remove location"
-msgstr "Schauplatz entfernen"
+msgid "Remove location from the list?"
+msgstr "Schauplatz aus der Liste entfernen?"
 
-msgid "Remove plot line"
-msgstr "Plotlinie entfernen"
+msgid "Remove plot line from the list?"
+msgstr "Plotlinie aus der Liste entfernen?"
 
 msgid "Renamings"
 msgstr "Umbenennungen"
@@ -1201,6 +1213,9 @@ msgstr "Notizen anzeigen"
 msgid "Skip"
 msgstr "Überspringen"
 
+msgid "Source document"
+msgstr "Quelldokument"
+
 msgid "Source document deleted"
 msgstr "Quelldokument gelöscht"
 
@@ -1258,14 +1273,17 @@ msgstr "Das Projekt \"{}\" wurde mit einer neueren Version von novelibre erzeugt
 msgid "The project \"{}\" was created with an outdated novelibre version."
 msgstr "Das Projekt \"{}\" wurde mit einer veralteten Version von novelibre erzeugt."
 
-msgid "The project is locked.\nUnlock?"
-msgstr "Das Projekt is gesperrt.\nEntsperren?"
+msgid "The project is locked"
+msgstr "Das Projekt is gesperrt"
 
 msgid "The sections are not of the same type"
 msgstr "Die Abschnitte sind nicht vom selben Typ"
 
 msgid "The sections have different viewpoints"
 msgstr "Die Abschnitte haben unterschiedliche Perspektiven"
+
+msgid "There are unsaved changes"
+msgstr "Es gibt ungesicherte Änderungen"
 
 msgid "There is no next section"
 msgstr "Es gibt keinen nachfolgenden Abschnitt"
@@ -1320,6 +1338,9 @@ msgstr "Unbekanntes Element in Datei"
 
 msgid "Unlock"
 msgstr "Entsperren"
+
+msgid "Unlock?"
+msgstr "Entsperren?"
 
 msgid "Unnamed"
 msgstr "Unbenannt"
@@ -1479,7 +1500,4 @@ msgstr "{0} gibt es schon.\n(zuletzt gespeichert: {2})\n{1}.\n\nDieses Dokument 
 
 msgid "{0} parts, {1} chapters, {2} sections, {3} words"
 msgstr "{0} Teile, {1} Kapitel, {2} Abschnitte, {3} Wörter"
-
-msgid "{} created.\n\nOpen now?"
-msgstr "{} erzeugt.\n\nJetzt öffnen?"
 

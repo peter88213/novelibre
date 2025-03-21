@@ -38,10 +38,9 @@ class MsgBoxes:
     def ask_ok_cancel(self, message='', detail='', title='novelibre', **options):
         """Query ok or cancel with a pop-up box.
         
-        Positional arguments:
-            text -- question to be asked in the pop-up box. 
-            
         Optional arguments:
+            message -- question to be asked in the pop-up box. 
+            detail -- additional text to be displayed.
             title -- title to be displayed on the window frame.            
         """
         return messagebox.askokcancel(
@@ -77,10 +76,9 @@ class MsgBoxes:
     def ask_yes_no(self, message='', detail='', title='novelibre', **options):
         """Query yes or no with a pop-up box.
         
-        Positional arguments:
-            text -- question to be asked in the pop-up box. 
-            
         Optional arguments:
+            message -- question to be asked in the pop-up box. 
+            detail -- additional text to be displayed.
             title -- title to be displayed on the window frame.            
         """
         return messagebox.askyesno(
@@ -93,10 +91,9 @@ class MsgBoxes:
     def ask_yes_no_cancel(self, message='', detail='', title='novelibre', **options):
         """Query yes or no or cancel with a pop-up box.
         
-        Positional arguments:
-            text -- question to be asked in the pop-up box. 
-            
         Optional arguments:
+            message -- question to be asked in the pop-up box. 
+            detail -- additional text to be displayed.
             title -- title to be displayed on the window frame.            
         """
         return messagebox.askyesnocancel(
@@ -109,10 +106,9 @@ class MsgBoxes:
     def show_error(self, message='', detail='', title='novelibre', **options):
         """Display an error message box.
         
-        Positional arguments:
-            message -- error message to be displayed.
-            
         Optional arguments:
+            message -- error message to be displayed.
+            detail -- additional text to be displayed.
             title -- title to be displayed on the window frame.
         """
         messagebox.showerror(
@@ -125,10 +121,9 @@ class MsgBoxes:
     def show_info(self, message='', detail='', title='novelibre', **options):
         """Display an informational message box.
         
-        Positional arguments:
-            message -- informational message to be displayed.
-            
         Optional arguments:
+            message -- informational message to be displayed.
+            detail -- additional text to be displayed.            
             title -- title to be displayed on the window frame.
         """
         messagebox.showinfo(
@@ -138,14 +133,14 @@ class MsgBoxes:
             **options
             )
 
-    def show_warning(self, message='', detail='', title=None, **options):
+    def show_warning(self, message='', detail='', title='novelibre', **options):
         """Display a warning message box.
         
         Optional arguments:
+            message -- warning message to be displayed.
+            detail -- additional text to be displayed.
             title -- title to be displayed on the window frame.
         """
-        if title is None:
-            title = self.title
         messagebox.showwarning(
             message=message,
             detail=detail,

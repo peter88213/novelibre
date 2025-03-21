@@ -26,12 +26,14 @@ class Ui:
         self.infoHowText = ''
         # message buffers
 
-    def ask_yes_no(self, text):
+    def ask_yes_no(self, message='', detail='', title=None):
         """Return True or False.
         
-        Positional arguments:
-            text -- question to be asked. 
-            
+        Optional arguments:
+            message -- question to be asked in the pop-up box. 
+            detail -- additional text to be displayed.
+            title -- title to be displayed on the window frame.            
+
         This is a stub used for "silent mode".
         The application may use a subclass for confirmation requests.    
         """
@@ -59,11 +61,13 @@ class Ui:
             message = f'Notification: {message.split("#", maxsplit=1)[1].strip()}'
         self.infoHowText = message
 
-    def show_warning(self, message):
+    def show_warning(self, message='', detail='', title=None):
         """Stub for displaying a warning message.
 
-        Positional arguments:
-            message -- message to be displayed. 
+        Optional arguments:
+            message -- warning message to be displayed.
+            detail -- additional text to be displayed.
+            title -- title to be displayed on the window frame.
         """
         pass
 

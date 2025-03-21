@@ -55,7 +55,7 @@ class PlotLineViewCtrl(BasicViewCtrl):
         Remove also all section associations from the children points.
         """
         if self._ui.ask_yes_no(
-            message=f'{_("Remove all sections from the plot line")}?',
+            message=_('Remove all sections from the plot line?'),
             detail=f'({self.element.shortName}) {self.element.title}'
             ):
             # Remove section back references.

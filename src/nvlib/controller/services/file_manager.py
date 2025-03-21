@@ -106,7 +106,10 @@ class FileManager(ServiceBase):
         prjPath, manuscriptName = os.path.split(manuscriptPath)
         if os.path.isfile(f'{prjPath}/.~lock.{manuscriptName}#'):
             self._ui.set_status(f"!{_('Please close the manuscript first')}.")
-        elif self._ui.ask_yes_no(f"{_('Discard manuscript')}?", self._mdl.novel.title):
+        elif self._ui.ask_yes_no(
+            message=_('Discard manuscript?'),
+            detail=self._mdl.novel.title
+            ):
             os.replace(manuscriptPath, f'{fileName}{MANUSCRIPT_SUFFIX}.odt.bak')
             self._ui.set_status(f"{_('Manuscript discarded')}.")
 
@@ -123,7 +126,9 @@ class FileManager(ServiceBase):
                 return
 
         if self._mdl.isModified:
-            if self._ui.ask_yes_no(_('Save changes?')):
+            if self._ui.ask_yes_no(
+                message=_('Save changes?')
+                ):
                 self.save_project()
             else:
                 # Do not export a document from an unsaved project.
@@ -251,10 +256,14 @@ class FileManager(ServiceBase):
         if self._mdl.prjFile is None:
             return
 
-        if self._mdl.isModified and not self._ui.ask_yes_no(_('Discard changes and reload the project?')):
+        if self._mdl.isModified and not self._ui.ask_yes_no(
+            message=_('Discard changes and reload the project?')
+            ):
             return
 
-        if self._mdl.prjFile.has_changed_on_disk() and not self._ui.ask_yes_no(_('File has changed on disk. Reload anyway?')):
+        if self._mdl.prjFile.has_changed_on_disk() and not self._ui.ask_yes_no(
+            message=_('File has changed on disk. Reload anyway?')
+            ):
             return
 
         # this is to avoid saving when closing the project
@@ -275,11 +284,13 @@ class FileManager(ServiceBase):
             return
 
         if self._mdl.isModified:
-            if not self._ui.ask_yes_no(_('Discard changes and load the ".bak" file?')):
+            if not self._ui.ask_yes_no(
+                message=_('Discard changes and load the ".bak" file?')
+                ):
                 return
 
         elif not self._ui.ask_yes_no(
-            _('Overwrite the last saved project file with the ".bak" file?')
+            message=_('Overwrite the last saved project file with the ".bak" file?')
             ):
             return
 
@@ -356,7 +367,9 @@ class FileManager(ServiceBase):
         if self._mdl.prjFile.filePath is None:
             return self.save_as()
 
-        if self._mdl.prjFile.has_changed_on_disk() and not self._ui.ask_yes_no(_('File has changed on disk. Save anyway?')):
+        if self._mdl.prjFile.has_changed_on_disk() and not self._ui.ask_yes_no(
+            message=_('File has changed on disk. Save anyway?')
+            ):
             return False
 
         self._ui.propertiesView.apply_changes()

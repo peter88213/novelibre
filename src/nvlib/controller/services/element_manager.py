@@ -406,33 +406,37 @@ class ElementManager(ServiceBase):
 
             if elemId.startswith(SECTION_PREFIX):
                 if self._mdl.novel.sections[elemId].scType < 2:
-                    candidate = f'{_("Section")} "{self._mdl.novel.sections[elemId].title}"'
+                    candidate = (_("Section"), self._mdl.novel.sections[elemId].title)
                 else:
-                    candidate = f'{_("Stage")} "{self._mdl.novel.sections[elemId].title}"'
+                    candidate = (_("Stage"), self._mdl.novel.sections[elemId].title)
             elif elemId.startswith(CHAPTER_PREFIX):
-                candidate = f'{_("Chapter")} "{self._mdl.novel.chapters[elemId].title}"'
+                candidate = (_("Chapter"), self._mdl.novel.chapters[elemId].title)
             elif elemId.startswith(CHARACTER_PREFIX):
-                candidate = f'{_("Character")} "{self._mdl.novel.characters[elemId].title}"'
+                candidate = (_("Character"), self._mdl.novel.characters[elemId].title)
             elif elemId.startswith(LOCATION_PREFIX):
-                candidate = f'{_("Location")} "{self._mdl.novel.locations[elemId].title}"'
+                candidate = (_("Location"), self._mdl.novel.locations[elemId].title)
             elif elemId.startswith(ITEM_PREFIX):
-                candidate = f'{_("Item")} "{self._mdl.novel.items[elemId].title}"'
+                candidate = (_("Item"), self._mdl.novel.items[elemId].title)
             elif elemId.startswith(PLOT_LINE_PREFIX):
-                candidate = f'{_("Plot line")} "{self._mdl.novel.plotLines[elemId].title}"'
+                candidate = (_("Plot line"), self._mdl.novel.plotLines[elemId].title)
             elif elemId.startswith(PLOT_POINT_PREFIX):
-                candidate = f'{_("Plot point")} "{self._mdl.novel.plotPoints[elemId].title}"'
+                candidate = (_("Plot point"), self._mdl.novel.plotPoints[elemId].title)
             elif elemId.startswith(PRJ_NOTE_PREFIX):
-                candidate = f'{_("Project note")} "{self._mdl.novel.projectNotes[elemId].title}"'
+                candidate = (_("Project note"), self._mdl.novel.projectNotes[elemId].title)
             else:
                 return
 
+            elementType, elementTitle = candidate
             if len(elements) == 1:
-                if not self._ui.ask_yes_no(_('Delete {}?').format(candidate)):
+                if not self._ui.ask_yes_no(
+                    message=_('Delete {}?').format(elementType),
+                    detail=elementTitle
+                    ):
                     return
 
             elif ask:
                 result = self._ui.ask_delete_all_skip_cancel(
-                    text=f"\n\n{_('Delete {}?').format(candidate)}\n\n",
+                    text=f"\n\n{_('Delete {}?').format(elementType)}\n\n{elementTitle}\n",
                     default=0,
                     title=_('Delete multiple elements')
                     )
@@ -543,7 +547,10 @@ class ElementManager(ServiceBase):
                     )
                 return
 
-        if self._ui.ask_yes_no(f'{_("Join with previous")}?'):
+        if self._ui.ask_yes_no(
+            message=_('Join with previous?'),
+            detail=f"{self._mdl.novel.sections[scId0].title} & {self._mdl.novel.sections[scId1].title}"
+            ):
             try:
                 self._mdl.join_sections(scId0, scId1)
             except Error as ex:

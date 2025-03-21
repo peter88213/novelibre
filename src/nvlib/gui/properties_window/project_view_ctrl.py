@@ -114,7 +114,10 @@ class ProjectViewCtrl(BasicViewCtrl):
         self.datesToDaysButton['text'] = _('Please wait ...')
         # changing the button text is less time consuming than showing a progress bar
         if self._mdl.novel.referenceDate:
-            if self._ui.ask_yes_no(_('Convert all section dates to days relative to the reference date?')):
+            if self._ui.ask_yes_no(
+                message=_('Convert all section dates to days relative to the reference date?'),
+                detail=f"{_('Day 0')}: {WEEKDAYS[self.element.referenceWeekDay]} {datestr(self.element.referenceDate)}"
+                ):
                 self.doNotUpdate = True
                 for scId in self._mdl.novel.sections:
                     self._mdl.novel.sections[scId].date_to_day(self._mdl.novel.referenceDate)
@@ -129,7 +132,10 @@ class ProjectViewCtrl(BasicViewCtrl):
         self.daysToDatesButton['text'] = _('Please wait ...')
         # changing the button text is less time consuming than showing a progress bar
         if self._mdl.novel.referenceDate:
-            if self._ui.ask_yes_no(_('Convert all section days to dates using the reference date?')):
+            if self._ui.ask_yes_no(
+                message=_('Convert all section days to dates using the reference date?'),
+                detail=f"{_('Day 0')}: {WEEKDAYS[self.element.referenceWeekDay]} {datestr(self.element.referenceDate)}"
+                ):
                 self.doNotUpdate = True
                 for scId in self._mdl.novel.sections:
                     self._mdl.novel.sections[scId].day_to_date(self._mdl.novel.referenceDate)
