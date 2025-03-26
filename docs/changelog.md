@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+
+### Version 5.17.4
+
+- Refactored the code for better maintainability.
+
+
 ### Version 5.17.3
 
 - Fixed a bug where no error message appears when trying to open a broken link.
