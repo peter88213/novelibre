@@ -17,6 +17,9 @@ from nvlib.controller.services.file_splitter import FileSplitter
 from nvlib.controller.services.link_processor import LinkProcessor
 from nvlib.controller.sub_controller import SubController
 from nvlib.gui.main_view import MainView
+from nvlib.gui.platform.platform_settings import KEYS
+from nvlib.gui.platform.platform_settings import MOUSE
+from nvlib.gui.platform.platform_settings import PLATFORM
 from nvlib.model.nv_model import NvModel
 from nvlib.nv_globals import launchers
 from nvlib.nv_globals import prefs
@@ -73,6 +76,9 @@ class MainController(SubController, Commands):
 
         self.plugins.load_plugins(PLUGIN_PATH)
         self.register_client(self.plugins)
+
+        #--- tk root event bindings.
+        self._bind_events()
 
         self.disable_menu()
         self._ui.tv.reset_view()
@@ -251,4 +257,37 @@ class MainController(SubController, Commands):
             statusText = _('{0} parts, {1} chapters, {2} sections, {3} words').format(partCount, chapterCount, sectionCount, wordCount)
             self.wordCount = wordCount
         self._ui.update_status(statusText)
+
+    def _bind_events(self):
+        event_callbacks = {
+            KEYS.RESTORE_STATUS[0]: self._ui.restore_status,
+            KEYS.OPEN_PROJECT[0]: self.open_project,
+            KEYS.LOCK_PROJECT[0]: self.lock,
+            KEYS.UNLOCK_PROJECT[0]: self.unlock,
+            KEYS.RELOAD_PROJECT[0]: self.reload_project,
+            KEYS.RESTORE_BACKUP[0]: self.restore_backup,
+            KEYS.FOLDER[0]: self.open_project_folder,
+            KEYS.REFRESH_TREE[0]: self.refresh_tree,
+            KEYS.SAVE_PROJECT[0]: self.save_project,
+            KEYS.SAVE_AS[0]: self.save_as,
+            KEYS.CHAPTER_LEVEL[0]: self._ui.tv.show_chapter_level,
+            KEYS.TOGGLE_VIEWER[0]: self._ui.toggle_contents_view,
+            KEYS.TOGGLE_PROPERTIES[0]: self._ui.toggle_properties_view,
+            KEYS.DETACH_PROPERTIES[0]: self._ui.toggle_properties_window,
+            KEYS.ADD_ELEMENT[0]: self.add_new_element,
+            KEYS.ADD_CHILD[0]: self.add_new_child,
+            KEYS.ADD_PARENT[0]: self.add_new_parent,
+            KEYS.OPEN_HELP[0]: self.open_help,
+        }
+        if PLATFORM == 'win':
+            event_callbacks.update({
+                MOUSE.BACK_CLICK: self._ui.tv.go_back,
+                MOUSE.FORWARD_CLICK: self._ui.tv.go_forward,
+            })
+        else:
+            event_callbacks.update({
+                KEYS.QUIT_PROGRAM[0]: self.on_quit,
+            })
+        for sequence, callback in event_callbacks.items():
+            self._ui.root.bind(sequence, callback)
 

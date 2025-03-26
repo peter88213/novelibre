@@ -21,80 +21,84 @@ class MainViewCtrl(SubController):
             title=_('About novelibre')
             )
 
+    def initialize_controller(self, model, view, controller):
+        SubController.initialize_controller(self, model, view, controller)
+        self._fileMenuNormalOpen = [
+            _('Close'),
+            _('Copy style sheet'),
+            _('Discard manuscript'),
+            _('Lock'),
+            _('Open Project folder'),
+            _('Refresh Tree'),
+            _('Reload'),
+            _('Restore backup'),
+            _('Save as...'),
+            _('Save'),
+            _('Unlock'),
+        ]
+        self._mainMenuNormalOpen = [
+            _('Chapter'),
+            _('Characters'),
+            _('Export'),
+            _('Import'),
+            _('Items'),
+            _('Locations'),
+            _('Part'),
+            _('Plot'),
+            _('Project notes'),
+            _('Section'),
+        ]
+        self._viewMenuNormalOpen = [
+            _('Chapter level'),
+            _('Collapse all'),
+            _('Collapse selected'),
+            _('Expand all'),
+            _('Expand selected'),
+            _('Show Book'),
+            _('Show Characters'),
+            _('Show Items'),
+            _('Show Locations'),
+            _('Show Plot lines'),
+            _('Show Project notes'),
+        ]
+        self._fileMenuNormalUnlocked = [
+            _('Save'),
+        ]
+        self._mainMenuNormalUnlocked = [
+            _('Chapter'),
+            _('Characters'),
+            _('Export'),
+            _('Items'),
+            _('Locations'),
+            _('Part'),
+            _('Plot'),
+            _('Project notes'),
+            _('Section'),
+        ]
+
     def disable_menu(self):
         """Disable menu entries when no project is open.        
         
         Overrides the superclass method.
         """
-        self.fileMenu.entryconfig(_('Close'), state='disabled')
-        self.mainMenu.entryconfig(_('Part'), state='disabled')
-        self.mainMenu.entryconfig(_('Chapter'), state='disabled')
-        self.mainMenu.entryconfig(_('Section'), state='disabled')
-        self.mainMenu.entryconfig(_('Characters'), state='disabled')
-        self.mainMenu.entryconfig(_('Locations'), state='disabled')
-        self.mainMenu.entryconfig(_('Items'), state='disabled')
-        self.mainMenu.entryconfig(_('Plot'), state='disabled')
-        self.mainMenu.entryconfig(_('Project notes'), state='disabled')
-        self.mainMenu.entryconfig(_('Export'), state='disabled')
-        self.mainMenu.entryconfig(_('Import'), state='disabled')
-        self.fileMenu.entryconfig(_('Reload'), state='disabled')
-        self.fileMenu.entryconfig(_('Restore backup'), state='disabled')
-        self.fileMenu.entryconfig(_('Refresh Tree'), state='disabled')
-        self.fileMenu.entryconfig(_('Lock'), state='disabled')
-        self.fileMenu.entryconfig(_('Unlock'), state='disabled')
-        self.fileMenu.entryconfig(_('Open Project folder'), state='disabled')
-        self.fileMenu.entryconfig(_('Copy style sheet'), state='disabled')
-        self.fileMenu.entryconfig(_('Save'), state='disabled')
-        self.fileMenu.entryconfig(_('Save as...'), state='disabled')
-        self.fileMenu.entryconfig(_('Discard manuscript'), state='disabled')
-        self.viewMenu.entryconfig(_('Chapter level'), state='disabled')
-        self.viewMenu.entryconfig(_('Expand selected'), state='disabled')
-        self.viewMenu.entryconfig(_('Collapse selected'), state='disabled')
-        self.viewMenu.entryconfig(_('Expand all'), state='disabled')
-        self.viewMenu.entryconfig(_('Collapse all'), state='disabled')
-        self.viewMenu.entryconfig(_('Show Book'), state='disabled')
-        self.viewMenu.entryconfig(_('Show Characters'), state='disabled')
-        self.viewMenu.entryconfig(_('Show Locations'), state='disabled')
-        self.viewMenu.entryconfig(_('Show Items'), state='disabled')
-        self.viewMenu.entryconfig(_('Show Plot lines'), state='disabled')
-        self.viewMenu.entryconfig(_('Show Project notes'), state='disabled')
+        for entry in self._fileMenuNormalOpen:
+            self.fileMenu.entryconfig(entry, state='disabled')
+        for entry in self._mainMenuNormalOpen:
+            self.mainMenu.entryconfig(entry, state='disabled')
+        for entry in self._viewMenuNormalOpen:
+            self.viewMenu.entryconfig(entry, state='disabled')
 
     def enable_menu(self):
         """Enable menu entries when a project is open.
         
         Overrides the superclass method.
         """
-        self.fileMenu.entryconfig(_('Close'), state='normal')
-        self.mainMenu.entryconfig(_('Part'), state='normal')
-        self.mainMenu.entryconfig(_('Chapter'), state='normal')
-        self.mainMenu.entryconfig(_('Section'), state='normal')
-        self.mainMenu.entryconfig(_('Characters'), state='normal')
-        self.mainMenu.entryconfig(_('Locations'), state='normal')
-        self.mainMenu.entryconfig(_('Items'), state='normal')
-        self.mainMenu.entryconfig(_('Plot'), state='normal')
-        self.mainMenu.entryconfig(_('Project notes'), state='normal')
-        self.mainMenu.entryconfig(_('Export'), state='normal')
-        self.mainMenu.entryconfig(_('Import'), state='normal')
-        self.fileMenu.entryconfig(_('Reload'), state='normal')
-        self.fileMenu.entryconfig(_('Restore backup'), state='normal')
-        self.fileMenu.entryconfig(_('Refresh Tree'), state='normal')
-        self.fileMenu.entryconfig(_('Lock'), state='normal')
-        self.fileMenu.entryconfig(_('Open Project folder'), state='normal')
-        self.fileMenu.entryconfig(_('Copy style sheet'), state='normal')
-        self.fileMenu.entryconfig(_('Save'), state='normal')
-        self.fileMenu.entryconfig(_('Save as...'), state='normal')
-        self.fileMenu.entryconfig(_('Discard manuscript'), state='normal')
-        self.viewMenu.entryconfig(_('Chapter level'), state='normal')
-        self.viewMenu.entryconfig(_('Expand selected'), state='normal')
-        self.viewMenu.entryconfig(_('Collapse selected'), state='normal')
-        self.viewMenu.entryconfig(_('Expand all'), state='normal')
-        self.viewMenu.entryconfig(_('Collapse all'), state='normal')
-        self.viewMenu.entryconfig(_('Show Book'), state='normal')
-        self.viewMenu.entryconfig(_('Show Characters'), state='normal')
-        self.viewMenu.entryconfig(_('Show Locations'), state='normal')
-        self.viewMenu.entryconfig(_('Show Items'), state='normal')
-        self.viewMenu.entryconfig(_('Show Plot lines'), state='normal')
-        self.viewMenu.entryconfig(_('Show Project notes'), state='normal')
+        for entry in self._fileMenuNormalOpen:
+            self.fileMenu.entryconfig(entry, state='normal')
+        for entry in self._mainMenuNormalOpen:
+            self.mainMenu.entryconfig(entry, state='normal')
+        for entry in self._viewMenuNormalOpen:
+            self.viewMenu.entryconfig(entry, state='normal')
 
     def lock(self):
         """Make the "locked" state take effect.
@@ -102,18 +106,12 @@ class MainViewCtrl(SubController):
         Overrides the superclass method.
         """
         self.pathBar.set_locked()
-        self.fileMenu.entryconfig(_('Save'), state='disabled')
-        self.fileMenu.entryconfig(_('Lock'), state='disabled')
         self.fileMenu.entryconfig(_('Unlock'), state='normal')
-        self.mainMenu.entryconfig(_('Part'), state='disabled')
-        self.mainMenu.entryconfig(_('Chapter'), state='disabled')
-        self.mainMenu.entryconfig(_('Section'), state='disabled')
-        self.mainMenu.entryconfig(_('Characters'), state='disabled')
-        self.mainMenu.entryconfig(_('Locations'), state='disabled')
-        self.mainMenu.entryconfig(_('Items'), state='disabled')
-        self.mainMenu.entryconfig(_('Plot'), state='disabled')
-        self.mainMenu.entryconfig(_('Project notes'), state='disabled')
-        self.mainMenu.entryconfig(_('Export'), state='disabled')
+        self.fileMenu.entryconfig(_('Lock'), state='disabled')
+        for entry in self._fileMenuNormalUnlocked:
+            self.fileMenu.entryconfig(entry, state='disabled')
+        for entry in self._mainMenuNormalUnlocked:
+            self.mainMenu.entryconfig(entry, state='disabled')
 
     def set_title(self):
         """Set the main window title. 
@@ -139,16 +137,10 @@ class MainViewCtrl(SubController):
         Overrides the superclass method.
         """
         self.pathBar.set_normal()
-        self.fileMenu.entryconfig(_('Save'), state='normal')
-        self.fileMenu.entryconfig(_('Lock'), state='normal')
         self.fileMenu.entryconfig(_('Unlock'), state='disabled')
-        self.mainMenu.entryconfig(_('Part'), state='normal')
-        self.mainMenu.entryconfig(_('Chapter'), state='normal')
-        self.mainMenu.entryconfig(_('Section'), state='normal')
-        self.mainMenu.entryconfig(_('Characters'), state='normal')
-        self.mainMenu.entryconfig(_('Locations'), state='normal')
-        self.mainMenu.entryconfig(_('Items'), state='normal')
-        self.mainMenu.entryconfig(_('Plot'), state='normal')
-        self.mainMenu.entryconfig(_('Project notes'), state='normal')
-        self.mainMenu.entryconfig(_('Export'), state='normal')
+        self.fileMenu.entryconfig(_('Lock'), state='normal')
+        for entry in self._fileMenuNormalUnlocked:
+            self.fileMenu.entryconfig(entry, state='normal')
+        for entry in self._mainMenuNormalUnlocked:
+            self.mainMenu.entryconfig(entry, state='normal')
 

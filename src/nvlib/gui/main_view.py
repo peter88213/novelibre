@@ -116,9 +116,6 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
         self.toolbar = Toolbar(self.mainWindow, self._mdl, self, self._ctrl)
         self._ctrl.register_client(self.toolbar)
 
-        #--- tk root event bindings.
-        self._bind_events()
-
     @property
     def selectedNode(self):
         return self._selection[0]
@@ -287,32 +284,6 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
             statusText: str -- Text to be displayed on the status bar.
         """
         self.statusBar.update_status(statusText)
-
-    def _bind_events(self):
-        self.root.bind(KEYS.RESTORE_STATUS[0], self.restore_status)
-        self.root.bind(KEYS.OPEN_PROJECT[0], self._ctrl.open_project)
-
-        self.root.bind(KEYS.LOCK_PROJECT[0], self._ctrl.lock)
-        self.root.bind(KEYS.UNLOCK_PROJECT[0], self._ctrl.unlock)
-        self.root.bind(KEYS.RELOAD_PROJECT[0], self._ctrl.reload_project)
-        self.root.bind(KEYS.RESTORE_BACKUP[0], self._ctrl.restore_backup)
-        self.root.bind(KEYS.FOLDER[0], self._ctrl.open_project_folder)
-        self.root.bind(KEYS.REFRESH_TREE[0], self._ctrl.refresh_tree)
-        self.root.bind(KEYS.SAVE_PROJECT[0], self._ctrl.save_project)
-        self.root.bind(KEYS.SAVE_AS[0], self._ctrl.save_as)
-        self.root.bind(KEYS.CHAPTER_LEVEL[0], self.tv.show_chapter_level)
-        self.root.bind(KEYS.TOGGLE_VIEWER[0], self.toggle_contents_view)
-        self.root.bind(KEYS.TOGGLE_PROPERTIES[0], self.toggle_properties_view)
-        self.root.bind(KEYS.DETACH_PROPERTIES[0], self.toggle_properties_window)
-        self.root.bind(KEYS.ADD_ELEMENT[0], self._ctrl.add_new_element)
-        self.root.bind(KEYS.ADD_CHILD[0], self._ctrl.add_new_child)
-        self.root.bind(KEYS.ADD_PARENT[0], self._ctrl.add_new_parent)
-        if PLATFORM == 'win':
-            self.root.bind(MOUSE.BACK_CLICK, self.tv.go_back)
-            self.root.bind(MOUSE.FORWARD_CLICK, self.tv.go_forward)
-        else:
-            self.root.bind(KEYS.QUIT_PROGRAM[0], self._ctrl.on_quit)
-        self.root.bind(KEYS.OPEN_HELP[0], self._ctrl.open_help)
 
     def _create_menu(self):
         """Add commands and submenus to the main menu."""
