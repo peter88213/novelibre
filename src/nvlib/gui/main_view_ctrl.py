@@ -113,6 +113,13 @@ class MainViewCtrl(SubController):
         for entry in self._mainMenuNormalUnlocked:
             self.mainMenu.entryconfig(entry, state='disabled')
 
+    def on_close(self):
+        """Actions to be performed when a project is closed.
+        
+        Overrides the superclass method.
+        """
+        self.pathBar.set_normal()
+
     def set_title(self):
         """Set the main window title. 
         

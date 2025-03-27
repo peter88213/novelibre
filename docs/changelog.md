@@ -11,6 +11,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.17.5
+
+- Reset the change notification after closing a project without saving changes. 
+
+
 ### Version 5.17.4
 
 - Refactored the code for better maintainability.
