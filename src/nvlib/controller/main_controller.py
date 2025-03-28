@@ -188,9 +188,7 @@ class MainController(SubController, Commands):
         super().unlock()
         # calling the public unlock() method here would clear the lockfile
 
-        self._ui.root.title(self._ui.title)
         self.update_status('')
-        self._ui.show_path('')
         self.disable_menu()
         return True
 

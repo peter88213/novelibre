@@ -118,6 +118,8 @@ class MainViewCtrl(SubController):
         
         Overrides the superclass method.
         """
+        self.root.title(self.title)
+        self.show_path('')
         self.pathBar.set_normal()
 
     def set_title(self):
