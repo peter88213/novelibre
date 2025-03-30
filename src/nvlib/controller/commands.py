@@ -227,8 +227,7 @@ class Commands:
 
     def create_project(self, event=None):
         """Create a novelibre project instance."""
-        self.fileManager.create_project()
-        return 'break'
+        return self.fileManager.create_project()
 
     def cut_element(self, event=None):
         self.clipboardManager.cut_element()

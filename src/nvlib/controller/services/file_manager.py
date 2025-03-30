@@ -37,7 +37,10 @@ class FileManager(ServiceBase):
         self.prefs = self._ctrl.get_preferences()
 
     def create_project(self):
-        """Create a novelibre project instance."""
+        """Create a novelibre project instance.
+        
+        Return True on success, otherwise return None.
+        """
         self._ui.restore_status()
         if self._mdl.prjFile is not None:
             if self._ctrl.on_close() is None:
@@ -57,6 +60,7 @@ class FileManager(ServiceBase):
         # enabling selecting
         self._ui.tv.go_to_node(CH_ROOT)
         self.save_project()
+        return True
 
     def copy_css(self):
         """Copy the provided css style sheet into the project directory."""
@@ -170,15 +174,9 @@ class FileManager(ServiceBase):
                 return
 
         if self._mdl.prjFile is not None:
-            self._ctrl.update_status()
-            self._ctrl.refresh_tree()
-            self._ctrl.unlock()
-            if self._mdl.isModified:
-                if self._ui.ask_yes_no(
-                    message=_('Save changes?'),
-                    parent=parent
-                    ):
-                    self.save_project()
+            if not self._ctrl.on_close():
+                return
+
         self._ctrl.docImporter.import_document(sourcePath, parent=parent)
         self.copy_to_backup(self._mdl.prjFile.filePath)
 

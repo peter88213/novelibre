@@ -10,9 +10,15 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.18.0
+
+- Fix a bug where the **File > New > Create from ODT...** command cannot be properly aborted.
+- API upgrade: `FileManager.create_project` returns `True` on success.
+
+
 ### Version 5.17.7
 
-- Fix a bug where an exception is raised when aborting "File > New > Empty project".
+- Fix a bug where an exception is raised when aborting **File > New > Empty project**.
 - Fix a bug where the **File > Open** command cannot be properly aborted.
 
 
