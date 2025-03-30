@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.17.7
+
+- Fix a bug where an exception is raised when aborting "File > New > Empty project".
+- Fix a bug where the **File > Open** command cannot be properly aborted.
+
 
 ### Version 5.17.6
 

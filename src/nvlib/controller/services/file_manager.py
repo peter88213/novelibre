@@ -40,7 +40,10 @@ class FileManager(ServiceBase):
         """Create a novelibre project instance."""
         self._ui.restore_status()
         if self._mdl.prjFile is not None:
-            self._ctrl.on_close()
+            if self._ctrl.on_close() is None:
+                # user aborts
+                return
+
         self._mdl.create_project(self._ui.tv.tree)
         self._ctrl.refresh_tree()
         self._ui.show_path(_('Unnamed'))
@@ -203,10 +206,12 @@ class FileManager(ServiceBase):
         if not filePath:
             return False
 
-        self.prefs['last_open'] = filePath
-
         if self._mdl.prjFile is not None:
-            self._ctrl.on_close(doNotSave=doNotSave)
+            if self._ctrl.on_close(doNotSave=doNotSave) is None:
+                # user aborts
+                return False
+
+        self.prefs['last_open'] = filePath
         try:
             self._mdl.open_project(filePath)
         except Error as ex:
