@@ -26,7 +26,7 @@
 The *nvlib* package is not intended to be installed by the user, e.g. via *pip*. 
 Instead, applications based on novelibre shall be self contained. That means, they contain all the code in a single script.
 
-An application is built using the *inliner.py* script, which copies the code of all modules imported from the *nvlib* package.
+A plugin or an application is built using the *inliner.py* script, which copies the code of all modules imported from the *nvlib* package.
 The inliner script is called from an application-specific build script that passes the project-specific paths as parameters.
 
 This is the directory structure required for building an application:
@@ -36,13 +36,14 @@ This is the directory structure required for building an application:
 ├── novelibre/
 │   └── src/
 │       ├── nvlib/
-│       └── inliner.py
+│       ├── inliner.py
+│       └── package-builder.py
 └── application/
     ├── src/
     ├── test/
     └── tools/ 
         ├── build.xml
-        └── build_application.py
+        └── build.py
 ```
 
 **IMPORTANT**
