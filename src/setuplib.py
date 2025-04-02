@@ -52,7 +52,7 @@ INI_PATH = '/config/'
 SUCCESS_MESSAGE = '''
 *** Installation successful ***
 $Appname is installed here:
-$Apppath'''
+$DisplayDir'''
 
 SHORTCUT_MESSAGE = '''
 Now you might want to create a shortcut on your desktop.  
@@ -61,7 +61,7 @@ On Windows, open the installation folder, hold down the Alt key on your keyboard
 and then drag and drop "run.pyw" to your desktop.
 
 On Linux, create a launcher on your desktop. With xfce for instance, the launcher's command may look like this:
-python3 '$Apppath' %f
+python3 /home/peter/.novx/run.pyw %f
 '''
 
 ADD_TO_REGISTRY = fr'''Windows Registry Editor Version 5.00
@@ -259,9 +259,13 @@ def install(installDir, zipped):
 
     #--- Create a start-up script.
     output('Creating starter script ...')
-    mapping = {'Appname': APPNAME, 'Apppath': f'{installDir}/{START_UP_SCRIPT}'}
-    mapping['InstallDir'] = installDir
-    mapping['Release'] = VERSION
+    mapping = {
+        'Appname': APPNAME,
+        'Apppath': f'{installDir}/{START_UP_SCRIPT}',
+        'InstallDir': installDir,
+        'DisplayDir': os.path.normpath(installDir),
+        'Release': VERSION,
+    }
     if platform.system() == 'Windows':
         shebang = ''
     else:
