@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.18.1
+
+- No longer expanding the whole tree in "picking mode".
+
+
 ### Version 5.18.0
 
 - Fixed a bug where the **File > New > Create from ODT...** command cannot be properly aborted.

@@ -202,7 +202,6 @@ class BasicViewCtrl(SubController):
         if not self._pickingMode:
             self._lastSelected = self._ui.selectedNode
             self._ui.tv.config(cursor='plus')
-            self._ui.tv.open_children('')
             self._uiEscBinding = self._ui.root.bind('<Escape>')
             self._ui.root.bind('<Escape>', self._end_picking_mode)
             self._uiBtn1Binding = self._ui.root.bind('<Button-1>')
