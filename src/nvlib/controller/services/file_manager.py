@@ -15,6 +15,7 @@ from nvlib.model.exporter.nv_html_reporter import NvHtmlReporter
 from nvlib.model.file.doc_open import open_document
 from nvlib.model.html.html_report import HtmlReport
 from nvlib.model.nv_work_file import NvWorkFile
+from nvlib.model.odf.check_odf import odf_is_locked
 from nvlib.model.odt.odt_writer import OdtWriter
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import Error
@@ -110,8 +111,7 @@ class FileManager(ServiceBase):
             self._ui.set_status(f"#{_('Manuscript not found')}.")
             return
 
-        prjPath, manuscriptName = os.path.split(manuscriptPath)
-        if os.path.isfile(f'{prjPath}/.~lock.{manuscriptName}#'):
+        if odf_is_locked(manuscriptPath):
             self._ui.set_status(f"!{_('Please close the manuscript first')}.")
         elif self._ui.ask_yes_no(
             message=_('Discard manuscript?'),
@@ -160,6 +160,7 @@ class FileManager(ServiceBase):
             defaultExtension: str -- Extension to be preset in the file picker.
         """
         self._ui.restore_status()
+        self._ui.propertiesView.apply_changes()
         if sourcePath is None:
             if self.prefs['last_open']:
                 startDir = os.path.dirname(self.prefs['last_open'])
@@ -173,12 +174,21 @@ class FileManager(ServiceBase):
             if not sourcePath:
                 return
 
-        if self._mdl.prjFile is not None:
-            if not self._ctrl.on_close():
+        if self._mdl.isModified:
+            doSave = self._ui.ask_yes_no_cancel(_('Save changes?'))
+            if doSave is None:
                 return
 
+            elif doSave:
+                if not self.save_project():
+                    self._ui.show_error(
+                        message=_('Cannot save the project')
+                        )
+                    return
+
         self._ctrl.docImporter.import_document(sourcePath, parent=parent)
-        self.copy_to_backup(self._mdl.prjFile.filePath)
+        if self._mdl.prjFile:
+            self.copy_to_backup(self._mdl.prjFile.filePath)
 
     def open_installationFolder(self):
         """Open the installation folder with the OS file manager."""

@@ -117,7 +117,7 @@ class DocImporter(ServiceBase, NovxConversion):
             return message
 
     def _check_source_file(self, source):
-        """Error handling"""
+        # Error handling.
         if source.filePath is None:
             # the source is not correctly initialized
             raise Error(f'{_("File type is not supported")}.')
@@ -128,6 +128,6 @@ class DocImporter(ServiceBase, NovxConversion):
 
         if source.is_locked():
             # the document might be open in the Office application
-            if not self.prefs['import_mode'] == '2':
+            if self.prefs['import_mode'] != '2':
                 raise Error(f'{_("Please close the document first")}.')
 

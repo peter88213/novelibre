@@ -18,6 +18,7 @@ from nvlib.nv_locale import _
 class ReimportCtrl(SubController):
 
     def import_document(self, event=None):
+        self._ui.restore_status()
         try:
             filePath = self.documentCollection.selection()[0]
         except IndexError:
@@ -43,6 +44,9 @@ class ReimportCtrl(SubController):
                 self._ui.set_status(f'!{str(ex)}')
 
     def list_documents(self):
+        if not self._mdl.prjFile:
+            return
+
         prjDir, prjFile = os.path.split(self._mdl.prjFile.filePath)
         prjName, __ = os.path.splitext(prjFile)
         self._prjDocuments = {}

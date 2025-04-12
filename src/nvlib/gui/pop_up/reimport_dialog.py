@@ -28,6 +28,7 @@ class ReimportDialog(ModalDialog, ReimportCtrl, NovxConversion):
 
         super().__init__(view, **kw)
         self.initialize_controller(model, view, controller)
+        self._ui.restore_status()
 
         self.title(_('Exported documents'))
         window = ttk.Frame(self)

@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.18.2
+
+- Bugfixes for document reimport.
+
+
 ### Version 5.18.1
 
 - No longer expanding the whole tree in "picking mode".
