@@ -6,6 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.gui.properties_window.basic_view_ctrl import BasicViewCtrl
 from nvlib.novx_globals import CH_ROOT
+from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import SECTION_PREFIX
 
 
@@ -27,6 +28,9 @@ class PlotPointViewCtrl(BasicViewCtrl):
 
     def pick_section(self):
         """Enter the "associate section" selection mode."""
+        self._ui.tv.save_branch_status()
+        self._ui.tv.close_children('')
+        self._ui.tv.open_children(CH_ROOT)
         self._start_picking_mode(command=self._assign_section)
         self._ui.tv.see_node(CH_ROOT)
 
@@ -66,4 +70,5 @@ class PlotPointViewCtrl(BasicViewCtrl):
                 if not plId in self._mdl.novel.sections[nodeId].scPlotLines:
                     self._mdl.novel.sections[nodeId].scPlotLines.append(plId)
                 self.element.sectionAssoc = nodeId
+        self._ui.tv.restore_branch_status()
 

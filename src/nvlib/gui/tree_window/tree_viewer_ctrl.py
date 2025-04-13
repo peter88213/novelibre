@@ -340,6 +340,7 @@ class TreeViewerCtrl(SubController):
         return prevNode
 
     def show_book(self, event=None):
+        self.collapse_all()
         self.show_branch(CH_ROOT)
 
     def show_chapter_level(self, event=None):
@@ -358,18 +359,23 @@ class TreeViewerCtrl(SubController):
         return 'break'
 
     def show_characters(self, event=None):
+        self.collapse_all()
         self.show_branch(CR_ROOT)
 
     def show_items(self, event=None):
+        self.collapse_all()
         self.show_branch(IT_ROOT)
 
     def show_locations(self, event=None):
+        self.collapse_all()
         self.show_branch(LC_ROOT)
 
     def show_plot_lines(self, event=None):
+        self.collapse_all()
         self.show_branch(PL_ROOT)
 
     def show_project_notes(self, event=None):
+        self.collapse_all()
         self.show_branch(PN_ROOT)
 
     def update_node_values(self, nodeId, collect=False):

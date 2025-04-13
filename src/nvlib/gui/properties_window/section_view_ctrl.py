@@ -13,6 +13,7 @@ from nvlib.gui.properties_window.basic_view_ctrl import BasicViewCtrl
 from nvlib.model.data.date_time_tools import get_age
 from nvlib.model.data.date_time_tools import get_specific_date
 from nvlib.novx_globals import CHARACTER_PREFIX
+from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
 from nvlib.novx_globals import ITEM_PREFIX
 from nvlib.novx_globals import IT_ROOT
@@ -456,21 +457,33 @@ class SectionViewCtrl(BasicViewCtrl):
 
     def pick_character(self, event=None):
         """Enter the "add character" selection mode."""
+        self._ui.tv.save_branch_status()
+        self._ui.tv.close_children('')
+        self._ui.tv.open_children(CR_ROOT)
         self._start_picking_mode(command=self._add_character)
         self._ui.tv.see_node(CR_ROOT)
 
     def pick_item(self, event=None):
         """Enter the "add item" selection mode."""
+        self._ui.tv.save_branch_status()
+        self._ui.tv.close_children('')
+        self._ui.tv.open_children(IT_ROOT)
         self._start_picking_mode(command=self._add_item)
         self._ui.tv.see_node(IT_ROOT)
 
     def pick_location(self, event=None):
         """Enter the "add location" selection mode."""
+        self._ui.tv.save_branch_status()
+        self._ui.tv.close_children('')
+        self._ui.tv.open_children(LC_ROOT)
         self._start_picking_mode(command=self._add_location)
         self._ui.tv.see_node(LC_ROOT)
 
     def pick_plotline(self, event=None):
         """Enter the "add plot line" selection mode."""
+        self._ui.tv.save_branch_status()
+        self._ui.tv.close_children('')
+        self._ui.tv.open_children(PL_ROOT)
         self._start_picking_mode(command=self._add_plotline)
         self._ui.tv.see_node(PL_ROOT)
 
@@ -898,6 +911,7 @@ class SectionViewCtrl(BasicViewCtrl):
         if crId.startswith(CHARACTER_PREFIX) and not crId in crList:
             crList.append(crId)
             self.element.characters = crList
+        self._ui.tv.restore_branch_status()
 
     def _add_item(self, event=None):
         # Add the selected element to the collection, if applicable.
@@ -906,6 +920,7 @@ class SectionViewCtrl(BasicViewCtrl):
         if itId.startswith(ITEM_PREFIX)and not itId in itList:
             itList.append(itId)
             self.element.items = itList
+        self._ui.tv.restore_branch_status()
 
     def _add_location(self, event=None):
         # Add the selected element to the collection, if applicable.
@@ -914,6 +929,7 @@ class SectionViewCtrl(BasicViewCtrl):
         if lcId.startswith(LOCATION_PREFIX)and not lcId in lcList:
             lcList.append(lcId)
             self.element.locations = lcList
+        self._ui.tv.restore_branch_status()
 
     def _add_plotline(self, event=None):
         # Add the selected element to the collection, if applicable.
@@ -928,6 +944,7 @@ class SectionViewCtrl(BasicViewCtrl):
                 self._mdl.novel.plotLines[plId].sections = plotlineSections
 
             # TODO: Select the new plot line entry.
+        self._ui.tv.restore_branch_status()
 
     def _get_element_titles(self, elemIds, elements):
         """Return a list of element titles.

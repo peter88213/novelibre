@@ -10,6 +10,17 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+
+### Version 5.19.0
+
+- Fixed a regression from 5.18.1, where picking mode doesn't open the branch to pick from.
+- When going to a category, close others.
+- When picking from a category, close others.
+
+API change:
+- Added TreeViewer methods for saving and restoring the opening status of the branches.
+
+
 ### Version 5.18.2
 
 - Bugfixes for document reimport.

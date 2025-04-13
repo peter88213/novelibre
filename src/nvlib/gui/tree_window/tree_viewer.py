@@ -53,6 +53,8 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
         self.initialize_controller(model, view, controller)
 
         self.skipUpdate = False
+        self._branch_status = {}
+        # open/close
 
         # Create a novel tree.
         self.tree = NvTreeview(self)
@@ -222,6 +224,13 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
         self.tree.configure({'selectmode': 'none'})
         self._mdl.reset_tree()
 
+    def save_branch_status(self):
+        self._branch_status.clear()
+        for category in self.tree.get_children(''):
+            self._branch_status[category] = self.tree.item(category, option='open')
+            for branch in self.tree.get_children(category):
+                self._branch_status[branch] = self.tree.item(branch, option='open')
+
     def see_node(self, node):
         """View a node.
         
@@ -249,6 +258,13 @@ class TreeViewer(ttk.Frame, Observer, TreeViewerCtrl):
         return 'break'
         # this stops event propagation and allows for re-mapping e.g. the F10 key
         # (see: https://stackoverflow.com/questions/22907200/remap-default-keybinding-in-tkinter)
+
+    def restore_branch_status(self):
+        for branch in self._branch_status:
+            try:
+                self.tree.item(branch, open=self._branch_status[branch])
+            except:
+                pass
 
     def _bind_events(self):
         self.tree.bind('<<TreeviewSelect>>', self._on_select_node)
