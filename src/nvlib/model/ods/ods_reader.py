@@ -38,6 +38,7 @@ class OdsReader(OdfReader, ABC):
         super().__init__(filePath)
         self._columns = {}
         # dict: {column title, {element ID, cell content}}
+        self._rows = []
 
     @abstractmethod
     def read(self):
@@ -47,7 +48,7 @@ class OdsReader(OdfReader, ABC):
 
         Overrides the superclass method.
         """
-        self._rows = []
+        self._rows.clear()
         cellsPerRow = len(self._columnTitles)
         parser = OdsParser()
         rows = parser.get_rows(self.filePath, cellsPerRow)

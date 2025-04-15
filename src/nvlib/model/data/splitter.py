@@ -111,6 +111,7 @@ class Splitter:
         # Process chapters and sections.
         sectionsSplit = False
         chIndex = 0
+        newLines = []
         for scanChId in novel.tree.get_children(CH_ROOT):
             scList = novel.tree.get_children(scanChId)
             novel.tree.delete_children(scanChId)
@@ -126,7 +127,7 @@ class Splitter:
 
                 sectionContent = novel.sections[scanScId].sectionContent.replace('</p>', '</p>\n')
                 lines = sectionContent.split('\n')
-                newLines = []
+                newLines.clear()
                 inSection = True
                 sectionSplitCount = 0
 
@@ -145,7 +146,7 @@ class Splitter:
                         # Split the section.
                         if inSection:
                             novel.sections[scId].sectionContent = ''.join(newLines)
-                        newLines = []
+                        newLines.clear()
                         sectionSplitCount += 1
                         newScId = new_id(novel.sections, prefix=SECTION_PREFIX)
                         create_section(
@@ -165,7 +166,7 @@ class Splitter:
                         # Start a new chapter.
                         if inSection:
                             novel.sections[scId].sectionContent = ''.join(newLines)
-                            newLines = []
+                            newLines.clear()
                             sectionSplitCount = 0
                             inSection = False
                         newChId = new_id(novel.chapters, prefix=CHAPTER_PREFIX)
@@ -181,7 +182,7 @@ class Splitter:
                         # start a new part.
                         if inSection:
                             novel.sections[scId].sectionContent = ''.join(newLines)
-                            newLines = []
+                            newLines.clear()
                             sectionSplitCount = 0
                             inSection = False
                         newChId = new_id(novel.chapters, prefix=CHAPTER_PREFIX)

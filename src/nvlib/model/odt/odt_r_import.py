@@ -96,7 +96,7 @@ class OdtRImport(OdtRFormatted):
 
         if tag in ('h1', 'h2'):
             self.novel.chapters[self._chId].title = unescape(re.sub('<.*?>', '', ''.join(self._lines)))
-            self._lines = []
+            self._lines.clear()
             return
 
         if tag == 'title':
@@ -113,7 +113,7 @@ class OdtRImport(OdtRFormatted):
         """
         if tag == 'p':
             if self._scId is None and self._chId is not None:
-                self._lines = []
+                self._lines.clear()
                 self._scCount += 1
                 self._scId = f'{SECTION_PREFIX}{self._scCount}'
                 self.novel.sections[self._scId] = Section(title=f'{_("Section")} {self._scCount}',
@@ -154,7 +154,7 @@ class OdtRImport(OdtRFormatted):
 
         if tag in ('h1', 'h2'):
             self._scId = None
-            self._lines = []
+            self._lines.clear()
             self._chCount += 1
             self._chId = f'{CHAPTER_PREFIX}{self._chCount}'
             self.novel.chapters[self._chId] = Chapter(chType=0)
@@ -178,7 +178,7 @@ class OdtRImport(OdtRFormatted):
             return
 
         if tag == 'title':
-            self._lines = []
+            self._lines.clear()
             return
 
         if tag == 'body':
@@ -200,6 +200,6 @@ class OdtRImport(OdtRFormatted):
         Initialize the languages list.
         Extends the superclass method.
         """
-        self.novel.languages = []
+        self.novel.languages.clear()
         super().read()
 

@@ -21,13 +21,6 @@ class OdsParser:
     The novxlib csv import classes thus can be reused.
     """
 
-    def __init__(self):
-        super().__init__()
-        self._rows = []
-        self._cells = []
-        self._inCell = None
-        self.__cellsPerRow = 0
-
     def get_rows(self, filePath, cellsPerRow):
         """Return a nested list with rows and cells from an ODS document.
         

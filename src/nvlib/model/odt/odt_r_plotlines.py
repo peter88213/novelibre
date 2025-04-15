@@ -40,7 +40,7 @@ class OdtRPlotlines(OdtReader):
             if tag == 'div':
                 text = ''.join(self._lines)
                 self.novel.plotLines[self._plId].desc = text.rstrip()
-                self._lines = []
+                self._lines.clear()
                 self._plId = None
                 return
 
@@ -52,7 +52,7 @@ class OdtRPlotlines(OdtReader):
             if tag == 'div':
                 text = ''.join(self._lines)
                 self.novel.plotPoints[self._ppId].desc = text.rstrip()
-                self._lines = []
+                self._lines.clear()
                 self._ppId = None
                 return
 

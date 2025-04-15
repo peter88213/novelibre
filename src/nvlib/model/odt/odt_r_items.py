@@ -56,7 +56,7 @@ class OdtRItems(OdtReader):
 
         if tag == 'div':
             self.novel.items[self._itId].desc = ''.join(self._lines).rstrip()
-            self._lines = []
+            self._lines.clear()
             self._itId = None
             return
 

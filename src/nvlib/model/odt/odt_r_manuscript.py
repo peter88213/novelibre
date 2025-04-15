@@ -57,7 +57,7 @@ class OdtRManuscript(OdtRFormatted):
         if tag == 'div':
             text = ''.join(self._lines)
             self.novel.sections[self._scId].sectionContent = text
-            self._lines = []
+            self._lines.clear()
             self._scId = None
             return
 

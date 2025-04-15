@@ -64,25 +64,25 @@ class OdtRCharacters(OdtReader):
 
             if self._section == 'desc':
                 self.novel.characters[self._crId].desc = ''.join(self._lines).rstrip()
-                self._lines = []
+                self._lines.clear()
                 self._section = None
                 return
 
             if self._section == 'bio':
                 self.novel.characters[self._crId].bio = ''.join(self._lines).rstrip()
-                self._lines = []
+                self._lines.clear()
                 self._section = None
                 return
 
             if self._section == 'goals':
                 self.novel.characters[self._crId].goals = ''.join(self._lines).rstrip()
-                self._lines = []
+                self._lines.clear()
                 self._section = None
                 return
 
             if self._section == 'notes':
                 self.novel.characters[self._crId].notes = ''.join(self._lines).rstrip()
-                self._lines = []
+                self._lines.clear()
                 self._section = None
             return
 

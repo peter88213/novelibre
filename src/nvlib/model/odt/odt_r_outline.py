@@ -77,12 +77,12 @@ class OdtROutline(OdtReader):
 
         if tag in ('h1', 'h2'):
             self.novel.chapters[self._chId].title = unescape(re.sub('<.*?>', '', text).strip())
-            self._lines = []
+            self._lines.clear()
             return
 
         if tag == 'h3':
             self.novel.sections[self._scId].title = unescape(re.sub('<.*?>', '', text).strip())
-            self._lines = []
+            self._lines.clear()
             return
 
         if tag == 'title':
@@ -99,7 +99,7 @@ class OdtROutline(OdtReader):
         """
         if tag in ('h1', 'h2'):
             self._scId = None
-            self._lines = []
+            self._lines.clear()
             self._chCount += 1
             self._chId = f'{CHAPTER_PREFIX}{self._chCount}'
             self.novel.chapters[self._chId] = Chapter(chType=0)
@@ -111,7 +111,7 @@ class OdtROutline(OdtReader):
             return
 
         if tag == 'h3':
-            self._lines = []
+            self._lines.clear()
             self._scCount += 1
             self._scId = f'{SECTION_PREFIX}{self._scCount}'
             self.novel.sections[self._scId] = Section(
@@ -138,7 +138,7 @@ class OdtROutline(OdtReader):
             return
 
         if tag == 'title':
-            self._lines = []
+            self._lines.clear()
             return
 
         if tag == 'body':

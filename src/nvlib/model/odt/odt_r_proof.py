@@ -49,7 +49,7 @@ class OdtRProof(OdtRFormatted):
         try:
             if f'[{SECTION_PREFIX}' in data:
                 self._scId = f"{SECTION_PREFIX}{re.search('[0-9]+', data).group()}"
-                self._lines = []
+                self._lines.clear()
                 return
 
             if f'[/{SECTION_PREFIX}]' in data:
@@ -58,7 +58,7 @@ class OdtRProof(OdtRFormatted):
                     # remove the paragraph tag
                     text = ''.join(self._lines)
                     self.novel.sections[self._scId].sectionContent = text.strip()
-                    self._lines = []
+                    self._lines.clear()
                 self._scId = None
                 self._content = False
                 return
@@ -96,7 +96,7 @@ class OdtRProof(OdtRFormatted):
         if tag == 'div':
             text = ''.join(self._lines)
             self.novel.sections[self._scId].sectionContent = text
-            self._lines = []
+            self._lines.clear()
             self._scId = None
             return
 

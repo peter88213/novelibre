@@ -56,7 +56,7 @@ class OdtRLocations(OdtReader):
 
         if tag == 'div':
             self.novel.locations[self._lcId].desc = ''.join(self._lines).rstrip()
-            self._lines = []
+            self._lines.clear()
             self._lcId = None
             return
 
