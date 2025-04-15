@@ -79,7 +79,7 @@ class Novel(BasicElement):
         # key = section ID, value = Section instance.
         self.plotPoints = {}
         # key = section ID, value = PlotPoint instance.
-        self.languages = []
+        self.languages = None
         # List of non-document languages occurring as section markup.
         # Format: ll-CC, where ll is the language code, and CC is the country code.
         self.plotLines = {}
@@ -529,7 +529,7 @@ class Novel(BasicElement):
                 yield m.group(1)
                 m = LANGUAGE_TAG.search(text)
 
-        self.languages.clear()
+        self.languages = []
         for scId in self.sections:
             text = self.sections[scId].sectionContent
             if text:

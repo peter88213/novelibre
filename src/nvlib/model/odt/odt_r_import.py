@@ -200,6 +200,6 @@ class OdtRImport(OdtRFormatted):
         Initialize the languages list.
         Extends the superclass method.
         """
-        self.novel.languages.clear()
+        self.novel.languages = []
         super().read()
 
