@@ -80,7 +80,7 @@ class ContentsViewer(RichTextNv, Observer, ContentsViewerCtrl):
     def view_text(self):
         """Get a list of "tagged text" tuples and send it to the text box."""
         taggedText = self.get_tagged_text()
-        self._textMarks = {}
+        self._textMarks.clear()
 
         # Clear the text box first.
         self.config(state='normal')

@@ -458,7 +458,7 @@ class NovxFile(File):
             self.wcLogUpdate[todayIso] = [newCount, newTotalCount]
             for wcDate in self.wcLogUpdate:
                 self.wcLog[wcDate] = self.wcLogUpdate[wcDate]
-        self.wcLogUpdate = {}
+        self.wcLogUpdate.clear()
 
     def _write_element_tree(self, xmlProject):
         """Write back the xml element tree to a .novx xml file located at filePath.

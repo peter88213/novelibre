@@ -72,11 +72,11 @@ class NvTree:
         if parent in self.roots:
             self.roots[parent] = []
             if parent == CH_ROOT:
-                self.srtSections = {}
+                self.srtSections.clear()
                 return
 
             if parent == PL_ROOT:
-                self.srtPlotPoints = {}
+                self.srtPlotPoints.clear()
             return
 
         if parent.startswith(CHAPTER_PREFIX):
@@ -172,19 +172,19 @@ class NvTree:
         """Clear the tree."""
         for item in self.roots:
             self.roots[item] = []
-        self.srtSections = {}
-        self.srtPlotPoints = {}
+        self.srtSections.clear()
+        self.srtPlotPoints.clear()
 
     def set_children(self, item, newchildren):
         """Replaces item’s child with newchildren."""
         if item in self.roots:
             self.roots[item] = newchildren[:]
             if item == CH_ROOT:
-                self.srtSections = {}
+                self.srtSections.clear()
                 return
 
             if item == PL_ROOT:
-                self.srtPlotPoints = {}
+                self.srtPlotPoints.clear()
             return
 
         if item.startswith(CHAPTER_PREFIX):
