@@ -10,6 +10,10 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.19.1
+
+- Refactored the code for better performance.
+
 
 ### Version 5.19.0
 
