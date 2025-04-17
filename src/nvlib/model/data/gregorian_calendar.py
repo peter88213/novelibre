@@ -1,4 +1,4 @@
-"""Helper module for date/time related calculations.
+"""Provide a class for date/time related calculations.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre

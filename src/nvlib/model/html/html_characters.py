@@ -4,8 +4,7 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from datetime import date
-
+from nvlib.model.data.gregorian_calendar import GregorianCalendar as cal
 from nvlib.model.html.html_report import HtmlReport
 from nvlib.novx_globals import CHARACTER_REPORT_SUFFIX
 from nvlib.novx_globals import Notification
@@ -62,11 +61,11 @@ class HtmlCharacters(HtmlReport):
         characterMapping = super()._get_characterMapping(crId)
         if self.localizeDate:
             try:
-                characterMapping['BirthDate'] = date.fromisoformat(characterMapping['BirthDate']).strftime('%x')
+                characterMapping['BirthDate'] = cal.get_locale_date(characterMapping['BirthDate'])
             except:
                 pass
             try:
-                characterMapping['DeathDate'] = date.fromisoformat(characterMapping['DeathDate']).strftime('%x')
+                characterMapping['DeathDate'] = cal.get_locale_date(characterMapping['DeathDate'])
             except:
                 pass
         return characterMapping
