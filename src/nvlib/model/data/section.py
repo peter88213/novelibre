@@ -7,7 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import re
 
 from nvlib.model.data.basic_element_tags import BasicElementTags
-from nvlib.model.data.gregorian_calendar import GregorianCalendar as cal
+from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.novx_globals import string_to_list
 from nvlib.novx_globals import verified_int_string
 from nvlib.nv_locale import _
@@ -76,8 +76,8 @@ class Section(BasicElementTags):
         self._outcome = outcome
         self._plotlineNotes = plotNotes
         try:
-            self._weekDay = cal.get_weekday(scDate)
-            self._localeDate = cal.get_locale_date(scDate)
+            self._weekDay = PyCalendar.weekday(scDate)
+            self._localeDate = PyCalendar.locale_date(scDate)
             self._date = scDate
         except:
             self._weekDay = None
@@ -254,13 +254,13 @@ class Section(BasicElementTags):
                 return
 
             try:
-                self._weekDay = cal.get_weekday(newVal)
+                self._weekDay = PyCalendar.weekday(newVal)
             except:
                 return
                 # date and week day remain unchanged
 
             try:
-                self._localeDate = cal.get_locale_date(newVal)
+                self._localeDate = PyCalendar.locale_date(newVal)
             except:
                 self._localeDate = newVal
             self._date = newVal
@@ -403,7 +403,7 @@ class Section(BasicElementTags):
             return True
 
         try:
-            self.date = cal.get_specific_date(self._day, referenceDate)
+            self.date = PyCalendar.specific_date(self._day, referenceDate)
             self._day = None
             return True
 
@@ -423,7 +423,7 @@ class Section(BasicElementTags):
             return True
 
         try:
-            self._day = cal.get_unspecific_date(self._date, referenceDate)
+            self._day = PyCalendar.unspecific_date(self._date, referenceDate)
             self.date = None
             return True
 
@@ -477,12 +477,12 @@ class Section(BasicElementTags):
 
         # Date/Day and Time.
         if xmlElement.find('Date') is not None:
-            self.date = cal.verified_date(xmlElement.find('Date').text)
+            self.date = PyCalendar.verified_date(xmlElement.find('Date').text)
         elif xmlElement.find('Day') is not None:
             self.day = verified_int_string(xmlElement.find('Day').text)
 
         if xmlElement.find('Time') is not None:
-            self.time = cal.verified_time(xmlElement.find('Time').text)
+            self.time = PyCalendar.verified_time(xmlElement.find('Time').text)
 
         # Duration.
         self.lastsDays = verified_int_string(self._get_element_text(xmlElement, 'LastsDays'))
@@ -551,12 +551,12 @@ class Section(BasicElementTags):
         if self.time:
             if self.date:
                 try:
-                    endDate, endTime = cal.get_end_date_time(self)
+                    endDate, endTime = PyCalendar.get_end_date_time(self)
                 except:
                     pass
             else:
                 try:
-                    endDay, endTime = cal.get_end_day_time(self)
+                    endDay, endTime = PyCalendar.get_end_day_time(self)
                 except:
                     pass
         return endDate, endTime, endDay
