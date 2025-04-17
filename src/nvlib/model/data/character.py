@@ -4,8 +4,8 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from nvlib.model.data.gregorian_calendar import GregorianCalendar as cal
 from nvlib.model.data.world_element import WorldElement
-from nvlib.novx_globals import verified_date
 import xml.etree.ElementTree as ET
 
 
@@ -109,8 +109,8 @@ class Character(WorldElement):
         self.fullName = self._get_element_text(xmlElement, 'FullName')
         self.bio = self._xml_element_to_text(xmlElement.find('Bio'))
         self.goals = self._xml_element_to_text(xmlElement.find('Goals'))
-        self.birthDate = verified_date(self._get_element_text(xmlElement, 'BirthDate'))
-        self.deathDate = verified_date(self._get_element_text(xmlElement, 'DeathDate'))
+        self.birthDate = cal.verified_date(self._get_element_text(xmlElement, 'BirthDate'))
+        self.deathDate = cal.verified_date(self._get_element_text(xmlElement, 'DeathDate'))
 
     def to_xml(self, xmlElement):
         super().to_xml(xmlElement)

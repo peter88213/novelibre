@@ -10,10 +10,8 @@ from datetime import time
 from datetime import timedelta
 
 from nvlib.gui.properties_window.basic_view_ctrl import BasicViewCtrl
-from nvlib.model.data.date_time_tools import get_age
-from nvlib.model.data.date_time_tools import get_specific_date
+from nvlib.model.data.gregorian_calendar import GregorianCalendar as cal
 from nvlib.novx_globals import CHARACTER_PREFIX
-from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
 from nvlib.novx_globals import ITEM_PREFIX
 from nvlib.novx_globals import IT_ROOT
@@ -830,7 +828,7 @@ class SectionViewCtrl(BasicViewCtrl):
             now = self.element.date
         else:
             try:
-                now = get_specific_date(
+                now = cal.get_specific_date(
                     self.element.day,
                     self._mdl.novel.referenceDate
                     )
@@ -843,7 +841,7 @@ class SectionViewCtrl(BasicViewCtrl):
             birthDate = self._mdl.novel.characters[crId].birthDate
             deathDate = self._mdl.novel.characters[crId].deathDate
             try:
-                years = get_age(now, birthDate, deathDate)
+                years = cal.get_age(now, birthDate, deathDate)
                 if years < 0:
                     years *= -1
                     suffix = _('years after death')
@@ -866,7 +864,7 @@ class SectionViewCtrl(BasicViewCtrl):
             now = self.element.date
         else:
             try:
-                now = get_specific_date(
+                now = cal.get_specific_date(
                     self.element.day,
                     self._mdl.novel.referenceDate
                     )

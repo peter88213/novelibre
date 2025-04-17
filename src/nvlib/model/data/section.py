@@ -11,12 +11,9 @@ from datetime import timedelta
 import re
 
 from nvlib.model.data.basic_element_tags import BasicElementTags
-from nvlib.model.data.date_time_tools import get_specific_date
-from nvlib.model.data.date_time_tools import get_unspecific_date
+from nvlib.model.data.gregorian_calendar import GregorianCalendar as cal
 from nvlib.novx_globals import string_to_list
-from nvlib.novx_globals import verified_date
 from nvlib.novx_globals import verified_int_string
-from nvlib.novx_globals import verified_time
 from nvlib.nv_locale import _
 import xml.etree.ElementTree as ET
 
@@ -412,7 +409,7 @@ class Section(BasicElementTags):
             return True
 
         try:
-            self.date = get_specific_date(self._day, referenceDate)
+            self.date = cal.get_specific_date(self._day, referenceDate)
             self._day = None
             return True
 
@@ -432,7 +429,7 @@ class Section(BasicElementTags):
             return True
 
         try:
-            self._day = get_unspecific_date(self._date, referenceDate)
+            self._day = cal.get_unspecific_date(self._date, referenceDate)
             self.date = None
             return True
 
@@ -486,12 +483,12 @@ class Section(BasicElementTags):
 
         # Date/Day and Time.
         if xmlElement.find('Date') is not None:
-            self.date = verified_date(xmlElement.find('Date').text)
+            self.date = cal.verified_date(xmlElement.find('Date').text)
         elif xmlElement.find('Day') is not None:
             self.day = verified_int_string(xmlElement.find('Day').text)
 
         if xmlElement.find('Time') is not None:
-            self.time = verified_time(xmlElement.find('Time').text)
+            self.time = cal.verified_time(xmlElement.find('Time').text)
 
         # Duration.
         self.lastsDays = verified_int_string(self._get_element_text(xmlElement, 'LastsDays'))

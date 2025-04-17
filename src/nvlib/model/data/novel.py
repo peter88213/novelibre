@@ -8,8 +8,8 @@ from datetime import date
 import locale
 import re
 
-from nvlib.novx_globals import verified_date
 from nvlib.model.data.basic_element import BasicElement
+from nvlib.model.data.gregorian_calendar import GregorianCalendar as cal
 import xml.etree.ElementTree as ET
 
 LANGUAGE_TAG = re.compile(r'\<span xml\:lang=\"(.*?)\"\>')
@@ -510,7 +510,7 @@ class Novel(BasicElement):
             self.wordTarget = int(xmlElement.find('WordTarget').text)
 
         # Reference date.
-        self.referenceDate = verified_date(self._get_element_text(xmlElement, 'ReferenceDate'))
+        self.referenceDate = cal.verified_date(self._get_element_text(xmlElement, 'ReferenceDate'))
 
     def get_languages(self):
         """Determine the languages used in the document.

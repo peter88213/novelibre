@@ -35,7 +35,6 @@ from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import intersection
 from nvlib.novx_globals import norm_path
-from nvlib.novx_globals import verified_date
 from nvlib.novx_globals import verified_int_string
 from nvlib.nv_locale import _
 import xml.etree.ElementTree as ET
@@ -437,6 +436,14 @@ class NovxFile(File):
 
     def _read_word_count_log(self, xmlRoot):
         """Read the word count log from the xml element tree."""
+
+        def verified_date(dateStr):
+            # Return a verified iso dateStr or None.
+            if dateStr is not None:
+                date.fromisoformat(dateStr)
+                # raising an exception if dateStr is not an iso-formatted date
+            return dateStr
+
         xmlWclog = xmlRoot.find('PROGRESS')
         if xmlWclog is None:
             return
