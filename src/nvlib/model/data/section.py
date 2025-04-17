@@ -4,10 +4,6 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from datetime import date
-from datetime import datetime
-from datetime import time
-from datetime import timedelta
 import re
 
 from nvlib.model.data.basic_element_tags import BasicElementTags
@@ -80,9 +76,8 @@ class Section(BasicElementTags):
         self._outcome = outcome
         self._plotlineNotes = plotNotes
         try:
-            newDate = date.fromisoformat(scDate)
-            self._weekDay = newDate.weekday()
-            self._localeDate = newDate.strftime('%x')
+            self._weekDay = cal.get_weekday(scDate)
+            self._localeDate = cal.get_locale_date(scDate)
             self._date = scDate
         except:
             self._weekDay = None
@@ -259,14 +254,13 @@ class Section(BasicElementTags):
                 return
 
             try:
-                newDate = date.fromisoformat(newVal)
-                self._weekDay = newDate.weekday()
+                self._weekDay = cal.get_weekday(newVal)
             except:
                 return
                 # date and week day remain unchanged
 
             try:
-                self._localeDate = newDate.strftime('%x')
+                self._localeDate = cal.get_locale_date(newVal)
             except:
                 self._localeDate = newVal
             self._date = newVal
@@ -551,54 +545,18 @@ class Section(BasicElementTags):
 
     def get_end_date_time(self):
         """Return the end (date, time, day) tuple calculated from start and duration."""
-
-        def get_duration():
-            # Return the section's duration in timedelta format.
-            if self.lastsDays:
-                lastsDays = int(self.lastsDays)
-            else:
-                lastsDays = 0
-            if self.lastsHours:
-                lastsSeconds = int(self.lastsHours) * 3600
-            else:
-                lastsSeconds = 0
-            if self.lastsMinutes:
-                lastsSeconds += int(self.lastsMinutes) * 60
-            return timedelta(days=lastsDays, seconds=lastsSeconds)
-
-        def get_end_date_time(sectionDuration):
-            # Return a tuple: (endDate, endTime) if date and time are given.
-            # sectionDuration is in timedelta format.
-            sectionStart = datetime.fromisoformat(f'{self.date} {self.time}')
-            sectionEnd = sectionStart + sectionDuration
-            return sectionEnd.isoformat().split('T')
-
-        def get_end_day_time(sectionDuration):
-            # Return a tuple: (endDay, endTime) if day and time are given.
-            # sectionDuration is in timedelta format.
-            if self.day:
-                dayInt = int(self.day)
-            else:
-                dayInt = 0
-            virtualStartDate = (date.min + timedelta(days=dayInt)).isoformat()
-            virtualSectionStart = datetime.fromisoformat(f'{virtualStartDate} {self.time}')
-            virtualSectionEnd = virtualSectionStart + sectionDuration
-            virtualEndDate, endTime = virtualSectionEnd.isoformat().split('T')
-            endDay = str((date.fromisoformat(virtualEndDate) - date.min).days)
-            return (endDay, endTime)
-
         endDate = None
         endTime = None
         endDay = None
         if self.time:
             if self.date:
                 try:
-                    endDate, endTime = get_end_date_time(get_duration())
+                    endDate, endTime = cal.get_end_date_time(self)
                 except:
                     pass
             else:
                 try:
-                    endDay, endTime = get_end_day_time(get_duration())
+                    endDay, endTime = cal.get_end_day_time(self)
                 except:
                     pass
         return endDate, endTime, endDay

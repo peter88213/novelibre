@@ -4,7 +4,6 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from datetime import date
 import locale
 import re
 
@@ -93,7 +92,7 @@ class Novel(BasicElement):
         self.projectNotes = {}
         # key = note ID, value = note instance.
         try:
-            self.referenceWeekDay = date.fromisoformat(referenceDate).weekday()
+            self.referenceWeekDay = cal.get_weekday(referenceDate)
             self._referenceDate = referenceDate
             # YYYY-MM-DD
         except:
@@ -424,7 +423,7 @@ class Novel(BasicElement):
                 self.on_element_change()
             else:
                 try:
-                    self.referenceWeekDay = date.fromisoformat(newVal).weekday()
+                    self.referenceWeekDay = cal.get_weekday(newVal)
                 except:
                     pass
                     # date and week day remain unchanged

@@ -53,6 +53,32 @@ class GregorianCalendar:
         return years
 
     @staticmethod
+    def get_end_date_time(section):
+        # Return a tuple: (endDate, endTime) if date and time are given.
+        sectionStart = datetime.fromisoformat(f'{section.date} {section.time}')
+        sectionEnd = sectionStart + GregorianCalendar._get_duration(section)
+        return sectionEnd.isoformat().split('T')
+
+    @staticmethod
+    def get_end_day_time(section):
+        # Return a tuple: (endDay, endTime) if day and time are given.
+        if section.day:
+            dayInt = int(section.day)
+        else:
+            dayInt = 0
+        virtualStartDate = (date.min + timedelta(days=dayInt)).isoformat()
+        virtualSectionStart = datetime.fromisoformat(f'{virtualStartDate} {section.time}')
+        virtualSectionEnd = virtualSectionStart + GregorianCalendar._get_duration(section)
+        virtualEndDate, endTime = virtualSectionEnd.isoformat().split('T')
+        endDay = str((date.fromisoformat(virtualEndDate) - date.min).days)
+        return (endDay, endTime)
+
+    @staticmethod
+    def get_locale_date(dateStr):
+        """Return a string with the localized date."""
+        return date.fromisoformat(dateStr).strftime('%x')
+
+    @staticmethod
     def get_specific_date(dayStr, refIso):
         """Return the ISO-formatted date.
         
@@ -77,6 +103,11 @@ class GregorianCalendar:
         return str((date.fromisoformat(dateIso) - refDate).days)
 
     @staticmethod
+    def get_weekday(dateStr):
+        """Return a string with the localized day of the week."""
+        return date.fromisoformat(dateStr).weekday()
+
+    @staticmethod
     def verified_date(dateStr):
         """Return a verified iso dateStr or None."""
         if dateStr is not None:
@@ -94,4 +125,19 @@ class GregorianCalendar:
                 timeStr = f'{timeStr}:00'
                 # adding minutes or seconds, if missing
         return timeStr
+
+    @staticmethod
+    def _get_duration(section):
+        # Return the section's duration in timedelta format.
+        if section.lastsDays:
+            lastsDays = int(section.lastsDays)
+        else:
+            lastsDays = 0
+        if section.lastsHours:
+            lastsSeconds = int(section.lastsHours) * 3600
+        else:
+            lastsSeconds = 0
+        if section.lastsMinutes:
+            lastsSeconds += int(section.lastsMinutes) * 60
+        return timedelta(days=lastsDays, seconds=lastsSeconds)
 
