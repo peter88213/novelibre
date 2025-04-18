@@ -4,12 +4,10 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from datetime import date
-
 from nvlib.gui.properties_window.basic_view_ctrl import BasicViewCtrl
+from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.nv_globals import datestr
 from nvlib.nv_globals import prefs
-from nvlib.nv_locale import WEEKDAYS
 from nvlib.nv_locale import _
 
 
@@ -66,17 +64,17 @@ class ProjectViewCtrl(BasicViewCtrl):
             self.localeDateVar.set('')
         elif refDateStr != self.element.referenceDate:
             try:
-                date.fromisoformat(refDateStr)
+                PyCalendar.verified_date(refDateStr)
             except ValueError:
                 self.referenceDateVar.set(self.element.referenceDate)
                 self._ui.show_error(
                     message=_('Input rejected'),
-                    detail=f'{_("Wrong date")}: "{refDateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}'
+                    detail=f'{_("Wrong date")}: "{refDateStr}"\n{_("Required")}: {PyCalendar.DATE_FORMAT}'
                     )
             else:
                 self.element.referenceDate = refDateStr
                 if self.element.referenceWeekDay is not None:
-                    self.referenceWeekDayVar.set(WEEKDAYS[self.element.referenceWeekDay])
+                    self.referenceWeekDayVar.set(PyCalendar.WEEKDAYS[self.element.referenceWeekDay])
                 else:
                     self.referenceWeekDayVar.set('')
                     self.localeDateVar.set('')
@@ -116,7 +114,7 @@ class ProjectViewCtrl(BasicViewCtrl):
         if self._mdl.novel.referenceDate:
             if self._ui.ask_yes_no(
                 message=_('Convert all section dates to days relative to the reference date?'),
-                detail=f"{_('Day 0')}: {WEEKDAYS[self.element.referenceWeekDay]} {datestr(self.element.referenceDate)}"
+                detail=f"{_('Day 0')}: {PyCalendar.WEEKDAYS[self.element.referenceWeekDay]} {datestr(self.element.referenceDate)}"
                 ):
                 self.doNotUpdate = True
                 for scId in self._mdl.novel.sections:
@@ -134,7 +132,7 @@ class ProjectViewCtrl(BasicViewCtrl):
         if self._mdl.novel.referenceDate:
             if self._ui.ask_yes_no(
                 message=_('Convert all section days to dates using the reference date?'),
-                detail=f"{_('Day 0')}: {WEEKDAYS[self.element.referenceWeekDay]} {datestr(self.element.referenceDate)}"
+                detail=f"{_('Day 0')}: {PyCalendar.WEEKDAYS[self.element.referenceWeekDay]} {datestr(self.element.referenceDate)}"
                 ):
                 self.doNotUpdate = True
                 for scId in self._mdl.novel.sections:
@@ -239,7 +237,7 @@ class ProjectViewCtrl(BasicViewCtrl):
 
         if self.element.referenceDate and self.element.referenceWeekDay is not None:
             self.referenceWeekDayVar.set(
-                WEEKDAYS[self.element.referenceWeekDay]
+                PyCalendar.WEEKDAYS[self.element.referenceWeekDay]
                 )
             self.localeDateVar.set(
                 datestr(self.element.referenceDate)

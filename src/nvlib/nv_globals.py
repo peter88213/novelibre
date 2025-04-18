@@ -4,10 +4,11 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from datetime import date
 import os
 from pathlib import Path
 import sys
+
+from nvlib.model.data.py_calendar import PyCalendar
 
 prefs = {}
 launchers = {}
@@ -26,15 +27,15 @@ USER_STYLES_DIR = f'{INSTALL_DIR}/styles'
 USER_STYLES_XML = f'{USER_STYLES_DIR}/styles.xml'
 
 
-def datestr(isoDate):
+def datestr(dateIso):
     """Return a localized date string, if the localize_date option is set.
     
     Otherwise return the input unchanged.
     """
     if prefs['localize_date']:
-        return date.fromisoformat(isoDate).strftime("%x")
+        return PyCalendar.locale_date(dateIso)
     else:
-        return isoDate
+        return dateIso
 
 
 def get_section_date_str(section):

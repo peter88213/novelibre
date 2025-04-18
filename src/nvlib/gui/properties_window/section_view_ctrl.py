@@ -24,7 +24,6 @@ from nvlib.novx_globals import string_to_list
 from nvlib.nv_globals import datestr
 from nvlib.nv_globals import get_section_date_str
 from nvlib.nv_globals import prefs
-from nvlib.nv_locale import WEEKDAYS
 from nvlib.nv_locale import _
 
 
@@ -650,9 +649,9 @@ class SectionViewCtrl(BasicViewCtrl):
 
         #--- Frame for date/time/duration.
         if self.element.date and self.element.weekDay is not None:
-            self.weekDayVar.set(WEEKDAYS[self.element.weekDay])
+            self.weekDayVar.set(PyCalendar.WEEKDAYS[self.element.weekDay])
         elif self.element.day and self._mdl.novel.referenceWeekDay is not None:
-            self.weekDayVar.set(WEEKDAYS[(int(self.element.day) + self._mdl.novel.referenceWeekDay) % 7])
+            self.weekDayVar.set(PyCalendar.WEEKDAYS[(int(self.element.day) + self._mdl.novel.referenceWeekDay) % 7])
         else:
             self.weekDayVar.set('')
         self.startDateVar.set(self.element.date)

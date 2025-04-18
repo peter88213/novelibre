@@ -4,11 +4,12 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from calendar import isleap
+from calendar import isleap, day_name, month_name
 from datetime import date
 from datetime import datetime
 from datetime import time
 from datetime import timedelta
+from nvlib.nv_locale import _
 
 
 class PyCalendar:
@@ -23,6 +24,10 @@ class PyCalendar:
 
     min = date.min.isoformat()
     max = date.max.isoformat()
+    DATE_FORMAT = _("YYYY-MM-DD")
+    TIME_FORMAT = _("hh:mm")
+    WEEKDAYS = day_name
+    MONTHS = month_name
 
     @classmethod
     def age(cls, nowIso, birthDateIso, deathDateIso):
@@ -150,7 +155,7 @@ class PyCalendar:
 
     @classmethod
     def weekday(cls, dateIso):
-        """Return a string with the localized day of the week."""
+        """Return the day of the week as an integer."""
         return date.fromisoformat(dateIso).weekday()
 
     @classmethod

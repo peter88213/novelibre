@@ -4,9 +4,8 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from datetime import date
-
 from nvlib.gui.properties_window.world_element_view_ctrl import WorldElementViewCtrl
+from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
@@ -38,12 +37,12 @@ class CharacterViewCtrl(WorldElementViewCtrl):
             self.element.birthDate = None
         elif birthDateStr != self.element.birthDate:
             try:
-                date.fromisoformat(birthDateStr)
+                PyCalendar.verified_date(birthDateStr)
             except:
                 self.birthDateVar.set(self.element.birthDate)
                 self._ui.show_error(
                     message=_('Input rejected'),
-                    detail=f'{_("Wrong date")}: "{birthDateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}'
+                    detail=f'{_("Wrong date")}: "{birthDateStr}"\n{_("Required")}: {PyCalendar.DATE_FORMAT}'
                     )
             else:
                 self.element.birthDate = birthDateStr
@@ -53,12 +52,12 @@ class CharacterViewCtrl(WorldElementViewCtrl):
             self.element.deathDate = None
         elif deathDateStr != self.element.deathDate:
             try:
-                date.fromisoformat(deathDateStr)
+                PyCalendar.verified_date(deathDateStr)
             except:
                 self.deathDateVar.set(self.element.deathDate)
                 self._ui.show_error(
                     message=_('Input rejected'),
-                    detail=f'{_("Wrong date")}: "{deathDateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}'
+                    detail=f'{_("Wrong date")}: "{deathDateStr}"\n{_("Required")}: {PyCalendar.DATE_FORMAT}'
                     )
             else:
                 self.element.deathDate = deathDateStr

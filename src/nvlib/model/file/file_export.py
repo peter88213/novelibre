@@ -9,6 +9,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 from string import Template
 
+from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.model.data.section import Section
 from nvlib.model.file.file import File
 from nvlib.model.file.filter import Filter
@@ -28,8 +29,6 @@ from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import SECTIONS_SUFFIX
 from nvlib.novx_globals import list_to_string
 from nvlib.novx_globals import norm_path
-from nvlib.nv_locale import MONTHS
-from nvlib.nv_locale import WEEKDAYS
 from nvlib.nv_locale import _
 
 
@@ -620,8 +619,8 @@ class FileExport(File):
             isoDate = self.novel.sections[scId].date
             cmbDate = self.novel.sections[scId].localeDate
             yearStr, monthStr, dayStr = isoDate.split('-')
-            dtMonth = MONTHS[int(monthStr) - 1]
-            dtWeekday = WEEKDAYS[self.novel.sections[scId].weekDay]
+            dtMonth = PyCalendar.MONTHS[int(monthStr) - 1]
+            dtWeekday = PyCalendar.WEEKDAYS[self.novel.sections[scId].weekDay]
         else:
             isoDate = ''
             yearStr = ''
