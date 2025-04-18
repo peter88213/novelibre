@@ -123,7 +123,8 @@ class PyCalendar:
         return date.isoformat(refDate + timedelta(days=int(dayStr)))
 
     @classmethod
-    def time_str(cls, timeIso):
+    def display_time(cls, timeIso):
+        """Return a string with the time for display."""
         h, m, __ = cls.verified_time(timeIso).split(':')
         return f'{h}:{m}'
 

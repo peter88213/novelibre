@@ -137,7 +137,7 @@ class HtmlTimetable(HtmlReport):
     def _get_time_str(self, scId):
         """Return a time string for the section defined by scId."""
         if self.novel.sections[scId].time is not None:
-            return PyCalendar.time_str(self.novel.sections[scId].time)
+            return PyCalendar.display_time(self.novel.sections[scId].time)
 
         else:
             return ''

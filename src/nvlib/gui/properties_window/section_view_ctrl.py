@@ -6,7 +6,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from datetime import date
 from datetime import datetime
-from datetime import timedelta
 
 from nvlib.gui.properties_window.basic_view_ctrl import BasicViewCtrl
 from nvlib.model.data.py_calendar import PyCalendar
@@ -79,7 +78,7 @@ class SectionViewCtrl(BasicViewCtrl):
             self.element.date = None
         elif dateStr != self.element.date:
             try:
-                date.fromisoformat(dateStr)
+                dateStr = PyCalendar.verified_date(dateStr)
             except ValueError:
                 self.startDateVar.set(self.element.date)
                 self._ui.show_error(
@@ -95,12 +94,12 @@ class SectionViewCtrl(BasicViewCtrl):
             self.element.time = None
         else:
             if self.element.time:
-                dispTime = PyCalendar.time_str(self.element.time)
+                dispTime = PyCalendar.display_time(self.element.time)
             else:
                 dispTime = ''
             if timeStr != dispTime:
                 try:
-                    PyCalendar.verified_time(timeStr)
+                    timeStr = PyCalendar.verified_time(timeStr)
                 except ValueError:
                     self.startTimeVar.set(dispTime)
                     self._ui.show_error(
@@ -109,7 +108,7 @@ class SectionViewCtrl(BasicViewCtrl):
                         )
                 else:
                     self.element.time = timeStr
-                    dispTime = PyCalendar.time_str(self.element.time)
+                    dispTime = PyCalendar.display_time(self.element.time)
                     self.startTimeVar.set(dispTime)
 
         # 'Day' entry.
@@ -262,15 +261,11 @@ class SectionViewCtrl(BasicViewCtrl):
         self.element.day = newDay
         # self.doNotUpdate = False
         self.startDateVar.set(newDate)
-        self.startTimeVar.set(newTime.rsplit(':', 1)[0])
+        self.startTimeVar.set(PyCalendar.display_time(newTime))
         self.startDayVar.set(newDay)
 
     def auto_set_duration(self):
         """Calculate section duration from the start of the next section."""
-
-        def day_to_date(day, refDate):
-            deltaDays = timedelta(days=int(day))
-            return date.isoformat(refDate + deltaDays)
 
         nextScId = self._ui.tv.next_node(self.elementId)
         if not nextScId:
@@ -298,14 +293,12 @@ class SectionViewCtrl(BasicViewCtrl):
 
         try:
             refDateIso = self._mdl.novel.referenceDate
-            refDate = date.fromisoformat(refDateIso)
         except:
-            refDate = date.today()
-            refDateIso = date.isoformat(refDate)
+            refDateIso = date.isoformat(date.today())
         if self._mdl.novel.sections[nextScId].date:
             nextDateIso = self._mdl.novel.sections[nextScId].date
         elif self._mdl.novel.sections[nextScId].day:
-            nextDateIso = day_to_date(self._mdl.novel.sections[nextScId].day, refDate)
+            nextDateIso = PyCalendar.specific_date(self._mdl.novel.sections[nextScId].day, refDateIso)
         elif self.element.day:
             nextDateIso = self.element.day
         else:
@@ -313,7 +306,7 @@ class SectionViewCtrl(BasicViewCtrl):
         if self.element.date:
             thisDateIso = self.element.date
         elif self.element.day:
-            thisDateIso = day_to_date(self.element.day, refDate)
+            thisDateIso = PyCalendar.specific_date(self.element.day, refDateIso)
         else:
             thisDateIso = nextDateIso
 
@@ -662,7 +655,7 @@ class SectionViewCtrl(BasicViewCtrl):
 
         # Remove the seconds for the display.
         if self.element.time:
-            dispTime = PyCalendar.time_str(self.element.time)
+            dispTime = PyCalendar.display_time(self.element.time)
         else:
             dispTime = ''
         self.startTimeVar.set(dispTime)
