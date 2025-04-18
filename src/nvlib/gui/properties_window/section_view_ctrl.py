@@ -85,7 +85,7 @@ class SectionViewCtrl(BasicViewCtrl):
                 self.startDateVar.set(self.element.date)
                 self._ui.show_error(
                     message=_('Input rejected'),
-                    detail=f'{_("Wrong date")}: "{dateStr}"\n{_("Required")}: {_("YYYY-MM-DD")}'
+                    detail=f'{_("Wrong date")}: "{dateStr}"\n{_("Required")}: {PyCalendar.DATE_FORMAT}'
                     )
             else:
                 self.element.date = dateStr
@@ -106,7 +106,7 @@ class SectionViewCtrl(BasicViewCtrl):
                     self.startTimeVar.set(dispTime)
                     self._ui.show_error(
                         message=_('Input rejected'),
-                        detail=f'{_("Wrong time")}: "{timeStr}"\n{_("Required")}: {_("hh:mm")}',
+                        detail=f'{_("Wrong time")}: "{timeStr}"\n{_("Required")}: {PyCalendar.TIME_FORMAT}',
                         )
                 else:
                     while timeStr.count(':') < 2:

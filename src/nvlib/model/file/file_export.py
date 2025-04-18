@@ -616,13 +616,13 @@ class FileExport(File):
         #--- Date or day.
         if self.novel.sections[scId].date is not None and self.novel.sections[scId].date != Section.NULL_DATE:
             scDay = ''
-            isoDate = self.novel.sections[scId].date
-            cmbDate = self.novel.sections[scId].localeDate
-            yearStr, monthStr, dayStr = isoDate.split('-')
+            dateStr = self.novel.sections[scId].date
+            cmbDateStr = self.novel.sections[scId].localeDate
+            yearStr, monthStr, dayStr = PyCalendar.y_m_d_str(dateStr)
             dtMonth = PyCalendar.MONTHS[int(monthStr) - 1]
             dtWeekday = PyCalendar.WEEKDAYS[self.novel.sections[scId].weekDay]
         else:
-            isoDate = ''
+            dateStr = ''
             yearStr = ''
             monthStr = ''
             dayStr = ''
@@ -630,14 +630,14 @@ class FileExport(File):
             dtWeekday = ''
             if self.novel.sections[scId].day is not None:
                 scDay = self.novel.sections[scId].day
-                cmbDate = f'{_("Day")} {self.novel.sections[scId].day}'
+                cmbDateStr = f'{_("Day")} {self.novel.sections[scId].day}'
             else:
                 scDay = ''
-                cmbDate = ''
+                cmbDateStr = ''
 
         #--- Time.
         if self.novel.sections[scId].time is not None:
-            h, m, s = self.novel.sections[scId].time.split(':')
+            h, m, s = PyCalendar.h_m_s_str(self.novel.sections[scId].time)
             scTime = f'{h}:{m}'
             odsTime = f'PT{h}H{m}M{s}S'
             # removing seconds
@@ -690,11 +690,11 @@ class FileExport(File):
                         firstInChapter=firstInChapter,
                         xml=True
                         ),
-            Date=isoDate,
+            Date=dateStr,
             Time=scTime,
             OdsTime=odsTime,
             Day=scDay,
-            ScDate=cmbDate,
+            ScDate=cmbDateStr,
             DateYear=yearStr,
             DateMonth=monthStr,
             DateDay=dayStr,

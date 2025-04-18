@@ -13,7 +13,7 @@ from nvlib.nv_locale import _
 
 
 class PyCalendar:
-    """Methods for date/time calculations using the Python standard library.
+    """Methods for date/time operations using the Python standard library.
     
     - Dates are restricted to the range between 0001-01-01 00:00 and 9999.12.31 23:59.
     - The extended Gregorian calendar is used.
@@ -101,6 +101,11 @@ class PyCalendar:
         return int((sectionStart - datetime.min).total_seconds())
 
     @classmethod
+    def h_m_s_str(cls, timeIso):
+        """Return a tuple of strings: hours, minutes, seconds."""
+        return timeIso.split(':')
+
+    @classmethod
     def locale_date(cls, dateIso):
         """Return a string with the localized date."""
         return date.fromisoformat(dateIso).strftime('%x')
@@ -162,6 +167,11 @@ class PyCalendar:
     def weekday_str(cls, timestamp):
         """Return a week day string from a timestamp in seconds."""
         return (datetime.min + timedelta(seconds=timestamp)).strftime('%A')
+
+    @classmethod
+    def y_m_d_str(cls, dateIso):
+        """Return a tuple of strings: year, month, day."""
+        return dateIso.split('-')
 
     @classmethod
     def _difference_in_years(cls, startDate, endDate):
