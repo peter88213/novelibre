@@ -22,12 +22,12 @@ class PyCalendar:
     """
     # Class methods are used instead of static methods, so they can be extended by subclasses.
 
-    min = date.min.isoformat()
-    max = date.max.isoformat()
     DATE_FORMAT = _("YYYY-MM-DD")
     TIME_FORMAT = _("hh:mm")
     WEEKDAYS = day_name
     MONTHS = month_name
+    min = date.min.isoformat()
+    max = date.max.isoformat()
 
     @classmethod
     def age(cls, nowIso, birthDateIso, deathDateIso):
@@ -53,6 +53,28 @@ class PyCalendar:
         return years
 
     @classmethod
+    def duration(cls, startDateIso, startTimeIso, endDateIso, endTimeIso):
+        """Return a tuple of strings: days, hours, minutes."""
+        StartDateTime = datetime.fromisoformat(f'{startDateIso}T{startTimeIso}')
+        endDateTime = datetime.fromisoformat(f'{endDateIso}T{endTimeIso}')
+        durationTimedelta = endDateTime - StartDateTime
+        lastsHours = durationTimedelta.seconds // 3600
+        lastsMinutes = (durationTimedelta.seconds % 3600) // 60
+        if durationTimedelta.days:
+            daysStr = str(durationTimedelta.days)
+        else:
+            daysStr = None
+        if lastsHours:
+            hoursStr = str(lastsHours)
+        else:
+            hoursStr = None
+        if lastsMinutes:
+            minutesStr = str(lastsMinutes)
+        else:
+            minutesStr = None
+        return daysStr, hoursStr, minutesStr
+
+    @classmethod
     def get_end_date_time(cls, section):
         """Return a tuple: (endDate, endTime) of a given section."""
         sectionStart = datetime.fromisoformat(f'{section.date} {section.time}')
@@ -72,6 +94,13 @@ class PyCalendar:
         virtualEndDate, endTime = virtualSectionEnd.isoformat().split('T')
         endDay = str((date.fromisoformat(virtualEndDate) - date.min).days)
         return (endDay, endTime)
+
+    @classmethod
+    def get_end_time(cls, section):
+        """ Return the end time of a given section."""
+        virtualSectionStart = datetime.fromisoformat(f'{cls.min} {section.time}')
+        virtualSectionEnd = virtualSectionStart + cls._get_duration(section)
+        return virtualSectionEnd.isoformat().split('T')[1]
 
     @classmethod
     def get_timestamp(cls, section, refIso):

@@ -554,11 +554,13 @@ class Section(BasicElementTags):
                     endDate, endTime = PyCalendar.get_end_date_time(self)
                 except:
                     pass
-            else:
+            elif self.day:
                 try:
                     endDay, endTime = PyCalendar.get_end_day_time(self)
                 except:
                     pass
+            else:
+                endTime = PyCalendar.get_end_time(self)
         return endDate, endTime, endDay
 
     def to_xml(self, xmlElement):

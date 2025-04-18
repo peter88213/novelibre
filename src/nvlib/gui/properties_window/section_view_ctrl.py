@@ -4,9 +4,6 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from datetime import date
-from datetime import datetime
-
 from nvlib.gui.properties_window.basic_view_ctrl import BasicViewCtrl
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.novx_globals import CHARACTER_PREFIX
@@ -291,10 +288,9 @@ class SectionViewCtrl(BasicViewCtrl):
                 )
             return
 
-        try:
-            refDateIso = self._mdl.novel.referenceDate
-        except:
-            refDateIso = date.isoformat(date.today())
+        refDateIso = self._mdl.novel.referenceDate
+        if not refDateIso:
+            refDateIso = PyCalendar.min
         if self._mdl.novel.sections[nextScId].date:
             nextDateIso = self._mdl.novel.sections[nextScId].date
         elif self._mdl.novel.sections[nextScId].day:
@@ -302,32 +298,27 @@ class SectionViewCtrl(BasicViewCtrl):
         elif self.element.day:
             nextDateIso = self.element.day
         else:
-            nextDateIso = refDateIso
+            nextDateIso = None
+
         if self.element.date:
             thisDateIso = self.element.date
+            if nextDateIso is None:
+                nextDateIso = thisDateIso
         elif self.element.day:
             thisDateIso = PyCalendar.specific_date(self.element.day, refDateIso)
+            if nextDateIso is None:
+                nextDateIso = thisDateIso
         else:
-            thisDateIso = nextDateIso
-
-        StartDateTime = datetime.fromisoformat(f'{thisDateIso}T{thisTimeIso}')
-        endDateTime = datetime.fromisoformat(f'{nextDateIso}T{nextTimeIso}')
-        sectionDuration = endDateTime - StartDateTime
-        lastsHours = sectionDuration.seconds // 3600
-        lastsMinutes = (sectionDuration.seconds % 3600) // 60
-        if sectionDuration.days:
-            newDays = str(sectionDuration.days)
-        else:
-            newDays = None
-        if lastsHours:
-            newHours = str(lastsHours)
-        else:
-            newHours = None
-        if lastsMinutes:
-            newMinutes = str(lastsMinutes)
-        else:
-            newMinutes = None
-
+            if nextDateIso is not None:
+                thisDateIso = nextDateIso
+            else:
+                nextDateIso = thisDateIso = PyCalendar.min
+        newDays, newHours, newMinutes = PyCalendar.duration(
+            thisDateIso,
+            thisTimeIso,
+            nextDateIso,
+            nextTimeIso,
+            )
         self.doNotUpdate = True
         self.element.lastsDays = newDays
         self.element.lastsHours = newHours
