@@ -4,8 +4,6 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from datetime import date, time
-
 from nvlib.model.data.section import Section
 from nvlib.model.ods.duration_parser import DurationParser
 from nvlib.model.ods.ods_reader import OdsReader
@@ -13,6 +11,7 @@ from nvlib.novx_globals import GRID_SUFFIX, PL_ROOT
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import string_to_list
 from nvlib.nv_locale import _
+from nvlib.model.data.py_calendar import PyCalendar
 
 
 class OdsRGrid(OdsReader):
@@ -74,7 +73,7 @@ class OdsRGrid(OdsReader):
             #--- date
             try:
                 scDate = self._columns['Date'][scId]
-                date.fromisoformat(scDate)
+                PyCalendar.verified_date(scDate)
             except:
                 pass
             else:
@@ -83,7 +82,7 @@ class OdsRGrid(OdsReader):
             #--- time
             try:
                 scTime = self._columns['Time'][scId]
-                time.fromisoformat(scTime)
+                PyCalendar.verified_time(scTime)
             except:
                 pass
             else:

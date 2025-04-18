@@ -17,8 +17,12 @@ class PyCalendar:
     - Dates are restricted to the range between 0001-01-01 00:00 and 9999.12.31 23:59.
     - The extended Gregorian calendar is used.
     - ISO date string format: YYYY-MM-DD.
-    - ISO time string format: hh:mm:ss, where seconds are not displayed and can be omitted. 
+    - ISO time string format: hh:mm:ss, where seconds are not displayed. 
     """
+    # Class methods are used instead of static methods, so they can be extended by subclasses.
+
+    min = date.min.isoformat()
+    max = date.max.isoformat()
 
     @classmethod
     def age(cls, nowIso, birthDateIso, deathDateIso):
@@ -65,9 +69,36 @@ class PyCalendar:
         return (endDay, endTime)
 
     @classmethod
-    def locale_date(cls, dateStr):
+    def get_timestamp(cls, section, refIso):
+        """Return a timestamp (total seconds since 0001-01-01 00:00)."""
+        if not section.time and not section.date and not section.day:
+            return
+
+        timeStr = section.time
+        if not timeStr:
+            timeStr = '00:00'
+        if section.date:
+            try:
+                sectionStart = datetime.fromisoformat(f'{section.date} {timeStr}')
+            except:
+                return
+        else:
+            try:
+                if section.day:
+                    dayInt = int(section.day)
+                else:
+                    dayInt = 0
+                startDate = (date.fromisoformat(refIso) + timedelta(days=dayInt)).isoformat()
+                sectionStart = datetime.fromisoformat(f'{startDate} {timeStr}')
+            except:
+                return
+
+        return int((sectionStart - datetime.min).total_seconds())
+
+    @classmethod
+    def locale_date(cls, dateIso):
         """Return a string with the localized date."""
-        return date.fromisoformat(dateStr).strftime('%x')
+        return date.fromisoformat(dateIso).strftime('%x')
 
     @classmethod
     def specific_date(cls, dayStr, refIso):
@@ -82,6 +113,11 @@ class PyCalendar:
         return date.isoformat(refDate + timedelta(days=int(dayStr)))
 
     @classmethod
+    def time_str(cls, timeIso):
+        h, m, __ = timeIso.split(':')
+        return f'{h}:{m}'
+
+    @classmethod
     def unspecific_date(cls, dateIso, refIso):
         """Return the day as a string.
         
@@ -94,28 +130,33 @@ class PyCalendar:
         return str((date.fromisoformat(dateIso) - refDate).days)
 
     @classmethod
-    def verified_date(cls, dateStr):
-        """Return a verified iso dateStr or None."""
-        if dateStr is not None:
-            date.fromisoformat(dateStr)
-            # raising an exception if dateStr is not an iso-formatted date
-        return dateStr
+    def verified_date(cls, dateIso):
+        """Return a verified iso dateIso or None."""
+        if dateIso is not None:
+            date.fromisoformat(dateIso)
+            # raising an exception if dateIso is not an iso-formatted date
+        return dateIso
 
     @classmethod
-    def verified_time(cls, timeStr):
-        """Return a verified iso timeStr or None."""
-        if  timeStr is not None:
-            time.fromisoformat(timeStr)
-            # raising an exception if timeStr is not an iso-formatted time
-            while timeStr.count(':') < 2:
-                timeStr = f'{timeStr}:00'
+    def verified_time(cls, timeIso):
+        """Return a verified iso timeIso or None."""
+        if  timeIso is not None:
+            time.fromisoformat(timeIso)
+            # raising an exception if timeIso is not an iso-formatted time
+            while timeIso.count(':') < 2:
+                timeIso = f'{timeIso}:00'
                 # adding minutes or seconds, if missing
-        return timeStr
+        return timeIso
 
     @classmethod
-    def weekday(cls, dateStr):
+    def weekday(cls, dateIso):
         """Return a string with the localized day of the week."""
-        return date.fromisoformat(dateStr).weekday()
+        return date.fromisoformat(dateIso).weekday()
+
+    @classmethod
+    def weekday_str(cls, timestamp):
+        """Return a week day string from a timestamp in seconds."""
+        return (datetime.min + timedelta(seconds=timestamp)).strftime('%A')
 
     @classmethod
     def _difference_in_years(cls, startDate, endDate):

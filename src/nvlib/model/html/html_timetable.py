@@ -134,47 +134,20 @@ class HtmlTimetable(HtmlReport):
             locationTitles.append(self.novel.locations[lcId].title)
         return list_to_string(locationTitles)
 
-    def _get_timestamp(self, section, referenceDate):
-        """Return a timestamp (total seconds since 0001-01-01 00:00)."""
-        if not section.time and not section.date and not section.day:
-            return
-
-        timeStr = section.time
-        if not timeStr:
-            timeStr = '00:00'
-        if section.date:
-            try:
-                sectionStart = datetime.fromisoformat(f'{section.date} {timeStr}')
-            except:
-                return
-        else:
-            try:
-                if section.day:
-                    dayInt = int(section.day)
-                else:
-                    dayInt = 0
-                startDate = (referenceDate + timedelta(days=dayInt)).isoformat()
-                sectionStart = datetime.fromisoformat(f'{startDate} {timeStr}')
-            except:
-                return
-
-        return int((sectionStart - datetime.min).total_seconds())
-
     def _get_time_str(self, scId):
         """Return a time string for the section defined by scId."""
         if self.novel.sections[scId].time is not None:
-            h, m, __ = self.novel.sections[scId].time.split(':')
-            timeStr = f'{h}:{m}'
+            return PyCalendar.time_str(self.novel.sections[scId].time)
+
         else:
-            timeStr = ''
-        return timeStr
+            return ''
 
     def _get_week_day_str(self, scId, timestamp):
         """Return a week day or an empty string."""
         if not self.novel.sections[scId].date and not self.novel.referenceDate:
             return ''
 
-        return (datetime.min + timedelta(seconds=timestamp)).strftime('%A')
+        return PyCalendar.weekday_str(timestamp)
 
     def _new_cell(self, text, attr=''):
         """Return the markup for a table cell with text and attributes."""
@@ -182,15 +155,13 @@ class HtmlTimetable(HtmlReport):
 
     def _sort_sections_by_date(self):
         """Return a dictionary with lists of section IDs by timestamp."""
-        try:
-            referenceDate = date.fromisoformat(self.novel.referenceDate)
-        except:
-            referenceDate = date.min
-
+        referenceDate = self.novel.referenceDate
+        if not referenceDate:
+            referenceDate = PyCalendar.min
         scIdsByDate = {}
         for scId in self.novel.sections:
             if self.novel.sections[scId].scType == 0:
-                timestamp = self._get_timestamp(self.novel.sections[scId], referenceDate)
+                timestamp = PyCalendar.get_timestamp(self.novel.sections[scId], referenceDate)
                 if timestamp:
                     if not timestamp in scIdsByDate:
                         scIdsByDate[timestamp] = []
