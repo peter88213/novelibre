@@ -6,7 +6,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from datetime import date
 from datetime import datetime
-from datetime import time
 from datetime import timedelta
 
 from nvlib.gui.properties_window.basic_view_ctrl import BasicViewCtrl
@@ -96,12 +95,12 @@ class SectionViewCtrl(BasicViewCtrl):
             self.element.time = None
         else:
             if self.element.time:
-                dispTime = self.element.time.rsplit(':', 1)[0]
+                dispTime = PyCalendar.time_str(self.element.time)
             else:
                 dispTime = ''
             if timeStr != dispTime:
                 try:
-                    time.fromisoformat(timeStr)
+                    PyCalendar.verified_time(timeStr)
                 except ValueError:
                     self.startTimeVar.set(dispTime)
                     self._ui.show_error(
@@ -109,10 +108,8 @@ class SectionViewCtrl(BasicViewCtrl):
                         detail=f'{_("Wrong time")}: "{timeStr}"\n{_("Required")}: {PyCalendar.TIME_FORMAT}',
                         )
                 else:
-                    while timeStr.count(':') < 2:
-                        timeStr = f'{timeStr}:00'
                     self.element.time = timeStr
-                    dispTime = self.element.time.rsplit(':', 1)[0]
+                    dispTime = PyCalendar.time_str(self.element.time)
                     self.startTimeVar.set(dispTime)
 
         # 'Day' entry.
@@ -665,7 +662,7 @@ class SectionViewCtrl(BasicViewCtrl):
 
         # Remove the seconds for the display.
         if self.element.time:
-            dispTime = self.element.time.rsplit(':', 1)[0]
+            dispTime = PyCalendar.time_str(self.element.time)
         else:
             dispTime = ''
         self.startTimeVar.set(dispTime)

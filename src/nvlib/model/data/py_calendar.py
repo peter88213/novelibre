@@ -124,7 +124,7 @@ class PyCalendar:
 
     @classmethod
     def time_str(cls, timeIso):
-        h, m, __ = timeIso.split(':')
+        h, m, __ = cls.verified_time(timeIso).split(':')
         return f'{h}:{m}'
 
     @classmethod
