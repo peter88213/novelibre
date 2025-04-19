@@ -10,6 +10,16 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.20.1
+
+- Improved automatic time generation if previous section has no date/day.
+
+Refactored the code for better maintainability:
+- All date/time related operations on the model are combined as class methods in the PyCalendar class.
+- New: Moon class containing the moon phase calculations.
+- Moved duplicate html auxiliary methods to the superclass.
+
+
 ### Version 5.19.1
 
 - Refactored the code for better performance.
