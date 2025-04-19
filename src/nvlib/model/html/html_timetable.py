@@ -149,10 +149,6 @@ class HtmlTimetable(HtmlReport):
 
         return PyCalendar.weekday_str(timestamp)
 
-    def _new_cell(self, text, attr=''):
-        """Return the markup for a table cell with text and attributes."""
-        return f'<td {attr}>{self._convert_from_novx(text)}</td>'
-
     def _sort_sections_by_date(self):
         """Return a dictionary with lists of section IDs by timestamp."""
         referenceDate = self.novel.referenceDate

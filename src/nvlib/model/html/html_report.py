@@ -58,3 +58,7 @@ td.chtitle {font-weight: bold}
             newlines.append(f'<p>{line}</p>')
         return '\n'.join(newlines)
 
+    def _new_cell(self, text, attr=''):
+        """Return the markup for a table cell with text and attributes."""
+        return f'<td {attr}>{self._convert_from_novx(text)}</td>'
+

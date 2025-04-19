@@ -77,7 +77,3 @@ class HtmlPlotList(HtmlReport):
         with open(self.filePath, 'w', encoding='utf-8') as f:
             f.write('\n'.join(htmlText))
 
-    def _new_cell(self, text, attr=''):
-        """Return the markup for a table cell with text and attributes."""
-        return f'<td {attr}>{self._convert_from_novx(text)}</td>'
-
