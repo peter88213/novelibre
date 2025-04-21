@@ -5,6 +5,7 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from html import escape
+
 from nvlib.model.file.file_export import FileExport
 
 

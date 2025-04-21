@@ -19,6 +19,7 @@ class NovxToOdt(sax.ContentHandler):
         self._indentParagraph = None
         self._note = None
         self._comment = None
+        self._firstParagraphInChapter = None
 
     def feed(self, xmlString, languages, append, firstInChapter):
         """Feed a string file to the parser.
