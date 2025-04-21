@@ -55,7 +55,7 @@ class NovxFile(File):
     EXTENSION = '.novx'
 
     MAJOR_VERSION = 1
-    MINOR_VERSION = 5
+    MINOR_VERSION = 6
     # DTD version;
     # compatible, if the file's major version number equals MAJOR_VERSION,
     # and the minor version number is equal or less than MINOR_VERSION

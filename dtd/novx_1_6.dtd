@@ -98,7 +98,7 @@
 				>
 
 	<!ELEMENT CHAPTERS (CHAPTER*)>
-		<!ELEMENT CHAPTER (Title?, Desc?, Epigraph?, Notes?, Link*, Field*, 
+		<!ELEMENT CHAPTER (Title?, Desc?, Link*, Field*, Notes?, Epigraph?, 
 		   SECTION*)>
 			<!ATTLIST CHAPTER 
 				id ID #REQUIRED
