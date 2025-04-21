@@ -1,6 +1,6 @@
 <!ELEMENT novx (PROJECT, CHAPTERS, CHARACTERS, LOCATIONS, ITEMS, ARCS, PROJECTNOTES, PROGRESS?)>
 	<!ATTLIST novx 
-		version NMTOKEN #FIXED "1.5"
+		version NMTOKEN #FIXED "1.6"
 		xml:lang NMTOKEN "zxx"
 		>
 	<!ELEMENT PROJECT (Title?, Desc?, Link*, Field*,
@@ -98,7 +98,7 @@
 				>
 
 	<!ELEMENT CHAPTERS (CHAPTER*)>
-		<!ELEMENT CHAPTER (Title?, Desc?, Notes?, Link*, Field*, 
+		<!ELEMENT CHAPTER (Title?, Desc?, Epigraph?, Notes?, Link*, Field*, 
 		   SECTION*)>
 			<!ATTLIST CHAPTER 
 				id ID #REQUIRED
@@ -107,6 +107,7 @@
 				isTrash (0 | 1) "0" 
 				noNumber (0 | 1) "0"
 				> 
+			<!ELEMENT Epigraph (p*)>
 			<!ELEMENT SECTION (Title?, Desc?, Link*, Field*, Notes?, Tags?, 
 			   Goal?, Conflict?, Outcome?, 
 			   PlotlineNotes*, 
