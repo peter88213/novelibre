@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.20.2 (no build)
+
+Fixed the UiCmd class intended for external programs. 
+
+
 ### Version 5.20.1
 
 - Improved automatic time generation if previous section has no date/day.

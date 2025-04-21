@@ -22,7 +22,7 @@ class UiCmd(Ui):
         super().__init__(title)
         print(title)
 
-    def ask_yes_no(self, text):
+    def ask_yes_no(self, message='', detail='', title=None):
         """Query yes or no at the console.
         
         Positional arguments:
@@ -30,7 +30,7 @@ class UiCmd(Ui):
             
         Overrides the superclass method.       
         """
-        result = input(f'{_("WARNING")}: {text} (y/n)')
+        result = input(f'{_("WARNING")}: {message} (y/n)')
         if result.lower() == 'y':
             return True
         else:
