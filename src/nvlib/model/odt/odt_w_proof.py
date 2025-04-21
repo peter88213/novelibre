@@ -22,10 +22,10 @@ class OdtWProof(OdtWFormatted):
 <text:p text:style-name="Subtitle">$AuthorName</text:p>$Filters
 '''
 
-    _partTemplate = '''<text:h text:style-name="Heading_20_1" text:outline-level="1">$Title</text:h>
+    _partTemplate = '''<text:h text:style-name="Heading_20_1" text:outline-level="1">$Title</text:h>$Epigraph
 '''
 
-    _chapterTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">$Title</text:h>
+    _chapterTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">$Title</text:h>$Epigraph
 '''
 
     _sectionTemplate = f'''<text:h text:style-name="Heading_20_3" text:outline-level="3">$Title</text:h>

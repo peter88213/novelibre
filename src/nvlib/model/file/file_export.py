@@ -145,6 +145,7 @@ class FileExport(File):
             Title=self._convert_from_novx(self.novel.chapters[chId].title, quick=True),
             Desc=self._convert_from_novx(self.novel.chapters[chId].desc),
             Notes=self._convert_from_novx(self.novel.chapters[chId].notes),
+            Epigraph=self._convert_from_novx(self.novel.chapters[chId].epigraph),
             ProjectName=self._convert_from_novx(self.projectName, quick=True),
             ProjectPath=self.projectPath,
             Language=self.novel.languageCode,

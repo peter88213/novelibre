@@ -355,6 +355,8 @@ class OdtWriter(OdfFile):
 
     _NOVELIBRE_STYLES = f'''  <style:style style:name="{_('Chapter_20_beginning')}" style:display-name="{_('Chapter beginning')}" style:family="paragraph" style:parent-style-name="Text_20_body" style:next-style-name="First_20_line_20_indent" style:class="text">
   </style:style>
+  <style:style style:name="{_('Epigraph')}" style:display-name="{_('Epigraph')}" style:family="paragraph" style:parent-style-name="Text_20_body" style:next-style-name="Epigraph" style:class="text">
+  </style:style>
   <style:style style:name="{_('Section_20_mark')}" style:display-name="{_('Section mark')}" style:family="paragraph" style:parent-style-name="Standard" style:next-style-name="Text_20_body" style:class="text">
    <style:text-properties fo:color="#008000" fo:font-size="10pt" fo:language="zxx" fo:country="none"/>
   </style:style>
@@ -365,6 +367,7 @@ class OdtWriter(OdfFile):
 
     _NOVELIBRE_STYLE_NAMES = (
         _('Chapter_20_beginning'),
+        _('Epigraph'),
         _('Section_20_mark'),
         _('Heading_20_3_20_invisible'),
     )
@@ -481,6 +484,25 @@ class OdtWriter(OdfFile):
                 'Text_20_body'
                 ).replace('<text:p', '\n<text:p')
         return fileHeaderMapping
+
+    def _get_chapterMapping(self, chId, chapterNumber):
+        """Return a mapping dictionary for a section section.
+        
+        Positional arguments:
+            scId: str -- section ID.
+            sectionNumber: int -- section number to be displayed.
+            wordsTotal: int -- accumulated wordcount.
+        
+        Extends the superclass method.
+        """
+        chapterMapping = super()._get_chapterMapping(chId, chapterNumber)
+        if chapterMapping['Epigraph']:
+            chapterMapping['Epigraph'] = chapterMapping['Epigraph'].replace(
+                'First_20_line_20_indent',
+                'Epigraph'
+                )
+            chapterMapping['Epigraph'] = f'<text:p text:style-name="Epigraph">{chapterMapping["Epigraph"]}</text:p>'
+        return chapterMapping
 
     def _get_sectionMapping(self, scId, sectionNumber, wordsTotal, **kwargs):
         """Return a mapping dictionary for a section section.

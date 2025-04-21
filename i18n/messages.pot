@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.20.1\n"
-"POT-Creation-Date: 2025-04-19 21:51:08\n"
+"Project-Id-Version: 5.20.2\n"
+"POT-Creation-Date: 2025-04-21 22:04:49\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -468,6 +468,9 @@ msgid "Empty project"
 msgstr ""
 
 msgid "Ending"
+msgstr ""
+
+msgid "Epigraph"
 msgstr ""
 
 msgid "Exit"
