@@ -15,7 +15,7 @@ class OdsRItemList(OdsReader):
     """ODS item list reader."""
     DESCRIPTION = _('Item list')
     SUFFIX = ITEMLIST_SUFFIX
-    _columnTitles = ['ID', 'Name', 'Description', 'Aka', 'Tags']
+    _columnTitles = ['ID', 'Name', 'Description', 'Aka', 'Tags', 'Notes']
     _idPrefix = ITEM_PREFIX
 
     def read(self):
@@ -58,4 +58,12 @@ class OdsRItemList(OdsReader):
             else:
                 if tags:
                     self.novel.items[itId].tags = string_to_list(tags, divider=self._DIVIDER)
+
+            #--- notes
+            try:
+                notes = self._columns['Notes'][itId]
+            except:
+                pass
+            else:
+                self.novel.items[itId].notes = notes.rstrip()
 

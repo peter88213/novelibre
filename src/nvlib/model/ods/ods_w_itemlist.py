@@ -21,7 +21,8 @@ class OdsWItemList(OdsWriter):
     <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co1" table:number-columns-repeated="1014" table:default-cell-style-name="Default"/>
+    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
+    <table:table-column table:style-name="co1" table:number-columns-repeated="1013" table:default-cell-style-name="Default"/>
      <table:table-row table:style-name="ro1" table:visibility="collapse">
      <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>ID</text:p>
@@ -38,7 +39,10 @@ class OdsWItemList(OdsWriter):
      <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>Tags</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="Heading" table:number-columns-repeated="1014"/>
+     <table:table-cell table:style-name="Heading" office:value-type="string">
+      <text:p>Notes</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="Heading" table:number-columns-repeated="1013"/>
     </table:table-row>
      <table:table-row table:style-name="ro1">
      <table:table-cell table:style-name="Heading" office:value-type="string">
@@ -56,7 +60,10 @@ class OdsWItemList(OdsWriter):
      <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>{_("Tags")}</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="Heading" table:number-columns-repeated="1014"/>
+     <table:table-cell table:style-name="Heading" office:value-type="string">
+      <text:p>{_("Notes")}</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="Heading" table:number-columns-repeated="1013"/>
     </table:table-row>
 
 '''
@@ -77,7 +84,10 @@ class OdsWItemList(OdsWriter):
      <table:table-cell office:value-type="string">
       <text:p>$Tags</text:p>
      </table:table-cell>
-     <table:table-cell table:number-columns-repeated="1014"/>
+     <table:table-cell office:value-type="string">
+      <text:p>$Notes</text:p>
+     </table:table-cell>
+     <table:table-cell table:number-columns-repeated="1013"/>
     </table:table-row>
 
 '''

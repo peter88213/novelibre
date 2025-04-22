@@ -15,7 +15,7 @@ class OdsRChapterList(OdsReader):
 
     DESCRIPTION = _('Chapter list')
     SUFFIX = CHAPTERLIST_SUFFIX
-    _columnTitles = ['ID', 'Title', 'Full name', 'Aka', 'Description', 'Bio', 'Goals', 'Importance', 'Tags', 'Notes']
+    _columnTitles = ['ID', 'Title', 'Description', 'Epigraph', 'Source', 'Notes']
     _idPrefix = CHAPTER_PREFIX
 
     def read(self):

@@ -15,7 +15,7 @@ class OdsRLocList(OdsReader):
     """ODS location list reader. """
     DESCRIPTION = _('Location list')
     SUFFIX = LOCLIST_SUFFIX
-    _columnTitles = ['ID', 'Name', 'Description', 'Aka', 'Tags']
+    _columnTitles = ['ID', 'Name', 'Description', 'Aka', 'Tags', 'Notes']
     _idPrefix = LOCATION_PREFIX
 
     def read(self):
@@ -58,4 +58,12 @@ class OdsRLocList(OdsReader):
             else:
                 if tags:
                     self.novel.locations[lcId].tags = string_to_list(tags, divider=self._DIVIDER)
+
+            #--- notes
+            try:
+                notes = self._columns['Notes'][lcId]
+            except:
+                pass
+            else:
+                self.novel.locations[lcId].notes = notes.rstrip()
 
