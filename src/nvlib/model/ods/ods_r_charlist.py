@@ -55,11 +55,11 @@ class OdsRCharList(OdsReader):
 
             #--- aka
             try:
-                desc = self._columns['Aka'][crId]
+                aka = self._columns['Aka'][crId]
             except:
                 pass
             else:
-                self.novel.characters[crId].aka = desc.rstrip()
+                self.novel.characters[crId].aka = aka.rstrip()
 
             #--- tags
             try:
@@ -72,7 +72,7 @@ class OdsRCharList(OdsReader):
 
             #--- notes
             try:
-                notes = self._columns['Section notes'][crId]
+                notes = self._columns['Notes'][crId]
             except:
                 pass
             else:

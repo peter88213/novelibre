@@ -44,11 +44,11 @@ class OdsRLocList(OdsReader):
 
             #--- aka
             try:
-                desc = self._columns['Aka'][lcId]
+                aka = self._columns['Aka'][lcId]
             except:
                 pass
             else:
-                self.novel.locations[lcId].aka = desc.rstrip()
+                self.novel.locations[lcId].aka = aka.rstrip()
 
             #--- tags
             try:

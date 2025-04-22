@@ -44,11 +44,11 @@ class OdsRItemList(OdsReader):
 
             #--- aka
             try:
-                desc = self._columns['Aka'][itId]
+                aka = self._columns['Aka'][itId]
             except:
                 pass
             else:
-                self.novel.items[itId].aka = desc.rstrip()
+                self.novel.items[itId].aka = aka.rstrip()
 
             #--- tags
             try:
