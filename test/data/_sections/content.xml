@@ -13,17 +13,12 @@
 
 <text:p text:style-name="Title">Hal Spacejock book one - Sample yWriter Project</text:p>
 <text:p text:style-name="Subtitle">Simon Haynes</text:p>
-<text:section text:style-name="Sect1" text:name="ch34">
 <text:h text:style-name="Heading_20_1" text:outline-level="1">Part 1</text:h>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch1">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 1|outline">Chapter 1</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Meet Hal, threatened by Vurdi</text:h>
 <text:section text:style-name="Sect1" text:name="sc1">
 <text:p text:style-name="Text_20_body">Hal Spacejock is aboard his ship, the Black Gull, which is parked at the spaceport on planet Lamira. Hal's waiting for a cargo job, he's not fussy as long as it's legal. So far, after several days, the only jobs he's been offered have involved smuggling, gun-running or drugs.</text:p><text:p text:style-name="First_20_line_20_indent">Always short of money, Hal has arranged an interview with his financial backers in the hope of increasing his loan. There's a knock, but when Hal goes to let the loan people in he's confronted by a large robot which pins him to the deck. It's Brutus, an enforcer belonging to Vurdi the debt collector. Vurdi enters and explains that he's arrived to collect overdue payments on behalf of the loan company. Hal is confused, he thought they were supposed to be lending him money. Vurdi explains that it was a ploy to get aboard, since the company has had trouble getting face-to-face with Hal.</text:p><text:p text:style-name="First_20_line_20_indent">Hal doesn't have any money, so Vurdi says he'll take an arm or leg instead, and sets Brutus on him.</text:p><text:p text:style-name="First_20_line_20_indent">During the scuffle, Hal manages to tell Vurdi that he accepted a cargo job earlier in the day, and will use the proceeds to settle his debts. Vurdi is suspicious, but calls Brutus off and gives Hal 24 hours.</text:p><text:p text:style-name="First_20_line_20_indent">After Vurdi leaves, Hal discusses things with the Black Gull's onboard computer (the Navcom), reviewing the cargo jobs he's been offered. He chooses the one which sounds less risky than the others, a freight job offered by the Jerling corporation. The Navcom objects, reminding Hal that he turned it down earlier because he thought it involved stolen goods. Hal doesn't care - he can't afford to be choosy any more.</text:p>
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch2">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 2|outline">Chapter 2</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Jerling buys team. Discusses Seraph.</text:h>
 <text:section text:style-name="Sect1" text:name="sc2">
@@ -34,15 +29,11 @@
 <text:section text:style-name="Sect1" text:name="sc3">
 <text:p text:style-name="Text_20_body">Back with Hal, Jerling's call comes through and the businessman explains about his cargo, reassures Hal it's not stolen goods, then explains he has a pilot at the Lamira Spaceport (the same location as Hal) who needs a lift to Seraph IV. If Hal can take him, the pilot will return the favour by landing Hal's ship when they arrive at the destination.</text:p><text:p text:style-name="First_20_line_20_indent">Hal says he doesn't need help, Jerling explains that the landing is at night, with no guidance. This makes Hal suspicious about the job again, but he decides that nothing could be worse than another session with Brutus. Jerling reassures him that the pilot can handle everything and reminds him that delivery is to his premises on Forg. Hal agrees to the job, starts to ask for an advance but Jerling disconnects.</text:p>
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch3">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 3|outline">Chapter 3</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Clunk arrives</text:h>
 <text:section text:style-name="Sect1" text:name="sc4">
 <text:p text:style-name="Text_20_body">The Navcom tells Hal someone is waiting outside the ship. Hal assumes it's the new pilot and goes to the airlock to admit them. Instead of a human, there's a robot outside, and for a moment Hal thinks Brutus has returned. It isn't though, it's a run-down, obsolete robot with mismatched legs and a squashy, furrowed face. The geriatric robot smiles at Hal and explains politely that it's Jerling's pilot.</text:p><text:p text:style-name="First_20_line_20_indent">Hal closes the airlock in its face, runs to the flight deck and calls Jerling. He protests that an old robot like that can't possibly land his valuable ship. Jerling explains that the robot is an experienced pilot. After some discussion, Hal accepts the situation. He goes back to the airlock, lets Clunk in but sends him to the cargo hold.</text:p><text:p text:style-name="First_20_line_20_indent">Hal prepares the ship for takeoff, but ground control won't let him leave. The Port Commander wants to see him in person. Hal leaves the ship, putting Clunk in charge.</text:p>
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch4">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 4|outline">Chapter 4</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Hal going to port control</text:h>
 <text:section text:style-name="Sect1" text:name="sc5">
@@ -63,8 +54,6 @@
 <text:section text:style-name="Sect1" text:name="sc8">
 <text:p text:style-name="Text_20_body">Clunk tells Hal that Jerling won't advance any money, but Hal tells him to ask anyway. Clunk calls Jerling, who won't advance any money. Clunk mentions that he's found out what Incubots is all about, Jerling hangs up quickly.</text:p><text:p text:style-name="First_20_line_20_indent">Clunk notices smoke in the air. He runs to the airlock and discovers the landing field is on fire.</text:p>
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch5">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 5|outline">Chapter 5</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Clunk calls, the landing field is on fire. Hal tells him to sit tight.</text:h>
 <text:section text:style-name="Sect1" text:name="sc9">
@@ -75,43 +64,31 @@
 <text:section text:style-name="Sect1" text:name="sc10">
 <text:p text:style-name="Text_20_body">Aboard the Black Gull, Clunk wrenches panels off the walls looking for a fire extinguisher. Crunches the winch controls, lowering a hook to the ground and spooling all the cable out with it. Finally gets the extinguisher and heads outside.</text:p><text:p text:style-name="First_20_line_20_indent">He finds the source of the fire - the maintenance robot which Hal disabled. Clunk drags it out of the area, then returns and uses the fire extinguisher on the flames.</text:p><text:p text:style-name="First_20_line_20_indent">Clunk's battery starts to run low. He continues. As the fire extinguisher begins to run low, the fuel pipes explode near the back of the ship. A piece of debris hits Clunk in the head and he falls to the ground, stunned.</text:p>
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch6">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 6|outline">Chapter 6</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Hal gets to the ship and lifts off.</text:h>
 <text:section text:style-name="Sect1" text:name="sc12">
 <text:p text:style-name="Text_20_body">Arriving at the Black Gull, Hal sees the prone robot in the burnt-out grass. (It's Clunk, but he assumes it's the one he disabled)  Goes aboard, seals the ship and gets the engines going. Discovers the winch has been lowered, presses the button to raise it. Prepares ship for takeoff and takes his seat.</text:p>
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch7">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 7|outline">Chapter 7</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Hal finds Clunk on rope, falls out after him.</text:h>
 <text:section text:style-name="Sect1" text:name="sc15">
 <text:p text:style-name="Text_20_body">The Black Gull is roaring into the sky with Hal at the controls. The Lamira Portmaster calls and rages about the ship's sudden departure, Hal was only supposed to move it out of danger, not blast off into space. Hal says he'll be back to pay the fees. The Portmaster says he's going to spread the word about Hal, banning him from every port in the local system.</text:p><text:p text:style-name="First_20_line_20_indent">Talking to the Navcom, Hal suddenly discovers Clunk isn't aboard. There's a clunking noise as the winch tries to retract, but it's jammed. An image appears on screen - Clunk is dangling from the hook outside.</text:p><text:p text:style-name="First_20_line_20_indent">Hal gets the ship to hover 4,000 metres above the landing field, then goes outside on the landing platform to help. Throws Clunk a line and starts to pull the robot in, but a departing ship roars past, rocking the Black Gull and hurling Hal over the side of the platform. He ends up dangling from the safety cord, which is tied to the robot's leg.</text:p><text:p text:style-name="First_20_line_20_indent">Clunk's batteries are failing, and he can't hang on much longer.</text:p>
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch8">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 8|outline">Chapter 8</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Climb up rope to safety. Back in ship for hyperspace.</text:h>
 <text:section text:style-name="Sect1" text:name="sc17">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch9">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 9|outline">Chapter 9</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">In his office. Gordon OKs the deal</text:h>
 <text:section text:style-name="Sect1" text:name="sc19">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch10">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 10|outline">Chapter 10</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Exits the ship to meet Bevan</text:h>
 <text:section text:style-name="Sect1" text:name="sc22">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch11">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 11|outline">Chapter 11</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Getting food out. Frozen puddings.</text:h>
 <text:section text:style-name="Sect1" text:name="sc25">
@@ -122,8 +99,6 @@
 <text:section text:style-name="Sect1" text:name="sc27">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch12">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 12|outline">Chapter 12</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Hal depressed. No escape from here.</text:h>
 <text:section text:style-name="Sect1" text:name="sc29">
@@ -134,18 +109,12 @@
 <text:section text:style-name="Sect1" text:name="sc31">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch13">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 13|outline">Chapter 13</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Karl and Terry awaiting Hal. They take a call from their spy, intercept is at the orbiter.</text:h>
 <text:section text:style-name="Sect1" text:name="sc34">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch14">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 14|outline">Chapter 14</text:a></text:h>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch15">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 15|outline">Chapter 15</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Karl waiting impatiently</text:h>
 <text:section text:style-name="Sect1" text:name="sc38">
@@ -156,8 +125,6 @@
 <text:section text:style-name="Sect1" text:name="sc40">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch16">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 16|outline">Chapter 16</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Clunk slips out the back.</text:h>
 <text:section text:style-name="Sect1" text:name="sc43">
@@ -168,8 +135,6 @@
 <text:section text:style-name="Sect1" text:name="sc45">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch17">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 17|outline">Chapter 17</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Clunk in orbit</text:h>
 <text:section text:style-name="Sect1" text:name="sc47">
@@ -180,11 +145,7 @@
 <text:section text:style-name="Sect1" text:name="sc49">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch35">
 <text:h text:style-name="Heading_20_1" text:outline-level="1">Part 2</text:h>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch18">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 18|outline">Chapter 18</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Terry places the 'bomb'</text:h>
 <text:section text:style-name="Sect1" text:name="sc51">
@@ -195,8 +156,6 @@
 <text:section text:style-name="Sect1" text:name="sc53">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch19">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 19|outline">Chapter 19</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Karl leaves a note, takes Clunk.</text:h>
 <text:section text:style-name="Sect1" text:name="sc55">
@@ -207,8 +166,6 @@
 <text:section text:style-name="Sect1" text:name="sc57">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch20">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 20|outline">Chapter 20</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Hal gets real Jerling's call. Has to get cargo and robot back.</text:h>
 <text:section text:style-name="Sect1" text:name="sc60">
@@ -224,8 +181,6 @@
 <text:section text:style-name="Sect1" text:name="sc64">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch21">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 21|outline">Chapter 21</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Hal rents a car in Jerling's name and heads towards Forgberg and the Casino.</text:h>
 <text:section text:style-name="Sect1" text:name="sc66">
@@ -236,22 +191,16 @@
 <text:section text:style-name="Sect1" text:name="sc68">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch22">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 22|outline">Chapter 22</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Find car, go to find clothes.</text:h>
 <text:section text:style-name="Sect1" text:name="sc71">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch23">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 23|outline">Chapter 23</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Hal sells Clunk</text:h>
 <text:section text:style-name="Sect1" text:name="sc74">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch24">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 24|outline">Chapter 24</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Hal annoyed at Clunk for buying only the best.</text:h>
 <text:section text:style-name="Sect1" text:name="sc77">
@@ -267,8 +216,6 @@
 <text:section text:style-name="Sect1" text:name="sc81">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch25">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 25|outline">Chapter 25</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Clunk travelling on the back of Karl's limo</text:h>
 <text:section text:style-name="Sect1" text:name="sc84">
@@ -279,15 +226,11 @@
 <text:section text:style-name="Sect1" text:name="sc86">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch26">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 26|outline">Chapter 26</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Clunk uploads the Navcom into the ship.</text:h>
 <text:section text:style-name="Sect1" text:name="sc89">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch27">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 27|outline">Chapter 27</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">The shop robots want Clunk to escape with them. Mention Hal's capture.</text:h>
 <text:section text:style-name="Sect1" text:name="sc92">
@@ -298,8 +241,6 @@
 <text:section text:style-name="Sect1" text:name="sc94">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch28">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 28|outline">Chapter 28</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Karl and Terry take the limo</text:h>
 <text:section text:style-name="Sect1" text:name="sc96">
@@ -310,8 +251,6 @@
 <text:section text:style-name="Sect1" text:name="sc98">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch29">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 29|outline">Chapter 29</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Hal and Clunk fleeing in Gull</text:h>
 <text:section text:style-name="Sect1" text:name="sc101">
@@ -327,8 +266,6 @@
 <text:section text:style-name="Sect1" text:name="sc105">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch30">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 30|outline">Chapter 30</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Hal yells at Jerling, then cargo arrives on truck.</text:h>
 <text:section text:style-name="Sect1" text:name="sc108">
@@ -344,8 +281,6 @@
 <text:section text:style-name="Sect1" text:name="sc112">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch31">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 31|outline">Chapter 31</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Terry ties Hal in hold, leaves back doors open.</text:h>
 <text:section text:style-name="Sect1" text:name="sc114">
@@ -356,13 +291,10 @@
 <text:section text:style-name="Sect1" text:name="sc116">
 
 </text:section>
-</text:section>
-<text:section text:style-name="Sect1" text:name="ch32">
 <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Chapter 32|outline">Chapter 32</text:a></text:h>
 <text:h text:style-name="Heading_20_3_20_invisible" text:outline-level="3">Black Gull hyperspaces to oblivion</text:h>
 <text:section text:style-name="Sect1" text:name="sc119">
 
-</text:section>
 </text:section>
   </office:text>
  </office:body>

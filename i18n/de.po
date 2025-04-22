@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.20.2\n"
-"POT-Creation-Date: 2025-04-22 16:32:07\n"
-"PO-Revision-Date: 2025-04-22 16:32:07\n"
+"POT-Creation-Date: 2025-04-22 19:34:58\n"
+"PO-Revision-Date: 2025-04-22 19:34:58\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -529,6 +529,9 @@ msgstr "Manuskript nach Perspektive gefiltert exportieren"
 msgid "Export part descriptions for editing"
 msgstr "Teilebeschreibungen zum Bearbeiten exportieren"
 
+msgid "Export part list (spreadsheet)"
+msgstr "Teileliste exportieren (Tabelle)"
+
 msgid "Export plot grid for editing"
 msgstr "Handlungsraster (Plot grid) zum Bearbeiten exportieren"
 
@@ -963,6 +966,9 @@ msgstr "Teil"
 
 msgid "Part descriptions"
 msgstr "Teilebeschreibungen"
+
+msgid "Part list"
+msgstr "Teileliste"
 
 msgid "Part number prefix"
 msgstr "Präfix Teilenummer"

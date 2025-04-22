@@ -52,6 +52,7 @@ class FileExport(File):
     _locationHeadingTemplate = ''
     _locationTemplate = ''
     _partTemplate = ''
+    _partEndTemplate = ''
     _plotLineHeadingTemplate = ''
     _plotLineTemplate = ''
     _plotPointTemplate = ''
@@ -186,7 +187,7 @@ class FileExport(File):
                     template = Template(self._unusedChapterTemplate)
             elif self.novel.chapters[chId].chLevel == 1 and self._partTemplate:
                 template = Template(self._partTemplate)
-            else:
+            elif self.novel.chapters[chId].chLevel == 2 and self._chapterTemplate:
                 template = Template(self._chapterTemplate)
                 chapterNumber += 1
                 dispNumber = chapterNumber
@@ -202,7 +203,9 @@ class FileExport(File):
             if self.novel.chapters[chId].chType == 1:
                 if self._unusedChapterEndTemplate:
                     template = Template(self._unusedChapterEndTemplate)
-            elif self._chapterEndTemplate:
+            elif self.novel.chapters[chId].chLevel == 1 and self._partEndTemplate:
+                template = Template(self._partEndTemplate)
+            elif self.novel.chapters[chId].chLevel == 2 and self._chapterEndTemplate:
                 template = Template(self._chapterEndTemplate)
             if template is not None:
                 lines.append(template.safe_substitute(self._get_chapterMapping(chId, dispNumber)))

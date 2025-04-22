@@ -32,6 +32,7 @@ from nvlib.novx_globals import LOCATION_PREFIX
 from nvlib.novx_globals import LOCATION_REPORT_SUFFIX
 from nvlib.novx_globals import LOCLIST_SUFFIX
 from nvlib.novx_globals import MANUSCRIPT_SUFFIX
+from nvlib.novx_globals import PARTLIST_SUFFIX
 from nvlib.novx_globals import PARTS_SUFFIX
 from nvlib.novx_globals import PLOTLINES_SUFFIX
 from nvlib.novx_globals import PLOTLIST_SUFFIX
@@ -291,6 +292,9 @@ class Commands:
 
     def export_part_desc(self, event=None):
         self.fileManager.export_document(PARTS_SUFFIX)
+
+    def export_part_list(self, event=None):
+        self.fileManager.export_document(PARTLIST_SUFFIX)
 
     def export_manuscript(self, event=None):
         self.fileManager.export_document(MANUSCRIPT_SUFFIX)

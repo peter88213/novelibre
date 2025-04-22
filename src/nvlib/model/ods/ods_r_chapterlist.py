@@ -7,14 +7,12 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from nvlib.model.ods.ods_reader import OdsReader
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHAPTERLIST_SUFFIX
-from nvlib.novx_globals import MAJOR_MARKER
-from nvlib.novx_globals import MINOR_MARKER
-from nvlib.novx_globals import string_to_list
 from nvlib.nv_locale import _
 
 
 class OdsRChapterList(OdsReader):
     """ODS chapter list reader."""
+
     DESCRIPTION = _('Chapter list')
     SUFFIX = CHAPTERLIST_SUFFIX
     _columnTitles = ['ID', 'Title', 'Full name', 'Aka', 'Description', 'Bio', 'Goals', 'Importance', 'Tags', 'Notes']

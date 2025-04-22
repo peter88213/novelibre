@@ -90,6 +90,5 @@ class OdsWChapterList(OdsWriter):
     </table:table-row>
 
 '''
-
     _fileFooter = OdsWriter._CONTENT_XML_FOOTER
 

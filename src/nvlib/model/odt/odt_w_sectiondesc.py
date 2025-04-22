@@ -21,12 +21,10 @@ class OdtWSectionDesc(OdtWriter):
 <text:p text:style-name="Subtitle">$AuthorName</text:p>$Filters
 '''
 
-    _partTemplate = '''<text:section text:style-name="Sect1" text:name="$ID">
-<text:h text:style-name="Heading_20_1" text:outline-level="1">$Title</text:h>
+    _partTemplate = '''<text:h text:style-name="Heading_20_1" text:outline-level="1">$Title</text:h>
 '''
 
-    _chapterTemplate = '''<text:section text:style-name="Sect1" text:name="$ID">
-<text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../$ProjectName$ManuscriptSuffix.odt#$Title|outline">$Title</text:a></text:h>
+    _chapterTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../$ProjectName$ManuscriptSuffix.odt#$Title|outline">$Title</text:a></text:h>
 '''
 
     _sectionTemplate = f'''<text:h text:style-name="{_('Heading_20_3_20_invisible')}" text:outline-level="3">$Title</text:h>
@@ -36,9 +34,6 @@ $Desc
 '''
 
     _sectionDivider = '''<text:p text:style-name="Heading_20_4">* * *</text:p>
-'''
-
-    _chapterEndTemplate = '''</text:section>
 '''
 
     _fileFooter = OdtWriter._CONTENT_XML_FOOTER

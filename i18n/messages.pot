@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.20.2\n"
-"POT-Creation-Date: 2025-04-22 16:32:07\n"
+"POT-Creation-Date: 2025-04-22 19:34:58\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -536,6 +536,9 @@ msgstr ""
 msgid "Export part descriptions for editing"
 msgstr ""
 
+msgid "Export part list (spreadsheet)"
+msgstr ""
+
 msgid "Export plot grid for editing"
 msgstr ""
 
@@ -969,6 +972,9 @@ msgid "Part"
 msgstr ""
 
 msgid "Part descriptions"
+msgstr ""
+
+msgid "Part list"
 msgstr ""
 
 msgid "Part number prefix"

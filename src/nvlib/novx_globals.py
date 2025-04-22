@@ -42,6 +42,7 @@ LOCLIST_SUFFIX = '_loclist_tmp'
 MAJOR_MARKER = _('Major Character')
 MANUSCRIPT_SUFFIX = '_manuscript_tmp'
 MINOR_MARKER = _('Minor Character')
+PARTLIST_SUFFIX = '_partlist_tmp'
 PARTS_SUFFIX = '_parts_tmp'
 PLOTLIST_SUFFIX = '_plotlist'
 PLOTLINES_SUFFIX = '_plotlines_tmp'

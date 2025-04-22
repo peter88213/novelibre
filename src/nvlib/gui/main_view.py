@@ -345,6 +345,7 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
         self.partMenu.add_command(label=_('Add'), command=self._ctrl.add_new_part)
         self.partMenu.add_separator()
         self.partMenu.add_command(label=_('Export part descriptions for editing'), command=self._ctrl.export_part_desc)
+        self.partMenu.add_command(label=_('Export part list (spreadsheet)'), command=self._ctrl.export_part_list)
 
         # Chapter
         self.chapterMenu = tk.Menu(self.mainMenu, tearoff=0)

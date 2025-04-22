@@ -12,10 +12,12 @@ from nvlib.model.ods.ods_r_grid import OdsRGrid
 from nvlib.model.ods.ods_r_itemlist import OdsRItemList
 from nvlib.model.ods.ods_r_loclist import OdsRLocList
 from nvlib.model.ods.ods_w_chapterlist import OdsWChapterList
+from nvlib.model.ods.ods_r_partlist import OdsRPartList
 from nvlib.model.ods.ods_w_charlist import OdsWCharList
 from nvlib.model.ods.ods_w_grid import OdsWGrid
 from nvlib.model.ods.ods_w_itemlist import OdsWItemList
 from nvlib.model.ods.ods_w_loclist import OdsWLocList
+from nvlib.model.ods.ods_w_partlist import OdsWPartList
 from nvlib.model.ods.ods_w_plot_list import OdsWPlotList
 from nvlib.model.ods.ods_w_sectionlist import OdsWSectionList
 from nvlib.model.odt.odt_r_chapterdesc import OdtRChapterDesc
@@ -61,6 +63,7 @@ class NovxConversion:
         OdsWGrid,
         OdsWItemList,
         OdsWLocList,
+        OdsWPartList,
         OdsWPlotList,
         OdsWSectionList,
         OdtWBriefSynopsis,
@@ -78,12 +81,13 @@ class NovxConversion:
         OdtWXref,
     ]
     IMPORT_SOURCE_CLASSES = [
-        OdsRCharList,
+        OdtRChapterDesc,
         OdsRChapterList,
+        OdsRCharList,
         OdsRGrid,
         OdsRItemList,
         OdsRLocList,
-        OdtRChapterDesc,
+        OdsRPartList,
         OdtRCharacters,
         OdtRItems,
         OdtRLocations,
