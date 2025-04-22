@@ -25,6 +25,7 @@ IT_ROOT = f'{ROOT_PREFIX}{ITEM_PREFIX}'
 PN_ROOT = f'{ROOT_PREFIX}{PRJ_NOTE_PREFIX}'
 
 BRF_SYNOPSIS_SUFFIX = '_brf_synopsis'
+CHAPTERLIST_SUFFIX = '_chapterlist_tmp'
 CHAPTERS_SUFFIX = '_chapters_tmp'
 CHARACTER_REPORT_SUFFIX = '_character_report'
 CHARACTERS_SUFFIX = '_characters_tmp'

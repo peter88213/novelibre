@@ -6,10 +6,12 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.model.novx.data_writer import DataWriter
 from nvlib.model.novx.novx_file import NovxFile
+from nvlib.model.ods.ods_r_chapterlist import OdsRChapterList
 from nvlib.model.ods.ods_r_charlist import OdsRCharList
 from nvlib.model.ods.ods_r_grid import OdsRGrid
 from nvlib.model.ods.ods_r_itemlist import OdsRItemList
 from nvlib.model.ods.ods_r_loclist import OdsRLocList
+from nvlib.model.ods.ods_w_chapterlist import OdsWChapterList
 from nvlib.model.ods.ods_w_charlist import OdsWCharList
 from nvlib.model.ods.ods_w_grid import OdsWGrid
 from nvlib.model.ods.ods_w_itemlist import OdsWItemList
@@ -55,6 +57,7 @@ class NovxConversion:
     EXPORT_TARGET_CLASSES = [
         DataWriter,
         OdsWCharList,
+        OdsWChapterList,
         OdsWGrid,
         OdsWItemList,
         OdsWLocList,
@@ -76,6 +79,7 @@ class NovxConversion:
     ]
     IMPORT_SOURCE_CLASSES = [
         OdsRCharList,
+        OdsRChapterList,
         OdsRGrid,
         OdsRItemList,
         OdsRLocList,

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.20.2\n"
-"POT-Creation-Date: 2025-04-22 13:37:44\n"
+"POT-Creation-Date: 2025-04-22 16:32:07\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -231,6 +231,9 @@ msgid "Chapter descriptions"
 msgstr ""
 
 msgid "Chapter level"
+msgstr ""
+
+msgid "Chapter list"
 msgstr ""
 
 msgid "Chapter number prefix"
@@ -498,6 +501,9 @@ msgid "Export Manuscript"
 msgstr ""
 
 msgid "Export chapter descriptions for editing"
+msgstr ""
+
+msgid "Export chapter list (spreadsheet)"
 msgstr ""
 
 msgid "Export character descriptions for editing"

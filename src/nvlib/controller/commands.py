@@ -15,6 +15,7 @@ from nvlib.gui.pop_up.reimport_dialog import ReimportDialog
 from nvlib.gui.pop_up.view_options_dialog import ViewOptionsDialog
 from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from nvlib.novx_globals import CHAPTERS_SUFFIX
+from nvlib.novx_globals import CHAPTERLIST_SUFFIX
 from nvlib.novx_globals import CHARACTERS_SUFFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CHARACTER_REPORT_SUFFIX
@@ -260,6 +261,9 @@ class Commands:
 
     def export_chapter_desc(self, event=None):
         self.fileManager.export_document(CHAPTERS_SUFFIX)
+
+    def export_chapter_list(self, event=None):
+        self.fileManager.export_document(CHAPTERLIST_SUFFIX)
 
     def export_character_desc(self, event=None):
         self.fileManager.export_document(CHARACTERS_SUFFIX)

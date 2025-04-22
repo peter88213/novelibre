@@ -357,6 +357,7 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
         self.chapterMenu.add_command(label=_('Move selected chapters to new project'), command=self._ctrl.split_file)
         self.chapterMenu.add_separator()
         self.chapterMenu.add_command(label=_('Export chapter descriptions for editing'), command=self._ctrl.export_chapter_desc)
+        self.chapterMenu.add_command(label=_('Export chapter list (spreadsheet)'), command=self._ctrl.export_chapter_list)
 
         # Section
         self.sectionMenu = tk.Menu(self.mainMenu, tearoff=0)

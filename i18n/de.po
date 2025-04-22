@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.20.2\n"
-"POT-Creation-Date: 2025-04-22 13:37:44\n"
-"PO-Revision-Date: 2025-04-22 13:37:44\n"
+"POT-Creation-Date: 2025-04-22 16:32:07\n"
+"PO-Revision-Date: 2025-04-22 16:32:07\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -225,6 +225,9 @@ msgstr "Kapitelbeschreibungen"
 
 msgid "Chapter level"
 msgstr "Kapitelebene anzeigen"
+
+msgid "Chapter list"
+msgstr "Kapitelliste"
 
 msgid "Chapter number prefix"
 msgstr "Präfix Kapitelnummer"
@@ -492,6 +495,9 @@ msgstr "Manuskript zum Bearbeiten exportieren"
 
 msgid "Export chapter descriptions for editing"
 msgstr "Kapitelbeschreibungen zum Bearbeiten exportieren"
+
+msgid "Export chapter list (spreadsheet)"
+msgstr "Kapitelliste exportieren (Tabelle)"
 
 msgid "Export character descriptions for editing"
 msgstr "Figurenbeschreibungen zum Bearbeiten exportieren"
