@@ -66,7 +66,7 @@ class ChapterViewCtrl(BasicViewCtrl):
         self.noNumberVar.set(self.element.noNumber)
 
         #--- 'Epigraph' entry.
-        if prefs['show_cr_epigraph']:
+        if prefs['show_ch_epigraph']:
             self.epigraphFrame.show()
         else:
             self.epigraphFrame.hide()

@@ -354,8 +354,9 @@ class OdtWriter(OdfFile):
 '''
 
     _NOVELIBRE_STYLES = f'''  <style:style style:name="{_('Chapter_20_beginning')}" style:display-name="{_('Chapter beginning')}" style:family="paragraph" style:parent-style-name="Text_20_body" style:next-style-name="First_20_line_20_indent" style:class="text">
+  <style:paragraph-properties fo:margin-top="0.73cm" fo:margin-bottom="0cm"/>
   </style:style>
-  <style:style style:name="{_('Epigraph')}" style:display-name="{_('Epigraph')}" style:family="paragraph" style:parent-style-name="Text_20_body" style:next-style-name="Epigraph" style:class="text">
+  <style:style style:name="{_('Epigraph')}" style:display-name="{_('Epigraph')}" style:family="paragraph" style:parent-style-name="Quotations" style:next-style-name="Epigraph" style:class="text">
   </style:style>
   <style:style style:name="{_('Section_20_mark')}" style:display-name="{_('Section mark')}" style:family="paragraph" style:parent-style-name="Standard" style:next-style-name="Text_20_body" style:class="text">
    <style:text-properties fo:color="#008000" fo:font-size="10pt" fo:language="zxx" fo:country="none"/>
@@ -501,7 +502,10 @@ class OdtWriter(OdfFile):
                 'First_20_line_20_indent',
                 'Epigraph'
                 )
-            chapterMapping['Epigraph'] = f'<text:p text:style-name="Epigraph">{chapterMapping["Epigraph"]}</text:p>'
+            chapterMapping['Epigraph'] = chapterMapping['Epigraph'].replace(
+                'Text_20_body',
+                'Epigraph'
+                )
         return chapterMapping
 
     def _get_sectionMapping(self, scId, sectionNumber, wordsTotal, **kwargs):
