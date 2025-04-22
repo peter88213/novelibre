@@ -8,6 +8,9 @@ from tkinter import ttk
 
 from nvlib.gui.properties_window.basic_view import BasicView
 from nvlib.gui.properties_window.chapter_view_ctrl import ChapterViewCtrl
+from nvlib.gui.widgets.folding_frame import FoldingFrame
+from nvlib.gui.widgets.text_box import TextBox
+from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
 
@@ -52,6 +55,26 @@ class ChapterView(BasicView, ChapterViewCtrl):
         self.noNumberCheckbox.pack(anchor='w')
         inputWidgets.append(self.noNumberCheckbox)
 
+        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
+
+        #--- 'Epigraph' entry.
+        self.epigraphFrame = FoldingFrame(self.elementInfoWindow, _('Epigraph'), self._toggle_epigraph_window)
+        self.epigraphEntry = TextBox(self.epigraphFrame,
+            wrap='word',
+            undo=True,
+            autoseparators=True,
+            maxundo=-1,
+            height=10,
+            width=10,
+            padx=5,
+            pady=5,
+            bg=prefs['color_text_bg'],
+            fg=prefs['color_text_fg'],
+            insertbackground=prefs['color_text_fg'],
+            )
+        self.epigraphEntry.pack(fill='x')
+        inputWidgets.append(self.epigraphEntry)
+
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)
             self.inputWidgets.append(widget)
@@ -67,3 +90,11 @@ class ChapterView(BasicView, ChapterViewCtrl):
         self._create_notes_window()
         self._create_button_bar()
 
+    def _toggle_epigraph_window(self, event=None):
+        """Hide/show the 'Epigraph' textbox."""
+        if prefs['show_ch_epigraph']:
+            self.epigraphFrame.hide()
+            prefs['show_ch_epigraph'] = False
+        else:
+            self.epigraphFrame.show()
+            prefs['show_ch_epigraph'] = True

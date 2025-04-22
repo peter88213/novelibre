@@ -99,6 +99,7 @@ OPTIONS = dict(
     show_ch_links=False,
     show_contents=True,
     show_cr_bio=True,
+    show_ch_epigraph=True,
     show_cr_goals=True,
     show_cr_links=False,
     show_date_time=False,
