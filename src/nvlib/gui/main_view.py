@@ -431,6 +431,9 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
         self.prjNoteMenu.add_separator()
         self.prjNoteMenu.add_command(label=_('Show list'), command=self._ctrl.show_projectnotes_list)
 
+        # "Import" menu.
+        self.mainMenu.add_command(label=_('Import'), command=self._ctrl.open_project_updater)
+
         # "Export" menu.
         self.exportMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Export'), menu=self.exportMenu)
@@ -444,9 +447,6 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
         self.exportMenu.add_command(label=_('XML data files'), command=self._ctrl.export_xml_data_files)
         self.exportMenu.add_separator()
         self.exportMenu.add_command(label=_('Options'), command=self._ctrl.open_export_options)
-
-        # "Update" menu.
-        self.mainMenu.add_command(label=_('Import'), command=self._ctrl.open_project_updater)
 
         # "Tools" menu.
         self.toolsMenu = tk.Menu(self.mainMenu, tearoff=0)
