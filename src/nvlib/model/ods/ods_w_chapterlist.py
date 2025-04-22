@@ -17,15 +17,19 @@ class OdsWChapterList(OdsWriter):
 
     _fileHeader = f'''{OdsWriter._CONTENT_XML_HEADER}{DESCRIPTION}" table:style-name="ta1" table:print="false">
     <table:table-column table:style-name="co1" table:visibility="collapse" table:default-cell-style-name="Default"/>
+    <table:table-column table:style-name="co1" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co1" table:number-columns-repeated="1020" table:default-cell-style-name="Default"/>
+    <table:table-column table:style-name="co1" table:number-columns-repeated="1019" table:default-cell-style-name="Default"/>
      <table:table-row table:style-name="ro1" table:visibility="collapse">
      <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>ID</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="Heading" office:value-type="string">
+      <text:p>Chapter</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>Title</text:p>
@@ -42,11 +46,14 @@ class OdsWChapterList(OdsWriter):
      <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>Notes</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="Heading" table:number-columns-repeated="1020"/>
+     <table:table-cell table:style-name="Heading" table:number-columns-repeated="1019"/>
     </table:table-row>
      <table:table-row table:style-name="ro1">
      <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>ID</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="Heading" office:value-type="string">
+      <text:p>{_("Chapter")}</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>{_("Title")}</text:p>
@@ -63,13 +70,16 @@ class OdsWChapterList(OdsWriter):
      <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>{_("Notes")}</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="Heading" table:number-columns-repeated="1020"/>
+     <table:table-cell table:style-name="Heading" table:number-columns-repeated="1019"/>
     </table:table-row>
 
 '''
     _chapterTemplate = '''   <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>$ID</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>$ChapterNumber</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>$Title</text:p>
@@ -86,7 +96,7 @@ class OdsWChapterList(OdsWriter):
      <table:table-cell office:value-type="string">
       <text:p>$Notes</text:p>
      </table:table-cell>
-     <table:table-cell table:number-columns-repeated="1020"/>
+     <table:table-cell table:number-columns-repeated="1019"/>
     </table:table-row>
 
 '''
