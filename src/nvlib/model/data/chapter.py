@@ -4,7 +4,9 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+
 from nvlib.model.data.basic_element_notes import BasicElementNotes
+import xml.etree.ElementTree as ET
 
 
 class Chapter(BasicElementNotes):
@@ -16,6 +18,7 @@ class Chapter(BasicElementNotes):
             noNumber=None,
             isTrash=None,
             epigraph=None,
+            epigraphSrc=None,
             **kwargs):
         """Extends the superclass constructor."""
         super().__init__(**kwargs)
@@ -24,6 +27,7 @@ class Chapter(BasicElementNotes):
         self._noNumber = noNumber
         self._isTrash = isTrash
         self._epigraph = epigraph
+        self._epigraphSrc = epigraphSrc
 
     @property
     def chLevel(self):
@@ -93,6 +97,18 @@ class Chapter(BasicElementNotes):
             self._epigraph = newVal
             self.on_element_change()
 
+    @property
+    def epigraphSrc(self):
+        return self._epigraphSrc
+
+    @epigraphSrc.setter
+    def epigraphSrc(self, newVal):
+        if newVal is not None:
+            assert type(newVal) == str
+        if self._epigraphSrc != newVal:
+            self._epigraphSrc = newVal
+            self.on_element_change()
+
     def from_xml(self, xmlElement):
         super().from_xml(xmlElement)
         typeStr = xmlElement.get('type', '0')
@@ -108,6 +124,7 @@ class Chapter(BasicElementNotes):
         self.isTrash = xmlElement.get('isTrash', None) == '1'
         self.noNumber = xmlElement.get('noNumber', None) == '1'
         self.epigraph = self._xml_element_to_text(xmlElement.find('Epigraph'))
+        self.epigraphSrc = self._get_element_text(xmlElement, 'EpigraphSrc')
 
     def to_xml(self, xmlElement):
         super().to_xml(xmlElement)
@@ -121,3 +138,5 @@ class Chapter(BasicElementNotes):
             xmlElement.set('noNumber', '1')
         if self.epigraph:
             xmlElement.append(self._text_to_xml_element('Epigraph', self.epigraph))
+        if self.epigraphSrc:
+            ET.SubElement(xmlElement, 'EpigraphSrc').text = self.epigraphSrc

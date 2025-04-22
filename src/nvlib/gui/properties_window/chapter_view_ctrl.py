@@ -42,6 +42,9 @@ class ChapterViewCtrl(BasicViewCtrl):
         if self.epigraphEntry.hasChanged:
             self.element.epigraph = self.epigraphEntry.get_text()
 
+        #--- 'Epigraph source' entry.
+        self.element.epigraphSrc = self.epigraphSrcVar.get()
+
     def set_data(self, elementId):
         """Update the view with element's data.
         
@@ -71,4 +74,5 @@ class ChapterViewCtrl(BasicViewCtrl):
         else:
             self.epigraphFrame.hide()
         self.epigraphEntry.set_text(self.element.epigraph)
+        self.epigraphSrcVar.set(self.element.epigraphSrc)
 

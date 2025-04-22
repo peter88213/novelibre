@@ -22,10 +22,10 @@ class OdtWProof(OdtWFormatted):
 <text:p text:style-name="Subtitle">$AuthorName</text:p>$Filters
 '''
 
-    _partTemplate = '''<text:h text:style-name="Heading_20_1" text:outline-level="1">$Title</text:h>$Epigraph
+    _partTemplate = '''<text:h text:style-name="Heading_20_1" text:outline-level="1">$Title</text:h>$Epigraph$EpigraphSrc
 '''
 
-    _chapterTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">$Title</text:h>$Epigraph
+    _chapterTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">$Title</text:h>$Epigraph$EpigraphSrc
 '''
 
     _sectionTemplate = f'''<text:h text:style-name="Heading_20_3" text:outline-level="3">$Title</text:h>
@@ -36,7 +36,16 @@ $SectionContent
 
     _fileFooter = OdtWFormatted._CONTENT_XML_FOOTER
 
-    def _convert_from_novx(self, text, quick=False, append=False, firstInChapter=False, xml=False):
+    def _convert_from_novx(
+            self,
+            text,
+            quick=False,
+            append=False,
+            firstInChapter=False,
+            xml=False,
+            linebreaks=False,
+            firstParagraphStyle='Text_20_body'
+            ):
         """Return text without markup, converted to target format.
         
         Positional arguments:
@@ -47,7 +56,17 @@ $SectionContent
             append: bool -- if True, indent the first paragraph.
             firstInChapter: bool: -- if True, the section begins a chapter.
             xml: bool -- if True, parse XML content. 
+            linebreaks: bool -- if True and not xml, break the lines instead of creating paragraphs. 
+            firstParagraphStyle: str -- The first paragraph's style, if not xml and not append.
         
         Overrides the superclass method.
         """
-        return super()._convert_from_novx(text, quick=quick, append=append, firstInChapter=False, xml=xml)
+        return super()._convert_from_novx(
+            text,
+            quick=quick,
+            append=append,
+            firstInChapter=False,
+            xml=xml,
+            linebreaks=linebreaks,
+            firstParagraphStyle=firstParagraphStyle,
+            )

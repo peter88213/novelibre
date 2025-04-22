@@ -98,8 +98,7 @@
 				>
 
 	<!ELEMENT CHAPTERS (CHAPTER*)>
-		<!ELEMENT CHAPTER (Title?, Desc?, Link*, Field*, Notes?, Epigraph?, 
-		   SECTION*)>
+		<!ELEMENT CHAPTER (Title?, Desc?, Link*, Field*, Notes?, Epigraph?, EpigraphSrc?, SECTION*)>
 			<!ATTLIST CHAPTER 
 				id ID #REQUIRED
 				type (0 | 1) "0"
@@ -107,7 +106,8 @@
 				isTrash (0 | 1) "0" 
 				noNumber (0 | 1) "0"
 				> 
-			<!ELEMENT Epigraph (p*)>
+         <!ELEMENT Epigraph (p*)>
+         <!ELEMENT EpigraphSrc (#PCDATA)>
 			<!ELEMENT SECTION (Title?, Desc?, Link*, Field*, Notes?, Tags?, 
 			   Goal?, Conflict?, Outcome?, 
 			   PlotlineNotes*, 

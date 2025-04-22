@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.20.2\n"
-"POT-Creation-Date: 2025-04-22 12:32:03\n"
-"PO-Revision-Date: 2025-04-22 12:32:03\n"
+"POT-Creation-Date: 2025-04-22 13:37:44\n"
+"PO-Revision-Date: 2025-04-22 13:37:44\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -465,6 +465,12 @@ msgstr "Ende"
 
 msgid "Epigraph"
 msgstr "Motto"
+
+msgid "Epigraph source"
+msgstr "Motto-Quelle"
+
+msgid "Epigraph_20_source"
+msgstr "Motto-Quelle"
 
 msgid "Exit"
 msgstr "Beenden"
@@ -1215,6 +1221,9 @@ msgstr "Notizen anzeigen"
 
 msgid "Skip"
 msgstr "Überspringen"
+
+msgid "Source"
+msgstr "Quelle"
 
 msgid "Source document"
 msgstr "Quelldokument"

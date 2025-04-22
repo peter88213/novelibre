@@ -13,6 +13,7 @@ from xml.sax.saxutils import escape
 from nvlib.model.odf.odf_file import OdfFile
 from nvlib.model.odt.novx_to_odt import NovxToOdt
 from nvlib.novx_globals import Error
+from nvlib.nv_globals import to_string
 from nvlib.nv_locale import _
 
 
@@ -355,8 +356,11 @@ class OdtWriter(OdfFile):
 
     _NOVELIBRE_STYLES = f'''  <style:style style:name="{_('Chapter_20_beginning')}" style:display-name="{_('Chapter beginning')}" style:family="paragraph" style:parent-style-name="Text_20_body" style:next-style-name="First_20_line_20_indent" style:class="text">
   </style:style>
-  <style:style style:name="{_('Epigraph')}" style:display-name="{_('Epigraph')}" style:family="paragraph" style:parent-style-name="Quotations" style:next-style-name="{_('Epigraph')}" style:class="text">
+  <style:style style:name="{_('Epigraph')}" style:display-name="{_('Epigraph')}" style:family="paragraph" style:parent-style-name="Quotations" style:next-style-name="{_('Epigraph source')}" style:class="text">
+  </style:style>
+  <style:style style:name="{_('Epigraph_20_source')}" style:display-name="{_('Epigraph source')}" style:family="paragraph" style:parent-style-name="{_('Epigraph')}" style:next-style-name="Text_20_body" style:class="text">
   <style:paragraph-properties fo:margin-top="0cm" fo:margin-bottom="1.46cm"/>
+  <style:text-properties fo:font-style="italic"/>
   </style:style>
   <style:style style:name="{_('Section_20_mark')}" style:display-name="{_('Section mark')}" style:family="paragraph" style:parent-style-name="Standard" style:next-style-name="Text_20_body" style:class="text">
    <style:text-properties fo:color="#008000" fo:font-size="10pt" fo:language="zxx" fo:country="none"/>
@@ -369,6 +373,7 @@ class OdtWriter(OdfFile):
     _NOVELIBRE_STYLE_NAMES = (
         _('Chapter_20_beginning'),
         _('Epigraph'),
+        _('Epigraph_20_source'),
         _('Section_20_mark'),
         _('Heading_20_3_20_invisible'),
     )
@@ -466,7 +471,7 @@ class OdtWriter(OdfFile):
         
         Overrides the superclass method.
         """
-        if not text:
+        if not text and not linebreaks:
             return ''
 
         if quick:
@@ -516,6 +521,12 @@ class OdtWriter(OdfFile):
                 self.novel.chapters[chId].epigraph,
                 linebreaks=True,
                 firstParagraphStyle=_('Epigraph'),
+                )
+            epigraphSrc = to_string(self.novel.chapters[chId].epigraphSrc)
+            chapterMapping['EpigraphSrc'] = self._convert_from_novx(
+                epigraphSrc,
+                linebreaks=True,
+                firstParagraphStyle=_('Epigraph_20_source'),
                 )
         return chapterMapping
 

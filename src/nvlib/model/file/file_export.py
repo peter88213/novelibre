@@ -120,6 +120,8 @@ class FileExport(File):
             append: bool -- if True, indent the first paragraph.
             firstInChapter: bool: -- if True, the section begins a chapter.
             xml: bool -- if True, parse XML content. 
+            linebreaks: bool -- if True and not xml, break the lines instead of creating paragraphs. 
+            firstParagraphStyle: str -- The first paragraph's style, if not xml and not append.
         
         Overrides the superclass method.
         """
@@ -146,6 +148,7 @@ class FileExport(File):
             Desc=self._convert_from_novx(self.novel.chapters[chId].desc),
             Notes=self._convert_from_novx(self.novel.chapters[chId].notes),
             Epigraph=self._convert_from_novx(self.novel.chapters[chId].epigraph),
+            EpigraphSrc=self._convert_from_novx(self.novel.chapters[chId].epigraphSrc, quick=True),
             ProjectName=self._convert_from_novx(self.projectName, quick=True),
             ProjectPath=self.projectPath,
             Language=self.novel.languageCode,

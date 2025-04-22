@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.20.2\n"
-"POT-Creation-Date: 2025-04-22 12:32:03\n"
+"POT-Creation-Date: 2025-04-22 13:37:44\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -471,6 +471,12 @@ msgid "Ending"
 msgstr ""
 
 msgid "Epigraph"
+msgstr ""
+
+msgid "Epigraph source"
+msgstr ""
+
+msgid "Epigraph_20_source"
 msgstr ""
 
 msgid "Exit"
@@ -1221,6 +1227,9 @@ msgid "Show notes"
 msgstr ""
 
 msgid "Skip"
+msgstr ""
+
+msgid "Source"
 msgstr ""
 
 msgid "Source document"

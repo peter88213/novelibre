@@ -9,6 +9,8 @@ from tkinter import ttk
 from nvlib.gui.properties_window.basic_view import BasicView
 from nvlib.gui.properties_window.chapter_view_ctrl import ChapterViewCtrl
 from nvlib.gui.widgets.folding_frame import FoldingFrame
+from nvlib.gui.widgets.label_entry import LabelEntry
+from nvlib.gui.widgets.my_string_var import MyStringVar
 from nvlib.gui.widgets.text_box import TextBox
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
@@ -74,6 +76,18 @@ class ChapterView(BasicView, ChapterViewCtrl):
             )
         self.epigraphEntry.pack(fill='x')
         inputWidgets.append(self.epigraphEntry)
+
+        #--- 'Epigraph source' entry.
+        self.epigraphSrcVar = MyStringVar()
+        self._epigraphSrcEntry = LabelEntry(
+            self.epigraphFrame,
+            text=_('Source'),
+            textvariable=self.epigraphSrcVar,
+            command=self.apply_changes,
+            lblWidth=20
+            )
+        self._epigraphSrcEntry.pack(anchor='w')
+        inputWidgets.append(self._epigraphSrcEntry)
 
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)
