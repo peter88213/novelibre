@@ -22,13 +22,13 @@ class CharacterViewCtrl(WorldElementViewCtrl):
 
         super().apply_changes()
 
-        # 'Full name' entry.
+        #--- 'Full name' entry.
         self.element.fullName = self.fullNameVar.get()
 
         #--- Character status checkbox.
         self.element.isMajor = self.isMajorVar.get()
 
-        # 'Bio' frame.
+        #--- 'Bio' frame.
         if self.bioEntry.hasChanged:
             self.element.bio = self.bioEntry.get_text()
 
@@ -62,7 +62,7 @@ class CharacterViewCtrl(WorldElementViewCtrl):
             else:
                 self.element.deathDate = deathDateStr
 
-        # 'Goals' entry.
+        #--- 'Goals' entry.
         if self.goalsEntry.hasChanged:
             self.element.goals = self.goalsEntry.get_text()
 
@@ -74,7 +74,7 @@ class CharacterViewCtrl(WorldElementViewCtrl):
         self.element = self._mdl.novel.characters[elementId]
         super().set_data(elementId)
 
-        # 'Full name' entry.
+        #--- 'Full name' entry.
         self.fullNameVar.set(self.element.fullName)
 
         #--- Character status checkbox.

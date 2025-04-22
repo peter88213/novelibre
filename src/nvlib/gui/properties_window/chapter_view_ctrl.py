@@ -5,6 +5,7 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.gui.properties_window.basic_view_ctrl import BasicViewCtrl
+from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
 
@@ -37,6 +38,10 @@ class ChapterViewCtrl(BasicViewCtrl):
         #--- 'Do not auto-number...' checkbox.
         self.element.noNumber = self.noNumberVar.get()
 
+        #--- 'Epigraph' entry.
+        if self.epigraphEntry.hasChanged:
+            self.element.epigraph = self.epigraphEntry.get_text()
+
     def set_data(self, elementId):
         """Update the view with element's data.
         
@@ -59,4 +64,11 @@ class ChapterViewCtrl(BasicViewCtrl):
             labelText = _('Do not auto-number this chapter')
         self.noNumberCheckbox.configure(text=labelText)
         self.noNumberVar.set(self.element.noNumber)
+
+        #--- 'Epigraph' entry.
+        if prefs['show_cr_epigraph']:
+            self.epigraphFrame.show()
+        else:
+            self.epigraphFrame.hide()
+        self.epigraphEntry.set_text(self.element.epigraph)
 
