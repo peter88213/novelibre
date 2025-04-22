@@ -354,9 +354,9 @@ class OdtWriter(OdfFile):
 '''
 
     _NOVELIBRE_STYLES = f'''  <style:style style:name="{_('Chapter_20_beginning')}" style:display-name="{_('Chapter beginning')}" style:family="paragraph" style:parent-style-name="Text_20_body" style:next-style-name="First_20_line_20_indent" style:class="text">
-  <style:paragraph-properties fo:margin-top="0.73cm" fo:margin-bottom="0cm"/>
   </style:style>
   <style:style style:name="{_('Epigraph')}" style:display-name="{_('Epigraph')}" style:family="paragraph" style:parent-style-name="Quotations" style:next-style-name="Epigraph" style:class="text">
+  <style:paragraph-properties fo:margin-top="0cm" fo:margin-bottom="1.46cm"/>
   </style:style>
   <style:style style:name="{_('Section_20_mark')}" style:display-name="{_('Section mark')}" style:family="paragraph" style:parent-style-name="Standard" style:next-style-name="Text_20_body" style:class="text">
    <style:text-properties fo:color="#008000" fo:font-size="10pt" fo:language="zxx" fo:country="none"/>
@@ -441,7 +441,16 @@ class OdtWriter(OdfFile):
             self.novel.get_languages()
         return super().write()
 
-    def _convert_from_novx(self, text, quick=False, append=False, firstInChapter=False, xml=False):
+    def _convert_from_novx(
+            self,
+            text,
+            quick=False,
+            append=False,
+            firstInChapter=False,
+            xml=False,
+            linebreaks=False,
+            firstParagraphStyle='Text_20_body'
+            ):
         """Return text without markup, converted to target format.
         
         Positional arguments:
@@ -452,6 +461,8 @@ class OdtWriter(OdfFile):
             append: bool -- if True, indent the first paragraph.
             firstInChapter: bool: -- if True, the section begins a chapter.
             xml: bool -- if True, parse XML content. 
+            linebreaks: bool -- if True and not xml, break the lines instead of creating paragraphs. 
+            firstParagraphStyle: str -- The first paragraph's style, if not xml and not append.
         
         Overrides the superclass method.
         """
@@ -465,12 +476,15 @@ class OdtWriter(OdfFile):
             self._contentParser.feed(text, self.novel.languages, append, firstInChapter)
             return ''.join(self._contentParser.odtLines)
 
+        # Convert plain text into XML.
         lines = text.split('\n')
-        text = '</text:p><text:p text:style-name="First_20_line_20_indent">'.join(lines)
+        if linebreaks:
+            text = '<text:line-break/>'.join(lines)
+        else:
+            text = '</text:p><text:p text:style-name="First_20_line_20_indent">'.join(lines)
         if append:
-            return f'<text:p text:style-name="First_20_line_20_indent">{text}</text:p>'
-
-        return f'<text:p text:style-name="Text_20_body">{text}</text:p>'
+            firstParagraphStyle = "First_20_line_20_indent"
+        return f'<text:p text:style-name="{firstParagraphStyle}">{text}</text:p>'
 
     def _get_fileHeaderMapping(self):
         """Return a mapping dictionary for the project section.
@@ -497,14 +511,11 @@ class OdtWriter(OdfFile):
         Extends the superclass method.
         """
         chapterMapping = super()._get_chapterMapping(chId, chapterNumber)
-        if chapterMapping['Epigraph']:
-            chapterMapping['Epigraph'] = chapterMapping['Epigraph'].replace(
-                'First_20_line_20_indent',
-                'Epigraph'
-                )
-            chapterMapping['Epigraph'] = chapterMapping['Epigraph'].replace(
-                'Text_20_body',
-                'Epigraph'
+        if self.novel.chapters[chId].epigraph:
+            chapterMapping['Epigraph'] = self._convert_from_novx(
+                self.novel.chapters[chId].epigraph,
+                linebreaks=True,
+                firstParagraphStyle='Epigraph',
                 )
         return chapterMapping
 

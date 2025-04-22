@@ -686,11 +686,11 @@ class FileExport(File):
             WordsTotal=wordsTotal,
             Status=int(self.novel.sections[scId].status),
             SectionContent=self._convert_from_novx(
-                        self.novel.sections[scId].sectionContent,
-                        append=self.novel.sections[scId].appendToPrev,
-                        firstInChapter=firstInChapter,
-                        xml=True
-                        ),
+                self.novel.sections[scId].sectionContent,
+                append=self.novel.sections[scId].appendToPrev,
+                firstInChapter=firstInChapter,
+                xml=True
+                ),
             Date=dateStr,
             Time=scTime,
             OdsTime=odsTime,
