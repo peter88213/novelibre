@@ -10,6 +10,26 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+
+### Version 5.21.0
+
+The file format has been upgraded to version 1.6.
+*.novx* files created with *novelibre* version 5.21+ 
+cannot be read with older *novelibre* versions.
+
+- Chapters can be prefaced with epigraphs.
+- Swapped main menu position of "Import" and "Export"
+- Providing a chapter/part list export to edit the epigraphs with Calc.
+- Fixed character notes reimport.
+- Fixed a bug where chapter templates are applied to parts if no part
+  template exists.
+- Simplified the section description document by removing the ODT part
+  and chapter sections which are not needed for reimport.
+- Added a "Notes" column to the location list and to the item list.
+- Added a chapter number column to the chapter list.
+- Hiding the ID columns of the character/location/item lists.
+
+
 ### Version 5.20.2 (no build)
 
 Fixed the UiCmd class intended for external programs. 
