@@ -39,6 +39,7 @@ class FileExport(File):
     """
     SUFFIX = ''
     _DIVIDER = ', '
+    _appendedSectionTemplate = ''
     _assocSectionTemplate = ''
     _chapterEndTemplate = ''
     _chapterTemplate = ''
@@ -792,6 +793,8 @@ class FileExport(File):
                 template = Template(self._sectionTemplate)
                 if firstSectionInChapter and self._firstSectionTemplate:
                     template = Template(self._firstSectionTemplate)
+                elif self.novel.sections[scId].appendToPrev and self._appendedSectionTemplate:
+                    template = Template(self._appendedSectionTemplate)
             if not (firstSectionInChapter or self.novel.sections[scId].appendToPrev or self.novel.sections[scId].scType > 1):
                 lines.append(self._sectionDivider)
             if template is not None:

@@ -10,12 +10,19 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+
+### Version 5.23.0
+
+- Providing an optional export template for appended sections: 
+  `FileExport._appendedSectionTemplate`.
+
+
 ### Version 5.22.0
 
 Enhancements for the *nv_custom_export* plugin (#59):
 
 - Providing a service method to get the final document export class.
-- The main controller and sub controllers get an "on_open()" method 
+- The main controller and sub controllers get an `on_open()` method 
   that is called after a project has been opened.  
 
 
