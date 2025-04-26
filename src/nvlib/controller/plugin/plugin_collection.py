@@ -185,6 +185,15 @@ class PluginCollection(dict, SubController):
                 except:
                     pass
 
+    def on_open(self):
+        """Actions to be performed after a project is opened."""
+        for pluginName in self:
+            if self[pluginName].isActive:
+                try:
+                    self[pluginName].on_open()
+                except:
+                    pass
+
     def on_quit(self):
         """Perform actions before the application is closed."""
         for pluginName in self:

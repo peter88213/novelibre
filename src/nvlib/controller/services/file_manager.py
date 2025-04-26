@@ -236,6 +236,7 @@ class FileManager(ServiceBase):
         if self._mdl.prjFile.has_lockfile():
             self._ctrl.lock()
         self._ui.tv.show_branch(CH_ROOT)
+        self._ctrl.on_open()
         return True
 
     def open_project_folder(self):
@@ -362,6 +363,7 @@ class FileManager(ServiceBase):
             self._ui.restore_status()
             self.prefs['last_open'] = self._mdl.prjFile.filePath
             self.copy_to_backup(self._mdl.prjFile.filePath)
+            self._ctrl.on_open()
             return True
 
     def save_project(self):
@@ -396,6 +398,7 @@ class FileManager(ServiceBase):
         self._ui.restore_status()
         self.prefs['last_open'] = self._mdl.prjFile.filePath
         self.copy_to_backup(self._mdl.prjFile.filePath)
+        self._ctrl.on_open()
         return True
 
     def select_project(self, fileName):

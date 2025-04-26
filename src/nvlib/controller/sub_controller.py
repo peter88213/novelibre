@@ -30,6 +30,10 @@ class SubController:
         """Actions to be performed when a project is closed."""
         pass
 
+    def on_open(self):
+        """Actions to be performed after a project is opened."""
+        pass
+
     def on_quit(self):
         """Actions to be performed when novelibre is closed."""
         pass

@@ -192,6 +192,11 @@ class MainController(SubController, Commands):
         self.disable_menu()
         return True
 
+    def on_open(self):
+        """Actions to be performed after a project is opened."""
+        for client in self._clients:
+            client.on_open()
+
     def on_quit(self, event=None):
         """Save changes and keyword arguments before exiting the program.
         
