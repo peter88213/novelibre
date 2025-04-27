@@ -160,6 +160,8 @@ Solutions for tasks that are not everyday.
   Python script for generating a *novelibre* project from a *Scapple* outline.
 - [novx_xtg](https://github.com/peter88213/novx_xtg/): 
   Python script for exporting XPress tagged text from *novelibre* projects.
+- [novx_html](https://github.com/peter88213/novx_html/):
+  Python script for HTML export based on custom templates.
   
 ### OpenOffice/LibreOffice extensions
 
