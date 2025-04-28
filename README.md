@@ -69,7 +69,7 @@ is embedded in a customizable ecosystem.
 In order not to overload the program with features, some of them are offered as plugins 
 so that only those users who need them actually install them.
 
--  So if you want to track characters, locations, items, and plot lines in a convenient way, 
+-  So if it's important to you to track characters, locations, items, and plot lines, 
    you might want to download and install the
    [nv_matrix](https://github.com/peter88213/nv_matrix/) plugin.
 -  If you have more than one book project, or if you write a series, 
