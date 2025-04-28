@@ -84,7 +84,8 @@ so that only those users who need them actually install them.
    statistics viewer could be something for you.
 -  If you want to set up your stories according to a proven dramaturgical scheme, 
    you can conveniently load one into your project with the help of the 
-   [story template management plugin](https://github.com/peter88213/nv_templates/).
+   [nv_templates](https://github.com/peter88213/nv_templates/)
+   story template manager.
 -  If you do extensive world building using the free *Zim Desktop wiki*, you can connect it to *novelibre* with 
    the [nv_zim](https://github.com/peter88213/nv_zim) plugin.
 -  If the course of the narrated time is important to you, there are various options for a better overview:
