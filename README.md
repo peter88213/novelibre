@@ -119,7 +119,7 @@ Here are a few examples:
   you can create a sophisticated project outline and have 
   [scap_novx](https://github.com/peter88213/scap_novx/) 
   generate a *novelibre* project from it.
-- If you are a self-publisher using commercial Quark(TM) XPress desktop publishing software,
+- If you are a self-publisher using commercial *Quark™ XPress* desktop publishing software,
   try [novx_xtg](https://github.com/peter88213/novx_xtg/) to export XPress tagged text 
   from your *novelibre* project.
 - If you are the hands-on DIY type, you can create a wide variety of custom HTML documents
