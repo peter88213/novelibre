@@ -72,27 +72,29 @@ so that only those users who need them actually install them.
 -  So if you want to track characters, locations, items, and plot lines in a convenient way, 
    you might want to download and install the
    [nv_matrix](https://github.com/peter88213/nv_matrix/) plugin.
--  If you have more than one *novelibre* project, or if you write a series, 
-   you can easily switch using the [nv_collection](https://github.com/peter88213/nv_collection/)
+-  If you have more than one book project, or if you write a series, 
+   you can easily switch between your *novelibre* projects using the 
+   [nv_collection](https://github.com/peter88213/nv_collection/) 
    book/series collection manager.
--  If you want to track your progress, you will love the daily progress log viewer
-   [nv_progress](https://github.com/peter88213/nv_progress/).
+-  If you want to track your progress, you will love the 
+   [nv_progress](https://github.com/peter88213/nv_progress/)
+   daily word count log viewer.
 -  If you value a balanced text distribution, the
    [nv_statistics](https://github.com/peter88213/nv_statistics/)
-   statistics viewer plugin could be something for you.
+   statistics viewer could be something for you.
 -  If you want to set up your stories according to a proven dramaturgical scheme, 
-   you can conveniently load this into your project with the help of the 
+   you can conveniently load one into your project with the help of the 
    [story template management plugin](https://github.com/peter88213/nv_templates/).
--  If you do extensive world building using the Zim Desktop wiki, you can connect it to *novelibre* with 
+-  If you do extensive world building using the free *Zim Desktop wiki*, you can connect it to *novelibre* with 
    the [nv_zim](https://github.com/peter88213/nv_zim) plugin.
 -  If the course of the narrated time is important to you, there are various options for a better overview:
    - The [nv_tlview](https://github.com/peter88213/nv_tlview/) timeline viewer plugin,
    - the [nv_timeline](https://github.com/peter88213/nv_timeline/) Timeline sync plugin, and 
    - the [nv_aeon2](https://github.com/peter88213/nv_aeon2/) Aeon Timeline 2 sync plugin.
 -  Do you have Linux, and *novelibre* doesn't look fancy enough for you? 
-   Take a look at the alternative themes with the help of the 
+   Take a look at the alternative themes supported by the 
    [nv_themes](https://github.com/peter88213/nv_themes/) plugin.
--  Eye pain because of *novelibre*? That is not necessary -- just try the experimental dark mode
+-  Eye pain because of *novelibre*? That is not necessary - just try the experimental dark mode
    with [nv_dark](https://github.com/peter88213/nv_dark/).
 -  If you want to switch between *yWriter* and *novelibre*, the
    [nv_yw7](https://github.com/peter88213/nv_yw7/)
@@ -101,8 +103,9 @@ so that only those users who need them actually install them.
    Just launch the the on-demand update checker 
    [nv_updater](https://github.com/peter88213/nv_updater/)
    from time to time. 
--  If you are familiar with XML, you can edit the source code of your sections directly in *novelibre*
-   with [nv_editor](https://github.com/peter88213/nv_editor/)
+-  If you are familiar with XML, you can edit or split your sections directly in *novelibre*
+   with [nv_editor](https://github.com/peter88213/nv_editor/).
+
 
 ## Requirements
 
