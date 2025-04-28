@@ -90,12 +90,12 @@ so that only those users who need them actually install them.
    the [nv_zim](https://github.com/peter88213/nv_zim) plugin.
 -  If the course of the narrated time is important to you, there are various options for a better overview:
    - The [nv_tlview](https://github.com/peter88213/nv_tlview/) timeline viewer plugin,
-   - the [nv_timeline](https://github.com/peter88213/nv_timeline/) Timeline sync plugin, and 
-   - the [nv_aeon2](https://github.com/peter88213/nv_aeon2/) Aeon Timeline 2 sync plugin.
+   - the [nv_timeline](https://github.com/peter88213/nv_timeline/) file synchronizer for the free *Timeline* application, and 
+   - the [nv_aeon2](https://github.com/peter88213/nv_aeon2/) file synchronizer for the commercial *Aeon Timeline 2* application.
 -  Do you have Linux, and *novelibre* doesn't look fancy enough for you? 
    Take a look at the alternative themes supported by the 
    [nv_themes](https://github.com/peter88213/nv_themes/) plugin.
--  Eye pain because of *novelibre*? That is not necessary - just try the experimental dark mode
+-  Eye pain because of *novelibre*? Not necessarily. Just try the experimental dark mode
    with [nv_dark](https://github.com/peter88213/nv_dark/).
 -  If you want to switch between *yWriter* and *novelibre*, the
    [nv_yw7](https://github.com/peter88213/nv_yw7/)
@@ -106,6 +106,26 @@ so that only those users who need them actually install them.
    from time to time. 
 -  If you are familiar with XML, you can edit or split your sections directly in *novelibre*
    with [nv_editor](https://github.com/peter88213/nv_editor/).
+
+
+## Auxiliary scripts
+
+Some tasks are very special and are rarely performed, 
+perhaps only once at the start or end of a project. 
+A Python script that can handle the *.novx* file format is then sufficient. 
+Here are a few examples:
+
+- If you use the commercial *Scapple* mind mapper, 
+  you can create a sophisticated project outline and have 
+  [scap_novx](https://github.com/peter88213/scap_novx/) 
+  generate a *novelibre* project from it.
+- If you are a self-publisher using commercial Quark(TM) XPress desktop publishing software,
+  try [novx_xtg](https://github.com/peter88213/novx_xtg/) to export XPress tagged text 
+  from your *novelibre* project.
+- If you are the hands-on DIY type, you can create a wide variety of custom HTML documents
+  from your *novelibre* project via the template-based 
+  [novx_html](https://github.com/peter88213/novx_html/)
+  HTML exporter.
 
 
 ## Requirements
@@ -177,17 +197,6 @@ See the [online user guide](https://peter88213.github.io/nvhelp-en/)
 
 ## See also
 
-### Python scripts
-
-Solutions for tasks that are not everyday.
-
-- [scap_novx](https://github.com/peter88213/scap_novx/): 
-  Python script for generating a *novelibre* project from a *Scapple* outline.
-- [novx_xtg](https://github.com/peter88213/novx_xtg/): 
-  Python script for exporting XPress tagged text from *novelibre* projects.
-- [novx_html](https://github.com/peter88213/novx_html/):
-  Python script for HTML export based on custom templates.
-  
 ### OpenOffice/LibreOffice extensions
 
 *Writer* macros that may come in handy when editing your manuscript.
