@@ -11,6 +11,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.23.1
+
+- Fixed a bug where the localized name of the month is not exported correctly.
+
+
 ### Version 5.23.0
 
 - Providing an optional export template for appended sections: 

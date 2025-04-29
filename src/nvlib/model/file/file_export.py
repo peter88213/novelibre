@@ -627,7 +627,7 @@ class FileExport(File):
             dateStr = self.novel.sections[scId].date
             cmbDateStr = self.novel.sections[scId].localeDate
             yearStr, monthStr, dayStr = PyCalendar.y_m_d_str(dateStr)
-            dtMonth = PyCalendar.MONTHS[int(monthStr) - 1]
+            dtMonth = PyCalendar.MONTHS[int(monthStr)]
             dtWeekday = PyCalendar.WEEKDAYS[self.novel.sections[scId].weekDay]
         else:
             dateStr = ''

@@ -1,4 +1,4 @@
-[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.23.0.pyzw)
+[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.23.1.pyzw)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
 [![News/Feedback](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
@@ -74,7 +74,7 @@ so that only those users who need them actually install them.
    [nv_matrix](https://github.com/peter88213/nv_matrix/) plugin.
 -  If you have more than one book project, or if you write a series, 
    you can easily switch between your *novelibre* projects using the 
-   [nv_collection](https://github.com/peter88213/nv_collection/)
+   [nv_collection](https://github.com/peter88213/nv_collection/) 
    book/series collection manager.
 -  If you want to track your progress, you will love the 
    [nv_progress](https://github.com/peter88213/nv_progress/)
@@ -106,7 +106,11 @@ so that only those users who need them actually install them.
    from time to time. 
 -  If you are familiar with XML, you can edit or split your sections directly in *novelibre*
    with [nv_editor](https://github.com/peter88213/nv_editor/).
-
+-  You would like to preface the chapters or sections of your final document with 
+   some metadata, such as date, time, location, or viewpoint? 
+   Then you can create custom export templates and have the 
+   [nv_custom_export](https://github.com/peter88213/nv_custom_export/)
+   plugin automatically apply them.
 
 ## Auxiliary scripts
 
@@ -155,10 +159,10 @@ The development phase has now come to an end. Nevertheless it is recommended to 
 
 ### Default: Executable Python zip archive
 
-Download the latest release [novelibre_v5.23.0.pyzw](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.23.0.pyzw)
+Download the latest release [novelibre_v5.23.1.pyzw](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.23.1.pyzw)
 
-- Launch *novelibre_v5.23.0.pyzw* by double-clicking (Windows/Linux desktop),
-- or execute `python novelibre_v5.23.0.pyzw` (Windows), resp. `python3 novelibre_v5.23.0.pyzw` (Linux) on the command line.
+- Launch *novelibre_v5.23.1.pyzw* by double-clicking (Windows/Linux desktop),
+- or execute `python novelibre_v5.23.1.pyzw` (Windows), resp. `python3 novelibre_v5.23.1.pyzw` (Linux) on the command line.
 
 #### Important
 
@@ -174,9 +178,9 @@ the zip file.
 
 ### Alternative: Zip file
 
-The package is also available in zip format: [novelibre_v5.23.0.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.23.0.zip)
+The package is also available in zip format: [novelibre_v5.23.1.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.23.1.zip)
 
-- Extract the *novelibre_v5.23.0* folder from the downloaded zipfile "novelibre_v5.23.0.zip".
+- Extract the *novelibre_v5.23.1* folder from the downloaded zipfile "novelibre_v5.23.1.zip".
 - Move into this new folder and launch *setup.pyw* by double-clicking (Windows/Linux desktop), 
 - or execute `python setup.pyw` (Windows), resp. `python3 setup.pyw` (Linux) on the command line.
 
@@ -196,7 +200,7 @@ See the [online user guide](https://peter88213.github.io/nvhelp-en/)
 - The toolbar icons are based on the [Eva Icons](https://akveo.github.io/eva-icons/#/), published under the [MIT License](http://www.opensource.org/licenses/mit-license.php). The original black and white icons were colored for this application by the maintainer. 
 
 ## See also
-
+  
 ### OpenOffice/LibreOffice extensions
 
 *Writer* macros that may come in handy when editing your manuscript.
