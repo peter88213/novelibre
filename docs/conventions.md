@@ -4,7 +4,7 @@
 ### Coding conventions
 
 - The code must be compatible with Python version 3.6. 
-- The Python source code formatting follows widely the [PEP 8](https://peps.python.org/pep-0008/) style guide, except the maximum line length, which is 120 characters here.
+- The Python source code formatting follows widely the [PEP 8](https://peps.python.org/pep-0008/) style guide, except the maximum line length, which is 120 characters here, and some naming conventions (see below).
 - The code commenting follows the [PEP 257](https://peps.python.org/pep-0257) convention. [pydoc](https://docs.python.org/3/library/pydoc.html) can be used to display documentation for the *novelibre* modules and classes.
 - Instead of inserting inline comments, append block comments.
 - Type hints are not used.
@@ -14,12 +14,17 @@
 - A package's **__init__.py** must not contain executable code.
 - Each novelibre class is implemented in its own module.
 - novelibre classes are imported with `from <module> import <class>`.
+- Variable names are `mixedCase` (deviation from PEP 8).
+- Function parameter names are `mixedCase` (deviation from PEP 8).
+- Class names, function names, method names, and global constant names correspond to the PEP 8 scheme.
+
 
 #### Method naming conventions
 
 - `new_...`: Create an instance and return the object reference.
 - `add_new_...`: Create an instance and add it to the novel. Return the element ID.
 - `create_...`: Create anything.
+
 
 ## How to use the library with plugins and other applications
 
@@ -38,7 +43,7 @@ This is the directory structure required for building an application:
 │       ├── nvlib/
 │       ├── inliner.py
 │       └── package-builder.py
-└── application/
+└── plugin_or_application/
     ├── src/
     ├── test/
     └── tools/ 
