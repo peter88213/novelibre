@@ -38,7 +38,7 @@ class Chapter(BasicElementNotes):
     @chLevel.setter
     def chLevel(self, newVal):
         if newVal is not None:
-            assert type(newVal) == int
+            assert type(newVal) is int
         if self._chLevel != newVal:
             self._chLevel = newVal
             self.on_element_change()
@@ -52,7 +52,7 @@ class Chapter(BasicElementNotes):
     @chType.setter
     def chType(self, newVal):
         if newVal is not None:
-            assert type(newVal) == int
+            assert type(newVal) is int
         if self._chType != newVal:
             self._chType = newVal
             self.on_element_change()
@@ -66,7 +66,7 @@ class Chapter(BasicElementNotes):
     @noNumber.setter
     def noNumber(self, newVal):
         if newVal is not None:
-            assert type(newVal) == bool
+            assert type(newVal) is bool
         if self._noNumber != newVal:
             self._noNumber = newVal
             self.on_element_change()
@@ -80,7 +80,7 @@ class Chapter(BasicElementNotes):
     @isTrash.setter
     def isTrash(self, newVal):
         if newVal is not None:
-            assert type(newVal) == bool
+            assert type(newVal) is bool
         if self._isTrash != newVal:
             self._isTrash = newVal
             self.on_element_change()
@@ -92,7 +92,7 @@ class Chapter(BasicElementNotes):
     @epigraph.setter
     def epigraph(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._epigraph != newVal:
             self._epigraph = newVal
             self.on_element_change()
@@ -104,7 +104,7 @@ class Chapter(BasicElementNotes):
     @epigraphSrc.setter
     def epigraphSrc(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._epigraphSrc != newVal:
             self._epigraphSrc = newVal
             self.on_element_change()

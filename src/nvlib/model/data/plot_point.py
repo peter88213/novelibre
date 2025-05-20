@@ -27,7 +27,7 @@ class PlotPoint(BasicElementNotes):
     @sectionAssoc.setter
     def sectionAssoc(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._sectionAssoc != newVal:
             self._sectionAssoc = newVal
             self.on_element_change()

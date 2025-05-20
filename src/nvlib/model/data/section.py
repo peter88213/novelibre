@@ -106,7 +106,7 @@ class Section(BasicElementTags):
     def sectionContent(self, text):
         """Set sectionContent updating word count and letter count."""
         if text is not None:
-            assert type(text) == str
+            assert type(text) is str
         if self._sectionContent != text:
             self._sectionContent = text
             if text is not None:
@@ -129,7 +129,7 @@ class Section(BasicElementTags):
     @scType.setter
     def scType(self, newVal):
         if newVal is not None:
-            assert type(newVal) == int
+            assert type(newVal) is int
         if self._scType != newVal:
             self._scType = newVal
             self.on_element_change()
@@ -145,7 +145,7 @@ class Section(BasicElementTags):
     @scene.setter
     def scene(self, newVal):
         if newVal is not None:
-            assert type(newVal) == int
+            assert type(newVal) is int
         if self._scene != newVal:
             self._scene = newVal
             self.on_element_change()
@@ -162,7 +162,7 @@ class Section(BasicElementTags):
     @status.setter
     def status(self, newVal):
         if newVal is not None:
-            assert type(newVal) == int
+            assert type(newVal) is int
         if self._status != newVal:
             self._status = newVal
             self.on_element_change()
@@ -176,7 +176,7 @@ class Section(BasicElementTags):
     @appendToPrev.setter
     def appendToPrev(self, newVal):
         if newVal is not None:
-            assert type(newVal) == bool
+            assert type(newVal) is bool
         if self._appendToPrev != newVal:
             self._appendToPrev = newVal
             self.on_element_change()
@@ -188,7 +188,7 @@ class Section(BasicElementTags):
     @goal.setter
     def goal(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._goal != newVal:
             self._goal = newVal
             self.on_element_change()
@@ -200,7 +200,7 @@ class Section(BasicElementTags):
     @conflict.setter
     def conflict(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._conflict != newVal:
             self._conflict = newVal
             self.on_element_change()
@@ -212,7 +212,7 @@ class Section(BasicElementTags):
     @outcome.setter
     def outcome(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._outcome != newVal:
             self._outcome = newVal
             self.on_element_change()
@@ -231,7 +231,7 @@ class Section(BasicElementTags):
             for elem in newVal:
                 val = newVal[elem]
                 if val is not None:
-                    assert type(val) == str
+                    assert type(val) is str
         if self._plotlineNotes != newVal:
             self._plotlineNotes = newVal
             self.on_element_change()
@@ -244,7 +244,7 @@ class Section(BasicElementTags):
     @date.setter
     def date(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._date != newVal:
             if not newVal:
                 self._date = None
@@ -284,7 +284,7 @@ class Section(BasicElementTags):
     @time.setter
     def time(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._time != newVal:
             self._time = newVal
             self.on_element_change()
@@ -296,7 +296,7 @@ class Section(BasicElementTags):
     @day.setter
     def day(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._day != newVal:
             self._day = newVal
             self.on_element_change()
@@ -308,7 +308,7 @@ class Section(BasicElementTags):
     @lastsMinutes.setter
     def lastsMinutes(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._lastsMinutes != newVal:
             self._lastsMinutes = newVal
             self.on_element_change()
@@ -320,7 +320,7 @@ class Section(BasicElementTags):
     @lastsHours.setter
     def lastsHours(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._lastsHours != newVal:
             self._lastsHours = newVal
             self.on_element_change()
@@ -332,7 +332,7 @@ class Section(BasicElementTags):
     @lastsDays.setter
     def lastsDays(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._lastsDays != newVal:
             self._lastsDays = newVal
             self.on_element_change()
@@ -350,7 +350,7 @@ class Section(BasicElementTags):
         if newVal is not None:
             for elem in newVal:
                 if elem is not None:
-                    assert type(elem) == str
+                    assert type(elem) is str
         if self._characters != newVal:
             self._characters = newVal
             self.on_element_change()
@@ -368,7 +368,7 @@ class Section(BasicElementTags):
         if newVal is not None:
             for elem in newVal:
                 if elem is not None:
-                    assert type(elem) == str
+                    assert type(elem) is str
         if self._locations != newVal:
             self._locations = newVal
             self.on_element_change()
@@ -386,7 +386,7 @@ class Section(BasicElementTags):
         if newVal is not None:
             for elem in newVal:
                 if elem is not None:
-                    assert type(elem) == str
+                    assert type(elem) is str
         if self._items != newVal:
             self._items = newVal
             self.on_element_change()

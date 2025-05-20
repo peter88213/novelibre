@@ -30,7 +30,7 @@ class BasicElementTags(BasicElementNotes):
         if newVal is not None:
             for elem in newVal:
                 if elem is not None:
-                    assert type(elem) == str
+                    assert type(elem) is str
         if self._tags != newVal:
             self._tags = newVal
             self.on_element_change()

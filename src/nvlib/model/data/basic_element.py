@@ -51,7 +51,7 @@ class BasicElement:
     @title.setter
     def title(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._title != newVal:
             self._title = newVal
             self.on_element_change()
@@ -63,7 +63,7 @@ class BasicElement:
     @desc.setter
     def desc(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._desc != newVal:
             self._desc = newVal
             self.on_element_change()
@@ -82,7 +82,7 @@ class BasicElement:
             for elem in newVal:
                 val = newVal[elem]
                 if val is not None:
-                    assert type(val) == str
+                    assert type(val) is str
         if self._links != newVal:
             self._links = newVal
             self.on_element_change()

@@ -107,7 +107,7 @@ class Novel(BasicElement):
     @authorName.setter
     def authorName(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._authorName != newVal:
             self._authorName = newVal
             self.on_element_change()
@@ -119,7 +119,7 @@ class Novel(BasicElement):
     @wordTarget.setter
     def wordTarget(self, newVal):
         if newVal is not None:
-            assert type(newVal) == int
+            assert type(newVal) is int
         if self._wordTarget != newVal:
             self._wordTarget = newVal
             self.on_element_change()
@@ -131,7 +131,7 @@ class Novel(BasicElement):
     @wordCountStart.setter
     def wordCountStart(self, newVal):
         if newVal is not None:
-            assert type(newVal) == int
+            assert type(newVal) is int
         if self._wordCountStart != newVal:
             self._wordCountStart = newVal
             self.on_element_change()
@@ -144,7 +144,7 @@ class Novel(BasicElement):
     @languageCode.setter
     def languageCode(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._languageCode != newVal:
             self._languageCode = newVal
             self.on_element_change()
@@ -157,7 +157,7 @@ class Novel(BasicElement):
     @countryCode.setter
     def countryCode(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._countryCode != newVal:
             self._countryCode = newVal
             self.on_element_change()
@@ -171,7 +171,7 @@ class Novel(BasicElement):
     @renumberChapters.setter
     def renumberChapters(self, newVal):
         if newVal is not None:
-            assert type(newVal) == bool
+            assert type(newVal) is bool
         if self._renumberChapters != newVal:
             self._renumberChapters = newVal
             self.on_element_change()
@@ -185,7 +185,7 @@ class Novel(BasicElement):
     @renumberParts.setter
     def renumberParts(self, newVal):
         if newVal is not None:
-            assert type(newVal) == bool
+            assert type(newVal) is bool
         if self._renumberParts != newVal:
             self._renumberParts = newVal
             self.on_element_change()
@@ -199,7 +199,7 @@ class Novel(BasicElement):
     @renumberWithinParts.setter
     def renumberWithinParts(self, newVal):
         if newVal is not None:
-            assert type(newVal) == bool
+            assert type(newVal) is bool
         if self._renumberWithinParts != newVal:
             self._renumberWithinParts = newVal
             self.on_element_change()
@@ -213,7 +213,7 @@ class Novel(BasicElement):
     @romanChapterNumbers.setter
     def romanChapterNumbers(self, newVal):
         if newVal is not None:
-            assert type(newVal) == bool
+            assert type(newVal) is bool
         if self._romanChapterNumbers != newVal:
             self._romanChapterNumbers = newVal
             self.on_element_change()
@@ -227,7 +227,7 @@ class Novel(BasicElement):
     @romanPartNumbers.setter
     def romanPartNumbers(self, newVal):
         if newVal is not None:
-            assert type(newVal) == bool
+            assert type(newVal) is bool
         if self._romanPartNumbers != newVal:
             self._romanPartNumbers = newVal
             self.on_element_change()
@@ -241,7 +241,7 @@ class Novel(BasicElement):
     @saveWordCount.setter
     def saveWordCount(self, newVal):
         if newVal is not None:
-            assert type(newVal) == bool
+            assert type(newVal) is bool
         if self._saveWordCount != newVal:
             self._saveWordCount = newVal
             self.on_element_change()
@@ -259,7 +259,7 @@ class Novel(BasicElement):
     @workPhase.setter
     def workPhase(self, newVal):
         if newVal is not None:
-            assert type(newVal) == int
+            assert type(newVal) is int
         if self._workPhase != newVal:
             self._workPhase = newVal
             self.on_element_change()
@@ -271,7 +271,7 @@ class Novel(BasicElement):
     @chapterHeadingPrefix.setter
     def chapterHeadingPrefix(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._chapterHeadingPrefix != newVal:
             self._chapterHeadingPrefix = newVal
             self.on_element_change()
@@ -283,7 +283,7 @@ class Novel(BasicElement):
     @chapterHeadingSuffix.setter
     def chapterHeadingSuffix(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._chapterHeadingSuffix != newVal:
             self._chapterHeadingSuffix = newVal
             self.on_element_change()
@@ -295,7 +295,7 @@ class Novel(BasicElement):
     @partHeadingPrefix.setter
     def partHeadingPrefix(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._partHeadingPrefix != newVal:
             self._partHeadingPrefix = newVal
             self.on_element_change()
@@ -307,7 +307,7 @@ class Novel(BasicElement):
     @partHeadingSuffix.setter
     def partHeadingSuffix(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._partHeadingSuffix != newVal:
             self._partHeadingSuffix = newVal
             self.on_element_change()
@@ -319,7 +319,7 @@ class Novel(BasicElement):
     @customPlotProgress.setter
     def customPlotProgress(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._customPlotProgress != newVal:
             self._customPlotProgress = newVal
             self.on_element_change()
@@ -331,7 +331,7 @@ class Novel(BasicElement):
     @customCharacterization.setter
     def customCharacterization(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._customCharacterization != newVal:
             self._customCharacterization = newVal
             self.on_element_change()
@@ -343,7 +343,7 @@ class Novel(BasicElement):
     @customWorldBuilding.setter
     def customWorldBuilding(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._customWorldBuilding != newVal:
             self._customWorldBuilding = newVal
             self.on_element_change()
@@ -355,7 +355,7 @@ class Novel(BasicElement):
     @customGoal.setter
     def customGoal(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._customGoal != newVal:
             self._customGoal = newVal
             self.on_element_change()
@@ -367,7 +367,7 @@ class Novel(BasicElement):
     @customConflict.setter
     def customConflict(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._customConflict != newVal:
             self._customConflict = newVal
             self.on_element_change()
@@ -379,7 +379,7 @@ class Novel(BasicElement):
     @customOutcome.setter
     def customOutcome(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._customOutcome != newVal:
             self._customOutcome = newVal
             self.on_element_change()
@@ -391,7 +391,7 @@ class Novel(BasicElement):
     @customChrBio.setter
     def customChrBio(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._customChrBio != newVal:
             self._customChrBio = newVal
             self.on_element_change()
@@ -403,7 +403,7 @@ class Novel(BasicElement):
     @customChrGoals.setter
     def customChrGoals(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._customChrGoals != newVal:
             self._customChrGoals = newVal
             self.on_element_change()
@@ -415,7 +415,7 @@ class Novel(BasicElement):
     @referenceDate.setter
     def referenceDate(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._referenceDate != newVal:
             if not newVal:
                 self._referenceDate = None

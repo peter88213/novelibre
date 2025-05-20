@@ -25,7 +25,7 @@ class WorldElement(BasicElementTags):
     @aka.setter
     def aka(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._aka != newVal:
             self._aka = newVal
             self.on_element_change()

@@ -30,7 +30,7 @@ class PlotLine(BasicElementNotes):
     @shortName.setter
     def shortName(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._shortName != newVal:
             self._shortName = newVal
             self.on_element_change()
@@ -48,7 +48,7 @@ class PlotLine(BasicElementNotes):
         if newVal is not None:
             for elem in newVal:
                 if elem is not None:
-                    assert type(elem) == str
+                    assert type(elem) is str
         if self._sections != newVal:
             self._sections = newVal
             self.on_element_change()

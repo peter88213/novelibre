@@ -24,7 +24,7 @@ class BasicElementNotes(BasicElement):
     @notes.setter
     def notes(self, newVal):
         if newVal is not None:
-            assert type(newVal) == str
+            assert type(newVal) is str
         if self._notes != newVal:
             self._notes = newVal
             self.on_element_change()
