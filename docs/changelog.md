@@ -12,7 +12,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### Version 5.23.3
 
-Updated the css stale sheet for better display of epigraphs.
+Updated the css style sheet for better display of epigraphs.
 
 Refactored the code according to PEP 8
 
