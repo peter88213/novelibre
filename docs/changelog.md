@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.23.4
+
+- Changed icon colors for better display in dark mode.
+
+
 ### Version 5.23.3
 
 Updated the css style sheet for better display of epigraphs.
