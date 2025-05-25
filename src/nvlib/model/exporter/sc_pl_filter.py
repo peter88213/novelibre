@@ -24,7 +24,7 @@ class ScPlFilter(Filter):
             source -- File instance holding the section to check.
             scId -- ID of the section to check.       
         
-        Return True if the plId matches an arc the section is assigned to.
+        Return True if the plId matches a plot line the section is assigned to.
         """
         try:
             if self._plId in source.novel.sections[scId].scPlotLines:

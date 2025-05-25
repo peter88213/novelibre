@@ -23,8 +23,7 @@ class ChChFilter(Filter):
             source -- File instance holding the chapter to check.
             chId -- ID of the chapter to check.       
         
-        Return True if the plId matches an arc that at least
-        one section in the chapter is assigned to.
+        Return True if the chapter ID matches the filter chapter ID.
         """
         if chId == self._chId:
             return True

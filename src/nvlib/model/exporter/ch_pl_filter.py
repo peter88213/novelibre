@@ -24,7 +24,7 @@ class ChPlFilter(Filter):
             source -- File instance holding the chapter to check.
             chId -- ID of the chapter to check.       
         
-        Return True if the plId matches an arc that at least
+        Return True if the plId matches a plot line that at least
         one section in the chapter is assigned to.
         """
         for scId in source.novel.tree.get_children(chId):
