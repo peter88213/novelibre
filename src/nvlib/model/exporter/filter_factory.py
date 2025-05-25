@@ -8,11 +8,13 @@ from nvlib.model.exporter.ch_ch_filter import ChChFilter
 from nvlib.model.exporter.ch_pl_filter import ChPlFilter
 from nvlib.model.exporter.ch_vp_filter import ChVpFilter
 from nvlib.model.exporter.sc_pl_filter import ScPlFilter
+from nvlib.model.exporter.sc_sc_filter import ScScFilter
 from nvlib.model.exporter.sc_vp_filter import ScVpFilter
 from nvlib.model.file.filter import Filter
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import PLOT_LINE_PREFIX
+from nvlib.novx_globals import SECTION_PREFIX
 
 
 class FilterFactory:
@@ -31,6 +33,9 @@ class FilterFactory:
         if filterElementId.startswith(PLOT_LINE_PREFIX):
             return ScPlFilter(filterElementId)
 
+        if filterElementId.startswith(SECTION_PREFIX):
+            return ScScFilter(filterElementId)
+
         return Filter()
 
     @staticmethod
@@ -41,11 +46,11 @@ class FilterFactory:
             filterElementId: str -- ID of the element that serves as filter criteria. 
         
         """
-        if filterElementId.startswith(CHARACTER_PREFIX):
-            return ChVpFilter(filterElementId)
-
         if filterElementId.startswith(CHAPTER_PREFIX):
             return ChChFilter(filterElementId)
+
+        if filterElementId.startswith(CHARACTER_PREFIX):
+            return ChVpFilter(filterElementId)
 
         if filterElementId.startswith(PLOT_LINE_PREFIX):
             return ChPlFilter(filterElementId)
