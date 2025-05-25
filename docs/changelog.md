@@ -10,6 +10,17 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.23.3
+
+Updated the css stale sheet for better display of epigraphs.
+
+Refactored the code according to PEP 8
+
+- Mentioned specific exceptions.
+- Shortened long lines.
+- Replaced docstrings of "non-publlic' methods with comments.
+- Removed redundant comments.
+
 
 ### Version 5.23.2
 

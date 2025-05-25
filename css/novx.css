@@ -5,7 +5,7 @@ novx {
 PROJECT {
     display: block;
 }
-Title, ShortName, Author {
+Title, ShortName, Author, Epigraph, EpigraphSrc {
     text-align: center;
     display: block;
 }
@@ -81,6 +81,11 @@ Desc,  Goal, Conflict, Outcome, Bio, Goals, PlotlineNotes {
     margin-top: 1em;
     margin-bottom: 1em;
     padding: 1em;
+}
+EpigraphSrc {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-style: italic;    
 }
 Goal, Conflict, Outcome {
     background: bisque;
