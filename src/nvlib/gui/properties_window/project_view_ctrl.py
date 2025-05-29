@@ -156,8 +156,14 @@ class ProjectViewCtrl(BasicViewCtrl):
         #--- "Language settings" frame.
         if prefs['show_language_settings']:
             self.languageFrame.show()
+            self.localePreviewVar.set('')
         else:
             self.languageFrame.hide()
+            if self.element.languageCode and self.element.countryCode:
+                self.localePreviewVar.set(
+                    f'{self.element.languageCode}-{self.element.countryCode}')
+            else:
+                self.localePreviewVar.set('')
 
         # 'Language code' entry.
         self.languageCodeVar.set(self.element.languageCode)

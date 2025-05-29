@@ -50,6 +50,19 @@ class ProjectView(BasicView, ProjectViewCtrl):
         ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
         # Language and country code.
+
+        # Locale  preview.
+        self.localePreviewVar = MyStringVar()
+        localePreview = ttk.Label(
+            self.languageFrame.titleBar,
+            textvariable=self.localePreviewVar,
+            )
+        localePreview.pack(side='left', padx=2)
+        localePreview.bind(
+            '<Button-1>',
+            self._toggle_language_frame
+            )
+
         self.languageCodeVar = MyStringVar()
         self._languageCodeEntry = LabelEntry(
             self.languageFrame,
