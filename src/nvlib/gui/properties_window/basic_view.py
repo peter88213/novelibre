@@ -178,6 +178,7 @@ class BasicView(ttk.Frame, Observer):
 
     def _toggle_folding_frame(self):
         self.apply_changes()
+        self.set_data(self.elementId)
 
     def _toggle_links_window(self, event=None):
         """Hide/show the "links" window.

@@ -139,18 +139,16 @@ class BasicViewCtrl(SubController):
 
         # Links window.
         if hasattr(self.element, 'links'):
-
-            # Link count preview.
-            linksCount = len(self.element.links)
-            if linksCount:
-                self.linksPreviewVar.set(str(linksCount))
-            else:
-                self.linksPreviewVar.set('')
-
             if prefs[self._prefsShowLinks]:
                 self.linksWindow.show()
+                self.linksPreviewVar.set('')
             else:
                 self.linksWindow.hide()
+                linksCount = len(self.element.links)
+                if linksCount:
+                    self.linksPreviewVar.set(str(linksCount))
+                else:
+                    self.linksPreviewVar.set('')
             linkList = []
             for path in self.element.links:
                 linkList.append(os.path.basename(path))

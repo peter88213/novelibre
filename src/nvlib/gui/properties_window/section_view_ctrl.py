@@ -595,22 +595,21 @@ class SectionViewCtrl(BasicViewCtrl):
         #--- Frame for 'Relationships'.
         if prefs['show_relationships']:
             self.relationFrame.show()
+            self.relationsPreviewVar.set('')
         else:
             self.relationFrame.hide()
-
-        # Relationships count preview.
-        relationsPreview = []
-        relationCounts = {
-            _('Characters'): len(self.element.characters),
-            _('Locations'):len(self.element.locations),
-            _('Items'):len(self.element.items),
-        }
-        for elementType in relationCounts:
-            if relationCounts[elementType]:
-                relationsPreview.append(
-                    f"{elementType}: {relationCounts[elementType]}")
-        self.relationsPreviewVar.set(
-            list_to_string(relationsPreview, divider=', '))
+            relationsPreview = []
+            relationCounts = {
+                _('Characters'): len(self.element.characters),
+                _('Locations'):len(self.element.locations),
+                _('Items'):len(self.element.items),
+            }
+            for elementType in relationCounts:
+                if relationCounts[elementType]:
+                    relationsPreview.append(
+                        f"{elementType}: {relationCounts[elementType]}")
+            self.relationsPreviewVar.set(
+                list_to_string(relationsPreview, divider=', '))
 
         # 'Characters' window.
         self.crTitles = self._get_element_titles(self.element.characters, self._mdl.novel.characters)
@@ -690,35 +689,6 @@ class SectionViewCtrl(BasicViewCtrl):
             vp = ''
         self.viewpointVar.set(value=vp)
 
-        #--- 'Plot lines' listbox.
-        self.plotlineTitles = self._get_plotline_titles(self.element.scPlotLines, self._mdl.novel.plotLines)
-        self.plotlineCollection.cList.set(self.plotlineTitles)
-        listboxSize = len(self.plotlineTitles)
-        if listboxSize > self._HEIGHT_LIMIT:
-            listboxSize = self._HEIGHT_LIMIT
-        self.plotlineCollection.cListbox.config(height=listboxSize)
-        if not self.plotlineCollection.cListbox.curselection() or not self.plotlineCollection.cListbox.focus_get():
-            self.plotlineCollection.disable_buttons()
-
-        #--- 'Plot notes' text box.
-        self.plotNotesWindow.clear()
-        self.plotNotesWindow.config(state='disabled')
-        self.plotNotesWindow.config(bg='light gray')
-        if self.plotlineTitles:
-            self.plotlineCollection.cListbox.select_clear(0, 'end')
-            self.plotlineCollection.cListbox.select_set('end')
-            self.selectedPlotline = -1
-            self.on_select_plotline(-1)
-        else:
-            self.selectedPlotline = None
-
-        #--- "Plot points" label
-        plotPointTitles = []
-        for ppId in self.element.scPlotPoints:
-            plId = self.element.scPlotPoints[ppId]
-            plotPointTitles.append(f'{self._mdl.novel.plotLines[plId].shortName}: {self._mdl.novel.plotPoints[ppId].title}')
-        self.plotPointsDisplay.config(text=list_to_string(plotPointTitles))
-
         #--- 'Unused' checkbox.
         if self.element.scType > 0:
             self.isUnusedVar.set(True)
@@ -762,39 +732,71 @@ class SectionViewCtrl(BasicViewCtrl):
         #--- Frame for 'Plot'.
         if prefs['show_plot']:
             self.plotFrame.show()
+            self.plotPreviewVar.set('')
         else:
             self.plotFrame.hide()
+            plotPreview = []
+            plotCounts = {
+                _('Plot lines'): len(self.element.scPlotLines),
+                _('Plot points'):len(self.element.scPlotPoints),
+            }
+            for elementType in plotCounts:
+                if plotCounts[elementType]:
+                    plotPreview.append(
+                        f"{elementType}: {plotCounts[elementType]}")
+            self.plotPreviewVar.set(
+                list_to_string(plotPreview, divider=', '))
 
-        # Plot lines count preview.
-        plotPreview = []
-        plotCounts = {
-            _('Plot lines'): len(self.element.scPlotLines),
-            _('Plot points'):len(self.element.scPlotPoints),
-        }
-        for elementType in plotCounts:
-            if plotCounts[elementType]:
-                plotPreview.append(
-                    f"{elementType}: {plotCounts[elementType]}")
-        self.plotPreviewVar.set(
-            list_to_string(plotPreview, divider=', '))
+        #  'Plot lines' listbox.
+        self.plotlineTitles = self._get_plotline_titles(
+            self.element.scPlotLines,
+            self._mdl.novel.plotLines
+            )
+        self.plotlineCollection.cList.set(self.plotlineTitles)
+        listboxSize = len(self.plotlineTitles)
+        if listboxSize > self._HEIGHT_LIMIT:
+            listboxSize = self._HEIGHT_LIMIT
+        self.plotlineCollection.cListbox.config(height=listboxSize)
+        if (not self.plotlineCollection.cListbox.curselection()
+            or not self.plotlineCollection.cListbox.focus_get()
+        ):
+            self.plotlineCollection.disable_buttons()
+
+        # 'Plot notes' text box.
+        self.plotNotesWindow.clear()
+        self.plotNotesWindow.config(state='disabled')
+        self.plotNotesWindow.config(bg='light gray')
+        if self.plotlineTitles:
+            self.plotlineCollection.cListbox.select_clear(0, 'end')
+            self.plotlineCollection.cListbox.select_set('end')
+            self.selectedPlotline = -1
+            self.on_select_plotline(-1)
+        else:
+            self.selectedPlotline = None
+
+        # "Plot points" label
+        plotPointTitles = []
+        for ppId in self.element.scPlotPoints:
+            plId = self.element.scPlotPoints[ppId]
+            plotPointTitles.append(f'{self._mdl.novel.plotLines[plId].shortName}: {self._mdl.novel.plotPoints[ppId].title}')
+        self.plotPointsDisplay.config(text=list_to_string(plotPointTitles))
 
         #--- Frame for 'Scene'.
         if prefs['show_scene']:
             self.sceneFrame.show()
+            self.scenePreviewVar.set('')
         else:
             self.sceneFrame.hide()
-
-        # Kind of scene preview.
-        if (
-            self.element.scene or
-            self.element.goal or
-            self.element.conflict or
-            self.element.outcome
-        ):
-            scenePreview = self.kindsOfScene[self.element.scene]
-        else:
-            scenePreview = ''
-        self.scenePreviewVar.set(scenePreview)
+            if (
+                self.element.scene or
+                self.element.goal or
+                self.element.conflict or
+                self.element.outcome
+            ):
+                self.scenePreviewVar.set(
+                    self.kindsOfScene[self.element.scene])
+            else:
+                self.scenePreviewVar.set('')
 
         # Scene radiobuttons.
         self.sceneVar.set(self.element.scene)
