@@ -64,7 +64,23 @@ class SectionView(BasicView, SectionViewCtrl):
 
         #--- Frame for 'Relationships'.
         # updating the character list before the viewpoints
-        self.relationFrame = FoldingFrame(self.elementInfoWindow, _('Relationships'), self._toggle_relation_frame)
+        self.relationFrame = FoldingFrame(
+            self.elementInfoWindow,
+            _('Relationships'),
+            self._toggle_relation_frame,
+            )
+
+        # Relationships preview.
+        self.relationsPreviewVar = MyStringVar()
+        relationsPreview = ttk.Label(
+            self.relationFrame.titleBar,
+            textvariable=self.relationsPreviewVar,
+            )
+        relationsPreview.pack(side='left', padx=2)
+        relationsPreview.bind(
+            '<Button-1>',
+            self._toggle_relation_frame
+            )
 
         # 'Characters' listbox.
         self.crTitles = ''
@@ -344,7 +360,23 @@ class SectionView(BasicView, SectionViewCtrl):
         ttk.Separator(self._sectionExtraFrame, orient='horizontal').pack(fill='x')
 
         #--- Frame for 'Plot'.
-        self.plotFrame = FoldingFrame(self._sectionExtraFrame, _('Plot'), self._toggle_plot_frame)
+        self.plotFrame = FoldingFrame(
+            self._sectionExtraFrame,
+            _('Plot'),
+            self._toggle_plot_frame
+            )
+
+        # Plot lines preview.
+        self.plotPreviewVar = MyStringVar()
+        plotlinesPreview = ttk.Label(
+            self.plotFrame.titleBar,
+            textvariable=self.plotPreviewVar,
+            )
+        plotlinesPreview.pack(side='left', padx=2)
+        plotlinesPreview.bind(
+            '<Button-1>',
+            self._toggle_plot_frame
+            )
 
         # 'Plot lines' listbox.
         self.plotlineTitles = ''

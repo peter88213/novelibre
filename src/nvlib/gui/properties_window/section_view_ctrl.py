@@ -598,6 +598,20 @@ class SectionViewCtrl(BasicViewCtrl):
         else:
             self.relationFrame.hide()
 
+        # Relationships count preview.
+        relationsPreview = []
+        relationCounts = {
+            _('Characters'): len(self.element.characters),
+            _('Locations'):len(self.element.locations),
+            _('Items'):len(self.element.items),
+        }
+        for elementType in relationCounts:
+            if relationCounts[elementType]:
+                relationsPreview.append(
+                    f"{elementType}: {relationCounts[elementType]}")
+        self.relationsPreviewVar.set(
+            list_to_string(relationsPreview, divider=', '))
+
         # 'Characters' window.
         self.crTitles = self._get_element_titles(self.element.characters, self._mdl.novel.characters)
         self.characterCollection.cList.set(self.crTitles)
@@ -750,6 +764,19 @@ class SectionViewCtrl(BasicViewCtrl):
             self.plotFrame.show()
         else:
             self.plotFrame.hide()
+
+        # Plot lines count preview.
+        plotPreview = []
+        plotCounts = {
+            _('Plot lines'): len(self.element.scPlotLines),
+            _('Plot points'):len(self.element.scPlotPoints),
+        }
+        for elementType in plotCounts:
+            if plotCounts[elementType]:
+                plotPreview.append(
+                    f"{elementType}: {plotCounts[elementType]}")
+        self.plotPreviewVar.set(
+            list_to_string(plotPreview, divider=', '))
 
         #--- Frame for 'Scene'.
         if prefs['show_scene']:
