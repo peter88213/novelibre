@@ -670,11 +670,6 @@ class TreeViewerCtrl(SubController):
 
         return ''
 
-        """Return the element's title, if any."""
-        title = self._mdl.novel.sections[scId].title
-        if not title:
-            title = _('Unnamed')
-
     def _get_item_row_data(self, itId):
         """Return title, values, and tags for an item row.
         
