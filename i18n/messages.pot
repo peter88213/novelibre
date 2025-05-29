@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.23.5\n"
-"POT-Creation-Date: 2025-05-29 21:30:38\n"
+"POT-Creation-Date: 2025-05-29 22:42:58\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -243,6 +243,9 @@ msgid "Chapter number suffix"
 msgstr ""
 
 msgid "Chapter_20_beginning"
+msgstr ""
+
+msgid "Chapters"
 msgstr ""
 
 msgid "Chapters belonging to plot line"
@@ -983,6 +986,9 @@ msgstr ""
 msgid "Part number suffix"
 msgstr ""
 
+msgid "Parts"
+msgstr ""
+
 msgid "Paste"
 msgstr ""
 
@@ -1461,6 +1467,9 @@ msgid "XML plot line file"
 msgstr ""
 
 msgid "YYYY-MM-DD"
+msgstr ""
+
+msgid "and"
 msgstr ""
 
 msgid "at age"

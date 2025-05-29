@@ -6,6 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.gui.properties_window.basic_view_ctrl import BasicViewCtrl
 from nvlib.model.data.py_calendar import PyCalendar
+from nvlib.novx_globals import list_to_string
 from nvlib.nv_globals import datestr
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
@@ -174,8 +175,17 @@ class ProjectViewCtrl(BasicViewCtrl):
         #--- "Auto numbering" frame.
         if prefs['show_auto_numbering']:
             self.numberingFrame.show()
+            self.numberingPreviewVar.set('')
         else:
             self.numberingFrame.hide()
+            renumberings = []
+            if self.element.renumberChapters:
+                renumberings.append(_('Chapters'))
+            if self.element.renumberParts:
+                renumberings.append(_('Parts'))
+            self.numberingPreviewVar.set(
+                list_to_string(renumberings, divider=f' {_("and")}')
+                )
 
         # 'Auto number chapters' checkbox.
         if self.element.renumberChapters:

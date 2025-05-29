@@ -45,7 +45,11 @@ class ProjectView(BasicView, ProjectViewCtrl):
         ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- "Language settings" frame.
-        self.languageFrame = FoldingFrame(self.elementInfoWindow, _('Document language'), self._toggle_language_frame)
+        self.languageFrame = FoldingFrame(
+            self.elementInfoWindow,
+            _('Document language'),
+            self._toggle_language_frame,
+            )
 
         ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
@@ -86,9 +90,25 @@ class ProjectView(BasicView, ProjectViewCtrl):
         inputWidgets.append(self._countryCodeEntry)
 
         #--- "Auto numbering" frame.
-        self.numberingFrame = FoldingFrame(self.elementInfoWindow, _('Auto numbering'), self._toggle_numbering_frame)
+        self.numberingFrame = FoldingFrame(
+            self.elementInfoWindow,
+            _('Auto numbering'),
+            self._toggle_numbering_frame,
+            )
 
         ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
+
+        # Auto numbering  preview.
+        self.numberingPreviewVar = MyStringVar()
+        numberingPreview = ttk.Label(
+            self.numberingFrame.titleBar,
+            textvariable=self.numberingPreviewVar,
+            )
+        numberingPreview.pack(side='left', padx=2)
+        numberingPreview.bind(
+            '<Button-1>',
+            self._toggle_numbering_frame
+            )
 
         # 'Auto number chapters...' checkbox.
         self.renumberChaptersVar = tk.BooleanVar(value=False)
@@ -204,7 +224,10 @@ class ProjectView(BasicView, ProjectViewCtrl):
         inputWidgets.append(self._romanPartNumbersCheckbox)
 
         #--- "Renamings" frame.
-        self.renamingsFrame = FoldingFrame(self.elementInfoWindow, _('Renamings'), self._toggle_renamings_frame)
+        self.renamingsFrame = FoldingFrame(
+            self.elementInfoWindow, _('Renamings'),
+            self._toggle_renamings_frame,
+            )
 
         ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
         ttk.Label(self.renamingsFrame, text=_('Not a scene')).pack(anchor='w')

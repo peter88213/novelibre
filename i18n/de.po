@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.23.5\n"
-"POT-Creation-Date: 2025-05-29 21:30:38\n"
-"PO-Revision-Date: 2025-05-29 21:30:38\n"
+"POT-Creation-Date: 2025-05-29 22:42:58\n"
+"PO-Revision-Date: 2025-05-29 22:42:58\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -237,6 +237,9 @@ msgstr "Suffix Kapitelnummer"
 
 msgid "Chapter_20_beginning"
 msgstr "Kapitelanfang"
+
+msgid "Chapters"
+msgstr "Kapitel"
 
 msgid "Chapters belonging to plot line"
 msgstr "Kapitel gehören zur Plotlinie"
@@ -976,6 +979,9 @@ msgstr "Präfix Teilenummer"
 msgid "Part number suffix"
 msgstr "Suffix Teilenummer"
 
+msgid "Parts"
+msgstr "Teile"
+
 msgid "Paste"
 msgstr "Einfügen"
 
@@ -1461,6 +1467,9 @@ msgstr "\"Export\"-Optionen"
 
 msgid "\"View\" options"
 msgstr "\"Ansicht\"-Optionen"
+
+msgid "and"
+msgstr "und"
 
 msgid "at age"
 msgstr "mit"
