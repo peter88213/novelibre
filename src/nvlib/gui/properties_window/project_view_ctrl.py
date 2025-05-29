@@ -61,7 +61,7 @@ class ProjectViewCtrl(BasicViewCtrl):
         if not refDateStr:
             self.element.referenceDate = None
             self.referenceWeekDayVar.set('')
-            self.localeDateVar.set('')
+            self.displayDateVar.set('')
         elif refDateStr != self.element.referenceDate:
             try:
                 PyCalendar.verified_date(refDateStr)
@@ -77,7 +77,7 @@ class ProjectViewCtrl(BasicViewCtrl):
                     self.referenceWeekDayVar.set(PyCalendar.WEEKDAYS[self.element.referenceWeekDay])
                 else:
                     self.referenceWeekDayVar.set('')
-                    self.localeDateVar.set('')
+                    self.displayDateVar.set('')
 
         #--- "Writing progress" frame.
         try:
@@ -239,12 +239,12 @@ class ProjectViewCtrl(BasicViewCtrl):
             self.referenceWeekDayVar.set(
                 PyCalendar.WEEKDAYS[self.element.referenceWeekDay]
                 )
-            self.localeDateVar.set(
+            self.displayDateVar.set(
                 datestr(self.element.referenceDate)
                 )
         else:
             self.referenceWeekDayVar.set('')
-            self.localeDateVar.set('')
+            self.displayDateVar.set('')
         self.referenceDateVar.set(self.element.referenceDate)
 
         #--- "Writing progress" frame.

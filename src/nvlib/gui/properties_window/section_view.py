@@ -87,7 +87,11 @@ class SectionView(BasicView, SectionViewCtrl):
         crHeading = ttk.Frame(self.relationFrame)
         self._characterLabel = ttk.Label(crHeading, text=_('Characters'))
         self._characterLabel.pack(anchor='w', side='left')
-        ttk.Button(crHeading, text=_('Show ages'), command=self.show_ages).pack(anchor='e')
+        ttk.Button(
+            crHeading,
+            text=_('Show ages'),
+            command=self.show_ages
+            ).pack(anchor='e')
         crHeading.pack(fill='x')
         self.characterCollection = CollectionBox(
             self.relationFrame,
@@ -147,16 +151,78 @@ class SectionView(BasicView, SectionViewCtrl):
         self.dateTimeFrame = FoldingFrame(
             self.elementInfoWindow,
             _('Date/Time'),
-            self._toggle_date_time_frame)
+            self._toggle_date_time_frame,
+            )
+
+        # Preview weekday.
+        self.weekDayPreviewVar = MyStringVar()
+        weekDayPreview = ttk.Label(
+            self.dateTimeFrame.titleBar,
+            textvariable=self.weekDayPreviewVar
+            )
+        weekDayPreview.pack(side='left')
+        weekDayPreview.bind('<Button-1>', self._toggle_date_time_frame)
+
+        # Preview date.
+        self.datePreviewVar = MyStringVar()
+        datePreview = ttk.Label(
+            self.dateTimeFrame.titleBar,
+            textvariable=self.datePreviewVar
+            )
+        datePreview.pack(side='left')
+        datePreview.bind('<Button-1>', self._toggle_date_time_frame)
+
+        # Preview time.
+        self.timePreviewVar = MyStringVar()
+        timePreview = ttk.Label(
+            self.dateTimeFrame.titleBar,
+            textvariable=self.timePreviewVar
+            )
+        timePreview.pack(side='left', padx=2)
+        timePreview.bind('<Button-1>', self._toggle_date_time_frame)
+
         sectionStartFrame = ttk.Frame(self.dateTimeFrame)
         sectionStartFrame.pack(fill='x')
-        localeDateFrame = ttk.Frame(sectionStartFrame)
-        localeDateFrame.pack(fill='x')
+
+        # Frame for localized date/time display.
+        displayDateFrame = ttk.Frame(sectionStartFrame)
+        displayDateFrame.pack(fill='x')
         ttk.Label(
-            localeDateFrame,
+            displayDateFrame,
             text=_('Start'),
             width=self._DATE_TIME_LBL_X
             ).pack(side='left')
+
+        # Day of the week.
+        self.weekDayVar = MyStringVar()
+        weekDay = ttk.Label(
+            displayDateFrame,
+            textvariable=self.weekDayVar
+            )
+        weekDay.pack(side='left')
+
+        # Display date.
+        self.displayDateVar = MyStringVar()
+        displayDate = ttk.Label(
+            displayDateFrame,
+            textvariable=self.displayDateVar
+            )
+        displayDate.pack(side='left')
+
+        # Display time.
+        self.displayTimeVar = MyStringVar()
+        displayTime = ttk.Label(
+            displayDateFrame,
+            textvariable=self.displayTimeVar
+            )
+        displayTime.pack(side='left', padx=2)
+
+        # 'Moon phase' button.
+        ttk.Button(
+            displayDateFrame,
+            text=_('Moon phase'),
+            command=self.show_moonphase
+            ).pack(anchor='e')
 
         # 'Start date' entry.
         self.startDateVar = MyStringVar()
@@ -195,46 +261,19 @@ class SectionView(BasicView, SectionViewCtrl):
         inputWidgets.append(self._startDayEntry)
         self._startDayEntry.entry.bind('<Return>', self.change_day)
 
-        # Day of the week preview.
-        self.weekDayPreviewVar = MyStringVar()
-        weekDayPreview = ttk.Label(
-            self.dateTimeFrame.titleBar,
-            textvariable=self.weekDayPreviewVar
-            )
-        weekDayPreview.pack(side='left')
-        weekDayPreview.bind('<Button-1>', self._toggle_date_time_frame)
-
-        # Localized date preview.
-        self.datePreviewVar = MyStringVar()
-        localeDatePreview = ttk.Label(
-            self.dateTimeFrame.titleBar,
-            textvariable=self.datePreviewVar
-            )
-        localeDatePreview.pack(side='left')
-        localeDatePreview.bind('<Button-1>', self._toggle_date_time_frame)
-
-        # Time preview.
-        timePreview = ttk.Label(
-            self.dateTimeFrame.titleBar,
-            textvariable=self.startTimeVar
-            )
-        timePreview.pack(side='left', padx=2)
-        timePreview.bind('<Button-1>', self._toggle_date_time_frame)
-
-        # 'Moon phase' button.
-        ttk.Button(
-            localeDateFrame,
-            text=_('Moon phase'),
-            command=self.show_moonphase
-            ).pack(anchor='e')
-
         # 'Clear date/time' button.
         self._clearDateButton = ttk.Button(
             sectionStartFrame,
             text=_('Clear date/time'),
             command=self.clear_start
             )
-        self._clearDateButton.pack(side='left', fill='x', expand=True, padx=1, pady=2)
+        self._clearDateButton.pack(
+            side='left',
+            fill='x',
+            expand=True,
+            padx=1,
+            pady=2
+            )
         inputWidgets.append(self._clearDateButton)
 
         # 'Generate' button.
@@ -243,7 +282,13 @@ class SectionView(BasicView, SectionViewCtrl):
             text=_('Generate'),
             command=self.auto_set_date
             )
-        self._generateDateButton.pack(side='left', fill='x', expand=True, padx=1, pady=2)
+        self._generateDateButton.pack(
+            side='left',
+            fill='x',
+            expand=True,
+            padx=1,
+            pady=2
+            )
         inputWidgets.append(self._generateDateButton)
 
         # 'Toggle date' button.
@@ -252,14 +297,35 @@ class SectionView(BasicView, SectionViewCtrl):
             text=_('Convert date/day'),
             command=self.toggle_date
             )
-        self._toggleDateButton.pack(side='left', fill='x', expand=True, padx=1, pady=2)
+        self._toggleDateButton.pack(
+            side='left',
+            fill='x',
+            expand=True,
+            padx=1,
+            pady=2
+            )
         inputWidgets.append(self._toggleDateButton)
 
         ttk.Separator(self.dateTimeFrame, orient='horizontal').pack(fill='x', pady=2)
 
         sectionDurationFrame = ttk.Frame(self.dateTimeFrame)
         sectionDurationFrame.pack(fill='x')
-        ttk.Label(sectionDurationFrame, text=_('Duration')).pack(anchor='w')
+
+        displayDurationFrame = ttk.Frame(sectionDurationFrame)
+        displayDurationFrame.pack(fill='x')
+        ttk.Label(
+            displayDurationFrame,
+            text=_('Duration'),
+            width=self._DATE_TIME_LBL_X,
+            ).pack(side='left')
+
+        # Display duration.
+        self.displayDurationVar = MyStringVar()
+        displayDuration = ttk.Label(
+            displayDurationFrame,
+            textvariable=self.displayDurationVar
+            )
+        displayDuration.pack(side='left', padx=2)
 
         # 'Duration days' entry.
         self.lastsDaysVar = MyStringVar()
@@ -400,7 +466,10 @@ class SectionView(BasicView, SectionViewCtrl):
 
         #--- 'Plot line notes' text box for entering element.plotlineNotes[plId],
         #    where plId is the ID of the selected plot line in the'Plot lines' listbox.
-        ttk.Label(self.plotFrame, text=_('Notes on the selected plot line')).pack(anchor='w')
+        ttk.Label(
+            self.plotFrame,
+            text=_('Notes on the selected plot line')
+            ).pack(anchor='w')
         self.plotNotesWindow = TextBox(
             self.plotFrame,
             wrap='word',

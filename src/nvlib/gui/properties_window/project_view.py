@@ -321,8 +321,8 @@ class ProjectView(BasicView, ProjectViewCtrl):
         ttk.Label(localeDateFrame, width=20).pack(side='left')
         self.referenceWeekDayVar = MyStringVar()
         ttk.Label(localeDateFrame, textvariable=self.referenceWeekDayVar).pack(side='left')
-        self.localeDateVar = MyStringVar()
-        ttk.Label(localeDateFrame, textvariable=self.localeDateVar).pack(anchor='w')
+        self.displayDateVar = MyStringVar()
+        ttk.Label(localeDateFrame, textvariable=self.displayDateVar).pack(anchor='w')
 
         # Convert date/day buttons.
         self.datesToDaysButton = ttk.Button(self.narrativeTimeFrame, text=_('Convert dates to days'), command=self.dates_to_days)

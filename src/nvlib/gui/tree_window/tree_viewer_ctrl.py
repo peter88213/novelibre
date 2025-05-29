@@ -24,6 +24,7 @@ from nvlib.novx_globals import ROOT_PREFIX
 from nvlib.novx_globals import SECTIONS_SUFFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import list_to_string
+from nvlib.nv_globals import get_duration_str
 from nvlib.nv_globals import get_section_date_str
 from nvlib.nv_globals import to_string
 from nvlib.nv_locale import _
@@ -779,20 +780,6 @@ class TreeViewerCtrl(SubController):
         else:
             dispTime = ''
 
-        # Create a combined duration information.
-        if self._mdl.novel.sections[scId].lastsDays and self._mdl.novel.sections[scId].lastsDays != '0':
-            days = f'{self._mdl.novel.sections[scId].lastsDays}d '
-        else:
-            days = ''
-        if self._mdl.novel.sections[scId].lastsHours and self._mdl.novel.sections[scId].lastsHours != '0':
-            hours = f'{self._mdl.novel.sections[scId].lastsHours}h '
-        else:
-            hours = ''
-        if self._mdl.novel.sections[scId].lastsMinutes and self._mdl.novel.sections[scId].lastsMinutes != '0':
-            minutes = f'{self._mdl.novel.sections[scId].lastsMinutes}min'
-        else:
-            minutes = ''
-
         # Configure the node values and tags depending on the section type.
         nodeValues = [''] * len(self.columns)
         nodeTags = []
@@ -832,7 +819,7 @@ class TreeViewerCtrl(SubController):
 
             nodeValues[self._colPos['dt']] = self._get_date_or_day(scId)
             nodeValues[self._colPos['tm']] = dispTime
-            nodeValues[self._colPos['dr']] = f'{days}{hours}{minutes}'
+            nodeValues[self._colPos['dr']] = get_duration_str(self._mdl.novel.sections[scId])
 
             # Display plot lines the section belongs to.
             scPlotlineShortNames = []

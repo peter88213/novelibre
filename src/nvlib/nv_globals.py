@@ -49,6 +49,24 @@ def get_section_date_str(section):
         return section.date
 
 
+def get_duration_str(section):
+    """Return a combined duration information."""
+
+    if section.lastsDays and section.lastsDays != '0':
+        days = f'{section.lastsDays}d '
+    else:
+        days = ''
+    if section.lastsHours and section.lastsHours != '0':
+        hours = f'{section.lastsHours}h '
+    else:
+        hours = ''
+    if section.lastsMinutes and section.lastsMinutes != '0':
+        minutes = f'{section.lastsMinutes}min'
+    else:
+        minutes = ''
+    return f'{days}{hours}{minutes}'
+
+
 def to_string(text):
     """Return text, converted to a string."""
     if text is None:

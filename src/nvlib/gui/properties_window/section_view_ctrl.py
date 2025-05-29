@@ -17,6 +17,7 @@ from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import list_to_string
 from nvlib.novx_globals import string_to_list
 from nvlib.nv_globals import datestr
+from nvlib.nv_globals import get_duration_str
 from nvlib.nv_globals import get_section_date_str
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
@@ -645,36 +646,45 @@ class SectionViewCtrl(BasicViewCtrl):
 
         # Date/time preview.
         if self.element.date and self.element.weekDay is not None:
-            self.weekDayPreviewVar.set(PyCalendar.WEEKDAYS[self.element.weekDay])
+            dispWeekday = PyCalendar.WEEKDAYS[self.element.weekDay]
         elif self.element.day and self._mdl.novel.referenceWeekDay is not None:
-            self.weekDayPreviewVar.set(PyCalendar.WEEKDAYS[(int(self.element.day) + self._mdl.novel.referenceWeekDay) % 7])
+            dispWeekday = PyCalendar.WEEKDAYS[(int(self.element.day) + self._mdl.novel.referenceWeekDay) % 7]
         else:
-            self.weekDayPreviewVar.set('')
+            dispWeekday = ''
         self.startDateVar.set(self.element.date)
         if self.element.localeDate:
-            datePreview = get_section_date_str(self.element)
+            dispDate = get_section_date_str(self.element)
         elif self.element.day:
-            datePreview = f'{_("Day")} {self.element.day}'
+            dispDate = f'{_("Day")} {self.element.day}'
         else:
-            datePreview = ''
-        self.datePreviewVar.set(datePreview)
+            dispDate = ''
 
         # Remove the seconds for the display.
         if self.element.time:
             dispTime = PyCalendar.display_time(self.element.time)
         else:
             dispTime = ''
-        self.startTimeVar.set(dispTime)
 
         self.startDayVar.set(self.element.day)
+        self.startTimeVar.set(dispTime)
         self.lastsDaysVar.set(self.element.lastsDays)
         self.lastsHoursVar.set(self.element.lastsHours)
         self.lastsMinutesVar.set(self.element.lastsMinutes)
 
         if prefs['show_date_time']:
             self.dateTimeFrame.show()
+            self.displayDateVar.set(dispDate)
+            self.weekDayVar.set(dispWeekday)
+            self.displayTimeVar.set(dispTime)
+            self.datePreviewVar.set('')
+            self.weekDayPreviewVar.set('')
+            self.timePreviewVar.set('')
+            self.displayDurationVar.set(get_duration_str(self.element))
         else:
             self.dateTimeFrame.hide()
+            self.datePreviewVar.set(dispDate)
+            self.weekDayPreviewVar.set(dispWeekday)
+            self.timePreviewVar.set(dispTime)
 
         #--- 'Viewpoint' combobox.
         charNames = []
