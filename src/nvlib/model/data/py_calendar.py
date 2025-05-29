@@ -9,6 +9,7 @@ from datetime import date
 from datetime import datetime
 from datetime import time
 from datetime import timedelta
+
 from nvlib.nv_locale import _
 
 

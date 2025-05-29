@@ -10,6 +10,16 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.24.0
+
+- Displaying previews on collapsed property frames.
+- Fixed a bug where the age is displayed as zero if the character has been
+  dead for less than a year.
+- Improved and extended the age display.
+- Added a duration display to the section properties.
+- Changed the API of PyCalendar.age().
+
+
 ### Version 5.23.5
 
 - Changed icon colors for better display in dark mode.
