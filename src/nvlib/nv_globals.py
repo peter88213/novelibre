@@ -9,6 +9,7 @@ from pathlib import Path
 import sys
 
 from nvlib.model.data.py_calendar import PyCalendar
+from nvlib.nv_locale import _
 
 prefs = {}
 launchers = {}
@@ -53,15 +54,15 @@ def get_duration_str(section):
     """Return a combined duration information."""
 
     if section.lastsDays and section.lastsDays != '0':
-        days = f'{section.lastsDays}d '
+        days = f"{section.lastsDays}{_('d')} "
     else:
         days = ''
     if section.lastsHours and section.lastsHours != '0':
-        hours = f'{section.lastsHours}h '
+        hours = f"{section.lastsHours}{_('h')} "
     else:
         hours = ''
     if section.lastsMinutes and section.lastsMinutes != '0':
-        minutes = f'{section.lastsMinutes}min'
+        minutes = f"{section.lastsMinutes}{_('min')}"
     else:
         minutes = ''
     return f'{days}{hours}{minutes}'

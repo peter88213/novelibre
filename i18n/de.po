@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.23.5\n"
-"POT-Creation-Date: 2025-05-25 14:06:30\n"
-"PO-Revision-Date: 2025-05-25 14:06:30\n"
+"POT-Creation-Date: 2025-05-29 19:21:48\n"
+"PO-Revision-Date: 2025-05-29 19:21:48\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1465,11 +1465,17 @@ msgstr "\"Ansicht\"-Optionen"
 msgid "by"
 msgstr "von"
 
+msgid "d"
+msgstr "d"
+
 msgid "deleted"
 msgstr "gelöscht"
 
 msgid "elements imported"
 msgstr "Elemente importiert"
+
+msgid "h"
+msgstr "h"
 
 msgid "hh:mm"
 msgstr "hh:mm"
@@ -1482,6 +1488,9 @@ msgstr "zuletzt gespeichert:"
 
 msgid "manuscript"
 msgstr "Manuskript"
+
+msgid "min"
+msgstr "min"
 
 msgid "no data"
 msgstr "keine Daten"
