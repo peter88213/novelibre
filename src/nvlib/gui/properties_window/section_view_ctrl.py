@@ -786,13 +786,15 @@ class SectionViewCtrl(BasicViewCtrl):
             self.sceneFrame.hide()
 
         # Kind of scene preview.
-        scenePreview = ''
-        if (self.element.scene or
+        if (
+            self.element.scene or
             self.element.goal or
             self.element.conflict or
             self.element.outcome
         ):
             scenePreview = self.sceneChoices[self.element.scene]
+        else:
+            scenePreview = ''
         self.scenePreviewVar.set(scenePreview)
 
         # Scene radiobuttons.
