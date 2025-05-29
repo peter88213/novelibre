@@ -202,7 +202,7 @@ class SectionView(BasicView, SectionViewCtrl):
             self.dateTimeFrame.titleBar,
             textvariable=self.startTimeVar
             )
-        timeDisplay.pack(side='left', padx='2')
+        timeDisplay.pack(side='left', padx=2)
         timeDisplay.bind('<Button-1>', self._toggle_date_time_frame)
 
         # 'Moon phase' button.
@@ -393,7 +393,23 @@ class SectionView(BasicView, SectionViewCtrl):
         ttk.Separator(self._sectionExtraFrame, orient='horizontal').pack(fill='x')
 
         #--- Frame for 'Scene'.
-        self.sceneFrame = FoldingFrame(self._sectionExtraFrame, _('Scene'), self._toggle_scene_frame)
+        self.sceneFrame = FoldingFrame(
+            self._sectionExtraFrame,
+            _('Scene'),
+            self._toggle_scene_frame,
+            )
+
+        # Kind of scene display.
+        self.sceneDisplayVar = MyStringVar()
+        sceneDisplay = ttk.Label(
+            self.sceneFrame.titleBar,
+            textvariable=self.sceneDisplayVar,
+            )
+        sceneDisplay.pack(side='left', padx=2)
+        sceneDisplay.bind(
+            '<Button-1>',
+            self._toggle_scene_frame
+            )
 
         # Scene radiobuttons.
         selectionFrame = ttk.Frame(self.sceneFrame)
@@ -405,39 +421,51 @@ class SectionView(BasicView, SectionViewCtrl):
         self.customOutcomeVar = ''
         self.sceneVar = tk.IntVar()
 
+        self.sceneChoices = [
+            _('Not a scene'),
+            _('Action'),
+            _('Reaction'),
+            _('Other'),
+            ]
+        sceneChoice = 0
         self._notApplicableRadiobutton = ttk.Radiobutton(
             selectionFrame,
-            text=_('Not a scene'),
+            text=self.sceneChoices[sceneChoice],
             variable=self.sceneVar,
-            value=0, command=self.set_not_applicable,
+            value=sceneChoice,
+            command=self.set_not_applicable,
             )
         self._notApplicableRadiobutton.pack(side='left', anchor='w')
         inputWidgets.append(self._notApplicableRadiobutton)
 
+        sceneChoice = 1
         self._actionRadiobutton = ttk.Radiobutton(
             selectionFrame,
-            text=_('Action'),
+            text=self.sceneChoices[sceneChoice],
             variable=self.sceneVar,
-            value=1, command=self.set_action_scene,
+            value=sceneChoice,
+            command=self.set_action_scene,
             )
         self._actionRadiobutton.pack(side='left', anchor='w')
         inputWidgets.append(self._actionRadiobutton)
 
+        sceneChoice = 2
         self._reactionRadiobutton = ttk.Radiobutton(
             selectionFrame,
-            text=_('Reaction'),
+            text=self.sceneChoices[sceneChoice],
             variable=self.sceneVar,
-            value=2,
+            value=sceneChoice,
             command=self.set_reaction_scene,
             )
         self._reactionRadiobutton.pack(side='left', anchor='w')
         inputWidgets.append(self._reactionRadiobutton)
 
+        sceneChoice = 3
         self._customRadiobutton = ttk.Radiobutton(
             selectionFrame,
-            text=_('Other'),
+            text=self.sceneChoices[sceneChoice],
             variable=self.sceneVar,
-            value=3,
+            value=sceneChoice,
             command=self.set_custom_scene
             )
         self._customRadiobutton.pack(anchor='w')

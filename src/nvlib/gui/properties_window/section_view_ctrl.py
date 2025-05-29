@@ -656,7 +656,6 @@ class SectionViewCtrl(BasicViewCtrl):
         self.lastsHoursVar.set(self.element.lastsHours)
         self.lastsMinutesVar.set(self.element.lastsMinutes)
 
-        #--- Frame for date/time.
         if prefs['show_date_time']:
             self.dateTimeFrame.show()
         else:
@@ -755,6 +754,8 @@ class SectionViewCtrl(BasicViewCtrl):
             self.sceneFrame.show()
         else:
             self.sceneFrame.hide()
+
+        self.sceneDisplayVar.set(self.sceneChoices[self.element.scene])
 
         #--- Scene radiobuttons.
         self.sceneVar.set(self.element.scene)
