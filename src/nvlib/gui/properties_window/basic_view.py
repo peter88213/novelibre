@@ -11,6 +11,7 @@ from nvlib.gui.observer import Observer
 from nvlib.gui.widgets.collection_box import CollectionBox
 from nvlib.gui.widgets.folding_frame import FoldingFrame
 from nvlib.gui.widgets.index_card import IndexCard
+from nvlib.gui.widgets.my_string_var import MyStringVar
 from nvlib.gui.widgets.text_box import TextBox
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
@@ -122,8 +123,26 @@ class BasicView(ttk.Frame, Observer):
     def _create_links_window(self):
         """A folding frame with a "Links" listbox and control buttons."""
         ttk.Separator(self.propertiesFrame, orient='horizontal').pack(fill='x')
-        self.linksWindow = FoldingFrame(self.propertiesFrame, _('Links'), self._toggle_links_window)
+        self.linksWindow = FoldingFrame(
+            self.propertiesFrame,
+            _('Links'),
+            self._toggle_links_window
+            )
         self.linksWindow.pack(fill='x')
+
+        # Link count preview.
+        self.linksPreviewVar = MyStringVar()
+        linksPreview = ttk.Label(
+            self.linksWindow.titleBar,
+            textvariable=self.linksPreviewVar,
+            )
+        linksPreview.pack(side='left', padx=2)
+        linksPreview.bind(
+            '<Button-1>',
+            self._toggle_links_window
+            )
+
+        # Link list.
         self.linkCollection = CollectionBox(
             self.linksWindow,
             cmdAdd=self.add_link,
@@ -134,7 +153,7 @@ class BasicView(ttk.Frame, Observer):
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
             iconOpen=self._ui.icons.gotoIcon
-            )
+        )
         self.inputWidgets.extend(self.linkCollection.inputWidgets)
         self.linkCollection.pack(fill='x')
 
