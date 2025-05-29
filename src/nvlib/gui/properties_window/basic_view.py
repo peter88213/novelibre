@@ -187,4 +187,8 @@ class BasicView(ttk.Frame, Observer):
         else:
             self.linksWindow.show()
             prefs[self._prefsShowLinks] = True
+        self.toggle_folding_frame()
+
+    def toggle_folding_frame(self):
+        self.apply_changes()
 

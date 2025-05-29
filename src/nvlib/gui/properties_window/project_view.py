@@ -465,6 +465,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
         else:
             self.languageFrame.show()
             prefs['show_language_settings'] = True
+        self.toggle_folding_frame()
 
     def _toggle_narrative_time_frame(self, event=None):
         """Hide/show the "Narrative time" frame.
@@ -477,6 +478,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
         else:
             self.narrativeTimeFrame.show()
             prefs['show_narrative_time'] = True
+        self.toggle_folding_frame()
 
     def _toggle_numbering_frame(self, event=None):
         """Hide/show the "Auto numbering" frame.
@@ -489,6 +491,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
         else:
             self.numberingFrame.show()
             prefs['show_auto_numbering'] = True
+        self.toggle_folding_frame()
 
     def _toggle_progress_frame(self, event=None):
         """Hide/show the "Writing progress" frame.
@@ -501,6 +504,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
         else:
             self.progressFrame.show()
             prefs['show_writing_progress'] = True
+        self.toggle_folding_frame()
 
     def _toggle_renamings_frame(self, event=None):
         """Hide/show the "Renamings" frame.
@@ -513,4 +517,5 @@ class ProjectView(BasicView, ProjectViewCtrl):
         else:
             self.renamingsFrame.show()
             prefs['show_renamings'] = True
+        self.toggle_folding_frame()
 

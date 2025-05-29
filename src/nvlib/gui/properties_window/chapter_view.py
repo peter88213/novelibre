@@ -129,3 +129,5 @@ class ChapterView(BasicView, ChapterViewCtrl):
         else:
             self.epigraphFrame.show()
             prefs['show_ch_epigraph'] = True
+        self.toggle_folding_frame()
+        self.set_data(self.elementId)
