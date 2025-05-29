@@ -20,6 +20,7 @@ from nvlib.nv_globals import datestr
 from nvlib.nv_globals import get_section_date_str
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
+from _ast import Or
 
 
 class SectionViewCtrl(BasicViewCtrl):
@@ -785,7 +786,14 @@ class SectionViewCtrl(BasicViewCtrl):
             self.sceneFrame.hide()
 
         # Kind of scene preview.
-        self.scenePreviewVar.set(self.sceneChoices[self.element.scene])
+        scenePreview = ''
+        if (self.element.scene or
+            self.element.goal or
+            self.element.conflict or
+            self.element.outcome
+        ):
+            scenePreview = self.sceneChoices[self.element.scene]
+        self.scenePreviewVar.set(scenePreview)
 
         # Scene radiobuttons.
         self.sceneVar.set(self.element.scene)
