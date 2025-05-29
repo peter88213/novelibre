@@ -792,7 +792,7 @@ class SectionViewCtrl(BasicViewCtrl):
             self.element.conflict or
             self.element.outcome
         ):
-            scenePreview = self.sceneChoices[self.element.scene]
+            scenePreview = self.sceneLabels[self.element.scene]
         else:
             scenePreview = ''
         self.scenePreviewVar.set(scenePreview)

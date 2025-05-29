@@ -453,7 +453,7 @@ class SectionView(BasicView, SectionViewCtrl):
         self.customOutcomeVar = ''
         self.sceneVar = tk.IntVar()
 
-        self.sceneChoices = [
+        self.sceneLabels = [
             _('Not a scene'),
             _('Action'),
             _('Reaction'),
@@ -462,7 +462,7 @@ class SectionView(BasicView, SectionViewCtrl):
         sceneChoice = 0
         self._notApplicableRadiobutton = ttk.Radiobutton(
             selectionFrame,
-            text=self.sceneChoices[sceneChoice],
+            text=self.sceneLabels[sceneChoice],
             variable=self.sceneVar,
             value=sceneChoice,
             command=self.set_not_applicable,
@@ -473,7 +473,7 @@ class SectionView(BasicView, SectionViewCtrl):
         sceneChoice = 1
         self._actionRadiobutton = ttk.Radiobutton(
             selectionFrame,
-            text=self.sceneChoices[sceneChoice],
+            text=self.sceneLabels[sceneChoice],
             variable=self.sceneVar,
             value=sceneChoice,
             command=self.set_action_scene,
@@ -484,7 +484,7 @@ class SectionView(BasicView, SectionViewCtrl):
         sceneChoice = 2
         self._reactionRadiobutton = ttk.Radiobutton(
             selectionFrame,
-            text=self.sceneChoices[sceneChoice],
+            text=self.sceneLabels[sceneChoice],
             variable=self.sceneVar,
             value=sceneChoice,
             command=self.set_reaction_scene,
@@ -495,7 +495,7 @@ class SectionView(BasicView, SectionViewCtrl):
         sceneChoice = 3
         self._customRadiobutton = ttk.Radiobutton(
             selectionFrame,
-            text=self.sceneChoices[sceneChoice],
+            text=self.sceneLabels[sceneChoice],
             variable=self.sceneVar,
             value=sceneChoice,
             command=self.set_custom_scene
