@@ -662,13 +662,18 @@ class TreeViewerCtrl(SubController):
 
     def _get_date_or_day(self, scId):
         """Return section date or day as a string for display."""
+        dateStr = ''
+        weekDay = None
         if self._date_is_valid(self._mdl.novel.sections[scId]):
-            return get_section_date_str(self._mdl.novel.sections[scId])
-
-        if self._mdl.novel.sections[scId].day is not None:
-            return f'{_("Day")} {self._mdl.novel.sections[scId].day}'
-
-        return ''
+            dateStr = get_section_date_str(self._mdl.novel.sections[scId])
+            weekDay = self._mdl.novel.sections[scId].weekDay
+        elif self._mdl.novel.sections[scId].day is not None:
+            if  self._mdl.novel.referenceWeekDay is not None:
+                weekDay = (int(self._mdl.novel.sections[scId].day) + self._mdl.novel.referenceWeekDay) % 7
+            dateStr = f'{_("Day")} {self._mdl.novel.sections[scId].day}'
+        if weekDay is not None:
+            dateStr = f'{PyCalendar.WEEKDAY_ABBR[weekDay]} {dateStr}'
+        return dateStr
 
     def _get_item_row_data(self, itId):
         """Return title, values, and tags for an item row.

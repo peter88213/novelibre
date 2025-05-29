@@ -4,11 +4,12 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from calendar import isleap, day_name, month_name
+from calendar import isleap, day_name, month_name, day_abbr
 from datetime import date
 from datetime import datetime
 from datetime import time
 from datetime import timedelta
+
 from nvlib.nv_locale import _
 
 
@@ -25,6 +26,7 @@ class PyCalendar:
     DATE_FORMAT = _("YYYY-MM-DD")
     TIME_FORMAT = _("hh:mm")
     WEEKDAYS = day_name
+    WEEKDAY_ABBR = day_abbr
     MONTHS = month_name
     min = date.min.isoformat()
     max = date.max.isoformat()
