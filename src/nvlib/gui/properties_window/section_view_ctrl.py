@@ -629,20 +629,22 @@ class SectionViewCtrl(BasicViewCtrl):
             self.itemCollection.disable_buttons()
 
         #--- Frame for date/time/duration.
+
+        # Date/time preview.
         if self.element.date and self.element.weekDay is not None:
-            self.weekDayVar.set(PyCalendar.WEEKDAYS[self.element.weekDay])
+            self.weekDayPreviewVar.set(PyCalendar.WEEKDAYS[self.element.weekDay])
         elif self.element.day and self._mdl.novel.referenceWeekDay is not None:
-            self.weekDayVar.set(PyCalendar.WEEKDAYS[(int(self.element.day) + self._mdl.novel.referenceWeekDay) % 7])
+            self.weekDayPreviewVar.set(PyCalendar.WEEKDAYS[(int(self.element.day) + self._mdl.novel.referenceWeekDay) % 7])
         else:
-            self.weekDayVar.set('')
+            self.weekDayPreviewVar.set('')
         self.startDateVar.set(self.element.date)
         if self.element.localeDate:
-            displayDate = get_section_date_str(self.element)
+            datePreview = get_section_date_str(self.element)
         elif self.element.day:
-            displayDate = f'{_("Day")} {self.element.day}'
+            datePreview = f'{_("Day")} {self.element.day}'
         else:
-            displayDate = ''
-        self.localeDateVar.set(displayDate)
+            datePreview = ''
+        self.datePreviewVar.set(datePreview)
 
         # Remove the seconds for the display.
         if self.element.time:
@@ -755,18 +757,19 @@ class SectionViewCtrl(BasicViewCtrl):
         else:
             self.sceneFrame.hide()
 
-        self.sceneDisplayVar.set(self.sceneChoices[self.element.scene])
+        # Kind of scene preview.
+        self.scenePreviewVar.set(self.sceneChoices[self.element.scene])
 
-        #--- Scene radiobuttons.
+        # Scene radiobuttons.
         self.sceneVar.set(self.element.scene)
 
-        #--- 'Goal/Reaction' window.
+        # 'Goal/Reaction' window.
         self.goalWindow.set_text(self.element.goal)
 
-        #--- 'Conflict/Dilemma' window.
+        # 'Conflict/Dilemma' window.
         self.conflictWindow.set_text(self.element.conflict)
 
-        #--- 'Outcome/Choice' window.
+        # 'Outcome/Choice' window.
         self.outcomeWindow.set_text(self.element.outcome)
 
         # Configure the labels.

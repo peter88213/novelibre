@@ -179,31 +179,31 @@ class SectionView(BasicView, SectionViewCtrl):
         inputWidgets.append(self._startDayEntry)
         self._startDayEntry.entry.bind('<Return>', self.change_day)
 
-        # Day of the week display.
-        self.weekDayVar = MyStringVar()
-        weekDayDisplay = ttk.Label(
+        # Day of the week preview.
+        self.weekDayPreviewVar = MyStringVar()
+        weekDayPreview = ttk.Label(
             self.dateTimeFrame.titleBar,
-            textvariable=self.weekDayVar
+            textvariable=self.weekDayPreviewVar
             )
-        weekDayDisplay.pack(side='left')
-        weekDayDisplay.bind('<Button-1>', self._toggle_date_time_frame)
+        weekDayPreview.pack(side='left')
+        weekDayPreview.bind('<Button-1>', self._toggle_date_time_frame)
 
-        # Localized date display.
-        self.localeDateVar = MyStringVar()
-        localeDateDisplay = ttk.Label(
+        # Localized date preview.
+        self.datePreviewVar = MyStringVar()
+        localeDatePreview = ttk.Label(
             self.dateTimeFrame.titleBar,
-            textvariable=self.localeDateVar
+            textvariable=self.datePreviewVar
             )
-        localeDateDisplay.pack(side='left')
-        localeDateDisplay.bind('<Button-1>', self._toggle_date_time_frame)
+        localeDatePreview.pack(side='left')
+        localeDatePreview.bind('<Button-1>', self._toggle_date_time_frame)
 
-        # Time display.
-        timeDisplay = ttk.Label(
+        # Time preview.
+        timePreview = ttk.Label(
             self.dateTimeFrame.titleBar,
             textvariable=self.startTimeVar
             )
-        timeDisplay.pack(side='left', padx=2)
-        timeDisplay.bind('<Button-1>', self._toggle_date_time_frame)
+        timePreview.pack(side='left', padx=2)
+        timePreview.bind('<Button-1>', self._toggle_date_time_frame)
 
         # 'Moon phase' button.
         ttk.Button(
@@ -399,14 +399,14 @@ class SectionView(BasicView, SectionViewCtrl):
             self._toggle_scene_frame,
             )
 
-        # Kind of scene display.
-        self.sceneDisplayVar = MyStringVar()
-        sceneDisplay = ttk.Label(
+        # Kind of scene preview.
+        self.scenePreviewVar = MyStringVar()
+        scenePreview = ttk.Label(
             self.sceneFrame.titleBar,
-            textvariable=self.sceneDisplayVar,
+            textvariable=self.scenePreviewVar,
             )
-        sceneDisplay.pack(side='left', padx=2)
-        sceneDisplay.bind(
+        scenePreview.pack(side='left', padx=2)
+        scenePreview.bind(
             '<Button-1>',
             self._toggle_scene_frame
             )
