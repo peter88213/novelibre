@@ -45,12 +45,13 @@ class PyCalendar:
         if deathDateIso:
             deathDate = datetime.fromisoformat(deathDateIso)
             if now > deathDate:
-                years = cls._difference_in_years(deathDate, now)
-                return -1 * years
+                yearsDead = cls._difference_in_years(deathDate, now)
+                return None, yearsDead
 
-        birthDate = datetime.fromisoformat(birthDateIso)
-        years = cls._difference_in_years(birthDate, now)
-        return years
+        if birthDateIso:
+            birthDate = datetime.fromisoformat(birthDateIso)
+            yearsOld = cls._difference_in_years(birthDate, now)
+        return yearsOld, None
 
     @classmethod
     def duration(cls, startDateIso, startTimeIso, endDateIso, endTimeIso):

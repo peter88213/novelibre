@@ -873,12 +873,13 @@ class SectionViewCtrl(BasicViewCtrl):
             birthDate = self._mdl.novel.characters[crId].birthDate
             deathDate = self._mdl.novel.characters[crId].deathDate
             try:
-                years = PyCalendar.age(now, birthDate, deathDate)
-                if years < 0:
-                    years *= -1
+                yearsOld, yearsDead = PyCalendar.age(now, birthDate, deathDate)
+                if yearsDead is not None:
                     suffix = _('years after death')
+                    years = yearsDead
                 else:
                     suffix = _('years old')
+                    years = yearsOld
                 charList.append(
                     f'{self._mdl.novel.characters[crId].title}: {years} {suffix}'
                     )
