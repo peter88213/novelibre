@@ -864,7 +864,7 @@ class SectionViewCtrl(BasicViewCtrl):
                     self.element.day,
                     self._mdl.novel.referenceDate
                     )
-            except:
+            except Exception:
                 self._report_missing_date()
                 return
 
@@ -879,9 +879,13 @@ class SectionViewCtrl(BasicViewCtrl):
                     suffix = _('years after death')
                 else:
                     suffix = _('years old')
-                charList.append(f'{self._mdl.novel.characters[crId].title}: {years} {suffix}')
-            except:
-                charList.append(f'{self._mdl.novel.characters[crId].title}: ({_("no data")})')
+                charList.append(
+                    f'{self._mdl.novel.characters[crId].title}: {years} {suffix}'
+                    )
+            except Exception:
+                charList.append(
+                    f'{self._mdl.novel.characters[crId].title}: ({_("no data")})'
+                    )
 
         if charList:
             self._ui.show_info(

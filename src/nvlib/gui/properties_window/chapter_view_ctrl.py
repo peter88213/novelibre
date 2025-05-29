@@ -4,8 +4,6 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-import textwrap
-
 from nvlib.gui.properties_window.basic_view_ctrl import BasicViewCtrl
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
@@ -17,7 +15,6 @@ class ChapterViewCtrl(BasicViewCtrl):
     Adds to the right pane:
     - A "Do not auto-number" checkbox.
     """
-    EPIGRAPH_PREVIEW_WIDTH = 30
 
     def apply_changes(self, event=None):
         """Apply changes.
@@ -77,12 +74,10 @@ class ChapterViewCtrl(BasicViewCtrl):
             self.epigraphPreviewVar.set('')
         else:
             self.epigraphFrame.hide()
-            self.epigraphPreviewVar.set(
-                textwrap.shorten(
-                    self.element.epigraph,
-                    width=self.EPIGRAPH_PREVIEW_WIDTH,
-                    )
-                )
+            if self.element.epigraph:
+                self.epigraphPreviewVar.set('[...]')
+            else:
+                self.epigraphPreviewVar.set('')
         self.epigraphEntry.set_text(self.element.epigraph)
         self.epigraphSrcVar.set(self.element.epigraphSrc)
 

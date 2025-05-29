@@ -64,7 +64,23 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
         ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- 'Bio' frame
-        self.bioFrame = FoldingFrame(self.elementInfoWindow, '', self._toggle_bio_window)
+        self.bioFrame = FoldingFrame(
+            self.elementInfoWindow,
+            '',
+            self._toggle_bio_window,
+            )
+
+        # Bio preview.
+        self.bioPreviewVar = MyStringVar()
+        bioPreview = ttk.Label(
+            self.bioFrame.titleBar,
+            textvariable=self.bioPreviewVar,
+            )
+        bioPreview.pack(side='left', padx=2)
+        bioPreview.bind(
+            '<Button-1>',
+            self._toggle_bio_window
+            )
 
         self.birthDateVar = MyStringVar()
         self._birthDateEntry = LabelEntry(
@@ -88,7 +104,8 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
         self._deathDateEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._deathDateEntry)
 
-        self.bioEntry = TextBox(self.bioFrame,
+        self.bioEntry = TextBox(
+            self.bioFrame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -107,7 +124,24 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
         ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- 'Goals' entry.
-        self.goalsFrame = FoldingFrame(self.elementInfoWindow, '', self._toggle_goals_window)
+        self.goalsFrame = FoldingFrame(
+            self.elementInfoWindow,
+            '',
+            self._toggle_goals_window,
+            )
+
+        # Goals preview.
+        self.goalsPreviewVar = MyStringVar()
+        goalsPreview = ttk.Label(
+            self.goalsFrame.titleBar,
+            textvariable=self.goalsPreviewVar,
+            )
+        goalsPreview.pack(side='left', padx=2)
+        goalsPreview.bind(
+            '<Button-1>',
+            self._toggle_goals_window
+            )
+
         self.goalsEntry = TextBox(self.goalsFrame,
             wrap='word',
             undo=True,

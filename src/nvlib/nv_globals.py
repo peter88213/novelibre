@@ -39,6 +39,23 @@ def datestr(dateIso):
         return dateIso
 
 
+def get_locale_date_str(isoDate):
+    """Return a localized date string, if the localize_date option is set.
+    
+    Otherwise return isoDate unchanged.
+    """
+
+    if prefs['localize_date']:
+        try:
+            localeDateStr = PyCalendar.locale_date(isoDate)
+        except Exception:
+            localeDateStr = ''
+        return localeDateStr
+
+    else:
+        return isoDate
+
+
 def get_section_date_str(section):
     """Return a localized date string, if the localize_date option is set.
     

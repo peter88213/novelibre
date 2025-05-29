@@ -6,6 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.gui.properties_window.world_element_view_ctrl import WorldElementViewCtrl
 from nvlib.model.data.py_calendar import PyCalendar
+from nvlib.nv_globals import get_locale_date_str
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
@@ -87,8 +88,23 @@ class CharacterViewCtrl(WorldElementViewCtrl):
             self.bioFrame.buttonText = _('Bio')
         if prefs['show_cr_bio']:
             self.bioFrame.show()
+            self.bioPreviewVar.set('')
         else:
             self.bioFrame.hide()
+            if self.element.birthDate:
+                birthDateStr = f'* {get_locale_date_str(self.element.birthDate)}'
+            else:
+                birthDateStr = ''
+            if self.element.deathDate:
+                deathDateStr = f' † {get_locale_date_str(self.element.deathDate)}'
+            else:
+                deathDateStr = ''
+            if self.element.bio:
+                bioStr = ' [...]'
+            else:
+                bioStr = ''
+            self.bioPreviewVar.set(f'{birthDateStr}{deathDateStr}{bioStr}')
+
         self.bioEntry.set_text(self.element.bio)
 
         #--- Birth date/death date.
@@ -102,7 +118,13 @@ class CharacterViewCtrl(WorldElementViewCtrl):
             self.goalsFrame.buttonText = _('Goals')
         if prefs['show_cr_goals']:
             self.goalsFrame.show()
+            self.goalsPreviewVar.set('')
         else:
             self.goalsFrame.hide()
+            if self.element.goals:
+                self.goalsPreviewVar.set('[...]')
+            else:
+                self.goalsPreviewVar.set('')
+
         self.goalsEntry.set_text(self.element.goals)
 
