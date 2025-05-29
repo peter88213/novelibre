@@ -873,15 +873,26 @@ class SectionViewCtrl(BasicViewCtrl):
             birthDate = self._mdl.novel.characters[crId].birthDate
             deathDate = self._mdl.novel.characters[crId].deathDate
             try:
-                yearsOld, yearsDead = PyCalendar.age(now, birthDate, deathDate)
+                yearsOld, yearsDead, daysOld, daysDead = PyCalendar.age(
+                    now, birthDate, deathDate)
                 if yearsDead is not None:
-                    suffix = _('years after death')
-                    years = yearsDead
-                else:
+                    if yearsDead:
+                        time = yearsDead
+                        suffix = _('years after death')
+                    else:
+                        time = daysDead
+                        suffix = _('days after death')
+                    if yearsOld:
+                        suffix = f"{suffix} {_('at age')} {yearsOld}"
+
+                elif yearsOld:
                     suffix = _('years old')
-                    years = yearsOld
+                    time = yearsOld
+                else:
+                    suffix = _('days old')
+                    time = daysOld
                 charList.append(
-                    f'{self._mdl.novel.characters[crId].title}: {years} {suffix}'
+                    f'{self._mdl.novel.characters[crId].title}: {time} {suffix}'
                     )
             except Exception:
                 charList.append(

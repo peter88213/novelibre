@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.23.5\n"
-"POT-Creation-Date: 2025-05-29 19:21:48\n"
-"PO-Revision-Date: 2025-05-29 19:21:48\n"
+"POT-Creation-Date: 2025-05-29 21:30:38\n"
+"PO-Revision-Date: 2025-05-29 21:30:38\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1462,11 +1462,20 @@ msgstr "\"Export\"-Optionen"
 msgid "\"View\" options"
 msgstr "\"Ansicht\"-Optionen"
 
+msgid "at age"
+msgstr "mit"
+
 msgid "by"
 msgstr "von"
 
 msgid "d"
 msgstr "d"
+
+msgid "days after death"
+msgstr "Tage seit dem Todesfall"
+
+msgid "days old"
+msgstr "Tage alt"
 
 msgid "deleted"
 msgstr "gelöscht"

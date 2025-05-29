@@ -31,7 +31,7 @@ class PyCalendar:
 
     @classmethod
     def age(cls, nowIso, birthDateIso, deathDateIso):
-        """Return age or time since dead in years (Integer).
+        """Return age or time since dead in years and in days (Integer).
         
         Positional arguments:
             nowIso:str -- Reference date/time, formatted acc. to ISO 8601
@@ -46,12 +46,19 @@ class PyCalendar:
             deathDate = datetime.fromisoformat(deathDateIso)
             if now > deathDate:
                 yearsDead = cls._difference_in_years(deathDate, now)
-                return None, yearsDead
+                daysDead = cls._difference_in_days(deathDate, now)
+                if birthDateIso:
+                    birthDate = datetime.fromisoformat(birthDateIso)
+                    yearsOld = cls._difference_in_years(birthDate, deathDate)
+                else:
+                    yearsOld = None
+                return yearsOld, yearsDead, None, daysDead
 
         if birthDateIso:
             birthDate = datetime.fromisoformat(birthDateIso)
             yearsOld = cls._difference_in_years(birthDate, now)
-        return yearsOld, None
+            daysOld = cls._difference_in_days(birthDate, now)
+        return yearsOld, None, daysOld, None
 
     @classmethod
     def duration(cls, startDateIso, startTimeIso, endDateIso, endTimeIso):
@@ -219,6 +226,16 @@ class PyCalendar:
         days_in_year = isleap(endDate.year) and 366 or 365
         years = diffyears + (difference.days + difference.seconds / 86400.0) / days_in_year
         return int(years)
+
+    @classmethod
+    def _difference_in_days(cls, startDate, endDate):
+        """Return the total number of days between startDate and endDate.
+        
+        Positional arguments: 
+            startDate, endDate: datetime.datetime
+        
+        """
+        return (endDate - startDate).days
 
     @classmethod
     def _get_duration(cls, section):
