@@ -60,7 +60,24 @@ class ChapterView(BasicView, ChapterViewCtrl):
         ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- 'Epigraph' entry.
-        self.epigraphFrame = FoldingFrame(self.elementInfoWindow, _('Epigraph'), self._toggle_epigraph_window)
+        self.epigraphFrame = FoldingFrame(
+            self.elementInfoWindow,
+            _('Epigraph'),
+            self._toggle_epigraph_window,
+            )
+
+        # Epigraph preview.
+        self.epigraphPreviewVar = MyStringVar()
+        epigraphPreview = ttk.Label(
+            self.epigraphFrame.titleBar,
+            textvariable=self.epigraphPreviewVar,
+            )
+        epigraphPreview.pack(side='left', padx=2)
+        epigraphPreview.bind(
+            '<Button-1>',
+            self._toggle_epigraph_window
+            )
+
         self.epigraphEntry = TextBox(self.epigraphFrame,
             wrap='word',
             undo=True,
