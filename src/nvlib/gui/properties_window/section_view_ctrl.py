@@ -20,7 +20,6 @@ from nvlib.nv_globals import datestr
 from nvlib.nv_globals import get_section_date_str
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
-from _ast import Or
 
 
 class SectionViewCtrl(BasicViewCtrl):
@@ -792,7 +791,7 @@ class SectionViewCtrl(BasicViewCtrl):
             self.element.conflict or
             self.element.outcome
         ):
-            scenePreview = self.sceneLabels[self.element.scene]
+            scenePreview = self.kindsOfScene[self.element.scene]
         else:
             scenePreview = ''
         self.scenePreviewVar.set(scenePreview)

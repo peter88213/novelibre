@@ -453,7 +453,7 @@ class SectionView(BasicView, SectionViewCtrl):
         self.customOutcomeVar = ''
         self.sceneVar = tk.IntVar()
 
-        self.sceneLabels = [
+        self.kindsOfScene = [
             _('Not a scene'),
             _('Action'),
             _('Reaction'),
@@ -462,7 +462,7 @@ class SectionView(BasicView, SectionViewCtrl):
         sceneChoice = 0
         self._notApplicableRadiobutton = ttk.Radiobutton(
             selectionFrame,
-            text=self.sceneLabels[sceneChoice],
+            text=self.kindsOfScene[sceneChoice],
             variable=self.sceneVar,
             value=sceneChoice,
             command=self.set_not_applicable,
@@ -470,10 +470,10 @@ class SectionView(BasicView, SectionViewCtrl):
         self._notApplicableRadiobutton.pack(side='left', anchor='w')
         inputWidgets.append(self._notApplicableRadiobutton)
 
-        sceneChoice = 1
+        sceneChoice += 1
         self._actionRadiobutton = ttk.Radiobutton(
             selectionFrame,
-            text=self.sceneLabels[sceneChoice],
+            text=self.kindsOfScene[sceneChoice],
             variable=self.sceneVar,
             value=sceneChoice,
             command=self.set_action_scene,
@@ -481,10 +481,10 @@ class SectionView(BasicView, SectionViewCtrl):
         self._actionRadiobutton.pack(side='left', anchor='w')
         inputWidgets.append(self._actionRadiobutton)
 
-        sceneChoice = 2
+        sceneChoice += 1
         self._reactionRadiobutton = ttk.Radiobutton(
             selectionFrame,
-            text=self.sceneLabels[sceneChoice],
+            text=self.kindsOfScene[sceneChoice],
             variable=self.sceneVar,
             value=sceneChoice,
             command=self.set_reaction_scene,
@@ -492,10 +492,10 @@ class SectionView(BasicView, SectionViewCtrl):
         self._reactionRadiobutton.pack(side='left', anchor='w')
         inputWidgets.append(self._reactionRadiobutton)
 
-        sceneChoice = 3
+        sceneChoice += 1
         self._customRadiobutton = ttk.Radiobutton(
             selectionFrame,
-            text=self.sceneLabels[sceneChoice],
+            text=self.kindsOfScene[sceneChoice],
             variable=self.sceneVar,
             value=sceneChoice,
             command=self.set_custom_scene
