@@ -176,6 +176,9 @@ class BasicView(ttk.Frame, Observer):
         self.notesWindow.pack(expand=True, fill='both')
         self.notesWindow.bind('<FocusOut>', self.apply_changes)
 
+    def _toggle_folding_frame(self):
+        self.apply_changes()
+
     def _toggle_links_window(self, event=None):
         """Hide/show the "links" window.
         
@@ -187,8 +190,5 @@ class BasicView(ttk.Frame, Observer):
         else:
             self.linksWindow.show()
             prefs[self._prefsShowLinks] = True
-        self.toggle_folding_frame()
-
-    def toggle_folding_frame(self):
-        self.apply_changes()
+        self._toggle_folding_frame()
 

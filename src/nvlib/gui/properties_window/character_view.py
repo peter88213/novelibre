@@ -147,7 +147,7 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
         else:
             self.bioFrame.show()
             prefs['show_cr_bio'] = True
-        self.toggle_folding_frame()
+        self._toggle_folding_frame()
 
     def _toggle_goals_window(self, event=None):
         """Hide/show the 'Goals' textbox."""
@@ -157,5 +157,5 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
         else:
             self.goalsFrame.show()
             prefs['show_cr_goals'] = True
-        self.toggle_folding_frame()
+        self._toggle_folding_frame()
 

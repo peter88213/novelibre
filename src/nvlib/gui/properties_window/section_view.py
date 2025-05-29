@@ -583,7 +583,7 @@ class SectionView(BasicView, SectionViewCtrl):
         else:
             self.dateTimeFrame.show()
             prefs['show_date_time'] = True
-        self.toggle_folding_frame()
+        self._toggle_folding_frame()
 
     def _toggle_plot_frame(self, event=None):
         """Hide/show the 'Plot' frame."""
@@ -593,7 +593,7 @@ class SectionView(BasicView, SectionViewCtrl):
         else:
             self.plotFrame.show()
             prefs['show_plot'] = True
-        self.toggle_folding_frame()
+        self._toggle_folding_frame()
 
     def _toggle_relation_frame(self, event=None):
         """Hide/show the 'Relationships' frame."""
@@ -603,7 +603,7 @@ class SectionView(BasicView, SectionViewCtrl):
         else:
             self.relationFrame.show()
             prefs['show_relationships'] = True
-        self.toggle_folding_frame()
+        self._toggle_folding_frame()
 
     def _toggle_scene_frame(self, event=None):
         """Hide/show the 'Scene' frame."""
@@ -613,5 +613,5 @@ class SectionView(BasicView, SectionViewCtrl):
         else:
             self.sceneFrame.show()
             prefs['show_scene'] = True
-        self.toggle_folding_frame()
+        self._toggle_folding_frame()
 
