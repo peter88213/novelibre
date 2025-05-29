@@ -132,12 +132,15 @@ class SectionView(BasicView, SectionViewCtrl):
             self.elementInfoWindow,
             _('Date/Time'),
             self._toggle_date_time_frame)
-        sectionStartFrame = ttk.Frame(self.dateTimeFrame
-                                      )
+        sectionStartFrame = ttk.Frame(self.dateTimeFrame)
         sectionStartFrame.pack(fill='x')
         localeDateFrame = ttk.Frame(sectionStartFrame)
         localeDateFrame.pack(fill='x')
-        ttk.Label(localeDateFrame, text=_('Start'), width=self._DATE_TIME_LBL_X).pack(side='left')
+        ttk.Label(
+            localeDateFrame,
+            text=_('Start'),
+            width=self._DATE_TIME_LBL_X
+            ).pack(side='left')
 
         # 'Start date' entry.
         self.startDateVar = MyStringVar()
@@ -178,14 +181,29 @@ class SectionView(BasicView, SectionViewCtrl):
 
         # Day of the week display.
         self.weekDayVar = MyStringVar()
-        ttk.Label(localeDateFrame, textvariable=self.weekDayVar).pack(side='left')
+        weekDayDisplay = ttk.Label(
+            self.dateTimeFrame.titleBar,
+            textvariable=self.weekDayVar
+            )
+        weekDayDisplay.pack(side='left')
+        weekDayDisplay.bind('<Button-1>', self._toggle_date_time_frame)
 
         # Localized date display.
         self.localeDateVar = MyStringVar()
-        ttk.Label(localeDateFrame, textvariable=self.localeDateVar).pack(side='left')
+        localeDateDisplay = ttk.Label(
+            self.dateTimeFrame.titleBar,
+            textvariable=self.localeDateVar
+            )
+        localeDateDisplay.pack(side='left')
+        localeDateDisplay.bind('<Button-1>', self._toggle_date_time_frame)
 
         # Time display.
-        ttk.Label(localeDateFrame, textvariable=self.startTimeVar).pack(side='left')
+        timeDisplay = ttk.Label(
+            self.dateTimeFrame.titleBar,
+            textvariable=self.startTimeVar
+            )
+        timeDisplay.pack(side='left', padx='2')
+        timeDisplay.bind('<Button-1>', self._toggle_date_time_frame)
 
         # 'Moon phase' button.
         ttk.Button(
