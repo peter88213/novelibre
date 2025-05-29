@@ -74,16 +74,16 @@ class ChapterViewCtrl(BasicViewCtrl):
         #--- 'Epigraph' entry.
         if prefs['show_ch_epigraph']:
             self.epigraphFrame.show()
+            epigraphPreview = ''
         else:
             self.epigraphFrame.hide()
-
-        # Epigraph preview.
-        self.epigraphPreviewVar.set(
-            textwrap.shorten(
+            epigraphPreview = textwrap.shorten(
                 self.element.epigraph,
                 width=self.EPIGRAPH_PREVIEW_WIDTH,
                 )
-            )
+
+        # Epigraph preview.
+        self.epigraphPreviewVar.set(epigraphPreview)
 
         self.epigraphEntry.set_text(self.element.epigraph)
         self.epigraphSrcVar.set(self.element.epigraphSrc)
