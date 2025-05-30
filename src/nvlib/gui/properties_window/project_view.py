@@ -335,15 +335,42 @@ class ProjectView(BasicView, ProjectViewCtrl):
         inputWidgets.append(self._customChrGoalsEntry)
 
         #--- "Narrative time" frame.
-        self.narrativeTimeFrame = FoldingFrame(self.elementInfoWindow, _('Narrative time'), self._toggle_narrative_time_frame)
+        self.narrativeTimeFrame = FoldingFrame(
+            self.elementInfoWindow,
+            _('Narrative time'),
+            self._toggle_narrative_time_frame,
+            )
+
+        # Preview reference date.
+        self.datePreviewVar = MyStringVar()
+        datePreview = ttk.Label(
+            self.narrativeTimeFrame.titleBar,
+            textvariable=self.datePreviewVar
+            )
+        datePreview.pack(side='left', padx=2)
+        datePreview.bind('<Button-1>', self._toggle_narrative_time_frame)
 
         ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
+
+        # Locale reference date display.
+        displayDateFrame = ttk.Frame(self.narrativeTimeFrame)
+        displayDateFrame.pack(fill='x')
+        ttk.Label(
+            displayDateFrame,
+            text=_('Reference date'),
+            width=20
+            ).pack(side='left')
+        self.displayDateVar = MyStringVar()
+        ttk.Label(
+            displayDateFrame,
+            textvariable=self.displayDateVar
+            ).pack(anchor='w')
 
         # 'Reference date' entry.
         self.referenceDateVar = MyStringVar()
         self._referenceDateEntry = LabelEntry(
             self.narrativeTimeFrame,
-            text=_('Reference date'),
+            text=_('Change date'),
             textvariable=self.referenceDateVar,
             command=self.apply_changes,
             lblWidth=20
@@ -351,22 +378,33 @@ class ProjectView(BasicView, ProjectViewCtrl):
         self._referenceDateEntry.pack(anchor='w')
         inputWidgets.append(self._referenceDateEntry)
 
-        # Day of the week display.
-        localeDateFrame = ttk.Frame(self.narrativeTimeFrame)
-        localeDateFrame.pack(fill='x')
-        ttk.Label(localeDateFrame, width=20).pack(side='left')
-        self.referenceWeekDayVar = MyStringVar()
-        ttk.Label(localeDateFrame, textvariable=self.referenceWeekDayVar).pack(side='left')
-        self.displayDateVar = MyStringVar()
-        ttk.Label(localeDateFrame, textvariable=self.displayDateVar).pack(anchor='w')
-
         # Convert date/day buttons.
-        self.datesToDaysButton = ttk.Button(self.narrativeTimeFrame, text=_('Convert dates to days'), command=self.dates_to_days)
-        self.datesToDaysButton.pack(side='left', fill='x', expand=True, padx=1, pady=2)
+        self.datesToDaysButton = ttk.Button(
+            self.narrativeTimeFrame,
+            text=_('Convert dates to days'),
+            command=self.dates_to_days,
+            )
+        self.datesToDaysButton.pack(
+            side='left',
+            fill='x',
+            expand=True,
+            padx=1,
+            pady=2,
+            )
         inputWidgets.append(self.datesToDaysButton)
 
-        self.daysToDatesButton = ttk.Button(self.narrativeTimeFrame, text=_('Convert days to dates'), command=self.days_to_dates)
-        self.daysToDatesButton.pack(side='left', fill='x', expand=True, padx=1, pady=2)
+        self.daysToDatesButton = ttk.Button(
+            self.narrativeTimeFrame,
+            text=_('Convert days to dates'),
+            command=self.days_to_dates,
+            )
+        self.daysToDatesButton.pack(
+            side='left',
+            fill='x',
+            expand=True,
+            padx=1,
+            pady=2,
+            )
         inputWidgets.append(self.daysToDatesButton)
 
         #--- "Writing progress" frame.
@@ -410,7 +448,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             text=_('Words to write'),
             textvariable=self.wordTargetVar,
             command=self.apply_changes,
-            lblWidth=20
+            lblWidth=20,
             )
         self._wordTargetEntry.pack(anchor='w')
         inputWidgets.append(self._wordTargetEntry)
@@ -422,7 +460,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
             text=_('Starting count'),
             textvariable=self.wordCountStartVar,
             command=self.apply_changes,
-            lblWidth=20
+            lblWidth=20,
             )
         self._wordCountStartEntry.pack(anchor='w')
         inputWidgets.append(self._wordCountStartEntry)

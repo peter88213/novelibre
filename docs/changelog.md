@@ -13,12 +13,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ### Version 5.24.0
 
 - Displaying previews on collapsed property frames.
+- Fixed a bug where the word target and word count start values cannot be reset properly.
 - Fixed a bug where the age is displayed as zero if the character has been
   dead for less than a year.
 - Improved and extended the age display.
 - Added a duration display to the section properties.
 - Changed the API of PyCalendar.age().
-- Fixed a bug where the word target and word count start value cannot be reset properly.
 
 
 ### Version 5.23.5

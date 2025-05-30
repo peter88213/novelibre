@@ -61,8 +61,6 @@ class ProjectViewCtrl(BasicViewCtrl):
         refDateStr = self.referenceDateVar.get()
         if not refDateStr:
             self.element.referenceDate = None
-            self.referenceWeekDayVar.set('')
-            self.displayDateVar.set('')
         elif refDateStr != self.element.referenceDate:
             try:
                 PyCalendar.verified_date(refDateStr)
@@ -74,11 +72,6 @@ class ProjectViewCtrl(BasicViewCtrl):
                     )
             else:
                 self.element.referenceDate = refDateStr
-                if self.element.referenceWeekDay is not None:
-                    self.referenceWeekDayVar.set(PyCalendar.WEEKDAYS[self.element.referenceWeekDay])
-                else:
-                    self.referenceWeekDayVar.set('')
-                    self.displayDateVar.set('')
 
         #--- "Writing progress" frame.
         wordTargetStr = self.wordTargetVar.get()
@@ -246,21 +239,29 @@ class ProjectViewCtrl(BasicViewCtrl):
         self.customChrGoalsVar.set(self.element.customChrGoals)
 
         #--- "Narrative time" frame
+
+        # Reference date preview.
+        displayDate = []
+        datePreview = []
+        if (self.element.referenceDate is not None and
+            self.element.referenceWeekDay is not None):
+            dispWeekday = PyCalendar.WEEKDAYS[self.element.referenceWeekDay]
+            dispDate = datestr(self.element.referenceDate)
+            displayDate.append(dispWeekday)
+            displayDate.append(dispDate)
+            datePreview.append(_('Reference date'))
+            datePreview.append(dispWeekday)
+            datePreview.append(dispDate)
+
         if prefs['show_narrative_time']:
             self.narrativeTimeFrame.show()
+            self.displayDateVar.set(list_to_string(displayDate, divider=' '))
+            self.datePreviewVar.set('')
         else:
             self.narrativeTimeFrame.hide()
-
-        if self.element.referenceDate and self.element.referenceWeekDay is not None:
-            self.referenceWeekDayVar.set(
-                PyCalendar.WEEKDAYS[self.element.referenceWeekDay]
-                )
-            self.displayDateVar.set(
-                datestr(self.element.referenceDate)
-                )
-        else:
-            self.referenceWeekDayVar.set('')
             self.displayDateVar.set('')
+            self.datePreviewVar.set(list_to_string(datePreview, divider=' '))
+
         self.referenceDateVar.set(self.element.referenceDate)
 
         #--- "Writing progress" frame.
