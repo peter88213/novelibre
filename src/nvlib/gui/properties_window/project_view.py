@@ -229,8 +229,23 @@ class ProjectView(BasicView, ProjectViewCtrl):
             self._toggle_renamings_frame,
             )
 
+        # Renamings  preview.
+        self.renamingsPreviewVar = MyStringVar()
+        renamingsPreview = ttk.Label(
+            self.renamingsFrame.titleBar,
+            textvariable=self.renamingsPreviewVar,
+            )
+        renamingsPreview.pack(side='left', padx=2)
+        renamingsPreview.bind(
+            '<Button-1>',
+            self._toggle_renamings_frame
+            )
+
         ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
-        ttk.Label(self.renamingsFrame, text=_('Not a scene')).pack(anchor='w')
+        ttk.Label(
+            self.renamingsFrame,
+            text=_('Not a scene')
+            ).pack(anchor='w')
 
         # Custom 'Plot progress' entry.
         self.customPlotProgressVar = MyStringVar()
@@ -269,7 +284,10 @@ class ProjectView(BasicView, ProjectViewCtrl):
         inputWidgets.append(self._customWorldBuildingEntry)
 
         ttk.Separator(self.renamingsFrame, orient='horizontal').pack(fill='x', pady=5)
-        ttk.Label(self.renamingsFrame, text=_('Other scene')).pack(anchor='w')
+        ttk.Label(
+            self.renamingsFrame,
+            text=_('Other scene')
+            ).pack(anchor='w')
 
         # 'Opening' entry.
         self.customGoalVar = MyStringVar()
@@ -308,7 +326,10 @@ class ProjectView(BasicView, ProjectViewCtrl):
         inputWidgets.append(self._customOutcomeEntry)
 
         ttk.Separator(self.renamingsFrame, orient='horizontal').pack(fill='x', pady=5)
-        ttk.Label(self.renamingsFrame, text=_('Character')).pack(anchor='w')
+        ttk.Label(
+            self.renamingsFrame,
+            text=_('Character')
+            ).pack(anchor='w')
 
         # 'Bio' entry.
         self.customChrBioVar = MyStringVar()

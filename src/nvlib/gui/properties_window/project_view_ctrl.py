@@ -177,7 +177,7 @@ class ProjectViewCtrl(BasicViewCtrl):
             if self.element.renumberParts:
                 renumberings.append(_('Parts'))
             self.numberingPreviewVar.set(
-                list_to_string(renumberings, divider=f' {_("and")}')
+                list_to_string(renumberings, divider=f' {_("and")} ')
                 )
 
         # 'Auto number chapters' checkbox.
@@ -224,10 +224,33 @@ class ProjectViewCtrl(BasicViewCtrl):
             self.romanPartNumbersVar.set(False)
 
         #--- "Renamings" frame.
+
         if prefs['show_renamings']:
             self.renamingsFrame.show()
+            self.renamingsPreviewVar.set('')
         else:
             self.renamingsFrame.hide()
+            renamings = []
+            if (
+                self.element.customPlotProgress or
+                self.element.customCharacterization or
+                self.element.customWorldBuilding
+            ):
+                renamings.append(_('Not a scene'))
+            if (
+                self.element.customGoal or
+                self.element.customConflict or
+                self.element.customOutcome
+            ):
+                renamings.append(_('Other scene'))
+            if (
+                self.element.customChrBio or
+                self.element.customChrGoals
+            ):
+                renamings.append(_('Character'))
+            self.renamingsPreviewVar.set(
+                list_to_string(renamings, divider='/')
+                )
 
         self.customPlotProgressVar.set(self.element.customPlotProgress)
         self.customCharacterizationVar.set(self.element.customCharacterization)
