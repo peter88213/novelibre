@@ -85,7 +85,8 @@ class ProjectViewCtrl(BasicViewCtrl):
 
         wordCountStartStr = self.wordCountStartVar.get()
         if wordCountStartStr is None:
-            self.element.wordCountStart = None
+            self.element.wordCountStart = 0
+            self.wordCountStartVar.set('0')
         else:
             try:
                 self.element.wordCountStart = int(wordCountStartStr)

@@ -505,6 +505,8 @@ class Novel(BasicElement):
         # Word count start/Word target.
         if xmlElement.find('WordCountStart') is not None:
             self.wordCountStart = int(xmlElement.find('WordCountStart').text)
+        else:
+            self.wordCountStart = 0
         if xmlElement.find('WordTarget') is not None:
             self.wordTarget = int(xmlElement.find('WordTarget').text)
 
