@@ -352,12 +352,23 @@ class ProjectView(BasicView, ProjectViewCtrl):
 
         ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
 
+        # 'Reference date' entry.
+        self.referenceDateVar = MyStringVar()
+        self._referenceDateEntry = LabelEntry(
+            self.narrativeTimeFrame,
+            text=_('Reference date'),
+            textvariable=self.referenceDateVar,
+            command=self.apply_changes,
+            lblWidth=20
+            )
+        self._referenceDateEntry.pack(anchor='w')
+        inputWidgets.append(self._referenceDateEntry)
+
         # Locale reference date display.
         displayDateFrame = ttk.Frame(self.narrativeTimeFrame)
         displayDateFrame.pack(fill='x')
         ttk.Label(
             displayDateFrame,
-            text=_('Reference date'),
             width=20
             ).pack(side='left')
         self.displayDateVar = MyStringVar()
@@ -365,18 +376,6 @@ class ProjectView(BasicView, ProjectViewCtrl):
             displayDateFrame,
             textvariable=self.displayDateVar
             ).pack(anchor='w')
-
-        # 'Reference date' entry.
-        self.referenceDateVar = MyStringVar()
-        self._referenceDateEntry = LabelEntry(
-            self.narrativeTimeFrame,
-            text=_('Change date'),
-            textvariable=self.referenceDateVar,
-            command=self.apply_changes,
-            lblWidth=20
-            )
-        self._referenceDateEntry.pack(anchor='w')
-        inputWidgets.append(self._referenceDateEntry)
 
         # Convert date/day buttons.
         self.datesToDaysButton = ttk.Button(
