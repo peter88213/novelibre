@@ -370,7 +370,23 @@ class ProjectView(BasicView, ProjectViewCtrl):
         inputWidgets.append(self.daysToDatesButton)
 
         #--- "Writing progress" frame.
-        self.progressFrame = FoldingFrame(self.elementInfoWindow, _('Writing progress'), self._toggle_progress_frame)
+        self.progressFrame = FoldingFrame(
+            self.elementInfoWindow,
+            _('Writing progress'),
+            self._toggle_progress_frame
+            )
+
+        # Progress  preview.
+        self.progressPreviewVar = MyStringVar()
+        progressPreview = ttk.Label(
+            self.progressFrame.titleBar,
+            textvariable=self.progressPreviewVar,
+            )
+        progressPreview.pack(side='left', padx=2)
+        progressPreview.bind(
+            '<Button-1>',
+            self._toggle_progress_frame
+            )
 
         # 'Log writing progress' checkbox.
         self.saveWordCountVar = tk.BooleanVar()
@@ -388,7 +404,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
         ttk.Separator(self.progressFrame, orient='horizontal').pack(fill='x')
 
         # 'Words to write' entry.
-        self.wordTargetVar = tk.IntVar()
+        self.wordTargetVar = MyStringVar()
         self._wordTargetEntry = LabelEntry(
             self.progressFrame,
             text=_('Words to write'),
@@ -400,7 +416,7 @@ class ProjectView(BasicView, ProjectViewCtrl):
         inputWidgets.append(self._wordTargetEntry)
 
         # 'Starting count' entry.
-        self.wordCountStartVar = tk.IntVar()
+        self.wordCountStartVar = MyStringVar()
         self._wordCountStartEntry = LabelEntry(
             self.progressFrame,
             text=_('Starting count'),
@@ -412,16 +428,20 @@ class ProjectView(BasicView, ProjectViewCtrl):
         inputWidgets.append(self._wordCountStartEntry)
 
         # 'Set actual wordcount as start' button.
-        self._setInitialWcButton = ttk.Button(self.progressFrame, text=_('Set actual wordcount as start'), command=self.set_initial_wc)
+        self._setInitialWcButton = ttk.Button(
+            self.progressFrame,
+            text=_('Set actual wordcount as start'),
+            command=self.set_initial_wc,
+            )
         self._setInitialWcButton.pack(pady=2)
         inputWidgets.append(self._setInitialWcButton)
 
         # 'Words written' display.
         self.wordsWrittenVar = MyStringVar()
-        self.wordTargetVar.trace_add('write', self.update_words_written)
-        self.wordCountStartVar.trace_add('write', self.update_words_written)
         LabelDisp(self.progressFrame, text=_('Words written'),
-                  textvariable=self.wordsWrittenVar, lblWidth=20).pack(anchor='w')
+                  textvariable=self.wordsWrittenVar,
+                  lblWidth=20,
+                  ).pack(anchor='w')
 
         ttk.Separator(self.progressFrame, orient='horizontal').pack(fill='x')
 

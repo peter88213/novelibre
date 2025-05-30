@@ -81,24 +81,24 @@ class ProjectViewCtrl(BasicViewCtrl):
                     self.displayDateVar.set('')
 
         #--- "Writing progress" frame.
-        try:
-            entry = self.wordTargetVar.get()
-            # entry must be an integer
-            if self.element.wordTarget or entry:
-                if self.element.wordTarget != entry:
-                    self.element.wordTarget = entry
-        except:
-            # entry is no integer
-            pass
-        try:
-            entry = self.wordCountStartVar.get()
-            # entry must be an integer
-            if self.element.wordCountStart or entry:
-                if self.element.wordCountStart != entry:
-                    self.element.wordCountStart = entry
-        except:
-            # entry is no integer
-            pass
+        wordTargetStr = self.wordTargetVar.get()
+        if wordTargetStr is None:
+            self.element.wordTarget = None
+        else:
+            try:
+                self.element.wordTarget = int(wordTargetStr)
+            except (ValueError, TypeError):
+                self.wordTargetVar.set(self.element.wordTarget)
+
+        wordCountStartStr = self.wordCountStartVar.get()
+        if wordCountStartStr is None:
+            self.element.wordCountStart = None
+        else:
+            try:
+                self.element.wordCountStart = int(wordCountStartStr)
+            except (ValueError, TypeError):
+                self.wordCountStartVar.set(self.element.wordCountStart)
+        self._update_progress_display()
 
         # Get work phase.
         if not self.phaseCombobox.current():
@@ -268,6 +268,7 @@ class ProjectViewCtrl(BasicViewCtrl):
             self.progressFrame.show()
         else:
             self.progressFrame.hide()
+        self._update_progress_display()
 
         # 'Save word count' checkbox.
         if self.element.saveWordCount:
@@ -276,16 +277,10 @@ class ProjectViewCtrl(BasicViewCtrl):
             self.saveWordCountVar.set(False)
 
         # 'Words to write' entry.
-        if self.element.wordTarget is not None:
-            self.wordTargetVar.set(self.element.wordTarget)
-        else:
-            self.wordTargetVar.set(0)
+        self.wordTargetVar.set(self.element.wordTarget)
 
         # 'Starting count' entry.
-        if self.element.wordCountStart is not None:
-            self.wordCountStartVar.set(self.element.wordCountStart)
-        else:
-            self.wordCountStartVar.set(0)
+        self.wordCountStartVar.set(self.element.wordCountStart)
 
         # Status counts.
         normalWordsTotal, allWordsTotal = self._mdl.prjFile.count_words()
@@ -313,23 +308,46 @@ class ProjectViewCtrl(BasicViewCtrl):
         
         Callback procedure for the related button.
         """
-        self.wordCountStartVar.set(self._mdl.wordCount)
+        self.element.wordCountStart = self._mdl.wordCount
 
-    def update_words_written(self, n, m, x):
-        """Calculate the percentage of written words.
+    def _update_progress_display(self, *args):
+        """Calculate and display the percentage of written words.
         
         Callback procedure for traced variables:
         - self.wordCountStartVar
         - self.wordTargetVar
         """
-        try:
-            ww = self._mdl.wordCount - self.wordCountStartVar.get()
-            wt = self.wordTargetVar.get()
+        # Calculate the percentage of written words.
+        wordsWritten = None
+        wordPercentage = None
+
+        if (self.element.wordTarget is not None  and
+            self.element.wordCountStart is not None
+        ):
             try:
-                wp = f'({round(100*ww/wt)}%)'
-            except ZeroDivisionError:
-                wp = ''
-            self.wordsWrittenVar.set(f'{ww} {wp}')
-        except:
-            pass
+                wordsWritten = self._mdl.wordCount - self.element.wordCountStart
+                wordPercentage = round(100 * wordsWritten / self.element.wordTarget)
+            except (ValueError, TypeError):
+                pass
+
+        wordsWrittenDisp = []
+        progressPreview = []
+        if wordsWritten is not None:
+            wordsWrittenDisp.append(str(wordsWritten))
+        if wordPercentage is not None:
+            wordsWrittenDisp.append(f'({wordPercentage}%)')
+            progressPreview.append(f'{wordPercentage}%')
+
+        if prefs['show_writing_progress']:
+            self.progressPreviewVar.set('')
+            self.wordsWrittenVar.set(
+                list_to_string(wordsWrittenDisp, divider=' ')
+                )
+        else:
+            self.wordsWrittenVar.set('')
+            if self.element.saveWordCount:
+                progressPreview.append(_('Logging active'))
+            self.progressPreviewVar.set(
+                list_to_string(progressPreview, divider=' - ')
+                )
 

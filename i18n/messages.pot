@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.23.5\n"
-"POT-Creation-Date: 2025-05-29 22:42:58\n"
+"POT-Creation-Date: 2025-05-29 23:20:20\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -735,6 +735,9 @@ msgid "Lock/unlock"
 msgstr ""
 
 msgid "Log writing progress"
+msgstr ""
+
+msgid "Logging active"
 msgstr ""
 
 msgid "Major Character"
