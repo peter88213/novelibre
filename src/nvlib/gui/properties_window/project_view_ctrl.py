@@ -369,8 +369,8 @@ class ProjectViewCtrl(BasicViewCtrl):
                 )
         else:
             self.wordsWrittenVar.set('')
-            if self.element.saveWordCount:
-                progressPreview.append(_('Logging active'))
+            if not self.element.saveWordCount:
+                progressPreview.append(_('Logging is off'))
             self.progressPreviewVar.set(
                 list_to_string(progressPreview, divider=' - ')
                 )

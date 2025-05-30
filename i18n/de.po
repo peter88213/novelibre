@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.23.5\n"
-"POT-Creation-Date: 2025-05-30 16:32:56\n"
-"PO-Revision-Date: 2025-05-30 16:32:56\n"
+"POT-Creation-Date: 2025-05-30 17:06:28\n"
+"PO-Revision-Date: 2025-05-30 17:06:28\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -207,9 +207,6 @@ msgstr "Ebene ändern"
 
 msgid "Change backup directory"
 msgstr "Sicherungsverzeichnis ändern"
-
-msgid "Change date"
-msgstr "Datum ändern"
 
 msgid "Change sections to Normal"
 msgstr "Abschnitte zu Normal ändern"
@@ -733,8 +730,8 @@ msgstr "Sperren/Entsperren"
 msgid "Log writing progress"
 msgstr "Schreibfortschritt protokollieren"
 
-msgid "Logging active"
-msgstr "Protokollierung aktiv"
+msgid "Logging is off"
+msgstr "Protokollierung ist aus"
 
 msgid "Major Character"
 msgstr "Hauptfigur"

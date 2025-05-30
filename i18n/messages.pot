@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.23.5\n"
-"POT-Creation-Date: 2025-05-30 16:32:56\n"
+"POT-Creation-Date: 2025-05-30 17:06:28\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -213,9 +213,6 @@ msgid "Change Level"
 msgstr ""
 
 msgid "Change backup directory"
-msgstr ""
-
-msgid "Change date"
 msgstr ""
 
 msgid "Change sections to Normal"
@@ -740,7 +737,7 @@ msgstr ""
 msgid "Log writing progress"
 msgstr ""
 
-msgid "Logging active"
+msgid "Logging is off"
 msgstr ""
 
 msgid "Major Character"
