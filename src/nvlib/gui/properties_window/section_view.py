@@ -154,32 +154,17 @@ class SectionView(BasicView, SectionViewCtrl):
             self._toggle_date_time_frame,
             )
 
-        # Preview weekday.
-        self.weekDayPreviewVar = MyStringVar()
-        weekDayPreview = ttk.Label(
-            self.dateTimeFrame.titleBar,
-            textvariable=self.weekDayPreviewVar
-            )
-        weekDayPreview.pack(side='left')
-        weekDayPreview.bind('<Button-1>', self._toggle_date_time_frame)
-
-        # Preview date.
+        # Preview start date.
         self.datePreviewVar = MyStringVar()
         datePreview = ttk.Label(
             self.dateTimeFrame.titleBar,
             textvariable=self.datePreviewVar
             )
-        datePreview.pack(side='left')
-        datePreview.bind('<Button-1>', self._toggle_date_time_frame)
-
-        # Preview time.
-        self.timePreviewVar = MyStringVar()
-        timePreview = ttk.Label(
-            self.dateTimeFrame.titleBar,
-            textvariable=self.timePreviewVar
+        datePreview.pack(side='left', padx=2)
+        datePreview.bind(
+            '<Button-1>',
+            self._toggle_date_time_frame
             )
-        timePreview.pack(side='left', padx=2)
-        timePreview.bind('<Button-1>', self._toggle_date_time_frame)
 
         sectionStartFrame = ttk.Frame(self.dateTimeFrame)
         sectionStartFrame.pack(fill='x')
@@ -193,14 +178,6 @@ class SectionView(BasicView, SectionViewCtrl):
             width=self._DATE_TIME_LBL_X
             ).pack(side='left')
 
-        # Day of the week.
-        self.weekDayVar = MyStringVar()
-        weekDay = ttk.Label(
-            displayDateFrame,
-            textvariable=self.weekDayVar
-            )
-        weekDay.pack(side='left')
-
         # Display date.
         self.displayDateVar = MyStringVar()
         displayDate = ttk.Label(
@@ -208,14 +185,6 @@ class SectionView(BasicView, SectionViewCtrl):
             textvariable=self.displayDateVar
             )
         displayDate.pack(side='left')
-
-        # Display time.
-        self.displayTimeVar = MyStringVar()
-        displayTime = ttk.Label(
-            displayDateFrame,
-            textvariable=self.displayTimeVar
-            )
-        displayTime.pack(side='left', padx=2)
 
         # 'Moon phase' button.
         ttk.Button(

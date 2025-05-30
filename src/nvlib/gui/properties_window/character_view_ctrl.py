@@ -9,6 +9,7 @@ from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.nv_globals import get_locale_date_str
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
+from nvlib.novx_globals import list_to_string
 
 
 class CharacterViewCtrl(WorldElementViewCtrl):
@@ -91,19 +92,15 @@ class CharacterViewCtrl(WorldElementViewCtrl):
             self.bioPreviewVar.set('')
         else:
             self.bioFrame.hide()
+            bio = []
             if self.element.birthDate:
-                birthDateStr = f'* {get_locale_date_str(self.element.birthDate)}'
-            else:
-                birthDateStr = ''
+                bio.append(f'* {get_locale_date_str(self.element.birthDate)}')
             if self.element.deathDate:
-                deathDateStr = f' † {get_locale_date_str(self.element.deathDate)}'
-            else:
-                deathDateStr = ''
+                bio.append(f'† {get_locale_date_str(self.element.deathDate)}')
             if self.element.bio:
-                bioStr = ' [...]'
-            else:
-                bioStr = ''
-            self.bioPreviewVar.set(f'{birthDateStr}{deathDateStr}{bioStr}')
+                bio.append('[...]')
+            self.bioPreviewVar.set(
+                list_to_string(bio, divider=' '))
 
         self.bioEntry.set_text(self.element.bio)
 

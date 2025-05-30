@@ -9,6 +9,7 @@ from pathlib import Path
 import sys
 
 from nvlib.model.data.py_calendar import PyCalendar
+from nvlib.novx_globals import list_to_string
 from nvlib.nv_locale import _
 
 prefs = {}
@@ -70,19 +71,14 @@ def get_section_date_str(section):
 def get_duration_str(section):
     """Return a combined duration information."""
 
+    duration = []
     if section.lastsDays and section.lastsDays != '0':
-        days = f"{section.lastsDays}{_('d')} "
-    else:
-        days = ''
+        duration.append(f"{section.lastsDays}{_('d')}")
     if section.lastsHours and section.lastsHours != '0':
-        hours = f"{section.lastsHours}{_('h')} "
-    else:
-        hours = ''
+        duration.append(f"{section.lastsHours}{_('h')}")
     if section.lastsMinutes and section.lastsMinutes != '0':
-        minutes = f"{section.lastsMinutes}{_('min')}"
-    else:
-        minutes = ''
-    return f'{days}{hours}{minutes}'
+        duration.append(f"{section.lastsMinutes}{_('min')}")
+    return list_to_string(duration, divider=' ')
 
 
 def to_string(text):
