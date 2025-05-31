@@ -98,7 +98,7 @@ class CharacterViewCtrl(WorldElementViewCtrl):
             if self.element.deathDate:
                 bio.append(f'† {get_locale_date_str(self.element.deathDate)}')
             if self.element.bio:
-                bio.append('[...]')
+                bio.append(self._CHECK)
             self.bioPreviewVar.set(
                 list_to_string(bio, divider=' '))
 
@@ -119,7 +119,7 @@ class CharacterViewCtrl(WorldElementViewCtrl):
         else:
             self.goalsFrame.hide()
             if self.element.goals:
-                self.goalsPreviewVar.set('[...]')
+                self.goalsPreviewVar.set(self._CHECK)
             else:
                 self.goalsPreviewVar.set('')
 

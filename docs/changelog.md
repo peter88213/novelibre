@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.24.1
+### Version 5.24.2
 
 - Displaying previews on collapsed property frames.
 - Fixed a bug where the word target and word count start values cannot be reset properly.

@@ -17,6 +17,7 @@ from nvlib.nv_locale import _
 
 class BasicViewCtrl(SubController):
     _HEIGHT_LIMIT = 10
+    _CHECK = '☑'
 
     def initialize_controller(self, model, view, controller):
         super().initialize_controller(model, view, controller)

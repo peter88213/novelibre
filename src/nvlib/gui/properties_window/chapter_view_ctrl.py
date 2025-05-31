@@ -75,7 +75,7 @@ class ChapterViewCtrl(BasicViewCtrl):
         else:
             self.epigraphFrame.hide()
             if self.element.epigraph:
-                self.epigraphPreviewVar.set('[...]')
+                self.epigraphPreviewVar.set(self._CHECK)
             else:
                 self.epigraphPreviewVar.set('')
         self.epigraphEntry.set_text(self.element.epigraph)
