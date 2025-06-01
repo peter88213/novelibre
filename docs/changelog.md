@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.24.3
+
+- Refactored the code for better maintainability.
+
+
 ### Version 5.24.2
 
 - Displaying previews on collapsed property frames.

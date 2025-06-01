@@ -385,6 +385,96 @@ class SectionViewCtrl(BasicViewCtrl):
             self.element.time = None
             self.element.day = None
 
+    def configure_display(self):
+        """Expand or collapse the property frames."""
+        super().configure_display()
+
+        #--- Frame for 'Relationships'.
+        if prefs['show_relationships']:
+            self.relationFrame.show()
+            self.relationsPreviewVar.set('')
+        else:
+            self.relationFrame.hide()
+            relationsPreview = []
+            relationCounts = {
+                _('Characters'): len(self.element.characters),
+                _('Locations'):len(self.element.locations),
+                _('Items'):len(self.element.items),
+            }
+            for elementType in relationCounts:
+                if relationCounts[elementType]:
+                    relationsPreview.append(
+                        f"{elementType}: {relationCounts[elementType]}")
+            self.relationsPreviewVar.set(
+                list_to_string(relationsPreview, divider=', '))
+
+        #--- Frame for date/time/duration.
+        dispDateTime = []
+        if self.element.date and self.element.weekDay is not None:
+            dispDateTime.append(
+                PyCalendar.WEEKDAYS[self.element.weekDay])
+        elif self.element.day and self._mdl.novel.referenceWeekDay is not None:
+            dispDateTime.append(PyCalendar.WEEKDAYS[
+                    (int(self.element.day)
+                    +self._mdl.novel.referenceWeekDay) % 7
+                ])
+        self.startDateVar.set(self.element.date)
+        if self.element.localeDate:
+            dispDateTime.append(get_section_date_str(self.element))
+        elif self.element.day:
+            dispDateTime.append(f'{_("Day")} {self.element.day}')
+
+        # Remove the seconds for the display.
+        if self.element.time:
+            dispDateTime.append(PyCalendar.display_time(self.element.time))
+
+        if prefs['show_date_time']:
+            self.dateTimeFrame.show()
+            self.displayDateVar.set(
+                list_to_string(dispDateTime, divider=' '))
+            self.datePreviewVar.set('')
+            self.displayDurationVar.set(
+                get_duration_str(self.element))
+        else:
+            self.dateTimeFrame.hide()
+            self.datePreviewVar.set(
+                list_to_string(dispDateTime, divider=' '))
+
+        #--- Frame for 'Plot'.
+        if prefs['show_plot']:
+            self.plotFrame.show()
+            self.plotPreviewVar.set('')
+        else:
+            self.plotFrame.hide()
+            plotPreview = []
+            plotCounts = {
+                _('Plot lines'): len(self.element.scPlotLines),
+                _('Plot points'):len(self.element.scPlotPoints),
+            }
+            for elementType in plotCounts:
+                if plotCounts[elementType]:
+                    plotPreview.append(
+                        f"{elementType}: {plotCounts[elementType]}")
+            self.plotPreviewVar.set(
+                list_to_string(plotPreview, divider=', '))
+
+        #--- Frame for 'Scene'.
+        if prefs['show_scene']:
+            self.sceneFrame.show()
+            self.scenePreviewVar.set('')
+        else:
+            self.sceneFrame.hide()
+            if (
+                self.element.scene or
+                self.element.goal or
+                self.element.conflict or
+                self.element.outcome
+            ):
+                self.scenePreviewVar.set(
+                    self.kindsOfScene[self.element.scene])
+            else:
+                self.scenePreviewVar.set('')
+
     def go_to_character(self, event=None):
         """Go to the character selected in the listbox."""
         try:
@@ -594,23 +684,6 @@ class SectionViewCtrl(BasicViewCtrl):
         self.tagsVar.set(list_to_string(self.element.tags))
 
         #--- Frame for 'Relationships'.
-        if prefs['show_relationships']:
-            self.relationFrame.show()
-            self.relationsPreviewVar.set('')
-        else:
-            self.relationFrame.hide()
-            relationsPreview = []
-            relationCounts = {
-                _('Characters'): len(self.element.characters),
-                _('Locations'):len(self.element.locations),
-                _('Items'):len(self.element.items),
-            }
-            for elementType in relationCounts:
-                if relationCounts[elementType]:
-                    relationsPreview.append(
-                        f"{elementType}: {relationCounts[elementType]}")
-            self.relationsPreviewVar.set(
-                list_to_string(relationsPreview, divider=', '))
 
         # 'Characters' window.
         self.crTitles = self._get_element_titles(self.element.characters, self._mdl.novel.characters)
@@ -644,43 +717,13 @@ class SectionViewCtrl(BasicViewCtrl):
 
         #--- Frame for date/time/duration.
 
-        # Date/time preview.
-        dispDate = []
-        if self.element.date and self.element.weekDay is not None:
-            dispDate.append(
-                PyCalendar.WEEKDAYS[self.element.weekDay])
-        elif self.element.day and self._mdl.novel.referenceWeekDay is not None:
-            dispDate.append(PyCalendar.WEEKDAYS[
-                    (int(self.element.day)
-                    +self._mdl.novel.referenceWeekDay) % 7
-                ])
-        self.startDateVar.set(self.element.date)
-        if self.element.localeDate:
-            dispDate.append(get_section_date_str(self.element))
-        elif self.element.day:
-            dispDate.append(f'{_("Day")} {self.element.day}')
-
         # Remove the seconds for the display.
         if self.element.time:
-            dispTime = PyCalendar.display_time(self.element.time)
-            dispDate.append(dispTime)
+            self.startTimeVar.set(PyCalendar.display_time(self.element.time))
         else:
-            dispTime = ''
-
-        if prefs['show_date_time']:
-            self.dateTimeFrame.show()
-            self.displayDateVar.set(
-                list_to_string(dispDate, divider=' '))
-            self.datePreviewVar.set('')
-            self.displayDurationVar.set(
-                get_duration_str(self.element))
-        else:
-            self.dateTimeFrame.hide()
-            self.datePreviewVar.set(
-                list_to_string(dispDate, divider=' '))
+            self.startTimeVar.set('')
 
         self.startDayVar.set(self.element.day)
-        self.startTimeVar.set(dispTime)
         self.lastsDaysVar.set(self.element.lastsDays)
         self.lastsHoursVar.set(self.element.lastsHours)
         self.lastsMinutesVar.set(self.element.lastsMinutes)
@@ -739,22 +782,6 @@ class SectionViewCtrl(BasicViewCtrl):
             self.customOutcomeVar = ''
 
         #--- Frame for 'Plot'.
-        if prefs['show_plot']:
-            self.plotFrame.show()
-            self.plotPreviewVar.set('')
-        else:
-            self.plotFrame.hide()
-            plotPreview = []
-            plotCounts = {
-                _('Plot lines'): len(self.element.scPlotLines),
-                _('Plot points'):len(self.element.scPlotPoints),
-            }
-            for elementType in plotCounts:
-                if plotCounts[elementType]:
-                    plotPreview.append(
-                        f"{elementType}: {plotCounts[elementType]}")
-            self.plotPreviewVar.set(
-                list_to_string(plotPreview, divider=', '))
 
         #  'Plot lines' listbox.
         self.plotlineTitles = self._get_plotline_titles(
@@ -791,21 +818,6 @@ class SectionViewCtrl(BasicViewCtrl):
         self.plotPointsDisplay.config(text=list_to_string(plotPointTitles))
 
         #--- Frame for 'Scene'.
-        if prefs['show_scene']:
-            self.sceneFrame.show()
-            self.scenePreviewVar.set('')
-        else:
-            self.sceneFrame.hide()
-            if (
-                self.element.scene or
-                self.element.goal or
-                self.element.conflict or
-                self.element.outcome
-            ):
-                self.scenePreviewVar.set(
-                    self.kindsOfScene[self.element.scene])
-            else:
-                self.scenePreviewVar.set('')
 
         # Scene radiobuttons.
         self.sceneVar.set(self.element.scene)

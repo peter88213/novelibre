@@ -29,21 +29,36 @@ class ChapterViewCtrl(BasicViewCtrl):
 
         super().apply_changes()
 
-        #--- 'Unused' checkbox.
+        #--- "Unused" checkbox.
         if self.isUnusedVar.get():
             self._ctrl.set_type_unused()
         else:
             self._ctrl.set_type_normal()
 
-        #--- 'Do not auto-number...' checkbox.
+        #--- "Do not auto-number..." checkbox.
         self.element.noNumber = self.noNumberVar.get()
 
-        #--- 'Epigraph' entry.
+        #--- "Epigraph' entry.
         if self.epigraphEntry.hasChanged:
             self.element.epigraph = self.epigraphEntry.get_text()
 
-        #--- 'Epigraph source' entry.
+        #--- "Epigraph source' entry.
         self.element.epigraphSrc = self.epigraphSrcVar.get()
+
+    def configure_display(self):
+        """Expand or collapse the property frames."""
+        super().configure_display()
+
+        #--- Epigraph frame.
+        if prefs['show_ch_epigraph']:
+            self.epigraphFrame.show()
+            self.epigraphPreviewVar.set('')
+        else:
+            self.epigraphFrame.hide()
+            if self.element.epigraph or self.element.epigraphSrc:
+                self.epigraphPreviewVar.set(self._CHECK)
+            else:
+                self.epigraphPreviewVar.set('')
 
     def set_data(self, elementId):
         """Update the view with element's data.
@@ -54,13 +69,13 @@ class ChapterViewCtrl(BasicViewCtrl):
         self.element = self._mdl.novel.chapters[elementId]
         super().set_data(elementId)
 
-        #--- 'Unused' checkbox.
+        #--- "Unused" checkbox.
         if self.element.chType > 0:
             self.isUnusedVar.set(True)
         else:
             self.isUnusedVar.set(False)
 
-        #--- 'Do not auto-number...' checkbox.
+        #--- "Do not auto-number..." checkbox.
         if self.element.chLevel == 1:
             labelText = _('Do not auto-number this part')
         else:
@@ -68,16 +83,7 @@ class ChapterViewCtrl(BasicViewCtrl):
         self.noNumberCheckbox.configure(text=labelText)
         self.noNumberVar.set(self.element.noNumber)
 
-        #--- 'Epigraph' entry.
-        if prefs['show_ch_epigraph']:
-            self.epigraphFrame.show()
-            self.epigraphPreviewVar.set('')
-        else:
-            self.epigraphFrame.hide()
-            if self.element.epigraph:
-                self.epigraphPreviewVar.set(self._CHECK)
-            else:
-                self.epigraphPreviewVar.set('')
+        #--- Epigraph frame.
         self.epigraphEntry.set_text(self.element.epigraph)
         self.epigraphSrcVar.set(self.element.epigraphSrc)
 

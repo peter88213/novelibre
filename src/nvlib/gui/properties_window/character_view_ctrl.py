@@ -24,13 +24,13 @@ class CharacterViewCtrl(WorldElementViewCtrl):
 
         super().apply_changes()
 
-        #--- 'Full name' entry.
+        #--- "Full name" entry.
         self.element.fullName = self.fullNameVar.get()
 
         #--- Character status checkbox.
         self.element.isMajor = self.isMajorVar.get()
 
-        #--- 'Bio' frame.
+        #--- "Bio' frame.
         if self.bioEntry.hasChanged:
             self.element.bio = self.bioEntry.get_text()
 
@@ -64,25 +64,15 @@ class CharacterViewCtrl(WorldElementViewCtrl):
             else:
                 self.element.deathDate = deathDateStr
 
-        #--- 'Goals' entry.
+        #--- "Goals" entry.
         if self.goalsEntry.hasChanged:
             self.element.goals = self.goalsEntry.get_text()
 
-    def set_data(self, elementId):
-        """Update the view with element's data.
-        
-        Extends the superclass method.
-        """
-        self.element = self._mdl.novel.characters[elementId]
-        super().set_data(elementId)
+    def configure_display(self):
+        """Expand or collapse the property frames."""
+        super().configure_display()
 
-        #--- 'Full name' entry.
-        self.fullNameVar.set(self.element.fullName)
-
-        #--- Character status checkbox.
-        self.isMajorVar.set(self.element.isMajor)
-
-        #--- 'Bio' entry
+        #--- Bio frame.
         if self._mdl.novel.customChrBio:
             self.bioFrame.buttonText = self._mdl.novel.customChrBio
         else:
@@ -102,13 +92,7 @@ class CharacterViewCtrl(WorldElementViewCtrl):
             self.bioPreviewVar.set(
                 list_to_string(bio, divider=' '))
 
-        self.bioEntry.set_text(self.element.bio)
-
-        #--- Birth date/death date.
-        self.birthDateVar.set(self.element.birthDate)
-        self.deathDateVar.set(self.element.deathDate)
-
-        #--- 'Goals' entry.
+        #--- Goals frame.
         if self._mdl.novel.customChrGoals:
             self.goalsFrame.buttonText = self._mdl.novel.customChrGoals
         else:
@@ -123,5 +107,29 @@ class CharacterViewCtrl(WorldElementViewCtrl):
             else:
                 self.goalsPreviewVar.set('')
 
+    def set_data(self, elementId):
+        """Update the view with element's data.
+        
+        Extends the superclass method.
+        """
+        self.element = self._mdl.novel.characters[elementId]
+        super().set_data(elementId)
+
+        #--- "Full name" entry.
+        self.fullNameVar.set(self.element.fullName)
+
+        #--- Character status checkbox.
+        self.isMajorVar.set(self.element.isMajor)
+
+        #--- Bio frame.
+
+        # "Bio" entry.
+        self.bioEntry.set_text(self.element.bio)
+
+        # Birth date/death date.
+        self.birthDateVar.set(self.element.birthDate)
+        self.deathDateVar.set(self.element.deathDate)
+
+        #--- "Goals" entry.
         self.goalsEntry.set_text(self.element.goals)
 

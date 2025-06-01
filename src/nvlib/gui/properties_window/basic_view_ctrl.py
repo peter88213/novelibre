@@ -81,6 +81,22 @@ class BasicViewCtrl(SubController):
         if hasattr(self.element, 'notes') and self.notesWindow.hasChanged:
             self.element.notes = self.notesWindow.get_text()
 
+    def configure_display(self):
+        """Expand or collapse the property frames."""
+
+        #--- Links window.
+        if hasattr(self.element, 'links'):
+            if prefs[self._prefsShowLinks]:
+                self.linksWindow.show()
+                self.linksPreviewVar.set('')
+            else:
+                self.linksWindow.hide()
+                linksCount = len(self.element.links)
+                if linksCount:
+                    self.linksPreviewVar.set(str(linksCount))
+                else:
+                    self.linksPreviewVar.set('')
+
     def lock(self):
         """Inhibit element change."""
         self.indexCard.lock()
@@ -131,6 +147,8 @@ class BasicViewCtrl(SubController):
         if self.element is None:
             return
 
+        self.configure_display()
+
         # Title entry.
         self.indexCard.title.set(self.element.title)
 
@@ -140,16 +158,6 @@ class BasicViewCtrl(SubController):
 
         # Links window.
         if hasattr(self.element, 'links'):
-            if prefs[self._prefsShowLinks]:
-                self.linksWindow.show()
-                self.linksPreviewVar.set('')
-            else:
-                self.linksWindow.hide()
-                linksCount = len(self.element.links)
-                if linksCount:
-                    self.linksPreviewVar.set(str(linksCount))
-                else:
-                    self.linksPreviewVar.set('')
             linkList = []
             for path in self.element.links:
                 linkList.append(os.path.basename(path))
