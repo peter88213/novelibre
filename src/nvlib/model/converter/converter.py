@@ -246,7 +246,7 @@ class Converter:
             source.read()
             target.novel = source.novel
             target.write()
-        except Error as ex:
+        except Exception as ex:
             statusMsg = f'!{str(ex)}'
         else:
             statusMsg = f'{_("File written")}: "{norm_path(target.filePath)}".'
