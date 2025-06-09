@@ -48,7 +48,8 @@ class NvDocExporter(NovxConversion):
             ask: Boolean -- If True, ask before opening the created document.
             overwrite: Boolean -- Overwrite existing files without confirmation. 
 
-        On success, return a message. Otherwise raise an Error or Notification exception.
+        On success, return a message. 
+        Otherwise raise an Error or Notification exception.
         """
         self._source = source
         self._isNewer = False
@@ -73,12 +74,13 @@ class NvDocExporter(NovxConversion):
                 defaultChoice = 0
             self._targetFileDate = datetime.fromtimestamp(targetTimestamp).strftime('%c')
             message = _('{0} already exists.\n(last saved on {2})\n{1}.\n\nOpen this document instead of overwriting it?').format(
-                        norm_path(self._target.DESCRIPTION), timeStatus, self._targetFileDate)
+                        norm_path(self._target.DESCRIPTION), timeStatus, self._targetFileDate
+            )
             result = self._ui.ask_overwrite_open_cancel(
                 text=f"\n\n{message}\n\n",
                 default=defaultChoice,
                 title=_('Export document')
-                )
+            )
             if result == 2:
                 raise Notification(f'{_("Action canceled by user")}.')
 
