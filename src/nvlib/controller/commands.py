@@ -457,15 +457,17 @@ class Commands:
 
     def refresh_tree(self, event=None):
         """Update the project structure."""
-        self._ui.propertiesView.apply_changes()
-        self._mdl.renumber_chapters()
-        self._mdl.prjFile.adjust_section_types()
-        self._mdl.novel.update_plot_lines()
+        if not self.isLocked:
+            self._ui.propertiesView.apply_changes()
+            self._mdl.renumber_chapters()
+            self._mdl.prjFile.adjust_section_types()
+            self._mdl.novel.update_plot_lines()
         return 'break'
 
     def reload_project(self, event=None):
         """Discard changes and reload the project."""
-        self.fileManager.reload_project()
+        if not self.isLocked:
+            self.fileManager.reload_project()
         return 'break'
 
     def restore_backup(self, event=None):
@@ -485,7 +487,8 @@ class Commands:
         
         Return True on success, otherwise return False.
         """
-        return self.fileManager.save_project()
+        if not self.isLocked:
+            return self.fileManager.save_project()
 
     def set_chr_status_major(self, event=None):
         if not self.check_lock():

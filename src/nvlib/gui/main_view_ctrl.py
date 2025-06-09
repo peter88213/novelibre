@@ -62,6 +62,8 @@ class MainViewCtrl(SubController):
             _('Show Project notes'),
         ]
         self._fileMenuNormalUnlocked = [
+            _('Reload'),
+            _('Refresh Tree'),
             _('Save'),
         ]
         self._mainMenuNormalUnlocked = [

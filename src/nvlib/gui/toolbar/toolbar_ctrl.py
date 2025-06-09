@@ -65,6 +65,7 @@ class ToolbarCtrl(SubController):
         
         Overrides the superclass method.
         """
+        self.saveButton.config(state='disabled')
         self.updateButton.config(state='disabled')
         self.addElementButton.config(state='disabled')
         self.addChildButton.config(state='disabled')
@@ -78,6 +79,7 @@ class ToolbarCtrl(SubController):
         
         Overrides the superclass method.
         """
+        self.saveButton.config(state='normal')
         self.updateButton.config(state='normal')
         self.addElementButton.config(state='normal')
         self.addChildButton.config(state='normal')
