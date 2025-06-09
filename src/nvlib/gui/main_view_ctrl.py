@@ -67,13 +67,21 @@ class MainViewCtrl(SubController):
         self._mainMenuNormalUnlocked = [
             _('Chapter'),
             _('Characters'),
-            _('Export'),
+            _('Import'),
             _('Items'),
             _('Locations'),
             _('Part'),
             _('Plot'),
             _('Project notes'),
             _('Section'),
+        ]
+        self._exportMenuNormalUnlocked = [
+            _('Manuscript for editing'),
+            _('Manuscript for third-party word processing'),
+            _('Final manuscript document (export only)'),
+            _('Brief synopsis (export only)'),
+            _('Cross references (export only)'),
+            _('XML data files'),
         ]
 
     def disable_menu(self):
@@ -112,6 +120,8 @@ class MainViewCtrl(SubController):
             self.fileMenu.entryconfig(entry, state='disabled')
         for entry in self._mainMenuNormalUnlocked:
             self.mainMenu.entryconfig(entry, state='disabled')
+        for entry in self._exportMenuNormalUnlocked:
+            self.exportMenu.entryconfig(entry, state='disabled')
 
     def on_close(self):
         """Actions to be performed when a project is closed.
@@ -152,4 +162,6 @@ class MainViewCtrl(SubController):
             self.fileMenu.entryconfig(entry, state='normal')
         for entry in self._mainMenuNormalUnlocked:
             self.mainMenu.entryconfig(entry, state='normal')
+        for entry in self._exportMenuNormalUnlocked:
+            self.exportMenu.entryconfig(entry, state='normal')
 

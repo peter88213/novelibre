@@ -11,6 +11,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.25.1
+
+- Disabling the "Update from manuscript" toolbar button when the project is locked.
+- Disabling the "Import" menu entry when the project is locked.
+- Enabling the "Export" > "Options" menu entry when the project is locked.
+
+
 ### Version 5.25.0
 
 - Enable opening an existing manuscript if the project is locked.
