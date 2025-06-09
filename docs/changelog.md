@@ -11,6 +11,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.25.0
+
+- Enable opening an existing manuscript if the project is locked.
+
+
 ### Version 5.24.5
 
 - Fixed a regression from version 5.24.2 where an unhandled ZeroDivisionError occurs when creating an empty project.

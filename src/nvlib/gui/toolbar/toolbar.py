@@ -35,7 +35,7 @@ class Toolbar(ToolbarCtrl):
             text=_('Back'),
             image=self._ui.icons.goBackIcon,
             command=self._ui.tv.go_back
-            )
+        )
         self.goBackButton.pack(side='left')
         self.goBackButton.image = self._ui.icons.goBackIcon
 
@@ -45,7 +45,7 @@ class Toolbar(ToolbarCtrl):
             text=_('Forward'),
             image=self._ui.icons.goForwardIcon,
             command=self._ui.tv.go_forward
-            )
+        )
         self.goForwardButton.pack(side='left')
         self.goForwardButton.image = self._ui.icons.goForwardIcon
 
@@ -58,7 +58,7 @@ class Toolbar(ToolbarCtrl):
             text=_('Book'),
             image=self._ui.icons.viewBookIcon,
             command=self._ui.tv.show_book
-            )
+        )
         self.viewBookButton.pack(side='left')
         self.viewBookButton.image = self._ui.icons.viewBookIcon
 
@@ -68,7 +68,7 @@ class Toolbar(ToolbarCtrl):
             text=_('Characters'),
             image=self._ui.icons.viewCharactersIcon,
             command=self._ui.tv.show_characters
-            )
+        )
         self.viewCharactersButton.pack(side='left')
         self.viewCharactersButton.image = self._ui.icons.viewCharactersIcon
 
@@ -78,7 +78,7 @@ class Toolbar(ToolbarCtrl):
             text=_('Locations'),
             image=self._ui.icons.viewLocationsIcon,
             command=self._ui.tv.show_locations
-            )
+        )
         self.viewLocationsButton.pack(side='left')
         self.viewLocationsButton.image = self._ui.icons.viewLocationsIcon
 
@@ -88,7 +88,7 @@ class Toolbar(ToolbarCtrl):
             text=_('Items'),
             image=self._ui.icons.viewItemsIcon,
             command=self._ui.tv.show_items
-            )
+        )
         self.viewItemsButton.pack(side='left')
         self.viewItemsButton.image = self._ui.icons.viewItemsIcon
 
@@ -98,7 +98,7 @@ class Toolbar(ToolbarCtrl):
             text=_('Plot lines'),
             image=self._ui.icons.viewPlotLinesIcon,
             command=self._ui.tv.show_plot_lines
-            )
+        )
         self.viewPlotLinesButton.pack(side='left')
         self.viewPlotLinesButton.image = self._ui.icons.viewPlotLinesIcon
 
@@ -108,7 +108,7 @@ class Toolbar(ToolbarCtrl):
             text=_('Project notes'),
             image=self._ui.icons.viewProjectnotesIcon,
             command=self._ui.tv.show_project_notes
-            )
+        )
         self.viewProjectnotesButton.pack(side='left')
         self.viewProjectnotesButton.image = self._ui.icons.viewProjectnotesIcon
 
@@ -121,7 +121,7 @@ class Toolbar(ToolbarCtrl):
             text=_('Save'),
             image=self._ui.icons.saveIcon,
             command=self._ctrl.save_project
-            )
+        )
         self.saveButton.pack(side='left')
         self.saveButton.image = self._ui.icons.saveIcon
 
@@ -131,7 +131,7 @@ class Toolbar(ToolbarCtrl):
             text=_('Lock/unlock'),
             image=self._ui.icons.lockIcon,
             command=self._ctrl.toggle_lock
-            )
+        )
         self.lockButton.pack(side='left')
         self.lockButton.image = self._ui.icons.lockIcon
 
@@ -141,7 +141,7 @@ class Toolbar(ToolbarCtrl):
             text=_('Update from manuscript'),
             image=self._ui.icons.updateFromManuscriptIcon,
             command=self._ctrl.update_from_manuscript
-            )
+        )
         self.updateButton.pack(side='left')
         self.updateButton.image = self._ui.icons.updateFromManuscriptIcon
 
@@ -151,7 +151,7 @@ class Toolbar(ToolbarCtrl):
             text=_('Export Manuscript'),
             image=self._ui.icons.manuscriptIcon,
             command=self._ctrl.open_manuscript
-            )
+        )
         self.manuscriptButton.pack(side='left')
         self.manuscriptButton.image = self._ui.icons.manuscriptIcon
 
@@ -164,7 +164,7 @@ class Toolbar(ToolbarCtrl):
             text=_('Add'),
             image=self._ui.icons.addIcon,
             command=self._ctrl.add_new_element
-            )
+        )
         self.addElementButton.pack(side='left')
         self.addElementButton.image = self._ui.icons.addIcon
 
@@ -174,7 +174,7 @@ class Toolbar(ToolbarCtrl):
             text=_('Add child'),
             image=self._ui.icons.addChildIcon,
             command=self._ctrl.add_new_child
-            )
+        )
         self.addChildButton.pack(side='left')
         self.addChildButton.image = self._ui.icons.addChildIcon
 
@@ -184,7 +184,7 @@ class Toolbar(ToolbarCtrl):
             text=_('Add parent'),
             image=self._ui.icons.addParentIcon,
             command=self._ctrl.add_new_parent
-            )
+        )
         self.addParentButton.pack(side='left')
         self.addParentButton.image = self._ui.icons.addParentIcon
 
@@ -194,7 +194,7 @@ class Toolbar(ToolbarCtrl):
             text=_('Delete'),
             image=self._ui.icons.removeIcon,
             command=self._ctrl.delete_elements
-            )
+        )
         self.deleteElementButton.pack(side='left')
         self.deleteElementButton.image = self._ui.icons.removeIcon
 
@@ -207,7 +207,7 @@ class Toolbar(ToolbarCtrl):
             text=f"{_('Cut')} ({KEYS.CUT[1]})",
             image=self._ui.icons.cutIcon,
             command=self._ctrl.cut_element
-            )
+        )
         self.cutButton.pack(side='left')
         self.cutButton.image = self._ui.icons.cutIcon
 
@@ -217,7 +217,7 @@ class Toolbar(ToolbarCtrl):
             text=f"{_('Copy')} ({KEYS.COPY[1]})",
             image=self._ui.icons.copyIcon,
             command=self._ctrl.copy_element
-            )
+        )
         self.copyButton.pack(side='left')
         self.copyButton.image = self._ui.icons.copyIcon
 
@@ -227,7 +227,7 @@ class Toolbar(ToolbarCtrl):
             text=f"{_('Paste')} ({KEYS.PASTE[1]})",
             image=self._ui.icons.pasteIcon,
             command=self._ctrl.paste_element
-            )
+        )
         self.pasteButton.pack(side='left')
         self.pasteButton.image = self._ui.icons.pasteIcon
 
@@ -239,7 +239,7 @@ class Toolbar(ToolbarCtrl):
             text=_('Toggle Properties'),
             image=self._ui.icons.propertiesIcon,
             command=self._ui.toggle_properties_view
-            )
+        )
         self.propertiesButton.pack(side='right')
         self.propertiesButton.image = self._ui.icons.propertiesIcon
 
@@ -249,7 +249,7 @@ class Toolbar(ToolbarCtrl):
             text=_('Toggle Text viewer'),
             image=self._ui.icons.viewerIcon,
             command=self._ui.toggle_contents_view
-            )
+        )
         self.viewerButton.pack(side='right')
         self.viewerButton.image = self._ui.icons.viewerIcon
 

@@ -35,6 +35,7 @@ class NvDocExporter(NovxConversion):
             show=True,
             ask=True,
             overwrite=False,
+            doNotExport=False,
     ):
         """Create a target object and run conversion.
         
@@ -46,14 +47,24 @@ class NvDocExporter(NovxConversion):
             filterElementId: str -- element ID for filtering chapters and sections.
             show: Boolean -- If True, open the exported document after creation.
             ask: Boolean -- If True, ask before opening the created document.
-            overwrite: Boolean -- Overwrite existing files without confirmation. 
+            overwrite: Boolean -- Overwrite existing files without confirmation.
+            doNotExport: Boolean -- Open existing, if any. Do not export.
 
-        On success, return a message. 
-        Otherwise raise an Error or Notification exception.
+        Return a message. 
         """
         self._source = source
         self._isNewer = False
         __, self._target = self.exportTargetFactory.new_file_objects(self._source.filePath, suffix=suffix)
+
+        if doNotExport:
+            if os.path.isfile(self._target.filePath):
+                targetTimestamp = os.path.getmtime(self._target.filePath)
+                self._targetFileDate = datetime.fromtimestamp(targetTimestamp).strftime('%c')
+                return self._open_existing_document()
+
+            else:
+                message = _('{0} does not exist.').format(self._target.DESCRIPTION)
+                return f'!{message}'
 
         # Set the user's custom styles.xml path.
         if os.path.isfile(USER_STYLES_XML):
@@ -74,7 +85,7 @@ class NvDocExporter(NovxConversion):
                 defaultChoice = 0
             self._targetFileDate = datetime.fromtimestamp(targetTimestamp).strftime('%c')
             message = _('{0} already exists.\n(last saved on {2})\n{1}.\n\nOpen this document instead of overwriting it?').format(
-                        norm_path(self._target.DESCRIPTION), timeStatus, self._targetFileDate
+                self._target.DESCRIPTION, timeStatus, self._targetFileDate
             )
             result = self._ui.ask_overwrite_open_cancel(
                 text=f"\n\n{message}\n\n",
@@ -82,16 +93,10 @@ class NvDocExporter(NovxConversion):
                 title=_('Export document')
             )
             if result == 2:
-                raise Notification(f'{_("Action canceled by user")}.')
+                return f'#{_("Action canceled by user")}.'
 
             elif result == 1:
-                open_document(self._target.filePath)
-                if self._isNewer:
-                    prefix = ''
-                else:
-                    prefix = '#'
-                    # warning the user, if a document is open that might be outdated
-                return f'{prefix}{_("Opened existing {0} (last saved on {1})").format(self._target.DESCRIPTION, self._targetFileDate)}.'
+                return self._open_existing_document()
 
         # Generate a new document. Overwrite the existing document, if any.
         self._target.sectionFilter = FilterFactory.get_section_filter(filterElementId)
@@ -106,3 +111,11 @@ class NvDocExporter(NovxConversion):
             open_document(self._target.filePath)
         return _('Created {0} on {1}.').format(self._target.DESCRIPTION, self._targetFileDate)
 
+    def _open_existing_document(self):
+        open_document(self._target.filePath)
+        if self._isNewer:
+            prefix = ''
+        else:
+            prefix = '#'
+            # warning the user, if a document is open that might be outdated
+        return f'{prefix}{_("Opened existing {0} (last saved on {1})").format(self._target.DESCRIPTION, self._targetFileDate)}.'

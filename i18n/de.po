@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.24.5\n"
-"POT-Creation-Date: 2025-06-09 18:29:41\n"
-"PO-Revision-Date: 2025-06-09 18:29:41\n"
+"Project-Id-Version: 5.25.0\n"
+"POT-Creation-Date: 2025-06-09 22:55:00\n"
+"PO-Revision-Date: 2025-06-09 22:55:00\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1551,6 +1551,9 @@ msgstr "{0} (zuletzt gespeichert: {1})"
 
 msgid "{0} already exists.\n(last saved on {2})\n{1}.\n\nOpen this document instead of overwriting it?"
 msgstr "{0} gibt es schon.\n(zuletzt gespeichert: {2})\n{1}.\n\nDieses Dokument öffnen, statt es zu überschreiben?"
+
+msgid "{0} does not exist."
+msgstr "{0} gibt es nicht."
 
 msgid "{0} parts, {1} chapters, {2} sections, {3} words"
 msgstr "{0} Teile, {1} Kapitel, {2} Abschnitte, {3} Wörter"

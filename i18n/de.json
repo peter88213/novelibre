@@ -1035,6 +1035,7 @@
   "{0} already exists.\\n(last saved on {2})\\n{1}.\\n\\nOpen this document instead of overwriting it?": "{0} gibt es schon.\\n(zuletzt gespeichert: {2})\\n{1}.\\n\\nDieses Dokument öffnen, statt es zu überschreiben?",
   "{0} already exists.\\n\\n{1} (last saved on {2}).\\n\\nOpen this document instead of overwriting it?": "{0} gibt es schon.\\n\\n{1} (zuletzt gespeichert: {2}).\\n\\nDieses Dokument öffnen, statt es zu überschreiben?",
   "{0} already exists.\\n{1} (last saved on {2}).\\nOpen this document instead of overwriting it?": "{0} gibt es schon.\\n{1} (zuletzt gespeichert: {2}).\\nDieses Dokument öffnen, statt es zu überschreiben?",
+  "{0} does not exist.": "{0} gibt es nicht.",
   "{0} file is {1} than the novelibre project.\\n (last saved on {2})": "{0}-Datei ist {1} als das novelibre-Projekt.\\n (zuletzt gespeichert: {2})",
   "{0} file is {1} than the novelyst project.\\n (last saved on {2})": "{0}-Datei ist {1} als das novelyst-Projekt.\\n (zuletzt gespeichert: {2})",
   "{0} file is {1} than the yWriter project.\\n (last saved on {2})": "{0}-Datei ist {1} als das yWriter-Projekt.\\n (zuletzt gespeichert: {2})",
