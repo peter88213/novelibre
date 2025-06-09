@@ -51,13 +51,35 @@ class HtmlElementNotes(HtmlReport):
 <td />
 </tr>
 '''
-    _partTemplate = _chapterTemplate = _stage1Template = _plotLineTemplate = '''<tr>
-<td class="chtitle">$Title</td>
+    _partTemplate = '''<tr>
+<td class="parttitle">$Title</td>
+<td class="part">$Notes</td>
+</tr>
+'''
+    _chapterTemplate = '''<tr>
+<td class="chaptertitle">$Title</td>
+<td class="chapter">$Notes</td>
+</tr>
+'''
+    __plotLineTemplate = '''<tr>
+<td class="title">$Title</td>
 <td>$Notes</td>
 </tr>
 '''
-    _sectionTemplate = _characterTemplate = _locationTemplate = _itemTemplate = _stage2Template = _plotPointTemplate = '''<tr>
+    _sectionTemplate = _characterTemplate = _locationTemplate = _itemTemplate = _plotPointTemplate = '''<tr>
 <td>$Title</td>
 <td>$Notes</td>
+</tr>
+'''
+
+    _stage1Template = '''<tr>
+<td class="stagetitle">$Title</td>
+<td class="stage">$Notes</td>
+</tr>
+'''
+
+    _stage2Template = '''<tr>
+<td class="stage">$Title</td>
+<td class="stage">$Notes</td>
 </tr>
 '''

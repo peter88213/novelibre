@@ -26,7 +26,13 @@ td {padding: 10}
 tr.heading {font-size:smaller; font-weight: bold; background-color:rgb(240,240,240)}
 table {border-spacing: 0}
 table, td {border: rgb(240,240,240) solid 1px; vertical-align: top}
-td.chtitle {font-weight: bold}
+td.title {font-weight: bold}
+td.chaptertitle {color: green; font-weight: bold}
+td.chapter {color: green}
+td.parttitle {color: white; background-color: green; font-weight: bold}
+td.part {color: white; background-color: green}
+td.stage {color: red}
+td.stagetitle {color: red; font-weight: bold}
 </style>
 
 '''
