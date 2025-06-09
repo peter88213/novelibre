@@ -28,25 +28,30 @@ class NvDocExporter(NovxConversion):
         self._source = None
         self._target = None
 
-    def run(self, source, suffix, **kwargs):
+    def run(self,
+            source,
+            suffix,
+            filterElementId='',
+            show=True,
+            ask=True,
+            overwrite=False,
+    ):
         """Create a target object and run conversion.
         
-        Keyword arguments:
-            filter: str -- element ID for filtering chapters and sections.
-            show: Boolean -- If True, open the exported document after creation.
-            ask: Boolean -- If True, ask before opening the created document.
-
         Positional arguments: 
             source -- NovxFile instance.
             suffix: str -- Target file name suffix.
-            overwrite: Boolean --Overwrite existing files without confirmation. 
-            ask: Boolean -- Ask before opening the document.
                         
+        Keyword arguments:
+            filterElementId: str -- element ID for filtering chapters and sections.
+            show: Boolean -- If True, open the exported document after creation.
+            ask: Boolean -- If True, ask before opening the created document.
+            overwrite: Boolean -- Overwrite existing files without confirmation. 
+
         On success, return a message. Otherwise raise an Error or Notification exception.
         """
         self._source = source
         self._isNewer = False
-        overwrite = kwargs.get('overwrite', False)
         __, self._target = self.exportTargetFactory.new_file_objects(self._source.filePath, suffix=suffix)
 
         # Set the user's custom styles.xml path.
@@ -87,18 +92,15 @@ class NvDocExporter(NovxConversion):
                 return f'{prefix}{_("Opened existing {0} (last saved on {1})").format(self._target.DESCRIPTION, self._targetFileDate)}.'
 
         # Generate a new document. Overwrite the existing document, if any.
-        filterElementId = kwargs.get('filter', '')
         self._target.sectionFilter = FilterFactory.get_section_filter(filterElementId)
         self._target.chapterFilter = FilterFactory.get_chapter_filter(filterElementId)
         self._target.novel = self._source.novel
         self._target.write()
         self._targetFileDate = datetime.now().replace(microsecond=0).isoformat(sep=' ')
-        if kwargs.get('show', True):
-            askOpen = kwargs.get('ask', True) and prefs['ask_doc_open']
-            if not askOpen or self._ui.ask_yes_no(
-                message=_('Open the created document?'),
-                detail=f"{self._target.novel.title} - {norm_path(self._target.DESCRIPTION)}",
-                ):
-                open_document(self._target.filePath)
+        if show and (not ask or not prefs['ask_doc_open'] or self._ui.ask_yes_no(
+            message=_('Open the created document?'),
+            detail=f"{self._target.novel.title} - {norm_path(self._target.DESCRIPTION)}")
+        ):
+            open_document(self._target.filePath)
         return _('Created {0} on {1}.').format(self._target.DESCRIPTION, self._targetFileDate)
 

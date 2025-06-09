@@ -138,21 +138,18 @@ class ProjectViewCtrl(BasicViewCtrl):
         else:
             self.renamingsFrame.hide()
             renamings = []
-            if (
-                self.element.customPlotProgress or
-                self.element.customCharacterization or
-                self.element.customWorldBuilding
+            if (self.element.customPlotProgress
+                or self.element.customCharacterization
+                or self.element.customWorldBuilding
             ):
                 renamings.append(_('Not a scene'))
-            if (
-                self.element.customGoal or
-                self.element.customConflict or
-                self.element.customOutcome
+            if (self.element.customGoal
+                or self.element.customConflict
+                or self.element.customOutcome
             ):
                 renamings.append(_('Other scene'))
-            if (
-                self.element.customChrBio or
-                self.element.customChrGoals
+            if (self.element.customChrBio
+                or self.element.customChrGoals
             ):
                 renamings.append(_('Character'))
             self.renamingsPreviewVar.set(
@@ -162,8 +159,9 @@ class ProjectViewCtrl(BasicViewCtrl):
         #--- "Narrative time" frame
         displayDate = []
         datePreview = []
-        if (self.element.referenceDate is not None and
-            self.element.referenceWeekDay is not None):
+        if (self.element.referenceDate is not None
+            and self.element.referenceWeekDay is not None
+        ):
             dispWeekday = PyCalendar.WEEKDAYS[self.element.referenceWeekDay]
             dispDate = datestr(self.element.referenceDate)
             displayDate.append(dispWeekday)
@@ -185,8 +183,8 @@ class ProjectViewCtrl(BasicViewCtrl):
         wordsWritten = None
         wordPercentage = None
 
-        if (self.element.wordTarget is not None  and
-            self.element.wordCountStart is not None
+        if (self.element.wordTarget is not None
+            and self.element.wordCountStart is not None
         ):
             try:
                 wordsWritten = self._mdl.wordCount - self.element.wordCountStart
@@ -207,7 +205,7 @@ class ProjectViewCtrl(BasicViewCtrl):
             self.progressPreviewVar.set('')
             self.wordsWrittenVar.set(
                 list_to_string(wordsWrittenDisp, divider=' ')
-                )
+            )
         else:
             self.progressFrame.hide()
             self.wordsWrittenVar.set('')
@@ -215,7 +213,7 @@ class ProjectViewCtrl(BasicViewCtrl):
                 progressPreview.append(_('Logging is off'))
             self.progressPreviewVar.set(
                 list_to_string(progressPreview, divider=' - ')
-                )
+            )
 
     def dates_to_days(self):
         """Convert specific section dates to days."""
@@ -226,7 +224,7 @@ class ProjectViewCtrl(BasicViewCtrl):
             if self._ui.ask_yes_no(
                 message=_('Convert all section dates to days relative to the reference date?'),
                 detail=f"{_('Day 0')}: {PyCalendar.WEEKDAYS[self.element.referenceWeekDay]} {datestr(self.element.referenceDate)}"
-                ):
+            ):
                 self.doNotUpdate = True
                 for scId in self._mdl.novel.sections:
                     self._mdl.novel.sections[scId].date_to_day(self._mdl.novel.referenceDate)
@@ -244,7 +242,7 @@ class ProjectViewCtrl(BasicViewCtrl):
             if self._ui.ask_yes_no(
                 message=_('Convert all section days to dates using the reference date?'),
                 detail=f"{_('Day 0')}: {PyCalendar.WEEKDAYS[self.element.referenceWeekDay]} {datestr(self.element.referenceDate)}"
-                ):
+            ):
                 self.doNotUpdate = True
                 for scId in self._mdl.novel.sections:
                     self._mdl.novel.sections[scId].day_to_date(self._mdl.novel.referenceDate)

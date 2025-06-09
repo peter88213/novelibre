@@ -45,7 +45,7 @@ class CharacterViewCtrl(WorldElementViewCtrl):
                 self._ui.show_error(
                     message=_('Input rejected'),
                     detail=f'{_("Wrong date")}: "{birthDateStr}"\n{_("Required")}: {PyCalendar.DATE_FORMAT}'
-                    )
+                )
             else:
                 self.element.birthDate = birthDateStr
 
@@ -60,7 +60,7 @@ class CharacterViewCtrl(WorldElementViewCtrl):
                 self._ui.show_error(
                     message=_('Input rejected'),
                     detail=f'{_("Wrong date")}: "{deathDateStr}"\n{_("Required")}: {PyCalendar.DATE_FORMAT}'
-                    )
+                )
             else:
                 self.element.deathDate = deathDateStr
 

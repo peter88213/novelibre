@@ -82,7 +82,7 @@ class SectionViewCtrl(BasicViewCtrl):
                 self._ui.show_error(
                     message=_('Input rejected'),
                     detail=f'{_("Wrong date")}: "{dateStr}"\n{_("Required")}: {PyCalendar.DATE_FORMAT}'
-                    )
+                )
             else:
                 self.element.date = dateStr
 
@@ -103,7 +103,7 @@ class SectionViewCtrl(BasicViewCtrl):
                     self._ui.show_error(
                         message=_('Input rejected'),
                         detail=f'{_("Wrong time")}: "{timeStr}"\n{_("Required")}: {PyCalendar.TIME_FORMAT}',
-                        )
+                    )
                 else:
                     self.element.time = timeStr
                     dispTime = PyCalendar.display_time(self.element.time)
@@ -189,7 +189,7 @@ class SectionViewCtrl(BasicViewCtrl):
             self._ui.show_error(
                 message=_('Input rejected'),
                 detail=f'{_("Wrong entry: number required")}.'
-                )
+            )
         elif newEntry:
             self.element.lastsMinutes = lastsMinutesStr
             self.element.lastsHours = lastsHoursStr
@@ -242,7 +242,7 @@ class SectionViewCtrl(BasicViewCtrl):
             self._ui.show_error(
                 message=_('Cannot generate date/time'),
                 detail=f"{_('There is no previous section')}."
-                )
+            )
             return
 
         newDate, newTime, newDay = self._mdl.novel.sections[prevScId].get_end_date_time()
@@ -250,7 +250,7 @@ class SectionViewCtrl(BasicViewCtrl):
             self._ui.show_error(
                 message=_('Cannot generate date/time'),
                 detail=f"{_('The previous section has no time set')}."
-                )
+            )
             return
 
         # self.doNotUpdate = True
@@ -270,7 +270,7 @@ class SectionViewCtrl(BasicViewCtrl):
             self._ui.show_error(
                 message=_('Cannot generate duration'),
                 detail=f"{_('There is no next section')}."
-                )
+            )
             return
 
         thisTimeIso = self.element.time
@@ -278,7 +278,7 @@ class SectionViewCtrl(BasicViewCtrl):
             self._ui.show_error(
                 message=_('Cannot generate duration'),
                 detail=f"{_('This section has no time set')}."
-                )
+            )
             return
 
         nextTimeIso = self._mdl.novel.sections[nextScId].time
@@ -286,7 +286,7 @@ class SectionViewCtrl(BasicViewCtrl):
             self._ui.show_error(
                 message=_('Cannot generate duration'),
                 detail=f"{_('The next section has no time set')}."
-                )
+            )
             return
 
         refDateIso = self._mdl.novel.referenceDate
@@ -319,7 +319,7 @@ class SectionViewCtrl(BasicViewCtrl):
             thisTimeIso,
             nextDateIso,
             nextTimeIso,
-            )
+        )
         self.doNotUpdate = True
         self.element.lastsDays = newDays
         self.element.lastsHours = newHours
@@ -344,7 +344,7 @@ class SectionViewCtrl(BasicViewCtrl):
                         self._ui.show_error(
                             message=_('Input rejected'),
                             detail=f'{_("Wrong entry: number required")}.'
-                            )
+                        )
                     else:
                         self.element.day = dayStr
                         self.element.date = None
@@ -362,7 +362,7 @@ class SectionViewCtrl(BasicViewCtrl):
                 hasData = True
         if hasData and self._ui.ask_yes_no(
             message=_('Clear duration from this section?')
-            ):
+        ):
             self.element.lastsDays = None
             self.element.lastsHours = None
             self.element.lastsMinutes = None
@@ -380,7 +380,7 @@ class SectionViewCtrl(BasicViewCtrl):
                 hasData = True
         if hasData and self._ui.ask_yes_no(
             message=_('Clear date/time from this section?')
-            ):
+        ):
             self.element.date = None
             self.element.time = None
             self.element.day = None
@@ -404,20 +404,24 @@ class SectionViewCtrl(BasicViewCtrl):
             for elementType in relationCounts:
                 if relationCounts[elementType]:
                     relationsPreview.append(
-                        f"{elementType}: {relationCounts[elementType]}")
+                        f"{elementType}: {relationCounts[elementType]}"
+                    )
             self.relationsPreviewVar.set(
-                list_to_string(relationsPreview, divider=', '))
+                list_to_string(relationsPreview, divider=', ')
+            )
 
         #--- Frame for date/time/duration.
         dispDateTime = []
         if self.element.date and self.element.weekDay is not None:
             dispDateTime.append(
                 PyCalendar.WEEKDAYS[self.element.weekDay])
-        elif self.element.day and self._mdl.novel.referenceWeekDay is not None:
+        elif (self.element.day
+              and self._mdl.novel.referenceWeekDay is not None
+        ):
             dispDateTime.append(PyCalendar.WEEKDAYS[
                     (int(self.element.day)
-                    +self._mdl.novel.referenceWeekDay) % 7
-                ])
+                    +self._mdl.novel.referenceWeekDay) % 7]
+            )
         self.startDateVar.set(self.element.date)
         if self.element.localeDate:
             dispDateTime.append(get_section_date_str(self.element))
@@ -431,14 +435,16 @@ class SectionViewCtrl(BasicViewCtrl):
         if prefs['show_date_time']:
             self.dateTimeFrame.show()
             self.displayDateVar.set(
-                list_to_string(dispDateTime, divider=' '))
+                list_to_string(dispDateTime, divider=' ')
+            )
             self.datePreviewVar.set('')
             self.displayDurationVar.set(
                 get_duration_str(self.element))
         else:
             self.dateTimeFrame.hide()
             self.datePreviewVar.set(
-                list_to_string(dispDateTime, divider=' '))
+                list_to_string(dispDateTime, divider=' ')
+            )
 
         #--- Frame for 'Plot'.
         if prefs['show_plot']:
@@ -454,7 +460,8 @@ class SectionViewCtrl(BasicViewCtrl):
             for elementType in plotCounts:
                 if plotCounts[elementType]:
                     plotPreview.append(
-                        f"{elementType}: {plotCounts[elementType]}")
+                        f"{elementType}: {plotCounts[elementType]}"
+                    )
             self.plotPreviewVar.set(
                 list_to_string(plotPreview, divider=', '))
 
@@ -464,11 +471,10 @@ class SectionViewCtrl(BasicViewCtrl):
             self.scenePreviewVar.set('')
         else:
             self.sceneFrame.hide()
-            if (
-                self.element.scene or
-                self.element.goal or
-                self.element.conflict or
-                self.element.outcome
+            if (self.element.scene
+                or self.element.goal
+                or self.element.conflict
+                or self.element.outcome
             ):
                 self.scenePreviewVar.set(
                     self.kindsOfScene[self.element.scene])
@@ -517,7 +523,9 @@ class SectionViewCtrl(BasicViewCtrl):
         self.selectedPlotline = self.element.scPlotLines[selection]
         self.plotNotesWindow.config(state='normal')
         if self.element.plotlineNotes:
-            self.plotNotesWindow.set_text(self.element.plotlineNotes.get(self.selectedPlotline, ''))
+            self.plotNotesWindow.set_text(
+                self.element.plotlineNotes.get(self.selectedPlotline, '')
+            )
         else:
             self.plotNotesWindow.clear()
         if self._isLocked:
@@ -567,7 +575,7 @@ class SectionViewCtrl(BasicViewCtrl):
         if self._ui.ask_yes_no(
             message=_('Remove character from the list?'),
             detail=self._mdl.novel.characters[crId].title
-            ):
+        ):
             crList = self.element.characters
             del crList[selection]
             self.element.characters = crList
@@ -583,7 +591,7 @@ class SectionViewCtrl(BasicViewCtrl):
         if self._ui.ask_yes_no(
             message=_('Remove item from the list?'),
             detail=self._mdl.novel.items[itId].title
-            ):
+        ):
             itList = self.element.items
             del itList[selection]
             self.element.items = itList
@@ -599,7 +607,7 @@ class SectionViewCtrl(BasicViewCtrl):
         if self._ui.ask_yes_no(
             message=_('Remove location from the list?'),
             detail=self._mdl.novel.locations[lcId].title
-            ):
+        ):
             lcList = self.element.locations
             del lcList[selection]
             self.element.locations = lcList
@@ -615,7 +623,7 @@ class SectionViewCtrl(BasicViewCtrl):
         if not self._ui.ask_yes_no(
             message=_('Remove plot line from the list?'),
             detail=f"({self._mdl.novel.plotLines[plId].shortName}) {self._mdl.novel.plotLines[plId].title}"
-            ):
+        ):
             return
 
         # Remove the plot line from the section's list.
@@ -686,40 +694,54 @@ class SectionViewCtrl(BasicViewCtrl):
         #--- Frame for 'Relationships'.
 
         # 'Characters' window.
-        self.crTitles = self._get_element_titles(self.element.characters, self._mdl.novel.characters)
+        self.crTitles = self._get_element_titles(
+            self.element.characters, self._mdl.novel.characters
+        )
         self.characterCollection.cList.set(self.crTitles)
         listboxSize = len(self.crTitles)
         if listboxSize > self._HEIGHT_LIMIT:
             listboxSize = self._HEIGHT_LIMIT
         self.characterCollection.cListbox.config(height=listboxSize)
-        if not self.characterCollection.cListbox.curselection() or not self.characterCollection.cListbox.focus_get():
+        if (not self.characterCollection.cListbox.curselection()
+            or not self.characterCollection.cListbox.focus_get()
+        ):
             self.characterCollection.disable_buttons()
 
         # 'Locations' window.
-        self.lcTitles = self._get_element_titles(self.element.locations, self._mdl.novel.locations)
+        self.lcTitles = self._get_element_titles(
+            self.element.locations, self._mdl.novel.locations
+        )
         self.locationCollection.cList.set(self.lcTitles)
         listboxSize = len(self.lcTitles)
         if listboxSize > self._HEIGHT_LIMIT:
             listboxSize = self._HEIGHT_LIMIT
         self.locationCollection.cListbox.config(height=listboxSize)
-        if not self.locationCollection.cListbox.curselection() or not self.locationCollection.cListbox.focus_get():
+        if (not self.locationCollection.cListbox.curselection()
+            or not self.locationCollection.cListbox.focus_get()
+        ):
             self.locationCollection.disable_buttons()
 
         # 'Items' window.
-        self.itTitles = self._get_element_titles(self.element.items, self._mdl.novel.items)
+        self.itTitles = self._get_element_titles(
+            self.element.items, self._mdl.novel.items
+        )
         self.itemCollection.cList.set(self.itTitles)
         listboxSize = len(self.itTitles)
         if listboxSize > self._HEIGHT_LIMIT:
             listboxSize = self._HEIGHT_LIMIT
         self.itemCollection.cListbox.config(height=listboxSize)
-        if not self.itemCollection.cListbox.curselection() or not self.itemCollection.cListbox.focus_get():
+        if (not self.itemCollection.cListbox.curselection()
+            or not self.itemCollection.cListbox.focus_get()
+        ):
             self.itemCollection.disable_buttons()
 
         #--- Frame for date/time/duration.
 
         # Remove the seconds for the display.
         if self.element.time:
-            self.startTimeVar.set(PyCalendar.display_time(self.element.time))
+            self.startTimeVar.set(
+                PyCalendar.display_time(self.element.time)
+            )
         else:
             self.startTimeVar.set('')
 
@@ -787,7 +809,7 @@ class SectionViewCtrl(BasicViewCtrl):
         self.plotlineTitles = self._get_plotline_titles(
             self.element.scPlotLines,
             self._mdl.novel.plotLines
-            )
+        )
         self.plotlineCollection.cList.set(self.plotlineTitles)
         listboxSize = len(self.plotlineTitles)
         if listboxSize > self._HEIGHT_LIMIT:
@@ -814,7 +836,9 @@ class SectionViewCtrl(BasicViewCtrl):
         plotPointTitles = []
         for ppId in self.element.scPlotPoints:
             plId = self.element.scPlotPoints[ppId]
-            plotPointTitles.append(f'{self._mdl.novel.plotLines[plId].shortName}: {self._mdl.novel.plotPoints[ppId].title}')
+            plotPointTitles.append(
+                f'{self._mdl.novel.plotLines[plId].shortName}: {self._mdl.novel.plotPoints[ppId].title}'
+            )
         self.plotPointsDisplay.config(text=list_to_string(plotPointTitles))
 
         #--- Frame for 'Scene'.
@@ -904,18 +928,18 @@ class SectionViewCtrl(BasicViewCtrl):
                     time = daysOld
                 charList.append(
                     f'{self._mdl.novel.characters[crId].title}: {time} {suffix}'
-                    )
+                )
             except Exception:
                 charList.append(
                     f'{self._mdl.novel.characters[crId].title}: ({_("no data")})'
-                    )
+                )
 
         if charList:
             self._ui.show_info(
                 message=f'{_("Date")}: {datestr(now)}',
                 detail='\n'.join(charList),
                 title=_('Show ages')
-                )
+            )
 
     def show_moonphase(self, event=None):
         """Display the moon phase of the section start date."""
@@ -926,7 +950,7 @@ class SectionViewCtrl(BasicViewCtrl):
                 now = PyCalendar.specific_date(
                     self.element.day,
                     self._mdl.novel.referenceDate
-                    )
+                )
             except:
                 self._report_missing_date()
                 return
@@ -935,7 +959,7 @@ class SectionViewCtrl(BasicViewCtrl):
             message=f'{_("Date")}: {datestr(now)}',
             detail=f'{self._mdl.nvService.get_moon_phase_str(now)}',
             title=_("Moon phase")
-            )
+        )
 
     def toggle_date(self, event=None):
         """Toggle specific/unspecific date."""
@@ -1020,23 +1044,25 @@ class SectionViewCtrl(BasicViewCtrl):
         return elemTitles
 
     def _get_plotline_titles(self, elemIds, elements):
-        """Return a list of plot line titles, preceded by the short names.
-        
-        Positional arguments:
-            elemIds -- list of element IDs.
-            elements -- list of element objects.          
-        """
+        # Return a list of plot line titles, preceded by the short names.
+        #
+        # Positional arguments:
+        #    elemIds -- list of element IDs.
+        #    elements -- list of element objects.
         elemTitles = []
         if elemIds:
             for elemId in elemIds:
                 try:
-                    elemTitles.append(f'({elements[elemId].shortName}) {elements[elemId].title}')
+                    elemTitles.append(
+                        f'({elements[elemId].shortName}) {elements[elemId].title}'
+                    )
                 except:
                     pass
         return elemTitles
 
     def _get_relation_id_list(self, newTitleStr, oldTitleStr, elements):
-        """Return a list of valid IDs from a string containing semicolon-separated titles."""
+        # Return a list of valid IDs from a string
+        # containing semicolon-separated titles.
         if newTitleStr or oldTitleStr:
             if oldTitleStr != newTitleStr:
                 elemIds = []
@@ -1050,7 +1076,7 @@ class SectionViewCtrl(BasicViewCtrl):
                         self._ui.show_error(
                             message=_('Input rejected'),
                             detail=f'{_("Wrong name")}: "{elemTitle}".'
-                            )
+                        )
                 return elemIds
 
         return None
@@ -1059,5 +1085,5 @@ class SectionViewCtrl(BasicViewCtrl):
         self._ui.show_error(
             message=_('Date information is missing'),
             detail=f"{_('Please enter either a section date or a day and a reference date')}.",
-            )
+        )
 
