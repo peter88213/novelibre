@@ -191,7 +191,7 @@ class ProjectViewCtrl(BasicViewCtrl):
             try:
                 wordsWritten = self._mdl.wordCount - self.element.wordCountStart
                 wordPercentage = round(100 * wordsWritten / self.element.wordTarget)
-            except (ValueError, TypeError):
+            except Exception:
                 pass
 
         wordsWrittenDisp = []

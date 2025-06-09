@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+
+### Version 5.24.5
+
+- Fixed a regression from version 5.24.2 where an unhandled ZeroDivisionError occurs when creating an empty project.
+
+
 ### Version 5.24.4
 
 - Fixed a regression from version 5.24.2 where a message box pops up every time a folding frame is toggled while the project is locked.
