@@ -177,7 +177,8 @@ class BasicView(ttk.Frame, Observer):
         self.notesWindow.bind('<FocusOut>', self.apply_changes)
 
     def _toggle_folding_frame(self):
-        self.apply_changes()
+        if not self._ctrl.isLocked:
+            self.apply_changes()
         self.configure_display()
 
     def _toggle_links_window(self, event=None):

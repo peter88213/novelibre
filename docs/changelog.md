@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.24.4
+
+- Fixed a regression from version 5.24.2 where a message box pops up every time a folding frame is toggled while the project is locked.
+
+
 ### Version 5.24.3
 
 - Refactored the code for better maintainability.
