@@ -13,7 +13,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### Version 5.25.4
 
-- When locked, open existing manuscript only if up to date.
+- When locked, enable opening an existing manuscript if up to date.
 - Enabling the "Export" > "Options" menu entry when the project is locked.
 - Disabling the "Update from manuscript" toolbar button when the project is locked.
 - Disabling the "Import" menu entry when the project is locked.
@@ -21,11 +21,6 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Disabling refreshing the tree when the project is locked.
 - Coloring the html element notes list.
 - Making sure that a newly created project is always unlocked.
-
-
-### Version 5.25.0
-
-- Enable opening an existing manuscript if the project is locked.
 
 
 ### Version 5.24.5
