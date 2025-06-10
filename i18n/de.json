@@ -1041,6 +1041,7 @@
   "{0} file is {1} than the novelibre project.\\n (last saved on {2})": "{0}-Datei ist {1} als das novelibre-Projekt.\\n (zuletzt gespeichert: {2})",
   "{0} file is {1} than the novelyst project.\\n (last saved on {2})": "{0}-Datei ist {1} als das novelyst-Projekt.\\n (zuletzt gespeichert: {2})",
   "{0} file is {1} than the yWriter project.\\n (last saved on {2})": "{0}-Datei ist {1} als das yWriter-Projekt.\\n (zuletzt gespeichert: {2})",
+  "{0} is not up to date.": "{0} ist nicht aktuell.",
   "{0} parts, {1} chapters, {2} sections, {3} words": "{0} Teile, {1} Kapitel, {2} Abschnitte, {3} Wörter",
   "{0}Ambiguous Aeon character \\\"{1}\\\".": "{0}Figur \\\"{1}\\\" mehrfach in Aeon.",
   "{0}Ambiguous Aeon event title \\\"{1}\\\".": "{0}Ereginistitel \\\"{1}\\\" mehrfach in Aeon.",

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.25.3\n"
-"POT-Creation-Date: 2025-06-10 00:52:23\n"
+"POT-Creation-Date: 2025-06-10 08:13:44\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -1554,6 +1554,9 @@ msgid "{0} already exists.\n(last saved on {2})\n{1}.\n\nOpen this document inst
 msgstr ""
 
 msgid "{0} does not exist."
+msgstr ""
+
+msgid "{0} is not up to date."
 msgstr ""
 
 msgid "{0} parts, {1} chapters, {2} sections, {3} words"
