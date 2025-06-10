@@ -11,7 +11,6 @@ from nvlib.model.converter.export_target_factory import ExportTargetFactory
 from nvlib.model.converter.novx_conversion import NovxConversion
 from nvlib.model.exporter.filter_factory import FilterFactory
 from nvlib.model.file.doc_open import open_document
-from nvlib.novx_globals import Notification
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import USER_STYLES_XML
 from nvlib.nv_globals import prefs
@@ -57,14 +56,7 @@ class NvDocExporter(NovxConversion):
         __, self._target = self.exportTargetFactory.new_file_objects(self._source.filePath, suffix=suffix)
 
         if doNotExport:
-            if os.path.isfile(self._target.filePath):
-                targetTimestamp = os.path.getmtime(self._target.filePath)
-                self._targetFileDate = datetime.fromtimestamp(targetTimestamp).strftime('%c')
-                return self._open_existing_document()
-
-            else:
-                message = _('{0} does not exist.').format(self._target.DESCRIPTION)
-                return f'!{message}'
+            return self._open_document_if_up_to_date()
 
         # Set the user's custom styles.xml path.
         if os.path.isfile(USER_STYLES_XML):
@@ -72,15 +64,16 @@ class NvDocExporter(NovxConversion):
 
         if os.path.isfile(self._target.filePath) and not overwrite:
             targetTimestamp = os.path.getmtime(self._target.filePath)
+            targetIsUpToDate = False
             try:
                 if  targetTimestamp > self._source.timestamp:
                     timeStatus = _('Newer than the project file')
-                    self._isNewer = True
+                    targetIsUpToDate = True
                     defaultChoice = 1
                 else:
                     timeStatus = _('Older than the project file')
                     defaultChoice = 0
-            except:
+            except Exception:
                 timeStatus = ''
                 defaultChoice = 0
             self._targetFileDate = datetime.fromtimestamp(targetTimestamp).strftime('%c')
@@ -96,7 +89,7 @@ class NvDocExporter(NovxConversion):
                 return f'#{_("Action canceled by user")}.'
 
             elif result == 1:
-                return self._open_existing_document()
+                return self._open_existing_document(targetIsUpToDate)
 
         # Generate a new document. Overwrite the existing document, if any.
         self._target.sectionFilter = FilterFactory.get_section_filter(filterElementId)
@@ -111,11 +104,24 @@ class NvDocExporter(NovxConversion):
             open_document(self._target.filePath)
         return _('Created {0} on {1}.').format(self._target.DESCRIPTION, self._targetFileDate)
 
-    def _open_existing_document(self):
+    def _open_existing_document(self, isUpToDate):
         open_document(self._target.filePath)
-        if self._isNewer:
+        if isUpToDate:
             prefix = ''
         else:
             prefix = '#'
             # warning the user, if a document is open that might be outdated
         return f'{prefix}{_("Opened existing {0} (last saved on {1})").format(self._target.DESCRIPTION, self._targetFileDate)}.'
+
+    def _open_document_if_up_to_date(self):
+        if os.path.isfile(self._target.filePath):
+            targetTimestamp = os.path.getmtime(self._target.filePath)
+            if  targetTimestamp > self._source.timestamp:
+                self._targetFileDate = datetime.fromtimestamp(targetTimestamp).strftime('%c')
+                return self._open_existing_document(True)
+
+            else:
+                message = _('{0} is not up to date.').format(self._target.DESCRIPTION)
+        else:
+            message = _('{0} does not exist.').format(self._target.DESCRIPTION)
+        return f'!{message}'
