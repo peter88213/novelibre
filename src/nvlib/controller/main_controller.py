@@ -184,9 +184,7 @@ class MainController(SubController, Commands):
         self._mdl.close_project()
 
         # Unlock the controller and sub-controllers.
-        self._internalLockFlag = False
-        super().unlock()
-        # calling the public unlock() method here would clear the lockfile
+        self.unlock()
 
         self.update_status('')
         self.disable_menu()
@@ -235,13 +233,14 @@ class MainController(SubController, Commands):
         self._internalLockFlag = False
         for client in self._clients:
             client.unlock()
-        self._mdl.prjFile.unlock()
-        # making it persistent
-        if self._mdl.prjFile.has_changed_on_disk():
-            if self._ui.ask_yes_no(
-                message=_('File has changed on disk. Reload?')
+        if self._mdl.prjFile is not None:
+            self._mdl.prjFile.unlock()
+            # making it persistent
+            if self._mdl.prjFile.has_changed_on_disk():
+                if self._ui.ask_yes_no(
+                    message=_('File has changed on disk. Reload?')
                 ):
-                self.open_project(filePath=self._mdl.prjFile.filePath)
+                    self.open_project(filePath=self._mdl.prjFile.filePath)
         return 'break'
 
     def unregister_client(self, client):
