@@ -6,11 +6,11 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
+from nvlib.controller.sub_controller import SubController
 from nvlib.gui.contents_window.contents_viewer import ContentsViewer
 from nvlib.gui.footers.path_bar import PathBar
 from nvlib.gui.footers.status_bar import StatusBar
 from nvlib.gui.icons import Icons
-from nvlib.gui.main_view_ctrl import MainViewCtrl
 from nvlib.gui.observer import Observer
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.platform.platform_settings import MOUSE
@@ -25,23 +25,24 @@ from nvlib.nv_locale import _
 import tkinter as tk
 
 
-class MainView(Observer, MsgBoxes, MainViewCtrl):
+class MainView(Observer, MsgBoxes, SubController):
     """View for the novelibre application."""
     _MIN_WINDOW_WIDTH = 400
     _MIN_WINDOW_HEIGHT = 200
     # minimum size of the application's main window
 
     def __init__(self, model, controller, title):
-        self.initialize_controller(model, self, controller)
+        self._mdl = model
+        self._ctrl = controller
 
         #--- Create the tk root window and set the size.
         self.root = tk.Tk()
         self.root.minsize(self._MIN_WINDOW_WIDTH, self._MIN_WINDOW_HEIGHT)
-        self.root.protocol("WM_DELETE_WINDOW", controller.on_quit)
+        self.root.protocol("WM_DELETE_WINDOW", self._ctrl.on_quit)
         self.root.title(title)
         self.title = title
 
-        model.add_observer(self)
+        self._mdl.add_observer(self)
 
         #---  Add en empty main menu to the root window.
         self.mainMenu = tk.Menu(self.root)
@@ -105,7 +106,7 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
         self.propertiesView.pack(expand=True, fill='both')
         self._propWinDetached = False
         if prefs['detach_prop_win']:
-            self.detach_properties_frame()
+            self._detach_properties_frame()
         self._mdl.add_observer(self.propertiesView)
         self._ctrl.register_client(self.propertiesView)
 
@@ -124,65 +125,44 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
     def selectedNodes(self):
         return self._selection
 
-    def detach_properties_frame(self, event=None):
-        """View the properties in its own window."""
-        self.propertiesView.apply_changes()
-        if self._propWinDetached:
-            return
+    def disable_menu(self):
+        """Disable menu entries when no project is open.        
+        
+        Overrides the SubController method.
+        """
+        for entry in self._fileMenuDisableOnClose:
+            self.fileMenu.entryconfig(entry, state='disabled')
+        for entry in self._mainMenuDisableOnClose:
+            self.mainMenu.entryconfig(entry, state='disabled')
+        for entry in self._viewMenuDisableOnClose:
+            self.viewMenu.entryconfig(entry, state='disabled')
 
-        if self.rightFrame.winfo_manager():
-            self.rightFrame.pack_forget()
-        self._propertiesWindow = tk.Toplevel()
-        self._propertiesWindow.geometry(prefs['prop_win_geometry'])
-        set_icon(self._propertiesWindow, icon='pLogo32', default=False)
+    def enable_menu(self):
+        """Enable menu entries when a project is open.
+        
+        Overrides the SubController method.
+        """
+        for entry in self._fileMenuDisableOnClose:
+            self.fileMenu.entryconfig(entry, state='normal')
+        for entry in self._mainMenuDisableOnClose:
+            self.mainMenu.entryconfig(entry, state='normal')
+        for entry in self._viewMenuDisableOnClose:
+            self.viewMenu.entryconfig(entry, state='normal')
 
-        # "Re-parent" the Properties viewer.
-        self.propertiesView.pack_forget()
-        self._mdl.delete_observer(self.propertiesView)
-        self._ctrl.unregister_client(self.propertiesView)
-        self.propertiesView = PropertiesViewer(self._propertiesWindow, self._mdl, self, self._ctrl)
-        self._mdl.add_observer(self.propertiesView)
-        self._ctrl.register_client(self.propertiesView)
-        self.propertiesView.pack(expand=True, fill='both')
-
-        self._propertiesWindow.protocol("WM_DELETE_WINDOW", self.dock_properties_frame)
-        prefs['detach_prop_win'] = True
-        self._propWinDetached = True
-        try:
-            self.propertiesView.show_properties(self.tv.tree.selection()[0])
-        except IndexError:
-            pass
-        return 'break'
-
-    def dock_properties_frame(self, event=None):
-        """Dock the properties window at the right pane, if detached."""
-        self.propertiesView.apply_changes()
-        if not self._propWinDetached:
-            return
-
-        if not self.rightFrame.winfo_manager():
-            self.rightFrame.pack(side='left', expand=False, fill='both')
-
-        prefs['prop_win_geometry'] = self._propertiesWindow.winfo_geometry()
-
-        # "Re-parent" the Properties viewer.
-        self._propertiesWindow.destroy()
-        self._mdl.delete_observer(self.propertiesView)
-        self._ctrl.unregister_client(self.propertiesView)
-        self.propertiesView = PropertiesViewer(self.rightFrame, self._mdl, self, self._ctrl)
-        self._mdl.add_observer(self.propertiesView)
-        self._ctrl.register_client(self.propertiesView)
-        self.propertiesView.pack(expand=True, fill='both')
-        self.root.lift()
-
-        prefs['show_properties'] = True
-        prefs['detach_prop_win'] = False
-        self._propWinDetached = False
-        try:
-            self.propertiesView.show_properties(self.tv.tree.selection()[0])
-        except IndexError:
-            pass
-        return 'break'
+    def lock(self):
+        """Make the "locked" state take effect.
+        
+        Overrides the SubController method.
+        """
+        self.pathBar.set_locked()
+        self.fileMenu.entryconfig(_('Unlock'), state='normal')
+        self.fileMenu.entryconfig(_('Lock'), state='disabled')
+        for entry in self._fileMenuDisableOnLock:
+            self.fileMenu.entryconfig(entry, state='disabled')
+        for entry in self._mainMenuDisableOnLock:
+            self.mainMenu.entryconfig(entry, state='disabled')
+        for entry in self._exportMenuDisableOnLock:
+            self.exportMenu.entryconfig(entry, state='disabled')
 
     def on_change_selection(self, nodeId):
         """Event handler for element selection.
@@ -195,8 +175,20 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
         self.root.event_generate('<<selection_changed>>', when='tail')
         # this event can be used by plugins
 
+    def on_close(self):
+        """Actions to be performed when a project is closed.
+        
+        Overrides the SubController method.
+        """
+        self.root.title(self.title)
+        self.show_path('')
+        self.pathBar.set_normal()
+
     def on_quit(self):
-        """Gracefully close the user interface."""
+        """Gracefully close the user interface.
+        
+        Overrides the SubController method.
+        """
 
         # Save contents window "show markup" state.
         prefs['show_markup'] = self.contentsView.showMarkup.get()
@@ -208,10 +200,7 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
         self.root.quit()
 
     def refresh(self):
-        """Update view components and path bar.
-        
-        Overrides the superclass method.
-        """
+        """Implements the Observer method."""
         self.set_title()
 
     def restore_status(self, event=None):
@@ -235,8 +224,26 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
             self.infoHowText = self.statusBar.show_message(message, colors)
             # inherited message buffer
 
+    def set_title(self):
+        """Set the main window title. 
+        
+        'Document title by author - application'
+        """
+        if self._mdl.novel is None:
+            return
+
+        if self._mdl.novel.title:
+            titleView = self._mdl.novel.title
+        else:
+            titleView = _('Untitled project')
+        if self._mdl.novel.authorName:
+            authorView = self._mdl.novel.authorName
+        else:
+            authorView = _('Unknown author')
+        self.root.title(f'{titleView} {_("by")} {authorView} - {self.title}')
+
     def show_path(self, message):
-        """Put text on the path bar."""
+        """Put the message on the path bar."""
         self.pathBar.config(text=message)
 
     def start(self):
@@ -270,12 +277,27 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
     def toggle_properties_window(self, event=None):
         """Detach/dock the element properties frame."""
         if self._propWinDetached:
-            self.dock_properties_frame()
+            self._dock_properties_frame()
         else:
-            self.detach_properties_frame()
+            self._detach_properties_frame()
         self.root.event_generate('<<RebuildPropertiesView>>')
         # this is for plugins that modify the properties view
         return 'break'
+
+    def unlock(self):
+        """Make the "unlocked" state take effect.
+        
+        Overrides the SubController method.
+        """
+        self.pathBar.set_normal()
+        self.fileMenu.entryconfig(_('Unlock'), state='disabled')
+        self.fileMenu.entryconfig(_('Lock'), state='normal')
+        for entry in self._fileMenuDisableOnLock:
+            self.fileMenu.entryconfig(entry, state='normal')
+        for entry in self._mainMenuDisableOnLock:
+            self.mainMenu.entryconfig(entry, state='normal')
+        for entry in self._exportMenuDisableOnLock:
+            self.exportMenu.entryconfig(entry, state='normal')
 
     def update_status(self, statusText=''):
         """Update the project status information on the status bar.
@@ -285,8 +307,16 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
         """
         self.statusBar.update_status(statusText)
 
+    def _about(self):
+        # Display a legal notice window.
+        # After building the program, __doc__ will be the novelibre docstring.
+        self.show_info(
+            message=f'novelibre {self._ctrl.plugins.majorVersion}',
+            detail=__doc__,
+            title=_('About novelibre')
+            )
+
     def _create_menu(self):
-        """Add commands and submenus to the main menu."""
 
         # "New" submenu
         self.newMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -317,6 +347,25 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
         else:
             self.fileMenu.add_command(label=_('Quit'), accelerator=KEYS.QUIT_PROGRAM[1], command=self._ctrl.on_quit)
 
+        self._fileMenuDisableOnClose = [
+            _('Close'),
+            _('Copy style sheet'),
+            _('Discard manuscript'),
+            _('Lock'),
+            _('Open Project folder'),
+            _('Refresh Tree'),
+            _('Reload'),
+            _('Restore backup'),
+            _('Save as...'),
+            _('Save'),
+            _('Unlock'),
+        ]
+        self._fileMenuDisableOnLock = [
+            _('Reload'),
+            _('Refresh Tree'),
+            _('Save'),
+        ]
+
         # View
         self.viewMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('View'), menu=self.viewMenu)
@@ -338,6 +387,20 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
         self.viewMenu.add_command(label=_('Detach/Dock Properties'), accelerator=KEYS.DETACH_PROPERTIES[1], command=self.toggle_properties_window)
         self.viewMenu.add_separator()
         self.viewMenu.add_command(label=_('Options'), command=self._ctrl.open_view_options)
+
+        self._viewMenuDisableOnClose = [
+            _('Chapter level'),
+            _('Collapse all'),
+            _('Collapse selected'),
+            _('Expand all'),
+            _('Expand selected'),
+            _('Show Book'),
+            _('Show Characters'),
+            _('Show Items'),
+            _('Show Locations'),
+            _('Show Plot lines'),
+            _('Show Project notes'),
+        ]
 
         # Part
         self.partMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -450,6 +513,15 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
         self.exportMenu.add_separator()
         self.exportMenu.add_command(label=_('Options'), command=self._ctrl.open_export_options)
 
+        self._exportMenuDisableOnLock = [
+            _('Manuscript for editing'),
+            _('Manuscript for third-party word processing'),
+            _('Final manuscript document (export only)'),
+            _('Brief synopsis (export only)'),
+            _('Cross references (export only)'),
+            _('XML data files'),
+        ]
+
         # "Tools" menu.
         self.toolsMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Tools'), menu=self.toolsMenu)
@@ -466,9 +538,34 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
         self.helpMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Help'), menu=self.helpMenu)
         self.helpMenu.add_command(label=_('Online help'), accelerator=KEYS.OPEN_HELP[1], command=self._ctrl.open_help)
-        self.helpMenu.add_command(label=_('About novelibre'), command=self.about)
+        self.helpMenu.add_command(label=_('About novelibre'), command=self._about)
         self.helpMenu.add_command(label=f"novelibre {_('Home page')}", command=self._ctrl.open_homepage)
         self.helpMenu.add_separator()
+
+        # Group main menu entries for enabling/disabling.
+        self._mainMenuDisableOnClose = [
+            _('Chapter'),
+            _('Characters'),
+            _('Export'),
+            _('Import'),
+            _('Items'),
+            _('Locations'),
+            _('Part'),
+            _('Plot'),
+            _('Project notes'),
+            _('Section'),
+        ]
+        self._mainMenuDisableOnLock = [
+            _('Chapter'),
+            _('Characters'),
+            _('Import'),
+            _('Items'),
+            _('Locations'),
+            _('Part'),
+            _('Plot'),
+            _('Project notes'),
+            _('Section'),
+        ]
 
     def _create_path_bar(self):
         self.pathBar = PathBar(self.root, self._mdl, text='', anchor='w', padx=5, pady=3)
@@ -494,4 +591,64 @@ class MainView(Observer, MsgBoxes, MainViewCtrl):
         self.statusBar.COLOR_ERROR_FG = prefs['color_status_error_fg']
         self.statusBar.COLOR_NOTIFICATION_BG = prefs['color_status_notification_bg']
         self.statusBar.COLOR_NOTIFICATION_FG = prefs['color_status_notification_fg']
+
+    def _detach_properties_frame(self, event=None):
+        # View the properties in its own window.
+        self.propertiesView.apply_changes()
+        if self._propWinDetached:
+            return
+
+        if self.rightFrame.winfo_manager():
+            self.rightFrame.pack_forget()
+        self._propertiesWindow = tk.Toplevel()
+        self._propertiesWindow.geometry(prefs['prop_win_geometry'])
+        set_icon(self._propertiesWindow, icon='pLogo32', default=False)
+
+        # "Re-parent" the Properties viewer.
+        self.propertiesView.pack_forget()
+        self._mdl.delete_observer(self.propertiesView)
+        self._ctrl.unregister_client(self.propertiesView)
+        self.propertiesView = PropertiesViewer(self._propertiesWindow, self._mdl, self, self._ctrl)
+        self._mdl.add_observer(self.propertiesView)
+        self._ctrl.register_client(self.propertiesView)
+        self.propertiesView.pack(expand=True, fill='both')
+
+        self._propertiesWindow.protocol("WM_DELETE_WINDOW", self._dock_properties_frame)
+        prefs['detach_prop_win'] = True
+        self._propWinDetached = True
+        try:
+            self.propertiesView.show_properties(self.tv.tree.selection()[0])
+        except IndexError:
+            pass
+        return 'break'
+
+    def _dock_properties_frame(self, event=None):
+        # Dock the properties window at the right pane, if detached.
+        self.propertiesView.apply_changes()
+        if not self._propWinDetached:
+            return
+
+        if not self.rightFrame.winfo_manager():
+            self.rightFrame.pack(side='left', expand=False, fill='both')
+
+        prefs['prop_win_geometry'] = self._propertiesWindow.winfo_geometry()
+
+        # "Re-parent" the Properties viewer.
+        self._propertiesWindow.destroy()
+        self._mdl.delete_observer(self.propertiesView)
+        self._ctrl.unregister_client(self.propertiesView)
+        self.propertiesView = PropertiesViewer(self.rightFrame, self._mdl, self, self._ctrl)
+        self._mdl.add_observer(self.propertiesView)
+        self._ctrl.register_client(self.propertiesView)
+        self.propertiesView.pack(expand=True, fill='both')
+        self.root.lift()
+
+        prefs['show_properties'] = True
+        prefs['detach_prop_win'] = False
+        self._propWinDetached = False
+        try:
+            self.propertiesView.show_properties(self.tv.tree.selection()[0])
+        except IndexError:
+            pass
+        return 'break'
 
