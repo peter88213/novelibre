@@ -6,14 +6,16 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from nvlib.gui.contents_window.contents_viewer_ctrl import ContentsViewerCtrl
+from nvlib.controller.sub_controller import SubController
+from nvlib.gui.contents_window.content_view_parser import ContentViewParser
 from nvlib.gui.contents_window.rich_text_nv import RichTextNv
 from nvlib.gui.observer import Observer
+from nvlib.novx_globals import CH_ROOT
 from nvlib.nv_locale import _
 import tkinter as tk
 
 
-class ContentsViewer(RichTextNv, Observer, ContentsViewerCtrl):
+class ContentsViewer(RichTextNv, Observer, SubController):
     """A tkinter text box class for novelibre file viewing.
     
     Show the novel contents in a text box.
@@ -24,24 +26,39 @@ class ContentsViewer(RichTextNv, Observer, ContentsViewerCtrl):
         
         Positional arguments:
             parent: tk.Frame -- The parent window.
-            model -- reference to the main model instance of the application.
-            view -- reference to the main view instance of the application.
-            controller -- reference to the main controller instance of the application.
+            model -- reference to the main model instance.
+            view -- reference to the main view instance.
+            controller -- reference to the main controller instance.
         
         Required keyword arguments:
             show_markup: bool 
         """
         prefs = controller.get_preferences()
         super().__init__(parent, **prefs)
-        self.initialize_controller(model, view, controller)
+        self._mdl = model
+        self._ui = view
+        self._ctrl = controller
 
         self.pack(expand=True, fill='both')
         self.showMarkup = tk.BooleanVar(parent, value=prefs['show_markup'])
-        ttk.Checkbutton(parent, text=_('Show markup'), variable=self.showMarkup).pack(anchor='w')
+        ttk.Checkbutton(
+            parent,
+            text=_('Show markup'),
+            variable=self.showMarkup
+            ).pack(anchor='w')
         self.showMarkup.trace('w', self.refresh)
         self._textMarks = {}
         self._index = '1.0'
         self._parent = parent
+
+        self._contentParser = ContentViewParser()
+        self._contentParser.xmlTag = self.XML_TAG
+        self._contentParser.emTag = self.EM_TAG
+        self._contentParser.strongTag = self.STRONG_TAG
+        self._contentParser.commentTag = self.COMMENT_TAG
+        self._contentParser.commentXmlTag = self.COMMENT_XML_TAG
+        self._contentParser.noteTag = self.NOTE_TAG
+        self._contentParser.noteXmlTag = self.NOTE_XML_TAG
 
     def on_close(self):
         """Actions to be performed when a project is closed."""
@@ -79,7 +96,7 @@ class ContentsViewer(RichTextNv, Observer, ContentsViewerCtrl):
 
     def view_text(self):
         """Get a list of "tagged text" tuples and send it to the text box."""
-        taggedText = self.get_tagged_text()
+        taggedText = self._get_tagged_text()
         self._textMarks.clear()
 
         # Clear the text box first.
@@ -97,4 +114,68 @@ class ContentsViewer(RichTextNv, Observer, ContentsViewerCtrl):
                 index = f"{self.count('1.0', 'end', 'lines')[0]}.0"
                 self._textMarks[entry] = index
         self.config(state='disabled')
+
+    def _convert_from_novx(self, text, textTag):
+        # Return a section's content as a list of (text, tag) tuples.
+        # text: str -- a section's xml text.
+        # textTag: str -- default tag used for body text.
+        if not self.showMarkup.get():
+            self._contentParser.showTags = False
+        else:
+            self._contentParser.showTags = True
+        self._contentParser.textTag = textTag
+        self._contentParser.feed(text)
+        return self._contentParser.taggedText[1:-1]
+
+    def _get_tagged_text(self):
+        # Return the whole novel as a list of (text, tag) tuples.
+        taggedText = []
+        for chId in self._mdl.novel.tree.get_children(CH_ROOT):
+            chapter = self._mdl.novel.chapters[chId]
+            taggedText.append(chId)
+            # inserting a chapter mark
+            if chapter.chLevel == 2:
+                if chapter.chType == 0:
+                    headingTag = self.H2_TAG
+                else:
+                    headingTag = self.H2_UNUSED_TAG
+            else:
+                if chapter.chType == 0:
+                    headingTag = self.H1_TAG
+                else:
+                    headingTag = self.H1_UNUSED_TAG
+            if chapter.title:
+                heading = f'{chapter.title}\n'
+            else:
+                    heading = f"[{_('Unnamed')}]\n"
+            taggedText.append((heading, headingTag))
+
+            for scId in self._mdl.novel.tree.get_children(chId):
+                section = self._mdl.novel.sections[scId]
+                taggedText.append(scId)
+                # inserting a section mark
+                textTag = ''
+                if section.scType == 3:
+                    headingTag = self.STAGE2_TAG
+                elif section.scType == 2:
+                    headingTag = self.STAGE1_TAG
+                elif section.scType == 0:
+                    headingTag = self.H3_TAG
+                else:
+                    headingTag = self.H3_UNUSED_TAG
+                    textTag = self.UNUSED_TAG
+                if section.title:
+                    heading = f'[{section.title}]\n'
+                else:
+                    heading = f"[{_('Unnamed')}]\n"
+                taggedText.append((heading, headingTag))
+
+                if section.sectionContent:
+                    textTuples = self._convert_from_novx(
+                        section.sectionContent, textTag)
+                    taggedText.extend(textTuples)
+
+        if not taggedText:
+            taggedText.append((f'({_("No text available")})', self.ITALIC_TAG))
+        return taggedText
 
