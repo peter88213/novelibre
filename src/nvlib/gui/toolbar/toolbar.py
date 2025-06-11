@@ -1,30 +1,31 @@
 """Toolbar class for novelibre.
 
-
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
+from nvlib.controller.sub_controller import SubController
 from nvlib.gui.platform.platform_settings import KEYS
-from nvlib.gui.toolbar.toolbar_ctrl import ToolbarCtrl
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
 
 
-class Toolbar(ToolbarCtrl):
-    """Toolbar class."""
+class Toolbar(SubController):
+    """A toolbar with buttons and hovertips."""
 
-    def __init__(self, parent, model, view, controller):
+    def __init__(self, view, controller):
         """Add a toolbar.
         
         Positional arguments:
-            view -- reference to the main view instance of the application.
-            controller -- reference to the main controller instance of the application.
+            parent: tk.Frame -- The parent window.
+            view -- reference to the main view instance.
+            controller -- reference to the main controller instance.
         """
-        self.initialize_controller(model, view, controller)
+        self._ui = view
+        self._ctrl = controller
 
         # Add a toolbar to the editor window.
         self.buttonBar = ttk.Frame(self._ui.mainWindow)
@@ -50,7 +51,11 @@ class Toolbar(ToolbarCtrl):
         self.goForwardButton.image = self._ui.icons.goForwardIcon
 
         # Separator.
-        tk.Frame(self.buttonBar, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
+        tk.Frame(
+            self.buttonBar,
+            bg='light gray',
+            width=1
+            ).pack(side='left', fill='y', padx=4)
 
         # "View Book" button.
         self.viewBookButton = ttk.Button(
@@ -113,7 +118,11 @@ class Toolbar(ToolbarCtrl):
         self.viewProjectnotesButton.image = self._ui.icons.viewProjectnotesIcon
 
         # Separator.
-        tk.Frame(self.buttonBar, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
+        tk.Frame(
+            self.buttonBar,
+            bg='light gray',
+            width=1
+            ).pack(side='left', fill='y', padx=4)
 
         # "Save" button.
         self.saveButton = ttk.Button(
@@ -156,7 +165,11 @@ class Toolbar(ToolbarCtrl):
         self.manuscriptButton.image = self._ui.icons.manuscriptIcon
 
         # Separator.
-        tk.Frame(self.buttonBar, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
+        tk.Frame(
+            self.buttonBar,
+            bg='light gray',
+            width=1
+            ).pack(side='left', fill='y', padx=4)
 
         # "Add" button.
         self.addElementButton = ttk.Button(
@@ -199,7 +212,11 @@ class Toolbar(ToolbarCtrl):
         self.deleteElementButton.image = self._ui.icons.removeIcon
 
         # Put a Separator on the toolbar.
-        tk.Frame(self.buttonBar, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
+        tk.Frame(
+            self.buttonBar,
+            bg='light gray',
+            width=1
+            ).pack(side='left', fill='y', padx=4)
 
         # Put a "Cut" button on the toolbar.
         self.cutButton = ttk.Button(
@@ -253,8 +270,87 @@ class Toolbar(ToolbarCtrl):
         self.viewerButton.pack(side='right')
         self.viewerButton.image = self._ui.icons.viewerIcon
 
-        self.buttonBar.pack(expand=False, before=self._ui.appWindow, fill='both')
+        self.buttonBar.pack(
+            expand=False, before=self._ui.appWindow, fill='both')
         self._set_hovertips()
+
+    def disable_menu(self):
+        """Disable toolbar buttons when no project is open.        
+        
+        Overrides the superclass method.
+        """
+        self.addChildButton.config(state='disabled')
+        self.addElementButton.config(state='disabled')
+        self.addParentButton.config(state='disabled')
+        self.goBackButton.config(state='disabled')
+        self.goForwardButton.config(state='disabled')
+        self.lockButton.config(state='disabled')
+        self.manuscriptButton.config(state='disabled')
+        self.deleteElementButton.config(state='disabled')
+        self.saveButton.config(state='disabled')
+        self.updateButton.config(state='disabled')
+        self.viewBookButton.config(state='disabled')
+        self.viewCharactersButton.config(state='disabled')
+        self.viewItemsButton.config(state='disabled')
+        self.viewLocationsButton.config(state='disabled')
+        self.viewPlotLinesButton.config(state='disabled')
+        self.viewProjectnotesButton.config(state='disabled')
+        self.cutButton.config(state='disabled')
+        self.copyButton.config(state='disabled')
+        self.pasteButton.config(state='disabled')
+
+    def enable_menu(self):
+        """Enable toolbar buttons when a project is open.        
+        
+        Overrides the superclass method.
+        """
+        self.addChildButton.config(state='normal')
+        self.addElementButton.config(state='normal')
+        self.addParentButton.config(state='normal')
+        self.goBackButton.config(state='normal')
+        self.goForwardButton.config(state='normal')
+        self.lockButton.config(state='normal')
+        self.manuscriptButton.config(state='normal')
+        self.deleteElementButton.config(state='normal')
+        self.saveButton.config(state='normal')
+        self.updateButton.config(state='normal')
+        self.viewBookButton.config(state='normal')
+        self.viewCharactersButton.config(state='normal')
+        self.viewItemsButton.config(state='normal')
+        self.viewLocationsButton.config(state='normal')
+        self.viewPlotLinesButton.config(state='normal')
+        self.viewProjectnotesButton.config(state='normal')
+        self.cutButton.config(state='normal')
+        self.copyButton.config(state='normal')
+        self.pasteButton.config(state='normal')
+
+    def lock(self):
+        """Make the "locked" state take effect.
+        
+        Overrides the superclass method.
+        """
+        self.saveButton.config(state='disabled')
+        self.updateButton.config(state='disabled')
+        self.addElementButton.config(state='disabled')
+        self.addChildButton.config(state='disabled')
+        self.addParentButton.config(state='disabled')
+        self.deleteElementButton.config(state='disabled')
+        self.cutButton.config(state='disabled')
+        self.pasteButton.config(state='disabled')
+
+    def unlock(self):
+        """Make the "unlocked" state take effect.
+        
+        Overrides the superclass method.
+        """
+        self.saveButton.config(state='normal')
+        self.updateButton.config(state='normal')
+        self.addElementButton.config(state='normal')
+        self.addChildButton.config(state='normal')
+        self.addParentButton.config(state='normal')
+        self.deleteElementButton.config(state='normal')
+        self.cutButton.config(state='normal')
+        self.pasteButton.config(state='normal')
 
     def _set_hovertips(self):
         if not prefs['enable_hovertips']:
@@ -265,25 +361,67 @@ class Toolbar(ToolbarCtrl):
         except ModuleNotFoundError:
             return
 
-        Hovertip(self.addChildButton, f"{self.addChildButton['text']} ({KEYS.ADD_CHILD[1]})")
-        Hovertip(self.addElementButton, f"{self.addElementButton['text']} ({KEYS.ADD_ELEMENT[1]})")
-        Hovertip(self.addParentButton, f"{self.addParentButton['text']} ({KEYS.ADD_PARENT[1]})")
-        Hovertip(self.goBackButton, f"{self.goBackButton['text']} ({KEYS.BACK[1]})")
-        Hovertip(self.goForwardButton, f"{self.goForwardButton['text']} ({KEYS.FORWARD[1]})")
-        Hovertip(self.lockButton, self.lockButton['text'])
-        Hovertip(self.manuscriptButton, self.manuscriptButton['text'])
-        Hovertip(self.propertiesButton, f"{self.propertiesButton['text']} ({KEYS.TOGGLE_PROPERTIES[1]})")
-        Hovertip(self.saveButton, f"{self.saveButton['text']} ({KEYS.SAVE_PROJECT[1]})")
-        Hovertip(self.deleteElementButton, f"{self.deleteElementButton['text']} ({KEYS.DELETE[1]})")
-        Hovertip(self.updateButton, self.updateButton['text'])
-        Hovertip(self.viewBookButton, self.viewBookButton['text'])
-        Hovertip(self.viewCharactersButton, self.viewCharactersButton['text'])
-        Hovertip(self.viewItemsButton, self.viewItemsButton['text'])
-        Hovertip(self.viewLocationsButton, self.viewLocationsButton['text'])
-        Hovertip(self.viewPlotLinesButton, self.viewPlotLinesButton['text'])
-        Hovertip(self.viewProjectnotesButton, self.viewProjectnotesButton['text'])
-        Hovertip(self.viewerButton, f"{self.viewerButton['text']} ({KEYS.TOGGLE_VIEWER[1]})")
-        Hovertip(self.cutButton, self.cutButton['text'])
-        Hovertip(self.copyButton, self.copyButton['text'])
-        Hovertip(self.pasteButton, self.pasteButton['text'])
+        Hovertip(
+            self.addChildButton,
+            f"{self.addChildButton['text']} ({KEYS.ADD_CHILD[1]})")
+        Hovertip(
+            self.addElementButton,
+            f"{self.addElementButton['text']} ({KEYS.ADD_ELEMENT[1]})")
+        Hovertip(
+            self.addParentButton,
+            f"{self.addParentButton['text']} ({KEYS.ADD_PARENT[1]})")
+        Hovertip(
+            self.goBackButton,
+            f"{self.goBackButton['text']} ({KEYS.BACK[1]})")
+        Hovertip(
+            self.goForwardButton,
+            f"{self.goForwardButton['text']} ({KEYS.FORWARD[1]})")
+        Hovertip(
+            self.lockButton,
+            self.lockButton['text'])
+        Hovertip(
+            self.manuscriptButton,
+            self.manuscriptButton['text'])
+        Hovertip(
+            self.propertiesButton,
+            f"{self.propertiesButton['text']} ({KEYS.TOGGLE_PROPERTIES[1]})")
+        Hovertip(
+            self.saveButton,
+            f"{self.saveButton['text']} ({KEYS.SAVE_PROJECT[1]})")
+        Hovertip(
+            self.deleteElementButton,
+             f"{self.deleteElementButton['text']} ({KEYS.DELETE[1]})")
+        Hovertip(
+            self.updateButton,
+            self.updateButton['text'])
+        Hovertip(
+            self.viewBookButton,
+            self.viewBookButton['text'])
+        Hovertip(
+            self.viewCharactersButton,
+            self.viewCharactersButton['text'])
+        Hovertip(
+            self.viewItemsButton,
+            self.viewItemsButton['text'])
+        Hovertip(
+            self.viewLocationsButton,
+            self.viewLocationsButton['text'])
+        Hovertip(
+            self.viewPlotLinesButton,
+            self.viewPlotLinesButton['text'])
+        Hovertip(
+            self.viewProjectnotesButton,
+            self.viewProjectnotesButton['text'])
+        Hovertip(
+            self.viewerButton,
+            f"{self.viewerButton['text']} ({KEYS.TOGGLE_VIEWER[1]})")
+        Hovertip(
+            self.cutButton,
+            self.cutButton['text'])
+        Hovertip(
+            self.copyButton,
+            self.copyButton['text'])
+        Hovertip(
+            self.pasteButton,
+            self.pasteButton['text'])
 

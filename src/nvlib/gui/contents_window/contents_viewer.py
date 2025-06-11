@@ -21,13 +21,12 @@ class ContentsViewer(RichTextNv, Observer, SubController):
     Show the novel contents in a text box.
     """
 
-    def __init__(self, parent, model, view, controller):
+    def __init__(self, parent, model, controller):
         """Put a text box to the specified window.
         
         Positional arguments:
             parent: tk.Frame -- The parent window.
             model -- reference to the main model instance.
-            view -- reference to the main view instance.
             controller -- reference to the main controller instance.
         
         Required keyword arguments:
@@ -36,8 +35,6 @@ class ContentsViewer(RichTextNv, Observer, SubController):
         prefs = controller.get_preferences()
         super().__init__(parent, **prefs)
         self._mdl = model
-        self._ui = view
-        self._ctrl = controller
 
         self.pack(expand=True, fill='both')
         self.showMarkup = tk.BooleanVar(parent, value=prefs['show_markup'])

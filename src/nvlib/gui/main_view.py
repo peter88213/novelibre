@@ -89,7 +89,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self.middleFrame.pack_propagate(0)
 
         #--- Create a text viewer in the middle frame.
-        self.contentsView = ContentsViewer(self.middleFrame, self._mdl, self, self._ctrl)
+        self.contentsView = ContentsViewer(self.middleFrame, self._mdl, self._ctrl)
         self._mdl.add_observer(self.contentsView)
         self._ctrl.register_client(self.contentsView)
         if prefs['show_contents']:
@@ -114,7 +114,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self._create_menu()
 
         #--- Add a toolbar.
-        self.toolbar = Toolbar(self.mainWindow, self._mdl, self, self._ctrl)
+        self.toolbar = Toolbar(self, self._ctrl)
         self._ctrl.register_client(self.toolbar)
 
     @property
