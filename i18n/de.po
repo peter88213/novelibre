@@ -56,7 +56,7 @@ msgid "Add Plot point"
 msgstr "Plotpunkt hinzufügen"
 
 msgid "Add Project note"
-msgstr "Projektnotiz hinizufügen"
+msgstr "Projektnotiz hinzufügen"
 
 msgid "Add Section"
 msgstr "Abschnitt hinzufügen"
