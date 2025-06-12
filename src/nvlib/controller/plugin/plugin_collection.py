@@ -35,14 +35,16 @@ class PluginCollection(dict, SubController):
         """Set up the API references and the version number.
         
         Positional arguments:
-            model -- reference to the main model instance of the application.
-            view -- reference to the main view instance of the application.
-            controller -- reference to the main controller instance of the application.
+            model -- reference to the main model instance.
+            view -- reference to the main view instance.
+            controller -- reference to the main controller instance.
             
         Extends the superclass constructor.
         """
         dict.__init__(self)
-        self.initialize_controller(model, view, controller)
+        self._mdl = model
+        self._ui = view
+        self._ctrl = controller
 
         # Get the major and minor version numbers for API compatibility check.
         # The version number is inserted on building the script.
