@@ -101,11 +101,16 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
         # Create a novel tree.
         self.tree = NvTreeview(self)
-        scrollX = ttk.Scrollbar(self,
-                                orient='horizontal',
-                                command=self.tree.xview)
-        scrollY = ttk.Scrollbar(self.tree, orient='vertical',
-                                command=self.tree.yview)
+        scrollX = ttk.Scrollbar(
+            self,
+            orient='horizontal',
+            command=self.tree.xview,
+        )
+        scrollY = ttk.Scrollbar(
+            self.tree,
+            orient='vertical',
+            command=self.tree.yview,
+        )
         self.tree.configure(xscrollcommand=scrollX.set)
         self.tree.configure(yscrollcommand=scrollY.set)
         scrollX.pack(side='bottom', fill='x')
@@ -117,40 +122,80 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
         #--- configure tree row display.
         fontSize = tkFont.nametofont('TkDefaultFont').actual()['size']
-        self.tree.tag_configure('root', font=('', fontSize, 'bold'))
-        self.tree.tag_configure('chapter',
-                                foreground=prefs['color_chapter'])
-        self.tree.tag_configure('arc', font=('', fontSize, 'bold'),
-                                foreground=prefs['color_arc'])
-        self.tree.tag_configure('plot_point',
-                                foreground=prefs['color_arc'])
-        self.tree.tag_configure('unused',
-                                foreground=prefs['color_unused'])
-        self.tree.tag_configure('stage1', font=('', fontSize, 'bold'),
-                                foreground=prefs['color_stage'])
-        self.tree.tag_configure('stage2',
-                                foreground=prefs['color_stage'])
-        self.tree.tag_configure('part', font=('', fontSize, 'bold'))
-        self.tree.tag_configure('major',
-                                foreground=prefs['color_major'])
-        self.tree.tag_configure('minor',
-                                foreground=prefs['color_minor'])
-        self.tree.tag_configure('status1',
-                                foreground=prefs['color_outline'])
-        self.tree.tag_configure('status2',
-                                foreground=prefs['color_draft'])
-        self.tree.tag_configure('status3',
-                                foreground=prefs['color_1st_edit'])
-        self.tree.tag_configure('status4',
-                                foreground=prefs['color_2nd_edit'])
-        self.tree.tag_configure('status5',
-                                foreground=prefs['color_done'])
-        self.tree.tag_configure('On_schedule',
-                                foreground=prefs['color_on_schedule'])
-        self.tree.tag_configure('Behind_schedule',
-                                foreground=prefs['color_behind_schedule'])
-        self.tree.tag_configure('Before_schedule',
-                                foreground=prefs['color_before_schedule'])
+        self.tree.tag_configure(
+            'root',
+            font=('', fontSize, 'bold'),
+        )
+        self.tree.tag_configure(
+            'chapter',
+            foreground=prefs['color_chapter'],
+        )
+        self.tree.tag_configure(
+            'arc',
+            font=('', fontSize, 'bold'),
+            foreground=prefs['color_arc'],
+        )
+        self.tree.tag_configure(
+            'plot_point',
+            foreground=prefs['color_arc'],
+        )
+        self.tree.tag_configure(
+            'unused',
+            foreground=prefs['color_unused'],
+        )
+        self.tree.tag_configure(
+            'stage1',
+            font=('', fontSize, 'bold'),
+            foreground=prefs['color_stage'],
+        )
+        self.tree.tag_configure(
+            'stage2',
+            foreground=prefs['color_stage'],
+        )
+        self.tree.tag_configure(
+            'part',
+            font=('', fontSize, 'bold'),
+        )
+        self.tree.tag_configure(
+            'major',
+            foreground=prefs['color_major'],
+        )
+        self.tree.tag_configure(
+            'minor',
+            foreground=prefs['color_minor'],
+        )
+        self.tree.tag_configure(
+            'status1',
+            foreground=prefs['color_outline'],
+        )
+        self.tree.tag_configure(
+            'status2',
+            foreground=prefs['color_draft'],
+        )
+        self.tree.tag_configure(
+            'status3',
+            foreground=prefs['color_1st_edit'],
+        )
+        self.tree.tag_configure(
+            'status4',
+            foreground=prefs['color_2nd_edit'],
+        )
+        self.tree.tag_configure(
+            'status5',
+            foreground=prefs['color_done'],
+        )
+        self.tree.tag_configure(
+            'On_schedule',
+            foreground=prefs['color_on_schedule'],
+        )
+        self.tree.tag_configure(
+            'Behind_schedule',
+            foreground=prefs['color_behind_schedule'],
+        )
+        self.tree.tag_configure(
+            'Before_schedule',
+            foreground=prefs['color_before_schedule'],
+        )
 
         #--- Browsing history.
         self._history = HistoryList()
