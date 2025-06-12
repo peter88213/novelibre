@@ -4,11 +4,10 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.gui.properties_window.location_view_ctrl import LocationViewCtrl
 from nvlib.gui.properties_window.world_element_view import WorldElementView
 
 
-class LocationView(WorldElementView, LocationViewCtrl):
+class LocationView(WorldElementView):
     """Class for viewing and editing location properties."""
 
     def __init__(self, parent, model, view, controller):
@@ -19,3 +18,10 @@ class LocationView(WorldElementView, LocationViewCtrl):
         super().__init__(parent, model, view, controller)
         self._prefsShowLinks = 'show_lc_links'
 
+    def set_data(self, elementId):
+        """Update the view with element's data.
+        
+        Extends the superclass method.
+        """
+        self.element = self._mdl.novel.locations[elementId]
+        super().set_data(elementId)

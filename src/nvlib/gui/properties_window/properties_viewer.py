@@ -55,15 +55,15 @@ class PropertiesViewer(ttk.Frame, SubController):
 
         self.activeView = self.noView
         self.activeView.set_data(None)
-        self.activeView.doNotUpdate = False
+        self.activeView._doNotUpdate = False
 
     def apply_changes(self, event=None):
         # This is called by the controller to make sure changes take effect
         # e.g. when starting an export while a property entry still has the focus.
         if not self._ctrl.isLocked:
-            self.activeView.doNotUpdate = True
+            self.activeView._doNotUpdate = True
             self.activeView.apply_changes()
-            self.activeView.doNotUpdate = False
+            self.activeView._doNotUpdate = False
 
     def focus_title(self):
         """Prepare the current element's title entry for manual input."""
@@ -104,14 +104,14 @@ class PropertiesViewer(ttk.Frame, SubController):
             self._view_projectnote(nodeId)
         else:
             self._view_nothing()
-        self.activeView.doNotUpdate = False
+        self.activeView._doNotUpdate = False
 
     def refresh(self):
         """Refresh the active view after changes have been made "outsides".
         
         Overrides the superclass method.
         """
-        if not self.activeView.doNotUpdate:
+        if not self.activeView._doNotUpdate:
             try:
                 self.show_properties(self.activeView.elementId)
             except:

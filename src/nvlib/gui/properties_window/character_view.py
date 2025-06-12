@@ -6,18 +6,20 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from nvlib.gui.properties_window.character_view_ctrl import CharacterViewCtrl
 from nvlib.gui.properties_window.world_element_view import WorldElementView
 from nvlib.gui.widgets.folding_frame import FoldingFrame
 from nvlib.gui.widgets.label_entry import LabelEntry
 from nvlib.gui.widgets.my_string_var import MyStringVar
 from nvlib.gui.widgets.text_box import TextBox
+from nvlib.model.data.py_calendar import PyCalendar
+from nvlib.novx_globals import list_to_string
+from nvlib.nv_globals import get_locale_date_str
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
 
 
-class CharacterView(WorldElementView, CharacterViewCtrl):
+class CharacterView(WorldElementView):
     """Class for viewing and editing character properties.
 
     Adds to the right pane:
@@ -25,7 +27,7 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
     - A "Bio" folding frame.
     - A "Goals" folding frame.
     """
-    _LBL_X = 15
+    _LABEL_WIDTH = 15
     # Width of left-placed labels.
 
     def __init__(self, parent, model, view, controller):
@@ -37,75 +39,72 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
         inputWidgets = []
 
         #--- 'Full name' entry.
-        self.fullNameVar = MyStringVar()
+        self._fullNameVar = MyStringVar()
         self._fullNameEntry = LabelEntry(
             self._fullNameFrame,
             text=_('Full name'),
-            textvariable=self.fullNameVar,
+            textvariable=self._fullNameVar,
             command=self.apply_changes,
-            lblWidth=self._LBL_X
-            )
+            lblWidth=self._LABEL_WIDTH,
+        )
         self._fullNameEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._fullNameEntry)
 
         #--- Character status checkbox.
-        self.isMajorVar = tk.BooleanVar()
+        self._isMajorVar = tk.BooleanVar()
         self._isMajorCheckbox = ttk.Checkbutton(
-            self.elementInfoWindow,
+            self._elementInfoWindow,
             text=_('Major Character'),
-            variable=self.isMajorVar,
+            variable=self._isMajorVar,
             onvalue=True,
             offvalue=False,
             command=self.apply_changes,
-            )
+        )
         self._isMajorCheckbox.pack(anchor='w')
         inputWidgets.append(self._isMajorCheckbox)
 
-        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- 'Bio' frame
-        self.bioFrame = FoldingFrame(
-            self.elementInfoWindow,
+        self._bioFrame = FoldingFrame(
+            self._elementInfoWindow,
             '',
             self._toggle_bio_window,
-            )
+        )
 
         # Bio preview.
-        self.bioPreviewVar = MyStringVar()
+        self._bioPreviewVar = MyStringVar()
         bioPreview = ttk.Label(
-            self.bioFrame.titleBar,
-            textvariable=self.bioPreviewVar,
-            )
+            self._bioFrame.titleBar,
+            textvariable=self._bioPreviewVar,
+        )
         bioPreview.pack(side='left', padx=2)
-        bioPreview.bind(
-            '<Button-1>',
-            self._toggle_bio_window
-            )
+        bioPreview.bind('<Button-1>', self._toggle_bio_window)
 
-        self.birthDateVar = MyStringVar()
+        self._birthDateVar = MyStringVar()
         self._birthDateEntry = LabelEntry(
-            self.bioFrame,
+            self._bioFrame,
             text=_('Birth date'),
-            textvariable=self.birthDateVar,
+            textvariable=self._birthDateVar,
             command=self.apply_changes,
-            lblWidth=self._LBL_X
-            )
+            lblWidth=self._LABEL_WIDTH,
+        )
         self._birthDateEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._birthDateEntry)
 
-        self.deathDateVar = MyStringVar()
+        self._deathDateVar = MyStringVar()
         self._deathDateEntry = LabelEntry(
-            self.bioFrame,
+            self._bioFrame,
             text=_('Death date'),
-            textvariable=self.deathDateVar,
+            textvariable=self._deathDateVar,
             command=self.apply_changes,
-            lblWidth=self._LBL_X
-            )
+            lblWidth=self._LABEL_WIDTH,
+        )
         self._deathDateEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._deathDateEntry)
 
-        self.bioEntry = TextBox(
-            self.bioFrame,
+        self._bioBox = TextBox(
+            self._bioFrame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -117,32 +116,29 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
             bg=prefs['color_text_bg'],
             fg=prefs['color_text_fg'],
             insertbackground=prefs['color_text_fg'],
-            )
-        self.bioEntry.pack(fill='x')
-        inputWidgets.append(self.bioEntry)
+        )
+        self._bioBox.pack(fill='x')
+        inputWidgets.append(self._bioBox)
 
-        ttk.Separator(self.elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
 
         #--- 'Goals' entry.
-        self.goalsFrame = FoldingFrame(
-            self.elementInfoWindow,
+        self._goalsFrame = FoldingFrame(
+            self._elementInfoWindow,
             '',
             self._toggle_goals_window,
-            )
+        )
 
         # Goals preview.
-        self.goalsPreviewVar = MyStringVar()
+        self._goalsPreviewVar = MyStringVar()
         goalsPreview = ttk.Label(
-            self.goalsFrame.titleBar,
-            textvariable=self.goalsPreviewVar,
-            )
+            self._goalsFrame.titleBar,
+            textvariable=self._goalsPreviewVar,
+        )
         goalsPreview.pack(side='left', padx=2)
-        goalsPreview.bind(
-            '<Button-1>',
-            self._toggle_goals_window
-            )
+        goalsPreview.bind('<Button-1>', self._toggle_goals_window)
 
-        self.goalsEntry = TextBox(self.goalsFrame,
+        self._goalsBox = TextBox(self._goalsFrame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -154,15 +150,134 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
             bg=prefs['color_text_bg'],
             fg=prefs['color_text_fg'],
             insertbackground=prefs['color_text_fg'],
-            )
-        self.goalsEntry.pack(fill='x')
-        inputWidgets.append(self.goalsEntry)
+        )
+        self._goalsBox.pack(fill='x')
+        inputWidgets.append(self._goalsBox)
 
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)
             self.inputWidgets.append(widget)
 
         self._prefsShowLinks = 'show_cr_links'
+
+    def apply_changes(self, event=None):
+        """Apply changes.
+        
+        Extends the superclass method.
+        """
+        if self.element is None:
+            return
+
+        super().apply_changes()
+
+        #--- "Full name" entry.
+        self.element.fullName = self._fullNameVar.get()
+
+        #--- Character status checkbox.
+        self.element.isMajor = self._isMajorVar.get()
+
+        #--- "Bio' frame.
+        if self._bioBox.hasChanged:
+            self.element.bio = self._bioBox.get_text()
+
+        birthDateStr = self._birthDateVar.get()
+        if not birthDateStr:
+            self.element.birthDate = None
+        elif birthDateStr != self.element.birthDate:
+            try:
+                PyCalendar.verified_date(birthDateStr)
+            except:
+                self._birthDateVar.set(self.element.birthDate)
+                self._ui.show_error(
+                    message=_('Input rejected'),
+                    detail=f'{_("Wrong date")}: "{birthDateStr}"\n{_("Required")}: {PyCalendar.DATE_FORMAT}'
+                )
+            else:
+                self.element.birthDate = birthDateStr
+
+        deathDateStr = self._deathDateVar.get()
+        if not deathDateStr:
+            self.element.deathDate = None
+        elif deathDateStr != self.element.deathDate:
+            try:
+                PyCalendar.verified_date(deathDateStr)
+            except:
+                self._deathDateVar.set(self.element.deathDate)
+                self._ui.show_error(
+                    message=_('Input rejected'),
+                    detail=f'{_("Wrong date")}: "{deathDateStr}"\n{_("Required")}: {PyCalendar.DATE_FORMAT}'
+                )
+            else:
+                self.element.deathDate = deathDateStr
+
+        #--- "Goals" entry.
+        if self._goalsBox.hasChanged:
+            self.element.goals = self._goalsBox.get_text()
+
+    def configure_display(self):
+        """Expand or collapse the property frames."""
+        super().configure_display()
+
+        #--- Bio frame.
+        if self._mdl.novel.customChrBio:
+            self._bioFrame.buttonText = self._mdl.novel.customChrBio
+        else:
+            self._bioFrame.buttonText = _('Bio')
+        if prefs['show_cr_bio']:
+            self._bioFrame.show()
+            self._bioPreviewVar.set('')
+        else:
+            self._bioFrame.hide()
+            bio = []
+            if self.element.birthDate:
+                bio.append(f'* {get_locale_date_str(self.element.birthDate)}')
+            if self.element.deathDate:
+                bio.append(f'† {get_locale_date_str(self.element.deathDate)}')
+            if self.element.bio:
+                bio.append(self._CHECK)
+            self._bioPreviewVar.set(
+                list_to_string(bio, divider=' '))
+
+        #--- Goals frame.
+        if self._mdl.novel.customChrGoals:
+            self._goalsFrame.buttonText = self._mdl.novel.customChrGoals
+        else:
+            self._goalsFrame.buttonText = _('Goals')
+        if prefs['show_cr_goals']:
+            self._goalsFrame.show()
+            self._goalsPreviewVar.set('')
+        else:
+            self._goalsFrame.hide()
+            if self.element.goals:
+                self._goalsPreviewVar.set(self._CHECK)
+            else:
+                self._goalsPreviewVar.set('')
+
+    def set_data(self, elementId):
+        """Update the view with element data.
+        
+        Extends the superclass method.
+        """
+        self.element = self._mdl.novel.characters[elementId]
+        super().set_data(elementId)
+
+        #--- "Full name" entry.
+        self._fullNameVar.set(self.element.fullName)
+
+        #--- Character status checkbox.
+        self._isMajorVar.set(self.element.isMajor)
+
+        #--- Bio frame.
+
+        # "Bio" entry.
+        self._bioBox.set_text(self.element.bio)
+
+        # Birth date/death date.
+        self._birthDateVar.set(self.element.birthDate)
+        self._deathDateVar.set(self.element.deathDate)
+
+        #--- "Goals" entry.
+        self._goalsBox.set_text(self.element.goals)
 
     def _create_frames(self):
         """Template method for creating the frames in the right pane."""
@@ -176,20 +291,20 @@ class CharacterView(WorldElementView, CharacterViewCtrl):
     def _toggle_bio_window(self, event=None):
         """Hide/show the 'Bio' textbox."""
         if prefs['show_cr_bio']:
-            self.bioFrame.hide()
+            self._bioFrame.hide()
             prefs['show_cr_bio'] = False
         else:
-            self.bioFrame.show()
+            self._bioFrame.show()
             prefs['show_cr_bio'] = True
         self._toggle_folding_frame()
 
     def _toggle_goals_window(self, event=None):
         """Hide/show the 'Goals' textbox."""
         if prefs['show_cr_goals']:
-            self.goalsFrame.hide()
+            self._goalsFrame.hide()
             prefs['show_cr_goals'] = False
         else:
-            self.goalsFrame.show()
+            self._goalsFrame.show()
             prefs['show_cr_goals'] = True
         self._toggle_folding_frame()
 
