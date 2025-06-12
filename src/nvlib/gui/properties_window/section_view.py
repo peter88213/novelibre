@@ -99,8 +99,8 @@ class SectionView(BasicView):
         ttk.Button(
             crHeading,
             text=_('Show ages'),
-            command=self.show_ages
-            ).pack(anchor='e')
+            command=self.show_ages,
+        ).pack(anchor='e')
         crHeading.pack(fill='x')
         self._characterCollection = CollectionBox(
             self._relationFrame,
@@ -182,7 +182,7 @@ class SectionView(BasicView):
             displayDateFrame,
             text=_('Start'),
             width=self._DT_LABEL_WIDTH,
-            ).pack(side='left')
+        ).pack(side='left')
 
         # Display date.
         self._displayDateVar = MyStringVar()
@@ -197,7 +197,7 @@ class SectionView(BasicView):
             displayDateFrame,
             text=_('Moon phase'),
             command=self.show_moonphase,
-            ).pack(anchor='e')
+        ).pack(anchor='e')
 
         # 'Start date' entry.
         self._startDateVar = MyStringVar()
@@ -292,7 +292,7 @@ class SectionView(BasicView):
             displayDurationFrame,
             text=_('Duration'),
             width=self._DT_LABEL_WIDTH,
-            ).pack(side='left')
+        ).pack(side='left')
 
         # Display duration.
         self.displayDurationVar = MyStringVar()
@@ -442,7 +442,7 @@ class SectionView(BasicView):
         ttk.Label(
             self._plotFrame,
             text=_('Notes on the selected plot line'),
-            ).pack(anchor='w')
+        ).pack(anchor='w')
         self._plotNotesWindow = TextBox(
             self._plotFrame,
             wrap='word',

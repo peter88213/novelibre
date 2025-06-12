@@ -85,8 +85,8 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
                 text=buttonLabel,
                 variable=self._importModeVar,
                 value=i,
-                command=self._on_select_document
-                ).pack(padx=5, pady=1, anchor='w')
+                command=self._on_select_document,
+            ).pack(padx=5, pady=1, anchor='w')
         self._importModeVar.trace('w', self._save_options)
 
         # "Import" button.
@@ -117,15 +117,15 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
         ttk.Button(
             window,
             text=_('Close'),
-            command=self.destroy
-            ).pack(padx=5, pady=5, side='right')
+            command=self.destroy,
+        ).pack(padx=5, pady=5, side='right')
 
         # "Help" button.
         ttk.Button(
             window,
             text=_('Online help'),
-            command=self._open_help
-            ).pack(padx=5, pady=5, side='right')
+            command=self._open_help,
+        ).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
         self.bind(KEYS.OPEN_HELP[0], self._open_help)

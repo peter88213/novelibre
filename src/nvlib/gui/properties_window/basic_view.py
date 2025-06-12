@@ -236,15 +236,15 @@ class BasicView(ttk.Frame, Observer, SubController):
         ttk.Button(
             self._buttonBar,
             text=_('Previous'),
-            command=self._ui.tv.load_prev
-            ).pack(side='left', fill='x', expand=True, padx=1, pady=2)
+            command=self._ui.tv.load_prev,
+        ).pack(side='left', fill='x', expand=True, padx=1, pady=2)
 
         # "Next" button.
         ttk.Button(
             self._buttonBar,
             text=_('Next'),
-            command=self._ui.tv.load_next
-            ).pack(side='left', fill='x', expand=True, padx=1, pady=2)
+            command=self._ui.tv.load_next,
+        ).pack(side='left', fill='x', expand=True, padx=1, pady=2)
 
     def _create_element_info_window(self):
         # Create a window for element specific information.

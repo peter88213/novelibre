@@ -27,7 +27,7 @@ class ExportOptionsDialog(ModalDialog, SubController):
         window.pack(
             fill='both',
             pady=5
-            )
+        )
         frame1 = ttk.Frame(window)
         frame1.pack(fill='both', padx=50)
 
@@ -36,8 +36,8 @@ class ExportOptionsDialog(ModalDialog, SubController):
         ttk.Checkbutton(
             frame1,
             text=_('Ask before opening exported documents'),
-            variable=self._askDocOpenVar
-            ).pack(padx=5, pady=5, anchor='w')
+            variable=self._askDocOpenVar,
+        ).pack(padx=5, pady=5, anchor='w')
         self._askDocOpenVar.trace('w', self._change_ask_doc_open)
 
         # Checkbox: Lock the project after document export.
@@ -45,8 +45,8 @@ class ExportOptionsDialog(ModalDialog, SubController):
         ttk.Checkbutton(
             frame1,
             text=_('Lock the project after document export for editing'),
-            variable=self._lockOnExportVar
-            ).pack(padx=5, pady=5, anchor='w')
+            variable=self._lockOnExportVar,
+        ).pack(padx=5, pady=5, anchor='w')
         self._lockOnExportVar.trace('w', self._change_lock_on_export)
 
         ttk.Separator(window, orient='horizontal').pack(fill='x')
@@ -58,15 +58,15 @@ class ExportOptionsDialog(ModalDialog, SubController):
         ttk.Button(
             frame2,
             text=_('Select document template'),
-            command=self._ctrl.fileManager.set_user_styles
-            ).pack(padx=5, pady=5, anchor='w', fill='x')
+            command=self._ctrl.fileManager.set_user_styles,
+        ).pack(padx=5, pady=5, anchor='w', fill='x')
 
         # "Restore default styles" button.
         ttk.Button(
             frame2,
             text=_('Restore default styles'),
-            command=self._ctrl.fileManager.restore_default_styles
-            ).pack(padx=5, pady=5, anchor='w', fill='x')
+            command=self._ctrl.fileManager.restore_default_styles,
+        ).pack(padx=5, pady=5, anchor='w', fill='x')
 
         ttk.Separator(self, orient='horizontal').pack(fill='x')
 
@@ -74,15 +74,15 @@ class ExportOptionsDialog(ModalDialog, SubController):
         ttk.Button(
             self,
             text=_('Close'),
-            command=self.destroy
-            ).pack(padx=5, pady=5, side='right')
+            command=self.destroy,
+        ).pack(padx=5, pady=5, side='right')
 
         # "Help" button.
         ttk.Button(
             self,
             text=_('Online help'),
-            command=self._open_help
-            ).pack(padx=5, pady=5, side='right')
+            command=self._open_help,
+        ).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
         self.bind(KEYS.OPEN_HELP[0], self._open_help)

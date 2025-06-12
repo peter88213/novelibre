@@ -57,14 +57,14 @@ class BackupOptionsDialog(ModalDialog, SubController):
             frame1,
             text=_('Change backup directory'),
             command=self._set_backup_dir,
-            ).pack(anchor='w', fill='x')
+        ).pack(anchor='w', fill='x')
 
         # Button: Open backup directory.
         ttk.Button(
             frame1,
             text=_('Open backup directory'),
             command=self._open_backup_dir,
-            ).pack(anchor='w', fill='x')
+        ).pack(anchor='w', fill='x')
 
         # Checkbox: Ask whether backup copies shall be created.
         self._enableBackupVar = tk.BooleanVar(
@@ -75,7 +75,7 @@ class BackupOptionsDialog(ModalDialog, SubController):
             frame1,
             text=_('Create backup copies'),
             variable=self._enableBackupVar
-            ).pack(padx=5, pady=5, anchor='w')
+        ).pack(padx=5, pady=5, anchor='w')
         self._enableBackupVar.trace('w', self._change_enable_backup)
 
         ttk.Separator(self, orient='horizontal').pack(fill='x')
@@ -85,14 +85,14 @@ class BackupOptionsDialog(ModalDialog, SubController):
             self,
             text=_('Close'),
             command=self.destroy
-            ).pack(padx=5, pady=5, side='right')
+        ).pack(padx=5, pady=5, side='right')
 
         # "Help" button.
         ttk.Button(
             self,
             text=_('Online help'),
             command=self._open_help
-            ).pack(padx=5, pady=5, side='right')
+        ).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
         self.bind(KEYS.OPEN_HELP[0], self._open_help)

@@ -46,7 +46,10 @@ class ProjectView(BasicView):
         self._authorNameEntry.pack(anchor='w')
         inputWidgets.append(self._authorNameEntry)
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(
+            self._elementInfoWindow,
+            orient='horizontal',
+        ).pack(fill='x')
 
         #--- "Language settings" frame.
         self._languageFrame = FoldingFrame(
@@ -55,7 +58,10 @@ class ProjectView(BasicView):
             self._toggle_language_frame,
         )
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(
+            self._elementInfoWindow,
+            orient='horizontal',
+        ).pack(fill='x')
 
         # Language and country code.
 
@@ -97,7 +103,10 @@ class ProjectView(BasicView):
             self._toggle_numbering_frame,
         )
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(
+            self._elementInfoWindow,
+            orient='horizontal',
+        ).pack(fill='x')
 
         # Auto numbering  preview.
         self._numberingPreviewVar = MyStringVar()
@@ -236,11 +245,14 @@ class ProjectView(BasicView):
         renamingsPreview.pack(side='left', padx=2)
         renamingsPreview.bind('<Button-1>', self._toggle_renamings_frame)
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(
+            self._elementInfoWindow,
+            orient='horizontal',
+        ).pack(fill='x')
         ttk.Label(
             self._renamingsFrame,
-            text=_('Not a scene')
-            ).pack(anchor='w')
+            text=_('Not a scene'),
+        ).pack(anchor='w')
 
         # Custom 'Plot progress' entry.
         self._customPlotProgressVar = MyStringVar()
@@ -278,11 +290,14 @@ class ProjectView(BasicView):
         self._customWorldBuildingEntry.pack(anchor='w')
         inputWidgets.append(self._customWorldBuildingEntry)
 
-        ttk.Separator(self._renamingsFrame, orient='horizontal').pack(fill='x', pady=5)
+        ttk.Separator(
+            self._renamingsFrame,
+            orient='horizontal',
+        ).pack(fill='x', pady=5)
         ttk.Label(
             self._renamingsFrame,
             text=_('Other scene'),
-            ).pack(anchor='w')
+        ).pack(anchor='w')
 
         # 'Opening' entry.
         self._customGoalVar = MyStringVar()
@@ -320,11 +335,15 @@ class ProjectView(BasicView):
         self._customOutcomeEntry.pack(anchor='w')
         inputWidgets.append(self._customOutcomeEntry)
 
-        ttk.Separator(self._renamingsFrame, orient='horizontal').pack(fill='x', pady=5)
+        ttk.Separator(
+            self._renamingsFrame,
+            orient='horizontal',
+        ).pack(fill='x', pady=5)
+
         ttk.Label(
             self._renamingsFrame,
             text=_('Character'),
-            ).pack(anchor='w'),
+        ).pack(anchor='w'),
 
         # 'Bio' entry.
         self._customChrBioVar = MyStringVar()
@@ -366,7 +385,10 @@ class ProjectView(BasicView):
         datePreview.pack(side='left', padx=2)
         datePreview.bind('<Button-1>', self._toggle_narrative_time_frame)
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(
+            self._elementInfoWindow,
+            orient='horizontal',
+        ).pack(fill='x')
 
         # 'Reference date' entry.
         self._referenceDateVar = MyStringVar()
@@ -386,12 +408,12 @@ class ProjectView(BasicView):
         ttk.Label(
             _displayDateFrame,
             width=self._LABEL_WIDTH,
-            ).pack(side='left')
+        ).pack(side='left')
         self._displayDateVar = MyStringVar()
         ttk.Label(
             _displayDateFrame,
             textvariable=self._displayDateVar,
-            ).pack(anchor='w')
+        ).pack(anchor='w')
 
         # Convert date/day buttons.
         self._datesToDaysButton = ttk.Button(
@@ -451,7 +473,10 @@ class ProjectView(BasicView):
         self._saveWordCountEntry.pack(anchor='w')
         inputWidgets.append(self._saveWordCountEntry)
 
-        ttk.Separator(self._progressFrame, orient='horizontal').pack(fill='x')
+        ttk.Separator(
+            self._progressFrame,
+            orient='horizontal',
+        ).pack(fill='x')
 
         # 'Words to write' entry.
         self._wordTargetVar = MyStringVar()
@@ -488,12 +513,17 @@ class ProjectView(BasicView):
 
         # 'Words written' display.
         self._wordsWrittenVar = MyStringVar()
-        LabelDisp(self._progressFrame, text=_('Words written'),
-                  textvariable=self._wordsWrittenVar,
-                  lblWidth=self._LABEL_WIDTH,
-                  ).pack(anchor='w')
+        LabelDisp(
+            self._progressFrame,
+            text=_('Words written'),
+            textvariable=self._wordsWrittenVar,
+            lblWidth=self._LABEL_WIDTH,
+        ).pack(anchor='w')
 
-        ttk.Separator(self._progressFrame, orient='horizontal').pack(fill='x')
+        ttk.Separator(
+            self._progressFrame,
+            orient='horizontal',
+        ).pack(fill='x')
 
         self._totalUsedVar = MyStringVar()
         LabelDisp(
@@ -501,56 +531,56 @@ class ProjectView(BasicView):
             text=_('Used'),
             textvariable=self._totalUsedVar,
             lblWidth=self._LABEL_WIDTH,
-            ).pack(anchor='w')
+        ).pack(anchor='w')
         self._totalOutlineVar = MyStringVar()
         LabelDisp(
             self._progressFrame,
             text=_('Outline'),
             textvariable=self._totalOutlineVar,
             lblWidth=self._LABEL_WIDTH,
-            ).pack(anchor='w')
+        ).pack(anchor='w')
         self._totalDraftVar = MyStringVar()
         LabelDisp(
             self._progressFrame,
             text=_('Draft'),
             textvariable=self._totalDraftVar,
             lblWidth=self._LABEL_WIDTH,
-            ).pack(anchor='w')
+        ).pack(anchor='w')
         self._total1stEditVar = MyStringVar()
         LabelDisp(
             self._progressFrame,
             text=_('1st Edit'),
             textvariable=self._total1stEditVar,
             lblWidth=self._LABEL_WIDTH,
-            ).pack(anchor='w')
+        ).pack(anchor='w')
         self._total2ndEditVar = MyStringVar()
         LabelDisp(
             self._progressFrame,
             text=_('2nd Edit'),
             textvariable=self._total2ndEditVar,
             lblWidth=self._LABEL_WIDTH,
-            ).pack(anchor='w')
+        ).pack(anchor='w')
         self._totalDoneVar = MyStringVar()
         LabelDisp(
             self._progressFrame,
             text=_('Done'),
             textvariable=self._totalDoneVar,
             lblWidth=self._LABEL_WIDTH,
-            ).pack(anchor='w')
+        ).pack(anchor='w')
         self._totalUnusedVar = MyStringVar()
         LabelDisp(
             self._progressFrame,
             text=_('Unused'),
             textvariable=self._totalUnusedVar,
             lblWidth=self._LABEL_WIDTH,
-            ).pack(anchor='w')
+        ).pack(anchor='w')
         self._totalWordsVar = MyStringVar()
         LabelDisp(
             self._progressFrame,
             text=_('All'),
             textvariable=self._totalWordsVar,
             lblWidth=self._LABEL_WIDTH,
-            ).pack(anchor='w')
+        ).pack(anchor='w')
 
         #--- 'phase' combobox.
         self._phaseVar = MyStringVar()
@@ -778,7 +808,8 @@ class ProjectView(BasicView):
         """Convert specific section dates to days."""
         buttonText = self._datesToDaysButton['text']
         self._datesToDaysButton['text'] = _('Please wait ...')
-        # changing the button text is less time consuming than showing a progress bar
+        # changing the button text is less time consuming
+        # than showing a progress bar
         if self._mdl.novel.referenceDate:
             if self._ui.ask_yes_no(
                 message=_('Convert all section dates to days relative to the reference date?'),
@@ -796,7 +827,8 @@ class ProjectView(BasicView):
         """Convert section days to specific dates."""
         buttonText = self._daysToDatesButton['text']
         self._daysToDatesButton['text'] = _('Please wait ...')
-        # changing the button text is less time consuming than showing a progress bar
+        # changing the button text is less time consuming
+        # than showing a progress bar
         if self._mdl.novel.referenceDate:
             if self._ui.ask_yes_no(
                 message=_('Convert all section days to dates using the reference date?'),
@@ -911,7 +943,14 @@ class ProjectView(BasicView):
         self._totalDoneVar.set(statusCounts[5])
 
         # "Work phase" combobox.
-        phases = [_('Undefined'), _('Outline'), _('Draft'), _('1st Edit'), _('2nd Edit'), _('Done')]
+        phases = [
+            _('Undefined'),
+            _('Outline'),
+            _('Draft'),
+            _('1st Edit'),
+            _('2nd Edit'),
+            _('Done'),
+        ]
         self._phaseCombobox.configure(values=phases)
         try:
             workPhase = int(self.element.workPhase)

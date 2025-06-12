@@ -104,15 +104,15 @@ class PluginManagerDialog(ModalDialog, SubController):
         ttk.Button(
             self._footer,
             text=_('Close'),
-            command=self.destroy
-            ).pack(padx=5, pady=5, side='right')
+            command=self.destroy,
+        ).pack(padx=5, pady=5, side='right')
 
         # "Help" button.
         ttk.Button(
             self._footer,
             text=_('Online help'),
-            command=self._open_help
-            ).pack(padx=5, pady=5, side='right')
+            command=self._open_help,
+        ).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
         self.bind(KEYS.OPEN_HELP[0], self._open_help)

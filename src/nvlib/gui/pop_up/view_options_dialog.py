@@ -45,14 +45,14 @@ class ViewOptionsDialog(ModalDialog, SubController):
         self._coloringModeStrVar.trace('w', self._change_colors)
         ttk.Label(
             frame1,
-            text=_('Coloring mode')
-            ).pack(padx=5, pady=5, anchor='w')
+            text=_('Coloring mode'),
+        ).pack(padx=5, pady=5, anchor='w')
         ttk.Combobox(
             frame1,
             textvariable=self._coloringModeStrVar,
             values=self._ui.tv.COLORING_MODES,
-            width=20
-            ).pack(padx=5, pady=5, anchor='w')
+            width=20,
+        ).pack(padx=5, pady=5, anchor='w')
 
         ttk.Separator(frame1, orient='horizontal').pack(fill='x', pady=10)
 
@@ -63,7 +63,7 @@ class ViewOptionsDialog(ModalDialog, SubController):
             text=_('Large toolbar icons'),
             variable=self._largeIconsVar,
             command=self._change_icon_size,
-            ).pack(padx=5, pady=5, anchor='w')
+        ).pack(padx=5, pady=5, anchor='w')
 
         # Checkbox for ISO-formatted date display.
         self._localizeDate = tk.BooleanVar(frame1, value=prefs['localize_date'])
@@ -72,13 +72,13 @@ class ViewOptionsDialog(ModalDialog, SubController):
             text=_('Display localized dates'),
             variable=self._localizeDate,
             command=self._change_localize_date,
-            ).pack(padx=5, pady=5, anchor='w')
+        ).pack(padx=5, pady=5, anchor='w')
 
         # Listbox for column reordering.
         ttk.Label(
             frame2,
-            text=_('Columns')
-            ).pack(padx=5, pady=5, anchor='w')
+            text=_('Columns'),
+        ).pack(padx=5, pady=5, anchor='w')
         self._coIdsByTitle = {}
         for coId, title, __ in self._ui.tv.columns:
             self._coIdsByTitle[title] = coId
@@ -86,13 +86,13 @@ class ViewOptionsDialog(ModalDialog, SubController):
         DragDropListbox(
             frame2,
             listvariable=self._colEntriesVar,
-            width=20
-            ).pack(padx=5, pady=5, anchor='w')
+            width=20,
+        ).pack(padx=5, pady=5, anchor='w')
         ttk.Button(
             frame2,
             text=_('Apply'),
-            command=self._change_column_order
-            ).pack(padx=5, pady=5, anchor='w')
+            command=self._change_column_order,
+        ).pack(padx=5, pady=5, anchor='w')
 
         ttk.Separator(self, orient='horizontal').pack(fill='x')
 
@@ -100,15 +100,15 @@ class ViewOptionsDialog(ModalDialog, SubController):
         ttk.Button(
             self,
             text=_('Close'),
-            command=self.destroy
-            ).pack(padx=5, pady=5, side='right')
+            command=self.destroy,
+        ).pack(padx=5, pady=5, side='right')
 
         # "Help" button.
         ttk.Button(
             self,
             text=_('Online help'),
-            command=self._open_help
-            ).pack(padx=5, pady=5, side='right')
+            command=self._open_help,
+        ).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
         self.bind(KEYS.OPEN_HELP[0], self._open_help)

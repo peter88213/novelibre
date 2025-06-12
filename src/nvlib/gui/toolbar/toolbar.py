@@ -54,8 +54,8 @@ class Toolbar(SubController):
         tk.Frame(
             self.buttonBar,
             bg='light gray',
-            width=1
-            ).pack(side='left', fill='y', padx=4)
+            width=1,
+        ).pack(side='left', fill='y', padx=4)
 
         # "View Book" button.
         self.viewBookButton = ttk.Button(
@@ -121,8 +121,8 @@ class Toolbar(SubController):
         tk.Frame(
             self.buttonBar,
             bg='light gray',
-            width=1
-            ).pack(side='left', fill='y', padx=4)
+            width=1,
+        ).pack(side='left', fill='y', padx=4)
 
         # "Save" button.
         self.saveButton = ttk.Button(
@@ -168,8 +168,8 @@ class Toolbar(SubController):
         tk.Frame(
             self.buttonBar,
             bg='light gray',
-            width=1
-            ).pack(side='left', fill='y', padx=4)
+            width=1,
+        ).pack(side='left', fill='y', padx=4)
 
         # "Add" button.
         self.addElementButton = ttk.Button(
@@ -215,8 +215,8 @@ class Toolbar(SubController):
         tk.Frame(
             self.buttonBar,
             bg='light gray',
-            width=1
-            ).pack(side='left', fill='y', padx=4)
+            width=1,
+        ).pack(side='left', fill='y', padx=4)
 
         # Put a "Cut" button on the toolbar.
         self.cutButton = ttk.Button(

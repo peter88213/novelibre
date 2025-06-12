@@ -42,7 +42,7 @@ class ContentsViewer(RichTextNv, Observer, SubController):
             parent,
             text=_('Show markup'),
             variable=self.showMarkup
-            ).pack(anchor='w')
+        ).pack(anchor='w')
         self.showMarkup.trace('w', self.refresh)
         self._textMarks = {}
         self._index = '1.0'
