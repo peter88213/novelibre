@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.26.0
+### Version 5.26.1
 
 - Fixed a bug where "Export this chapter" is not greyed out for the "Book" context menu.
 - Fixed a German translation.
