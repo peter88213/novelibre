@@ -513,7 +513,8 @@ class ElementManager(ServiceBase):
             return
 
         DataImportDialog(
-            self._mdl, self._ui, self._ctrl,
+            self._ui,
+            self._ctrl,
             self._ctrl.dataImporter.sourceElements,
             prefix,
             )
