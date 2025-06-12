@@ -109,10 +109,8 @@ class PlotPointView(BasicView):
         self._sectionAssocTitle['text'] = sectionTitle
 
     def _assign_section(self, event=None):
-        """Associate the selected section with the Plot point.
-        
-        End the picking mode after the section is assigned.
-        """
+        # Associate the selected section with the Plot point.
+        # End the picking mode after the section is assigned.
         nodeId = self._ui.tv.tree.selection()[0]
         if nodeId.startswith(SECTION_PREFIX):
             if self._mdl.novel.sections[nodeId].scType == 0:
@@ -132,7 +130,7 @@ class PlotPointView(BasicView):
         self._ui.tv.restore_branch_status()
 
     def _create_frames(self):
-        """Template method for creating the frames in the right pane."""
+        # Template method for creating the frames in the right pane.
         self._create_index_card()
         self._create_element_info_window()
         self._create_links_window()

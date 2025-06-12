@@ -74,7 +74,7 @@ class ChapterView(BasicView):
         epigraphPreview.pack(side='left', padx=2)
         epigraphPreview.bind('<Button-1>', self._toggle_epigraph_window)
 
-        self._epigraphEntry = TextBox(self._epigraphFrame,
+        self._epigraphBox = TextBox(self._epigraphFrame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -87,8 +87,8 @@ class ChapterView(BasicView):
             fg=prefs['color_text_fg'],
             insertbackground=prefs['color_text_fg'],
         )
-        self._epigraphEntry.pack(fill='x')
-        inputWidgets.append(self._epigraphEntry)
+        self._epigraphBox.pack(fill='x')
+        inputWidgets.append(self._epigraphBox)
 
         #--- 'Epigraph source' entry.
         self._epigraphSrcVar = MyStringVar()
@@ -131,8 +131,8 @@ class ChapterView(BasicView):
         self.element.noNumber = self._noNumberVar.get()
 
         #--- "Epigraph' entry.
-        if self._epigraphEntry.hasChanged:
-            self.element.epigraph = self._epigraphEntry.get_text()
+        if self._epigraphBox.hasChanged:
+            self.element.epigraph = self._epigraphBox.get_text()
 
         #--- "Epigraph source' entry.
         self.element.epigraphSrc = self._epigraphSrcVar.get()
@@ -176,11 +176,11 @@ class ChapterView(BasicView):
         self._noNumberVar.set(self.element.noNumber)
 
         #--- Epigraph frame.
-        self._epigraphEntry.set_text(self.element.epigraph)
+        self._epigraphBox.set_text(self.element.epigraph)
         self._epigraphSrcVar.set(self.element.epigraphSrc)
 
     def _create_frames(self):
-        """Template method for creating the frames in the right pane."""
+        # Template method for creating the frames in the right pane.
         self._create_index_card()
         self._create_element_info_window()
         self._create_links_window()
@@ -189,7 +189,7 @@ class ChapterView(BasicView):
         self._create_button_bar()
 
     def _toggle_epigraph_window(self, event=None):
-        """Hide/show the 'Epigraph' textbox."""
+        # Hide/show the 'Epigraph' window.
         if prefs['show_ch_epigraph']:
             self._epigraphFrame.hide()
             prefs['show_ch_epigraph'] = False

@@ -946,12 +946,12 @@ class ProjectView(BasicView):
         super().show()
 
     def _create_cover_window(self):
-        """Create a text box for element notes."""
+        # Create a text box for element notes.
         self._cover = tk.Label(self._propertiesFrame)
         self._cover.pack()
 
     def _create_frames(self):
-        """Template method for creating the frames in the right pane."""
+        # Template method for creating the frames in the right pane.
         self._create_index_card()
         self._create_element_info_window()
         self._create_links_window()
@@ -959,10 +959,8 @@ class ProjectView(BasicView):
         self._create_cover_window()
 
     def _toggle_language_frame(self, event=None):
-        """Hide/show the "Document language" frame.
-        
-        Callback procedure for the FoldingFrame's button.
-        """
+        # Hide/show the "Document language" frame.
+        # Callback procedure for the FoldingFrame's button.
         if prefs['show_language_settings']:
             self._languageFrame.hide()
             prefs['show_language_settings'] = False
@@ -972,10 +970,8 @@ class ProjectView(BasicView):
         self._toggle_folding_frame()
 
     def _toggle_narrative_time_frame(self, event=None):
-        """Hide/show the "Narrative time" frame.
-        
-        Callback procedure for the FoldingFrame's button.
-        """
+        # Hide/show the "Narrative time" frame.
+        # Callback procedure for the FoldingFrame's button.
         if prefs['show_narrative_time']:
             self._narrativeTimeFrame.hide()
             prefs['show_narrative_time'] = False
@@ -985,10 +981,8 @@ class ProjectView(BasicView):
         self._toggle_folding_frame()
 
     def _toggle_numbering_frame(self, event=None):
-        """Hide/show the "Auto numbering" frame.
-        
-        Callback procedure for the FoldingFrame's button.
-        """
+        # Hide/show the "Auto numbering" frame.
+        # Callback procedure for the FoldingFrame's button.
         if prefs['show_auto_numbering']:
             self._numberingFrame.hide()
             prefs['show_auto_numbering'] = False
@@ -998,10 +992,8 @@ class ProjectView(BasicView):
         self._toggle_folding_frame()
 
     def _toggle_progress_frame(self, event=None):
-        """Hide/show the "Writing progress" frame.
-        
-        Callback procedure for the FoldingFrame's button.
-        """
+        # Hide/show the "Writing progress" frame.
+        # Callback procedure for the FoldingFrame's button.
         if prefs['show_writing_progress']:
             self._progressFrame.hide()
             prefs['show_writing_progress'] = False
@@ -1011,10 +1003,8 @@ class ProjectView(BasicView):
         self._toggle_folding_frame()
 
     def _toggle_renamings_frame(self, event=None):
-        """Hide/show the "Renamings" frame.
-        
-        Callback procedure for the FoldingFrame's button.
-        """
+        # Hide/show the "Renamings" frame.
+        # Callback procedure for the FoldingFrame's button.
         if prefs['show_renamings']:
             self._renamingsFrame.hide()
             prefs['show_renamings'] = False

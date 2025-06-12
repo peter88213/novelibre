@@ -280,7 +280,7 @@ class CharacterView(WorldElementView):
         self._goalsBox.set_text(self.element.goals)
 
     def _create_frames(self):
-        """Template method for creating the frames in the right pane."""
+        # Template method for creating the frames in the right pane.
         self._create_index_card()
         self._create_element_info_window()
         self._create_links_window()
@@ -289,7 +289,7 @@ class CharacterView(WorldElementView):
         self._create_button_bar()
 
     def _toggle_bio_window(self, event=None):
-        """Hide/show the 'Bio' textbox."""
+        # Hide/show the 'Bio' textbox.
         if prefs['show_cr_bio']:
             self._bioFrame.hide()
             prefs['show_cr_bio'] = False
@@ -299,7 +299,7 @@ class CharacterView(WorldElementView):
         self._toggle_folding_frame()
 
     def _toggle_goals_window(self, event=None):
-        """Hide/show the 'Goals' textbox."""
+        # Hide/show the 'Goals' textbox.
         if prefs['show_cr_goals']:
             self._goalsFrame.hide()
             prefs['show_cr_goals'] = False

@@ -247,7 +247,7 @@ class BasicView(ttk.Frame, Observer, SubController):
             ).pack(side='left', fill='x', expand=True, padx=1, pady=2)
 
     def _create_element_info_window(self):
-        """Create a window for element specific information."""
+        # Create a window for element specific information.
         self._elementInfoWindow = ttk.Frame(self._propertiesFrame)
         self._elementInfoWindow.pack(fill='x')
 

@@ -856,7 +856,8 @@ class SectionView(BasicView):
         if self._mdl.novel.sections[nextScId].date:
             nextDateIso = self._mdl.novel.sections[nextScId].date
         elif self._mdl.novel.sections[nextScId].day:
-            nextDateIso = PyCalendar.specific_date(self._mdl.novel.sections[nextScId].day, refDateIso)
+            nextDateIso = PyCalendar.specific_date(
+                self._mdl.novel.sections[nextScId].day, refDateIso,)
         elif self.element.day:
             nextDateIso = self.element.day
         else:
@@ -867,7 +868,8 @@ class SectionView(BasicView):
             if nextDateIso is None:
                 nextDateIso = thisDateIso
         elif self.element.day:
-            thisDateIso = PyCalendar.specific_date(self.element.day, refDateIso)
+            thisDateIso = PyCalendar.specific_date(
+                self.element.day, refDateIso)
             if nextDateIso is None:
                 nextDateIso = thisDateIso
         else:
@@ -1613,7 +1615,7 @@ class SectionView(BasicView):
         self._ui.tv.restore_branch_status()
 
     def _create_frames(self):
-        """Template method for creating the frames in the right pane."""
+        # Template method for creating the frames in the right pane.
         self._create_index_card()
         self._create_element_info_window()
         self._create_links_window()
@@ -1622,12 +1624,9 @@ class SectionView(BasicView):
         self._create_button_bar()
 
     def _get_element_titles(self, elemIds, elements):
-        """Return a list of element titles.
-        
-        Positional arguments:
-            elemIds -- list of element IDs.
-            elements -- list of element objects.          
-        """
+        # Return a list of element titles.
+        #   elemIds -- list of element IDs.
+        #   elements -- list of element objects.
         elemTitles = []
         if elemIds:
             for elemId in elemIds:
@@ -1639,8 +1638,6 @@ class SectionView(BasicView):
 
     def _get_plotline_titles(self, elemIds, elements):
         # Return a list of plot line titles, preceded by the short names.
-        #
-        # Positional arguments:
         #    elemIds -- list of element IDs.
         #    elements -- list of element objects.
         elemTitles = []
@@ -1682,7 +1679,7 @@ class SectionView(BasicView):
         )
 
     def _toggle_date_time_frame(self, event=None):
-        """Hide/show the 'Date/Time' frame."""
+        # Hide/show the 'Date/Time' frame.
         if prefs['show_date_time']:
             self._dateTimeFrame.hide()
             prefs['show_date_time'] = False
@@ -1692,7 +1689,7 @@ class SectionView(BasicView):
         self._toggle_folding_frame()
 
     def _toggle_plot_frame(self, event=None):
-        """Hide/show the 'Plot' frame."""
+        # Hide/show the 'Plot' frame.
         if prefs['show_plot']:
             self._plotFrame.hide()
             prefs['show_plot'] = False
@@ -1702,7 +1699,7 @@ class SectionView(BasicView):
         self._toggle_folding_frame()
 
     def _toggle_relation_frame(self, event=None):
-        """Hide/show the 'Relationships' frame."""
+        # Hide/show the 'Relationships' frame.
         if prefs['show_relationships']:
             self._relationFrame.hide()
             prefs['show_relationships'] = False
@@ -1712,7 +1709,7 @@ class SectionView(BasicView):
         self._toggle_folding_frame()
 
     def _toggle_scene_frame(self, event=None):
-        """Hide/show the 'Scene' frame."""
+        # Hide/show the 'Scene' frame.
         if prefs['show_scene']:
             self._sceneFrame.hide()
             prefs['show_scene'] = False

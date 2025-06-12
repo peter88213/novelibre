@@ -123,11 +123,8 @@ class PropertiesViewer(ttk.Frame, SubController):
             client.unlock()
 
     def _make_view(self, viewClass):
-        """Return a viewClass instance that is registered as a local view..
-        
-        Positional arguments:
-            viewClass: BasicView subclass.
-        """
+        # Return a viewClass instance that is registered as a local view..
+        #   viewClass: BasicView subclass.
         newView = viewClass(self, self._mdl, self._ui, self._ctrl)
         self._clients.append(newView)
         # NOTE: the new view component must not be registered by the main view,
@@ -136,7 +133,7 @@ class PropertiesViewer(ttk.Frame, SubController):
         return newView
 
     def _set_data(self, elemId):
-        """Fill the widgets with the data of the element to view and change."""
+        # Fill the widgets with the data of the element to view and change.
         if self._ctrl.isLocked:
             self.activeView.unlock()
             self.activeView.set_data(elemId)
@@ -145,11 +142,6 @@ class PropertiesViewer(ttk.Frame, SubController):
             self.activeView.set_data(elemId)
 
     def _view_plotline(self, plId):
-        """Show the selected plot line.
-        
-        Positional arguments:
-            plId: str -- Plot line ID
-        """
         if not self.activeView is self.plotlineView:
             self.activeView.hide()
             self.activeView = self.plotlineView
@@ -157,11 +149,6 @@ class PropertiesViewer(ttk.Frame, SubController):
         self._set_data(plId)
 
     def _view_chapter(self, chId):
-        """Show the selected chapter's properties; move to it in the content viewer.
-                
-        Positional arguments:
-            chId: str -- chapter ID
-        """
         if not self.activeView is self.chapterView:
             self.activeView.hide()
             self.activeView = self.chapterView
@@ -169,11 +156,6 @@ class PropertiesViewer(ttk.Frame, SubController):
         self._set_data(chId)
 
     def _view_character(self, crId):
-        """Show the selected character's properties.
-                
-        Positional arguments:
-            crId: str -- character ID
-        """
         if not self.activeView is self.characterView:
             self.activeView.hide()
             self.activeView = self.characterView
@@ -181,11 +163,6 @@ class PropertiesViewer(ttk.Frame, SubController):
         self._set_data(crId)
 
     def _view_item(self, itId):
-        """Show the selected item's properties.
-                
-        Positional arguments:
-            itId: str -- item ID
-        """
         if not self.activeView is self.itemView:
             self.activeView.hide()
             self.activeView = self.itemView
@@ -193,11 +170,6 @@ class PropertiesViewer(ttk.Frame, SubController):
         self._set_data(itId)
 
     def _view_location(self, lcId):
-        """Show the selected location's properties.
-                
-        Positional arguments:
-            lcId: str -- location ID
-        """
         if not self.activeView is self.locationView:
             self.activeView.hide()
             self.activeView = self.locationView
@@ -205,14 +177,13 @@ class PropertiesViewer(ttk.Frame, SubController):
         self._set_data(lcId)
 
     def _view_nothing(self):
-        """Reset properties if nothing valid is selected."""
+        # Reset properties if nothing valid is selected.
         if not self.activeView is self.noView:
             self.activeView.hide()
             self.activeView = self.noView
             self.activeView.show()
 
     def _view_project(self):
-        """Show the project's properties."""
         if not self.activeView is self.projectView:
             self.activeView.hide()
             self.activeView = self.projectView
@@ -220,11 +191,6 @@ class PropertiesViewer(ttk.Frame, SubController):
         self._set_data(CH_ROOT)
 
     def _view_projectnote(self, pnId):
-        """Show the selected project note.
-        
-        Positional arguments:
-            pnId: str -- Project note ID
-        """
         if not self.activeView is self.projectnoteView:
             self.activeView.hide()
             self.activeView = self.projectnoteView
@@ -232,11 +198,6 @@ class PropertiesViewer(ttk.Frame, SubController):
         self._set_data(pnId)
 
     def _view_section(self, scId):
-        """Show the selected section's properties; move to it in the content viewer.
-                
-        Positional arguments:
-            scId: str -- section ID
-        """
         if self._mdl.novel.sections[scId].scType > 1:
             if not self.activeView is self.stageView:
                 self.activeView.hide()
@@ -250,10 +211,6 @@ class PropertiesViewer(ttk.Frame, SubController):
         self._set_data(scId)
 
     def _view_plot_point(self, ppId):
-        """Show the selected plot point
-        Positional arguments:
-            ppId: str -- Plot point ID
-        """
         if not self.activeView is self.plotPointView:
             self.activeView.hide()
             self.activeView = self.plotPointView

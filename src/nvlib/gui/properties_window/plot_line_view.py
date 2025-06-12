@@ -97,7 +97,7 @@ class PlotLineView(BasicView):
             self._nrSectionsView['text'] = f'{_("Number of sections")}: {i}'
 
     def _create_frames(self):
-        """Template method for creating the frames in the right pane."""
+        # Template method for creating the frames in the right pane.
         self._create_index_card()
         self._create_element_info_window()
         self._create_links_window()
@@ -106,10 +106,8 @@ class PlotLineView(BasicView):
         self._create_button_bar()
 
     def _remove_sections(self):
-        """Remove all section references.
-        
-        Remove also all section associations from the children points.
-        """
+        # Remove all section references.
+        # Remove also all section associations from the children points.
         if self._ui.ask_yes_no(
             message=_('Remove all sections from the plot line?'),
             detail=f'({self.element.shortName}) {self.element.title}'
