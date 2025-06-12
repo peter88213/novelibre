@@ -418,7 +418,7 @@ class Commands:
 
     def open_plugin_manager(self, event=None):
         """Open a toplevel window to manage the plugins."""
-        PluginManagerDialog(self._mdl, self._ui, self)
+        PluginManagerDialog(self._ui, self)
         return 'break'
 
     def open_project(self, event=None, filePath='', doNotSave=False):
