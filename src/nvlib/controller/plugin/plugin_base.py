@@ -26,7 +26,8 @@ class PluginBase(ABC, SubController):
     Public class constants:
         VERSION: str -- Version string.
         API_VERSION: str -- API compatibility indicator.
-        DESCRIPTION: str -- Description to be diplayed in the novelibre plugin list.
+        DESCRIPTION: str -- Description to be diplayed 
+                            in the novelibre plugin list.
         URL: str -- Plugin project homepage URL.
 
     Public instance variables:
@@ -47,12 +48,16 @@ class PluginBase(ABC, SubController):
 
     @abstractmethod
     def install(self, model, view, controller):
-        """Install the plugin.
+        """Install the plugin. 
+        
+        Each plugin must extend this method. 
         
         Positional arguments:
             model -- reference to the main model instance of the application.
             view -- reference to the main view instance of the application.
             controller -- reference to the main controller instance of the application.
         """
-        self.initialize_controller(model, view, controller)
+        self._mdl = model
+        self._ui = view
+        self._ctrl = controller
 
