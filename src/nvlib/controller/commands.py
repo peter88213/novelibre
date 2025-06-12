@@ -377,7 +377,7 @@ class Commands:
 
     def open_backup_options(self, event=None):
         """Open a toplevel window to edit the backup options."""
-        BackupOptionsDialog(self._mdl, self._ui, self)
+        BackupOptionsDialog(self._ui)
         return 'break'
 
     def open_export_options(self, event=None):

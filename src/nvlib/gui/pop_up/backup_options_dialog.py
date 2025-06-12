@@ -25,9 +25,9 @@ class BackupOptionsDialog(ModalDialog, SubController):
     """A pop-up window with export preference settings."""
     LABEL_WIDTH = 20
 
-    def __init__(self, model, view, controller, **kw):
+    def __init__(self, view, **kw):
         super().__init__(view, **kw)
-        self.initialize_controller(model, view, controller)
+        self._ui = view
         self._ui.restore_status()
 
         self.title(_('Backup options'))
@@ -90,7 +90,7 @@ class BackupOptionsDialog(ModalDialog, SubController):
             ).pack(padx=5, pady=5, side='right')
 
         # Set Key bindings.
-        self.bind(KEYS.OPEN_HELP[0], self.open_help)
+        self.bind(KEYS.OPEN_HELP[0], self._open_help)
 
     def _change_enable_backup(self, *args):
         prefs['enable_backup'] = self.enableBackupVar.get()
