@@ -449,7 +449,7 @@ class Commands:
 
     def open_view_options(self, event=None):
         """Open a toplevel window to edit the view options."""
-        ViewOptionsDialog(self._mdl, self._ui, self)
+        ViewOptionsDialog(self._ui)
         return 'break'
 
     def paste_element(self, event=None):
