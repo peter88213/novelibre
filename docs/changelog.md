@@ -14,7 +14,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 - Fixed a bug where "Export this chapter" is not greyed out for the "Book" context menu.
 - Fixed a German translation.
-- Refactored the code for better maitainability:
+- Refactored the code for better maintainability:
     - Reintegrated the controller mixin classes into the view classes.
     - Revised the tree view context menus. 
 
