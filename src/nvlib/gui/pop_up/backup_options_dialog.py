@@ -36,42 +36,47 @@ class BackupOptionsDialog(ModalDialog, SubController):
             fill='both',
             padx=50,
             pady=5
-            )
+        )
         frame1 = ttk.Frame(window)
         frame1.pack(fill='both', side='left')
 
         # Backup directory display.
-        self.backupDirVar = tk.StringVar(frame1, value=prefs['backup_dir'])
+        self._backupDirVar = tk.StringVar(
+            frame1,
+            value=prefs['backup_dir']
+        )
         self.backupDirDisplay = LabelDisp(
             frame1,
             f"{_('Backup directory')}:",
-            self.backupDirVar,
+            self._backupDirVar,
             lblWidth=self.LABEL_WIDTH,
             )
 
         # Button: Change backup directory.
         ttk.Button(
             frame1,
-            text=_('Change backup directory'), command=self._set_backup_dir,
+            text=_('Change backup directory'),
+            command=self._set_backup_dir,
             ).pack(anchor='w', fill='x')
 
         # Button: Open backup directory.
         ttk.Button(
             frame1,
-            text=_('Open backup directory'), command=self._open_backup_dir,
+            text=_('Open backup directory'),
+            command=self._open_backup_dir,
             ).pack(anchor='w', fill='x')
 
         # Checkbox: Ask whether backup copies shall be created.
-        self.enableBackupVar = tk.BooleanVar(
+        self._enableBackupVar = tk.BooleanVar(
             frame1,
             value=prefs['enable_backup']
         )
         ttk.Checkbutton(
             frame1,
             text=_('Create backup copies'),
-            variable=self.enableBackupVar
+            variable=self._enableBackupVar
             ).pack(padx=5, pady=5, anchor='w')
-        self.enableBackupVar.trace('w', self._change_enable_backup)
+        self._enableBackupVar.trace('w', self._change_enable_backup)
 
         ttk.Separator(self, orient='horizontal').pack(fill='x')
 
@@ -93,7 +98,7 @@ class BackupOptionsDialog(ModalDialog, SubController):
         self.bind(KEYS.OPEN_HELP[0], self._open_help)
 
     def _change_enable_backup(self, *args):
-        prefs['enable_backup'] = self.enableBackupVar.get()
+        prefs['enable_backup'] = self._enableBackupVar.get()
         if not prefs['enable_backup']:
             return
 
@@ -130,4 +135,4 @@ class BackupOptionsDialog(ModalDialog, SubController):
             return
 
         prefs['backup_dir'] = backupDir
-        self.backupDirVar.set(norm_path(backupDir))
+        self._backupDirVar.set(norm_path(backupDir))
