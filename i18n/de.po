@@ -1307,7 +1307,7 @@ msgid "The project \"{}\" was created with an outdated novelibre version."
 msgstr "Das Projekt \"{}\" wurde mit einer veralteten Version von novelibre erzeugt."
 
 msgid "The project is locked"
-msgstr "Das Projekt is gesperrt"
+msgstr "Das Projekt ist gesperrt"
 
 msgid "The sections are not of the same type"
 msgstr "Die Abschnitte sind nicht vom selben Typ"
