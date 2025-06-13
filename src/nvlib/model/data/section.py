@@ -14,11 +14,14 @@ from nvlib.nv_locale import _
 import xml.etree.ElementTree as ET
 
 # Regular expressions for counting words and characters like in LibreOffice.
-# See: https://help.libreoffice.org/latest/en-GB/text/swriter/guide/words_count.html
+# See:
+# https://help.libreoffice.org/latest/en-GB/text/swriter/guide/words_count.html
 ADDITIONAL_WORD_LIMITS = re.compile(r'--|—|–|\<\/p\>')
 # this is to be replaced by spaces when counting words
 
-NO_WORD_LIMITS = re.compile(r'\<note\>.*?\<\/note\>|\<comment\>.*?\<\/comment\>|\<.+?\>')
+NO_WORD_LIMITS = re.compile(
+    r'\<note\>.*?\<\/note\>|\<comment\>.*?\<\/comment\>|\<.+?\>'
+)
 # this is to be replaced by empty strings when counting words
 
 
@@ -169,8 +172,10 @@ class Section(BasicElementTags):
 
     @property
     def appendToPrev(self):
-        # True - append this section to the previous one without a section separator
-        # False - put a section separator between this section and the previous one
+        # True - append this section to the previous one
+        #        without a section separator
+        # False - put a section separator between this section
+        #         and the previous one
         return self._appendToPrev
 
     @appendToPrev.setter
@@ -485,9 +490,15 @@ class Section(BasicElementTags):
             self.time = PyCalendar.verified_time(xmlElement.find('Time').text)
 
         # Duration.
-        self.lastsDays = verified_int_string(self._get_element_text(xmlElement, 'LastsDays'))
-        self.lastsHours = verified_int_string(self._get_element_text(xmlElement, 'LastsHours'))
-        self.lastsMinutes = verified_int_string(self._get_element_text(xmlElement, 'LastsMinutes'))
+        self.lastsDays = verified_int_string(
+            self._get_element_text(xmlElement, 'LastsDays')
+        )
+        self.lastsHours = verified_int_string(
+            self._get_element_text(xmlElement, 'LastsHours')
+        )
+        self.lastsMinutes = verified_int_string(
+            self._get_element_text(xmlElement, 'LastsMinutes')
+        )
 
         # Characters references.
         scCharacters = []
@@ -544,7 +555,10 @@ class Section(BasicElementTags):
             self.sectionContent = '<p></p>'
 
     def get_end_date_time(self):
-        """Return the end (date, time, day) tuple calculated from start and duration."""
+        """Return the end (date, time, day) tuple 
+        
+        calculated from start and duration.
+        """
         endDate = None
         endTime = None
         endDay = None
@@ -576,11 +590,17 @@ class Section(BasicElementTags):
 
         # Goal/Conflict/Outcome.
         if self.goal:
-            xmlElement.append(self._text_to_xml_element('Goal', self.goal))
+            xmlElement.append(
+                self._text_to_xml_element('Goal', self.goal)
+            )
         if self.conflict:
-            xmlElement.append(self._text_to_xml_element('Conflict', self.conflict))
+            xmlElement.append(
+                self._text_to_xml_element('Conflict', self.conflict)
+            )
         if self.outcome:
-            xmlElement.append(self._text_to_xml_element('Outcome', self.outcome))
+            xmlElement.append(
+                self._text_to_xml_element('Outcome', self.outcome)
+            )
 
         # Plot notes.
         if self.plotlineNotes:
@@ -591,7 +611,9 @@ class Section(BasicElementTags):
                 if not self.plotlineNotes[plId]:
                     continue
 
-                xmlPlotlineNotes = self._text_to_xml_element('PlotlineNotes', self.plotlineNotes[plId])
+                xmlPlotlineNotes = self._text_to_xml_element(
+                    'PlotlineNotes', self.plotlineNotes[plId]
+                )
                 xmlPlotlineNotes.set('id', plId)
                 xmlElement.append(xmlPlotlineNotes)
 
@@ -630,4 +652,6 @@ class Section(BasicElementTags):
         sectionContent = self.sectionContent
         if sectionContent:
             if not sectionContent in ('<p></p>', '<p />'):
-                xmlElement.append(ET.fromstring(f'<Content>{sectionContent}</Content>'))
+                xmlElement.append(
+                    ET.fromstring(f'<Content>{sectionContent}</Content>')
+                )

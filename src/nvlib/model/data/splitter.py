@@ -18,14 +18,20 @@ from nvlib.nv_locale import _
 class Splitter:
     """Helper class for section and chapter splitting.
     
-    When importing sections to novelibre, they may contain manually inserted section and chapter dividers.
-    The Splitter class updates a Novel instance by splitting such sections and creating new chapters and sections. 
+    When importing sections to novelibre, they may contain manually 
+    inserted section and chapter dividers.
+    The Splitter class updates a Novel instance by splitting such sections 
+    and creating new chapters and sections. 
     
     Public class constants:
-        PART_SEPARATOR -- marker indicating the beginning of a new part, splitting a section.
-        CHAPTER_SEPARATOR -- marker indicating the beginning of a new chapter, splitting a section.
-        SCENE_SEPARATOR -- marker indicating the beginning of a new section, splitting a section.
-        DESC_SEPARATOR -- marker separating title and description of a chapter or section.
+        PART_SEPARATOR -- marker indicating the beginning of a new part,
+                          splitting a section.
+        CHAPTER_SEPARATOR -- marker indicating the beginning of a new chapter, 
+                             splitting a section.
+        SCENE_SEPARATOR -- marker indicating the beginning of a new section, 
+                           splitting a section.
+        DESC_SEPARATOR -- marker separating title and description of 
+                          a chapter or section.
     """
     PART_SEPARATOR = '#'
     CHAPTER_SEPARATOR = '##'
@@ -61,14 +67,22 @@ class Splitter:
             newChapter.chType = 0
             novel.chapters[chapterId] = newChapter
 
-        def create_section(sectionId, parent, splitCount, title, desc, appendToPrev):
+        def create_section(
+                sectionId,
+                parent,
+                splitCount,
+                title,
+                desc,
+                appendToPrev
+        ):
             # Create a new section and add it to the novel.
             #    sectionId -- str: ID of the section to create.
             #    parent -- Section instance: parent section.
             #    splitCount -- int: number of parent's splittings.
             #    title -- str: title of the section to create.
             #    desc -- str: description of the section to create.
-            #    appendToPrev -- boolean: when exporting, append the section to the previous one without separator.
+            #    appendToPrev -- boolean: when exporting, append the section
+            #                    to the previous one without separator.
             WARNING = '(!)'
 
             # Mark metadata of split sections.
@@ -198,7 +212,14 @@ class Splitter:
                         newLines.append(line)
                         sectionSplitCount += 1
                         newScId = new_id(novel.sections, prefix=SECTION_PREFIX)
-                        create_section(newScId, novel.sections[scId], sectionSplitCount, '', '', False)
+                        create_section(
+                            newScId,
+                            novel.sections[scId],
+                            sectionSplitCount,
+                            '',
+                            '',
+                            False,
+                        )
                         novel.tree.append(chId, newScId)
                         scId = newScId
                         sectionsSplit = True

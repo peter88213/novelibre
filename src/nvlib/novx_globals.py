@@ -79,7 +79,8 @@ def string_to_list(text, divider=';'):
     Optional arguments:
         divider -- string that divides the substrings.
     
-    Split a string into a list of strings. Retain the order, but discard duplicates.
+    Split a string into a list of strings. Retain the order, 
+    but discard duplicates.
     Remove leading and trailing spaces, if any.
     Return a list of strings.
     If an error occurs, return an empty list.

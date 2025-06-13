@@ -38,7 +38,9 @@ class NvWorkFile(NovxFile):
         """
         super().adjust_section_types()
         for chId in self.novel.tree.get_children(CH_ROOT):
-            if self.novel.chapters[chId].isTrash and self.novel.tree.next(chId):
+            if (self.novel.chapters[chId].isTrash
+                and self.novel.tree.next(chId)
+            ):
                 self.novel.tree.move(chId, CH_ROOT, 'end')
                 return
 
@@ -60,8 +62,12 @@ class NvWorkFile(NovxFile):
             return
 
         head, tail = self._split_file_path()
-        lockfilePath = f'{head}{self._LOCKFILE_PREFIX}{tail}{self._LOCKFILE_SUFFIX}'
-        # This cannot be done by the constructor,because filePath might change
+        lockfilePath = (
+            f'{head}{self._LOCKFILE_PREFIX}{tail}'
+            f'{self._LOCKFILE_SUFFIX}'
+        )
+        # This cannot be done by the constructor,
+        # because filePath might change
         return os.path.isfile(lockfilePath)
 
     def lock(self):
@@ -70,8 +76,12 @@ class NvWorkFile(NovxFile):
             return
 
         head, tail = self._split_file_path()
-        lockfilePath = f'{head}{self._LOCKFILE_PREFIX}{tail}{self._LOCKFILE_SUFFIX}'
-        # This cannot be done by the constructor,because filePath might change
+        lockfilePath = (
+            f'{head}{self._LOCKFILE_PREFIX}{tail}'
+            f'{self._LOCKFILE_SUFFIX}'
+        )
+        # This cannot be done by the constructor,
+        # because filePath might change
         if not os.path.isfile(lockfilePath):
             with open(lockfilePath, 'w') as f:
                 f.write('')
@@ -91,7 +101,10 @@ class NvWorkFile(NovxFile):
             return
 
         head, tail = self._split_file_path()
-        lockfilePath = f'{head}{self._LOCKFILE_PREFIX}{tail}{self._LOCKFILE_SUFFIX}'
+        lockfilePath = (
+            f'{head}{self._LOCKFILE_PREFIX}{tail}'
+            f'{self._LOCKFILE_SUFFIX}'
+        )
         # This cannot be done by the constructor,because filePath might change
         try:
             os.remove(lockfilePath)

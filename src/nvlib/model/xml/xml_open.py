@@ -14,6 +14,8 @@ def get_xml_root(filePath):
     try:
         xmlTree = ET.parse(filePath)
     except Exception as ex:
-        raise Error(f'{_("Cannot process file")}: "{norm_path(filePath)}" - {str(ex)}')
+        raise Error(
+            f'{_("Cannot process file")}: "{norm_path(filePath)}" - {str(ex)}'
+        )
 
     return xmlTree.getroot()

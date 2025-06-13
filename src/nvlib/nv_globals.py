@@ -16,7 +16,8 @@ prefs = {}
 launchers = {}
 # launchers for opening linked non-standard filetypes.
 # key: extension, value: path to application
-# this dictionary is populated by novelibre.py after reading the configuration file
+# this dictionary is populated by novelibre.py
+# after reading the configuration file
 
 HOME_URL = 'https://github.com/peter88213/novelibre/'
 

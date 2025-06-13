@@ -64,7 +64,8 @@ class NvModel:
             chType: int -- Chapter type. Default: 0.
             NoNumber: str -- Do not auto-number this chapter. Default: None.
             
-        - Place the new node at the next free position after the target node, if possible.
+        - Place the new node at the next free position after the target node, 
+          if possible.
         - Otherwise, put the new node at the beginning of the "Book" tree. 
         
         Return the chapter ID, if successful.
@@ -86,7 +87,7 @@ class NvModel:
             isTrash=False,
             links={},
             on_element_change=self.on_element_change,
-            )
+        )
         self.tree.insert(CH_ROOT, index, chId)
         return chId
 
@@ -96,7 +97,8 @@ class NvModel:
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
             title: str -- Element title. Default: Auto-generated title.
-            isMajor: bool -- If True, make the new character a major character. Default: False.
+            isMajor: bool -- If True, make the new character a major character. 
+                             Default: False.
             
         - If the target node is of the same type as the new node, 
           place the new node after the selected node and select it.
@@ -121,7 +123,7 @@ class NvModel:
             isMajor=kwargs.get('isMajor', False),
             links={},
             on_element_change=self.on_element_change,
-            )
+        )
         self.tree.insert(CR_ROOT, index, crId)
         return crId
 
@@ -150,7 +152,7 @@ class NvModel:
             tags='',
             links={},
             on_element_change=self.on_element_change,
-            )
+        )
         self.tree.insert(IT_ROOT, index, itId)
         return itId
 
@@ -179,7 +181,7 @@ class NvModel:
             tags='',
             links={},
             on_element_change=self.on_element_change,
-            )
+        )
         self.tree.insert(LC_ROOT, index, lcId)
         return lcId
 
@@ -192,7 +194,8 @@ class NvModel:
             chType: int: Part type. Default -- 0.  
             NoNumber: str: Do not auto-number this part. Default -- None.
            
-        - Place the new node at the next free position after the target node, if possible.
+        - Place the new node at the next free position after the target node, 
+          if possible.
         - Otherwise, put the new node at the last position in the book tree. 
         
         Return the chapter ID, if successful.
@@ -214,7 +217,7 @@ class NvModel:
             isTrash=False,
             links={},
             on_element_change=self.on_element_change,
-            )
+        )
         self.tree.insert(CH_ROOT, index, chId)
         return chId
 
@@ -243,7 +246,7 @@ class NvModel:
             sections=[],
             links={},
             on_element_change=self.on_element_change,
-            )
+        )
         self.tree.insert(PL_ROOT, index, plId)
         return plId
 
@@ -254,7 +257,8 @@ class NvModel:
             targetNode: str -- Tree position where to place a new node.
             title: str -- Section title. Default: Auto-generated title.
             
-        - Place the new node at the next free position after the target node, if possible.
+        - Place the new node at the next free position after the target node,
+          if possible.
         - Otherwise, do nothing. 
         
         Return the plot point ID, if successful.
@@ -278,7 +282,7 @@ class NvModel:
             desc='',
             links={},
             on_element_change=self.on_element_change,
-            )
+        )
         self.tree.insert(parent, index, ppId)
         return ppId
 
@@ -305,7 +309,7 @@ class NvModel:
             desc='',
             links={},
             on_element_change=self.on_element_change,
-            )
+        )
         self.tree.insert(PN_ROOT, index, pnId)
         return pnId
 
@@ -321,8 +325,10 @@ class NvModel:
             scene: int -- Scene kind. Default = 0.
             appendToPrev: bool -- Append to previous section. Default: False.
             
-        - Place the new node at the next free position after the target node, if possible.
-        - If the target node is a chapter, place the new node at the chapter end.
+        - Place the new node at the next free position after the target node, 
+          if possible.
+        - If the target node is a chapter, place the new node at the 
+          chapter end.
         - Otherwise, do nothing. 
         
         Return the section ID, if successful.
@@ -358,7 +364,7 @@ class NvModel:
             items=[],
             links={},
             on_element_change=self.on_element_change,
-            )
+        )
         self.novel.sections[scId].sectionContent = '<p></p>'
         self.tree.insert(parent, index, scId)
         return scId
@@ -372,7 +378,8 @@ class NvModel:
             desc: str -- Description.
             scType: int -- Scene type. Default: 3.
             
-        - Place the new node at the next free position after the target node, if possible.
+        - Place the new node at the next free position after the target node, 
+          if possible.
         - Otherwise, do nothing. 
         
         Return the section ID, if successful.
@@ -399,7 +406,7 @@ class NvModel:
             scene=0,
             links={},
             on_element_change=self.on_element_change,
-            )
+        )
         self.tree.insert(parent, index, scId)
         return scId
 
@@ -444,7 +451,7 @@ class NvModel:
             links=[],
             tree=tree,
             on_element_change=self.on_element_change,
-            )
+        )
         self.novel.check_locale()
         # setting the the system locale as document language/country
         self.prjFile = NvWorkFile('')
@@ -458,19 +465,24 @@ class NvModel:
             elemId: str -- ID of the element to delete.
             
         Optional elements:
-            trash: Boolean -- If True, move elements to the "Trash Bin" instead of deleting them.
+            trash: Boolean -- If True, move elements to the "Trash Bin" 
+                              instead of deleting them.
         
         - Move sections to the "Trash" chapter.
-        - Delete parts/chapters and move their children sections to the "Trash" chapter.
-        - Delete characters/locations/items and remove their section references.
+        - Delete parts/chapters and move their children sections 
+          to the "Trash" chapter.
+        - Delete characters/locations/items and remove their section 
+          references.
         - Delete stages.
-        - Delete plotLines and remove their plot points and section references.
+        - Delete plotLines and remove their plot points and section 
+          references.
         - Delete plot points and remove their section references.
         - Delete project notes.
         """
 
         def waste_sections(elemId):
-            # Move all sections under the element specified by elemId to the 'trash bin'.
+            # Move all sections under the element specified by elemId
+            # to the 'trash bin'.
             # Reads the "trash" variable of the calling method.
             if elemId.startswith(SECTION_PREFIX):
                 if self.novel.sections[elemId].scType < 2:
@@ -570,7 +582,10 @@ class NvModel:
             # Part/chapter/section selected.
             if trash and self.trashBin is None:
                 # Create a "trash bin"; use the first free chapter ID.
-                self.trashBin = new_id(self.novel.chapters, prefix=CHAPTER_PREFIX)
+                self.trashBin = new_id(
+                    self.novel.chapters,
+                    prefix=CHAPTER_PREFIX,
+                )
                 self.novel.chapters[self.trashBin] = self.nvService.new_chapter(
                     title=_('Trash'),
                     desc='',
@@ -579,7 +594,7 @@ class NvModel:
                     noNumber=True,
                     isTrash=True,
                     on_element_change=self.on_element_change,
-                    )
+                )
                 self.tree.append(CH_ROOT, self.trashBin)
             if elemId.startswith(SECTION_PREFIX):
                 if self.tree.parent(elemId) == self.trashBin:
@@ -683,34 +698,68 @@ class NvModel:
         if self.novel.sections[ScId1].characters:
             if self.novel.sections[ScId1].characters:
                 if self.novel.sections[ScId0].characters:
-                    if self.novel.sections[ScId1].characters[0] != self.novel.sections[ScId0].characters[0]:
+                    if (self.novel.sections[ScId1].characters[0]
+                        != self.novel.sections[ScId0].characters[0]
+                ):
                         raise Error(_('The sections have different viewpoints'))
 
                 else:
-                    self.novel.sections[ScId0].characters.append(self.novel.sections[ScId1].characters[0])
+                    self.novel.sections[ScId0].characters.append(
+                        self.novel.sections[ScId1].characters[0])
 
         # Join titles.
-        joinedTitles = f'{self.novel.sections[ScId0].title} & {self.novel.sections[ScId1].title}'
+        joinedTitles = (
+            f'{self.novel.sections[ScId0].title}'
+            f' & {self.novel.sections[ScId1].title}'
+        )
         self.novel.sections[ScId0].title = joinedTitles
 
         # Join content.
         content0 = self.novel.sections[ScId0].sectionContent
         content1 = self.novel.sections[ScId1].sectionContent
         # this is because sectionContent is a property
-        self.novel.sections[ScId0].sectionContent = join_str(content0, content1, newline='')
+        self.novel.sections[ScId0].sectionContent = join_str(
+            content0, content1, newline='')
 
         # Join description, goal, conflict, outcome, notes.
-        self.novel.sections[ScId0].desc = join_str(self.novel.sections[ScId0].desc, self.novel.sections[ScId1].desc)
-        self.novel.sections[ScId0].goal = join_str(self.novel.sections[ScId0].goal, self.novel.sections[ScId1].goal)
-        self.novel.sections[ScId0].conflict = join_str(self.novel.sections[ScId0].conflict, self.novel.sections[ScId1].conflict)
-        self.novel.sections[ScId0].outcome = join_str(self.novel.sections[ScId0].outcome, self.novel.sections[ScId1].outcome)
-        self.novel.sections[ScId0].notes = join_str(self.novel.sections[ScId0].notes, self.novel.sections[ScId1].notes)
+        self.novel.sections[ScId0].desc = join_str(
+            self.novel.sections[ScId0].desc,
+            self.novel.sections[ScId1].desc
+        )
+        self.novel.sections[ScId0].goal = join_str(
+            self.novel.sections[ScId0].goal,
+            self.novel.sections[ScId1].goal
+        )
+        self.novel.sections[ScId0].conflict = join_str(
+            self.novel.sections[ScId0].conflict,
+            self.novel.sections[ScId1].conflict
+        )
+        self.novel.sections[ScId0].outcome = join_str(
+            self.novel.sections[ScId0].outcome,
+            self.novel.sections[ScId1].outcome
+        )
+        self.novel.sections[ScId0].notes = join_str(
+            self.novel.sections[ScId0].notes,
+            self.novel.sections[ScId1].notes
+        )
 
         # Join characters, locations, items, tags.
-        join_lst(self.novel.sections[ScId0].characters, self.novel.sections[ScId1].characters)
-        join_lst(self.novel.sections[ScId0].locations, self.novel.sections[ScId1].locations)
-        join_lst(self.novel.sections[ScId0].items, self.novel.sections[ScId1].items)
-        join_lst(self.novel.sections[ScId0].tags, self.novel.sections[ScId1].tags)
+        join_lst(
+            self.novel.sections[ScId0].characters,
+            self.novel.sections[ScId1].characters
+        )
+        join_lst(
+            self.novel.sections[ScId0].locations,
+            self.novel.sections[ScId1].locations
+        )
+        join_lst(
+            self.novel.sections[ScId0].items,
+            self.novel.sections[ScId1].items
+        )
+        join_lst(
+            self.novel.sections[ScId0].tags,
+            self.novel.sections[ScId1].tags
+        )
 
         # Move plot line associations.
         for scPlotLine in self.novel.sections[ScId1].scPlotLines:
@@ -772,9 +821,20 @@ class NvModel:
             return
 
         if node[:2] == targetNode[:2]:
-            self.tree.move(node, self.tree.parent(targetNode), self.tree.index(targetNode))
-        elif (node.startswith(SECTION_PREFIX) and targetNode.startswith(CHAPTER_PREFIX)
-              )or (node.startswith(PLOT_POINT_PREFIX) and targetNode.startswith(PLOT_LINE_PREFIX)):
+            self.tree.move(
+                node,
+                self.tree.parent(targetNode),
+                self.tree.index(targetNode),
+            )
+        elif (
+                (
+                    node.startswith(SECTION_PREFIX)
+                    and targetNode.startswith(CHAPTER_PREFIX)
+                )or (
+                        node.startswith(PLOT_POINT_PREFIX)
+                        and targetNode.startswith(PLOT_LINE_PREFIX)
+                    )
+        ):
             if not self.tree.get_children(targetNode):
                 self.tree.move(node, targetNode, 0)
             elif self.tree.prev(targetNode):
@@ -878,7 +938,10 @@ class NvModel:
                     headingPrefix = self.novel.partHeadingPrefix
                 if self.novel.partHeadingSuffix is not None:
                     headingSuffix = self.novel.partHeadingSuffix
-            self.novel.chapters[chId].title = f'{headingPrefix}{number}{headingSuffix}'
+            self.novel.chapters[chId].title = (
+                f'{headingPrefix}{number}'
+                f'{headingSuffix}'
+            )
 
     def reset_tree(self):
         """Clear the tree."""
@@ -910,7 +973,8 @@ class NvModel:
         """Recursively set character status (Major/Minor).
         
         Positional arguments:
-            isMajor: bool -- If True, make the characters major. Otherwise, make them minor.
+            isMajor: bool -- If True, make the characters major. 
+                             Otherwise, make them minor.
             elemIds: list of IDs to process.
         """
         for crId in elemIds:
@@ -931,8 +995,14 @@ class NvModel:
             if elemId.startswith(SECTION_PREFIX):
                 if self.novel.sections[elemId].scType < 2:
                     self.novel.sections[elemId].status = newStatus
-            elif elemId.startswith(CHAPTER_PREFIX) or elemId.startswith(CH_ROOT):
-                self.set_completion_status(newStatus, self.tree.get_children(elemId))
+            elif (
+                elemId.startswith(CHAPTER_PREFIX)
+                or elemId.startswith(CH_ROOT)
+            ):
+                self.set_completion_status(
+                    newStatus,
+                    self.tree.get_children(elemId)
+                )
                 # going one level down
 
     def set_type(self, newType, elemIds):
