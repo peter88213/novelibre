@@ -14,10 +14,14 @@ from nvlib.model.data.plot_point import PlotPoint
 from nvlib.model.data.section import Section
 from nvlib.model.data.world_element import WorldElement
 from nvlib.model.novx.novx_file import NovxFile
+from nvlib.nv_globals import HOME_URL
 
 
 class NovxService:
     """Getters and factory methods for model elements."""
+
+    def get_novelibre_home_url(self):
+        return HOME_URL
 
     def get_novx_file_extension(self):
         return NovxFile.EXTENSION

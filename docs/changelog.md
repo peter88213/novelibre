@@ -10,11 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.26.2
+### Version 5.26.3
 
 - If the detached properties window has the focus, `Ctrl`-`Alt`-`D` will dock it.
 - Fixed a bug where "Export this chapter" is not greyed out for the "Book" context menu.
 - Fixed a German translation.
+- API update 5.26: New service method NovxService.get_novelibre_home_url()
 - Refactored the code for better maintainability:
     - Reintegrated the controller mixin classes into the view classes.
     - Revised the tree view context menus.
