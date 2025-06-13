@@ -9,11 +9,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 class SubController:
     """A mixin providing controller methods for views."""
 
-    def initialize_controller(self, model, view, controller):
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
-
     def disable_menu(self):
         """Disable UI widgets, e.g. when no project is open."""
         pass

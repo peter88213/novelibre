@@ -18,9 +18,9 @@ from nvlib.controller.services.nv_help import NvHelp
 class ExportOptionsDialog(ModalDialog, SubController):
     """A pop-up window with export preference settings."""
 
-    def __init__(self, model, view, controller, **kw):
+    def __init__(self, view, controller, **kw):
         super().__init__(view, **kw)
-        self.initialize_controller(model, view, controller)
+        self._ctrl = controller
 
         self.title(_('"Export" options'))
         window = ttk.Frame(self)

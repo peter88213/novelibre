@@ -382,7 +382,7 @@ class Commands:
 
     def open_export_options(self, event=None):
         """Open a toplevel window to edit the export options."""
-        ExportOptionsDialog(self._mdl, self._ui, self)
+        ExportOptionsDialog(self._ui, self)
         return 'break'
 
     def open_help(self, event=None):
