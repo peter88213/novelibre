@@ -10,13 +10,15 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.26.1
+### Version 5.26.2
 
+- If the detached properties window has the focus, `Ctrl`-`Alt`-`D` will dock it.
 - Fixed a bug where "Export this chapter" is not greyed out for the "Book" context menu.
 - Fixed a German translation.
 - Refactored the code for better maintainability:
     - Reintegrated the controller mixin classes into the view classes.
-    - Revised the tree view context menus. 
+    - Revised the tree view context menus.
+    - Revised the properties view classes, changing their order of inheritance.
 
 
 ### Version 5.25.4

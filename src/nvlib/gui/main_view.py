@@ -608,12 +608,16 @@ class MainView(Observer, MsgBoxes, SubController):
         self.propertiesView.pack_forget()
         self._mdl.delete_observer(self.propertiesView)
         self._ctrl.unregister_client(self.propertiesView)
-        self.propertiesView = PropertiesViewer(self._propertiesWindow, self._mdl, self, self._ctrl)
+        self.propertiesView = PropertiesViewer(
+            self._propertiesWindow, self._mdl, self, self._ctrl)
         self._mdl.add_observer(self.propertiesView)
         self._ctrl.register_client(self.propertiesView)
         self.propertiesView.pack(expand=True, fill='both')
 
-        self._propertiesWindow.protocol("WM_DELETE_WINDOW", self._dock_properties_frame)
+        self._propertiesWindow.bind(
+            KEYS.DETACH_PROPERTIES[0], self._dock_properties_frame)
+        self._propertiesWindow.protocol(
+            "WM_DELETE_WINDOW", self._dock_properties_frame)
         prefs['detach_prop_win'] = True
         self._propWinDetached = True
         try:
