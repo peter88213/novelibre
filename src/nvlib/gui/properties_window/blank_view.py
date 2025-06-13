@@ -24,8 +24,6 @@ class BlankView(ttk.Frame, SubController):
             view -- reference to the main view instance of the application.
             controller -- reference to the main controller instance of the application.
 
-        - Initialize element-specific tk entry data.
-        - Place element-specific widgets in the element's info window.
         """
         super().__init__(parent, **kw)
         self._parent = parent
