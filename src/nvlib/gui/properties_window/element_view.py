@@ -39,9 +39,9 @@ class ElementView(BlankView):
         
         Positional arguments:
             parent -- Parent widget to display this widget.
-            model -- reference to the main model instance of the application.
-            view -- reference to the main view instance of the application.
-            controller -- reference to the main controller instance of the application.
+            model -- reference to the novelibre main model instance.
+            view -- reference to the novelibre main view instance.
+            controller -- reference to the novelibre main controller instance.
 
         - Initialize element-specific tk entry data.
         - Place element-specific widgets in the element's info window.

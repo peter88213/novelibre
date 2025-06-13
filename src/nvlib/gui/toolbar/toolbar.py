@@ -21,8 +21,8 @@ class Toolbar(SubController):
         
         Positional arguments:
             parent: tk.Frame -- The parent window.
-            view -- reference to the main view instance.
-            controller -- reference to the main controller instance.
+            view -- reference to the novelibre main view instance.
+            controller -- reference to the novelibre main controller instance.
         """
         self._ui = view
         self._ctrl = controller

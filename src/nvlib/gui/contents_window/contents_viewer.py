@@ -26,8 +26,8 @@ class ContentsViewer(RichTextNv, Observer, SubController):
         
         Positional arguments:
             parent: tk.Frame -- The parent window.
-            model -- reference to the main model instance.
-            controller -- reference to the main controller instance.
+            model -- reference to the novelibre main model instance.
+            controller -- reference to the novelibre main controller instance.
         
         Required keyword arguments:
             show_markup: bool 

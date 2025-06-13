@@ -29,7 +29,7 @@ class MainView(Observer, MsgBoxes, SubController):
     """View for the novelibre application."""
     _MIN_WINDOW_WIDTH = 400
     _MIN_WINDOW_HEIGHT = 200
-    # minimum size of the application's main window
+    # minimum size's main window
 
     def __init__(self, model, controller, title):
         self._mdl = model
