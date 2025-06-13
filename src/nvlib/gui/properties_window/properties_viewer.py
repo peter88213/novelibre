@@ -11,7 +11,7 @@ from nvlib.gui.properties_window.chapter_view import ChapterView
 from nvlib.gui.properties_window.character_view import CharacterView
 from nvlib.gui.properties_window.item_view import ItemView
 from nvlib.gui.properties_window.location_view import LocationView
-from nvlib.gui.properties_window.no_view import NoView
+from nvlib.gui.properties_window.blank_view import BlankView
 from nvlib.gui.properties_window.plot_line_view import PlotLineView
 from nvlib.gui.properties_window.plot_point_view import PlotPointView
 from nvlib.gui.properties_window.project_note_view import ProjectNoteView
@@ -41,7 +41,7 @@ class PropertiesViewer(ttk.Frame, SubController):
 
         # Call a factory method to instantiate and register
         # one view component per element type.
-        self.noView = self._make_view(NoView)
+        self.noView = self._make_view(BlankView)
         self.projectView = self._make_view(ProjectView)
         self.chapterView = self._make_view(ChapterView)
         self.stageView = self._make_view(StageView)

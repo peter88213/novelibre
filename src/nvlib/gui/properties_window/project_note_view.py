@@ -4,10 +4,10 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.gui.properties_window.basic_view import BasicView
+from nvlib.gui.properties_window.element_view import ElementView
 
 
-class ProjectNoteView(BasicView):
+class ProjectNoteView(ElementView):
     """Class for viewing and editing project notes."""
 
     def __init__(self, parent, model, view, controller):

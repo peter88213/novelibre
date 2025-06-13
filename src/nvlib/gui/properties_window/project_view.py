@@ -7,7 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 from tkinter import ttk
 
-from nvlib.gui.properties_window.basic_view import BasicView
+from nvlib.gui.properties_window.element_view import ElementView
 from nvlib.gui.widgets.folding_frame import FoldingFrame
 from nvlib.gui.widgets.label_combo import LabelCombo
 from nvlib.gui.widgets.label_disp import LabelDisp
@@ -21,7 +21,7 @@ from nvlib.nv_locale import _
 import tkinter as tk
 
 
-class ProjectView(BasicView):
+class ProjectView(ElementView):
     """Class for viewing and editing project properties."""
     _LABEL_WIDTH = 20
     # Width of left-placed labels.

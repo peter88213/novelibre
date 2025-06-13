@@ -6,13 +6,13 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from nvlib.gui.properties_window.basic_view import BasicView
+from nvlib.gui.properties_window.element_view import ElementView
 from nvlib.gui.widgets.label_entry import LabelEntry
 from nvlib.gui.widgets.my_string_var import MyStringVar
 from nvlib.nv_locale import _
 
 
-class PlotLineView(BasicView):
+class PlotLineView(ElementView):
     """Class for viewing and editing plot line properties.
     
     Adds to the right pane:

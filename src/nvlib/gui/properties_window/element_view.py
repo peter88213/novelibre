@@ -1,16 +1,14 @@
-"""Provide an abstract class for viewing novelibre project element properties.
+"""Provide a class for viewing novelibre project element properties.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from abc import abstractmethod
 import os
 from tkinter import filedialog
 from tkinter import ttk
 
-from nvlib.controller.sub_controller import SubController
-from nvlib.gui.observer import Observer
+from nvlib.gui.properties_window.blank_view import BlankView
 from nvlib.gui.widgets.collection_box import CollectionBox
 from nvlib.gui.widgets.folding_frame import FoldingFrame
 from nvlib.gui.widgets.index_card import IndexCard
@@ -22,7 +20,7 @@ from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
 
-class BasicView(ttk.Frame, Observer, SubController):
+class ElementView(BlankView):
     """Base class for viewing tree element properties.
     
     Adds to the right pane:
@@ -48,11 +46,7 @@ class BasicView(ttk.Frame, Observer, SubController):
         - Initialize element-specific tk entry data.
         - Place element-specific widgets in the element's info window.
         """
-        super().__init__(parent, **kw)
-        self._parent = parent
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
+        super().__init__(parent, model, view, controller, **kw)
         self._pickingMode = False
         self._pickCommand = None
         self._isLocked = False
@@ -61,7 +55,6 @@ class BasicView(ttk.Frame, Observer, SubController):
         self._lastSelected = ''
         self._doNotUpdate = False
 
-        self.element = None
         self.elementId = None
         self.inputWidgets = []
 
@@ -137,11 +130,6 @@ class BasicView(ttk.Frame, Observer, SubController):
         self._indexCard.titleEntry.icursor(0)
         self._indexCard.titleEntry.selection_range(0, 'end')
 
-    def hide(self):
-        """Hide the view."""
-        self.element = None
-        self.pack_forget()
-
     def lock(self):
         """Inhibit element change."""
         self._indexCard.lock()
@@ -162,11 +150,6 @@ class BasicView(ttk.Frame, Observer, SubController):
 
         self._ctrl.open_link(self.element, selection)
 
-    def refresh(self):
-        """ Overrides the abstract superclass method."""
-        pass
-
-    @abstractmethod
     def set_data(self, elementId):
         """Update the view with element's data.
         
@@ -202,10 +185,6 @@ class BasicView(ttk.Frame, Observer, SubController):
         if hasattr(self.element, 'notes'):
             self.notesWindow.clear()
             self.notesWindow.set_text(self.element.notes)
-
-    def show(self):
-        """Make the view visible."""
-        self.pack(expand=True, fill='both')
 
     def unlock(self):
         """Enable element change."""
@@ -251,7 +230,6 @@ class BasicView(ttk.Frame, Observer, SubController):
         self._elementInfoWindow = ttk.Frame(self._propertiesFrame)
         self._elementInfoWindow.pack(fill='x')
 
-    @abstractmethod
     def _create_frames(self):
         # Template method for creating the frames in the right pane.
         pass

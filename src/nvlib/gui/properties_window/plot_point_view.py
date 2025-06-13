@@ -6,14 +6,14 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from nvlib.gui.properties_window.basic_view import BasicView
+from nvlib.gui.properties_window.element_view import ElementView
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.nv_locale import _
 import tkinter as tk
 
 
-class PlotPointView(BasicView):
+class PlotPointView(ElementView):
     """Class for viewing and editing plot points.
 
     Adds to the right pane:
