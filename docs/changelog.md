@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+
+### Version 5.26.6
+
+- Fixed a regression from version 5.25.0 where export filtering does not work.
+
+
 ### Version 5.26.5
 
 - Fixed a regression from version 5.25.0 where exporting an "export only" document raises a TypeError.
