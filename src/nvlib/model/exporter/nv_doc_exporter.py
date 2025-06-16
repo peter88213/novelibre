@@ -31,11 +31,7 @@ class NvDocExporter(NovxConversion):
     def run(self,
             source,
             suffix,
-            filterElementId='',
-            show=True,
-            ask=True,
-            overwrite=False,
-            doNotExport=False,
+            **kwargs,
     ):
         """Create a target object and run conversion.
         
@@ -52,6 +48,12 @@ class NvDocExporter(NovxConversion):
 
         Return a message. 
         """
+        filterElementId = kwargs.get('filterElementId', '')
+        show = kwargs.get('show', True)
+        ask = kwargs.get('ask', True)
+        overwrite = kwargs.get('overwrite', False)
+        doNotExport = kwargs.get('doNotExport', False)
+
         self._source = source
         self._isNewer = False
         __, self._target = self.exportTargetFactory.new_file_objects(self._source.filePath, suffix=suffix)
