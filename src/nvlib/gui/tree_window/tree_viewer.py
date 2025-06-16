@@ -1117,14 +1117,16 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self._ctrl.fileManager.export_document(
             MANUSCRIPT_SUFFIX,
             filter=self.tree.selection()[0],
-            ask=False)
+            ask=False,
+        )
 
     def _export_synopsis(self, event=None):
         # Execute the context menu command.
         self._ctrl.fileManager.export_document(
             SECTIONS_SUFFIX,
             filter=self.tree.selection()[0],
-            ask=False)
+            ask=False,
+        )
 
     def _get_chapter_row_data(self, chId, position=None, collect=False):
         # Return title, nodeValues, and tags for a chapter row.

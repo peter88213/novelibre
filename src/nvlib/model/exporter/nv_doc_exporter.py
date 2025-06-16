@@ -36,7 +36,7 @@ class NvDocExporter(NovxConversion):
             suffix: str -- Target file name suffix.
                         
         Keyword arguments:
-            filterElementId: str -- element ID for filtering chapters and sections.
+            filter: str -- element ID for filtering chapters and sections.
             show: Boolean -- If True, open the exported document after creation.
             ask: Boolean -- If True, ask before opening the created document.
             overwrite: Boolean -- Overwrite existing files without confirmation.
@@ -44,7 +44,7 @@ class NvDocExporter(NovxConversion):
 
         Return a message. 
         """
-        filterElementId = kwargs.get('filterElementId', '')
+        filterElementId = kwargs.get('filter', '')
         show = kwargs.get('show', True)
         ask = kwargs.get('ask', True)
         overwrite = kwargs.get('overwrite', False)

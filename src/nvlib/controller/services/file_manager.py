@@ -135,7 +135,7 @@ class FileManager(ServiceBase):
         if self._mdl.isModified:
             if self._ui.ask_yes_no(
                 message=_('Save changes?')
-                ):
+            ):
                 self.save_project()
             else:
                 # Do not export a document from an unsaved project.
@@ -170,7 +170,7 @@ class FileManager(ServiceBase):
                 filetypes=[(_('ODF Text document'), '.odt'), (_('ODF Spreadsheet document'), '.ods')],
                 defaultextension=defaultExtension,
                 initialdir=startDir,
-                )
+            )
             if not sourcePath:
                 return
 
@@ -183,7 +183,7 @@ class FileManager(ServiceBase):
                 if not self.save_project():
                     self._ui.show_error(
                         message=_('Cannot save the project')
-                        )
+                    )
                     return
 
         self._ctrl.docImporter.import_document(sourcePath, parent=parent)
@@ -252,7 +252,7 @@ class FileManager(ServiceBase):
             if not self._ui.ask_ok_cancel(
                 message=_('Please save now'),
                 detail=_('Project path unknown'),
-                ):
+            ):
                 return 'break'
 
             if not self.save_project():
@@ -272,12 +272,12 @@ class FileManager(ServiceBase):
 
         if self._mdl.isModified and not self._ui.ask_yes_no(
             message=_('Discard changes and reload the project?')
-            ):
+        ):
             return
 
         if self._mdl.prjFile.has_changed_on_disk() and not self._ui.ask_yes_no(
             message=_('File has changed on disk. Reload anyway?')
-            ):
+        ):
             return
 
         # this is to avoid saving when closing the project
@@ -300,7 +300,7 @@ class FileManager(ServiceBase):
         if self._mdl.isModified:
             if not self._ui.ask_yes_no(
                 message=_('Discard changes and load the ".bak" file?')
-                ):
+            ):
                 return
 
         elif not self._ui.ask_yes_no(
@@ -346,7 +346,7 @@ class FileManager(ServiceBase):
             filetypes=fileTypes,
             defaultextension=fileTypes[0][1],
             initialdir=initDir,
-            )
+        )
         if not fileName:
             return False
 
@@ -384,7 +384,7 @@ class FileManager(ServiceBase):
 
         if self._mdl.prjFile.has_changed_on_disk() and not self._ui.ask_yes_no(
             message=_('File has changed on disk. Save anyway?')
-            ):
+        ):
             return False
 
         self._ui.propertiesView.apply_changes()
@@ -422,8 +422,8 @@ class FileManager(ServiceBase):
             fileName = filedialog.askopenfilename(
                 filetypes=fileTypes,
                 defaultextension=fileTypes[0][1],
-                initialdir=initDir
-                )
+                initialdir=initDir,
+            )
         if not fileName:
             return ''
 
