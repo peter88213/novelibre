@@ -478,7 +478,10 @@ class Section(BasicElementTags):
 
         self.appendToPrev = xmlElement.get('append', None) == '1'
 
-        self.viewpoint = xmlElement.get('viewpoint', None)
+        # Viewpoint.
+        xmlViewpoint = xmlElement.find('Viewpoint')
+        if xmlViewpoint is not None:
+            self.viewpoint = xmlViewpoint.get('id', None)
 
         # Goal/Conflict/outcome.
         self.goal = self._xml_element_to_text(xmlElement.find('Goal'))
@@ -603,8 +606,14 @@ class Section(BasicElementTags):
             xmlElement.set('scene', str(self.scene))
         if self.appendToPrev:
             xmlElement.set('append', '1')
+
+        # Viewpoint.
         if self.viewpoint:
-            xmlElement.set('viewpoint', self.viewpoint)
+            ET.SubElement(
+                xmlElement,
+                'Viewpoint',
+                attrib={'id':self.viewpoint},
+            )
 
         # Goal/Conflict/Outcome.
         if self.goal:
@@ -653,18 +662,27 @@ class Section(BasicElementTags):
 
         # Characters references.
         if self.characters:
-            attrib = {'ids':' '.join(self.characters)}
-            ET.SubElement(xmlElement, 'Characters', attrib=attrib)
+            ET.SubElement(
+                xmlElement,
+                'Characters',
+                attrib={'ids':' '.join(self.characters)},
+            )
 
         # Locations references.
         if self.locations:
-            attrib = {'ids':' '.join(self.locations)}
-            ET.SubElement(xmlElement, 'Locations', attrib=attrib)
+            ET.SubElement(
+                xmlElement,
+                'Locations',
+                attrib={'ids':' '.join(self.locations)},
+            )
 
         # Items references.
         if self.items:
-            attrib = {'ids':' '.join(self.items)}
-            ET.SubElement(xmlElement, 'Items', attrib=attrib)
+            ET.SubElement(
+                xmlElement,
+                'Items',
+                attrib={'ids':' '.join(self.items)},
+            )
 
         # Content.
         sectionContent = self.sectionContent

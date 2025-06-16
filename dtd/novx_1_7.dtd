@@ -1,6 +1,6 @@
 <!ELEMENT novx (PROJECT, CHAPTERS, CHARACTERS, LOCATIONS, ITEMS, ARCS, PROJECTNOTES, PROGRESS?)>
 	<!ATTLIST novx 
-		version NMTOKEN #FIXED "1.6"
+		version NMTOKEN #FIXED "1.7"
 		xml:lang NMTOKEN "zxx"
 		>
 	<!ELEMENT PROJECT (Title?, Desc?, Link*, Field*,
@@ -109,7 +109,7 @@
          <!ELEMENT Epigraph (p*)>
          <!ELEMENT EpigraphSrc (#PCDATA)>
 			<!ELEMENT SECTION (Title?, Desc?, Link*, Field*, Notes?, Tags?, 
-			   Goal?, Conflict?, Outcome?, 
+			   Viewpoint?, Goal?, Conflict?, Outcome?, 
 			   PlotlineNotes*, 
 				( Date? | Day? ), Time?, LastsDays?, LastsHours?, LastsMinutes?, 
 				Characters?, Locations?, Items?, 
@@ -127,6 +127,10 @@
                 <!ELEMENT LastsDays (#PCDATA)>
                 <!ELEMENT LastsHours (#PCDATA)>
                 <!ELEMENT LastsMinutes (#PCDATA)>
+                <!ELEMENT Viewpoint EMPTY>
+                  <!ATTLIST Viewpoint
+                     id IDREF #REQUIRED
+                     >
                 <!ELEMENT Goal (p*)>
                 <!ELEMENT Conflict (p*)>
                 <!ELEMENT Outcome (p*)>
