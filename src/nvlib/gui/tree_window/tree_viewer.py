@@ -727,7 +727,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             for scId in self.tree.get_children(chId):
                 if self._mdl.novel.sections[scId].scType == 0:
                     try:
-                        crId = self._mdl.novel.sections[scId].characters[0]
+                        crId = self._mdl.novel.sections[scId].viepoint
                         viewpoint = self._mdl.novel.characters[crId].title
                         if not viewpoint in chapterViewpoints:
                             chapterViewpoints.append(viewpoint)
@@ -1185,7 +1185,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         for scId in self._mdl.novel.sections:
             if self._mdl.novel.sections[scId].scType == 0:
                 if self._mdl.novel.sections[scId].characters:
-                    if self._mdl.novel.sections[scId].characters[0] == crId:
+                    if self._mdl.novel.sections[scId].viewpoint == crId:
                         wordCount += self._mdl.novel.sections[scId].wordCount
         if wordCount > 0:
             nodeValues[self._colPos['wc']] = wordCount
@@ -1354,7 +1354,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                 self._mdl.novel.sections[scId].status]
             try:
                 nodeValues[self._colPos['vp']] = self._mdl.novel.characters[
-                    self._mdl.novel.sections[scId].characters[0]].title
+                    self._mdl.novel.sections[scId].viewpoint].title
             except:
                 nodeValues[self._colPos['vp']] = _('N/A')
 

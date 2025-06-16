@@ -698,14 +698,15 @@ class NvModel:
         if self.novel.sections[ScId1].characters:
             if self.novel.sections[ScId1].characters:
                 if self.novel.sections[ScId0].characters:
-                    if (self.novel.sections[ScId1].characters[0]
-                        != self.novel.sections[ScId0].characters[0]
+                    if (self.novel.sections[ScId1].viewpoint
+                        != self.novel.sections[ScId0].viewpoint
                 ):
                         raise Error(_('The sections have different viewpoints'))
 
                 else:
                     self.novel.sections[ScId0].characters.append(
-                        self.novel.sections[ScId1].characters[0])
+                        self.novel.sections[ScId1].viewpoint
+                    )
 
         # Join titles.
         joinedTitles = (

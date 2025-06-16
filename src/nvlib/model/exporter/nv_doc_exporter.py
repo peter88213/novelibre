@@ -28,11 +28,7 @@ class NvDocExporter(NovxConversion):
         self._source = None
         self._target = None
 
-    def run(self,
-            source,
-            suffix,
-            **kwargs,
-    ):
+    def run(self, source, suffix, **kwargs):
         """Create a target object and run conversion.
         
         Positional arguments: 

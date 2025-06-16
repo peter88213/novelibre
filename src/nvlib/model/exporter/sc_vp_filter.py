@@ -27,7 +27,7 @@ class ScVpFilter(Filter):
         Return True if the crId matches the section's viewpoint character.
         """
         try:
-            if self._crId == source.novel.sections[scId].characters[0]:
+            if self._crId == source.novel.sections[scId].viewpoint:
                 return True
 
         except:

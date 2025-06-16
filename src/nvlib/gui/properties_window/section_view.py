@@ -762,13 +762,7 @@ class SectionView(ElementView):
             # Put the selected character at the first position of related characters.
             vpId = self._vpList[option]
             scCharacters = self.element.characters
-            if scCharacters:
-                    if vpId in scCharacters:
-                        scCharacters.remove(vpId)
-                    scCharacters.insert(0, vpId)
-            else:
-                scCharacters = [vpId]
-            self.element.characters = scCharacters
+            self.element.viewpoint = vpId
 
         #--- 'Unused' checkbox.
         if self._isUnusedVar.get():
@@ -1320,8 +1314,8 @@ class SectionView(ElementView):
             charNames.append(self._mdl.novel.characters[crId].title)
             self._vpList.append(crId)
         self._characterCombobox.configure(values=charNames)
-        if self.element.characters:
-            vp = self._mdl.novel.characters[self.element.characters[0]].title
+        if self.element.viewpoint:
+            vp = self._mdl.novel.characters[self.element.viewpoint].title
         else:
             vp = ''
         self._viewpointVar.set(value=vp)

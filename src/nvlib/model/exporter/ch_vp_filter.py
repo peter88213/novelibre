@@ -29,7 +29,7 @@ class ChVpFilter(Filter):
         """
         for scId in source.novel.tree.get_children(chId):
             try:
-                if self._crId == source.novel.sections[scId].characters[0]:
+                if self._crId == source.novel.sections[scId].viewpoint:
                     return True
 
             except:

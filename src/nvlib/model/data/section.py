@@ -49,6 +49,7 @@ class Section(BasicElementTags):
             scene=None,
             status=None,
             appendToPrev=None,
+            viewpoint=None,
             goal=None,
             conflict=None,
             outcome=None,
@@ -91,6 +92,7 @@ class Section(BasicElementTags):
         self._lastsMinutes = lastsMinutes
         self._lastsHours = lastsHours
         self._lastsDays = lastsDays
+        self._viewpoint = viewpoint
         self._characters = characters
         self._locations = locations
         self._items = items
@@ -343,6 +345,18 @@ class Section(BasicElementTags):
             self.on_element_change()
 
     @property
+    def viewpoint(self):
+        return self._viewpoint
+
+    @viewpoint.setter
+    def viewpoint(self, newVal):
+        if newVal is not None:
+            assert type(newVal) is str
+        if self._viewpoint != newVal:
+            self._viewpoint = newVal
+            self.on_element_change()
+
+    @property
     def characters(self):
         # list of character IDs
         try:
@@ -463,6 +477,8 @@ class Section(BasicElementTags):
                 self.scene = int(sceneKind) + 1
 
         self.appendToPrev = xmlElement.get('append', None) == '1'
+
+        self.viewpoint = xmlElement.get('viewpoint', None)
 
         # Goal/Conflict/outcome.
         self.goal = self._xml_element_to_text(xmlElement.find('Goal'))
@@ -587,6 +603,8 @@ class Section(BasicElementTags):
             xmlElement.set('scene', str(self.scene))
         if self.appendToPrev:
             xmlElement.set('append', '1')
+        if self.viewpoint:
+            xmlElement.set('viewpoint', self.viewpoint)
 
         # Goal/Conflict/Outcome.
         if self.goal:

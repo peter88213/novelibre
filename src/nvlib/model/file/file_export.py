@@ -584,9 +584,17 @@ class FileExport(File):
         if sectionNumber == 0:
             sectionNumber = ''
         if self.novel.sections[scId].tags is not None:
-            tags = list_to_string(self.novel.sections[scId].tags, divider=self._DIVIDER)
+            tags = list_to_string(
+                self.novel.sections[scId].tags, divider=self._DIVIDER
+            )
         else:
             tags = ''
+
+        if self.novel.sections[scId].viewpoint:
+            viewpointChar = self.novel.characters[
+                self.novel.sections[scId].viewpoint].title
+        else:
+            viewpointChar = ''
 
         #--- Create a comma separated character list.
         if self.novel.sections[scId].characters is not None:
@@ -595,10 +603,6 @@ class FileExport(File):
                 sChList.append(self.novel.characters[crId].title)
             sectionChars = list_to_string(sChList, divider=self._DIVIDER)
 
-            if sChList:
-                viewpointChar = sChList[0]
-            else:
-                viewpointChar = ''
         else:
             sectionChars = ''
             viewpointChar = ''
