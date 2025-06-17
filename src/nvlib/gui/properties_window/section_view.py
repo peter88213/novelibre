@@ -1309,7 +1309,7 @@ class SectionView(ElementView):
 
         #--- 'Viewpoint' combobox.
         if self.element.viewpoint:
-            charNames = [_('Clear assignment')]
+            charNames = [f"({_('Clear assignment')})"]
             preset = self._mdl.novel.characters[self.element.viewpoint].title
         else:
             charNames = [NOT_ASSIGNED]
