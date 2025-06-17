@@ -431,6 +431,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self.sectionMenu.add_separator()
         self.sectionMenu.add_cascade(label=_('Set Type'), menu=self.tv.selectTypeMenu)
         self.sectionMenu.add_cascade(label=_('Set Status'), menu=self.tv.scStatusMenu)
+        self.sectionMenu.add_command(label=_('Set Viewpoint...'), command=self._ctrl.set_viewpoint)
         self.sectionMenu.add_separator()
         self.sectionMenu.add_command(label=_('Export section descriptions for editing'), command=self._ctrl.export_section_desc)
         self.sectionMenu.add_command(label=_('Section list (export only)'), command=self._ctrl.export_section_list)

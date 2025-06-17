@@ -1029,6 +1029,27 @@ class NvModel:
                     self.set_type(newType, self.tree.get_children(elemId))
                     # going one level down
 
+    def set_viewpoint(self, crId, elemIds):
+        """Recursively set the section viewpoint.
+        
+        Positional arguments:
+            crId: str -- viewpoint character ID to be set.
+            elemIds: list of IDs to process.
+        """
+        for elemId in elemIds:
+            if elemId.startswith(SECTION_PREFIX):
+                if self.novel.sections[elemId].scType < 2:
+                    self.novel.sections[elemId].viewpoint = crId
+            elif (
+                elemId.startswith(CHAPTER_PREFIX)
+                or elemId.startswith(CH_ROOT)
+            ):
+                self.set_viewpoint(
+                    crId,
+                    self.tree.get_children(elemId)
+                )
+                # going one level down
+
     def _initialize_tree(self, on_element_change):
         """Iterate the tree and configure the elements."""
 

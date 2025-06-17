@@ -7,6 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import filedialog
 
 from nvlib.controller.services.service_base import ServiceBase
+from nvlib.gui.pop_up.character_selector import CharacterSelector
 from nvlib.gui.pop_up.data_import_dialog import DataImportDialog
 from nvlib.gui.widgets.nv_simpledialog import askinteger
 from nvlib.novx_globals import CHAPTER_PREFIX
@@ -653,6 +654,37 @@ class ElementManager(ServiceBase):
 
         self._ui.tv.open_children(elemIds[0])
         self._mdl.set_type(newType, elemIds)
+
+    def set_viewpoint(self, crId=None, elemIds=None):
+        """Set section viewpoint).
+        
+        Positional arguments:
+            crId: str -- viewpoint character ID to be set.
+            elemIds: list of IDs to process.
+        """
+
+        def set_vp(crId):
+            self._ui.tv.open_children(elemIds[0])
+            self._mdl.set_viewpoint(crId, elemIds)
+
+        if self._mdl.prjFile is None:
+            return
+
+        if elemIds is None:
+            try:
+                elemIds = self._ui.selectedNodes
+            except:
+                return
+
+        if crId is None:
+            CharacterSelector(
+                self._mdl,
+                self._ui,
+                set_vp,
+                _('Viewpoint'),
+                )
+        else:
+            set_vp(crId)
 
     def view_new_element(self, newNode):
         """View the element with ID newNode.

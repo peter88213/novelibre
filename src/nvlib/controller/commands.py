@@ -534,6 +534,10 @@ class Commands:
         if not self.check_lock():
             self.elementManager.set_type(1)
 
+    def set_viewpoint(self, event=None):
+        if not self.check_lock():
+            self.elementManager.set_viewpoint()
+
     def show_character_list(self, event=None):
         self.fileManager.show_report(CHARACTER_REPORT_SUFFIX)
 
