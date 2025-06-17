@@ -747,6 +747,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             _('Delete'),
             _('Set Type'),
             _('Set Status'),
+            _('Set Viewpoint...'),
             _('Join with previous'),
         )
         if self._ctrl.isLocked:
@@ -1022,6 +1023,10 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self._bookContextMenu.add_cascade(
             label=_('Set Status'),
             menu=self.scStatusMenu)
+        self._bookContextMenu.add_command(
+            label=_('Set Viewpoint...'),
+            command=self._ctrl.set_viewpoint,
+            )
         self._bookContextMenu.add_separator()
         self._bookContextMenu.add_command(
             label=_('Join with previous'),
