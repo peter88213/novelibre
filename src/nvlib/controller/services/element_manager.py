@@ -210,8 +210,8 @@ class ElementManager(ServiceBase):
             prompt=_('How many sections to add?'),
             initialvalue=self._INI_NR_NEW_SECTIONS,
             minvalue=0,
-            maxvalue=self._MAX_NR_NEW_SECTIONS
-            )
+            maxvalue=self._MAX_NR_NEW_SECTIONS,
+        )
         if n is not None:
             newNodes = []
             for __ in range(n):
@@ -431,16 +431,16 @@ class ElementManager(ServiceBase):
             if len(elements) == 1:
                 if not self._ui.ask_yes_no(
                     message=_('Delete {}?').format(elementType),
-                    detail=elementTitle
-                    ):
+                    detail=elementTitle,
+                ):
                     return
 
             elif ask:
                 result = self._ui.ask_delete_all_skip_cancel(
                     text=f"\n\n{_('Delete {}?').format(elementType)}\n\n{elementTitle}\n",
                     default=0,
-                    title=_('Delete multiple elements')
-                    )
+                    title=_('Delete multiple elements'),
+                )
                 if result == 3:
                     return
 
@@ -503,7 +503,7 @@ class ElementManager(ServiceBase):
         self._ui.restore_status()
         filePath = filedialog.askopenfilename(
             filetypes=[(_('XML data file'), '.xml')]
-            )
+        )
         if not filePath:
             return
 
@@ -518,7 +518,7 @@ class ElementManager(ServiceBase):
             self._ctrl,
             self._ctrl.dataImporter.sourceElements,
             prefix,
-            )
+        )
 
     def join_sections(self, scId0=None, scId1=None):
         """Join section 0 with section 1.
@@ -545,21 +545,21 @@ class ElementManager(ServiceBase):
             if not scId0:
                 self._ui.show_error(
                     message=_('Cannot join sections'),
-                    detail=f"{_('There is no previous section')}."
-                    )
+                    detail=f"{_('There is no previous section')}.",
+                )
                 return
 
         if self._ui.ask_yes_no(
             message=_('Join with previous?'),
             detail=f"{self._mdl.novel.sections[scId0].title} & {self._mdl.novel.sections[scId1].title}"
-            ):
+        ):
             try:
                 self._mdl.join_sections(scId0, scId1)
             except Error as ex:
                 self._ui.show_error(
                     message=_('Cannot join sections'),
-                    detail=str(ex)
-                    )
+                    detail=str(ex),
+                )
                 return
 
             self.view_new_element(scId0)
@@ -574,8 +574,16 @@ class ElementManager(ServiceBase):
         if self._mdl.prjFile is None:
             return
 
-        if (node.startswith(SECTION_PREFIX) and targetNode.startswith(CHAPTER_PREFIX)
-            ) or (node.startswith(PLOT_POINT_PREFIX) and targetNode.startswith(PLOT_LINE_PREFIX)):
+        if (
+            (
+                node.startswith(SECTION_PREFIX)
+                and targetNode.startswith(CHAPTER_PREFIX)
+            )or
+            (
+                node.startswith(PLOT_POINT_PREFIX)
+                and targetNode.startswith(PLOT_LINE_PREFIX)
+            )
+        ):
             self._ui.tv.open_children(targetNode)
         self._ui.tv.skipUpdate = True
         self._mdl.move_node(node, targetNode)
