@@ -24,7 +24,7 @@ from nvlib.novx_globals import PLOT_LINE_PREFIX
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import list_to_string
 from nvlib.novx_globals import string_to_list
-from nvlib.nv_globals import NOT_APPLICABLE
+from nvlib.nv_globals import NOT_ASSIGNED
 from nvlib.nv_globals import datestr
 from nvlib.nv_globals import get_duration_str
 from nvlib.nv_globals import get_section_date_str
@@ -1308,17 +1308,18 @@ class SectionView(ElementView):
         self._lastsMinutesVar.set(self.element.lastsMinutes)
 
         #--- 'Viewpoint' combobox.
-        charNames = [_('Clear assignment')]
+        if self.element.viewpoint:
+            charNames = [_('Clear assignment')]
+            preset = self._mdl.novel.characters[self.element.viewpoint].title
+        else:
+            charNames = [NOT_ASSIGNED]
+            preset = NOT_ASSIGNED
         self._vpIdList = [None]
         for crId in self._mdl.novel.tree.get_children(CR_ROOT):
             charNames.append(self._mdl.novel.characters[crId].title)
             self._vpIdList.append(crId)
         self._characterCombobox.configure(values=charNames)
-        if self.element.viewpoint:
-            vp = self._mdl.novel.characters[self.element.viewpoint].title
-        else:
-            vp = NOT_APPLICABLE
-        self._viewpointVar.set(value=vp)
+        self._viewpointVar.set(value=preset)
 
         #--- 'Unused' checkbox.
         if self.element.scType > 0:

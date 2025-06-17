@@ -29,7 +29,7 @@ if not PROGRAM_DIR:
 USER_STYLES_DIR = f'{INSTALL_DIR}/styles'
 USER_STYLES_XML = f'{USER_STYLES_DIR}/styles.xml'
 
-NOT_APPLICABLE = ''
+NOT_ASSIGNED = ''
 
 
 def datestr(dateIso):
