@@ -55,7 +55,7 @@ class NovxFile(File):
     EXTENSION = '.novx'
 
     MAJOR_VERSION = 1
-    MINOR_VERSION = 6
+    MINOR_VERSION = 7
     # DTD version;
     # compatible, if the file's major version number equals MAJOR_VERSION,
     # and the minor version number is equal or less than MINOR_VERSION
@@ -148,6 +148,7 @@ class NovxFile(File):
             raise Error(f"{_('Corrupt project data')} ({str(ex)})")
         self._get_timestamp()
         self._keep_word_count()
+        self._upgrade_file_format(xmlRoot)
 
     def write(self):
         """Build the xml tree and write the novx file.
@@ -481,6 +482,16 @@ class NovxFile(File):
             for wcDate in self.wcLogUpdate:
                 self.wcLog[wcDate] = self.wcLogUpdate[wcDate]
         self.wcLogUpdate.clear()
+
+    def _upgrade_file_format(self, xmlRoot):
+        # Convert the data from legacy files.
+        version = float(xmlRoot.attrib['version'])
+        if version < 1.7:
+            # Separate the viewpoints from the section character lists.
+            for scId in self.novel.sections:
+                characters = self.novel.sections[scId].characters
+                if characters:
+                    self.novel.sections[scId].viewpoint = characters[0]
 
     def _write_element_tree(self, xmlProject):
         # Write back the xml element tree to a .novx xml file
