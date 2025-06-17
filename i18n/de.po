@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.26.6\n"
-"POT-Creation-Date: 2025-06-17 00:50:22\n"
-"PO-Revision-Date: 2025-06-17 00:50:22\n"
+"POT-Creation-Date: 2025-06-17 14:49:32\n"
+"PO-Revision-Date: 2025-06-17 14:49:32\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -105,6 +105,9 @@ msgstr "Vor dem Öffnen exportierter Dokumente nachfragen"
 
 msgid "Assign section"
 msgstr "Abschnitt zuordnen"
+
+msgid "Assign viewpoint to the selected sections"
+msgstr "Perspektive den ausgewählten Abschnitte zuordnen"
 
 msgid "Author"
 msgstr "Autor"
@@ -288,6 +291,9 @@ msgstr "Dauer dieses Abschnitts löschen?"
 
 msgid "Clear section assignments"
 msgstr "Abschnittszuordnungen löschen"
+
+msgid "Clear viewpoints of the selected sections"
+msgstr "Perspektive der ausgewählten Abschnitte löschen"
 
 msgid "Close"
 msgstr "Schließen"
@@ -766,9 +772,6 @@ msgstr "Ausgewählte Kapitel in ein neues Projekt verschieben"
 msgid "N"
 msgstr "N"
 
-msgid "N/A"
-msgstr "N/A"
-
 msgid "Name"
 msgstr "Name"
 
@@ -1194,6 +1197,9 @@ msgstr "Status setzen"
 
 msgid "Set Type"
 msgstr "Typ wählen"
+
+msgid "Set Viewpoint..."
+msgstr "Perspektive zuordnen..."
 
 msgid "Set actual wordcount as start"
 msgstr "Aktuelle Wortzahl als Anfangswert setzen"

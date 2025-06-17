@@ -7,7 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import filedialog
 
 from nvlib.controller.services.service_base import ServiceBase
-from nvlib.gui.pop_up.character_selector import CharacterSelector
+from nvlib.gui.pop_up.character_selection_dialog import CharacterSelectionDialog
 from nvlib.gui.pop_up.data_import_dialog import DataImportDialog
 from nvlib.gui.widgets.nv_simpledialog import askinteger
 from nvlib.novx_globals import CHAPTER_PREFIX
@@ -664,8 +664,18 @@ class ElementManager(ServiceBase):
         """
 
         def set_vp(crId):
-            self._ui.tv.open_children(elemIds[0])
-            self._mdl.set_viewpoint(crId, elemIds)
+            if crId is None:
+                message = _('Clear viewpoints of the selected sections')
+                newVp = ''
+            else:
+                message = _('Assign viewpoint to the selected sections')
+                newVp = self._mdl.novel.characters[crId].title
+            if self._ui.ask_yes_no(
+                message=f'{message}?',
+                detail=newVp,
+            ):
+                self._ui.tv.open_children(elemIds[0])
+                self._mdl.set_viewpoint(crId, elemIds)
 
         if self._mdl.prjFile is None:
             return
@@ -677,12 +687,12 @@ class ElementManager(ServiceBase):
                 return
 
         if crId is None:
-            CharacterSelector(
+            CharacterSelectionDialog(
                 self._mdl,
                 self._ui,
                 set_vp,
                 _('Viewpoint'),
-                )
+            )
         else:
             set_vp(crId)
 

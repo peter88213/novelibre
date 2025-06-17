@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.26.6\n"
-"POT-Creation-Date: 2025-06-17 00:50:22\n"
+"POT-Creation-Date: 2025-06-17 14:49:32\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -111,6 +111,9 @@ msgid "Ask before opening exported documents"
 msgstr ""
 
 msgid "Assign section"
+msgstr ""
+
+msgid "Assign viewpoint to the selected sections"
 msgstr ""
 
 msgid "Author"
@@ -294,6 +297,9 @@ msgid "Clear duration from this section?"
 msgstr ""
 
 msgid "Clear section assignments"
+msgstr ""
+
+msgid "Clear viewpoints of the selected sections"
 msgstr ""
 
 msgid "Close"
@@ -773,9 +779,6 @@ msgstr ""
 msgid "N"
 msgstr ""
 
-msgid "N/A"
-msgstr ""
-
 msgid "Name"
 msgstr ""
 
@@ -1200,6 +1203,9 @@ msgid "Set Status"
 msgstr ""
 
 msgid "Set Type"
+msgstr ""
+
+msgid "Set Viewpoint..."
 msgstr ""
 
 msgid "Set actual wordcount as start"
