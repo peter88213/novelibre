@@ -33,6 +33,7 @@ from nvlib.novx_globals import SECTIONS_SUFFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import list_to_string
 from nvlib.novx_globals import string_to_list
+from nvlib.nv_globals import NOT_APPLICABLE
 from nvlib.nv_globals import get_duration_str
 from nvlib.nv_globals import get_section_date_str
 from nvlib.nv_globals import prefs
@@ -1358,7 +1359,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                 nodeValues[self._colPos['vp']] = self._mdl.novel.characters[
                     self._mdl.novel.sections[scId].viewpoint].title
             except:
-                nodeValues[self._colPos['vp']] = _('N/A')
+                nodeValues[self._colPos['vp']] = NOT_APPLICABLE
 
             nodeValues[self._colPos['sc']] = self._SCENE[
                 self._mdl.novel.sections[scId].scene]

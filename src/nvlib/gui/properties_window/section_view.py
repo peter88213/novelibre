@@ -24,6 +24,7 @@ from nvlib.novx_globals import PLOT_LINE_PREFIX
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import list_to_string
 from nvlib.novx_globals import string_to_list
+from nvlib.nv_globals import NOT_APPLICABLE
 from nvlib.nv_globals import datestr
 from nvlib.nv_globals import get_duration_str
 from nvlib.nv_globals import get_section_date_str
@@ -369,7 +370,7 @@ class SectionView(ElementView):
         inputWidgets.append(self._characterCombobox)
         self._characterCombobox.combo.bind(
             '<<ComboboxSelected>>', self.apply_changes)
-        self._vpList = []
+        self._vpIdList = []
 
         #--- 'Unused' checkbox.
         self._isUnusedVar = tk.BooleanVar()
@@ -760,8 +761,7 @@ class SectionView(ElementView):
         option = self._characterCombobox.current()
         if option >= 0:
             # Put the selected character at the first position of related characters.
-            vpId = self._vpList[option]
-            scCharacters = self.element.characters
+            vpId = self._vpIdList[option]
             self.element.viewpoint = vpId
 
         #--- 'Unused' checkbox.
@@ -1308,16 +1308,16 @@ class SectionView(ElementView):
         self._lastsMinutesVar.set(self.element.lastsMinutes)
 
         #--- 'Viewpoint' combobox.
-        charNames = []
-        self._vpList = []
+        charNames = [_('Clear assignment')]
+        self._vpIdList = [None]
         for crId in self._mdl.novel.tree.get_children(CR_ROOT):
             charNames.append(self._mdl.novel.characters[crId].title)
-            self._vpList.append(crId)
+            self._vpIdList.append(crId)
         self._characterCombobox.configure(values=charNames)
         if self.element.viewpoint:
             vp = self._mdl.novel.characters[self.element.viewpoint].title
         else:
-            vp = ''
+            vp = NOT_APPLICABLE
         self._viewpointVar.set(value=vp)
 
         #--- 'Unused' checkbox.
