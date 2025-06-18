@@ -4,11 +4,12 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from tkinter import ttk
+
 from nvlib.gui.widgets.label_combo import LabelCombo
 from nvlib.gui.widgets.modal_dialog import ModalDialog
 from nvlib.gui.widgets.my_string_var import MyStringVar
 from nvlib.novx_globals import CR_ROOT
-from tkinter import ttk
 from nvlib.nv_locale import _
 
 
