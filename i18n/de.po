@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.26.6\n"
-"POT-Creation-Date: 2025-06-17 15:05:03\n"
-"PO-Revision-Date: 2025-06-17 15:05:03\n"
+"Project-Id-Version: 5.27.0\n"
+"POT-Creation-Date: 2025-06-18 10:16:44\n"
+"PO-Revision-Date: 2025-06-18 10:16:44\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -547,9 +547,6 @@ msgstr "Handlungsraster (Plot grid) zum Bearbeiten exportieren"
 msgid "Export plot line descriptions for editing"
 msgstr "Plotlinienbeschreibungen zum Bearbeiten exportieren"
 
-msgid "Export plot list (spreadsheet)"
-msgstr "Plot-Liste exportieren (Tabelle)"
-
 msgid "Export section descriptions for editing"
 msgstr "Abschnittsbeschreibungen zum Bearbeiten exportieren"
 
@@ -1035,6 +1032,9 @@ msgstr "Plotlinie"
 
 msgid "Plot lines"
 msgstr "Plotlinien"
+
+msgid "Plot list (export only)"
+msgstr "Plot-Liste (nur Export)"
 
 msgid "Plot point"
 msgstr "Plotpunkt"

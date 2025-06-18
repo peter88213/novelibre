@@ -157,10 +157,22 @@ class MainView(Observer, MsgBoxes, SubController):
         self.pathBar.set_locked()
         self.fileMenu.entryconfig(_('Unlock'), state='normal')
         self.fileMenu.entryconfig(_('Lock'), state='disabled')
-        for entry in self._fileMenuDisableOnLock:
-            self.fileMenu.entryconfig(entry, state='disabled')
         for entry in self._mainMenuDisableOnLock:
             self.mainMenu.entryconfig(entry, state='disabled')
+        for entry in self._fileMenuDisableOnLock:
+            self.fileMenu.entryconfig(entry, state='disabled')
+        for entry in self._sectionMenuDisableOnLock:
+            self.sectionMenu.entryconfig(entry, state='disabled')
+        for entry in self._characterMenuDisableOnLock:
+            self.characterMenu.entryconfig(entry, state='disabled')
+        for entry in self._locationMenuDisableOnLock:
+            self.locationMenu.entryconfig(entry, state='disabled')
+        for entry in self._itemMenuDisableOnLock:
+            self.itemMenu.entryconfig(entry, state='disabled')
+        for entry in self._plotMenuDisableOnLock:
+            self.plotMenu.entryconfig(entry, state='disabled')
+        for entry in self._prjNoteMenuDisableOnLock:
+            self.prjNoteMenu.entryconfig(entry, state='disabled')
         for entry in self._exportMenuDisableOnLock:
             self.exportMenu.entryconfig(entry, state='disabled')
 
@@ -292,10 +304,22 @@ class MainView(Observer, MsgBoxes, SubController):
         self.pathBar.set_normal()
         self.fileMenu.entryconfig(_('Unlock'), state='disabled')
         self.fileMenu.entryconfig(_('Lock'), state='normal')
-        for entry in self._fileMenuDisableOnLock:
-            self.fileMenu.entryconfig(entry, state='normal')
         for entry in self._mainMenuDisableOnLock:
             self.mainMenu.entryconfig(entry, state='normal')
+        for entry in self._fileMenuDisableOnLock:
+            self.fileMenu.entryconfig(entry, state='normal')
+        for entry in self._sectionMenuDisableOnLock:
+            self.sectionMenu.entryconfig(entry, state='normal')
+        for entry in self._characterMenuDisableOnLock:
+            self.characterMenu.entryconfig(entry, state='normal')
+        for entry in self._locationMenuDisableOnLock:
+            self.locationMenu.entryconfig(entry, state='normal')
+        for entry in self._itemMenuDisableOnLock:
+            self.itemMenu.entryconfig(entry, state='normal')
+        for entry in self._plotMenuDisableOnLock:
+            self.plotMenu.entryconfig(entry, state='normal')
+        for entry in self._prjNoteMenuDisableOnLock:
+            self.prjNoteMenu.entryconfig(entry, state='normal')
         for entry in self._exportMenuDisableOnLock:
             self.exportMenu.entryconfig(entry, state='normal')
 
@@ -434,9 +458,18 @@ class MainView(Observer, MsgBoxes, SubController):
         self.sectionMenu.add_command(label=_('Set Viewpoint...'), command=self._ctrl.set_viewpoint)
         self.sectionMenu.add_separator()
         self.sectionMenu.add_command(label=_('Export section descriptions for editing'), command=self._ctrl.export_section_desc)
+        self.sectionMenu.add_separator()
         self.sectionMenu.add_command(label=_('Section list (export only)'), command=self._ctrl.export_section_list)
         self.sectionMenu.add_command(label=_('Show Time table'), command=self._ctrl.show_timetable)
 
+        self._sectionMenuDisableOnLock = [
+            _('Add'),
+            _('Add multiple sections'),
+            _('Set Type'),
+            _('Set Status'),
+            _('Set Viewpoint...'),
+            _('Export section descriptions for editing'),
+        ]
         # Character
         self.characterMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Characters'), menu=self.characterMenu)
@@ -448,7 +481,16 @@ class MainView(Observer, MsgBoxes, SubController):
         self.characterMenu.add_separator()
         self.characterMenu.add_command(label=_('Export character descriptions for editing'), command=self._ctrl.export_character_desc)
         self.characterMenu.add_command(label=_('Export character list (spreadsheet)'), command=self._ctrl.export_character_list)
+        self.characterMenu.add_separator()
         self.characterMenu.add_command(label=_('Show list'), command=self._ctrl.show_character_list)
+
+        self._characterMenuDisableOnLock = [
+            _('Add'),
+            _('Set Status'),
+            _('Import'),
+            _('Export character descriptions for editing'),
+            _('Export character list (spreadsheet)'),
+        ]
 
         # Location
         self.locationMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -459,7 +501,15 @@ class MainView(Observer, MsgBoxes, SubController):
         self.locationMenu.add_separator()
         self.locationMenu.add_command(label=_('Export location descriptions for editing'), command=self._ctrl.export_location_desc)
         self.locationMenu.add_command(label=_('Export location list (spreadsheet)'), command=self._ctrl.export_location_list)
+        self.locationMenu.add_separator()
         self.locationMenu.add_command(label=_('Show list'), command=self._ctrl.show_location_list)
+
+        self._locationMenuDisableOnLock = [
+            _('Add'),
+            _('Import'),
+            _('Export location descriptions for editing'),
+            _('Export location list (spreadsheet)'),
+        ]
 
         # "Item" menu.
         self.itemMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -470,7 +520,15 @@ class MainView(Observer, MsgBoxes, SubController):
         self.itemMenu.add_separator()
         self.itemMenu.add_command(label=_('Export item descriptions for editing'), command=self._ctrl.export_item_desc)
         self.itemMenu.add_command(label=_('Export item list (spreadsheet)'), command=self._ctrl.export_item_list)
+        self.itemMenu.add_separator()
         self.itemMenu.add_command(label=_('Show list'), command=self._ctrl.show_item_list)
+
+        self._itemMenuDisableOnLock = [
+            _('Add'),
+            _('Import'),
+            _('Export item descriptions for editing'),
+            _('Export item list (spreadsheet)'),
+        ]
 
         # "Plot" menu.
         self.plotMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -487,8 +545,19 @@ class MainView(Observer, MsgBoxes, SubController):
         self.plotMenu.add_command(label=_('Export story structure description for editing'), command=self._ctrl.export_story_structure_desc)
         self.plotMenu.add_command(label=_('Export plot line descriptions for editing'), command=self._ctrl.export_plot_lines_desc)
         self.plotMenu.add_separator()
-        self.plotMenu.add_command(label=_('Export plot list (spreadsheet)'), command=self._ctrl.export_plot_list)
+        self.plotMenu.add_command(label=_('Plot list (export only)'), command=self._ctrl.export_plot_list)
         self.plotMenu.add_command(label=_('Show Plot list'), command=self._ctrl.show_plot_list)
+
+        self._plotMenuDisableOnLock = [
+            _('Add Plot line'),
+            _('Add Plot point'),
+            _('Insert Stage'),
+            _('Change Level'),
+            _('Import plot lines'),
+            _('Export plot grid for editing'),
+            _('Export story structure description for editing'),
+            _('Export plot line descriptions for editing'),
+        ]
 
         # Project notes
         self.prjNoteMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -496,6 +565,10 @@ class MainView(Observer, MsgBoxes, SubController):
         self.prjNoteMenu.add_command(label=_('Add'), command=self._ctrl.add_new_project_note)
         self.prjNoteMenu.add_separator()
         self.prjNoteMenu.add_command(label=_('Show list'), command=self._ctrl.show_projectnotes_list)
+
+        self._prjNoteMenuDisableOnLock = [
+            _('Add'),
+        ]
 
         # "Import" menu.
         self.mainMenu.add_command(label=_('Import'), command=self._ctrl.open_project_updater)
@@ -558,14 +631,8 @@ class MainView(Observer, MsgBoxes, SubController):
         ]
         self._mainMenuDisableOnLock = [
             _('Chapter'),
-            _('Characters'),
             _('Import'),
-            _('Items'),
-            _('Locations'),
             _('Part'),
-            _('Plot'),
-            _('Project notes'),
-            _('Section'),
         ]
 
     def _create_path_bar(self):

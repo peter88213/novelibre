@@ -11,6 +11,16 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.27.0
+
+The file format has been upgraded to version 1.7.
+*.novx* files created with *novelibre* version 5.27+ 
+cannot be read with older *novelibre* versions.
+
+- Separating the section's viewpoint from the relationships (#61).
+- Disabling specific "Section", "Character", "Location", "Item", "Plot", "Project note" menu entries on lock. 
+
+
 ### Version 5.26.6
 
 - Fixed a regression from version 5.25.0 where export filtering does not work.
