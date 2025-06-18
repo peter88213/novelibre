@@ -11,7 +11,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
-### Version 5.27.0
+### Version 5.27.1
 
 The file format has been upgraded to version 1.7.
 *.novx* files created with *novelibre* version 5.27+ 

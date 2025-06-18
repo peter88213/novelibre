@@ -135,16 +135,7 @@ class OdsRGrid(OdsReader):
                         vpId = crId
                         break
 
-                if vpId is not None:
-                    scCharacters = self.novel.sections[scId].characters
-                    if scCharacters is None:
-                        scCharacters = []
-
-                    # Put the vp character ID at the first position.
-                    if vpId in scCharacters:
-                        scCharacters.remove(vpId)
-                    scCharacters.insert(0, vpId)
-                    self.novel.sections[scId].characters = scCharacters
+                self.novel.sections[scId].viewpoint = vpId
 
             #--- tags
             try:
