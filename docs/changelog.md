@@ -11,6 +11,14 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.27.2
+
+- Refactored the novx XML file reader.
+    - The xml_open helper module is replaced by the NovxOpener class
+      that can be delegated at runtime.
+    - Legacy data is converted at XML level.  
+
+
 ### Version 5.27.1
 
 The file format has been upgraded to version 1.7.

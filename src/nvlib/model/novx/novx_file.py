@@ -7,6 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from datetime import date
 import os
 
+from nvlib.model.novx.novx_opener import NovxOpener
 from nvlib.model.data.basic_element import BasicElement
 from nvlib.model.data.chapter import Chapter
 from nvlib.model.data.character import Character
@@ -17,7 +18,6 @@ from nvlib.model.data.world_element import WorldElement
 from nvlib.model.file.file import File
 from nvlib.model.xml.xml_filter import strip_illegal_characters
 from nvlib.model.xml.xml_indent import indent
-from nvlib.model.xml.xml_open import get_xml_root
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
@@ -64,6 +64,8 @@ class NovxFile(File):
 <!DOCTYPE novx SYSTEM "novx_{MAJOR_VERSION}_{MINOR_VERSION}.dtd">
 <?xml-stylesheet href="novx.css" type="text/css"?>
 '''
+
+    fileOpener = NovxOpener
 
     def __init__(self, filePath, **kwargs):
         """Initialize instance variables.
@@ -125,8 +127,12 @@ class NovxFile(File):
 
         Overrides the superclass method.
         """
-        xmlRoot = get_xml_root(self.filePath)
-        self._check_version(xmlRoot)
+
+        xmlRoot = self.fileOpener.get_xml_root(
+            self.filePath,
+            self.MAJOR_VERSION,
+            self.MINOR_VERSION,
+        )
         try:
             locale = xmlRoot.attrib['{http://www.w3.org/XML/1998/namespace}lang']
         except KeyError:
@@ -148,7 +154,6 @@ class NovxFile(File):
             raise Error(f"{_('Corrupt project data')} ({str(ex)})")
         self._get_timestamp()
         self._keep_word_count()
-        self._upgrade_file_format(xmlRoot)
 
     def write(self):
         """Build the xml tree and write the novx file.
@@ -254,30 +259,6 @@ class NovxFile(File):
     def _check_id(self, elemId, elemPrefix):
         if not elemId.startswith(elemPrefix):
             raise Error(f"bad ID: '{elemId}'")
-
-    def _check_version(self, xmlRoot):
-        # Raise an exception if the xmlRoot element
-        # is not compatible with the supported DTD.
-        if xmlRoot.tag != 'novx':
-            msg = _("No valid xml root element found in file")
-            raise Error(f'{msg}: "{norm_path(self.filePath)}".')
-        try:
-            majorVersionStr, minorVersionStr = xmlRoot.attrib['version'].split(
-                '.')
-            majorVersion = int(majorVersionStr)
-            minorVersion = int(minorVersionStr)
-        except (KeyError, ValueError):
-            msg = _("No valid version found in file")
-            raise Error(msg.format(norm_path(self.filePath)))
-        if majorVersion > self.MAJOR_VERSION:
-            msg = _('The project "{}" was created with a newer novelibre version.')
-            raise Error(msg.format(norm_path(self.filePath)))
-        elif majorVersion < self.MAJOR_VERSION:
-            msg = _('The project "{}" was created with an outdated novelibre version.')
-            raise Error(msg.format(norm_path(self.filePath)))
-        elif minorVersion > self.MINOR_VERSION:
-            msg = _('The project "{}" was created with a newer novelibre version.')
-            raise Error(msg.format(norm_path(self.filePath)))
 
     def _get_timestamp(self):
         try:
@@ -482,16 +463,6 @@ class NovxFile(File):
             for wcDate in self.wcLogUpdate:
                 self.wcLog[wcDate] = self.wcLogUpdate[wcDate]
         self.wcLogUpdate.clear()
-
-    def _upgrade_file_format(self, xmlRoot):
-        # Convert the data from legacy files.
-        version = float(xmlRoot.attrib['version'])
-        if version < 1.7:
-            # Separate the viewpoints from the section character lists.
-            for scId in self.novel.sections:
-                characters = self.novel.sections[scId].characters
-                if characters:
-                    self.novel.sections[scId].viewpoint = characters[0]
 
     def _write_element_tree(self, xmlProject):
         # Write back the xml element tree to a .novx xml file
