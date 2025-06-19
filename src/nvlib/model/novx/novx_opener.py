@@ -91,6 +91,7 @@ class NovxOpener:
     def _get_file_version(cls, xmlRoot, filePath):
         # Return the major and minor file version as integers.
         # Raise an exception if there is none.
+        # Update xmlRoot.
         try:
             (
                 fileMajorVersionStr,
@@ -107,6 +108,7 @@ class NovxOpener:
     @classmethod
     def _upgrade_to_1_7(cls, xmlRoot):
         # Determine the viewpoints from the section character lists.
+        # Update xmlRoot.
         for xmlSection in xmlRoot.iter('SECTION'):
             xmlCharacters = xmlSection.find('Characters')
             if xmlCharacters is not None:

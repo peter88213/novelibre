@@ -27,28 +27,6 @@ class FileSplitter(ServiceBase):
     def split_project(self):
         """Create a new project and move the selected chapters there."""
 
-        def copy_related_elements():
-            for crId in newNovel.sections[scId].characters:
-                if not crId in newNovel.characters:
-                    newNovel.characters[crId] = sourceNovel.characters[crId]
-                    newNovel.tree.append(CR_ROOT, crId)
-            for lcId in newNovel.sections[scId].locations:
-                if not lcId in newNovel.locations:
-                    newNovel.locations[lcId] = sourceNovel.locations[lcId]
-                    newNovel.tree.append(LC_ROOT, lcId)
-            for itId in newNovel.sections[scId].items:
-                if not itId in newNovel.items:
-                    newNovel.items[itId] = sourceNovel.items[itId]
-                    newNovel.tree.append(IT_ROOT, itId)
-            for plId in newNovel.sections[scId].scPlotLines:
-                if not plId in newNovel.plotLines:
-                    newNovel.plotLines[plId] = sourceNovel.plotLines[plId]
-                    newNovel.tree.append(PL_ROOT, plId)
-            for ppId in newNovel.sections[scId].scPlotPoints:
-                if not ppId in newNovel.plotPoints:
-                    newNovel.plotPoints[ppId] = sourceNovel.plotPoints[ppId]
-                    newNovel.tree.append(sourceNovel.plotPoints[ppId], ppId)
-
         if self._mdl.prjFile is None:
             return
 
@@ -111,7 +89,7 @@ class FileSplitter(ServiceBase):
             customChrGoals=sourceNovel.customChrGoals,
             referenceDate=sourceNovel.referenceDate,
             tree=NvTree(),
-            )
+        )
 
         for chId in elements:
             if chId.startswith(CHAPTER_PREFIX):
@@ -120,7 +98,7 @@ class FileSplitter(ServiceBase):
                 for scId in sourceNovel.tree.get_children(chId):
                     newNovel.sections[scId] = sourceNovel.sections[scId]
                     newNovel.tree.append(chId, scId)
-                    copy_related_elements()
+                    self._copy_related_elements(sourceNovel, newNovel, scId)
         newProject.novel = newNovel
         try:
             newProject.write()
@@ -130,6 +108,32 @@ class FileSplitter(ServiceBase):
             for chId in elements:
                 if chId.startswith(CHAPTER_PREFIX):
                     self._mdl.delete_element(chId, trash=False)
+            for ppId in newNovel.plotPoints:
+                self._mdl.delete_element(ppId)
             self._ctrl.refresh_tree()
             self._ui.set_status(f'{_("Chapters moved to new file")}: {norm_path(fileName)}')
+
+    def _copy_related_elements(self, sourceNovel, newNovel, scId):
+        # Update newNovel.
+        for crId in newNovel.sections[scId].characters:
+            if not crId in newNovel.characters:
+                newNovel.characters[crId] = sourceNovel.characters[crId]
+                newNovel.tree.append(CR_ROOT, crId)
+        for lcId in newNovel.sections[scId].locations:
+            if not lcId in newNovel.locations:
+                newNovel.locations[lcId] = sourceNovel.locations[lcId]
+                newNovel.tree.append(LC_ROOT, lcId)
+        for itId in newNovel.sections[scId].items:
+            if not itId in newNovel.items:
+                newNovel.items[itId] = sourceNovel.items[itId]
+                newNovel.tree.append(IT_ROOT, itId)
+        for plId in newNovel.sections[scId].scPlotLines:
+            if not plId in newNovel.plotLines:
+                newNovel.plotLines[plId] = sourceNovel.plotLines[plId]
+                newNovel.tree.append(PL_ROOT, plId)
+        for ppId in newNovel.sections[scId].scPlotPoints:
+            if not ppId in newNovel.plotPoints:
+                newNovel.plotPoints[ppId] = sourceNovel.plotPoints[ppId]
+                plId = sourceNovel.tree.parent(ppId)
+                newNovel.tree.append(plId, ppId)
 
