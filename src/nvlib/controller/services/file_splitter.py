@@ -36,7 +36,7 @@ class FileSplitter(ServiceBase):
 
         if not self._ui.ask_yes_no(
             message=_('Create a new project and move the selected chapters there?')
-            ):
+        ):
             return
 
         lastOpen = self._ctrl.get_preferences()['last_open']
@@ -49,7 +49,7 @@ class FileSplitter(ServiceBase):
             filetypes=fileTypes,
             defaultextension=fileTypes[0][1],
             initialdir=startDir,
-            )
+        )
         if not fileName:
             return
 

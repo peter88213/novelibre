@@ -11,22 +11,21 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
-### Version 5.27.2
-
-- Refactored the novx XML file reader.
-    - The xml_open helper module is replaced by the NovxOpener class
-      that can be delegated at runtime.
-    - Legacy data is converted at XML level.  
-
-
-### Version 5.27.1
+### Version 5.27.3
 
 The file format has been upgraded to version 1.7.
 *.novx* files created with *novelibre* version 5.27+ 
 cannot be read with older *novelibre* versions.
 
 - Separating the section's viewpoint from the relationships (#61).
-- Disabling specific "Section", "Character", "Location", "Item", "Plot", "Project note" menu entries on lock. 
+- Disabling specific "Section", "Character", "Location", "Item", "Plot", 
+  "Project note" menu entries on lock. 
+- Fixed a bug in the file splitter where trying to move plot points raises
+  an unhandled exception.
+- Refactored the novx XML file reader.
+    - The xml_open helper module is replaced by the NovxOpener class
+      that can be delegated at runtime.
+    - Legacy data is converted at XML level.  
 
 
 ### Version 5.26.6
