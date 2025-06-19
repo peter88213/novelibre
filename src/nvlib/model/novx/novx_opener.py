@@ -36,17 +36,17 @@ class NovxOpener:
             xmlRoot,
             filePath,
         )
+        fileMajorVersion, fileMinorVersion = cls._upgrade_file_version(
+            xmlRoot,
+            fileMajorVersion,
+            fileMinorVersion,
+        )
         cls._check_version(
             fileMajorVersion,
             fileMinorVersion,
             filePath,
             majorVersion,
             minorVersion,
-        )
-        cls._convert_legacy_data(
-            xmlRoot,
-            fileMajorVersion,
-            fileMinorVersion,
         )
         return xmlRoot
 
@@ -74,15 +74,18 @@ class NovxOpener:
             raise Error(msg.format(norm_path(filePath)))
 
     @classmethod
-    def _convert_legacy_data(
+    def _upgrade_file_version(
             cls,
             xmlRoot,
             fileMajorVersion,
             fileMinorVersion,
     ):
-        # Convert the data from legacy files.
-        if fileMinorVersion < 7 and fileMajorVersion == 1:
+        # Convert the data from legacy files
+        # Return the version number adjusted, if applicable.
+        if fileMajorVersion == 1 and fileMinorVersion < 7:
             cls._upgrade_to_1_7(xmlRoot)
+            fileMinorVersion = 7
+        return fileMajorVersion, fileMinorVersion
 
     @classmethod
     def _get_file_version(cls, xmlRoot, filePath):
@@ -103,9 +106,8 @@ class NovxOpener:
 
     @classmethod
     def _upgrade_to_1_7(cls, xmlRoot):
-        # Separate the viewpoints from the section character lists.
+        # Determine the viewpoints from the section character lists.
         for xmlSection in xmlRoot.iter('SECTION'):
-            # Characters references.
             xmlCharacters = xmlSection.find('Characters')
             if xmlCharacters is not None:
                 crIds = xmlCharacters.get('ids', None)
