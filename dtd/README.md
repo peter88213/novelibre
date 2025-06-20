@@ -11,8 +11,3 @@ of third-party applications and tools that read or write `.novx` files.
 
 See the [novx file format documentation](https://peter88213.github.io/novxlib-docs/the_novx_file_format.html).
 
-
-### Versioning
-
-- The major version number will be incremented for changes that are not backward-compatible.
-- The minor version number will be incremented for backward-compatible additions.
