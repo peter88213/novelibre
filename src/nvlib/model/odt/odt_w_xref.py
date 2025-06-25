@@ -18,48 +18,77 @@ class OdtWXref(OdtWriter):
     DESCRIPTION = _('Cross reference')
     SUFFIX = XREF_SUFFIX
 
-    _fileHeader = f'''{OdtWriter._CONTENT_XML_HEADER}<text:p text:style-name="Title">$Title</text:p>
-<text:p text:style-name="Subtitle">$AuthorName</text:p>
-'''
-    _sectionTemplate = f'''<text:p text:style-name="Text_20_body">
-<text:a xlink:href="../$ProjectName$ManuscriptSuffix.odt#$ID%7Cregion">$SectionNumber </text:a>({_("Chp.")}$Chapter) $Title
-</text:p>
-'''
-    _unusedSectionTemplate = f'''<text:p text:style-name="Text_20_body">
-$SectionNumber ({_("Chp.")}$Chapter) $Title ({_("Unused")})
-</text:p>
-'''
-    _characterTemplate = '''<text:p text:style-name="Text_20_body">
-<text:a xlink:href="../$ProjectName$CharactersSuffix.odt#$ID%7Cregion">$Title</text:a> $FullName
-</text:p>
-'''
-    _locationTemplate = '''<text:p text:style-name="Text_20_body">
-<text:a xlink:href="../$ProjectName$LocationsSuffix.odt#$ID%7Cregion">$Title</text:a>
-</text:p>
-'''
-    _itemTemplate = '''<text:p text:style-name="Text_20_body">
-<text:a xlink:href="../$ProjectName$ItemsSuffix.odt#$ID%7Cregion">$Title</text:a>
-</text:p>
-'''
-    _scnPerChrTemplate = f'''<text:h text:style-name="Heading_20_2" text:outline-level="2">{_("Sections")} {_("with")} {_("Character")} $Title:</text:h>
-'''
-    _scnPerLocTemplate = f'''<text:h text:style-name="Heading_20_2" text:outline-level="2">{_("Sections")} {_("with")} {_("Location")} $Title:</text:h>
-'''
-    _scnPerItmTemplate = f'''<text:h text:style-name="Heading_20_2" text:outline-level="2">{_("Sections")} {_("with")} {_("Item")} $Title:</text:h>
-'''
-    _chrPerTagTemplate = f'''<text:h text:style-name="Heading_20_2" text:outline-level="2">{_("Characters")} {_("with")} {_("tag")} $Tag:</text:h>
-'''
-    _locPerTagTemplate = f'''<text:h text:style-name="Heading_20_2" text:outline-level="2">{_("Locations")} {_("with")} {_("tag")} $Tag:</text:h>
-'''
-    _itmPerTagTemplate = f'''<text:h text:style-name="Heading_20_2" text:outline-level="2">{_("Items")} {_("with")} {_("tag")} $Tag:</text:h>
-'''
-    _scnPerTagtemplate = f'''<text:h text:style-name="Heading_20_2" text:outline-level="2">{_("Sections")} {_("with")} {_("tag")} $Tag:</text:h>
-'''
+    _fileHeader = (
+        f'{OdtWriter._CONTENT_XML_HEADER}'
+        '<text:p text:style-name="Title">$Title</text:p>\n'
+        '<text:p text:style-name="Subtitle">$AuthorName</text:p>\n'
+    )
+    _sectionTemplate = (
+        '<text:p text:style-name="Text_20_body">\n'
+        '<text:a xlink:href="../$ProjectName$ManuscriptSuffix.odt'
+        '#$ID%7Cregion">$SectionNumber </text:a>'
+        f'({_("Chp.")}$Chapter) $Title\n'
+        '</text:p>\n'
+    )
+    _unusedSectionTemplate = (
+        '<text:p text:style-name="Text_20_body">\n'
+        f'$SectionNumber ({_("Chp.")}$Chapter) $Title ({_("Unused")})\n'
+        '</text:p>\n'
+    )
+    _characterTemplate = (
+        '<text:p text:style-name="Text_20_body">\n'
+        '<text:a xlink:href='
+        '"../$ProjectName$CharactersSuffix.odt#$ID%7Cregion">'
+        '$Title</text:a> $FullName\n'
+        '</text:p>\n'
+    )
+    _locationTemplate = (
+        '<text:p text:style-name="Text_20_body">\n'
+        '<text:a xlink:href='
+        '"../$ProjectName$LocationsSuffix.odt#$ID%7Cregion">'
+        '$Title</text:a>\n'
+        '</text:p>\n'
+    )
+    _itemTemplate = (
+        '<text:p text:style-name="Text_20_body">\n'
+        '<text:a xlink:href="../$ProjectName$ItemsSuffix.odt#$ID%7Cregion">'
+        '$Title</text:a>\n'
+        '</text:p>\n'
+    )
+    _scnPerChrTemplate = (
+        '<text:h text:style-name="Heading_20_2" text:outline-level="2">'
+        f'{_("Sections")} {_("with")} {_("Character")} $Title:</text:h>\n'
+    )
+    _scnPerLocTemplate = (
+        '<text:h text:style-name="Heading_20_2" text:outline-level="2">'
+        f'{_("Sections")} {_("with")} {_("Location")} $Title:</text:h>\n'
+    )
+    _scnPerItmTemplate = (
+        '<text:h text:style-name="Heading_20_2" text:outline-level="2">'
+        f'{_("Sections")} {_("with")} {_("Item")} $Title:</text:h>\n'
+    )
+    _chrPerTagTemplate = (
+        '<text:h text:style-name="Heading_20_2" text:outline-level="2">'
+        f'{_("Characters")} {_("with")} {_("tag")} $Tag:</text:h>\n'
+    )
+    _locPerTagTemplate = (
+        '<text:h text:style-name="Heading_20_2" text:outline-level="2">'
+        f'{_("Locations")} {_("with")} {_("tag")} $Tag:</text:h>\n'
+    )
+    _itmPerTagTemplate = (
+        '<text:h text:style-name="Heading_20_2" text:outline-level="2">'
+        f'{_("Items")} {_("with")} {_("tag")} $Tag:</text:h>\n'
+    )
+    _scnPerTagtemplate = (
+        '<text:h text:style-name="Heading_20_2" text:outline-level="2">'
+        f'{_("Sections")} {_("with")} {_("tag")} $Tag:</text:h>\n'
+    )
     _fileFooter = OdtWriter._CONTENT_XML_FOOTER
 
     def __init__(self, filePath, **kwargs):
-        """Apply the strategy pattern by delegating the cross reference to an external object.
+        """Delegate the cross reference to an external object.
         
+        Applying the Strategy pattern.
         Extends the superclass constructor.
         """
         super().__init__(filePath)
@@ -75,8 +104,14 @@ $SectionNumber ({_("Chp.")}$Chapter) $Title ({_("Unused")})
         headerTemplate = Template(self._scnPerChrTemplate)
         for crId in self._xr.scnPerChr:
             if self._xr.scnPerChr[crId]:
-                lines.append(headerTemplate.safe_substitute(self._get_characterMapping(crId)))
-                lines.extend(self._get_sections(self._xr.scnPerChr[crId]))
+                lines.append(
+                    headerTemplate.safe_substitute(
+                        self._get_characterMapping(crId)
+                    )
+                )
+                lines.extend(
+                    self._get_sections(self._xr.scnPerChr[crId])
+                )
         return lines
 
     def _get_characterTags(self):
@@ -89,9 +124,17 @@ $SectionNumber ({_("Chp.")}$Chapter) $Title ({_("Unused")})
         template = Template(self._characterTemplate)
         for tag in self._xr.chrPerTag:
             if self._xr.chrPerTag[tag]:
-                lines.append(headerTemplate.safe_substitute(self._get_tagMapping(tag)))
+                lines.append(
+                    headerTemplate.safe_substitute(
+                        self._get_tagMapping(tag)
+                    )
+                )
                 for crId in self._xr.chrPerTag[tag]:
-                    lines.append(template.safe_substitute(self._get_characterMapping(crId)))
+                    lines.append(
+                        template.safe_substitute(
+                            self._get_characterMapping(crId)
+                        )
+                    )
         return lines
 
     def _get_items(self):
@@ -104,7 +147,11 @@ $SectionNumber ({_("Chp.")}$Chapter) $Title ({_("Unused")})
         headerTemplate = Template(self._scnPerItmTemplate)
         for itId in self._xr.scnPerItm:
             if self._xr.scnPerItm[itId]:
-                lines.append(headerTemplate.safe_substitute(self._get_itemMapping(itId)))
+                lines.append(
+                    headerTemplate.safe_substitute(
+                        self._get_itemMapping(itId)
+                    )
+                )
                 lines.extend(self._get_sections(self._xr.scnPerItm[itId]))
         return lines
 
@@ -118,9 +165,17 @@ $SectionNumber ({_("Chp.")}$Chapter) $Title ({_("Unused")})
         template = Template(self._itemTemplate)
         for tag in self._xr.itmPerTag:
             if self._xr.itmPerTag[tag]:
-                lines.append(headerTemplate.safe_substitute(self._get_tagMapping(tag)))
+                lines.append(
+                    headerTemplate.safe_substitute(
+                        self._get_tagMapping(tag)
+                    )
+                )
                 for itId in self._xr.itmPerTag[tag]:
-                    lines.append(template.safe_substitute(self._get_itemMapping(itId)))
+                    lines.append(
+                        template.safe_substitute(
+                            self._get_itemMapping(itId)
+                        )
+                    )
         return lines
 
     def _get_locations(self):
@@ -133,7 +188,11 @@ $SectionNumber ({_("Chp.")}$Chapter) $Title ({_("Unused")})
         headerTemplate = Template(self._scnPerLocTemplate)
         for lcId in self._xr.scnPerLoc:
             if self._xr.scnPerLoc[lcId]:
-                lines.append(headerTemplate.safe_substitute(self._get_locationMapping(lcId)))
+                lines.append(
+                    headerTemplate.safe_substitute(
+                        self._get_locationMapping(lcId)
+                    )
+                )
                 lines.extend(self._get_sections(self._xr.scnPerLoc[lcId]))
         return lines
 
@@ -147,9 +206,17 @@ $SectionNumber ({_("Chp.")}$Chapter) $Title ({_("Unused")})
         template = Template(self._locationTemplate)
         for tag in self._xr.locPerTag:
             if self._xr.locPerTag[tag]:
-                lines.append(headerTemplate.safe_substitute(self._get_tagMapping(tag)))
+                lines.append(
+                    headerTemplate.safe_substitute(
+                        self._get_tagMapping(tag)
+                    )
+                )
                 for lcId in self._xr.locPerTag[tag]:
-                    lines.append(template.safe_substitute(self._get_locationMapping(lcId)))
+                    lines.append(
+                        template.safe_substitute(
+                            self._get_locationMapping(lcId)
+                        )
+                    )
         return lines
 
     def _get_sectionMapping(self, scId, **kwargs):
@@ -161,8 +228,14 @@ $SectionNumber ({_("Chp.")}$Chapter) $Title ({_("Unused")})
         Extends the superclass template method.
         """
         sectionNumber = self._xr.srtSections.index(scId) + 1
-        sectionMapping = super()._get_sectionMapping(scId, sectionNumber, 0, **kwargs)
-        chapterNumber = self.novel.tree.get_children(CH_ROOT).index(self._xr.chpPerScn[scId]) + 1
+        sectionMapping = super()._get_sectionMapping(
+            scId,
+            sectionNumber,
+            0,
+            **kwargs
+        )
+        chapterNumber = self.novel.tree.get_children(
+            CH_ROOT).index(self._xr.chpPerScn[scId]) + 1
         sectionMapping['Chapter'] = str(chapterNumber)
         return sectionMapping
 
@@ -184,7 +257,9 @@ $SectionNumber ({_("Chp.")}$Chapter) $Title ({_("Unused")})
             else:
                 continue
 
-            lines.append(template.safe_substitute(self._get_sectionMapping(scId)))
+            lines.append(template.safe_substitute(
+                self._get_sectionMapping(scId))
+            )
         return lines
 
     def _get_sectionTags(self):
@@ -196,7 +271,11 @@ $SectionNumber ({_("Chp.")}$Chapter) $Title ({_("Unused")})
         headerTemplate = Template(self._scnPerTagtemplate)
         for tag in self._xr.scnPerTag:
             if self._xr.scnPerTag[tag]:
-                lines.append(headerTemplate.safe_substitute(self._get_tagMapping(tag)))
+                lines.append(
+                    headerTemplate.safe_substitute(
+                        self._get_tagMapping(tag)
+                    )
+                )
                 lines.extend(self._get_sections(self._xr.scnPerTag[tag]))
         return lines
 
