@@ -7,7 +7,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from datetime import date
 import os
 
-from nvlib.model.novx.novx_opener import NovxOpener
 from nvlib.model.data.basic_element import BasicElement
 from nvlib.model.data.chapter import Chapter
 from nvlib.model.data.character import Character
@@ -16,6 +15,7 @@ from nvlib.model.data.plot_point import PlotPoint
 from nvlib.model.data.section import Section
 from nvlib.model.data.world_element import WorldElement
 from nvlib.model.file.file import File
+from nvlib.model.novx.novx_opener import NovxOpener
 from nvlib.model.xml.xml_filter import strip_illegal_characters
 from nvlib.model.xml.xml_indent import indent
 from nvlib.novx_globals import CHAPTER_PREFIX
