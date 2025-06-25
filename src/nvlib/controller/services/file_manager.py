@@ -77,7 +77,8 @@ class FileManager(ServiceBase):
     def copy_to_backup(self, filePath):
         """Copy the file specified by filePath to the backup directory.
         
-        The backup file name gets a suffix in order not to be worked on by accident.
+        The backup file name gets a suffix in order not to be 
+        worked on by accident.
         If no valid backup directory is specified, do nothing.
         If the backup fails, show a notification on the status bar.
         """
@@ -86,16 +87,30 @@ class FileManager(ServiceBase):
 
         backupDir = self.prefs['backup_dir']
         if not backupDir:
-            self._ui.set_status(f'#{_("Backup directory not set")}. {_("Please check the setting")}.')
+            self._ui.set_status(
+                (
+                    f'#{_("Backup directory not set")}. '
+                    f'{_("Please check the setting")}.'
+                )
+            )
             return
 
         if not os.path.isdir(backupDir):
-            self._ui.set_status(f'#{_("Backup directory not found")}: "{norm_path(backupDir)}". {_("Please check the setting")}.')
+            self._ui.set_status(
+                (
+                    f'#{_("Backup directory not found")}: '
+                    f'"{norm_path(backupDir)}". '
+                    f'{_("Please check the setting")}.'
+                )
+            )
             return
 
         try:
             basename = os.path.basename(filePath)
-            copy2(filePath, f'{backupDir}/{basename}{self.prefs["backup_suffix"]}')
+            copy2(
+                filePath,
+                f'{backupDir}/{basename}{self.prefs["backup_suffix"]}'
+            )
         except Exception as ex:
             self._ui.set_status(f"#{_('Backup failed')}: {str(ex)}")
 
@@ -112,12 +127,17 @@ class FileManager(ServiceBase):
             return
 
         if odf_is_locked(manuscriptPath):
-            self._ui.set_status(f"!{_('Please close the manuscript first')}.")
+            self._ui.set_status(
+                f"!{_('Please close the manuscript first')}."
+            )
         elif self._ui.ask_yes_no(
             message=_('Discard manuscript?'),
             detail=self._mdl.novel.title
             ):
-            os.replace(manuscriptPath, f'{fileName}{MANUSCRIPT_SUFFIX}.odt.bak')
+            os.replace(
+                manuscriptPath,
+                f'{fileName}{MANUSCRIPT_SUFFIX}.odt.bak'
+            )
             self._ui.set_status(f"{_('Manuscript discarded')}.")
 
     def export_document(self, suffix, **kwargs):
@@ -143,7 +163,13 @@ class FileManager(ServiceBase):
                 return
 
         try:
-            self._ui.set_status(self.exporter.run(self._mdl.prjFile, suffix, **kwargs))
+            self._ui.set_status(
+                self.exporter.run(
+                    self._mdl.prjFile,
+                    suffix,
+                    **kwargs
+                )
+            )
         except Notification as ex:
             self._ui.set_status(f'#{str(ex)}')
         except Error as ex:
@@ -152,11 +178,16 @@ class FileManager(ServiceBase):
             if kwargs.get('lock', True) and self.prefs['lock_on_export']:
                 self._ctrl.lock()
 
-    def import_odf(self, sourcePath=None, defaultExtension='.odt', parent=None):
+    def import_odf(
+            self, sourcePath=None,
+            defaultExtension='.odt',
+            parent=None,
+        ):
         """Update or create the project from an ODF document.
         
         Optional arguments:
-            sourcePath: str -- Path specifying the source document. If None, a file picker is used.
+            sourcePath: str -- Path specifying the source document. 
+                               If None, a file picker is used.
             defaultExtension: str -- Extension to be preset in the file picker.
         """
         self._ui.restore_status()
@@ -167,7 +198,10 @@ class FileManager(ServiceBase):
             else:
                 startDir = '.'
             sourcePath = filedialog.askopenfilename(
-                filetypes=[(_('ODF Text document'), '.odt'), (_('ODF Spreadsheet document'), '.ods')],
+                filetypes=[
+                    (_('ODF Text document'), '.odt'),
+                    (_('ODF Spreadsheet document'), '.ods'),
+                ],
                 defaultextension=defaultExtension,
                 initialdir=startDir,
             )
@@ -203,7 +237,8 @@ class FileManager(ServiceBase):
         
         Optional arguments:
             filePath: str -- The new project's file name.
-            doNotSave: Boolean -- If True, close the current project without saving.
+            doNotSave: Boolean -- If True, close the current project 
+                                  without saving.
         
         If no file name is given, a file picker is opened.
         Display project title, description and status.
@@ -225,7 +260,7 @@ class FileManager(ServiceBase):
                 f"{_('This project may be already open in novelibre')}:"
                 '\n'
                 f'"{norm_path(filePath)}"'
-                )
+            )
             if not self._ui.ask_ok_cancel(
                 message=message,
                 detail=_('Open anyway?'),
@@ -246,7 +281,10 @@ class FileManager(ServiceBase):
         self._ui.show_path(f'{norm_path(self._mdl.prjFile.filePath)}')
         self._ctrl.enable_menu()
         self._ctrl.refresh_tree()
-        self._ui.show_path(_('{0} (last saved on {1})').format(norm_path(self._mdl.prjFile.filePath), self._mdl.prjFile.fileDate))
+        self._ui.show_path(_('{0} (last saved on {1})').format(
+            norm_path(self._mdl.prjFile.filePath),
+            self._mdl.prjFile.fileDate)
+        )
         self._ctrl.update_status()
         self._ui.contentsView.view_text()
         if self._mdl.prjFile.has_lockfile():
@@ -291,13 +329,19 @@ class FileManager(ServiceBase):
         ):
             return
 
-        if self._mdl.prjFile.has_changed_on_disk() and not self._ui.ask_yes_no(
-            message=_('File has changed on disk. Reload anyway?')
+        if (
+            self._mdl.prjFile.has_changed_on_disk()
+            and not self._ui.ask_yes_no(
+                message=_('File has changed on disk. Reload anyway?')
+            )
         ):
             return
 
         # this is to avoid saving when closing the project
-        if self.open_project(filePath=self._mdl.prjFile.filePath, doNotSave=True):
+        if self.open_project(
+            filePath=self._mdl.prjFile.filePath,
+            doNotSave=True,
+        ):
             # includes closing
             self._ui.set_status(_('Project successfully restored from disk.'))
         return
@@ -321,7 +365,7 @@ class FileManager(ServiceBase):
 
         elif not self._ui.ask_yes_no(
             message=_('Overwrite the last saved project file with the ".bak" file?')
-            ):
+        ):
             return
 
         try:
@@ -329,7 +373,10 @@ class FileManager(ServiceBase):
         except Exception as ex:
             self._ui.set_status(str(ex))
         else:
-            if self.open_project(filePath=self._mdl.prjFile.filePath, doNotSave=True):
+            if self.open_project(
+                filePath=self._mdl.prjFile.filePath,
+                doNotSave=True,
+            ):
                 # Includes closing
                 self._ui.set_status(_('Latest backup successfully restored.'))
         return
@@ -375,7 +422,12 @@ class FileManager(ServiceBase):
 
         else:
             self._ctrl.unlock()
-            self._ui.show_path(f'{norm_path(self._mdl.prjFile.filePath)} ({_("last saved on")} {self._mdl.prjFile.fileDate})')
+            self._ui.show_path(
+                (
+                    f'{norm_path(self._mdl.prjFile.filePath)} '
+                    f'({_("last saved on")} {self._mdl.prjFile.fileDate})'
+                )
+            )
             self._ui.restore_status()
             self.prefs['last_open'] = self._mdl.prjFile.filePath
             self.copy_to_backup(self._mdl.prjFile.filePath)
@@ -392,14 +444,19 @@ class FileManager(ServiceBase):
             return False
 
         if self._ctrl.check_lock():
-            self._ui.set_status(f'!{_("Cannot save: The project is locked")}.')
+            self._ui.set_status(
+                f'!{_("Cannot save: The project is locked")}.'
+            )
             return False
 
         if self._mdl.prjFile.filePath is None:
             return self.save_as()
 
-        if self._mdl.prjFile.has_changed_on_disk() and not self._ui.ask_yes_no(
-            message=_('File has changed on disk. Save anyway?')
+        if (
+            self._mdl.prjFile.has_changed_on_disk()
+            and not self._ui.ask_yes_no(
+                message=_('File has changed on disk. Save anyway?')
+            )
         ):
             return False
 
@@ -410,7 +467,12 @@ class FileManager(ServiceBase):
             self._ui.set_status(f'!{str(ex)}')
             return False
 
-        self._ui.show_path(f'{norm_path(self._mdl.prjFile.filePath)} ({_("last saved on")} {self._mdl.prjFile.fileDate})')
+        self._ui.show_path(
+            (
+                f'{norm_path(self._mdl.prjFile.filePath)} '
+                f'({_("last saved on")} {self._mdl.prjFile.fileDate})'
+            )
+        )
         self._ui.restore_status()
         self.prefs['last_open'] = self._mdl.prjFile.filePath
         self.copy_to_backup(self._mdl.prjFile.filePath)
@@ -474,15 +536,26 @@ class FileManager(ServiceBase):
             with open(USER_STYLES_XML, 'w', encoding='utf-8') as f:
                 f.write(stylesXmlStr)
         except:
-            self._ui.set_status(f'!{_("Invalid document template")}: "{templateName}".')
+            self._ui.set_status(
+                (
+                    f'!{_("Invalid document template")}: '
+                    f'"{templateName}".'
+                )
+            )
         else:
-            self._ui.set_status(f'{_("Document template is set")}: "{templateName}".')
+            self._ui.set_status(
+                (
+                    f'{_("Document template is set")}: '
+                    f'"{templateName}".'
+                )
+            )
 
     def show_report(self, suffix):
         """Create HTML report for the web browser.
         
         Positional arguments:
-            suffix: str -- the HTML file name suffix, indicating the report type.        
+            suffix: str -- the HTML file name suffix, 
+                           indicating the report type.        
         """
         self._ui.restore_status()
         if self._mdl.prjFile.filePath is None:
@@ -491,7 +564,11 @@ class FileManager(ServiceBase):
         self._ui.propertiesView.apply_changes()
         HtmlReport.localizeDate = self.prefs['localize_date']
         try:
-            self.reporter.run(self._mdl.prjFile, suffix, tempdir=self._ctrl.tempDir)
+            self.reporter.run(
+                self._mdl.prjFile,
+                suffix,
+                tempdir=self._ctrl.tempDir,
+            )
         except Notification as ex:
             self._ui.set_status(f'#{str(ex)}')
         except Error as ex:
