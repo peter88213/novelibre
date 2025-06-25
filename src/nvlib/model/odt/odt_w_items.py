@@ -17,16 +17,18 @@ class OdtWItems(OdtWriter):
     DESCRIPTION = _('Item descriptions')
     SUFFIX = ITEMS_SUFFIX
 
-    _fileHeader = f'''{OdtWriter._CONTENT_XML_HEADER}<text:p text:style-name="Title">$Title</text:p>
-<text:p text:style-name="Subtitle">$AuthorName</text:p>$Filters
-'''
-
-    _itemTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">$Title$AKA</text:h>
-<text:section text:style-name="Sect1" text:name="$ID">
-$Desc
-</text:section>
-'''
-
+    _fileHeader = (
+        f'{OdtWriter._CONTENT_XML_HEADER}'
+        '<text:p text:style-name="Title">$Title</text:p>\n'
+        '<text:p text:style-name="Subtitle">$AuthorName</text:p>$Filters\n'
+    )
+    _itemTemplate = (
+        '<text:h text:style-name="Heading_20_2" '
+        'text:outline-level="2">$Title$AKA</text:h>\n'
+        '<text:section text:style-name="Sect1" text:name="$ID">\n'
+        '$Desc\n'
+        '</text:section>\n'
+    )
     _fileFooter = OdtWriter._CONTENT_XML_FOOTER
 
     def _get_itemMapping(self, itId):

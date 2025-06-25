@@ -17,16 +17,18 @@ class OdtWLocations(OdtWriter):
     DESCRIPTION = _('Location descriptions')
     SUFFIX = LOCATIONS_SUFFIX
 
-    _fileHeader = f'''{OdtWriter._CONTENT_XML_HEADER}<text:p text:style-name="Title">$Title</text:p>
-<text:p text:style-name="Subtitle">$AuthorName</text:p>$Filters
-'''
-
-    _locationTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">$Title$AKA</text:h>
-<text:section text:style-name="Sect1" text:name="$ID">
-$Desc
-</text:section>
-'''
-
+    _fileHeader = (
+        f'{OdtWriter._CONTENT_XML_HEADER}'
+        '<text:p text:style-name="Title">$Title</text:p>\n'
+        '<text:p text:style-name="Subtitle">$AuthorName</text:p>$Filters\n'
+    )
+    _locationTemplate = (
+        '<text:h text:style-name="Heading_20_2" '
+        'text:outline-level="2">$Title$AKA</text:h>\n'
+        '<text:section text:style-name="Sect1" text:name="$ID">\n'
+        '$Desc\n'
+        '</text:section>\n'
+    )
     _fileFooter = OdtWriter._CONTENT_XML_FOOTER
 
     def _get_locationMapping(self, lcId):

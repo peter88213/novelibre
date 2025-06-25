@@ -17,25 +17,28 @@ class OdtWSectionDesc(OdtWriter):
     DESCRIPTION = _('Section descriptions')
     SUFFIX = SECTIONS_SUFFIX
 
-    _fileHeader = f'''{OdtWriter._CONTENT_XML_HEADER}<text:p text:style-name="Title">$Title</text:p>
-<text:p text:style-name="Subtitle">$AuthorName</text:p>$Filters
-'''
-
-    _partTemplate = '''<text:h text:style-name="Heading_20_1" text:outline-level="1">$Title</text:h>
-'''
-
-    _chapterTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../$ProjectName$ManuscriptSuffix.odt#$Title|outline">$Title</text:a></text:h>
-'''
-
-    _sectionTemplate = f'''<text:h text:style-name="{_('Heading_20_3_20_invisible')}" text:outline-level="3">$Title</text:h>
-<text:section text:style-name="Sect1" text:name="$ID">
-$Desc
-</text:section>
-'''
-
-    _sectionDivider = '''<text:p text:style-name="Heading_20_4">* * *</text:p>
-'''
-
+    _fileHeader = (
+        f'{OdtWriter._CONTENT_XML_HEADER}<text:p text:style-name="Title">'
+        '$Title</text:p>\n'
+        '<text:p text:style-name="Subtitle">$AuthorName</text:p>$Filters\n'
+    )
+    _partTemplate = (
+        '<text:h text:style-name="Heading_20_1" text:outline-level="1">'
+        '$Title</text:h>\n'
+    )
+    _chapterTemplate = (
+        '<text:h text:style-name="Heading_20_2" text:outline-level="2">'
+        '<text:a xlink:href="../$ProjectName$ManuscriptSuffix.odt#'
+        '$Title|outline">$Title</text:a></text:h>\n'
+    )
+    _sectionTemplate = (
+        f'<text:h text:style-name="{_("Heading_20_3_20_invisible")}" '
+        'text:outline-level="3">$Title</text:h>\n'
+        '<text:section text:style-name="Sect1" text:name="$ID">\n'
+        '$Desc\n'
+        '</text:section>\n'
+    )
+    _sectionDivider = '<text:p text:style-name="Heading_20_4">* * *</text:p>\n'
     _fileFooter = OdtWriter._CONTENT_XML_FOOTER
 
     def _get_sectionMapping(self, scId, sectionNumber, wordsTotal, **kwargs):
@@ -48,6 +51,11 @@ $Desc
         
         Extends the superclass method.
         """
-        sectionMapping = super()._get_sectionMapping(scId, sectionNumber, wordsTotal, **kwargs)
+        sectionMapping = super()._get_sectionMapping(
+            scId,
+            sectionNumber,
+            wordsTotal,
+            **kwargs
+        )
         sectionMapping['Manuscript'] = _('Manuscript')
         return sectionMapping
