@@ -17,31 +17,37 @@ class OdtWCharacters(OdtWriter):
     DESCRIPTION = _('Character descriptions')
     SUFFIX = CHARACTERS_SUFFIX
 
-    _fileHeader = f'''{OdtWriter._CONTENT_XML_HEADER}<text:p text:style-name="Title">$Title</text:p>
-<text:p text:style-name="Subtitle">$AuthorName</text:p>$Filters
-'''
-
-    _characterTemplate = f'''<text:h text:style-name="Heading_20_2" text:outline-level="2">$Title$FullName$AKA</text:h>
-<text:section text:style-name="Sect1" text:name="$ID">
-<text:h text:style-name="Heading_20_3" text:outline-level="3">{_("Description")}</text:h>
-<text:section text:style-name="Sect1" text:name="desc:$ID">
-$Desc
-</text:section>
-<text:h text:style-name="Heading_20_3" text:outline-level="3">$CustomChrBio</text:h>
-<text:section text:style-name="Sect1" text:name="bio:$ID">
-$Bio
-</text:section>
-<text:h text:style-name="Heading_20_3" text:outline-level="3">$CustomChrGoals</text:h>
-<text:section text:style-name="Sect1" text:name="goals:$ID">
-$Goals
-</text:section>
-<text:h text:style-name="Heading_20_3" text:outline-level="3">{_("Notes")}</text:h>
-<text:section text:style-name="Sect1" text:name="notes:$ID">
-$Notes
-</text:section>
-</text:section>
-'''
-
+    _fileHeader = (
+        f'{OdtWriter._CONTENT_XML_HEADER}'
+        '<text:p text:style-name="Title">$Title</text:p>\n'
+        '<text:p text:style-name="Subtitle">$AuthorName</text:p>$Filters\n'
+    )
+    _characterTemplate = (
+        '<text:h text:style-name="Heading_20_2" text:outline-level="2">'
+        '$Title$FullName$AKA</text:h>\n'
+        '<text:section text:style-name="Sect1" text:name="$ID">\n'
+        '<text:h text:style-name="Heading_20_3" text:outline-level="3">'
+        f'{_("Description")}</text:h>\n'
+        '<text:section text:style-name="Sect1" text:name="desc:$ID">\n'
+        '$Desc\n'
+        '</text:section>\n'
+        '<text:h text:style-name="Heading_20_3" text:outline-level="3">'
+        '$CustomChrBio</text:h>\n'
+        '<text:section text:style-name="Sect1" text:name="bio:$ID">\n'
+        '$Bio\n'
+        '</text:section>\n'
+        '<text:h text:style-name="Heading_20_3" text:outline-level="3">'
+        '$CustomChrGoals</text:h>\n'
+        '<text:section text:style-name="Sect1" text:name="goals:$ID">\n'
+        '$Goals\n'
+        '</text:section>\n'
+        '<text:h text:style-name="Heading_20_3" text:outline-level="3">'
+        f'{_("Notes")}</text:h>\n'
+        '<text:section text:style-name="Sect1" text:name="notes:$ID">\n'
+        '$Notes\n'
+        '</text:section>\n'
+        '</text:section>\n'
+    )
     _fileFooter = OdtWriter._CONTENT_XML_FOOTER
 
     def _get_characterMapping(self, crId):

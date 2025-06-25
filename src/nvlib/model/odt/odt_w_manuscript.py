@@ -17,22 +17,28 @@ class OdtWManuscript(OdtWFormatted):
     DESCRIPTION = _('Editable manuscript')
     SUFFIX = MANUSCRIPT_SUFFIX
 
-    _fileHeader = f'''$ContentHeader<text:p text:style-name="Title">$Title</text:p>
-<text:p text:style-name="Subtitle">$AuthorName</text:p>$Filters
-'''
-
-    _partTemplate = '''<text:h text:style-name="Heading_20_1" text:outline-level="1">$Title</text:h>$Epigraph$EpigraphSrc
-'''
-
-    _chapterTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">$Title</text:h>$Epigraph$EpigraphSrc
-'''
-
-    _sectionTemplate = f'''<text:h text:style-name="{_('Heading_20_3_20_invisible')}" text:outline-level="3">$Title</text:h>
-<text:section text:style-name="Sect1" text:name="$ID">
-$SectionContent
-</text:section>
-'''
-    _sectionDivider = '<text:p text:style-name="Heading_20_4">* * *</text:p>\n'
-
+    _fileHeader = (
+        '$ContentHeader'
+        '<text:p text:style-name="Title">$Title</text:p>'
+        '\n<text:p text:style-name="Subtitle">$AuthorName</text:p>$Filters\n'
+    )
+    _partTemplate = (
+        '<text:h text:style-name="Heading_20_1" text:outline-level="1">'
+        '$Title</text:h>$Epigraph$EpigraphSrc\n'
+    )
+    _chapterTemplate = (
+        '<text:h text:style-name="Heading_20_2" text:outline-level="2">'
+        '$Title</text:h>$Epigraph$EpigraphSrc\n'
+    )
+    _sectionTemplate = (
+        f'<text:h text:style-name="{_("Heading_20_3_20_invisible")}" '
+        'text:outline-level="3">$Title</text:h>\n'
+        '<text:section text:style-name="Sect1" text:name="$ID">\n'
+        '$SectionContent\n'
+        '</text:section>\n'
+    )
+    _sectionDivider = (
+        '<text:p text:style-name="Heading_20_4">* * *</text:p>\n'
+    )
     _fileFooter = OdtWFormatted._CONTENT_XML_FOOTER
 

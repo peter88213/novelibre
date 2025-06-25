@@ -7,6 +7,7 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from datetime import datetime
+from xml.sax.saxutils import escape
 import os
 from shutil import rmtree
 from string import Template
@@ -55,14 +56,18 @@ class OdfFile(FileExport):
         xhtml='http://www.w3.org/1999/xhtml',
         grddl='http://www.w3.org/2003/g/data-view#',
         tableooo='http://openoffice.org/2009/table',
-        loext='urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0'
+        loext=(
+            'urn:org:documentfoundation:names:experimental:'
+            'office:xmlns:loext:1.0'
+        ),
     )
 
     def __init__(self, filePath, **kwargs):
         """Create a temporary directory for zipfile generation.
         
         Positional arguments:
-            filePath: str -- path to the file represented by the Novel instance.
+            filePath: str -- path to the file 
+                             represented by the Novel instance.
             
         Optional arguments:
             kwargs -- keyword arguments to be used by subclasses.            
@@ -74,7 +79,8 @@ class OdfFile(FileExport):
         self._originalPath = self._filePath
 
     def __del__(self):
-        """Make sure to delete the temporary directory, in case write() has not been called."""
+        # Make sure to delete the temporary directory,
+        # in case write() has not been called.
         self._tear_down()
 
     def is_locked(self):
@@ -93,7 +99,8 @@ class OdfFile(FileExport):
         """
 
         #--- Create a temporary directory
-        # containing the internal structure of an ODS file except "content.xml".
+        # containing the internal structure of an ODS file
+        # except "content.xml".
         self._set_up()
 
         #--- Add "content.xml" to the temporary directory.
@@ -109,7 +116,12 @@ class OdfFile(FileExport):
             try:
                 os.replace(self.filePath, f'{self.filePath}.bak')
             except:
-                raise Error(f'{_("Cannot overwrite file")}: "{norm_path(self.filePath)}".')
+                raise Error(
+                    (
+                        f'{_("Cannot overwrite file")}: '
+                        f'"{norm_path(self.filePath)}".'
+                    )
+                )
             else:
                 backedUp = True
         try:
@@ -121,7 +133,12 @@ class OdfFile(FileExport):
             os.chdir(workdir)
             if backedUp:
                 os.replace(f'{self.filePath}.bak', self.filePath)
-            raise Error(f'{_("Cannot create file")}: "{norm_path(self.filePath)}".')
+            raise Error(
+                (
+                    f'{_("Cannot create file")}: '
+                    f'"{norm_path(self.filePath)}".'
+                )
+            )
 
         #--- Remove temporary data.
         os.chdir(workdir)
@@ -140,11 +157,10 @@ class OdfFile(FileExport):
         return stylesXmlStr
 
     def _set_up(self):
-        """Helper method for ZIP file generation.
-
-        Prepare the temporary directory containing the internal structure of an ODF file except 'content.xml'.
-        Raise the "Error" exception in case of error. 
-        """
+        # Helper method for ZIP file generation.
+        # Prepare the temporary directory containing the internal structure
+        # of an ODF file except 'content.xml'.
+        # Raise the "Error" exception in case of error.
 
         #--- Create and open a temporary directory for the files to zip.
         try:
@@ -152,25 +168,41 @@ class OdfFile(FileExport):
             os.mkdir(self._tempDir)
             os.mkdir(f'{self._tempDir}/META-INF')
         except:
-            raise Error(f'{_("Cannot create directory")}: "{norm_path(self._tempDir)}".')
-
+            raise Error(
+                (
+                    f'{_("Cannot create directory")}: '
+                    f'"{norm_path(self._tempDir)}".'
+                )
+            )
         #--- Generate mimetype.
         try:
-            with open(f'{self._tempDir}/mimetype', 'w', encoding='utf-8') as f:
+            with open(
+                f'{self._tempDir}/mimetype',
+                'w',
+                encoding='utf-8'
+            ) as f:
                 f.write(self._MIMETYPE)
         except:
             raise Error(f'{_("Cannot write file")}: "mimetype"')
 
         #--- Generate settings.xml.
         try:
-            with open(f'{self._tempDir}/settings.xml', 'w', encoding='utf-8') as f:
+            with open(
+                f'{self._tempDir}/settings.xml',
+                'w',
+                encoding='utf-8'
+            ) as f:
                 f.write(self._SETTINGS_XML)
         except:
             raise Error(f'{_("Cannot write file")}: "settings.xml"')
 
         #--- Generate META-INF\manifest.xml.
         try:
-            with open(f'{self._tempDir}/META-INF/manifest.xml', 'w', encoding='utf-8') as f:
+            with open(
+                f'{self._tempDir}/META-INF/manifest.xml',
+                'w',
+                encoding='utf-8'
+            ) as f:
                 f.write(self._MANIFEST_XML)
         except:
             raise Error(f'{_("Cannot write file")}: "manifest.xml"')
@@ -178,28 +210,37 @@ class OdfFile(FileExport):
         #--- Generate styles.xml.
         stylesXmlStr = self._get_styles_xml_str()
         try:
-            with open(f'{self._tempDir}/styles.xml', 'w', encoding='utf-8') as f:
+            with open(
+                f'{self._tempDir}/styles.xml',
+                'w',
+                encoding='utf-8'
+            ) as f:
                 f.write(stylesXmlStr)
         except:
             raise Error(f'{_("Cannot write file")}: "styles.xml"')
 
         #--- Generate meta.xml with actual document metadata.
         metaMapping = dict(
-            Author=self.novel.authorName,
-            Title=self.novel.title,
-            Summary=f'<![CDATA[{self.novel.desc}]]>',
+            Author=escape(self.novel.authorName),
+            Title=escape(self.novel.title),
+            Summary=escape(self.novel.desc),
             Datetime=datetime.today().replace(microsecond=0).isoformat(),
         )
         template = Template(self._META_XML)
         stylesXmlStr = template.safe_substitute(metaMapping)
         try:
-            with open(f'{self._tempDir}/meta.xml', 'w', encoding='utf-8') as f:
+            with open(
+                f'{self._tempDir}/meta.xml',
+                'w',
+                encoding='utf-8'
+            ) as f:
                 f.write(stylesXmlStr)
         except:
             raise Error(f'{_("Cannot write file")}: "meta.xml".')
 
     def _tear_down(self):
-        """Delete the temporary directory containing the unpacked ODF directory structure."""
+        # Delete the temporary directory containing the
+        # unpacked ODF directory structure.
         try:
             rmtree(self._tempDir)
         except:

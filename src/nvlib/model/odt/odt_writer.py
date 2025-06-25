@@ -23,74 +23,148 @@ class OdtWriter(OdfFile):
     EXTENSION = '.odt'
     # overwrites Novel.EXTENSION
 
-    _ODF_COMPONENTS = ['manifest.rdf', 'META-INF', 'content.xml', 'meta.xml', 'mimetype',
-                      'settings.xml', 'styles.xml', 'META-INF/manifest.xml']
+    _ODF_COMPONENTS = [
+        'manifest.rdf',
+        'META-INF',
+        'content.xml',
+        'meta.xml',
+        'mimetype',
+        'settings.xml',
+        'styles.xml',
+        'META-INF/manifest.xml',
+    ]
 
-    _CONTENT_XML_HEADER = '''<?xml version="1.0" encoding="UTF-8"?>
-
-<office:document-content xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rpt="http://openoffice.org/2005/report" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" office:version="1.2">
- <office:scripts/>
- <office:font-face-decls>
-  <style:font-face style:name="StarSymbol" svg:font-family="StarSymbol" style:font-charset="x-symbol"/>
-  <style:font-face style:name="Consolas" svg:font-family="Consolas" style:font-adornments="Standard" style:font-family-generic="modern" style:font-pitch="fixed"/>
-  <style:font-face style:name="Courier New" svg:font-family="&apos;Courier New&apos;" style:font-adornments="Standard" style:font-family-generic="modern" style:font-pitch="fixed"/>
- </office:font-face-decls>
- <office:automatic-styles/>
- <office:body>
-  <office:text text:use-soft-page-breaks="true">
-
-'''
-
-    _CONTENT_XML_FOOTER = '''  </office:text>
- </office:body>
-</office:document-content>
-'''
-
-    _META_XML = '''<?xml version="1.0" encoding="utf-8"?>
-<office:document-meta xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:grddl="http://www.w3.org/2003/g/data-view#" office:version="1.2">
-  <office:meta>
-    <meta:generator>novxlib</meta:generator>
-    <dc:title>$Title</dc:title>
-    <dc:description>$Summary</dc:description>
-    <dc:subject></dc:subject>
-    <meta:keyword></meta:keyword>
-    <meta:initial-creator>$Author</meta:initial-creator>
-    <dc:creator></dc:creator>
-    <meta:creation-date>${Datetime}Z</meta:creation-date>
-    <dc:date></dc:date>
-  </office:meta>
-</office:document-meta>
-'''
-    _MANIFEST_XML = '''<?xml version="1.0" encoding="utf-8"?>
-<manifest:manifest xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0" manifest:version="1.2">
-  <manifest:file-entry manifest:media-type="application/vnd.oasis.opendocument.text" manifest:full-path="/" />
-  <manifest:file-entry manifest:media-type="application/xml" manifest:full-path="content.xml" manifest:version="1.2" />
-  <manifest:file-entry manifest:media-type="application/rdf+xml" manifest:full-path="manifest.rdf" manifest:version="1.2" />
-  <manifest:file-entry manifest:media-type="application/xml" manifest:full-path="styles.xml" manifest:version="1.2" />
-  <manifest:file-entry manifest:media-type="application/xml" manifest:full-path="meta.xml" manifest:version="1.2" />
-  <manifest:file-entry manifest:media-type="application/xml" manifest:full-path="settings.xml" manifest:version="1.2" />
-</manifest:manifest>    
-'''
-    _MANIFEST_RDF = '''<?xml version="1.0" encoding="utf-8"?>
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-  <rdf:Description rdf:about="styles.xml">
-    <rdf:type rdf:resource="http://docs.oasis-open.org/ns/office/1.2/meta/odf#StylesFile"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="">
-    <ns0:hasPart xmlns:ns0="http://docs.oasis-open.org/ns/office/1.2/meta/pkg#" rdf:resource="styles.xml"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="content.xml">
-    <rdf:type rdf:resource="http://docs.oasis-open.org/ns/office/1.2/meta/odf#ContentFile"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="">
-    <ns0:hasPart xmlns:ns0="http://docs.oasis-open.org/ns/office/1.2/meta/pkg#" rdf:resource="content.xml"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="">
-    <rdf:type rdf:resource="http://docs.oasis-open.org/ns/office/1.2/meta/pkg#Document"/>
-  </rdf:Description>
-</rdf:RDF>
-'''
-    _SETTINGS_XML = '''<?xml version="1.0" encoding="UTF-8"?>
+    _CONTENT_XML_HEADER = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n\n'
+        '<office:document-content '
+        'xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" '
+        'xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" '
+        'xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" '
+        'xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" '
+        'xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" '
+        'xmlns:fo="urn:oasis:names:tc:opendocument:'
+        'xmlns:xsl-fo-compatible:1.0" '
+        'xmlns:xlink="http://www.w3.org/1999/xlink" '
+        'xmlns:dc="http://purl.org/dc/elements/1.1/" '
+        'xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" '
+        'xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" '
+        'xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" '
+        'xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" '
+        'xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" '
+        'xmlns:math="http://www.w3.org/1998/Math/MathML" '
+        'xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" '
+        'xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" '
+        'xmlns:ooo="http://openoffice.org/2004/office" '
+        'xmlns:ooow="http://openoffice.org/2004/writer" '
+        'xmlns:oooc="http://openoffice.org/2004/calc" '
+        'xmlns:dom="http://www.w3.org/2001/xml-events" '
+        'xmlns:xforms="http://www.w3.org/2002/xforms" '
+        'xmlns:xsd="http://www.w3.org/2001/XMLSchema" '
+        'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
+        'xmlns:rpt="http://openoffice.org/2005/report" '
+        'xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" '
+        'xmlns:xhtml="http://www.w3.org/1999/xhtml" '
+        'xmlns:grddl="http://www.w3.org/2003/g/data-view#" '
+        'xmlns:tableooo="http://openoffice.org/2009/table" '
+        'xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:'
+        'xmlns:field:1.0" office:version="1.2">\n'
+        ' <office:scripts/>\n'
+        ' <office:font-face-decls>\n'
+        '  <style:font-face style:name="StarSymbol" '
+        'svg:font-family="StarSymbol" style:font-charset="x-symbol"/>\n'
+        '  <style:font-face style:name="Consolas" svg:font-family="Consolas" '
+        'style:font-adornments="Standard" '
+        'style:font-family-generic="modern" '
+        'style:font-pitch="fixed"/>\n'
+        '  <style:font-face style:name="Courier New" '
+        'svg:font-family="&apos;Courier New&apos;" '
+        'style:font-adornments="Standard" style:font-family-generic="modern" '
+        'style:font-pitch="fixed"/>\n'
+        ' </office:font-face-decls>\n'
+        ' <office:automatic-styles/>\n'
+        ' <office:body>\n'
+        '  <office:text text:use-soft-page-breaks="true">\n\n'
+    )
+    _CONTENT_XML_FOOTER = (
+        '  </office:text>\n'
+        ' </office:body>\n'
+        '</office:document-content>\n'
+    )
+    _META_XML = (
+        '<?xml version="1.0" encoding="utf-8"?>\n'
+        '<office:document-meta xmlns:office="urn:oasis:names:tc:opendocument:'
+        'xmlns:office:1.0" '
+        'xmlns:xlink="http://www.w3.org/1999/xlink" '
+        'xmlns:dc="http://purl.org/dc/elements/1.1/" '
+        'xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" '
+        'xmlns:ooo="http://openoffice.org/2004/office" '
+        'xmlns:grddl="http://www.w3.org/2003/g/data-view#" '
+        'office:version="1.2">\n'
+        '  <office:meta>\n'
+        '    <meta:generator>novelibre</meta:generator>\n'
+        '    <dc:title>$Title</dc:title>\n'
+        '    <dc:description>$Summary</dc:description>\n'
+        '    <dc:subject></dc:subject>\n'
+        '    <meta:keyword></meta:keyword>\n'
+        '    <meta:initial-creator>$Author</meta:initial-creator>\n'
+        '    <dc:creator></dc:creator>\n'
+        '    <meta:creation-date>${Datetime}Z</meta:creation-date>\n'
+        '    <dc:date></dc:date>\n'
+        '  </office:meta>\n'
+        '</office:document-meta>\n'
+    )
+    _MANIFEST_XML = (
+        '<?xml version="1.0" encoding="utf-8"?>\n'
+        '<manifest:manifest '
+        'xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0" '
+        'manifest:version="1.2">\n'
+        '  <manifest:file-entry '
+        'manifest:media-type="application/vnd.oasis.opendocument.text" '
+        'manifest:full-path="/" />\n'
+        '  <manifest:file-entry '
+        'manifest:media-type="application/xml" '
+        'manifest:full-path="content.xml" manifest:version="1.2" />\n'
+        '  <manifest:file-entry manifest:media-type="application/rdf+xml" '
+        'manifest:full-path="manifest.rdf" manifest:version="1.2" />\n'
+        '  <manifest:file-entry '
+        'manifest:media-type="application/xml" manifest:full-path="styles.xml" '
+        'manifest:version="1.2" />\n'
+        '  <manifest:file-entry '
+        'manifest:media-type="application/xml" manifest:full-path="meta.xml" '
+        'manifest:version="1.2" />\n'
+        '  <manifest:file-entry manifest:media-type="application/xml" '
+        'manifest:full-path="settings.xml" manifest:version="1.2" />\n'
+        '</manifest:manifest>\n'
+    )
+    _MANIFEST_RDF = (
+        '<?xml version="1.0" encoding="utf-8"?>\n'
+        '<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">\n'
+        '  <rdf:Description rdf:about="styles.xml">\n'
+        '    <rdf:type rdf:resource='
+        '"http://docs.oasis-open.org/ns/office/1.2/meta/odf#StylesFile"/>\n'
+        '  </rdf:Description>\n'
+        '  <rdf:Description rdf:about="">\n'
+        '    <ns0:hasPart xmlns:ns0='
+        '"http://docs.oasis-open.org/ns/office/1.2/meta/pkg#" '
+        'rdf:resource="styles.xml"/>\n'
+        '  </rdf:Description>\n'
+        '  <rdf:Description rdf:about="content.xml">\n'
+        '    <rdf:type rdf:resource='
+        '"http://docs.oasis-open.org/ns/office/1.2/meta/odf#ContentFile"/>\n'
+        '  </rdf:Description>\n'
+        '  <rdf:Description rdf:about="">\n'
+        '    <ns0:hasPart '
+        'xmlns:ns0="http://docs.oasis-open.org/ns/office/1.2/meta/pkg#" '
+        'rdf:resource="content.xml"/>\n'
+        '  </rdf:Description>\n'
+        '  <rdf:Description rdf:about="">\n'
+        '    <rdf:type rdf:resource='
+        '"http://docs.oasis-open.org/ns/office/1.2/meta/pkg#Document"/>\n'
+        '  </rdf:Description>\n'
+        '</rdf:RDF>\n'
+    )
+    _SETTINGS_XML = (
+        '''<?xml version="1.0" encoding="UTF-8"?>
 
 <office:document-settings xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0" xmlns:ooo="http://openoffice.org/2004/office" office:version="1.2">
  <office:settings>
@@ -185,7 +259,9 @@ class OdtWriter(OdfFile):
  </office:settings>
 </office:document-settings>
 '''
-    _STYLES_XML = '''<?xml version="1.0" encoding="UTF-8"?>
+    )
+    _STYLES_XML = (
+        '''<?xml version="1.0" encoding="UTF-8"?>
 
 <office:document-styles xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:rpt="http://openoffice.org/2005/report" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0">
  <office:font-face-decls>
@@ -353,8 +429,9 @@ class OdtWriter(OdfFile):
  </office:master-styles>
 </office:document-styles>
 '''
-
-    _NOVELIBRE_STYLES = f'''  <style:style style:name="{_('Chapter_20_beginning')}" style:display-name="{_('Chapter beginning')}" style:family="paragraph" style:parent-style-name="Text_20_body" style:next-style-name="First_20_line_20_indent" style:class="text">
+    )
+    _NOVELIBRE_STYLES = (
+        f'''  <style:style style:name="{_('Chapter_20_beginning')}" style:display-name="{_('Chapter beginning')}" style:family="paragraph" style:parent-style-name="Text_20_body" style:next-style-name="First_20_line_20_indent" style:class="text">
   </style:style>
   <style:style style:name="{_('Epigraph')}" style:display-name="{_('Epigraph')}" style:family="paragraph" style:parent-style-name="Quotations" style:next-style-name="{_('Epigraph source')}" style:class="text">
   </style:style>
@@ -369,7 +446,7 @@ class OdtWriter(OdfFile):
    <style:paragraph-properties fo:margin-top="0cm" fo:margin-bottom="0cm" fo:line-height="100%"/>
    <style:text-properties text:display="none"/>
   </style:style>'''
-
+    )
     _NOVELIBRE_STYLE_NAMES = (
         _('Chapter_20_beginning'),
         _('Epigraph'),
@@ -462,12 +539,15 @@ class OdtWriter(OdfFile):
             text -- string to convert.
         
         Optional arguments:
-            quick: bool -- if True, apply a conversion mode for one-liners without formatting.
+            quick: bool -- if True, apply a conversion mode 
+                           for one-liners without formatting.
             append: bool -- if True, indent the first paragraph.
             firstInChapter: bool: -- if True, the section begins a chapter.
             xml: bool -- if True, parse XML content. 
-            linebreaks: bool -- if True and not xml, break the lines instead of creating paragraphs. 
-            firstParagraphStyle: str -- The first paragraph's style, if not xml and not append.
+            linebreaks: bool -- if True and not xml, break the lines 
+                                instead of creating paragraphs. 
+            firstParagraphStyle: str -- The first paragraph's style, 
+                                        if not xml and not append.
         
         Overrides the superclass method.
         """
@@ -478,7 +558,12 @@ class OdtWriter(OdfFile):
             return escape(text)
 
         if xml:
-            self._contentParser.feed(text, self.novel.languages, append, firstInChapter)
+            self._contentParser.feed(
+                text,
+                self.novel.languages,
+                append,
+                firstInChapter,
+            )
             return ''.join(self._contentParser.odtLines)
 
         # Convert plain text into XML.
@@ -486,10 +571,14 @@ class OdtWriter(OdfFile):
         if linebreaks:
             text = '<text:line-break/>'.join(lines)
         else:
-            text = '</text:p><text:p text:style-name="First_20_line_20_indent">'.join(lines)
+            text = (
+                '</text:p><text:p text:style-name="First_20_line_20_indent">'
+            ).join(lines)
         if append:
             firstParagraphStyle = "First_20_line_20_indent"
-        return f'<text:p text:style-name="{firstParagraphStyle}">{text}</text:p>'
+        return (
+            f'<text:p text:style-name="{firstParagraphStyle}">{text}</text:p>'
+        )
 
     def _get_fileHeaderMapping(self):
         """Return a mapping dictionary for the project section.
@@ -500,9 +589,8 @@ class OdtWriter(OdfFile):
         filterMessage = fileHeaderMapping['Filters']
         if filterMessage:
             fileHeaderMapping['Filters'] = filterMessage.replace(
-                'First_20_line_20_indent',
-                'Text_20_body'
-                ).replace('<text:p', '\n<text:p')
+                'First_20_line_20_indent', 'Text_20_body'
+            ).replace('<text:p', '\n<text:p')
         return fileHeaderMapping
 
     def _get_chapterMapping(self, chId, chapterNumber):
@@ -521,13 +609,13 @@ class OdtWriter(OdfFile):
                 self.novel.chapters[chId].epigraph,
                 linebreaks=True,
                 firstParagraphStyle=_('Epigraph'),
-                )
+            )
             epigraphSrc = to_string(self.novel.chapters[chId].epigraphSrc)
             chapterMapping['EpigraphSrc'] = self._convert_from_novx(
                 epigraphSrc,
                 linebreaks=True,
                 firstParagraphStyle=_('Epigraph_20_source'),
-                )
+            )
         return chapterMapping
 
     def _get_sectionMapping(self, scId, sectionNumber, wordsTotal, **kwargs):
@@ -540,7 +628,12 @@ class OdtWriter(OdfFile):
         
         Extends the superclass method.
         """
-        sectionMapping = super()._get_sectionMapping(scId, sectionNumber, wordsTotal, **kwargs)
+        sectionMapping = super()._get_sectionMapping(
+            scId,
+            sectionNumber,
+            wordsTotal,
+            **kwargs
+        )
         sectionMapping['sectionTitle'] = _('Section')
         return sectionMapping
 
@@ -569,25 +662,36 @@ class OdtWriter(OdfFile):
         return stylesXmlStr
 
     def _set_document_language(self, stylesXmlStr):
-        """Return stylesXmlStr with the document language set."""
-        stylesXmlStr = re.sub(r'fo\:language=\".+?\"', f'fo:language="{self.novel.languageCode}"', stylesXmlStr)
-        stylesXmlStr = re.sub(r'fo\:country=\".+?\"', f'fo:country="{self.novel.countryCode}"', stylesXmlStr)
+        # Return stylesXmlStr with the document language set.
+        stylesXmlStr = re.sub(
+            r'fo\:language=\".+?\"',
+            f'fo:language="{self.novel.languageCode}"',
+            stylesXmlStr
+        )
+        stylesXmlStr = re.sub(
+            r'fo\:country=\".+?\"',
+            f'fo:country="{self.novel.countryCode}"',
+            stylesXmlStr
+        )
         return stylesXmlStr
 
     def _set_up(self):
-        """Helper method for ZIP file generation.
-
-        Add rdf manifest to the temporary directory containing the internal structure of an ODF file.
-        Raise the "Error" exception in case of error. 
-        Extends the superclass method.
-        """
+        # Helper method for ZIP file generation.
+        # Add rdf manifest to the temporary directory containing
+        # the internal structure of an ODF file.
+        # Raise the "Error" exception in case of error.
+        # Extends the superclass method.
 
         # Generate the common ODF components.
         super()._set_up()
 
         # Generate manifest.rdf
         try:
-            with open(f'{self._tempDir}/manifest.rdf', 'w', encoding='utf-8') as f:
+            with open(
+                f'{self._tempDir}/manifest.rdf',
+                'w',
+                encoding='utf-8'
+            ) as f:
                 f.write(self._MANIFEST_RDF)
         except:
             raise Error(f'{_("Cannot write file")}: "manifest.rdf"')
