@@ -4,6 +4,7 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+import os
 import sys
 
 from nvlib.controller.commands import Commands
@@ -164,6 +165,7 @@ class MainController(SubController, Commands):
         """
         self.update_status()
         self._ui.propertiesView.apply_changes()
+        pidfile = f'{self._mdl.prjFile.filePath}.pid'
         if self._mdl.isModified and not doNotSave:
             doSave = self._ui.ask_yes_no_cancel(_('Save changes?'))
             if doSave is None:
@@ -188,6 +190,11 @@ class MainController(SubController, Commands):
 
         self.update_status('')
         self.disable_menu()
+
+        try:
+            os.remove(pidfile)
+        except FileNotFoundError:
+            pass
         return True
 
     def on_open(self):

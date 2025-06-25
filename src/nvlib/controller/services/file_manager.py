@@ -219,6 +219,22 @@ class FileManager(ServiceBase):
                 # user aborts
                 return False
 
+        pidfile = f'{filePath}.pid'
+        if os.path.isfile(pidfile):
+            message = (
+                f"{_('This project may be already open in novelibre')}:"
+                '\n'
+                f'"{norm_path(filePath)}"'
+                )
+            if not self._ui.ask_ok_cancel(
+                message=message,
+                detail=_('Open anyway?'),
+            ):
+                return False
+
+        with open(pidfile, 'w') as f:
+            f.write(str(os.getpid()))
+
         self.prefs['last_open'] = filePath
         try:
             self._mdl.open_project(filePath)

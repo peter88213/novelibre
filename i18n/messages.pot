@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.27.3\n"
-"POT-Creation-Date: 2025-06-19 18:19:10\n"
+"Project-Id-Version: 5.28.0\n"
+"POT-Creation-Date: 2025-06-25 11:00:07\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -929,6 +929,9 @@ msgstr ""
 msgid "Open Project folder"
 msgstr ""
 
+msgid "Open anyway?"
+msgstr ""
+
 msgid "Open backup directory"
 msgstr ""
 
@@ -1338,6 +1341,9 @@ msgid "There is no previous section"
 msgstr ""
 
 msgid "This document is not meant to be written back"
+msgstr ""
+
+msgid "This project may be already open in novelibre"
 msgstr ""
 
 msgid "This section has no time set"

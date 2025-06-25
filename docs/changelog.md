@@ -10,6 +10,10 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.28.0
+
+- Preventing accidental opening of the same project in different instances.
+
 
 ### Version 5.27.3
 
