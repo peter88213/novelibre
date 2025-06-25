@@ -145,6 +145,13 @@ class OdfFile(FileExport):
         self._tear_down()
         return f'{_("File written")}: "{norm_path(self.filePath)}".'
 
+    def _escape(self, text):
+        try:
+            return escape(text)
+
+        except AttributeError:
+            return text
+
     def _get_styles_xml_str(self):
         """Return the styles.xml data as a string."""
         self.novel.check_locale()
@@ -221,9 +228,9 @@ class OdfFile(FileExport):
 
         #--- Generate meta.xml with actual document metadata.
         metaMapping = dict(
-            Author=escape(self.novel.authorName),
-            Title=escape(self.novel.title),
-            Summary=escape(self.novel.desc),
+            Author=self._escape(self.novel.authorName),
+            Title=self._escape(self.novel.title),
+            Summary=self._escape(self.novel.desc),
             Datetime=datetime.today().replace(microsecond=0).isoformat(),
         )
         template = Template(self._META_XML)

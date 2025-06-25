@@ -1504,7 +1504,8 @@ class TreeViewer(ttk.Frame, Observer, SubController):
     def _update_node_values(self, nodeId, collect=False):
         # Add/remove node values collected from the node's children.
         # nodeId: str -- Node ID.
-        # collect: bool -- If True, add the collected values; if False, remove them.
+        # collect: bool -- If True, add the collected values;
+        #                  if False, remove them.
         if nodeId.startswith(CHAPTER_PREFIX):
             positionStr = self.tree.item(nodeId)['values'][self._colPos['po']]
             __, nodeValues, __ = self._get_chapter_row_data(

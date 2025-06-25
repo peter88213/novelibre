@@ -45,11 +45,19 @@ class OdtWFormatted(OdtWriter):
                 except:
                     lngCode = 'zxx'
                     ctrCode = 'none'
-                lines.append((f'  <style:style style:name="T{i}" style:family="text">\n'
-                              f'   <style:text-properties fo:language="{lngCode}" fo:country="{ctrCode}" '
-                              f'style:language-asian="{lngCode}" style:country-asian="{ctrCode}" '
-                              f'style:language-complex="{lngCode}" style:country-complex="{ctrCode}"/>\n'
-                              '  </style:style>'))
+                lines.append(
+                    (
+                        f'  <style:style style:name="T{i}" '
+                        'style:family="text">\n'
+                        f'   <style:text-properties '
+                        f'fo:language="{lngCode}" fo:country="{ctrCode}" '
+                        f'style:language-asian="{lngCode}" '
+                        f'style:country-asian="{ctrCode}" '
+                        f'style:language-complex="{lngCode}" '
+                        f'style:country-complex="{ctrCode}"/>\n'
+                        '  </style:style>'
+                    )
+                )
             lines.append(' </office:automatic-styles>')
             styleMapping['automaticStyles'] = '\n'.join(lines)
         else:
