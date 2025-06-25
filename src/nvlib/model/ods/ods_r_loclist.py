@@ -15,12 +15,20 @@ class OdsRLocList(OdsReader):
     """ODS location list reader. """
     DESCRIPTION = _('Location list')
     SUFFIX = LOCLIST_SUFFIX
-    _columnTitles = ['ID', 'Name', 'Description', 'Aka', 'Tags', 'Notes']
+    _columnTitles = [
+        'ID',
+        'Name',
+        'Description',
+        'Aka',
+        'Tags',
+        'Notes',
+    ]
     _idPrefix = LOCATION_PREFIX
 
     def read(self):
-        """Parse the ODS file located at filePath, fetching the location attributes contained.
+        """Parse the ODS file located at filePath.
         
+        Fetch the location attributes contained.
         Extends the superclass method.
         """
         super().read()
@@ -57,7 +65,10 @@ class OdsRLocList(OdsReader):
                 pass
             else:
                 if tags:
-                    self.novel.locations[lcId].tags = string_to_list(tags, divider=self._DIVIDER)
+                    self.novel.locations[lcId].tags = string_to_list(
+                        tags,
+                        divider=self._DIVIDER,
+                    )
 
             #--- notes
             try:

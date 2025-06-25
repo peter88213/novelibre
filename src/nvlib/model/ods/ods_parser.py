@@ -28,7 +28,8 @@ class OdsParser:
             filePath: str -- ODS document path.
             cellsPerRow: int -- Number of cells per row.
         
-        First unzip the ODS file located at self.filePath, then parse content.xml.
+        First unzip the ODS file located at self.filePath, 
+        then parse content.xml.
         """
         root = ET.fromstring(self._unzip_ods_file(filePath))
 
@@ -42,8 +43,12 @@ class OdsParser:
             i = 0
             for cell in row.iterfind('table:table-cell', OdfFile.NAMESPACES):
                 content = ''
-                odfDate = cell.get(f'{{{OdfFile.NAMESPACES["office"]}}}date-value')
-                odfTime = cell.get(f'{{{OdfFile.NAMESPACES["office"]}}}time-value')
+                odfDate = cell.get(
+                    f'{{{OdfFile.NAMESPACES["office"]}}}date-value'
+                )
+                odfTime = cell.get(
+                    f'{{{OdfFile.NAMESPACES["office"]}}}time-value'
+                )
                 if odfDate:
                     cells.append(odfDate)
                 elif odfTime:
@@ -51,7 +56,10 @@ class OdsParser:
                     cells.append(f'{t.group(1)}:{t.group(2)}:{t.group(3)}')
                 elif cell.find('text:p', OdfFile.NAMESPACES) is not None:
                     lines = []
-                    for paragraph in cell.iterfind('text:p', OdfFile.NAMESPACES):
+                    for paragraph in cell.iterfind(
+                        'text:p',
+                        OdfFile.NAMESPACES
+                    ):
                         lines.append(''.join(t for t in paragraph.itertext()))
                     content = '\n'.join(lines)
                     cells.append(content)
@@ -67,7 +75,9 @@ class OdsParser:
                     break
 
                 # Add repeated cells.
-                attribute = cell.get(f'{{{OdfFile.NAMESPACES["table"]}}}number-columns-repeated')
+                attribute = cell.get(
+                    f'{{{OdfFile.NAMESPACES["table"]}}}number-columns-repeated'
+                )
                 if attribute:
                     repeat = int(attribute) - 1
                     for __ in range(repeat):

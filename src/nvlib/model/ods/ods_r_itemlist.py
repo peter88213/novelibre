@@ -15,12 +15,20 @@ class OdsRItemList(OdsReader):
     """ODS item list reader."""
     DESCRIPTION = _('Item list')
     SUFFIX = ITEMLIST_SUFFIX
-    _columnTitles = ['ID', 'Name', 'Description', 'Aka', 'Tags', 'Notes']
+    _columnTitles = [
+        'ID',
+        'Name',
+        'Description',
+        'Aka',
+        'Tags',
+        'Notes',
+    ]
     _idPrefix = ITEM_PREFIX
 
     def read(self):
-        """Parse the ODS file located at filePath, fetching the item attributes contained.
-
+        """Parse the ODS file located at filePath.
+        
+        Fetch the item attributes contained.
         Extends the superclass method.
         """
         super().read()
@@ -57,7 +65,10 @@ class OdsRItemList(OdsReader):
                 pass
             else:
                 if tags:
-                    self.novel.items[itId].tags = string_to_list(tags, divider=self._DIVIDER)
+                    self.novel.items[itId].tags = string_to_list(
+                        tags,
+                        divider=self._DIVIDER,
+                    )
 
             #--- notes
             try:

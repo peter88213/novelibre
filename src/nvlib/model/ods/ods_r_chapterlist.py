@@ -15,12 +15,21 @@ class OdsRChapterList(OdsReader):
 
     DESCRIPTION = _('Chapter list')
     SUFFIX = CHAPTERLIST_SUFFIX
-    _columnTitles = ['ID', 'Chapter', 'Title', 'Description', 'Epigraph', 'Source', 'Notes']
+    _columnTitles = [
+        'ID',
+        'Chapter',
+        'Title',
+        'Description',
+        'Epigraph',
+        'Source',
+        'Notes',
+    ]
     _idPrefix = CHAPTER_PREFIX
 
     def read(self):
-        """Parse the ODS file located at filePath, fetching the Chapter attributes contained.
-
+        """Parse the ODS file located at filePath.
+        
+        Fetch the Chapter attributes contained.
         Extends the superclass method.
         """
         super().read()

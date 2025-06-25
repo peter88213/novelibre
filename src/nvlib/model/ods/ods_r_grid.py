@@ -38,8 +38,9 @@ class OdsRGrid(OdsReader):
     _idPrefix = SECTION_PREFIX
 
     def read(self):
-        """Parse the ODS file located at filePath, fetching the Section attributes contained.
+        """Parse the ODS file located at filePath.
         
+        Fetch the Section attributes contained.
         Extends the superclass method.
         """
         plotLines = self.novel.tree.get_children(PL_ROOT)
@@ -62,7 +63,10 @@ class OdsRGrid(OdsReader):
                     plotlineNotes = {}
                 plotlineNotes[plId] = odsPlotLineNotes.strip()
                 self.novel.sections[scId].plotlineNotes = plotlineNotes
-                if plotlineNotes[plId] and not plId in self.novel.sections[scId].scPlotLines:
+                if (
+                    plotlineNotes[plId]
+                    and not plId in self.novel.sections[scId].scPlotLines
+                ):
                     scPlotLines = self.novel.sections[scId].scPlotLines
                     scPlotLines.append(plId)
                     self.novel.sections[scId].scPlotLines = scPlotLines
@@ -73,14 +77,16 @@ class OdsRGrid(OdsReader):
             #--- date
             try:
                 scDate = self._columns['Date'][scId]
-                self.novel.sections[scId].date = PyCalendar.verified_date(scDate)
+                self.novel.sections[scId].date = PyCalendar.verified_date(
+                    scDate)
             except:
                 pass
 
             #--- time
             try:
                 scTime = self._columns['Time'][scId]
-                self.novel.sections[scId].time = PyCalendar.verified_time(scTime)
+                self.novel.sections[scId].time = PyCalendar.verified_time(
+                    scTime)
             except:
                 pass
 
@@ -144,7 +150,10 @@ class OdsRGrid(OdsReader):
                 pass
             else:
                 if tags:
-                    self.novel.sections[scId].tags = string_to_list(tags, divider=self._DIVIDER)
+                    self.novel.sections[scId].tags = string_to_list(
+                        tags,
+                        divider=self._DIVIDER,
+                    )
                 elif tags is not None:
                     self.novel.sections[scId].tags = None
 
@@ -156,7 +165,8 @@ class OdsRGrid(OdsReader):
             else:
                 if ar:
                     try:
-                        self.novel.sections[scId].scene = Section.SCENE.index(ar)
+                        self.novel.sections[scId].scene = Section.SCENE.index(
+                            ar)
                     except ValueError:
                         pass
 
