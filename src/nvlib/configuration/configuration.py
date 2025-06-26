@@ -75,7 +75,11 @@ class Configuration:
         if self.settings:
             config.add_section(self._sLabel)
             for settingId in self.settings:
-                config.set(self._sLabel, settingId, str(self.settings[settingId]))
+                config.set(
+                    self._sLabel,
+                    settingId,
+                    str(self.settings[settingId]),
+                )
         if self.options:
             config.add_section(self._oLabel)
             for settingId in self.options:

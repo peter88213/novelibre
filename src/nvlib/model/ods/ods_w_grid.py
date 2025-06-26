@@ -14,7 +14,7 @@ from nvlib.nv_locale import _
 
 
 class OdsWGrid(OdsWriter):
-    """ODS plot grid writer."""
+    """ODS plot grid templates."""
 
     DESCRIPTION = _('Plot grid')
     SUFFIX = GRID_SUFFIX

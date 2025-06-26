@@ -25,9 +25,12 @@ class OdtReader(OdfReader, ABC):
     """Abstract ODT file reader class.
     
       HTMLParser-like API used by the XML parser:
-        handle comment(data) -- Process inline comments within section content.
-        handle_data -- Stub for a data handler to be implemented in a subclass.
-        handle_endtag -- Stub for an end tag handler to be implemented in a subclass.
+        handle comment(data) -- Process inline comments 
+                                within section content.
+        handle_data -- Stub for a data handler 
+                       to be implemented in a subclass.
+        handle_endtag -- Stub for an end tag handler 
+                         to be implemented in a subclass.
         handle_starttag(tag, attrs) -- Identify sections and chapters.
     """
     EXTENSION = '.odt'
@@ -36,13 +39,15 @@ class OdtReader(OdfReader, ABC):
         """Initialize the ODT parser and local instance variables for parsing.
         
         Positional arguments:
-            filePath: str -- path to the file represented by the File instance.
+            filePath: str -- path to the file 
+                             represented by the File instance.
             
         Optional arguments:
             kwargs -- keyword arguments to be used by subclasses.            
 
         The ODT parser works like a state machine. 
-        Section ID, chapter ID and processed lines must be saved between the transitions.         
+        Section ID, chapter ID and processed lines must be saved 
+        between the transitions.         
         Extends the superclass constructor.
         """
         super().__init__(filePath)
@@ -74,10 +79,13 @@ class OdtReader(OdfReader, ABC):
         
         Positional arguments:
             tag: str -- name of the tag.
-            attrs -- list of (name, value) pairs containing the attributes found inside the tag’s <> brackets.
+            attrs -- list of (name, value) pairs containing 
+                     the attributes found inside the tag’s <> brackets.
         
-        This method is applicable to ODT files that are divided into chapters and/or sections. 
-        For differently structured ODT files  do override this method in a subclass.
+        This method is applicable to ODT files that are divided into 
+        chapters and/or sections. 
+        For differently structured ODT files override 
+        this method in a subclass.
         """
         if tag == 'div':
 
@@ -115,7 +123,17 @@ class OdtReader(OdfReader, ABC):
         try:
             parser.feed_file(self.filePath)
         except KeyError as ex:
-            raise Error(f'{_("Unknown element in File")}: {norm_path(self.filePath)} - {str(ex)}')
+            raise Error(
+                (
+                    f'{_("Unknown element in File")}: '
+                    f'{norm_path(self.filePath)} - {str(ex)}'
+                )
+            )
         except Exception as ex:
-            raise Error(f'{_("Cannot parse File")}: {norm_path(self.filePath)} - {str(ex)}')
+            raise Error(
+                (
+                    f'{_("Cannot parse File")}: '
+                    '{norm_path(self.filePath)} - {str(ex)}'
+                )
+            )
 

@@ -5,6 +5,7 @@
   "\"No data\"": "Keine Daten",
   "'Not a scene'": "Keine Szene",
   "'Update the timeline?'": "Die Zeitleiste aktualisieren?",
+  "(last saved on {})": "(zuletzt gespeichert: {})",
   "1st Edit": "1. Überarbeitung",
   "1st Level": "Erste Ebene",
   "2nd Edit": "2. Überarbeitung",
@@ -425,6 +426,7 @@
   "Language code": "Sprachencode",
   "Large toolbar icons": "Große Symbole in der Werkzeugleiste",
   "Last event": "Letztes Ereignis",
+  "Last saved on": "Zuletzt gespeichert:",
   "Last section": "Letzter Abschnitt",
   "Latest backup successfully restored.": "Letzte Sicherung erfolgreich wiederhergestellt.",
   "Latest version": "Aktuelle Version",
@@ -581,6 +583,7 @@
   "Open the file for data entry?": "Datei zur Dateneingabe öffnen?",
   "Open the newly created document": "Das neu erzeugte Dokument öffnen",
   "Open the timeline": "Den Zeitstrahl öffnen",
+  "Open this document instead of overwriting it?": "Dieses Dokument öffnen, statt es zu überschreiben?",
   "Open with yWriter": "Mit yWriter öffnen",
   "Open...": "Öffnen...",
   "Opened existing {0} (last saved on {1})": "Bestehende(s) {0} geöffnet (zuletzt gespeichert: {1})",
@@ -1063,6 +1066,7 @@
   "{0}Ambiguous yWriter location \\\"{1}\\\".": "{0}Schauplatz \\\"{1}\\\" mehrfach in yWriter.",
   "{0}Ambiguous yWriter section title \\\"{1}\\\".": "{0}Abschnittstitel \\\"{1}\\\" mehrfach in yWriter.",
   "{0}No {1} file available for this project.": "{0}Keine {1}-Datei für dieses Projekt verfügbar.",
+  "{} already exists.": "{} gibt es schon.",
   "{} created.\\n\\nOpen now?": "{} erzeugt.\\n\\nJetzt öffnen?",
   "{}\\\"AD\\\" era is missing in the calendar.": "{}\\\"AD\\\" Ära fehlt im Kalender"
 }

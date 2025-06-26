@@ -10,7 +10,7 @@ from nvlib.nv_locale import _
 
 
 class OdsWLocList(OdsWriter):
-    """ODS location list writer."""
+    """ODS location list templates."""
     DESCRIPTION = _('Location list')
     SUFFIX = LOCLIST_SUFFIX
 

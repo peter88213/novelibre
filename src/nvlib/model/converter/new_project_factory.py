@@ -19,16 +19,19 @@ from nvlib.model.odt.odt_r_outline import OdtROutline
 
 
 class NewProjectFactory(FileFactory):
-    """A factory class that instantiates a document object to read, 
-    and a new novelibre project.
+    """Factory for a document object to read, and a new novelibre project.
 
     Class constant:
-        DO_NOT_IMPORT -- list of suffixes from file classes not meant to be imported.    
+        DO_NOT_IMPORT -- list of suffixes from file classes 
+                         not meant to be imported.  
     """
     DO_NOT_IMPORT = [XREF_SUFFIX, BRF_SYNOPSIS_SUFFIX]
 
     def new_file_objects(self, sourcePath, **kwargs):
-        """Instantiate a source and a target object for creation of a new novelibre project.
+        """Factory method.
+        
+        Instantiate a source and a target object for creation 
+        of a new novelibre project.
 
         Positional arguments:
             sourcePath: str -- path to the source file to convert.
@@ -40,7 +43,9 @@ class NewProjectFactory(FileFactory):
         Raise the "Error" exception in case of error. 
         """
         if not self._canImport(sourcePath):
-            raise Error(f'{_("This document is not meant to be written back")}.')
+            raise Error(
+                f'{_("This document is not meant to be written back")}.'
+            )
 
         fileName, __ = os.path.splitext(sourcePath)
         targetFile = NovxFile(f'{fileName}{NovxFile.EXTENSION}', **kwargs)
@@ -50,7 +55,12 @@ class NewProjectFactory(FileFactory):
                 with zipfile.ZipFile(sourcePath, 'r') as odfFile:
                     content = odfFile.read('content.xml')
             except:
-                raise Error(f'{_("Cannot read file")}: "{norm_path(sourcePath)}".')
+                raise Error(
+                    (
+                        f'{_("Cannot read file")}: '
+                        f'"{norm_path(sourcePath)}".'
+                    )
+                )
 
             if bytes('Heading_20_3', encoding='utf-8') in content:
                 sourceFile = OdtROutline(sourcePath, **kwargs)
@@ -61,11 +71,18 @@ class NewProjectFactory(FileFactory):
         else:
             for fileClass in self._fileClasses:
                 if fileClass.SUFFIX is not None:
-                    if sourcePath.endswith(f'{fileClass.SUFFIX}{fileClass.EXTENSION}'):
+                    if sourcePath.endswith(
+                        f'{fileClass.SUFFIX}{fileClass.EXTENSION}'
+                    ):
                         sourceFile = fileClass(sourcePath, **kwargs)
                         return sourceFile, targetFile
 
-            raise Error(f'{_("File type is not supported")}: "{norm_path(sourcePath)}".')
+            raise Error(
+                (
+                    f'{_("File type is not supported")}: '
+                    f'"{norm_path(sourcePath)}".'
+                )
+            )
 
     def _canImport(self, sourcePath):
         """Check whether the source file can be imported to novelibre.
@@ -73,7 +90,8 @@ class NewProjectFactory(FileFactory):
         Positional arguments: 
             sourcePath: str -- path of the file to be ckecked.
         
-        Return True, if the file located at sourcepath is of an importable type.
+        Return True, if the file located at sourcepath 
+        is of an importable type.
         Otherwise, return False.
         """
         fileName, __ = os.path.splitext(sourcePath)

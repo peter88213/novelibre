@@ -109,8 +109,12 @@ class Character(WorldElement):
         self.fullName = self._get_element_text(xmlElement, 'FullName')
         self.bio = self._xml_element_to_text(xmlElement.find('Bio'))
         self.goals = self._xml_element_to_text(xmlElement.find('Goals'))
-        self.birthDate = PyCalendar.verified_date(self._get_element_text(xmlElement, 'BirthDate'))
-        self.deathDate = PyCalendar.verified_date(self._get_element_text(xmlElement, 'DeathDate'))
+        self.birthDate = PyCalendar.verified_date(
+            self._get_element_text(xmlElement, 'BirthDate')
+        )
+        self.deathDate = PyCalendar.verified_date(
+            self._get_element_text(xmlElement, 'DeathDate')
+        )
 
     def to_xml(self, xmlElement):
         super().to_xml(xmlElement)

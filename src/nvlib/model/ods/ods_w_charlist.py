@@ -12,7 +12,7 @@ from nvlib.nv_locale import _
 
 
 class OdsWCharList(OdsWriter):
-    """ODS character list writer."""
+    """ODS character list templates."""
 
     DESCRIPTION = _('Character list')
     SUFFIX = CHARLIST_SUFFIX

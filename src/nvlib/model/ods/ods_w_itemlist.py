@@ -10,7 +10,7 @@ from nvlib.nv_locale import _
 
 
 class OdsWItemList(OdsWriter):
-    """ODS item list writer."""
+    """ODS item list templates."""
 
     DESCRIPTION = _('Item list')
     SUFFIX = ITEMLIST_SUFFIX

@@ -70,7 +70,7 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
             _("Discard documents only when sections are split"),
             _("Always discard documents after import"),
             _("Import documents even if locked; do not discard")
-            ]
+        ]
         try:
             importMode = int(prefs['import_mode'])
         except:
@@ -136,7 +136,8 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
 
         self._docTypes = {}
         for docClass in self.IMPORT_SOURCE_CLASSES:
-            self._docTypes[f'{docClass.SUFFIX}{docClass.EXTENSION}'] = docClass.DESCRIPTION
+            self._docTypes[f'{docClass.SUFFIX}{docClass.EXTENSION}'
+                           ] = docClass.DESCRIPTION
 
         self._list_documents()
 
@@ -176,7 +177,8 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
         for file in os.listdir(prjDir):
             for docType in self._docTypes:
                 if file == f'{prjName}{docType}':
-                    self._prjDocuments[f'{prjDir}/{file}'] = self._docTypes[docType]
+                    self._prjDocuments[
+                        f'{prjDir}/{file}'] = self._docTypes[docType]
         self._reset_tree()
         for filePath in self._prjDocuments:
             timestamp = os.path.getmtime(filePath)

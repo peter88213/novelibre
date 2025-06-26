@@ -9,9 +9,10 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 
 class Filter:
-    """Filter an entity (chapter/section/character/location/item) by filter criteria.
+    """Filter an element by filter criteria.
     
-    Strategy class, implementing filtering criteria for template-based export.
+    Strategy class, implementing filtering criteria 
+    for template-based export.
     This is a stub with no filter criteria specified.
     """
 
@@ -23,10 +24,15 @@ class Filter:
             eId -- ID of the entity to check.       
         
         Return True if the entity is not to be filtered out.
-        This is a stub to be overridden by subclass methods implementing filters.
+        This is a stub to be overridden by subclass methods 
+        implementing filters.
         """
         return True
 
     def get_message(self, source):
-        """Return a message about how the document exported from source is filtered."""
+        """Return a message 
+        
+        The message is about how the document exported from source 
+        is filtered.
+        """
         return ''

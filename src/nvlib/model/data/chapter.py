@@ -137,6 +137,8 @@ class Chapter(BasicElementNotes):
         if self.noNumber:
             xmlElement.set('noNumber', '1')
         if self.epigraph:
-            xmlElement.append(self._text_to_xml_element('Epigraph', self.epigraph))
+            xmlElement.append(
+                self._text_to_xml_element('Epigraph', self.epigraph)
+            )
         if self.epigraphSrc:
             ET.SubElement(xmlElement, 'EpigraphSrc').text = self.epigraphSrc

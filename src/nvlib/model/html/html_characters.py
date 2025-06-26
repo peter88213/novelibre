@@ -17,40 +17,41 @@ class HtmlCharacters(HtmlReport):
     EXTENSION = '.html'
     SUFFIX = CHARACTER_REPORT_SUFFIX
 
-    _fileHeader = f'''{HtmlReport._fileHeader}
-<title>{_('Characters')} ($Title)</title>
-</head>
-
-<body>
-<p class=title>$Title {_('by')} $AuthorName - {_('Characters')}</p>
-<table>
-<tr class="heading">
-<td class="chtitle">{_('Name')}</td>
-<td>{_('Full name')}</td>
-<td>{_('AKA')}</td>
-<td>{_('Tags')}</td>
-<td>{_('Description')}</td>
-<td>$CustomChrBio</td>
-<td>$CustomChrGoals</td>
-<td>{_('Birth date')}</td>
-<td>{_('Death date')}</td>
-<td>{_('Notes')}</td>
-</tr>
-'''
-
-    _characterTemplate = '''<tr>
-<td class="chtitle">$Title</td>
-<td>$FullName</td>
-<td>$AKA</td>
-<td>$Tags</td>
-<td>$Desc</td>
-<td>$Bio</td>
-<td>$Goals</td>
-<td>$BirthDate</td>
-<td>$DeathDate</td>
-<td>$Notes</td>
-</tr>
-'''
+    _fileHeader = (
+        f'{HtmlReport._fileHeader}\n'
+        f'<title>{_("Characters")} ($Title)</title>\n'
+        '</head>\n\n'
+        '<body>\n'
+        f'<p class=title>$Title {_("by")} $AuthorName - '
+        f'{_("Characters")}</p>\n'
+        '<table>\n'
+        '<tr class="heading">\n'
+        f'<td class="chtitle">{_("Name")}</td>\n'
+        f'<td>{_("Full name")}</td>\n'
+        f'<td>{_("AKA")}</td>\n'
+        f'<td>{_("Tags")}</td>\n'
+        f'<td>{_("Description")}</td>\n'
+        '<td>$CustomChrBio</td>\n'
+        '<td>$CustomChrGoals</td>\n'
+        f'<td>{_("Birth date")}</td>\n'
+        f'<td>{_("Death date")}</td>\n'
+        f'<td>{_("Notes")}</td>\n'
+        '</tr>\n'
+    )
+    _characterTemplate = (
+        '<tr>\n'
+        '<td class="chtitle">$Title</td>\n'
+        '<td>$FullName</td>\n'
+        '<td>$AKA</td>\n'
+        '<td>$Tags</td>\n'
+        '<td>$Desc</td>\n'
+        '<td>$Bio</td>\n'
+        '<td>$Goals</td>\n'
+        '<td>$BirthDate</td>\n'
+        '<td>$DeathDate</td>\n'
+        '<td>$Notes</td>\n'
+        '</tr>\n'
+    )
 
     def write(self):
         if not self.novel.characters:

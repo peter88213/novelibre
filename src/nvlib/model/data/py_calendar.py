@@ -16,10 +16,12 @@ from nvlib.nv_locale import _
 class PyCalendar:
     """Methods for date/time operations using the Python standard library.
     
-    - Dates are restricted to the range between 0001-01-01 00:00 and 9999.12.31 23:59.
+    - Dates are restricted to the range 
+      between 0001-01-01 00:00 and 9999.12.31 23:59.
     - The extended Gregorian calendar is used.
     - ISO date string format: YYYY-MM-DD.
-    - ISO time string format: hh:mm:ss, where seconds are not displayed. 
+    - ISO time string format: hh:mm:ss, 
+      where seconds are not displayed. 
     """
     # Class methods are used instead of static methods, so they can be extended by subclasses.
 
@@ -64,7 +66,9 @@ class PyCalendar:
     @classmethod
     def duration(cls, startDateIso, startTimeIso, endDateIso, endTimeIso):
         """Return a tuple of strings: days, hours, minutes."""
-        StartDateTime = datetime.fromisoformat(f'{startDateIso}T{startTimeIso}')
+        StartDateTime = datetime.fromisoformat(
+            f'{startDateIso}T{startTimeIso}'
+        )
         endDateTime = datetime.fromisoformat(f'{endDateIso}T{endTimeIso}')
         durationTimedelta = endDateTime - StartDateTime
         lastsHours = durationTimedelta.seconds // 3600
@@ -86,7 +90,9 @@ class PyCalendar:
     @classmethod
     def get_end_date_time(cls, section):
         """Return a tuple: (endDate, endTime) of a given section."""
-        sectionStart = datetime.fromisoformat(f'{section.date} {section.time}')
+        sectionStart = datetime.fromisoformat(
+            f'{section.date} {section.time}'
+        )
         sectionEnd = sectionStart + cls._get_duration(section)
         return sectionEnd.isoformat().split('T')
 
@@ -98,7 +104,9 @@ class PyCalendar:
         else:
             dayInt = 0
         virtualStartDate = (date.min + timedelta(days=dayInt)).isoformat()
-        virtualSectionStart = datetime.fromisoformat(f'{virtualStartDate} {section.time}')
+        virtualSectionStart = datetime.fromisoformat(
+            f'{virtualStartDate} {section.time}'
+        )
         virtualSectionEnd = virtualSectionStart + cls._get_duration(section)
         virtualEndDate, endTime = virtualSectionEnd.isoformat().split('T')
         endDay = str((date.fromisoformat(virtualEndDate) - date.min).days)
@@ -107,7 +115,9 @@ class PyCalendar:
     @classmethod
     def get_end_time(cls, section):
         """ Return the end time of a given section."""
-        virtualSectionStart = datetime.fromisoformat(f'{cls.min} {section.time}')
+        virtualSectionStart = datetime.fromisoformat(
+            f'{cls.min} {section.time}'
+        )
         virtualSectionEnd = virtualSectionStart + cls._get_duration(section)
         return virtualSectionEnd.isoformat().split('T')[1]
 
@@ -122,7 +132,9 @@ class PyCalendar:
             timeStr = '00:00'
         if section.date:
             try:
-                sectionStart = datetime.fromisoformat(f'{section.date} {timeStr}')
+                sectionStart = datetime.fromisoformat(
+                    f'{section.date} {timeStr}'
+                )
             except:
                 return
         else:
@@ -131,7 +143,9 @@ class PyCalendar:
                     dayInt = int(section.day)
                 else:
                     dayInt = 0
-                startDate = (date.fromisoformat(refIso) + timedelta(days=dayInt)).isoformat()
+                startDate = (
+                    date.fromisoformat(refIso) + timedelta(days=dayInt)
+                ).isoformat()
                 sectionStart = datetime.fromisoformat(f'{startDate} {timeStr}')
             except:
                 return
@@ -225,7 +239,9 @@ class PyCalendar:
         diffyears = endDate.year - startDate.year
         difference = endDate - startDate.replace(endDate.year)
         days_in_year = isleap(endDate.year) and 366 or 365
-        years = diffyears + (difference.days + difference.seconds / 86400.0) / days_in_year
+        years = diffyears + (
+            difference.days + difference.seconds / 86400.0
+            ) / days_in_year
         return int(years)
 
     @classmethod

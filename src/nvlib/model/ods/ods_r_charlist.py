@@ -17,12 +17,24 @@ class OdsRCharList(OdsReader):
     """ODS character list reader."""
     DESCRIPTION = _('Character list')
     SUFFIX = CHARLIST_SUFFIX
-    _columnTitles = ['ID', 'Name', 'Full name', 'Aka', 'Description', 'Bio', 'Goals', 'Importance', 'Tags', 'Notes']
+    _columnTitles = [
+        'ID',
+        'Name',
+        'Full name',
+        'Aka',
+        'Description',
+        'Bio',
+        'Goals',
+        'Importance',
+        'Tags',
+        'Notes',
+    ]
     _idPrefix = CHARACTER_PREFIX
 
     def read(self):
-        """Parse the ODS file located at filePath, fetching the Character attributes contained.
-
+        """Parse the ODS file located at filePath. 
+        
+        Fetch the Character attributes contained.
         Extends the superclass method.
         """
         super().read()
@@ -68,7 +80,10 @@ class OdsRCharList(OdsReader):
                 pass
             else:
                 if tags:
-                    self.novel.characters[crId].tags = string_to_list(tags, divider=self._DIVIDER)
+                    self.novel.characters[crId].tags = string_to_list(
+                        tags,
+                        divider=self._DIVIDER
+                    )
 
             #--- notes
             try:

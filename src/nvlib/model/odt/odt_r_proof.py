@@ -26,13 +26,15 @@ class OdtRProof(OdtRFormatted):
         """Initialize the ODT parser and local instance variables for parsing.
         
         Positional arguments:
-            filePath: str -- path to the file represented by the File instance.
+            filePath: str -- path to the file 
+                             represented by the File instance.
             
         Optional arguments:
             kwargs -- keyword arguments to be used by subclasses.            
 
         The ODT parser works like a state machine. 
-        Section ID, chapter ID and processed lines must be saved between the transitions.         
+        Section ID, chapter ID and processed lines must be saved 
+        between the transitions.         
         Extends the superclass constructor.
         """
         super().__init__(filePath)
@@ -48,7 +50,10 @@ class OdtRProof(OdtRFormatted):
         """
         try:
             if f'[{SECTION_PREFIX}' in data:
-                self._scId = f"{SECTION_PREFIX}{re.search('[0-9]+', data).group()}"
+                self._scId = (
+                    f"{SECTION_PREFIX}"
+                    f"{re.search('[0-9]+', data).group()}"
+                )
                 self._lines.clear()
                 return
 
@@ -57,7 +62,8 @@ class OdtRProof(OdtRFormatted):
                     self._lines.pop()
                     # remove the paragraph tag
                     text = ''.join(self._lines)
-                    self.novel.sections[self._scId].sectionContent = text.strip()
+                    self.novel.sections[self._scId
+                                        ].sectionContent = text.strip()
                     self._lines.clear()
                 self._scId = None
                 self._content = False
@@ -85,7 +91,17 @@ class OdtRProof(OdtRFormatted):
                 self._content = True
             return
 
-        if tag in ('em', 'strong', 'comment', 'creator', 'date', 'note', 'note-citation', 'ul', 'li'):
+        if tag in (
+            'em',
+            'strong',
+            'comment',
+            'creator',
+            'date',
+            'note',
+            'note-citation',
+            'ul',
+            'li',
+        ):
             self._lines.append(f'</{tag}>')
             return
 
@@ -112,7 +128,8 @@ class OdtRProof(OdtRFormatted):
         
         Positional arguments:
             tag: str -- name of the tag converted to lower case.
-            attrs -- list of (name, value) pairs containing the attributes found inside the tag’s <> brackets.
+            attrs -- list of (name, value) pairs containing the attributes 
+                    found inside the tag’s <> brackets.
         
         Overrides the superclass method.
         """
@@ -131,7 +148,16 @@ class OdtRProof(OdtRFormatted):
                 self._lines.append(f'<p{attributes}>')
                 return
 
-            if tag in('em', 'strong', 'comment', 'creator', 'date', 'note-citation', 'ul', 'li'):
+            if tag in(
+                'em',
+                'strong',
+                'comment',
+                'creator',
+                'date',
+                'note-citation',
+                'ul',
+                'li',
+            ):
                 self._lines.append(f'<{tag}>')
                 return
 

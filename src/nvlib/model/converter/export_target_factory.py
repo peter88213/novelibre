@@ -12,10 +12,12 @@ from nvlib.nv_locale import _
 
 
 class ExportTargetFactory(FileFactory):
-    """A factory class that instantiates a document object to write."""
+    """Factory for a document object to write."""
 
     def new_file_objects(self, sourcePath, **kwargs):
-        """Instantiate a target object for conversion from a novelibre project.
+        """Factory method.
+        
+        Instantiate a target object for conversion from a novelibre project.
 
         Positional arguments:
             sourcePath: str -- path to the source file to convert.
@@ -35,7 +37,10 @@ class ExportTargetFactory(FileFactory):
             if fileClass.SUFFIX == suffix:
                 if suffix is None:
                     suffix = ''
-                targetFile = fileClass(f'{fileName}{suffix}{fileClass.EXTENSION}', **kwargs)
+                targetFile = fileClass(
+                    f'{fileName}{suffix}{fileClass.EXTENSION}',
+                    **kwargs
+                )
                 return None, targetFile
 
         raise Error(f'{_("Export type is not supported")}: "{suffix}".')

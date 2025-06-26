@@ -10,7 +10,7 @@ from nvlib.model.odt.odt_writer import OdtWriter
 
 
 class OdtWFormatted(OdtWriter):
-    """ODT file writer.
+    """ODT templates.
 
     Provide methods for processing chapters with formatted text.
     """
@@ -22,7 +22,8 @@ class OdtWFormatted(OdtWriter):
         'xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" '
         'xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" '
         'xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" '
-        'xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" '
+        'xmlns:fo="urn:oasis:names:tc:opendocument:'
+        'xmlns:xsl-fo-compatible:1.0" '
         'xmlns:xlink="http://www.w3.org/1999/xlink" '
         'xmlns:dc="http://purl.org/dc/elements/1.1/" '
         'xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" '
@@ -99,7 +100,9 @@ class OdtWFormatted(OdtWriter):
             styleMapping['automaticStyles'] = '<office:automatic-styles/>'
         template = Template(self._CONTENT_XML_HEADER)
         projectTemplateMapping = super()._get_fileHeaderMapping()
-        projectTemplateMapping['ContentHeader'] = template.safe_substitute(styleMapping)
+        projectTemplateMapping['ContentHeader'] = template.safe_substitute(
+            styleMapping
+        )
         return projectTemplateMapping
 
     def _get_text(self):

@@ -12,7 +12,7 @@ from nvlib.nv_locale import _
 
 
 class OdtWPartDesc(OdtWriter):
-    """ODT part summaries file writer.
+    """ODT part summaries templates.
 
     Export a synopsis with invisibly tagged part descriptions.
     """

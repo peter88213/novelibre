@@ -15,7 +15,7 @@ from nvlib.nv_locale import _
 
 
 class OdsWPlotList(OdsWriter):
-    """html plot list representation."""
+    """html plot list templates and writer."""
     DESCRIPTION = _('ODS Plot list')
     SUFFIX = PLOTLIST_SUFFIX
 
@@ -24,7 +24,8 @@ class OdsWPlotList(OdsWriter):
         '\n\n  <style:style style:name="ce5" '
         'style:family="table-cell" style:parent-style-name="Default">\n'
         '   <style:table-cell-properties '
-        'style:text-align-source="value-type" style:repeat-content="false"/>\n'
+        'style:text-align-source="value-type" '
+        'style:repeat-content="false"/>\n'
         '   <style:paragraph-properties fo:margin-left="0cm"/>\n'
         '   <style:text-properties fo:color="#ff0000" fo:font-weight="bold" '
         'style:font-weight-asian="bold" style:font-weight-complex="bold"/>\n'

@@ -10,7 +10,7 @@ from nvlib.model.odf.odf_file import OdfFile
 
 
 class OdsWriter(OdfFile):
-    """Generic OpenDocument spreadsheet document writer."""
+    """Generic OpenDocument spreadsheet templates and writer."""
     EXTENSION = '.ods'
     _ODF_COMPONENTS = [
         'META-INF',

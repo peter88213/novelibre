@@ -11,7 +11,7 @@ from nvlib.nv_locale import _
 
 
 class OdtWProof(OdtWFormatted):
-    """ODT proof reading file writer.
+    """ODT proof reading templates.
 
     Export a manuscript with visibly tagged chapters and sections.
     """

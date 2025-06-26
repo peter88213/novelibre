@@ -36,10 +36,11 @@ class OdtROutline(OdtReader):
         """Initialize local instance variables for parsing.
 
         Positional arguments:
-            filePath: str -- path to the file represented by the Novel instance.
+            filePath: str -- path to the file 
+                             represented by the Novel instance.
             
         The ODT parser works like a state machine. 
-        Chapter and section count must be saved between the transitions.         
+        Chapter and section count must be saved between the transitions.       
         Extends the superclass constructor.
         """
         super().__init__(filePath)
@@ -76,12 +77,16 @@ class OdtROutline(OdtReader):
             return
 
         if tag in ('h1', 'h2'):
-            self.novel.chapters[self._chId].title = unescape(re.sub('<.*?>', '', text).strip())
+            self.novel.chapters[self._chId].title = unescape(
+                re.sub('<.*?>', '', text).strip()
+            )
             self._lines.clear()
             return
 
         if tag == 'h3':
-            self.novel.sections[self._scId].title = unescape(re.sub('<.*?>', '', text).strip())
+            self.novel.sections[self._scId].title = unescape(
+                re.sub('<.*?>', '', text).strip()
+            )
             self._lines.clear()
             return
 
@@ -93,7 +98,8 @@ class OdtROutline(OdtReader):
         
         Positional arguments:
             tag: str -- name of the tag converted to lower case.
-            attrs -- list of (name, value) pairs containing the attributes found inside the tag’s <> brackets.
+            attrs -- list of (name, value) pairs containing the 
+                     attributes found inside the tag’s <> brackets.
         
         Overrides the superclass method.
         """

@@ -10,7 +10,7 @@ from nvlib.model.odt.odt_writer import OdtWriter
 
 
 class OdtWStages(OdtWriter):
-    """ODT story structure file representation.
+    """ODT story structure templates.
 
     Export a story structure description with the stages.
     """

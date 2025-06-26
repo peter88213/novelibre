@@ -10,7 +10,7 @@ from nvlib.nv_locale import _
 
 
 class OdtWPlotlines(OdtWriter):
-    """ODT plot lines description file representation.
+    """ODT plot lines description templates.
 
     Export descriptions of plot lines and plot points.
     """

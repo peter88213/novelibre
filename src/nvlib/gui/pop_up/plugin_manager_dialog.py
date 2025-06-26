@@ -15,8 +15,10 @@ from nvlib.nv_locale import _
 
 
 class PluginManagerDialog(ModalDialog, SubController):
-    """A pop-up window displaying a list of all plugins found on application startup."""
-
+    """A pop-up dialog for managing the plugins. 
+    
+    Displaying a list of all plugins found on application startup.
+    """
     MIN_HEIGHT = 450
 
     def __init__(self, view, controller, **kw):
@@ -32,24 +34,61 @@ class PluginManagerDialog(ModalDialog, SubController):
             self, columns=columns, show='headings', selectmode='browse')
 
         # scrollY = ttk.Scrollbar(
-        #    self._pluginTree, orient='vertical', command=self._pluginTree.yview)
+        #    self._pluginTree, orient='vertical',
+        #    command=self._pluginTree.yview)
         # self._pluginTree.configure(yscrollcommand=scrollY.set)
         # scrollY.pack(side='right', fill='y')
-        #--- unsolved problem: adding a scollbar makes the window shrink to minimum
+        #--- unsolved problem:
+        #    adding a scollbar makes the window shrink to minimum
 
         self._pluginTree.pack(fill='both', expand=True)
         self._pluginTree.bind('<<TreeviewSelect>>', self._on_select_plugin)
         self._pluginTree.tag_configure('rejected', foreground='red')
         self._pluginTree.tag_configure('inactive', foreground='gray')
 
-        self._pluginTree.column('Plugin', width=150, minwidth=120, stretch=False)
-        self._pluginTree.heading('Plugin', text=_('Plugin'), anchor='w')
-        self._pluginTree.column('Version', width=100, minwidth=100, stretch=False)
-        self._pluginTree.heading('Version', text=_('Version'), anchor='w')
-        self._pluginTree.column('novelibre API', width=100, minwidth=100, stretch=False)
-        self._pluginTree.heading('novelibre API', text=_('novelibre API'), anchor='w')
-        self._pluginTree.column('Description', width=400, stretch=True)
-        self._pluginTree.heading('Description', text=_('Description'), anchor='w')
+        self._pluginTree.column(
+            'Plugin',
+            width=150,
+            minwidth=120,
+            stretch=False,
+        )
+        self._pluginTree.heading(
+            'Plugin',
+            text=_('Plugin'),
+            anchor='w',
+        )
+        self._pluginTree.column(
+            'Version',
+            width=100,
+            minwidth=100,
+            stretch=False,
+        )
+        self._pluginTree.heading(
+            'Version',
+            text=_('Version'),
+            anchor='w',
+        )
+        self._pluginTree.column(
+            'novelibre API',
+            width=100,
+            minwidth=100,
+            stretch=False,
+        )
+        self._pluginTree.heading(
+            'novelibre API',
+            text=_('novelibre API'),
+            anchor='w',
+        )
+        self._pluginTree.column(
+            'Description',
+            width=400,
+            stretch=True,
+        )
+        self._pluginTree.heading(
+            'Description',
+            text=_('Description'),
+            anchor='w',
+        )
 
         for pluginName in self._ctrl.plugins:
             nodeTags = []

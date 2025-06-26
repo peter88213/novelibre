@@ -31,8 +31,12 @@ class ExportOptionsDialog(ModalDialog, SubController):
         frame1 = ttk.Frame(window)
         frame1.pack(fill='both', padx=50)
 
-        # Checkbox: Ask whether documents should be opened straight after export.
-        self._askDocOpenVar = tk.BooleanVar(frame1, value=prefs['ask_doc_open'])
+        # Checkbox: Ask whether documents should be opened
+        # straight after export.
+        self._askDocOpenVar = tk.BooleanVar(
+            frame1,
+            value=prefs['ask_doc_open'],
+        )
         ttk.Checkbutton(
             frame1,
             text=_('Ask before opening exported documents'),
@@ -41,7 +45,10 @@ class ExportOptionsDialog(ModalDialog, SubController):
         self._askDocOpenVar.trace('w', self._change_ask_doc_open)
 
         # Checkbox: Lock the project after document export.
-        self._lockOnExportVar = tk.BooleanVar(frame1, value=prefs['lock_on_export'])
+        self._lockOnExportVar = tk.BooleanVar(
+            frame1,
+            value=prefs['lock_on_export'],
+        )
         ttk.Checkbutton(
             frame1,
             text=_('Lock the project after document export for editing'),

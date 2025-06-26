@@ -10,10 +10,12 @@ from nvlib.nv_locale import _
 
 
 class ImportSourceFactory(FileFactory):
-    """A factory class that instantiates a documente object to read."""
+    """Factory for a documente object to read."""
 
     def new_file_objects(self, sourcePath, **kwargs):
-        """Instantiate a source object for conversion to a novelibre project.       
+        """Factory method.
+        
+        Instantiate a source object for conversion to a novelibre project.     
 
         Positional arguments:
             sourcePath: str -- path to the source file to convert.
@@ -26,7 +28,9 @@ class ImportSourceFactory(FileFactory):
         """
         for fileClass in self._fileClasses:
             if fileClass.SUFFIX is not None:
-                if sourcePath.endswith(f'{fileClass.SUFFIX }{fileClass.EXTENSION}'):
+                if sourcePath.endswith(
+                    f'{fileClass.SUFFIX }{fileClass.EXTENSION}'
+                ):
                     sourceFile = fileClass(sourcePath, **kwargs)
                     return sourceFile, None
 

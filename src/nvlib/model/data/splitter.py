@@ -26,7 +26,7 @@ class Splitter:
     Public class constants:
         PART_SEPARATOR -- marker indicating the beginning of a new part,
                           splitting a section.
-        CHAPTER_SEPARATOR -- marker indicating the beginning of a new chapter, 
+        CHAPTER_SEPARATOR -- marker indicating the beginning of a new chapter,
                              splitting a section.
         SCENE_SEPARATOR -- marker indicating the beginning of a new section, 
                            splitting a section.
@@ -139,7 +139,8 @@ class Splitter:
                 if not '#' in novel.sections[scId].sectionContent:
                     continue
 
-                sectionContent = novel.sections[scanScId].sectionContent.replace('</p>', '</p>\n')
+                sectionContent = novel.sections[scanScId].sectionContent
+                sectionContent = sectionContent.replace('</p>', '</p>\n')
                 lines = sectionContent.split('\n')
                 newLines.clear()
                 inSection = True
@@ -150,7 +151,8 @@ class Splitter:
                     plainLine = re.sub(r'\<.*?\>', '', line)
 
                     if '#' in plainLine:
-                        heading = plainLine.strip('# ').split(self.DESC_SEPARATOR)
+                        heading = plainLine.strip('# ').split(
+                            self.DESC_SEPARATOR)
                         title = heading[0]
                         desc = ''
                         if len(heading) > 1:
@@ -159,17 +161,22 @@ class Splitter:
                     if plainLine.startswith(self.SCENE_SEPARATOR):
                         # Split the section.
                         if inSection:
-                            novel.sections[scId].sectionContent = ''.join(newLines)
+                            novel.sections[scId].sectionContent = ''.join(
+                                newLines)
                         newLines.clear()
                         sectionSplitCount += 1
-                        newScId = new_id(novel.sections, prefix=SECTION_PREFIX)
+                        newScId = new_id(
+                            novel.sections,
+                            prefix=SECTION_PREFIX,
+                        )
                         create_section(
                             newScId,
                             novel.sections[scId],
                             sectionSplitCount,
                             title,
                             desc,
-                            plainLine.startswith(self.APPENDED_SCENE_SEPARATOR)
+                            plainLine.startswith(
+                                self.APPENDED_SCENE_SEPARATOR)
                         )
                         novel.tree.append(chId, newScId)
                         scId = newScId
@@ -179,11 +186,15 @@ class Splitter:
                     elif plainLine.startswith(self.CHAPTER_SEPARATOR):
                         # Start a new chapter.
                         if inSection:
-                            novel.sections[scId].sectionContent = ''.join(newLines)
+                            novel.sections[scId].sectionContent = ''.join(
+                                newLines)
                             newLines.clear()
                             sectionSplitCount = 0
                             inSection = False
-                        newChId = new_id(novel.chapters, prefix=CHAPTER_PREFIX)
+                        newChId = new_id(
+                            novel.chapters,
+                            prefix=CHAPTER_PREFIX,
+                        )
                         if not title:
                             title = _('New Chapter')
                         create_chapter(newChId, title, desc, 2)
@@ -195,11 +206,15 @@ class Splitter:
                     elif plainLine.startswith(self.PART_SEPARATOR):
                         # start a new part.
                         if inSection:
-                            novel.sections[scId].sectionContent = ''.join(newLines)
+                            novel.sections[scId].sectionContent = ''.join(
+                                newLines)
                             newLines.clear()
                             sectionSplitCount = 0
                             inSection = False
-                        newChId = new_id(novel.chapters, prefix=CHAPTER_PREFIX)
+                        newChId = new_id(
+                            novel.chapters,
+                            prefix=CHAPTER_PREFIX,
+                        )
                         if not title:
                             title = _('New Part')
                         create_chapter(newChId, title, desc, 1)
@@ -208,10 +223,14 @@ class Splitter:
                         chId = newChId
 
                     elif not inSection:
-                        # Append a section without heading to a new chapter or part.
+                        # Append a section without heading to
+                        # a new chapter or part.
                         newLines.append(line)
                         sectionSplitCount += 1
-                        newScId = new_id(novel.sections, prefix=SECTION_PREFIX)
+                        newScId = new_id(
+                            novel.sections,
+                            prefix=SECTION_PREFIX,
+                        )
                         create_section(
                             newScId,
                             novel.sections[scId],
@@ -229,6 +248,7 @@ class Splitter:
                         newLines.append(line)
 
                 if inSection:
-                    novel.sections[scId].sectionContent = '\n'.join(newLines)
+                    novel.sections[scId].sectionContent = '\n'.join(
+                        newLines)
             chIndex += 1
         return sectionsSplit

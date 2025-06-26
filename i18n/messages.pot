@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.28.1\n"
-"POT-Creation-Date: 2025-06-25 11:47:10\n"
+"Project-Id-Version: 5.28.2\n"
+"POT-Creation-Date: 2025-06-26 21:18:09\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -710,6 +710,9 @@ msgstr ""
 msgid "Large toolbar icons"
 msgstr ""
 
+msgid "Last saved on"
+msgstr ""
+
 msgid "Latest backup successfully restored."
 msgstr ""
 
@@ -945,6 +948,9 @@ msgid "Open link"
 msgstr ""
 
 msgid "Open the created document?"
+msgstr ""
+
+msgid "Open this document instead of overwriting it?"
 msgstr ""
 
 msgid "Open..."
@@ -1562,9 +1568,6 @@ msgstr ""
 msgid "{0} (last saved on {1})"
 msgstr ""
 
-msgid "{0} already exists.\n(last saved on {2})\n{1}.\n\nOpen this document instead of overwriting it?"
-msgstr ""
-
 msgid "{0} does not exist."
 msgstr ""
 
@@ -1572,4 +1575,7 @@ msgid "{0} is not up to date."
 msgstr ""
 
 msgid "{0} parts, {1} chapters, {2} sections, {3} words"
+msgstr ""
+
+msgid "{} already exists."
 msgstr ""

@@ -49,11 +49,17 @@ class NovxConversion:
     """A mixin class with conversion lists.
 
     Class constants:
-        EXPORT_SOURCE_CLASSES -- list of NovxFile subclasses from which can be exported.
-        EXPORT_TARGET_CLASSES -- list of FileExport subclasses to which export is possible.
-        IMPORT_SOURCE_CLASSES -- list of File subclasses from which can be imported.
-        IMPORT_TARGET_CLASSES -- list of NovxFile subclasses to which import is possible.
-        CREATE_SOURCE_CLASSES -- list of additional classes that can converted to a new novelibre project.
+        EXPORT_SOURCE_CLASSES -- list of NovxFile subclasses 
+                                 from which can be exported.
+        EXPORT_TARGET_CLASSES -- list of FileExport subclasses 
+                                 to which export is possible.
+        IMPORT_SOURCE_CLASSES -- list of File subclasses 
+                                 from which can be imported.
+        IMPORT_TARGET_CLASSES -- list of NovxFile subclasses 
+                                 to which import is possible.
+        CREATE_SOURCE_CLASSES -- list of additional classes 
+                                 that can converted 
+                                 to a new novelibre project.
     """
     EXPORT_SOURCE_CLASSES = [NovxFile]
     EXPORT_TARGET_CLASSES = [

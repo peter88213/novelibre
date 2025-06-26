@@ -29,14 +29,16 @@ class File(ABC):
         """Initialize instance variables.
 
         Positional arguments:
-            filePath: str -- path to the file represented by the File instance.
+            filePath: str -- path to the file 
+                             represented by the File instance.
             
         Optional arguments:
             kwargs -- keyword arguments to be used by subclasses.  
         """
         self.novel = None
         self._filePath = None
-        # Path to the file. The setter only accepts files of a supported type as specified by EXTENSION.
+        # Path to the file. The setter only accepts files
+        # of a supported type as specified by EXTENSION.
         self.projectName = None
         # URL-coded file name without suffix and extension.
         self.projectPath = None
@@ -64,11 +66,14 @@ class File(ABC):
             self._filePath = filePath
             try:
                 head, tail = os.path.split(os.path.realpath(filePath))
-                # realpath() completes relative paths, but may not work on virtual file systems.
+                # realpath() completes relative paths,
+                # but may not work on virtual file systems.
             except:
                 head, tail = os.path.split(filePath)
             self.projectPath = quote(head.replace('\\', '/'), '/:')
-            self.projectName = quote(tail.replace(f'{suffix}{self.EXTENSION}', ''))
+            self.projectName = quote(
+                tail.replace(f'{suffix}{self.EXTENSION}', '')
+            )
 
     def is_locked(self):
         """Return True if the file is locked by its application."""

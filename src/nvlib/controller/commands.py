@@ -258,7 +258,11 @@ class Commands:
             self.elementManager.exclude_plot_line()
 
     def export_brief_synopsis(self, event=None):
-        self.fileManager.export_document(BRF_SYNOPSIS_SUFFIX, lock=False, overwrite=True)
+        self.fileManager.export_document(
+            BRF_SYNOPSIS_SUFFIX,
+            lock=False,
+            overwrite=True,
+        )
 
     def export_chapter_desc(self, event=None):
         self.fileManager.export_document(CHAPTERS_SUFFIX)
@@ -273,7 +277,11 @@ class Commands:
         self.fileManager.export_document(CHARLIST_SUFFIX)
 
     def export_cross_references(self, event=None):
-        self.fileManager.export_document(XREF_SUFFIX, lock=False, overwrite=True)
+        self.fileManager.export_document(
+            XREF_SUFFIX,
+            lock=False,
+            overwrite=True,
+        )
 
     def export_final_document(self, event=None):
         self.fileManager.export_document('', lock=False)
@@ -335,15 +343,26 @@ class Commands:
         if not self.check_lock():
             self.elementManager.import_elements(LOCATION_PREFIX)
 
-    def import_odf(self, sourcePath=None, defaultExtension='.odt', parent=None):
+    def import_odf(
+            self,
+            sourcePath=None,
+            defaultExtension='.odt',
+            parent=None,
+    ):
         """Update or create the project from an ODF document.
         
         Optional arguments:
-            sourcePath: str -- Path specifying the source document. If None, a file picker is used.
-            defaultExtension: str -- Extension to be preset in the file picker.
+            sourcePath: str -- Path specifying the source document. 
+                               If None, a file picker is used.
+            defaultExtension: str -- Extension to be preset 
+                                     in the file picker.
         """
         if not self.check_lock():
-            self.fileManager.import_odf(sourcePath, defaultExtension, parent)
+            self.fileManager.import_odf(
+                sourcePath,
+                defaultExtension,
+                parent,
+            )
 
     def import_plot_lines(self, event=None):
         if not self.check_lock():
@@ -360,7 +379,8 @@ class Commands:
             scId0: str -- ID of the section to be extended
             scId1: str -- ID of the section to be discarded.
             
-        If not both arguments are given, determine them from the tree selection.
+        If not both arguments are given, 
+        determine them from the tree selection.
         """
         if not self.check_lock():
             self.elementManager.join_sections(scId0, scId1)
@@ -431,7 +451,10 @@ class Commands:
         Display project title, description and status.
         Return True on success, otherwise return False.
         """
-        return self.fileManager.open_project(filePath=filePath, doNotSave=doNotSave)
+        return self.fileManager.open_project(
+            filePath=filePath,
+            doNotSave=doNotSave,
+        )
 
     def open_project_folder(self, event=None):
         """Open the project folder with the OS file manager."""
@@ -572,9 +595,14 @@ class Commands:
         return 'break'
 
     def update_from_manuscript(self, event=None):
-        """Update the project from the previously exported manuscript document."""
+        """Re-import the manuscript.
+        
+        Update the project from the previously exported manuscript document.
+        """
         if not self.check_lock():
             fileName, __ = os.path.splitext(self._mdl.prjFile.filePath)
-            self.fileManager.import_odf(sourcePath=f'{fileName}{MANUSCRIPT_SUFFIX}.odt')
+            self.fileManager.import_odf(
+                sourcePath=f'{fileName}{MANUSCRIPT_SUFFIX}.odt'
+            )
         return 'break'
 

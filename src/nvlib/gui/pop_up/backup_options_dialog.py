@@ -110,7 +110,11 @@ class BackupOptionsDialog(ModalDialog, SubController):
         self._ui.restore_status()
         if not os.path.isdir(prefs['backup_dir']):
             self._ui.set_status(
-                f'#{_("Backup directory not found")}. {_("Please check the setting")}.')
+                (
+                    f'#{_("Backup directory not found")}. '
+                    f'{_("Please check the setting")}.'
+                )
+            )
             return
 
         try:

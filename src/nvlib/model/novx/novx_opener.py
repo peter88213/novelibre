@@ -23,8 +23,9 @@ class NovxOpener:
         try:
             xmlTree = ET.parse(filePath)
         except Exception as ex:
+            normPath = norm_path(filePath)
             raise Error(
-                f'{_("Cannot process file")}: "{norm_path(filePath)}" - {str(ex)}'
+                f'{_("Cannot process file")}: "{normPath}" - {str(ex)}'
             )
 
         xmlRoot = xmlTree.getroot()

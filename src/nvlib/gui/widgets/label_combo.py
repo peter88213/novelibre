@@ -2,7 +2,8 @@
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
-Published under the MIT License (https://opensource.org/licenses/mit-license.php)
+Published under the MIT License 
+(https://opensource.org/licenses/mit-license.php)
 """
 from tkinter import ttk
 
@@ -11,7 +12,8 @@ class LabelCombo(ttk.Frame):
     """Combobox with a label.
     
     Credit goes to user stovfl on stackoverflow
-    https://stackoverflow.com/questions/54584673/how-to-keep-tkinter-button-on-same-row-as-label-and-entry-box
+    https://stackoverflow.com/questions/54584673/
+    how-to-keep-tkinter-button-on-same-row-as-label-and-entry-box
     """
 
     def __init__(self, parent, text, textvariable, values, lblWidth=10):
@@ -19,7 +21,11 @@ class LabelCombo(ttk.Frame):
         self.pack(fill='x')
         self._label = ttk.Label(self, text=text, anchor='w', width=lblWidth)
         self._label.pack(side='left')
-        self.combo = ttk.Combobox(self, textvariable=textvariable, values=values)
+        self.combo = ttk.Combobox(
+            self,
+            textvariable=textvariable,
+            values=values,
+        )
         self.combo.pack(side='left', fill='x', expand=True)
 
     def current(self):

@@ -10,7 +10,7 @@ from nvlib.nv_locale import _
 
 
 class OdsWPartList(OdsWChapterList):
-    """ODS part list writer."""
+    """ODS part list templates."""
 
     DESCRIPTION = _('Part list')
     SUFFIX = PARTLIST_SUFFIX

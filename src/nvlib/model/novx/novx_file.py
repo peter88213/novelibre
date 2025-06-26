@@ -102,8 +102,10 @@ class NovxFile(File):
                 self.novel.chapters[chId].chType = partType
             for scId in self.novel.tree.get_children(chId):
                 if (self.novel.sections[scId].scType
-                        < self.novel.chapters[chId].chType):
-                    self.novel.sections[scId].scType = self.novel.chapters[chId].chType
+                        < self.novel.chapters[chId].chType
+                ):
+                    self.novel.sections[scId].scType = self.novel.chapters[
+                        chId].chType
 
     def count_words(self):
         """Return a tuple of word count totals.
@@ -134,11 +136,16 @@ class NovxFile(File):
             self.MINOR_VERSION,
         )
         try:
-            locale = xmlRoot.attrib['{http://www.w3.org/XML/1998/namespace}lang']
+            locale = xmlRoot.attrib[
+                '{http://www.w3.org/XML/1998/namespace}lang'
+            ]
         except KeyError:
             pass
         else:
-            self.novel.languageCode, self.novel.countryCode = locale.split('-')
+            (
+                self.novel.languageCode,
+                self.novel.countryCode
+            ) = locale.split('-')
         self.novel.tree.reset()
         try:
             self._read_project_data(xmlRoot)
@@ -199,41 +206,74 @@ class NovxFile(File):
             self.novel.chapters[chId].to_xml(xmlChapter)
             for scId in self.novel.tree.get_children(chId):
                 self.novel.sections[scId].to_xml(
-                    ET.SubElement(xmlChapter, 'SECTION', attrib={'id': scId}))
+                    ET.SubElement(
+                        xmlChapter,
+                        'SECTION',
+                        attrib={'id': scId},
+                    )
+                )
 
     def _build_characters(self, root):
         xmlCharacters = ET.SubElement(root, 'CHARACTERS')
         for crId in self.novel.tree.get_children(CR_ROOT):
             self.novel.characters[crId].to_xml(
-                ET.SubElement(xmlCharacters, 'CHARACTER', attrib={'id': crId}))
+                ET.SubElement(
+                    xmlCharacters,
+                    'CHARACTER',
+                    attrib={'id': crId},
+                )
+            )
 
     def _build_locations(self, root):
         xmlLocations = ET.SubElement(root, 'LOCATIONS')
         for lcId in self.novel.tree.get_children(LC_ROOT):
             self.novel.locations[lcId].to_xml(
-                ET.SubElement(xmlLocations, 'LOCATION', attrib={'id': lcId}))
+                ET.SubElement(
+                    xmlLocations,
+                    'LOCATION',
+                    attrib={'id': lcId},
+                )
+            )
 
     def _build_items(self, root):
         xmlItems = ET.SubElement(root, 'ITEMS')
         for itId in self.novel.tree.get_children(IT_ROOT):
             self.novel.items[itId].to_xml(
-                ET.SubElement(xmlItems, 'ITEM', attrib={'id': itId}))
+                ET.SubElement(
+                    xmlItems,
+                    'ITEM',
+                    attrib={'id': itId},
+                )
+            )
 
     def _build_plot_lines_and_points(self, root):
         xmlPlotLines = ET.SubElement(root, 'ARCS')
         for plId in self.novel.tree.get_children(PL_ROOT):
             xmlPlotLine = ET.SubElement(
-                xmlPlotLines, 'ARC', attrib={'id': plId})
+                xmlPlotLines,
+                'ARC',
+                attrib={'id': plId},
+            )
             self.novel.plotLines[plId].to_xml(xmlPlotLine)
             for ppId in self.novel.tree.get_children(plId):
                 self.novel.plotPoints[ppId].to_xml(
-                    ET.SubElement(xmlPlotLine, 'POINT', attrib={'id': ppId}))
+                    ET.SubElement(
+                        xmlPlotLine,
+                        'POINT',
+                        attrib={'id': ppId},
+                    )
+                )
 
     def _build_project_notes(self, root):
         xmlProjectNotes = ET.SubElement(root, 'PROJECTNOTES')
         for pnId in self.novel.tree.get_children(PN_ROOT):
-            self.novel.projectNotes[pnId].to_xml(ET.SubElement(
-                xmlProjectNotes, 'PROJECTNOTE', attrib={'id': pnId}))
+            self.novel.projectNotes[pnId].to_xml(
+                ET.SubElement(
+                    xmlProjectNotes,
+                    'PROJECTNOTE',
+                    attrib={'id': pnId},
+                )
+            )
 
     def _build_word_count_log(self, root):
         if not self.wcLog:
@@ -246,7 +286,10 @@ class NovxFile(File):
             wcCount, wcTotalCount = self.wcLog[wc]
             if self.novel.saveWordCount:
                 # Skip entries with unchanged word count.
-                if wcCount == wcLastCount and wcTotalCount == wcLastTotalCount:
+                if (
+                    wcCount == wcLastCount
+                    and wcTotalCount == wcLastTotalCount
+                ):
                     continue
 
                 wcLastCount = wcCount
@@ -278,7 +321,10 @@ class NovxFile(File):
         latestDate = list(self.wcLog)[-1]
         latestCount = self.wcLog[latestDate][0]
         latestTotalCount = self.wcLog[latestDate][1]
-        if actualCount != latestCount or actualTotalCount != latestTotalCount:
+        if (
+            actualCount != latestCount
+            or actualTotalCount != latestTotalCount
+        ):
             try:
                 fileDateIso = date.fromtimestamp(self.timestamp).isoformat()
             except Exception:

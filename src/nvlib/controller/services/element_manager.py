@@ -65,7 +65,8 @@ class ElementManager(ServiceBase):
         Keyword arguments:
             targetNode: str -- Tree position where to place a new node.
             title: str -- Element title. Default: Auto-generated title.
-            isMajor: bool -- If True, make the new character a major character. Default: False.
+            isMajor: bool -- If True, make the new character a major character. 
+                             Default: False.
             
         Return the element's ID, if successful.
         """
@@ -336,7 +337,8 @@ class ElementManager(ServiceBase):
             scene: int -- Scene kind. Default = 0.
             appendToPrev: bool -- Append to previous section. Default: False.
             
-        - Place the new node at the next free position after the selection, if possible.
+        - Place the new node at the next free position after the selection, 
+          if possible.
         - Otherwise, do nothing. 
         
         Return the section ID, if successful.
@@ -407,23 +409,50 @@ class ElementManager(ServiceBase):
 
             if elemId.startswith(SECTION_PREFIX):
                 if self._mdl.novel.sections[elemId].scType < 2:
-                    candidate = (_("Section"), self._mdl.novel.sections[elemId].title)
+                    candidate = (
+                        _("Section"),
+                        self._mdl.novel.sections[elemId].title
+                    )
                 else:
-                    candidate = (_("Stage"), self._mdl.novel.sections[elemId].title)
+                    candidate = (
+                        _("Stage"),
+                        self._mdl.novel.sections[elemId].title
+                    )
             elif elemId.startswith(CHAPTER_PREFIX):
-                candidate = (_("Chapter"), self._mdl.novel.chapters[elemId].title)
+                candidate = (
+                    _("Chapter"),
+                    self._mdl.novel.chapters[elemId].title
+                )
             elif elemId.startswith(CHARACTER_PREFIX):
-                candidate = (_("Character"), self._mdl.novel.characters[elemId].title)
+                candidate = (
+                    _("Character"),
+                    self._mdl.novel.characters[elemId].title
+                )
             elif elemId.startswith(LOCATION_PREFIX):
-                candidate = (_("Location"), self._mdl.novel.locations[elemId].title)
+                candidate = (
+                    _("Location"),
+                    self._mdl.novel.locations[elemId].title
+                )
             elif elemId.startswith(ITEM_PREFIX):
-                candidate = (_("Item"), self._mdl.novel.items[elemId].title)
+                candidate = (
+                    _("Item"),
+                    self._mdl.novel.items[elemId].title
+                )
             elif elemId.startswith(PLOT_LINE_PREFIX):
-                candidate = (_("Plot line"), self._mdl.novel.plotLines[elemId].title)
+                candidate = (
+                    _("Plot line"),
+                    self._mdl.novel.plotLines[elemId].title
+                )
             elif elemId.startswith(PLOT_POINT_PREFIX):
-                candidate = (_("Plot point"), self._mdl.novel.plotPoints[elemId].title)
+                candidate = (
+                    _("Plot point"),
+                    self._mdl.novel.plotPoints[elemId].title
+                )
             elif elemId.startswith(PRJ_NOTE_PREFIX):
-                candidate = (_("Project note"), self._mdl.novel.projectNotes[elemId].title)
+                candidate = (
+                    _("Project note"),
+                    self._mdl.novel.projectNotes[elemId].title
+                )
             else:
                 return
 
@@ -437,7 +466,10 @@ class ElementManager(ServiceBase):
 
             elif ask:
                 result = self._ui.ask_delete_all_skip_cancel(
-                    text=f"\n\n{_('Delete {}?').format(elementType)}\n\n{elementTitle}\n",
+                    text=(
+                        f"\n\n{_('Delete {}?').format(elementType)}\n\n"
+                        f"{elementTitle}\n"
+                    ),
                     default=0,
                     title=_('Delete multiple elements'),
                 )
@@ -449,8 +481,13 @@ class ElementManager(ServiceBase):
 
                 if result == 1:
                     ask = False
-            if elemId.startswith(CHAPTER_PREFIX) or elemId.startswith(PLOT_LINE_PREFIX):
-                deletedChildren.extend(self._ui.tv.tree.get_children(elemId))
+            if (
+                elemId.startswith(CHAPTER_PREFIX)
+                or elemId.startswith(PLOT_LINE_PREFIX)
+            ):
+                deletedChildren.extend(
+                    self._ui.tv.tree.get_children(elemId)
+                )
             self._mdl.delete_element(elemId)
             if elemId == elements[0]:
                 selectAfterDeleting = newSelection
@@ -527,7 +564,8 @@ class ElementManager(ServiceBase):
             scId0: str -- ID of the section to be extended
             scId1: str -- ID of the section to be discarded.
             
-        If not both arguments are given, determine them from the tree selection.
+        If not both arguments are given, 
+        determine them from the tree selection.
         """
         if self._mdl.prjFile is None:
             return
@@ -551,7 +589,10 @@ class ElementManager(ServiceBase):
 
         if self._ui.ask_yes_no(
             message=_('Join with previous?'),
-            detail=f"{self._mdl.novel.sections[scId0].title} & {self._mdl.novel.sections[scId1].title}"
+            detail=(
+                f"{self._mdl.novel.sections[scId0].title} & "
+                f"{self._mdl.novel.sections[scId1].title}"
+            )
         ):
             try:
                 self._mdl.join_sections(scId0, scId1)
@@ -592,7 +633,8 @@ class ElementManager(ServiceBase):
         """Set character status to Major.
         
         Optional arguments:
-            isMajor: bool -- If True, make the characters major. Otherwise, make them minor.
+            isMajor: bool -- If True, make the characters major. 
+                             Otherwise, make them minor.
             elemIds: list of character IDs to process.
         """
         if self._mdl.prjFile is None:
@@ -717,5 +759,7 @@ class ElementManager(ServiceBase):
             self._ui.propertiesView.show_properties(newNode)
             self._ui.propertiesView.focus_title()
         else:
-            self._ui.set_status(f'!{_("Cannot create the element at this position")}.')
+            self._ui.set_status(
+                f'!{_("Cannot create the element at this position")}.'
+            )
 

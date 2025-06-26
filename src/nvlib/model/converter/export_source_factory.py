@@ -13,10 +13,12 @@ from nvlib.nv_locale import _
 
 
 class ExportSourceFactory(FileFactory):
-    """A factory class that instantiates a novx file object to read."""
+    """Factory for a novx file object to read."""
 
     def new_file_objects(self, sourcePath, **kwargs):
-        """Instantiate a source object for conversion from a novelibre project.
+        """Factory method.
+        
+        Instantiate a source object for conversion from a novelibre project.
 
         Positional arguments:
             sourcePath: str -- path to the source file to convert.

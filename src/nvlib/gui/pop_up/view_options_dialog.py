@@ -34,7 +34,10 @@ class ViewOptionsDialog(ModalDialog, SubController):
         frame1 = ttk.Frame(window)
         frame1.pack(fill='both', side='left')
 
-        ttk.Separator(window, orient='vertical').pack(fill='y', padx=10, side='left')
+        ttk.Separator(
+            window,
+            orient='vertical',
+        ).pack(fill='y', padx=10, side='left')
         frame2 = ttk.Frame(window)
         frame2.pack(fill='both', side='left')
 
@@ -57,7 +60,10 @@ class ViewOptionsDialog(ModalDialog, SubController):
         ttk.Separator(frame1, orient='horizontal').pack(fill='x', pady=10)
 
         # Checkbox for large toolbar buttons.
-        self._largeIconsVar = tk.BooleanVar(frame1, value=prefs['large_icons'])
+        self._largeIconsVar = tk.BooleanVar(
+            frame1,
+            value=prefs['large_icons'],
+        )
         ttk.Checkbutton(
             frame1,
             text=_('Large toolbar icons'),
@@ -66,7 +72,10 @@ class ViewOptionsDialog(ModalDialog, SubController):
         ).pack(padx=5, pady=5, anchor='w')
 
         # Checkbox for ISO-formatted date display.
-        self._localizeDate = tk.BooleanVar(frame1, value=prefs['localize_date'])
+        self._localizeDate = tk.BooleanVar(
+            frame1,
+            value=prefs['localize_date'],
+        )
         ttk.Checkbutton(
             frame1,
             text=_('Display localized dates'),
@@ -82,7 +91,9 @@ class ViewOptionsDialog(ModalDialog, SubController):
         self._coIdsByTitle = {}
         for coId, title, __ in self._ui.tv.columns:
             self._coIdsByTitle[title] = coId
-        self._colEntriesVar = tk.Variable(value=list(self._coIdsByTitle))
+        self._colEntriesVar = tk.Variable(
+            value=list(self._coIdsByTitle),
+        )
         DragDropListbox(
             frame2,
             listvariable=self._colEntriesVar,

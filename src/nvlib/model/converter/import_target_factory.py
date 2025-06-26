@@ -12,10 +12,12 @@ from nvlib.nv_locale import _
 
 
 class ImportTargetFactory(FileFactory):
-    """A factory class that instantiates a novx file object to write."""
+    """Factory for a novx file object to write."""
 
     def new_file_objects(self, sourcePath, **kwargs):
-        """Instantiate a target object for conversion to a novelibre project.
+        """Factory method.
+        
+        Instantiate a target object for conversion to a novelibre project.
 
         Positional arguments:
             sourcePath: str -- path to the source file to convert.
@@ -33,7 +35,8 @@ class ImportTargetFactory(FileFactory):
         sourceSuffix = kwargs['suffix']
         if sourceSuffix:
             # Remove the suffix from the source file name.
-            # This should also work if the file name already contains the suffix,
+            # This should also work if the file name
+            # already contains the suffix,
             # e.g. "test_notes_notes.odt".
             e = fileName.split(sourceSuffix)
             if len(e) > 1:
@@ -45,7 +48,10 @@ class ImportTargetFactory(FileFactory):
         # Look for an existing novelibre project to rewrite.
         for fileClass in self._fileClasses:
             if os.path.isfile(f'{ywPathBasis}{fileClass.EXTENSION}'):
-                targetFile = fileClass(f'{ywPathBasis}{fileClass.EXTENSION}', **kwargs)
+                targetFile = fileClass(
+                    f'{ywPathBasis}{fileClass.EXTENSION}',
+                    **kwargs
+                )
                 return None, targetFile
 
         raise Error(f'{_("No novelibre project to write")}.')

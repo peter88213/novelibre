@@ -10,7 +10,7 @@ from nvlib.nv_locale import _
 
 
 class OdtWManuscript(OdtWFormatted):
-    """ODT manuscript file writer.
+    """ODT manuscript templates.
 
     Export a manuscript with invisibly tagged chapters and sections.
     """

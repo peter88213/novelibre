@@ -21,7 +21,8 @@ class OdtRLocations(OdtReader):
         """Initialize local instance variables for parsing.
 
         Positional arguments:
-            filePath: str -- path to the file represented by the Novel instance.
+            filePath: str -- path to the file 
+            represented by the Novel instance.
             
         The ODT parser works like a state machine. 
         The location ID must be saved between the transitions.         
@@ -55,7 +56,8 @@ class OdtRLocations(OdtReader):
             return
 
         if tag == 'div':
-            self.novel.locations[self._lcId].desc = ''.join(self._lines).rstrip()
+            self.novel.locations[self._lcId].desc = ''.join(
+                self._lines).rstrip()
             self._lines.clear()
             self._lcId = None
             return

@@ -46,7 +46,17 @@ class OdtRManuscript(OdtRFormatted):
             self._lines.append('</p>')
             return
 
-        if tag in ('em', 'strong', 'comment', 'creator', 'date', 'note', 'note-citation', 'ul', 'li'):
+        if tag in (
+            'em',
+            'strong',
+            'comment',
+            'creator',
+            'date',
+            'note',
+            'note-citation',
+            'ul',
+            'li',
+        ):
             self._lines.append(f'</{tag}>')
             return
 
@@ -73,9 +83,11 @@ class OdtRManuscript(OdtRFormatted):
         
         Positional arguments:
             tag: str -- name of the tag converted to lower case.
-            attrs -- list of (name, value) pairs containing the attributes found inside the tag’s <> brackets.
+            attrs -- list of (name, value) pairs containing the 
+                     attributes found inside the tag’s <> brackets.
         
-        Extends the superclass method by processing inline chapter and section dividers.
+        Extends the superclass method by processing inline chapter 
+        and section dividers.
         """
         super().handle_starttag(tag, attrs)
 
@@ -103,7 +115,16 @@ class OdtRManuscript(OdtRFormatted):
             self._lines.append(f'<p{attributes}>')
             return
 
-        if tag in('em', 'strong', 'comment', 'creator', 'date', 'note-citation', 'ul', 'li'):
+        if tag in(
+            'em',
+            'strong',
+            'comment',
+            'creator',
+            'date',
+            'note-citation',
+            'ul',
+            'li',
+        ):
             self._lines.append(f'<{tag}>')
             return
 

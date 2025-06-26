@@ -9,7 +9,7 @@ from nvlib.model.exporter.ch_pl_filter import ChPlFilter
 from nvlib.model.exporter.ch_vp_filter import ChVpFilter
 from nvlib.model.exporter.sc_pl_filter import ScPlFilter
 from nvlib.model.exporter.sc_vp_filter import ScVpFilter
-from nvlib.model.file.filter import Filter
+from nvlib.model.exporter.filter import Filter
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import PLOT_LINE_PREFIX
@@ -22,8 +22,8 @@ class FilterFactory:
         """Return a Filter (or subclass) instance.
         
         Positional arguments: 
-            filterElementId: str -- ID of the element that serves as filter criteria. 
-        
+            filterElementId: str -- ID of the element that serves 
+                                    as filter criteria. 
         """
         if filterElementId.startswith(CHARACTER_PREFIX):
             return ScVpFilter(filterElementId)
@@ -38,8 +38,8 @@ class FilterFactory:
         """Return a Filter (or subclass) instance.
         
         Positional arguments: 
-            filterElementId: str -- ID of the element that serves as filter criteria. 
-        
+            filterElementId: str -- ID of the element that serves 
+                                    as filter criteria. 
         """
         if filterElementId.startswith(CHARACTER_PREFIX):
             return ChVpFilter(filterElementId)

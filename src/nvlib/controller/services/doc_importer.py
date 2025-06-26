@@ -28,9 +28,15 @@ class DocImporter(ServiceBase, NovxConversion):
     def __init__(self, model, view, controller):
         """Set up the Factory strategies."""
         super().__init__(model, view, controller)
-        self.importSourceFactory = ImportSourceFactory(self.IMPORT_SOURCE_CLASSES)
-        self.newProjectFactory = NewProjectFactory(self.CREATE_SOURCE_CLASSES)
-        self.importTargetFactory = ImportTargetFactory([NovxFile])
+        self.importSourceFactory = ImportSourceFactory(
+            self.IMPORT_SOURCE_CLASSES
+        )
+        self.newProjectFactory = NewProjectFactory(
+            self.CREATE_SOURCE_CLASSES
+        )
+        self.importTargetFactory = ImportTargetFactory(
+            [NovxFile]
+        )
         self.newFile = None
         self.prefs = self._ctrl.get_preferences()
 
@@ -47,7 +53,10 @@ class DocImporter(ServiceBase, NovxConversion):
 
         if self.newFile:
             self._ctrl.open_project(filePath=self.newFile)
-            if os.path.isfile(sourcePath) and self.prefs['import_mode'] == '1':
+            if (
+                os.path.isfile(sourcePath)
+                and self.prefs['import_mode'] == '1'
+            ):
                 os.replace(sourcePath, f'{sourcePath}.bak')
                 message = f'{message} - {_("Source document deleted")}.'
             self._ui.set_status(message)
@@ -68,14 +77,26 @@ class DocImporter(ServiceBase, NovxConversion):
             raise Error(f'{_("File not found")}: "{norm_path(sourcePath)}".')
 
         try:
-            source, __ = self.importSourceFactory.new_file_objects(sourcePath, **kwargs)
+            source, __ = self.importSourceFactory.new_file_objects(
+                sourcePath,
+                **kwargs
+            )
         except Error:
 
             #--- Import a document without section markers.
-            source, target = self.newProjectFactory.new_file_objects(sourcePath, **kwargs)
+            source, target = self.newProjectFactory.new_file_objects(
+                sourcePath,
+                **kwargs
+            )
             if os.path.isfile(target.filePath):
-                # do not overwrite an existing novelibre project with a non-tagged document
-                raise Error(f'{_("File already exists")}: "{norm_path(target.filePath)}".')
+                # do not overwrite an existing novelibre project
+                # with a non-tagged document
+                raise Error(
+                    (
+                        f'{_("File already exists")}: '
+                        f'"{norm_path(target.filePath)}".'
+                    )
+                )
 
             self._check_source_file(source)
             source.novel = self._mdl.nvService.new_novel()
@@ -89,7 +110,10 @@ class DocImporter(ServiceBase, NovxConversion):
 
             #--- Import a document with section markers.
             kwargs['suffix'] = source.SUFFIX
-            __, target = self.importTargetFactory.new_file_objects(sourcePath, **kwargs)
+            __, target = self.importTargetFactory.new_file_objects(
+                sourcePath,
+                **kwargs
+            )
             self.newFile = None
             self._check_source_file(source)
             target.novel = self._mdl.nvService.new_novel()
@@ -104,7 +128,7 @@ class DocImporter(ServiceBase, NovxConversion):
                     message=_('Update the project?'),
                     detail=f"{_('Source document')}: {source.DESCRIPTION}",
                     parent=kwargs.get('parent', None)
-                    ):
+                ):
                     raise Notification(f'{_("Action canceled by user")}.')
 
             target.novel = source.novel
@@ -124,7 +148,12 @@ class DocImporter(ServiceBase, NovxConversion):
 
         if not os.path.isfile(source.filePath):
             # the source document does not exist
-            raise Error(f'{_("File not found")}: "{norm_path(source.filePath)}".')
+            raise Error(
+                (
+                    f'{_("File not found")}: '
+                    f'"{norm_path(source.filePath)}".'
+                )
+            )
 
         if source.is_locked():
             # the document might be open in the Office application

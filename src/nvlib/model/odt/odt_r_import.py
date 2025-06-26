@@ -39,7 +39,8 @@ class OdtRImport(OdtRFormatted):
         """Initialize local instance variables for parsing.
 
         Positional arguments:
-            filePath: str -- path to the file represented by the Novel instance.
+            filePath: str -- path to the file represented 
+                             by the NvWorkFile instance.
             
         The ODT parser works like a state machine. 
         Chapter and section count must be saved between the transitions.         
@@ -86,7 +87,17 @@ class OdtRImport(OdtRFormatted):
                 # Draft
             return
 
-        if tag in ('em', 'strong', 'comment', 'creator', 'date', 'note', 'note-citation', 'ul', 'li'):
+        if tag in (
+            'em',
+            'strong',
+            'comment',
+            'creator',
+            'date',
+            'note',
+            'note-citation',
+            'ul',
+            'li',
+        ):
             self._lines.append(f'</{tag}>')
             return
 
@@ -95,7 +106,9 @@ class OdtRImport(OdtRFormatted):
             return
 
         if tag in ('h1', 'h2'):
-            self.novel.chapters[self._chId].title = unescape(re.sub('<.*?>', '', ''.join(self._lines)))
+            self.novel.chapters[self._chId].title = unescape(
+                re.sub('<.*?>', '', ''.join(self._lines))
+            )
             self._lines.clear()
             return
 
@@ -107,7 +120,8 @@ class OdtRImport(OdtRFormatted):
         
         Positional arguments:
             tag: str -- name of the tag converted to lower case.
-            attrs -- list of (name, value) pairs containing the attributes found inside the tag’s <> brackets.
+            attrs -- list of (name, value) pairs containing the 
+                     attributes found inside the tag’s <> brackets.
         
         Overrides the superclass method.
         """
@@ -116,11 +130,12 @@ class OdtRImport(OdtRFormatted):
                 self._lines.clear()
                 self._scCount += 1
                 self._scId = f'{SECTION_PREFIX}{self._scCount}'
-                self.novel.sections[self._scId] = Section(title=f'{_("Section")} {self._scCount}',
-                                                      scType=0,
-                                                      scene=0,
-                                                      status=1,
-                                                      )
+                self.novel.sections[self._scId] = Section(
+                    title=f'{_("Section")} {self._scCount}',
+                    scType=0,
+                    scene=0,
+                    status=1,
+                )
                 self.novel.tree.append(self._chId, self._scId)
             attributes = ''
             try:
@@ -134,7 +149,16 @@ class OdtRImport(OdtRFormatted):
             self._lines.append(f'<p{attributes}>')
             return
 
-        if tag in('em', 'strong', 'comment', 'creator', 'date', 'note-citation', 'ul', 'li'):
+        if tag in(
+            'em',
+            'strong',
+            'comment',
+            'creator',
+            'date',
+            'note-citation',
+            'ul',
+            'li',
+        ):
             self._lines.append(f'<{tag}>')
             return
 

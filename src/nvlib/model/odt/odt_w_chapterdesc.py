@@ -10,7 +10,7 @@ from nvlib.nv_locale import _
 
 
 class OdtWChapterDesc(OdtWriter):
-    """ODT chapter summaries file writer.
+    """ODT chapter summaries templates.
 
     Export a synopsis with invisibly tagged chapter descriptions.
     """

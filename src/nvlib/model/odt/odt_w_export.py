@@ -9,7 +9,7 @@ from nvlib.nv_locale import _
 
 
 class OdtWExport(OdtWFormatted):
-    """ODT novel file writer.
+    """ODT novel templates.
 
     Export a non-reimportable manuscript with chapters and sections.
     """

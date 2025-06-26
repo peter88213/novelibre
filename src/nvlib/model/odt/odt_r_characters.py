@@ -26,10 +26,12 @@ class OdtRCharacters(OdtReader):
         """Initialize local instance variables for parsing.
 
         Positional arguments:
-            filePath: str -- path to the file represented by the Novel instance.
+            filePath: str -- path to the file 
+            represented by the Novel instance.
             
         The ODT parser works like a state machine. 
-        Character ID and section title must be saved between the transitions.         
+        Character ID and section title must be saved 
+        between the transitions.         
         Extends the superclass constructor.
         """
         super().__init__(filePath)
@@ -63,25 +65,29 @@ class OdtRCharacters(OdtReader):
         if tag == 'div':
 
             if self._section == 'desc':
-                self.novel.characters[self._crId].desc = ''.join(self._lines).rstrip()
+                self.novel.characters[self._crId].desc = ''.join(
+                    self._lines).rstrip()
                 self._lines.clear()
                 self._section = None
                 return
 
             if self._section == 'bio':
-                self.novel.characters[self._crId].bio = ''.join(self._lines).rstrip()
+                self.novel.characters[self._crId].bio = ''.join(
+                    self._lines).rstrip()
                 self._lines.clear()
                 self._section = None
                 return
 
             if self._section == 'goals':
-                self.novel.characters[self._crId].goals = ''.join(self._lines).rstrip()
+                self.novel.characters[self._crId].goals = ''.join(
+                    self._lines).rstrip()
                 self._lines.clear()
                 self._section = None
                 return
 
             if self._section == 'notes':
-                self.novel.characters[self._crId].notes = ''.join(self._lines).rstrip()
+                self.novel.characters[self._crId].notes = ''.join(
+                    self._lines).rstrip()
                 self._lines.clear()
                 self._section = None
             return
@@ -94,7 +100,8 @@ class OdtRCharacters(OdtReader):
         
         Positional arguments:
             tag: str -- name of the tag converted to lower case.
-            attrs -- list of (name, value) pairs containing the attributes found inside the tag’s <> brackets.
+            attrs -- list of (name, value) pairs containing the attributes 
+                     found inside the tag’s <> brackets.
         
         Overrides the superclass method.
         """
@@ -102,7 +109,10 @@ class OdtRCharacters(OdtReader):
             if attrs[0][0] == 'id':
 
                 if attrs[0][1].startswith('desc'):
-                    self._crId = f"{CHARACTER_PREFIX}{re.search('[0-9]+', attrs[0][1]).group()}"
+                    self._crId = (
+                        f"{CHARACTER_PREFIX}"
+                        f"{re.search('[0-9]+', attrs[0][1]).group()}"
+                    )
                     if not self._crId in self.novel.characters:
                         self.novel.tree.append(CR_ROOT, self._crId)
                         self.novel.characters[self._crId] = Character()

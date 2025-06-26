@@ -138,13 +138,34 @@ class ClipboardManager(ServiceBase):
             elemContainer = self._mdl.novel.sections
         else:
             elementControls = {
-                CHAPTER_PREFIX: (self._mdl.add_new_chapter, self._mdl.novel.chapters),
-                PLOT_LINE_PREFIX: (self._mdl.add_new_plot_line, self._mdl.novel.plotLines),
-                PLOT_POINT_PREFIX: (self._mdl.add_new_plot_point, self._mdl.novel.plotPoints),
-                CHARACTER_PREFIX: (self._mdl.add_new_character, self._mdl.novel.characters),
-                LOCATION_PREFIX: (self._mdl.add_new_location, self._mdl.novel.locations),
-                ITEM_PREFIX: (self._mdl.add_new_item, self._mdl.novel.items),
-                PRJ_NOTE_PREFIX: (self._mdl.add_new_project_note, self._mdl.novel.projectNotes)
+                CHAPTER_PREFIX: (
+                    self._mdl.add_new_chapter,
+                    self._mdl.novel.chapters
+                ),
+                PLOT_LINE_PREFIX: (
+                    self._mdl.add_new_plot_line,
+                    self._mdl.novel.plotLines
+                ),
+                PLOT_POINT_PREFIX: (
+                    self._mdl.add_new_plot_point,
+                    self._mdl.novel.plotPoints
+                ),
+                CHARACTER_PREFIX: (
+                    self._mdl.add_new_character,
+                    self._mdl.novel.characters
+                ),
+                LOCATION_PREFIX: (
+                    self._mdl.add_new_location,
+                    self._mdl.novel.locations
+                ),
+                ITEM_PREFIX: (
+                    self._mdl.add_new_item,
+                    self._mdl.novel.items
+                ),
+                PRJ_NOTE_PREFIX: (
+                    self._mdl.add_new_project_note,
+                    self._mdl.novel.projectNotes
+                )
             }
             if not nodePrefix in elementControls:
                 return

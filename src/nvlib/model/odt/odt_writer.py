@@ -18,7 +18,7 @@ from nvlib.nv_locale import _
 
 
 class OdtWriter(OdfFile):
-    """Generic OpenDocument text document writer."""
+    """Generic OpenDocument text templates and writer."""
 
     EXTENSION = '.odt'
     # overwrites Novel.EXTENSION

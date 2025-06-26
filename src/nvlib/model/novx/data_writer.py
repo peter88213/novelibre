@@ -56,15 +56,26 @@ class DataWriter(NovxFile):
         Positional argument:
             xmlProject -- NovxFile instance.
             
-        Extract the characters/locations/items xml subtrees from a novelibre project.
-        Generate the xml file paths from the .novx path and write each xmlBranch to an xml file.
+        Extract the characters/locations/items xml subtrees 
+        from a novelibre project.
+        Generate the xml file paths from the .novx path and 
+        write each xmlBranch to an xml file.
         Raise the "Error" exception in case of error. 
         """
         for xmlBranch in self._dataFiles:
             elementSubtree = xmlProject.xmlTree.find(xmlBranch)
             elementTree = ET.ElementTree(elementSubtree)
             try:
-                elementTree.write(self._dataFiles[xmlBranch], xml_declaration=False, encoding='utf-8')
+                elementTree.write(
+                    self._dataFiles[xmlBranch],
+                    xml_declaration=False,
+                    encoding='utf-8',
+                )
             except(PermissionError):
-                raise Error(f'{_("File is write protected")}: "{norm_path(self._dataFiles[xmlBranch])}".')
+                raise Error(
+                    (
+                        f'{_("File is write protected")}: '
+                        f'"{norm_path(self._dataFiles[xmlBranch])}".'
+                    )
+                )
 

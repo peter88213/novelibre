@@ -179,9 +179,20 @@ class Dialog(tk.Toplevel):
 
         box = ttk.Frame(self)
 
-        w = ttk.Button(box, text=_('OK'), width=10, command=self.ok, default='active')
+        w = ttk.Button(
+            box,
+            text=_('OK'),
+            width=10,
+            command=self.ok,
+            default='active',
+        )
         w.pack(side='left', padx=5, pady=10)
-        w = ttk.Button(box, text=_('Cancel'), width=10, command=self.cancel)
+        w = ttk.Button(
+            box,
+            text=_('Cancel'),
+            width=10,
+            command=self.cancel,
+        )
         w.pack(side='left', padx=5, pady=10)
 
         self.bind('<Return>', self.ok)
@@ -324,7 +335,10 @@ class _QueryDialog(Dialog):
         if self.minvalue is not None and result < self.minvalue:
             messagebox.showwarning(
                 _('Too small'),
-                f'{_("The allowed minimum value is")} {self.minvalue}.\n{_("Please try again")}.',
+                (
+                    f'{_("The allowed minimum value is")} '
+                    f'{self.minvalue}.\n{_("Please try again")}.'
+                ),
                 parent=self
             )
             return 0
@@ -332,8 +346,11 @@ class _QueryDialog(Dialog):
         if self.maxvalue is not None and result > self.maxvalue:
             messagebox.showwarning(
                 _('Too large'),
-                f'{_("The allowed maximum value is")} {self.maxvalue}.\n{_("Please try again")}.',
-                parent=self
+                (
+                    f'{_("The allowed maximum value is")} '
+                    f'{self.maxvalue}.\n{_("Please try again")}.'
+                ),
+                parent=self,
             )
             return 0
 

@@ -10,7 +10,7 @@ from nvlib.nv_locale import _
 
 
 class OdtWLocations(OdtWriter):
-    """ODT location descriptions file writer.
+    """ODT location descriptions templates.
 
     Export a location sheet with invisibly tagged descriptions.
     """

@@ -10,7 +10,7 @@ from nvlib.model.odt.odt_writer import OdtWriter
 
 
 class OdtWItems(OdtWriter):
-    """ODT item descriptions file writer.
+    """ODT item descriptions templates.
 
     Export a item sheet with invisibly tagged descriptions.
     """

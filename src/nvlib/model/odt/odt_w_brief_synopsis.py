@@ -10,7 +10,7 @@ from nvlib.nv_locale import _
 
 
 class OdtWBriefSynopsis(OdtWriter):
-    """ODT brief synopsis file writer.
+    """ODT brief synopsis templates.
 
     Export a brief synopsis with chapter titles and section titles.
     """

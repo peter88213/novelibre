@@ -66,7 +66,10 @@ class HtmlElementNotes(HtmlReport):
 <td>$Notes</td>
 </tr>
 '''
-    _sectionTemplate = _characterTemplate = _locationTemplate = _itemTemplate = _plotPointTemplate = '''<tr>
+    _sectionTemplate = \
+    _characterTemplate = \
+    _locationTemplate = \
+    _itemTemplate = _plotPointTemplate = '''<tr>
 <td>$Title</td>
 <td>$Notes</td>
 </tr>

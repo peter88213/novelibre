@@ -42,7 +42,8 @@ class OdtRChapterDesc(OdtReader):
             return
 
         if tag == 'div':
-            self.novel.chapters[self._chId].desc = ''.join(self._lines).rstrip()
+            self.novel.chapters[self._chId].desc = ''.join(
+                self._lines).rstrip()
             self._lines.clear()
             self._chId = None
             return
@@ -53,6 +54,7 @@ class OdtRChapterDesc(OdtReader):
 
         if tag == 'h1' or tag == 'h2':
             if not self.novel.chapters[self._chId].title:
-                self.novel.chapters[self._chId].title = ''.join(self._lines)
+                self.novel.chapters[self._chId].title = ''.join(
+                    self._lines)
             self._lines.clear()
 

@@ -14,7 +14,7 @@ from nvlib.nv_locale import _
 
 
 class OdtWXref(OdtWriter):
-    """OpenDocument xml cross reference file writer."""
+    """OpenDocument xml cross reference templates and writer."""
     DESCRIPTION = _('Cross reference')
     SUFFIX = XREF_SUFFIX
 

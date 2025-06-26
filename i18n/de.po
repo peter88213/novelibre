@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.28.1\n"
-"POT-Creation-Date: 2025-06-25 11:47:10\n"
-"PO-Revision-Date: 2025-06-25 11:47:10\n"
+"Project-Id-Version: 5.28.2\n"
+"POT-Creation-Date: 2025-06-26 21:18:09\n"
+"PO-Revision-Date: 2025-06-26 21:18:09\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -703,6 +703,9 @@ msgstr "Sprachencode"
 msgid "Large toolbar icons"
 msgstr "Große Symbole in der Werkzeugleiste"
 
+msgid "Last saved on"
+msgstr "Zuletzt gespeichert:"
+
 msgid "Latest backup successfully restored."
 msgstr "Letzte Sicherung erfolgreich wiederhergestellt."
 
@@ -939,6 +942,9 @@ msgstr "Link öffnen"
 
 msgid "Open the created document?"
 msgstr "Das erzeugte Dokument öffnen?"
+
+msgid "Open this document instead of overwriting it?"
+msgstr "Dieses Dokument öffnen, statt es zu überschreiben?"
 
 msgid "Open..."
 msgstr "Öffnen..."
@@ -1561,9 +1567,6 @@ msgstr "Jahre alt"
 msgid "{0} (last saved on {1})"
 msgstr "{0} (zuletzt gespeichert: {1})"
 
-msgid "{0} already exists.\n(last saved on {2})\n{1}.\n\nOpen this document instead of overwriting it?"
-msgstr "{0} gibt es schon.\n(zuletzt gespeichert: {2})\n{1}.\n\nDieses Dokument öffnen, statt es zu überschreiben?"
-
 msgid "{0} does not exist."
 msgstr "{0} gibt es nicht."
 
@@ -1572,4 +1575,7 @@ msgstr "{0} ist nicht aktuell."
 
 msgid "{0} parts, {1} chapters, {2} sections, {3} words"
 msgstr "{0} Teile, {1} Kapitel, {2} Abschnitte, {3} Wörter"
+
+msgid "{} already exists."
+msgstr "{} gibt es schon."
 

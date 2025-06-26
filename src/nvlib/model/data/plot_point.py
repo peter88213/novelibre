@@ -41,4 +41,8 @@ class PlotPoint(BasicElementNotes):
     def to_xml(self, xmlElement):
         super().to_xml(xmlElement)
         if self.sectionAssoc:
-            ET.SubElement(xmlElement, 'Section', attrib={'id': self.sectionAssoc})
+            ET.SubElement(
+                xmlElement,
+                'Section',
+                attrib={'id': self.sectionAssoc},
+            )

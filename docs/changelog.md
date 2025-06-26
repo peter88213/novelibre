@@ -10,10 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.28.1
+### Version 5.28.2
 
 - Preventing accidental opening of the same project in different instances.
-
+- Escaping the meta.xml author, title, and summary entries.
+  This fixes a bug where the ODF document may be unreadable 
+  if the book title or the author's name contains angle brackets.
 
 ### Version 5.27.3
 

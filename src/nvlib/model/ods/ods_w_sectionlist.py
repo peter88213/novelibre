@@ -11,7 +11,7 @@ from nvlib.nv_locale import _
 
 
 class OdsWSectionList(OdsWGrid):
-    """ODS section list writer."""
+    """ODS section list templates."""
 
     DESCRIPTION = _('Section list')
     SUFFIX = SECTIONLIST_SUFFIX
@@ -65,7 +65,7 @@ class OdsWSectionList(OdsWGrid):
         'table:default-cell-style-name="ce4"/>\n'
         '    <table:table-column table:style-name="co1" '
         'table:default-cell-style-name="Default"/>\n'
-        '    <table:table-column table:style-name="co3"'
+        '    <table:table-column table:style-name="co3" '
         'table:default-cell-style-name="Default"/>\n'
         '    <table:table-column table:style-name="co3" '
         'table:default-cell-style-name="Default"/>\n'
@@ -241,7 +241,7 @@ class OdsWSectionList(OdsWGrid):
         '     </table:table-cell>\n'
         '     <table:table-cell table:style-name="Heading" '
         'office:value-type="string">\n'
-        '      <text:p>$CustomPlotProgress /'
+        '      <text:p>$CustomPlotProgress / '
         f'{_("Goal")} / {_("Reaction")} / $CustomGoal</text:p>\n'
         '     </table:table-cell>\n'
         '     <table:table-cell table:style-name="Heading" '

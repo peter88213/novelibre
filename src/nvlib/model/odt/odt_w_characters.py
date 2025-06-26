@@ -10,7 +10,7 @@ from nvlib.model.odt.odt_writer import OdtWriter
 
 
 class OdtWCharacters(OdtWriter):
-    """ODT character descriptions file writer.
+    """ODT character descriptions templates.
 
     Export a character sheet with invisibly tagged descriptions.
     """
@@ -63,6 +63,7 @@ class OdtWCharacters(OdtWriter):
         if self.novel.characters[crId].aka:
             characterMapping['AKA'] = f' ("{self.novel.characters[crId].aka}")'
         if self.novel.characters[crId].fullName:
-            characterMapping['FullName'] = f'/{self.novel.characters[crId].fullName}'
+            characterMapping['FullName'
+                             ] = f'/{self.novel.characters[crId].fullName}'
 
         return characterMapping

@@ -16,13 +16,16 @@ class FileFactory(ABC):
         """Write the parameter to a "private" instance variable.
 
         Positional arguments:
-            _fileClasses -- list of classes from which an instance can be returned.
+            _fileClasses -- list of classes from which an 
+                            instance can be returned.
         """
         self._fileClasses = fileClasses
 
     @abstractmethod
     def new_file_objects(self, sourcePath, **kwargs):
-        """Instantiate a source object for conversion from a novelibre project.
+        """Factory method.
+        
+        Instantiate a source object for conversion from a novelibre project.
 
         Positional arguments:
             sourcePath: str -- path to the source file to convert.

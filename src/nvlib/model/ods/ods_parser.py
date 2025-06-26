@@ -76,7 +76,10 @@ class OdsParser:
 
                 # Add repeated cells.
                 attribute = cell.get(
-                    f'{{{OdfFile.NAMESPACES["table"]}}}number-columns-repeated'
+                    (
+                        f'{{{OdfFile.NAMESPACES["table"]}}}'
+                        'number-columns-repeated'
+                    )
                 )
                 if attribute:
                     repeat = int(attribute) - 1

@@ -15,32 +15,35 @@ class HtmlReport(FileExport):
     EXTENSION = '.html'
     SUFFIX = '_report'
 
-    _fileHeader = '''<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
-<style type="text/css">
-body {font-family: sans-serif}
-p.title {font-size: larger; font-weight: bold}
-td {padding: 10}
-tr.heading {font-size:smaller; font-weight: bold; background-color:rgb(240,240,240)}
-table {border-spacing: 0}
-table, td {border: rgb(240,240,240) solid 1px; vertical-align: top}
-td.title {font-weight: bold}
-td.chaptertitle {color: green; font-weight: bold}
-td.chapter {color: green}
-td.parttitle {color: white; background-color: green; font-weight: bold}
-td.part {color: white; background-color: green}
-td.stage {color: red}
-td.stagetitle {color: red; font-weight: bold}
-</style>
-
-'''
-
-    _fileFooter = '''</table>
-</body>
-</html>
-'''
+    _fileHeader = (
+        '<html>\n'
+        '<head>\n'
+        '<meta http-equiv="Content-Type" content="text/html; '
+        'charset=utf-8"/>\n\n'
+        '<style type="text/css">\n'
+        'body {font-family: sans-serif}\n'
+        'p.title {font-size: larger; font-weight: bold}\n'
+        'td {padding: 10}\n'
+        'tr.heading {font-size:smaller; font-weight: bold; '
+        'background-color:rgb(240,240,240)}\n'
+        'table {border-spacing: 0}\n'
+        'table, td {border: rgb(240,240,240) solid 1px; '
+        'vertical-align: top}\n'
+        'td.title {font-weight: bold}\n'
+        'td.chaptertitle {color: green; font-weight: bold}\n'
+        'td.chapter {color: green}\n'
+        'td.parttitle {color: white; background-color: green; '
+        'font-weight: bold}\n'
+        'td.part {color: white; background-color: green}\n'
+        'td.stage {color: red}\n'
+        'td.stagetitle {color: red; font-weight: bold}\n'
+        '</style>\n'
+    )
+    _fileFooter = (
+        '</table>\n'
+        '</body>\n'
+        '</html>\n'
+    )
 
     def _convert_from_novx(self, text, quick=False, **kwargs):
         """Return text, converted from *novelibre* markup to target format.
@@ -49,7 +52,8 @@ td.stagetitle {color: red; font-weight: bold}
             text -- string to convert.
         
         Optional arguments:
-            quick: bool -- if True, apply a conversion mode for one-liners without formatting.
+            quick: bool -- if True, apply a conversion mode 
+                   for one-liners without formatting.
         
         Overrides the superclass method.
         """
@@ -66,6 +70,6 @@ td.stagetitle {color: red; font-weight: bold}
         return '\n'.join(newlines)
 
     def _new_cell(self, text, attr=''):
-        """Return the markup for a table cell with text and attributes."""
+        # Return the markup for a table cell with text and attributes.
         return f'<td {attr}>{self._convert_from_novx(text)}</td>'
 

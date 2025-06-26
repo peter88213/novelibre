@@ -465,12 +465,18 @@ class Novel(BasicElement):
 
     def from_xml(self, xmlElement):
         super().from_xml(xmlElement)
-        self.renumberChapters = xmlElement.get('renumberChapters', None) == '1'
-        self.renumberParts = xmlElement.get('renumberParts', None) == '1'
-        self.renumberWithinParts = xmlElement.get('renumberWithinParts', None) == '1'
-        self.romanChapterNumbers = xmlElement.get('romanChapterNumbers', None) == '1'
-        self.romanPartNumbers = xmlElement.get('romanPartNumbers', None) == '1'
-        self.saveWordCount = xmlElement.get('saveWordCount', None) == '1'
+        self.renumberChapters = xmlElement.get(
+            'renumberChapters', None) == '1'
+        self.renumberParts = xmlElement.get(
+            'renumberParts', None) == '1'
+        self.renumberWithinParts = xmlElement.get(
+            'renumberWithinParts', None) == '1'
+        self.romanChapterNumbers = xmlElement.get(
+            'romanChapterNumbers', None) == '1'
+        self.romanPartNumbers = xmlElement.get(
+            'romanPartNumbers', None) == '1'
+        self.saveWordCount = xmlElement.get(
+            'saveWordCount', None) == '1'
         workPhase = xmlElement.get('workPhase', None)
         if workPhase in ('1', '2', '3', '4', '5'):
             self.workPhase = int(workPhase)
@@ -481,44 +487,88 @@ class Novel(BasicElement):
         self.authorName = self._get_element_text(xmlElement, 'Author')
 
         # Chapter heading prefix/suffix.
-        self.chapterHeadingPrefix = self._get_element_text(xmlElement, 'ChapterHeadingPrefix')
-        self.chapterHeadingSuffix = self._get_element_text(xmlElement, 'ChapterHeadingSuffix')
+        self.chapterHeadingPrefix = self._get_element_text(
+            xmlElement,
+            'ChapterHeadingPrefix'
+        )
+        self.chapterHeadingSuffix = self._get_element_text(
+            xmlElement,
+            'ChapterHeadingSuffix'
+        )
 
         # Part heading prefix/suffix.
-        self.partHeadingPrefix = self._get_element_text(xmlElement, 'PartHeadingPrefix')
-        self.partHeadingSuffix = self._get_element_text(xmlElement, 'PartHeadingSuffix')
+        self.partHeadingPrefix = self._get_element_text(
+            xmlElement,
+            'PartHeadingPrefix'
+        )
+        self.partHeadingSuffix = self._get_element_text(
+            xmlElement,
+            'PartHeadingSuffix'
+        )
 
         # N/A Goal/Conflict/Outcome.
-        self.customPlotProgress = self._get_element_text(xmlElement, 'CustomPlotProgress')
-        self.customCharacterization = self._get_element_text(xmlElement, 'CustomCharacterization')
-        self.customWorldBuilding = self._get_element_text(xmlElement, 'CustomWorldBuilding')
+        self.customPlotProgress = self._get_element_text(
+            xmlElement,
+            'CustomPlotProgress'
+        )
+        self.customCharacterization = self._get_element_text(
+            xmlElement,
+            'CustomCharacterization'
+        )
+        self.customWorldBuilding = self._get_element_text(
+            xmlElement,
+            'CustomWorldBuilding'
+        )
 
         # Custom Goal/Conflict/Outcome.
-        self.customGoal = self._get_element_text(xmlElement, 'CustomGoal')
-        self.customConflict = self._get_element_text(xmlElement, 'CustomConflict')
-        self.customOutcome = self._get_element_text(xmlElement, 'CustomOutcome')
+        self.customGoal = self._get_element_text(
+            xmlElement,
+            'CustomGoal'
+        )
+        self.customConflict = self._get_element_text(
+            xmlElement,
+            'CustomConflict'
+        )
+        self.customOutcome = self._get_element_text(
+            xmlElement,
+            'CustomOutcome'
+        )
 
         # Custom Character Bio/Goals.
-        self.customChrBio = self._get_element_text(xmlElement, 'CustomChrBio')
-        self.customChrGoals = self._get_element_text(xmlElement, 'CustomChrGoals')
+        self.customChrBio = self._get_element_text(
+            xmlElement,
+            'CustomChrBio'
+        )
+        self.customChrGoals = self._get_element_text(
+            xmlElement,
+            'CustomChrGoals'
+        )
 
         # Word count start/Word target.
         if xmlElement.find('WordCountStart') is not None:
-            self.wordCountStart = int(xmlElement.find('WordCountStart').text)
+            self.wordCountStart = int(
+                xmlElement.find('WordCountStart').text
+            )
         else:
             self.wordCountStart = 0
         if xmlElement.find('WordTarget') is not None:
-            self.wordTarget = int(xmlElement.find('WordTarget').text)
+            self.wordTarget = int(
+                xmlElement.find('WordTarget').text
+            )
 
         # Reference date.
-        self.referenceDate = PyCalendar.verified_date(self._get_element_text(xmlElement, 'ReferenceDate'))
+        self.referenceDate = PyCalendar.verified_date(
+            self._get_element_text(xmlElement, 'ReferenceDate')
+        )
 
     def get_languages(self):
         """Determine the languages used in the document.
         
-        Populate the self.languages list with all language codes found in the section contents.        
+        Populate the self.languages list with all language codes 
+        found in the section contents.        
         Example:
-        - language markup: 'Standard text <span xml:lang="en-AU"]Australian text</span>.'
+        - language markup: 
+          'Standard text <span xml:lang="en-AU"]Australian text</span>.'
         - language code: 'en-AU'
         """
 
@@ -557,54 +607,106 @@ class Novel(BasicElement):
 
         # Author.
         if self.authorName:
-            ET.SubElement(xmlElement, 'Author').text = self.authorName
+            ET.SubElement(
+                xmlElement,
+                'Author',
+            ).text = self.authorName
 
         # Chapter heading prefix/suffix.
         if self.chapterHeadingPrefix:
-            ET.SubElement(xmlElement, 'ChapterHeadingPrefix').text = self.chapterHeadingPrefix
+            ET.SubElement(
+                xmlElement,
+                'ChapterHeadingPrefix',
+            ).text = self.chapterHeadingPrefix
         if self.chapterHeadingSuffix:
-            ET.SubElement(xmlElement, 'ChapterHeadingSuffix').text = self.chapterHeadingSuffix
+            ET.SubElement(
+                xmlElement,
+                'ChapterHeadingSuffix',
+            ).text = self.chapterHeadingSuffix
 
         # Part heading prefix/suffix.
         if self.partHeadingPrefix:
-            ET.SubElement(xmlElement, 'PartHeadingPrefix').text = self.partHeadingPrefix
+            ET.SubElement(
+                xmlElement,
+                'PartHeadingPrefix',
+            ).text = self.partHeadingPrefix
         if self.partHeadingSuffix:
-            ET.SubElement(xmlElement, 'PartHeadingSuffix').text = self.partHeadingSuffix
+            ET.SubElement(
+                xmlElement,
+                'PartHeadingSuffix',
+            ).text = self.partHeadingSuffix
 
         # Custom Plot progress/Characterization/World building.
         if self.customPlotProgress:
-            ET.SubElement(xmlElement, 'CustomPlotProgress').text = self.customPlotProgress
+            ET.SubElement(
+                xmlElement,
+                'CustomPlotProgress',
+            ).text = self.customPlotProgress
         if self.customCharacterization:
-            ET.SubElement(xmlElement, 'CustomCharacterization').text = self.customCharacterization
+            ET.SubElement(
+                xmlElement,
+                'CustomCharacterization',
+            ).text = self.customCharacterization
         if self.customWorldBuilding:
-            ET.SubElement(xmlElement, 'CustomWorldBuilding').text = self.customWorldBuilding
+            ET.SubElement(
+                xmlElement,
+                'CustomWorldBuilding',
+            ).text = self.customWorldBuilding
 
         # Custom Goal/Conflict/Outcome.
         if self.customGoal:
-            ET.SubElement(xmlElement, 'CustomGoal').text = self.customGoal
+            ET.SubElement(
+                xmlElement,
+                'CustomGoal',
+            ).text = self.customGoal
         if self.customConflict:
-            ET.SubElement(xmlElement, 'CustomConflict').text = self.customConflict
+            ET.SubElement(
+                xmlElement,
+                'CustomConflict',
+            ).text = self.customConflict
         if self.customOutcome:
-            ET.SubElement(xmlElement, 'CustomOutcome').text = self.customOutcome
+            ET.SubElement(
+                xmlElement,
+                'CustomOutcome',
+            ).text = self.customOutcome
 
         # Custom Character Bio/Goals.
         if self.customChrBio:
-            ET.SubElement(xmlElement, 'CustomChrBio').text = self.customChrBio
+            ET.SubElement(
+                xmlElement,
+                'CustomChrBio',
+            ).text = self.customChrBio
         if self.customChrGoals:
-            ET.SubElement(xmlElement, 'CustomChrGoals').text = self.customChrGoals
+            ET.SubElement(
+                xmlElement,
+                'CustomChrGoals',
+            ).text = self.customChrGoals
 
         # Word count start/Word target.
         if self.wordCountStart:
-            ET.SubElement(xmlElement, 'WordCountStart').text = str(self.wordCountStart)
+            ET.SubElement(
+                xmlElement,
+                'WordCountStart',
+            ).text = str(self.wordCountStart)
         if self.wordTarget:
-            ET.SubElement(xmlElement, 'WordTarget').text = str(self.wordTarget)
+            ET.SubElement(
+                xmlElement,
+                'WordTarget',
+            ).text = str(self.wordTarget)
 
         # Reference date.
         if self.referenceDate:
-            ET.SubElement(xmlElement, 'ReferenceDate').text = self.referenceDate
+            ET.SubElement(
+                xmlElement,
+                'ReferenceDate',
+            ).text = self.referenceDate
 
     def update_plot_lines(self):
-        """Set section back references to PlotLine.sections and PlotPoint.sectionAssoc. """
+        """Update redundant model data.
+        
+        Set section back references to PlotLine.sections 
+        and PlotPoint.sectionAssoc. 
+        """
         for scId in self.sections:
             self.sections[scId].scPlotPoints = {}
             self.sections[scId].scPlotLines = []

@@ -1,6 +1,7 @@
 """Provide a generic class for template-based file export.
 
-All file representations with template-based write methods inherit from this class.
+All file representations with template-based write methods 
+inherit from this class.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -12,7 +13,7 @@ from string import Template
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.model.data.section import Section
 from nvlib.model.file.file import File
-from nvlib.model.file.filter import Filter
+from nvlib.model.exporter.filter import Filter
 from nvlib.novx_globals import CHARACTERS_SUFFIX
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
@@ -35,7 +36,8 @@ from nvlib.nv_locale import _
 class FileExport(File):
     """Abstract novelibre project file exporter representation.
     
-    This class is generic and contains no conversion algorithm and no templates.
+    This class is generic and contains no conversion algorithm 
+    and no templates.
     """
     SUFFIX = ''
     _DIVIDER = ', '
@@ -71,7 +73,8 @@ class FileExport(File):
         """Initialize filter strategy class instances.
         
         Positional arguments:
-            filePath: str -- path to the file represented by the File instance.
+            filePath: str -- path to the file 
+                             represented by the File instance.
             
         Optional arguments:
             kwargs -- keyword arguments to be used by subclasses.            
@@ -100,7 +103,12 @@ class FileExport(File):
             try:
                 os.replace(self.filePath, f'{self.filePath}.bak')
             except:
-                raise Error(f'{_("Cannot overwrite file")}: "{norm_path(self.filePath)}".')
+                raise Error(
+                    (
+                        f'{_("Cannot overwrite file")}: '
+                        f'"{norm_path(self.filePath)}".'
+                    )
+                )
             else:
                 backedUp = True
         try:
@@ -109,7 +117,12 @@ class FileExport(File):
         except:
             if backedUp:
                 os.replace(f'{self.filePath}.bak', self.filePath)
-            raise Error(f'{_("Cannot write file")}: "{norm_path(self.filePath)}".')
+            raise Error(
+                (
+                    f'{_("Cannot write file")}: '
+                    f'"{norm_path(self.filePath)}".'
+                )
+            )
 
     def _convert_from_novx(self, text, **kwargs):
         """Return text without markup, converted to target format.
@@ -118,12 +131,15 @@ class FileExport(File):
             text -- string to convert.
         
         Optional arguments:
-            quick: bool -- if True, apply a conversion mode for one-liners without formatting.
+            quick: bool -- if True, apply a conversion mode 
+                           for one-liners without formatting.
             append: bool -- if True, indent the first paragraph.
             firstInChapter: bool: -- if True, the section begins a chapter.
             xml: bool -- if True, parse XML content. 
-            linebreaks: bool -- if True and not xml, break the lines instead of creating paragraphs. 
-            firstParagraphStyle: str -- The first paragraph's style, if not xml and not append.
+            linebreaks: bool -- if True and not xml, break the lines 
+                                instead of creating paragraphs. 
+            firstParagraphStyle: str -- The first paragraph's style, 
+                                        if not xml and not append.
         
         Overrides the superclass method.
         """
@@ -138,7 +154,8 @@ class FileExport(File):
             chId: str -- chapter ID.
             chapterNumber: int -- chapter number.
         
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         if chapterNumber == 0:
             chapterNumber = ''
@@ -146,12 +163,27 @@ class FileExport(File):
         chapterMapping = dict(
             ID=chId,
             ChapterNumber=chapterNumber,
-            Title=self._convert_from_novx(self.novel.chapters[chId].title, quick=True),
-            Desc=self._convert_from_novx(self.novel.chapters[chId].desc),
-            Notes=self._convert_from_novx(self.novel.chapters[chId].notes),
-            Epigraph=self._convert_from_novx(self.novel.chapters[chId].epigraph),
-            EpigraphSrc=self._convert_from_novx(self.novel.chapters[chId].epigraphSrc, quick=True),
-            ProjectName=self._convert_from_novx(self.projectName, quick=True),
+            Title=self._convert_from_novx(
+                self.novel.chapters[chId].title,
+                quick=True,
+            ),
+            Desc=self._convert_from_novx(
+                self.novel.chapters[chId].desc
+            ),
+            Notes=self._convert_from_novx(
+                self.novel.chapters[chId].notes
+            ),
+            Epigraph=self._convert_from_novx(
+                self.novel.chapters[chId].epigraph
+            ),
+            EpigraphSrc=self._convert_from_novx(
+                self.novel.chapters[chId].epigraphSrc,
+                quick=True
+            ),
+            ProjectName=self._convert_from_novx(
+                self.projectName,
+                quick=True
+            ),
             ProjectPath=self.projectPath,
             Language=self.novel.languageCode,
             Country=self.novel.countryCode,
@@ -167,7 +199,8 @@ class FileExport(File):
         For each chapter call the processing of its included sections.
         Skip chapters not accepted by the chapter filter.
         Return a list of strings.
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         lines = []
         chapterNumber = 0
@@ -178,25 +211,39 @@ class FileExport(File):
             if not self.chapterFilter.accept(self, chId):
                 continue
 
-            # The order counts; be aware that "Todo" and "Notes" chapters are
-            # always unused.
+            # The order counts; be aware that "Todo" and "Notes" chapters
+            # are always unused.
             # Has the chapter only sections not to be exported?
             template = None
             if self.novel.chapters[chId].chType == 1:
                 # Chapter is "unused" type.
                 if self._unusedChapterTemplate:
                     template = Template(self._unusedChapterTemplate)
-            elif self.novel.chapters[chId].chLevel == 1 and self._partTemplate:
+            elif (
+                self.novel.chapters[chId].chLevel == 1
+                and self._partTemplate
+            ):
                 template = Template(self._partTemplate)
-            elif self.novel.chapters[chId].chLevel == 2 and self._chapterTemplate:
+            elif (
+                self.novel.chapters[chId].chLevel == 2
+                and self._chapterTemplate
+            ):
                 template = Template(self._chapterTemplate)
                 chapterNumber += 1
                 dispNumber = chapterNumber
             if template is not None:
-                lines.append(template.safe_substitute(self._get_chapterMapping(chId, dispNumber)))
+                lines.append(
+                    template.safe_substitute(
+                        self._get_chapterMapping(chId, dispNumber)
+                    )
+                )
 
             #--- Process sections.
-            sectionLines, sectionNumber, wordsTotal = self._get_sections(chId, sectionNumber, wordsTotal)
+            sectionLines, sectionNumber, wordsTotal = self._get_sections(
+                chId,
+                sectionNumber,
+                wordsTotal,
+            )
             lines.extend(sectionLines)
 
             #--- Process chapter ending.
@@ -204,12 +251,22 @@ class FileExport(File):
             if self.novel.chapters[chId].chType == 1:
                 if self._unusedChapterEndTemplate:
                     template = Template(self._unusedChapterEndTemplate)
-            elif self.novel.chapters[chId].chLevel == 1 and self._partEndTemplate:
+            elif (
+                self.novel.chapters[chId].chLevel == 1
+                and self._partEndTemplate
+            ):
                 template = Template(self._partEndTemplate)
-            elif self.novel.chapters[chId].chLevel == 2 and self._chapterEndTemplate:
+            elif (
+                self.novel.chapters[chId].chLevel == 2
+                and self._chapterEndTemplate
+            ):
                 template = Template(self._chapterEndTemplate)
             if template is not None:
-                lines.append(template.safe_substitute(self._get_chapterMapping(chId, dispNumber)))
+                lines.append(
+                    template.safe_substitute(
+                        self._get_chapterMapping(chId, dispNumber)
+                    )
+                )
         return lines
 
     def _get_characterMapping(self, crId):
@@ -218,10 +275,14 @@ class FileExport(File):
         Positional arguments:
             crId: str -- character ID.
         
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         if self.novel.characters[crId].tags is not None:
-            tags = list_to_string(self.novel.characters[crId].tags, divider=self._DIVIDER)
+            tags = list_to_string(
+                self.novel.characters[crId].tags,
+                divider=self._DIVIDER
+            )
         else:
             tags = ''
         if self.novel.characters[crId].isMajor:
@@ -239,16 +300,36 @@ class FileExport(File):
 
         characterMapping = dict(
             ID=crId,
-            Title=self._convert_from_novx(self.novel.characters[crId].title, quick=True),
-            Desc=self._convert_from_novx(self.novel.characters[crId].desc),
+            Title=self._convert_from_novx(
+                self.novel.characters[crId].title,
+                quick=True,
+            ),
+            Desc=self._convert_from_novx(
+                self.novel.characters[crId].desc,
+            ),
             Tags=self._convert_from_novx(tags),
-            AKA=self._convert_from_novx(self.novel.characters[crId].aka, quick=True),
-            Notes=self._convert_from_novx(self.novel.characters[crId].notes),
-            Bio=self._convert_from_novx(self.novel.characters[crId].bio),
-            Goals=self._convert_from_novx(self.novel.characters[crId].goals),
-            FullName=self._convert_from_novx(self.novel.characters[crId].fullName, quick=True),
+            AKA=self._convert_from_novx(
+                self.novel.characters[crId].aka,
+                quick=True,
+            ),
+            Notes=self._convert_from_novx(
+                self.novel.characters[crId].notes,
+            ),
+            Bio=self._convert_from_novx(
+                self.novel.characters[crId].bio,
+            ),
+            Goals=self._convert_from_novx(
+                self.novel.characters[crId].goals,
+            ),
+            FullName=self._convert_from_novx(
+                self.novel.characters[crId].fullName,
+                quick=True,
+            ),
             Status=characterStatus,
-            ProjectName=self._convert_from_novx(self.projectName, quick=True),
+            ProjectName=self._convert_from_novx(
+                self.projectName,
+                quick=True,
+            ),
             ProjectPath=self.projectPath,
             CharactersSuffix=CHARACTERS_SUFFIX,
             CustomChrBio=chrBio,
@@ -262,10 +343,12 @@ class FileExport(File):
         """Process the characters.
         
         Iterate through the sorted character list and apply the template, 
-        substituting placeholders according to the character mapping dictionary.
+        substituting placeholders according to the character mapping 
+        dictionary.
         Skip characters not accepted by the character filter.
         Return a list of strings.
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         if self._characterHeadingTemplate:
             lines = [self._characterHeadingTemplate]
@@ -274,7 +357,11 @@ class FileExport(File):
         template = Template(self._characterTemplate)
         for crId in self.novel.tree.get_children(CR_ROOT):
             if self.characterFilter.accept(self, crId):
-                lines.append(template.safe_substitute(self._get_characterMapping(crId)))
+                lines.append(
+                    template.safe_substitute(
+                        self._get_characterMapping(crId)
+                    )
+                )
         return lines
 
     def _get_fileFooter(self):
@@ -284,7 +371,8 @@ class FileExport(File):
         according to the file footer mapping dictionary.
         Return a list of strings.
         
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         lines = []
         template = Template(self._fileFooter)
@@ -301,7 +389,8 @@ class FileExport(File):
         according to the file header mapping dictionary.
         Return a list of strings.
         
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         lines = []
         template = Template(self._fileHeader)
@@ -311,7 +400,8 @@ class FileExport(File):
     def _get_fileHeaderMapping(self):
         """Return a mapping dictionary for the project section.
         
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         filterMessages = []
         expFilters = [
@@ -322,7 +412,7 @@ class FileExport(File):
             self.itemFilter,
             self.arcFilter,
             self.turningPointFilter,
-            ]
+        ]
         for expFilter in expFilters:
             message = expFilter.get_message(self)
             if message:
@@ -331,13 +421,28 @@ class FileExport(File):
                 filters = self._convert_from_novx('\n'.join(filterMessages))
             else:
                 filters = ''
-            pltPrgs, chrczn, wrldbld, goal, cflct, outcm, chrBio, chrGls = self._get_renamings()
+            (
+                pltPrgs,
+                chrczn,
+                wrldbld,
+                goal,
+                cflct,
+                outcm,
+                chrBio,
+                chrGls
+            ) = self._get_renamings()
 
         fileHeaderMapping = dict(
-            Title=self._convert_from_novx(self.novel.title, quick=True),
+            Title=self._convert_from_novx(
+                self.novel.title,
+                quick=True,
+            ),
             Filters=filters,
             Desc=self._convert_from_novx(self.novel.desc),
-            AuthorName=self._convert_from_novx(self.novel.authorName, quick=True),
+            AuthorName=self._convert_from_novx(
+                self.novel.authorName,
+                quick=True,
+            ),
             Language=self.novel.languageCode,
             Country=self.novel.countryCode,
             CustomPlotProgress=pltPrgs,
@@ -357,21 +462,41 @@ class FileExport(File):
         Positional arguments:
             itId: str -- item ID.
         
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         if self.novel.items[itId].tags is not None:
-            tags = list_to_string(self.novel.items[itId].tags, divider=self._DIVIDER)
+            tags = list_to_string(
+                self.novel.items[itId].tags,
+                divider=self._DIVIDER
+            )
         else:
             tags = ''
 
         itemMapping = dict(
             ID=itId,
-            Title=self._convert_from_novx(self.novel.items[itId].title, quick=True),
-            Desc=self._convert_from_novx(self.novel.items[itId].desc),
-            Notes=self._convert_from_novx(self.novel.items[itId].notes),
-            Tags=self._convert_from_novx(tags, quick=True),
-            AKA=self._convert_from_novx(self.novel.items[itId].aka, quick=True),
-            ProjectName=self._convert_from_novx(self.projectName, quick=True),
+            Title=self._convert_from_novx(
+                self.novel.items[itId].title,
+                quick=True,
+            ),
+            Desc=self._convert_from_novx(
+                self.novel.items[itId].desc,
+            ),
+            Notes=self._convert_from_novx(
+                self.novel.items[itId].notes,
+            ),
+            Tags=self._convert_from_novx(
+                tags,
+                quick=True,
+            ),
+            AKA=self._convert_from_novx(
+                self.novel.items[itId].aka,
+                quick=True,
+            ),
+            ProjectName=self._convert_from_novx(
+                self.projectName,
+                quick=True,
+            ),
             ProjectPath=self.projectPath,
             ItemsSuffix=ITEMS_SUFFIX,
         )
@@ -384,7 +509,8 @@ class FileExport(File):
         substituting placeholders according to the item mapping dictionary.
         Skip items not accepted by the item filter.
         Return a list of strings.
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         if self._itemHeadingTemplate:
             lines = [self._itemHeadingTemplate]
@@ -393,7 +519,11 @@ class FileExport(File):
         template = Template(self._itemTemplate)
         for itId in self.novel.tree.get_children(IT_ROOT):
             if self.itemFilter.accept(self, itId):
-                lines.append(template.safe_substitute(self._get_itemMapping(itId)))
+                lines.append(
+                    template.safe_substitute(
+                        self._get_itemMapping(itId)
+                    )
+                )
         return lines
 
     def _get_locationMapping(self, lcId):
@@ -402,21 +532,41 @@ class FileExport(File):
         Positional arguments:
             lcId: str -- location ID.
         
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         if self.novel.locations[lcId].tags is not None:
-            tags = list_to_string(self.novel.locations[lcId].tags, divider=self._DIVIDER)
+            tags = list_to_string(
+                self.novel.locations[lcId].tags,
+                divider=self._DIVIDER
+            )
         else:
             tags = ''
 
         locationMapping = dict(
             ID=lcId,
-            Title=self._convert_from_novx(self.novel.locations[lcId].title, quick=True),
-            Desc=self._convert_from_novx(self.novel.locations[lcId].desc),
-            Notes=self._convert_from_novx(self.novel.locations[lcId].notes),
-            Tags=self._convert_from_novx(tags, quick=True),
-            AKA=self._convert_from_novx(self.novel.locations[lcId].aka, quick=True),
-            ProjectName=self._convert_from_novx(self.projectName, quick=True),
+            Title=self._convert_from_novx(
+                self.novel.locations[lcId].title,
+                quick=True,
+            ),
+            Desc=self._convert_from_novx(
+                self.novel.locations[lcId].desc,
+            ),
+            Notes=self._convert_from_novx(
+                self.novel.locations[lcId].notes
+            ),
+            Tags=self._convert_from_novx(
+                tags,
+                quick=True,
+            ),
+            AKA=self._convert_from_novx(
+                self.novel.locations[lcId].aka,
+                quick=True,
+            ),
+            ProjectName=self._convert_from_novx(
+                self.projectName,
+                quick=True,
+            ),
             ProjectPath=self.projectPath,
             LocationsSuffix=LOCATIONS_SUFFIX,
         )
@@ -426,10 +576,12 @@ class FileExport(File):
         """Process the locations.
         
         Iterate through the sorted location list and apply the template, 
-        substituting placeholders according to the location mapping dictionary.
+        substituting placeholders according to the 
+        location mapping dictionary.
         Skip locations not accepted by the location filter.
         Return a list of strings.
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         if self._locationHeadingTemplate:
             lines = [self._locationHeadingTemplate]
@@ -438,7 +590,11 @@ class FileExport(File):
         template = Template(self._locationTemplate)
         for lcId in self.novel.tree.get_children(LC_ROOT):
             if self.locationFilter.accept(self, lcId):
-                lines.append(template.safe_substitute(self._get_locationMapping(lcId)))
+                lines.append(
+                    template.safe_substitute(
+                        self._get_locationMapping(lcId)
+                    )
+                )
         return lines
 
     def _get_plotLineMapping(self, plId):
@@ -447,14 +603,25 @@ class FileExport(File):
         Positional arguments:
             plId: str -- plot line ID.
         
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         plotlineMapping = dict(
             ID=plId,
-            Title=self._convert_from_novx(self.novel.plotLines[plId].title, quick=True),
-            Desc=self._convert_from_novx(self.novel.plotLines[plId].desc),
-            Notes=self._convert_from_novx(self.novel.plotLines[plId].notes),
-            ProjectName=self._convert_from_novx(self.projectName, quick=True),
+            Title=self._convert_from_novx(
+                self.novel.plotLines[plId].title,
+                quick=True,
+            ),
+            Desc=self._convert_from_novx(
+                self.novel.plotLines[plId].desc,
+            ),
+            Notes=self._convert_from_novx(
+                self.novel.plotLines[plId].notes,
+            ),
+            ProjectName=self._convert_from_novx(
+                self.projectName,
+                quick=True,
+            ),
             ProjectPath=self.projectPath,
             Language=self.novel.languageCode,
             Country=self.novel.countryCode,
@@ -468,7 +635,8 @@ class FileExport(File):
         substituting placeholders according to the plot line mapping dictionary.
         Skip plot lines not accepted by the plot line filter.
         Return a list of strings.
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         if self._plotLineHeadingTemplate:
             lines = [self._plotLineHeadingTemplate]
@@ -478,14 +646,22 @@ class FileExport(File):
             if self.arcFilter.accept(self, plId):
                 if self._plotLineTemplate:
                     template = Template(self._plotLineTemplate)
-                    lines.append(template.safe_substitute(self._get_plotLineMapping(plId)))
+                    lines.append(
+                        template.safe_substitute(
+                            self._get_plotLineMapping(plId)
+                        )
+                    )
 
             #--- Process plot points.
             for ppId in self.novel.tree.get_children(plId):
                 if self._plotPointTemplate:
                     template = Template(self._plotPointTemplate)
                     plotPointMapping = self._get_plotPointMapping(ppId)
-                    lines.append(template.safe_substitute(plotPointMapping))
+                    lines.append(
+                        template.safe_substitute(
+                            plotPointMapping
+                        )
+                    )
         return lines
 
     def _get_plotPointMapping(self, ppId):
@@ -494,17 +670,28 @@ class FileExport(File):
         Positional arguments:
             ppId: str -- plot point ID.
         
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         plotPointMapping = dict(
             ID=ppId,
-            Title=self._convert_from_novx(self.novel.plotPoints[ppId].title, quick=True),
-            Desc=self._convert_from_novx(self.novel.plotPoints[ppId].desc),
-            Notes=self._convert_from_novx(self.novel.plotPoints[ppId].notes),
+            Title=self._convert_from_novx(
+                self.novel.plotPoints[ppId].title,
+                quick=True,
+            ),
+            Desc=self._convert_from_novx(
+                self.novel.plotPoints[ppId].desc,
+            ),
+            Notes=self._convert_from_novx(
+                self.novel.plotPoints[ppId].notes,
+            ),
             Section='',
             scID='',
             SectionTitle='',
-            ProjectName=self._convert_from_novx(self.projectName, quick=True),
+            ProjectName=self._convert_from_novx(
+                self.projectName,
+                quick=True,
+            ),
             ProjectPath=self.projectPath,
             Language=self.novel.languageCode,
             Country=self.novel.countryCode,
@@ -512,7 +699,9 @@ class FileExport(File):
         scId = self.novel.plotPoints[ppId].sectionAssoc
         if scId:
             template = Template(self._assocSectionTemplate)
-            plotPointMapping['Section'] = template.safe_substitute(self._get_sectionAssocMapping(scId))
+            plotPointMapping['Section'] = template.safe_substitute(
+                self._get_sectionAssocMapping(scId)
+            )
         return plotPointMapping
 
     def _get_renamings(self):
@@ -548,26 +737,41 @@ class FileExport(File):
             chrGls = self.novel.customChrGoals
         else:
             chrGls = _('Goals')
-        return pltPrgs, chrczn, wrldbld, goal, cflct, outcm, chrBio, chrGls
+        return (
+            pltPrgs,
+            chrczn,
+            wrldbld,
+            goal,
+            cflct,
+            outcm,
+            chrBio,
+            chrGls,
+        )
 
     def _get_sectionAssocMapping(self, scId):
-        """Return a mapping dictionary for a section that is associated to a plot point.
-        
-        Positional arguments:
-            scId: str -- section ID.
-        
-        Extends the superclass method.
-        """
+        # Return a mapping dictionary for a section that is
+        # associated to a plot point.
+        #    scId: str -- section ID.
+        # Extends the superclass method.
         sectionAssocMapping = dict(
             SectionTitle=self.novel.sections[scId].title,
-            ProjectName=self._convert_from_novx(self.projectName, True),
+            ProjectName=self._convert_from_novx(
+                self.projectName,
+                quick=True,
+            ),
             scID=scId,
             ManuscriptSuffix=MANUSCRIPT_SUFFIX,
             SectionsSuffix=SECTIONS_SUFFIX,
         )
         return sectionAssocMapping
 
-    def _get_sectionMapping(self, scId, sectionNumber, wordsTotal, firstInChapter=False):
+    def _get_sectionMapping(
+            self,
+            scId,
+            sectionNumber,
+            wordsTotal,
+            firstInChapter=False,
+        ):
         """Return a mapping dictionary for a section section.
         
         Positional arguments:
@@ -577,7 +781,8 @@ class FileExport(File):
         Optional arguments:
             firstInChapter: bool: -- if True, the section begins a chapter.
         
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
 
         #--- Create a comma separated tag list.
@@ -626,7 +831,10 @@ class FileExport(File):
             sectionItems = ''
 
         #--- Date or day.
-        if self.novel.sections[scId].date is not None and self.novel.sections[scId].date != Section.NULL_DATE:
+        if (
+            self.novel.sections[scId].date is not None
+            and self.novel.sections[scId].date != Section.NULL_DATE
+        ):
             scDay = ''
             dateStr = self.novel.sections[scId].date
             cmbDateStr = self.novel.sections[scId].localeDate
@@ -658,21 +866,30 @@ class FileExport(File):
             odsTime = ''
 
         #--- Create a combined duration information.
-        if self.novel.sections[scId].lastsDays is not None and self.novel.sections[scId].lastsDays != '0':
+        if (
+            self.novel.sections[scId].lastsDays is not None
+            and self.novel.sections[scId].lastsDays != '0'
+        ):
             lastsDays = self.novel.sections[scId].lastsDays
             days = f'{self.novel.sections[scId].lastsDays}d '
         else:
             lastsDays = ''
             days = ''
 
-        if self.novel.sections[scId].lastsHours is not None and self.novel.sections[scId].lastsHours != '0':
+        if (
+            self.novel.sections[scId].lastsHours is not None
+            and self.novel.sections[scId].lastsHours != '0'
+        ):
             lastsHours = self.novel.sections[scId].lastsHours
             hours = f'{self.novel.sections[scId].lastsHours}h '
         else:
             lastsHours = ''
             hours = ''
 
-        if self.novel.sections[scId].lastsMinutes is not None and self.novel.sections[scId].lastsMinutes != '0':
+        if (
+            self.novel.sections[scId].lastsMinutes is not None
+            and self.novel.sections[scId].lastsMinutes != '0'
+        ):
             lastsMinutes = self.novel.sections[scId].lastsMinutes
             minutes = f'{self.novel.sections[scId].lastsMinutes}min'
         else:
@@ -680,19 +897,27 @@ class FileExport(File):
             minutes = ''
 
         duration = f'{days}{hours}{minutes}'
-
-        pltPrgs, chrczn, wrldbld, goal, cflct, outcm, __, __ = self._get_renamings()
+        (
+            pltPrgs,
+            chrczn,
+            wrldbld,
+            goal,
+            cflct,
+            outcm,
+            __,
+            __
+         ) = self._get_renamings()
         sectionMapping = dict(
             ID=scId,
             SectionNumber=sectionNumber,
             Title=self._convert_from_novx(
                 self.novel.sections[scId].title,
-                quick=True
-                ),
+                quick=True,
+            ),
             Desc=self._convert_from_novx(
                 self.novel.sections[scId].desc,
                 append=self.novel.sections[scId].appendToPrev
-                ),
+            ),
             WordCount=str(self.novel.sections[scId].wordCount),
             WordsTotal=wordsTotal,
             Status=int(self.novel.sections[scId].status),
@@ -701,7 +926,7 @@ class FileExport(File):
                 append=self.novel.sections[scId].appendToPrev,
                 firstInChapter=firstInChapter,
                 xml=True
-                ),
+            ),
             Date=dateStr,
             Time=scTime,
             OdsTime=odsTime,
@@ -717,16 +942,25 @@ class FileExport(File):
             LastsMinutes=lastsMinutes,
             Duration=duration,
             Scene=Section.SCENE[self.novel.sections[scId].scene],
-            Goal=self._convert_from_novx(self.novel.sections[scId].goal),
-            Conflict=self._convert_from_novx(self.novel.sections[scId].conflict),
-            Outcome=self._convert_from_novx(self.novel.sections[scId].outcome),
+            Goal=self._convert_from_novx(
+                self.novel.sections[scId].goal,
+            ),
+            Conflict=self._convert_from_novx(
+                self.novel.sections[scId].conflict,
+            ),
+            Outcome=self._convert_from_novx(
+                self.novel.sections[scId].outcome,
+            ),
             Tags=self._convert_from_novx(tags, quick=True),
             Characters=sectionChars,
             Viewpoint=viewpointChar,
             Locations=sectionLocs,
             Items=sectionItems,
             Notes=self._convert_from_novx(self.novel.sections[scId].notes),
-            ProjectName=self._convert_from_novx(self.projectName, quick=True),
+            ProjectName=self._convert_from_novx(
+                self.projectName,
+                quick=True,
+            ),
             ProjectPath=self.projectPath,
             Language=self.novel.languageCode,
             Country=self.novel.countryCode,
@@ -758,7 +992,8 @@ class FileExport(File):
             sectionNumber: int -- number of all processed sections.
             wordsTotal: int -- accumulated wordcount of all processed sections.
         
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         lines = []
         firstSectionInChapter = True
@@ -784,7 +1019,10 @@ class FileExport(File):
                 else:
                     continue
 
-            elif self.novel.sections[scId].scType == 1 or self.novel.chapters[chId].chType == 1:
+            elif (
+                self.novel.sections[scId].scType == 1
+                or self.novel.chapters[chId].chType == 1
+            ):
                 if self._unusedSectionTemplate:
                     template = Template(self._unusedSectionTemplate)
                 else:
@@ -797,9 +1035,16 @@ class FileExport(File):
                 template = Template(self._sectionTemplate)
                 if firstSectionInChapter and self._firstSectionTemplate:
                     template = Template(self._firstSectionTemplate)
-                elif self.novel.sections[scId].appendToPrev and self._appendedSectionTemplate:
+                elif (
+                    self.novel.sections[scId].appendToPrev
+                    and self._appendedSectionTemplate
+                ):
                     template = Template(self._appendedSectionTemplate)
-            if not (firstSectionInChapter or self.novel.sections[scId].appendToPrev or self.novel.sections[scId].scType > 1):
+            if not (
+                firstSectionInChapter
+                or self.novel.sections[scId].appendToPrev
+                or self.novel.sections[scId].scType > 1
+            ):
                 lines.append(self._sectionDivider)
             if template is not None:
                 lines.append(
@@ -808,9 +1053,9 @@ class FileExport(File):
                             scId, dispNumber,
                             wordsTotal,
                             firstInChapter=firstSectionInChapter,
-                            )
                         )
                     )
+                )
             if self.novel.sections[scId].scType < 2:
                 firstSectionInChapter = False
         return lines, sectionNumber, wordsTotal
@@ -821,13 +1066,22 @@ class FileExport(File):
         Positional arguments:
             pnId: str -- project note ID.
         
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         noteMapping = dict(
             ID=pnId,
-            Title=self._convert_from_novx(self.novel.projectNotes[pnId].title, quick=True),
-            Desc=self._convert_from_novx(self.novel.projectNotes[pnId].desc),
-            ProjectName=self._convert_from_novx(self.projectName, quick=True),
+            Title=self._convert_from_novx(
+                self.novel.projectNotes[pnId].title,
+                quick=True,
+            ),
+            Desc=self._convert_from_novx(
+                self.novel.projectNotes[pnId].desc,
+            ),
+            ProjectName=self._convert_from_novx(
+                self.projectName,
+                quick=True,
+            ),
             ProjectPath=self.projectPath,
         )
         return noteMapping
@@ -839,7 +1093,8 @@ class FileExport(File):
         substituting placeholders according to the item mapping dictionary.
         Skip items not accepted by the item filter.
         Return a list of strings.
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         lines = []
         template = Template(self._projectNoteTemplate)
@@ -852,7 +1107,8 @@ class FileExport(File):
         """Call all processing methods.
         
         Return a string to be written to the output file.
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         lines = self._get_fileHeader()
         lines.extend(self._get_chapters())

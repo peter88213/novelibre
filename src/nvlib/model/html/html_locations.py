@@ -16,28 +16,29 @@ class HtmlLocations(HtmlReport):
     EXTENSION = '.html'
     SUFFIX = LOCATION_REPORT_SUFFIX
 
-    _fileHeader = f'''{HtmlReport._fileHeader}
-<title>{_('Locations')} ($Title)</title>
-</head>
-
-<body>
-<p class=title>$Title {_('by')} $AuthorName - {_('Locations')}</p>
-<table>
-<tr class="heading">
-<td class="chtitle">{_('Name')}</td>
-<td>{_('AKA')}</td>
-<td>{_('Tags')}</td>
-<td>{_('Description')}</td>
-</tr>
-'''
-
-    _locationTemplate = '''<tr>
-<td class="chtitle">$Title</td>
-<td>$AKA</td>
-<td>$Tags</td>
-<td>$Desc</td>
-</tr>
-'''
+    _fileHeader = (
+        f'{HtmlReport._fileHeader}\n'
+        f'<title>{_("Locations")} ($Title)</title>\n'
+        '</head>\n\n'
+        '<body>\n'
+        f'<p class=title>$Title {_("by")} $AuthorName - '
+        f'{_("Locations")}</p>\n'
+        '<table>\n'
+        '<tr class="heading">\n'
+        f'<td class="chtitle">{_("Name")}</td>\n'
+        f'<td>{_("AKA")}</td>\n'
+        f'<td>{_("Tags")}</td>\n'
+        f'<td>{_("Description")}</td>\n'
+        '</tr>\n'
+    )
+    _locationTemplate = (
+        '<tr>\n'
+        '<td class="chtitle">$Title</td>\n'
+        '<td>$AKA</td>\n'
+        '<td>$Tags</td>\n'
+        '<td>$Desc</td>\n'
+        '</tr>\n'
+    )
 
     def write(self):
         if not self.novel.locations:
