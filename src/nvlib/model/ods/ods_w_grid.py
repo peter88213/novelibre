@@ -44,121 +44,175 @@ class OdsWGrid(OdsWriter):
     # Notes
 
     _fileHeader = (
-        f'{OdsWriter._CONTENT_XML_HEADER}{DESCRIPTION}" table:style-name="ta1" table:print="false">\n'
-        '    <table:table-column table:style-name="co1" table:visibility="collapse" table:default-cell-style-name="Default"/>\n'
-        '    <table:table-column table:style-name="co1" table:default-cell-style-name="Default"/>\n'
-        '    <table:table-column table:style-name="co2" table:default-cell-style-name="ce2"/>\n'
-        '    <table:table-column table:style-name="co1" table:default-cell-style-name="ce4"/>\n'
-        '    <table:table-column table:style-name="co1" table:default-cell-style-name="Default"/>\n'
-        '    <table:table-column table:style-name="co1" table:default-cell-style-name="Default"/>\n'
-        '    <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>\n'
-        '    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>\n'
-        '    <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>\n'
+        f'{OdsWriter._CONTENT_XML_HEADER}{DESCRIPTION}" '
+        'table:style-name="ta1" table:print="false">\n'
+        '    <table:table-column table:style-name="co1" '
+        'table:visibility="collapse" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co1" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co2" '
+        'table:default-cell-style-name="ce2"/>\n'
+        '    <table:table-column table:style-name="co1" '
+        'table:default-cell-style-name="ce4"/>\n'
+        '    <table:table-column table:style-name="co1" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co1" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co3" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co4" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co2" '
+        'table:default-cell-style-name="Default"/>\n'
         '$ArcColumns\n'
-        '    <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>\n'
-        '    <table:table-column table:style-name="co1" table:default-cell-style-name="Default"/>\n'
-        '    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>\n'
-        '    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>\n'
-        '    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>\n'
-        '    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>\n'
-        '    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>\n'
-        '    <table:table-row table:style-name="ro1" table:visibility="collapse">\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '    <table:table-column table:style-name="co3" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co1" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co4" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co4" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co4" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co4" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co4" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-row table:style-name="ro1" '
+        'table:visibility="collapse">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>ID</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>Section</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="ce1" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="ce1" office:value-type="string">\n'
         '      <text:p>Date</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="ce3" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="ce3" office:value-type="string">\n'
         '      <text:p>Time</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>Day</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>Duration</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>Title</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>Description</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>Viewpoint</text:p>\n'
         '     </table:table-cell>\n'
         '$ArcIdCells\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>Tags</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>Scene</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>Goal</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>Conflict</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>Outcome</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>Notes</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" table:number-columns-repeated="1003"/>\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" table:number-columns-repeated="1003"/>\n'
         '    </table:table-row>\n'
         '    <table:table-row table:style-name="ro1">\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>ID</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         f'      <text:p>{_("Section")}</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="ce1" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="ce1" office:value-type="string">\n'
         f'      <text:p>{_("Date")}</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="ce3" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="ce3" office:value-type="string">\n'
         f'      <text:p>{_("Time")}</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         f'      <text:p>{_("Day")}</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         f'      <text:p>{_("Duration")}</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         f'      <text:p>{_("Title")}</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         f'      <text:p>{_("Description")}</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         f'      <text:p>{_("Viewpoint")}</text:p>\n'
         '     </table:table-cell>\n'
         '$ArcTitleCells\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         f'      <text:p>{_("Tags")}</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         f'      <text:p>{_("Scene")}</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
-        f'      <text:p>$CustomPlotProgress / {_("Goal")} / {_("Reaction")} / $CustomGoal</text:p>\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>$CustomPlotProgress / '
+        f'{_("Goal")} / {_("Reaction")} / $CustomGoal</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
-        f'      <text:p>$CustomCharacterization / {_("Conflict")} / {_("Dilemma")} / $CustomConflict</text:p>\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
+        f'      <text:p>$CustomCharacterization / '
+        f'{_("Conflict")} / {_("Dilemma")} / $CustomConflict</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
-        f'      <text:p>$CustomWorldBuilding / {_("Outcome")} / {_("Choice")} / $CustomOutcome</text:p>\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>$CustomWorldBuilding /'
+        f'{_("Outcome")} / {_("Choice")} / $CustomOutcome</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'office:value-type="string">\n'
         f'      <text:p>{_("Notes")}</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:style-name="Heading" table:number-columns-repeated="1003"/>\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'table:number-columns-repeated="1003"/>\n'
         '    </table:table-row>\n'
     )
     _sectionTemplate = (
@@ -166,7 +220,10 @@ class OdsWGrid(OdsWriter):
         '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$ID</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:formula="of:=HYPERLINK(&quot;file:///$ProjectPath/$ProjectName$ManuscriptSuffix.odt#$ID%7Cregion&quot;;&quot;$SectionNumber&quot;)" office:value-type="string" office:string-value="$SectionNumber">\n'
+        '     <table:table-cell table:formula="of:=HYPERLINK(&quot;'
+        'file:///$ProjectPath/$ProjectName$ManuscriptSuffix.odt'
+        '#$ID%7Cregion&quot;;&quot;$SectionNumber&quot;)" '
+        'office:value-type="string" office:string-value="$SectionNumber">\n'
         '      <text:p>$SectionNumber</text:p>\n'
         '     </table:table-cell>\n'
         '$DateCell'
@@ -210,13 +267,15 @@ class OdsWGrid(OdsWriter):
     _fileFooter = OdsWriter._CONTENT_XML_FOOTER
     _emptyDateCell = '     <table:table-cell table:style-name="ce2"/>'
     _validDateCell = (
-        '     <table:table-cell office:value-type="date" office:date-value="$Date">\n'
+        '     <table:table-cell '
+        'office:value-type="date" office:date-value="$Date">\n'
         '      <text:p>$Date</text:p>\n'
         '     </table:table-cell>\n'
     )
     _emptyTimeCell = '     <table:table-cell table:style-name="ce4"/>'
     _validTimeCell = (
-        '     <table:table-cell office:value-type="time" office:time-value="$OdsTime">\n'
+        '     <table:table-cell office:value-type="time" '
+        'office:time-value="$OdsTime">\n'
         '      <text:p>$Time</text:p>\n'
         '     </table:table-cell>\n'
     )
@@ -226,12 +285,14 @@ class OdsWGrid(OdsWriter):
         '     </table:table-cell>\n'
     )
     _arcIdCell = (
-        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>$ArcId</text:p>\n'
         '     </table:table-cell>\n'
     )
     _arcTitleCell = (
-        '     <table:table-cell $Link table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell $Link '
+        'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>$ArcTitle</text:p>\n'
         '     </table:table-cell>\n'
     )
@@ -248,14 +309,32 @@ class OdsWGrid(OdsWriter):
         arcIdCells = []
         arcTitleCells = []
         for plId in self.novel.tree.get_children(PL_ROOT):
-            arcColumns.append('    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>')
+            link = self._convert_from_novx(
+                self.novel.plotLines[plId].title,
+                isLink=True,
+            )
+            arcColumns.append(
+                '    <table:table-column table:style-name="co4" '
+                'table:default-cell-style-name="Default"/>'
+            )
             mapping = dict(
                 ArcId=plId,
                 ArcTitle=self.novel.plotLines[plId].title,
-                Link=f'table:formula="of:=HYPERLINK(&quot;file:///{self.projectPath}/{self._convert_from_novx(self.projectName)}{PLOTLINES_SUFFIX}.odt#{plId}&quot;;&quot;{self._convert_from_novx(self.novel.plotLines[plId].title, isLink=True)}&quot;)"',
+                Link=(
+                    'table:formula="of:=HYPERLINK(&quot;'
+                    f'file:///{self.projectPath}/'
+                    f'{self._convert_from_novx(self.projectName)}'
+                    f'{PLOTLINES_SUFFIX}.odt#{plId}&quot;;&quot;'
+                    f'{link}&quot;)"'
+                ),
             )
-            arcIdCells.append(Template(self._arcIdCell).safe_substitute(mapping))
-            arcTitleCells.append(Template(self._arcTitleCell).safe_substitute(mapping))
+            arcIdCells.append(
+                Template(self._arcIdCell
+            ).safe_substitute(mapping))
+            arcTitleCells.append(
+                Template(
+                    self._arcTitleCell
+                ).safe_substitute(mapping))
         fileHeaderMapping['ArcColumns'] = '\n'.join(arcColumns)
         fileHeaderMapping['ArcIdCells'] = '\n'.join(arcIdCells)
         fileHeaderMapping['ArcTitleCells'] = '\n'.join(arcTitleCells)
@@ -272,17 +351,27 @@ class OdsWGrid(OdsWriter):
         
         Extends the superclass method.
         """
-        sectionMapping = super()._get_sectionMapping(scId, sectionNumber, wordsTotal)
+        sectionMapping = super()._get_sectionMapping(
+            scId,
+            sectionNumber,
+            wordsTotal,
+        )
 
-        #--- $DateCell: if no section date is given, the whole cell must be empty.
+        #--- $DateCell: if no section date is given,
+        #               the whole cell must be empty.
         if sectionMapping['Date']:
-            sectionMapping['DateCell'] = Template(self._validDateCell).safe_substitute(sectionMapping)
+            sectionMapping['DateCell'] = Template(
+                self._validDateCell
+            ).safe_substitute(sectionMapping)
         else:
             sectionMapping['DateCell'] = self._emptyDateCell
 
-        #--- $TimeCell: if no section time is given, the whole cell must be empty.
+        #--- $TimeCell: if no section time is given,
+        #               the whole cell must be empty.
         if sectionMapping['Time']:
-            sectionMapping['TimeCell'] = Template(self._validTimeCell).safe_substitute(sectionMapping)
+            sectionMapping['TimeCell'] = Template(
+                self._validTimeCell
+            ).safe_substitute(sectionMapping)
         else:
             sectionMapping['TimeCell'] = self._emptyTimeCell
 
@@ -295,7 +384,10 @@ class OdsWGrid(OdsWriter):
             else:
                 arcNote = ''
             mapping = {'ArcNote':arcNote}
-            arcNoteCells.append(Template(self._arcNoteCell).safe_substitute(mapping))
+            arcNoteCells.append(
+                Template(
+                    self._arcNoteCell
+                ).safe_substitute(mapping))
         sectionMapping['ArcNoteCells'] = '\n'.join(arcNoteCells)
 
         return sectionMapping

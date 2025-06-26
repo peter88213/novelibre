@@ -21,27 +21,36 @@ class OdsWPlotList(OdsWriter):
 
     _CE_OFFSET = 6
     _ADDITIONAL_STYLES = (
-        '\n\n  <style:style style:name="ce5" style:family="table-cell" style:parent-style-name="Default">\n'
-        '   <style:table-cell-properties style:text-align-source="value-type" style:repeat-content="false"/>\n'
+        '\n\n  <style:style style:name="ce5" '
+        'style:family="table-cell" style:parent-style-name="Default">\n'
+        '   <style:table-cell-properties '
+        'style:text-align-source="value-type" style:repeat-content="false"/>\n'
         '   <style:paragraph-properties fo:margin-left="0cm"/>\n'
-        '   <style:text-properties fo:color="#ff0000" fo:font-weight="bold" style:font-weight-asian="bold" style:font-weight-complex="bold"/>\n'
+        '   <style:text-properties fo:color="#ff0000" fo:font-weight="bold" '
+        'style:font-weight-asian="bold" style:font-weight-complex="bold"/>\n'
         '  </style:style>\n'
-        '  <style:style style:name="ce6" style:family="table-cell" style:parent-style-name="Default">\n'
+        '  <style:style style:name="ce6" style:family="table-cell" '
+        'style:parent-style-name="Default">\n'
         '   <style:table-cell-properties fo:background-color="#b0c4de"/>\n'
         '  </style:style>\n'
-        '  <style:style style:name="ce7" style:family="table-cell" style:parent-style-name="Default">\n'
+        '  <style:style style:name="ce7" style:family="table-cell" '
+        'style:parent-style-name="Default">\n'
         '   <style:table-cell-properties fo:background-color="#ffd700"/>\n'
         '  </style:style>\n'
-        '  <style:style style:name="ce8" style:family="table-cell" style:parent-style-name="Default">\n'
+        '  <style:style style:name="ce8" style:family="table-cell" '
+        'style:parent-style-name="Default">\n'
         '   <style:table-cell-properties fo:background-color="#ff7f50"/>\n'
         '  </style:style>\n'
-        '  <style:style style:name="ce9" style:family="table-cell" style:parent-style-name="Default">\n'
+        '  <style:style style:name="ce9" style:family="table-cell" '
+        'style:parent-style-name="Default">\n'
         '   <style:table-cell-properties fo:background-color="#9acd32"/>\n'
         '  </style:style>\n'
-        '  <style:style style:name="ce10" style:family="table-cell" style:parent-style-name="Default">\n'
+        '  <style:style style:name="ce10" style:family="table-cell" '
+        'style:parent-style-name="Default">\n'
         '   <style:table-cell-properties fo:background-color="#48d1cc"/>\n'
         '  </style:style>\n'
-        '  <style:style style:name="ce11" style:family="table-cell" style:parent-style-name="Default">\n'
+        '  <style:style style:name="ce11" style:family="table-cell" '
+        'style:parent-style-name="Default">\n'
         '   <style:table-cell-properties fo:background-color="#dda0dd"/>\n'
         '  </style:style>\n'
         ' </office:automatic-styles>'
@@ -50,7 +59,10 @@ class OdsWPlotList(OdsWriter):
         ' </office:automatic-styles>',
         _ADDITIONAL_STYLES
     )
-    _fileHeader = f'{_fileHeader}{DESCRIPTION}" table:style-name="ta1" table:print="false">'
+    _fileHeader = (
+        f'{_fileHeader}{DESCRIPTION}" table:style-name="ta1" '
+        'table:print="false">'
+    )
 
     def write_content_xml(self):
         """Create the ODS table.
@@ -61,11 +73,15 @@ class OdsWPlotList(OdsWriter):
 
         odsText = [
             self._fileHeader,
-            '<table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>',
+            (
+                '<table:table-column table:style-name="co4" '
+                'table:default-cell-style-name="Default"/>'
+            ),
         ]
 
         plotLineColorsTotal = 6
-        # total number of the background colors used in the "ce" table cell styles
+        # total number of the background colors used
+        # in the "ce" table cell styles
 
         # Get plot lines.
         if self.novel.tree.get_children(PL_ROOT) is not None:
@@ -75,7 +91,10 @@ class OdsWPlotList(OdsWriter):
 
         # Plot line columns.
         for plId in plotLines:
-            odsText.append('<table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>')
+            odsText.append(
+                '<table:table-column table:style-name="co3" '
+                'table:default-cell-style-name="Default"/>'
+            )
 
         # Title row.
         odsText.append('   <table:table-row table:style-name="ro2">')
@@ -96,7 +115,9 @@ class OdsWPlotList(OdsWriter):
             for scId in self.novel.tree.get_children(chId):
                 # Section row
                 if self.novel.sections[scId].scType == 0:
-                    odsText.append('   <table:table-row table:style-name="ro2">')
+                    odsText.append(
+                        '   <table:table-row table:style-name="ro2">'
+                    )
                     odsText.append(
                         self._new_cell(
                             self.novel.sections[scId].title,
@@ -104,12 +125,18 @@ class OdsWPlotList(OdsWriter):
                         )
                     )
                     for i, plId in enumerate(plotLines):
-                        colorIndex = (i % plotLineColorsTotal) + self._CE_OFFSET
+                        colorIndex = (
+                            i % plotLineColorsTotal) + self._CE_OFFSET
                         if scId in self.novel.plotLines[plId].sections:
                             plotPoints = []
                             for ppId in self.novel.tree.get_children(plId):
-                                if scId == self.novel.plotPoints[ppId].sectionAssoc:
-                                    plotPoints.append(self.novel.plotPoints[ppId].title)
+                                if (
+                                    scId == self.novel.plotPoints[
+                                    ppId].sectionAssoc
+                                ):
+                                    plotPoints.append(
+                                        self.novel.plotPoints[ppId].title
+                                    )
                             odsText.append(
                                 self._new_cell(
                                     list_to_string(plotPoints),
@@ -127,9 +154,18 @@ class OdsWPlotList(OdsWriter):
     def _new_cell(self, text, attr='', link=''):
         """Return the markup for a table cell with text and attributes."""
         if link:
-            attr = f'{attr} table:formula="of:=HYPERLINK(&quot;file:///{self.projectPath}/{self._convert_from_novx(self.projectName)}{link}&quot;;&quot;{self._convert_from_novx(text, isLink=True)}&quot;)"'
+            attr = (
+                f'{attr} table:formula="of:=HYPERLINK(&quot;file:///'
+                f'{self.projectPath}/'
+                f'{self._convert_from_novx(self.projectName)}{link}&quot;'
+                f';&quot;{self._convert_from_novx(text, isLink=True)}&quot;)"'
+            )
             text = ''
         else:
             text = f'\n      <text:p>{self._convert_from_novx(text)}</text:p>'
-        return f'     <table:table-cell {attr} office:value-type="string">{text}\n     </table:table-cell>'
+        return (
+            f'     <table:table-cell {attr} '
+            f'office:value-type="string">{text}\n'
+            '     </table:table-cell>'
+        )
 
