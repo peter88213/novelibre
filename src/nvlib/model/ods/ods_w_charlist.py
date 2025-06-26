@@ -17,145 +17,147 @@ class OdsWCharList(OdsWriter):
     DESCRIPTION = _('Character list')
     SUFFIX = CHARLIST_SUFFIX
 
-    _fileHeader = f'''{OdsWriter._CONTENT_XML_HEADER}{DESCRIPTION}" table:style-name="ta1" table:print="false">
-    <table:table-column table:style-name="co1" table:visibility="collapse" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co4" table:number-columns-repeated="3" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co2" table:default-cell-style-name="ce2"/>
-    <table:table-column table:style-name="co2" table:default-cell-style-name="ce2"/>
-    <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co1" table:number-columns-repeated="1014" table:default-cell-style-name="Default"/>
-     <table:table-row table:style-name="ro1" table:visibility="collapse">
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>ID</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>Name</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>Full name</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>Aka</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>Description</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>Bio</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>Goals</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="ce1" office:value-type="string">
-      <text:p>Birth date</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="ce1" office:value-type="string">
-      <text:p>Death date</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>Importance</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>Tags</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>Notes</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" table:number-columns-repeated="1014"/>
-    </table:table-row>
-     <table:table-row table:style-name="ro1">
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>ID</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>{_("Name")}</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>{_("Full name")}</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>{_("Aka")}</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>{_("Description")}</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>$CustomChrBio</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>$CustomChrGoals</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>{_("Birth date")}</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>{_("Death date")}</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>{_("Importance")}</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>{_("Tags")}</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>{_("Notes")}</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" table:number-columns-repeated="1014"/>
-    </table:table-row>
-
-'''
-    _characterTemplate = '''   <table:table-row table:style-name="ro2">
-     <table:table-cell office:value-type="string">
-      <text:p>$ID</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$Title</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$FullName</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$AKA</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$Desc</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$Bio</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$Goals</text:p>
-     </table:table-cell>
-$BirthDateCell     
-$DeathDateCell     
-     <table:table-cell office:value-type="string">
-      <text:p>$Status</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$Tags</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$Notes</text:p>
-     </table:table-cell>
-     <table:table-cell table:number-columns-repeated="1014"/>
-    </table:table-row>
-
-'''
-
+    _fileHeader = (
+        f'{OdsWriter._CONTENT_XML_HEADER}{DESCRIPTION}" table:style-name="ta1" table:print="false">\n'
+        '    <table:table-column table:style-name="co1" table:visibility="collapse" table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co4" table:number-columns-repeated="3" table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co2" table:default-cell-style-name="ce2"/>\n'
+        '    <table:table-column table:style-name="co2" table:default-cell-style-name="ce2"/>\n'
+        '    <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co1" table:number-columns-repeated="1014" table:default-cell-style-name="Default"/>\n'
+        '     <table:table-row table:style-name="ro1" table:visibility="collapse">\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>ID</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>Name</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>Full name</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>Aka</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>Description</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>Bio</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>Goals</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="ce1" office:value-type="string">\n'
+        '      <text:p>Birth date</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="ce1" office:value-type="string">\n'
+        '      <text:p>Death date</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>Importance</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>Tags</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>Notes</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" table:number-columns-repeated="1014"/>\n'
+        '    </table:table-row>\n'
+        '     <table:table-row table:style-name="ro1">\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>ID</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        f'      <text:p>{_("Name")}</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        f'      <text:p>{_("Full name")}</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        f'      <text:p>{_("Aka")}</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        f'      <text:p>{_("Description")}</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>$CustomChrBio</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>$CustomChrGoals</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        f'      <text:p>{_("Birth date")}</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        f'      <text:p>{_("Death date")}</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        f'      <text:p>{_("Importance")}</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        f'      <text:p>{_("Tags")}</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        f'      <text:p>{_("Notes")}</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" table:number-columns-repeated="1014"/>\n'
+        '    </table:table-row>\n'
+    )
+    _characterTemplate = (
+        '   <table:table-row table:style-name="ro2">\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$ID</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Title</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$FullName</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$AKA</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Desc</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Bio</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Goals</text:p>\n'
+        '     </table:table-cell>\n'
+        '$BirthDateCell\n'
+        '$DeathDateCell\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Status</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Tags</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Notes</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:number-columns-repeated="1014"/>\n'
+        '    </table:table-row>\n'
+    )
     _fileFooter = OdsWriter._CONTENT_XML_FOOTER
-
     _emptyDateCell = '     <table:table-cell table:style-name="ce2"/>'
-    _validBirthDateCell = '''     <table:table-cell office:value-type="date" office:date-value="$BirthDate">
-      <text:p>$BirthDate</text:p>
-     </table:table-cell>'''
-    _validDeathDateCell = '''     <table:table-cell office:value-type="date" office:date-value="$DeathDate">
-      <text:p>$DeathDate</text:p>
-     </table:table-cell>'''
+    _validBirthDateCell = (
+        '     <table:table-cell office:value-type="date" office:date-value="$BirthDate">\n'
+        '      <text:p>$BirthDate</text:p>\n'
+        '     </table:table-cell>\n'
+     )
+    _validDeathDateCell = (
+        '     <table:table-cell office:value-type="date" office:date-value="$DeathDate">\n'
+        '      <text:p>$DeathDate</text:p>\n'
+        '     </table:table-cell>\n'
+    )
 
     def _get_characterMapping(self, crId):
         characterMapping = super()._get_characterMapping(crId)

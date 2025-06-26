@@ -96,7 +96,6 @@
      </table:table-cell>
      <table:table-cell table:style-name="Heading" table:number-columns-repeated="1013"/>
     </table:table-row>
-
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>lc1</text:p>
@@ -118,7 +117,6 @@
      </table:table-cell>
      <table:table-cell table:number-columns-repeated="1013"/>
     </table:table-row>
-
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>lc2</text:p>
@@ -140,7 +138,6 @@
      </table:table-cell>
      <table:table-cell table:number-columns-repeated="1013"/>
     </table:table-row>
-
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>lc3</text:p>
@@ -162,7 +159,6 @@
      </table:table-cell>
      <table:table-cell table:number-columns-repeated="1013"/>
     </table:table-row>
-
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>lc4</text:p>
@@ -184,7 +180,6 @@
      </table:table-cell>
      <table:table-cell table:number-columns-repeated="1013"/>
     </table:table-row>
-
    </table:table>
   </office:spreadsheet>
  </office:body>

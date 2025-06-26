@@ -16,26 +16,26 @@ class OdsWPartList(OdsWChapterList):
     SUFFIX = PARTLIST_SUFFIX
 
     _chapterTemplate = ''
-    _partTemplate = '''   <table:table-row table:style-name="ro2">
-     <table:table-cell office:value-type="string">
-      <text:p>$ID</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$Title</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$Desc</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$Epigraph</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$EpigraphSrc</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$Notes</text:p>
-     </table:table-cell>
-     <table:table-cell table:number-columns-repeated="1020"/>
-    </table:table-row>
-
-'''
+    _partTemplate = (
+        '   <table:table-row table:style-name="ro2">\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$ID</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Title</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Desc</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Epigraph</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$EpigraphSrc</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Notes</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:number-columns-repeated="1020"/>\n'
+        '    </table:table-row>\n'
+    )

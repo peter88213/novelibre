@@ -14,80 +14,79 @@ class OdsWLocList(OdsWriter):
     DESCRIPTION = _('Location list')
     SUFFIX = LOCLIST_SUFFIX
 
-    _fileHeader = f'''{OdsWriter._CONTENT_XML_HEADER}{DESCRIPTION}" table:style-name="ta1" table:print="false">
-    <table:table-column table:style-name="co1" table:visibility="collapse" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co1" table:number-columns-repeated="1013" table:default-cell-style-name="Default"/>
-     <table:table-row table:style-name="ro1" table:visibility="collapse">
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>ID</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>Name</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>Description</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>Aka</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>Tags</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>Notes</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" table:number-columns-repeated="1013"/>
-    </table:table-row>
-     <table:table-row table:style-name="ro1">
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>ID</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>{_("Name")}</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>{_("Description")}</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>{_("Aka")}</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>{_("Tags")}</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>{_("Notes")}</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" table:number-columns-repeated="1013"/>
-    </table:table-row>
-
-'''
-
-    _locationTemplate = '''   <table:table-row table:style-name="ro2">
-     <table:table-cell office:value-type="string">
-      <text:p>$ID</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$Title</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$Desc</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$AKA</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$Tags</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p>$Notes</text:p>
-     </table:table-cell>
-     <table:table-cell table:number-columns-repeated="1013"/>
-    </table:table-row>
-
-'''
+    _fileHeader = (
+        f'{OdsWriter._CONTENT_XML_HEADER}{DESCRIPTION}" table:style-name="ta1" table:print="false">\n'
+        '    <table:table-column table:style-name="co1" table:visibility="collapse" table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co1" table:number-columns-repeated="1013" table:default-cell-style-name="Default"/>\n'
+        '     <table:table-row table:style-name="ro1" table:visibility="collapse">\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>ID</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>Name</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>Description</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>Aka</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>Tags</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>Notes</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" table:number-columns-repeated="1013"/>\n'
+        '    </table:table-row>\n'
+        '     <table:table-row table:style-name="ro1">\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>ID</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        f'      <text:p>{_("Name")}</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        f'      <text:p>{_("Description")}</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        f'      <text:p>{_("Aka")}</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        f'      <text:p>{_("Tags")}</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" office:value-type="string">\n'
+        f'      <text:p>{_("Notes")}</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" table:number-columns-repeated="1013"/>\n'
+        '    </table:table-row>\n'
+    )
+    _locationTemplate = (
+        '   <table:table-row table:style-name="ro2">\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$ID</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Title</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Desc</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$AKA</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Tags</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Notes</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:number-columns-repeated="1013"/>\n'
+        '    </table:table-row>\n'
+    )
     _fileFooter = OdsWriter._CONTENT_XML_FOOTER

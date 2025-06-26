@@ -20,33 +20,36 @@ class OdsWPlotList(OdsWriter):
     SUFFIX = PLOTLIST_SUFFIX
 
     _CE_OFFSET = 6
-    _ADDITIONAL_STYLES = '''
-  <style:style style:name="ce5" style:family="table-cell" style:parent-style-name="Default">
-   <style:table-cell-properties style:text-align-source="value-type" style:repeat-content="false"/>
-   <style:paragraph-properties fo:margin-left="0cm"/>
-   <style:text-properties fo:color="#ff0000" fo:font-weight="bold" style:font-weight-asian="bold" style:font-weight-complex="bold"/>
-  </style:style>
-  <style:style style:name="ce6" style:family="table-cell" style:parent-style-name="Default">
-   <style:table-cell-properties fo:background-color="#b0c4de"/>
-  </style:style>
-  <style:style style:name="ce7" style:family="table-cell" style:parent-style-name="Default">
-   <style:table-cell-properties fo:background-color="#ffd700"/>
-  </style:style>
-  <style:style style:name="ce8" style:family="table-cell" style:parent-style-name="Default">
-   <style:table-cell-properties fo:background-color="#ff7f50"/>
-  </style:style>
-  <style:style style:name="ce9" style:family="table-cell" style:parent-style-name="Default">
-   <style:table-cell-properties fo:background-color="#9acd32"/>
-  </style:style>
-  <style:style style:name="ce10" style:family="table-cell" style:parent-style-name="Default">
-   <style:table-cell-properties fo:background-color="#48d1cc"/>
-  </style:style>
-  <style:style style:name="ce11" style:family="table-cell" style:parent-style-name="Default">
-   <style:table-cell-properties fo:background-color="#dda0dd"/>
-  </style:style>
- </office:automatic-styles>'''
-
-    _fileHeader = OdsWriter._CONTENT_XML_HEADER.replace(' </office:automatic-styles>', _ADDITIONAL_STYLES)
+    _ADDITIONAL_STYLES = (
+        '\n\n  <style:style style:name="ce5" style:family="table-cell" style:parent-style-name="Default">\n'
+        '   <style:table-cell-properties style:text-align-source="value-type" style:repeat-content="false"/>\n'
+        '   <style:paragraph-properties fo:margin-left="0cm"/>\n'
+        '   <style:text-properties fo:color="#ff0000" fo:font-weight="bold" style:font-weight-asian="bold" style:font-weight-complex="bold"/>\n'
+        '  </style:style>\n'
+        '  <style:style style:name="ce6" style:family="table-cell" style:parent-style-name="Default">\n'
+        '   <style:table-cell-properties fo:background-color="#b0c4de"/>\n'
+        '  </style:style>\n'
+        '  <style:style style:name="ce7" style:family="table-cell" style:parent-style-name="Default">\n'
+        '   <style:table-cell-properties fo:background-color="#ffd700"/>\n'
+        '  </style:style>\n'
+        '  <style:style style:name="ce8" style:family="table-cell" style:parent-style-name="Default">\n'
+        '   <style:table-cell-properties fo:background-color="#ff7f50"/>\n'
+        '  </style:style>\n'
+        '  <style:style style:name="ce9" style:family="table-cell" style:parent-style-name="Default">\n'
+        '   <style:table-cell-properties fo:background-color="#9acd32"/>\n'
+        '  </style:style>\n'
+        '  <style:style style:name="ce10" style:family="table-cell" style:parent-style-name="Default">\n'
+        '   <style:table-cell-properties fo:background-color="#48d1cc"/>\n'
+        '  </style:style>\n'
+        '  <style:style style:name="ce11" style:family="table-cell" style:parent-style-name="Default">\n'
+        '   <style:table-cell-properties fo:background-color="#dda0dd"/>\n'
+        '  </style:style>\n'
+        ' </office:automatic-styles>'
+    )
+    _fileHeader = OdsWriter._CONTENT_XML_HEADER.replace(
+        ' </office:automatic-styles>',
+        _ADDITIONAL_STYLES
+    )
     _fileHeader = f'{_fileHeader}{DESCRIPTION}" table:style-name="ta1" table:print="false">'
 
     def write_content_xml(self):

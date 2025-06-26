@@ -136,7 +136,6 @@
      </table:table-cell>
      <table:table-cell table:style-name="Heading" table:number-columns-repeated="1014"/>
     </table:table-row>
-
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>cr1</text:p>
@@ -159,8 +158,8 @@
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="ce2"/>     
-     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>
+     <table:table-cell table:style-name="ce2"/>
      <table:table-cell office:value-type="string">
       <text:p>Minor Character</text:p>
      </table:table-cell>
@@ -172,7 +171,6 @@
      </table:table-cell>
      <table:table-cell table:number-columns-repeated="1014"/>
     </table:table-row>
-
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>cr2</text:p>
@@ -197,10 +195,12 @@
      </table:table-cell>
      <table:table-cell office:value-type="date" office:date-value="2963-04-21">
       <text:p>2963-04-21</text:p>
-     </table:table-cell>     
+     </table:table-cell>
+
      <table:table-cell office:value-type="date" office:date-value="3030-11-11">
       <text:p>3030-11-11</text:p>
-     </table:table-cell>     
+     </table:table-cell>
+
      <table:table-cell office:value-type="string">
       <text:p>Minor Character</text:p>
      </table:table-cell>
@@ -212,7 +212,6 @@
      </table:table-cell>
      <table:table-cell table:number-columns-repeated="1014"/>
     </table:table-row>
-
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>cr3</text:p>
@@ -235,8 +234,8 @@
      <table:table-cell office:value-type="string">
       <text:p>Undergo a refit and advanced pilot training, making him even more useful to his owner.</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="ce2"/>     
-     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>
+     <table:table-cell table:style-name="ce2"/>
      <table:table-cell office:value-type="string">
       <text:p>Minor Character</text:p>
      </table:table-cell>
@@ -248,7 +247,6 @@
      </table:table-cell>
      <table:table-cell table:number-columns-repeated="1014"/>
     </table:table-row>
-
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>cr4</text:p>
@@ -271,8 +269,8 @@
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="ce2"/>     
-     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>
+     <table:table-cell table:style-name="ce2"/>
      <table:table-cell office:value-type="string">
       <text:p>Minor Character</text:p>
      </table:table-cell>
@@ -284,7 +282,6 @@
      </table:table-cell>
      <table:table-cell table:number-columns-repeated="1014"/>
     </table:table-row>
-
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>cr5</text:p>
@@ -307,8 +304,8 @@
      <table:table-cell office:value-type="string">
       <text:p>Pay off his gambling debts</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="ce2"/>     
-     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>
+     <table:table-cell table:style-name="ce2"/>
      <table:table-cell office:value-type="string">
       <text:p>Minor Character</text:p>
      </table:table-cell>
@@ -320,7 +317,6 @@
      </table:table-cell>
      <table:table-cell table:number-columns-repeated="1014"/>
     </table:table-row>
-
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>cr6</text:p>
@@ -343,8 +339,8 @@
      <table:table-cell office:value-type="string">
       <text:p>Whatever Farrell wants.</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="ce2"/>     
-     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>
+     <table:table-cell table:style-name="ce2"/>
      <table:table-cell office:value-type="string">
       <text:p>Minor Character</text:p>
      </table:table-cell>
@@ -356,7 +352,6 @@
      </table:table-cell>
      <table:table-cell table:number-columns-repeated="1014"/>
     </table:table-row>
-
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>cr7</text:p>
@@ -379,8 +374,8 @@
      <table:table-cell office:value-type="string">
       <text:p>Bit player</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="ce2"/>     
-     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>
+     <table:table-cell table:style-name="ce2"/>
      <table:table-cell office:value-type="string">
       <text:p>Minor Character</text:p>
      </table:table-cell>
@@ -392,7 +387,6 @@
      </table:table-cell>
      <table:table-cell table:number-columns-repeated="1014"/>
     </table:table-row>
-
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>cr8</text:p>
@@ -415,8 +409,8 @@
      <table:table-cell office:value-type="string">
       <text:p>Bit player</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="ce2"/>     
-     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>
+     <table:table-cell table:style-name="ce2"/>
      <table:table-cell office:value-type="string">
       <text:p>Minor Character</text:p>
      </table:table-cell>
@@ -428,7 +422,6 @@
      </table:table-cell>
      <table:table-cell table:number-columns-repeated="1014"/>
     </table:table-row>
-
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>cr9</text:p>
@@ -451,8 +444,8 @@
      <table:table-cell office:value-type="string">
       <text:p>Revitalise the company</text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="ce2"/>     
-     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>
+     <table:table-cell table:style-name="ce2"/>
      <table:table-cell office:value-type="string">
       <text:p>Minor Character</text:p>
      </table:table-cell>
@@ -464,7 +457,6 @@
      </table:table-cell>
      <table:table-cell table:number-columns-repeated="1014"/>
     </table:table-row>
-
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>cr10</text:p>
@@ -487,8 +479,8 @@
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="ce2"/>     
-     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>
+     <table:table-cell table:style-name="ce2"/>
      <table:table-cell office:value-type="string">
       <text:p>Minor Character</text:p>
      </table:table-cell>
@@ -500,7 +492,6 @@
      </table:table-cell>
      <table:table-cell table:number-columns-repeated="1014"/>
     </table:table-row>
-
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>cr11</text:p>
@@ -523,8 +514,8 @@
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="ce2"/>     
-     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>
+     <table:table-cell table:style-name="ce2"/>
      <table:table-cell office:value-type="string">
       <text:p>Minor Character</text:p>
      </table:table-cell>
@@ -536,7 +527,6 @@
      </table:table-cell>
      <table:table-cell table:number-columns-repeated="1014"/>
     </table:table-row>
-
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>cr12</text:p>
@@ -559,8 +549,8 @@
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="ce2"/>     
-     <table:table-cell table:style-name="ce2"/>     
+     <table:table-cell table:style-name="ce2"/>
+     <table:table-cell table:style-name="ce2"/>
      <table:table-cell office:value-type="string">
       <text:p>Minor Character</text:p>
      </table:table-cell>
@@ -572,7 +562,6 @@
      </table:table-cell>
      <table:table-cell table:number-columns-repeated="1014"/>
     </table:table-row>
-
    </table:table>
   </office:spreadsheet>
  </office:body>

@@ -96,7 +96,6 @@
      </table:table-cell>
      <table:table-cell table:style-name="Heading" table:number-columns-repeated="1013"/>
     </table:table-row>
-
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>it1</text:p>
@@ -118,7 +117,6 @@
      </table:table-cell>
      <table:table-cell table:number-columns-repeated="1013"/>
     </table:table-row>
-
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
       <text:p>it2</text:p>
@@ -140,7 +138,6 @@
      </table:table-cell>
      <table:table-cell table:number-columns-repeated="1013"/>
     </table:table-row>
-
    </table:table>
   </office:spreadsheet>
  </office:body>

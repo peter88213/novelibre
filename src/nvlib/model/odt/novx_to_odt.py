@@ -28,7 +28,8 @@ class NovxToOdt(sax.ContentHandler):
             xmlString: str -- content as XML string.
             languages: list[str] -- Ordered list of the document#s languages.
             append: boolean -- indent the first paragraph, if True.
-            firstInChapter: boolean -- apply the "Chapter beginning" paragraph style, if True.
+            firstInChapter: boolean -- apply the "Chapter beginning" 
+                                       paragraph style, if True.
             
         """
         self._languages = languages
@@ -75,7 +76,9 @@ class NovxToOdt(sax.ContentHandler):
             return
 
         if name == 'note-citation':
-            self.odtLines.append('</text:note-citation><text:note-body>')
+            self.odtLines.append(
+                '</text:note-citation><text:note-body>'
+            )
             return
 
         if name == 'ul':
@@ -105,34 +108,50 @@ class NovxToOdt(sax.ContentHandler):
 
         if name == 'p':
             if xmlAttributes.get('style', None) == 'quotations':
-                self.odtLines.append('<text:p text:style-name="Quotations">')
+                self.odtLines.append(
+                    '<text:p text:style-name="Quotations">'
+                )
             elif self._note:
-                self.odtLines.append(f'<text:p text:style-name="{self._note.title()}">')
+                self.odtLines.append(
+                    f'<text:p text:style-name="{self._note.title()}">'
+                )
             elif self._comment:
                 self.odtLines.append('<text:p>')
             elif self._firstParagraphInChapter:
-                self.odtLines.append(f'<text:p text:style-name="{_("Chapter_20_beginning")}">')
+                self.odtLines.append(
+                    f'<text:p text:style-name="{_("Chapter_20_beginning")}">'
+                )
             elif self._indentParagraph:
-                self.odtLines.append('<text:p text:style-name="First_20_line_20_indent">')
+                self.odtLines.append(
+                    '<text:p text:style-name="First_20_line_20_indent">'
+                )
             else:
-                self.odtLines.append('<text:p text:style-name="Text_20_body">')
+                self.odtLines.append(
+                    '<text:p text:style-name="Text_20_body">'
+                )
             self._firstParagraphInChapter = False
             self._indentParagraph = False
             return
 
         if name == 'em':
-            self.odtLines.append('<text:span text:style-name="Emphasis">')
+            self.odtLines.append(
+                '<text:span text:style-name="Emphasis">'
+            )
             return
 
         if name == 'strong':
-            self.odtLines.append('<text:span text:style-name="Strong_20_Emphasis">')
+            self.odtLines.append(
+                '<text:span text:style-name="Strong_20_Emphasis">'
+            )
             return
 
         if name == 'span':
             language = xmlAttributes.get('xml:lang', None)
             if language:
                 i = self._languages.index(language) + 1
-                self.odtLines.append(f'<text:span text:style-name="T{i}">')
+                self.odtLines.append(
+                    f'<text:span text:style-name="T{i}">'
+                )
             return
 
         if name == 'ul':
@@ -147,7 +166,9 @@ class NovxToOdt(sax.ContentHandler):
 
         if name == 'note':
             self._note = xmlAttributes.get('class', 'footnote')
-            self.odtLines.append(f'<text:note text:note-class="{self._note}">')
+            self.odtLines.append(
+                f'<text:note text:note-class="{self._note}">'
+            )
             return
 
         if name == 'creator':
