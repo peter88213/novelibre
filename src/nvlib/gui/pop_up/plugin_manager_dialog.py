@@ -180,7 +180,9 @@ class PluginManagerDialog(ModalDialog, SubController):
             if self._ctrl.plugins[pluginName].isActive:
                 self._ui.show_info(
                     message=f'{pluginName} {_("deleted")}',
-                    detail=f"{_('The plugin remains active until next start')}.",
+                    detail=(
+                        f"{_('The plugin remains active until next start')}."
+                    ),
                     title=_('Plugin Manager'),
                     parent=self
                 )
