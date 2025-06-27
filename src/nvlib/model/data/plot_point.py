@@ -11,9 +11,11 @@ import xml.etree.ElementTree as ET
 class PlotPoint(BasicElementNotes):
     """Plot point representation."""
 
-    def __init__(self,
-            sectionAssoc=None,
-            **kwargs):
+    def __init__(
+        self,
+        sectionAssoc=None,
+        **kwargs
+    ):
         """Extends the superclass constructor."""
         super().__init__(**kwargs)
 

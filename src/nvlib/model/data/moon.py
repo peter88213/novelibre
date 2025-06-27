@@ -43,7 +43,10 @@ class Moon:
 
     @classmethod
     def get_phase_string(cls, isoDate):
-        """Return a string containing the moon phase plus a pseudo-graphic display."""
+        """Return a string containing the moon phase.
+        
+        Phase day, fraction, and a pseudo-graphic display.
+        """
         moonViews = [
             '🌑',
             '🌑',
@@ -79,7 +82,11 @@ class Moon:
         moonFractions = '00¼¼¼¼½½½½¾¾¾¾111¾¾¾¾½½½½¼¼¼¼0'
         moonPhaseDay = cls.get_phase_day(isoDate)
         if moonPhaseDay is not None:
-            display = f'{moonPhaseDay} {moonViews[moonPhaseDay]} {moonFractions[moonPhaseDay]}'
+            display = (
+                f'{moonPhaseDay} '
+                f'{moonViews[moonPhaseDay]} '
+                f'{moonFractions[moonPhaseDay]}'
+            )
         else:
             display = ''
         return display

@@ -10,9 +10,11 @@ from nvlib.model.data.basic_element import BasicElement
 class BasicElementNotes(BasicElement):
     """Basic element with notes."""
 
-    def __init__(self,
-            notes=None,
-            **kwargs):
+    def __init__(
+        self,
+        notes=None,
+        **kwargs
+    ):
         """Extends the superclass constructor."""
         super().__init__(**kwargs)
         self._notes = notes

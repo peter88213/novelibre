@@ -16,24 +16,26 @@ class HtmlProjectNotes(HtmlReport):
     EXTENSION = '.html'
     SUFFIX = PROJECTNOTES_SUFFIX
 
-    _fileHeader = f'''{HtmlReport._fileHeader}
-<title>{_('Project notes')} ($Title)</title>
-</head>
+    _fileHeader = (
+        f'{HtmlReport._fileHeader}\n'
+        f'<title>{_("Project notes")} ($Title)</title>\n'
+        '</head>\n'
+        '<body>\n'
+        f'<p class=title>$Title {_("by")} $AuthorName - '
+        f'{_("Project notes")}</p>\n'
+        '<table>\n'
+        '<tr class="heading">\n'
+        f'<td class="chtitle">{_("Title")}</td>\n'
+        f'<td>{_("Text")}</td>\n'
+        '</tr>\n'
+    )
 
-<body>
-<p class=title>$Title {_('by')} $AuthorName - {_('Project notes')}</p>
-<table>
-<tr class="heading">
-<td class="chtitle">{_('Title')}</td>
-<td>{_('Text')}</td>
-</tr>
-'''
-
-    _projectNoteTemplate = '''<tr>
-<td class="chtitle">$Title</td>
-<td>$Desc</td>
-</tr>
-'''
+    _projectNoteTemplate = (
+        '<tr>\n'
+        '<td class="chtitle">$Title</td>\n'
+        '<td>$Desc</td>\n'
+        '</tr>\n'
+    )
 
     def write(self):
         if not self.novel.projectNotes:

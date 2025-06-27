@@ -12,14 +12,16 @@ import xml.etree.ElementTree as ET
 class Character(WorldElement):
     """novelibre character representation."""
 
-    def __init__(self,
-            bio=None,
-            goals=None,
-            fullName=None,
-            isMajor=None,
-            birthDate=None,
-            deathDate=None,
-            **kwargs):
+    def __init__(
+        self,
+        bio=None,
+        goals=None,
+        fullName=None,
+        isMajor=None,
+        birthDate=None,
+        deathDate=None,
+        **kwargs
+    ):
         """Extends the superclass constructor."""
         super().__init__(**kwargs)
         self._bio = bio

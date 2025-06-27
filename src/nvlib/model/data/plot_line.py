@@ -12,10 +12,12 @@ import xml.etree.ElementTree as ET
 class PlotLine(BasicElementNotes):
     """Plot line representation."""
 
-    def __init__(self,
-            shortName=None,
-            sections=None,
-            **kwargs):
+    def __init__(
+        self,
+        shortName=None,
+        sections=None,
+        **kwargs
+    ):
         """Extends the superclass constructor."""
         super().__init__(**kwargs)
 

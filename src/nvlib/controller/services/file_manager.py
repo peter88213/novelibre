@@ -26,6 +26,7 @@ from nvlib.nv_globals import HOME_DIR
 from nvlib.nv_globals import INSTALL_DIR
 from nvlib.nv_globals import USER_STYLES_DIR
 from nvlib.nv_globals import USER_STYLES_XML
+from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
 
@@ -254,21 +255,22 @@ class FileManager(ServiceBase):
                 # user aborts
                 return False
 
-        pidfile = f'{filePath}.pid'
-        if os.path.isfile(pidfile):
-            message = (
-                f"{_('This project may be already open in novelibre')}:"
-                '\n'
-                f'"{norm_path(filePath)}"'
-            )
-            if not self._ui.ask_ok_cancel(
-                message=message,
-                detail=_('Open anyway?'),
-            ):
-                return False
+        if prefs['warn_before_reopening']:
+            pidfile = f'{filePath}.pid'
+            if os.path.isfile(pidfile):
+                message = (
+                    f"{_('This project may be already open in novelibre')}:"
+                    '\n'
+                    f'"{norm_path(filePath)}"'
+                )
+                if not self._ui.ask_ok_cancel(
+                    message=message,
+                    detail=_('Open anyway?'),
+                ):
+                    return False
 
-        with open(pidfile, 'w') as f:
-            f.write(str(os.getpid()))
+            with open(pidfile, 'w') as f:
+                f.write(str(os.getpid()))
 
         self.prefs['last_open'] = filePath
         try:

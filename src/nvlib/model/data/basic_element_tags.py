@@ -13,9 +13,11 @@ import xml.etree.ElementTree as ET
 class BasicElementTags(BasicElementNotes):
     """Basic element with notes and tags."""
 
-    def __init__(self,
-            tags=None,
-            **kwargs):
+    def __init__(
+        self,
+        tags=None,
+        **kwargs
+    ):
         """Extends the superclass constructor"""
         super().__init__(**kwargs)
         self._tags = tags

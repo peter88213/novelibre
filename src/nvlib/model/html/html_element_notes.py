@@ -15,74 +15,76 @@ class HtmlElementNotes(HtmlReport):
     EXTENSION = '.html'
     SUFFIX = ELEMENT_NOTES_SUFFIX
 
-    _fileHeader = f'''{HtmlReport._fileHeader}
-<title>{_('Notes')} ($Title)</title>
-</head>
-
-<body>
-<p class=title>$Title {_('by')} $AuthorName - {_('Notes')}</p>
-<table>
-<tr class="heading">
-<td class="chtitle">{_('Title')}</td>
-<td>{_('Text')}</td>
-</tr>
-'''
-    _characterHeadingTemplate = f'''
-<tr class="heading">
-<td>{_("Characters")}</td>
-<td />
-</tr>
-'''
-    _locationHeadingTemplate = f'''
-<tr class="heading">
-<td>{_("Locations")}</td>
-<td />
-</tr>
-'''
-    _itemHeadingTemplate = f'''
-<tr class="heading">
-<td>{_("Items")}</td>
-<td />
-</tr>
-'''
-    _plotLineHeadingTemplate = f'''
-<tr class="heading">
-<td>{_("Plot lines")}</td>
-<td />
-</tr>
-'''
-    _partTemplate = '''<tr>
-<td class="parttitle">$Title</td>
-<td class="part">$Notes</td>
-</tr>
-'''
-    _chapterTemplate = '''<tr>
-<td class="chaptertitle">$Title</td>
-<td class="chapter">$Notes</td>
-</tr>
-'''
-    __plotLineTemplate = '''<tr>
-<td class="title">$Title</td>
-<td>$Notes</td>
-</tr>
-'''
-    _sectionTemplate = \
-    _characterTemplate = \
-    _locationTemplate = \
-    _itemTemplate = _plotPointTemplate = '''<tr>
-<td>$Title</td>
-<td>$Notes</td>
-</tr>
-'''
-
-    _stage1Template = '''<tr>
-<td class="stagetitle">$Title</td>
-<td class="stage">$Notes</td>
-</tr>
-'''
-
-    _stage2Template = '''<tr>
-<td class="stage">$Title</td>
-<td class="stage">$Notes</td>
-</tr>
-'''
+    _fileHeader = (
+        f'{HtmlReport._fileHeader}\n'
+        f'<title>{_("Notes")} ($Title)</title>\n'
+        '</head>\n'
+        '<body>\n'
+        f'<p class=title>$Title {_("by")} $AuthorName - {_("Notes")}</p>\n'
+        '<table>\n'
+        '<tr class="heading">\n'
+        f'<td class="chtitle">{_("Title")}</td>\n'
+        f'<td>{_("Text")}</td>\n'
+        '</tr>\n'
+    )
+    _characterHeadingTemplate = (
+        '<tr class="heading">\n'
+        f'<td>{_("Characters")}</td>\n'
+        '<td />\n'
+        '</tr>\n'
+    )
+    _locationHeadingTemplate = (
+        '<tr class="heading">\n'
+        f'<td>{_("Locations")}</td>\n'
+        '<td />\n'
+        '</tr>\n'
+    )
+    _itemHeadingTemplate = (
+        '<tr class="heading">\n'
+        f'<td>{_("Items")}</td>\n'
+        '<td />\n'
+        '</tr>\n'
+    )
+    _plotLineHeadingTemplate = (
+        '<tr class="heading">\n'
+        f'<td>{_("Plot lines")}</td>\n'
+        '<td />\n'
+        '</tr>\n'
+    )
+    _partTemplate = (
+        '<tr>\n'
+        '<td class="parttitle">$Title</td>\n'
+        '<td class="part">$Notes</td>\n'
+        '</tr>\n'
+    )
+    _chapterTemplate = (
+        '<tr>\n'
+        '<td class="chaptertitle">$Title</td>\n'
+        '<td class="chapter">$Notes</td>\n'
+        '</tr>\n'
+    )
+    __plotLineTemplate = (
+        '<tr>\n'
+        '<td class="title">$Title</td>\n'
+        '<td>$Notes</td>\n'
+        '</tr>\n'
+    )
+    _sectionTemplate = _characterTemplate = _locationTemplate = \
+    _itemTemplate = _plotPointTemplate = (
+        '<tr>\n'
+        '<td>$Title</td>\n'
+        '<td>$Notes</td>\n'
+        '</tr>\n'
+    )
+    _stage1Template = (
+        '<tr>\n'
+        '<td class="stagetitle">$Title</td>\n'
+        '<td class="stage">$Notes</td>\n'
+        '</tr>\n'
+    )
+    _stage2Template = (
+        '<tr>\n'
+        '<td class="stage">$Title</td>\n'
+        '<td class="stage">$Notes</td>\n'
+        '</tr>\n'
+    )

@@ -44,26 +44,28 @@ class Section(BasicElementTags):
     NULL_DATE = '0001-01-01'
     NULL_TIME = '00:00:00'
 
-    def __init__(self,
-            scType=None,
-            scene=None,
-            status=None,
-            appendToPrev=None,
-            viewpoint=None,
-            goal=None,
-            conflict=None,
-            outcome=None,
-            plotNotes=None,
-            scDate=None,
-            scTime=None,
-            day=None,
-            lastsMinutes=None,
-            lastsHours=None,
-            lastsDays=None,
-            characters=None,
-            locations=None,
-            items=None,
-            **kwargs):
+    def __init__(
+        self,
+        scType=None,
+        scene=None,
+        status=None,
+        appendToPrev=None,
+        viewpoint=None,
+        goal=None,
+        conflict=None,
+        outcome=None,
+        plotNotes=None,
+        scDate=None,
+        scTime=None,
+        day=None,
+        lastsMinutes=None,
+        lastsHours=None,
+        lastsDays=None,
+        characters=None,
+        locations=None,
+        items=None,
+        **kwargs
+    ):
         """Extends the superclass constructor."""
         super().__init__(**kwargs)
         self._sectionContent = None

@@ -120,6 +120,7 @@ OPTIONS = dict(
     show_scene=False,
     show_st_links=False,
     show_writing_progress=False,
+    warn_before_reopening=True,
 )
 
 

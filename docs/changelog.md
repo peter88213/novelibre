@@ -10,12 +10,14 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.28.2
+### Version 5.28.3
 
-- Preventing accidental opening of the same project in different instances.
+- Warning before reopening the same project in different instances.
 - Escaping the meta.xml author, title, and summary entries.
   This fixes a bug where the ODF document may be unreadable 
   if the book title or the author's name contains angle brackets.
+- Reformatted the code acc. to PEP-8.
+
 
 ### Version 5.27.3
 

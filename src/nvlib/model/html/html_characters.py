@@ -20,7 +20,7 @@ class HtmlCharacters(HtmlReport):
     _fileHeader = (
         f'{HtmlReport._fileHeader}\n'
         f'<title>{_("Characters")} ($Title)</title>\n'
-        '</head>\n\n'
+        '</head>\n'
         '<body>\n'
         f'<p class=title>$Title {_("by")} $AuthorName - '
         f'{_("Characters")}</p>\n'
@@ -62,11 +62,15 @@ class HtmlCharacters(HtmlReport):
         characterMapping = super()._get_characterMapping(crId)
         if self.localizeDate:
             try:
-                characterMapping['BirthDate'] = PyCalendar.locale_date(characterMapping['BirthDate'])
+                characterMapping['BirthDate'] = PyCalendar.locale_date(
+                    characterMapping['BirthDate']
+                )
             except:
                 pass
             try:
-                characterMapping['DeathDate'] = PyCalendar.locale_date(characterMapping['DeathDate'])
+                characterMapping['DeathDate'] = PyCalendar.locale_date(
+                    characterMapping['DeathDate']
+                )
             except:
                 pass
         return characterMapping

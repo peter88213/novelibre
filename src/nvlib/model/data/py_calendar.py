@@ -23,7 +23,8 @@ class PyCalendar:
     - ISO time string format: hh:mm:ss, 
       where seconds are not displayed. 
     """
-    # Class methods are used instead of static methods, so they can be extended by subclasses.
+    # Class methods are used instead of static methods,
+    # so they can be extended by subclasses.
 
     DATE_FORMAT = _("YYYY-MM-DD")
     TIME_FORMAT = _("hh:mm")

@@ -25,8 +25,7 @@ class DataWriter(NovxFile):
     EXTENSION = '.xml'
     SUFFIX = DATA_SUFFIX
 
-    XML_HEADER = '''<?xml version="1.0" encoding="utf-8"?>
-'''
+    XML_HEADER = '<?xml version="1.0" encoding="utf-8"?>\n'
 
     def __init__(self, filePath, **kwargs):
         super().__init__(filePath, **kwargs)
@@ -39,19 +38,19 @@ class DataWriter(NovxFile):
         )
 
     def _postprocess_xml_file(self, filePath):
-        '''Postprocess three xml files created by ElementTree.
+        """Postprocess three xml files created by ElementTree.
         
         Positional argument:
             filePath: str -- not used by this method.
             
         Postprocess and write the xml data files.        
         Extends the superclass method.
-        '''
+        """
         for xmlBranch in self._dataFiles:
             super()._postprocess_xml_file(self._dataFiles[xmlBranch])
 
     def _write_element_tree(self, xmlProject):
-        """Save the characters/locations/items subtrees as separate xml files
+        """Save the characters/locations/items subtrees as separate xml files.
         
         Positional argument:
             xmlProject -- NovxFile instance.

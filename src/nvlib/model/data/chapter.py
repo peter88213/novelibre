@@ -12,14 +12,16 @@ import xml.etree.ElementTree as ET
 class Chapter(BasicElementNotes):
     """novelibre chapter representation."""
 
-    def __init__(self,
-            chLevel=None,
-            chType=None,
-            noNumber=None,
-            isTrash=None,
-            epigraph=None,
-            epigraphSrc=None,
-            **kwargs):
+    def __init__(
+        self,
+        chLevel=None,
+        chType=None,
+        noNumber=None,
+        isTrash=None,
+        epigraph=None,
+        epigraphSrc=None,
+        **kwargs
+    ):
         """Extends the superclass constructor."""
         super().__init__(**kwargs)
         self._chLevel = chLevel

@@ -17,11 +17,13 @@ class BasicElement:
     This method can be overridden at runtime for each individual element instance.
     """
 
-    def __init__(self,
-            on_element_change=None,
-            title=None,
-            desc=None,
-            links=None):
+    def __init__(
+        self,
+        on_element_change=None,
+        title=None,
+        desc=None,
+        links=None
+    ):
         """Set the initial values.
 
         If on_element_change is None, the do_nothing method will be assigned to it.

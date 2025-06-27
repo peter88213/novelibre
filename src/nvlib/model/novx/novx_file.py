@@ -46,7 +46,8 @@ class NovxFile(File):
     Public instance variables:
         xmlTree -- xml element tree of the novelibre project
         wcLog: dict[str, list[str, str]] -- Daily word count logs.
-        wcLogUpdate: dict[str, list[str, str]] -- Word counts missing in the log.
+        wcLogUpdate: dict[str, list[str, str]] -- Word counts missing 
+                                                  in the log.
         timestamp: float -- Time of last file modification.
 
 
@@ -60,10 +61,11 @@ class NovxFile(File):
     # compatible, if the file's major version number equals MAJOR_VERSION,
     # and the minor version number is equal or less than MINOR_VERSION
 
-    XML_HEADER = f'''<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE novx SYSTEM "novx_{MAJOR_VERSION}_{MINOR_VERSION}.dtd">
-<?xml-stylesheet href="novx.css" type="text/css"?>
-'''
+    XML_HEADER = (
+        f'<?xml version="1.0" encoding="utf-8"?>\n'
+        f'<!DOCTYPE novx SYSTEM "novx_{MAJOR_VERSION}_{MINOR_VERSION}.dtd">\n'
+        '<?xml-stylesheet href="novx.css" type="text/css"?>\n'
+    )
 
     fileOpener = NovxOpener
 

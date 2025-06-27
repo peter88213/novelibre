@@ -19,7 +19,7 @@ class HtmlLocations(HtmlReport):
     _fileHeader = (
         f'{HtmlReport._fileHeader}\n'
         f'<title>{_("Locations")} ($Title)</title>\n'
-        '</head>\n\n'
+        '</head>\n'
         '<body>\n'
         f'<p class=title>$Title {_("by")} $AuthorName - '
         f'{_("Locations")}</p>\n'

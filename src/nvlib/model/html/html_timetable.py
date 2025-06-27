@@ -33,12 +33,16 @@ class HtmlTimetable(HtmlReport):
 
         # Build the HTML table.
         htmlText = [self._fileHeader]
-        htmlText.append(f'''<title>{_('Time table')} ({self.novel.title})</title>
-</head>
-<body>
-<p class=title>{self.novel.title} {_("by")} {self.novel.authorName} - {_("Time table")}</p>
-<table>''')
-
+        htmlText.append(
+            (
+                f'<title>{_("Time table")} ({self.novel.title})</title>\n'
+                '</head>\n'
+                '<body>\n'
+                f'<p class=title>{self.novel.title} {_("by")} '
+                f'{self.novel.authorName} - {_("Time table")}</p>\n'
+                '<table>'
+            )
+        )
         plotLineColors = (
             'LightSteelBlue',
             'Gold',
@@ -46,7 +50,7 @@ class HtmlTimetable(HtmlReport):
             'YellowGreen',
             'MediumTurquoise',
             'Plum',
-            )
+        )
 
         # Title row.
         htmlText.append('<tr class="heading">')
@@ -60,7 +64,12 @@ class HtmlTimetable(HtmlReport):
         plotLines = self.novel.tree.get_children(PL_ROOT)
         for i, plId in enumerate(plotLines):
             colorIndex = i % len(plotLineColors)
-            htmlText.append(self._new_cell(self.novel.plotLines[plId].title, attr=f'style="background: {plotLineColors[colorIndex]}"'))
+            htmlText.append(
+                self._new_cell(
+                    self.novel.plotLines[plId].title,
+                    attr=f'style="background: {plotLineColors[colorIndex]}"'
+                )
+            )
         htmlText.append('</tr>')
 
         # Section rows.
@@ -69,23 +78,65 @@ class HtmlTimetable(HtmlReport):
             for scId in scIds:
                 # Section row
                 htmlText.append(f'<tr>')
-                dateDayStr = f'{self._get_date_day_str(scId)} {self._get_week_day_str(scId, timestamp)}'
+                dateDayStr = (
+                    f'{self._get_date_day_str(scId)} '
+                    f'{self._get_week_day_str(scId, timestamp)}'
+                )
                 if dateDayStr != currentDateDayStr:
                     currentDateDayStr = dateDayStr
                 else:
                     dateDayStr = ''
-                htmlText.append(self._new_cell(dateDayStr))
-                htmlText.append(self._new_cell(self._get_time_str(scId)))
-                htmlText.append(self._new_cell(self.novel.sections[scId].title))
-                htmlText.append(self._new_cell(self.novel.sections[scId].desc))
-                htmlText.append(self._new_cell(self._get_duration_str(scId)))
-                htmlText.append(self._new_cell(self._get_location_str(scId)))
-                htmlText.append(self._new_cell(self._get_character_str(scId)))
+                htmlText.append(
+                    self._new_cell(
+                        dateDayStr
+                    )
+                )
+                htmlText.append(
+                    self._new_cell(
+                        self._get_time_str(scId)
+                    )
+                )
+                htmlText.append(
+                    self._new_cell(
+                        self.novel.sections[scId].title
+                    )
+                )
+                htmlText.append(
+                    self._new_cell(
+                        self.novel.sections[scId].desc
+                    )
+                )
+                htmlText.append(
+                    self._new_cell(
+                        self._get_duration_str(scId)
+                    )
+                )
+                htmlText.append(
+                    self._new_cell(
+                        self._get_location_str(scId)
+                    )
+                )
+                htmlText.append(
+                    self._new_cell(
+                        self._get_character_str(scId)
+                    )
+                )
                 for i, plId in enumerate(plotLines):
                     colorIndex = i % len(plotLineColors)
                     if scId in self.novel.plotLines[plId].sections:
-                        plNotes = self.novel.sections[scId].plotlineNotes.get(plId, '')
-                        htmlText.append(self._new_cell(plNotes, attr=f'style="background: {plotLineColors[colorIndex]}"'))
+                        plNotes = self.novel.sections[scId].plotlineNotes.get(
+                            plId,
+                            ''
+                        )
+                        htmlText.append(
+                            self._new_cell(
+                                plNotes,
+                                attr=(
+                                    'style="background: '
+                                    f'{plotLineColors[colorIndex]}"'
+                                )
+                            )
+                        )
                     else:
                         htmlText.append(self._new_cell(''))
                 htmlText.append(f'</tr>')
@@ -94,15 +145,19 @@ class HtmlTimetable(HtmlReport):
             f.write('\n'.join(htmlText))
 
     def _get_character_str(self, scId):
-        """Return a comma-separated characters string for the section defined by scId."""
+        # Return a comma-separated characters string for the section
+        # defined by scId.
         characterTitles = []
         for crId in self.novel.sections[scId].characters:
             characterTitles.append(self.novel.characters[crId].title)
         return list_to_string(characterTitles)
 
     def _get_date_day_str(self, scId):
-        """Return a date/day string for the section defined by scId."""
-        if self.novel.sections[scId].date is not None and self.novel.sections[scId].date != Section.NULL_DATE:
+        # Return a date/day string for the section defined by scId.
+        if (
+            self.novel.sections[scId].date is not None
+            and self.novel.sections[scId].date != Section.NULL_DATE
+        ):
             dateDayStr = self.novel.sections[scId].localeDate
         else:
             if self.novel.sections[scId].day is not None:
@@ -112,30 +167,40 @@ class HtmlTimetable(HtmlReport):
         return dateDayStr
 
     def _get_duration_str(self, scId):
-        """Return a combined duration string for the section defined by scId."""
-        if self.novel.sections[scId].lastsDays is not None and self.novel.sections[scId].lastsDays != '0':
+        # Return a combined duration string for the section defined by scId.
+        if (
+            self.novel.sections[scId].lastsDays is not None
+            and self.novel.sections[scId].lastsDays != '0'
+        ):
             dayStr = f'{self.novel.sections[scId].lastsDays}d '
         else:
             dayStr = ''
-        if self.novel.sections[scId].lastsHours is not None and self.novel.sections[scId].lastsHours != '0':
+        if (
+            self.novel.sections[scId].lastsHours is not None
+            and self.novel.sections[scId].lastsHours != '0'
+        ):
             hourStr = f'{self.novel.sections[scId].lastsHours}h '
         else:
             hourStr = ''
-        if self.novel.sections[scId].lastsMinutes is not None and self.novel.sections[scId].lastsMinutes != '0':
+        if (
+            self.novel.sections[scId].lastsMinutes is not None
+            and self.novel.sections[scId].lastsMinutes != '0'
+        ):
             minuteStr = f'{self.novel.sections[scId].lastsMinutes}min'
         else:
             minuteStr = ''
         return f'{dayStr}{hourStr}{minuteStr}'
 
     def _get_location_str(self, scId):
-        """Return a comma-separated locations string for the section defined by scId."""
+        # Return a comma-separated locations string for the section
+        # defined by scId.
         locationTitles = []
         for lcId in self.novel.sections[scId].locations:
             locationTitles.append(self.novel.locations[lcId].title)
         return list_to_string(locationTitles)
 
     def _get_time_str(self, scId):
-        """Return a time string for the section defined by scId."""
+        # Return a time string for the section defined by scId.
         if self.novel.sections[scId].time is not None:
             return PyCalendar.display_time(self.novel.sections[scId].time)
 
@@ -143,21 +208,27 @@ class HtmlTimetable(HtmlReport):
             return ''
 
     def _get_week_day_str(self, scId, timestamp):
-        """Return a week day or an empty string."""
-        if not self.novel.sections[scId].date and not self.novel.referenceDate:
+        # Return a week day or an empty string.
+        if (
+            not self.novel.sections[scId].date
+            and not self.novel.referenceDate
+        ):
             return ''
 
         return PyCalendar.weekday_str(timestamp)
 
     def _sort_sections_by_date(self):
-        """Return a dictionary with lists of section IDs by timestamp."""
+        # Return a dictionary with lists of section IDs by timestamp.
         referenceDate = self.novel.referenceDate
         if not referenceDate:
             referenceDate = PyCalendar.min
         scIdsByDate = {}
         for scId in self.novel.sections:
             if self.novel.sections[scId].scType == 0:
-                timestamp = PyCalendar.get_timestamp(self.novel.sections[scId], referenceDate)
+                timestamp = PyCalendar.get_timestamp(
+                    self.novel.sections[scId],
+                    referenceDate,
+                )
                 if timestamp:
                     if not timestamp in scIdsByDate:
                         scIdsByDate[timestamp] = []

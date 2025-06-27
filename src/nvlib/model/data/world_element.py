@@ -11,9 +11,11 @@ import xml.etree.ElementTree as ET
 class WorldElement(BasicElementTags):
     """Story world element representation (may be location or item)."""
 
-    def __init__(self,
-            aka=None,
-            **kwargs):
+    def __init__(
+        self,
+        aka=None,
+        **kwargs
+    ):
         """Extends the superclass constructor"""
         super().__init__(**kwargs)
         self._aka = aka
