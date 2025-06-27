@@ -59,7 +59,8 @@ class PropertiesViewer(ttk.Frame, SubController):
 
     def apply_changes(self, event=None):
         # This is called by the controller to make sure changes take effect
-        # e.g. when starting an export while a property entry still has the focus.
+        # e.g. when starting an export while a property entry
+        # still has the focus.
         if not self._ctrl.isLocked:
             self.activeView._doNotUpdate = True
             self.activeView.apply_changes()
@@ -127,9 +128,10 @@ class PropertiesViewer(ttk.Frame, SubController):
         #   viewClass: BasicView subclass.
         newView = viewClass(self, self._mdl, self._ui, self._ctrl)
         self._clients.append(newView)
-        # NOTE: the new view component must not be registered by the main view,
-        # because the PropertiesViewer instance may be deleted and recreated
-        # due to re-parenting when docking the properties window.
+        # NOTE: the new view component must not be registered
+        # by the main view, because the PropertiesViewer instance
+        # may be deleted and recreated due to re-parenting when
+        # docking the properties window.
         return newView
 
     def _set_data(self, elemId):

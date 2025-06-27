@@ -259,11 +259,18 @@ class MainController(SubController, Commands):
         """Display project statistics at the status bar.
         
         Optional arguments:
-            statusText: str -- Message to be displayed instead of the statistics.
+            statusText: str -- Message to be displayed 
+                               instead of the statistics.
         """
         if self._mdl.novel is not None and not statusText:
-            wordCount, sectionCount, chapterCount, partCount = self._mdl.get_counts()
-            statusText = _('{0} parts, {1} chapters, {2} sections, {3} words').format(partCount, chapterCount, sectionCount, wordCount)
+            (
+                wordCount,
+                sectionCount,
+                chapterCount,
+                partCount
+            ) = self._mdl.get_counts()
+            statusText = _('{0} parts, {1} chapters, {2} sections, {3} words').format(
+                partCount, chapterCount, sectionCount, wordCount)
             self.wordCount = wordCount
         self._ui.update_status(statusText)
 

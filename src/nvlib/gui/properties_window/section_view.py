@@ -73,7 +73,10 @@ class SectionView(ElementView):
         self._sectionExtraFrame = ttk.Frame(self._elementInfoWindow)
         self._sectionExtraFrame.pack(anchor='w', fill='x')
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(
+            self._elementInfoWindow,
+            orient='horizontal'
+        ).pack(fill='x')
 
         #--- Frame for 'Relationships'.
         # updating the character list before the viewpoints
@@ -119,7 +122,10 @@ class SectionView(ElementView):
 
         # 'Locations' listbox.
         self._lcTitles = ''
-        self._locationLabel = ttk.Label(self._relationFrame, text=_('Locations'))
+        self._locationLabel = ttk.Label(
+            self._relationFrame,
+            text=_('Locations')
+        )
         self._locationLabel.pack(anchor='w')
         self._locationCollection = CollectionBox(
             self._relationFrame,
@@ -155,7 +161,10 @@ class SectionView(ElementView):
 
         self._prefsShowLinks = 'show_sc_links'
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(
+            self._elementInfoWindow,
+            orient='horizontal'
+        ).pack(fill='x')
 
         #--- Frame for date/time/duration.
         self._dateTimeFrame = FoldingFrame(
@@ -282,7 +291,10 @@ class SectionView(ElementView):
         )
         inputWidgets.append(self._toggleDateButton)
 
-        ttk.Separator(self._dateTimeFrame, orient='horizontal').pack(fill='x', pady=2)
+        ttk.Separator(
+            self._dateTimeFrame,
+            orient='horizontal'
+        ).pack(fill='x', pady=2)
 
         sectionDurationFrame = ttk.Frame(self._dateTimeFrame)
         sectionDurationFrame.pack(fill='x')
@@ -643,7 +655,11 @@ class SectionView(ElementView):
                 self._startDateVar.set(self.element.date)
                 self._ui.show_error(
                     message=_('Input rejected'),
-                    detail=f'{_("Wrong date")}: "{dateStr}"\n{_("Required")}: {PyCalendar.DATE_FORMAT}'
+                    detail=(
+                        f'{_("Wrong date")}: '
+                        f'"{dateStr}"\n{_("Required")}: '
+                        f'{PyCalendar.DATE_FORMAT}'
+                    ),
                 )
             else:
                 self.element.date = dateStr
@@ -664,7 +680,11 @@ class SectionView(ElementView):
                     self._startTimeVar.set(dispTime)
                     self._ui.show_error(
                         message=_('Input rejected'),
-                        detail=f'{_("Wrong time")}: "{timeStr}"\n{_("Required")}: {PyCalendar.TIME_FORMAT}',
+                        detail=(
+                            f'{_("Wrong time")}: '
+                            f'"{timeStr}"\n{_("Required")}: '
+                            f'{PyCalendar.TIME_FORMAT}'
+                        ),
                     )
                 else:
                     self.element.time = timeStr
@@ -679,7 +699,8 @@ class SectionView(ElementView):
 
         #--- Section duration.
         # Section duration changes are applied as a whole.
-        # That is, days, hours and minutes entries must all be correct numbers.
+        # That is, days, hours and minutes entries
+        # must all be correct numbers.
         # Otherwise, the old values are kept.
         # If more than 60 minutes are entered in the "Minutes" field,
         # the hours are incremented accordingly.
@@ -760,7 +781,8 @@ class SectionView(ElementView):
         #--- 'Viewpoint' combobox.
         option = self._characterCombobox.current()
         if option >= 0:
-            # Put the selected character at the first position of related characters.
+            # Put the selected character at the first position
+            # of related characters.
             vpId = self._vpIdList[option]
             self.element.viewpoint = vpId
 
@@ -800,7 +822,8 @@ class SectionView(ElementView):
             )
             return
 
-        newDate, newTime, newDay = self._mdl.novel.sections[prevScId].get_end_date_time()
+        newDate, newTime, newDay = self._mdl.novel.sections[
+            prevScId].get_end_date_time()
         if newTime is None:
             self._ui.show_error(
                 message=_('Cannot generate date/time'),
@@ -1122,7 +1145,8 @@ class SectionView(ElementView):
         self._ui.tv.see_node(PL_ROOT)
 
     def remove_character(self, event=None):
-        """Remove the character selected in the listbox from the section characters."""
+        """Remove the character selected in the listbox 
+        from the section characters."""
         try:
             selection = self._characterCollection.cListbox.curselection()[0]
         except:
@@ -1154,7 +1178,8 @@ class SectionView(ElementView):
             self.element.items = itList
 
     def remove_location(self, event=None):
-        """Remove the location selected in the listbox from the section locations."""
+        """Remove the location selected in the listbox 
+        from the section locations."""
         try:
             selection = self._locationCollection.cListbox.curselection()[0]
         except:
@@ -1170,7 +1195,8 @@ class SectionView(ElementView):
             self.element.locations = lcList
 
     def remove_plotline(self, event=None):
-        """Remove the plot line selected in the listbox from the section associations."""
+        """Remove the plot line selected in the listbox 
+        from the section associations."""
         try:
             selection = self._plotlineCollection.cListbox.curselection()[0]
         except:
@@ -1179,7 +1205,10 @@ class SectionView(ElementView):
         plId = self.element.scPlotLines[selection]
         if not self._ui.ask_yes_no(
             message=_('Remove plot line from the list?'),
-            detail=f"({self._mdl.novel.plotLines[plId].shortName}) {self._mdl.novel.plotLines[plId].title}"
+            detail=(
+                f"({self._mdl.novel.plotLines[plId].shortName}) "
+                f"{self._mdl.novel.plotLines[plId].title}"
+            )
         ):
             return
 
@@ -1198,7 +1227,8 @@ class SectionView(ElementView):
             for ppId in list(self.element.scPlotPoints):
                 if self.element.scPlotPoints[ppId] == plId:
                     del(self.element.scPlotPoints[ppId])
-                    # removing the plot line's plot point from the section's list
+                    # removing the plot line's plot point
+                    # from the section's list
                     # Note: this doesn't trigger the refreshing method
                     self._mdl.novel.plotPoints[ppId].sectionAssoc = None
                     # un-assigning the section from the plot line's plot point
@@ -1208,7 +1238,8 @@ class SectionView(ElementView):
             plotlineNotes = self.element.plotlineNotes
             if plotlineNotes is None:
                 plotlineNotes = {}
-            plotlineNotes[self.selectedPlotline] = self._plotNotesWindow.get_text()
+            plotlineNotes[
+                self.selectedPlotline] = self._plotNotesWindow.get_text()
             self._doNotUpdate = True
             self.element.plotlineNotes = plotlineNotes
             self._doNotUpdate = False
@@ -1395,7 +1426,10 @@ class SectionView(ElementView):
         for ppId in self.element.scPlotPoints:
             plId = self.element.scPlotPoints[ppId]
             plotPointTitles.append(
-                f'{self._mdl.novel.plotLines[plId].shortName}: {self._mdl.novel.plotPoints[ppId].title}'
+                (
+                    f'{self._mdl.novel.plotLines[plId].shortName}: '
+                    f'{self._mdl.novel.plotPoints[ppId].title}'
+                )
             )
         self._plotPointsDisplay.config(text=list_to_string(plotPointTitles))
 
@@ -1467,7 +1501,10 @@ class SectionView(ElementView):
             deathDate = self._mdl.novel.characters[crId].deathDate
             try:
                 yearsOld, yearsDead, daysOld, daysDead = PyCalendar.age(
-                    now, birthDate, deathDate)
+                    now,
+                    birthDate,
+                    deathDate
+                )
                 if yearsDead is not None:
                     if yearsDead:
                         time = yearsDead
@@ -1485,11 +1522,17 @@ class SectionView(ElementView):
                     suffix = _('days old')
                     time = daysOld
                 charList.append(
-                    f'{self._mdl.novel.characters[crId].title}: {time} {suffix}'
+                    (
+                        f'{self._mdl.novel.characters[crId].title}: '
+                        f'{time} {suffix}'
+                    )
                 )
             except Exception:
                 charList.append(
-                    f'{self._mdl.novel.characters[crId].title}: ({_("no data")})'
+                    (
+                        f'{self._mdl.novel.characters[crId].title}: '
+                        f'({_("no data")})'
+                    )
                 )
 
         if charList:
@@ -1640,7 +1683,10 @@ class SectionView(ElementView):
             for elemId in elemIds:
                 try:
                     elemTitles.append(
-                        f'({elements[elemId].shortName}) {elements[elemId].title}'
+                        (
+                            f'({elements[elemId].shortName}) '
+                            f'{elements[elemId].title}'
+                        )
                     )
                 except:
                     pass
@@ -1658,7 +1704,8 @@ class SectionView(ElementView):
                             elemIds.append(elemId)
                             break
                     else:
-                        # No break occurred: there is no element with the specified title
+                        # No break occurred:
+                        # there is no element with the specified title
                         self._ui.show_error(
                             message=_('Input rejected'),
                             detail=f'{_("Wrong name")}: "{elemTitle}".'

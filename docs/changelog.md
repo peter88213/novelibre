@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.28.3
+### Version 5.28.4
 
 - Warning before reopening the same project in different instances.
 - Escaping the meta.xml author, title, and summary entries.

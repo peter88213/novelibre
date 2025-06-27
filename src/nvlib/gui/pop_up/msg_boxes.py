@@ -27,15 +27,26 @@ class MsgBoxes:
         - 2 for cancel. 
         """
         return SimpleDialog(
-                    None,
-                    text=text,
-                    buttons=[_('Delete'), _('All'), _('Skip'), _('Cancel')],
-                    default=default,
-                    cancel=3,
-                    title=title
-                    ).go()
+            None,
+            text=text,
+            buttons=[
+                _('Delete'),
+                _('All'),
+                _('Skip'),
+                _('Cancel'),
+            ],
+            default=default,
+            cancel=3,
+            title=title
+        ).go()
 
-    def ask_ok_cancel(self, message='', detail='', title='novelibre', **options):
+    def ask_ok_cancel(
+            self,
+            message='',
+            detail='',
+            title='novelibre',
+            **options
+    ):
         """Query ok or cancel with a pop-up box.
         
         Optional arguments:
@@ -48,7 +59,7 @@ class MsgBoxes:
             detail=detail,
             title=title,
             **options
-            )
+        )
 
     def ask_overwrite_open_cancel(self, text, default=0, title='novelibre'):
         """Query overwrite, open existing, or cancel with a pop-up box. 
@@ -71,7 +82,7 @@ class MsgBoxes:
             default=default,
             cancel=2,
             title=title
-            ).go()
+        ).go()
 
     def ask_yes_no(self, message='', detail='', title='novelibre', **options):
         """Query yes or no with a pop-up box.
@@ -86,9 +97,15 @@ class MsgBoxes:
             detail=detail,
             title=title,
             **options
-            )
+        )
 
-    def ask_yes_no_cancel(self, message='', detail='', title='novelibre', **options):
+    def ask_yes_no_cancel(
+            self,
+            message='',
+            detail='',
+            title='novelibre',
+            **options
+    ):
         """Query yes or no or cancel with a pop-up box.
         
         Optional arguments:
@@ -101,7 +118,7 @@ class MsgBoxes:
             detail=detail,
             title=title,
             **options
-            )
+        )
 
     def show_error(self, message='', detail='', title='novelibre', **options):
         """Display an error message box.
@@ -116,7 +133,7 @@ class MsgBoxes:
             detail=detail,
             title=title,
             **options
-            )
+        )
 
     def show_info(self, message='', detail='', title='novelibre', **options):
         """Display an informational message box.
@@ -131,9 +148,15 @@ class MsgBoxes:
             detail=detail,
             title=title,
             **options
-            )
+        )
 
-    def show_warning(self, message='', detail='', title='novelibre', **options):
+    def show_warning(
+            self,
+            message='',
+            detail='',
+            title='novelibre',
+            **options
+    ):
         """Display a warning message box.
         
         Optional arguments:
@@ -146,5 +169,5 @@ class MsgBoxes:
             detail=detail,
             title=title,
             **options
-            )
+        )
 

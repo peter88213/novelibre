@@ -178,7 +178,10 @@ class ElementView(BlankView):
             if listboxSize > self._HEIGHT_LIMIT:
                 listboxSize = self._HEIGHT_LIMIT
             self.linkCollection.cListbox.config(height=listboxSize)
-            if not self.linkCollection.cListbox.curselection() or not self.linkCollection.cListbox.focus_get():
+            if (
+                not self.linkCollection.cListbox.curselection()
+                or not self.linkCollection.cListbox.focus_get()
+            ):
                 self.linkCollection.disable_buttons()
 
         # Notes entry (if any).
@@ -204,7 +207,10 @@ class ElementView(BlankView):
             self.linkCollection.disable_buttons()
 
     def _add_separator(self):
-        ttk.Separator(self._propertiesFrame, orient='horizontal').pack(fill='x')
+        ttk.Separator(
+            self._propertiesFrame,
+            orient='horizontal'
+        ).pack(fill='x')
 
     def _create_button_bar(self):
         # Create a button bar at the bottom.
@@ -251,7 +257,10 @@ class ElementView(BlankView):
 
     def _create_links_window(self):
         # "A folding frame with a "Links" listbox and control buttons.
-        ttk.Separator(self._propertiesFrame, orient='horizontal').pack(fill='x')
+        ttk.Separator(
+            self._propertiesFrame,
+            orient='horizontal'
+        ).pack(fill='x')
         self.linksWindow = FoldingFrame(
             self._propertiesFrame,
             _('Links'),
@@ -356,7 +365,10 @@ class ElementView(BlankView):
             self._uiBtn1Binding = self._ui.root.bind('<Button-1>')
             self._ui.root.bind('<Button-1>', self._end_picking_mode)
             self._pickingMode = True
-        self._ui.set_status(_('Pick Mode (click here or press Esc to exit)'), colors=('maroon', 'white'))
+        self._ui.set_status(
+            _('Pick Mode (click here or press Esc to exit)'),
+            colors=('maroon', 'white')
+        )
 
     def _toggle_folding_frame(self):
         if not self._ctrl.isLocked:

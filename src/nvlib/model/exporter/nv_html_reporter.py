@@ -39,7 +39,8 @@ class NvHtmlReporter:
         
         Extends the superclass constructor.
         """
-        self._exportTargetFactory = ExportTargetFactory(self.EXPORT_TARGET_CLASSES)
+        self._exportTargetFactory = ExportTargetFactory(
+            self.EXPORT_TARGET_CLASSES)
 
     def run(self, source, suffix, tempdir='.'):
         """Create a target object and run conversion.
@@ -49,12 +50,17 @@ class NvHtmlReporter:
             suffix: str -- Target file name suffix.
             
         Optional arguments:
-            tempdir: str -- Path to the directory where the HTML file is created.
+            tempdir: str -- Path to the directory 
+                            where the HTML file is created.
         """
         kwargs = {'suffix':suffix}
-        __, target = self._exportTargetFactory.new_file_objects(source.filePath, **kwargs)
+        __, target = self._exportTargetFactory.new_file_objects(
+            source.filePath,
+            **kwargs
+        )
         # Adjust HTML file path to the temp directory, if any
-        # (the target factory sets the project directory; this is overridden here).
+        # (the target factory sets the project directory;
+        # this is overridden here).
         filename = os.path.basename(target.filePath)
         target.filePath = f'{tempdir}/{filename}'
         target.novel = source.novel

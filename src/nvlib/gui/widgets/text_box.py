@@ -35,7 +35,11 @@ class TextBox(tk.Text):
             # Copy geometry methods of self.frame without overriding Text
             # methods -- hack!
             text_meths = vars(tk.Text).keys()
-            methods = vars(tk.Pack).keys() | vars(tk.Grid).keys() | vars(tk.Place).keys()
+            methods = (
+                vars(tk.Pack).keys()
+                | vars(tk.Grid).keys()
+                | vars(tk.Place).keys()
+            )
             methods = methods.difference(text_meths)
 
             for m in methods:

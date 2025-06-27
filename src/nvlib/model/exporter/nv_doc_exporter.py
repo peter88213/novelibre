@@ -151,11 +151,14 @@ class NvDocExporter(NovxConversion):
         if os.path.isfile(self._target.filePath):
             targetTimestamp = os.path.getmtime(self._target.filePath)
             if  targetTimestamp > self._source.timestamp:
-                self._targetFileDate = datetime.fromtimestamp(targetTimestamp).strftime('%c')
+                self._targetFileDate = datetime.fromtimestamp(
+                    targetTimestamp).strftime('%c')
                 return self._open_existing_document(True)
 
             else:
-                message = _('{0} is not up to date.').format(self._target.DESCRIPTION)
+                message = _('{0} is not up to date.').format(
+                    self._target.DESCRIPTION)
         else:
-            message = _('{0} does not exist.').format(self._target.DESCRIPTION)
+            message = _('{0} does not exist.').format(
+                self._target.DESCRIPTION)
         return f'!{message}'

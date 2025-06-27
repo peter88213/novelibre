@@ -50,7 +50,11 @@ class RichTextTk(tk.Text):
         # Copy geometry methods of self.frame without overriding Text
         # methods -- hack!
         text_meths = vars(tk.Text).keys()
-        methods = vars(tk.Pack).keys() | vars(tk.Grid).keys() | vars(tk.Place).keys()
+        methods = (
+            vars(tk.Pack).keys()
+            | vars(tk.Grid).keys()
+            | vars(tk.Place).keys()
+        )
         methods = methods.difference(text_meths)
 
         for m in methods:
@@ -76,13 +80,32 @@ class RichTextTk(tk.Text):
 
         self.tag_configure(self.BOLD_TAG, font=boldFont)
         self.tag_configure(self.ITALIC_TAG, font=italicFont)
-        self.tag_configure(self.H1_TAG, font=h1Font, spacing3=defaultSize,
-                           justify='center', spacing1=defaultSize * self.H1_SPACING)
-        self.tag_configure(self.H2_TAG, font=h2Font, spacing3=defaultSize,
-                           justify='center', spacing1=defaultSize * self.H2_SPACING)
-        self.tag_configure(self.H3_TAG, font=h3Font, spacing3=defaultSize,
-                           justify='center', spacing1=defaultSize * self.H3_SPACING)
-        self.tag_configure(self.CENTER_TAG, justify='center', spacing1=defaultSize * self.CENTER_SPACING)
+        self.tag_configure(
+            self.H1_TAG,
+            font=h1Font,
+            spacing3=defaultSize,
+            justify='center',
+            spacing1=defaultSize * self.H1_SPACING,
+        )
+        self.tag_configure(
+            self.H2_TAG,
+            font=h2Font,
+            spacing3=defaultSize,
+            justify='center',
+            spacing1=defaultSize * self.H2_SPACING,
+        )
+        self.tag_configure(
+            self.H3_TAG,
+            font=h3Font,
+            spacing3=defaultSize,
+            justify='center',
+            spacing1=defaultSize * self.H3_SPACING,
+        )
+        self.tag_configure(
+            self.CENTER_TAG,
+            justify='center',
+            spacing1=defaultSize * self.CENTER_SPACING,
+        )
 
         lmargin2 = em + defaultFont.measure('\u2022 ')
         self.tag_configure(self.BULLET_TAG, lmargin1=em, lmargin2=lmargin2)

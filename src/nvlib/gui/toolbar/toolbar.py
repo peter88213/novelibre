@@ -363,65 +363,85 @@ class Toolbar(SubController):
 
         Hovertip(
             self.addChildButton,
-            f"{self.addChildButton['text']} ({KEYS.ADD_CHILD[1]})")
+            f"{self.addChildButton['text']} ({KEYS.ADD_CHILD[1]})"
+        )
         Hovertip(
             self.addElementButton,
-            f"{self.addElementButton['text']} ({KEYS.ADD_ELEMENT[1]})")
+            f"{self.addElementButton['text']} ({KEYS.ADD_ELEMENT[1]})"
+        )
         Hovertip(
             self.addParentButton,
-            f"{self.addParentButton['text']} ({KEYS.ADD_PARENT[1]})")
+            f"{self.addParentButton['text']} ({KEYS.ADD_PARENT[1]})"
+        )
         Hovertip(
             self.goBackButton,
-            f"{self.goBackButton['text']} ({KEYS.BACK[1]})")
+            f"{self.goBackButton['text']} ({KEYS.BACK[1]})"
+        )
         Hovertip(
             self.goForwardButton,
-            f"{self.goForwardButton['text']} ({KEYS.FORWARD[1]})")
+            f"{self.goForwardButton['text']} ({KEYS.FORWARD[1]})"
+        )
         Hovertip(
             self.lockButton,
-            self.lockButton['text'])
+            self.lockButton['text']
+        )
         Hovertip(
             self.manuscriptButton,
             self.manuscriptButton['text'])
         Hovertip(
             self.propertiesButton,
-            f"{self.propertiesButton['text']} ({KEYS.TOGGLE_PROPERTIES[1]})")
+            f"{self.propertiesButton['text']} ({KEYS.TOGGLE_PROPERTIES[1]})"
+        )
         Hovertip(
             self.saveButton,
-            f"{self.saveButton['text']} ({KEYS.SAVE_PROJECT[1]})")
+            f"{self.saveButton['text']} ({KEYS.SAVE_PROJECT[1]})"
+        )
         Hovertip(
             self.deleteElementButton,
-             f"{self.deleteElementButton['text']} ({KEYS.DELETE[1]})")
+             f"{self.deleteElementButton['text']} ({KEYS.DELETE[1]})"
+        )
         Hovertip(
             self.updateButton,
-            self.updateButton['text'])
+            self.updateButton['text']
+        )
         Hovertip(
             self.viewBookButton,
-            self.viewBookButton['text'])
+            self.viewBookButton['text']
+        )
         Hovertip(
             self.viewCharactersButton,
-            self.viewCharactersButton['text'])
+            self.viewCharactersButton['text']
+        )
         Hovertip(
             self.viewItemsButton,
-            self.viewItemsButton['text'])
+            self.viewItemsButton['text']
+        )
         Hovertip(
             self.viewLocationsButton,
-            self.viewLocationsButton['text'])
+            self.viewLocationsButton['text']
+        )
         Hovertip(
             self.viewPlotLinesButton,
-            self.viewPlotLinesButton['text'])
+            self.viewPlotLinesButton['text']
+        )
         Hovertip(
             self.viewProjectnotesButton,
-            self.viewProjectnotesButton['text'])
+            self.viewProjectnotesButton['text']
+        )
         Hovertip(
             self.viewerButton,
-            f"{self.viewerButton['text']} ({KEYS.TOGGLE_VIEWER[1]})")
+            f"{self.viewerButton['text']} ({KEYS.TOGGLE_VIEWER[1]})"
+        )
         Hovertip(
             self.cutButton,
-            self.cutButton['text'])
+            self.cutButton['text']
+        )
         Hovertip(
             self.copyButton,
-            self.copyButton['text'])
+            self.copyButton['text']
+        )
         Hovertip(
             self.pasteButton,
-            self.pasteButton['text'])
+            self.pasteButton['text']
+        )
 

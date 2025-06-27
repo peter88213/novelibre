@@ -29,12 +29,18 @@ class PlotPointView(ElementView):
         super().__init__(parent, model, view, controller)
         inputWidgets = []
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(
+            self._elementInfoWindow,
+            orient='horizontal'
+        ).pack(fill='x')
 
         # Associated section display.
         self._sectionFrame = ttk.Frame(self._elementInfoWindow)
         self._sectionFrame.pack(anchor='w', fill='x')
-        ttk.Label(self._sectionFrame, text=f"{_('Section')}:").pack(anchor='w')
+        ttk.Label(
+            self._sectionFrame,
+            text=f"{_('Section')}:"
+        ).pack(anchor='w')
         self._sectionAssocTitle = tk.Label(
             self._sectionFrame,
             anchor='w',
@@ -103,7 +109,8 @@ class PlotPointView(ElementView):
 
         # Associated section display.
         try:
-            sectionTitle = self._mdl.novel.sections[self.element.sectionAssoc].title
+            sectionTitle = self._mdl.novel.sections[
+                self.element.sectionAssoc].title
         except:
             sectionTitle = ''
         self._sectionAssocTitle['text'] = sectionTitle
@@ -123,7 +130,8 @@ class PlotPointView(ElementView):
                 elif not nodeId in arcSections:
                     arcSections.append(nodeId)
                 self._mdl.novel.plotLines[plId].sections = arcSections
-                self._mdl.novel.sections[nodeId].scPlotPoints[self.elementId] = plId
+                self._mdl.novel.sections[nodeId].scPlotPoints[
+                    self.elementId] = plId
                 if not plId in self._mdl.novel.sections[nodeId].scPlotLines:
                     self._mdl.novel.sections[nodeId].scPlotLines.append(plId)
                 self.element.sectionAssoc = nodeId

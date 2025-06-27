@@ -227,7 +227,8 @@ class MainView(Observer, MsgBoxes, SubController):
 
         # Save windows size and position.
         if self._propWinDetached:
-            prefs['prop_win_geometry'] = self._propertiesWindow.winfo_geometry()
+            prefs['prop_win_geometry'
+                  ] = self._propertiesWindow.winfo_geometry()
         prefs['root_geometry'] = self.root.winfo_geometry()
         self.root.quit()
 
@@ -1016,8 +1017,10 @@ class MainView(Observer, MsgBoxes, SubController):
         self.statusBar.COLOR_SUCCESS_FG = prefs['color_status_success_fg']
         self.statusBar.COLOR_ERROR_BG = prefs['color_status_error_bg']
         self.statusBar.COLOR_ERROR_FG = prefs['color_status_error_fg']
-        self.statusBar.COLOR_NOTIFICATION_BG = prefs['color_status_notification_bg']
-        self.statusBar.COLOR_NOTIFICATION_FG = prefs['color_status_notification_fg']
+        self.statusBar.COLOR_NOTIFICATION_BG = prefs[
+            'color_status_notification_bg']
+        self.statusBar.COLOR_NOTIFICATION_FG = prefs[
+            'color_status_notification_fg']
 
     def _detach_properties_frame(self, event=None):
         # View the properties in its own window.

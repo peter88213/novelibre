@@ -24,7 +24,10 @@ class HistoryList:
                 del self._historyList[self._pointer + 1:]
             except:
                 pass
-            if self._pointer is None or self._historyList[self._pointer] != node:
+            if (
+                self._pointer is None
+                or self._historyList[self._pointer] != node
+            ):
                 self._historyList.append(node)
                 self._pointer = len(self._historyList) - 1
         self._lock = False

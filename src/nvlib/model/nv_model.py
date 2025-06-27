@@ -586,14 +586,15 @@ class NvModel:
                     self.novel.chapters,
                     prefix=CHAPTER_PREFIX,
                 )
-                self.novel.chapters[self.trashBin] = self.nvService.new_chapter(
-                    title=_('Trash'),
-                    desc='',
-                    chLevel=2,
-                    chType=1,
-                    noNumber=True,
-                    isTrash=True,
-                    on_element_change=self.on_element_change,
+                self.novel.chapters[
+                    self.trashBin] = self.nvService.new_chapter(
+                        title=_('Trash'),
+                        desc='',
+                        chLevel=2,
+                        chType=1,
+                        noNumber=True,
+                        isTrash=True,
+                        on_element_change=self.on_element_change,
                 )
                 self.tree.append(CH_ROOT, self.trashBin)
             if elemId.startswith(SECTION_PREFIX):
@@ -656,7 +657,8 @@ class NvModel:
         for scId in self.novel.sections:
             if self.novel.sections[scId].scType == 0:
                 if self.novel.sections[scId].status is not None:
-                    counts[self.novel.sections[scId].status] += self.novel.sections[scId].wordCount
+                    counts[self.novel.sections[scId].status
+                           ] += self.novel.sections[scId].wordCount
         return counts
 
     def join_sections(self, ScId0, ScId1):
@@ -691,7 +693,10 @@ class NvModel:
             return
 
         # Check type.
-        if self.novel.sections[ScId1].scType != self.novel.sections[ScId0].scType:
+        if (
+            self.novel.sections[ScId1].scType
+            != self.novel.sections[ScId0].scType
+        ):
             raise Error(_('The sections are not of the same type'))
 
         # Check viewpoint.
@@ -701,7 +706,9 @@ class NvModel:
                     if (self.novel.sections[ScId1].viewpoint
                         != self.novel.sections[ScId0].viewpoint
                 ):
-                        raise Error(_('The sections have different viewpoints'))
+                        raise Error(
+                            _('The sections have different viewpoints')
+                        )
 
                 else:
                     self.novel.sections[ScId0].characters.append(
@@ -773,7 +780,9 @@ class NvModel:
         # Move plot point associations.
         for ppId in self.novel.sections[ScId1].scPlotPoints:
             self.novel.plotPoints[ppId].sectionAssoc = ScId0
-            self.novel.sections[ScId0].scPlotPoints[ppId] = self.novel.sections[ScId1].scPlotPoints[ppId]
+            self.novel.sections[
+                ScId0].scPlotPoints[ppId] = self.novel.sections[
+                    ScId1].scPlotPoints[ppId]
 
         # Add duration.
         try:
@@ -794,7 +803,9 @@ class NvModel:
             lastsHours0 = int(self.novel.sections[ScId0].lastsHours)
         except:
             lastsHours0 = 0
-        daysLeft, lastsHours0 = divmod((lastsHours0 + lastsHours1 + hoursLeft), 24)
+        daysLeft, lastsHours0 = divmod(
+            (lastsHours0 + lastsHours1 + hoursLeft), 24
+        )
         self.novel.sections[ScId0].lastsHours = str(lastsHours0)
         try:
             lastsDays1 = int(self.novel.sections[ScId1].lastsDays)
@@ -983,7 +994,10 @@ class NvModel:
                 self.novel.characters[crId].isMajor = isMajor
             elif crId == CR_ROOT:
                 # Set status of all characters.
-                self.set_character_status(isMajor, self.tree.get_children(crId))
+                self.set_character_status(
+                    isMajor,
+                    self.tree.get_children(crId)
+                )
 
     def set_completion_status(self, newStatus, elemIds):
         """Recursively set section completion status (Outline/Draft..).
@@ -1016,7 +1030,8 @@ class NvModel:
         for elemId in elemIds:
             if elemId.startswith(SECTION_PREFIX):
                 if self.novel.sections[elemId].scType < 2:
-                    parentType = self.novel.chapters[self.tree.parent(elemId)].chType
+                    parentType = self.novel.chapters[
+                        self.tree.parent(elemId)].chType
                     if parentType > 0:
                         newType = parentType
                     self.novel.sections[elemId].scType = newType
@@ -1058,23 +1073,30 @@ class NvModel:
             #    node: str -- Node ID to start from.
             for elemId in self.tree.get_children(node):
                 if elemId.startswith(SECTION_PREFIX):
-                    self.novel.sections[elemId].on_element_change = on_element_change
+                    self.novel.sections[
+                        elemId].on_element_change = on_element_change
                 elif elemId.startswith(CHARACTER_PREFIX):
-                    self.novel.characters[elemId].on_element_change = on_element_change
+                    self.novel.characters[
+                        elemId].on_element_change = on_element_change
                 elif elemId.startswith(LOCATION_PREFIX):
-                    self.novel.locations[elemId].on_element_change = on_element_change
+                    self.novel.locations[
+                        elemId].on_element_change = on_element_change
                 elif elemId.startswith(ITEM_PREFIX):
-                    self.novel.items[elemId].on_element_change = on_element_change
+                    self.novel.items[
+                        elemId].on_element_change = on_element_change
                 elif elemId.startswith(CHAPTER_PREFIX):
                     initialize_branch(elemId)
-                    self.novel.chapters[elemId].on_element_change = on_element_change
+                    self.novel.chapters[
+                        elemId].on_element_change = on_element_change
                     if self.novel.chapters[elemId].isTrash:
                         self.trashBin = elemId
                 elif elemId.startswith(PLOT_LINE_PREFIX):
                     initialize_branch(elemId)
-                    self.novel.plotLines[elemId].on_element_change = on_element_change
+                    self.novel.plotLines[
+                        elemId].on_element_change = on_element_change
                 elif elemId.startswith(PLOT_POINT_PREFIX):
-                    self.novel.plotPoints[elemId].on_element_change = on_element_change
+                    self.novel.plotPoints[
+                        elemId].on_element_change = on_element_change
                 else:
                     initialize_branch(elemId)
 

@@ -588,7 +588,11 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                     title, nodeValues, nodeTags = self._get_plot_line_row_data(
                         elemId, collect=isCollapsed)
                 elif elemId.startswith(PLOT_POINT_PREFIX):
-                    title, nodeValues, nodeTags = self._get_plot_point_row_data(
+                    (
+                        title,
+                        nodeValues,
+                        nodeTags
+                    ) = self._get_plot_point_row_data(
                         elemId)
                 elif elemId.startswith(PRJ_NOTE_PREFIX):
                     title, nodeValues, nodeTags = self._get_prj_note_row_data(
@@ -698,8 +702,15 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                 for plId in chPlotlines:
                     for ppId in chPlotlines[plId]:
                         chPlotPointTitles.append(
-                            f'{self._mdl.novel.plotLines[plId].shortName}: {self._mdl.novel.plotPoints[ppId].title}')
-        return list_to_string(chPlotlineShortNames), list_to_string(chPlotPointTitles)
+                            (
+                                f'{self._mdl.novel.plotLines[plId].shortName}'
+                                f': {self._mdl.novel.plotPoints[ppId].title}'
+                            )
+                        )
+        return (
+            list_to_string(chPlotlineShortNames),
+            list_to_string(chPlotPointTitles)
+        )
 
     def _collect_tags(self, chId):
         """Return a string with semicolon-separated section tags.
@@ -862,11 +873,17 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         if self._ctrl.isLocked:
             # No changes allowed.
             for label in projectnoteContextEntries:
-                self.projectnoteContextMenu.entryconfig(label, state='disabled')
+                self.projectnoteContextMenu.entryconfig(
+                    label,
+                    state='disabled',
+                )
             return
 
         for label in projectnoteContextEntries:
-            self.projectnoteContextMenu.entryconfig(label, state='normal')
+            self.projectnoteContextMenu.entryconfig(
+                label,
+                state='normal',
+            )
 
         if prefix == PRJ_NOTE_PREFIX:
             return
@@ -875,7 +892,10 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             for label in (
                 _('Delete'),
             ):
-                self.projectnoteContextMenu.entryconfig(label, state='disabled')
+                self.projectnoteContextMenu.entryconfig(
+                    label,
+                    state='disabled',
+                )
             return
 
     def _configure_world_context_menu(self, prefix):
@@ -937,7 +957,8 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         if self._mdl.novel.chapters[chId].chType == 0:
             for scId in self.tree.get_children(chId):
                 if self._mdl.novel.sections[scId].scType == 0:
-                    chapterWordCount += self._mdl.novel.sections[scId].wordCount
+                    chapterWordCount += self._mdl.novel.sections[
+                        scId].wordCount
         return chapterWordCount
 
     def _create_menus(self):
@@ -1172,8 +1193,12 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                 nodeValues[self._colPos['vp']] = self._collect_viewpoints(chId)
         if collect:
             nodeValues[self._colPos['tg']] = self._collect_tags(chId)
-            nodeValues[self._colPos['ac']], nodeValues[self._colPos['tp']] = self._collect_plot_lines(chId)
-            nodeValues[self._colPos['nt']] = self._collect_ch_note_indicators(chId)
+            (
+                nodeValues[self._colPos['ac']],
+                nodeValues[self._colPos['tp']]
+            ) = self._collect_plot_lines(chId)
+            nodeValues[
+                self._colPos['nt']] = self._collect_ch_note_indicators(chId)
         else:
             nodeValues[self._colPos['nt']] = self._get_notes_indicator(
                 self._mdl.novel.chapters[chId])
@@ -1200,7 +1225,8 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
             # Words percentage per viewpoint character
             try:
-                percentageStr = f'{round(100 * wordCount / self._wordsTotal, 1)}%'
+                percentage = round(100 * wordCount / self._wordsTotal, 1)
+                percentageStr = f'{percentage}%'
             except:
                 percentageStr = ''
             nodeValues[self._colPos['vp']] = percentageStr
@@ -1283,7 +1309,8 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         title = f'({self._mdl.novel.plotLines[plId].shortName}) {fullName}'
         nodeValues = [''] * len(self.columns)
         if collect:
-            nodeValues[self._colPos['nt']] = self._collect_pl_note_indicators(plId)
+            nodeValues[
+                self._colPos['nt']] = self._collect_pl_note_indicators(plId)
         else:
             nodeValues[self._colPos['nt']] = self._get_notes_indicator(
                 self._mdl.novel.plotLines[plId])
@@ -1340,7 +1367,9 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             else:
                 # Set the row color according to the color mode.
                 if self.coloringMode == 1:
-                    nodeTags.append(f'status{self._mdl.novel.sections[scId].status}')
+                    nodeTags.append(
+                        f'status{self._mdl.novel.sections[scId].status}'
+                    )
                 elif self.coloringMode == 2 and self._mdl.novel.workPhase:
                     if (self._mdl.novel.sections[scId].status
                         == self._mdl.novel.workPhase
@@ -1353,13 +1382,16 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                     else:
                         nodeTags.append('Before_schedule')
                 try:
-                    positionStr = f'{round(100 * position / self._wordsTotal, 1)}%'
+                    position = round(100 * position / self._wordsTotal, 1)
+                    positionStr = f'{position}%'
                 except:
                     pass
             nodeValues[self._colPos['po']] = positionStr
-            nodeValues[self._colPos['wc']] = self._mdl.novel.sections[scId].wordCount
-            nodeValues[self._colPos['st']] = self._mdl.novel.sections[scId].STATUS[
-                self._mdl.novel.sections[scId].status]
+            nodeValues[
+                self._colPos['wc']] = self._mdl.novel.sections[scId].wordCount
+            nodeValues[
+                self._colPos['st']] = self._mdl.novel.sections[scId].STATUS[
+                    self._mdl.novel.sections[scId].status]
             try:
                 nodeValues[self._colPos['vp']] = self._mdl.novel.characters[
                     self._mdl.novel.sections[scId].viewpoint].title
@@ -1389,7 +1421,11 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                 else:
                     plId = self._mdl.novel.sections[scId].scPlotPoints[ppId]
                     scPlotPointTitles.append(
-                        f'{self._mdl.novel.plotLines[plId].shortName}: {self._mdl.novel.plotPoints[ppId].title}')
+                        (
+                            f'{self._mdl.novel.plotLines[plId].shortName}: '
+                            f'{self._mdl.novel.plotPoints[ppId].title}'
+                        )
+                    )
             nodeValues[self._colPos['ac']] = list_to_string(
                 scPlotlineShortNames)
             nodeValues[self._colPos['tp']] = list_to_string(
@@ -1497,7 +1533,11 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         ):
             self._configure_project_note_context_menu(prefix)
             try:
-                self.projectnoteContextMenu.tk_popup(event.x_root, event.y_root, 0)
+                self.projectnoteContextMenu.tk_popup(
+                    event.x_root,
+                    event.y_root,
+                    0
+                )
             finally:
                 self.projectnoteContextMenu.grab_release()
 

@@ -63,7 +63,10 @@ class CharacterView(WorldElementView):
         self._isMajorCheckbox.pack(anchor='w')
         inputWidgets.append(self._isMajorCheckbox)
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(
+            self._elementInfoWindow,
+            orient='horizontal'
+        ).pack(fill='x')
 
         #--- 'Bio' frame
         self._bioFrame = FoldingFrame(
@@ -120,7 +123,10 @@ class CharacterView(WorldElementView):
         self._bioBox.pack(fill='x')
         inputWidgets.append(self._bioBox)
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(
+            self._elementInfoWindow,
+            orient='horizontal'
+        ).pack(fill='x')
 
         #--- 'Goals' entry.
         self._goalsFrame = FoldingFrame(
@@ -190,7 +196,10 @@ class CharacterView(WorldElementView):
                 self._birthDateVar.set(self.element.birthDate)
                 self._ui.show_error(
                     message=_('Input rejected'),
-                    detail=f'{_("Wrong date")}: "{birthDateStr}"\n{_("Required")}: {PyCalendar.DATE_FORMAT}'
+                    detail=(
+                        f'{_("Wrong date")}: "{birthDateStr}"\n'
+                        f'{_("Required")}: {PyCalendar.DATE_FORMAT}'
+                    )
                 )
             else:
                 self.element.birthDate = birthDateStr
@@ -205,7 +214,10 @@ class CharacterView(WorldElementView):
                 self._deathDateVar.set(self.element.deathDate)
                 self._ui.show_error(
                     message=_('Input rejected'),
-                    detail=f'{_("Wrong date")}: "{deathDateStr}"\n{_("Required")}: {PyCalendar.DATE_FORMAT}'
+                    detail=(
+                        f'{_("Wrong date")}: "{deathDateStr}"\n'
+                        f'{_("Required")}: {PyCalendar.DATE_FORMAT}'
+                    )
                 )
             else:
                 self.element.deathDate = deathDateStr

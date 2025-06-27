@@ -123,7 +123,9 @@ class LinkProcessor(ServiceBase):
                 self._ui.set_status(f'!{str(ex)}')
             return
 
-        raise FileNotFoundError(f"{_('File not found')}: {norm_path(linkPath)}")
+        raise FileNotFoundError(
+            f"{_('File not found')}: {norm_path(linkPath)}"
+        )
 
     def shorten_path(self, linkPath):
         """Return a shortened path string. 

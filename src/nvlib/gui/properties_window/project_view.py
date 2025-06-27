@@ -657,8 +657,11 @@ class ProjectView(ElementView):
                 self._referenceDateVar.set(self.element.referenceDate)
                 self._ui.show_error(
                     message=_('Input rejected'),
-                    detail=f'{_("Wrong date")}: "{refDateStr}"\n{_("Required")}: {PyCalendar.DATE_FORMAT}'
+                    detail=(
+                        f'{_("Wrong date")}: "{refDateStr}"\n'
+                        f'{_("Required")}: {PyCalendar.DATE_FORMAT}'
                     )
+                )
             else:
                 self.element.referenceDate = refDateStr
 
@@ -777,7 +780,9 @@ class ProjectView(ElementView):
         ):
             try:
                 wordsWritten = self._mdl.wordCount - self.element.wordCountStart
-                wordPercentage = round(100 * wordsWritten / self.element.wordTarget)
+                wordPercentage = round(
+                    100 * wordsWritten / self.element.wordTarget
+                )
             except Exception:
                 pass
 
@@ -813,11 +818,17 @@ class ProjectView(ElementView):
         if self._mdl.novel.referenceDate:
             if self._ui.ask_yes_no(
                 message=_('Convert all section dates to days relative to the reference date?'),
-                detail=f"{_('Day 0')}: {PyCalendar.WEEKDAYS[self.element.referenceWeekDay]} {datestr(self.element.referenceDate)}"
+                detail=(
+                    f"{_('Day 0')}: "
+                    f"{PyCalendar.WEEKDAYS[self.element.referenceWeekDay]} "
+                    f"{datestr(self.element.referenceDate)}"
+                )
             ):
                 self._doNotUpdate = True
                 for scId in self._mdl.novel.sections:
-                    self._mdl.novel.sections[scId].date_to_day(self._mdl.novel.referenceDate)
+                    self._mdl.novel.sections[scId].date_to_day(
+                        self._mdl.novel.referenceDate
+                    )
                 self._doNotUpdate = False
         else:
             self._report_missing_reference_date()
@@ -832,11 +843,17 @@ class ProjectView(ElementView):
         if self._mdl.novel.referenceDate:
             if self._ui.ask_yes_no(
                 message=_('Convert all section days to dates using the reference date?'),
-                detail=f"{_('Day 0')}: {PyCalendar.WEEKDAYS[self.element.referenceWeekDay]} {datestr(self.element.referenceDate)}"
+                detail=(
+                    f"{_('Day 0')}: "
+                    f"{PyCalendar.WEEKDAYS[self.element.referenceWeekDay]} "
+                    f"{datestr(self.element.referenceDate)}"
+                )
             ):
                 self._doNotUpdate = True
                 for scId in self._mdl.novel.sections:
-                    self._mdl.novel.sections[scId].day_to_date(self._mdl.novel.referenceDate)
+                    self._mdl.novel.sections[scId].day_to_date(
+                        self._mdl.novel.referenceDate
+                    )
                 self._doNotUpdate = False
         else:
             self._report_missing_reference_date()
@@ -905,7 +922,9 @@ class ProjectView(ElementView):
 
         #--- "Renamings" frame.
         self._customPlotProgressVar.set(self.element.customPlotProgress)
-        self._customCharacterizationVar.set(self.element.customCharacterization)
+        self._customCharacterizationVar.set(
+            self.element.customCharacterization
+        )
         self._customWorldBuildingVar.set(self.element.customWorldBuilding)
         self._customGoalVar.set(self.element.customGoal)
         self._customConflictVar.set(self.element.customConflict)

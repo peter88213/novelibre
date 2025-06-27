@@ -56,7 +56,10 @@ class ChapterView(ElementView):
         self._noNumberCheckbox.pack(anchor='w')
         inputWidgets.append(self._noNumberCheckbox)
 
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
+        ttk.Separator(
+            self._elementInfoWindow,
+            orient='horizontal'
+        ).pack(fill='x')
 
         #--- 'Epigraph' entry.
         self._epigraphFrame = FoldingFrame(
@@ -155,7 +158,8 @@ class ChapterView(ElementView):
     def set_data(self, elementId):
         """Update the view with element's data.
         
-        - Configure the "Do not auto-number" button, depending on the chapter level.       
+        Configure the "Do not auto-number" button, depending 
+        on the chapter level.    
         Extends the superclass constructor.
         """
         self.element = self._mdl.novel.chapters[elementId]

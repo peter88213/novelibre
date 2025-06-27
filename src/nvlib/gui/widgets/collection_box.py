@@ -18,15 +18,20 @@ class CollectionBox(ttk.Frame):
     Public instance variables:
         cList: tk.strVar -- Holds a list representing the collection.
         cListbox: tk.Listbox -- Displays the collection.
-        btnOpen: ttk.Button -- Activatable button, not intended to modify the collection.
+        btnOpen: ttk.Button -- Activatable button, not intended to 
+                               modify the collection.
         btnAdd: ttk.Button -- Input widget, always active by default.
         btnRemove: ttk.Button -- Activatable input widget.
         inputWidgets -- List with references to the input widgets.
         
-    The inputWidgets list can be used to lock the application, deactivating the input widgets.
-    The enable_buttons() and disable_buttons() methods are intended for setting the 
-    buttons' status from outsides, dependent on the list content and selection. So "Add" is always 
-    meant to be active, whereas "Open" and "Remove" is only to be active when a list item is selected.
+    The inputWidgets list can be used to lock the application, 
+    deactivating the input widgets.
+    The enable_buttons() and disable_buttons() methods are 
+    intended for setting the 
+    buttons' status from outsides, dependent on the list content 
+    and selection. So "Add" is always 
+    meant to be active, whereas "Open" and "Remove" is only to be 
+    active when a list item is selected.
     """
 
     def __init__(
@@ -43,19 +48,23 @@ class CollectionBox(ttk.Frame):
         Optional arguments:
             cmdAdd -- Reference to the callback routine for the "Add" button.
                       If not set, the "Add" button is not available.
-            lblAdd --  Optional alternative text on the "Add" button.
-            iconAdd --  Optional icon on the "Add" button.
-            cmdOpen -- Reference to the callback routine for the "Open" button.
-                       Bound to the "Return" key and left mouse button doublecklick.
+            lblAdd -- Optional alternative text on the "Add" button.
+            iconAdd -- Optional icon on the "Add" button.
+            cmdOpen -- Reference to the callback routine for the 
+                       "Open" button.
+                       Bound to the "Return" key and left mouse button 
+                       doublecklick.
                        If not set, the "Add" button is not available.
             lblOpen -- Optional alternative text on the "Open" button.
             iconOpen -- Optional icon on the "Open" button.
-            cmdRemove -- Reference to the callback routine for the "Remove" button.
+            cmdRemove -- Reference to the callback routine for the "Remove" 
+                         button.
                          Bound to the "Delete" key.
                          If not set, the "Remove" button is not available.
             lblRemove -- Optional alternative text on the "Remove" button.
             iconRemove -- Optional icon on the "Remove" button.
-            cmdActivate -- Reference to an external callback routine (optional)
+            cmdActivate -- Reference to an external callback routine 
+                           (optional)
                            Bound to listbox focus and selection.
             cmdSelect -- Reference to the callback routine for list element 
                          selection (optional).
@@ -70,10 +79,22 @@ class CollectionBox(ttk.Frame):
         listFrame = ttk.Frame(self)
         listFrame.pack(side='left', fill='both', expand=True)
         self.cList = tk.StringVar()
-        self.cListbox = tk.Listbox(listFrame, listvariable=self.cList, selectmode='single')
-        vbar = ttk.Scrollbar(listFrame, orient='vertical', command=self.cListbox.yview)
+        self.cListbox = tk.Listbox(
+            listFrame,
+            listvariable=self.cList,
+            selectmode='single',
+        )
+        vbar = ttk.Scrollbar(
+            listFrame,
+            orient='vertical',
+            command=self.cListbox.yview,
+        )
         vbar.pack(side='right', fill='y')
-        self.cListbox.pack(side='left', fill='both', expand=True)
+        self.cListbox.pack(
+            side='left',
+            fill='both',
+            expand=True,
+        )
         self.cListbox.config(yscrollcommand=vbar.set)
 
         self.cListbox.bind('<FocusIn>', cmdActivate)
@@ -160,6 +181,15 @@ class CollectionBox(ttk.Frame):
         except ModuleNotFoundError:
             return
 
-        Hovertip(self.btnAdd, self.btnAdd['text'])
-        Hovertip(self.btnOpen, self.btnOpen['text'])
-        Hovertip(self.btnRemove, f"{self.btnRemove['text']} ({KEYS.DELETE[1]})")
+        Hovertip(
+            self.btnAdd,
+            self.btnAdd['text']
+        )
+        Hovertip(
+            self.btnOpen,
+            self.btnOpen['text']
+        )
+        Hovertip(
+            self.btnRemove,
+            f"{self.btnRemove['text']} ({KEYS.DELETE[1]})"
+        )

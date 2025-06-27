@@ -111,7 +111,9 @@ class FileSplitter(ServiceBase):
             for ppId in newNovel.plotPoints:
                 self._mdl.delete_element(ppId)
             self._ctrl.refresh_tree()
-            self._ui.set_status(f'{_("Chapters moved to new file")}: {norm_path(fileName)}')
+            self._ui.set_status(
+                f'{_("Chapters moved to new file")}: {norm_path(fileName)}'
+            )
 
     def _copy_related_elements(self, sourceNovel, newNovel, scId):
         # Update newNovel.
