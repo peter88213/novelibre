@@ -33,11 +33,12 @@ class MainController(SubController, Commands):
     """Controller for the novelibre application."""
 
     def __init__(self, title, tempDir):
-        """Initialize the model, set up the application's user interface, and load plugins.
-    
+        """Set up the application.
+        
         Positional arguments:
             title: str -- Application title to be displayed at the window frame.
-            tempDir: str -- Path of the temporary directory, used for e.g. packing zipfiles.          
+            tempDir: str -- Path of the temporary directory, 
+                            used for e.g. packing zipfiles.          
         
         Extends the superclass constructor.
         """
@@ -60,7 +61,8 @@ class MainController(SubController, Commands):
         self._mdl.tree = self._ui.tv.tree
 
         #--- Initialize services.
-        # Services are strategy classes used to implement the application's main features.
+        # Services are strategy classes used to implement
+        # the application's main features.
         # Basically, they can be exchanged by plugins.
 
         self.dataImporter = DataImporter(self._mdl, self._ui, self)
@@ -156,7 +158,8 @@ class MainController(SubController, Commands):
         """Close the current project.
 
         Optional arguments:
-            doNotSave: Boolean -- If True, close the current project without saving.
+            doNotSave: Boolean -- If True, close the current project 
+                                  without saving.
         
         - Save changes
         - clear all views
@@ -269,8 +272,13 @@ class MainController(SubController, Commands):
                 chapterCount,
                 partCount
             ) = self._mdl.get_counts()
-            statusText = _('{0} parts, {1} chapters, {2} sections, {3} words').format(
-                partCount, chapterCount, sectionCount, wordCount)
+            line = _('{0} parts, {1} chapters, {2} sections, {3} words')
+            statusText = line.format(
+                partCount,
+                chapterCount,
+                sectionCount,
+                wordCount
+              )
             self.wordCount = wordCount
         self._ui.update_status(statusText)
 

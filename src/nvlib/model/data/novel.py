@@ -82,7 +82,8 @@ class Novel(BasicElement):
         # key = section ID, value = PlotPoint instance.
         self.languages = None
         # List of non-document languages occurring as section markup.
-        # Format: ll-CC, where ll is the language code, and CC is the country code.
+        # Format: ll-CC, 
+        # where ll is the language code, and CC is the country code.
         self.plotLines = {}
         # key = plot line ID, value = PlotLine instance.
         self.locations = {}
@@ -194,7 +195,8 @@ class Novel(BasicElement):
 
     @property
     def renumberWithinParts(self):
-        # True: When auto-numbering chapters, start with 1 at each part beginning
+        # True: When auto-numbering chapters,
+        # start with 1 at each part beginning
         # False: When auto-numbering chapters, ignore parts
         return self._renumberWithinParts
 

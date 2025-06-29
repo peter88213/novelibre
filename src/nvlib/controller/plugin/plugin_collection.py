@@ -135,7 +135,8 @@ class PluginCollection(dict, SubController):
                 pluginObject.install(self._mdl, self._ui, self._ctrl)
 
             # Change flags to indicate the installation.
-            # Plugin classes that don't inherit from PluginBase may be monkey-patched.
+            # Plugin classes that don't inherit from PluginBase
+            # may be monkey-patched.
             pluginObject.isActive = isCompatible
             pluginObject.isRejected = False
 

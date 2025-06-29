@@ -1,4 +1,4 @@
-"""Provide a "chapters by viewpoint" filter class for template-based file export.
+"""Provide a "chapters by viewpoint" filter class.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre

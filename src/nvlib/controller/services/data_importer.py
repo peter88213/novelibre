@@ -118,8 +118,12 @@ class DataImporter(ServiceBase):
         srcPlotPoints = self.sourceNovel.tree.get_children(srcPlId)
         if srcPlotPoints:
             for srcPpId in srcPlotPoints:
-                ppId = new_id(self._mdl.novel.plotPoints, prefix=PLOT_POINT_PREFIX)
-                self._mdl.novel.plotPoints[ppId] = self.sourceNovel.plotPoints[srcPpId]
+                ppId = new_id(
+                    self._mdl.novel.plotPoints, 
+                    prefix=PLOT_POINT_PREFIX,
+                )
+                self._mdl.novel.plotPoints[
+                    ppId] = self.sourceNovel.plotPoints[srcPpId]
                 self._mdl.novel.tree.append(plId, ppId)
 
     def _do_nothing(self, *args):

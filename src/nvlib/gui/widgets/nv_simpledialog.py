@@ -1,5 +1,6 @@
-"""Provide a custom variant of the tkinter simpledialog module by Frederik Lundh.
+"""Provide a custom variant of the tkinter simpledialog module.
 
+The original module is by Frederik Lundh.
 This modification of the tkinter simpledialog module
 is slightly refactored, features ttk widgets, 
 and is prepared for translation with GNU gettext.

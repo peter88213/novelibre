@@ -1,4 +1,6 @@
-"""Provide a factory class for a document object to read.
+"""Provide a factory class for one instance.
+
+- A document object to read.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre

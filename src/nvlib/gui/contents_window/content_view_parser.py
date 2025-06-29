@@ -1,4 +1,6 @@
-"""Provide a class for parsing novx section content, generating tags for the text box.
+"""Provide a class for parsing novx section content. 
+
+Generate tags for the text box.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre

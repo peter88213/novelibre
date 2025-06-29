@@ -21,7 +21,8 @@ class StatusBar(tk.Label):
     def __init__(self, master, **kw):
         tk.Label.__init__(self, master, **kw)
         self._statusText = ''
-        # text buffer; the regular status information can be overwritten temporarily with messages
+        # text buffer; the regular status information can be overwritten
+        # temporarily with messages
 
     def restore_status(self, event=None):
         """Overwrite error message with the status before."""

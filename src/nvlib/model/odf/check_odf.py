@@ -8,7 +8,10 @@ import os
 
 
 def odf_is_locked(filePath):
-    """Check whether an ODF file specified by filePath is locked by OpenOffice/LibreOffice.
+    """Check whether an ODF file is locked by OpenOffice/LibreOffice.
+    
+    Positional arguments:
+    - filePath: str -- The ODF file to check.
     
     Return True if a .lock file placed by OpenOffice/LibreOffice exists.
     Otherwise, return False. 

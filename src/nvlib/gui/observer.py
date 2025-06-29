@@ -1,4 +1,6 @@
-"""Provide an abstract Observer base class according to the Observer design pattern.
+"""Provide an abstract Observer base class. 
+
+This is for implementing the Observer design pattern.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre

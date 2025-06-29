@@ -1,4 +1,6 @@
-"""Provide a factory class for a document object to write.
+"""Provide a factory class for one instance.
+
+- A document object to write.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre

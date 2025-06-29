@@ -1,4 +1,7 @@
-"""Provide a factory class for a document object to read and a new novelibre project.
+"""Provide a factory class for two instances.
+
+- A document object to read.
+- A new novelibre project.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre

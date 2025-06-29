@@ -58,7 +58,10 @@ class Ui:
         if message.startswith('!'):
             message = f'Error: {message.split("!", maxsplit=1)[1].strip()}'
         elif message.startswith('#'):
-            message = f'Notification: {message.split("#", maxsplit=1)[1].strip()}'
+            message = (
+            f'Notification: '
+            f'{message.split("#", maxsplit=1)[1].strip()}'
+        )
         self.infoHowText = message
 
     def show_warning(self, message='', detail='', title=None):

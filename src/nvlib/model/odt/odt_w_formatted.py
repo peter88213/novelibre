@@ -1,4 +1,4 @@
-"""Provide a base class for ODT documents containing text that is formatted in novelibre.
+"""Provide a base class for ODT documents containing formatted text.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre

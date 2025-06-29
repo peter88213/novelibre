@@ -70,7 +70,8 @@ class Commands:
         Optional keyword arguments:
             targetNode: str -- Tree position where to place a new node.
             title: str -- Element title. Default: Auto-generated title.
-            isMajor: bool -- If True, make the new character a major character. Default: False.
+            isMajor: bool -- If True, make the new character 
+            a major character. Default: False.
             
         Return the element's ID, if successful.
         """
@@ -192,7 +193,8 @@ class Commands:
             scene: int -- Scene kind. Default = 0.
             appendToPrev: bool -- Append to previous section. Default: False.
             
-        - Place the new node at the next free position after the selection, if possible.
+        - Place the new node at the next free position after the selection, 
+          if possible.
         - Otherwise, do nothing. 
         
         Return the section ID, if successful.
@@ -218,7 +220,8 @@ class Commands:
         """Close the current project.
         
         Optional arguments:
-            doNotSave: Boolean -- If True, close the current project without saving.
+            doNotSave: Boolean -- If True, close the current project 
+                                  without saving.
         """
         return self.on_close(doNotSave=doNotSave)
 

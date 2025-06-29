@@ -20,13 +20,19 @@ from nvlib.user_interface.ui import Ui
 
 
 class Converter:
-    """Class for Novel file conversion using factory methods to create target and source classes.
+    """Class for Novel file conversion.
+    
+    Use factory methods to create target and source classes.
 
     Class constants:
-        EXPORT_SOURCE_CLASSES -- list of NovxFile subclasses from which can be exported.
-        EXPORT_TARGET_CLASSES -- list of FileExport subclasses to which export is possible.
-        IMPORT_SOURCE_CLASSES -- list of File subclasses from which can be imported.
-        IMPORT_TARGET_CLASSES -- list of NovxFile subclasses to which import is possible.
+        EXPORT_SOURCE_CLASSES -- list of NovxFile subclasses 
+                                 from which can be exported.
+        EXPORT_TARGET_CLASSES -- list of FileExport subclasses 
+                                 to which export is possible.
+        IMPORT_SOURCE_CLASSES -- list of File subclasses 
+                                 from which can be imported.
+        IMPORT_TARGET_CLASSES -- list of NovxFile subclasses 
+                                 to which import is possible.
 
     All lists are empty and meant to be overridden by subclasses.
 
@@ -49,10 +55,14 @@ class Converter:
         # Per default, 'silent mode' is active.
         self.newFile = None
         # Also indicates successful conversion.
-        self.exportSourceFactory = ExportSourceFactory(self.EXPORT_SOURCE_CLASSES)
-        self.exportTargetFactory = ExportTargetFactory(self.EXPORT_TARGET_CLASSES)
-        self.importSourceFactory = ImportSourceFactory(self.IMPORT_SOURCE_CLASSES)
-        self.importTargetFactory = ImportTargetFactory(self.IMPORT_TARGET_CLASSES)
+        self.exportSourceFactory = ExportSourceFactory(
+            self.EXPORT_SOURCE_CLASSES)
+        self.exportTargetFactory = ExportTargetFactory(
+            self.EXPORT_TARGET_CLASSES)
+        self.importSourceFactory = ImportSourceFactory(
+            self.IMPORT_SOURCE_CLASSES)
+        self.importTargetFactory = ImportTargetFactory(
+            self.IMPORT_TARGET_CLASSES)
         self.newProjectFactory = None
 
     def run(self, sourcePath, **kwargs):
@@ -64,23 +74,41 @@ class Converter:
         Required keyword arguments: 
             suffix: str -- target file name suffix.
 
-        This is a template method that calls superclass methods as primitive operations by case.
+        This is a template method that calls superclass methods 
+        as primitive operations by case.
         """
         self.newFile = None
         if not os.path.isfile(sourcePath):
-            self.ui.set_status(f'!{_("File not found")}: "{norm_path(sourcePath)}".')
+            self.ui.set_status(
+                (
+                    f'!{_("File not found")}: '
+                    f'"{norm_path(sourcePath)}".'
+                )
+            )
             return
 
         try:
-            source, __ = self.exportSourceFactory.new_file_objects(sourcePath, **kwargs)
+            source, __ = self.exportSourceFactory.new_file_objects(
+                sourcePath, 
+                **kwargs
+            )
         except Error:
             # The source file is not a novelibre project.
             try:
-                source, __ = self.importSourceFactory.new_file_objects(sourcePath, **kwargs)
+                source, __ = self.importSourceFactory.new_file_objects(
+                    sourcePath, 
+                    **kwargs
+                )
             except Error:
                 # A new novelibre project might be required.
                 try:
-                    source, target = self.newProjectFactory.new_file_objects(sourcePath, **kwargs)
+                    (
+                        source, 
+                        target 
+                    )= self.newProjectFactory.new_file_objects(
+                        sourcePath, 
+                        **kwargs
+                    )
                 except Error as ex:
                     self.ui.set_status(f'!{str(ex)}')
                 else:
@@ -89,7 +117,13 @@ class Converter:
                 # Try to update an existing novelibre project.
                 kwargs['suffix'] = source.SUFFIX
                 try:
-                    __, target = self.importTargetFactory.new_file_objects(sourcePath, **kwargs)
+                    (
+                        __, 
+                        target
+                    ) = self.importTargetFactory.new_file_objects(
+                        sourcePath, 
+                        **kwargs
+                    )
                 except Error as ex:
                     self.ui.set_status(f'!{str(ex)}')
                 else:
@@ -97,7 +131,13 @@ class Converter:
         else:
             # The source file is a novelibre project.
             try:
-                __, target = self.exportTargetFactory.new_file_objects(sourcePath, **kwargs)
+                (
+                    __, 
+                    target 
+                ) = self.exportTargetFactory.new_file_objects(
+                    sourcePath, 
+                    **kwargs
+                )
             except Error as ex:
                 self.ui.set_status(f'!{str(ex)}')
             else:
@@ -108,14 +148,20 @@ class Converter:
         
         - Check if source and target are correctly initialized.
         - Ask for permission to overwrite target.
-        - Check whether a source or target document is locked by tis application.
+        - Check whether a source or target document is locked 
+          by tis application.
         - Raise the "Error" exception in case of error. 
         """
         if source.filePath is None:
             raise Error(f'{_("File type is not supported")}.')
 
         if not os.path.isfile(source.filePath):
-            raise Error(f'{_("File not found")}: "{norm_path(source.filePath)}".')
+            raise Error(
+                (
+                    f'{_("File not found")}: 
+                    f'"{norm_path(source.filePath)}".'
+                )
+            )
 
         if source.is_locked():
             raise Error(f'{_("Please close the document first")}".')
@@ -126,7 +172,10 @@ class Converter:
         if target.filePath is None:
             raise Error(f'{_("File type is not supported")}.')
 
-        if os.path.isfile(target.filePath) and not self._confirm_overwrite(target.filePath):
+        if (
+            os.path.isfile(target.filePath) 
+            and not self._confirm_overwrite(target.filePath)
+        ):
             raise Notification(f'{_("Action canceled by user")}.')
 
     def _confirm_overwrite(self, filePath):
@@ -160,10 +209,20 @@ class Converter:
           an error message is sent to the UI.
         - If the conversion fails, newFile is set to None.
         """
+        msg = _('Create a novelibre project file from {0}\nNew project: "{1}"')
         self.ui.set_info(
-            _('Create a novelibre project file from {0}\nNew project: "{1}"').format(source.DESCRIPTION, norm_path(target.filePath)))
+            msg.format(
+                source.DESCRIPTION, 
+                norm_path(target.filePath)
+            )
+        )
         if os.path.isfile(target.filePath):
-            self.ui.set_status(f'!{_("File already exists")}: "{norm_path(target.filePath)}".')
+            self.ui.set_status(
+                (
+                    f'!{_("File already exists")}: '
+                    f'"{norm_path(target.filePath)}".'
+                )
+        )
         else:
             statusMsg = ''
             try:
@@ -177,7 +236,10 @@ class Converter:
                 statusMsg = f'!{str(ex)}'
                 self.newFile = None
             else:
-                statusMsg = f'{_("File written")}: "{norm_path(target.filePath)}".'
+                statusMsg = (
+                    f'{_("File written")}: '
+                    f'"{norm_path(target.filePath)}".'
+                )
                 self.newFile = target.filePath
             finally:
                 self.ui.set_status(statusMsg)
@@ -199,7 +261,13 @@ class Converter:
         - If the conversion fails, newFile is set to None.
         """
         self.ui.set_info(
-            _('Input: {0} "{1}"\nOutput: {2} "{3}"').format(source.DESCRIPTION, norm_path(source.filePath), target.DESCRIPTION, norm_path(target.filePath)))
+            _('Input: {0} "{1}"\nOutput: {2} "{3}"').format(
+                source.DESCRIPTION, 
+                norm_path(source.filePath), 
+                target.DESCRIPTION, 
+                norm_path(target.filePath)
+            )
+        )
         statusMsg = ''
         try:
             self._check(source, target)
@@ -229,13 +297,20 @@ class Converter:
         3. Pass the status message to the UI.
         4. Delete the temporay file, if exists.
         5. Save the new file pathname.
-        6. If sections are split during conversion, discard the source document.
+        6. If sections are split during conversion, 
+           discard the source document.
 
         Error handling:
         - If the conversion fails, newFile is set to None.
         """
         self.ui.set_info(
-            _('Input: {0} "{1}"\nOutput: {2} "{3}"').format(source.DESCRIPTION, norm_path(source.filePath), target.DESCRIPTION, norm_path(target.filePath)))
+            _('Input: {0} "{1}"\nOutput: {2} "{3}"').format(
+                source.DESCRIPTION, 
+                norm_path(source.filePath), 
+                target.DESCRIPTION, 
+                norm_path(target.filePath)
+            )
+        )
         self.newFile = None
         statusMsg = ''
         try:

@@ -43,7 +43,8 @@ class OdtRImport(OdtRFormatted):
                              by the NvWorkFile instance.
             
         The ODT parser works like a state machine. 
-        Chapter and section count must be saved between the transitions.         
+        Chapter and section count must be saved 
+        between the transitions.         
         Extends the superclass constructor.
         """
         super().__init__(filePath)

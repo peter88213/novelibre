@@ -1,4 +1,4 @@
-"""Modules for general file representation and template-based document generation.
+"""Modules for general file representation.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre

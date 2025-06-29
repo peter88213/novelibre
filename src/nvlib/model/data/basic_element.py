@@ -13,8 +13,10 @@ class BasicElement:
     Public instance variables:
         on_element_change -- Points to a callback routine for element changes
         
-    The on_element_change method is called when the value of any property changes.
-    This method can be overridden at runtime for each individual element instance.
+    The on_element_change method is called when the value of 
+    any property changes.
+    This method can be overridden at runtime for each individual 
+    element instance.
     """
 
     def __init__(
@@ -26,12 +28,13 @@ class BasicElement:
     ):
         """Set the initial values.
 
-        If on_element_change is None, the do_nothing method will be assigned to it.
+        If on_element_change is None, the do_nothing method will be 
+        assigned to it.
             
         General note:
         When merging files, only new elements that are not None will override 
-        existing elements. This allows you to easily update a novelibre project 
-        from a document that contains only a subset of the data model.
+        existing elements. This allows you to easily update a novelibre
+        project from a document that contains only a subset of the data model.
         Keep this in mind when setting the initial values.
         """
         if on_element_change is None:
@@ -166,7 +169,9 @@ class BasicElement:
         return links
 
     def _text_to_xml_element(self, tag, text):
-        """Return an ElementTree element named "tag" with paragraph subelements.
+        """Return an ElementTree element.
+
+        The element is named "tag" and has paragraph subelements.
         
         Positional arguments:
         tag: str -- Name of the XML element to return.    
@@ -179,12 +184,15 @@ class BasicElement:
         return xmlElement
 
     def _xml_element_to_text(self, xmlElement):
-        """Return plain text, converted from ElementTree paragraph subelements.
+        """Return plain text.
+        
+        The text is converted from ElementTree paragraph subelements.
         
         Positional arguments:
             xmlElement -- ElementTree element.        
         
-        Each <p> subelement of xmlElement creates a line. Formatting is discarded.
+        Each <p> subelement of xmlElement creates a line. 
+        Formatting is discarded.
         """
         lines = []
         if xmlElement is not None:

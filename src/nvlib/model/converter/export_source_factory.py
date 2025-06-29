@@ -1,4 +1,6 @@
-"""Provide a factory class for a novx file object to read.
+"""Provide a factory class for one instance.
+
+- A novx file object to read.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -35,4 +37,9 @@ class ExportSourceFactory(FileFactory):
                 sourceFile = fileClass(sourcePath, **kwargs)
                 return sourceFile, None
 
-        raise Error(f'{_("File type is not supported")}: "{norm_path(sourcePath)}".')
+        raise Error(
+            (
+                f'{_("File type is not supported")}: '
+                f'"{norm_path(sourcePath)}".'
+            )
+        )

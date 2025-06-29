@@ -18,7 +18,8 @@ class RejectedPlugin:
         filePath: str -- Location of the installed plugin.
         isActive: Boolean -- Acceptance flag.
         isRejected: Boolean --  Rejection flag.
-        DESCRIPTION: str -- Error message to be displayed instead of the plugin description.   
+        DESCRIPTION: str -- Error message to be displayed 
+                            instead of the plugin description.   
     """
     VERSION = '-'
     API_VERSION = '-'

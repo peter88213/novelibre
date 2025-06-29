@@ -34,9 +34,8 @@ class FileSplitter(ServiceBase):
         if not elements:
             return
 
-        if not self._ui.ask_yes_no(
-            message=_('Create a new project and move the selected chapters there?')
-        ):
+        msg = _('Create a new project and move the selected chapters there?')
+        if not self._ui.ask_yes_no(message=msg):
             return
 
         lastOpen = self._ctrl.get_preferences()['last_open']

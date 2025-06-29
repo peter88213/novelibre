@@ -77,10 +77,22 @@ class SimpleGui(Ui):
         self.root.config(menu=self.mainMenu)
         self.mainWindow = ttk.Frame()
         self.mainWindow.pack(expand=True, fill='both')
-        self.statusBar = tk.Label(self.root, text='', anchor='w', padx=5, pady=2)
+        self.statusBar = tk.Label(
+            self.root, 
+            text='', 
+            anchor='w', 
+            padx=5, 
+            pady=2,
+        )
         self.statusBar.pack(expand=False, fill='both')
         self.statusBar.bind('<Button-1>', self.restore_status)
-        self.pathBar = tk.Label(self.root, text='', anchor='w', padx=5, pady=3)
+        self.pathBar = tk.Label(
+            self.root, 
+            text='', 
+            anchor='w', 
+            padx=5, 
+            pady=3,
+        )
         self.pathBar.pack(expand=False, fill='both')
 
         #--- Event bindings.
@@ -104,7 +116,9 @@ class SimpleGui(Ui):
         return messagebox.askyesno(title, text)
 
     def close_project(self, event=None):
-        """Close the novelibre project without saving and reset the user interface.
+        """Close the novelibre project without saving.
+
+        Reset the user interface.
         
         To be extended by subclasses.
         """
@@ -179,7 +193,8 @@ class SimpleGui(Ui):
             fileName: str -- project file path.
             
         Optional arguments:
-            fileTypes -- list of tuples for file selection (display text, extension).
+            fileTypes -- list of tuples for file selection 
+                         (display text, extension).
 
         Priority:
         1. use file name argument
@@ -191,9 +206,11 @@ class SimpleGui(Ui):
         if not initDir:
             initDir = './'
         if not fileName or not os.path.isfile(fileName):
-            fileName = filedialog.askopenfilename(filetypes=self._fileTypes,
-                                                  defaultextension=self._NOVX_CLASS.EXTENSION,
-                                                  initialdir=initDir)
+            fileName = filedialog.askopenfilename(
+                filetypes=self._fileTypes,
+                defaultextension=self._NOVX_CLASS.EXTENSION,
+                initialdir=initDir,
+            )
         if not fileName:
             return ''
 
@@ -287,11 +304,25 @@ class SimpleGui(Ui):
         This is a template method that can be overridden by subclasses. 
         """
         self.fileMenu = tk.Menu(self.mainMenu, tearoff=0)
-        self.mainMenu.add_cascade(label=_('File'), menu=self.fileMenu)
-        self.fileMenu.add_command(label=_('Open...'), accelerator=self._KEY_OPEN_PROJECT[1], command=self._open_project)
-        self.fileMenu.add_command(label=_('Close'), command=self.close_project)
+        self.mainMenu.add_cascade(
+            label=_('File'), 
+            menu=self.fileMenu,
+        )
+        self.fileMenu.add_command(
+            label=_('Open...'), 
+            accelerator=self._KEY_OPEN_PROJECT[1], 
+            command=self._open_project,
+        )
+        self.fileMenu.add_command(
+            label=_('Close'), 
+            command=self.close_project),
+        )
         self.fileMenu.entryconfig(_('Close'), state='disabled')
-        self.fileMenu.add_command(label=_('Exit'), accelerator=self._KEY_QUIT_PROGRAM[1], command=self.on_quit)
+        self.fileMenu.add_command(
+            label=_('Exit'), 
+            accelerator=self._KEY_QUIT_PROGRAM[1], 
+            command=self.on_quit,
+        )
 
     def _open_project(self, event=None):
         """Create a novelibre project instance and read the file.

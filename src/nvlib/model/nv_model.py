@@ -606,7 +606,8 @@ class NvModel:
                     # Move section to the "trash bin".
                     waste_sections(elemId)
             else:
-                # Delete part/chapter and move child sections to the "trash bin".
+                # Delete part/chapter and move child sections 
+                # to the "trash bin".
                 waste_sections(elemId)
                 self.tree.delete(elemId)
             if trash:

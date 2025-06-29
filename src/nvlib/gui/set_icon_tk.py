@@ -20,9 +20,11 @@ def set_icon(widget, icon='logo', path=None, default=True):
     Optional arguments:
         icon: str -- The icon filename without extension.
         path: str -- The directory containing the icons.
-        default: bool -- If True, assign the icon to all subsequently opened toplevel windows.
+        default: bool -- If True, assign the icon to all 
+                         subsequently opened toplevel windows.
         
-    If no path is specified, a subdirectory "icons" of the script location is used.     
+    If no path is specified, a subdirectory "icons" of the 
+    script location is used.     
     The "png" filetype is required as icon. 
     
     Return False, if an error occurs, otherwise return True.

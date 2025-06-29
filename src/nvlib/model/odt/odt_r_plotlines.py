@@ -1,4 +1,6 @@
-"""Provide a class for ODT invisibly tagged plot line/plot point descriptions import.
+"""Provide a class for ODT plot line/plot point descriptions import.
+
+The plot lines/ plot points are invisibly tagged .
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
