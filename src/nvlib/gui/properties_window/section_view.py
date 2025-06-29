@@ -25,8 +25,8 @@ from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import list_to_string
 from nvlib.novx_globals import string_to_list
 from nvlib.nv_globals import NOT_ASSIGNED
-from nvlib.nv_globals import datestr
 from nvlib.nv_globals import get_duration_str
+from nvlib.nv_globals import get_locale_date_str
 from nvlib.nv_globals import get_section_date_str
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
@@ -1537,7 +1537,7 @@ class SectionView(ElementView):
 
         if charList:
             self._ui.show_info(
-                message=f'{_("Date")}: {datestr(now)}',
+                message=f'{_("Date")}: {get_locale_date_str(now)}',
                 detail='\n'.join(charList),
                 title=_('Show ages')
             )
@@ -1557,7 +1557,7 @@ class SectionView(ElementView):
                 return
 
         self._ui.show_info(
-            message=f'{_("Date")}: {datestr(now)}',
+            message=f'{_("Date")}: {get_locale_date_str(now)}',
             detail=f'{self._mdl.nvService.get_moon_phase_str(now)}',
             title=_("Moon phase")
         )

@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.28.5
+
+- Refactored: Replaced datestr() with get_locale_date_str().
+- Reformatted the code acc. to PEP-8.
+
+
 ### Version 5.28.4
 
 - Warning before reopening the same project in different instances.

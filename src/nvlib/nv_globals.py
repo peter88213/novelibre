@@ -32,17 +32,6 @@ USER_STYLES_XML = f'{USER_STYLES_DIR}/styles.xml'
 NOT_ASSIGNED = ''
 
 
-def datestr(dateIso):
-    """Return a localized date string, if the localize_date option is set.
-    
-    Otherwise return the input unchanged.
-    """
-    if prefs['localize_date']:
-        return PyCalendar.locale_date(dateIso)
-    else:
-        return dateIso
-
-
 def get_locale_date_str(isoDate):
     """Return a localized date string, if the localize_date option is set.
     

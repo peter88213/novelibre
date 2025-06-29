@@ -15,7 +15,7 @@ from nvlib.gui.widgets.label_entry import LabelEntry
 from nvlib.gui.widgets.my_string_var import MyStringVar
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.novx_globals import list_to_string
-from nvlib.nv_globals import datestr
+from nvlib.nv_globals import get_locale_date_str
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
@@ -755,7 +755,7 @@ class ProjectView(ElementView):
             and self.element.referenceWeekDay is not None
         ):
             dispWeekday = PyCalendar.WEEKDAYS[self.element.referenceWeekDay]
-            dispDate = datestr(self.element.referenceDate)
+            dispDate = get_locale_date_str(self.element.referenceDate)
             displayDate.append(dispWeekday)
             displayDate.append(dispDate)
             datePreview.append(_('Reference date'))
@@ -821,7 +821,7 @@ class ProjectView(ElementView):
                 detail=(
                     f"{_('Day 0')}: "
                     f"{PyCalendar.WEEKDAYS[self.element.referenceWeekDay]} "
-                    f"{datestr(self.element.referenceDate)}"
+                    f"{get_locale_date_str(self.element.referenceDate)}"
                 )
             ):
                 self._doNotUpdate = True
@@ -846,7 +846,7 @@ class ProjectView(ElementView):
                 detail=(
                     f"{_('Day 0')}: "
                     f"{PyCalendar.WEEKDAYS[self.element.referenceWeekDay]} "
-                    f"{datestr(self.element.referenceDate)}"
+                    f"{get_locale_date_str(self.element.referenceDate)}"
                 )
             ):
                 self._doNotUpdate = True
