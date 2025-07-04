@@ -26,7 +26,7 @@ def main(startDir):
                     lines = f.read().split('\n')
                 for i, line in enumerate(lines):
                     if len(line) > LINE_LENGTH_LIMIT:
-                        foundLocal.append(f'[{i}]\t{line}')
+                        foundLocal.append(f'[{i + 1}]\t{line}')
                         found = True
                 if found:
                     foundGlobal.extend(foundLocal)

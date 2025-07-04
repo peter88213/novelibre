@@ -89,24 +89,24 @@ class Converter:
 
         try:
             source, __ = self.exportSourceFactory.new_file_objects(
-                sourcePath, 
+                sourcePath,
                 **kwargs
             )
         except Error:
             # The source file is not a novelibre project.
             try:
                 source, __ = self.importSourceFactory.new_file_objects(
-                    sourcePath, 
+                    sourcePath,
                     **kwargs
                 )
             except Error:
                 # A new novelibre project might be required.
                 try:
                     (
-                        source, 
-                        target 
-                    )= self.newProjectFactory.new_file_objects(
-                        sourcePath, 
+                        source,
+                        target
+                    ) = self.newProjectFactory.new_file_objects(
+                        sourcePath,
                         **kwargs
                     )
                 except Error as ex:
@@ -118,10 +118,10 @@ class Converter:
                 kwargs['suffix'] = source.SUFFIX
                 try:
                     (
-                        __, 
+                        __,
                         target
                     ) = self.importTargetFactory.new_file_objects(
-                        sourcePath, 
+                        sourcePath,
                         **kwargs
                     )
                 except Error as ex:
@@ -132,10 +132,10 @@ class Converter:
             # The source file is a novelibre project.
             try:
                 (
-                    __, 
-                    target 
+                    __,
+                    target
                 ) = self.exportTargetFactory.new_file_objects(
-                    sourcePath, 
+                    sourcePath,
                     **kwargs
                 )
             except Error as ex:
@@ -158,7 +158,7 @@ class Converter:
         if not os.path.isfile(source.filePath):
             raise Error(
                 (
-                    f'{_("File not found")}: 
+                    f'{_("File not found")}: '
                     f'"{norm_path(source.filePath)}".'
                 )
             )
@@ -173,7 +173,7 @@ class Converter:
             raise Error(f'{_("File type is not supported")}.')
 
         if (
-            os.path.isfile(target.filePath) 
+            os.path.isfile(target.filePath)
             and not self._confirm_overwrite(target.filePath)
         ):
             raise Notification(f'{_("Action canceled by user")}.')
@@ -212,7 +212,7 @@ class Converter:
         msg = _('Create a novelibre project file from {0}\nNew project: "{1}"')
         self.ui.set_info(
             msg.format(
-                source.DESCRIPTION, 
+                source.DESCRIPTION,
                 norm_path(target.filePath)
             )
         )
@@ -262,9 +262,9 @@ class Converter:
         """
         self.ui.set_info(
             _('Input: {0} "{1}"\nOutput: {2} "{3}"').format(
-                source.DESCRIPTION, 
-                norm_path(source.filePath), 
-                target.DESCRIPTION, 
+                source.DESCRIPTION,
+                norm_path(source.filePath),
+                target.DESCRIPTION,
                 norm_path(target.filePath)
             )
         )
@@ -305,9 +305,9 @@ class Converter:
         """
         self.ui.set_info(
             _('Input: {0} "{1}"\nOutput: {2} "{3}"').format(
-                source.DESCRIPTION, 
-                norm_path(source.filePath), 
-                target.DESCRIPTION, 
+                source.DESCRIPTION,
+                norm_path(source.filePath),
+                target.DESCRIPTION,
                 norm_path(target.filePath)
             )
         )
