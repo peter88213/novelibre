@@ -35,6 +35,8 @@ def main(startDir):
             f.write('\n'.join(foundGlobal))
         print(f'"{RESULT_FILE}" writtten.')
     else:
+        if os.path.isfile(RESULT_FILE):
+            os.remove(RESULT_FILE)
         print('No long lines found.')
 
 
@@ -42,5 +44,5 @@ if __name__ == '__main__':
     try:
         startDir = sys.argv[1]
     except IndexError:
-        startDir = '../src'
+        startDir = '../../src'
     main(startDir)

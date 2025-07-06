@@ -12,7 +12,12 @@ from pathlib import Path
 try:
     from tkinter import messagebox
 except ModuleNotFoundError:
-    print('The tkinter module is missing. Please install the tk support package for your python3 version.')
+    print(
+        (
+            'The tkinter module is missing. '
+            'Please install the tk support package for your python3 version.'
+        )
+    )
     sys.exit(1)
 
 
@@ -31,7 +36,9 @@ def main():
     except:
         pass
     else:
-        message.append('Old registry script deleted. Please run "add_novelibre.reg".')
+        message.append(
+            'Old registry script deleted. Please run "add_novelibre.reg".'
+        )
 
     try:
         os.remove(f'{newDir}/remove_noveltree.reg')
@@ -57,7 +64,12 @@ def main():
 if __name__ == '__main__':
     message = main()
     if message:
-        messagebox.showinfo('Moving the novelibre installation directory', message)
+        messagebox.showinfo(
+            'Moving the novelibre installation directory',
+            message
+        )
     else:
-        messagebox.showerror('Moving the novelibre installation directory',
-                             'There is nothing to move.')
+        messagebox.showerror(
+            'Moving the novelibre installation directory',
+            'There is nothing to move.'
+        )
