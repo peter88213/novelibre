@@ -31,6 +31,7 @@ def main(startDir):
                 if found:
                     foundGlobal.extend(foundLocal)
     if foundGlobal:
+        foundGlobal.append('')
         with open(RESULT_FILE, 'w', encoding='utf-8') as f:
             f.write('\n'.join(foundGlobal))
         print(f'"{RESULT_FILE}" writtten.')
