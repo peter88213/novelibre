@@ -586,8 +586,8 @@ class NvModel:
                     self.novel.chapters,
                     prefix=CHAPTER_PREFIX,
                 )
-                self.novel.chapters[
-                    self.trashBin] = self.nvService.new_chapter(
+                self.novel.chapters[self.trashBin] = (
+                    self.nvService.new_chapter(
                         title=_('Trash'),
                         desc='',
                         chLevel=2,
@@ -595,6 +595,7 @@ class NvModel:
                         noNumber=True,
                         isTrash=True,
                         on_element_change=self.on_element_change,
+                    )
                 )
                 self.tree.append(CH_ROOT, self.trashBin)
             if elemId.startswith(SECTION_PREFIX):
@@ -606,7 +607,7 @@ class NvModel:
                     # Move section to the "trash bin".
                     waste_sections(elemId)
             else:
-                # Delete part/chapter and move child sections 
+                # Delete part/chapter and move child sections
                 # to the "trash bin".
                 waste_sections(elemId)
                 self.tree.delete(elemId)
@@ -781,9 +782,9 @@ class NvModel:
         # Move plot point associations.
         for ppId in self.novel.sections[ScId1].scPlotPoints:
             self.novel.plotPoints[ppId].sectionAssoc = ScId0
-            self.novel.sections[
-                ScId0].scPlotPoints[ppId] = self.novel.sections[
-                    ScId1].scPlotPoints[ppId]
+            self.novel.sections[ScId0].scPlotPoints[ppId] = (
+                self.novel.sections[ScId1].scPlotPoints[ppId]
+            )
 
         # Add duration.
         try:
@@ -1031,8 +1032,9 @@ class NvModel:
         for elemId in elemIds:
             if elemId.startswith(SECTION_PREFIX):
                 if self.novel.sections[elemId].scType < 2:
-                    parentType = self.novel.chapters[
-                        self.tree.parent(elemId)].chType
+                    parentType = (
+                        self.novel.chapters[self.tree.parent(elemId)].chType
+                    )
                     if parentType > 0:
                         newType = parentType
                     self.novel.sections[elemId].scType = newType
@@ -1074,30 +1076,37 @@ class NvModel:
             #    node: str -- Node ID to start from.
             for elemId in self.tree.get_children(node):
                 if elemId.startswith(SECTION_PREFIX):
-                    self.novel.sections[
-                        elemId].on_element_change = on_element_change
+                    self.novel.sections[elemId].on_element_change = (
+                        on_element_change
+                    )
                 elif elemId.startswith(CHARACTER_PREFIX):
-                    self.novel.characters[
-                        elemId].on_element_change = on_element_change
+                    self.novel.characters[elemId].on_element_change = (
+                        on_element_change
+                    )
                 elif elemId.startswith(LOCATION_PREFIX):
-                    self.novel.locations[
-                        elemId].on_element_change = on_element_change
+                    self.novel.locations[elemId].on_element_change = (
+                        on_element_change
+                    )
                 elif elemId.startswith(ITEM_PREFIX):
-                    self.novel.items[
-                        elemId].on_element_change = on_element_change
+                    self.novel.items[elemId].on_element_change = (
+                        on_element_change
+                    )
                 elif elemId.startswith(CHAPTER_PREFIX):
                     initialize_branch(elemId)
-                    self.novel.chapters[
-                        elemId].on_element_change = on_element_change
+                    self.novel.chapters[elemId].on_element_change = (
+                        on_element_change
+                    )
                     if self.novel.chapters[elemId].isTrash:
                         self.trashBin = elemId
                 elif elemId.startswith(PLOT_LINE_PREFIX):
                     initialize_branch(elemId)
-                    self.novel.plotLines[
-                        elemId].on_element_change = on_element_change
+                    self.novel.plotLines[elemId].on_element_change = (
+                        on_element_change
+                    )
                 elif elemId.startswith(PLOT_POINT_PREFIX):
-                    self.novel.plotPoints[
-                        elemId].on_element_change = on_element_change
+                    self.novel.plotPoints[elemId].on_element_change = (
+                        on_element_change
+                    )
                 else:
                     initialize_branch(elemId)
 

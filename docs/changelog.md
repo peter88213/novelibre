@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.29.1
+### Version 5.29.2
 
 - New public method: NvWorkFile.get_lockfile_path()
 

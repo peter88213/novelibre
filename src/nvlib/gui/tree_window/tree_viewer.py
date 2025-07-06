@@ -957,8 +957,9 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         if self._mdl.novel.chapters[chId].chType == 0:
             for scId in self.tree.get_children(chId):
                 if self._mdl.novel.sections[scId].scType == 0:
-                    chapterWordCount += self._mdl.novel.sections[
-                        scId].wordCount
+                    chapterWordCount += (
+                        self._mdl.novel.sections[scId].wordCount
+                    )
         return chapterWordCount
 
     def _create_menus(self):
@@ -1197,8 +1198,9 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                 nodeValues[self._colPos['ac']],
                 nodeValues[self._colPos['tp']]
             ) = self._collect_plot_lines(chId)
-            nodeValues[
-                self._colPos['nt']] = self._collect_ch_note_indicators(chId)
+            nodeValues[self._colPos['nt']] = (
+                self._collect_ch_note_indicators(chId)
+            )
         else:
             nodeValues[self._colPos['nt']] = self._get_notes_indicator(
                 self._mdl.novel.chapters[chId])
@@ -1309,11 +1311,13 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         title = f'({self._mdl.novel.plotLines[plId].shortName}) {fullName}'
         nodeValues = [''] * len(self.columns)
         if collect:
-            nodeValues[
-                self._colPos['nt']] = self._collect_pl_note_indicators(plId)
+            nodeValues[self._colPos['nt']] = (
+                self._collect_pl_note_indicators(plId)
+            )
         else:
-            nodeValues[self._colPos['nt']] = self._get_notes_indicator(
-                self._mdl.novel.plotLines[plId])
+            nodeValues[self._colPos['nt']] = (
+                self._get_notes_indicator(self._mdl.novel.plotLines[plId])
+            )
         return title, nodeValues, ('arc')
 
     def _get_plot_point_row_data(self, ppId):
@@ -1387,20 +1391,25 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                 except:
                     pass
             nodeValues[self._colPos['po']] = positionStr
-            nodeValues[
-                self._colPos['wc']] = self._mdl.novel.sections[scId].wordCount
-            nodeValues[
-                self._colPos['st']] = self._mdl.novel.sections[scId].STATUS[
+            nodeValues[self._colPos['wc']] = (
+                self._mdl.novel.sections[scId].wordCount
+            )
+            nodeValues[self._colPos['st']] = (
+                self._mdl.novel.sections[scId].STATUS[
                     self._mdl.novel.sections[scId].status]
+            )
             try:
-                nodeValues[self._colPos['vp']] = self._mdl.novel.characters[
-                    self._mdl.novel.sections[scId].viewpoint].title
+                nodeValues[self._colPos['vp']] = (
+                    self._mdl.novel.characters[
+                        self._mdl.novel.sections[scId].viewpoint
+                    ].title
+                )
             except:
                 nodeValues[self._colPos['vp']] = NOT_ASSIGNED
 
-            nodeValues[self._colPos['sc']] = self._SCENE[
-                self._mdl.novel.sections[scId].scene]
-
+            nodeValues[self._colPos['sc']] = (
+                self._SCENE[self._mdl.novel.sections[scId].scene]
+            )
             nodeValues[self._colPos['dt']] = self._get_date_or_day(scId)
             nodeValues[self._colPos['tm']] = dispTime
             nodeValues[self._colPos['dr']] = get_duration_str(

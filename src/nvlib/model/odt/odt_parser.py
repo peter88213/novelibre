@@ -27,7 +27,7 @@ class OdtParser(sax.ContentHandler):
         # Collection of "strong emphasis" styles used in the ODT document.
 
         self._blockquoteTags = ['Quotations']
-        # Collection of "blockquote" paragraph styles 
+        # Collection of "blockquote" paragraph styles
         # used in the ODT document.
 
         self._languageTags = {}
@@ -44,7 +44,7 @@ class OdtParser(sax.ContentHandler):
 
         self._span = []
         # Stack of novx elements created from ODT spans.
-        # Each entry is a list of novx element names 
+        # Each entry is a list of novx element names
         # created from one ODT span.
         # For skipped spans, the list entry is None.
 
@@ -58,7 +58,7 @@ class OdtParser(sax.ContentHandler):
 
         self._languageCode = None
         self._countryCode = None
-        # str: the document's global locale, 
+        # str: the document's global locale,
         #      used for filtering redundant inline tags
 
         self._client = client
@@ -244,9 +244,17 @@ class OdtParser(sax.ContentHandler):
             return
 
         if name == 'text:note':
-            self._client.handle_starttag('note', [
-                ('id', xmlAttributes.get('text:id', '')),
-                ('class', xmlAttributes.get('text:note-class', ''))
+            self._client.handle_starttag(
+                'note',
+                [
+                    (
+                        'id',
+                        xmlAttributes.get('text:id', '')
+                    ),
+                    (
+                        'class',
+                        xmlAttributes.get('text:note-class', '')
+                    )
                 ]
             )
             self._getData = False

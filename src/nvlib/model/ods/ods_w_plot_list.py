@@ -132,8 +132,8 @@ class OdsWPlotList(OdsWriter):
                             plotPoints = []
                             for ppId in self.novel.tree.get_children(plId):
                                 if (
-                                    scId == self.novel.plotPoints[
-                                    ppId].sectionAssoc
+                                    scId ==
+                                    self.novel.plotPoints[ppId].sectionAssoc
                                 ):
                                     plotPoints.append(
                                         self.novel.plotPoints[ppId].title

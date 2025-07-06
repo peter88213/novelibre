@@ -109,8 +109,9 @@ class PlotPointView(ElementView):
 
         # Associated section display.
         try:
-            sectionTitle = self._mdl.novel.sections[
-                self.element.sectionAssoc].title
+            sectionTitle = (
+                self._mdl.novel.sections[self.element.sectionAssoc].title
+            )
         except:
             sectionTitle = ''
         self._sectionAssocTitle['text'] = sectionTitle
@@ -130,8 +131,8 @@ class PlotPointView(ElementView):
                 elif not nodeId in arcSections:
                     arcSections.append(nodeId)
                 self._mdl.novel.plotLines[plId].sections = arcSections
-                self._mdl.novel.sections[nodeId].scPlotPoints[
-                    self.elementId] = plId
+                self._mdl.novel.sections[
+                    nodeId].scPlotPoints[self.elementId] = plId
                 if not plId in self._mdl.novel.sections[nodeId].scPlotLines:
                     self._mdl.novel.sections[nodeId].scPlotLines.append(plId)
                 self.element.sectionAssoc = nodeId

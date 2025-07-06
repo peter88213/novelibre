@@ -849,9 +849,9 @@ class OdtWriter(OdfFile):
         for officeStyle in officeStyles.iterfind(
             'style:style', cls.NAMESPACES
         ):
-            officeStyleName = officeStyle.attrib[
-                f"{{{cls.NAMESPACES['style']}}}name"
-            ]
+            officeStyleName = (
+                officeStyle.attrib[f"{{{cls.NAMESPACES['style']}}}name"]
+            )
             if officeStyleName in cls._NOVELIBRE_STYLE_NAMES:
                 stylesToDiscard.append(officeStyle)
         for officeStyle in stylesToDiscard:

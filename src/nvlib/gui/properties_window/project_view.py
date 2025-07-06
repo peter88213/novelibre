@@ -638,7 +638,9 @@ class ProjectView(ElementView):
         self.element.partHeadingPrefix = self._partHeadingPrefixVar.get()
         self.element.partHeadingSuffix = self._partHeadingSuffixVar.get()
         self.element.customPlotProgress = self._customPlotProgressVar.get()
-        self.element.customCharacterization = self._customCharacterizationVar.get()
+        self.element.customCharacterization = (
+            self._customCharacterizationVar.get()
+        )
         self.element.customWorldBuilding = self._customWorldBuildingVar.get()
         self.element.customGoal = self._customGoalVar.get()
         self.element.customConflict = self._customConflictVar.get()

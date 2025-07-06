@@ -822,8 +822,11 @@ class SectionView(ElementView):
             )
             return
 
-        newDate, newTime, newDay = self._mdl.novel.sections[
-            prevScId].get_end_date_time()
+        (
+            newDate,
+            newTime,
+            newDay
+        ) = self._mdl.novel.sections[prevScId].get_end_date_time()
         if newTime is None:
             self._ui.show_error(
                 message=_('Cannot generate date/time'),
@@ -995,13 +998,12 @@ class SectionView(ElementView):
         if self.element.date and self.element.weekDay is not None:
             dispDateTime.append(
                 PyCalendar.WEEKDAYS[self.element.weekDay])
-        elif (self.element.day
-              and self._mdl.novel.referenceWeekDay is not None
+        elif (
+            self.element.day
+            and self._mdl.novel.referenceWeekDay is not None
         ):
-            dispDateTime.append(PyCalendar.WEEKDAYS[
-                    (int(self.element.day)
-                    +self._mdl.novel.referenceWeekDay) % 7]
-            )
+            wd = (int(self.element.day) + self._mdl.novel.referenceWeekDay) % 7
+            dispDateTime.append(PyCalendar.WEEKDAYS[wd])
         self._startDateVar.set(self.element.date)
         if self.element.localeDate:
             dispDateTime.append(get_section_date_str(self.element))
@@ -1238,8 +1240,9 @@ class SectionView(ElementView):
             plotlineNotes = self.element.plotlineNotes
             if plotlineNotes is None:
                 plotlineNotes = {}
-            plotlineNotes[
-                self.selectedPlotline] = self._plotNotesWindow.get_text()
+            plotlineNotes[self.selectedPlotline] = (
+                self._plotNotesWindow.get_text()
+            )
             self._doNotUpdate = True
             self.element.plotlineNotes = plotlineNotes
             self._doNotUpdate = False
@@ -1368,7 +1371,9 @@ class SectionView(ElementView):
             self._customPlotProgressVar = ''
 
         if self._mdl.novel.customCharacterization:
-            self._customCharacterizationVar = self._mdl.novel.customCharacterization
+            self._customCharacterizationVar = (
+                self._mdl.novel.customCharacterization
+            )
         else:
             self._customCharacterizationVar = ''
 

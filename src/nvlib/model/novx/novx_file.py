@@ -106,8 +106,9 @@ class NovxFile(File):
                 if (self.novel.sections[scId].scType
                         < self.novel.chapters[chId].chType
                 ):
-                    self.novel.sections[scId].scType = self.novel.chapters[
-                        chId].chType
+                    self.novel.sections[scId].scType = (
+                        self.novel.chapters[chId].chType
+                    )
 
     def count_words(self):
         """Return a tuple of word count totals.
@@ -138,9 +139,9 @@ class NovxFile(File):
             self.MINOR_VERSION,
         )
         try:
-            locale = xmlRoot.attrib[
-                '{http://www.w3.org/XML/1998/namespace}lang'
-            ]
+            locale = (
+                xmlRoot.attrib['{http://www.w3.org/XML/1998/namespace}lang']
+            )
         except KeyError:
             pass
         else:

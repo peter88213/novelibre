@@ -177,8 +177,9 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
         for file in os.listdir(prjDir):
             for docType in self._docTypes:
                 if file == f'{prjName}{docType}':
-                    self._prjDocuments[
-                        f'{prjDir}/{file}'] = self._docTypes[docType]
+                    self._prjDocuments[f'{prjDir}/{file}'] = (
+                        self._docTypes[docType]
+                    )
         self._reset_tree()
         for filePath in self._prjDocuments:
             timestamp = os.path.getmtime(filePath)
