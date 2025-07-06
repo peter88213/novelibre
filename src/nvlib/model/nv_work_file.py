@@ -44,8 +44,24 @@ class NvWorkFile(NovxFile):
                 self.novel.tree.move(chId, CH_ROOT, 'end')
                 return
 
+    def get_lockfile_path(self):
+        """Assemble and return a path for the project's lock file."""
+        # This cannot be done by the constructor,
+        # because filePath might change
+        try:
+            head, tail = self._split_file_path()
+
+        except:
+            return None
+
+        else:
+            return (
+                f'{head}'
+                f'{self._LOCKFILE_PREFIX}{tail}{self._LOCKFILE_SUFFIX}'
+            )
+
     def has_changed_on_disk(self):
-        """Return True if the yw project file has changed since last opened."""
+        """Return True if the project file has changed since last opened."""
         try:
             if self.timestamp != os.path.getmtime(self.filePath):
                 return True
@@ -58,30 +74,21 @@ class NvWorkFile(NovxFile):
 
     def has_lockfile(self):
         """Return True if a project lockfile exists."""
-        if not self.filePath:
-            return
-
-        head, tail = self._split_file_path()
-        lockfilePath = (
-            f'{head}{self._LOCKFILE_PREFIX}{tail}'
-            f'{self._LOCKFILE_SUFFIX}'
-        )
         # This cannot be done by the constructor,
         # because filePath might change
-        return os.path.isfile(lockfilePath)
+        if not self.filePath:
+            return None
+
+        return os.path.isfile(self.get_lockfile_path())
 
     def lock(self):
         """Create a project lockfile."""
+        # This cannot be done by the constructor,
+        # because filePath might change
         if not self.filePath:
             return
 
-        head, tail = self._split_file_path()
-        lockfilePath = (
-            f'{head}{self._LOCKFILE_PREFIX}{tail}'
-            f'{self._LOCKFILE_SUFFIX}'
-        )
-        # This cannot be done by the constructor,
-        # because filePath might change
+        lockfilePath = self.get_lockfile_path()
         if not os.path.isfile(lockfilePath):
             with open(lockfilePath, 'w') as f:
                 f.write('')
@@ -97,17 +104,13 @@ class NvWorkFile(NovxFile):
 
     def unlock(self):
         """Delete the project lockfile, if any."""
+        # This cannot be done by the constructor,
+        # because filePath might change
         if not self.filePath:
             return
 
-        head, tail = self._split_file_path()
-        lockfilePath = (
-            f'{head}{self._LOCKFILE_PREFIX}{tail}'
-            f'{self._LOCKFILE_SUFFIX}'
-        )
-        # This cannot be done by the constructor,because filePath might change
         try:
-            os.remove(lockfilePath)
+            os.remove(self.get_lockfile_path())
         except:
             pass
 
