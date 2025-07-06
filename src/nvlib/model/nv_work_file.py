@@ -44,21 +44,19 @@ class NvWorkFile(NovxFile):
                 self.novel.tree.move(chId, CH_ROOT, 'end')
                 return
 
-    def get_lockfile_path(self):
-        """Assemble and return a path for the project's lock file."""
-        # This cannot be done by the constructor,
-        # because filePath might change
+    def get_lockfile_path(self, filePath):
+        """Assemble and return a path for a lock file."""
         try:
-            head, tail = self._split_file_path()
-
+            head, tail = os.path.split(filePath)
         except:
             return None
 
-        else:
-            return (
-                f'{head}'
-                f'{self._LOCKFILE_PREFIX}{tail}{self._LOCKFILE_SUFFIX}'
-            )
+        if not head:
+            head = '.'
+        return (
+            f'{head}/'
+            f'{self._LOCKFILE_PREFIX}{tail}{self._LOCKFILE_SUFFIX}'
+        )
 
     def has_changed_on_disk(self):
         """Return True if the project file has changed since last opened."""
@@ -79,7 +77,7 @@ class NvWorkFile(NovxFile):
         if not self.filePath:
             return None
 
-        return os.path.isfile(self.get_lockfile_path())
+        return os.path.isfile(self.get_lockfile_path(self.filePath))
 
     def lock(self):
         """Create a project lockfile."""
@@ -88,7 +86,7 @@ class NvWorkFile(NovxFile):
         if not self.filePath:
             return
 
-        lockfilePath = self.get_lockfile_path()
+        lockfilePath = self.get_lockfile_path(self.filePath)
         if not os.path.isfile(lockfilePath):
             with open(lockfilePath, 'w') as f:
                 f.write('')
@@ -110,15 +108,7 @@ class NvWorkFile(NovxFile):
             return
 
         try:
-            os.remove(self.get_lockfile_path())
+            os.remove(self.get_lockfile_path(self.filePath))
         except:
             pass
-
-    def _split_file_path(self):
-        head, tail = os.path.split(self.filePath)
-        if head:
-            head = f'{head}/'
-        else:
-            head = './'
-        return head, tail
 

@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.29.0
+
+- New public method: NvWorkFile.get_lockfile_path()
+
+
 ### Version 5.28.5
 
 - Refactored: Replaced datestr() with get_locale_date_str().
