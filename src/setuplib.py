@@ -292,7 +292,9 @@ def install(installDir, zipped):
     else:
         shebang = '#!/usr/bin/env python3\n'
     with open(f'{installDir}/{START_UP_SCRIPT}', 'w', encoding='utf-8') as f:
-        startupCode = Template(f'{shebang}{START_UP_CODE}').safe_substitute(mapping)
+        startupCode = Template(
+            f'{shebang}{START_UP_CODE}'
+        ).safe_substitute(mapping)
         f.write(startupCode)
 
     #--- Make the scripts executable under Linux.
