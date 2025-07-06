@@ -25,7 +25,12 @@ import relocate
 try:
     import tkinter as tk
 except ModuleNotFoundError:
-    print('The tkinter module is missing. Please install the tk support package for your python3 version.')
+    print(
+        (
+            'The tkinter module is missing. '
+            'Please install the tk support package for your python3 version.'
+        )
+    )
     sys.exit(1)
 
 # Initialize localization.
@@ -57,10 +62,12 @@ $DisplayDir'''
 SHORTCUT_MESSAGE = '''
 Now you might want to create a shortcut on your desktop.  
 
-On Windows, open the installation folder, hold down the Alt key on your keyboard, 
+On Windows, open the installation folder, 
+hold down the Alt key on your keyboard, 
 and then drag and drop "run.pyw" to your desktop.
 
-On Linux, create a launcher on your desktop. With xfce for instance, the launcher's command may look like this:
+On Linux, create a launcher on your desktop. 
+With xfce for instance, the launcher's command may look like this:
 python3 /home/peter/.novx/run.pyw %f
 '''
 
@@ -114,7 +121,10 @@ import tkinter as tk
 def show_error(self, *args):
     err = traceback.format_exception(*args)
     logger.error('$Appname $Release\\n' + ''.join(err))
-    messagebox.showerror('An unexpected error has occurred.', 'See "error.log" in the installation directory.' )
+    messagebox.showerror(
+        'An unexpected error has occurred.', 
+        'See "error.log" in the installation directory.' 
+    )
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename='$InstallDir/error.log', level=logging.ERROR)
@@ -162,8 +172,16 @@ def create_explorer_context_menu(installPath):
     installUrl = installPath.replace('/', '\\\\')
     script = f'{installUrl}\\\\{START_UP_SCRIPT}'
     mapping = dict(PYTHON=python, SCRIPT=script, INSTALL=installUrl)
-    save_reg_file(f'{installPath}/add_novelibre.reg', Template(ADD_TO_REGISTRY), mapping)
-    save_reg_file(f'{installPath}/remove_novelibre.reg', Template(REMOVE_FROM_REGISTRY), {})
+    save_reg_file(
+        f'{installPath}/add_novelibre.reg',
+        Template(ADD_TO_REGISTRY),
+        mapping
+    )
+    save_reg_file(
+        f'{installPath}/remove_novelibre.reg',
+        Template(REMOVE_FROM_REGISTRY),
+        {}
+    )
 
 
 def output(text):
@@ -201,7 +219,10 @@ def install(installDir, zipped):
     #--- Relocate the v1.x installation directory, if necessary.
     message = relocate.main()
     if message:
-        messagebox.showinfo('Moving the novelibre installation directory', message)
+        messagebox.showinfo(
+            'Moving the novelibre installation directory',
+            message
+        )
 
     #--- Create a general novxlib installation directory, if necessary.
     os.makedirs(installDir, exist_ok=True)
@@ -323,7 +344,10 @@ def main(zipped=True):
         output(str(ex))
 
     # Show options: open installation folders or quit.
-    root.openButton = tk.Button(text="Open installation folder", command=lambda: open_folder(f'{homePath}/.novx'))
+    root.openButton = tk.Button(
+        text="Open installation folder",
+        command=lambda: open_folder(f'{homePath}/.novx')
+    )
     root.openButton.config(height=1, width=30)
     root.openButton.pack(padx=5, pady=5)
     root.quitButton = tk.Button(text="Quit", command=quit)
