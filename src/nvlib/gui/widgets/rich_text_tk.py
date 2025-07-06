@@ -13,7 +13,7 @@ class RichTextTk(tk.Text):
     """A text box with a ttk scrollbar, applying formatting.
     
     Kudos to Bryan Oakley
-    https://stackoverflow.com/questions/63099026/fomatted-text-in-tkinter
+    https://stackoverflow.com/a/63105641
     """
     H1_TAG = 'h1'
     H2_TAG = 'h2'

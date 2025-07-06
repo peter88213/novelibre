@@ -503,8 +503,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         # this stops event propagation and allows for
         # re-mapping e.g. the F10 key
         # see:
-        # https://stackoverflow.com/questions/22907200/
-        # remap-default-keybinding-in-tkinter
+        # https://stackoverflow.com/a/22910425
 
     def show_chapter_level(self, event=None):
         """Show the book on chapter level.

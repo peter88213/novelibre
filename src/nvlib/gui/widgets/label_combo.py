@@ -12,8 +12,7 @@ class LabelCombo(ttk.Frame):
     """Combobox with a label.
     
     Credit goes to user stovfl on stackoverflow
-    https://stackoverflow.com/questions/54584673/
-    how-to-keep-tkinter-button-on-same-row-as-label-and-entry-box
+    https://stackoverflow.com/a/54591761
     """
 
     def __init__(self, parent, text, textvariable, values, lblWidth=10):
