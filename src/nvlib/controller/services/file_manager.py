@@ -78,8 +78,7 @@ class FileManager(ServiceBase):
     def copy_to_backup(self, filePath):
         """Copy the file specified by filePath to the backup directory.
         
-        The backup file name gets a suffix in order not to be 
-        worked on by accident.
+        The backup file is compressed.
         If no valid backup directory is specified, do nothing.
         If the backup fails, show a notification on the status bar.
         """
@@ -108,9 +107,13 @@ class FileManager(ServiceBase):
 
         try:
             basename = os.path.basename(filePath)
-            copy2(
+            zipfile.ZipFile(
+                f'{backupDir}/{basename}.zip',
+                mode='w',
+            ).write(
                 filePath,
-                f'{backupDir}/{basename}{self.prefs["backup_suffix"]}'
+                arcname=basename,
+                compress_type=zipfile.ZIP_DEFLATED,
             )
         except Exception as ex:
             self._ui.set_status(f"#{_('Backup failed')}: {str(ex)}")

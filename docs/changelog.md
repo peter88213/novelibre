@@ -10,8 +10,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.29.3
+### Version 5.29.4
 
+**Important**: The backup file format has been changed to `.zip`.
+If you are already using the backup feature, 
+you may want to delete your `.novx#` files manually.   
+
+- Compressing the backup files.
 - Changed View options text: "Large toolbar icons" --> "Large icons".
 - New public method: NvWorkFile.get_lockfile_path()
 - Reformatted the code acc. to PEP-8.

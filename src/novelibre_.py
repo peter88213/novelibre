@@ -30,8 +30,6 @@ from nvlib.nv_globals import prefs
 SETTINGS = dict(
     arcs_width=55,
     backup_dir='',
-    # backup_suffix = '.copy',
-    backup_suffix='#',
     color_1st_edit='DarkGoldenrod4',
     color_2nd_edit='DarkGoldenrod3',
     color_arc='maroon',
