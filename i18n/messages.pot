@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.29.2\n"
-"POT-Creation-Date: 2025-07-06 21:43:48\n"
+"Project-Id-Version: 5.29.3\n"
+"POT-Creation-Date: 2025-07-07 12:04:59\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -707,7 +707,7 @@ msgstr ""
 msgid "Language code"
 msgstr ""
 
-msgid "Large toolbar icons"
+msgid "Large icons"
 msgstr ""
 
 msgid "Last saved on"

@@ -10,9 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.29.2
+### Version 5.29.3
 
+- Changed View options text: "Large toolbar icons" --> "Large icons".
 - New public method: NvWorkFile.get_lockfile_path()
+- Reformatted the code acc. to PEP-8.
 
 
 ### Version 5.28.5

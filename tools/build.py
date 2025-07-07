@@ -12,7 +12,7 @@ import sys
 sys.path.insert(0, f'{os.getcwd()}/../../novelibre/tools')
 from package_builder import PackageBuilder
 
-VERSION = '5.29.2'
+VERSION = '5.29.3'
 
 
 class ApplicationBuilder(PackageBuilder):

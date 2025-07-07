@@ -66,7 +66,7 @@ class ViewOptionsDialog(ModalDialog, SubController):
         )
         ttk.Checkbutton(
             frame1,
-            text=_('Large toolbar icons'),
+            text=_('Large icons'),
             variable=self._largeIconsVar,
             command=self._change_icon_size,
         ).pack(padx=5, pady=5, anchor='w')
