@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.29.4
+### Version 5.29.5
 
 **Important**: The backup file format has been changed to `.zip`.
 If you are already using the backup feature, 
@@ -18,8 +18,16 @@ you may want to delete your `.novx#` files manually.
 
 - Compressing the backup files.
 - Changed View options text: "Large toolbar icons" --> "Large icons".
-- New public method: NvWorkFile.get_lockfile_path()
+- New public method: `NvWorkFile.get_lockfile_path()`
 - Reformatted the code acc. to PEP-8.
+
+Updated and extended the API for the snapshots plugin (#62):
+
+- `NvService` no longer overriding `NovxService.new_novel()` and
+  `NovxService.new_nv_tree()`.
+- New `NovxService` methods: `new_zip_file()` and `get_zip_file_extension().
+
+New classes to be used by the snapshots plugin: `ZippedNovxFile`, `ZippedNovxOpener`.
 
 
 ### Version 5.28.5

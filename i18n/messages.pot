@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.29.4\n"
-"POT-Creation-Date: 2025-07-07 13:18:55\n"
+"Project-Id-Version: 5.29.5\n"
+"POT-Creation-Date: 2025-07-08 18:48:21\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -1488,6 +1488,9 @@ msgid "XML plot line file"
 msgstr ""
 
 msgid "YYYY-MM-DD"
+msgstr ""
+
+msgid "Zipped novelibre project"
 msgstr ""
 
 msgid "and"

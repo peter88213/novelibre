@@ -10,6 +10,7 @@ from nvlib.model.novx.zipped_novx_opener import ZippedNovxOpener
 
 class ZippedNovxFile(NovxFile):
 
+    DESCRIPTION = _('Zipped novelibre project')
     EXTENSION = '.zip'
 
     fileOpener = ZippedNovxOpener

@@ -12,7 +12,7 @@ import sys
 sys.path.insert(0, f'{os.getcwd()}/../../novelibre/tools')
 from package_builder import PackageBuilder
 
-VERSION = '5.29.4'
+VERSION = '5.29.5'
 
 
 class ApplicationBuilder(PackageBuilder):
@@ -24,7 +24,7 @@ class ApplicationBuilder(PackageBuilder):
         super().__init__(version)
         self.distFiles.append(
             (f'{self.sourceDir}relocate.py', self.buildDir)
-            )
+        )
         self.sourceFile = f'{self.sourceDir}{self.PRJ_NAME}_.py'
 
     def add_css(self):
