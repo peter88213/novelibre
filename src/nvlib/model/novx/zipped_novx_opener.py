@@ -14,11 +14,15 @@ from nvlib.nv_locale import _
 import xml.etree.ElementTree as ET
 
 
-class ZipOpener(NovxOpener):
+class ZippedNovxOpener(NovxOpener):
     """novx XML data reader, verifier, and preprocessor."""
 
-    NOVX = '.novx'
-    ZIP = ['.zip']
+    NOVX_EXTENSIONS = [
+        '.novx',
+    ]
+    ZIP_EXTENSIONS = [
+        '.zip',
+    ]
 
     @classmethod
     def get_xml_root(cls, filePath, majorVersion, minorVersion):
@@ -29,14 +33,15 @@ class ZipOpener(NovxOpener):
         """
         __, extension = os.path.splitext(filePath)
         try:
-            if not extension in cls.ZIP:
+            if not extension in cls.ZIP_EXTENSIONS:
                 raise Error('File type is not supported')
 
             with zipfile.ZipFile(filePath, 'r') as z:
                 fileNames = z.namelist()
                 xmlRoot = None
                 for fileName in fileNames:
-                    if fileName.endswith(cls.NOVX):
+                    __, extension = os.path.splitext(fileName)
+                    if extension in cls.NOVX_EXTENSIONS:
                         with z.open(fileName, 'r') as f:
                             xmlStr = f.read()
                         xmlRoot = ET.fromstring(xmlStr)
