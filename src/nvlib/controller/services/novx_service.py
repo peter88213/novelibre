@@ -14,6 +14,7 @@ from nvlib.model.data.plot_point import PlotPoint
 from nvlib.model.data.section import Section
 from nvlib.model.data.world_element import WorldElement
 from nvlib.model.novx.novx_file import NovxFile
+from nvlib.model.novx.zip_file import ZipFile
 from nvlib.nv_globals import HOME_URL
 
 
@@ -25,6 +26,9 @@ class NovxService:
 
     def get_novx_file_extension(self):
         return NovxFile.EXTENSION
+
+    def get_zip_file_extension(self):
+        return ZipFile.EXTENSION
 
     def new_basic_element(self, **kwargs):
         return BasicElement(**kwargs)
@@ -38,6 +42,9 @@ class NovxService:
     def new_novel(self, **kwargs):
         kwargs['tree'] = kwargs.get('tree', NvTree())
         return Novel(**kwargs)
+
+    def new_novx_file(self, filePath, **kwargs):
+        return NovxFile(filePath, **kwargs)
 
     def new_nv_tree(self, **kwargs):
         return NvTree(**kwargs)
@@ -54,6 +61,6 @@ class NovxService:
     def new_world_element(self, **kwargs):
         return WorldElement(**kwargs)
 
-    def new_novx_file(self, filePath, **kwargs):
-        return NovxFile(filePath, **kwargs)
+    def new_zip_file(self, filePath, **kwargs):
+        return ZipFile(filePath, **kwargs)
 
