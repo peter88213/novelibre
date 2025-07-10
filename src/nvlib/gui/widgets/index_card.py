@@ -38,12 +38,14 @@ class IndexCard(tk.Frame):
             textvariable=self.title,
             relief='flat',
             font=font,
-            )
-        self.titleEntry.config({
-            'background': bg,
-            'foreground': fg,
-            'insertbackground': fg,
-            })
+        )
+        self.titleEntry.config(
+            {
+                'background': bg,
+                'foreground': fg,
+                'insertbackground': fg,
+            }
+        )
         self.titleEntry.pack(fill='x', ipady=6)
 
         tk.Frame(self, bg='red', height=1, bd=0).pack(fill='x')
@@ -63,7 +65,7 @@ class IndexCard(tk.Frame):
             fg=fg,
             insertbackground=fg,
             font=font,
-            )
+        )
         self.bodyBox.pack(fill='both', expand=True)
 
     def lock(self):
