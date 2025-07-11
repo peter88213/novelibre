@@ -179,7 +179,10 @@ class FileManager(ServiceBase):
         except Error as ex:
             self._ui.set_status(f'!{str(ex)}')
         else:
-            if kwargs.get('lock', True) and self.prefs['lock_on_export']:
+            if (
+                kwargs.get('lock', True)
+                and self.prefs['lock_on_export']
+            ):
                 self._ctrl.lock()
 
     def import_odf(

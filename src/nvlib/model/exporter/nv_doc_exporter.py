@@ -50,10 +50,6 @@ class NvDocExporter(NovxConversion):
         Return a message. 
         """
         filterElementId = kwargs.get('filter', '')
-        show = kwargs.get('show', True)
-        ask = kwargs.get('ask', True)
-        overwrite = kwargs.get('overwrite', False)
-        doNotExport = kwargs.get('doNotExport', False)
 
         self._source = source
         self._isNewer = False
@@ -62,14 +58,17 @@ class NvDocExporter(NovxConversion):
             suffix=suffix,
         )
 
-        if doNotExport:
+        if kwargs.get('doNotExport', False):
             return self._open_document_if_up_to_date()
 
         # Set the user's custom styles.xml path.
         if os.path.isfile(USER_STYLES_XML):
             self._target.userStylesXml = USER_STYLES_XML
 
-        if os.path.isfile(self._target.filePath) and not overwrite:
+        if (
+            os.path.isfile(self._target.filePath)
+            and not kwargs.get('overwrite', False)
+        ):
             targetTimestamp = os.path.getmtime(self._target.filePath)
             targetIsUpToDate = False
             try:
@@ -113,11 +112,12 @@ class NvDocExporter(NovxConversion):
         )
         self._target.novel = self._source.novel
         self._target.write()
-        self._targetFileDate = datetime.now(
-            ).replace(microsecond=0).isoformat(sep=' ')
-        if (
-            show and (
-                not ask
+        self._targetFileDate = datetime.now().replace(
+            microsecond=0
+        ).isoformat(sep=' ')
+        if kwargs.get('show', True):
+            if(
+                not kwargs.get('ask', True)
                 or not prefs['ask_doc_open']
                 or self._ui.ask_yes_no(
                     message=_('Open the created document?'),
@@ -126,9 +126,8 @@ class NvDocExporter(NovxConversion):
                         f"{norm_path(self._target.DESCRIPTION)}"
                     )
                 )
-            )
-        ):
-            open_document(self._target.filePath)
+            ):
+                open_document(self._target.filePath)
         return _('Created {0} on {1}.').format(
             self._target.DESCRIPTION,
             self._targetFileDate
