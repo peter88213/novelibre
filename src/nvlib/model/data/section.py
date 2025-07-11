@@ -10,7 +10,6 @@ from nvlib.model.data.basic_element_tags import BasicElementTags
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.novx_globals import string_to_list
 from nvlib.novx_globals import verified_int_string
-from nvlib.nv_locale import _
 import xml.etree.ElementTree as ET
 
 # Regular expressions for counting words and characters like in LibreOffice.
@@ -27,19 +26,6 @@ NO_WORD_LIMITS = re.compile(
 
 class Section(BasicElementTags):
     """novelibre section representation."""
-
-    SCENE = ['-', 'A', 'R', 'x']
-    # emulating an enumeration for the scene Action/Reaction/Other type
-
-    STATUS = [
-        None,
-        _('Outline'),
-        _('Draft'),
-        _('1st Edit'),
-        _('2nd Edit'),
-        _('Done')
-    ]
-    # emulating an enumeration for the section completion status
 
     NULL_DATE = '0001-01-01'
     NULL_TIME = '00:00:00'

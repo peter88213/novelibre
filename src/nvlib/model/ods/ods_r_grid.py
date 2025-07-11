@@ -4,14 +4,14 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.model.data.section import Section
+from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.model.ods.duration_parser import DurationParser
 from nvlib.model.ods.ods_reader import OdsReader
 from nvlib.novx_globals import GRID_SUFFIX, PL_ROOT
+from nvlib.novx_globals import SCENE
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import string_to_list
 from nvlib.nv_locale import _
-from nvlib.model.data.py_calendar import PyCalendar
 
 
 class OdsRGrid(OdsReader):
@@ -165,8 +165,7 @@ class OdsRGrid(OdsReader):
             else:
                 if ar:
                     try:
-                        self.novel.sections[scId].scene = Section.SCENE.index(
-                            ar)
+                        self.novel.sections[scId].scene = SCENE.index(ar)
                     except ValueError:
                         pass
 

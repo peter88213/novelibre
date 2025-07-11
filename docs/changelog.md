@@ -27,7 +27,15 @@ Updated and extended the API for the snapshots plugin (#62):
   `NovxService.new_nv_tree()`.
 - New `NovxService` methods: `new_zip_file()` and `get_zip_file_extension()`.
 
-New classes to be used by the snapshots plugin: `ZippedNovxFile`, `ZippedNovxOpener`.
+More API changes:
+
+- Section.SCENE --> novx_globals.SCENE
+- Section.STATUS --> novx_globals.STATUS
+
+New classes to be used by the snapshots plugin:
+
+- `ZippedNovxFile`
+- `ZippedNovxOpener`
 
 
 ### Version 5.28.5

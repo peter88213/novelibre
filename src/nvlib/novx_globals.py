@@ -54,6 +54,19 @@ STAGES_SUFFIX = '_structure_tmp'
 TIMETABLE_SUFFIX = '_tt_tmp'
 XREF_SUFFIX = '_xref'
 
+STATUS = [
+    None,
+    _('Outline'),
+    _('Draft'),
+    _('1st Edit'),
+    _('2nd Edit'),
+    _('Done')
+]
+# emulating an enumeration for the section completion status
+
+SCENE = ['-', 'A', 'R', 'x']
+# emulating an enumeration for the scene Action/Reaction/Other type
+
 
 class Error(Exception):
     """Base class for exceptions."""

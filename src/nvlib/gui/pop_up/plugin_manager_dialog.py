@@ -29,9 +29,18 @@ class PluginManagerDialog(ModalDialog, SubController):
 
         self.title(f'{_("Installed plugins")} - novelibre @release')
 
-        columns = 'Plugin', 'Version', 'novelibre API', 'Description'
+        columns = (
+            'Plugin',
+            'Version',
+            'novelibre API',
+            'Description',
+        )
         self._pluginTree = ttk.Treeview(
-            self, columns=columns, show='headings', selectmode='browse')
+            self,
+            columns=columns,
+            show='headings',
+            selectmode='browse',
+        )
 
         # scrollY = ttk.Scrollbar(
         #    self._pluginTree, orient='vertical',
@@ -108,7 +117,12 @@ class PluginManagerDialog(ModalDialog, SubController):
                     # might be a 1.x API plugin
                 except AttributeError:
                     apiRequired = _('unknown')
-            columns = [pluginName, version, apiRequired, description]
+            columns = [
+                pluginName,
+                version,
+                apiRequired,
+                description,
+            ]
             if self._ctrl.plugins[pluginName].isRejected:
                 nodeTags.append('rejected')
                 # Mark rejected modules, represented by a dummy.
@@ -116,7 +130,12 @@ class PluginManagerDialog(ModalDialog, SubController):
                 nodeTags.append('inactive')
                 # Mark loaded yet incompatible modules.
             self._pluginTree.insert(
-                '', 'end', pluginName, values=columns, tags=tuple(nodeTags))
+                '',
+                'end',
+                pluginName,
+                values=columns,
+                tags=tuple(nodeTags),
+            )
 
         self._footer = ttk.Frame(self)
         self._footer.pack(fill='both', expand=False)

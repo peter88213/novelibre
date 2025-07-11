@@ -12,8 +12,8 @@ from string import Template
 
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.model.data.section import Section
-from nvlib.model.file.file import File
 from nvlib.model.exporter.filter import Filter
+from nvlib.model.file.file import File
 from nvlib.novx_globals import CHARACTERS_SUFFIX
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
@@ -27,6 +27,7 @@ from nvlib.novx_globals import MANUSCRIPT_SUFFIX
 from nvlib.novx_globals import MINOR_MARKER
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import PN_ROOT
+from nvlib.novx_globals import SCENE
 from nvlib.novx_globals import SECTIONS_SUFFIX
 from nvlib.novx_globals import list_to_string
 from nvlib.novx_globals import norm_path
@@ -941,7 +942,7 @@ class FileExport(File):
             LastsHours=lastsHours,
             LastsMinutes=lastsMinutes,
             Duration=duration,
-            Scene=Section.SCENE[self.novel.sections[scId].scene],
+            Scene=SCENE[self.novel.sections[scId].scene],
             Goal=self._convert_from_novx(
                 self.novel.sections[scId].goal,
             ),
