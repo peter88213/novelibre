@@ -64,7 +64,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self._create_path_bar()
 
         #--- Initalize icons.
-        set_icon(self.root, icon='nLogo32')
+        set_icon(self.root, icon='novelibre')
         self.icons = Icons()
 
         #--- Build the GUI frames.
