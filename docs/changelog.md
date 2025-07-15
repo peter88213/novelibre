@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.29.7
+### Version 5.29.8
 
 **Important**: The backup file format has been changed to `.zip`.
 If you are already using the backup feature, 
