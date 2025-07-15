@@ -79,6 +79,7 @@ so that only those users who need them actually install them.
 -  If you want to track your progress, you will love the 
    [nv_progress](https://github.com/peter88213/nv_progress/)
    daily word count log viewer.
+-  The [nv_snapshots](https://github.com/peter88213/nv_snapshots/) plugin is a lightweight version control system.
 -  If you value a balanced text distribution, the
    [nv_statistics](https://github.com/peter88213/nv_statistics/)
    statistics viewer could be something for you.
