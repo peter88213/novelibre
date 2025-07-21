@@ -100,7 +100,7 @@ class MainController(SubController, Commands):
             if self._ui.ask_yes_no(
                 message=_('Unlock?'),
                 detail=f"{_('The project is locked')}."
-                ):
+            ):
                 self.unlock()
                 return False
             else:
@@ -139,7 +139,7 @@ class MainController(SubController, Commands):
             if self._ui.ask_yes_no(
                 message=_('Save and lock?'),
                 detail=f"{_('There are unsaved changes')}."
-                ):
+            ):
                 self.save_project()
             else:
                 return False
@@ -178,7 +178,7 @@ class MainController(SubController, Commands):
                 if not self.fileManager.save_project():
                     self._ui.show_error(
                         message=_('Cannot save the project')
-                        )
+                    )
                     return False
 
         # Close the sub-controllers.
@@ -221,7 +221,7 @@ class MainController(SubController, Commands):
             self._ui.show_error(
                 message=_('Unhandled exception on exit'),
                 detail=str(ex)
-                )
+            )
             self._ui.root.quit()
         return 'break'
 
@@ -278,7 +278,7 @@ class MainController(SubController, Commands):
                 chapterCount,
                 sectionCount,
                 wordCount
-              )
+            )
             self.wordCount = wordCount
         self._ui.update_status(statusText)
 
