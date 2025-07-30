@@ -62,7 +62,8 @@ is embedded in a customizable ecosystem.
 - *novelibre* saves its data in a well-documented, XML-based **file format** ([.novx](https://peter88213.github.io/novxlib-docs/the_novx_file_format.html)), which can also be read as 
   plain text and displayed with a standard web browser.
 - *novelibre* is written in Python and should run on several **operating systems**, like Windows and Linux.
-- The application is ready for internationalization with GNU gettext. German translations are provided. 
+- The application is ready for [internationalization with GNU gettext](TRANSLATE.md). 
+  German translations are provided. 
 
 ## Plugins
 
