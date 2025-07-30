@@ -9,7 +9,7 @@ For English, this is, for example, `en`, for German, it is `de`.
 Now you can create a language pack based on the [nv_xx](https://github.com/peter88213/nv_xx) 
 template and use the tools provided for this purpose. 
 
-Anyway, the nuts and bolts of the translations system are described [here](TRANSLATE-md).
+Anyway, the nuts and bolts of the translations system are described [here](TRANSLATE.md).
 
 
 
