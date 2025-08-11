@@ -139,8 +139,8 @@ Here are a few examples:
 - Screen resolution of at least 900 pixels in height.
 - Windows or Linux. Mac OS support is experimental, see [discussion](https://github.com/peter88213/novelibre/discussions/29).
 - [Python](https://www.python.org/) version 3.6+. 
-     - For **Windows 8-11**, use version 3.9.10 or above.
-     - For **Vista and Windows 7**, use version 3.7.2.
+     - With **Windows 8-11**, use version 3.9.10 or above.
+     - With **Vista and Windows 7**, use version 3.7.2.
      - **Linux** users: Make sure you have the tkinter support for Python 3 installed. 
        For Ubuntu, the package is called *python3-tk*, for Fedora it may be *python3-tkinter*.
        To see the tooltips, make sure that you have the *idle3* package installed.
