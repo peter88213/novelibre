@@ -17,7 +17,6 @@ from shutil import copytree
 import stat
 from string import Template
 import sys
-from tkinter import messagebox
 import zipfile
 
 import relocate
@@ -32,6 +31,8 @@ except ModuleNotFoundError:
         )
     )
     sys.exit(1)
+
+from tkinter import messagebox
 
 # Initialize localization.
 LOCALE_PATH = f'{os.path.dirname(sys.argv[0])}/locale/'
