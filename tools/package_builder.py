@@ -26,7 +26,7 @@ class PackageBuilder(ABC):
         self.version = version
         self.versionIni = f'''[LATEST]
 version = {self.version}
-download_link = https://github.com/peter88213/{self.PRJ_NAME}/raw/main/dist/{self.PRJ_NAME}_v{self.version}.pyzw
+download_link = https://github.com/peter88213/{self.PRJ_NAME}/raw/main/dist/{self.PRJ_NAME}_v{self.version}.pyz
 '''
         self.setupScript = '''#!/usr/bin/python3
 import setuplib
@@ -168,7 +168,7 @@ setuplib.main(False)
 
     def create_pyz(self, sourceDir, targetDir, release):
         """Create the self-extracting installation file."""
-        targetFile = f'{targetDir}/{release}.pyzw'
+        targetFile = f'{targetDir}/{release}.pyz'
         print(f'Writing "{targetFile}" ...')
         zipapp.create_archive(
             sourceDir,

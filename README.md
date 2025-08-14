@@ -1,4 +1,4 @@
-[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.30.0.pyzw)
+[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.30.0.pyz)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
 [![News/Feedback](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
@@ -162,10 +162,10 @@ The development phase has now come to an end. Nevertheless it is recommended to 
 
 ### Default: Executable Python zip archive
 
-Download the latest release [novelibre_v5.30.0.pyzw](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.30.0.pyzw)
+Download the latest release [novelibre_v5.30.0.pyz](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.30.0.pyz)
 
-- Launch *novelibre_v5.30.0.pyzw* by double-clicking (Windows/Linux desktop),
-- or execute `python novelibre_v5.30.0.pyzw` (Windows), resp. `python3 novelibre_v5.30.0.pyzw` (Linux) on the command line.
+- Launch *novelibre_v5.30.0.pyz* by double-clicking (Windows/Linux desktop),
+- or execute `python novelibre_v5.30.0.pyz` (Windows), resp. `python3 novelibre_v5.30.0.pyz` (Linux) on the command line.
 
 #### Important
 
