@@ -18,7 +18,9 @@ class Section(BasicElementTags):
 
     NULL_DATE = '0001-01-01'
     NULL_TIME = '00:00:00'
+
     wordCounter = WordCounter()
+    # a strategy class that can be replaced at runtime
 
     def __init__(
         self,

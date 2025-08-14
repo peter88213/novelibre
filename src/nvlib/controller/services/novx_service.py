@@ -19,13 +19,19 @@ from nvlib.nv_globals import HOME_URL
 
 
 class NovxService:
-    """Getters and factory methods for model elements."""
+
+    def change_word_counter(self, wordCounter):
+        """Change the section's strategy class for counting words."""
+        Section.wordCounter = wordCounter
 
     def get_novelibre_home_url(self):
         return HOME_URL
 
     def get_novx_file_extension(self):
         return NovxFile.EXTENSION
+
+    def get_word_counter(self):
+        return Section.wordCounter
 
     def get_zipped_novx_file_extension(self):
         return ZippedNovxFile.EXTENSION

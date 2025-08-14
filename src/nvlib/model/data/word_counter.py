@@ -1,4 +1,4 @@
-"""Provide a strategy class to count words.
+"""Provide a strategy class for counting words.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -21,6 +21,7 @@ class WordCounter:
     # this is to be replaced by empty strings when counting words
 
     def get_word_count(self, text):
+        """Return the total word count of text as an integer."""
         text = self.ADDITIONAL_WORD_LIMITS.sub(' ', text)
         text = self.NO_WORD_LIMITS.sub('', text)
         return len(text.split())
