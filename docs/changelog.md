@@ -12,7 +12,9 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### Version 5.30.0
 
-Made the word count algorithm replaceable using the strategy pattern.
+- Made the word count algorithm replaceable using the strategy pattern.
+- Changed download file extension: .pyzw --> .pyz
+- Modified the setup script in order to display a message if tk support is missing. 
 
 
 ### Version 5.29.8
