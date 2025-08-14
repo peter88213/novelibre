@@ -4,24 +4,13 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-import re
 
 from nvlib.model.data.basic_element_tags import BasicElementTags
 from nvlib.model.data.py_calendar import PyCalendar
+from nvlib.model.data.word_counter import WordCounter
 from nvlib.novx_globals import string_to_list
 from nvlib.novx_globals import verified_int_string
 import xml.etree.ElementTree as ET
-
-# Regular expressions for counting words and characters like in LibreOffice.
-# See:
-# https://help.libreoffice.org/latest/en-GB/text/swriter/guide/words_count.html
-ADDITIONAL_WORD_LIMITS = re.compile(r'--|—|–|\<\/p\>')
-# this is to be replaced by spaces when counting words
-
-NO_WORD_LIMITS = re.compile(
-    r'\<note\>.*?\<\/note\>|\<comment\>.*?\<\/comment\>|\<.+?\>'
-)
-# this is to be replaced by empty strings when counting words
 
 
 class Section(BasicElementTags):
@@ -29,6 +18,7 @@ class Section(BasicElementTags):
 
     NULL_DATE = '0001-01-01'
     NULL_TIME = '00:00:00'
+    wordCounter = WordCounter()
 
     def __init__(
         self,
@@ -97,16 +87,13 @@ class Section(BasicElementTags):
 
     @sectionContent.setter
     def sectionContent(self, text):
-        """Set sectionContent updating word count and letter count."""
+        """Set sectionContent updating the word count."""
         if text is not None:
             assert type(text) is str
         if self._sectionContent != text:
             self._sectionContent = text
             if text is not None:
-                text = ADDITIONAL_WORD_LIMITS.sub(' ', text)
-                text = NO_WORD_LIMITS.sub('', text)
-                wordList = text.split()
-                self.wordCount = len(wordList)
+                self.wordCount = self.wordCounter.get_word_count(text)
             else:
                 self.wordCount = 0
             self.on_element_change()
