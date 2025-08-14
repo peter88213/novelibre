@@ -13,12 +13,12 @@ class WordCounter:
     # See:
     # https://help.libreoffice.org/latest/en-GB/text/swriter/guide/words_count.html
     ADDITIONAL_WORD_LIMITS = re.compile(r'--|—|–|\<\/p\>')
-    # this is to be replaced by spaces when counting words
+    # this is to be replaced with spaces when counting words
 
     NO_WORD_LIMITS = re.compile(
         r'\<note\>.*?\<\/note\>|\<comment\>.*?\<\/comment\>|\<.+?\>'
     )
-    # this is to be replaced by empty strings when counting words
+    # this is to be replaced with empty strings when counting words
 
     def get_word_count(self, text):
         """Return the total word count of text as an integer."""
