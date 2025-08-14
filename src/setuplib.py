@@ -55,10 +55,7 @@ APP = f'{APPNAME}.py'
 START_UP_SCRIPT = 'run.pyw'
 INI_FILE = f'{APPNAME}.ini'
 INI_PATH = '/config/'
-SUCCESS_MESSAGE = '''
-*** Installation successful ***
-$Appname is installed here:
-$DisplayDir'''
+SUCCESS_MESSAGE = '$Appname is installed here:\n$DisplayDir'
 
 SHORTCUT_MESSAGE = '''
 Now you might want to create a shortcut on your desktop.  
@@ -107,8 +104,7 @@ REMOVE_FROM_REGISTRY = fr'''Windows Registry Editor Version 5.00
 
 '''
 
-PLUGIN_WARNING = '''
-There are plugins installed. 
+PLUGIN_WARNING = '''There are plugins installed. 
 You may want to run the Plugin Manager for compatibility check.
 '''
 
@@ -167,7 +163,7 @@ def create_explorer_context_menu(installPath):
         """Save a registry file."""
         with open(filePath, 'w') as f:
             f.write(template.safe_substitute(mapping))
-        output(f'Creating "{os.path.normpath(filePath)}"')
+        print(f'Creating "{os.path.normpath(filePath)}"')
 
     python = sys.executable.replace('\\', '\\\\')
     installUrl = installPath.replace('/', '\\\\')
@@ -248,22 +244,22 @@ def install(installDir, zipped):
     for file in filesToDelete:
         try:
             os.remove(file)
-            output(f'"{file}" removed.')
+            print(f'"{file}" removed.')
         except:
             pass
 
     #--- Install the new version.
-    output(f'Copying "{APP}" ...')
+    print(f'Copying "{APP}" ...')
     copy_file(APP, installDir)
 
     # Install the localization files.
-    output('Copying locale ...')
+    print('Copying locale ...')
     copy_tree('locale', installDir)
 
     #--- Create a plugin directory.
 
     pluginDir = f'{installDir}/plugin'
-    output(f'Creating "{os.path.normpath(pluginDir)}" ...')
+    print(f'Creating "{os.path.normpath(pluginDir)}" ...')
     os.makedirs(pluginDir, exist_ok=True)
 
     #--- Check plugins.
@@ -274,13 +270,13 @@ def install(installDir, zipped):
         moduleName, __ = os.path.splitext(os.path.basename(filePath))
         if not moduleName.startswith('nv_'):
             os.remove(filePath)
-            output(f'"{filePath}" removed.')
+            print(f'"{filePath}" removed.')
         if moduleName in OBSOLETE_PLUGINS:
             os.remove(filePath)
-            output(f'"{filePath}" removed.')
+            print(f'"{filePath}" removed.')
 
     #--- Create a start-up script.
-    output('Creating starter script ...')
+    print('Creating starter script ...')
     mapping = {
         'Appname': APPNAME,
         'Apppath': f'{installDir}/{START_UP_SCRIPT}',
@@ -305,7 +301,7 @@ def install(installDir, zipped):
     os.chmod(f'{installDir}/{START_UP_SCRIPT}', st.st_mode | stat.S_IEXEC)
 
     # Install the css files.
-    output('Copying css stylesheet ...')
+    print('Copying css stylesheet ...')
     copy_tree('css', installDir)
 
     #--- Generate registry entries for the context menu (Windows only).
@@ -313,10 +309,11 @@ def install(installDir, zipped):
         create_explorer_context_menu(installDir)
 
     # Install the icon files.
-    output('Copying icons ...')
+    print('Copying icons ...')
     copy_tree('icons', installDir)
 
     #--- Display a success message.
+    print('*** Installation successful ***')
     output(Template(SUCCESS_MESSAGE).safe_substitute(mapping))
 
     #--- Ask for shortcut creation.
@@ -330,8 +327,8 @@ def main(zipped=True):
     os.chdir(scriptDir)
 
     # Open a tk window.
-    root.title('Setup')
-    output(f'*** Installing {APPNAME}{VERSION} ***\n')
+    root.title(f'{APPNAME} {VERSION} Setup')
+    print(f'*** Installing {APPNAME}{VERSION} ***')
     header = tk.Label(root, text='')
     header.pack(padx=5, pady=5)
 
@@ -344,7 +341,7 @@ def main(zipped=True):
     try:
         install(novxlibPath, zipped)
     except Exception as ex:
-        output(str(ex))
+        print(str(ex))
 
     # Show options: open installation folders or quit.
     root.openButton = tk.Button(
