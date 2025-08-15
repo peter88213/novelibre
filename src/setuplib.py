@@ -52,7 +52,6 @@ APP = f'{APPNAME}.py'
 START_UP_SCRIPT = 'run.pyw'
 INI_FILE = f'{APPNAME}.ini'
 INI_PATH = '/config/'
-SUCCESS_MESSAGE = '$Appname is installed here:\n$DisplayDir'
 
 SHORTCUT_MESSAGE = '''
 Now you might want to create a shortcut on your desktop.  
@@ -216,12 +215,11 @@ def main(zipped=True):
 
     #--- Create a general novxlib installation directory, if necessary.
     os.makedirs(installDir, exist_ok=True)
-    cnfDir = f'{installDir}/{INI_PATH}'
     if os.path.isfile(f'{installDir}/{APP}'):
         simpleUpdate = True
     else:
         simpleUpdate = False
-
+    cnfDir = f'{installDir}/{INI_PATH}'
     os.makedirs(cnfDir, exist_ok=True)
 
     #--- Delete the old version, but retain configuration, if any.
@@ -313,12 +311,11 @@ def main(zipped=True):
     #--- Ask for shortcut creation.
     if not simpleUpdate:
         print(Template(SHORTCUT_MESSAGE).safe_substitute(mapping))
-
-    #--- Ask for opening the installation folder.
-    if messagebox.askyesno(
-        title=f'{APPNAME} {VERSION} Setup',
-        message='Open the installation folder now?',
-    ):
-        open_folder(installDir)
+        if messagebox.askyesno(
+            title=f'{APPNAME} {VERSION} Setup',
+            message='Open the installation folder now?',
+        ):
+            open_folder(installDir)
+            input('Press any key to quit.')
+    else:
         input('Press any key to quit.')
-
