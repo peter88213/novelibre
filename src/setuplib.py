@@ -22,7 +22,7 @@ import zipfile
 import relocate
 
 try:
-    import tkinter as tk
+    from tkinter import messagebox
 except ModuleNotFoundError:
     print(
         'The tkinter module is missing. '
@@ -30,8 +30,6 @@ except ModuleNotFoundError:
     )
     input('Press any key to quit.')
     sys.exit(1)
-
-from tkinter import messagebox
 
 # Initialize localization.
 LOCALE_PATH = f'{os.path.dirname(sys.argv[0])}/locale/'
@@ -103,7 +101,8 @@ REMOVE_FROM_REGISTRY = fr'''Windows Registry Editor Version 5.00
 
 '''
 
-PLUGIN_WARNING = '''There are plugins installed. 
+PLUGIN_WARNING = '''
+There are plugins installed. 
 You may want to run the Plugin Manager for compatibility check.
 '''
 
@@ -131,10 +130,6 @@ $Appname.main()
 OBSOLETE_PLUGINS = [
     'nv_clipboard',
 ]
-
-root = tk.Tk()
-processInfo = tk.Label(root, text='')
-message = []
 
 pyz = os.path.dirname(__file__)
 
@@ -180,14 +175,7 @@ def create_explorer_context_menu(installPath):
     )
 
 
-def output(text):
-    message.append(text)
-    processInfo.config(text=('\n').join(message))
-
-
 def open_folder(installDir):
-    """Open an installation folder window in the file manager.
-    """
     try:
         os.startfile(os.path.normpath(installDir))
         # Windows
@@ -203,8 +191,14 @@ def open_folder(installDir):
                 pass
 
 
-def install(installDir, zipped):
-    """Install the application."""
+def main(zipped=True):
+    scriptPath = os.path.abspath(sys.argv[0])
+    scriptDir = os.path.dirname(scriptPath)
+    os.chdir(scriptDir)
+
+    print(f'*** Installing {APPNAME} {VERSION} ***\n')
+    homePath = str(Path.home()).replace('\\', '/')
+    installDir = f'{homePath}/.novx'
     if zipped:
         copy_file = extract_file
         copy_tree = extract_tree
@@ -243,7 +237,7 @@ def install(installDir, zipped):
     for file in filesToDelete:
         try:
             os.remove(file)
-            print(f'"{file}" removed.')
+            print(f'"{os.path.normpath(file)}" removed.')
         except:
             pass
 
@@ -263,15 +257,15 @@ def install(installDir, zipped):
     #--- Check plugins.
     files = glob.glob(f'{pluginDir}/*.py')
     if files:
-        output(PLUGIN_WARNING)
+        print(PLUGIN_WARNING)
     for filePath in files:
         moduleName, __ = os.path.splitext(os.path.basename(filePath))
         if not moduleName.startswith('nv_'):
             os.remove(filePath)
-            print(f'"{filePath}" removed.')
+            print(f'"{os.path.normpath(filePath)}" removed.')
         if moduleName in OBSOLETE_PLUGINS:
             os.remove(filePath)
-            print(f'"{filePath}" removed.')
+            print(f'"{os.path.normpath(filePath)}" removed.')
 
     #--- Create a start-up script.
     print('Creating starter script ...')
@@ -311,45 +305,20 @@ def install(installDir, zipped):
     copy_tree('icons', installDir)
 
     #--- Display a success message.
-    print('*** Installation successful ***')
-    output(Template(SUCCESS_MESSAGE).safe_substitute(mapping))
+    print(
+        f'\nSucessfully installed {APPNAME} '
+        f'at "{os.path.normpath(installDir)}".'
+    )
 
     #--- Ask for shortcut creation.
     if not simpleUpdate:
-        output(Template(SHORTCUT_MESSAGE).safe_substitute(mapping))
+        print(Template(SHORTCUT_MESSAGE).safe_substitute(mapping))
 
-
-def main(zipped=True):
-    scriptPath = os.path.abspath(sys.argv[0])
-    scriptDir = os.path.dirname(scriptPath)
-    os.chdir(scriptDir)
-
-    # Open a tk window.
-    root.title(f'{APPNAME} {VERSION} Setup')
-    print(f'*** Installing {APPNAME}{VERSION} ***')
-    header = tk.Label(root, text='')
-    header.pack(padx=5, pady=5)
-
-    # Prepare the messaging area.
-    processInfo.pack(padx=5, pady=5)
-
-    # Run the installation.
-    homePath = str(Path.home()).replace('\\', '/')
-    novxlibPath = f'{homePath}/.novx'
-    try:
-        install(novxlibPath, zipped)
-    except Exception as ex:
-        print(str(ex))
-
-    # Show options: open installation folders or quit.
-    root.openButton = tk.Button(
-        text="Open installation folder",
-        command=lambda: open_folder(f'{homePath}/.novx')
-    )
-    root.openButton.config(height=1, width=30)
-    root.openButton.pack(padx=5, pady=5)
-    root.quitButton = tk.Button(text="Quit", command=quit)
-    root.quitButton.config(height=1, width=30)
-    root.quitButton.pack(padx=5, pady=5)
-    root.mainloop()
+    #--- Ask for opening the installation folder.
+    if messagebox.askyesno(
+        title=f'{APPNAME} {VERSION} Setup',
+        message='Open the installation folder now?',
+    ):
+        open_folder(installDir)
+        input('Press any key to quit.')
 
