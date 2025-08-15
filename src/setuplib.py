@@ -25,10 +25,8 @@ try:
     import tkinter as tk
 except ModuleNotFoundError:
     print(
-        (
-            'The tkinter module is missing. '
-            'Please install the tk support package for your python3 version.'
-        )
+        'The tkinter module is missing. '
+        'Please install the tk support package for your python3 version.'
     )
     input('Press any key to quit.')
     sys.exit(1)
