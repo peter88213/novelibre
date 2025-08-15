@@ -28,7 +28,7 @@ except ModuleNotFoundError:
         'The tkinter module is missing. '
         'Please install the tk support package for your python3 version.'
     )
-    input('Press any key to quit.')
+    input('Press ENTER to quit.')
     sys.exit(1)
 
 # Initialize localization.
@@ -316,6 +316,6 @@ def main(zipped=True):
             message='Open the installation folder now?',
         ):
             open_folder(installDir)
-            input('Press any key to quit.')
+            input('Press ENTER to quit.')
     else:
-        input('Press any key to quit.')
+        input('Press ENTER to quit.')
