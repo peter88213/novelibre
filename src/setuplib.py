@@ -24,12 +24,13 @@ import relocate
 try:
     import tkinter as tk
 except ModuleNotFoundError:
-    input(
+    print(
         (
             'The tkinter module is missing. '
             'Please install the tk support package for your python3 version.'
         )
     )
+    input('Press any key to quit.')
     sys.exit(1)
 
 from tkinter import messagebox
@@ -252,12 +253,11 @@ def install(installDir, zipped):
     print(f'Copying "{APP}" ...')
     copy_file(APP, installDir)
 
-    # Install the localization files.
+    #--- Install the localization files.
     print('Copying locale ...')
     copy_tree('locale', installDir)
 
     #--- Create a plugin directory.
-
     pluginDir = f'{installDir}/plugin'
     print(f'Creating "{os.path.normpath(pluginDir)}" ...')
     os.makedirs(pluginDir, exist_ok=True)
@@ -300,7 +300,7 @@ def install(installDir, zipped):
     st = os.stat(f'{installDir}/{START_UP_SCRIPT}')
     os.chmod(f'{installDir}/{START_UP_SCRIPT}', st.st_mode | stat.S_IEXEC)
 
-    # Install the css files.
+    #--- Install the css files.
     print('Copying css stylesheet ...')
     copy_tree('css', installDir)
 
@@ -308,7 +308,7 @@ def install(installDir, zipped):
     if platform.system() == 'Windows':
         create_explorer_context_menu(installDir)
 
-    # Install the icon files.
+    #--- Install the icon files.
     print('Copying icons ...')
     copy_tree('icons', installDir)
 
