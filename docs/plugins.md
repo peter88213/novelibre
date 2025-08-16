@@ -24,5 +24,5 @@
 -  [nv_updater](https://github.com/peter88213/nv_updater/) An update checker plugin for novelibre.
 -  [nv_xx](https://github.com/peter88213/nv_xx/) A Language pack template for novelibre.
 -  [nv_yw7](https://github.com/peter88213/nv_yw7/) A yw7 file import/export plugin for novelibre.
--  [nv_zim](https://github.com/peter88213/nv_zim A plugin to connect novelibre with the Zim Desktop Wiki.
+-  [nv_zim](https://github.com/peter88213/nv_zim) A plugin to connect novelibre with the Zim Desktop Wiki.
 
