@@ -114,6 +114,9 @@ so that only those users who need them actually install them.
    [nv_custom_export](https://github.com/peter88213/nv_custom_export/)
    plugin automatically apply them.
 
+See also the [list of all plugins](docs/plugins.md).
+
+
 ## Auxiliary scripts
 
 Some tasks are very special and are rarely performed, 

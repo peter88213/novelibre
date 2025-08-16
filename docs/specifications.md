@@ -1,3 +1,7 @@
+[Project home page](../) > Specifications
+
+---
+
 # novelibre specifications
 
 
