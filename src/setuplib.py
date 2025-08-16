@@ -190,7 +190,7 @@ def open_folder(installDir):
                 pass
 
 
-def main(zipped=True):
+def install(zipped):
     scriptPath = os.path.abspath(sys.argv[0])
     scriptDir = os.path.dirname(scriptPath)
     os.chdir(scriptDir)
@@ -319,3 +319,12 @@ def main(zipped=True):
             input('Press ENTER to quit.')
     else:
         input('Press ENTER to quit.')
+
+
+def main(zipped=True):
+    try:
+        install(zipped)
+    except Exception as ex:
+        print(str(ex))
+        input('Press ENTER to quit.')
+

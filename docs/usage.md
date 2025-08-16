@@ -10,7 +10,7 @@ The *novelibre* Python program provides a tree view for novels written with Libr
 ## Installation
 
 - Unzip the downloaded zipfile.
-- Move into the unzipped folder and launch **setup.pyw**. This installs the application for the local user.
+- Move into the unzipped folder and launch **setup.py**. This installs the application for the local user.
 - Create a shortcut on the desktop when asked.
 - Optionally, you can replace the "Python" icon by the *novelibre* logo you may find in the installation's **icons** subdirectory.
 

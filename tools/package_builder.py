@@ -221,7 +221,7 @@ setuplib.main(False)
     def write_setup_script(self, filePath):
         """Create the setup script for manual installatin from the zip file."""
         print(f'\nCreating the setup script ...')
-        with open(f'{filePath}/setup.pyw', 'w', encoding='utf_8', newline='\n') as f:
+        with open(f'{filePath}/setup.py', 'w', encoding='utf_8', newline='\n') as f:
             f.write(self.setupScript)
 
     def write_version_ini(self):

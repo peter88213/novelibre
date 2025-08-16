@@ -187,8 +187,8 @@ the zip file.
 The package is also available in zip format: [novelibre_v0.99.0.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v0.99.0.zip)
 
 - Extract the *novelibre_v0.99.0* folder from the downloaded zipfile "novelibre_v0.99.0.zip".
-- Move into this new folder and launch *setup.pyw* by double-clicking (Windows/Linux desktop), 
-- or execute `python setup.pyw` (Windows), resp. `python3 setup.pyw` (Linux) on the command line.
+- Move into this new folder and launch *setup.py* by double-clicking (Windows/Linux desktop), 
+- or execute `python setup.py` (Windows), resp. `python3 setup.py` (Linux) on the command line.
 
 You may wish to install plugins; the [update checker](https://github.com/peter88213/nv_updater/) is highly recommended.
 
