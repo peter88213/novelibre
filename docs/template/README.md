@@ -102,7 +102,7 @@ so that only those users who need them actually install them.
 -  If you want to switch between *yWriter* and *novelibre*, the
    [nv_yw7](https://github.com/peter88213/nv_yw7/)
    yw7 file importer/exporter plugin might come in handy.
--  Are you running an outdated version of *novelibre* and its plugins?
+-  Do you want to make sure you're running the latest version of *novelibre* and its plugins?
    Just launch the the on-demand update checker 
    [nv_updater](https://github.com/peter88213/nv_updater/)
    from time to time. 
