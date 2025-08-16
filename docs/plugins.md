@@ -6,7 +6,7 @@
 
 -  [nv_aeon2](https://github.com/peter88213/nv_aeon2/) An Aeon Timeline 2 converter plugin for novelibre.
 -  [nv_character_counter](https://github.com/peter88213/nv_character_counter/) A novelibre plugin that replaces the built-in word counter with a character counter.
-   This can be used as a template repository for a customized asian word counter.
+   *This can be used as a template repository for a customized word counter, e.g for asian languages.*
 -  [nv_collection](https://github.com/peter88213/nv_collection/) A book/series collection manager plugin for novelibre.
 -  [nv_custom_export](https://github.com/peter88213/nv_custom_export/) A novelibre plugin providing a custom template-based export for the final document. 
 -  [nv_dark](https://github.com/peter88213/nv_dark/) A dark theme for novelibre.
