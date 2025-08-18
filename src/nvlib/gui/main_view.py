@@ -595,6 +595,10 @@ class MainView(Observer, MsgBoxes, SubController):
             label=_('Add'),
             command=self._ctrl.add_new_chapter,
         )
+        self.chapterMenu.add_command(
+            label=_('Add multiple chapters...'),
+            command=self._ctrl.add_multiple_new_chapters,
+        )
         self.chapterMenu.add_separator()
         self.chapterMenu.add_cascade(
             label=_('Set Type'),
@@ -630,7 +634,7 @@ class MainView(Observer, MsgBoxes, SubController):
             command=self._ctrl.add_new_section,
         )
         self.sectionMenu.add_command(
-            label=_('Add multiple sections'),
+            label=_('Add multiple sections...'),
             command=self._ctrl.add_multiple_new_sections,
         )
         self.sectionMenu.add_separator()
@@ -663,7 +667,7 @@ class MainView(Observer, MsgBoxes, SubController):
 
         self._sectionMenuDisableOnLock = [
             _('Add'),
-            _('Add multiple sections'),
+            _('Add multiple sections...'),
             _('Set Type'),
             _('Set Status'),
             _('Set Viewpoint...'),

@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.30.0\n"
-"POT-Creation-Date: 2025-08-16 14:55:32\n"
-"PO-Revision-Date: 2025-08-16 14:55:32\n"
+"Project-Id-Version: 5.31.0\n"
+"POT-Creation-Date: 2025-08-18 13:17:44\n"
+"PO-Revision-Date: 2025-08-18 13:17:44\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -64,8 +64,11 @@ msgstr "Abschnitt hinzufügen"
 msgid "Add child"
 msgstr "Kindelement hinzufügen"
 
-msgid "Add multiple sections"
-msgstr "Mehrere Abschnitte hinzufügen"
+msgid "Add multiple chapters..."
+msgstr "Mehrere Kapitel hinzufügen..."
+
+msgid "Add multiple sections..."
+msgstr "Mehrere Abschnitte hinzufügen..."
 
 msgid "Add parent"
 msgstr "Elternelement hinzufügen"
@@ -639,6 +642,9 @@ msgstr "Homepage"
 
 msgid "Hours"
 msgstr "Stunden"
+
+msgid "How many chapters to add?"
+msgstr "Wie viele Kapitel hinzufügen?"
 
 msgid "How many sections to add?"
 msgstr "Wie viele Abschnitte hinzufügen?"

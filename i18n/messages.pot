@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.30.0\n"
-"POT-Creation-Date: 2025-08-16 14:55:32\n"
+"Project-Id-Version: 5.31.0\n"
+"POT-Creation-Date: 2025-08-18 13:17:44\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -71,7 +71,10 @@ msgstr ""
 msgid "Add child"
 msgstr ""
 
-msgid "Add multiple sections"
+msgid "Add multiple chapters..."
+msgstr ""
+
+msgid "Add multiple sections..."
 msgstr ""
 
 msgid "Add parent"
@@ -645,6 +648,9 @@ msgid "Home page"
 msgstr ""
 
 msgid "Hours"
+msgstr ""
+
+msgid "How many chapters to add?"
 msgstr ""
 
 msgid "How many sections to add?"

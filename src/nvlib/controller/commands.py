@@ -50,6 +50,16 @@ from nvlib.nv_globals import HOME_URL
 class Commands:
     """Methods for callback functions."""
 
+    def add_multiple_new_chapters(self):
+        """Ask how many chapters are to be added, then call the controller."""
+        if not self.check_lock():
+            return self.elementManager.add_multiple_new_chapters()
+
+    def add_multiple_new_sections(self):
+        """Ask how many sections are to be added, then call the controller."""
+        if not self.check_lock():
+            return self.elementManager.add_multiple_new_sections()
+
     def add_new_chapter(self, **kwargs):
         """Create a chapter instance and add it to the novel.
              
@@ -117,11 +127,6 @@ class Commands:
         """
         if not self.check_lock():
             return self.elementManager.add_new_location(**kwargs)
-
-    def add_multiple_new_sections(self):
-        """Ask how many sections are to be added, then call the controller."""
-        if not self.check_lock():
-            return self.elementManager.add_multiple_new_sections()
 
     def add_new_parent(self, event=None):
         """Add a parent element to an element.

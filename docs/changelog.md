@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.31.0
+
+- New "Chapter" menu command: "Create multiple chapters...".
+
+
+
 ### Version 5.30.0
 
 - Made the word count algorithm replaceable using the strategy pattern.

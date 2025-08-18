@@ -34,6 +34,40 @@ class ElementManager(ServiceBase):
     # maximum number of sections to add in bulk
     _INI_NR_NEW_SECTIONS = 1
     # initial value when asking for the number of sections to add
+    _MAX_NR_NEW_CHAPTERS = 20
+    # maximum number of chapters to add in bulk
+    _INI_NR_NEW_CHAPTERNS = 1
+    # initial value when asking for the number of chapters to add
+
+    def add_multiple_new_chapters(self):
+        """Ask how many chapters are to be added, then call the controller."""
+        n = askinteger(
+            title=_('New'),
+            prompt=_('How many chapters to add?'),
+            initialvalue=self._INI_NR_NEW_CHAPTERNS,
+            minvalue=0,
+            maxvalue=self._MAX_NR_NEW_CHAPTERS,
+        )
+        if n is not None:
+            newNodes = []
+            for __ in range(n):
+                newNodes.append(self.add_new_chapter())
+            return newNodes
+
+    def add_multiple_new_sections(self):
+        """Ask how many sections are to be added, then call the controller."""
+        n = askinteger(
+            title=_('New'),
+            prompt=_('How many sections to add?'),
+            initialvalue=self._INI_NR_NEW_SECTIONS,
+            minvalue=0,
+            maxvalue=self._MAX_NR_NEW_SECTIONS,
+        )
+        if n is not None:
+            newNodes = []
+            for __ in range(n):
+                newNodes.append(self.add_new_section())
+            return newNodes
 
     def add_new_chapter(self, **kwargs):
         """Create a chapter instance and add it to the novel.
@@ -203,21 +237,6 @@ class ElementManager(ServiceBase):
         newNode = self._mdl.add_new_location(**kwargs)
         self.view_new_element(newNode)
         return newNode
-
-    def add_multiple_new_sections(self):
-        """Ask how many sections are to be added, then call the controller."""
-        n = askinteger(
-            title=_('New'),
-            prompt=_('How many sections to add?'),
-            initialvalue=self._INI_NR_NEW_SECTIONS,
-            minvalue=0,
-            maxvalue=self._MAX_NR_NEW_SECTIONS,
-        )
-        if n is not None:
-            newNodes = []
-            for __ in range(n):
-                newNodes.append(self.add_new_section())
-            return newNodes
 
     def add_new_parent(self):
         """Add a parent element to an element.
