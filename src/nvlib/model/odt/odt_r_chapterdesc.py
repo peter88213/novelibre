@@ -53,8 +53,8 @@ class OdtRChapterDesc(OdtReader):
             return
 
         if tag == 'h1' or tag == 'h2':
-            if not self.novel.chapters[self._chId].title:
-                self.novel.chapters[self._chId].title = ''.join(
-                    self._lines)
+            # the document might be created with novelibre
+            # version 5.31.0 or earlier, where the heading
+            # was not yet separated from the description
             self._lines.clear()
 
