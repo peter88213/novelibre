@@ -27,10 +27,10 @@ class OdtWChapterDesc(OdtWriter):
         '$Title</text:h>\n'
     )
     _chapterTemplate = (
-        '<text:section text:style-name="Sect1" text:name="$ID">\n'
         '<text:h text:style-name="Heading_20_2" text:outline-level="2">'
         '<text:a xlink:href="../$ProjectName$ManuscriptSuffix.odt#'
         '$Title|outline">$Title</text:a></text:h>\n'
+        '<text:section text:style-name="Sect1" text:name="$ID">\n'
         '$Desc\n'
         '</text:section>\n'
     )

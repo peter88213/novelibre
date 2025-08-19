@@ -13,12 +13,12 @@
 
 <text:p text:style-name="Title">Hal Spacejock book one - Sample yWriter Project</text:p>
 <text:p text:style-name="Subtitle">Simon Haynes</text:p>
-<text:section text:style-name="Sect1" text:name="ch34">
 <text:h text:style-name="Heading_20_1" text:outline-level="1"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Part 1|outline">Part 1</text:a></text:h>
+<text:section text:style-name="Sect1" text:name="ch34">
 <text:p text:style-name="Text_20_body">This is the first part. Hal meets certain characters.</text:p>
 </text:section>
-<text:section text:style-name="Sect1" text:name="ch35">
 <text:h text:style-name="Heading_20_1" text:outline-level="1"><text:a xlink:href="../yw7%20Sample%20Project_manuscript_tmp.odt#Part 2|outline">Part 2</text:a></text:h>
+<text:section text:style-name="Sect1" text:name="ch35">
 
 </text:section>
   </office:text>
