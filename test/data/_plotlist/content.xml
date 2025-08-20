@@ -71,7 +71,7 @@
  </office:automatic-styles>
  <office:body>
   <office:spreadsheet>
-   <table:table table:name="ODS Plot list" table:style-name="ta1" table:print="false">
+   <table:table table:name="ODS Plot table" table:style-name="ta1" table:print="false">
 <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
 <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>
    <table:table-row table:style-name="ro2">

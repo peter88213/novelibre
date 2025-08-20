@@ -59,7 +59,7 @@ class PluginCollection(dict, SubController):
         except ValueError:
             # Set defaults for testing.
             self.majorVersion = 5
-            self.minorVersion = 31
+            self.minorVersion = 32
             self.patchlevel = 0
 
     def delete_file(self, pluginName):

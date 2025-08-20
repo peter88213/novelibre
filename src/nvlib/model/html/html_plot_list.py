@@ -15,7 +15,7 @@ from nvlib.nv_locale import _
 
 class HtmlPlotList(HtmlReport):
     """html plot list representation."""
-    DESCRIPTION = _('HTML Plot list')
+    DESCRIPTION = _('HTML Plot table')
     SUFFIX = PLOTLIST_SUFFIX
 
     def write(self):

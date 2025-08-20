@@ -11,7 +11,7 @@ from nvlib.nv_locale import _
 
 class OdsWLocList(OdsWriter):
     """ODS location list templates."""
-    DESCRIPTION = _('Location list')
+    DESCRIPTION = _('Location table')
     SUFFIX = LOCLIST_SUFFIX
 
     _fileHeader = (

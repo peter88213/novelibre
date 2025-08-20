@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.31.1\n"
-"POT-Creation-Date: 2025-08-19 14:01:39\n"
-"PO-Revision-Date: 2025-08-19 14:01:39\n"
+"Project-Id-Version: 5.32.0\n"
+"POT-Creation-Date: 2025-08-20 20:30:06\n"
+"PO-Revision-Date: 2025-08-20 20:30:06\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -232,14 +232,14 @@ msgstr "Kapitelbeschreibungen"
 msgid "Chapter level"
 msgstr "Kapitelebene anzeigen"
 
-msgid "Chapter list"
-msgstr "Kapitelliste"
-
 msgid "Chapter number prefix"
 msgstr "Präfix Kapitelnummer"
 
 msgid "Chapter number suffix"
 msgstr "Suffix Kapitelnummer"
+
+msgid "Chapter table"
+msgstr "Kapiteltabelle"
 
 msgid "Chapter_20_beginning"
 msgstr "Kapitelanfang"
@@ -262,8 +262,8 @@ msgstr "Figur"
 msgid "Character descriptions"
 msgstr "Figurenbeschreibungen"
 
-msgid "Character list"
-msgstr "Figurenliste"
+msgid "Character table"
+msgstr "Figurentabelle"
 
 msgid "Characterization"
 msgstr "Charakterisierung"
@@ -508,14 +508,14 @@ msgstr "Manuskript zum Bearbeiten exportieren"
 msgid "Export chapter descriptions for editing"
 msgstr "Kapitelbeschreibungen zum Bearbeiten exportieren"
 
-msgid "Export chapter list (spreadsheet)"
-msgstr "Kapitelliste exportieren (Tabelle)"
+msgid "Export chapter table"
+msgstr "Kapiteltabelle exportieren"
 
 msgid "Export character descriptions for editing"
 msgstr "Figurenbeschreibungen zum Bearbeiten exportieren"
 
-msgid "Export character list (spreadsheet)"
-msgstr "Figurenliste exportieren (Tabelle)"
+msgid "Export character table"
+msgstr "Figurentabelle exportieren"
 
 msgid "Export document"
 msgstr "Dokument exportieren"
@@ -523,14 +523,14 @@ msgstr "Dokument exportieren"
 msgid "Export item descriptions for editing"
 msgstr "Gegenstandsbeschreibungen zum Bearbeiten exportieren"
 
-msgid "Export item list (spreadsheet)"
-msgstr "Gegenstandsliste exportieren (Tabelle)"
+msgid "Export item table"
+msgstr "Gegenstandstabelle exportieren"
 
 msgid "Export location descriptions for editing"
 msgstr "Schauplatzbeschreibungen zum Bearbeiten exportieren"
 
-msgid "Export location list (spreadsheet)"
-msgstr "Schauplatzliste exportieren (Tabelle)"
+msgid "Export location table"
+msgstr "Schauplatztabelle exportieren"
 
 msgid "Export manuscript filtered by plot line"
 msgstr "Manuskript nach Plotlinie gefiltert exportieren"
@@ -541,8 +541,8 @@ msgstr "Manuskript nach Perspektive gefiltert exportieren"
 msgid "Export part descriptions for editing"
 msgstr "Teilebeschreibungen zum Bearbeiten exportieren"
 
-msgid "Export part list (spreadsheet)"
-msgstr "Teileliste exportieren (Tabelle)"
+msgid "Export part table"
+msgstr "Teiletabelle exportieren"
 
 msgid "Export plot grid for editing"
 msgstr "Handlungsraster (Plot grid) zum Bearbeiten exportieren"
@@ -622,8 +622,8 @@ msgstr "Ziel"
 msgid "Goals"
 msgstr "Ziele"
 
-msgid "HTML Plot list"
-msgstr "HTML-Plotliste"
+msgid "HTML Plot table"
+msgstr "HTML-Plottabelle"
 
 msgid "HTML Time table"
 msgstr "HTML Zeittafel"
@@ -691,8 +691,8 @@ msgstr "Gegenstand"
 msgid "Item descriptions"
 msgstr "Gegenstandsbeschreibungen"
 
-msgid "Item list"
-msgstr "Gegenstandsliste"
+msgid "Item table"
+msgstr "Gegenstandstabelle"
 
 msgid "Items"
 msgstr "Gegenstände"
@@ -724,8 +724,8 @@ msgstr "Schauplatz"
 msgid "Location descriptions"
 msgstr "Schauplatzbeschreibungen"
 
-msgid "Location list"
-msgstr "Schauplatzliste"
+msgid "Location table"
+msgstr "Schauplatztabelle"
 
 msgid "Locations"
 msgstr "Schauplätze"
@@ -913,8 +913,8 @@ msgstr "ODF-Textdokument"
 msgid "ODF document"
 msgstr "ODF-Dokument"
 
-msgid "ODS Plot list"
-msgstr "ODS-Plotliste"
+msgid "ODS Plot table"
+msgstr "ODS-Plottabelle"
 
 msgid "OK"
 msgstr "OK"
@@ -988,14 +988,14 @@ msgstr "Teil"
 msgid "Part descriptions"
 msgstr "Teilebeschreibungen"
 
-msgid "Part list"
-msgstr "Teileliste"
-
 msgid "Part number prefix"
 msgstr "Präfix Teilenummer"
 
 msgid "Part number suffix"
 msgstr "Suffix Teilenummer"
+
+msgid "Part table"
+msgstr "Teiletabelle"
 
 msgid "Parts"
 msgstr "Teile"
@@ -1048,9 +1048,6 @@ msgstr "Plotlinie"
 msgid "Plot lines"
 msgstr "Plotlinien"
 
-msgid "Plot list (export only)"
-msgstr "Plot-Liste (nur Export)"
-
 msgid "Plot point"
 msgstr "Plotpunkt"
 
@@ -1059,6 +1056,9 @@ msgstr "Plotpunkte"
 
 msgid "Plot progress"
 msgstr "Handlungsfortschritt"
+
+msgid "Plot table (export only)"
+msgstr "Plottabelle (nur Export)"
 
 msgid "Plugin"
 msgstr "Plugin"
@@ -1165,17 +1165,17 @@ msgstr "Abschnitt"
 msgid "Section descriptions"
 msgstr "Abschnittsbeschreibungen"
 
-msgid "Section list"
-msgstr "Abschnittsliste"
-
-msgid "Section list (export only)"
-msgstr "Abschnittsliste (nur Export)"
-
 msgid "Section mark"
 msgstr "Abschnittsmarke"
 
 msgid "Section notes"
 msgstr "Abschnittsnotizen"
+
+msgid "Section table"
+msgstr "Abschnittstabelle"
+
+msgid "Section table (export only)"
+msgstr "Abschnittstabelle (nur Export)"
 
 msgid "Section word count"
 msgstr "Wörter Abschnitt"
@@ -1240,8 +1240,8 @@ msgstr "Schauplätze anzeigen"
 msgid "Show Plot lines"
 msgstr "Plotlinien anzeigen"
 
-msgid "Show Plot list"
-msgstr "Plot-Liste anzeigen"
+msgid "Show Plot table in browser"
+msgstr "Plottabelle im Browser anzeigen"
 
 msgid "Show Project notes"
 msgstr "Projektnotizen anzeigen"
@@ -1252,14 +1252,14 @@ msgstr "Zeittafel anzeigen"
 msgid "Show ages"
 msgstr "Alter anzeigen"
 
-msgid "Show list"
-msgstr "Liste anzeigen"
-
 msgid "Show markup"
 msgstr "Markup anzeigen"
 
 msgid "Show notes"
 msgstr "Notizen anzeigen"
+
+msgid "Show table in Browser"
+msgstr "Tabelle im Browser anzeigen"
 
 msgid "Skip"
 msgstr "Überspringen"

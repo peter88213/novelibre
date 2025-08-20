@@ -581,7 +581,7 @@ class MainView(Observer, MsgBoxes, SubController):
             command=self._ctrl.export_part_desc,
         )
         self.partMenu.add_command(
-            label=_('Export part list (spreadsheet)'),
+            label=_('Export part table'),
             command=self._ctrl.export_part_list,
         )
 
@@ -619,7 +619,7 @@ class MainView(Observer, MsgBoxes, SubController):
             command=self._ctrl.export_chapter_desc,
         )
         self.chapterMenu.add_command(
-            label=_('Export chapter list (spreadsheet)'),
+            label=_('Export chapter table'),
             command=self._ctrl.export_chapter_list,
         )
 
@@ -657,7 +657,7 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         self.sectionMenu.add_separator()
         self.sectionMenu.add_command(
-            label=_('Section list (export only)'),
+            label=_('Section table (export only)'),
             command=self._ctrl.export_section_list,
         )
         self.sectionMenu.add_command(
@@ -699,12 +699,12 @@ class MainView(Observer, MsgBoxes, SubController):
             command=self._ctrl.export_character_desc,
         )
         self.characterMenu.add_command(
-            label=_('Export character list (spreadsheet)'),
+            label=_('Export character table'),
             command=self._ctrl.export_character_list,
         )
         self.characterMenu.add_separator()
         self.characterMenu.add_command(
-            label=_('Show list'),
+            label=_('Show table in Browser'),
             command=self._ctrl.show_character_list,
         )
 
@@ -713,7 +713,7 @@ class MainView(Observer, MsgBoxes, SubController):
             _('Set Status'),
             _('Import'),
             _('Export character descriptions for editing'),
-            _('Export character list (spreadsheet)'),
+            _('Export character table'),
         ]
 
         # Location
@@ -737,12 +737,12 @@ class MainView(Observer, MsgBoxes, SubController):
             command=self._ctrl.export_location_desc,
         )
         self.locationMenu.add_command(
-            label=_('Export location list (spreadsheet)'),
+            label=_('Export location table'),
             command=self._ctrl.export_location_list,
         )
         self.locationMenu.add_separator()
         self.locationMenu.add_command(
-            label=_('Show list'),
+            label=_('Show table in Browser'),
             command=self._ctrl.show_location_list,
         )
 
@@ -750,7 +750,7 @@ class MainView(Observer, MsgBoxes, SubController):
             _('Add'),
             _('Import'),
             _('Export location descriptions for editing'),
-            _('Export location list (spreadsheet)'),
+            _('Export location table'),
         ]
 
         # "Item" menu.
@@ -774,12 +774,12 @@ class MainView(Observer, MsgBoxes, SubController):
             command=self._ctrl.export_item_desc,
         )
         self.itemMenu.add_command(
-            label=_('Export item list (spreadsheet)'),
+            label=_('Export item table'),
             command=self._ctrl.export_item_list,
         )
         self.itemMenu.add_separator()
         self.itemMenu.add_command(
-            label=_('Show list'),
+            label=_('Show table in Browser'),
             command=self._ctrl.show_item_list,
         )
 
@@ -787,7 +787,7 @@ class MainView(Observer, MsgBoxes, SubController):
             _('Add'),
             _('Import'),
             _('Export item descriptions for editing'),
-            _('Export item list (spreadsheet)'),
+            _('Export item table'),
         ]
 
         # "Plot" menu.
@@ -831,11 +831,11 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         self.plotMenu.add_separator()
         self.plotMenu.add_command(
-            label=_('Plot list (export only)'),
+            label=_('Plot table (export only)'),
             command=self._ctrl.export_plot_list,
         )
         self.plotMenu.add_command(
-            label=_('Show Plot list'),
+            label=_('Show Plot table in browser'),
             command=self._ctrl.show_plot_list,
         )
 
@@ -862,7 +862,7 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         self.prjNoteMenu.add_separator()
         self.prjNoteMenu.add_command(
-            label=_('Show list'),
+            label=_('Show table in Browser'),
             command=self._ctrl.show_projectnotes_list,
         )
 

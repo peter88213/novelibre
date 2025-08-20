@@ -13,7 +13,7 @@ from nvlib.nv_locale import _
 
 class OdsRItemList(OdsReader):
     """ODS item list reader."""
-    DESCRIPTION = _('Item list')
+    DESCRIPTION = _('Item table')
     SUFFIX = ITEMLIST_SUFFIX
     _columnTitles = [
         'ID',

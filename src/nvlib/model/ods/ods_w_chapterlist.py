@@ -12,7 +12,7 @@ from nvlib.nv_locale import _
 class OdsWChapterList(OdsWriter):
     """ODS chapter list templates."""
 
-    DESCRIPTION = _('Chapter list')
+    DESCRIPTION = _('Chapter table')
     SUFFIX = CHAPTERLIST_SUFFIX
 
     _fileHeader = (

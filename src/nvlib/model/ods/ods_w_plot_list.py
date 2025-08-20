@@ -16,7 +16,7 @@ from nvlib.nv_locale import _
 
 class OdsWPlotList(OdsWriter):
     """html plot list templates and writer."""
-    DESCRIPTION = _('ODS Plot list')
+    DESCRIPTION = _('ODS Plot table')
     SUFFIX = PLOTLIST_SUFFIX
 
     _CE_OFFSET = 6

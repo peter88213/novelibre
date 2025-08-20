@@ -12,6 +12,6 @@ from nvlib.nv_locale import _
 class OdsRPartList(OdsRChapterList):
     """ODS part list reader."""
 
-    DESCRIPTION = _('Part list')
+    DESCRIPTION = _('Part table')
     SUFFIX = PARTLIST_SUFFIX
 

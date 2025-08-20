@@ -13,7 +13,7 @@ from nvlib.nv_locale import _
 
 class OdsRLocList(OdsReader):
     """ODS location list reader. """
-    DESCRIPTION = _('Location list')
+    DESCRIPTION = _('Location table')
     SUFFIX = LOCLIST_SUFFIX
     _columnTitles = [
         'ID',

@@ -10,17 +10,20 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.32.0
+
+- Changed the document wording: "list" --> "table".
+
+
 ### Version 5.31.1
 
 - Improved the part and chapter description documents 
   by separating the description boxes from the headings.
 
 
-
 ### Version 5.31.0
 
 - New "Chapter" menu command: "Create multiple chapters...".
-
 
 
 ### Version 5.30.0

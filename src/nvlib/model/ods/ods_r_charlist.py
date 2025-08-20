@@ -15,7 +15,7 @@ from nvlib.nv_locale import _
 
 class OdsRCharList(OdsReader):
     """ODS character list reader."""
-    DESCRIPTION = _('Character list')
+    DESCRIPTION = _('Character table')
     SUFFIX = CHARLIST_SUFFIX
     _columnTitles = [
         'ID',

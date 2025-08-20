@@ -13,7 +13,7 @@ from nvlib.nv_locale import _
 class OdsWSectionList(OdsWGrid):
     """ODS section list templates."""
 
-    DESCRIPTION = _('Section list')
+    DESCRIPTION = _('Section table')
     SUFFIX = SECTIONLIST_SUFFIX
 
     # Column width:

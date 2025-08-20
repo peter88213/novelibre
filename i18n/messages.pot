@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.31.1\n"
-"POT-Creation-Date: 2025-08-19 14:01:39\n"
+"Project-Id-Version: 5.32.0\n"
+"POT-Creation-Date: 2025-08-20 20:30:06\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -239,13 +239,13 @@ msgstr ""
 msgid "Chapter level"
 msgstr ""
 
-msgid "Chapter list"
-msgstr ""
-
 msgid "Chapter number prefix"
 msgstr ""
 
 msgid "Chapter number suffix"
+msgstr ""
+
+msgid "Chapter table"
 msgstr ""
 
 msgid "Chapter_20_beginning"
@@ -269,7 +269,7 @@ msgstr ""
 msgid "Character descriptions"
 msgstr ""
 
-msgid "Character list"
+msgid "Character table"
 msgstr ""
 
 msgid "Characterization"
@@ -515,13 +515,13 @@ msgstr ""
 msgid "Export chapter descriptions for editing"
 msgstr ""
 
-msgid "Export chapter list (spreadsheet)"
+msgid "Export chapter table"
 msgstr ""
 
 msgid "Export character descriptions for editing"
 msgstr ""
 
-msgid "Export character list (spreadsheet)"
+msgid "Export character table"
 msgstr ""
 
 msgid "Export document"
@@ -530,13 +530,13 @@ msgstr ""
 msgid "Export item descriptions for editing"
 msgstr ""
 
-msgid "Export item list (spreadsheet)"
+msgid "Export item table"
 msgstr ""
 
 msgid "Export location descriptions for editing"
 msgstr ""
 
-msgid "Export location list (spreadsheet)"
+msgid "Export location table"
 msgstr ""
 
 msgid "Export manuscript filtered by plot line"
@@ -548,7 +548,7 @@ msgstr ""
 msgid "Export part descriptions for editing"
 msgstr ""
 
-msgid "Export part list (spreadsheet)"
+msgid "Export part table"
 msgstr ""
 
 msgid "Export plot grid for editing"
@@ -629,7 +629,7 @@ msgstr ""
 msgid "Goals"
 msgstr ""
 
-msgid "HTML Plot list"
+msgid "HTML Plot table"
 msgstr ""
 
 msgid "HTML Time table"
@@ -698,7 +698,7 @@ msgstr ""
 msgid "Item descriptions"
 msgstr ""
 
-msgid "Item list"
+msgid "Item table"
 msgstr ""
 
 msgid "Items"
@@ -731,7 +731,7 @@ msgstr ""
 msgid "Location descriptions"
 msgstr ""
 
-msgid "Location list"
+msgid "Location table"
 msgstr ""
 
 msgid "Locations"
@@ -920,7 +920,7 @@ msgstr ""
 msgid "ODF document"
 msgstr ""
 
-msgid "ODS Plot list"
+msgid "ODS Plot table"
 msgstr ""
 
 msgid "OK"
@@ -995,13 +995,13 @@ msgstr ""
 msgid "Part descriptions"
 msgstr ""
 
-msgid "Part list"
-msgstr ""
-
 msgid "Part number prefix"
 msgstr ""
 
 msgid "Part number suffix"
+msgstr ""
+
+msgid "Part table"
 msgstr ""
 
 msgid "Parts"
@@ -1055,9 +1055,6 @@ msgstr ""
 msgid "Plot lines"
 msgstr ""
 
-msgid "Plot list (export only)"
-msgstr ""
-
 msgid "Plot point"
 msgstr ""
 
@@ -1065,6 +1062,9 @@ msgid "Plot points"
 msgstr ""
 
 msgid "Plot progress"
+msgstr ""
+
+msgid "Plot table (export only)"
 msgstr ""
 
 msgid "Plugin"
@@ -1172,16 +1172,16 @@ msgstr ""
 msgid "Section descriptions"
 msgstr ""
 
-msgid "Section list"
-msgstr ""
-
-msgid "Section list (export only)"
-msgstr ""
-
 msgid "Section mark"
 msgstr ""
 
 msgid "Section notes"
+msgstr ""
+
+msgid "Section table"
+msgstr ""
+
+msgid "Section table (export only)"
 msgstr ""
 
 msgid "Section word count"
@@ -1247,7 +1247,7 @@ msgstr ""
 msgid "Show Plot lines"
 msgstr ""
 
-msgid "Show Plot list"
+msgid "Show Plot table in browser"
 msgstr ""
 
 msgid "Show Project notes"
@@ -1259,13 +1259,13 @@ msgstr ""
 msgid "Show ages"
 msgstr ""
 
-msgid "Show list"
-msgstr ""
-
 msgid "Show markup"
 msgstr ""
 
 msgid "Show notes"
+msgstr ""
+
+msgid "Show table in Browser"
 msgstr ""
 
 msgid "Skip"

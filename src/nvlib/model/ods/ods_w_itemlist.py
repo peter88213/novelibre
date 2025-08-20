@@ -12,7 +12,7 @@ from nvlib.nv_locale import _
 class OdsWItemList(OdsWriter):
     """ODS item list templates."""
 
-    DESCRIPTION = _('Item list')
+    DESCRIPTION = _('Item table')
     SUFFIX = ITEMLIST_SUFFIX
 
     _fileHeader = (

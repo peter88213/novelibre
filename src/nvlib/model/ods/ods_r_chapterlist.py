@@ -13,7 +13,7 @@ from nvlib.nv_locale import _
 class OdsRChapterList(OdsReader):
     """ODS chapter list reader."""
 
-    DESCRIPTION = _('Chapter list')
+    DESCRIPTION = _('Chapter table')
     SUFFIX = CHAPTERLIST_SUFFIX
     _columnTitles = [
         'ID',
