@@ -20,6 +20,7 @@ class PlotPointView(ElementView):
     - A label showing section associated with the turnong point. 
     - A button bar for managing the section assignments.
     """
+    _HELP_PAGE = 'point_view.html'
 
     def __init__(self, parent, model, view, controller):
         """Initialize the view once before element data is available.

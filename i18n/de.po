@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.32.0\n"
-"POT-Creation-Date: 2025-08-20 20:30:06\n"
-"PO-Revision-Date: 2025-08-20 20:30:06\n"
+"Project-Id-Version: 5.32.1\n"
+"POT-Creation-Date: 2025-08-21 13:06:46\n"
+"PO-Revision-Date: 2025-08-21 13:06:46\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1504,6 +1504,9 @@ msgstr "und"
 msgid "at age"
 msgstr "mit"
 
+msgid "backup-options"
+msgstr "sicherungseinstellungen"
+
 msgid "by"
 msgstr "von"
 
@@ -1556,7 +1559,7 @@ msgid "options"
 msgstr "Optionen"
 
 msgid "plugin-manager"
-msgstr "pluginmanager"
+msgstr "plugin-manager"
 
 msgid "tag"
 msgstr "Schlagwort"

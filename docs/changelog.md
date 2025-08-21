@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.32.1
+
+- Providing context-sensitive help for the properties pane.
+
+
 ### Version 5.32.0
 
 - Changed the document wording: "list" --> "table".

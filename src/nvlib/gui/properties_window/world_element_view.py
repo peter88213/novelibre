@@ -21,6 +21,7 @@ class WorldElementView(ElementView):
     - An "Aka" entry.
     - A "Tags" entry.   
     """
+    _HELP_PAGE = 'world_view.html'
 
     def __init__(self, parent, model, view, controller):
         """Initialize the view once before element data is available.

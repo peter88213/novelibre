@@ -9,6 +9,7 @@ from nvlib.gui.properties_window.element_view import ElementView
 
 class StageView(ElementView):
     """Class for viewing and editing stage properties."""
+    _HELP_PAGE = 'stage_view.html'
 
     def __init__(self, parent, model, view, controller):
         super().__init__(parent, model, view, controller)

@@ -22,6 +22,7 @@ class ChapterView(ElementView):
     Adds to the right pane:
     - A "Do not auto-number" checkbox.
     """
+    _HELP_PAGE = 'chapter_view.html'
 
     def __init__(self, parent, model, view, controller):
         """Initialize the view once before element data is available.

@@ -27,6 +27,7 @@ class CharacterView(WorldElementView):
     - A "Bio" folding frame.
     - A "Goals" folding frame.
     """
+    _HELP_PAGE = 'character_view.html'
     _LABEL_WIDTH = 15
     # Width of left-placed labels.
 

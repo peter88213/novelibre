@@ -46,6 +46,7 @@ class SectionView(ElementView):
     - A "Plot" folding frame for plotLines and plot point associations.
     - A "Scene" folding frame for Goal/Reaction/Outcome.
     """
+    _HELP_PAGE = 'section_view.html'
     _HEIGHT_LIMIT = 10
     _DT_LABEL_WIDTH = 15
 

@@ -23,6 +23,7 @@ import tkinter as tk
 
 class ProjectView(ElementView):
     """Class for viewing and editing project properties."""
+    _HELP_PAGE = 'book_view.html'
     _LABEL_WIDTH = 20
     # Width of left-placed labels.
 
@@ -1005,8 +1006,19 @@ class ProjectView(ElementView):
             self._cover.image = None
         super().show()
 
+    def _create_button_bar(self):
+        self._buttonBar = ttk.Frame(self._propertiesFrame)
+        self._buttonBar.pack(fill='x')
+
+        # "Help" button.
+        ttk.Button(
+            self._buttonBar,
+            text=_('Online help'),
+            command=self._open_help,
+        ).pack(side='left', fill='x', expand=True, padx=1, pady=2)
+
     def _create_cover_window(self):
-        # Create a text box for element notes.
+        # Create a label for cover image display.
         self._cover = tk.Label(self._propertiesFrame)
         self._cover.pack()
 
@@ -1016,6 +1028,7 @@ class ProjectView(ElementView):
         self._create_element_info_window()
         self._create_links_window()
         self._add_separator()
+        self._create_button_bar()
         self._create_cover_window()
 
     def _toggle_language_frame(self, event=None):

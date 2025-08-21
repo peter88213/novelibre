@@ -9,6 +9,7 @@ from nvlib.gui.properties_window.element_view import ElementView
 
 class ProjectNoteView(ElementView):
     """Class for viewing and editing project notes."""
+    _HELP_PAGE = 'project_note_view.html'
 
     def __init__(self, parent, model, view, controller):
         super().__init__(parent, model, view, controller)

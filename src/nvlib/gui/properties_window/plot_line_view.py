@@ -20,6 +20,7 @@ class PlotLineView(ElementView):
     - The number of normal sections assigned to this arc.
     - A button to remove all section assigments to this arc.
     """
+    _HELP_PAGE = 'plotline_view.html'
     _LABEL_WIDTH = 22
     # Width of left-placed labels.
 

@@ -124,7 +124,7 @@ class BackupOptionsDialog(ModalDialog, SubController):
 
     def _open_help(self, event=None):
         NvHelp.open_help_page(
-            f'tools_menu.html#{_("Backup options").lower()}')
+            f'tools_menu.html#{_("backup-options")}')
 
     def _set_backup_dir(self):
         self._ui.restore_status()
