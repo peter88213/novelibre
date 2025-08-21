@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.32.2
+
+- Changed the wording: "Narrative time" --> "Story time".
+
+
 ### Version 5.32.1
 
 - Providing context-sensitive help for the properties pane.

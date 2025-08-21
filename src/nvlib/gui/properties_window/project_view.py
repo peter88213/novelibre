@@ -370,10 +370,10 @@ class ProjectView(ElementView):
         self._customChrGoalsEntry.pack(anchor='w')
         inputWidgets.append(self._customChrGoalsEntry)
 
-        #--- "Narrative time" frame.
+        #--- "Story time" frame.
         self._narrativeTimeFrame = FoldingFrame(
             self._elementInfoWindow,
-            _('Narrative time'),
+            _('Story time'),
             self._toggle_narrative_time_frame,
         )
 
@@ -649,7 +649,7 @@ class ProjectView(ElementView):
         self.element.customChrBio = self._customChrBioVar.get()
         self.element.customChrGoals = self._customChrGoalsVar.get()
 
-        #--- "Narrative time" frame.
+        #--- "Story time" frame.
         refDateStr = self._referenceDateVar.get()
         if not refDateStr:
             self.element.referenceDate = None
@@ -751,7 +751,7 @@ class ProjectView(ElementView):
                 list_to_string(renamings, divider='/')
                 )
 
-        #--- "Narrative time" frame
+        #--- "Story time" frame
         displayDate = []
         datePreview = []
         if (self.element.referenceDate is not None
@@ -935,7 +935,7 @@ class ProjectView(ElementView):
         self._customChrBioVar.set(self.element.customChrBio)
         self._customChrGoalsVar.set(self.element.customChrGoals)
 
-        #--- "Narrative time" frame
+        #--- "Story time" frame
         self._referenceDateVar.set(self.element.referenceDate)
 
         #--- "Writing progress" frame.
@@ -1043,7 +1043,7 @@ class ProjectView(ElementView):
         self._toggle_folding_frame()
 
     def _toggle_narrative_time_frame(self, event=None):
-        # Hide/show the "Narrative time" frame.
+        # Hide/show the "Story time" frame.
         # Callback procedure for the FoldingFrame's button.
         if prefs['show_narrative_time']:
             self._narrativeTimeFrame.hide()

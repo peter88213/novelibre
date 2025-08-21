@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.32.1\n"
-"POT-Creation-Date: 2025-08-21 13:06:46\n"
+"Project-Id-Version: 5.32.2\n"
+"POT-Creation-Date: 2025-08-21 16:56:29\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -788,9 +788,6 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-msgid "Narrative time"
-msgstr ""
-
 msgid "Never"
 msgstr ""
 
@@ -1293,6 +1290,9 @@ msgid "Status"
 msgstr ""
 
 msgid "Story structure"
+msgstr ""
+
+msgid "Story time"
 msgstr ""
 
 msgid "Style sheet copied into the project folder."
