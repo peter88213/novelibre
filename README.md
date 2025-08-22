@@ -58,7 +58,7 @@ is embedded in a customizable ecosystem.
   see the big picture and keep track of multiple subplots.   
 - To keep track of progress, the **word count** and the **completion status** of the sections are displayed. 
 - Individual chapters and sections can be flagged as "unused" to exclude them from document export.
-- You can add information about the **narrative time** and duration to each section. If you enter a date, 
+- You can add information about the **story time** and duration to each section. If you enter a date, 
   the day of the week is displayed. You can also call up the age of characters that are assigned to
   a section. The date and time information can be synchronised with dedicated timeline software.
 - For the **actual writing work**, *novelibre* starts the *Writer* word processor with 
