@@ -24,7 +24,15 @@ assigned to the sections.
 [Read more](https://peter88213.github.io/nvhelp-en/introduction.html) 
 about the idea and purpose of novelibre. 
 
-![Screenshot](docs/Screenshots/screen01.png)
+This is how the organizer desktop looks like:
+
+![novelibre screenshot](docs/Screenshots/screen01.png)
+
+
+This is the manuscript passed to LibreOffice *Writer*:
+
+![LibreOffice screenshot](docs/Screenshots/screen02.jpg)
+
 
 What distinguishes *novelibre* from other writing software is the integration 
 of other applications into the workflow, which are powerful and proven. 
