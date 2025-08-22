@@ -29,7 +29,7 @@ This is how the *novelibre* organizer desktop looks like:
 ![novelibre screenshot](docs/Screenshots/screen01.png)
 
 
-This is the manuscript to work on. *novelibre* has generated it passed it to LibreOffice *Writer*:
+This is the manuscript to work on. *novelibre* generated it and passed it to LibreOffice *Writer*:
 
 ![LibreOffice screenshot](docs/Screenshots/screen02.jpg)
 
