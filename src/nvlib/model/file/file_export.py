@@ -394,8 +394,8 @@ class FileExport(File):
             otherScnField3 = self.novel.otherScnField3
         else:
             otherScnField3 = _('Field 3')
-        if self.novel.chrExtraField:
-            chrExtraField = self.novel.chrExtraField
+        if self.novel.chrExtraField1:
+            chrExtraField = self.novel.chrExtraField1
         else:
             chrExtraField = _('Extra field')
         return (

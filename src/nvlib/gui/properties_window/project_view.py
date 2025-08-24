@@ -636,7 +636,7 @@ class ProjectView(ElementView):
         self.element.otherScnField3 = self._otherScnField3Var.get(
             default=self._mdl.OTHER_SCN_FIELD3_DEFAULT
         )
-        self.element.chrExtraField = self._chrExtraFieldVar.get(
+        self.element.chrExtraField1 = self._chrExtraFieldVar.get(
             default=self._mdl.CHR_EXTRA_FIELD_DEFAULT
         )
 
@@ -902,7 +902,7 @@ class ProjectView(ElementView):
         self._otherScnField1Var.set(self.element.otherScnField1)
         self._otherScnField2Var.set(self.element.otherScnField2)
         self._otherScnField3Var.set(self.element.otherScnField3)
-        self._chrExtraFieldVar.set(self.element.chrExtraField)
+        self._chrExtraFieldVar.set(self.element.chrExtraField1)
 
         #--- "Story time" frame
         self._referenceDateVar.set(self.element.referenceDate)

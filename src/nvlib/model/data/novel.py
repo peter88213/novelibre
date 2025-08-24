@@ -387,11 +387,11 @@ class Novel(BasicElement):
             self.on_element_change()
 
     @property
-    def chrExtraField(self):
+    def chrExtraField1(self):
         return self._chrExtraField
 
-    @chrExtraField.setter
-    def chrExtraField(self, newVal):
+    @chrExtraField1.setter
+    def chrExtraField1(self, newVal):
         if newVal is not None:
             assert type(newVal) is str
         if self._chrExtraField != newVal:
@@ -530,11 +530,11 @@ class Novel(BasicElement):
             default=self.otherScnField3,
         )
 
-        # Character extra field.
-        self.chrExtraField = self._get_element_text(
+        # Character extra field 1.
+        self.chrExtraField1 = self._get_element_text(
             xmlElement,
             'CustomChrGoals',
-            default=self.chrExtraField,
+            default=self.chrExtraField1,
         )
 
         # Word count start/Word target.
@@ -664,11 +664,11 @@ class Novel(BasicElement):
             ).text = self.otherScnField3
 
         # Character Extra field name.
-        if self.chrExtraField:
+        if self.chrExtraField1:
             ET.SubElement(
                 xmlElement,
                 'CustomChrGoals',
-            ).text = self.chrExtraField
+            ).text = self.chrExtraField1
 
         # Word count start/Word target.
         if self.wordCountStart:
