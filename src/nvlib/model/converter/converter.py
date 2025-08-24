@@ -12,8 +12,17 @@ from nvlib.model.converter.import_source_factory import ImportSourceFactory
 from nvlib.model.converter.import_target_factory import ImportTargetFactory
 from nvlib.model.data.novel import Novel
 from nvlib.model.data.nv_tree import NvTree
+from nvlib.novx_globals import CR_FIELD_1_DEFAULT
+from nvlib.novx_globals import CR_FIELD_2_DEFAULT
+from nvlib.novx_globals import CR_FIELD_3_DEFAULT
 from nvlib.novx_globals import Error
+from nvlib.novx_globals import NO_SCENE_FIELD_1_DEFAULT
+from nvlib.novx_globals import NO_SCENE_FIELD_2_DEFAULT
+from nvlib.novx_globals import NO_SCENE_FIELD_3_DEFAULT
 from nvlib.novx_globals import Notification
+from nvlib.novx_globals import OTHER_SCENE_FIELD_1_DEFAULT
+from nvlib.novx_globals import OTHER_SCENE_FIELD_2_DEFAULT
+from nvlib.novx_globals import OTHER_SCENE_FIELD_3_DEFAULT
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
 from nvlib.user_interface.ui import Ui
@@ -47,15 +56,6 @@ class Converter:
     EXPORT_TARGET_CLASSES = []
     IMPORT_SOURCE_CLASSES = []
     IMPORT_TARGET_CLASSES = []
-
-    NO_SCN_FIELD1_DEFAULT = _('Plot progress')
-    NO_SCN_FIELD2_DEFAULT = _('Characterization')
-    NO_SCN_FIELD3_DEFAULT = _('World building')
-    OTHER_SCN_FIELD1_DEFAULT = _('Opening')
-    OTHER_SCN_FIELD2_DEFAULT = _('Peak emotional moment')
-    OTHER_SCN_FIELD3_DEFAULT = _('Ending')
-    CHR_EXTRA_FIELD_1_DEFAULT = _('Goals')
-    CHR_EXTRA_FIELD_2_DEFAULT = _('Role')
 
     def __init__(self):
         """Create strategy class instances."""
@@ -238,14 +238,14 @@ class Converter:
                 self._check(source, target)
                 source.novel = Novel(
                     tree=NvTree(),
-                    noScnField1=self.NO_SCN_FIELD1_DEFAULT,
-                    noScnField2=self.NO_SCN_FIELD2_DEFAULT,
-                    noScnField3=self.NO_SCN_FIELD3_DEFAULT,
-                    otherScnField1=self.OTHER_SCN_FIELD1_DEFAULT,
-                    otherScnField2=self.OTHER_SCN_FIELD2_DEFAULT,
-                    otherScnField3=self.OTHER_SCN_FIELD3_DEFAULT,
-                    chrExtraField1=self.CHR_EXTRA_FIELD_1_DEFAULT,
-                    chrExtraField2=self.CHR_EXTRA_FIELD_2_DEFAULT,
+                    noSceneField1=NO_SCENE_FIELD_1_DEFAULT,
+                    noSceneField2=NO_SCENE_FIELD_2_DEFAULT,
+                    noSceneField3=NO_SCENE_FIELD_3_DEFAULT,
+                    otherSceneField1=OTHER_SCENE_FIELD_1_DEFAULT,
+                    otherSceneField2=OTHER_SCENE_FIELD_2_DEFAULT,
+                    otherSceneField3=OTHER_SCENE_FIELD_3_DEFAULT,
+                    chrExtraField1=CR_FIELD_1_DEFAULT,
+                    chrExtraField2=CR_FIELD_2_DEFAULT,
                 )
                 source.novel.check_locale()
                 source.read()
@@ -292,14 +292,14 @@ class Converter:
             self._check(source, target)
             source.novel = Novel(
                 tree=NvTree(),
-                noScnField1=self.NO_SCN_FIELD1_DEFAULT,
-                noScnField2=self.NO_SCN_FIELD2_DEFAULT,
-                noScnField3=self.NO_SCN_FIELD3_DEFAULT,
-                otherScnField1=self.OTHER_SCN_FIELD1_DEFAULT,
-                otherScnField2=self.OTHER_SCN_FIELD2_DEFAULT,
-                otherScnField3=self.OTHER_SCN_FIELD3_DEFAULT,
-                chrExtraField1=self.CHR_EXTRA_FIELD_1_DEFAULT,
-                chrExtraField2=self.CHR_EXTRA_FIELD_2_DEFAULT,
+                noSceneField1=NO_SCENE_FIELD_1_DEFAULT,
+                noSceneField2=NO_SCENE_FIELD_2_DEFAULT,
+                noSceneField3=NO_SCENE_FIELD_3_DEFAULT,
+                otherSceneField1=OTHER_SCENE_FIELD_1_DEFAULT,
+                otherSceneField2=OTHER_SCENE_FIELD_2_DEFAULT,
+                otherSceneField3=OTHER_SCENE_FIELD_3_DEFAULT,
+                chrExtraField1=CR_FIELD_1_DEFAULT,
+                chrExtraField2=CR_FIELD_2_DEFAULT,
             )
             source.read()
             target.novel = source.novel
@@ -346,14 +346,14 @@ class Converter:
             self._check(source, target)
             target.novel = Novel(
                 tree=NvTree(),
-                noScnField1=self.NO_SCN_FIELD1_DEFAULT,
-                noScnField2=self.NO_SCN_FIELD2_DEFAULT,
-                noScnField3=self.NO_SCN_FIELD3_DEFAULT,
-                otherScnField1=self.OTHER_SCN_FIELD1_DEFAULT,
-                otherScnField2=self.OTHER_SCN_FIELD2_DEFAULT,
-                otherScnField3=self.OTHER_SCN_FIELD3_DEFAULT,
-                chrExtraField1=self.CHR_EXTRA_FIELD_1_DEFAULT,
-                chrExtraField2=self.CHR_EXTRA_FIELD_2_DEFAULT,
+                noSceneField1=NO_SCENE_FIELD_1_DEFAULT,
+                noSceneField2=NO_SCENE_FIELD_2_DEFAULT,
+                noSceneField3=NO_SCENE_FIELD_3_DEFAULT,
+                otherSceneField1=OTHER_SCENE_FIELD_1_DEFAULT,
+                otherSceneField2=OTHER_SCENE_FIELD_2_DEFAULT,
+                otherSceneField3=OTHER_SCENE_FIELD_3_DEFAULT,
+                chrExtraField1=CR_FIELD_1_DEFAULT,
+                chrExtraField2=CR_FIELD_2_DEFAULT,
             )
             target.read()
             source.novel = target.novel

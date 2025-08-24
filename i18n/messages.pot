@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.33.0\n"
-"POT-Creation-Date: 2025-08-24 16:06:40\n"
+"POT-Creation-Date: 2025-08-24 20:43:25\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -428,6 +428,9 @@ msgstr ""
 msgid "Detach/Dock Properties"
 msgstr ""
 
+msgid "Development"
+msgstr ""
+
 msgid "Dilemma"
 msgstr ""
 
@@ -581,13 +584,7 @@ msgstr ""
 msgid "Extra field"
 msgstr ""
 
-msgid "Field 1"
-msgstr ""
-
-msgid "Field 2"
-msgstr ""
-
-msgid "Field 3"
+msgid "Field"
 msgstr ""
 
 msgid "Field names"
@@ -1155,6 +1152,9 @@ msgid "Restore backup"
 msgstr ""
 
 msgid "Restore default styles"
+msgstr ""
+
+msgid "Role"
 msgstr ""
 
 msgid "Save"

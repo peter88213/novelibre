@@ -14,6 +14,15 @@ from nvlib.gui.widgets.label_disp import LabelDisp
 from nvlib.gui.widgets.label_entry import LabelEntry
 from nvlib.gui.widgets.my_string_var import MyStringVar
 from nvlib.model.data.py_calendar import PyCalendar
+from nvlib.novx_globals import CR_FIELD_1_DEFAULT
+from nvlib.novx_globals import CR_FIELD_2_DEFAULT
+from nvlib.novx_globals import CR_FIELD_3_DEFAULT
+from nvlib.novx_globals import NO_SCENE_FIELD_1_DEFAULT
+from nvlib.novx_globals import NO_SCENE_FIELD_2_DEFAULT
+from nvlib.novx_globals import NO_SCENE_FIELD_3_DEFAULT
+from nvlib.novx_globals import OTHER_SCENE_FIELD_1_DEFAULT
+from nvlib.novx_globals import OTHER_SCENE_FIELD_2_DEFAULT
+from nvlib.novx_globals import OTHER_SCENE_FIELD_3_DEFAULT
 from nvlib.novx_globals import list_to_string
 from nvlib.nv_globals import get_locale_date_str
 from nvlib.nv_globals import prefs
@@ -247,40 +256,40 @@ class ProjectView(ElementView):
         ).pack(anchor='w')
 
         # No scene: Field 1 entry.
-        self._noScnField1Var = MyStringVar()
-        self._noScnField1Entry = LabelEntry(
+        self._noSceneField1Var = MyStringVar()
+        self._noSceneField1Entry = LabelEntry(
             self._fieldNamesFame,
-            text=_('Field 1'),
-            textvariable=self._noScnField1Var,
+            text=f"{_('Field')} 1",
+            textvariable=self._noSceneField1Var,
             command=self.apply_changes,
             lblWidth=self._LABEL_WIDTH,
         )
-        self._noScnField1Entry.pack(anchor='w')
-        inputWidgets.append(self._noScnField1Entry)
+        self._noSceneField1Entry.pack(anchor='w')
+        inputWidgets.append(self._noSceneField1Entry)
 
         # No scene: Field 2 entry.
-        self._noScnField2Var = MyStringVar()
-        self._noScnField2Entry = LabelEntry(
+        self._noSceneField2Var = MyStringVar()
+        self._noSceneField2Entry = LabelEntry(
             self._fieldNamesFame,
-            text=_('Field 2'),
-            textvariable=self._noScnField2Var,
+            text=f"{_('Field')} 2",
+            textvariable=self._noSceneField2Var,
             command=self.apply_changes,
             lblWidth=self._LABEL_WIDTH,
         )
-        self._noScnField2Entry.pack(anchor='w')
-        inputWidgets.append(self._noScnField2Entry)
+        self._noSceneField2Entry.pack(anchor='w')
+        inputWidgets.append(self._noSceneField2Entry)
 
         # No scene: Field 3 entry.
-        self._noScnField3Var = MyStringVar()
-        self._noScnField3Entry = LabelEntry(
+        self._noSceneField3Var = MyStringVar()
+        self._noSceneField3Entry = LabelEntry(
             self._fieldNamesFame,
-            text=_('Field 3'),
-            textvariable=self._noScnField3Var,
+            text=f"{_('Field')} 3",
+            textvariable=self._noSceneField3Var,
             command=self.apply_changes,
             lblWidth=self._LABEL_WIDTH,
         )
-        self._noScnField3Entry.pack(anchor='w')
-        inputWidgets.append(self._noScnField3Entry)
+        self._noSceneField3Entry.pack(anchor='w')
+        inputWidgets.append(self._noSceneField3Entry)
 
         ttk.Separator(
             self._fieldNamesFame,
@@ -292,40 +301,40 @@ class ProjectView(ElementView):
         ).pack(anchor='w')
 
         # Other scene: Field 1 entry.
-        self._otherScnField1Var = MyStringVar()
-        self._otherScnField1Entry = LabelEntry(
+        self._otherSceneField1Var = MyStringVar()
+        self._otherSceneField1Entry = LabelEntry(
             self._fieldNamesFame,
-            text=_('Field 1'),
-            textvariable=self._otherScnField1Var,
+            text=f"{_('Field')} 1",
+            textvariable=self._otherSceneField1Var,
             command=self.apply_changes,
             lblWidth=self._LABEL_WIDTH,
         )
-        self._otherScnField1Entry.pack(anchor='w')
-        inputWidgets.append(self._otherScnField1Entry)
+        self._otherSceneField1Entry.pack(anchor='w')
+        inputWidgets.append(self._otherSceneField1Entry)
 
         # Other scene: Field 2 entry.
-        self._otherScnField2Var = MyStringVar()
-        self._otherScnField2Entry = LabelEntry(
+        self._otherSceneField2Var = MyStringVar()
+        self._otherSceneField2Entry = LabelEntry(
             self._fieldNamesFame,
-            text=_('Field 2'),
-            textvariable=self._otherScnField2Var,
+            text=f"{_('Field')} 2",
+            textvariable=self._otherSceneField2Var,
             command=self.apply_changes,
             lblWidth=self._LABEL_WIDTH,
         )
-        self._otherScnField2Entry.pack(anchor='w')
-        inputWidgets.append(self._otherScnField2Entry)
+        self._otherSceneField2Entry.pack(anchor='w')
+        inputWidgets.append(self._otherSceneField2Entry)
 
         # Other scene: Field 3 entry.
-        self._otherScnField3Var = MyStringVar()
-        self._otherScnField3Entry = LabelEntry(
+        self._otherSceneField3Var = MyStringVar()
+        self._otherSceneField3Entry = LabelEntry(
             self._fieldNamesFame,
-            text=_('Field 3'),
-            textvariable=self._otherScnField3Var,
+            text=f"{_('Field')} 3",
+            textvariable=self._otherSceneField3Var,
             command=self.apply_changes,
             lblWidth=self._LABEL_WIDTH,
         )
-        self._otherScnField3Entry.pack(anchor='w')
-        inputWidgets.append(self._otherScnField3Entry)
+        self._otherSceneField3Entry.pack(anchor='w')
+        inputWidgets.append(self._otherSceneField3Entry)
 
         ttk.Separator(
             self._fieldNamesFame,
@@ -341,7 +350,7 @@ class ProjectView(ElementView):
         self._chrExtraField1Var = MyStringVar()
         self._chrExtraField1Entry = LabelEntry(
             self._fieldNamesFame,
-            text=_('Extra field 1'),
+            text=f"{_('Extra field')} 1",
             textvariable=self._chrExtraField1Var,
             command=self.apply_changes,
             lblWidth=self._LABEL_WIDTH,
@@ -353,7 +362,7 @@ class ProjectView(ElementView):
         self._chrExtraField2Var = MyStringVar()
         self._chrExtraField2Entry = LabelEntry(
             self._fieldNamesFame,
-            text=_('Extra field 2'),
+            text=f"{_('Extra field')} 2",
             textvariable=self._chrExtraField2Var,
             command=self.apply_changes,
             lblWidth=self._LABEL_WIDTH,
@@ -630,29 +639,29 @@ class ProjectView(ElementView):
         self.element.partHeadingPrefix = self._partHeadingPrefixVar.get()
         self.element.partHeadingSuffix = self._partHeadingSuffixVar.get()
 
-        self.element.noScnField1 = self._noScnField1Var.get(
-            default=self._mdl.NO_SCN_FIELD1_DEFAULT
+        self.element.noSceneField1 = self._noSceneField1Var.get(
+            default=NO_SCENE_FIELD_1_DEFAULT
         )
-        self.element.noScnField2 = self._noScnField2Var.get(
-              default=self._mdl.NO_SCN_FIELD2_DEFAULT
+        self.element.noSceneField2 = self._noSceneField2Var.get(
+              default=NO_SCENE_FIELD_2_DEFAULT
         )
-        self.element.noScnField3 = self._noScnField3Var.get(
-            default=self._mdl.NO_SCN_FIELD3_DEFAULT
+        self.element.noSceneField3 = self._noSceneField3Var.get(
+            default=NO_SCENE_FIELD_3_DEFAULT
         )
-        self.element.otherScnField1 = self._otherScnField1Var.get(
-            default=self._mdl.OTHER_SCN_FIELD1_DEFAULT
+        self.element.otherSceneField1 = self._otherSceneField1Var.get(
+            default=OTHER_SCENE_FIELD_1_DEFAULT
         )
-        self.element.otherScnField2 = self._otherScnField2Var.get(
-            default=self._mdl.OTHER_SCN_FIELD2_DEFAULT
+        self.element.otherSceneField2 = self._otherSceneField2Var.get(
+            default=OTHER_SCENE_FIELD_2_DEFAULT
         )
-        self.element.otherScnField3 = self._otherScnField3Var.get(
-            default=self._mdl.OTHER_SCN_FIELD3_DEFAULT
+        self.element.otherSceneField3 = self._otherSceneField3Var.get(
+            default=OTHER_SCENE_FIELD_3_DEFAULT
         )
         self.element.chrExtraField1 = self._chrExtraField1Var.get(
-            default=self._mdl.CHR_EXTRA_FIELD_1_DEFAULT
+            default=CR_FIELD_1_DEFAULT
         )
         self.element.chrExtraField2 = self._chrExtraField2Var.get(
-            default=self._mdl.CHR_EXTRA_FIELD_2_DEFAULT
+            default=CR_FIELD_2_DEFAULT
         )
 
         #--- "Story time" frame.
@@ -911,12 +920,12 @@ class ProjectView(ElementView):
             self._romanPartNumbersVar.set(False)
 
         #--- "Field names" frame.
-        self._noScnField1Var.set(self.element.noScnField1)
-        self._noScnField2Var.set(self.element.noScnField2)
-        self._noScnField3Var.set(self.element.noScnField3)
-        self._otherScnField1Var.set(self.element.otherScnField1)
-        self._otherScnField2Var.set(self.element.otherScnField2)
-        self._otherScnField3Var.set(self.element.otherScnField3)
+        self._noSceneField1Var.set(self.element.noSceneField1)
+        self._noSceneField2Var.set(self.element.noSceneField2)
+        self._noSceneField3Var.set(self.element.noSceneField3)
+        self._otherSceneField1Var.set(self.element.otherSceneField1)
+        self._otherSceneField2Var.set(self.element.otherSceneField2)
+        self._otherSceneField3Var.set(self.element.otherSceneField3)
         self._chrExtraField1Var.set(self.element.chrExtraField1)
         self._chrExtraField2Var.set(self.element.chrExtraField2)
 

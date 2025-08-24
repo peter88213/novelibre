@@ -54,6 +54,16 @@ STAGES_SUFFIX = '_structure_tmp'
 TIMETABLE_SUFFIX = '_tt_tmp'
 XREF_SUFFIX = '_xref'
 
+NO_SCENE_FIELD_1_DEFAULT = _('Plot progress')
+NO_SCENE_FIELD_2_DEFAULT = _('Characterization')
+NO_SCENE_FIELD_3_DEFAULT = _('World building')
+OTHER_SCENE_FIELD_1_DEFAULT = _('Opening')
+OTHER_SCENE_FIELD_2_DEFAULT = _('Peak emotional moment')
+OTHER_SCENE_FIELD_3_DEFAULT = _('Ending')
+CR_FIELD_1_DEFAULT = _('Goals')
+CR_FIELD_2_DEFAULT = _('Role')
+CR_FIELD_3_DEFAULT = _('Development')
+
 STATUS = [
     None,
     _('Outline'),

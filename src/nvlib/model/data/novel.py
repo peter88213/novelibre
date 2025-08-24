@@ -35,12 +35,12 @@ class Novel(BasicElement):
         chapterHeadingSuffix=None,
         partHeadingPrefix=None,
         partHeadingSuffix=None,
-        noScnField1=None,
-        noScnField2=None,
-        noScnField3=None,
-        otherScnField1=None,
-        otherScnField2=None,
-        otherScnField3=None,
+        noSceneField1=None,
+        noSceneField2=None,
+        noSceneField3=None,
+        otherSceneField1=None,
+        otherSceneField2=None,
+        otherSceneField3=None,
         chrExtraField1=None,
         chrExtraField2=None,
         referenceDate=None,
@@ -65,12 +65,12 @@ class Novel(BasicElement):
         self._chapterHeadingSuffix = chapterHeadingSuffix
         self._partHeadingPrefix = partHeadingPrefix
         self._partHeadingSuffix = partHeadingSuffix
-        self._noScnField1 = noScnField1
-        self._noScnField2 = noScnField2
-        self._noScnField3 = noScnField3
-        self._otherScnField1 = otherScnField1
-        self._otherScnField2 = otherScnField2
-        self._otherScnField3 = otherScnField3
+        self._noSceneField1 = noSceneField1
+        self._noSceneField2 = noSceneField2
+        self._noSceneField3 = noSceneField3
+        self._otherSceneField1 = otherSceneField1
+        self._otherSceneField2 = otherSceneField2
+        self._otherSceneField3 = otherSceneField3
         self._chrExtraField1 = chrExtraField1
         self._chrExtraField2 = chrExtraField2
 
@@ -317,75 +317,75 @@ class Novel(BasicElement):
             self.on_element_change()
 
     @property
-    def noScnField1(self):
-        return self._noScnField1
+    def noSceneField1(self):
+        return self._noSceneField1
 
-    @noScnField1.setter
-    def noScnField1(self, newVal):
+    @noSceneField1.setter
+    def noSceneField1(self, newVal):
         if newVal is not None:
             assert type(newVal) is str
-        if self._noScnField1 != newVal:
-            self._noScnField1 = newVal
+        if self._noSceneField1 != newVal:
+            self._noSceneField1 = newVal
             self.on_element_change()
 
     @property
-    def noScnField2(self):
-        return self._noScnField2
+    def noSceneField2(self):
+        return self._noSceneField2
 
-    @noScnField2.setter
-    def noScnField2(self, newVal):
+    @noSceneField2.setter
+    def noSceneField2(self, newVal):
         if newVal is not None:
             assert type(newVal) is str
-        if self._noScnField2 != newVal:
-            self._noScnField2 = newVal
+        if self._noSceneField2 != newVal:
+            self._noSceneField2 = newVal
             self.on_element_change()
 
     @property
-    def noScnField3(self):
-        return self._noScnField3
+    def noSceneField3(self):
+        return self._noSceneField3
 
-    @noScnField3.setter
-    def noScnField3(self, newVal):
+    @noSceneField3.setter
+    def noSceneField3(self, newVal):
         if newVal is not None:
             assert type(newVal) is str
-        if self._noScnField3 != newVal:
-            self._noScnField3 = newVal
+        if self._noSceneField3 != newVal:
+            self._noSceneField3 = newVal
             self.on_element_change()
 
     @property
-    def otherScnField1(self):
-        return self._otherScnField1
+    def otherSceneField1(self):
+        return self._otherSceneField1
 
-    @otherScnField1.setter
-    def otherScnField1(self, newVal):
+    @otherSceneField1.setter
+    def otherSceneField1(self, newVal):
         if newVal is not None:
             assert type(newVal) is str
-        if self._otherScnField1 != newVal:
-            self._otherScnField1 = newVal
+        if self._otherSceneField1 != newVal:
+            self._otherSceneField1 = newVal
             self.on_element_change()
 
     @property
-    def otherScnField2(self):
-        return self._otherScnField2
+    def otherSceneField2(self):
+        return self._otherSceneField2
 
-    @otherScnField2.setter
-    def otherScnField2(self, newVal):
+    @otherSceneField2.setter
+    def otherSceneField2(self, newVal):
         if newVal is not None:
             assert type(newVal) is str
-        if self._otherScnField2 != newVal:
-            self._otherScnField2 = newVal
+        if self._otherSceneField2 != newVal:
+            self._otherSceneField2 = newVal
             self.on_element_change()
 
     @property
-    def otherScnField3(self):
-        return self._otherScnField3
+    def otherSceneField3(self):
+        return self._otherSceneField3
 
-    @otherScnField3.setter
-    def otherScnField3(self, newVal):
+    @otherSceneField3.setter
+    def otherSceneField3(self, newVal):
         if newVal is not None:
             assert type(newVal) is str
-        if self._otherScnField3 != newVal:
-            self._otherScnField3 = newVal
+        if self._otherSceneField3 != newVal:
+            self._otherSceneField3 = newVal
             self.on_element_change()
 
     @property
@@ -511,37 +511,37 @@ class Novel(BasicElement):
         )
 
         # No scene's fields.
-        self.noScnField1 = self._get_element_text(
+        self.noSceneField1 = self._get_element_text(
             xmlElement,
             'CustomPlotProgress',
-            default=self.noScnField1,
+            default=self.noSceneField1,
         )
-        self.noScnField2 = self._get_element_text(
+        self.noSceneField2 = self._get_element_text(
             xmlElement,
             'CustomCharacterization',
-            default=self.noScnField2,
+            default=self.noSceneField2,
         )
-        self.noScnField3 = self._get_element_text(
+        self.noSceneField3 = self._get_element_text(
             xmlElement,
             'CustomWorldBuilding',
-            default=self.noScnField3,
+            default=self.noSceneField3,
         )
 
         # Other scene's fields.
-        self.otherScnField1 = self._get_element_text(
+        self.otherSceneField1 = self._get_element_text(
             xmlElement,
             'CustomGoal',
-            default=self.otherScnField1,
+            default=self.otherSceneField1,
         )
-        self.otherScnField2 = self._get_element_text(
+        self.otherSceneField2 = self._get_element_text(
             xmlElement,
             'CustomConflict',
-            default=self.otherScnField2,
+            default=self.otherSceneField2,
         )
-        self.otherScnField3 = self._get_element_text(
+        self.otherSceneField3 = self._get_element_text(
             xmlElement,
             'CustomOutcome',
-            default=self.otherScnField3,
+            default=self.otherSceneField3,
         )
 
         # Character extra field 1.
@@ -644,38 +644,38 @@ class Novel(BasicElement):
             ).text = self.partHeadingSuffix
 
         # No scene's fields.
-        if self.noScnField1:
+        if self.noSceneField1:
             ET.SubElement(
                 xmlElement,
                 'CustomPlotProgress',
-            ).text = self.noScnField1
-        if self.noScnField2:
+            ).text = self.noSceneField1
+        if self.noSceneField2:
             ET.SubElement(
                 xmlElement,
                 'CustomCharacterization',
-            ).text = self.noScnField2
-        if self.noScnField3:
+            ).text = self.noSceneField2
+        if self.noSceneField3:
             ET.SubElement(
                 xmlElement,
                 'CustomWorldBuilding',
-            ).text = self.noScnField3
+            ).text = self.noSceneField3
 
         # Other scene's fields.
-        if self.otherScnField1:
+        if self.otherSceneField1:
             ET.SubElement(
                 xmlElement,
                 'CustomGoal',
-            ).text = self.otherScnField1
-        if self.otherScnField2:
+            ).text = self.otherSceneField1
+        if self.otherSceneField2:
             ET.SubElement(
                 xmlElement,
                 'CustomConflict',
-            ).text = self.otherScnField2
-        if self.otherScnField3:
+            ).text = self.otherSceneField2
+        if self.otherSceneField3:
             ET.SubElement(
                 xmlElement,
                 'CustomOutcome',
-            ).text = self.otherScnField3
+            ).text = self.otherSceneField3
 
         # Character Extra field name.
         if self.chrExtraField1:

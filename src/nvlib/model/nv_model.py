@@ -9,6 +9,9 @@ from nvlib.model.data.id_generator import new_id
 from nvlib.model.nv_work_file import NvWorkFile
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
+from nvlib.novx_globals import CR_FIELD_1_DEFAULT
+from nvlib.novx_globals import CR_FIELD_2_DEFAULT
+from nvlib.novx_globals import CR_FIELD_3_DEFAULT
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
 from nvlib.novx_globals import Error
@@ -16,6 +19,12 @@ from nvlib.novx_globals import ITEM_PREFIX
 from nvlib.novx_globals import IT_ROOT
 from nvlib.novx_globals import LC_ROOT
 from nvlib.novx_globals import LOCATION_PREFIX
+from nvlib.novx_globals import NO_SCENE_FIELD_1_DEFAULT
+from nvlib.novx_globals import NO_SCENE_FIELD_2_DEFAULT
+from nvlib.novx_globals import NO_SCENE_FIELD_3_DEFAULT
+from nvlib.novx_globals import OTHER_SCENE_FIELD_1_DEFAULT
+from nvlib.novx_globals import OTHER_SCENE_FIELD_2_DEFAULT
+from nvlib.novx_globals import OTHER_SCENE_FIELD_3_DEFAULT
 from nvlib.novx_globals import PLOT_LINE_PREFIX
 from nvlib.novx_globals import PLOT_POINT_PREFIX
 from nvlib.novx_globals import PL_ROOT
@@ -27,15 +36,6 @@ from nvlib.nv_locale import _
 
 class NvModel:
     """novelibre model representation."""
-
-    NO_SCN_FIELD1_DEFAULT = _('Plot progress')
-    NO_SCN_FIELD2_DEFAULT = _('Characterization')
-    NO_SCN_FIELD3_DEFAULT = _('World building')
-    OTHER_SCN_FIELD1_DEFAULT = _('Opening')
-    OTHER_SCN_FIELD2_DEFAULT = _('Peak emotional moment')
-    OTHER_SCN_FIELD3_DEFAULT = _('Ending')
-    CHR_EXTRA_FIELD_1_DEFAULT = _('Goals')
-    CHR_EXTRA_FIELD_2_DEFAULT = _('Role')
 
     def __init__(self):
         self._observers = []
@@ -452,14 +452,14 @@ class NvModel:
             chapterHeadingSuffix='',
             partHeadingPrefix=f"{_('Part')} ",
             partHeadingSuffix='',
-            noScnField1=self.NO_SCN_FIELD1_DEFAULT,
-            noScnField2=self.NO_SCN_FIELD2_DEFAULT,
-            noScnField3=self.NO_SCN_FIELD3_DEFAULT,
-            otherScnField1=self.OTHER_SCN_FIELD1_DEFAULT,
-            otherScnField2=self.OTHER_SCN_FIELD2_DEFAULT,
-            otherScnField3=self.OTHER_SCN_FIELD3_DEFAULT,
-            chrExtraField1=self.CHR_EXTRA_FIELD_1_DEFAULT,
-            chrExtraField2=self.CHR_EXTRA_FIELD_2_DEFAULT,
+            noSceneField1=NO_SCENE_FIELD_1_DEFAULT,
+            noSceneField2=NO_SCENE_FIELD_2_DEFAULT,
+            noSceneField3=NO_SCENE_FIELD_3_DEFAULT,
+            otherSceneField1=OTHER_SCENE_FIELD_1_DEFAULT,
+            otherSceneField2=OTHER_SCENE_FIELD_2_DEFAULT,
+            otherSceneField3=OTHER_SCENE_FIELD_3_DEFAULT,
+            chrExtraField1=CR_FIELD_1_DEFAULT,
+            chrExtraField2=CR_FIELD_2_DEFAULT,
             links=[],
             tree=tree,
             on_element_change=self.on_element_change,
@@ -883,14 +883,14 @@ class NvModel:
         self.novel = self.nvService.new_novel(
             tree=self.tree,
             links={},
-            noScnField1=self.NO_SCN_FIELD1_DEFAULT,
-            noScnField2=self.NO_SCN_FIELD2_DEFAULT,
-            noScnField3=self.NO_SCN_FIELD3_DEFAULT,
-            otherScnField1=self.OTHER_SCN_FIELD1_DEFAULT,
-            otherScnField2=self.OTHER_SCN_FIELD2_DEFAULT,
-            otherScnField3=self.OTHER_SCN_FIELD3_DEFAULT,
-            chrExtraField1=self.CHR_EXTRA_FIELD_1_DEFAULT,
-            chrExtraField2=self.CHR_EXTRA_FIELD_2_DEFAULT,
+            noSceneField1=NO_SCENE_FIELD_1_DEFAULT,
+            noSceneField2=NO_SCENE_FIELD_2_DEFAULT,
+            noSceneField3=NO_SCENE_FIELD_3_DEFAULT,
+            otherSceneField1=OTHER_SCENE_FIELD_1_DEFAULT,
+            otherSceneField2=OTHER_SCENE_FIELD_2_DEFAULT,
+            otherSceneField3=OTHER_SCENE_FIELD_3_DEFAULT,
+            chrExtraField1=CR_FIELD_1_DEFAULT,
+            chrExtraField2=CR_FIELD_2_DEFAULT,
         )
         self.prjFile = NvWorkFile(filePath)
         self.prjFile.novel = self.novel

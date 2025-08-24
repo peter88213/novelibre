@@ -373,41 +373,41 @@ class FileExport(File):
         return lines
 
     def _get_field_names(self):
-        if self.novel.noScnField1:
-            noScnField1 = self.novel.noScnField1
+        if self.novel.noSceneField1:
+            noSceneField1 = self.novel.noSceneField1
         else:
-            noScnField1 = _('Field 1')
-        if self.novel.noScnField2:
-            noScnField2 = self.novel.noScnField2
+            noSceneField1 = f"{_('Field')} 1"
+        if self.novel.noSceneField2:
+            noSceneField2 = self.novel.noSceneField2
         else:
-            noScnField2 = _('Field 2')
-        if self.novel.noScnField3:
-            noScnField3 = self.novel.noScnField3
+            noSceneField2 = f"{_('Field')} 2"
+        if self.novel.noSceneField3:
+            noSceneField3 = self.novel.noSceneField3
         else:
-            noScnField3 = _('Field 3')
-        if self.novel.otherScnField1:
-            otherScnField1 = self.novel.otherScnField1
+            noSceneField3 = f"{_('Field')} 3"
+        if self.novel.otherSceneField1:
+            otherSceneField1 = self.novel.otherSceneField1
         else:
-            otherScnField1 = _('Field 1')
-        if self.novel.otherScnField2:
-            otherScnField2 = self.novel.otherScnField2
+            otherSceneField1 = f"{_('Field')} 1"
+        if self.novel.otherSceneField2:
+            otherSceneField2 = self.novel.otherSceneField2
         else:
-            otherScnField2 = _('Field 2')
-        if self.novel.otherScnField3:
-            otherScnField3 = self.novel.otherScnField3
+            otherSceneField2 = f"{_('Field')} 2"
+        if self.novel.otherSceneField3:
+            otherSceneField3 = self.novel.otherSceneField3
         else:
-            otherScnField3 = _('Field 3')
+            otherSceneField3 = f"{_('Field')} 3"
         if self.novel.chrExtraField1:
             chrExtraField = self.novel.chrExtraField1
         else:
             chrExtraField = _('Extra field')
         return (
-            noScnField1,
-            noScnField2,
-            noScnField3,
-            otherScnField1,
-            otherScnField2,
-            otherScnField3,
+            noSceneField1,
+            noSceneField2,
+            noSceneField3,
+            otherSceneField1,
+            otherSceneField2,
+            otherSceneField3,
             _('Bio'),
             chrExtraField,
         )
@@ -470,12 +470,12 @@ class FileExport(File):
             else:
                 filters = ''
             (
-                noScnField1,
-                noScnField2,
-                noScnField3,
-                otherScnField1,
-                otherScnField2,
-                otherScnField3,
+                noSceneField1,
+                noSceneField2,
+                noSceneField3,
+                otherSceneField1,
+                otherSceneField2,
+                otherSceneField3,
                 chrBio,
                 chrExtraField
             ) = self._get_field_names()
@@ -494,22 +494,22 @@ class FileExport(File):
             Language=self.novel.languageCode,
             Country=self.novel.countryCode,
 
-            NotASceneField1=noScnField1,
-            NotASceneField2=noScnField2,
-            NotASceneField3=noScnField3,
-            OtherSceneField1=otherScnField1,
-            OtherSceneField2=otherScnField2,
-            OtherSceneField3=otherScnField3,
+            NotASceneField1=noSceneField1,
+            NotASceneField2=noSceneField2,
+            NotASceneField3=noSceneField3,
+            OtherSceneField1=otherSceneField1,
+            OtherSceneField2=otherSceneField2,
+            OtherSceneField3=otherSceneField3,
             CharacterExtraField=chrExtraField,
 
             # Deprecated placeholders.
             # TODO: Remove in version 6.
-            CustomPlotProgress=noScnField1,
-            CustomCharacterization=noScnField2,
-            CustomWorldBuilding=noScnField3,
-            CustomGoal=otherScnField1,
-            CustomConflict=otherScnField2,
-            CustomOutcome=otherScnField3,
+            CustomPlotProgress=noSceneField1,
+            CustomCharacterization=noSceneField2,
+            CustomWorldBuilding=noSceneField3,
+            CustomGoal=otherSceneField1,
+            CustomConflict=otherSceneField2,
+            CustomOutcome=otherSceneField3,
             CustomChrBio=chrBio,
             CustomChrGoals=chrExtraField
         )
@@ -913,12 +913,12 @@ class FileExport(File):
 
         duration = f'{days}{hours}{minutes}'
         (
-            noScnField1,
-            noScnField2,
-            noScnField3,
-            otherScnField1,
-            otherScnField2,
-            otherScnField3,
+            noSceneField1,
+            noSceneField2,
+            noSceneField3,
+            otherSceneField1,
+            otherSceneField2,
+            otherSceneField3,
             __,
             __,
         ) = self._get_field_names()
@@ -982,21 +982,21 @@ class FileExport(File):
             ManuscriptSuffix=MANUSCRIPT_SUFFIX,
             SectionsSuffix=SECTIONS_SUFFIX,
 
-            NotASceneField1=noScnField1,
-            NotASceneField2=noScnField2,
-            NotASceneField3=noScnField3,
-            OtherSceneField1=otherScnField1,
-            OtherSceneField2=otherScnField2,
-            OtherSceneField3=otherScnField3,
+            NotASceneField1=noSceneField1,
+            NotASceneField2=noSceneField2,
+            NotASceneField3=noSceneField3,
+            OtherSceneField1=otherSceneField1,
+            OtherSceneField2=otherSceneField2,
+            OtherSceneField3=otherSceneField3,
 
             # Deprecated placeholders.
             # TODO: Remove in version 6.
-            CustomPlotProgress=noScnField1,
-            CustomCharacterization=noScnField2,
-            CustomWorldBuilding=noScnField3,
-            CustomGoal=otherScnField1,
-            CustomConflict=otherScnField2,
-            CustomOutcome=otherScnField3,
+            CustomPlotProgress=noSceneField1,
+            CustomCharacterization=noSceneField2,
+            CustomWorldBuilding=noSceneField3,
+            CustomGoal=otherSceneField1,
+            CustomConflict=otherSceneField2,
+            CustomOutcome=otherSceneField3,
         )
         return sectionMapping
 
