@@ -93,13 +93,21 @@ class OdsRCharList(OdsReader):
             else:
                 self.novel.characters[crId].notes = notes.rstrip()
 
-            #--- goals
+            #--- field 1
             try:
                 goals = self._columns['Goals'][crId]
             except:
                 pass
             else:
                 self.novel.characters[crId].goals = goals.rstrip()
+
+            #--- field 2
+            try:
+                field2 = self._columns['Field2'][crId]
+            except:
+                pass
+            else:
+                self.novel.characters[crId].field2 = field2.rstrip()
 
             #--- bio
             try:

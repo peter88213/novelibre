@@ -322,6 +322,9 @@ class FileExport(File):
             Goals=self._convert_from_novx(
                 self.novel.characters[crId].goals,
             ),
+            Field2=self._convert_from_novx(
+                self.novel.characters[crId].field2,
+            ),
             FullName=self._convert_from_novx(
                 self.novel.characters[crId].fullName,
                 quick=True,

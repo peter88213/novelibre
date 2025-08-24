@@ -54,7 +54,8 @@ class Converter:
     OTHER_SCN_FIELD1_DEFAULT = _('Opening')
     OTHER_SCN_FIELD2_DEFAULT = _('Peak emotional moment')
     OTHER_SCN_FIELD3_DEFAULT = _('Ending')
-    CHR_EXTRA_FIELD_DEFAULT = _('Goals')
+    CHR_EXTRA_FIELD_1_DEFAULT = _('Goals')
+    CHR_EXTRA_FIELD_2_DEFAULT = _('Role')
 
     def __init__(self):
         """Create strategy class instances."""
@@ -243,7 +244,8 @@ class Converter:
                     otherScnField1=self.OTHER_SCN_FIELD1_DEFAULT,
                     otherScnField2=self.OTHER_SCN_FIELD2_DEFAULT,
                     otherScnField3=self.OTHER_SCN_FIELD3_DEFAULT,
-                    chrExtraField=self.CHR_EXTRA_FIELD_DEFAULT,
+                    chrExtraField1=self.CHR_EXTRA_FIELD_1_DEFAULT,
+                    chrExtraField2=self.CHR_EXTRA_FIELD_2_DEFAULT,
                 )
                 source.novel.check_locale()
                 source.read()
@@ -296,7 +298,8 @@ class Converter:
                 otherScnField1=self.OTHER_SCN_FIELD1_DEFAULT,
                 otherScnField2=self.OTHER_SCN_FIELD2_DEFAULT,
                 otherScnField3=self.OTHER_SCN_FIELD3_DEFAULT,
-                chrExtraField=self.CHR_EXTRA_FIELD_DEFAULT,
+                chrExtraField1=self.CHR_EXTRA_FIELD_1_DEFAULT,
+                chrExtraField2=self.CHR_EXTRA_FIELD_2_DEFAULT,
             )
             source.read()
             target.novel = source.novel
@@ -349,7 +352,8 @@ class Converter:
                 otherScnField1=self.OTHER_SCN_FIELD1_DEFAULT,
                 otherScnField2=self.OTHER_SCN_FIELD2_DEFAULT,
                 otherScnField3=self.OTHER_SCN_FIELD3_DEFAULT,
-                chrExtraField=self.CHR_EXTRA_FIELD_DEFAULT,
+                chrExtraField1=self.CHR_EXTRA_FIELD_1_DEFAULT,
+                chrExtraField2=self.CHR_EXTRA_FIELD_2_DEFAULT,
             )
             target.read()
             source.novel = target.novel

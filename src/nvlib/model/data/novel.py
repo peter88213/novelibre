@@ -41,7 +41,8 @@ class Novel(BasicElement):
         otherScnField1=None,
         otherScnField2=None,
         otherScnField3=None,
-        chrExtraField=None,
+        chrExtraField1=None,
+        chrExtraField2=None,
         referenceDate=None,
         tree=None,
         **kwargs
@@ -70,7 +71,8 @@ class Novel(BasicElement):
         self._otherScnField1 = otherScnField1
         self._otherScnField2 = otherScnField2
         self._otherScnField3 = otherScnField3
-        self._chrExtraField = chrExtraField
+        self._chrExtraField1 = chrExtraField1
+        self._chrExtraField2 = chrExtraField2
 
         self.chapters = {}
         # key = chapter ID, value = Chapter instance.
@@ -388,14 +390,26 @@ class Novel(BasicElement):
 
     @property
     def chrExtraField1(self):
-        return self._chrExtraField
+        return self._chrExtraField1
 
     @chrExtraField1.setter
     def chrExtraField1(self, newVal):
         if newVal is not None:
             assert type(newVal) is str
-        if self._chrExtraField != newVal:
-            self._chrExtraField = newVal
+        if self._chrExtraField1 != newVal:
+            self._chrExtraField1 = newVal
+            self.on_element_change()
+
+    @property
+    def chrExtraField2(self):
+        return self._chrExtraField2
+
+    @chrExtraField2.setter
+    def chrExtraField2(self, newVal):
+        if newVal is not None:
+            assert type(newVal) is str
+        if self._chrExtraField2 != newVal:
+            self._chrExtraField2 = newVal
             self.on_element_change()
 
     @property

@@ -85,6 +85,13 @@ class OdtRCharacters(OdtReader):
                 self._section = None
                 return
 
+            if self._section == 'field2':
+                self.novel.characters[self._crId].field2 = ''.join(
+                    self._lines).rstrip()
+                self._lines.clear()
+                self._section = None
+                return
+
             if self._section == 'notes':
                 self.novel.characters[self._crId].notes = ''.join(
                     self._lines).rstrip()

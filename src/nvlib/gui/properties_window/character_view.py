@@ -26,6 +26,7 @@ class CharacterView(WorldElementView):
     - A "Full name" entry.
     - A "Bio" folding frame.
     - A "Character extra field 1" folding frame.
+    - A "Character extra field 2" folding frame.
     """
     _HELP_PAGE = 'character_view.html'
     _LABEL_WIDTH = 15
@@ -161,6 +162,43 @@ class CharacterView(WorldElementView):
         self._chrExtraField1Box.pack(fill='x')
         inputWidgets.append(self._chrExtraField1Box)
 
+        ttk.Separator(
+            self._elementInfoWindow,
+            orient='horizontal'
+        ).pack(fill='x')
+
+        #--- 'Character sextra field 2' entry.
+        self._chrExtraField2Frame = FoldingFrame(
+            self._elementInfoWindow,
+            '',
+            self._toggle_chrExtraField2_window,
+        )
+
+        # Character extra field 2 preview.
+        self._chrExtraField2PreviewVar = MyStringVar()
+        chrExtraFieldPreview = ttk.Label(
+            self._chrExtraField2Frame.titleBar,
+            textvariable=self._chrExtraField2PreviewVar,
+        )
+        chrExtraFieldPreview.pack(side='left', padx=2)
+        chrExtraFieldPreview.bind('<Button-1>', self._toggle_chrExtraField2_window)
+
+        self._chrExtraField2Box = TextBox(self._chrExtraField2Frame,
+            wrap='word',
+            undo=True,
+            autoseparators=True,
+            maxundo=-1,
+            height=10,
+            width=10,
+            padx=5,
+            pady=5,
+            bg=prefs['color_text_bg'],
+            fg=prefs['color_text_fg'],
+            insertbackground=prefs['color_text_fg'],
+        )
+        self._chrExtraField2Box.pack(fill='x')
+        inputWidgets.append(self._chrExtraField2Box)
+
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)
             self.inputWidgets.append(widget)
@@ -227,6 +265,10 @@ class CharacterView(WorldElementView):
         if self._chrExtraField1Box.hasChanged:
             self.element.goals = self._chrExtraField1Box.get_text()
 
+        #--- "Character extra field 2" entry.
+        if self._chrExtraField2Box.hasChanged:
+            self.element.field2 = self._chrExtraField2Box.get_text()
+
     def configure_display(self):
         """Expand or collapse the property frames."""
         super().configure_display()
@@ -263,6 +305,21 @@ class CharacterView(WorldElementView):
             else:
                 self._chrExtraField1PreviewVar.set('')
 
+        #--- Character extra field 2 frame.
+        if self._mdl.novel.chrExtraField2:
+            self._chrExtraField2Frame.buttonText = self._mdl.novel.chrExtraField2
+        else:
+            self._chrExtraField2Frame.buttonText = f"{_('Extra field')} 2"
+        if prefs['show_chr_extra_field_2']:
+            self._chrExtraField2Frame.show()
+            self._chrExtraField2PreviewVar.set('')
+        else:
+            self._chrExtraField2Frame.hide()
+            if self.element.field2:
+                self._chrExtraField2PreviewVar.set(self._CHECK)
+            else:
+                self._chrExtraField2PreviewVar.set('')
+
     def set_data(self, elementId):
         """Update the view with element data.
         
@@ -288,6 +345,9 @@ class CharacterView(WorldElementView):
 
         #--- "Character extra field 1" entry.
         self._chrExtraField1Box.set_text(self.element.goals)
+
+        #--- "Character extra field 2" entry.
+        self._chrExtraField2Box.set_text(self.element.field2)
 
     def _create_frames(self):
         # Template method for creating the frames in the right pane.
@@ -316,5 +376,15 @@ class CharacterView(WorldElementView):
         else:
             self._chrExtraField1Frame.show()
             prefs['show_chr_extra_field_1'] = True
+        self._toggle_folding_frame()
+
+    def _toggle_chrExtraField2_window(self, event=None):
+        # Hide/show the 'Character extra field 1' textbox.
+        if prefs['show_chr_extra_field_2']:
+            self._chrExtraField2Frame.hide()
+            prefs['show_chr_extra_field_2'] = False
+        else:
+            self._chrExtraField2Frame.show()
+            prefs['show_chr_extra_field_2'] = True
         self._toggle_folding_frame()
 

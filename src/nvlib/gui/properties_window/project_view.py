@@ -337,17 +337,29 @@ class ProjectView(ElementView):
             text=_('Character'),
         ).pack(anchor='w'),
 
-        # 'Extra field' entry.
-        self._chrExtraFieldVar = MyStringVar()
-        self._chrExtraFieldEntry = LabelEntry(
+        # 'Extra field 1' entry.
+        self._chrExtraField1Var = MyStringVar()
+        self._chrExtraField1Entry = LabelEntry(
             self._fieldNamesFame,
-            text=_('Extra field'),
-            textvariable=self._chrExtraFieldVar,
+            text=_('Extra field 1'),
+            textvariable=self._chrExtraField1Var,
             command=self.apply_changes,
             lblWidth=self._LABEL_WIDTH,
         )
-        self._chrExtraFieldEntry.pack(anchor='w')
-        inputWidgets.append(self._chrExtraFieldEntry)
+        self._chrExtraField1Entry.pack(anchor='w')
+        inputWidgets.append(self._chrExtraField1Entry)
+
+        # 'Extra field 2' entry.
+        self._chrExtraField2Var = MyStringVar()
+        self._chrExtraField2Entry = LabelEntry(
+            self._fieldNamesFame,
+            text=_('Extra field 2'),
+            textvariable=self._chrExtraField2Var,
+            command=self.apply_changes,
+            lblWidth=self._LABEL_WIDTH,
+        )
+        self._chrExtraField2Entry.pack(anchor='w')
+        inputWidgets.append(self._chrExtraField2Entry)
 
         #--- "Story time" frame.
         self._narrativeTimeFrame = FoldingFrame(
@@ -636,8 +648,11 @@ class ProjectView(ElementView):
         self.element.otherScnField3 = self._otherScnField3Var.get(
             default=self._mdl.OTHER_SCN_FIELD3_DEFAULT
         )
-        self.element.chrExtraField1 = self._chrExtraFieldVar.get(
-            default=self._mdl.CHR_EXTRA_FIELD_DEFAULT
+        self.element.chrExtraField1 = self._chrExtraField1Var.get(
+            default=self._mdl.CHR_EXTRA_FIELD_1_DEFAULT
+        )
+        self.element.chrExtraField2 = self._chrExtraField2Var.get(
+            default=self._mdl.CHR_EXTRA_FIELD_2_DEFAULT
         )
 
         #--- "Story time" frame.
@@ -902,7 +917,8 @@ class ProjectView(ElementView):
         self._otherScnField1Var.set(self.element.otherScnField1)
         self._otherScnField2Var.set(self.element.otherScnField2)
         self._otherScnField3Var.set(self.element.otherScnField3)
-        self._chrExtraFieldVar.set(self.element.chrExtraField1)
+        self._chrExtraField1Var.set(self.element.chrExtraField1)
+        self._chrExtraField2Var.set(self.element.chrExtraField2)
 
         #--- "Story time" frame
         self._referenceDateVar.set(self.element.referenceDate)

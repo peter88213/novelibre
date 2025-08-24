@@ -34,7 +34,8 @@ class NvModel:
     OTHER_SCN_FIELD1_DEFAULT = _('Opening')
     OTHER_SCN_FIELD2_DEFAULT = _('Peak emotional moment')
     OTHER_SCN_FIELD3_DEFAULT = _('Ending')
-    CHR_EXTRA_FIELD_DEFAULT = _('Goals')
+    CHR_EXTRA_FIELD_1_DEFAULT = _('Goals')
+    CHR_EXTRA_FIELD_2_DEFAULT = _('Role')
 
     def __init__(self):
         self._observers = []
@@ -457,7 +458,8 @@ class NvModel:
             otherScnField1=self.OTHER_SCN_FIELD1_DEFAULT,
             otherScnField2=self.OTHER_SCN_FIELD2_DEFAULT,
             otherScnField3=self.OTHER_SCN_FIELD3_DEFAULT,
-            chrExtraField=self.CHR_EXTRA_FIELD_DEFAULT,
+            chrExtraField1=self.CHR_EXTRA_FIELD_1_DEFAULT,
+            chrExtraField2=self.CHR_EXTRA_FIELD_2_DEFAULT,
             links=[],
             tree=tree,
             on_element_change=self.on_element_change,
@@ -887,7 +889,8 @@ class NvModel:
             otherScnField1=self.OTHER_SCN_FIELD1_DEFAULT,
             otherScnField2=self.OTHER_SCN_FIELD2_DEFAULT,
             otherScnField3=self.OTHER_SCN_FIELD3_DEFAULT,
-            chrExtraField=self.CHR_EXTRA_FIELD_DEFAULT,
+            chrExtraField1=self.CHR_EXTRA_FIELD_1_DEFAULT,
+            chrExtraField2=self.CHR_EXTRA_FIELD_2_DEFAULT,
         )
         self.prjFile = NvWorkFile(filePath)
         self.prjFile.novel = self.novel
