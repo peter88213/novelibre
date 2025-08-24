@@ -25,7 +25,7 @@ class CharacterView(WorldElementView):
     Adds to the right pane:
     - A "Full name" entry.
     - A "Bio" folding frame.
-    - A "Goals" folding frame.
+    - A "Character extra field" folding frame.
     """
     _HELP_PAGE = 'character_view.html'
     _LABEL_WIDTH = 15
@@ -129,23 +129,23 @@ class CharacterView(WorldElementView):
             orient='horizontal'
         ).pack(fill='x')
 
-        #--- 'Goals' entry.
-        self._goalsFrame = FoldingFrame(
+        #--- 'Character extra field' entry.
+        self._chrExtraFieldFrame = FoldingFrame(
             self._elementInfoWindow,
             '',
-            self._toggle_goals_window,
+            self._toggle_chrExtraField_window,
         )
 
-        # Goals preview.
-        self._goalsPreviewVar = MyStringVar()
-        goalsPreview = ttk.Label(
-            self._goalsFrame.titleBar,
-            textvariable=self._goalsPreviewVar,
+        # Character extra field preview.
+        self._chrExtraFieldPreviewVar = MyStringVar()
+        chrExtraFieldPreview = ttk.Label(
+            self._chrExtraFieldFrame.titleBar,
+            textvariable=self._chrExtraFieldPreviewVar,
         )
-        goalsPreview.pack(side='left', padx=2)
-        goalsPreview.bind('<Button-1>', self._toggle_goals_window)
+        chrExtraFieldPreview.pack(side='left', padx=2)
+        chrExtraFieldPreview.bind('<Button-1>', self._toggle_chrExtraField_window)
 
-        self._goalsBox = TextBox(self._goalsFrame,
+        self._chrExtraFieldBox = TextBox(self._chrExtraFieldFrame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -158,8 +158,8 @@ class CharacterView(WorldElementView):
             fg=prefs['color_text_fg'],
             insertbackground=prefs['color_text_fg'],
         )
-        self._goalsBox.pack(fill='x')
-        inputWidgets.append(self._goalsBox)
+        self._chrExtraFieldBox.pack(fill='x')
+        inputWidgets.append(self._chrExtraFieldBox)
 
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)
@@ -223,19 +223,16 @@ class CharacterView(WorldElementView):
             else:
                 self.element.deathDate = deathDateStr
 
-        #--- "Goals" entry.
-        if self._goalsBox.hasChanged:
-            self.element.goals = self._goalsBox.get_text()
+        #--- "Character extra field" entry.
+        if self._chrExtraFieldBox.hasChanged:
+            self.element.goals = self._chrExtraFieldBox.get_text()
 
     def configure_display(self):
         """Expand or collapse the property frames."""
         super().configure_display()
 
         #--- Bio frame.
-        if self._mdl.novel.customChrBio:
-            self._bioFrame.buttonText = self._mdl.novel.customChrBio
-        else:
-            self._bioFrame.buttonText = _('Bio')
+        self._bioFrame.buttonText = _('Bio')
         if prefs['show_cr_bio']:
             self._bioFrame.show()
             self._bioPreviewVar.set('')
@@ -251,20 +248,20 @@ class CharacterView(WorldElementView):
             self._bioPreviewVar.set(
                 list_to_string(bio, divider=' '))
 
-        #--- Goals frame.
-        if self._mdl.novel.customChrGoals:
-            self._goalsFrame.buttonText = self._mdl.novel.customChrGoals
+        #--- Character extra field frame.
+        if self._mdl.novel.chrExtraField:
+            self._chrExtraFieldFrame.buttonText = self._mdl.novel.chrExtraField
         else:
-            self._goalsFrame.buttonText = _('Goals')
-        if prefs['show_cr_goals']:
-            self._goalsFrame.show()
-            self._goalsPreviewVar.set('')
+            self._chrExtraFieldFrame.buttonText = _('Extra field')
+        if prefs['show_chr_extra_field']:
+            self._chrExtraFieldFrame.show()
+            self._chrExtraFieldPreviewVar.set('')
         else:
-            self._goalsFrame.hide()
+            self._chrExtraFieldFrame.hide()
             if self.element.goals:
-                self._goalsPreviewVar.set(self._CHECK)
+                self._chrExtraFieldPreviewVar.set(self._CHECK)
             else:
-                self._goalsPreviewVar.set('')
+                self._chrExtraFieldPreviewVar.set('')
 
     def set_data(self, elementId):
         """Update the view with element data.
@@ -289,8 +286,8 @@ class CharacterView(WorldElementView):
         self._birthDateVar.set(self.element.birthDate)
         self._deathDateVar.set(self.element.deathDate)
 
-        #--- "Goals" entry.
-        self._goalsBox.set_text(self.element.goals)
+        #--- "Character extra field" entry.
+        self._chrExtraFieldBox.set_text(self.element.goals)
 
     def _create_frames(self):
         # Template method for creating the frames in the right pane.
@@ -311,13 +308,13 @@ class CharacterView(WorldElementView):
             prefs['show_cr_bio'] = True
         self._toggle_folding_frame()
 
-    def _toggle_goals_window(self, event=None):
-        # Hide/show the 'Goals' textbox.
-        if prefs['show_cr_goals']:
-            self._goalsFrame.hide()
-            prefs['show_cr_goals'] = False
+    def _toggle_chrExtraField_window(self, event=None):
+        # Hide/show the 'Character extra field' textbox.
+        if prefs['show_chr_extra_field']:
+            self._chrExtraFieldFrame.hide()
+            prefs['show_chr_extra_field'] = False
         else:
-            self._goalsFrame.show()
-            prefs['show_cr_goals'] = True
+            self._chrExtraFieldFrame.show()
+            prefs['show_chr_extra_field'] = True
         self._toggle_folding_frame()
 

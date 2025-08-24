@@ -160,7 +160,7 @@ class NovxFile(File):
             self._read_project_notes(xmlRoot)
             self.adjust_section_types()
             self._read_word_count_log(xmlRoot)
-        except Exception as ex:
+        except ZeroDivisionError as ex:
             raise Error(f"{_('Corrupt project data')} ({str(ex)})")
         self._get_timestamp()
         self._keep_word_count()

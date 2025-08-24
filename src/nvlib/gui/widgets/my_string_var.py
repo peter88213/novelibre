@@ -20,12 +20,14 @@ class MyStringVar(tk.StringVar):
             value = ''
         super().set(value)
 
-    def get(self):
-        """Replace an empty string with None.
+    def get(self, default=None):
+        """Replace an empty string with default.
         
         Extends the superclass method.
         """
         value = super().get()
         if value == '':
-            value = None
+            value = default
+            if default is not None:
+                self.set(default)
         return value

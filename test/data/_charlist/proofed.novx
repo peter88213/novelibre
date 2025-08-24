@@ -10,6 +10,13 @@
       <p>Combining relentless action with non-stop laughs, Hal Spacejock explodes onto the science fiction scene with the subtlety of a meteor strike and the hushed reverence of a used car salesman.</p>
     </Desc>
     <Author>Simon Haynes</Author>
+    <CustomPlotProgress>Plot progress</CustomPlotProgress>
+    <CustomCharacterization>Characterization</CustomCharacterization>
+    <CustomWorldBuilding>World building</CustomWorldBuilding>
+    <CustomGoal>Opening</CustomGoal>
+    <CustomConflict>Peak em. moment</CustomConflict>
+    <CustomOutcome>Ending</CustomOutcome>
+    <CustomChrGoals>Goals</CustomChrGoals>
   </PROJECT>
   <CHAPTERS>
     <CHAPTER id="ch33" type="1">

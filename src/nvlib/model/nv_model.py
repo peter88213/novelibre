@@ -28,6 +28,14 @@ from nvlib.nv_locale import _
 class NvModel:
     """novelibre model representation."""
 
+    NO_SCN_FIELD1_DEFAULT = _('Plot progress')
+    NO_SCN_FIELD2_DEFAULT = _('Characterization')
+    NO_SCN_FIELD3_DEFAULT = _('World building')
+    OTHER_SCN_FIELD1_DEFAULT = _('Opening')
+    OTHER_SCN_FIELD2_DEFAULT = _('Peak em. moment')
+    OTHER_SCN_FIELD3_DEFAULT = _('Ending')
+    CHR_EXTRA_FIELD_DEFAULT = _('Goals')
+
     def __init__(self):
         self._observers = []
         # list of Observer instance references
@@ -443,11 +451,13 @@ class NvModel:
             chapterHeadingSuffix='',
             partHeadingPrefix=f"{_('Part')} ",
             partHeadingSuffix='',
-            customGoal='',
-            customConflict='',
-            customOutcome='',
-            customChrBio='',
-            customChrGoals='',
+            noScnField1=self.NO_SCN_FIELD1_DEFAULT,
+            noScnField2=self.NO_SCN_FIELD2_DEFAULT,
+            noScnField3=self.NO_SCN_FIELD3_DEFAULT,
+            otherScnField1=self.OTHER_SCN_FIELD1_DEFAULT,
+            otherScnField2=self.OTHER_SCN_FIELD2_DEFAULT,
+            otherScnField3=self.OTHER_SCN_FIELD3_DEFAULT,
+            chrExtraField=self.CHR_EXTRA_FIELD_DEFAULT,
             links=[],
             tree=tree,
             on_element_change=self.on_element_change,
@@ -868,7 +878,17 @@ class NvModel:
         Positional arguments:
             filePath: str -- path to the prjFile file.
         """
-        self.novel = self.nvService.new_novel(tree=self.tree, links={})
+        self.novel = self.nvService.new_novel(
+            tree=self.tree,
+            links={},
+            noScnField1=self.NO_SCN_FIELD1_DEFAULT,
+            noScnField2=self.NO_SCN_FIELD2_DEFAULT,
+            noScnField3=self.NO_SCN_FIELD3_DEFAULT,
+            otherScnField1=self.OTHER_SCN_FIELD1_DEFAULT,
+            otherScnField2=self.OTHER_SCN_FIELD2_DEFAULT,
+            otherScnField3=self.OTHER_SCN_FIELD3_DEFAULT,
+            chrExtraField=self.CHR_EXTRA_FIELD_DEFAULT,
+        )
         self.prjFile = NvWorkFile(filePath)
         self.prjFile.novel = self.novel
         self.prjFile.read()

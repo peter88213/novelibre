@@ -231,144 +231,123 @@ class ProjectView(ElementView):
         self._romanPartNumbersCheckbox.pack(anchor='w')
         inputWidgets.append(self._romanPartNumbersCheckbox)
 
-        #--- "Renamings" frame.
-        self._renamingsFrame = FoldingFrame(
-            self._elementInfoWindow, _('Renamings'),
-            self._toggle_renamings_frame,
+        #--- "Field names" frame.
+        self._fieldNamesFame = FoldingFrame(
+            self._elementInfoWindow, _('Field names'),
+            self._toggle_field_names_frame,
         )
-
-        # Renamings  preview.
-        self._renamingsPreviewVar = MyStringVar()
-        renamingsPreview = ttk.Label(
-            self._renamingsFrame.titleBar,
-            textvariable=self._renamingsPreviewVar,
-        )
-        renamingsPreview.pack(side='left', padx=2)
-        renamingsPreview.bind('<Button-1>', self._toggle_renamings_frame)
 
         ttk.Separator(
             self._elementInfoWindow,
             orient='horizontal',
         ).pack(fill='x')
         ttk.Label(
-            self._renamingsFrame,
+            self._fieldNamesFame,
             text=_('Not a scene'),
         ).pack(anchor='w')
 
-        # Custom 'Plot progress' entry.
-        self._customPlotProgressVar = MyStringVar()
-        self._customPlotProgressEntry = LabelEntry(
-            self._renamingsFrame,
-            text=_('Plot progress'),
-            textvariable=self._customPlotProgressVar,
+        # No scene: Field 1 entry.
+        self._noScnField1Var = MyStringVar()
+        self._noScnField1Entry = LabelEntry(
+            self._fieldNamesFame,
+            text=_('Field 1'),
+            textvariable=self._noScnField1Var,
             command=self.apply_changes,
             lblWidth=self._LABEL_WIDTH,
         )
-        self._customPlotProgressEntry.pack(anchor='w')
-        inputWidgets.append(self._customPlotProgressEntry)
+        self._noScnField1Entry.pack(anchor='w')
+        inputWidgets.append(self._noScnField1Entry)
 
-        # Custom 'Characterization' entry.
-        self._customCharacterizationVar = MyStringVar()
-        self._customCharacterizationEntry = LabelEntry(
-            self._renamingsFrame,
-            text=_('Characterization'),
-            textvariable=self._customCharacterizationVar,
+        # No scene: Field 2 entry.
+        self._noScnField2Var = MyStringVar()
+        self._noScnField2Entry = LabelEntry(
+            self._fieldNamesFame,
+            text=_('Field 2'),
+            textvariable=self._noScnField2Var,
             command=self.apply_changes,
             lblWidth=self._LABEL_WIDTH,
         )
-        self._customCharacterizationEntry.pack(anchor='w')
-        inputWidgets.append(self._customCharacterizationEntry)
+        self._noScnField2Entry.pack(anchor='w')
+        inputWidgets.append(self._noScnField2Entry)
 
-        # Custom 'World building' entry.
-        self._customWorldBuildingVar = MyStringVar()
-        self._customWorldBuildingEntry = LabelEntry(
-            self._renamingsFrame,
-            text=_('World building'),
-            textvariable=self._customWorldBuildingVar,
+        # No scene: Field 3 entry.
+        self._noScnField3Var = MyStringVar()
+        self._noScnField3Entry = LabelEntry(
+            self._fieldNamesFame,
+            text=_('Field 3'),
+            textvariable=self._noScnField3Var,
             command=self.apply_changes,
             lblWidth=self._LABEL_WIDTH,
         )
-        self._customWorldBuildingEntry.pack(anchor='w')
-        inputWidgets.append(self._customWorldBuildingEntry)
+        self._noScnField3Entry.pack(anchor='w')
+        inputWidgets.append(self._noScnField3Entry)
 
         ttk.Separator(
-            self._renamingsFrame,
+            self._fieldNamesFame,
             orient='horizontal',
         ).pack(fill='x', pady=5)
         ttk.Label(
-            self._renamingsFrame,
+            self._fieldNamesFame,
             text=_('Other scene'),
         ).pack(anchor='w')
 
-        # 'Opening' entry.
-        self._customGoalVar = MyStringVar()
-        self._customGoalEntry = LabelEntry(
-            self._renamingsFrame,
-            text=_('Opening'),
-            textvariable=self._customGoalVar,
+        # Other scene: Field 1 entry.
+        self._otherScnField1Var = MyStringVar()
+        self._otherScnField1Entry = LabelEntry(
+            self._fieldNamesFame,
+            text=_('Field 1'),
+            textvariable=self._otherScnField1Var,
             command=self.apply_changes,
             lblWidth=self._LABEL_WIDTH,
         )
-        self._customGoalEntry.pack(anchor='w')
-        inputWidgets.append(self._customGoalEntry)
+        self._otherScnField1Entry.pack(anchor='w')
+        inputWidgets.append(self._otherScnField1Entry)
 
-        # 'Peak emotional moment' entry.
-        self._customConflictVar = MyStringVar()
-        self._customConflictEntry = LabelEntry(
-            self._renamingsFrame,
-            text=_('Peak em. moment'),
-            textvariable=self._customConflictVar,
+        # Other scene: Field 2 entry.
+        self._otherScnField2Var = MyStringVar()
+        self._otherScnField2Entry = LabelEntry(
+            self._fieldNamesFame,
+            text=_('Field 2'),
+            textvariable=self._otherScnField2Var,
             command=self.apply_changes,
             lblWidth=self._LABEL_WIDTH,
         )
-        self._customConflictEntry.pack(anchor='w')
-        inputWidgets.append(self._customConflictEntry)
+        self._otherScnField2Entry.pack(anchor='w')
+        inputWidgets.append(self._otherScnField2Entry)
 
-        # 'Ending' entry.
-        self._customOutcomeVar = MyStringVar()
-        self._customOutcomeEntry = LabelEntry(
-            self._renamingsFrame,
-            text=_('Ending'),
-            textvariable=self._customOutcomeVar,
+        # Other scene: Field 3 entry.
+        self._otherScnField3Var = MyStringVar()
+        self._otherScnField3Entry = LabelEntry(
+            self._fieldNamesFame,
+            text=_('Field 3'),
+            textvariable=self._otherScnField3Var,
             command=self.apply_changes,
             lblWidth=self._LABEL_WIDTH,
         )
-        self._customOutcomeEntry.pack(anchor='w')
-        inputWidgets.append(self._customOutcomeEntry)
+        self._otherScnField3Entry.pack(anchor='w')
+        inputWidgets.append(self._otherScnField3Entry)
 
         ttk.Separator(
-            self._renamingsFrame,
+            self._fieldNamesFame,
             orient='horizontal',
         ).pack(fill='x', pady=5)
 
         ttk.Label(
-            self._renamingsFrame,
+            self._fieldNamesFame,
             text=_('Character'),
         ).pack(anchor='w'),
 
-        # 'Bio' entry.
-        self._customChrBioVar = MyStringVar()
-        self._customChrBioEntry = LabelEntry(
-            self._renamingsFrame,
-            text=_('Bio'),
-            textvariable=self._customChrBioVar,
+        # 'Extra field' entry.
+        self._chrExtraFieldVar = MyStringVar()
+        self._chrExtraFieldEntry = LabelEntry(
+            self._fieldNamesFame,
+            text=_('Extra field'),
+            textvariable=self._chrExtraFieldVar,
             command=self.apply_changes,
             lblWidth=self._LABEL_WIDTH,
         )
-        self._customChrBioEntry.pack(anchor='w')
-        inputWidgets.append(self._customChrBioEntry)
-
-        # 'Goals' entry.
-        self._customChrGoalsVar = MyStringVar()
-        self._customChrGoalsEntry = LabelEntry(
-            self._renamingsFrame,
-            text=_('Goals'),
-            textvariable=self._customChrGoalsVar,
-            command=self.apply_changes,
-            lblWidth=self._LABEL_WIDTH,
-        )
-        self._customChrGoalsEntry.pack(anchor='w')
-        inputWidgets.append(self._customChrGoalsEntry)
+        self._chrExtraFieldEntry.pack(anchor='w')
+        inputWidgets.append(self._chrExtraFieldEntry)
 
         #--- "Story time" frame.
         self._narrativeTimeFrame = FoldingFrame(
@@ -633,21 +612,33 @@ class ProjectView(ElementView):
         self.element.romanPartNumbers = self._romanPartNumbersVar.get()
         self.element.saveWordCount = self._saveWordCountVar.get()
 
-        #--- "Renamings" frame.
+        #--- "Field names" frame.
         self.element.chapterHeadingPrefix = self._chapterHeadingPrefixVar.get()
         self.element.chapterHeadingSuffix = self._chapterHeadingSuffixVar.get()
         self.element.partHeadingPrefix = self._partHeadingPrefixVar.get()
         self.element.partHeadingSuffix = self._partHeadingSuffixVar.get()
-        self.element.customPlotProgress = self._customPlotProgressVar.get()
-        self.element.customCharacterization = (
-            self._customCharacterizationVar.get()
+
+        self.element.noScnField1 = self._noScnField1Var.get(
+            default=self._mdl.NO_SCN_FIELD1_DEFAULT
         )
-        self.element.customWorldBuilding = self._customWorldBuildingVar.get()
-        self.element.customGoal = self._customGoalVar.get()
-        self.element.customConflict = self._customConflictVar.get()
-        self.element.customOutcome = self._customOutcomeVar.get()
-        self.element.customChrBio = self._customChrBioVar.get()
-        self.element.customChrGoals = self._customChrGoalsVar.get()
+        self.element.noScnField2 = self._noScnField2Var.get(
+              default=self._mdl.NO_SCN_FIELD2_DEFAULT
+        )
+        self.element.noScnField3 = self._noScnField3Var.get(
+            default=self._mdl.NO_SCN_FIELD3_DEFAULT
+        )
+        self.element.otherScnField1 = self._otherScnField1Var.get(
+            default=self._mdl.OTHER_SCN_FIELD1_DEFAULT
+        )
+        self.element.otherScnField2 = self._otherScnField2Var.get(
+            default=self._mdl.OTHER_SCN_FIELD2_DEFAULT
+        )
+        self.element.otherScnField3 = self._otherScnField3Var.get(
+            default=self._mdl.OTHER_SCN_FIELD3_DEFAULT
+        )
+        self.element.chrExtraField = self._chrExtraFieldVar.get(
+            default=self._mdl.CHR_EXTRA_FIELD_DEFAULT
+        )
 
         #--- "Story time" frame.
         refDateStr = self._referenceDateVar.get()
@@ -726,30 +717,11 @@ class ProjectView(ElementView):
                 list_to_string(renumberings, divider=f' {_("and")} ')
                 )
 
-        #--- "Renamings" frame.
+        #--- "Field names" frame.
         if prefs['show_renamings']:
-            self._renamingsFrame.show()
-            self._renamingsPreviewVar.set('')
+            self._fieldNamesFame.show()
         else:
-            self._renamingsFrame.hide()
-            renamings = []
-            if (self.element.customPlotProgress
-                or self.element.customCharacterization
-                or self.element.customWorldBuilding
-            ):
-                renamings.append(_('Not a scene'))
-            if (self.element.customGoal
-                or self.element.customConflict
-                or self.element.customOutcome
-            ):
-                renamings.append(_('Other scene'))
-            if (self.element.customChrBio
-                or self.element.customChrGoals
-            ):
-                renamings.append(_('Character'))
-            self._renamingsPreviewVar.set(
-                list_to_string(renamings, divider='/')
-                )
+            self._fieldNamesFame.hide()
 
         #--- "Story time" frame
         displayDate = []
@@ -923,17 +895,14 @@ class ProjectView(ElementView):
         else:
             self._romanPartNumbersVar.set(False)
 
-        #--- "Renamings" frame.
-        self._customPlotProgressVar.set(self.element.customPlotProgress)
-        self._customCharacterizationVar.set(
-            self.element.customCharacterization
-        )
-        self._customWorldBuildingVar.set(self.element.customWorldBuilding)
-        self._customGoalVar.set(self.element.customGoal)
-        self._customConflictVar.set(self.element.customConflict)
-        self._customOutcomeVar.set(self.element.customOutcome)
-        self._customChrBioVar.set(self.element.customChrBio)
-        self._customChrGoalsVar.set(self.element.customChrGoals)
+        #--- "Field names" frame.
+        self._noScnField1Var.set(self.element.noScnField1)
+        self._noScnField2Var.set(self.element.noScnField2)
+        self._noScnField3Var.set(self.element.noScnField3)
+        self._otherScnField1Var.set(self.element.otherScnField1)
+        self._otherScnField2Var.set(self.element.otherScnField2)
+        self._otherScnField3Var.set(self.element.otherScnField3)
+        self._chrExtraFieldVar.set(self.element.chrExtraField)
 
         #--- "Story time" frame
         self._referenceDateVar.set(self.element.referenceDate)
@@ -1075,14 +1044,14 @@ class ProjectView(ElementView):
             prefs['show_writing_progress'] = True
         self._toggle_folding_frame()
 
-    def _toggle_renamings_frame(self, event=None):
-        # Hide/show the "Renamings" frame.
+    def _toggle_field_names_frame(self, event=None):
+        # Hide/show the "Field names" frame.
         # Callback procedure for the FoldingFrame's button.
         if prefs['show_renamings']:
-            self._renamingsFrame.hide()
+            self._fieldNamesFame.hide()
             prefs['show_renamings'] = False
         else:
-            self._renamingsFrame.show()
+            self._fieldNamesFame.show()
             prefs['show_renamings'] = True
         self._toggle_folding_frame()
 

@@ -503,12 +503,12 @@ class SectionView(ElementView):
 
         # Scene radiobuttons.
         selectionFrame = ttk.Frame(self._sceneFrame)
-        self._customPlotProgressVar = ''
-        self._customCharacterizationVar = ''
-        self._customWorldBuildingVar = ''
-        self._customGoalVar = ''
-        self._customConflictVar = ''
-        self._customOutcomeVar = ''
+        self._noScnField1Var = ''
+        self._noScnField2Var = ''
+        self._noScnField3Var = ''
+        self._otherScnField1Var = ''
+        self._otherScnField2Var = ''
+        self._otherScnField3Var = ''
         self.sceneVar = tk.IntVar()
 
         self._kindsOfScene = [
@@ -1255,20 +1255,20 @@ class SectionView(ElementView):
         self.element.scene = self.sceneVar.get()
 
     def set_custom_scene(self, event=None):
-        if self._customGoalVar:
-            self._goalLabel.config(text=self._customGoalVar)
+        if self._otherScnField1Var:
+            self._goalLabel.config(text=self._otherScnField1Var)
         else:
-            self._goalLabel.config(text=_('Opening'))
+            self._goalLabel.config(text=_('Field 1'))
 
-        if self._customConflictVar:
-            self._conflictLabel.config(text=self._customConflictVar)
+        if self._otherScnField2Var:
+            self._conflictLabel.config(text=self._otherScnField2Var)
         else:
-            self._conflictLabel.config(text=_('Peak emotional moment'))
+            self._conflictLabel.config(text=_('Field 2'))
 
-        if self._customOutcomeVar:
-            self._outcomeLabel.config(text=self._customOutcomeVar)
+        if self._otherScnField3Var:
+            self._outcomeLabel.config(text=self._otherScnField3Var)
         else:
-            self._outcomeLabel.config(text=_('Ending'))
+            self._outcomeLabel.config(text=_('Field 3'))
 
         self.element.scene = self.sceneVar.get()
 
@@ -1366,37 +1366,37 @@ class SectionView(ElementView):
         self._appendToPrevVar.set(self.element.appendToPrev)
 
         # Customized Goal/Conflict/Outcome configuration.
-        if self._mdl.novel.customPlotProgress:
-            self._customPlotProgressVar = self._mdl.novel.customPlotProgress
+        if self._mdl.novel.noScnField1:
+            self._noScnField1Var = self._mdl.novel.noScnField1
         else:
-            self._customPlotProgressVar = ''
+            self._noScnField1Var = ''
 
-        if self._mdl.novel.customCharacterization:
-            self._customCharacterizationVar = (
-                self._mdl.novel.customCharacterization
+        if self._mdl.novel.noScnField2:
+            self._noScnField2Var = (
+                self._mdl.novel.noScnField2
             )
         else:
-            self._customCharacterizationVar = ''
+            self._noScnField2Var = ''
 
-        if self._mdl.novel.customWorldBuilding:
-            self._customWorldBuildingVar = self._mdl.novel.customWorldBuilding
+        if self._mdl.novel.noScnField3:
+            self._noScnField3Var = self._mdl.novel.noScnField3
         else:
-            self._customWorldBuildingVar = ''
+            self._noScnField3Var = ''
 
-        if self._mdl.novel.customGoal:
-            self._customGoalVar = self._mdl.novel.customGoal
+        if self._mdl.novel.otherScnField1:
+            self._otherScnField1Var = self._mdl.novel.otherScnField1
         else:
-            self._customGoalVar = ''
+            self._otherScnField1Var = ''
 
-        if self._mdl.novel.customConflict:
-            self._customConflictVar = self._mdl.novel.customConflict
+        if self._mdl.novel.otherScnField2:
+            self._otherScnField2Var = self._mdl.novel.otherScnField2
         else:
-            self._customConflictVar = ''
+            self._otherScnField2Var = ''
 
-        if self._mdl.novel.customOutcome:
-            self._customOutcomeVar = self._mdl.novel.customOutcome
+        if self._mdl.novel.otherScnField3:
+            self._otherScnField3Var = self._mdl.novel.otherScnField3
         else:
-            self._customOutcomeVar = ''
+            self._otherScnField3Var = ''
 
         #--- Frame for 'Plot'.
 
@@ -1464,20 +1464,20 @@ class SectionView(ElementView):
             self.set_not_applicable()
 
     def set_not_applicable(self, event=None):
-        if self._customPlotProgressVar:
-            self._goalLabel.config(text=self._customPlotProgressVar)
+        if self._noScnField1Var:
+            self._goalLabel.config(text=self._noScnField1Var)
         else:
-            self._goalLabel.config(text=_('Plot progress'))
+            self._goalLabel.config(text=_('Field 1'))
 
-        if self._customCharacterizationVar:
-            self._conflictLabel.config(text=self._customCharacterizationVar)
+        if self._noScnField2Var:
+            self._conflictLabel.config(text=self._noScnField2Var)
         else:
-            self._conflictLabel.config(text=_('Characterization'))
+            self._conflictLabel.config(text=_('Field 2'))
 
-        if self._customWorldBuildingVar:
-            self._outcomeLabel.config(text=self._customWorldBuildingVar)
+        if self._noScnField3Var:
+            self._outcomeLabel.config(text=self._noScnField3Var)
         else:
-            self._outcomeLabel.config(text=_('World building'))
+            self._outcomeLabel.config(text=_('Field 3'))
 
         self.element.scene = self.sceneVar.get()
 

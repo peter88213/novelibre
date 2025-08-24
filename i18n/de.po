@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.32.2\n"
-"POT-Creation-Date: 2025-08-21 16:56:29\n"
-"PO-Revision-Date: 2025-08-21 16:56:29\n"
+"POT-Creation-Date: 2025-08-24 13:35:52\n"
+"PO-Revision-Date: 2025-08-24 13:35:52\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -571,6 +571,21 @@ msgstr "Exporttyp wird nicht unterstützt"
 msgid "Exported documents"
 msgstr "Exportierte Dokumente"
 
+msgid "Extra field"
+msgstr "Zusatzfeld"
+
+msgid "Field 1"
+msgstr "Feld 1"
+
+msgid "Field 2"
+msgstr "Feld 2"
+
+msgid "Field 3"
+msgstr "Feld 3"
+
+msgid "Field names"
+msgstr "Feldnamen"
+
 msgid "File"
 msgstr "Datei"
 
@@ -1003,9 +1018,6 @@ msgstr "Einfügen"
 msgid "Peak em. moment"
 msgstr "Em. Höhepunkt"
 
-msgid "Peak emotional moment"
-msgstr "Emotionaler Höhepunkt"
-
 msgid "Pick Mode (click here or press Esc to exit)"
 msgstr "Auswahlmodus (zum Verlassen hier klicken oder Esc drücken)"
 
@@ -1125,9 +1137,6 @@ msgstr "Schauplatz aus der Liste entfernen?"
 
 msgid "Remove plot line from the list?"
 msgstr "Plotlinie aus der Liste entfernen?"
-
-msgid "Renamings"
-msgstr "Umbenennungen"
 
 msgid "Required"
 msgstr "Erforderlich"

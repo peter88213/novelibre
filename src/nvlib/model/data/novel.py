@@ -35,14 +35,13 @@ class Novel(BasicElement):
         chapterHeadingSuffix=None,
         partHeadingPrefix=None,
         partHeadingSuffix=None,
-        customPlotProgress=None,
-        customCharacterization=None,
-        customWorldBuilding=None,
-        customGoal=None,
-        customConflict=None,
-        customOutcome=None,
-        customChrBio=None,
-        customChrGoals=None,
+        noScnField1=None,
+        noScnField2=None,
+        noScnField3=None,
+        otherScnField1=None,
+        otherScnField2=None,
+        otherScnField3=None,
+        chrExtraField=None,
         referenceDate=None,
         tree=None,
         **kwargs
@@ -65,14 +64,17 @@ class Novel(BasicElement):
         self._chapterHeadingSuffix = chapterHeadingSuffix
         self._partHeadingPrefix = partHeadingPrefix
         self._partHeadingSuffix = partHeadingSuffix
-        self._customPlotProgress = customPlotProgress
-        self._customCharacterization = customCharacterization
-        self._customWorldBuilding = customWorldBuilding
-        self._customGoal = customGoal
-        self._customConflict = customConflict
-        self._customOutcome = customOutcome
-        self._customChrBio = customChrBio
-        self._customChrGoals = customChrGoals
+        self._noScnField1 = noScnField1
+        self._noScnField2 = noScnField2
+        self._noScnField3 = noScnField3
+        self._otherScnField1 = otherScnField1
+        self._otherScnField2 = otherScnField2
+        self._otherScnField3 = otherScnField3
+        self._chrExtraField = chrExtraField
+
+        self.customChrBio = None
+        # just for API downward compatibility
+        # TODO: discard this (maybe version 6).
 
         self.chapters = {}
         # key = chapter ID, value = Chapter instance.
@@ -82,7 +84,7 @@ class Novel(BasicElement):
         # key = section ID, value = PlotPoint instance.
         self.languages = None
         # List of non-document languages occurring as section markup.
-        # Format: ll-CC, 
+        # Format: ll-CC,
         # where ll is the language code, and CC is the country code.
         self.plotLines = {}
         # key = plot line ID, value = PlotLine instance.
@@ -317,99 +319,87 @@ class Novel(BasicElement):
             self.on_element_change()
 
     @property
-    def customPlotProgress(self):
-        return self._customPlotProgress
+    def noScnField1(self):
+        return self._noScnField1
 
-    @customPlotProgress.setter
-    def customPlotProgress(self, newVal):
+    @noScnField1.setter
+    def noScnField1(self, newVal):
         if newVal is not None:
             assert type(newVal) is str
-        if self._customPlotProgress != newVal:
-            self._customPlotProgress = newVal
+        if self._noScnField1 != newVal:
+            self._noScnField1 = newVal
             self.on_element_change()
 
     @property
-    def customCharacterization(self):
-        return self._customCharacterization
+    def noScnField2(self):
+        return self._noScnField2
 
-    @customCharacterization.setter
-    def customCharacterization(self, newVal):
+    @noScnField2.setter
+    def noScnField2(self, newVal):
         if newVal is not None:
             assert type(newVal) is str
-        if self._customCharacterization != newVal:
-            self._customCharacterization = newVal
+        if self._noScnField2 != newVal:
+            self._noScnField2 = newVal
             self.on_element_change()
 
     @property
-    def customWorldBuilding(self):
-        return self._customWorldBuilding
+    def noScnField3(self):
+        return self._noScnField3
 
-    @customWorldBuilding.setter
-    def customWorldBuilding(self, newVal):
+    @noScnField3.setter
+    def noScnField3(self, newVal):
         if newVal is not None:
             assert type(newVal) is str
-        if self._customWorldBuilding != newVal:
-            self._customWorldBuilding = newVal
+        if self._noScnField3 != newVal:
+            self._noScnField3 = newVal
             self.on_element_change()
 
     @property
-    def customGoal(self):
-        return self._customGoal
+    def otherScnField1(self):
+        return self._otherScnField1
 
-    @customGoal.setter
-    def customGoal(self, newVal):
+    @otherScnField1.setter
+    def otherScnField1(self, newVal):
         if newVal is not None:
             assert type(newVal) is str
-        if self._customGoal != newVal:
-            self._customGoal = newVal
+        if self._otherScnField1 != newVal:
+            self._otherScnField1 = newVal
             self.on_element_change()
 
     @property
-    def customConflict(self):
-        return self._customConflict
+    def otherScnField2(self):
+        return self._otherScnField2
 
-    @customConflict.setter
-    def customConflict(self, newVal):
+    @otherScnField2.setter
+    def otherScnField2(self, newVal):
         if newVal is not None:
             assert type(newVal) is str
-        if self._customConflict != newVal:
-            self._customConflict = newVal
+        if self._otherScnField2 != newVal:
+            self._otherScnField2 = newVal
             self.on_element_change()
 
     @property
-    def customOutcome(self):
-        return self._customOutcome
+    def otherScnField3(self):
+        return self._otherScnField3
 
-    @customOutcome.setter
-    def customOutcome(self, newVal):
+    @otherScnField3.setter
+    def otherScnField3(self, newVal):
         if newVal is not None:
             assert type(newVal) is str
-        if self._customOutcome != newVal:
-            self._customOutcome = newVal
+        if self._otherScnField3 != newVal:
+            self._otherScnField3 = newVal
             self.on_element_change()
 
     @property
-    def customChrBio(self):
-        return self._customChrBio
+    def chrExtraField(self):
+        return self._chrExtraField
 
-    @customChrBio.setter
-    def customChrBio(self, newVal):
+    @chrExtraField.setter
+    def chrExtraField(self, newVal):
         if newVal is not None:
             assert type(newVal) is str
-        if self._customChrBio != newVal:
-            self._customChrBio = newVal
-            self.on_element_change()
-
-    @property
-    def customChrGoals(self):
-        return self._customChrGoals
-
-    @customChrGoals.setter
-    def customChrGoals(self, newVal):
-        if newVal is not None:
-            assert type(newVal) is str
-        if self._customChrGoals != newVal:
-            self._customChrGoals = newVal
+        if self._chrExtraField != newVal:
+            self._chrExtraField = newVal
             self.on_element_change()
 
     @property
@@ -434,6 +424,64 @@ class Novel(BasicElement):
                 else:
                     self._referenceDate = newVal
                     self.on_element_change()
+
+    # For API downward compatibility:
+    # TODO: Remove this for version 6
+    @property
+    def customPlotProgress(self):
+        return self._noScnField1
+
+    @customPlotProgress.setter
+    def customPlotProgress(self, newVal):
+        self.noScnField1 = newVal
+
+    @property
+    def customCharacterization(self):
+        return self._noScnField2
+
+    @customCharacterization.setter
+    def customCharacterization(self, newVal):
+        self.noScnField2 = newVal
+
+    @property
+    def customWorldBuilding(self):
+        return self._noScnField3
+
+    @customWorldBuilding.setter
+    def customWorldBuilding(self, newVal):
+        self.noScnField3 = newVal
+
+    @property
+    def customGoal(self):
+        return self._otherScnField1
+
+    @customGoal.setter
+    def customGoal(self, newVal):
+        self.otherScnField1 = newVal
+
+    @property
+    def customConflict(self):
+        return self._otherScnField2
+
+    @customConflict.setter
+    def customConflict(self, newVal):
+        self.otherScnField2 = newVal
+
+    @property
+    def customOutcome(self):
+        return self._otherScnField3
+
+    @customOutcome.setter
+    def customOutcome(self, newVal):
+        self.otherScnField3 = newVal
+
+    @property
+    def customChrGoals(self):
+        return self._chrExtraField
+
+    @customChrGoals.setter
+    def customChrGoals(self, newVal):
+        self.chrExtraField = newVal
 
     def check_locale(self):
         """Check the document's locale (language code and country code).
@@ -510,42 +558,45 @@ class Novel(BasicElement):
             'PartHeadingSuffix'
         )
 
-        # N/A Goal/Conflict/Outcome.
-        self.customPlotProgress = self._get_element_text(
+        # No scene's fields.
+        self.noScnField1 = self._get_element_text(
             xmlElement,
-            'CustomPlotProgress'
+            'CustomPlotProgress',
+            default=self.noScnField1,
         )
-        self.customCharacterization = self._get_element_text(
+        self.noScnField2 = self._get_element_text(
             xmlElement,
-            'CustomCharacterization'
+            'CustomCharacterization',
+            default=self.noScnField2,
         )
-        self.customWorldBuilding = self._get_element_text(
+        self.noScnField3 = self._get_element_text(
             xmlElement,
-            'CustomWorldBuilding'
-        )
-
-        # Custom Goal/Conflict/Outcome.
-        self.customGoal = self._get_element_text(
-            xmlElement,
-            'CustomGoal'
-        )
-        self.customConflict = self._get_element_text(
-            xmlElement,
-            'CustomConflict'
-        )
-        self.customOutcome = self._get_element_text(
-            xmlElement,
-            'CustomOutcome'
+            'CustomWorldBuilding',
+            default=self.noScnField3,
         )
 
-        # Custom Character Bio/Goals.
-        self.customChrBio = self._get_element_text(
+        # Other scene's fields.
+        self.otherScnField1 = self._get_element_text(
             xmlElement,
-            'CustomChrBio'
+            'CustomGoal',
+            default=self.otherScnField1,
         )
-        self.customChrGoals = self._get_element_text(
+        self.otherScnField2 = self._get_element_text(
             xmlElement,
-            'CustomChrGoals'
+            'CustomConflict',
+            default=self.otherScnField2,
+        )
+        self.otherScnField3 = self._get_element_text(
+            xmlElement,
+            'CustomOutcome',
+            default=self.otherScnField3,
+        )
+
+        # Character extra field.
+        self.chrExtraField = self._get_element_text(
+            xmlElement,
+            'CustomChrGoals',
+            default=self.chrExtraField,
         )
 
         # Word count start/Word target.
@@ -640,51 +691,46 @@ class Novel(BasicElement):
                 'PartHeadingSuffix',
             ).text = self.partHeadingSuffix
 
-        # Custom Plot progress/Characterization/World building.
-        if self.customPlotProgress:
+        # No scene's fields.
+        if self.noScnField1:
             ET.SubElement(
                 xmlElement,
                 'CustomPlotProgress',
-            ).text = self.customPlotProgress
-        if self.customCharacterization:
+            ).text = self.noScnField1
+        if self.noScnField2:
             ET.SubElement(
                 xmlElement,
                 'CustomCharacterization',
-            ).text = self.customCharacterization
-        if self.customWorldBuilding:
+            ).text = self.noScnField2
+        if self.noScnField3:
             ET.SubElement(
                 xmlElement,
                 'CustomWorldBuilding',
-            ).text = self.customWorldBuilding
+            ).text = self.noScnField3
 
-        # Custom Goal/Conflict/Outcome.
-        if self.customGoal:
+        # Other scene's fields.
+        if self.otherScnField1:
             ET.SubElement(
                 xmlElement,
                 'CustomGoal',
-            ).text = self.customGoal
-        if self.customConflict:
+            ).text = self.otherScnField1
+        if self.otherScnField2:
             ET.SubElement(
                 xmlElement,
                 'CustomConflict',
-            ).text = self.customConflict
-        if self.customOutcome:
+            ).text = self.otherScnField2
+        if self.otherScnField3:
             ET.SubElement(
                 xmlElement,
                 'CustomOutcome',
-            ).text = self.customOutcome
+            ).text = self.otherScnField3
 
-        # Custom Character Bio/Goals.
-        if self.customChrBio:
-            ET.SubElement(
-                xmlElement,
-                'CustomChrBio',
-            ).text = self.customChrBio
-        if self.customChrGoals:
+        # Character Extra field name.
+        if self.chrExtraField:
             ET.SubElement(
                 xmlElement,
                 'CustomChrGoals',
-            ).text = self.customChrGoals
+            ).text = self.chrExtraField
 
         # Word count start/Word target.
         if self.wordCountStart:

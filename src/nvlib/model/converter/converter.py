@@ -48,6 +48,14 @@ class Converter:
     IMPORT_SOURCE_CLASSES = []
     IMPORT_TARGET_CLASSES = []
 
+    NO_SCN_FIELD1_DEFAULT = _('Plot progress')
+    NO_SCN_FIELD2_DEFAULT = _('Characterization')
+    NO_SCN_FIELD3_DEFAULT = _('World building')
+    OTHER_SCN_FIELD1_DEFAULT = _('Opening')
+    OTHER_SCN_FIELD2_DEFAULT = _('Peak em. moment')
+    OTHER_SCN_FIELD3_DEFAULT = _('Ending')
+    CHR_EXTRA_FIELD_DEFAULT = _('Goals')
+
     def __init__(self):
         """Create strategy class instances."""
         """Define instance variables."""
@@ -227,7 +235,16 @@ class Converter:
             statusMsg = ''
             try:
                 self._check(source, target)
-                source.novel = Novel(tree=NvTree())
+                source.novel = Novel(
+                    tree=NvTree(),
+                    noScnField1=self.NO_SCN_FIELD1_DEFAULT,
+                    noScnField2=self.NO_SCN_FIELD2_DEFAULT,
+                    noScnField3=self.NO_SCN_FIELD3_DEFAULT,
+                    otherScnField1=self.OTHER_SCN_FIELD1_DEFAULT,
+                    otherScnField2=self.OTHER_SCN_FIELD2_DEFAULT,
+                    otherScnField3=self.OTHER_SCN_FIELD3_DEFAULT,
+                    chrExtraField=self.CHR_EXTRA_FIELD_DEFAULT,
+                )
                 source.novel.check_locale()
                 source.read()
                 target.novel = source.novel
@@ -271,7 +288,16 @@ class Converter:
         statusMsg = ''
         try:
             self._check(source, target)
-            source.novel = Novel(tree=NvTree())
+            source.novel = Novel(
+                tree=NvTree(),
+                noScnField1=self.NO_SCN_FIELD1_DEFAULT,
+                noScnField2=self.NO_SCN_FIELD2_DEFAULT,
+                noScnField3=self.NO_SCN_FIELD3_DEFAULT,
+                otherScnField1=self.OTHER_SCN_FIELD1_DEFAULT,
+                otherScnField2=self.OTHER_SCN_FIELD2_DEFAULT,
+                otherScnField3=self.OTHER_SCN_FIELD3_DEFAULT,
+                chrExtraField=self.CHR_EXTRA_FIELD_DEFAULT,
+            )
             source.read()
             target.novel = source.novel
             target.write()
@@ -315,7 +341,16 @@ class Converter:
         statusMsg = ''
         try:
             self._check(source, target)
-            target.novel = Novel(tree=NvTree())
+            target.novel = Novel(
+                tree=NvTree(),
+                noScnField1=self.NO_SCN_FIELD1_DEFAULT,
+                noScnField2=self.NO_SCN_FIELD2_DEFAULT,
+                noScnField3=self.NO_SCN_FIELD3_DEFAULT,
+                otherScnField1=self.OTHER_SCN_FIELD1_DEFAULT,
+                otherScnField2=self.OTHER_SCN_FIELD2_DEFAULT,
+                otherScnField3=self.OTHER_SCN_FIELD3_DEFAULT,
+                chrExtraField=self.CHR_EXTRA_FIELD_DEFAULT,
+            )
             target.read()
             source.novel = target.novel
             source.read()

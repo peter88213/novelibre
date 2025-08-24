@@ -706,38 +706,34 @@ class FileExport(File):
         return plotPointMapping
 
     def _get_renamings(self):
-        if self.novel.customPlotProgress:
-            pltPrgs = self.novel.customPlotProgress
+        if self.novel.noScnField1:
+            pltPrgs = self.novel.noScnField1
         else:
-            pltPrgs = _('Plot progress')
-        if self.novel.customCharacterization:
-            chrczn = self.novel.customCharacterization
+            pltPrgs = _('Field 1')
+        if self.novel.noScnField2:
+            chrczn = self.novel.noScnField2
         else:
-            chrczn = _('Characterization')
-        if self.novel.customWorldBuilding:
-            wrldbld = self.novel.customWorldBuilding
+            chrczn = _('Field 2')
+        if self.novel.noScnField3:
+            wrldbld = self.novel.noScnField3
         else:
-            wrldbld = _('World building')
-        if self.novel.customGoal:
-            goal = self.novel.customGoal
+            wrldbld = _('Field 3')
+        if self.novel.otherScnField1:
+            goal = self.novel.otherScnField1
         else:
-            goal = _('Opening')
-        if self.novel.customConflict:
-            cflct = self.novel.customConflict
+            goal = _('Field 1')
+        if self.novel.otherScnField2:
+            cflct = self.novel.otherScnField2
         else:
-            cflct = _('Peak em. moment')
-        if self.novel.customOutcome:
-            outcm = self.novel.customOutcome
+            cflct = _('Field 2')
+        if self.novel.otherScnField3:
+            outcm = self.novel.otherScnField3
         else:
-            outcm = _('Ending')
-        if self.novel.customChrBio:
-            chrBio = self.novel.customChrBio
+            outcm = _('Field 3')
+        if self.novel.chrExtraField:
+            chrGls = self.novel.chrExtraField
         else:
-            chrBio = _('Bio')
-        if self.novel.customChrGoals:
-            chrGls = self.novel.customChrGoals
-        else:
-            chrGls = _('Goals')
+            chrGls = _('Extra field')
         return (
             pltPrgs,
             chrczn,
@@ -745,7 +741,7 @@ class FileExport(File):
             goal,
             cflct,
             outcm,
-            chrBio,
+            _('Bio'),
             chrGls,
         )
 

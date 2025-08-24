@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.32.2\n"
-"POT-Creation-Date: 2025-08-21 16:56:29\n"
+"POT-Creation-Date: 2025-08-24 13:35:52\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -578,6 +578,21 @@ msgstr ""
 msgid "Exported documents"
 msgstr ""
 
+msgid "Extra field"
+msgstr ""
+
+msgid "Field 1"
+msgstr ""
+
+msgid "Field 2"
+msgstr ""
+
+msgid "Field 3"
+msgstr ""
+
+msgid "Field names"
+msgstr ""
+
 msgid "File"
 msgstr ""
 
@@ -1010,9 +1025,6 @@ msgstr ""
 msgid "Peak em. moment"
 msgstr ""
 
-msgid "Peak emotional moment"
-msgstr ""
-
 msgid "Pick Mode (click here or press Esc to exit)"
 msgstr ""
 
@@ -1131,9 +1143,6 @@ msgid "Remove location from the list?"
 msgstr ""
 
 msgid "Remove plot line from the list?"
-msgstr ""
-
-msgid "Renamings"
 msgstr ""
 
 msgid "Required"
