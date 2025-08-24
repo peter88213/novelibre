@@ -12,9 +12,9 @@ from nvlib.model.converter.import_source_factory import ImportSourceFactory
 from nvlib.model.converter.import_target_factory import ImportTargetFactory
 from nvlib.model.data.novel import Novel
 from nvlib.model.data.nv_tree import NvTree
-from nvlib.novx_globals import CR_FIELD_1_DEFAULT
 from nvlib.novx_globals import CR_FIELD_2_DEFAULT
 from nvlib.novx_globals import CR_FIELD_3_DEFAULT
+from nvlib.novx_globals import CR_FIELD_1_DEFAULT
 from nvlib.novx_globals import Error
 from nvlib.novx_globals import NO_SCENE_FIELD_1_DEFAULT
 from nvlib.novx_globals import NO_SCENE_FIELD_2_DEFAULT
@@ -244,8 +244,9 @@ class Converter:
                     otherSceneField1=OTHER_SCENE_FIELD_1_DEFAULT,
                     otherSceneField2=OTHER_SCENE_FIELD_2_DEFAULT,
                     otherSceneField3=OTHER_SCENE_FIELD_3_DEFAULT,
-                    chrExtraField1=CR_FIELD_1_DEFAULT,
-                    chrExtraField2=CR_FIELD_2_DEFAULT,
+                    crField1=CR_FIELD_1_DEFAULT,
+                    crField2=CR_FIELD_2_DEFAULT,
+                    crField3=CR_FIELD_3_DEFAULT,
                 )
                 source.novel.check_locale()
                 source.read()
@@ -298,8 +299,9 @@ class Converter:
                 otherSceneField1=OTHER_SCENE_FIELD_1_DEFAULT,
                 otherSceneField2=OTHER_SCENE_FIELD_2_DEFAULT,
                 otherSceneField3=OTHER_SCENE_FIELD_3_DEFAULT,
-                chrExtraField1=CR_FIELD_1_DEFAULT,
-                chrExtraField2=CR_FIELD_2_DEFAULT,
+                crField1=CR_FIELD_1_DEFAULT,
+                crField2=CR_FIELD_2_DEFAULT,
+                crField3=CR_FIELD_3_DEFAULT,
             )
             source.read()
             target.novel = source.novel
@@ -352,8 +354,8 @@ class Converter:
                 otherSceneField1=OTHER_SCENE_FIELD_1_DEFAULT,
                 otherSceneField2=OTHER_SCENE_FIELD_2_DEFAULT,
                 otherSceneField3=OTHER_SCENE_FIELD_3_DEFAULT,
-                chrExtraField1=CR_FIELD_1_DEFAULT,
-                chrExtraField2=CR_FIELD_2_DEFAULT,
+                crField2=CR_FIELD_2_DEFAULT,
+                crField3=CR_FIELD_3_DEFAULT,
             )
             target.read()
             source.novel = target.novel

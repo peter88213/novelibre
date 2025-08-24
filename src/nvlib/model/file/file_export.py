@@ -297,7 +297,12 @@ class FileExport(File):
         if deathDateStr is None:
             deathDateStr = ''
 
-        __, __, __, __, __, __, chrBio, chrExtraField = self._get_field_names()
+        (
+            __, __, __, __, __, __,
+            crField1,
+            crField2,
+            crField3
+        ) = self._get_field_names()
 
         characterMapping = dict(
             ID=crId,
@@ -338,12 +343,14 @@ class FileExport(File):
             CharactersSuffix=CHARACTERS_SUFFIX,
             BirthDate=birthDateStr,
             DeathDate=deathDateStr,
-            CharacterExtraField=chrExtraField,
+            CharacterField1=crField1,
+            CharacterField2=crField2,
+            CharacterField3=crField3,
 
             # Deprecated placeholders.
             # TODO: Remove in version 6.
-            CustomChrBio=chrBio,
-            CustomChrGoals=chrExtraField,
+            CustomChrBio=crField1,
+            CustomChrGoals=crField2,
         )
         return characterMapping
 
@@ -397,10 +404,18 @@ class FileExport(File):
             otherSceneField3 = self.novel.otherSceneField3
         else:
             otherSceneField3 = f"{_('Field')} 3"
-        if self.novel.chrExtraField1:
-            chrExtraField = self.novel.chrExtraField1
+        if self.novel.crField1:
+            crField1 = self.novel.crField1
         else:
-            chrExtraField = _('Extra field')
+            crField1 = f"{_('Field')} 1"
+        if self.novel.crField2:
+            crField2 = self.novel.crField2
+        else:
+            crField2 = f"{_('Field')} 2"
+        if self.novel.crField3:
+            crField3 = self.novel.crField3
+        else:
+            crField3 = self.novel.crField3
         return (
             noSceneField1,
             noSceneField2,
@@ -408,8 +423,9 @@ class FileExport(File):
             otherSceneField1,
             otherSceneField2,
             otherSceneField3,
-            _('Bio'),
-            chrExtraField,
+            crField1,
+            crField2,
+            crField3,
         )
 
     def _get_fileFooter(self):
@@ -476,8 +492,9 @@ class FileExport(File):
                 otherSceneField1,
                 otherSceneField2,
                 otherSceneField3,
-                chrBio,
-                chrExtraField
+                crField1,
+                crField2,
+                crField3
             ) = self._get_field_names()
 
         fileHeaderMapping = dict(
@@ -500,7 +517,9 @@ class FileExport(File):
             OtherSceneField1=otherSceneField1,
             OtherSceneField2=otherSceneField2,
             OtherSceneField3=otherSceneField3,
-            CharacterExtraField=chrExtraField,
+            CharacterField1=crField1,
+            CharacterField2=crField2,
+            CharacterField3=crField3,
 
             # Deprecated placeholders.
             # TODO: Remove in version 6.
@@ -510,8 +529,8 @@ class FileExport(File):
             CustomGoal=otherSceneField1,
             CustomConflict=otherSceneField2,
             CustomOutcome=otherSceneField3,
-            CustomChrBio=chrBio,
-            CustomChrGoals=chrExtraField
+            CustomChrBio=crField1,
+            CustomChrGoals=crField2
         )
         return fileHeaderMapping
 
@@ -919,8 +938,7 @@ class FileExport(File):
             otherSceneField1,
             otherSceneField2,
             otherSceneField3,
-            __,
-            __,
+            __, __, __,
         ) = self._get_field_names()
         sectionMapping = dict(
             ID=scId,

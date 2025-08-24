@@ -60,9 +60,9 @@ NO_SCENE_FIELD_3_DEFAULT = _('World building')
 OTHER_SCENE_FIELD_1_DEFAULT = _('Opening')
 OTHER_SCENE_FIELD_2_DEFAULT = _('Peak emotional moment')
 OTHER_SCENE_FIELD_3_DEFAULT = _('Ending')
-CR_FIELD_1_DEFAULT = _('Goals')
-CR_FIELD_2_DEFAULT = _('Role')
-CR_FIELD_3_DEFAULT = _('Development')
+CR_FIELD_1_DEFAULT = _('Bio')
+CR_FIELD_2_DEFAULT = _('Goals')
+CR_FIELD_3_DEFAULT = _('Role')
 
 STATUS = [
     None,

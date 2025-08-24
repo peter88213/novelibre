@@ -71,7 +71,7 @@ class CharacterView(WorldElementView):
         ).pack(fill='x')
 
         #--- 'Bio' frame
-        self._bioFrame = FoldingFrame(
+        self._crField1Frame = FoldingFrame(
             self._elementInfoWindow,
             '',
             self._toggle_bio_window,
@@ -80,7 +80,7 @@ class CharacterView(WorldElementView):
         # Bio preview.
         self._bioPreviewVar = MyStringVar()
         bioPreview = ttk.Label(
-            self._bioFrame.titleBar,
+            self._crField1Frame.titleBar,
             textvariable=self._bioPreviewVar,
         )
         bioPreview.pack(side='left', padx=2)
@@ -88,7 +88,7 @@ class CharacterView(WorldElementView):
 
         self._birthDateVar = MyStringVar()
         self._birthDateEntry = LabelEntry(
-            self._bioFrame,
+            self._crField1Frame,
             text=_('Birth date'),
             textvariable=self._birthDateVar,
             command=self.apply_changes,
@@ -99,7 +99,7 @@ class CharacterView(WorldElementView):
 
         self._deathDateVar = MyStringVar()
         self._deathDateEntry = LabelEntry(
-            self._bioFrame,
+            self._crField1Frame,
             text=_('Death date'),
             textvariable=self._deathDateVar,
             command=self.apply_changes,
@@ -109,7 +109,7 @@ class CharacterView(WorldElementView):
         inputWidgets.append(self._deathDateEntry)
 
         self._bioBox = TextBox(
-            self._bioFrame,
+            self._crField1Frame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -131,22 +131,22 @@ class CharacterView(WorldElementView):
         ).pack(fill='x')
 
         #--- 'Character sextra field 1' entry.
-        self._chrExtraField1Frame = FoldingFrame(
+        self._crField2Frame = FoldingFrame(
             self._elementInfoWindow,
             '',
-            self._toggle_chrExtraField1_window,
+            self._toggle_crField2_window,
         )
 
         # Character extra field 1 preview.
-        self._chrExtraField1PreviewVar = MyStringVar()
+        self._crField2PreviewVar = MyStringVar()
         chrExtraFieldPreview = ttk.Label(
-            self._chrExtraField1Frame.titleBar,
-            textvariable=self._chrExtraField1PreviewVar,
+            self._crField2Frame.titleBar,
+            textvariable=self._crField2PreviewVar,
         )
         chrExtraFieldPreview.pack(side='left', padx=2)
-        chrExtraFieldPreview.bind('<Button-1>', self._toggle_chrExtraField1_window)
+        chrExtraFieldPreview.bind('<Button-1>', self._toggle_crField2_window)
 
-        self._chrExtraField1Box = TextBox(self._chrExtraField1Frame,
+        self._crField2Box = TextBox(self._crField2Frame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -159,8 +159,8 @@ class CharacterView(WorldElementView):
             fg=prefs['color_text_fg'],
             insertbackground=prefs['color_text_fg'],
         )
-        self._chrExtraField1Box.pack(fill='x')
-        inputWidgets.append(self._chrExtraField1Box)
+        self._crField2Box.pack(fill='x')
+        inputWidgets.append(self._crField2Box)
 
         ttk.Separator(
             self._elementInfoWindow,
@@ -168,22 +168,22 @@ class CharacterView(WorldElementView):
         ).pack(fill='x')
 
         #--- 'Character sextra field 2' entry.
-        self._chrExtraField2Frame = FoldingFrame(
+        self._crField3Frame = FoldingFrame(
             self._elementInfoWindow,
             '',
-            self._toggle_chrExtraField2_window,
+            self._toggle_crField3_window,
         )
 
         # Character extra field 2 preview.
-        self._chrExtraField2PreviewVar = MyStringVar()
+        self._crField3PreviewVar = MyStringVar()
         chrExtraFieldPreview = ttk.Label(
-            self._chrExtraField2Frame.titleBar,
-            textvariable=self._chrExtraField2PreviewVar,
+            self._crField3Frame.titleBar,
+            textvariable=self._crField3PreviewVar,
         )
         chrExtraFieldPreview.pack(side='left', padx=2)
-        chrExtraFieldPreview.bind('<Button-1>', self._toggle_chrExtraField2_window)
+        chrExtraFieldPreview.bind('<Button-1>', self._toggle_crField3_window)
 
-        self._chrExtraField2Box = TextBox(self._chrExtraField2Frame,
+        self._crField3Box = TextBox(self._crField3Frame,
             wrap='word',
             undo=True,
             autoseparators=True,
@@ -196,8 +196,8 @@ class CharacterView(WorldElementView):
             fg=prefs['color_text_fg'],
             insertbackground=prefs['color_text_fg'],
         )
-        self._chrExtraField2Box.pack(fill='x')
-        inputWidgets.append(self._chrExtraField2Box)
+        self._crField3Box.pack(fill='x')
+        inputWidgets.append(self._crField3Box)
 
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)
@@ -262,24 +262,27 @@ class CharacterView(WorldElementView):
                 self.element.deathDate = deathDateStr
 
         #--- "Character extra field 1" entry.
-        if self._chrExtraField1Box.hasChanged:
-            self.element.goals = self._chrExtraField1Box.get_text()
+        if self._crField2Box.hasChanged:
+            self.element.goals = self._crField2Box.get_text()
 
         #--- "Character extra field 2" entry.
-        if self._chrExtraField2Box.hasChanged:
-            self.element.field2 = self._chrExtraField2Box.get_text()
+        if self._crField3Box.hasChanged:
+            self.element.field2 = self._crField3Box.get_text()
 
     def configure_display(self):
         """Expand or collapse the property frames."""
         super().configure_display()
 
-        #--- Bio frame.
-        self._bioFrame.buttonText = _('Bio')
-        if prefs['show_cr_bio']:
-            self._bioFrame.show()
+        #--- Character Field 1 frame.
+        if self._mdl.novel.crField1:
+            self._crField1Frame.buttonText = self._mdl.novel.crField1
+        else:
+            self._crField1Frame.buttonText = f"{_('Field')} 1"
+        if prefs['show_cr_field_1']:
+            self._crField1Frame.show()
             self._bioPreviewVar.set('')
         else:
-            self._bioFrame.hide()
+            self._crField1Frame.hide()
             bio = []
             if self.element.birthDate:
                 bio.append(f'* {get_locale_date_str(self.element.birthDate)}')
@@ -290,35 +293,35 @@ class CharacterView(WorldElementView):
             self._bioPreviewVar.set(
                 list_to_string(bio, divider=' '))
 
-        #--- Character extra field 1 frame.
-        if self._mdl.novel.chrExtraField1:
-            self._chrExtraField1Frame.buttonText = self._mdl.novel.chrExtraField1
+        #--- Character Field 2 frame.
+        if self._mdl.novel.crField2:
+            self._crField2Frame.buttonText = self._mdl.novel.crField2
         else:
-            self._chrExtraField1Frame.buttonText = f"{_('Extra field')} 1"
-        if prefs['show_chr_extra_field_1']:
-            self._chrExtraField1Frame.show()
-            self._chrExtraField1PreviewVar.set('')
+            self._crField2Frame.buttonText = f"{_('Field')} 2"
+        if prefs['show_cr_field_2']:
+            self._crField2Frame.show()
+            self._crField2PreviewVar.set('')
         else:
-            self._chrExtraField1Frame.hide()
+            self._crField2Frame.hide()
             if self.element.goals:
-                self._chrExtraField1PreviewVar.set(self._CHECK)
+                self._crField2PreviewVar.set(self._CHECK)
             else:
-                self._chrExtraField1PreviewVar.set('')
+                self._crField2PreviewVar.set('')
 
-        #--- Character extra field 2 frame.
-        if self._mdl.novel.chrExtraField2:
-            self._chrExtraField2Frame.buttonText = self._mdl.novel.chrExtraField2
+        #--- Character Field 3 frame.
+        if self._mdl.novel.crField3:
+            self._crField3Frame.buttonText = self._mdl.novel.crField3
         else:
-            self._chrExtraField2Frame.buttonText = f"{_('Extra field')} 2"
-        if prefs['show_chr_extra_field_2']:
-            self._chrExtraField2Frame.show()
-            self._chrExtraField2PreviewVar.set('')
+            self._crField3Frame.buttonText = f"{_('Extra field')} 2"
+        if prefs['show_cr_field_3']:
+            self._crField3Frame.show()
+            self._crField3PreviewVar.set('')
         else:
-            self._chrExtraField2Frame.hide()
+            self._crField3Frame.hide()
             if self.element.field2:
-                self._chrExtraField2PreviewVar.set(self._CHECK)
+                self._crField3PreviewVar.set(self._CHECK)
             else:
-                self._chrExtraField2PreviewVar.set('')
+                self._crField3PreviewVar.set('')
 
     def set_data(self, elementId):
         """Update the view with element data.
@@ -344,10 +347,10 @@ class CharacterView(WorldElementView):
         self._deathDateVar.set(self.element.deathDate)
 
         #--- "Character extra field 1" entry.
-        self._chrExtraField1Box.set_text(self.element.goals)
+        self._crField2Box.set_text(self.element.goals)
 
         #--- "Character extra field 2" entry.
-        self._chrExtraField2Box.set_text(self.element.field2)
+        self._crField3Box.set_text(self.element.field2)
 
     def _create_frames(self):
         # Template method for creating the frames in the right pane.
@@ -360,31 +363,31 @@ class CharacterView(WorldElementView):
 
     def _toggle_bio_window(self, event=None):
         # Hide/show the 'Bio' textbox.
-        if prefs['show_cr_bio']:
-            self._bioFrame.hide()
-            prefs['show_cr_bio'] = False
+        if prefs['show_cr_field_1']:
+            self._crField1Frame.hide()
+            prefs['show_cr_field_1'] = False
         else:
-            self._bioFrame.show()
-            prefs['show_cr_bio'] = True
+            self._crField1Frame.show()
+            prefs['show_cr_field_1'] = True
         self._toggle_folding_frame()
 
-    def _toggle_chrExtraField1_window(self, event=None):
+    def _toggle_crField2_window(self, event=None):
         # Hide/show the 'Character extra field 1' textbox.
-        if prefs['show_chr_extra_field_1']:
-            self._chrExtraField1Frame.hide()
-            prefs['show_chr_extra_field_1'] = False
+        if prefs['show_cr_field_2']:
+            self._crField2Frame.hide()
+            prefs['show_cr_field_2'] = False
         else:
-            self._chrExtraField1Frame.show()
-            prefs['show_chr_extra_field_1'] = True
+            self._crField2Frame.show()
+            prefs['show_cr_field_2'] = True
         self._toggle_folding_frame()
 
-    def _toggle_chrExtraField2_window(self, event=None):
+    def _toggle_crField3_window(self, event=None):
         # Hide/show the 'Character extra field 1' textbox.
-        if prefs['show_chr_extra_field_2']:
-            self._chrExtraField2Frame.hide()
-            prefs['show_chr_extra_field_2'] = False
+        if prefs['show_cr_field_3']:
+            self._crField3Frame.hide()
+            prefs['show_cr_field_3'] = False
         else:
-            self._chrExtraField2Frame.show()
-            prefs['show_chr_extra_field_2'] = True
+            self._crField3Frame.show()
+            prefs['show_cr_field_3'] = True
         self._toggle_folding_frame()
 

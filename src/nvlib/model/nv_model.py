@@ -9,9 +9,9 @@ from nvlib.model.data.id_generator import new_id
 from nvlib.model.nv_work_file import NvWorkFile
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
-from nvlib.novx_globals import CR_FIELD_1_DEFAULT
 from nvlib.novx_globals import CR_FIELD_2_DEFAULT
 from nvlib.novx_globals import CR_FIELD_3_DEFAULT
+from nvlib.novx_globals import CR_FIELD_1_DEFAULT
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
 from nvlib.novx_globals import Error
@@ -458,8 +458,9 @@ class NvModel:
             otherSceneField1=OTHER_SCENE_FIELD_1_DEFAULT,
             otherSceneField2=OTHER_SCENE_FIELD_2_DEFAULT,
             otherSceneField3=OTHER_SCENE_FIELD_3_DEFAULT,
-            chrExtraField1=CR_FIELD_1_DEFAULT,
-            chrExtraField2=CR_FIELD_2_DEFAULT,
+            crField1=CR_FIELD_1_DEFAULT,
+            crField2=CR_FIELD_2_DEFAULT,
+            crField3=CR_FIELD_3_DEFAULT,
             links=[],
             tree=tree,
             on_element_change=self.on_element_change,
@@ -889,8 +890,9 @@ class NvModel:
             otherSceneField1=OTHER_SCENE_FIELD_1_DEFAULT,
             otherSceneField2=OTHER_SCENE_FIELD_2_DEFAULT,
             otherSceneField3=OTHER_SCENE_FIELD_3_DEFAULT,
-            chrExtraField1=CR_FIELD_1_DEFAULT,
-            chrExtraField2=CR_FIELD_2_DEFAULT,
+            crField1=CR_FIELD_1_DEFAULT,
+            crField2=CR_FIELD_2_DEFAULT,
+            crField3=CR_FIELD_3_DEFAULT,
         )
         self.prjFile = NvWorkFile(filePath)
         self.prjFile.novel = self.novel

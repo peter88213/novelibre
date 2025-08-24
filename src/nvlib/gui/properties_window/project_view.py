@@ -346,29 +346,41 @@ class ProjectView(ElementView):
             text=_('Character'),
         ).pack(anchor='w'),
 
-        # 'Extra field 1' entry.
-        self._chrExtraField1Var = MyStringVar()
-        self._chrExtraField1Entry = LabelEntry(
+        # Character: Field 1 entry.
+        self._crField1Var = MyStringVar()
+        self._crField1Entry = LabelEntry(
             self._fieldNamesFame,
-            text=f"{_('Extra field')} 1",
-            textvariable=self._chrExtraField1Var,
+            text=f"{_('Field')} 1",
+            textvariable=self._crField1Var,
             command=self.apply_changes,
             lblWidth=self._LABEL_WIDTH,
         )
-        self._chrExtraField1Entry.pack(anchor='w')
-        inputWidgets.append(self._chrExtraField1Entry)
+        self._crField1Entry.pack(anchor='w')
+        inputWidgets.append(self._crField1Entry)
 
-        # 'Extra field 2' entry.
-        self._chrExtraField2Var = MyStringVar()
-        self._chrExtraField2Entry = LabelEntry(
+        # Character: Field 2 entry.
+        self._crField2Var = MyStringVar()
+        self._crField2Entry = LabelEntry(
             self._fieldNamesFame,
-            text=f"{_('Extra field')} 2",
-            textvariable=self._chrExtraField2Var,
+            text=f"{_('Field')} 2",
+            textvariable=self._crField2Var,
             command=self.apply_changes,
             lblWidth=self._LABEL_WIDTH,
         )
-        self._chrExtraField2Entry.pack(anchor='w')
-        inputWidgets.append(self._chrExtraField2Entry)
+        self._crField2Entry.pack(anchor='w')
+        inputWidgets.append(self._crField2Entry)
+
+        # Character: Field 3 entry.
+        self._crField3Var = MyStringVar()
+        self._crField3Entry = LabelEntry(
+            self._fieldNamesFame,
+            text=f"{_('Field')} 3",
+            textvariable=self._crField3Var,
+            command=self.apply_changes,
+            lblWidth=self._LABEL_WIDTH,
+        )
+        self._crField3Entry.pack(anchor='w')
+        inputWidgets.append(self._crField3Entry)
 
         #--- "Story time" frame.
         self._narrativeTimeFrame = FoldingFrame(
@@ -657,11 +669,14 @@ class ProjectView(ElementView):
         self.element.otherSceneField3 = self._otherSceneField3Var.get(
             default=OTHER_SCENE_FIELD_3_DEFAULT
         )
-        self.element.chrExtraField1 = self._chrExtraField1Var.get(
+        self.element.crField1 = self._crField1Var.get(
             default=CR_FIELD_1_DEFAULT
         )
-        self.element.chrExtraField2 = self._chrExtraField2Var.get(
+        self.element.crField2 = self._crField2Var.get(
             default=CR_FIELD_2_DEFAULT
+        )
+        self.element.crField3 = self._crField3Var.get(
+            default=CR_FIELD_3_DEFAULT
         )
 
         #--- "Story time" frame.
@@ -926,8 +941,9 @@ class ProjectView(ElementView):
         self._otherSceneField1Var.set(self.element.otherSceneField1)
         self._otherSceneField2Var.set(self.element.otherSceneField2)
         self._otherSceneField3Var.set(self.element.otherSceneField3)
-        self._chrExtraField1Var.set(self.element.chrExtraField1)
-        self._chrExtraField2Var.set(self.element.chrExtraField2)
+        self._crField1Var.set(self.element.crField1)
+        self._crField2Var.set(self.element.crField2)
+        self._crField3Var.set(self.element.crField3)
 
         #--- "Story time" frame
         self._referenceDateVar.set(self.element.referenceDate)

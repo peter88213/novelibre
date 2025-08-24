@@ -41,8 +41,9 @@ class Novel(BasicElement):
         otherSceneField1=None,
         otherSceneField2=None,
         otherSceneField3=None,
-        chrExtraField1=None,
-        chrExtraField2=None,
+        crField1=None,
+        crField2=None,
+        crField3=None,
         referenceDate=None,
         tree=None,
         **kwargs
@@ -71,8 +72,9 @@ class Novel(BasicElement):
         self._otherSceneField1 = otherSceneField1
         self._otherSceneField2 = otherSceneField2
         self._otherSceneField3 = otherSceneField3
-        self._chrExtraField1 = chrExtraField1
-        self._chrExtraField2 = chrExtraField2
+        self._crField1 = crField1
+        self._crField2 = crField2
+        self._crField3 = crField3
 
         self.chapters = {}
         # key = chapter ID, value = Chapter instance.
@@ -389,27 +391,39 @@ class Novel(BasicElement):
             self.on_element_change()
 
     @property
-    def chrExtraField1(self):
-        return self._chrExtraField1
+    def crField1(self):
+        return self._crField1
 
-    @chrExtraField1.setter
-    def chrExtraField1(self, newVal):
+    @crField1.setter
+    def crField1(self, newVal):
         if newVal is not None:
             assert type(newVal) is str
-        if self._chrExtraField1 != newVal:
-            self._chrExtraField1 = newVal
+        if self._crField1 != newVal:
+            self._crField1 = newVal
             self.on_element_change()
 
     @property
-    def chrExtraField2(self):
-        return self._chrExtraField2
+    def crField2(self):
+        return self._crField2
 
-    @chrExtraField2.setter
-    def chrExtraField2(self, newVal):
+    @crField2.setter
+    def crField2(self, newVal):
         if newVal is not None:
             assert type(newVal) is str
-        if self._chrExtraField2 != newVal:
-            self._chrExtraField2 = newVal
+        if self._crField2 != newVal:
+            self._crField2 = newVal
+            self.on_element_change()
+
+    @property
+    def crField3(self):
+        return self._crField3
+
+    @crField3.setter
+    def crField3(self, newVal):
+        if newVal is not None:
+            assert type(newVal) is str
+        if self._crField3 != newVal:
+            self._crField3 = newVal
             self.on_element_change()
 
     @property
@@ -544,11 +558,21 @@ class Novel(BasicElement):
             default=self.otherSceneField3,
         )
 
-        # Character extra field 1.
-        self.chrExtraField1 = self._get_element_text(
+        # Character fields.
+        self.crField1 = self._get_element_text(
+            xmlElement,
+            'CustomChrBio',
+            default=self.crField1,
+        )
+        self.crField2 = self._get_element_text(
             xmlElement,
             'CustomChrGoals',
-            default=self.chrExtraField1,
+            default=self.crField2,
+        )
+        self.crField3 = self._get_element_text(
+            xmlElement,
+            'ChrField3',
+            default=self.crField3,
         )
 
         # Word count start/Word target.
@@ -643,7 +667,7 @@ class Novel(BasicElement):
                 'PartHeadingSuffix',
             ).text = self.partHeadingSuffix
 
-        # No scene's fields.
+        # No scene fields names.
         if self.noSceneField1:
             ET.SubElement(
                 xmlElement,
@@ -660,7 +684,7 @@ class Novel(BasicElement):
                 'CustomWorldBuilding',
             ).text = self.noSceneField3
 
-        # Other scene's fields.
+        # Other scene fields names.
         if self.otherSceneField1:
             ET.SubElement(
                 xmlElement,
@@ -677,13 +701,24 @@ class Novel(BasicElement):
                 'CustomOutcome',
             ).text = self.otherSceneField3
 
-        # Character Extra field name.
-        if self.chrExtraField1:
+        # Character fields names.
+        if self.crField1:
+            ET.SubElement(
+                xmlElement,
+                'CustomChrBio',
+            ).text = self.crField1
+        if self.crField2:
             ET.SubElement(
                 xmlElement,
                 'CustomChrGoals',
-            ).text = self.chrExtraField1
-
+            ).text = self.crField2
+        '''
+        if self.crField3:
+            ET.SubElement(
+                xmlElement,
+                'ChrField3',
+            ).text = self.crField3
+        '''
         # Word count start/Word target.
         if self.wordCountStart:
             ET.SubElement(
