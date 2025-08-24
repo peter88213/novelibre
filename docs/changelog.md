@@ -10,6 +10,28 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.33.0
+
+#### User interface update
+
+- The character "Bio" field label is no longer customizable. 
+- The character "Goals" field is now named "Extra field".
+- The data fields for other scenes and sections that aren't scenes
+  are renamed to "Field 1", "Field 2", and "Field 3".
+- In the Book property view, "Renamings" has been changed to "Field names". 
+- The old default field names are now used as defaults in the entries.
+
+#### Updated the export placeholders
+
+- It is also recommended that you update the nv_custom_export plugin 
+  and *novx_html* and *novx_xtg*, if used.
+
+#### Refactored the code
+
+- Redefined MyStringVar.get() to replace empty string with default.
+- Removed deprecated novel properties, limiting API downward compatibility.
+
+
 ### Version 5.32.2
 
 - Changed the wording: "Narrative time" --> "Story time".

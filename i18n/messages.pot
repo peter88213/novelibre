@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.32.2\n"
-"POT-Creation-Date: 2025-08-24 13:35:52\n"
+"Project-Id-Version: 5.33.0\n"
+"POT-Creation-Date: 2025-08-24 16:06:40\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -1022,7 +1022,7 @@ msgstr ""
 msgid "Paste"
 msgstr ""
 
-msgid "Peak em. moment"
+msgid "Peak emotional moment"
 msgstr ""
 
 msgid "Pick Mode (click here or press Esc to exit)"

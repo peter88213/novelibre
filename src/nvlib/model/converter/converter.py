@@ -52,7 +52,7 @@ class Converter:
     NO_SCN_FIELD2_DEFAULT = _('Characterization')
     NO_SCN_FIELD3_DEFAULT = _('World building')
     OTHER_SCN_FIELD1_DEFAULT = _('Opening')
-    OTHER_SCN_FIELD2_DEFAULT = _('Peak em. moment')
+    OTHER_SCN_FIELD2_DEFAULT = _('Peak emotional moment')
     OTHER_SCN_FIELD3_DEFAULT = _('Ending')
     CHR_EXTRA_FIELD_DEFAULT = _('Goals')
 
