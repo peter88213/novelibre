@@ -70,25 +70,10 @@ class CharacterView(WorldElementView):
             orient='horizontal'
         ).pack(fill='x')
 
-        #--- 'Bio' frame
-        self._crField1Frame = FoldingFrame(
-            self._elementInfoWindow,
-            '',
-            self._toggle_bio_window,
-        )
-
-        # Bio preview.
-        self._bioPreviewVar = MyStringVar()
-        bioPreview = ttk.Label(
-            self._crField1Frame.titleBar,
-            textvariable=self._bioPreviewVar,
-        )
-        bioPreview.pack(side='left', padx=2)
-        bioPreview.bind('<Button-1>', self._toggle_bio_window)
-
+        #--- Birth and death date entries.
         self._birthDateVar = MyStringVar()
         self._birthDateEntry = LabelEntry(
-            self._crField1Frame,
+            self._elementInfoWindow,
             text=_('Birth date'),
             textvariable=self._birthDateVar,
             command=self.apply_changes,
@@ -99,7 +84,7 @@ class CharacterView(WorldElementView):
 
         self._deathDateVar = MyStringVar()
         self._deathDateEntry = LabelEntry(
-            self._crField1Frame,
+            self._elementInfoWindow,
             text=_('Death date'),
             textvariable=self._deathDateVar,
             command=self.apply_changes,
@@ -108,7 +93,27 @@ class CharacterView(WorldElementView):
         self._deathDateEntry.pack(anchor='w', pady=2)
         inputWidgets.append(self._deathDateEntry)
 
-        self._bioBox = TextBox(
+        ttk.Separator(
+            self._elementInfoWindow,
+            orient='horizontal'
+        ).pack(fill='x')
+
+        #--- Character field 1 frame.
+        self._crField1Frame = FoldingFrame(
+            self._elementInfoWindow,
+            '',
+            self._toggle_crField1_window,
+        )
+
+        self._crField1PreviewVar = MyStringVar()
+        crField1Preview = ttk.Label(
+            self._crField1Frame.titleBar,
+            textvariable=self._crField1PreviewVar,
+        )
+        crField1Preview.pack(side='left', padx=2)
+        crField1Preview.bind('<Button-1>', self._toggle_crField1_window)
+
+        self._crField1Box = TextBox(
             self._crField1Frame,
             wrap='word',
             undo=True,
@@ -122,29 +127,28 @@ class CharacterView(WorldElementView):
             fg=prefs['color_text_fg'],
             insertbackground=prefs['color_text_fg'],
         )
-        self._bioBox.pack(fill='x')
-        inputWidgets.append(self._bioBox)
+        self._crField1Box.pack(fill='x')
+        inputWidgets.append(self._crField1Box)
 
         ttk.Separator(
             self._elementInfoWindow,
             orient='horizontal'
         ).pack(fill='x')
 
-        #--- 'Character sextra field 1' entry.
+        #--- Character field 2 frame.
         self._crField2Frame = FoldingFrame(
             self._elementInfoWindow,
             '',
             self._toggle_crField2_window,
         )
 
-        # Character extra field 1 preview.
         self._crField2PreviewVar = MyStringVar()
-        chrExtraFieldPreview = ttk.Label(
+        crField2Preview = ttk.Label(
             self._crField2Frame.titleBar,
             textvariable=self._crField2PreviewVar,
         )
-        chrExtraFieldPreview.pack(side='left', padx=2)
-        chrExtraFieldPreview.bind('<Button-1>', self._toggle_crField2_window)
+        crField2Preview.pack(side='left', padx=2)
+        crField2Preview.bind('<Button-1>', self._toggle_crField2_window)
 
         self._crField2Box = TextBox(self._crField2Frame,
             wrap='word',
@@ -167,21 +171,20 @@ class CharacterView(WorldElementView):
             orient='horizontal'
         ).pack(fill='x')
 
-        #--- 'Character sextra field 2' entry.
+        #--- Character field 3 frame.
         self._crField3Frame = FoldingFrame(
             self._elementInfoWindow,
             '',
             self._toggle_crField3_window,
         )
 
-        # Character extra field 2 preview.
         self._crField3PreviewVar = MyStringVar()
-        chrExtraFieldPreview = ttk.Label(
+        crField3Preview = ttk.Label(
             self._crField3Frame.titleBar,
             textvariable=self._crField3PreviewVar,
         )
-        chrExtraFieldPreview.pack(side='left', padx=2)
-        chrExtraFieldPreview.bind('<Button-1>', self._toggle_crField3_window)
+        crField3Preview.pack(side='left', padx=2)
+        crField3Preview.bind('<Button-1>', self._toggle_crField3_window)
 
         self._crField3Box = TextBox(self._crField3Frame,
             wrap='word',
@@ -221,10 +224,7 @@ class CharacterView(WorldElementView):
         #--- Character status checkbox.
         self.element.isMajor = self._isMajorVar.get()
 
-        #--- "Bio' frame.
-        if self._bioBox.hasChanged:
-            self.element.bio = self._bioBox.get_text()
-
+        #--- Birth and death date entries.
         birthDateStr = self._birthDateVar.get()
         if not birthDateStr:
             self.element.birthDate = None
@@ -261,11 +261,15 @@ class CharacterView(WorldElementView):
             else:
                 self.element.deathDate = deathDateStr
 
-        #--- "Character extra field 1" entry.
+        #--- Character field 1 entry.
+        if self._crField1Box.hasChanged:
+            self.element.bio = self._crField1Box.get_text()
+
+        #--- Character field 2 entry.
         if self._crField2Box.hasChanged:
             self.element.goals = self._crField2Box.get_text()
 
-        #--- "Character extra field 2" entry.
+        #--- Character field 3 entry.
         if self._crField3Box.hasChanged:
             self.element.field2 = self._crField3Box.get_text()
 
@@ -273,27 +277,22 @@ class CharacterView(WorldElementView):
         """Expand or collapse the property frames."""
         super().configure_display()
 
-        #--- Character Field 1 frame.
+        #--- Character field 1 frame.
         if self._mdl.novel.crField1:
             self._crField1Frame.buttonText = self._mdl.novel.crField1
         else:
             self._crField1Frame.buttonText = f"{_('Field')} 1"
         if prefs['show_cr_field_1']:
             self._crField1Frame.show()
-            self._bioPreviewVar.set('')
+            self._crField1PreviewVar.set('')
         else:
             self._crField1Frame.hide()
-            bio = []
-            if self.element.birthDate:
-                bio.append(f'* {get_locale_date_str(self.element.birthDate)}')
-            if self.element.deathDate:
-                bio.append(f'† {get_locale_date_str(self.element.deathDate)}')
             if self.element.bio:
-                bio.append(self._CHECK)
-            self._bioPreviewVar.set(
-                list_to_string(bio, divider=' '))
+                self._crField1PreviewVar.set(self._CHECK)
+            else:
+                self._crField1PreviewVar.set('')
 
-        #--- Character Field 2 frame.
+        #--- Character field 2 frame.
         if self._mdl.novel.crField2:
             self._crField2Frame.buttonText = self._mdl.novel.crField2
         else:
@@ -308,7 +307,7 @@ class CharacterView(WorldElementView):
             else:
                 self._crField2PreviewVar.set('')
 
-        #--- Character Field 3 frame.
+        #--- Character field 3 frame.
         if self._mdl.novel.crField3:
             self._crField3Frame.buttonText = self._mdl.novel.crField3
         else:
@@ -337,19 +336,17 @@ class CharacterView(WorldElementView):
         #--- Character status checkbox.
         self._isMajorVar.set(self.element.isMajor)
 
-        #--- Bio frame.
-
-        # "Bio" entry.
-        self._bioBox.set_text(self.element.bio)
-
-        # Birth date/death date.
+        #--- Birth and death date entries.
         self._birthDateVar.set(self.element.birthDate)
         self._deathDateVar.set(self.element.deathDate)
 
-        #--- "Character extra field 1" entry.
+        #--- Character field 1 entry.
+        self._crField1Box.set_text(self.element.bio)
+
+        #--- Character field 2 entry.
         self._crField2Box.set_text(self.element.goals)
 
-        #--- "Character extra field 2" entry.
+        #--- Character field 3 entry.
         self._crField3Box.set_text(self.element.field2)
 
     def _create_frames(self):
@@ -361,8 +358,8 @@ class CharacterView(WorldElementView):
         self._create_notes_window()
         self._create_button_bar()
 
-    def _toggle_bio_window(self, event=None):
-        # Hide/show the 'Bio' textbox.
+    def _toggle_crField1_window(self, event=None):
+        # Hide/show the 'Character field 1' textbox.
         if prefs['show_cr_field_1']:
             self._crField1Frame.hide()
             prefs['show_cr_field_1'] = False
@@ -372,7 +369,7 @@ class CharacterView(WorldElementView):
         self._toggle_folding_frame()
 
     def _toggle_crField2_window(self, event=None):
-        # Hide/show the 'Character extra field 1' textbox.
+        # Hide/show the 'Character field 2' textbox.
         if prefs['show_cr_field_2']:
             self._crField2Frame.hide()
             prefs['show_cr_field_2'] = False
@@ -382,7 +379,7 @@ class CharacterView(WorldElementView):
         self._toggle_folding_frame()
 
     def _toggle_crField3_window(self, event=None):
-        # Hide/show the 'Character extra field 1' textbox.
+        # Hide/show the 'Character field 3' textbox.
         if prefs['show_cr_field_3']:
             self._crField3Frame.hide()
             prefs['show_cr_field_3'] = False
