@@ -72,10 +72,6 @@ class Novel(BasicElement):
         self._otherScnField3 = otherScnField3
         self._chrExtraField = chrExtraField
 
-        self.customChrBio = None
-        # just for API downward compatibility
-        # TODO: discard this (maybe version 6).
-
         self.chapters = {}
         # key = chapter ID, value = Chapter instance.
         self.sections = {}
@@ -424,64 +420,6 @@ class Novel(BasicElement):
                 else:
                     self._referenceDate = newVal
                     self.on_element_change()
-
-    # For API downward compatibility:
-    # TODO: Remove this for version 6
-    @property
-    def customPlotProgress(self):
-        return self._noScnField1
-
-    @customPlotProgress.setter
-    def customPlotProgress(self, newVal):
-        self.noScnField1 = newVal
-
-    @property
-    def customCharacterization(self):
-        return self._noScnField2
-
-    @customCharacterization.setter
-    def customCharacterization(self, newVal):
-        self.noScnField2 = newVal
-
-    @property
-    def customWorldBuilding(self):
-        return self._noScnField3
-
-    @customWorldBuilding.setter
-    def customWorldBuilding(self, newVal):
-        self.noScnField3 = newVal
-
-    @property
-    def customGoal(self):
-        return self._otherScnField1
-
-    @customGoal.setter
-    def customGoal(self, newVal):
-        self.otherScnField1 = newVal
-
-    @property
-    def customConflict(self):
-        return self._otherScnField2
-
-    @customConflict.setter
-    def customConflict(self, newVal):
-        self.otherScnField2 = newVal
-
-    @property
-    def customOutcome(self):
-        return self._otherScnField3
-
-    @customOutcome.setter
-    def customOutcome(self, newVal):
-        self.otherScnField3 = newVal
-
-    @property
-    def customChrGoals(self):
-        return self._chrExtraField
-
-    @customChrGoals.setter
-    def customChrGoals(self, newVal):
-        self.chrExtraField = newVal
 
     def check_locale(self):
         """Check the document's locale (language code and country code).

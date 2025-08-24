@@ -297,7 +297,7 @@ class FileExport(File):
         if deathDateStr is None:
             deathDateStr = ''
 
-        __, __, __, __, __, __, chrBio, chrGls = self._get_renamings()
+        __, __, __, __, __, __, chrBio, chrExtraField = self._get_field_names()
 
         characterMapping = dict(
             ID=crId,
@@ -333,10 +333,14 @@ class FileExport(File):
             ),
             ProjectPath=self.projectPath,
             CharactersSuffix=CHARACTERS_SUFFIX,
-            CustomChrBio=chrBio,
-            CustomChrGoals=chrGls,
             BirthDate=birthDateStr,
             DeathDate=deathDateStr,
+            CharacterExtraField=chrExtraField,
+
+            # Deprecated placeholders.
+            # TODO: Remove in version 6.
+            CustomChrBio=chrBio,
+            CustomChrGoals=chrExtraField,
         )
         return characterMapping
 
@@ -364,6 +368,46 @@ class FileExport(File):
                     )
                 )
         return lines
+
+    def _get_field_names(self):
+        if self.novel.noScnField1:
+            noScnField1 = self.novel.noScnField1
+        else:
+            noScnField1 = _('Field 1')
+        if self.novel.noScnField2:
+            noScnField2 = self.novel.noScnField2
+        else:
+            noScnField2 = _('Field 2')
+        if self.novel.noScnField3:
+            noScnField3 = self.novel.noScnField3
+        else:
+            noScnField3 = _('Field 3')
+        if self.novel.otherScnField1:
+            otherScnField1 = self.novel.otherScnField1
+        else:
+            otherScnField1 = _('Field 1')
+        if self.novel.otherScnField2:
+            otherScnField2 = self.novel.otherScnField2
+        else:
+            otherScnField2 = _('Field 2')
+        if self.novel.otherScnField3:
+            otherScnField3 = self.novel.otherScnField3
+        else:
+            otherScnField3 = _('Field 3')
+        if self.novel.chrExtraField:
+            chrExtraField = self.novel.chrExtraField
+        else:
+            chrExtraField = _('Extra field')
+        return (
+            noScnField1,
+            noScnField2,
+            noScnField3,
+            otherScnField1,
+            otherScnField2,
+            otherScnField3,
+            _('Bio'),
+            chrExtraField,
+        )
 
     def _get_fileFooter(self):
         """Process the file footer.
@@ -423,15 +467,15 @@ class FileExport(File):
             else:
                 filters = ''
             (
-                pltPrgs,
-                chrczn,
-                wrldbld,
-                goal,
-                cflct,
-                outcm,
+                noScnField1,
+                noScnField2,
+                noScnField3,
+                otherScnField1,
+                otherScnField2,
+                otherScnField3,
                 chrBio,
-                chrGls
-            ) = self._get_renamings()
+                chrExtraField
+            ) = self._get_field_names()
 
         fileHeaderMapping = dict(
             Title=self._convert_from_novx(
@@ -446,14 +490,25 @@ class FileExport(File):
             ),
             Language=self.novel.languageCode,
             Country=self.novel.countryCode,
-            CustomPlotProgress=pltPrgs,
-            CustomCharacterization=chrczn,
-            CustomWorldBuilding=wrldbld,
-            CustomGoal=goal,
-            CustomConflict=cflct,
-            CustomOutcome=outcm,
+
+            NotASceneField1=noScnField1,
+            NotASceneField2=noScnField2,
+            NotASceneField3=noScnField3,
+            OtherSceneField1=otherScnField1,
+            OtherSceneField2=otherScnField2,
+            OtherSceneField3=otherScnField3,
+            CharacterExtraField=chrExtraField,
+
+            # Deprecated placeholders.
+            # TODO: Remove in version 6.
+            CustomPlotProgress=noScnField1,
+            CustomCharacterization=noScnField2,
+            CustomWorldBuilding=noScnField3,
+            CustomGoal=otherScnField1,
+            CustomConflict=otherScnField2,
+            CustomOutcome=otherScnField3,
             CustomChrBio=chrBio,
-            CustomChrGoals=chrGls
+            CustomChrGoals=chrExtraField
         )
         return fileHeaderMapping
 
@@ -705,46 +760,6 @@ class FileExport(File):
             )
         return plotPointMapping
 
-    def _get_renamings(self):
-        if self.novel.noScnField1:
-            pltPrgs = self.novel.noScnField1
-        else:
-            pltPrgs = _('Field 1')
-        if self.novel.noScnField2:
-            chrczn = self.novel.noScnField2
-        else:
-            chrczn = _('Field 2')
-        if self.novel.noScnField3:
-            wrldbld = self.novel.noScnField3
-        else:
-            wrldbld = _('Field 3')
-        if self.novel.otherScnField1:
-            goal = self.novel.otherScnField1
-        else:
-            goal = _('Field 1')
-        if self.novel.otherScnField2:
-            cflct = self.novel.otherScnField2
-        else:
-            cflct = _('Field 2')
-        if self.novel.otherScnField3:
-            outcm = self.novel.otherScnField3
-        else:
-            outcm = _('Field 3')
-        if self.novel.chrExtraField:
-            chrGls = self.novel.chrExtraField
-        else:
-            chrGls = _('Extra field')
-        return (
-            pltPrgs,
-            chrczn,
-            wrldbld,
-            goal,
-            cflct,
-            outcm,
-            _('Bio'),
-            chrGls,
-        )
-
     def _get_sectionAssocMapping(self, scId):
         # Return a mapping dictionary for a section that is
         # associated to a plot point.
@@ -895,15 +910,15 @@ class FileExport(File):
 
         duration = f'{days}{hours}{minutes}'
         (
-            pltPrgs,
-            chrczn,
-            wrldbld,
-            goal,
-            cflct,
-            outcm,
+            noScnField1,
+            noScnField2,
+            noScnField3,
+            otherScnField1,
+            otherScnField2,
+            otherScnField3,
             __,
-            __
-         ) = self._get_renamings()
+            __,
+        ) = self._get_field_names()
         sectionMapping = dict(
             ID=scId,
             SectionNumber=sectionNumber,
@@ -963,12 +978,22 @@ class FileExport(File):
             Country=self.novel.countryCode,
             ManuscriptSuffix=MANUSCRIPT_SUFFIX,
             SectionsSuffix=SECTIONS_SUFFIX,
-            CustomPlotProgress=pltPrgs,
-            CustomCharacterization=chrczn,
-            CustomWorldBuilding=wrldbld,
-            CustomGoal=goal,
-            CustomConflict=cflct,
-            CustomOutcome=outcm
+
+            NotASceneField1=noScnField1,
+            NotASceneField2=noScnField2,
+            NotASceneField3=noScnField3,
+            OtherSceneField1=otherScnField1,
+            OtherSceneField2=otherScnField2,
+            OtherSceneField3=otherScnField3,
+
+            # Deprecated placeholders.
+            # TODO: Remove in version 6.
+            CustomPlotProgress=noScnField1,
+            CustomCharacterization=noScnField2,
+            CustomWorldBuilding=noScnField3,
+            CustomGoal=otherScnField1,
+            CustomConflict=otherScnField2,
+            CustomOutcome=otherScnField3,
         )
         return sectionMapping
 
