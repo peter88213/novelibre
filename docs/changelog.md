@@ -23,8 +23,8 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 #### Updated the export placeholders
 
-- It is also recommended that you update the nv_custom_export plugin 
-  and *novx_html* and *novx_xtg*, if used.
+- It is also recommended that you update the *nv_custom_export* and
+  *nv_yw7* plugins as well as *novx_html* and *novx_xtg*, if used.
 
 #### Refactored the code
 
