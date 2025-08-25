@@ -14,8 +14,8 @@ from nvlib.gui.pop_up.plugin_manager_dialog import PluginManagerDialog
 from nvlib.gui.pop_up.reimport_dialog import ReimportDialog
 from nvlib.gui.pop_up.view_options_dialog import ViewOptionsDialog
 from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
-from nvlib.novx_globals import CHAPTERS_SUFFIX
 from nvlib.novx_globals import CHAPTERLIST_SUFFIX
+from nvlib.novx_globals import CHAPTERS_SUFFIX
 from nvlib.novx_globals import CHARACTERS_SUFFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CHARACTER_REPORT_SUFFIX
@@ -45,6 +45,7 @@ from nvlib.novx_globals import STAGES_SUFFIX
 from nvlib.novx_globals import TIMETABLE_SUFFIX
 from nvlib.novx_globals import XREF_SUFFIX
 from nvlib.nv_globals import HOME_URL
+from nvlib.nv_globals import NEWS_URL
 
 
 class Commands:
@@ -443,6 +444,9 @@ class Commands:
             ask=False,
             doNotExport=doNotExport,
         )
+
+    def open_news(self, event=None):
+        webbrowser.open(NEWS_URL)
 
     def open_plugin_manager(self, event=None):
         """Open a toplevel window to manage the plugins."""

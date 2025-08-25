@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.34.0\n"
-"POT-Creation-Date: 2025-08-25 13:20:34\n"
+"Project-Id-Version: 5.34.1\n"
+"POT-Creation-Date: 2025-08-25 15:16:37\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -830,6 +830,9 @@ msgstr ""
 msgid "Newer than the project file"
 msgstr ""
 
+msgid "News about novelibre"
+msgstr ""
+
 msgid "Next"
 msgstr ""
 
@@ -933,6 +936,9 @@ msgid "Older than the project file"
 msgstr ""
 
 msgid "Online help"
+msgstr ""
+
+msgid "Online user guide"
 msgstr ""
 
 msgid "Open"

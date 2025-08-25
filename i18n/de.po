@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.34.0\n"
-"POT-Creation-Date: 2025-08-25 13:20:34\n"
-"PO-Revision-Date: 2025-08-25 13:20:34\n"
+"Project-Id-Version: 5.34.1\n"
+"POT-Creation-Date: 2025-08-25 15:16:37\n"
+"PO-Revision-Date: 2025-08-25 15:16:37\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -823,6 +823,9 @@ msgstr "Neuer Abschnitt"
 msgid "Newer than the project file"
 msgstr "Neuer als die Projektdatei"
 
+msgid "News about novelibre"
+msgstr "Neuigkeiten zu Novelibre"
+
 msgid "Next"
 msgstr "Vor"
 
@@ -927,6 +930,9 @@ msgstr "Älter als die Projektdatei"
 
 msgid "Online help"
 msgstr "Online-Hilfe"
+
+msgid "Online user guide"
+msgstr "Online-Benutzerhandbuch"
 
 msgid "Open"
 msgstr "Öffnen"

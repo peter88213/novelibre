@@ -953,7 +953,7 @@ class MainView(Observer, MsgBoxes, SubController):
             menu=self.helpMenu,
         )
         self.helpMenu.add_command(
-            label=_('Online help'),
+            label=_('Online user guide'),
             accelerator=KEYS.OPEN_HELP[1],
             command=self._ctrl.open_help,
         )
@@ -964,6 +964,10 @@ class MainView(Observer, MsgBoxes, SubController):
         self.helpMenu.add_command(
             label=f"novelibre {_('Home page')}",
             command=self._ctrl.open_homepage,
+        )
+        self.helpMenu.add_command(
+            label=_('News about novelibre'),
+            command=self._ctrl.open_news,
         )
         self.helpMenu.add_separator()
 

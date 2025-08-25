@@ -20,6 +20,7 @@ launchers = {}
 # after reading the configuration file
 
 HOME_URL = 'https://github.com/peter88213/novelibre/'
+NEWS_URL = 'https://github.com/peter88213/novelibre/discussions/1?sort=new'
 
 HOME_DIR = str(Path.home()).replace('\\', '/')
 INSTALL_DIR = f'{HOME_DIR}/.novx'

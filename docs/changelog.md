@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.34.1
+
+- Renamed the "Online help" menu entry to "Online user guide". 
+- Added a help menu entry to open the "What's new" page.
+
+
 ### Version 5.34.0
 
 - The character "Bio" field label is customizable again. 
