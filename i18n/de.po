@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.34.0\n"
-"POT-Creation-Date: 2025-08-25 13:20:34\n"
-"PO-Revision-Date: 2025-08-25 13:20:34\n"
+"Project-Id-Version: 5.33.0\n"
+"POT-Creation-Date: 2025-08-24 20:43:25\n"
+"PO-Revision-Date: 2025-08-24 20:43:25\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -421,6 +421,9 @@ msgstr "Beschreibung"
 msgid "Detach/Dock Properties"
 msgstr "Eigenschaften abtrennen/andocken"
 
+msgid "Development"
+msgstr "Entwicklung"
+
 msgid "Dilemma"
 msgstr "Dilemma"
 
@@ -570,6 +573,9 @@ msgstr "Exporttyp wird nicht unterstützt"
 
 msgid "Exported documents"
 msgstr "Exportierte Dokumente"
+
+msgid "Extra field"
+msgstr "Zusatzfeld"
 
 msgid "Field"
 msgstr "Feld"
@@ -1140,6 +1146,9 @@ msgstr "Sicherungskopie wiederherstellen"
 
 msgid "Restore default styles"
 msgstr "Standardvorlagen wiederherstellen"
+
+msgid "Role"
+msgstr "Rolle"
 
 msgid "Save"
 msgstr "Speichern"

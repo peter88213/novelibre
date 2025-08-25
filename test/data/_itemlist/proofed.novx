@@ -16,8 +16,8 @@
     <CustomGoal>Opening</CustomGoal>
     <CustomConflict>Peak emotional moment</CustomConflict>
     <CustomOutcome>Ending</CustomOutcome>
-    <CustomChrBio>Bio</CustomChrBio>
     <CustomChrGoals>Goals</CustomChrGoals>
+    <CharacterField3>Role</CharacterField3>
   </PROJECT>
   <CHAPTERS>
     <CHAPTER id="ch33" type="1">

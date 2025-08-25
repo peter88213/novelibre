@@ -301,6 +301,7 @@ class FileExport(File):
             __, __, __, __, __, __,
             crField1,
             crField2,
+            crField3
         ) = self._get_field_names()
 
         characterMapping = dict(
@@ -326,6 +327,9 @@ class FileExport(File):
             Goals=self._convert_from_novx(
                 self.novel.characters[crId].goals,
             ),
+            Field3=self._convert_from_novx(
+                self.novel.characters[crId].field3,
+            ),
             FullName=self._convert_from_novx(
                 self.novel.characters[crId].fullName,
                 quick=True,
@@ -341,6 +345,7 @@ class FileExport(File):
             DeathDate=deathDateStr,
             CharacterField1=crField1,
             CharacterField2=crField2,
+            CharacterField3=crField3,
 
             # Deprecated placeholders.
             # TODO: Remove in version 6.
@@ -407,6 +412,10 @@ class FileExport(File):
             crField2 = self.novel.crField2
         else:
             crField2 = f"{_('Field')} 2"
+        if self.novel.crField3:
+            crField3 = self.novel.crField3
+        else:
+            crField3 = self.novel.crField3
         return (
             noSceneField1,
             noSceneField2,
@@ -416,6 +425,7 @@ class FileExport(File):
             otherSceneField3,
             crField1,
             crField2,
+            crField3,
         )
 
     def _get_fileFooter(self):
@@ -484,6 +494,7 @@ class FileExport(File):
                 otherSceneField3,
                 crField1,
                 crField2,
+                crField3
             ) = self._get_field_names()
 
         fileHeaderMapping = dict(
@@ -508,6 +519,7 @@ class FileExport(File):
             OtherSceneField3=otherSceneField3,
             CharacterField1=crField1,
             CharacterField2=crField2,
+            CharacterField3=crField3,
 
             # Deprecated placeholders.
             # TODO: Remove in version 6.
@@ -926,7 +938,7 @@ class FileExport(File):
             otherSceneField1,
             otherSceneField2,
             otherSceneField3,
-            __, __,
+            __, __, __,
         ) = self._get_field_names()
         sectionMapping = dict(
             ID=scId,

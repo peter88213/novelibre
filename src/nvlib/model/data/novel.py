@@ -43,6 +43,7 @@ class Novel(BasicElement):
         otherSceneField3=None,
         crField1=None,
         crField2=None,
+        crField3=None,
         referenceDate=None,
         tree=None,
         **kwargs
@@ -73,6 +74,7 @@ class Novel(BasicElement):
         self._otherSceneField3 = otherSceneField3
         self._crField1 = crField1
         self._crField2 = crField2
+        self._crField3 = crField3
 
         self.chapters = {}
         # key = chapter ID, value = Chapter instance.
@@ -413,6 +415,18 @@ class Novel(BasicElement):
             self.on_element_change()
 
     @property
+    def crField3(self):
+        return self._crField3
+
+    @crField3.setter
+    def crField3(self, newVal):
+        if newVal is not None:
+            assert type(newVal) is str
+        if self._crField3 != newVal:
+            self._crField3 = newVal
+            self.on_element_change()
+
+    @property
     def referenceDate(self):
         return self._referenceDate
 
@@ -555,6 +569,11 @@ class Novel(BasicElement):
             'CustomChrGoals',
             default=self.crField2,
         )
+        self.crField3 = self._get_element_text(
+            xmlElement,
+            'CharacterField3',
+            default=self.crField3,
+        )
 
         # Word count start/Word target.
         if xmlElement.find('WordCountStart') is not None:
@@ -693,7 +712,11 @@ class Novel(BasicElement):
                 xmlElement,
                 'CustomChrGoals',
             ).text = self.crField2
-
+        if self.crField3:
+            ET.SubElement(
+                xmlElement,
+                'CharacterField3',
+            ).text = self.crField3
         # Word count start/Word target.
         if self.wordCountStart:
             ET.SubElement(

@@ -12,6 +12,8 @@ from nvlib.gui.widgets.label_entry import LabelEntry
 from nvlib.gui.widgets.my_string_var import MyStringVar
 from nvlib.gui.widgets.text_box import TextBox
 from nvlib.model.data.py_calendar import PyCalendar
+from nvlib.novx_globals import list_to_string
+from nvlib.nv_globals import get_locale_date_str
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
@@ -164,6 +166,42 @@ class CharacterView(WorldElementView):
         self._crField2Box.pack(fill='x')
         inputWidgets.append(self._crField2Box)
 
+        ttk.Separator(
+            self._elementInfoWindow,
+            orient='horizontal'
+        ).pack(fill='x')
+
+        #--- Character field 3 frame.
+        self._crField3Frame = FoldingFrame(
+            self._elementInfoWindow,
+            '',
+            self._toggle_crField3_window,
+        )
+
+        self._crField3PreviewVar = MyStringVar()
+        crField3Preview = ttk.Label(
+            self._crField3Frame.titleBar,
+            textvariable=self._crField3PreviewVar,
+        )
+        crField3Preview.pack(side='left', padx=2)
+        crField3Preview.bind('<Button-1>', self._toggle_crField3_window)
+
+        self._crField3Box = TextBox(self._crField3Frame,
+            wrap='word',
+            undo=True,
+            autoseparators=True,
+            maxundo=-1,
+            height=10,
+            width=10,
+            padx=5,
+            pady=5,
+            bg=prefs['color_text_bg'],
+            fg=prefs['color_text_fg'],
+            insertbackground=prefs['color_text_fg'],
+        )
+        self._crField3Box.pack(fill='x')
+        inputWidgets.append(self._crField3Box)
+
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)
             self.inputWidgets.append(widget)
@@ -231,6 +269,10 @@ class CharacterView(WorldElementView):
         if self._crField2Box.hasChanged:
             self.element.goals = self._crField2Box.get_text()
 
+        #--- Character field 3 entry.
+        if self._crField3Box.hasChanged:
+            self.element.field3 = self._crField3Box.get_text()
+
     def configure_display(self):
         """Expand or collapse the property frames."""
         super().configure_display()
@@ -265,6 +307,21 @@ class CharacterView(WorldElementView):
             else:
                 self._crField2PreviewVar.set('')
 
+        #--- Character field 3 frame.
+        if self._mdl.novel.crField3:
+            self._crField3Frame.buttonText = self._mdl.novel.crField3
+        else:
+            self._crField3Frame.buttonText = f"{_('Extra field')} 2"
+        if prefs['show_cr_field_3']:
+            self._crField3Frame.show()
+            self._crField3PreviewVar.set('')
+        else:
+            self._crField3Frame.hide()
+            if self.element.field3:
+                self._crField3PreviewVar.set(self._CHECK)
+            else:
+                self._crField3PreviewVar.set('')
+
     def set_data(self, elementId):
         """Update the view with element data.
         
@@ -288,6 +345,9 @@ class CharacterView(WorldElementView):
 
         #--- Character field 2 entry.
         self._crField2Box.set_text(self.element.goals)
+
+        #--- Character field 3 entry.
+        self._crField3Box.set_text(self.element.field3)
 
     def _create_frames(self):
         # Template method for creating the frames in the right pane.
@@ -316,5 +376,15 @@ class CharacterView(WorldElementView):
         else:
             self._crField2Frame.show()
             prefs['show_cr_field_2'] = True
+        self._toggle_folding_frame()
+
+    def _toggle_crField3_window(self, event=None):
+        # Hide/show the 'Character field 3' textbox.
+        if prefs['show_cr_field_3']:
+            self._crField3Frame.hide()
+            prefs['show_cr_field_3'] = False
+        else:
+            self._crField3Frame.show()
+            prefs['show_cr_field_3'] = True
         self._toggle_folding_frame()
 

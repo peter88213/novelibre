@@ -16,6 +16,7 @@ from nvlib.gui.widgets.my_string_var import MyStringVar
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.novx_globals import CR_FIELD_1_DEFAULT
 from nvlib.novx_globals import CR_FIELD_2_DEFAULT
+from nvlib.novx_globals import CR_FIELD_3_DEFAULT
 from nvlib.novx_globals import NO_SCENE_FIELD_1_DEFAULT
 from nvlib.novx_globals import NO_SCENE_FIELD_2_DEFAULT
 from nvlib.novx_globals import NO_SCENE_FIELD_3_DEFAULT
@@ -369,6 +370,18 @@ class ProjectView(ElementView):
         self._crField2Entry.pack(anchor='w')
         inputWidgets.append(self._crField2Entry)
 
+        # Character: Field 3 entry.
+        self._crField3Var = MyStringVar()
+        self._crField3Entry = LabelEntry(
+            self._fieldNamesFame,
+            text=f"{_('Field')} 3",
+            textvariable=self._crField3Var,
+            command=self.apply_changes,
+            lblWidth=self._LABEL_WIDTH,
+        )
+        self._crField3Entry.pack(anchor='w')
+        inputWidgets.append(self._crField3Entry)
+
         #--- "Story time" frame.
         self._narrativeTimeFrame = FoldingFrame(
             self._elementInfoWindow,
@@ -662,6 +675,9 @@ class ProjectView(ElementView):
         self.element.crField2 = self._crField2Var.get(
             default=CR_FIELD_2_DEFAULT
         )
+        self.element.crField3 = self._crField3Var.get(
+            default=CR_FIELD_3_DEFAULT
+        )
 
         #--- "Story time" frame.
         refDateStr = self._referenceDateVar.get()
@@ -927,6 +943,7 @@ class ProjectView(ElementView):
         self._otherSceneField3Var.set(self.element.otherSceneField3)
         self._crField1Var.set(self.element.crField1)
         self._crField2Var.set(self.element.crField2)
+        self._crField3Var.set(self.element.crField3)
 
         #--- "Story time" frame
         self._referenceDateVar.set(self.element.referenceDate)

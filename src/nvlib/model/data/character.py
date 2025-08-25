@@ -16,6 +16,7 @@ class Character(WorldElement):
         self,
         bio=None,
         goals=None,
+        field2=None,
         fullName=None,
         isMajor=None,
         birthDate=None,
@@ -26,6 +27,7 @@ class Character(WorldElement):
         super().__init__(**kwargs)
         self._bio = bio
         self._goals = goals
+        self._field3 = field2
         self._fullName = fullName
         self._isMajor = isMajor
         self._birthDate = birthDate
@@ -53,6 +55,18 @@ class Character(WorldElement):
             assert type(newVal) is str
         if self._goals != newVal:
             self._goals = newVal
+            self.on_element_change()
+
+    @property
+    def field3(self):
+        return self._field3
+
+    @field3.setter
+    def field3(self, newVal):
+        if newVal is not None:
+            assert type(newVal) is str
+        if self._field3 != newVal:
+            self._field3 = newVal
             self.on_element_change()
 
     @property
@@ -111,6 +125,7 @@ class Character(WorldElement):
         self.fullName = self._get_element_text(xmlElement, 'FullName')
         self.bio = self._xml_element_to_text(xmlElement.find('Bio'))
         self.goals = self._xml_element_to_text(xmlElement.find('Goals'))
+        self.field3 = self._xml_element_to_text(xmlElement.find('Field3'))
         self.birthDate = PyCalendar.verified_date(
             self._get_element_text(xmlElement, 'BirthDate')
         )
@@ -128,6 +143,8 @@ class Character(WorldElement):
             xmlElement.append(self._text_to_xml_element('Bio', self.bio))
         if self.goals:
             xmlElement.append(self._text_to_xml_element('Goals', self.goals))
+        if self.field3:
+            xmlElement.append(self._text_to_xml_element('Field3', self.field3))
         if self.birthDate:
             ET.SubElement(xmlElement, 'BirthDate').text = self.birthDate
         if self.deathDate:

@@ -18,6 +18,7 @@
     <CustomOutcome>Ending</CustomOutcome>
     <CustomChrBio>Bio</CustomChrBio>
     <CustomChrGoals>Goals</CustomChrGoals>
+    <CharacterField3>Role</CharacterField3>
   </PROJECT>
   <CHAPTERS>
     <CHAPTER id="ch1" level="1">
