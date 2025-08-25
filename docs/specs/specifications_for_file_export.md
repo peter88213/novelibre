@@ -70,18 +70,19 @@ There are two options:
 -   `$OtherSceneField1` - Field 1 name for other scenes
 -   `$OtherSceneField2` - Field 2 name for other scenes
 -   `$OtherSceneField3` - Field 3 name for other scenes
--   `$CharacterExtraField` - Extra field name for character data
+-   `$CharacterField1` - Field 1 name for character data
+-   `$CharacterField2` - Field 2 name for character data
 
 **Deprecated:**
 
--   `$CustomPlotProgress` - Custom "Plot progress" field title
--   `$CustomCharacterization` - Custom "Characterization" field title
--   `$CustomWorldBuilding` - Custom "World building" field title
--   `$CustomGoal` - Custom "Goal" field title
--   `$CustomConflict` - Custom "Conflict" field title
--   `$CustomOutcome` - Custom "Outcome" field title
--   `$CustomChrBio` - Custom character "Bio" field title
--   `$CustomChrGoals` - Custom character "Goals" field title
+-   `$CustomPlotProgress` - Field 1 name for sections that aren't scenes
+-   `$CustomCharacterization` - Field 2 name for sections that aren't scenes
+-   `$CustomWorldBuilding` - Field 3 name for sections that aren't scenes
+-   `$CustomGoal` - Field 1 name for other scenes
+-   `$CustomConflict` - Field 2 name for other scenes
+-   `$CustomOutcome` - Field 3 name for other scenes
+-   `$CustomChrBio` - Field 1 name for character data
+-   `$CustomChrGoals` - Field 2 name for character data
 
 ### "Chapter template" placeholders
 
@@ -145,12 +146,12 @@ There are two options:
 
 **Deprecated:**
 
--   `$CustomPlotProgress` - Custom "Plot progress" field title
--   `$CustomCharacterization` - Custom "Characterization" field title
--   `$CustomWorldBuilding` - Custom "World building" field title
--   `$CustomGoal` - Custom "Goal" field title
--   `$CustomConflict` - Custom "Conflict" field title
--   `$CustomOutcome` - Custom "Outcome" field title
+-   `$CustomPlotProgress` - Field 1 name for sections that aren't scenes
+-   `$CustomCharacterization` - Field 2 name for sections that aren't scenes
+-   `$CustomWorldBuilding` - Field 3 name for sections that aren't scenes
+-   `$CustomGoal` - Field 1 name for other scenes
+-   `$CustomConflict` - Field 2 name for other scenes
+-   `$CustomOutcome` - Field 3 name for other scenes
 
 
 ### "Character template" placeholders
@@ -170,12 +171,13 @@ There are two options:
 -   `$CharactersSuffix` - File name suffix of the character descriptions
 -   `$BirthDate` - Character's birth date
 -   `$DeathDate` - Character's death date
--   `$CharacterExtraField` - Extra field name for character data
+-   `$CharacterField1` - Field 1 name for character data
+-   `$CharacterField2` - Field 2 name for character data
 
 **Deprecated:**
 
--   `$CustomChrBio` - Custom character "Bio" field title
--   `$CustomChrGoals` - Custom character "Goals" field title
+-   `$CustomChrBio` - Field 1 name for character data
+-   `$CustomChrGoals` - Field 2 name for character data
 
 ### "Location template" placeholders
 
