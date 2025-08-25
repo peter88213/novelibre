@@ -84,8 +84,8 @@ class FileSplitter(ServiceBase):
             otherSceneField1=sourceNovel.otherSceneField1,
             otherSceneField2=sourceNovel.otherSceneField2,
             otherSceneField3=sourceNovel.otherSceneField3,
+            crField1=sourceNovel.crField1,
             crField2=sourceNovel.crField2,
-            crField3=sourceNovel.crField3,
             referenceDate=sourceNovel.referenceDate,
             tree=NvTree(),
         )

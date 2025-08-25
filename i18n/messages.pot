@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.33.0\n"
-"POT-Creation-Date: 2025-08-24 20:43:25\n"
+"Project-Id-Version: 5.34.0\n"
+"POT-Creation-Date: 2025-08-25 13:20:34\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -428,9 +428,6 @@ msgstr ""
 msgid "Detach/Dock Properties"
 msgstr ""
 
-msgid "Development"
-msgstr ""
-
 msgid "Dilemma"
 msgstr ""
 
@@ -579,9 +576,6 @@ msgid "Export type is not supported"
 msgstr ""
 
 msgid "Exported documents"
-msgstr ""
-
-msgid "Extra field"
 msgstr ""
 
 msgid "Field"
@@ -1152,9 +1146,6 @@ msgid "Restore backup"
 msgstr ""
 
 msgid "Restore default styles"
-msgstr ""
-
-msgid "Role"
 msgstr ""
 
 msgid "Save"

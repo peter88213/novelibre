@@ -62,7 +62,6 @@ OTHER_SCENE_FIELD_2_DEFAULT = _('Peak emotional moment')
 OTHER_SCENE_FIELD_3_DEFAULT = _('Ending')
 CR_FIELD_1_DEFAULT = _('Bio')
 CR_FIELD_2_DEFAULT = _('Goals')
-CR_FIELD_3_DEFAULT = _('Role')
 
 STATUS = [
     None,

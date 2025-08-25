@@ -10,6 +10,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.34.0
+
+- The character "Bio" field label is customizable again. 
+- So there are two character data fields, named "Field 1" and "Field 2".
+- In the character properties view, the character's birth and death dates are separated from the data fields.
+
+
 ### Version 5.33.0
 
 #### User interface update
