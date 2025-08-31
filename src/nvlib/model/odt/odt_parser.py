@@ -56,13 +56,13 @@ class OdtParser(sax.ContentHandler):
         self._style = None
         # ODT style being processed.
 
-        self._novelLocale
+        self._novelLocale = None
         # str: the document's global locale
-        #      "<language code>-<country code>"
+        #      used for filtering redundant paragraph language assignments
 
         self._currentLocale = None
         # str: the current locale,
-        #      used for filtering redundant inline tags
+        #      used for filtering redundant inline language assignments
 
         self._client = client
 
