@@ -56,9 +56,12 @@ class OdtParser(sax.ContentHandler):
         self._style = None
         # ODT style being processed.
 
-        self._languageCode = None
-        self._countryCode = None
-        # str: the document's global locale,
+        self._novelLocale
+        # str: the document's global locale
+        #      "<language code>-<country code>"
+
+        self._currentLocale = None
+        # str: the current locale,
         #      used for filtering redundant inline tags
 
         self._client = client
@@ -367,18 +370,18 @@ class OdtParser(sax.ContentHandler):
                     'style:text-properties',
                     namespaces,
                 )
-                self._languageCode = textProperties.get(
+                languageCode = textProperties.get(
                     f'{{{namespaces["fo"]}}}language'
                 )
-                self._countryCode = textProperties.get(
+                countryCode = textProperties.get(
                     f'{{{namespaces["fo"]}}}country'
                 )
-                self._novelLocale = f'{self._languageCode}-{self._countryCode}'
+                self._novelLocale = f'{languageCode}-{countryCode}'
                 self._client.handle_starttag(
                     'body',
                     [
-                        ('language', self._languageCode),
-                        ('country', self._countryCode),
+                        ('language', languageCode),
+                        ('country', countryCode),
                     ]
                 )
                 return
