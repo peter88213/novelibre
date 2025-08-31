@@ -26,7 +26,7 @@ class NovxToOdt(sax.ContentHandler):
         
         Positional arguments:
             xmlString: str -- content as XML string.
-            languages: list[str] -- Ordered list of the document#s languages.
+            languages: list[str] -- Ordered list of the document's languages.
             append: boolean -- indent the first paragraph, if True.
             firstInChapter: boolean -- apply the "Chapter beginning" 
                                        paragraph style, if True.
@@ -36,6 +36,7 @@ class NovxToOdt(sax.ContentHandler):
         self._firstParagraphInChapter = firstInChapter
         self._indentParagraph = append
         self._note = None
+        self._spanLevel = 0
         self._comment = False
         self.odtLines = []
         if xmlString:
@@ -56,6 +57,9 @@ class NovxToOdt(sax.ContentHandler):
         Overrides the xml.sax.ContentHandler method     
         """
         if name == 'p':
+            while self._spanLevel > 0:
+                self._spanLevel -= 1
+                self.odtLines.append('</text:span>')
             self.odtLines.append('</text:p>')
             return
 
@@ -131,6 +135,14 @@ class NovxToOdt(sax.ContentHandler):
                 )
             self._firstParagraphInChapter = False
             self._indentParagraph = False
+
+            language = xmlAttributes.get('xml:lang', None)
+            if language:
+                i = self._languages.index(language) + 1
+                self.odtLines.append(
+                    f'<text:span text:style-name="T{i}">'
+                )
+                self._spanLevel += 1
             return
 
         if name == 'em':

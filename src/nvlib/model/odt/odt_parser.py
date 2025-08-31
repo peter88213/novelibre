@@ -177,7 +177,7 @@ class OdtParser(sax.ContentHandler):
             self._getData = True
             param = []
             if style in self._languageTags:
-                param.append(('lang', self._languageTags[style]))
+                param.append(('xml:lang', self._languageTags[style]))
             if style in self._blockquoteTags:
                 param.append(('style', 'quotations'))
                 self._client.handle_starttag('p', param)
