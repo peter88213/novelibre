@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.34.3
+
+- Handling nested language assignments.
+
+
 ### Version 5.34.2
 
 - Fixed a bug where foreign language assignments to paragraphs were lost when exporting to ODT.
