@@ -2,7 +2,7 @@
 """A novel organizer for writers. 
 
 Version @release
-Requires Python 3.6+
+Requires Python 3.7+
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
@@ -124,6 +124,15 @@ OPTIONS = dict(
 
 
 def main():
+    #--- Check the Python version.
+    major = sys.version_info.major
+    minor = sys.version_info.minor
+    if  major != 3 or minor < 7:
+        raise Exception(
+            f'Wrong Python version installed: {major}.{minor}.\n'
+            'Must be 3.7 or newer.'
+        )
+
     #--- Set up the directories for configuration and temporary files.
     os.makedirs(INSTALL_DIR, exist_ok=True)
     configDir = f'{INSTALL_DIR}/config'

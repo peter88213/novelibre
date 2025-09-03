@@ -21,6 +21,16 @@ import zipfile
 
 import relocate
 
+major = sys.version_info.major
+minor = sys.version_info.minor
+if  major != 3 or minor < 7:
+    print(
+        f'Wrong Python version installed: {major}.{minor}.\n'
+        'Must be 3.7 or newer.'
+    )
+    input('Press ENTER to quit.')
+    sys.exit(1)
+
 try:
     from tkinter import messagebox
 except ModuleNotFoundError:

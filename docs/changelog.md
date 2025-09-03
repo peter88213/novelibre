@@ -11,8 +11,9 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
-### Version 5.35.0
+### Version 5.35.1
 
+- Checking the Python version. Aborting setup and application if lesser than 3.7.
 - Under Linux, the *idle3* package is no longer needed for displaying tooltips.
 
 
