@@ -36,7 +36,8 @@ try:
 except ModuleNotFoundError:
     print(
         'The tkinter module is missing. '
-        'Please install the tk support package for your python3 version.'
+        'Please install the tk support package for your python3 version'
+        "via your distribution's package manager."
     )
     input('Press ENTER to quit.')
     sys.exit(1)
@@ -69,10 +70,6 @@ Now you might want to create a shortcut on your desktop.
 On Windows, open the installation folder, 
 hold down the Alt key on your keyboard, 
 and then drag and drop "run.pyw" to your desktop.
-
-On Linux, create a launcher on your desktop. 
-With xfce for instance, the launcher's command may look like this:
-python3 /home/peter/.novx/run.pyw %f
 '''
 
 ADD_TO_REGISTRY = fr'''Windows Registry Editor Version 5.00
@@ -108,6 +105,21 @@ REMOVE_FROM_REGISTRY = fr'''Windows Registry Editor Version 5.00
 [-HKEY_CURRENT_USER\Software\Classes\\novelibre]
 [-HKEY_CURRENT_USER\Software\Classes\\.novx]
 
+'''
+
+LINUX_DESKTOP_LAUNCHER = '''[Desktop Entry]
+Type = Application
+Name = novelibre
+GenericName = Novel organizer
+GenericName[de] = Roman-Organisation
+Comment = A novel organizer for LibreOffice/OpenOffice users
+Comment[de] = Roman-Organisation für LibreOffice/OpenOffice-Benutzer
+Icon = $Install_Dir/icons/nLogo64.png
+Categories = Office;
+Terminal = false
+Path = $Install_Dir
+Exec = python3 $Install_Dir/run.pyw %f
+StartupNotify = false
 '''
 
 PLUGIN_WARNING = '''
@@ -164,9 +176,9 @@ def create_explorer_context_menu(installPath):
 
     def save_reg_file(filePath, template, mapping):
         """Save a registry file."""
+        print(f'Creating "{os.path.normpath(filePath)}" ...')
         with open(filePath, 'w') as f:
             f.write(template.safe_substitute(mapping))
-        print(f'Creating "{os.path.normpath(filePath)}"')
 
     python = sys.executable.replace('\\', '\\\\')
     installUrl = installPath.replace('/', '\\\\')
@@ -182,6 +194,15 @@ def create_explorer_context_menu(installPath):
         Template(REMOVE_FROM_REGISTRY),
         {}
     )
+
+
+def create_desktop_launcher(homeDir, installDir):
+    desktopFile = f'{homeDir}/novelibre.desktop'
+    print(f'Creating Linux desktop launcher "{desktopFile}" ...')
+    template = Template(LINUX_DESKTOP_LAUNCHER)
+    mapping = dict(Install_Dir=installDir)
+    with open(desktopFile, 'w', encoding='utf-8') as f:
+        f.write(template.safe_substitute(mapping))
 
 
 def open_folder(installDir):
@@ -304,30 +325,36 @@ def install(zipped):
     print('Copying css stylesheet ...')
     copy_tree('css', installDir)
 
-    #--- Generate registry entries for the context menu (Windows only).
-    if platform.system() == 'Windows':
-        create_explorer_context_menu(installDir)
-
     #--- Install the icon files.
     print('Copying icons ...')
     copy_tree('icons', installDir)
+
+    #--- Generate registry entries for the context menu (Windows only).
+    if platform.system() == 'Windows':
+        create_explorer_context_menu(installDir)
 
     #--- Display a success message.
     print(
         f'\nSucessfully installed {APPNAME} '
         f'at "{os.path.normpath(installDir)}".'
     )
+    if simpleUpdate:
+        input('Press ENTER to quit.')
+        return
+
+    #--- Generate a launcher for the Linux desktop (Linux/FreeBSD only).
+    if platform.system() in ('Linux', 'FreeBSD'):
+        create_desktop_launcher(homePath, installDir)
 
     #--- Ask for shortcut creation.
-    if not simpleUpdate:
-        print(Template(SHORTCUT_MESSAGE).safe_substitute(mapping))
-        if messagebox.askyesno(
-            title=f'{APPNAME} {VERSION} Setup',
-            message='Open the installation folder now?',
-        ):
-            open_folder(installDir)
-            input('Press ENTER to quit.')
     else:
+        print(Template(SHORTCUT_MESSAGE).safe_substitute(mapping))
+
+    if messagebox.askyesno(
+        title=f'{APPNAME} {VERSION} Setup',
+        message='Open the installation folder now?',
+    ):
+        open_folder(installDir)
         input('Press ENTER to quit.')
 
 
