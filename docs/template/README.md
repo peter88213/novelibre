@@ -154,7 +154,6 @@ Here are a few examples:
      - With **Vista and Windows 7**, use version 3.7.2.
      - **Linux** users: Make sure you have the tkinter support for Python 3 installed. 
        For Ubuntu, the package is called *python3-tk*, for Fedora it may be *python3-tkinter*.
-       To see the tooltips, make sure that you have the *idle3* package installed.
 - Either [LibreOffice](https://www.libreoffice.org/) or [OpenOffice](https://www.openoffice.org).
 
 ## General note about the fitness for use

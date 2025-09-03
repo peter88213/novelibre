@@ -7,6 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 
 from nvlib.gui.platform.platform_settings import KEYS
+from nvlib.gui.tooltip import Hovertip
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
@@ -174,11 +175,6 @@ class CollectionBox(ttk.Frame):
 
     def _set_hovertips(self):
         if not prefs['enable_hovertips']:
-            return
-
-        try:
-            from idlelib.tooltip import Hovertip
-        except ModuleNotFoundError:
             return
 
         Hovertip(

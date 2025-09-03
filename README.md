@@ -1,4 +1,4 @@
-[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.34.4.pyz)
+[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.35.0.pyz)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
 [![News/Feedback](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
@@ -154,7 +154,6 @@ Here are a few examples:
      - With **Vista and Windows 7**, use version 3.7.2.
      - **Linux** users: Make sure you have the tkinter support for Python 3 installed. 
        For Ubuntu, the package is called *python3-tk*, for Fedora it may be *python3-tkinter*.
-       To see the tooltips, make sure that you have the *idle3* package installed.
 - Either [LibreOffice](https://www.libreoffice.org/) or [OpenOffice](https://www.openoffice.org).
 
 ## General note about the fitness for use
@@ -173,10 +172,10 @@ The development phase has now come to an end. Nevertheless it is recommended to 
 
 ### Default: Executable Python zip archive
 
-Download the latest release [novelibre_v5.34.4.pyz](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.34.4.pyz)
+Download the latest release [novelibre_v5.35.0.pyz](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.35.0.pyz)
 
-- Launch *novelibre_v5.34.4.pyz* by double-clicking (Windows/Linux desktop),
-- or execute `python novelibre_v5.34.4.pyz` (Windows), resp. `python3 novelibre_v5.34.4.pyz` (Linux) on the command line.
+- Launch *novelibre_v5.35.0.pyz* by double-clicking (Windows/Linux desktop),
+- or execute `python novelibre_v5.35.0.pyz` (Windows), resp. `python3 novelibre_v5.35.0.pyz` (Linux) on the command line.
 
 #### Important
 
@@ -192,9 +191,9 @@ the zip file.
 
 ### Alternative: Zip file
 
-The package is also available in zip format: [novelibre_v5.34.4.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.34.4.zip)
+The package is also available in zip format: [novelibre_v5.35.0.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.35.0.zip)
 
-- Extract the *novelibre_v5.34.4* folder from the downloaded zipfile "novelibre_v5.34.4.zip".
+- Extract the *novelibre_v5.35.0* folder from the downloaded zipfile "novelibre_v5.35.0.zip".
 - Move into this new folder and launch *setup.py* by double-clicking (Windows/Linux desktop), 
 - or execute `python setup.py` (Windows), resp. `python3 setup.py` (Linux) on the command line.
 
