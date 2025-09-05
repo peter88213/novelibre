@@ -64,12 +64,21 @@ START_UP_SCRIPT = 'run.pyw'
 INI_FILE = f'{APPNAME}.ini'
 INI_PATH = '/config/'
 
-SHORTCUT_MESSAGE = '''
+SHORTCUT_MESSAGE_WIN = '''
 Now you might want to create a shortcut on your desktop.  
 
-On Windows, open the installation folder, 
+For this, open the installation folder, 
 hold down the Alt key on your keyboard, 
 and then drag and drop "run.pyw" to your desktop.
+'''
+
+SHORTCUT_MESSAGE_IX = '''
+Now you might want to create a shortcut on your desktop.  
+
+For this, open the installation folder 
+and then drag and drop "novelibre.desktop" to your desktop.
+
+When using the shortcut the first time, your system may ask for confirmation. 
 '''
 
 ADD_TO_REGISTRY = fr'''Windows Registry Editor Version 5.00
@@ -196,8 +205,8 @@ def create_explorer_context_menu(installPath):
     )
 
 
-def create_desktop_launcher(homeDir, installDir):
-    desktopFile = f'{homeDir}/novelibre.desktop'
+def create_desktop_launcher(installDir):
+    desktopFile = f'{installDir}/novelibre.desktop'
     print(f'Creating Linux desktop launcher "{desktopFile}" ...')
     template = Template(LINUX_DESKTOP_LAUNCHER)
     mapping = dict(Install_Dir=installDir)
@@ -344,11 +353,12 @@ def install(zipped):
 
     #--- Generate a launcher for the Linux desktop (Linux/FreeBSD only).
     if platform.system() in ('Linux', 'FreeBSD'):
-        create_desktop_launcher(homePath, installDir)
+        create_desktop_launcher(installDir)
+        print(SHORTCUT_MESSAGE_IX)
 
     #--- Ask for shortcut creation.
     else:
-        print(Template(SHORTCUT_MESSAGE).safe_substitute(mapping))
+        print(SHORTCUT_MESSAGE_WIN)
 
     if messagebox.askyesno(
         title=f'{APPNAME} {VERSION} Setup',
