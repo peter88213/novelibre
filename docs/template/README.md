@@ -176,7 +176,7 @@ Download the latest release [novelibre_v0.99.0.pyz](https://github.com/peter8821
 
 ---
 
-** Important **
+**Important**
 
 Many web browsers recognize the download as an executable file and offer to open it immediately. 
 This starts the installation under Windows.
