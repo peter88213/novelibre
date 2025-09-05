@@ -168,19 +168,18 @@ The development phase has now come to an end. Nevertheless it is recommended to 
 [Feedback](https://github.com/peter88213/novelibre/discussions)
 
 
-## Download and install
+## Download
 
 ### Default: Executable Python zip archive
 
 Download the latest release [novelibre_v0.99.0.pyz](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v0.99.0.pyz)
 
-- Launch *novelibre_v0.99.0.pyz* by double-clicking (Windows/Linux desktop),
-- or execute `python novelibre_v0.99.0.pyz` (Windows), resp. `python3 novelibre_v0.99.0.pyz` (Linux) on the command line.
+---
 
-#### Important
+** Important **
 
 Many web browsers recognize the download as an executable file and offer to open it immediately. 
-This starts the installation.
+This starts the installation under Windows.
 
 However, depending on your security settings, your browser may 
 initially  refuse  to download the executable file. 
@@ -188,16 +187,22 @@ In this case, your confirmation or an additional action is required.
 If this is not possible, you have the option of downloading 
 the zip file. 
 
+---
 
 ### Alternative: Zip file
 
-The package is also available in zip format: [novelibre_v0.99.0.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v0.99.0.zip)
+The package is also available in zip format: 
+[novelibre_v0.99.0.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v0.99.0.zip)
 
-- Extract the *novelibre_v0.99.0* folder from the downloaded zipfile "novelibre_v0.99.0.zip".
-- Move into this new folder and launch *setup.py* by double-clicking (Windows/Linux desktop), 
-- or execute `python setup.py` (Windows), resp. `python3 setup.py` (Linux) on the command line.
+---
 
-You may wish to install plugins; the [update checker](https://github.com/peter88213/nv_updater/) is highly recommended.
+## Installation 
+
+Be sure to read the installation instructions in the online user manual 
+before you begin installation. 
+
+- [Windows]()
+- [Linux]()
 
 ---
 
