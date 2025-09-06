@@ -201,8 +201,15 @@ The package is also available in zip format:
 Be sure to read the installation instructions in the online user manual 
 before you begin installation. 
 
+
 - [Windows](https://peter88213.github.io/nvhelp-en/setup_windows.html)
 - [Linux](https://peter88213.github.io/nvhelp-en/setup_linux.html)
+
+### Python application launcher for Linux
+
+You can drag/drop *.pyz* files onto this launcher to install *novelibre* and its plugins.
+
+[Python.desktop](https://github.com/peter88213/novelibre/raw/main/linux/novelibre.desktop)
 
 ---
 

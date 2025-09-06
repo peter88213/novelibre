@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Python
+Exec=python3 %f
+Comment=Python 3 console
+Terminal=true
+PrefersNonDefaultGPU=false
+Icon=python
+Type=Application
