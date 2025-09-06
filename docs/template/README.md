@@ -206,9 +206,16 @@ before you begin installation.
 
 ### Python application launcher for Linux
 
-You can drag/drop *.pyz* files onto this launcher to install *novelibre* and its plugins.
+Have your browser save this file either in your desktop folder or in your download folder:
 
 [Python.desktop](https://github.com/peter88213/novelibre/raw/main/linux/Python.desktop)
+
+
+Then you can drag/drop *.pyz* files onto this launcher to easily install *novelibre* and its plugins.
+
+This is how the Python launcher looks on the Linux Mint desktop:
+
+![Linux Mint screenshot](docs/Screenshots/python_launcher.png)
 
 ---
 
