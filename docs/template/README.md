@@ -208,7 +208,7 @@ before you begin installation.
 
 You can drag/drop *.pyz* files onto this launcher to install *novelibre* and its plugins.
 
-[Python.desktop](https://github.com/peter88213/novelibre/raw/main/linux/novelibre.desktop)
+[Python.desktop](https://github.com/peter88213/novelibre/raw/main/linux/Python.desktop)
 
 ---
 
