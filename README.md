@@ -205,14 +205,14 @@ before you begin installation.
 - [Windows](https://peter88213.github.io/nvhelp-en/setup_windows.html)
 - [Linux](https://peter88213.github.io/nvhelp-en/setup_linux.html)
 
-### Python application launcher for Linux
+### Python application launcher for Linux (optional)
 
 Have your browser save this file either in your desktop folder or in your download folder:
 
 [Python.desktop](https://github.com/peter88213/novelibre/raw/main/linux/Python.desktop)
 
 
-Then you can drag/drop *.pyz* files onto this launcher to easily install *novelibre* and its plugins.
+Then you can drag/drop *.pyz* files onto this launcher to conveniently install *novelibre* and its plugins.
 
 This is how the Python launcher looks on the Linux Mint desktop:
 
