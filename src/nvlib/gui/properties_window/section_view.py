@@ -486,7 +486,8 @@ class SectionView(ElementView):
         self._plotPointsDisplay = tk.Label(
             self._plotFrame,
             anchor='w',
-            bg='white',
+            bg=prefs['color_text_bg'],
+            fg=prefs['color_text_fg'],
         )
         self._plotPointsDisplay.pack(anchor='w', fill='x')
 
@@ -1121,7 +1122,7 @@ class SectionView(ElementView):
             self._plotNotesWindow.clear()
         if self._isLocked:
             self._plotNotesWindow.config(state='disabled')
-        self._plotNotesWindow.config(bg='white')
+        # self._plotNotesWindow.config(bg='white')
 
     def pick_character(self, event=None):
         """Enter the "add character" selection mode."""
@@ -1426,7 +1427,7 @@ class SectionView(ElementView):
         # 'Plot notes' text box.
         self._plotNotesWindow.clear()
         self._plotNotesWindow.config(state='disabled')
-        self._plotNotesWindow.config(bg='light gray')
+        # self._plotNotesWindow.config(bg='light gray')
         if self._plotlineTitles:
             self._plotlineCollection.cListbox.select_clear(0, 'end')
             self._plotlineCollection.cListbox.select_set('end')
