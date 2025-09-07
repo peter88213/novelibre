@@ -38,12 +38,21 @@ class CollectionBox(ttk.Frame):
     def __init__(
             self,
             master,
-            cmdAdd=None, lblAdd=None, iconAdd=None,
-            cmdOpen=None, lblOpen=None, iconOpen=None,
-            cmdRemove=None, lblRemove=None, iconRemove=None,
-            cmdActivate=None, cmdSelect=None,
+            cmdAdd=None,
+            lblAdd=None,
+            iconAdd=None,
+            cmdOpen=None,
+            lblOpen=None,
+            iconOpen=None,
+            cmdRemove=None,
+            lblRemove=None,
+            iconRemove=None,
+            cmdActivate=None,
+            cmdSelect=None,
+            fg=None,
+            bg=None,
             **kw
-            ):
+    ):
         """Set up the listbox and the buttons.
         
         Optional arguments:
@@ -69,6 +78,8 @@ class CollectionBox(ttk.Frame):
                            Bound to listbox focus and selection.
             cmdSelect -- Reference to the callback routine for list element 
                          selection (optional).
+            bg -- Color for the normal background.
+            fg -- Text color for non-selected items.
         
         Extends the superclass constructor.
         """
@@ -84,6 +95,8 @@ class CollectionBox(ttk.Frame):
             listFrame,
             listvariable=self.cList,
             selectmode='single',
+            fg=fg,
+            bg=bg,
         )
         vbar = ttk.Scrollbar(
             listFrame,

@@ -296,7 +296,9 @@ class ElementView(BlankView):
             lblOpen=_('Open link'),
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
-            iconOpen=self._ui.icons.gotoIcon
+            iconOpen=self._ui.icons.gotoIcon,
+            bg=prefs['color_text_bg'],
+            fg=prefs['color_text_fg'],
         )
         self.inputWidgets.extend(self.linkCollection.inputWidgets)
         self.linkCollection.pack(fill='x')
