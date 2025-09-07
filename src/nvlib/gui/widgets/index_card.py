@@ -5,9 +5,9 @@ For further information see https://github.com/peter88213/novelibre
 Published under the MIT License 
 (https://opensource.org/licenses/mit-license.php)
 """
-import tkinter as tk
-from nvlib.gui.widgets.text_box import TextBox
 from nvlib.gui.widgets.my_string_var import MyStringVar
+from nvlib.gui.widgets.text_box import TextBox
+import tkinter as tk
 
 
 class IndexCard(tk.Frame):
@@ -29,6 +29,8 @@ class IndexCard(tk.Frame):
             **kw
     ):
         super().__init__(master=master, cnf=cnf, **kw)
+        self._bg = bg
+        self._fg = fg
         # Title label.
         self.title = MyStringVar(value='')
         self.titleEntry = tk.Entry(
@@ -70,7 +72,11 @@ class IndexCard(tk.Frame):
 
     def lock(self):
         """Inhibit element change."""
-        self.titleEntry.config(state='disabled')
+        self.titleEntry.config(
+            state='disabled',
+            bg=self._bg,
+            fg=self._fg,
+        )
         self.bodyBox.config(state='disabled')
 
     def unlock(self):
