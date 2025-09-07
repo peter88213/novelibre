@@ -117,6 +117,8 @@ class SectionView(ElementView):
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
             iconOpen=self._ui.icons.gotoIcon,
+            bg=prefs['color_text_bg'],
+            fg=prefs['color_text_fg'],
         )
         self._characterCollection.pack(fill='x')
         inputWidgets.extend(self._characterCollection.inputWidgets)
@@ -138,6 +140,8 @@ class SectionView(ElementView):
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
             iconOpen=self._ui.icons.gotoIcon,
+            bg=prefs['color_text_bg'],
+            fg=prefs['color_text_fg'],
         )
         self._locationCollection.pack(fill='x')
         inputWidgets.extend(self._locationCollection.inputWidgets)
@@ -156,6 +160,8 @@ class SectionView(ElementView):
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
             iconOpen=self._ui.icons.gotoIcon,
+            bg=prefs['color_text_bg'],
+            fg=prefs['color_text_fg'],
         )
         self._itemCollection.pack(fill='x')
         inputWidgets.extend(self._itemCollection.inputWidgets)
@@ -445,6 +451,8 @@ class SectionView(ElementView):
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
             iconOpen=self._ui.icons.gotoIcon,
+            bg=prefs['color_text_bg'],
+            fg=prefs['color_text_fg'],
         )
         self._plotlineCollection.pack(fill='x')
         inputWidgets.extend(self._plotlineCollection.inputWidgets)
