@@ -8,7 +8,6 @@ Published under the MIT License
 import tkinter as tk
 from nvlib.gui.widgets.text_box import TextBox
 from nvlib.gui.widgets.my_string_var import MyStringVar
-from tkinter import ttk
 
 
 class IndexCard(tk.Frame):
@@ -32,9 +31,20 @@ class IndexCard(tk.Frame):
         super().__init__(master=master, cnf=cnf, **kw)
         # Title label.
         self.title = MyStringVar(value='')
-        self.titleEntry = ttk.Entry(
+        self.titleEntry = tk.Entry(
             self,
+            bg=bg,
+            bd=0,
             textvariable=self.title,
+            relief='flat',
+            font=font,
+        )
+        self.titleEntry.config(
+            {
+                'background': bg,
+                'foreground': fg,
+                'insertbackground': fg,
+            }
         )
         self.titleEntry.pack(fill='x', ipady=6)
 
