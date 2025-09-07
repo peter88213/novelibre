@@ -6,6 +6,7 @@
 		<project>nv_aeon2</project>
 		<project>nv_collection</project>
 		<project>nv_custom_export</project>
+		<project>nv_dark</project>
 		<project>nv_editor</project>
 		<project>nv_matrix</project>
 		<project>nv_plotlines</project>
@@ -13,7 +14,6 @@
 		<project>nv_snapshots</project>
 		<project>nv_statistics</project>
 		<project>nv_templates</project>
-		<project>nv_themes</project>
 		<project>nv_timeline</project>
 		<project>nv_tlview</project>
 		<project>nv_updater</project>
