@@ -1007,7 +1007,8 @@ class SectionView(ElementView):
         dispDateTime = []
         if self.element.date and self.element.weekDay is not None:
             dispDateTime.append(
-                PyCalendar.WEEKDAYS[self.element.weekDay])
+                PyCalendar.WEEKDAYS[self.element.weekDay]
+            )
         elif (
             self.element.day
             and self._mdl.novel.referenceWeekDay is not None
@@ -1122,7 +1123,7 @@ class SectionView(ElementView):
             self._plotNotesWindow.clear()
         if self._isLocked:
             self._plotNotesWindow.config(state='disabled')
-        # self._plotNotesWindow.config(bg='white')
+        self._plotNotesWindow.config(bg=prefs['color_text_bg'])
 
     def pick_character(self, event=None):
         """Enter the "add character" selection mode."""
@@ -1427,7 +1428,7 @@ class SectionView(ElementView):
         # 'Plot notes' text box.
         self._plotNotesWindow.clear()
         self._plotNotesWindow.config(state='disabled')
-        # self._plotNotesWindow.config(bg='light gray')
+        self._plotNotesWindow.config(bg=prefs['color_inactive_bg'])
         if self._plotlineTitles:
             self._plotlineCollection.cListbox.select_clear(0, 'end')
             self._plotlineCollection.cListbox.select_set('end')
@@ -1441,10 +1442,8 @@ class SectionView(ElementView):
         for ppId in self.element.scPlotPoints:
             plId = self.element.scPlotPoints[ppId]
             plotPointTitles.append(
-                (
-                    f'{self._mdl.novel.plotLines[plId].shortName}: '
-                    f'{self._mdl.novel.plotPoints[ppId].title}'
-                )
+                f'{self._mdl.novel.plotLines[plId].shortName}: '
+                f'{self._mdl.novel.plotPoints[ppId].title}'
             )
         self._plotPointsDisplay.config(text=list_to_string(plotPointTitles))
 
@@ -1505,7 +1504,7 @@ class SectionView(ElementView):
                 now = PyCalendar.specific_date(
                     self.element.day,
                     self._mdl.novel.referenceDate
-                    )
+                )
             except Exception:
                 self._report_missing_date()
                 return
@@ -1537,17 +1536,13 @@ class SectionView(ElementView):
                     suffix = _('days old')
                     time = daysOld
                 charList.append(
-                    (
-                        f'{self._mdl.novel.characters[crId].title}: '
-                        f'{time} {suffix}'
-                    )
+                    f'{self._mdl.novel.characters[crId].title}: '
+                    f'{time} {suffix}'
                 )
             except Exception:
                 charList.append(
-                    (
-                        f'{self._mdl.novel.characters[crId].title}: '
-                        f'({_("no data")})'
-                    )
+                    f'{self._mdl.novel.characters[crId].title}: '
+                    f'({_("no data")})'
                 )
 
         if charList:
@@ -1698,10 +1693,8 @@ class SectionView(ElementView):
             for elemId in elemIds:
                 try:
                     elemTitles.append(
-                        (
-                            f'({elements[elemId].shortName}) '
-                            f'{elements[elemId].title}'
-                        )
+                        f'({elements[elemId].shortName}) '
+                        f'{elements[elemId].title}'
                     )
                 except:
                     pass

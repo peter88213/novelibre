@@ -39,6 +39,7 @@ SETTINGS = dict(
     color_comment_tag='lemon chiffon',
     color_done='DarkGoldenrod2',
     color_draft='black',
+    color_inactive_bg='light gray',
     color_locked_bg='dim gray',
     color_locked_fg='light gray',
     color_major='navy',
