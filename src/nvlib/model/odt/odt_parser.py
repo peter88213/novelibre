@@ -60,7 +60,7 @@ class OdtParser(sax.ContentHandler):
         # str: the document's global locale
         #      used for filtering redundant paragraph language assignments
 
-        self._currentLocale = None
+        self._currentLocale = []
         # str: the current locale,
         #      used for filtering redundant inline language assignments
 
@@ -115,6 +115,8 @@ class OdtParser(sax.ContentHandler):
                 for span in reversed(spans):
                     if span is not None:
                         self._client.handle_endtag(span)
+                        if span == 'lang':
+                            self._currentLocale.pop()
                 return
 
             except:
@@ -178,12 +180,12 @@ class OdtParser(sax.ContentHandler):
 
         if name in ('text:p', 'text:h'):
             self._getData = True
-            self._currentLocale = self._novelLocale
+            self._currentLocale = [self._novelLocale]
             param = []
             if style in self._languageTags:
-                self._currentLocale = self._languageTags[style]
-                if self._currentLocale != self._novelLocale:
-                    param.append(('xml:lang', self._currentLocale))
+                self._currentLocale.append(self._languageTags[style])
+                if self._currentLocale[-1] != self._novelLocale:
+                    param.append(('xml:lang', self._currentLocale[-1]))
             if style in self._blockquoteTags:
                 param.append(('style', 'quotations'))
                 self._client.handle_starttag('p', param)
@@ -217,13 +219,13 @@ class OdtParser(sax.ContentHandler):
                 spans.append('strong')
                 self._client.handle_starttag('strong', [()])
             if style in self._languageTags:
-                if self._languageTags[style] != self._currentLocale:
+                if self._languageTags[style] != self._currentLocale[-1]:
                     spans.append('lang')
                     self._client.handle_starttag(
                         'lang',
                         [('lang', self._languageTags[style])]
                     )
-                    self._currentLocale = self._languageTags[style]
+                    self._currentLocale.append(self._languageTags[style])
             if not spans:
                 spans.append(None)
             self._span.append(spans)
