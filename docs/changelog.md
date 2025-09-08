@@ -11,6 +11,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.36.0
+
+- Improved support for dark mode.
+
+
 ### Version 5.35.1
 
 - Checking the Python version. Aborting setup and application if lesser than 3.7.
