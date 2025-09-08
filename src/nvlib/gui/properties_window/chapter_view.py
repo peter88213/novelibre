@@ -57,54 +57,18 @@ class ChapterView(ElementView):
         self._noNumberCheckbox.pack(anchor='w')
         inputWidgets.append(self._noNumberCheckbox)
 
-        ttk.Separator(
+        #--- 'Has epigraph' checkbox.
+        self._hasEpigraphVar = tk.BooleanVar()
+        self._hasEpigraphCheckbox = ttk.Checkbutton(
             self._elementInfoWindow,
-            orient='horizontal'
-        ).pack(fill='x')
-
-        #--- 'Epigraph' entry.
-        self._epigraphFrame = FoldingFrame(
-            self._elementInfoWindow,
-            _('Epigraph'),
-            self._toggle_epigraph_window,
-        )
-
-        # Epigraph preview.
-        self._epigraphPreviewVar = MyStringVar()
-        epigraphPreview = ttk.Label(
-            self._epigraphFrame.titleBar,
-            textvariable=self._epigraphPreviewVar,
-        )
-        epigraphPreview.pack(side='left', padx=2)
-        epigraphPreview.bind('<Button-1>', self._toggle_epigraph_window)
-
-        self._epigraphBox = TextBox(self._epigraphFrame,
-            wrap='word',
-            undo=True,
-            autoseparators=True,
-            maxundo=-1,
-            height=10,
-            width=10,
-            padx=5,
-            pady=5,
-            bg=prefs['color_text_bg'],
-            fg=prefs['color_text_fg'],
-            insertbackground=prefs['color_text_fg'],
-        )
-        self._epigraphBox.pack(fill='x')
-        inputWidgets.append(self._epigraphBox)
-
-        #--- 'Epigraph source' entry.
-        self._epigraphSrcVar = MyStringVar()
-        self._epigraphSrcEntry = LabelEntry(
-            self._epigraphFrame,
-            text=_('Source'),
-            textvariable=self._epigraphSrcVar,
+            text=_('The first section is an epigraph'),
+            variable=self._hasEpigraphVar,
+            onvalue=True,
+            offvalue=False,
             command=self.apply_changes,
-            lblWidth=self._LABEL_WIDTH,
         )
-        self._epigraphSrcEntry.pack(anchor='w')
-        inputWidgets.append(self._epigraphSrcEntry)
+        self._hasEpigraphCheckbox.pack(anchor='w')
+        inputWidgets.append(self._hasEpigraphCheckbox)
 
         for widget in inputWidgets:
             widget.bind('<FocusOut>', self.apply_changes)
@@ -134,27 +98,8 @@ class ChapterView(ElementView):
         #--- "Do not auto-number..." checkbox.
         self.element.noNumber = self._noNumberVar.get()
 
-        #--- "Epigraph' entry.
-        if self._epigraphBox.hasChanged:
-            self.element.epigraph = self._epigraphBox.get_text()
-
-        #--- "Epigraph source' entry.
-        self.element.epigraphSrc = self._epigraphSrcVar.get()
-
-    def configure_display(self):
-        """Expand or collapse the property frames."""
-        super().configure_display()
-
-        #--- Epigraph frame.
-        if prefs['show_ch_epigraph']:
-            self._epigraphFrame.show()
-            self._epigraphPreviewVar.set('')
-        else:
-            self._epigraphFrame.hide()
-            if self.element.epigraph or self.element.epigraphSrc:
-                self._epigraphPreviewVar.set(self._CHECK)
-            else:
-                self._epigraphPreviewVar.set('')
+        #--- "Has epigraph" checkbox.
+        self.element.hasEpigraph = self._hasEpigraphVar.get()
 
     def set_data(self, elementId):
         """Update the view with element's data.
@@ -180,9 +125,8 @@ class ChapterView(ElementView):
         self._noNumberCheckbox.configure(text=labelText)
         self._noNumberVar.set(self.element.noNumber)
 
-        #--- Epigraph frame.
-        self._epigraphBox.set_text(self.element.epigraph)
-        self._epigraphSrcVar.set(self.element.epigraphSrc)
+        #--- "Has epigraph" checkbox.
+        self._hasEpigraphVar.set(self.element.hasEpigraph)
 
     def _create_frames(self):
         # Template method for creating the frames in the right pane.
@@ -193,12 +137,3 @@ class ChapterView(ElementView):
         self._create_notes_window()
         self._create_button_bar()
 
-    def _toggle_epigraph_window(self, event=None):
-        # Hide/show the 'Epigraph' window.
-        if prefs['show_ch_epigraph']:
-            self._epigraphFrame.hide()
-            prefs['show_ch_epigraph'] = False
-        else:
-            self._epigraphFrame.show()
-            prefs['show_ch_epigraph'] = True
-        self._toggle_folding_frame()

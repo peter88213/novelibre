@@ -24,11 +24,11 @@ class OdtWProof(OdtWFormatted):
     )
     _partTemplate = (
         '<text:h text:style-name="Heading_20_1" text:outline-level="1">'
-        '$Title</text:h>$Epigraph$EpigraphSrc\n'
+        '$Title</text:h>'
     )
     _chapterTemplate = (
         '<text:h text:style-name="Heading_20_2" text:outline-level="2">'
-        '$Title</text:h>$Epigraph$EpigraphSrc\n'
+        '$Title</text:h>'
     )
     _sectionTemplate = (
         '<text:h text:style-name="Heading_20_3" text:outline-level="3">'

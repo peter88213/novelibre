@@ -92,6 +92,7 @@ class NvModel:
             chLevel=2,
             chType=kwargs.get('chType', 0),
             noNumber=kwargs.get('NoNumber', False),
+            hasEpigraph=kwargs.get('hasEpigraph', False),
             isTrash=False,
             links={},
             on_element_change=self.on_element_change,
@@ -222,6 +223,7 @@ class NvModel:
             chLevel=1,
             chType=kwargs.get('chType', 0),
             noNumber=kwargs.get('NoNumber', False),
+            hasEpigraph=kwargs.get('hasEpigraph', False),
             isTrash=False,
             links={},
             on_element_change=self.on_element_change,
@@ -604,6 +606,7 @@ class NvModel:
                         chLevel=2,
                         chType=1,
                         noNumber=True,
+                        hasEpigraph=False,
                         isTrash=True,
                         on_element_change=self.on_element_change,
                     )

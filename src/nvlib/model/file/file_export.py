@@ -174,13 +174,6 @@ class FileExport(File):
             Notes=self._convert_from_novx(
                 self.novel.chapters[chId].notes
             ),
-            Epigraph=self._convert_from_novx(
-                self.novel.chapters[chId].epigraph
-            ),
-            EpigraphSrc=self._convert_from_novx(
-                self.novel.chapters[chId].epigraphSrc,
-                quick=True
-            ),
             ProjectName=self._convert_from_novx(
                 self.projectName,
                 quick=True

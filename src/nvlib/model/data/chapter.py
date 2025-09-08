@@ -18,8 +18,7 @@ class Chapter(BasicElementNotes):
         chType=None,
         noNumber=None,
         isTrash=None,
-        epigraph=None,
-        epigraphSrc=None,
+        hasEpigraph=None,
         **kwargs
     ):
         """Extends the superclass constructor."""
@@ -28,8 +27,7 @@ class Chapter(BasicElementNotes):
         self._chType = chType
         self._noNumber = noNumber
         self._isTrash = isTrash
-        self._epigraph = epigraph
-        self._epigraphSrc = epigraphSrc
+        self._hasEpigraph = hasEpigraph
 
     @property
     def chLevel(self):
@@ -75,7 +73,7 @@ class Chapter(BasicElementNotes):
 
     @property
     def isTrash(self):
-        # True: This chapter is the novelibre project's "trash bin"
+        # True: This chapter is the novelibre project's "trash bin".
         # False: This is a chapter or part.
         return self._isTrash
 
@@ -88,27 +86,17 @@ class Chapter(BasicElementNotes):
             self.on_element_change()
 
     @property
-    def epigraph(self):
-        return self._epigraph
+    def hasEpigraph(self):
+        # True: The first section is an epigraph; its title is the source.
+        # False: The first section is a regular one.
+        return self._hasEpigraph
 
-    @epigraph.setter
-    def epigraph(self, newVal):
+    @hasEpigraph.setter
+    def hasEpigraph(self, newVal):
         if newVal is not None:
-            assert type(newVal) is str
-        if self._epigraph != newVal:
-            self._epigraph = newVal
-            self.on_element_change()
-
-    @property
-    def epigraphSrc(self):
-        return self._epigraphSrc
-
-    @epigraphSrc.setter
-    def epigraphSrc(self, newVal):
-        if newVal is not None:
-            assert type(newVal) is str
-        if self._epigraphSrc != newVal:
-            self._epigraphSrc = newVal
+            assert type(newVal) is bool
+        if self._hasEpigraph != newVal:
+            self._hasEpigraph = newVal
             self.on_element_change()
 
     def from_xml(self, xmlElement):
@@ -125,8 +113,7 @@ class Chapter(BasicElementNotes):
             self.chLevel = 2
         self.isTrash = xmlElement.get('isTrash', None) == '1'
         self.noNumber = xmlElement.get('noNumber', None) == '1'
-        self.epigraph = self._xml_element_to_text(xmlElement.find('Epigraph'))
-        self.epigraphSrc = self._get_element_text(xmlElement, 'EpigraphSrc')
+        self.hasEpigraph = xmlElement.get('hasEpigraph', None) == '1'
 
     def to_xml(self, xmlElement):
         super().to_xml(xmlElement)
@@ -138,9 +125,5 @@ class Chapter(BasicElementNotes):
             xmlElement.set('isTrash', '1')
         if self.noNumber:
             xmlElement.set('noNumber', '1')
-        if self.epigraph:
-            xmlElement.append(
-                self._text_to_xml_element('Epigraph', self.epigraph)
-            )
-        if self.epigraphSrc:
-            ET.SubElement(xmlElement, 'EpigraphSrc').text = self.epigraphSrc
+        if self.hasEpigraph:
+            xmlElement.set('hasEpigraph', '1')
