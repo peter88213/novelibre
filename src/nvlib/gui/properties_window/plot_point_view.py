@@ -9,6 +9,7 @@ from tkinter import ttk
 from nvlib.gui.properties_window.element_view import ElementView
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import SECTION_PREFIX
+from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
 
@@ -45,7 +46,8 @@ class PlotPointView(ElementView):
         self._sectionAssocTitle = tk.Label(
             self._sectionFrame,
             anchor='w',
-            bg='white',
+            bg=prefs['color_text_bg'],
+            fg=prefs['color_text_fg'],
         )
         self._sectionAssocTitle.pack(anchor='w', pady=2, fill='x')
 
