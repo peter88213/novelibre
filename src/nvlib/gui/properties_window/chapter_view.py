@@ -57,6 +57,11 @@ class ChapterView(ElementView):
         self._noNumberCheckbox.pack(anchor='w')
         inputWidgets.append(self._noNumberCheckbox)
 
+        ttk.Separator(
+            self._elementInfoWindow,
+            orient='horizontal'
+        ).pack(fill='x')
+
         #--- 'Has epigraph' checkbox.
         self._hasEpigraphVar = tk.BooleanVar()
         self._hasEpigraphCheckbox = ttk.Checkbutton(
