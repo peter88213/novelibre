@@ -3,15 +3,9 @@
 #
 msgid ""
 msgstr ""
-<<<<<<< Upstream, based on origin/main
 "Project-Id-Version: 5.36.2\n"
-"POT-Creation-Date: 2025-09-10 10:36:36\n"
-"PO-Revision-Date: 2025-09-10 10:36:36\n"
-=======
-"Project-Id-Version: 5.36.1\n"
-"POT-Creation-Date: 2025-09-08 23:25:15\n"
-"PO-Revision-Date: 2025-09-08 23:25:15\n"
->>>>>>> 766d7f2 Working on #68
+"POT-Creation-Date: 2025-09-10 17:11:13\n"
+"PO-Revision-Date: 2025-09-10 17:11:13\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"

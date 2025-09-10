@@ -147,6 +147,7 @@ class ContentsViewer(RichTextNv, Observer, SubController):
                     heading = f"[{_('Unnamed')}]\n"
             taggedText.append((heading, headingTag))
 
+            isEpigraph = chapter.hasEpigraph
             for scId in self._mdl.novel.tree.get_children(chId):
                 section = self._mdl.novel.sections[scId]
                 taggedText.append(scId)
@@ -157,7 +158,11 @@ class ContentsViewer(RichTextNv, Observer, SubController):
                 elif section.scType == 2:
                     headingTag = self.STAGE1_TAG
                 elif section.scType == 0:
-                    headingTag = self.H3_TAG
+                    if isEpigraph:
+                        headingTag = self.EPIGRAPH_SRC_TAG
+                        textTag = self.EPIGRAPH_TAG
+                    else:
+                        headingTag = self.H3_TAG
                 else:
                     headingTag = self.H3_UNUSED_TAG
                     textTag = self.UNUSED_TAG
@@ -171,6 +176,7 @@ class ContentsViewer(RichTextNv, Observer, SubController):
                     textTuples = self._convert_from_novx(
                         section.sectionContent, textTag)
                     taggedText.extend(textTuples)
+                isEpigraph = False
 
         if not taggedText:
             taggedText.append((f'({_("No text available")})', self.ITALIC_TAG))

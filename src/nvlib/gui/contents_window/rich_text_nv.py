@@ -15,6 +15,8 @@ class RichTextNv(RichTextTk):
     H2_UNUSED_TAG = 'h2Unused'
     H3_UNUSED_TAG = 'h3Unused'
     UNUSED_TAG = 'unused'
+    EPIGRAPH_TAG = 'epigraph'
+    EPIGRAPH_SRC_TAG = 'epigraphSrc'
     STAGE1_TAG = 'stage1'
     STAGE2_TAG = 'stage2'
     XML_TAG = 'xmlTag'
@@ -118,8 +120,18 @@ class RichTextNv(RichTextTk):
                            justify='center',
                            spacing1=defaultSize * self.H3_SPACING,
                            )
+        self.tag_configure(self.EPIGRAPH_SRC_TAG,
+                           font=h3Font,
+                           spacing3=defaultSize,
+                           foreground=kwargs['color_epigraph'],
+                           justify='center',
+                           spacing1=defaultSize * self.H3_SPACING,
+                           )
         self.tag_configure(self.UNUSED_TAG,
                            foreground=kwargs['color_unused'],
+                           )
+        self.tag_configure(self.EPIGRAPH_TAG,
+                           foreground=kwargs['color_epigraph'],
                            )
         self.tag_configure(self.STAGE1_TAG,
                            font=h1Font,
