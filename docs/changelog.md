@@ -11,6 +11,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.36.2
+
+- Modified the formatting of the chapter epigraphs: Spell check is suspended; source is right-aligned.
+
+
 ### Version 5.36.1
 
 - Fixed a regression from version 5.34.3 where inline language assignments may be lost during reimport from ODT.
