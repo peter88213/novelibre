@@ -146,6 +146,10 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             foreground=prefs['color_unused'],
         )
         self.tree.tag_configure(
+            'epigraph',
+            foreground=prefs['color_epigraph'],
+        )
+        self.tree.tag_configure(
             'stage1',
             font=('', fontSize, 'bold'),
             foreground=prefs['color_stage'],
@@ -555,56 +559,95 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
     def update_tree(self):
 
-        def update_branch(node, scnPos=0):
+        def update_branch(node, scnPos=0, isEpigraph=False):
             # Recursive tree walker.
             #     node: str -- Node ID to start from.
             #     scnPos: int -- Word count so far.
             # Return the incremented word count.
             for elemId in self.tree.get_children(node):
                 if elemId.startswith(SECTION_PREFIX):
-                    title, nodeValues, nodeTags = self._get_section_row_data(
-                        elemId, position=scnPos)
+                    (
+                        title,
+                        nodeValues,
+                        nodeTags
+                    ) = self._get_section_row_data(
+                        elemId,
+                        isEpigraph,
+                        position=scnPos
+                    )
                     if self._mdl.novel.sections[elemId].scType == 0:
                         scnPos += self._mdl.novel.sections[elemId].wordCount
+                    isEpigraph = False
                 elif elemId.startswith(CHARACTER_PREFIX):
-                    title, nodeValues, nodeTags = self._get_character_row_data(
-                        elemId)
+                    (
+                        title,
+                        nodeValues,
+                        nodeTags
+                    ) = self._get_character_row_data(elemId)
                 elif elemId.startswith(LOCATION_PREFIX):
-                    title, nodeValues, nodeTags = self._get_location_row_data(
-                        elemId)
+                    (
+                        title,
+                        nodeValues,
+                        nodeTags
+                    ) = self._get_location_row_data(elemId)
                 elif elemId.startswith(ITEM_PREFIX):
-                    title, nodeValues, nodeTags = self._get_item_row_data(
-                        elemId)
+                    (
+                        title,
+                        nodeValues,
+                        nodeTags
+                    ) = self._get_item_row_data(elemId)
                 elif elemId.startswith(CHAPTER_PREFIX):
                     chpPos = scnPos
-                    # save chapter start position, because the positions of the
-                    # chapters sections will now be added to scnPos.
-                    scnPos = update_branch(elemId, scnPos)
+                    # save chapter start position, because the positions of
+                    # the chapters sections will now be added to scnPos.
+                    scnPos = update_branch(
+                        elemId,
+                        scnPos=scnPos,
+                        isEpigraph=self._mdl.novel.chapters[elemId].hasEpigraph
+                    )
                     isCollapsed = not self.tree.item(elemId, 'open')
-                    title, nodeValues, nodeTags = self._get_chapter_row_data(
-                        elemId, position=chpPos, collect=isCollapsed)
+                    (
+                        title,
+                        nodeValues,
+                        nodeTags
+                    ) = self._get_chapter_row_data(
+                        elemId,
+                        position=chpPos,
+                        collect=isCollapsed
+                    )
                 elif elemId.startswith(PLOT_LINE_PREFIX):
                     update_branch(elemId, scnPos)
                     isCollapsed = not self.tree.item(elemId, 'open')
-                    title, nodeValues, nodeTags = self._get_plot_line_row_data(
-                        elemId, collect=isCollapsed)
+                    (
+                        title,
+                        nodeValues,
+                        nodeTags
+                    ) = self._get_plot_line_row_data(
+                        elemId,
+                        collect=isCollapsed
+                    )
                 elif elemId.startswith(PLOT_POINT_PREFIX):
                     (
                         title,
                         nodeValues,
                         nodeTags
-                    ) = self._get_plot_point_row_data(
-                        elemId)
+                    ) = self._get_plot_point_row_data(elemId)
                 elif elemId.startswith(PRJ_NOTE_PREFIX):
-                    title, nodeValues, nodeTags = self._get_prj_note_row_data(
-                        elemId)
+                    (
+                        title,
+                        nodeValues,
+                        nodeTags
+                    ) = self._get_prj_note_row_data(elemId)
                 else:
                     title = self._ROOT_TITLES[elemId]
                     nodeValues = []
                     nodeTags = 'root'
                     update_branch(elemId, scnPos)
                 self.tree.item(
-                    elemId, text=title, values=nodeValues, tags=nodeTags)
+                    elemId, text=title,
+                    values=nodeValues,
+                    tags=nodeTags
+                )
             return scnPos
 
         self._wordsTotal = self._mdl.get_counts()[0]
@@ -1346,7 +1389,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             self._mdl.novel.projectNotes[pnId].title
             ), nodeValues, ()
 
-    def _get_section_row_data(self, scId, position=None):
+    def _get_section_row_data(self, scId, isEpigraph, position=None):
         # Return title, values, and tags for a section row.
         # position: int -- Accumulated word count at section beginning.
 
@@ -1371,7 +1414,9 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                 nodeTags.append('unused')
             else:
                 # Set the row color according to the color mode.
-                if self.coloringMode == 1:
+                if isEpigraph:
+                    nodeTags.append('epigraph')
+                elif self.coloringMode == 1:
                     nodeTags.append(
                         f'status{self._mdl.novel.sections[scId].status}'
                     )
