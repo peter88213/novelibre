@@ -159,7 +159,7 @@ class ContentsViewer(RichTextNv, Observer, SubController):
                     headingTag = self.STAGE1_TAG
                 elif section.scType == 0:
                     if isEpigraph:
-                        headingTag = self.EPIGRAPH_SRC_TAG
+                        headingTag = self.H3_EPIGRAPH_TAG
                         textTag = self.EPIGRAPH_TAG
                     else:
                         headingTag = self.H3_TAG
@@ -174,8 +174,17 @@ class ContentsViewer(RichTextNv, Observer, SubController):
 
                 if section.sectionContent:
                     textTuples = self._convert_from_novx(
-                        section.sectionContent, textTag)
+                        section.sectionContent,
+                        textTag
+                    )
                     taggedText.extend(textTuples)
+
+                if isEpigraph:
+                    taggedText.append((
+                        f'{section.desc}\n',
+                        self.EPIGRAPH_SRC_TAG
+                    ))
+
                 isEpigraph = False
 
         if not taggedText:

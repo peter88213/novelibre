@@ -11,12 +11,13 @@ from nvlib.gui.widgets.rich_text_tk import RichTextTk
 
 class RichTextNv(RichTextTk):
     """A text box applying novelibre formatting."""
+    UNUSED_TAG = 'unused'
     H1_UNUSED_TAG = 'h1Unused'
     H2_UNUSED_TAG = 'h2Unused'
     H3_UNUSED_TAG = 'h3Unused'
-    UNUSED_TAG = 'unused'
     EPIGRAPH_TAG = 'epigraph'
     EPIGRAPH_SRC_TAG = 'epigraphSrc'
+    H3_EPIGRAPH_TAG = 'h3epigraph'
     STAGE1_TAG = 'stage1'
     STAGE2_TAG = 'stage2'
     XML_TAG = 'xmlTag'
@@ -136,12 +137,20 @@ class RichTextNv(RichTextTk):
             spacing1=defaultSize * self.H3_SPACING,
         )
         self.tag_configure(
-            self.EPIGRAPH_SRC_TAG,
+            self.H3_EPIGRAPH_TAG,
             font=h3Font,
             spacing3=defaultSize,
             foreground=kwargs['color_epigraph'],
             justify='center',
             spacing1=defaultSize * self.H3_SPACING,
+        )
+        self.tag_configure(
+            self.EPIGRAPH_SRC_TAG,
+            font=italicFont,
+            spacing3=0,
+            foreground=kwargs['color_epigraph'],
+            justify='right',
+            spacing1=0,
         )
         self.tag_configure(
             self.UNUSED_TAG,
