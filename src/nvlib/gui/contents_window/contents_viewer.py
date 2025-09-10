@@ -179,15 +179,16 @@ class ContentsViewer(RichTextNv, Observer, SubController):
                     )
                     taggedText.extend(textTuples)
 
-                if isEpigraph:
-                    taggedText.append((
-                        f'{section.desc}\n',
-                        self.EPIGRAPH_SRC_TAG
-                    ))
+                if isEpigraph and section.scType == 0 and section.desc:
+                    taggedText.append(
+                        (f'{section.desc}\n', self.EPIGRAPH_SRC_TAG)
+                    )
 
                 isEpigraph = False
 
         if not taggedText:
-            taggedText.append((f'({_("No text available")})', self.ITALIC_TAG))
+            taggedText.append(
+                (f'({_("No text available")})', self.ITALIC_TAG)
+            )
         return taggedText
 
