@@ -110,7 +110,9 @@ class OdtWXref(OdtWriter):
                     )
                 )
                 lines.extend(
-                    self._get_sections(self._xr.scnPerChr[crId])
+                    self._get_sections(
+                        self._xr.scnPerChr[crId],
+                    )
                 )
         return lines
 

@@ -22,7 +22,14 @@ class NovxToOdt(sax.ContentHandler):
         self._firstParagraphInChapter = None
         self._spanLevel = None
 
-    def feed(self, xmlString, languages, append, firstInChapter):
+    def feed(
+        self,
+        xmlString,
+        languages,
+        append,
+        firstInChapter,
+        epigraph,
+    ):
         """Feed a string file to the parser.
         
         Positional arguments:
@@ -31,11 +38,12 @@ class NovxToOdt(sax.ContentHandler):
             append: boolean -- indent the first paragraph, if True.
             firstInChapter: boolean -- apply the "Chapter beginning" 
                                        paragraph style, if True.
-            
+            epigraph: bool -- if True, use "Epigraph" paragraph styles.            
         """
         self._languages = languages
         self._firstParagraphInChapter = firstInChapter
-        self._indentParagraph = append
+        self._indentParagraph = append and not epigraph
+        self._epigraph = epigraph
         self._note = None
         self._spanLevel = 0
         self._comment = False
@@ -126,6 +134,10 @@ class NovxToOdt(sax.ContentHandler):
                 self.odtLines.append(
                     f'<text:p text:style-name="{_("Chapter_20_beginning")}">'
                 )
+            elif self._epigraph:
+                self.odtLines.append(
+                    f'<text:p text:style-name="{_("Epigraph")}">'
+                )
             elif self._indentParagraph:
                 self.odtLines.append(
                     '<text:p text:style-name="First_20_line_20_indent">'
@@ -134,8 +146,9 @@ class NovxToOdt(sax.ContentHandler):
                 self.odtLines.append(
                     '<text:p text:style-name="Text_20_body">'
                 )
-            self._firstParagraphInChapter = False
-            self._indentParagraph = False
+            if not self._epigraph:
+                self._firstParagraphInChapter = False
+                self._indentParagraph = False
 
             language = xmlAttributes.get('xml:lang', None)
             if language:

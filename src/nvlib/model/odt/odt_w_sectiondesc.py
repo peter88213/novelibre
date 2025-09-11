@@ -41,7 +41,13 @@ class OdtWSectionDesc(OdtWriter):
     _sectionDivider = '<text:p text:style-name="Heading_20_4">* * *</text:p>\n'
     _fileFooter = OdtWriter._CONTENT_XML_FOOTER
 
-    def _get_sectionMapping(self, scId, sectionNumber, wordsTotal, **kwargs):
+    def _get_sectionMapping(
+            self,
+            scId,
+            sectionNumber,
+            wordsTotal,
+            **kwargs
+    ):
         """Return a mapping dictionary for a section section.
         
         Positional arguments:

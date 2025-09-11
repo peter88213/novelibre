@@ -13,7 +13,6 @@ from xml.sax.saxutils import escape
 from nvlib.model.odf.odf_file import OdfFile
 from nvlib.model.odt.novx_to_odt import NovxToOdt
 from nvlib.novx_globals import Error
-from nvlib.nv_globals import to_string
 from nvlib.nv_locale import _
 
 
@@ -762,7 +761,6 @@ class OdtWriter(OdfFile):
         f'style:display-name="{_("Epigraph")}" '
         'style:family="paragraph" style:parent-style-name="Quotations" '
         f'style:next-style-name="{_("Epigraph source")}" style:class="text">\n'
-        '    <style:text-properties fo:language="zxx" fo:country="none"/>\n'
         '  </style:style>\n'
         f'  <style:style style:name="{_("Epigraph_20_source")}" '
         f'style:display-name="{_("Epigraph source")}" '
@@ -770,7 +768,7 @@ class OdtWriter(OdfFile):
         'style:next-style-name="Text_20_body" style:class="text">\n'
         '  <style:paragraph-properties fo:margin-top="0cm" '
         'fo:margin-bottom="1.46cm" fo:text-align="end"/>\n'
-        '  <style:text-properties fo:font-style="italic"/>\n'
+        '  <style:text-properties fo:language="zxx" fo:country="none" fo:font-style="italic"/>\n'
         '  </style:style>\n'
         f'  <style:style style:name="{_("Section_20_mark")}" '
         f'style:display-name="{_("Section mark")}" '
@@ -881,8 +879,9 @@ class OdtWriter(OdfFile):
             firstInChapter=False,
             xml=False,
             linebreaks=False,
-            firstParagraphStyle='Text_20_body'
-            ):
+            firstParagraphStyle='Text_20_body',
+            epigraph=False,
+    ):
         """Return text without markup, converted to target format.
         
         Positional arguments:
@@ -898,6 +897,7 @@ class OdtWriter(OdfFile):
                                 instead of creating paragraphs. 
             firstParagraphStyle: str -- The first paragraph's style, 
                                         if not xml and not append.
+            epigraph: bool -- if True, use "Epigraph" paragraph styles.
         
         Overrides the superclass method.
         """
@@ -913,18 +913,23 @@ class OdtWriter(OdfFile):
                 self.novel.languages,
                 append,
                 firstInChapter,
+                epigraph,
             )
             return ''.join(self._contentParser.odtLines)
 
         # Convert plain text into XML.
         lines = text.split('\n')
-        if linebreaks:
+        if linebreaks or epigraph:
+            # epigraph means epigraph's source
             text = '<text:line-break/>'.join(lines)
         else:
             text = (
                 '</text:p><text:p text:style-name="First_20_line_20_indent">'
             ).join(lines)
-        if append:
+
+        if epigraph:
+            firstParagraphStyle = _('Epigraph_20_source')
+        elif append:
             firstParagraphStyle = "First_20_line_20_indent"
         return (
             f'<text:p text:style-name="{firstParagraphStyle}">{text}</text:p>'
@@ -943,32 +948,14 @@ class OdtWriter(OdfFile):
             ).replace('<text:p', '\n<text:p')
         return fileHeaderMapping
 
-    def _get_chapterMapping(self, chId, chapterNumber):
-        """Return a mapping dictionary for a section section.
-        
-        Positional arguments:
-            scId: str -- section ID.
-            sectionNumber: int -- section number to be displayed.
-            wordsTotal: int -- accumulated wordcount.
-        
-        Extends the superclass method.
-        """
-        chapterMapping = super()._get_chapterMapping(chId, chapterNumber)
-        if self.novel.chapters[chId].epigraph:
-            chapterMapping['Epigraph'] = self._convert_from_novx(
-                self.novel.chapters[chId].epigraph,
-                linebreaks=True,
-                firstParagraphStyle=_('Epigraph'),
-            )
-            epigraphSrc = to_string(self.novel.chapters[chId].epigraphSrc)
-            chapterMapping['EpigraphSrc'] = self._convert_from_novx(
-                epigraphSrc,
-                linebreaks=True,
-                firstParagraphStyle=_('Epigraph_20_source'),
-            )
-        return chapterMapping
-
-    def _get_sectionMapping(self, scId, sectionNumber, wordsTotal, **kwargs):
+    def _get_sectionMapping(
+            self,
+            scId,
+            sectionNumber,
+            wordsTotal=None,
+            epigraph=None,
+            **kwargs,
+    ):
         """Return a mapping dictionary for a section section.
         
         Positional arguments:
@@ -981,7 +968,8 @@ class OdtWriter(OdfFile):
         sectionMapping = super()._get_sectionMapping(
             scId,
             sectionNumber,
-            wordsTotal,
+            wordsTotal=wordsTotal,
+            epigraph=epigraph,
             **kwargs
         )
         sectionMapping['sectionTitle'] = _('Section')

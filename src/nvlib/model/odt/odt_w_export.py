@@ -22,12 +22,13 @@ class OdtWExport(OdtWFormatted):
     )
     _partTemplate = (
         '<text:h text:style-name="Heading_20_1" text:outline-level="1">'
-        '$Title</text:h>$Epigraph$EpigraphSrc\n'
+        '$Title</text:h>\n'
     )
     _chapterTemplate = (
         '<text:h text:style-name="Heading_20_2" text:outline-level="2">'
-        '$Title</text:h>$Epigraph$EpigraphSrc\n'
+        '$Title</text:h>\n'
     )
+    _epigraphTemplate = '$SectionContent$Desc\n'
     _sectionTemplate = '$SectionContent\n'
 
     _sectionDivider = '<text:p text:style-name="Heading_20_4">* * *</text:p>\n'

@@ -30,6 +30,12 @@ class OdtWManuscript(OdtWFormatted):
         '<text:h text:style-name="Heading_20_2" text:outline-level="2">'
         '$Title</text:h>'
     )
+    _epigraphTemplate = (
+        '<text:section text:style-name="Sect1" text:name="$ID">\n'
+        '$SectionContent\n'
+        '</text:section>\n'
+        '$Desc\n'
+    )
     _sectionTemplate = (
         f'<text:h text:style-name="{_("Heading_20_3_20_invisible")}" '
         'text:outline-level="3">$Title</text:h>\n'

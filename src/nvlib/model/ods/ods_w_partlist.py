@@ -4,22 +4,95 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.model.ods.ods_w_chapterlist import OdsWChapterList
+from nvlib.model.ods.ods_writer import OdsWriter
 from nvlib.novx_globals import PARTLIST_SUFFIX
 from nvlib.nv_locale import _
 
 
-class OdsWPartList(OdsWChapterList):
+class OdsWPartList(OdsWriter):
     """ODS part list templates."""
 
     DESCRIPTION = _('Part table')
     SUFFIX = PARTLIST_SUFFIX
 
-    _chapterTemplate = ''
+    _fileHeader = (
+        f'{OdsWriter._CONTENT_XML_HEADER}{DESCRIPTION}" '
+        'table:style-name="ta1" table:print="false">\n'
+        '    <table:table-column table:style-name="co1" '
+        'table:visibility="collapse" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co1" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co2" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co4" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co4" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co4" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co4" '
+        'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co1" '
+        'table:number-columns-repeated="1019" '
+        'table:default-cell-style-name="Default"/>\n'
+        '     <table:table-row table:style-name="ro1" '
+        'table:visibility="collapse">\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'office:value-type="string">\n'
+        '      <text:p>ID</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'office:value-type="string">\n'
+        '      <text:p>Chapter</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'office:value-type="string">\n'
+        '      <text:p>Title</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'office:value-type="string">\n'
+        '      <text:p>Description</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'office:value-type="string">\n'
+        '      <text:p>Notes</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'table:number-columns-repeated="1019"/>\n'
+        '    </table:table-row>\n'
+        '     <table:table-row table:style-name="ro1">\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'office:value-type="string">\n'
+        '      <text:p>ID</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'office:value-type="string">\n'
+        f'      <text:p>{_("Part")}</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'office:value-type="string">\n'
+        f'      <text:p>{_("Title")}</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'office:value-type="string">\n'
+        f'      <text:p>{_("Description")}</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'office:value-type="string">\n'
+        f'      <text:p>{_("Notes")}</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'table:number-columns-repeated="1019"/>\n'
+        '    </table:table-row>\n'
+    )
     _partTemplate = (
         '   <table:table-row table:style-name="ro2">\n'
         '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$ID</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$ChapterNumber</text:p>\n'
         '     </table:table-cell>\n'
         '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$Title</text:p>\n'
@@ -28,14 +101,9 @@ class OdsWPartList(OdsWChapterList):
         '      <text:p>$Desc</text:p>\n'
         '     </table:table-cell>\n'
         '     <table:table-cell office:value-type="string">\n'
-        '      <text:p>$Epigraph</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell office:value-type="string">\n'
-        '      <text:p>$EpigraphSrc</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$Notes</text:p>\n'
         '     </table:table-cell>\n'
         '     <table:table-cell table:number-columns-repeated="1020"/>\n'
         '    </table:table-row>\n'
     )
+    _fileFooter = OdsWriter._CONTENT_XML_FOOTER

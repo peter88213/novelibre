@@ -30,6 +30,13 @@ class OdtWProof(OdtWFormatted):
         '<text:h text:style-name="Heading_20_2" text:outline-level="2">'
         '$Title</text:h>'
     )
+    _epigraphTemplate = (
+        f'<text:p text:style-name="{_("Section_20_mark")}">[$ID]</text:p>\n'
+        '$SectionContent\n'
+        f'<text:p text:style-name="{_("Section_20_mark")}">'
+        f'[/{SECTION_PREFIX}]</text:p>\n'
+        '$Desc\n'
+    )
     _sectionTemplate = (
         '<text:h text:style-name="Heading_20_3" text:outline-level="3">'
         '$Title</text:h>\n'
@@ -41,14 +48,15 @@ class OdtWProof(OdtWFormatted):
     _fileFooter = OdtWFormatted._CONTENT_XML_FOOTER
 
     def _convert_from_novx(
-            self,
-            text,
-            quick=False,
-            append=False,
-            firstInChapter=False,
-            xml=False,
-            linebreaks=False,
-            firstParagraphStyle='Text_20_body',
+        self,
+        text,
+        quick=False,
+        append=False,
+        firstInChapter=False,
+        xml=False,
+        linebreaks=False,
+        firstParagraphStyle='Text_20_body',
+        epigraph=False,
     ):
         """Return text without markup, converted to target format.
         
@@ -76,4 +84,5 @@ class OdtWProof(OdtWFormatted):
             xml=xml,
             linebreaks=linebreaks,
             firstParagraphStyle=firstParagraphStyle,
+            epigraph=epigraph,
         )
