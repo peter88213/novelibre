@@ -795,7 +795,7 @@ class FileExport(File):
             sectionNumber,
             wordsTotal,
             firstInChapter=False,
-            epigraph=False,
+            isEpigraph=False,
         ):
         """Return a mapping dictionary for a section section.
         
@@ -940,7 +940,7 @@ class FileExport(File):
             ),
             Desc=self._convert_from_novx(
                 self.novel.sections[scId].desc,
-                epigraph=epigraph,
+                isEpigraph=isEpigraph,
                 append=self.novel.sections[scId].appendToPrev,
             ),
             WordCount=str(self.novel.sections[scId].wordCount),
@@ -950,7 +950,7 @@ class FileExport(File):
                 self.novel.sections[scId].sectionContent,
                 append=self.novel.sections[scId].appendToPrev,
                 firstInChapter=firstInChapter,
-                epigraph=epigraph,
+                isEpigraph=isEpigraph,
                 xml=True,
             ),
             Date=dateStr,
@@ -1016,7 +1016,7 @@ class FileExport(File):
             chId,
             sectionNumber,
             wordsTotal,
-            epigraph,
+            isEpigraph,
     ):
         """Process the sections.
         
@@ -1038,7 +1038,7 @@ class FileExport(File):
         or overridden by subclasses.
         """
         lines = []
-        firstSectionInChapter = not epigraph
+        firstSectionInChapter = not isEpigraph
         for scId in self.novel.tree.get_children(chId):
             template = None
             dispNumber = 0
@@ -1065,8 +1065,8 @@ class FileExport(File):
                 self.novel.sections[scId].scType == 1
                 or self.novel.chapters[chId].chType == 1
             ):
-                firstSectionInChapter = epigraph
-                epigraph = False
+                firstSectionInChapter = isEpigraph
+                isEpigraph = False
                 if self._unusedSectionTemplate:
                     template = Template(self._unusedSectionTemplate)
                 else:
@@ -1076,7 +1076,7 @@ class FileExport(File):
                 sectionNumber += 1
                 dispNumber = sectionNumber
                 wordsTotal += self.novel.sections[scId].wordCount
-                if epigraph and self._epigraphTemplate:
+                if isEpigraph and self._epigraphTemplate:
                     template = Template(self._epigraphTemplate)
                 else:
                     template = Template(self._sectionTemplate)
@@ -1088,7 +1088,7 @@ class FileExport(File):
                 ):
                     template = Template(self._appendedSectionTemplate)
             if not (
-                epigraph
+                isEpigraph
                 or firstSectionInChapter
                 or self.novel.sections[scId].appendToPrev
                 or self.novel.sections[scId].scType > 1
@@ -1096,7 +1096,7 @@ class FileExport(File):
                 lines.append(self._sectionDivider)
             if template is not None:
                 if self.novel.sections[scId].scType == 0:
-                    tempEpigraph = epigraph
+                    tempEpigraph = isEpigraph
                 else:
                     tempEpigraph = False
                 lines.append(
@@ -1105,13 +1105,13 @@ class FileExport(File):
                             scId, dispNumber,
                             wordsTotal,
                             firstInChapter=firstSectionInChapter,
-                            epigraph=tempEpigraph,
+                            isEpigraph=tempEpigraph,
                         )
                     )
                 )
             if self.novel.sections[scId].scType < 2:
-                firstSectionInChapter = epigraph
-                epigraph = False
+                firstSectionInChapter = isEpigraph
+                isEpigraph = False
         return lines, sectionNumber, wordsTotal
 
     def _get_prjNoteMapping(self, pnId):

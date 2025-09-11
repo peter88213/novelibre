@@ -60,19 +60,3 @@ class OdsRChapterList(OdsReader):
             else:
                 self.novel.chapters[chId].notes = notes.rstrip()
 
-            #--- epigraph
-            try:
-                epigraph = self._columns['Epigraph'][chId]
-            except:
-                pass
-            else:
-                self.novel.chapters[chId].epigraph = epigraph.rstrip()
-
-            #--- epigraphSrc
-            try:
-                epigraphSrc = self._columns['Source'][chId]
-            except:
-                pass
-            else:
-                self.novel.chapters[chId].epigraphSrc = epigraphSrc.rstrip()
-

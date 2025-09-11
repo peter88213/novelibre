@@ -56,7 +56,7 @@ class OdtWProof(OdtWFormatted):
         xml=False,
         linebreaks=False,
         firstParagraphStyle='Text_20_body',
-        epigraph=False,
+        isEpigraph=False,
     ):
         """Return text without markup, converted to target format.
         
@@ -84,5 +84,5 @@ class OdtWProof(OdtWFormatted):
             xml=xml,
             linebreaks=linebreaks,
             firstParagraphStyle=firstParagraphStyle,
-            epigraph=epigraph,
+            isEpigraph=isEpigraph,
         )

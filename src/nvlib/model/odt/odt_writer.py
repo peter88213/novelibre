@@ -880,7 +880,7 @@ class OdtWriter(OdfFile):
             xml=False,
             linebreaks=False,
             firstParagraphStyle='Text_20_body',
-            epigraph=False,
+            isEpigraph=False,
     ):
         """Return text without markup, converted to target format.
         
@@ -897,7 +897,7 @@ class OdtWriter(OdfFile):
                                 instead of creating paragraphs. 
             firstParagraphStyle: str -- The first paragraph's style, 
                                         if not xml and not append.
-            epigraph: bool -- if True, use "Epigraph" paragraph styles.
+            isEpigraph: bool -- if True, use "Epigraph" paragraph styles.
         
         Overrides the superclass method.
         """
@@ -908,26 +908,27 @@ class OdtWriter(OdfFile):
             return escape(text)
 
         if xml:
+            # isEpigraph means that the text is an epigraph
             self._contentParser.feed(
                 text,
                 self.novel.languages,
                 append,
                 firstInChapter,
-                epigraph,
+                isEpigraph,
             )
             return ''.join(self._contentParser.odtLines)
 
         # Convert plain text into XML.
         lines = text.split('\n')
-        if linebreaks or epigraph:
-            # epigraph means epigraph's source
+        if linebreaks or isEpigraph:
+            # isEpigraph means that the text is an epigraph's source
             text = '<text:line-break/>'.join(lines)
         else:
             text = (
                 '</text:p><text:p text:style-name="First_20_line_20_indent">'
             ).join(lines)
 
-        if epigraph:
+        if isEpigraph:
             firstParagraphStyle = _('Epigraph_20_source')
         elif append:
             firstParagraphStyle = "First_20_line_20_indent"
@@ -953,7 +954,7 @@ class OdtWriter(OdfFile):
             scId,
             sectionNumber,
             wordsTotal=None,
-            epigraph=None,
+            isEpigraph=None,
             **kwargs,
     ):
         """Return a mapping dictionary for a section section.
@@ -969,7 +970,7 @@ class OdtWriter(OdfFile):
             scId,
             sectionNumber,
             wordsTotal=wordsTotal,
-            epigraph=epigraph,
+            isEpigraph=isEpigraph,
             **kwargs
         )
         sectionMapping['sectionTitle'] = _('Section')

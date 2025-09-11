@@ -28,7 +28,7 @@ class NovxToOdt(sax.ContentHandler):
         languages,
         append,
         firstInChapter,
-        epigraph,
+        isEpigraph,
     ):
         """Feed a string file to the parser.
         
@@ -38,12 +38,12 @@ class NovxToOdt(sax.ContentHandler):
             append: boolean -- indent the first paragraph, if True.
             firstInChapter: boolean -- apply the "Chapter beginning" 
                                        paragraph style, if True.
-            epigraph: bool -- if True, use "Epigraph" paragraph styles.            
+            isEpigraph: bool -- if True, use "Epigraph" paragraph styles.            
         """
         self._languages = languages
         self._firstParagraphInChapter = firstInChapter
-        self._indentParagraph = append and not epigraph
-        self._epigraph = epigraph
+        self._indentParagraph = append and not isEpigraph
+        self._isEpigraph = isEpigraph
         self._note = None
         self._spanLevel = 0
         self._comment = False
@@ -134,7 +134,7 @@ class NovxToOdt(sax.ContentHandler):
                 self.odtLines.append(
                     f'<text:p text:style-name="{_("Chapter_20_beginning")}">'
                 )
-            elif self._epigraph:
+            elif self._isEpigraph:
                 self.odtLines.append(
                     f'<text:p text:style-name="{_("Epigraph")}">'
                 )
@@ -146,7 +146,7 @@ class NovxToOdt(sax.ContentHandler):
                 self.odtLines.append(
                     '<text:p text:style-name="Text_20_body">'
                 )
-            if not self._epigraph:
+            if not self._isEpigraph:
                 self._firstParagraphInChapter = False
                 self._indentParagraph = False
 
