@@ -147,7 +147,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         )
         self.tree.tag_configure(
             'epigraph',
-            foreground=prefs['color_epigraph'],
+            foreground=prefs['color_chapter'],
         )
         self.tree.tag_configure(
             'stage1',

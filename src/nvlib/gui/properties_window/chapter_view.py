@@ -7,11 +7,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 
 from nvlib.gui.properties_window.element_view import ElementView
-from nvlib.gui.widgets.folding_frame import FoldingFrame
-from nvlib.gui.widgets.label_entry import LabelEntry
-from nvlib.gui.widgets.my_string_var import MyStringVar
-from nvlib.gui.widgets.text_box import TextBox
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
 

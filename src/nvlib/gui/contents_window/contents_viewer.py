@@ -166,7 +166,9 @@ class ContentsViewer(RichTextNv, Observer, SubController):
                 else:
                     headingTag = self.H3_UNUSED_TAG
                     textTag = self.UNUSED_TAG
-                if section.title:
+                if isEpigraph and section.scType == 0:
+                    heading = ''
+                elif section.title:
                     heading = f'[{section.title}]\n'
                 else:
                     heading = f"[{_('Unnamed')}]\n"

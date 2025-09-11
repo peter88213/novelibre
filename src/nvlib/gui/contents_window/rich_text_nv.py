@@ -140,7 +140,7 @@ class RichTextNv(RichTextTk):
             self.H3_EPIGRAPH_TAG,
             font=h3Font,
             spacing3=defaultSize,
-            foreground=kwargs['color_epigraph'],
+            foreground=kwargs['color_chapter'],
             justify='center',
             spacing1=defaultSize * self.H3_SPACING,
         )
@@ -148,7 +148,7 @@ class RichTextNv(RichTextTk):
             self.EPIGRAPH_SRC_TAG,
             font=italicFont,
             spacing3=0,
-            foreground=kwargs['color_epigraph'],
+            foreground=kwargs['color_chapter'],
             justify='right',
             spacing1=0,
         )
@@ -158,7 +158,7 @@ class RichTextNv(RichTextTk):
         )
         self.tag_configure(
             self.EPIGRAPH_TAG,
-            foreground=kwargs['color_epigraph'],
+            foreground=kwargs['color_chapter'],
         )
         self.tag_configure(
             self.STAGE1_TAG,
