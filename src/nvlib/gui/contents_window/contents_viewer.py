@@ -186,7 +186,8 @@ class ContentsViewer(RichTextNv, Observer, SubController):
                         (f'{section.desc}\n', self.EPIGRAPH_SRC_TAG)
                     )
 
-                isEpigraph = False
+                if section.scType == 0:
+                    isEpigraph = False
 
         if not taggedText:
             taggedText.append(
