@@ -577,7 +577,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                     )
                     if self._mdl.novel.sections[elemId].scType == 0:
                         scnPos += self._mdl.novel.sections[elemId].wordCount
-                    isEpigraph = False
+                        isEpigraph = False
                 elif elemId.startswith(CHARACTER_PREFIX):
                     (
                         title,
