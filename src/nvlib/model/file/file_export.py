@@ -1095,13 +1095,17 @@ class FileExport(File):
             ):
                 lines.append(self._sectionDivider)
             if template is not None:
+                if self.novel.sections[scId].scType == 0:
+                    tempEpigraph = epigraph
+                else:
+                    tempEpigraph = False
                 lines.append(
                     template.safe_substitute(
                         self._get_sectionMapping(
                             scId, dispNumber,
                             wordsTotal,
                             firstInChapter=firstSectionInChapter,
-                            epigraph=epigraph,
+                            epigraph=tempEpigraph,
                         )
                     )
                 )
