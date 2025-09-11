@@ -1038,7 +1038,7 @@ class FileExport(File):
         or overridden by subclasses.
         """
         lines = []
-        firstSectionInChapter = not isEpigraph
+        firstSectionInChapter = True
         for scId in self.novel.tree.get_children(chId):
             template = None
             dispNumber = 0
@@ -1065,7 +1065,7 @@ class FileExport(File):
                 self.novel.sections[scId].scType == 1
                 or self.novel.chapters[chId].chType == 1
             ):
-                firstSectionInChapter = isEpigraph
+                # Unused section.
                 isEpigraph = False
                 if self._unusedSectionTemplate:
                     template = Template(self._unusedSectionTemplate)
@@ -1073,20 +1073,22 @@ class FileExport(File):
                     continue
 
             else:
+                # Normal section.
                 sectionNumber += 1
                 dispNumber = sectionNumber
                 wordsTotal += self.novel.sections[scId].wordCount
-                if isEpigraph and self._epigraphTemplate:
-                    template = Template(self._epigraphTemplate)
-                else:
-                    template = Template(self._sectionTemplate)
-                if firstSectionInChapter and self._firstSectionTemplate:
-                    template = Template(self._firstSectionTemplate)
-                elif (
-                    self.novel.sections[scId].appendToPrev
-                    and self._appendedSectionTemplate
-                ):
-                    template = Template(self._appendedSectionTemplate)
+                template = Template(self._sectionTemplate)
+                if isEpigraph:
+                    if self._epigraphTemplate:
+                        template = Template(self._epigraphTemplate)
+                elif firstSectionInChapter:
+                    if self._firstSectionTemplate:
+                        template = Template(self._firstSectionTemplate)
+                elif self.novel.sections[scId].appendToPrev:
+                    if self._appendedSectionTemplate:
+                        template = Template(self._appendedSectionTemplate)
+
+            # Append section divider, if necessary.
             if not (
                 isEpigraph
                 or firstSectionInChapter
@@ -1094,24 +1096,32 @@ class FileExport(File):
                 or self.novel.sections[scId].scType > 1
             ):
                 lines.append(self._sectionDivider)
+
+            # Apply template to any section.
+            tempEpigraph = False
+            tempFirstSection = firstSectionInChapter
             if template is not None:
                 if self.novel.sections[scId].scType == 0:
-                    tempEpigraph = isEpigraph
-                else:
-                    tempEpigraph = False
+                    if isEpigraph:
+                        tempEpigraph = True
+                        tempFirstSection = False
                 lines.append(
                     template.safe_substitute(
                         self._get_sectionMapping(
                             scId, dispNumber,
                             wordsTotal,
-                            firstInChapter=firstSectionInChapter,
+                            firstInChapter=tempFirstSection,
                             isEpigraph=tempEpigraph,
                         )
                     )
                 )
             if self.novel.sections[scId].scType < 2:
-                firstSectionInChapter = isEpigraph
                 isEpigraph = False
+                # note: if the chapter's first section is unused,
+                # there's no epigraph in any case
+            if self.novel.sections[scId].scType == 0 and tempFirstSection:
+                firstSectionInChapter = False
+
         return lines, sectionNumber, wordsTotal
 
     def _get_prjNoteMapping(self, pnId):
