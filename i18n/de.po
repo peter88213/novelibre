@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.36.2\n"
-"POT-Creation-Date: 2025-09-10 17:11:13\n"
-"PO-Revision-Date: 2025-09-10 17:11:13\n"
+"Project-Id-Version: 5.37.0\n"
+"POT-Creation-Date: 2025-09-11 22:14:58\n"
+"PO-Revision-Date: 2025-09-11 22:14:58\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1266,9 +1266,6 @@ msgstr "Tabelle im Browser anzeigen"
 
 msgid "Skip"
 msgstr "Überspringen"
-
-msgid "Source"
-msgstr "Quelle"
 
 msgid "Source document"
 msgstr "Quelldokument"

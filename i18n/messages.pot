@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.36.2\n"
-"POT-Creation-Date: 2025-09-10 17:11:13\n"
+"Project-Id-Version: 5.37.0\n"
+"POT-Creation-Date: 2025-09-11 22:14:58\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -1272,9 +1272,6 @@ msgid "Show table in Browser"
 msgstr ""
 
 msgid "Skip"
-msgstr ""
-
-msgid "Source"
 msgstr ""
 
 msgid "Source document"

@@ -872,15 +872,15 @@ class OdtWriter(OdfFile):
         return super().write()
 
     def _convert_from_novx(
-            self,
-            text,
-            quick=False,
-            append=False,
-            firstInChapter=False,
-            xml=False,
-            linebreaks=False,
-            firstParagraphStyle='Text_20_body',
-            isEpigraph=False,
+        self,
+        text,
+        quick=False,
+        append=False,
+        firstInChapter=False,
+        xml=False,
+        linebreaks=False,
+        firstParagraphStyle='Text_20_body',
+        isEpigraph=False,
     ):
         """Return text without markup, converted to target format.
         
