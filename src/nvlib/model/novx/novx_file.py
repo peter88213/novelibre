@@ -145,10 +145,12 @@ class NovxFile(File):
         except KeyError:
             pass
         else:
-            (
-                self.novel.languageCode,
-                self.novel.countryCode
-            ) = locale.split('-')
+            codes = locale.split('-')
+            self.novel.languageCode = codes[0]
+            try:
+                self.novel.countryCode = codes[1]
+            except IndexError:
+                self.novel.countryCode = None
         self.novel.tree.reset()
         try:
             self._read_project_data(xmlRoot)
@@ -174,9 +176,13 @@ class NovxFile(File):
         self.adjust_section_types()
         self.novel.get_languages()
 
+        if self.novel.countryCode:
+            countryCode = f'-{self.novel.countryCode}'
+        else:
+            countryCode = ''
         attrib = {
             'version': f'{self.MAJOR_VERSION}.{self.MINOR_VERSION}',
-            'xml:lang': f'{self.novel.languageCode}-{self.novel.countryCode}',
+            'xml:lang': f'{self.novel.languageCode}{countryCode}',
         }
         xmlRoot = ET.Element('novx', attrib=attrib)
         self._build_project(xmlRoot)

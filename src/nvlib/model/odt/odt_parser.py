@@ -311,7 +311,7 @@ class OdtParser(sax.ContentHandler):
             if xmlAttributes.get('fo:language', False):
                 languageCode = xmlAttributes['fo:language']
                 countryCode = xmlAttributes['fo:country']
-                if countryCode != 'none':
+                if countryCode and countryCode != 'none':
                     locale = f'{languageCode}-{countryCode}'
                 else:
                     locale = languageCode
@@ -376,9 +376,12 @@ class OdtParser(sax.ContentHandler):
                     f'{{{namespaces["fo"]}}}language'
                 )
                 countryCode = textProperties.get(
-                    f'{{{namespaces["fo"]}}}country'
+                    f'{{{namespaces["fo"]}}}country', ''
                 )
-                self._novelLocale = f'{languageCode}-{countryCode}'
+                if countryCode and countryCode != 'none':
+                    self._novelLocale = f'{languageCode}-{countryCode}'
+                else:
+                    self._novelLocale = languageCode
                 self._client.handle_starttag(
                     'body',
                     [

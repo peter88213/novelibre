@@ -455,10 +455,12 @@ class Novel(BasicElement):
 
         try:
             # Plausibility check: code must have two characters.
+            # The country code may
+            if len(self._countryCode) != 2:
+                self._countryCode = None
             if len(self._languageCode) == 2:
-                if len(self._countryCode) == 2:
-                    return
-                    # keep the setting
+                return
+                # keep the setting
         except:
             # code isn't a string
             pass

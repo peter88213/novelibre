@@ -722,6 +722,8 @@ class ProjectView(ElementView):
             if self.element.languageCode and self.element.countryCode:
                 self._localePreviewVar.set(
                     f'{self.element.languageCode}-{self.element.countryCode}')
+            elif self.element.languageCode:
+                self._localePreviewVar.set(self.element.languageCode)
             else:
                 self._localePreviewVar.set('')
 
