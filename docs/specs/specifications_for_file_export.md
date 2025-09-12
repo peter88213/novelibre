@@ -33,6 +33,7 @@ Template-based file export: The application script iterates over chapters, secti
 -   `firstSectionTemplate` (applied  to sections at the beginning of the chapter)
 -   `appendedSectionTemplate` (applied to sections marked "append to previous")
 -   `unusedSectionTemplate` (applied to "unused" sections)
+-   `epigraphTemplate` (applied to epigraphs)
 -   `sectionDivider` (lead sections, beginning from the second in chapter)
 
 
