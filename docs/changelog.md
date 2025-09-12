@@ -12,17 +12,17 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### Version 5.37.3
 
-The file format has been upgraded to version 1.8.
+The file format has been upgraded from version 1.7 to version 1.8.
 *.novx* files created with *novelibre* version 5.37+ 
-cannot be read with older *novelibre* versions.
+cannot be read with older *novelibre* versions. 
 
 - Storing chapter epigraphs as sections instead of chapter properties.
+  When loading a version 1.7 *.novx* project file that includes epigraphs, 
+  *novelibre* automatically adjusts the chapter properties, 
+  and converts the epigraphs into sections.  
 - Supporting locales without a country code.
 - Fixed a bug in the part list where the ID is missing, the parts are
   unnumbered, and the column heading is "Chapter" instead of "Part".
-- Fixed a bug where "Quotations" paragraphs in foreign language lead to 
-  unreadable ODT exports.
-- Reverted code changes made for debugging purposes.
   
 
 ### Version 5.36.2
