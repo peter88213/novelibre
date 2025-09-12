@@ -351,8 +351,16 @@ class OdsWSectionList(OdsWGrid):
         '     </table:table-cell>\n'
         '    </table:table-row>\n'
     )
+    _epigraphTemplate = ''
 
-    def _get_sectionMapping(self, scId, sectionNumber, wordsTotal, **kwargs):
+    def _get_sectionMapping(
+            self,
+            scId,
+            sectionNumber,
+            wordsTotal,
+            firstInChapter=False,
+            isEpigraph=False,
+        ):
         """Return a mapping dictionary for a section section.
         
         Positional arguments:
@@ -365,7 +373,9 @@ class OdsWSectionList(OdsWGrid):
         sectionMapping = super()._get_sectionMapping(
             scId,
             sectionNumber,
-            wordsTotal
+            wordsTotal,
+            firstInChapter,
+            isEpigraph,
         )
         sectionMapping['Status'] = STATUS[sectionMapping['Status']]
         return sectionMapping

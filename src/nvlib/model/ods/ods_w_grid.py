@@ -215,7 +215,7 @@ class OdsWGrid(OdsWriter):
         'table:number-columns-repeated="1003"/>\n'
         '    </table:table-row>\n'
     )
-    _sectionTemplate = (
+    _sectionTemplate = _epigraphTemplate = (
         '   <table:table-row table:style-name="ro2">\n'
         '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$ID</text:p>\n'
@@ -341,7 +341,14 @@ class OdsWGrid(OdsWriter):
 
         return fileHeaderMapping
 
-    def _get_sectionMapping(self, scId, sectionNumber, wordsTotal, **kwargs):
+    def _get_sectionMapping(
+            self,
+            scId,
+            sectionNumber,
+            wordsTotal,
+            firstInChapter=False,
+            isEpigraph=False,
+    ):
         """Return a mapping dictionary for a section section.
         
         Positional arguments:
@@ -355,6 +362,8 @@ class OdsWGrid(OdsWriter):
             scId,
             sectionNumber,
             wordsTotal,
+            firstInChapter,
+            isEpigraph,
         )
 
         #--- $DateCell: if no section date is given,

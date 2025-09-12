@@ -20,8 +20,6 @@ class OdsRChapterList(OdsReader):
         'Chapter',
         'Title',
         'Description',
-        'Epigraph',
-        'Source',
         'Notes',
     ]
     _idPrefix = CHAPTER_PREFIX

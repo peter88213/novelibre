@@ -1072,6 +1072,10 @@ class FileExport(File):
                 else:
                     continue
 
+            elif isEpigraph and not self._epigraphTemplate:
+                isEpigraph = False
+                continue
+
             else:
                 # Normal section.
                 sectionNumber += 1
@@ -1079,8 +1083,7 @@ class FileExport(File):
                 wordsTotal += self.novel.sections[scId].wordCount
                 template = Template(self._sectionTemplate)
                 if isEpigraph:
-                    if self._epigraphTemplate:
-                        template = Template(self._epigraphTemplate)
+                    template = Template(self._epigraphTemplate)
                 elif firstSectionInChapter:
                     if self._firstSectionTemplate:
                         template = Template(self._firstSectionTemplate)
