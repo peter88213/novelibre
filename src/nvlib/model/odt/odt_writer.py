@@ -901,14 +901,13 @@ class OdtWriter(OdfFile):
         
         Overrides the superclass method.
         """
-        if not text and not linebreaks:
+        if not text and not linebreaks and not isEpigraph:
             return ''
 
         if quick:
             return escape(text)
 
         if xml:
-            # isEpigraph means that the text is an epigraph
             self._contentParser.feed(
                 text,
                 self.novel.languages,
