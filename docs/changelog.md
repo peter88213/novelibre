@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.38.0
+
+Defining new sections while writing with *Writer* is now even more intuitive. 
+You can insert third- or fourth-level headings.
+
+
 ### Version 5.37.3
 
 The file format has been upgraded from version 1.7 to version 1.8.
