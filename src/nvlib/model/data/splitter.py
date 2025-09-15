@@ -28,15 +28,17 @@ class Splitter:
                           splitting a section.
         CHAPTER_SEPARATOR -- marker indicating the beginning of a new chapter,
                              splitting a section.
-        SCENE_SEPARATOR -- marker indicating the beginning of a new section, 
-                           splitting a section.
+        SECTION_SEPARATOR -- marker indicating the beginning of a new section, 
+                             splitting a section.
+        APPENDED_SECTION_SEPARATOR -- marker indicating the beginning of a new 
+                                      "appended" section, splitting a section.
         DESC_SEPARATOR -- marker separating title and description of 
                           a chapter or section.
     """
     PART_SEPARATOR = '#'
     CHAPTER_SEPARATOR = '##'
-    SCENE_SEPARATOR = '###'
-    APPENDED_SCENE_SEPARATOR = '####'
+    SECTION_SEPARATOR = '###'
+    APPENDED_SECTION_SEPARATOR = '####'
     DESC_SEPARATOR = '|'
     _CLIP_TITLE = 20
     # Maximum length of newly generated section titles.
@@ -156,9 +158,9 @@ class Splitter:
                         title = heading[0]
                         desc = ''
                         if len(heading) > 1:
-                            desc = heading[1]
+                            desc = heading[1].strip()
 
-                    if plainLine.startswith(self.SCENE_SEPARATOR):
+                    if plainLine.startswith(self.SECTION_SEPARATOR):
                         # Split the section.
                         if inSection:
                             novel.sections[scId].sectionContent = ''.join(
@@ -176,7 +178,7 @@ class Splitter:
                             title,
                             desc,
                             plainLine.startswith(
-                                self.APPENDED_SCENE_SEPARATOR)
+                                self.APPENDED_SECTION_SEPARATOR)
                         )
                         novel.tree.append(chId, newScId)
                         scId = newScId

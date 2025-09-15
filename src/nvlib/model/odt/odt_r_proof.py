@@ -6,7 +6,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import re
 
-from nvlib.model.data.splitter import Splitter
 from nvlib.model.odt.odt_r_formatted import OdtRFormatted
 from nvlib.novx_globals import Error
 from nvlib.novx_globals import PROOF_SUFFIX
@@ -116,12 +115,9 @@ class OdtRProof(OdtRFormatted):
             self._scId = None
             return
 
-        if tag == 'h1':
+        if tag in self._SEPARATORS:
             self._lines.append('\n')
             return
-
-        if tag == 'h2':
-            self._lines.append('\n')
 
     def handle_starttag(self, tag, attrs):
         """Recognize the paragraph's beginning.
@@ -168,12 +164,8 @@ class OdtRProof(OdtRFormatted):
                     self._lines.append(f'<span xml:lang="{attrs[0][1]}">')
                 return
 
-            if tag == 'h2':
-                self._lines.append(f'{Splitter.CHAPTER_SEPARATOR} ')
-                return
-
-            if tag == 'h1':
-                self._lines.append(f'{Splitter.PART_SEPARATOR} ')
+            if tag in self._SEPARATORS:
+                self._lines.append(self._SEPARATORS[tag])
                 return
 
             if tag == 's':

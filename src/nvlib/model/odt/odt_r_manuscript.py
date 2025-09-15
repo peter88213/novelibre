@@ -4,7 +4,6 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.model.data.splitter import Splitter
 from nvlib.model.odt.odt_r_formatted import OdtRFormatted
 from nvlib.novx_globals import MANUSCRIPT_SUFFIX
 from nvlib.nv_locale import _
@@ -71,12 +70,9 @@ class OdtRManuscript(OdtRFormatted):
             self._scId = None
             return
 
-        if tag == 'h1':
+        if tag in self._SEPARATORS:
             self._lines.append('\n')
             return
-
-        if tag == 'h2':
-            self._lines.append('\n')
 
     def handle_starttag(self, tag, attrs):
         """Identify sections and chapters.
@@ -135,12 +131,8 @@ class OdtRManuscript(OdtRFormatted):
                 self._lines.append(f'<span xml:lang="{attrs[0][1]}">')
             return
 
-        if tag == 'h2':
-            self._lines.append(f'{Splitter.CHAPTER_SEPARATOR} ')
-            return
-
-        if tag == 'h1':
-            self._lines.append(f'{Splitter.PART_SEPARATOR} ')
+        if tag in self._SEPARATORS:
+            self._lines.append(self._SEPARATORS[tag])
             return
 
         if tag == 'note':
