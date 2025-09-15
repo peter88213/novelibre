@@ -1,4 +1,4 @@
-[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.37.3.pyz)
+[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.38.0.pyz)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
 [![News/Feedback](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
@@ -172,7 +172,7 @@ The development phase has now come to an end. Nevertheless it is recommended to 
 
 ### Default: Executable Python zip archive
 
-Download the latest release [novelibre_v5.37.3.pyz](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.37.3.pyz)
+Download the latest release [novelibre_v5.38.0.pyz](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.38.0.pyz)
 
 ---
 
@@ -192,7 +192,7 @@ the zip file.
 ### Alternative: Zip file
 
 The package is also available in zip format: 
-[novelibre_v5.37.3.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.37.3.zip)
+[novelibre_v5.38.0.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.38.0.zip)
 
 ---
 
