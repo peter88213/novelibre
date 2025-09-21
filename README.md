@@ -47,7 +47,7 @@ is embedded in a customizable ecosystem.
 - You can store data on **characters, locations, and items** that are important for the story. 
   This includes the optional definition of a **viewpoint character** for each section. 
 - All of this appears as a clear and editable **tree** structure with listed information. 
-- Summaries can be entered at all these levels, from which **synopses** and lists can be generated. 
+- Summaries can be entered at all these levels, from which **synopses** and tables can be generated. 
 - If you choose a **narrative structure**, *novelibre* can display stages (e.g. acts or steps) in the tree.
   When plotting, descriptions of these stages can be entered, from which *novelibre* can generate 
   its own documentation. Prefabricated structural models can also be imported from templates.
