@@ -63,11 +63,8 @@ class OdsParser:
                         lines.append(''.join(t for t in paragraph.itertext()))
                     content = '\n'.join(lines)
                     cells.append(content)
-                elif i > 0:
-                    cells.append(content)
                 else:
-                    # The ID cell is empty.
-                    break
+                    cells.append(content)
 
                 i += 1
                 if i >= cellsPerRow:
@@ -90,9 +87,12 @@ class OdsParser:
 
                         cells.append(content)
                         i += 1
-            if cells:
-                rows.append(cells)
-                # print(cells)
+
+            # Discard empty rows.
+            for cell in cells:
+                if cell:
+                    rows.append(cells)
+                    break
         return rows
 
     def _unzip_ods_file(self, filePath):
