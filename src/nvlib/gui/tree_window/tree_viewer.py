@@ -53,7 +53,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         wc=(_('Words'), 'wc_width'),
         vp=(_('Viewpoint'), 'vp_width'),
         st=(_('Status'), 'status_width'),
-        nt=(_('N'), 'nt_width'),
+        nt=(f"{_('N')}◳", 'nt_width'),
         dt=(_('Date'), 'date_width'),
         tm=(_('Time'), 'time_width'),
         dr=(_('Duration'), 'duration_width'),
@@ -83,6 +83,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         ]
 
     _NOTE_INDICATOR = _('N')
+    _COMMENT_INDICATOR = '◳'
 
     def __init__(self, parent, model, view, controller, **kw):
         """Put a tkinter tree in the specified parent widget.
@@ -682,6 +683,20 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             self._history.reset()
             self._history.append_node(self.tree.selection()[0])
 
+    def _collect_ch_comment_indicators(self, chId):
+        """Return a string that indicates section comments within the chapter.
+        
+        Positional arguments:
+            chId: str -- Chapter ID            
+        """
+        if self._mdl.novel.chapters[chId].chType == 0:
+            for scId in self.tree.get_children(chId):
+                if self._mdl.novel.sections[scId].scType != 1:
+                    if self._mdl.novel.sections[scId].hasComment:
+                        return self._COMMENT_INDICATOR
+
+        return ''
+
     def _collect_ch_note_indicators(self, chId):
         """Return a string that indicates section notes within the chapter.
         
@@ -1243,7 +1258,8 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                 nodeValues[self._colPos['tp']]
             ) = self._collect_plot_lines(chId)
             nodeValues[self._colPos['nt']] = (
-                self._collect_ch_note_indicators(chId)
+                f'{self._collect_ch_note_indicators(chId)}'
+                f'{self._collect_ch_comment_indicators(chId)}'
             )
         else:
             nodeValues[self._colPos['nt']] = self._get_notes_indicator(
@@ -1340,6 +1356,14 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         return to_string(
             self._mdl.novel.locations[lcId].title
             ), nodeValues, ()
+
+    def _get_comment_indicator(self, element):
+        # Return a string that indicates whether the section contents
+        # includes comments.
+        if element.hasComment:
+            return self._COMMENT_INDICATOR
+
+        return ''
 
     def _get_notes_indicator(self, element):
         # Return a string that indicates whether the element has a note.
@@ -1486,8 +1510,10 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                 scPlotPointTitles)
 
         # Notes indicator.
-        nodeValues[self._colPos['nt']] = self._get_notes_indicator(
-            self._mdl.novel.sections[scId])
+        nodeValues[self._colPos['nt']] = (
+            f'{self._get_notes_indicator(self._mdl.novel.sections[scId])}'
+            f'{self._get_comment_indicator(self._mdl.novel.sections[scId])}'
+        )
 
         # Section tags.
         try:

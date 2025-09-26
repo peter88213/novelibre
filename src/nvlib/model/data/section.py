@@ -48,6 +48,7 @@ class Section(BasicElementTags):
         super().__init__(**kwargs)
         self._sectionContent = None
         self.wordCount = 0
+        self._hasComment = False
         # To be updated by the sectionContent setter
 
         # Initialize properties.
@@ -96,9 +97,16 @@ class Section(BasicElementTags):
             self._sectionContent = text
             if text is not None:
                 self.wordCount = self.wordCounter.get_word_count(text)
+                self._hasComment = '<comment>' in self._sectionContent
             else:
                 self.wordCount = 0
+                self._hasComment = False
             self.on_element_change()
+
+    @property
+    def hasComment(self):
+        # True if the contents include at least one comment
+        return self._hasComment
 
     @property
     def scType(self):
