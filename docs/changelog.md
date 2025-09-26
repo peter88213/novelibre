@@ -17,6 +17,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 #### API 5.39 
 - New property: Section.hasComment
+- Refactored the Splitter class.
 
 
 ### Version 5.38.0
