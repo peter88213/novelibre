@@ -62,7 +62,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         ac=(_('Plot lines'), 'arcs_width'),
         sc=(_('Scene'), 'scene_width'),
         tp=(_('Plot points'), 'points_width'),
-        )
+    )
     # Key: column ID
     # Value: (column title, column width)
 
@@ -73,14 +73,14 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         IT_ROOT: _('Items'),
         PL_ROOT: _('Plot lines'),
         PN_ROOT: _('Project notes'),
-        }
+    }
 
     _SCENE = [
         '-',
         _('A'),
         _('R'),
         'x',
-        ]
+    ]
 
     _NOTE_INDICATOR = _('N')
     _COMMENT_INDICATOR = '◳'
@@ -272,11 +272,17 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self.tree.configure(columns=tuple(titles))
         for column in self.columns:
             self.tree.heading(column[1], text=column[1], anchor='w')
-            self.tree.column(column[1], width=int(prefs[column[2]]),
-                             minwidth=3, stretch=False)
-        self.tree.column('#0',
-                         width=int(prefs['title_width']),
-                         stretch=False)
+            self.tree.column(
+                column[1],
+                width=int(prefs[column[2]]),
+                minwidth=3,
+                stretch=False
+            )
+        self.tree.column(
+            '#0',
+            width=int(prefs['title_width']),
+            stretch=False
+        )
 
     def expand_all(self, event=None):
         self.open_children('')
@@ -553,8 +559,10 @@ class TreeViewer(ttk.Frame, Observer, SubController):
     def restore_branch_status(self):
         for branch in self._branch_status:
             try:
-                self.tree.item(branch,
-                               open=self._branch_status[branch])
+                self.tree.item(
+                    branch,
+                    open=self._branch_status[branch]
+                )
             except:
                 pass
 
@@ -761,10 +769,8 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                 for plId in chPlotlines:
                     for ppId in chPlotlines[plId]:
                         chPlotPointTitles.append(
-                            (
-                                f'{self._mdl.novel.plotLines[plId].shortName}'
-                                f': {self._mdl.novel.plotPoints[ppId].title}'
-                            )
+                            f'{self._mdl.novel.plotLines[plId].shortName}'
+                            f': {self._mdl.novel.plotPoints[ppId].title}'
                         )
         return (
             list_to_string(chPlotlineShortNames),
@@ -1029,46 +1035,57 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self.selectTypeMenu = tk.Menu(self.tree, tearoff=0)
         self.selectTypeMenu.add_command(
             label=_('Normal'),
-            command=self._ctrl.set_type_normal)
+            command=self._ctrl.set_type_normal,
+        )
         self.selectTypeMenu.add_command(
             label=_('Unused'),
-            command=self._ctrl.set_type_unused)
+            command=self._ctrl.set_type_unused,
+        )
 
         #--- Create a chapter/stage level submenu.
         self.selectLevelMenu = tk.Menu(self.tree, tearoff=0)
         self.selectLevelMenu.add_command(
             label=_('1st Level'),
-            command=self._ctrl.set_level_1)
+            command=self._ctrl.set_level_1,
+        )
         self.selectLevelMenu.add_command(
             label=_('2nd Level'),
-            command=self._ctrl.set_level_2)
+            command=self._ctrl.set_level_2,
+        )
 
         #--- Create a section status submenu.
         self.scStatusMenu = tk.Menu(self.tree, tearoff=0)
         self.scStatusMenu.add_command(
             label=_('Outline'),
-            command=self._ctrl.set_scn_status_outline)
+            command=self._ctrl.set_scn_status_outline,
+        )
         self.scStatusMenu.add_command(
             label=_('Draft'),
-            command=self._ctrl.set_scn_status_draft)
+            command=self._ctrl.set_scn_status_draft,
+        )
         self.scStatusMenu.add_command(
             label=_('1st Edit'),
-            command=self._ctrl.set_scn_status_1st_edit)
+            command=self._ctrl.set_scn_status_1st_edit,
+        )
         self.scStatusMenu.add_command(
             label=_('2nd Edit'),
-            command=self._ctrl.set_scn_status_2nd_edit)
+            command=self._ctrl.set_scn_status_2nd_edit,
+        )
         self.scStatusMenu.add_command(
             label=_('Done'),
-            command=self._ctrl.set_scn_status_done)
+            command=self._ctrl.set_scn_status_done,
+        )
 
         #--- Create a character status submenu.
         self.crStatusMenu = tk.Menu(self.tree, tearoff=0)
         self.crStatusMenu.add_command(
             label=_('Major Character'),
-            command=self._ctrl.set_chr_status_major)
+            command=self._ctrl.set_chr_status_major,
+        )
         self.crStatusMenu.add_command(
             label=_('Minor Character'),
-            command=self._ctrl.set_chr_status_minor)
+            command=self._ctrl.set_chr_status_minor,
+        )
 
         #--- Create local context menus.
 
@@ -1076,117 +1093,144 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self._bookContextMenu = ContextMenu(self.tree, tearoff=0)
         self._bookContextMenu.add_command(
             label=_('Add Section'),
-            command=self._ctrl.add_new_section)
+            command=self._ctrl.add_new_section,
+        )
         self._bookContextMenu.add_command(
             label=_('Add Chapter'),
             command=self._ctrl.add_new_chapter)
         self._bookContextMenu.add_command(
             label=_('Add Part'),
-            command=self._ctrl.add_new_part)
+            command=self._ctrl.add_new_part,
+        )
         self._bookContextMenu.add_command(
             label=_('Insert Stage'),
-            command=self._ctrl.add_new_stage)
+            command=self._ctrl.add_new_stage,
+        )
         self._bookContextMenu.add_cascade(
             label=_('Change Level'),
-            menu=self.selectLevelMenu)
+            menu=self.selectLevelMenu,
+        )
         self._bookContextMenu.add_cascade(
             label=_('Export this chapter'),
-            command=self._export_manuscript)
+            command=self._export_manuscript,
+        )
         self._bookContextMenu.add_separator()
         self._bookContextMenu.add_command(
             label=_('Delete'),
             accelerator=KEYS.DELETE[1],
-            command=self._ctrl.delete_elements)
+            command=self._ctrl.delete_elements,
+        )
         self._bookContextMenu.add_separator()
         self._bookContextMenu.add_cascade(
             label=_('Set Type'),
-            menu=self.selectTypeMenu)
+            menu=self.selectTypeMenu,
+        )
         self._bookContextMenu.add_cascade(
             label=_('Set Status'),
-            menu=self.scStatusMenu)
+            menu=self.scStatusMenu,
+        )
         self._bookContextMenu.add_command(
             label=_('Set Viewpoint...'),
             command=self._ctrl.set_viewpoint,
-            )
+        )
         self._bookContextMenu.add_separator()
         self._bookContextMenu.add_command(
             label=_('Join with previous'),
-            command=self._ctrl.join_sections)
+            command=self._ctrl.join_sections,
+        )
         self._bookContextMenu.add_separator()
         self._bookContextMenu.add_command(
             label=_('Chapter level'),
-            command=self.show_chapter_level)
+            command=self.show_chapter_level,
+        )
         self._bookContextMenu.add_command(
             label=_('Expand'),
             command=self.expand_selected)
         self._bookContextMenu.add_command(
             label=_('Collapse'),
-            command=self.collapse_selected)
+            command=self.collapse_selected,
+        )
         self._bookContextMenu.add_command(
             label=_('Expand all'),
-            command=self.expand_all)
+            command=self.expand_all,
+        )
         self._bookContextMenu.add_command(
             label=_('Collapse all'),
-            command=self.collapse_all)
+            command=self.collapse_all,
+        )
 
         #--- Create a world element context menu.
         self.worldContextMenu = ContextMenu(self.tree, tearoff=0)
         self.worldContextMenu.add_command(
             label=_('Add'),
-            command=self._ctrl.add_new_element)
+            command=self._ctrl.add_new_element,
+        )
         self.worldContextMenu.add_separator()
         self.worldContextMenu.add_command(
             label=_('Export manuscript filtered by viewpoint'),
-            command=self._export_manuscript)
+            command=self._export_manuscript,
+        )
         self.worldContextMenu.add_command(
             label=_('Export synopsis filtered by viewpoint'),
-            command=self._export_synopsis)
+            command=self._export_synopsis,
+        )
         self.worldContextMenu.add_separator()
         self.worldContextMenu.add_command(
             label=_('Delete'), accelerator=KEYS.DELETE[1],
-            command=self._ctrl.delete_elements)
+            command=self._ctrl.delete_elements,
+        )
         self.worldContextMenu.add_separator()
         self.worldContextMenu.add_cascade(
             label=_('Set Status'),
-            menu=self.crStatusMenu)
+            menu=self.crStatusMenu,
+        )
 
         #--- Create a plot line context menu.
         self.plotContextMenu = ContextMenu(self.tree, tearoff=0)
         self.plotContextMenu.add_command(
             label=_('Add Plot line'),
-            command=self._ctrl.add_new_plot_line)
+            command=self._ctrl.add_new_plot_line,
+        )
         self.plotContextMenu.add_command(
             label=_('Add Plot point'),
-            command=self._ctrl.add_new_plot_point)
+            command=self._ctrl.add_new_plot_point,
+        )
         self.plotContextMenu.add_separator()
         self.plotContextMenu.add_command(
             label=_('Export manuscript filtered by plot line'),
-            command=self._export_manuscript)
+            command=self._export_manuscript,
+        )
         self.plotContextMenu.add_command(
             label=_('Export synopsis filtered by plot line'),
-            command=self._export_synopsis)
+            command=self._export_synopsis,
+        )
         self.plotContextMenu.add_separator()
         self.plotContextMenu.add_command(
             label=_('Change sections to Unused'),
-            command=self._ctrl.exclude_plot_line)
+            command=self._ctrl.exclude_plot_line,
+        )
         self.plotContextMenu.add_command(
             label=_('Change sections to Normal'),
-            command=self._ctrl.include_plot_line)
+            command=self._ctrl.include_plot_line
+        )
         self.plotContextMenu.add_separator()
         self.plotContextMenu.add_command(
             label=_('Delete'), accelerator=KEYS.DELETE[1],
-            command=self._ctrl.delete_elements)
+            command=self._ctrl.delete_elements,
+        )
 
         #--- Create a project note context menu.
         self.projectnoteContextMenu = ContextMenu(self.tree, tearoff=0)
         self.projectnoteContextMenu.add_command(
             label=_('Add Project note'),
-            command=self._ctrl.add_new_project_note)
+            command=self._ctrl.add_new_project_note,
+        )
         self.projectnoteContextMenu.add_separator()
         self.projectnoteContextMenu.add_command(
             label=_('Delete'),
             accelerator=KEYS.DELETE[1],
-            command=self._ctrl.delete_elements)
+            command=self._ctrl.delete_elements,
+        )
 
     def _date_is_valid(self, section):
         # Return True if the date can be displayed in the tree view.
@@ -1499,10 +1543,8 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                 else:
                     plId = self._mdl.novel.sections[scId].scPlotPoints[ppId]
                     scPlotPointTitles.append(
-                        (
-                            f'{self._mdl.novel.plotLines[plId].shortName}: '
-                            f'{self._mdl.novel.plotPoints[ppId].title}'
-                        )
+                        f'{self._mdl.novel.plotLines[plId].shortName}: '
+                        f'{self._mdl.novel.plotPoints[ppId].title}'
                     )
             nodeValues[self._colPos['ac']] = list_to_string(
                 scPlotlineShortNames)
