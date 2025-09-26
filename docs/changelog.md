@@ -10,6 +10,15 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.39.0
+
+- Indicating *Writer* comments in the tree view.
+
+
+#### API 5.39 
+- New property: Section.hasComment
+
+
 ### Version 5.38.0
 
 Defining new sections while writing with *Writer* is now even more intuitive. 
