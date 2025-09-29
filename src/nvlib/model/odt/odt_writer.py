@@ -1006,9 +1006,13 @@ class OdtWriter(OdfFile):
             f'fo:language="{self.novel.languageCode}"',
             stylesXmlStr
         )
+        if self.novel.countryCode:
+            countryCode = self.novel.countryCode
+        else:
+            countryCode = 'none'
         stylesXmlStr = re.sub(
             r'fo\:country=\".+?\"',
-            f'fo:country="{self.novel.countryCode}"',
+            f'fo:country="{countryCode}"',
             stylesXmlStr
         )
         return stylesXmlStr

@@ -623,6 +623,7 @@ class ProjectView(ElementView):
         #--- "Language settings" frame.
         self.element.languageCode = self._languageCodeVar.get()
         self.element.countryCode = self._countryCodeVar.get()
+        self.element.check_locale()
 
         #--- "Auto numbering" frame.
         self.element.renumberChapters = self._renumberChaptersVar.get()

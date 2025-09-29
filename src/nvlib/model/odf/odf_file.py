@@ -155,9 +155,13 @@ class OdfFile(FileExport):
     def _get_styles_xml_str(self):
         """Return the styles.xml data as a string."""
         self.novel.check_locale()
+        if self.novel.countryCode:
+            countryCode = self.novel.countryCode
+        else:
+            countryCode = 'none'
         localeMapping = dict(
             Language=self.novel.languageCode,
-            Country=self.novel.countryCode,
+            Country=countryCode,
         )
         template = Template(self._STYLES_XML)
         stylesXmlStr = template.safe_substitute(localeMapping)

@@ -185,6 +185,8 @@ class OdtRProof(OdtRFormatted):
                         if attr[1]:
                             self.novel.languageCode = attr[1]
                     elif attr[0] == 'country':
-                        if attr[1]:
+                        if attr[1] and attr[1] != 'none':
                             self.novel.countryCode = attr[1]
+                        else:
+                            self.novel.countryCode = None
 

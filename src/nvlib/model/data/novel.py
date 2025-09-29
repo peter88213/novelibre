@@ -441,33 +441,20 @@ class Novel(BasicElement):
         If the locale is missing, set the system locale.  
         If the locale doesn't look plausible, set "no language".      
         """
-        if not self._languageCode or self._languageCode == 'None':
-            # Language isn't set.
-            try:
-                sysLng, sysCtr = locale.getlocale()[0].split('_')
-            except:
-                # Fallback for old Windows versions.
-                sysLng, sysCtr = locale.getdefaultlocale()[0].split('_')
-            self._languageCode = sysLng
-            self._countryCode = sysCtr
-            self.on_element_change()
+        if not self._languageCode:
+            self.set_system_locale()
             return
 
-        try:
-            # Plausibility check: code must have two characters.
-            # The country code may
-            if len(self._countryCode) != 2:
-                self._countryCode = None
-            if len(self._languageCode) == 2:
-                return
-                # keep the setting
-        except:
-            # code isn't a string
-            pass
-        # Existing language or country field looks not plausible
-        self._languageCode = 'zxx'
-        self._countryCode = 'none'
-        self.on_element_change()
+        if len(self._languageCode) != 2:
+            self.clear_locale()
+            return
+
+        if self._countryCode and len(self._countryCode) != 2:
+            self.countryCode = None
+
+    def clear_locale(self):
+        self.languageCode = 'zxx'
+        self.countryCode = None
 
     def from_xml(self, xmlElement):
         super().from_xml(xmlElement)
@@ -601,6 +588,15 @@ class Novel(BasicElement):
                 for language in languages(text):
                     if not language in self.languages:
                         self.languages.append(language)
+
+    def set_system_locale(self):
+            try:
+                sysLng, sysCtr = locale.getlocale()[0].split('_')
+            except:
+                # Fallback for old Windows versions.
+                sysLng, sysCtr = locale.getdefaultlocale()[0].split('_')
+            self.languageCode = sysLng
+            self.countryCode = sysCtr
 
     def to_xml(self, xmlElement):
         super().to_xml(xmlElement)

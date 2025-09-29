@@ -124,16 +124,12 @@ class OdtReader(OdfReader, ABC):
             parser.feed_file(self.filePath)
         except KeyError as ex:
             raise Error(
-                (
-                    f'{_("Unknown element in File")}: '
-                    f'{norm_path(self.filePath)} - {str(ex)}'
-                )
+                f'{_("Unknown element in File")}: '
+                f'{norm_path(self.filePath)} - {str(ex)}'
             )
         except Exception as ex:
             raise Error(
-                (
-                    f'{_("Cannot parse File")}: '
-                    '{norm_path(self.filePath)} - {str(ex)}'
-                )
+                f'{_("Cannot parse File")}: '
+                '{norm_path(self.filePath)} - {str(ex)}'
             )
 

@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.39.1
+
+- Improved the support of locales without a country code.
+  "none" is no longer displayed in the book's "Country code" field.
+
+
 ### Version 5.39.0
 
 - Indicating *Writer* comments in the tree view.
