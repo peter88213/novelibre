@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.39.2
+
+- Removing redundant formatting tags on ODT import.
+- Refactored the code for better maintainability.
+
+
 ### Version 5.39.1
 
 - Improved the support of locales without a country code.
