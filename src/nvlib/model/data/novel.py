@@ -442,19 +442,25 @@ class Novel(BasicElement):
         If the locale doesn't look plausible, set "no language".      
         """
         if not self._languageCode:
-            self.set_system_locale()
+            # Use the system locale.
+            try:
+                sysLng, sysCtr = locale.getlocale()[0].split('_')
+            except:
+                # Fallback for old Windows versions.
+                sysLng, sysCtr = locale.getdefaultlocale()[0].split('_')
+            self.languageCode = sysLng
+            self.countryCode = sysCtr
             return
 
         if len(self._languageCode) != 2:
-            self.clear_locale()
+            # Set "No language information".
+            self.languageCode = 'zxx'
+            self.countryCode = None
             return
 
         if self._countryCode and len(self._countryCode) != 2:
+            # Set "No country information".
             self.countryCode = None
-
-    def clear_locale(self):
-        self.languageCode = 'zxx'
-        self.countryCode = None
 
     def from_xml(self, xmlElement):
         super().from_xml(xmlElement)
@@ -588,15 +594,6 @@ class Novel(BasicElement):
                 for language in languages(text):
                     if not language in self.languages:
                         self.languages.append(language)
-
-    def set_system_locale(self):
-            try:
-                sysLng, sysCtr = locale.getlocale()[0].split('_')
-            except:
-                # Fallback for old Windows versions.
-                sysLng, sysCtr = locale.getdefaultlocale()[0].split('_')
-            self.languageCode = sysLng
-            self.countryCode = sysCtr
 
     def to_xml(self, xmlElement):
         super().to_xml(xmlElement)
