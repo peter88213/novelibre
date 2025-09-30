@@ -65,7 +65,7 @@ class OdtRManuscript(OdtRFormatted):
 
         if tag == 'div':
             text = ''.join(self._lines)
-            text = self.remove_redundant_tags(text)
+            text = self._remove_redundant_tags(text)
             self.novel.sections[self._scId].sectionContent = text
             self._lines.clear()
             self._scId = None
@@ -90,15 +90,7 @@ class OdtRManuscript(OdtRFormatted):
 
         if self._scId is None:
             if tag == 'body':
-                for attr in attrs:
-                    if attr[0] == 'language':
-                        if attr[1]:
-                            self.novel.languageCode = attr[1]
-                    elif attr[0] == 'country':
-                        if attr[1] and attr[1] != 'none':
-                            self.novel.countryCode = attr[1]
-                        else:
-                            self.novel.countryCode = None
+                self._set_novel_language(attrs)
             return
 
         if tag == 'p':

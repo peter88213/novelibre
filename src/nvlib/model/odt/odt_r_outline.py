@@ -148,15 +148,7 @@ class OdtROutline(OdtReader):
             return
 
         if tag == 'body':
-            for attr in attrs:
-                if attr[0] == 'language':
-                    if attr[1]:
-                        self.novel.languageCode = attr[1]
-                if attr[0] == 'country':
-                    if attr[1] and attr[1] != 'none':
-                        self.novel.countryCode = attr[1]
-                    else:
-                        self.novel.countryCode = None
+            self._set_novel_language(attrs)
             return
 
         if tag == 's':

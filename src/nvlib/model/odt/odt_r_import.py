@@ -79,7 +79,7 @@ class OdtRImport(OdtRFormatted):
                 return
 
             sectionText = ''.join(self._lines).rstrip()
-            sectionText = self.remove_redundant_tags(sectionText)
+            sectionText = self._remove_redundant_tags(sectionText)
             self.novel.sections[self._scId].sectionContent = sectionText
             if self.novel.sections[self._scId].wordCount < self._LOW_WORDCOUNT:
                 self.novel.sections[self._scId].status = 1
@@ -208,15 +208,7 @@ class OdtRImport(OdtRFormatted):
             return
 
         if tag == 'body':
-            for attr in attrs:
-                if attr[0] == 'language':
-                    if attr[1]:
-                        self.novel.languageCode = attr[1]
-                elif attr[0] == 'country':
-                    if attr[1] and attr[1] != 'none':
-                        self.novel.countryCode = attr[1]
-                    else:
-                        self.novel.countryCode = None
+            self._set_novel_language(attrs)
             return
 
         if tag == 's':

@@ -33,7 +33,7 @@ class OdtRFormatted(OdtReader):
         sectionSplitter = Splitter()
         self.sectionsSplit = sectionSplitter.split_sections(self.novel)
 
-    def remove_redundant_tags(self, text):
+    def _remove_redundant_tags(self, text):
         for tag in(
             'em',
             'strong',
