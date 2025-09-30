@@ -110,6 +110,7 @@ class OdtRProof(OdtRFormatted):
 
         if tag == 'div':
             text = ''.join(self._lines)
+            text = self.remove_redundant_tags(text)
             self.novel.sections[self._scId].sectionContent = text
             self._lines.clear()
             self._scId = None

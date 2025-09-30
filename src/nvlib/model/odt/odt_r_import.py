@@ -32,7 +32,7 @@ class OdtRImport(OdtRFormatted):
     """
     DESCRIPTION = _('Work in progress')
     SUFFIX = ''
-    _SCENE_DIVIDER = '* * *'
+    _SECTION_DIVIDER = '* * *'
     _LOW_WORDCOUNT = 10
 
     def __init__(self, filePath, **kwargs):
@@ -59,7 +59,7 @@ class OdtRImport(OdtRFormatted):
         
         Overrides the superclass method.
         """
-        if self._scId is not None and self._SCENE_DIVIDER in data:
+        if self._scId is not None and self._SECTION_DIVIDER in data:
             self._scId = None
             return
 
@@ -79,6 +79,7 @@ class OdtRImport(OdtRFormatted):
                 return
 
             sectionText = ''.join(self._lines).rstrip()
+            sectionText = self.remove_redundant_tags(sectionText)
             self.novel.sections[self._scId].sectionContent = sectionText
             if self.novel.sections[self._scId].wordCount < self._LOW_WORDCOUNT:
                 self.novel.sections[self._scId].status = 1
