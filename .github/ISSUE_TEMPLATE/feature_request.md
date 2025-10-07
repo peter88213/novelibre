@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 When you want to pitch an idea:
-- Consider going to the [novelibre "Discussions" forum](https://github.com/peter88213/novelibre/discussions) first to discuss your idea; file it here only if it is fully detailed and ready for implementation
+- Consider going to the novelibre "Discussions" forum first to discuss your idea; file it here only if it is fully detailed and ready for implementation.
 - Please provide a use case description; explain the problem you are trying to solve before describing the solution. This allows other users to think along and maybe improve on your solution.
 - Make sure the use case is generic enough that it will benefit other users as well. If it is highly tailored for your specific work-flow, chances are that no-one will work on it (and no-one will want to maintain it in working state over the years).
 
