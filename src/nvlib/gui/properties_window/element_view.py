@@ -11,7 +11,6 @@ from tkinter import ttk
 from nvlib.controller.services.nv_help import NvHelp
 from nvlib.gui.properties_window.blank_view import BlankView
 from nvlib.gui.widgets.collection_box import CollectionBox
-from nvlib.gui.widgets.folding_frame import FoldingFrame
 from nvlib.gui.widgets.index_card import IndexCard
 from nvlib.gui.widgets.my_string_var import MyStringVar
 from nvlib.gui.widgets.text_box import TextBox
@@ -270,7 +269,7 @@ class ElementView(BlankView):
             self._propertiesFrame,
             orient='horizontal'
         ).pack(fill='x')
-        self.linksWindow = FoldingFrame(
+        self.linksWindow = self.SubFrame(
             self._propertiesFrame,
             _('Links'),
             self._toggle_links_window

@@ -8,7 +8,6 @@ import os
 from tkinter import ttk
 
 from nvlib.gui.properties_window.element_view import ElementView
-from nvlib.gui.widgets.folding_frame import FoldingFrame
 from nvlib.gui.widgets.label_combo import LabelCombo
 from nvlib.gui.widgets.label_disp import LabelDisp
 from nvlib.gui.widgets.label_entry import LabelEntry
@@ -61,7 +60,7 @@ class ProjectView(ElementView):
         ).pack(fill='x')
 
         #--- "Language settings" frame.
-        self._languageFrame = FoldingFrame(
+        self._languageFrame = self.SubFrame(
             self._elementInfoWindow,
             _('Document language'),
             self._toggle_language_frame,
@@ -106,7 +105,7 @@ class ProjectView(ElementView):
         inputWidgets.append(self._countryCodeEntry)
 
         #--- "Auto numbering" frame.
-        self._numberingFrame = FoldingFrame(
+        self._numberingFrame = self.SubFrame(
             self._elementInfoWindow,
             _('Auto numbering'),
             self._toggle_numbering_frame,
@@ -240,7 +239,7 @@ class ProjectView(ElementView):
         inputWidgets.append(self._romanPartNumbersCheckbox)
 
         #--- "Field names" frame.
-        self._fieldNamesFame = FoldingFrame(
+        self._fieldNamesFame = self.SubFrame(
             self._elementInfoWindow, _('Field names'),
             self._toggle_field_names_frame,
         )
@@ -370,7 +369,7 @@ class ProjectView(ElementView):
         inputWidgets.append(self._crField2Entry)
 
         #--- "Story time" frame.
-        self._narrativeTimeFrame = FoldingFrame(
+        self._narrativeTimeFrame = self.SubFrame(
             self._elementInfoWindow,
             _('Story time'),
             self._toggle_narrative_time_frame,
@@ -445,7 +444,7 @@ class ProjectView(ElementView):
         inputWidgets.append(self._daysToDatesButton)
 
         #--- "Writing progress" frame.
-        self._progressFrame = FoldingFrame(
+        self._progressFrame = self.SubFrame(
             self._elementInfoWindow,
             _('Writing progress'),
             self._toggle_progress_frame

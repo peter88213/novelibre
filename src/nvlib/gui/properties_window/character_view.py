@@ -7,7 +7,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 
 from nvlib.gui.properties_window.world_element_view import WorldElementView
-from nvlib.gui.widgets.folding_frame import FoldingFrame
 from nvlib.gui.widgets.label_entry import LabelEntry
 from nvlib.gui.widgets.my_string_var import MyStringVar
 from nvlib.gui.widgets.text_box import TextBox
@@ -97,7 +96,7 @@ class CharacterView(WorldElementView):
         ).pack(fill='x')
 
         #--- Character field 1 frame.
-        self._crField1Frame = FoldingFrame(
+        self._crField1Frame = self.SubFrame(
             self._elementInfoWindow,
             '',
             self._toggle_crField1_window,
@@ -134,7 +133,7 @@ class CharacterView(WorldElementView):
         ).pack(fill='x')
 
         #--- Character field 2 frame.
-        self._crField2Frame = FoldingFrame(
+        self._crField2Frame = self.SubFrame(
             self._elementInfoWindow,
             '',
             self._toggle_crField2_window,

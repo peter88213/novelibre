@@ -7,17 +7,18 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 
 from nvlib.controller.sub_controller import SubController
+from nvlib.gui.properties_window.blank_view import BlankView
 from nvlib.gui.properties_window.chapter_view import ChapterView
 from nvlib.gui.properties_window.character_view import CharacterView
 from nvlib.gui.properties_window.item_view import ItemView
 from nvlib.gui.properties_window.location_view import LocationView
-from nvlib.gui.properties_window.blank_view import BlankView
 from nvlib.gui.properties_window.plot_line_view import PlotLineView
 from nvlib.gui.properties_window.plot_point_view import PlotPointView
 from nvlib.gui.properties_window.project_note_view import ProjectNoteView
 from nvlib.gui.properties_window.project_view import ProjectView
 from nvlib.gui.properties_window.section_view import SectionView
 from nvlib.gui.properties_window.stage_view import StageView
+from nvlib.gui.widgets.folding_frame import FoldingFrame
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
@@ -38,21 +39,7 @@ class PropertiesViewer(ttk.Frame, SubController):
         self._ui = view
         self._ctrl = controller
         self._clients = []
-
-        # Call a factory method to instantiate and register
-        # one view component per element type.
-        self.noView = self._make_view(BlankView)
-        self.projectView = self._make_view(ProjectView)
-        self.chapterView = self._make_view(ChapterView)
-        self.stageView = self._make_view(StageView)
-        self.sectionView = self._make_view(SectionView)
-        self.characterView = self._make_view(CharacterView)
-        self.locationView = self._make_view(LocationView)
-        self.itemView = self._make_view(ItemView)
-        self.plotlineView = self._make_view(PlotLineView)
-        self.plotPointView = self._make_view(PlotPointView)
-        self.projectnoteView = self._make_view(ProjectNoteView)
-
+        self.make_views(FoldingFrame)
         self.activeView = self.noView
         self.activeView.set_data(None)
         self.activeView._doNotUpdate = False
@@ -74,6 +61,21 @@ class PropertiesViewer(ttk.Frame, SubController):
         """Inhibit changes on the model."""
         for client in self._clients:
             client.lock()
+
+    def make_views(self, SubFrame):
+        # Call a factory method to instantiate and register
+        # one view component per element type.
+        self.noView = self._make_view(BlankView, SubFrame)
+        self.projectView = self._make_view(ProjectView, SubFrame)
+        self.chapterView = self._make_view(ChapterView, SubFrame)
+        self.stageView = self._make_view(StageView, SubFrame)
+        self.sectionView = self._make_view(SectionView, SubFrame)
+        self.characterView = self._make_view(CharacterView, SubFrame)
+        self.locationView = self._make_view(LocationView, SubFrame)
+        self.itemView = self._make_view(ItemView, SubFrame)
+        self.plotlineView = self._make_view(PlotLineView, SubFrame)
+        self.plotPointView = self._make_view(PlotPointView, SubFrame)
+        self.projectnoteView = self._make_view(ProjectNoteView, SubFrame)
 
     def on_close(self):
         """Actions to be performed when a project is closed."""
@@ -123,9 +125,10 @@ class PropertiesViewer(ttk.Frame, SubController):
         for client in self._clients:
             client.unlock()
 
-    def _make_view(self, viewClass):
+    def _make_view(self, viewClass, SubFrame):
         # Return a viewClass instance that is registered as a local view..
         #   viewClass: BasicView subclass.
+        viewClass.SubFrame = SubFrame
         newView = viewClass(self, self._mdl, self._ui, self._ctrl)
         self._clients.append(newView)
         # NOTE: the new view component must not be registered

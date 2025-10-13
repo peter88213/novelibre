@@ -8,7 +8,6 @@ from tkinter import ttk
 
 from nvlib.gui.properties_window.element_view import ElementView
 from nvlib.gui.widgets.collection_box import CollectionBox
-from nvlib.gui.widgets.folding_frame import FoldingFrame
 from nvlib.gui.widgets.label_combo import LabelCombo
 from nvlib.gui.widgets.label_entry import LabelEntry
 from nvlib.gui.widgets.my_string_var import MyStringVar
@@ -81,7 +80,7 @@ class SectionView(ElementView):
 
         #--- Frame for 'Relationships'.
         # updating the character list before the viewpoints
-        self._relationFrame = FoldingFrame(
+        self._relationFrame = self.SubFrame(
             self._elementInfoWindow,
             _('Relationships'),
             self._toggle_relation_frame,
@@ -174,7 +173,7 @@ class SectionView(ElementView):
         ).pack(fill='x')
 
         #--- Frame for date/time/duration.
-        self._dateTimeFrame = FoldingFrame(
+        self._dateTimeFrame = self.SubFrame(
             self._elementInfoWindow,
             _('Date/Time'),
             self._toggle_date_time_frame,
@@ -421,7 +420,7 @@ class SectionView(ElementView):
             self._sectionExtraFrame, orient='horizontal').pack(fill='x')
 
         #--- Frame for 'Plot'.
-        self._plotFrame = FoldingFrame(
+        self._plotFrame = self.SubFrame(
             self._sectionExtraFrame,
             _('Plot'),
             self._toggle_plot_frame,
@@ -495,7 +494,7 @@ class SectionView(ElementView):
             self._sectionExtraFrame, orient='horizontal').pack(fill='x')
 
         #--- Frame for 'Scene'.
-        self._sceneFrame = FoldingFrame(
+        self._sceneFrame = self.SubFrame(
             self._sectionExtraFrame,
             _('Scene'),
             self._toggle_scene_frame,
