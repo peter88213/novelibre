@@ -25,6 +25,7 @@ from nvlib.model.nv_model import NvModel
 from nvlib.nv_globals import launchers
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
+from nvlib.gui.widgets.alternative_frame import AlternativeFrame
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 
@@ -79,6 +80,9 @@ class MainController(SubController, Commands):
 
         self.plugins.load_plugins(PLUGIN_PATH)
         self.register_client(self.plugins)
+
+        AlternativeFrame.parent = self._ui.root
+        self._ui.propertiesView.make_views(AlternativeFrame)
 
         #--- tk root event bindings.
         self._bind_events()
