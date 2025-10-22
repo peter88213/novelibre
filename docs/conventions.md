@@ -16,7 +16,7 @@
 - Strings are preferably enclosed in single quotes. Double quotes should only be used if nesting with single quotes is unavoidable.
 - Strings should not be concatenated with the `+` operator, but with f-strings. See [PEP 498](https://peps.python.org/pep-0498/).
 - All strings that appear on the user interface must be prepared for translation with GNU gettext, like: `_('See this message.')`.
-- A package's **__init__.py** must not contain code.
+- A package's `__init__.py` must not contain code.
 - Each novelibre class is implemented in its own module.
 - novelibre classes are imported with `from <module> import <class>`.
 - Variable names are `mixedCase` (deviation from PEP 8).
