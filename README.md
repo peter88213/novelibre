@@ -24,7 +24,7 @@ assigned to the sections.
 [Read more](https://peter88213.github.io/nvhelp-en/introduction.html) 
 about the idea and purpose of novelibre. 
 
-This is how the *novelibre* organizer desktop looks like:
+This is how the *novelibre* organizer workspace looks like:
 
 ![novelibre screenshot](docs/Screenshots/screen01.png)
 
