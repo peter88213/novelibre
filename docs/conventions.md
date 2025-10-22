@@ -7,7 +7,7 @@
 
 ### Coding conventions
 
-- The code must be compatible with Python version 3.6. 
+- The code must be compatible with Python version 3.7. 
 - The Python source code formatting shall follow the [PEP 8](https://peps.python.org/pep-0008/) style guide, 
   except some naming conventions (see below).
 - The code commenting follows the [PEP 257](https://peps.python.org/pep-0257) convention. [pydoc](https://docs.python.org/3/library/pydoc.html) can be used to display documentation for the *novelibre* modules and classes.
@@ -16,7 +16,7 @@
 - Strings are preferably enclosed in single quotes. Double quotes should only be used if nesting with single quotes is unavoidable.
 - Strings should not be concatenated with the `+` operator, but with f-strings. See [PEP 498](https://peps.python.org/pep-0498/).
 - All strings that appear on the user interface must be prepared for translation with GNU gettext, like: `_('See this message.')`.
-- A package's **__init__.py** must not contain executable code.
+- A package's **__init__.py** must not contain code.
 - Each novelibre class is implemented in its own module.
 - novelibre classes are imported with `from <module> import <class>`.
 - Variable names are `mixedCase` (deviation from PEP 8).
