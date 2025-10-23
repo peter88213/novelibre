@@ -126,7 +126,7 @@ class CollectionBox(ttk.Frame):
         kwargs = dict(
             command=cmdOpen,
             image=iconOpen,
-            )
+        )
         if lblOpen is None:
             kwargs['text'] = _('Open')
         else:
@@ -141,7 +141,7 @@ class CollectionBox(ttk.Frame):
         kwargs = dict(
             command=cmdAdd,
             image=iconAdd,
-            )
+        )
         if lblAdd is None:
             kwargs['text'] = _('Add')
         else:
@@ -155,7 +155,7 @@ class CollectionBox(ttk.Frame):
         kwargs = dict(
             command=cmdRemove,
             image=iconRemove,
-            )
+        )
         if lblRemove is None:
             kwargs['text'] = _('Remove')
         else:

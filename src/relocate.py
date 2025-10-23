@@ -13,10 +13,8 @@ try:
     from tkinter import messagebox
 except ModuleNotFoundError:
     print(
-        (
             'The tkinter module is missing. '
             'Please install the tk support package for your python3 version.'
-        )
     )
     sys.exit(1)
 

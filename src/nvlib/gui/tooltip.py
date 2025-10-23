@@ -10,8 +10,8 @@ idlelib code:
 Copyright (c) 2001-2024 Python Software Foundation; All Rights Reserved
 https://github.com/python/cpython/blob/main/LICENSE
 
-Modifications for the use with timeline-view-tk:
-For further information see https://github.com/peter88213/timeline-view-tk
+Modifications for the use with novelibre:
+For further information see https://github.com/peter88213/novelibre
 
 - Changed the tkinter import to avoid namespace issues when packaging.
 - Replaced some tk constants with simple strings.
