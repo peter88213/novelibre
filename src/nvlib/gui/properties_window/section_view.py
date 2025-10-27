@@ -948,7 +948,7 @@ class SectionView(ElementView):
             self.element.lastsDays,
             self.element.lastsHours,
             self.element.lastsMinutes,
-            ]
+        ]
         hasData = False
         for dataElement in durationData:
             if dataElement:
@@ -966,7 +966,7 @@ class SectionView(ElementView):
             self.element.date,
             self.element.time,
             self.element.day,
-            ]
+        ]
         hasData = False
         for dataElement in startData:
             if dataElement:
