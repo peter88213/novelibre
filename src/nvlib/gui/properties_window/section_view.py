@@ -844,14 +844,29 @@ class SectionView(ElementView):
             )
             return
 
-        # self._doNotUpdate = True
+        # Ask for confirmation before changing existing date/time.
+        if self.element.date or self.element.time or self.element.day:
+            if (
+                self.element.date != newDate or
+                self.element.time != newTime or
+                self.element.day != newDay
+            ):
+                details = []
+                if newDay:
+                    details.append(f'{_("Day")} {newDay}')
+                if newDate:
+                    details.append(newDate)
+                if newTime:
+                    details.append(PyCalendar.display_time(newTime))
+                if not self._ui.ask_yes_no(
+                    message=_('Overwrite date/time?'),
+                    detail=f"{_('Previous section ends:')} {' '.join(details)}"
+                ):
+                    return
+
         self.element.date = newDate
         self.element.time = newTime
         self.element.day = newDay
-        # self._doNotUpdate = False
-        self._startDateVar.set(newDate)
-        self._startTimeVar.set(PyCalendar.display_time(newTime))
-        self._startDayVar.set(newDay)
 
     def auto_set_duration(self):
         """Calculate section duration from the start of the next section."""
@@ -913,14 +928,30 @@ class SectionView(ElementView):
             nextDateIso,
             nextTimeIso,
         )
-        self._doNotUpdate = True
+
+        # Ask for confirmation before changing existing duration.
+        if self.element.date or self.element.time or self.element.day:
+            if (
+                self.element.lastsDays != newDays or
+                self.element.lastsHours != newHours or
+                self.element.lastsMinutes != newMinutes
+            ):
+                details = []
+                if newDays:
+                    details.append(f'{newDays} {_("d")}')
+                if newHours:
+                    details.append(f'{newHours} {_("h")}')
+                if newMinutes:
+                    details.append(f'{newMinutes} {_("min")}')
+                if not self._ui.ask_yes_no(
+                    message=_('Overwrite duration?'),
+                    detail=f"{_('Next section begins in')} {' '.join(details)}"
+                ):
+                    return
+
         self.element.lastsDays = newDays
         self.element.lastsHours = newHours
         self.element.lastsMinutes = newMinutes
-        self._doNotUpdate = False
-        self._lastsDaysVar.set(newDays)
-        self._lastsHoursVar.set(newHours)
-        self._lastsMinutesVar.set(newMinutes)
 
     def change_day(self, event=None):
         # 'Day' entry. If valid, clear the start date.

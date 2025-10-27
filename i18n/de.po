@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.39.2\n"
-"POT-Creation-Date: 2025-09-30 08:40:38\n"
-"PO-Revision-Date: 2025-09-30 08:40:38\n"
+"Project-Id-Version: 5.39.3\n"
+"POT-Creation-Date: 2025-10-27 21:43:06\n"
+"PO-Revision-Date: 2025-10-27 21:43:06\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -829,6 +829,9 @@ msgstr "Neuigkeiten zu novelibre"
 msgid "Next"
 msgstr "Vor"
 
+msgid "Next section begins in"
+msgstr "Nächster Abschnitt beginnt in"
+
 msgid "No backup available"
 msgstr "Keine Sicherungskopie verfügbar"
 
@@ -988,6 +991,12 @@ msgstr "Gliederung"
 msgid "Overwrite"
 msgstr "Überschreiben"
 
+msgid "Overwrite date/time?"
+msgstr "Datum/Zeit überschreiben?"
+
+msgid "Overwrite duration?"
+msgstr "Dauer überschreiben?"
+
 msgid "Overwrite the last saved project file with the \".bak\" file?"
 msgstr "Die zuletzt gespeicherte Projektdatei mit der \".bak\"-Datei überschreiben?"
 
@@ -1077,6 +1086,9 @@ msgstr "Position"
 
 msgid "Previous"
 msgstr "Zurück"
+
+msgid "Previous section ends:"
+msgstr "Vorheriger Abschnitt endet:"
 
 msgid "Project note"
 msgstr "Projektnotiz"

@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.39.2\n"
-"POT-Creation-Date: 2025-09-30 08:40:38\n"
+"Project-Id-Version: 5.39.3\n"
+"POT-Creation-Date: 2025-10-27 21:43:06\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -836,6 +836,9 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
+msgid "Next section begins in"
+msgstr ""
+
 msgid "No backup available"
 msgstr ""
 
@@ -995,6 +998,12 @@ msgstr ""
 msgid "Overwrite"
 msgstr ""
 
+msgid "Overwrite date/time?"
+msgstr ""
+
+msgid "Overwrite duration?"
+msgstr ""
+
 msgid "Overwrite the last saved project file with the \".bak\" file?"
 msgstr ""
 
@@ -1083,6 +1092,9 @@ msgid "Position"
 msgstr ""
 
 msgid "Previous"
+msgstr ""
+
+msgid "Previous section ends:"
 msgstr ""
 
 msgid "Project note"

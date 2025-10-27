@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.29.3
+
+- Asking for confirmation before changing existing section date/time.
+- Asking for confirmation before changing existing section duration.
+
+
 ### Version 5.39.2
 
 - Removing redundant formatting tags on ODT import.
