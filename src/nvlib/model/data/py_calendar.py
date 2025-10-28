@@ -65,6 +65,18 @@ class PyCalendar:
         return yearsOld, None, daysOld, None
 
     @classmethod
+    def dt_disp(cls, day, dateIso, timeIso):
+        """Return a string with the day/date/time for display."""
+        dt = []
+        if day:
+            dt.append(f'{_("Day")} {day}')
+        if dateIso:
+            dt.append(dateIso)
+        if timeIso:
+            dt.append(cls.time_disp(timeIso))
+        return ' '.join(dt)
+
+    @classmethod
     def duration(cls, startDateIso, startTimeIso, endDateIso, endTimeIso):
         """Return a tuple of strings: days, hours, minutes."""
         StartDateTime = datetime.fromisoformat(
@@ -87,6 +99,27 @@ class PyCalendar:
         else:
             minutesStr = None
         return daysStr, hoursStr, minutesStr
+
+    @classmethod
+    def duration_disp(cls, lastsDays, lastsHours, lastsMinutes):
+        """Return a combined duration information."""
+        duration = []
+        if lastsDays and lastsDays != '0':
+            duration.append(f"{lastsDays}{_('d')}")
+        if lastsHours and lastsHours != '0':
+            duration.append(f"{lastsHours}{_('h')}")
+        if lastsMinutes and lastsMinutes != '0':
+            duration.append(f"{lastsMinutes}{_('min')}")
+        return ' '.join(duration)
+
+    @classmethod
+    def get_duration_str(cls, section):
+        """Return a combined duration information."""
+        return cls.duration_disp(
+            section.lastsDays,
+            section.lastsHours,
+            section.lastsMinutes
+        )
 
     @classmethod
     def get_end_date_time(cls, section):
@@ -121,6 +154,22 @@ class PyCalendar:
         )
         virtualSectionEnd = virtualSectionStart + cls._get_duration(section)
         return virtualSectionEnd.isoformat().split('T')[1]
+
+    @classmethod
+    def get_locale_date(cls, isoDate, localize):
+        """Return a localized date string, if localize is True.
+        
+        Otherwise return isoDate unchanged.
+        """
+        if localize:
+            try:
+                localeDateStr = cls.locale_date(isoDate)
+            except ZeroDivisionError:
+                localeDateStr = ''
+            return localeDateStr
+
+        else:
+            return isoDate
 
     @classmethod
     def get_timestamp(cls, section, refIso):
@@ -176,7 +225,7 @@ class PyCalendar:
         return date.isoformat(refDate + timedelta(days=int(dayStr)))
 
     @classmethod
-    def display_time(cls, timeIso):
+    def time_disp(cls, timeIso):
         """Return a string with the time for display."""
         h, m, __ = cls.verified_time(timeIso).split(':')
         return f'{h}:{m}'

@@ -108,7 +108,7 @@ class HtmlTimetable(HtmlReport):
                 )
                 htmlText.append(
                     self._new_cell(
-                        self._get_duration_str(scId)
+                        PyCalendar.get_duration_str(self.novel.sections[scId])
                     )
                 )
                 htmlText.append(
@@ -166,31 +166,6 @@ class HtmlTimetable(HtmlReport):
                 dateDayStr = ''
         return dateDayStr
 
-    def _get_duration_str(self, scId):
-        # Return a combined duration string for the section defined by scId.
-        if (
-            self.novel.sections[scId].lastsDays is not None
-            and self.novel.sections[scId].lastsDays != '0'
-        ):
-            dayStr = f'{self.novel.sections[scId].lastsDays}d '
-        else:
-            dayStr = ''
-        if (
-            self.novel.sections[scId].lastsHours is not None
-            and self.novel.sections[scId].lastsHours != '0'
-        ):
-            hourStr = f'{self.novel.sections[scId].lastsHours}h '
-        else:
-            hourStr = ''
-        if (
-            self.novel.sections[scId].lastsMinutes is not None
-            and self.novel.sections[scId].lastsMinutes != '0'
-        ):
-            minuteStr = f'{self.novel.sections[scId].lastsMinutes}min'
-        else:
-            minuteStr = ''
-        return f'{dayStr}{hourStr}{minuteStr}'
-
     def _get_location_str(self, scId):
         # Return a comma-separated locations string for the section
         # defined by scId.
@@ -202,7 +177,7 @@ class HtmlTimetable(HtmlReport):
     def _get_time_str(self, scId):
         # Return a time string for the section defined by scId.
         if self.novel.sections[scId].time is not None:
-            return PyCalendar.display_time(self.novel.sections[scId].time)
+            return PyCalendar.time_disp(self.novel.sections[scId].time)
 
         else:
             return ''

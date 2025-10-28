@@ -35,8 +35,6 @@ from nvlib.novx_globals import STATUS
 from nvlib.novx_globals import list_to_string
 from nvlib.novx_globals import string_to_list
 from nvlib.nv_globals import NOT_ASSIGNED
-from nvlib.nv_globals import get_duration_str
-from nvlib.nv_globals import get_section_date_str
 from nvlib.nv_globals import prefs
 from nvlib.nv_globals import to_string
 from nvlib.nv_locale import _
@@ -1357,8 +1355,10 @@ class TreeViewer(ttk.Frame, Observer, SubController):
     def _get_date_or_day(self, scId):
         # Return section date or day as a string for display.
         if self._date_is_valid(self._mdl.novel.sections[scId]):
-            return get_section_date_str(
-                self._mdl.novel.sections[scId])
+            if prefs['localize_date']:
+                return self._mdl.novel.sections[scId].localeDate
+            else:
+                return self._mdl.novel.sections[scId].date
 
         if self._mdl.novel.sections[scId].day is not None:
             return f'{_("Day")} {self._mdl.novel.sections[scId].day}'
@@ -1463,7 +1463,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
         # Time for displaying.
         if self._mdl.novel.sections[scId].time is not None:
-            dispTime = PyCalendar.display_time(
+            dispTime = PyCalendar.time_disp(
                 self._mdl.novel.sections[scId].time)
         else:
             dispTime = ''
@@ -1525,7 +1525,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             )
             nodeValues[self._colPos['dt']] = self._get_date_or_day(scId)
             nodeValues[self._colPos['tm']] = dispTime
-            nodeValues[self._colPos['dr']] = get_duration_str(
+            nodeValues[self._colPos['dr']] = PyCalendar.get_duration_str(
                 self._mdl.novel.sections[scId])
 
             # Display plot lines the section belongs to.

@@ -882,7 +882,7 @@ class FileExport(File):
 
         #--- Time.
         if self.novel.sections[scId].time is not None:
-            scTime = PyCalendar.display_time(self.novel.sections[scId].time)
+            scTime = PyCalendar.time_disp(self.novel.sections[scId].time)
             h, m, s = PyCalendar.h_m_s_str(self.novel.sections[scId].time)
             odsTime = f'PT{h}H{m}M{s}S'
             # removing seconds

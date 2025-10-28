@@ -23,7 +23,6 @@ from nvlib.novx_globals import OTHER_SCENE_FIELD_1_DEFAULT
 from nvlib.novx_globals import OTHER_SCENE_FIELD_2_DEFAULT
 from nvlib.novx_globals import OTHER_SCENE_FIELD_3_DEFAULT
 from nvlib.novx_globals import list_to_string
-from nvlib.nv_globals import get_locale_date_str
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
@@ -756,7 +755,10 @@ class ProjectView(ElementView):
             and self.element.referenceWeekDay is not None
         ):
             dispWeekday = PyCalendar.WEEKDAYS[self.element.referenceWeekDay]
-            dispDate = get_locale_date_str(self.element.referenceDate)
+            dispDate = PyCalendar.get_locale_date(
+                self.element.referenceDate,
+                prefs['localize_date']
+            )
             displayDate.append(dispWeekday)
             displayDate.append(dispDate)
             datePreview.append(_('Reference date'))
@@ -816,19 +818,15 @@ class ProjectView(ElementView):
         self._datesToDaysButton['text'] = _('Please wait ...')
         # changing the button text is less time consuming
         # than showing a progress bar
-        if self._mdl.novel.referenceDate:
+        if self.element.referenceDate:
             if self._ui.ask_yes_no(
                 message=_('Convert all section dates to days relative to the reference date?'),
-                detail=(
-                    f"{_('Day 0')}: "
-                    f"{PyCalendar.WEEKDAYS[self.element.referenceWeekDay]} "
-                    f"{get_locale_date_str(self.element.referenceDate)}"
-                )
+                detail=self._reference_dt_disp()
             ):
                 self._doNotUpdate = True
-                for scId in self._mdl.novel.sections:
-                    self._mdl.novel.sections[scId].date_to_day(
-                        self._mdl.novel.referenceDate
+                for scId in self.element.sections:
+                    self.element.sections[scId].date_to_day(
+                        self.element.referenceDate
                     )
                 self._doNotUpdate = False
         else:
@@ -841,19 +839,15 @@ class ProjectView(ElementView):
         self._daysToDatesButton['text'] = _('Please wait ...')
         # changing the button text is less time consuming
         # than showing a progress bar
-        if self._mdl.novel.referenceDate:
+        if self.element.referenceDate:
             if self._ui.ask_yes_no(
                 message=_('Convert all section days to dates using the reference date?'),
-                detail=(
-                    f"{_('Day 0')}: "
-                    f"{PyCalendar.WEEKDAYS[self.element.referenceWeekDay]} "
-                    f"{get_locale_date_str(self.element.referenceDate)}"
-                )
+                detail=self._reference_dt_disp()
             ):
                 self._doNotUpdate = True
-                for scId in self._mdl.novel.sections:
-                    self._mdl.novel.sections[scId].day_to_date(
-                        self._mdl.novel.referenceDate
+                for scId in self.element.sections:
+                    self.element.sections[scId].day_to_date(
+                        self.element.referenceDate
                     )
                 self._doNotUpdate = False
         else:
@@ -1026,6 +1020,19 @@ class ProjectView(ElementView):
         self._add_separator()
         self._create_button_bar()
         self._create_cover_window()
+
+    def _reference_dt_disp(self):
+        referenceDtDisp = [f"{_('Day 0')}:"]
+        referenceDtDisp.append(
+            PyCalendar.WEEKDAYS[self.element.referenceWeekDay]
+        )
+        referenceDtDisp.append(
+            PyCalendar.get_locale_date(
+                self.element.referenceDate,
+                prefs['localize_date']
+            )
+        )
+        return ' '.join(referenceDtDisp)
 
     def _toggle_language_frame(self, event=None):
         # Hide/show the "Document language" frame.

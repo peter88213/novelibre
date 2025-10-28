@@ -25,9 +25,6 @@ from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import list_to_string
 from nvlib.novx_globals import string_to_list
 from nvlib.nv_globals import NOT_ASSIGNED
-from nvlib.nv_globals import get_duration_str
-from nvlib.nv_globals import get_locale_date_str
-from nvlib.nv_globals import get_section_date_str
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
@@ -680,7 +677,7 @@ class SectionView(ElementView):
             self.element.time = None
         else:
             if self.element.time:
-                dispTime = PyCalendar.display_time(self.element.time)
+                dispTime = PyCalendar.time_disp(self.element.time)
             else:
                 dispTime = ''
             if timeStr != dispTime:
@@ -698,7 +695,7 @@ class SectionView(ElementView):
                     )
                 else:
                     self.element.time = timeStr
-                    dispTime = PyCalendar.display_time(self.element.time)
+                    dispTime = PyCalendar.time_disp(self.element.time)
                     self._startTimeVar.set(dispTime)
 
         # 'Day' entry.
@@ -851,16 +848,12 @@ class SectionView(ElementView):
                 self.element.time != newTime or
                 self.element.day != newDay
             ):
-                details = []
-                if newDay:
-                    details.append(f'{_("Day")} {newDay}')
-                if newDate:
-                    details.append(newDate)
-                if newTime:
-                    details.append(PyCalendar.display_time(newTime))
                 if not self._ui.ask_yes_no(
                     message=_('Overwrite date/time?'),
-                    detail=f"{_('Previous section ends:')} {' '.join(details)}"
+                    detail=(
+                        f"{_('Previous section ends:')} "
+                        f"{PyCalendar.dt_disp(newDay,newDate,newTime)}"
+                    )
                 ):
                     return
 
@@ -936,16 +929,14 @@ class SectionView(ElementView):
                 self.element.lastsHours != newHours or
                 self.element.lastsMinutes != newMinutes
             ):
-                details = []
-                if newDays:
-                    details.append(f'{newDays} {_("d")}')
-                if newHours:
-                    details.append(f'{newHours} {_("h")}')
-                if newMinutes:
-                    details.append(f'{newMinutes} {_("min")}')
+                dispDuration = PyCalendar.duration_disp(
+                    newDays,
+                    newHours,
+                    newMinutes
+                )
                 if not self._ui.ask_yes_no(
                     message=_('Overwrite duration?'),
-                    detail=f"{_('Next section begins in')} {' '.join(details)}"
+                    detail=f"{_('Next section begins in')} {dispDuration}"
                 ):
                     return
 
@@ -1048,13 +1039,16 @@ class SectionView(ElementView):
             dispDateTime.append(PyCalendar.WEEKDAYS[wd])
         self._startDateVar.set(self.element.date)
         if self.element.localeDate:
-            dispDateTime.append(get_section_date_str(self.element))
+            if prefs['localize_date']:
+                dispDateTime.append(self.element.localeDate)
+            else:
+                dispDateTime.append(self.element.date)
         elif self.element.day:
             dispDateTime.append(f'{_("Day")} {self.element.day}')
 
         # Remove the seconds for the display.
         if self.element.time:
-            dispDateTime.append(PyCalendar.display_time(self.element.time))
+            dispDateTime.append(PyCalendar.time_disp(self.element.time))
 
         if prefs['show_date_time']:
             self._dateTimeFrame.show()
@@ -1063,7 +1057,7 @@ class SectionView(ElementView):
             )
             self._datePreviewVar.set('')
             self.displayDurationVar.set(
-                get_duration_str(self.element))
+                PyCalendar.get_duration_str(self.element))
         else:
             self._dateTimeFrame.hide()
             self._datePreviewVar.set(
@@ -1373,7 +1367,7 @@ class SectionView(ElementView):
         # Remove the seconds for the display.
         if self.element.time:
             self._startTimeVar.set(
-                PyCalendar.display_time(self.element.time)
+                PyCalendar.time_disp(self.element.time)
             )
         else:
             self._startTimeVar.set('')
@@ -1578,7 +1572,7 @@ class SectionView(ElementView):
 
         if charList:
             self._ui.show_info(
-                message=f'{_("Date")}: {get_locale_date_str(now)}',
+                message=f'{_("Date")}: {PyCalendar.get_locale_date(now, prefs["localize_date"])}',
                 detail='\n'.join(charList),
                 title=_('Show ages')
             )
@@ -1598,7 +1592,7 @@ class SectionView(ElementView):
                 return
 
         self._ui.show_info(
-            message=f'{_("Date")}: {get_locale_date_str(now)}',
+            message=f'{_("Date")}: {PyCalendar.get_locale_date(now, prefs["localize_date"])}',
             detail=f'{self._mdl.nvService.get_moon_phase_str(now)}',
             title=_("Moon phase")
         )
