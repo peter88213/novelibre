@@ -848,11 +848,15 @@ class SectionView(ElementView):
                 self.element.time != newTime or
                 self.element.day != newDay
             ):
+                newLocDate = PyCalendar.get_locale_date(
+                    newDate,
+                    prefs['localize_date']
+                )
                 if not self._ui.ask_yes_no(
                     message=_('Overwrite date/time?'),
                     detail=(
                         f"{_('Previous section ends:')} "
-                        f"{PyCalendar.dt_disp(newDay,newDate,newTime)}"
+                        f"{PyCalendar.dt_disp(newDay, newLocDate, newTime)}"
                     )
                 ):
                     return

@@ -65,13 +65,13 @@ class PyCalendar:
         return yearsOld, None, daysOld, None
 
     @classmethod
-    def dt_disp(cls, day, dateIso, timeIso):
+    def dt_disp(cls, day, dateStr, timeIso):
         """Return a string with the day/date/time for display."""
         dt = []
         if day:
             dt.append(f'{_("Day")} {day}')
-        if dateIso:
-            dt.append(dateIso)
+        if dateStr:
+            dt.append(dateStr)
         if timeIso:
             dt.append(cls.time_disp(timeIso))
         return ' '.join(dt)
@@ -164,7 +164,7 @@ class PyCalendar:
         if localize:
             try:
                 localeDateStr = cls.locale_date(isoDate)
-            except ZeroDivisionError:
+            except:
                 localeDateStr = ''
             return localeDateStr
 

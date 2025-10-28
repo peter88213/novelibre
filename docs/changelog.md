@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.40.0
+### Version 5.40.1
 
 Refactored the date/time helper functions.
 
