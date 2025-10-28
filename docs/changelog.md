@@ -10,6 +10,17 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.40.0
+
+Refactored the date/time helper functions.
+
+#### API changes
+ 
+- `nv_globals.get_locale_date_str()` --> `PyCalendar.get_locale_date()`
+- `nv_globals.get_section_date_str()` --> `PyCalendar.dt_disp()`
+- `nv_globals.get_duration_str()` --> `PyCalendar.get_duration()`
+
+
 ### Version 5.29.3
 
 - Asking for confirmation before changing existing section date/time.
