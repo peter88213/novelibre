@@ -12,7 +12,9 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### Version 5.40.1
 
-Refactored the date/time helper functions.
+- When asking for confirmation before changing existing date/time, show
+  localized date if applicable.
+- Refactored the date/time helper functions.
 
 #### API changes
  
