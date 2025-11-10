@@ -13,10 +13,6 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ### Version 5.41.0
 
 - Refactored the code, processing the word count log with integers (#73).
-
-
-### Version 5.40.1
-
 - When asking for confirmation before changing existing date/time, show
   localized date if applicable.
 - Refactored the date/time helper functions.
@@ -28,7 +24,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - `nv_globals.get_duration_str()` --> `PyCalendar.get_duration()`
 
 
-### Version 5.29.3
+### Version 5.39.3
 
 - Asking for confirmation before changing existing section date/time.
 - Asking for confirmation before changing existing section duration.
