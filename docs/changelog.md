@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.41.0
+
+- Refactored the code, processing the word count log with integers (#73).
+
+
 ### Version 5.40.1
 
 - When asking for confirmation before changing existing date/time, show
