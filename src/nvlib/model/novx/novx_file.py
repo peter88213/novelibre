@@ -498,11 +498,15 @@ class NovxFile(File):
             return
 
         for xmlWc in xmlWclog.iterfind('WC'):
-            wcDate = verified_date(xmlWc.find('Date').text)
-            wcCount = int(xmlWc.find('Count').text)
-            wcTotalCount = int(xmlWc.find('WithUnused').text)
-            if wcDate and wcCount and wcTotalCount:
-                self.wcLog[wcDate] = [wcCount, wcTotalCount]
+            try:
+                wcDate = verified_date(xmlWc.find('Date').text)
+                self.wcLog[wcDate] = [
+                    int(xmlWc.find('Count').text),
+                    int(xmlWc.find('WithUnused').text)
+                ]
+            except:
+                pass
+                # discarding invalid entries
 
     def _update_word_count_log(self):
         # Add today's word count and word count when reading, if not logged.
