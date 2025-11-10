@@ -444,13 +444,13 @@ class Section(BasicElementTags):
             self.scType = int(typeStr)
         else:
             self.scType = 1
-        status = xmlElement.get('status', None)
-        if status in ('2', '3', '4', '5'):
+        status = xmlElement.get('status', '1')
+        if status in ('1', '2', '3', '4', '5'):
             self.status = int(status)
         else:
             self.status = 1
-        scene = xmlElement.get('scene', 0)
-        if scene in ('1', '2', '3'):
+        scene = xmlElement.get('scene', '0')
+        if scene in ('0', '1', '2', '3'):
             self.scene = int(scene)
         else:
             self.scene = 0

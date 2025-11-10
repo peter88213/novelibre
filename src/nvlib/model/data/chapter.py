@@ -106,9 +106,9 @@ class Chapter(BasicElementNotes):
             self.chType = int(typeStr)
         else:
             self.chType = 1
-        chLevel = xmlElement.get('level', None)
-        if chLevel == '1':
-            self.chLevel = 1
+        chLevel = xmlElement.get('level', '2')
+        if chLevel in ('1', '2'):
+            self.chLevel = int(chLevel)
         else:
             self.chLevel = 2
         self.isTrash = xmlElement.get('isTrash', None) == '1'
