@@ -35,7 +35,6 @@ from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import intersection
 from nvlib.novx_globals import norm_path
-from nvlib.novx_globals import verified_int_string
 from nvlib.nv_locale import _
 import xml.etree.ElementTree as ET
 
