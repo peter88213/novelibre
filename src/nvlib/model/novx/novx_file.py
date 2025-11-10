@@ -45,8 +45,8 @@ class NovxFile(File):
 
     Public instance variables:
         xmlTree -- xml element tree of the novelibre project
-        wcLog: dict[str, list[str, str]] -- Daily word count logs.
-        wcLogUpdate: dict[str, list[str, str]] -- Word counts missing 
+        wcLog: dict[str, list[int, int]] -- Daily word count logs.
+        wcLogUpdate: dict[str, list[int, int]] -- Word counts missing 
                                                   in the log.
         timestamp: float -- Time of last file modification.
 
@@ -86,11 +86,11 @@ class NovxFile(File):
 
         self.wcLog = {}
         # key: str -- date (iso formatted)
-        # value: list -- [word count: str, with unused: str]
+        # value: list -- [word count: int, with unused: int]
 
         self.wcLogUpdate = {}
         # key: str -- date (iso formatted)
-        # value: list -- [word count: str, with unused: str]
+        # value: list -- [word count: int, with unused: int]
 
         self.timestamp = None
 
@@ -305,8 +305,8 @@ class NovxFile(File):
                 wcLastTotalCount = wcTotalCount
             xmlWc = ET.SubElement(xmlWcLog, 'WC')
             ET.SubElement(xmlWc, 'Date').text = wc
-            ET.SubElement(xmlWc, 'Count').text = wcCount
-            ET.SubElement(xmlWc, 'WithUnused').text = wcTotalCount
+            ET.SubElement(xmlWc, 'Count').text = str(wcCount)
+            ET.SubElement(xmlWc, 'WithUnused').text = str(wcTotalCount)
 
     def _check_id(self, elemId, elemPrefix):
         if not elemId.startswith(elemPrefix):
@@ -324,9 +324,7 @@ class NovxFile(File):
         if not self.wcLog:
             return
 
-        actualCountInt, actualTotalCountInt = self.count_words()
-        actualCount = str(actualCountInt)
-        actualTotalCount = str(actualTotalCountInt)
+        actualCount, actualTotalCount = self.count_words()
         latestDate = list(self.wcLog)[-1]
         latestCount = self.wcLog[latestDate][0]
         latestTotalCount = self.wcLog[latestDate][1]
@@ -501,8 +499,8 @@ class NovxFile(File):
 
         for xmlWc in xmlWclog.iterfind('WC'):
             wcDate = verified_date(xmlWc.find('Date').text)
-            wcCount = verified_int_string(xmlWc.find('Count').text)
-            wcTotalCount = verified_int_string(xmlWc.find('WithUnused').text)
+            wcCount = int(xmlWc.find('Count').text)
+            wcTotalCount = int(xmlWc.find('WithUnused').text)
             if wcDate and wcCount and wcTotalCount:
                 self.wcLog[wcDate] = [wcCount, wcTotalCount]
 
@@ -510,9 +508,7 @@ class NovxFile(File):
         # Add today's word count and word count when reading, if not logged.
 
         if self.novel.saveWordCount:
-            newCountInt, newTotalCountInt = self.count_words()
-            newCount = str(newCountInt)
-            newTotalCount = str(newTotalCountInt)
+            newCount, newTotalCount = self.count_words()
             todayIso = date.today().isoformat()
             self.wcLogUpdate[todayIso] = [newCount, newTotalCount]
             for wcDate in self.wcLogUpdate:
