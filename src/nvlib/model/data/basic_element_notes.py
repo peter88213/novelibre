@@ -31,12 +31,3 @@ class BasicElementNotes(BasicElement):
             self._notes = newVal
             self.on_element_change()
 
-    def from_xml(self, xmlElement):
-        super().from_xml(xmlElement)
-        self.notes = self._xml_element_to_text(xmlElement.find('Notes'))
-
-    def to_xml(self, xmlElement):
-        super().to_xml(xmlElement)
-        if self.notes:
-            xmlElement.append(self._text_to_xml_element('Notes', self.notes))
-

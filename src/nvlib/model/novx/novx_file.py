@@ -15,7 +15,15 @@ from nvlib.model.data.plot_point import PlotPoint
 from nvlib.model.data.section import Section
 from nvlib.model.data.world_element import WorldElement
 from nvlib.model.file.file import File
+from nvlib.model.novx.basic_element_novx import BasicElementNovx
+from nvlib.model.novx.chapter_novx import ChapterNovx
+from nvlib.model.novx.character_novx import CharacterNovx
+from nvlib.model.novx.novel_novx import NovelNovx
 from nvlib.model.novx.novx_opener import NovxOpener
+from nvlib.model.novx.plot_line_novx import PlotLineNovx
+from nvlib.model.novx.plot_point_novx import PlotPointNovx
+from nvlib.model.novx.section_novx import SectionNovx
+from nvlib.model.novx.world_element_novx import WorldElementNovx
 from nvlib.model.xml.xml_filter import strip_illegal_characters
 from nvlib.model.xml.xml_indent import indent
 from nvlib.novx_globals import CHAPTER_PREFIX
@@ -92,6 +100,15 @@ class NovxFile(File):
         # value: list -- [word count: int, with unused: int]
 
         self.timestamp = None
+
+        self.basicElementCnv = BasicElementNovx()
+        self.chapterCnv = ChapterNovx()
+        self.characterCnv = CharacterNovx()
+        self.novelCnv = NovelNovx()
+        self.plotLineCnv = PlotLineNovx()
+        self.plotPointCnv = PlotPointNovx()
+        self.sectionCnv = SectionNovx()
+        self.worldElementCnv = WorldElementNovx()
 
     def adjust_section_types(self):
         """Make sure that nodes with "Unused" parents inherit the type."""
@@ -204,16 +221,17 @@ class NovxFile(File):
 
     def _build_project(self, root):
         xmlProject = ET.SubElement(root, 'PROJECT')
-        self.novel.to_xml(xmlProject)
+        self.novelCnv.export_data(self.novel, xmlProject)
 
     def _build_chapters_and_sections(self, root):
         xmlChapters = ET.SubElement(root, 'CHAPTERS')
         for chId in self.novel.tree.get_children(CH_ROOT):
             xmlChapter = ET.SubElement(
                 xmlChapters, 'CHAPTER', attrib={'id': chId})
-            self.novel.chapters[chId].to_xml(xmlChapter)
+            self.chapterCnv.export_data(self.novel.chapters[chId], xmlChapter)
             for scId in self.novel.tree.get_children(chId):
-                self.novel.sections[scId].to_xml(
+                self.sectionCnv.export_data(
+                    self.novel.sections[scId],
                     ET.SubElement(
                         xmlChapter,
                         'SECTION',
@@ -224,7 +242,8 @@ class NovxFile(File):
     def _build_characters(self, root):
         xmlCharacters = ET.SubElement(root, 'CHARACTERS')
         for crId in self.novel.tree.get_children(CR_ROOT):
-            self.novel.characters[crId].to_xml(
+            self.characterCnv.export_data(
+                self.novel.characters[crId],
                 ET.SubElement(
                     xmlCharacters,
                     'CHARACTER',
@@ -235,7 +254,8 @@ class NovxFile(File):
     def _build_locations(self, root):
         xmlLocations = ET.SubElement(root, 'LOCATIONS')
         for lcId in self.novel.tree.get_children(LC_ROOT):
-            self.novel.locations[lcId].to_xml(
+            self.worldElementCnv.export_data(
+                self.novel.locations[lcId],
                 ET.SubElement(
                     xmlLocations,
                     'LOCATION',
@@ -246,7 +266,8 @@ class NovxFile(File):
     def _build_items(self, root):
         xmlItems = ET.SubElement(root, 'ITEMS')
         for itId in self.novel.tree.get_children(IT_ROOT):
-            self.novel.items[itId].to_xml(
+            self.worldElementCnv.export_data(
+                self.novel.items[itId],
                 ET.SubElement(
                     xmlItems,
                     'ITEM',
@@ -262,9 +283,10 @@ class NovxFile(File):
                 'ARC',
                 attrib={'id': plId},
             )
-            self.novel.plotLines[plId].to_xml(xmlPlotLine)
+            self.plotLineCnv.export_data(self.novel.plotLines[plId], xmlPlotLine)
             for ppId in self.novel.tree.get_children(plId):
-                self.novel.plotPoints[ppId].to_xml(
+                self.plotPointCnv.export_data(
+                    self.novel.plotPoints[ppId],
                     ET.SubElement(
                         xmlPlotLine,
                         'POINT',
@@ -275,7 +297,8 @@ class NovxFile(File):
     def _build_project_notes(self, root):
         xmlProjectNotes = ET.SubElement(root, 'PROJECTNOTES')
         for pnId in self.novel.tree.get_children(PN_ROOT):
-            self.novel.projectNotes[pnId].to_xml(
+            self.basicElementCnv.export_data(
+                self.novel.projectNotes[pnId],
                 ET.SubElement(
                     xmlProjectNotes,
                     'PROJECTNOTE',
@@ -363,7 +386,7 @@ class NovxFile(File):
             self._check_id(chId, CHAPTER_PREFIX)
             self.novel.chapters[chId] = Chapter(
                 on_element_change=self.on_element_change)
-            self.novel.chapters[chId].from_xml(xmlChapter)
+            self.chapterCnv.import_data(self.novel.chapters[chId], xmlChapter)
             self.novel.tree.append(CH_ROOT, chId)
 
             for xmlSection in xmlChapter.iterfind('SECTION'):
@@ -382,7 +405,10 @@ class NovxFile(File):
             self._check_id(crId, CHARACTER_PREFIX)
             self.novel.characters[crId] = Character(
                 on_element_change=self.on_element_change)
-            self.novel.characters[crId].from_xml(xmlCharacter)
+            self.characterCnv.import_data(
+                self.novel.characters[crId],
+                xmlCharacter
+            )
             self.novel.tree.append(CR_ROOT, crId)
 
     def _read_items(self, root):
@@ -395,7 +421,7 @@ class NovxFile(File):
             self._check_id(itId, ITEM_PREFIX)
             self.novel.items[itId] = WorldElement(
                 on_element_change=self.on_element_change)
-            self.novel.items[itId].from_xml(xmlItem)
+            self.worldElementCnv.import_data(self.novel.items[itId], xmlItem)
             self.novel.tree.append(IT_ROOT, itId)
 
     def _read_locations(self, root):
@@ -408,7 +434,10 @@ class NovxFile(File):
             self._check_id(lcId, LOCATION_PREFIX)
             self.novel.locations[lcId] = WorldElement(
                 on_element_change=self.on_element_change)
-            self.novel.locations[lcId].from_xml(xmlLocation)
+            self.worldElementCnv.import_data(
+                self.novel.locations[lcId],
+                xmlLocation
+            )
             self.novel.tree.append(LC_ROOT, lcId)
 
     def _read_plot_lines_and_points(self, root):
@@ -421,7 +450,7 @@ class NovxFile(File):
             self._check_id(plId, PLOT_LINE_PREFIX)
             self.novel.plotLines[plId] = PlotLine(
                 on_element_change=self.on_element_change)
-            self.novel.plotLines[plId].from_xml(xmlPlotLine)
+            self.plotLineCnv.import_data(self.novel.plotLines[plId], xmlPlotLine)
             self.novel.tree.append(PL_ROOT, plId)
 
             # Remove dead references.
@@ -441,7 +470,7 @@ class NovxFile(File):
     def _read_plot_point(self, xmlPlotPoint, ppId, plId):
         self.novel.plotPoints[ppId] = PlotPoint(
             on_element_change=self.on_element_change)
-        self.novel.plotPoints[ppId].from_xml(xmlPlotPoint)
+        self.plotPointCnv.import_data(self.novel.plotPoints[ppId], xmlPlotPoint)
 
         # Verify section and create back reference.
         scId = self.novel.plotPoints[ppId].sectionAssoc
@@ -455,7 +484,7 @@ class NovxFile(File):
         if xmlProject is None:
             return
 
-        self.novel.from_xml(xmlProject)
+        self.novelCnv.import_data(self.novel, xmlProject)
 
     def _read_project_notes(self, root):
         # Read project notes from the xml element tree.
@@ -467,13 +496,16 @@ class NovxFile(File):
             pnId = xmlProjectNote.attrib['id']
             self._check_id(pnId, PRJ_NOTE_PREFIX)
             self.novel.projectNotes[pnId] = BasicElement()
-            self.novel.projectNotes[pnId].from_xml(xmlProjectNote)
+            self.basicElementCnv.import_data(
+                self.novel.projectNotes[pnId],
+                xmlProjectNote
+            )
             self.novel.tree.append(PN_ROOT, pnId)
 
     def _read_section(self, xmlSection, scId):
         self.novel.sections[scId] = Section(
             on_element_change=self.on_element_change)
-        self.novel.sections[scId].from_xml(xmlSection)
+        self.sectionCnv.import_data(self.novel.sections[scId], xmlSection)
 
         # Remove dead references.
         self.novel.sections[scId].characters = intersection(

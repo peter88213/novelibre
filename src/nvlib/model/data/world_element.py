@@ -5,7 +5,6 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.model.data.basic_element_tags import BasicElementTags
-import xml.etree.ElementTree as ET
 
 
 class WorldElement(BasicElementTags):
@@ -31,13 +30,4 @@ class WorldElement(BasicElementTags):
         if self._aka != newVal:
             self._aka = newVal
             self.on_element_change()
-
-    def from_xml(self, xmlElement):
-        super().from_xml(xmlElement)
-        self.aka = self._get_element_text(xmlElement, 'Aka')
-
-    def to_xml(self, xmlElement):
-        super().to_xml(xmlElement)
-        if self.aka:
-            ET.SubElement(xmlElement, 'Aka').text = self.aka
 

@@ -6,7 +6,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 
 from nvlib.model.data.basic_element_notes import BasicElementNotes
-import xml.etree.ElementTree as ET
 
 
 class Chapter(BasicElementNotes):
@@ -99,31 +98,3 @@ class Chapter(BasicElementNotes):
             self._hasEpigraph = newVal
             self.on_element_change()
 
-    def from_xml(self, xmlElement):
-        super().from_xml(xmlElement)
-        typeStr = xmlElement.get('type', '0')
-        if typeStr in ('0', '1'):
-            self.chType = int(typeStr)
-        else:
-            self.chType = 1
-        chLevel = xmlElement.get('level', '2')
-        if chLevel in ('1', '2'):
-            self.chLevel = int(chLevel)
-        else:
-            self.chLevel = 2
-        self.isTrash = xmlElement.get('isTrash', None) == '1'
-        self.noNumber = xmlElement.get('noNumber', None) == '1'
-        self.hasEpigraph = xmlElement.get('hasEpigraph', None) == '1'
-
-    def to_xml(self, xmlElement):
-        super().to_xml(xmlElement)
-        if self.chType:
-            xmlElement.set('type', str(self.chType))
-        if self.chLevel == 1:
-            xmlElement.set('level', '1')
-        if self.isTrash:
-            xmlElement.set('isTrash', '1')
-        if self.noNumber:
-            xmlElement.set('noNumber', '1')
-        if self.hasEpigraph:
-            xmlElement.set('hasEpigraph', '1')

@@ -4,7 +4,6 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-import xml.etree.ElementTree as ET
 
 
 class BasicElement:
@@ -105,98 +104,4 @@ class BasicElement:
     def do_nothing(self):
         """Standard callback routine for element changes."""
         pass
-
-    def from_xml(self, xmlElement):
-        self.title = self._get_element_text(xmlElement, 'Title')
-        self.desc = self._xml_element_to_text(xmlElement.find('Desc'))
-        self.links = self._get_link_dict(xmlElement)
-        self.fields = self._get_fields(xmlElement)
-
-    def to_xml(self, xmlElement):
-        if self.title:
-            ET.SubElement(xmlElement, 'Title').text = self.title
-        if self.desc:
-            xmlElement.append(self._text_to_xml_element('Desc', self.desc))
-        for path in self.links:
-            xmlLink = ET.SubElement(xmlElement, 'Link')
-            ET.SubElement(xmlLink, 'Path').text = path
-            if self.links[path]:
-                ET.SubElement(xmlLink, 'FullPath').text = self.links[path]
-        for tag in self.fields:
-            xmlField = ET.SubElement(xmlElement, 'Field')
-            xmlField.set('tag', tag)
-            xmlField.text = self.fields[tag]
-
-    def _get_element_text(self, xmlElement, tag, default=None):
-        """Return the text field of an XML element.
-        
-        If the element doesn't exist, return default.
-        """
-        if xmlElement.find(tag) is not None:
-            return xmlElement.find(tag).text
-        else:
-            return default
-
-    def _get_fields(self, xmlElement):
-        fields = {}
-        for xmlField in xmlElement.iterfind('Field'):
-            tag = xmlField.get('tag', None)
-            if tag is not None:
-                fields[tag] = xmlField.text
-        return fields
-
-    def _get_link_dict(self, xmlElement):
-        """Return a dictionary of links.
-        
-        If the element doesn't exist, return an empty dictionary.
-        """
-        links = {}
-        for xmlLink in xmlElement.iterfind('Link'):
-            xmlPath = xmlLink.find('Path')
-            if xmlPath is not None:
-                path = xmlPath.text
-                xmlFullPath = xmlLink.find('FullPath')
-                if xmlFullPath is not None:
-                    fullPath = xmlFullPath.text
-                else:
-                    fullPath = None
-            else:
-                # Read deprecated attributes from DTD 1.3.
-                path = xmlLink.attrib.get('path', None)
-                fullPath = xmlLink.attrib.get('fullPath', None)
-            if path:
-                links[path] = fullPath
-        return links
-
-    def _text_to_xml_element(self, tag, text):
-        """Return an ElementTree element.
-
-        The element is named "tag" and has paragraph subelements.
-        
-        Positional arguments:
-        tag: str -- Name of the XML element to return.    
-        text -- string to convert.
-        """
-        xmlElement = ET.Element(tag)
-        if text:
-            for line in text.split('\n'):
-                ET.SubElement(xmlElement, 'p').text = line
-        return xmlElement
-
-    def _xml_element_to_text(self, xmlElement):
-        """Return plain text.
-        
-        The text is converted from ElementTree paragraph subelements.
-        
-        Positional arguments:
-            xmlElement -- ElementTree element.        
-        
-        Each <p> subelement of xmlElement creates a line. 
-        Formatting is discarded.
-        """
-        lines = []
-        if xmlElement is not None:
-            for paragraph in xmlElement.iterfind('p'):
-                lines.append(''.join(t for t in paragraph.itertext()))
-        return '\n'.join(lines)
 

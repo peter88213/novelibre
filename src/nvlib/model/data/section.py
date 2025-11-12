@@ -8,9 +8,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from nvlib.model.data.basic_element_tags import BasicElementTags
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.model.data.word_counter import WordCounter
-from nvlib.novx_globals import string_to_list
-from nvlib.novx_globals import verified_int_string
-import xml.etree.ElementTree as ET
 
 
 class Section(BasicElementTags):
@@ -32,7 +29,7 @@ class Section(BasicElementTags):
         goal=None,
         conflict=None,
         outcome=None,
-        plotNotes=None,
+        plotlineNotes=None,
         scDate=None,
         scTime=None,
         day=None,
@@ -59,7 +56,7 @@ class Section(BasicElementTags):
         self._goal = goal
         self._conflict = conflict
         self._outcome = outcome
-        self._plotlineNotes = plotNotes
+        self._plotlineNotes = plotlineNotes
         try:
             self._weekDay = PyCalendar.weekday(scDate)
             self._localeDate = PyCalendar.locale_date(scDate)
@@ -435,129 +432,6 @@ class Section(BasicElementTags):
             self._day = None
             return False
 
-    def from_xml(self, xmlElement):
-        super().from_xml(xmlElement)
-
-        # Attributes.
-        typeStr = xmlElement.get('type', '0')
-        if typeStr in ('0', '1', '2', '3'):
-            self.scType = int(typeStr)
-        else:
-            self.scType = 1
-        status = xmlElement.get('status', '1')
-        if status in ('1', '2', '3', '4', '5'):
-            self.status = int(status)
-        else:
-            self.status = 1
-        scene = xmlElement.get('scene', '0')
-        if scene in ('0', '1', '2', '3'):
-            self.scene = int(scene)
-        else:
-            self.scene = 0
-
-        if not self.scene:
-            # looking for deprecated attribute from DTD 1.3
-            sceneKind = xmlElement.get('pacing', None)
-            if sceneKind in ('1', '2'):
-                self.scene = int(sceneKind) + 1
-
-        self.appendToPrev = xmlElement.get('append', None) == '1'
-
-        # Viewpoint.
-        xmlViewpoint = xmlElement.find('Viewpoint')
-        if xmlViewpoint is not None:
-            self.viewpoint = xmlViewpoint.get('id', None)
-
-        # Goal/Conflict/outcome.
-        self.goal = self._xml_element_to_text(xmlElement.find('Goal'))
-        self.conflict = self._xml_element_to_text(xmlElement.find('Conflict'))
-        self.outcome = self._xml_element_to_text(xmlElement.find('Outcome'))
-
-        # Plot notes.
-        xmlPlotNotes = xmlElement.find('PlotNotes')
-        # looking for deprecated element from DTD 1.3
-        if xmlPlotNotes is None:
-            xmlPlotNotes = xmlElement
-        plotNotes = {}
-        for xmlPlotLineNote in xmlPlotNotes.iterfind('PlotlineNotes'):
-            plId = xmlPlotLineNote.get('id', None)
-            plotNotes[plId] = self._xml_element_to_text(xmlPlotLineNote)
-        self.plotlineNotes = plotNotes
-
-        # Date/Day and Time.
-        if xmlElement.find('Date') is not None:
-            self.date = PyCalendar.verified_date(xmlElement.find('Date').text)
-        elif xmlElement.find('Day') is not None:
-            self.day = verified_int_string(xmlElement.find('Day').text)
-
-        if xmlElement.find('Time') is not None:
-            self.time = PyCalendar.verified_time(xmlElement.find('Time').text)
-
-        # Duration.
-        self.lastsDays = verified_int_string(
-            self._get_element_text(xmlElement, 'LastsDays')
-        )
-        self.lastsHours = verified_int_string(
-            self._get_element_text(xmlElement, 'LastsHours')
-        )
-        self.lastsMinutes = verified_int_string(
-            self._get_element_text(xmlElement, 'LastsMinutes')
-        )
-
-        # Characters references.
-        scCharacters = []
-        xmlCharacters = xmlElement.find('Characters')
-        if xmlCharacters is not None:
-            crIds = xmlCharacters.get('ids', None)
-            if crIds is not None:
-                for crId in string_to_list(crIds, divider=' '):
-                    scCharacters.append(crId)
-        self.characters = scCharacters
-
-        # Locations references.
-        scLocations = []
-        xmlLocations = xmlElement.find('Locations')
-        if xmlLocations is not None:
-            lcIds = xmlLocations.get('ids', None)
-            if lcIds is not None:
-                for lcId in string_to_list(lcIds, divider=' '):
-                    scLocations.append(lcId)
-        self.locations = scLocations
-
-        # Items references.
-        scItems = []
-        xmlItems = xmlElement.find('Items')
-        if xmlItems is not None:
-            itIds = xmlItems.get('ids', None)
-            if itIds is not None:
-                for itId in string_to_list(itIds, divider=' '):
-                    scItems.append(itId)
-        self.items = scItems
-
-        # Content.
-        xmlContent = xmlElement.find('Content')
-        if xmlContent is not None:
-            xmlStr = ET.tostring(
-                xmlContent,
-                encoding='utf-8',
-                short_empty_elements=False
-                ).decode('utf-8')
-            xmlStr = xmlStr.replace('<Content>', '').replace('</Content>', '')
-
-            # Remove indentiation, if any.
-            lines = xmlStr.split('\n')
-            newlines = []
-            for line in lines:
-                newlines.append(line.strip())
-            xmlStr = ''.join(newlines)
-            if xmlStr:
-                self.sectionContent = xmlStr
-            else:
-                self.sectionContent = '<p></p>'
-        elif self.scType < 2:
-            # normal or unused section; not a stage
-            self.sectionContent = '<p></p>'
-
     def get_end_date_time(self):
         """Return the end (date, time, day) tuple 
         
@@ -581,98 +455,3 @@ class Section(BasicElementTags):
                 endTime = PyCalendar.get_end_time(self)
         return endDate, endTime, endDay
 
-    def to_xml(self, xmlElement):
-        super().to_xml(xmlElement)
-        if self.scType:
-            xmlElement.set('type', str(self.scType))
-        if self.status > 1:
-            xmlElement.set('status', str(self.status))
-        if self.scene > 0:
-            xmlElement.set('scene', str(self.scene))
-        if self.appendToPrev:
-            xmlElement.set('append', '1')
-
-        # Viewpoint.
-        if self.viewpoint:
-            ET.SubElement(
-                xmlElement,
-                'Viewpoint',
-                attrib={'id':self.viewpoint},
-            )
-
-        # Goal/Conflict/Outcome.
-        if self.goal:
-            xmlElement.append(
-                self._text_to_xml_element('Goal', self.goal)
-            )
-        if self.conflict:
-            xmlElement.append(
-                self._text_to_xml_element('Conflict', self.conflict)
-            )
-        if self.outcome:
-            xmlElement.append(
-                self._text_to_xml_element('Outcome', self.outcome)
-            )
-
-        # Plot notes.
-        if self.plotlineNotes:
-            for plId in self.plotlineNotes:
-                if not plId in self.scPlotLines:
-                    continue
-
-                if not self.plotlineNotes[plId]:
-                    continue
-
-                xmlPlotlineNotes = self._text_to_xml_element(
-                    'PlotlineNotes', self.plotlineNotes[plId]
-                )
-                xmlPlotlineNotes.set('id', plId)
-                xmlElement.append(xmlPlotlineNotes)
-
-        # Date/Day and Time.
-        if self.date:
-            ET.SubElement(xmlElement, 'Date').text = self.date
-        elif self.day:
-            ET.SubElement(xmlElement, 'Day').text = self.day
-        if self.time:
-            ET.SubElement(xmlElement, 'Time').text = self.time
-
-        # Duration.
-        if self.lastsDays and self.lastsDays != '0':
-            ET.SubElement(xmlElement, 'LastsDays').text = self.lastsDays
-        if self.lastsHours and self.lastsHours != '0':
-            ET.SubElement(xmlElement, 'LastsHours').text = self.lastsHours
-        if self.lastsMinutes and self.lastsMinutes != '0':
-            ET.SubElement(xmlElement, 'LastsMinutes').text = self.lastsMinutes
-
-        # Characters references.
-        if self.characters:
-            ET.SubElement(
-                xmlElement,
-                'Characters',
-                attrib={'ids':' '.join(self.characters)},
-            )
-
-        # Locations references.
-        if self.locations:
-            ET.SubElement(
-                xmlElement,
-                'Locations',
-                attrib={'ids':' '.join(self.locations)},
-            )
-
-        # Items references.
-        if self.items:
-            ET.SubElement(
-                xmlElement,
-                'Items',
-                attrib={'ids':' '.join(self.items)},
-            )
-
-        # Content.
-        sectionContent = self.sectionContent
-        if sectionContent:
-            if not sectionContent in ('<p></p>', '<p />'):
-                xmlElement.append(
-                    ET.fromstring(f'<Content>{sectionContent}</Content>')
-                )

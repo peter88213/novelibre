@@ -168,7 +168,10 @@ class MainController(SubController, Commands):
         """
         self.update_status()
         self._ui.propertiesView.apply_changes()
-        pidfile = f'{self._mdl.prjFile.filePath}.pid'
+        if self._mdl.prjFile:
+            pidfile = f'{self._mdl.prjFile.filePath}.pid'
+        else:
+            pidfile = ''
         if self._mdl.isModified and not doNotSave:
             doSave = self._ui.ask_yes_no_cancel(_('Save changes?'))
             if doSave is None:

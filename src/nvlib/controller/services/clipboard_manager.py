@@ -56,34 +56,72 @@ class ClipboardManager(ServiceBase):
                 return
 
         elementContainers = {
-            CHAPTER_PREFIX: (self._mdl.novel.chapters, 'CHAPTER'),
-            SECTION_PREFIX: (self._mdl.novel.sections, 'SECTION'),
-            PLOT_LINE_PREFIX: (self._mdl.novel.plotLines, 'ARC'),
-            PLOT_POINT_PREFIX: (self._mdl.novel.plotPoints, 'POINT'),
-            CHARACTER_PREFIX: (self._mdl.novel.characters, 'CHARACTER'),
-            LOCATION_PREFIX: (self._mdl.novel.locations, 'LOCATION'),
-            ITEM_PREFIX: (self._mdl.novel.items, 'ITEM'),
-            PRJ_NOTE_PREFIX: (self._mdl.novel.projectNotes, 'PROJECTNOTE')
+            CHAPTER_PREFIX: (
+                self._mdl.novel.chapters,
+                'CHAPTER',
+                self._mdl.prjFile.chapterCnv,
+            ),
+            SECTION_PREFIX: (
+                self._mdl.novel.sections,
+                'SECTION',
+                self._mdl.prjFile.sectionCnv,
+            ),
+            PLOT_LINE_PREFIX: (
+                self._mdl.novel.plotLines,
+                'ARC',
+                self._mdl.prjFile.plotLineCnv,
+            ),
+            PLOT_POINT_PREFIX: (
+                self._mdl.novel.plotPoints,
+                'POINT',
+                self._mdl.prjFile.plotPointCnv,
+            ),
+            CHARACTER_PREFIX: (
+                self._mdl.novel.characters,
+                'CHARACTER',
+                self._mdl.prjFile.characterCnv,
+            ),
+            LOCATION_PREFIX: (
+                self._mdl.novel.locations,
+                'LOCATION',
+                self._mdl.prjFile.worldElementCnv,
+            ),
+            ITEM_PREFIX: (
+                self._mdl.novel.items,
+                'ITEM',
+                self._mdl.prjFile.worldElementCnv,
+            ),
+            PRJ_NOTE_PREFIX: (
+                self._mdl.novel.projectNotes,
+                'PROJECTNOTE',
+                self._mdl.prjFile.basicElementCnv,
+            ),
         }
         if not nodePrefix in elementContainers:
             return
 
-        elementContainer, xmlTag = elementContainers[nodePrefix]
+        elementContainer, xmlTag, elementCnv = elementContainers[nodePrefix]
         element = elementContainer[node]
         xmlElement = ET.Element(xmlTag)
-        element.to_xml(xmlElement)
+        elementCnv.export_data(element, xmlElement)
         self._remove_references(xmlElement)
 
         # Get children, if any.
         if nodePrefix == CHAPTER_PREFIX:
             for scId in self._mdl.novel.tree.get_children(node):
                 xmlSection = ET.SubElement(xmlElement, 'SECTION')
-                self._mdl.novel.sections[scId].to_xml(xmlSection)
+                self._mdl.prjFile.sectionCnv.export_data(
+                    self._mdl.novel.sections[scId],
+                    xmlSection
+                )
                 self._remove_references(xmlSection)
         elif nodePrefix == PLOT_LINE_PREFIX:
             for ppId in self._mdl.novel.tree.get_children(node):
                 xmlPlotPoint = ET.SubElement(xmlElement, 'POINT')
-                self._mdl.novel.plotPoints[ppId].to_xml(xmlPlotPoint)
+                self._mdl.prjFile.plotPointCnv.export_data(
+                    self._mdl.novel.plotPoints[ppId],
+                    xmlPlotPoint
+                )
                 self._remove_references(xmlPlotPoint)
 
         text = ET.tostring(xmlElement)
@@ -136,47 +174,58 @@ class ClipboardManager(ServiceBase):
             else:
                 elemCreator = self._mdl.add_new_section
             elemContainer = self._mdl.novel.sections
+            elemCnv = self._mdl.prjFile.sectionCnv
         else:
             elementControls = {
                 CHAPTER_PREFIX: (
                     self._mdl.add_new_chapter,
-                    self._mdl.novel.chapters
+                    self._mdl.novel.chapters,
+                    self._mdl.prjFile.chapterCnv,
                 ),
                 PLOT_LINE_PREFIX: (
                     self._mdl.add_new_plot_line,
-                    self._mdl.novel.plotLines
+                    self._mdl.novel.plotLines,
+                    self._mdl.prjFile.plotLineCnv,
                 ),
                 PLOT_POINT_PREFIX: (
                     self._mdl.add_new_plot_point,
-                    self._mdl.novel.plotPoints
+                    self._mdl.novel.plotPoints,
+                    self._mdl.prjFile.plotPointCnv,
                 ),
                 CHARACTER_PREFIX: (
                     self._mdl.add_new_character,
-                    self._mdl.novel.characters
+                    self._mdl.novel.characters,
+                    self._mdl.prjFile.characterCnv,
                 ),
                 LOCATION_PREFIX: (
                     self._mdl.add_new_location,
-                    self._mdl.novel.locations
+                    self._mdl.novel.locations,
+                    self._mdl.prjFile.worldElementCnv
                 ),
                 ITEM_PREFIX: (
                     self._mdl.add_new_item,
-                    self._mdl.novel.items
+                    self._mdl.novel.items,
+                    self._mdl.prjFile.worldElementCnv
                 ),
                 PRJ_NOTE_PREFIX: (
                     self._mdl.add_new_project_note,
-                    self._mdl.novel.projectNotes
+                    self._mdl.novel.projectNotes,
+                    self._mdl.prjFile.basicElementCnv,
                 )
             }
             if not nodePrefix in elementControls:
                 return
 
-            elemCreator, elemContainer = elementControls[nodePrefix]
+            elemCreator, elemContainer, elemCnv = elementControls[nodePrefix]
 
         elemId = elemCreator(targetNode=node)
         if not elemId:
             return
 
-        elemContainer[elemId].from_xml(xmlElement)
+        elemCnv.import_data(
+            elemContainer[elemId],
+            xmlElement
+        )
 
         # Get children, if any.
         if nodePrefix == CHAPTER_PREFIX:
@@ -186,11 +235,17 @@ class ClipboardManager(ServiceBase):
                     scId = self._mdl.add_new_stage(targetNode=elemId)
                 else:
                     scId = self._mdl.add_new_section(targetNode=elemId)
-                self._mdl.novel.sections[scId].from_xml(xmlSection)
+                self._mdl.prjFile.sectionCnv.import_data(
+                    self._mdl.novel.sections[scId],
+                    xmlSection
+                )
         elif nodePrefix == PLOT_LINE_PREFIX:
             for xmlPoint in xmlElement.iterfind('POINT'):
                 ppId = self._mdl.add_new_plot_point(targetNode=elemId)
-                self._mdl.novel.plotPoints[ppId].from_xml(xmlPoint)
+                self._mdl.prjFile.plotPointCnv.import_data(
+                    self._mdl.novel.plotPoints[ppId],
+                    xmlPoint
+                )
 
         self._ctrl.refresh_tree()
         self._ui.tv.go_to_node(elemId)
