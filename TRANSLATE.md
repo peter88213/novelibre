@@ -4,13 +4,12 @@ First, you need to know your language code according to ISO 639-1.
 
 For English, this is, for example, `en`, for German, it is `de`.
 
----
+> [!IMPORTANT]
+> The procedure described below is greatly simplified if you create a 
+> language pack based on the [nv_xx](https://github.com/peter88213/nv_xx) template 
+> and use the tools provided for this purpose. 
 
-**Important**: The procedure described below is greatly simplified if you create a 
-language pack based on the [nv_xx](https://github.com/peter88213/nv_xx) template 
-and use the tools provided for this purpose. 
 
----
 
 ## Create a message catalog
 

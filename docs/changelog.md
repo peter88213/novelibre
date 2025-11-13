@@ -194,9 +194,10 @@ cannot be read with older *novelibre* versions.
 
 ### Version 5.29.8
 
-**Important**: The backup file format has been changed to `.zip`.
-If you are already using the backup feature, 
-you may want to delete your `.novx#` files manually.   
+> [!IMPORTANT]
+> The backup file format has been changed to `.zip`.
+> If you are already using the backup feature, 
+> you may want to delete your `.novx#` files manually.   
 
 - Compressing the backup files.
 - Changed View options text: "Large toolbar icons" --> "Large icons".
@@ -1267,15 +1268,14 @@ Based on novxlib 3.3.0
 - Try to fix broken links (#17).
 - API update due to the changes in novxlib.
 
+> [!IMPORTANT]
+> For *novelibre* version 3.6, the following plugins and tools must be updated to work with the version 1.3 file format:
+>
+> - [Timeline plugin](https://github.com/peter88213/nv_timeline/)
+> - [Aeon Timeline 2 plugin](https://github.com/peter88213/nv_aeon2/)
+> - [XPress tagged text export](https://github.com/peter88213/novx_xtg/)
+
 Based on novxlib 3.3.0
-
-## Important
-
-For *novelibre* version 3.6, the following plugins and tools must be updated to work with the version 1.3 file format:
-
-- [Timeline plugin](https://github.com/peter88213/nv_timeline/)
-- [Aeon Timeline 2 plugin](https://github.com/peter88213/nv_aeon2/)
-- [XPress tagged text export](https://github.com/peter88213/novx_xtg/)
 
 
 ### Version 3.5.2
@@ -1288,15 +1288,14 @@ Based on novxlib 3.2.0
 
 - Fixed a regression from version 3.0.0 where plot lines and plot points cannot be deleted.
 
+> [!IMPORTANT]
+> For *novelibre* version 3.5, the following plugins and tools must be updated to work with the version 1.2 file format:
+>
+> - [Timeline plugin](https://github.com/peter88213/nv_timeline/)
+> - [Aeon Timeline 2 plugin](https://github.com/peter88213/nv_aeon2/)
+> - [XPress tagged text export](https://github.com/peter88213/novx_xtg/)
+
 Based on novxlib 3.2.0
-
-## Important
-
-For *novelibre* version 3.5, the following plugins and tools must be updated to work with the version 1.2 file format:
-
-- [Timeline plugin](https://github.com/peter88213/nv_timeline/)
-- [Aeon Timeline 2 plugin](https://github.com/peter88213/nv_aeon2/)
-- [XPress tagged text export](https://github.com/peter88213/novx_xtg/)
 
 
 ### Version 3.5.0

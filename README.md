@@ -174,20 +174,15 @@ The development phase has now come to an end. Nevertheless it is recommended to 
 
 Download the latest release [novelibre_v5.42.0.pyz](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.42.0.pyz)
 
----
-
-**Important**
-
-Many web browsers recognize the download as an executable file and offer to open it immediately. 
-This starts the installation under Windows.
-
-However, depending on your security settings, your browser may 
-initially  refuse  to download the executable file. 
-In this case, your confirmation or an additional action is required. 
-If this is not possible, you have the option of downloading 
-the zip file. 
-
----
+> [!IMPORTANT]
+> Many web browsers recognize the download as an executable file and offer to open it immediately. 
+> This starts the installation under Windows.
+> 
+> However, depending on your security settings, your browser may 
+> initially  refuse  to download the executable file. 
+> In this case, your confirmation or an additional action is required. 
+> If this is not possible, you have the option of downloading 
+> the zip file. 
 
 ### Alternative: Zip file
 
