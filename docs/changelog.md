@@ -20,9 +20,9 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 #### API changes
 
-- Removed the `to_xml()` and `from_xml()` methods fron `BasicElement` and all its subclasses.
+- Removed the `to_xml()` and `from_xml()` methods from `BasicElement` and all its subclasses.
 - Introduced converter classes for `BasicElement` and each of its subclasses.
-- `NovxFile` delegates the converter subclasses. 
+- `NovxFile` delegates the converter classes. 
 - The copy/paste service uses the converter classes delegated by the current project File. 
 
 ### Version 5.41.0
