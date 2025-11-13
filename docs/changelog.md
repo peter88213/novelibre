@@ -15,17 +15,15 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Fixed a bug where a new project cannot be created from a timeline while no other project is open.
 - Refactored the novx XML reading and writing code. 
 
+> [!IMPORTANT]
+> The *nv_timeline* plugin must be updated to version 5.5+, if installed.
+
 #### API changes
 
 - Removed the `to_xml()` and `from_xml()` methods fron `BasicElement` and all its subclasses.
 - Introduced converter classes for `BasicElement` and each of its subclasses.
 - `NovxFile` delegates the converter subclasses. 
 - The copy/paste service uses the converter classes delegated by the current project File. 
-
-## Important
-
-The *nv_timeline* plugin must be updated to version 5.5+, if installed.
-
 
 ### Version 5.41.0
 
