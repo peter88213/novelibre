@@ -228,24 +228,27 @@ class ClipboardManager(ServiceBase):
         )
 
         # Get children, if any.
+        targetNode = elemId
         if nodePrefix == CHAPTER_PREFIX:
             for xmlSection in xmlElement.iterfind('SECTION'):
                 typeStr = xmlSection.get('type', 0)
                 if int(typeStr) > 1:
-                    scId = self._mdl.add_new_stage(targetNode=elemId)
+                    scId = self._mdl.add_new_stage(targetNode=targetNode)
                 else:
-                    scId = self._mdl.add_new_section(targetNode=elemId)
+                    scId = self._mdl.add_new_section(targetNode=targetNode)
                 self._mdl.prjFile.sectionCnv.import_data(
                     self._mdl.novel.sections[scId],
                     xmlSection
                 )
+                targetNode = scId
         elif nodePrefix == PLOT_LINE_PREFIX:
             for xmlPoint in xmlElement.iterfind('POINT'):
-                ppId = self._mdl.add_new_plot_point(targetNode=elemId)
+                ppId = self._mdl.add_new_plot_point(targetNode=targetNode)
                 self._mdl.prjFile.plotPointCnv.import_data(
                     self._mdl.novel.plotPoints[ppId],
                     xmlPoint
                 )
+                targetNode = ppId
 
         self._ctrl.refresh_tree()
         self._ui.tv.go_to_node(elemId)

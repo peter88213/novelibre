@@ -10,6 +10,10 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.42.1
+
+- Fixed a bug where the scenes in a copied/pasted chapter may be in the wrong order.
+
 ### Version 5.42.0
 
 - Fixed a bug where a new project cannot be created from a timeline while no other project is open.
