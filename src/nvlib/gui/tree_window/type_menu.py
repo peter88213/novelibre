@@ -10,8 +10,8 @@ import tkinter as tk
 
 class TypeMenu(tk.Menu):
 
-    def __init__(self, tree, controller):
-        super().__init__(tree, tearoff=0)
+    def __init__(self, master, controller):
+        super().__init__(master, tearoff=0)
         self.add_command(
             label=_('Normal'),
             command=controller.set_type_normal,
