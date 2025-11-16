@@ -221,7 +221,12 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self.selectLevelMenu = LevelMenu(self, self._ctrl)
         self.scStatusMenu = ScStatusMenu(self, self._ctrl)
         self.crStatusMenu = CrStatusMenu(self, self._ctrl)
-        self.contextMenu = TreeContextMenu(self._mdl, self, self._ctrl)
+        self.contextMenu = TreeContextMenu(
+            self,
+            self._mdl,
+            self._ui,
+            self._ctrl
+        )
 
         #--- Bind events.
         self._bind_events()

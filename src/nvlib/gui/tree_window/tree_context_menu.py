@@ -5,8 +5,15 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.controller.sub_controller import SubController
-from nvlib.gui.platform.platform_settings import KEYS
-from nvlib.gui.widgets.context_menu import ContextMenu
+from nvlib.gui.tree_window.book_context_menu import BookContextMenu
+from nvlib.gui.tree_window.chapter_context_menu import ChapterContextMenu
+from nvlib.gui.tree_window.character_context_menu import CharacterContextMenu
+from nvlib.gui.tree_window.plot_context_menu import PlotContextMenu
+from nvlib.gui.tree_window.projectnote_context_menu import ProjectnoteContextMenu
+from nvlib.gui.tree_window.section_context_menu import SectionContextMenu
+from nvlib.gui.tree_window.stage_context_menu import StageContextMenu
+from nvlib.gui.tree_window.trash_context_menu import TrashContextMenu
+from nvlib.gui.tree_window.world_context_menu import WorldContextMenu
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
@@ -27,215 +34,111 @@ from nvlib.nv_locale import _
 
 class TreeContextMenu(SubController):
 
-    def __init__(self, model, treeView, controller):
+    def __init__(self, master, model, view, controller):
         self._mdl = model
-        self._tv = treeView
+        self._ui = view
         self._ctrl = controller
 
         #--- Create local context menus.
+        self._bookContextMenu = BookContextMenu(
+            master,
+            self._mdl,
+            self._ui,
+            self._ctrl
+        )
+        self._ctrl.register_client(self._bookContextMenu)
 
-        #--- Create a narrative context menu.
-        self._bookContextMenu = ContextMenu(self._tv, tearoff=0)
-        self._bookContextMenu.add_command(
-            label=_('Add Section'),
-            command=self._ctrl.add_new_section,
+        self._chapterContextMenu = ChapterContextMenu(
+            master,
+            self._mdl,
+            self._ui,
+            self._ctrl
         )
-        self._bookContextMenu.add_command(
-            label=_('Add Chapter'),
-            command=self._ctrl.add_new_chapter)
-        self._bookContextMenu.add_command(
-            label=_('Add Part'),
-            command=self._ctrl.add_new_part,
-        )
-        self._bookContextMenu.add_command(
-            label=_('Insert Stage'),
-            command=self._ctrl.add_new_stage,
-        )
-        self._bookContextMenu.add_cascade(
-            label=_('Change Level'),
-            menu=self._tv.selectLevelMenu,
-        )
-        self._bookContextMenu.add_cascade(
-            label=_('Export this chapter'),
-            command=self._tv._export_manuscript,
-        )
-        self._bookContextMenu.add_separator()
-        self._bookContextMenu.add_command(
-            label=_('Delete'),
-            accelerator=KEYS.DELETE[1],
-            command=self._ctrl.delete_elements,
-        )
-        self._bookContextMenu.add_command(
-            label=_('Cut'),
-            accelerator=KEYS.CUT[1],
-            command=self._ctrl.cut_element,
-        )
-        self._bookContextMenu.add_command(
-            label=_('Copy'),
-            accelerator=KEYS.COPY[1],
-            command=self._ctrl.copy_element,
-        )
-        self._bookContextMenu.add_command(
-            label=_('Paste'),
-            accelerator=KEYS.PASTE[1],
-            command=self._ctrl.paste_element,
-        )
-        self._bookContextMenu.add_separator()
-        self._bookContextMenu.add_cascade(
-            label=_('Set Type'),
-            menu=self._tv.selectTypeMenu,
-        )
-        self._bookContextMenu.add_cascade(
-            label=_('Set Status'),
-            menu=self._tv.scStatusMenu,
-        )
-        self._bookContextMenu.add_command(
-            label=_('Set Viewpoint...'),
-            command=self._ctrl.set_viewpoint,
-        )
-        self._bookContextMenu.add_separator()
-        self._bookContextMenu.add_command(
-            label=_('Join with previous'),
-            command=self._ctrl.join_sections,
-        )
-        self._bookContextMenu.add_separator()
-        self._bookContextMenu.add_command(
-            label=_('Chapter level'),
-            command=self._tv.show_chapter_level,
-        )
-        self._bookContextMenu.add_command(
-            label=_('Expand'),
-            command=self._tv.expand_selected)
-        self._bookContextMenu.add_command(
-            label=_('Collapse'),
-            command=self._tv.collapse_selected,
-        )
-        self._bookContextMenu.add_command(
-            label=_('Expand all'),
-            command=self._tv.expand_all,
-        )
-        self._bookContextMenu.add_command(
-            label=_('Collapse all'),
-            command=self._tv.collapse_all,
-        )
+        self._ctrl.register_client(self._chapterContextMenu)
 
-        #--- Create a world element context menu.
-        self.worldContextMenu = ContextMenu(self._tv, tearoff=0)
-        self.worldContextMenu.add_command(
-            label=_('Add'),
-            command=self._ctrl.add_new_element,
+        self._trashContextMenu = TrashContextMenu(
+            master,
+            self._mdl,
+            self._ui,
+            self._ctrl
         )
-        self.worldContextMenu.add_separator()
-        self.worldContextMenu.add_command(
-            label=_('Export manuscript filtered by viewpoint'),
-            command=self._tv._export_manuscript,
-        )
-        self.worldContextMenu.add_command(
-            label=_('Export synopsis filtered by viewpoint'),
-            command=self._tv._export_synopsis,
-        )
-        self.worldContextMenu.add_separator()
-        self.worldContextMenu.add_command(
-            label=_('Delete'), accelerator=KEYS.DELETE[1],
-            command=self._ctrl.delete_elements,
-        )
-        self.worldContextMenu.add_command(
-            label=_('Cut'),
-            accelerator=KEYS.CUT[1],
-            command=self._ctrl.cut_element,
-        )
-        self.worldContextMenu.add_command(
-            label=_('Copy'),
-            accelerator=KEYS.COPY[1],
-            command=self._ctrl.copy_element,
-        )
-        self.worldContextMenu.add_command(
-            label=_('Paste'),
-            accelerator=KEYS.PASTE[1],
-            command=self._ctrl.paste_element,
-        )
-        self.worldContextMenu.add_separator()
-        self.worldContextMenu.add_cascade(
-            label=_('Set Status'),
-            menu=self._tv.crStatusMenu,
-        )
+        self._ctrl.register_client(self._trashContextMenu)
 
-        #--- Create a plot line context menu.
-        self.plotContextMenu = ContextMenu(self._tv, tearoff=0)
-        self.plotContextMenu.add_command(
-            label=_('Add Plot line'),
-            command=self._ctrl.add_new_plot_line,
+        self._sectionContextMenu = SectionContextMenu(
+            master,
+            self._mdl,
+            self._ui,
+            self._ctrl
         )
-        self.plotContextMenu.add_command(
-            label=_('Add Plot point'),
-            command=self._ctrl.add_new_plot_point,
-        )
-        self.plotContextMenu.add_separator()
-        self.plotContextMenu.add_command(
-            label=_('Export manuscript filtered by plot line'),
-            command=self._tv._export_manuscript,
-        )
-        self.plotContextMenu.add_command(
-            label=_('Export synopsis filtered by plot line'),
-            command=self._tv._export_synopsis,
-        )
-        self.plotContextMenu.add_separator()
-        self.plotContextMenu.add_command(
-            label=_('Change sections to Unused'),
-            command=self._ctrl.exclude_plot_line,
-        )
-        self.plotContextMenu.add_command(
-            label=_('Change sections to Normal'),
-            command=self._ctrl.include_plot_line
-        )
-        self.plotContextMenu.add_separator()
-        self.plotContextMenu.add_command(
-            label=_('Delete'), accelerator=KEYS.DELETE[1],
-            command=self._ctrl.delete_elements,
-        )
-        self.plotContextMenu.add_command(
-            label=_('Cut'),
-            accelerator=KEYS.CUT[1],
-            command=self._ctrl.cut_element,
-        )
-        self.plotContextMenu.add_command(
-            label=_('Copy'),
-            accelerator=KEYS.COPY[1],
-            command=self._ctrl.copy_element,
-        )
-        self.plotContextMenu.add_command(
-            label=_('Paste'),
-            accelerator=KEYS.PASTE[1],
-            command=self._ctrl.paste_element,
-        )
+        self._ctrl.register_client(self._sectionContextMenu)
 
-        #--- Create a project note context menu.
-        self.projectnoteContextMenu = ContextMenu(self._tv, tearoff=0)
-        self.projectnoteContextMenu.add_command(
-            label=_('Add Project note'),
-            command=self._ctrl.add_new_project_note,
+        self._stageContextMenu = StageContextMenu(
+            master,
+            self._mdl,
+            self._ui,
+            self._ctrl
         )
-        self.projectnoteContextMenu.add_separator()
-        self.projectnoteContextMenu.add_command(
-            label=_('Delete'),
-            accelerator=KEYS.DELETE[1],
-            command=self._ctrl.delete_elements,
+        self._ctrl.register_client(self._stageContextMenu)
+
+        self._characterContextMenu = CharacterContextMenu(
+            master,
+            self._mdl,
+            self._ui,
+            self._ctrl
         )
-        self.projectnoteContextMenu.add_command(
-            label=_('Cut'),
-            accelerator=KEYS.CUT[1],
-            command=self._ctrl.cut_element,
+        self._ctrl.register_client(self._characterContextMenu)
+        self._worldContextMenu = WorldContextMenu(
+            master,
+            self._mdl,
+            self._ui,
+            self._ctrl
         )
-        self.projectnoteContextMenu.add_command(
-            label=_('Copy'),
-            accelerator=KEYS.COPY[1],
-            command=self._ctrl.copy_element,
+        self._ctrl.register_client(self._worldContextMenu)
+
+        self.plotContextMenu = PlotContextMenu(
+            master,
+            self._mdl,
+            self._ui,
+            self._ctrl
         )
-        self.projectnoteContextMenu.add_command(
-            label=_('Paste'),
-            accelerator=KEYS.PASTE[1],
-            command=self._ctrl.paste_element,
+        self._ctrl.register_client(self.plotContextMenu)
+        self._projectnoteContextMenu = ProjectnoteContextMenu(
+            master,
+            self._mdl,
+            self._ui,
+            self._ctrl
         )
+        self._ctrl.register_client(self._projectnoteContextMenu)
+
+    def open(self, event):
+        # Event handler for the tree's context menu.
+        if self._mdl.prjFile is None:
+            return
+
+        row = self._ui.tv.tree.identify_row(event.y)
+        if not row:
+            return
+
+        self._ui.tv.go_to_node(row)
+        if row.startswith(ROOT_PREFIX):
+            prefix = row
+        else:
+            prefix = row[:2]
+
+        if prefix == CH_ROOT:
+            self._bookContextMenu.open(event)
+        elif prefix == CHAPTER_PREFIX:
+            if row == self._mdl.trashBin:
+                self._trashContextMenu.open(event)
+            else:
+                self._chapterContextMenu.open(event)
+        elif prefix == SECTION_PREFIX:
+            if self._mdl.novel.tree.parent(row) == self._mdl.trashBin:
+                self._trashContextMenu.open(event)
+            elif self._mdl.novel.sections[row].scType < 2:
+                self._sectionContextMenu.open(event)
+            else:
+                self._stageContextMenu.open(event)
 
     def _configure_book_context_menu(self, prefix, row):
         bookContextEntries = (
@@ -464,70 +367,3 @@ class TreeContextMenu(SubController):
                 self.worldContextMenu.entryconfig(label, state='disabled')
             return
 
-    def open(self, event):
-        # Event handler for the tree's context menu.
-        # - Configure the context menu depending on
-        #   the selected branch and the program state.
-        # - Open it.
-        if self._mdl.prjFile is None:
-            return
-
-        row = self._tv.tree.identify_row(event.y)
-        if not row:
-            return
-
-        self._tv.go_to_node(row)
-        if row.startswith(ROOT_PREFIX):
-            prefix = row
-        else:
-            prefix = row[:2]
-
-        if prefix in (
-            CH_ROOT,
-            CHAPTER_PREFIX,
-            SECTION_PREFIX,
-        ):
-            self._configure_book_context_menu(prefix, row)
-            try:
-                self._bookContextMenu.tk_popup(event.x_root, event.y_root, 0)
-            finally:
-                self._bookContextMenu.grab_release()
-
-        elif prefix in (
-            CR_ROOT,
-            CHARACTER_PREFIX,
-            LC_ROOT,
-            LOCATION_PREFIX,
-            IT_ROOT,
-            ITEM_PREFIX,
-        ):
-            self._configure_world_context_menu(prefix)
-            try:
-                self.worldContextMenu.tk_popup(event.x_root, event.y_root, 0)
-            finally:
-                self.worldContextMenu.grab_release()
-
-        elif prefix in (
-            PL_ROOT,
-            PLOT_LINE_PREFIX,
-            PLOT_POINT_PREFIX
-        ):
-            self._configure_plot_context_menu(prefix)
-            try:
-                self.plotContextMenu.tk_popup(event.x_root, event.y_root, 0)
-            finally:
-                self.plotContextMenu.grab_release()
-
-        elif prefix in (
-            PN_ROOT,
-            PRJ_NOTE_PREFIX
-        ):
-            self._configure_project_note_context_menu(prefix)
-            try:
-                self.projectnoteContextMenu.tk_popup(
-                    event.x_root,
-                    event.y_root,
-                    0
-                )
-            finally:
-                self.projectnoteContextMenu.grab_release()
