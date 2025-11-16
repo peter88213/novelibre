@@ -190,6 +190,11 @@ Download the latest release [novelibre_v5.42.1.pyz](https://github.com/peter8821
 The package is also available in zip format: 
 [novelibre_v5.42.1.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.42.1.zip)
 
+
+### Translations
+
+- [Italian language package](https://github.com/peter88213/nv_it)
+
 ---
 
 ## Installation 
