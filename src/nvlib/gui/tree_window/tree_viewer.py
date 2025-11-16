@@ -819,6 +819,8 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             _('Change Level'),
             _('Export this chapter'),
             _('Delete'),
+            _('Cut'),
+            _('Paste'),
             _('Set Type'),
             _('Set Status'),
             _('Set Viewpoint...'),
@@ -831,6 +833,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
         for label in bookContextEntries:
             self._bookContextMenu.entryconfig(label, state='normal')
+        self._bookContextMenu.entryconfig(_('Copy'), state='normal')
 
         if prefix == CHAPTER_PREFIX:
             for label in (
@@ -875,6 +878,9 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         if prefix == CH_ROOT:
             for label in (
                 _('Delete'),
+                _('Cut'),
+                _('Copy'),
+                _('Paste'),
                 _('Set Type'),
                 _('Add Section'),
                 _('Insert Stage'),
@@ -890,11 +896,14 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             _('Add Plot line'),
             _('Add Plot point'),
             _('Delete'),
+            _('Cut'),
+            _('Paste'),
             _('Export manuscript filtered by plot line'),
             _('Export synopsis filtered by plot line'),
             _('Change sections to Unused'),
             _('Change sections to Normal'),
         )
+        self.plotContextMenu.entryconfig(_('Copy'), state='normal')
         if self._ctrl.isLocked:
             for label in plotContextEntries:
                 self.plotContextMenu.entryconfig(label, state='disabled')
@@ -920,6 +929,9 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             for label in (
                 _('Add Plot point'),
                 _('Delete'),
+                _('Cut'),
+                _('Copy'),
+                _('Paste'),
                 _('Export manuscript filtered by plot line'),
                 _('Export synopsis filtered by plot line'),
                 _('Change sections to Unused'),
@@ -932,7 +944,10 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         projectnoteContextEntries = (
             _('Add Project note'),
             _('Delete'),
+            _('Cut'),
+            _('Paste'),
         )
+        self.projectnoteContextMenu.entryconfig(_('Copy'), state='normal')
         if self._ctrl.isLocked:
             # No changes allowed.
             for label in projectnoteContextEntries:
@@ -954,6 +969,9 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         if prefix == PN_ROOT:
             for label in (
                 _('Delete'),
+                _('Cut'),
+                _('Copy'),
+                _('Paste'),
             ):
                 self.projectnoteContextMenu.entryconfig(
                     label,
@@ -965,10 +983,13 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         worldContextEntries = (
             _('Add'),
             _('Delete'),
+            _('Cut'),
+            _('Paste'),
             _('Set Status'),
             _('Export manuscript filtered by viewpoint'),
             _('Export synopsis filtered by viewpoint'),
         )
+        self.worldContextMenu.entryconfig(_('Copy'), state='normal')
         if self._ctrl.isLocked:
             # No changes allowed.
             for label in worldContextEntries:
@@ -994,6 +1015,9 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         if prefix == CR_ROOT:
             for label in (
                 _('Delete'),
+                _('Cut'),
+                _('Copy'),
+                _('Paste'),
                 _('Export manuscript filtered by viewpoint'),
                 _('Export synopsis filtered by viewpoint'),
             ):
@@ -1003,6 +1027,9 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         if prefix in (LC_ROOT, IT_ROOT):
             for label in(
                 _('Delete'),
+                _('Cut'),
+                _('Copy'),
+                _('Paste'),
                 _('Export manuscript filtered by viewpoint'),
                 _('Export synopsis filtered by viewpoint'),
                 _('Set Status'),
@@ -1118,6 +1145,21 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             accelerator=KEYS.DELETE[1],
             command=self._ctrl.delete_elements,
         )
+        self._bookContextMenu.add_command(
+            label=_('Cut'),
+            accelerator=KEYS.CUT[1],
+            command=self._ctrl.cut_element,
+        )
+        self._bookContextMenu.add_command(
+            label=_('Copy'),
+            accelerator=KEYS.COPY[1],
+            command=self._ctrl.copy_element,
+        )
+        self._bookContextMenu.add_command(
+            label=_('Paste'),
+            accelerator=KEYS.PASTE[1],
+            command=self._ctrl.paste_element,
+        )
         self._bookContextMenu.add_separator()
         self._bookContextMenu.add_cascade(
             label=_('Set Type'),
@@ -1177,6 +1219,21 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             label=_('Delete'), accelerator=KEYS.DELETE[1],
             command=self._ctrl.delete_elements,
         )
+        self.worldContextMenu.add_command(
+            label=_('Cut'),
+            accelerator=KEYS.CUT[1],
+            command=self._ctrl.cut_element,
+        )
+        self.worldContextMenu.add_command(
+            label=_('Copy'),
+            accelerator=KEYS.COPY[1],
+            command=self._ctrl.copy_element,
+        )
+        self.worldContextMenu.add_command(
+            label=_('Paste'),
+            accelerator=KEYS.PASTE[1],
+            command=self._ctrl.paste_element,
+        )
         self.worldContextMenu.add_separator()
         self.worldContextMenu.add_cascade(
             label=_('Set Status'),
@@ -1216,6 +1273,21 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             label=_('Delete'), accelerator=KEYS.DELETE[1],
             command=self._ctrl.delete_elements,
         )
+        self.plotContextMenu.add_command(
+            label=_('Cut'),
+            accelerator=KEYS.CUT[1],
+            command=self._ctrl.cut_element,
+        )
+        self.plotContextMenu.add_command(
+            label=_('Copy'),
+            accelerator=KEYS.COPY[1],
+            command=self._ctrl.copy_element,
+        )
+        self.plotContextMenu.add_command(
+            label=_('Paste'),
+            accelerator=KEYS.PASTE[1],
+            command=self._ctrl.paste_element,
+        )
 
         #--- Create a project note context menu.
         self.projectnoteContextMenu = ContextMenu(self.tree, tearoff=0)
@@ -1228,6 +1300,21 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             label=_('Delete'),
             accelerator=KEYS.DELETE[1],
             command=self._ctrl.delete_elements,
+        )
+        self.projectnoteContextMenu.add_command(
+            label=_('Cut'),
+            accelerator=KEYS.CUT[1],
+            command=self._ctrl.cut_element,
+        )
+        self.projectnoteContextMenu.add_command(
+            label=_('Copy'),
+            accelerator=KEYS.COPY[1],
+            command=self._ctrl.copy_element,
+        )
+        self.projectnoteContextMenu.add_command(
+            label=_('Paste'),
+            accelerator=KEYS.PASTE[1],
+            command=self._ctrl.paste_element,
         )
 
     def _date_is_valid(self, section):
