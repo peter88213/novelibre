@@ -38,13 +38,6 @@ This is the manuscript to work on. *novelibre* generated it and passed it to Lib
 ![LibreOffice screenshot](docs/Screenshots/screen02.jpg)
 
 
-What distinguishes *novelibre* from other writing software is the integration 
-of other applications into the workflow, which are powerful and proven. 
-*novelibre* is not an "all-in-one" solution, but a novel organizer that
-is embedded in a customizable ecosystem. 
-
-![The novelibre ecosystem](docs/Screenshots/ecosystem.png)
-
 ## Features
 
 - With *novelibre*, extensive novels can be broken down into **parts, chapters, and sections**. 

@@ -1,8 +1,8 @@
-[Homepage](https://github.com/peter88213/novelibre) > German page
+[Home page](https://github.com/peter88213/novelibre) > German page
 
 ---
 
-# ![N](img/nLogo32.png) novelibre - German page
+# ![N](img/nLogo32.png) novelibre (Deutsche Seite)
 
 [novelibre](https://github.com/peter88213/novelibre/) hilft Romanautoren dabei, 
 umfangreiche Romane zu planen und während des Schreibens und Überarbeitens 
@@ -21,22 +21,12 @@ Die Metadaten bleiben während der gesamten Arbeit an dem Roman dauerhaft mit de
 
 So sieht der Arbeitsbereich von *novelibre* aus:
 
-![novelibre screenshot](Screenshots/screen01.png)
-
+![novelibre screenshot](../Screenshots/screen01.png)
 
 Dies ist das Manuskript, an dem gearbeitet werden soll. 
 *novelibre* hat es erstellt und an LibreOffice *Writer* weitergereicht:
 
-![LibreOffice screenshot](Screenshots/screen02.jpg)
-
-
-Was *novelibre* von anderer Schreibsoftware unterscheidet, ist die Integration 
-anderer Anwendungen in den Arbeitsablauf, die leistungsstark und bewährt sind. 
-*novelibre* ist keine „All-in-One”-Lösung, sondern ein Roman-Organizer, der
-in ein anpassbares Ökosystem eingebettet ist. 
-
-
-![Das Novelibre-Ökosystem](Screenshots/ecosystem.png)
+![LibreOffice screenshot](../Screenshots/screen02.jpg)
 
 ---
 
