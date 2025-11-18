@@ -1,4 +1,5 @@
 /src/locale/
+/src/plugin/
 /test/work/
 /test/tmp/
 /test/novelibre.py
