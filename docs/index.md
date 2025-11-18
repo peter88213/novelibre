@@ -39,6 +39,8 @@ Das Benutzerhandbuch liegt komplett auf Deutsch vor.
 
 ---
 
+## Links
+
 - [Benutzerhandbuch](https://peter88213.github.io/nvhelp-de/) 
 - [Download-Seite (Englisch)](https://github.com/peter88213/novelibre) 
 - [Feedback geben oder eine Frage stellen (Englisch)](https://github.com/peter88213/novelibre/discussions)
