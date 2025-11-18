@@ -5,6 +5,7 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from abc import ABC, abstractmethod
+import os
 
 from nvlib.controller.sub_controller import SubController
 
@@ -14,6 +15,7 @@ class PluginBase(ABC, SubController):
     
     Public methods:
         - install
+        - uninstall
         
     Public methods (inherited from SubController):
         - disable_menu
@@ -61,3 +63,7 @@ class PluginBase(ABC, SubController):
         self._ui = view
         self._ctrl = controller
 
+    def uninstall(self):
+        """Remove the plugin module file from the file system."""
+        if os.path.isfile(self.filePath):
+            os.remove(self.filePath)

@@ -74,7 +74,11 @@ class PluginCollection(dict, SubController):
         if pluginName in self:
             try:
                 if self[pluginName].filePath:
-                    os.remove(self[pluginName].filePath)
+                    try:
+                        self[pluginName].uninstall()
+                    except AttributeError:
+                        # the plugin doesn't have an uninstaller method
+                        os.remove(self[pluginName].filePath)
                     self[pluginName].filePath = ''
                     return True
 
