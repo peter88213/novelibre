@@ -953,7 +953,7 @@ class MainView(Observer, MsgBoxes, SubController):
             menu=self.helpMenu,
         )
         self.helpMenu.add_command(
-            label=_('Online user guide'),
+            label=_('Online help'),
             accelerator=KEYS.OPEN_HELP[1],
             command=self._ctrl.open_help,
         )
