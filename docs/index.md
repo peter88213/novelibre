@@ -4,7 +4,9 @@
 
 # ![N](img/nLogo32.png) novelibre - German page
 
-[novelibre](https://github.com/peter88213/novelibre/) helps novelists to plan extensive novels and to keep track of them during creation and revision.
+[novelibre](https://github.com/peter88213/novelibre/) hilft Romanautoren dabei, 
+umfangreiche Romane zu planen und während des Schreibens und Überarbeitens 
+den Überblick zu behalten.
 
 *novelibre* ist für Autoren gedacht, die mit LibreOffice oder OpenOffice vertraut sind. 
 
@@ -17,7 +19,7 @@ Die Metadaten bleiben während der gesamten Arbeit an dem Roman dauerhaft mit de
 [Erfahren Sie mehr](https://peter88213.github.io/nvhelp-de/introduction.html) 
 über die Idee und den Zweck von novelibre. 
 
-So sieht der Arbeitsbereich von *novelibre*aus:
+So sieht der Arbeitsbereich von *novelibre* aus:
 
 ![novelibre screenshot](Screenshots/screen01.png)
 
@@ -25,7 +27,7 @@ So sieht der Arbeitsbereich von *novelibre*aus:
 Dies ist das Manuskript, an dem gearbeitet werden soll. 
 *novelibre* hat es erstellt und an LibreOffice *Writer* weitergereicht:
 
-![LibreOffice screenshot]Screenshots/screen02.jpg)
+![LibreOffice screenshot](Screenshots/screen02.jpg)
 
 
 Was *novelibre* von anderer Schreibsoftware unterscheidet, ist die Integration 
@@ -36,9 +38,10 @@ in ein anpassbares Ökosystem eingebettet ist.
 
 ![Das Novelibre-Ökosystem](Screenshots/ecosystem.png)
 
+---
 
 - [Benutzerhandbuch](https://peter88213.github.io/nvhelp-de/) 
-- [Homepage (Englisch)](https://github.com/peter88213/novelibre) 
+- [Download-Seite (Englisch)](https://github.com/peter88213/novelibre) 
 - [Feedback geben oder eine Frage stellen (Englisch)](https://github.com/peter88213/novelibre/discussions)
 
 ---
