@@ -1,3 +1,7 @@
+[Deutsch](https://peter88213.github.io/novelibre/) [Italiano](https://peter88213.github.io/nv_it/)
+
+---
+
 [![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.42.1.pyz)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
 [![News/Feedback](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions)
