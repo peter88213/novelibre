@@ -6,14 +6,11 @@
 
 [novelibre](https://github.com/peter88213/novelibre/) hilft Romanautoren dabei, 
 umfangreiche Romane zu planen und während des Schreibens und Überarbeitens 
-den Überblick zu behalten.
-
-*novelibre* ist für Autoren gedacht, die mit LibreOffice oder OpenOffice vertraut sind. 
-
+den Überblick zu behalten.  
+*novelibre* ist für Autoren gedacht, die mit LibreOffice oder OpenOffice vertraut sind.  
 *novelibre* ist eine Ergänzung zu OpenOffice oder LibreOffice, die dabei hilft, 
 umfangreiche Romane in Teile, Kapitel und Abschnitte zu unterteilen, die alle mit 
-zusätzlichen Informationen, sogenannten Metadaten, versehen sind.
-
+zusätzlichen Informationen, sogenannten Metadaten, versehen sind.  
 Die Metadaten bleiben während der gesamten Arbeit an dem Roman dauerhaft mit 
 den Kapiteln und Abschnitten im ODT-Manuskript verknüpft. 
 *novelibre* macht Informationen über die Erzählwelt zugänglich und verknüpft Figuren, 
@@ -50,7 +47,7 @@ Das Benutzerhandbuch liegt komplett auf Deutsch vor.
 ## Lizenz
 
 Dies ist Open Source Software, und *novelibre* steht unter der GPLv3-Lizenz. 
-Einzelheiten finden Sie auf der  
+Einzelheiten finden Sie auf der
 [GNU General Public License website](https://www.gnu.org/licenses/gpl-3.0.en.html), 
 oder in der [LICENSE](https://github.com/peter88213/novelibre/blob/main/LICENSE)-Datei.
 
