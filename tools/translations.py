@@ -24,11 +24,11 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 
-import sys
-import os
-import json
-from string import Template
 from datetime import datetime
+import json
+import os
+from string import Template
+import sys
 
 POT_PATH = '../i18n'
 JSON_PATH = '../../novelibre/i18n'
@@ -52,6 +52,10 @@ $potCreationLine
 '''
 
 
+def output(message):
+    print(f'(translations) {message}')
+
+
 class Translations:
     """Class to handle GNU gettext translation files.
     
@@ -61,20 +65,21 @@ class Translations:
     - The JSON dictionary is updated by translations found in the initial '.po' file.
     """
 
-    def __init__(self,
-                 languageCode,
-                 app='',
-                 appVersion='unknown',
-                 potFile='messages.pot',
-                 languages='',
-                 translator='unknown',
-                 ):
+    def __init__(
+        self,
+        languageCode,
+        app='',
+        appVersion='unknown',
+        potFile='messages.pot',
+        languages='',
+        translator='unknown',
+    ):
         self.poFile = f'{POT_PATH}/{languageCode}.po'
         self.potFile = f'{POT_PATH}/{potFile}'
         self.lngFile = f'{JSON_PATH}/{languageCode}.json'
-        self.msgDict = {}
-        self.msgList = []
-        self.header = ''
+        self.jsonMsgDict = {}
+        self.poMsgDict = {}
+        self.potMsgList = []
         currentDateTime = datetime.today().replace(microsecond=0).isoformat(sep=" ")
         self.msgMap = {
             'app': app,
@@ -90,10 +95,10 @@ class Translations:
     def read_pot(self):
         """Read the messages of the '.pot' file.
         
-        Parse the file and collect messages in msgList.
+        Parse the file and collect messages in potMsgList.
         """
         msgCount = 0
-        print(f'Reading "{self.potFile}" ...')
+        output(f'Reading "{self.potFile}" ...')
         with open(self.potFile, 'r', encoding='utf-8') as f:
             lines = f.readlines()
         inHeader = True
@@ -108,80 +113,45 @@ class Translations:
                     inHeader = False
             if not inHeader:
                 if line.startswith('msgid "'):
-                    self.msgList.append(self._extract_text('msgid "', line))
+                    self.potMsgList.append(self._extract_text('msgid "', line))
                     msgCount += 1
-            self.msgList.sort()
-        print(f'{msgCount} entries read.')
+            self.potMsgList.sort()
+        output(f'{msgCount} entries read.')
 
     def read_json(self):
-        """Read a JSON translation file and add the translations to msgDict.
+        """Read a JSON dictionary and add the translations to jsonMsgDict.
         
         Return True in case of success.
         Return False, if the file cannot be read. 
         """
         try:
+            output(f'Reading "{self.lngFile}" ...')
             with open(self.lngFile, 'r', encoding='utf-8') as f:
-                print(f'Reading "{self.lngFile}" ...')
-                msgDict = json.load(f)
-            for message in msgDict:
-                self.msgDict[message] = msgDict[message]
-            print(f'{len(self.msgDict)} translations total.')
+                self.jsonMsgDict = json.load(f)
+            output(f'{len(self.jsonMsgDict)} translations total.')
             return True
 
         except Exception as ex:
-            print(str(ex))
-            return False
-
-    def write_json(self):
-        """Add translations to a JSON translation file.
-        
-        Create a backup file.
-        Return True in case of success.
-        Return False, if the file cannot be written. 
-        """
-        if os.path.isfile(self.lngFile):
-            os.replace(self.lngFile, f'{self.lngFile}.bak')
-            backedUp = True
-        else:
-            backedUp = False
-        try:
-            with open(self.lngFile, 'w', encoding='utf-8') as f:
-                print(f'Writing "{self.lngFile}" ...')
-                msgDict = {}
-                # dict for non-empty entries
-                for msg in self.msgDict:
-                    if self.msgDict[msg]:
-                        msgDict[msg] = self.msgDict[msg]
-                json.dump(msgDict, f, ensure_ascii=False, sort_keys=True, indent=2)
-                print(f'{len(self.msgDict)} translations written.')
-            return True
-
-        except Exception as ex:
-            if backedUp:
-                os.replace(f'{self.lngFile}.bak', self.lngFile)
-            print(f'ERROR: Cannot write file: "{self.lngFile}".\n{str(ex)}')
+            output(str(ex))
             return False
 
     def read_po(self):
         """Read the existing translations of the '.po' file.
         
-        Parse the file and collect translations in msgDict.
+        Parse the file and collect translations in jsonMsgDict.
         """
 
-        # Create the header.
-        hdTemplate = Template(poHeader)
-        self.header = hdTemplate.safe_substitute(self.msgMap)
-
-        print(f'Reading "{self.poFile}" ...')
+        output(f'Reading "{self.poFile}" ...')
         try:
             with open(self.poFile, 'r', encoding='utf-8') as f:
                 lines = f.readlines()
         except FileNotFoundError:
-            print('Not found.')
+            output('Not found.')
             return
 
         inHeader = True
         msgCount = 0
+        newMsgCount = 0
         for line in lines:
             line = line.strip()
             if line.startswith('msgid ""'):
@@ -194,11 +164,53 @@ class Translations:
                     message = self._extract_text('msgid "', line)
                     msgCount += 1
                 elif line.startswith('msgstr "'):
-                    translation = self._extract_text('msgstr "', line)
-                    if translation:
-                        self.msgDict[message] = translation
-        print(f'{msgCount} entries read.')
-        print(f'{len(self.msgDict)} translations total.')
+                    poTranslation = self._extract_text('msgstr "', line)
+                    dictTranslation = self.jsonMsgDict.get(message, '')
+                    if poTranslation and not dictTranslation:
+                        self.jsonMsgDict[message] = poTranslation
+                        newMsgCount += 1
+        output(f'{msgCount} entries read.')
+        output(f'{newMsgCount} new translations found.')
+
+    def update_json(self):
+        """Add new translations to a JSON translation file.
+        
+        Create a backup file.
+        Return True in case of success.
+        Return False, if the file cannot be written. 
+        """
+        try:
+            if os.path.isfile(self.lngFile):
+                with open(self.lngFile, 'r', encoding='utf-8') as f:
+                    msgDict = json.load(f)
+                os.replace(self.lngFile, f'{self.lngFile}.bak')
+                backedUp = True
+            else:
+                msgDict = {}
+                backedUp = False
+            with open(self.lngFile, 'w', encoding='utf-8') as f:
+                output(f'Writing "{self.lngFile}" ...')
+
+                newMsgCount = 0
+                for msg in self.jsonMsgDict:
+                    if not msgDict.get(msg, ''):
+                        msgDict[msg] = self.jsonMsgDict[msg]
+                        newMsgCount += 1
+                json.dump(
+                    msgDict,
+                    f,
+                    ensure_ascii=False,
+                    sort_keys=True,
+                    indent=2
+                )
+                output(f'{newMsgCount} translations added to {self.lngFile} (total: {len(msgDict)}).')
+            return True
+
+        except Exception as ex:
+            if backedUp:
+                os.replace(f'{self.lngFile}.bak', self.lngFile)
+            output(f'ERROR: Cannot write file: "{self.lngFile}".\n{str(ex)}')
+            return False
 
     def write_po(self):
         """Write translations to the '.po' file.
@@ -206,20 +218,19 @@ class Translations:
         Return True, if all messages have translations.
         Return False, if messages need to be translated. 
         """
-        lines = [self.header]
+        lines = [
+            Template(poHeader).safe_substitute(self.msgMap),
+        ]
         missingCount = 0
         msgCount = 0
-        for message in self.msgList:
-            try:
-                translation = self.msgDict[message]
-            except:
-                translation = ''
+        for message in self.potMsgList:
+            translation = self.jsonMsgDict.get(message, '')
             lines.append(f'msgid "{message}"\nmsgstr "{translation}"\n\n')
             if not translation:
-                print(f'Translation missing for "{message}".')
+                output(f'Translation missing for "{message}".')
                 missingCount += 1
             msgCount += 1
-        print(f'Writing "{self.poFile}" ...')
+        output(f'Writing "{self.poFile}" ...')
         if os.path.isfile(self.poFile):
             os.replace(self.poFile, f'{self.poFile}.bak')
             backedUp = True
@@ -231,14 +242,14 @@ class Translations:
         except Exception as ex:
             if backedUp:
                 os.replace(f'{self.poFile}.bak', self.poFile)
-            print(f'ERROR: Cannot write file: "{self.poFile}".\n{str(ex)}')
+            output(f'ERROR: Cannot write file: "{self.poFile}".\n{str(ex)}')
             return False
 
         if missingCount > 0:
-            print(f'NOTE: {missingCount} translations missing.')
+            output(f'NOTE: {missingCount} translations missing.')
             return False
 
-        print(f'{msgCount} entries written.')
+        output(f'{len(self.potMsgList)} entries written.')
         return True
 
     def _extract_text(self, prefix, line):
@@ -247,44 +258,42 @@ class Translations:
         message = line[firstPos:lastPos]
         return message
 
+    def run(self):
+        """Update a '.po' translation file.
+        
+        - Add missing entries from the '.pot' template file.
+        - Add missing translations from the JSON dictionary to the '.po' file.
+        - Update the JSON dictionary from the '.po' file.
+        
+        Return True, if all messages have translations.
+        Return False, if messages need to be translated. 
+        """
+        self.read_json()
+        self.read_pot()
+        self.read_po()
+        self.update_json()
+        if self.write_po():
+            return True
+        else:
+            return False
 
-def main(languageCode,
-         app='',
-         appVersion='unknown',
-         potFile='messages.pot',
-         json=False,
-         languages='',
-         translator='unknown'
-         ):
-    """Update a '.po' translation file.
-    
-    - Add missing entries from the '.pot' template file.
-    
-    If json is True:
-    - Add missing translations from the JSON dictionary to the '.po' file.
-    - Update the JSON dictionary from the '.po' file.
-    
-    Return True, if all messages have translations.
-    Return False, if messages need to be translated. 
-    """
-    translations = Translations(
+
+def main(
         languageCode,
-        app=app,
-        appVersion=appVersion,
-        potFile=potFile,
-        languages=languages,
-        translator=translator,
-        )
-    if json:
-        translations.read_json()
-    translations.read_pot()
-    translations.read_po()
-    if json:
-        translations.write_json()
-    if translations.write_po():
-        return True
-    else:
-        return False
+        app='',
+        appVersion='unknown',
+        potFile='messages.pot',
+        languages='',
+        translator='unknown'
+    ):
+    return Translations(
+        languageCode,
+        app,
+        appVersion,
+        potFile,
+        languages,
+        translator
+    ).run()
 
 
 if __name__ == '__main__':

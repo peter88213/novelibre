@@ -15,9 +15,13 @@ import os
 from shutil import copyfile
 
 
+def output(message):
+    print(f'(inliner) {message}')
+
+
 def inline_module(file, package, packagePath, text, processedModules, copyNovxlib):
     with open(file, 'r', encoding='utf-8') as f:
-        print(f'Processing "{file}"...')
+        output(f'Processing "{file}"...')
         if copyNovxlib:
             target = file.replace('/../novxlib', '')
             targetDir = os.path.dirname(target)
@@ -85,6 +89,6 @@ def run(sourceFile, targetFile, package, packagePath, copynovxlib=False):
     processedModules = []
     text = inline_module(sourceFile, package, packagePath, text, processedModules, copynovxlib)
     with open(targetFile, 'w', encoding='utf-8', newline='\n') as f:
-        print(f'Writing "{targetFile}"...\n')
+        output(f'Writing "{targetFile}"...')
         f.write(text)
 

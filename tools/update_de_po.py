@@ -8,7 +8,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
 import sys
-from translations import Translations
+import translations
 
 if input('Update the translations of all projects? (Y/n)') != 'Y':
     sys.exit()
@@ -18,14 +18,12 @@ ROOT = '../../'
 
 with os.scandir(ROOT) as prjPaths:
     for prjPath in prjPaths:
+        head, tail = os.path.split(prjPath)
         if os.path.isdir(prjPath):
-            poFile = f'{prjPath.path}/i18n/de.po'
-            if os.path.isfile(poFile):
-                print(poFile)
-                os.chdir(f'{prjPath.path}/i18n')
-                translations = Translations('de')
-                translations.read_pot()
-                translations.read_po()
-                translations.read_json()
-                translations.write_po()
+            if tail == 'novelibre' or tail.startswith('nv_'):
+                poFile = f'{prjPath.path}/i18n/de.po'
+                if os.path.isfile(poFile):
+                    print(poFile)
+                    os.chdir(f'{prjPath.path}/i18n')
+                    translations.main('de')
 os.chdir(START_DIR)

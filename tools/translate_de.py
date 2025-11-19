@@ -41,15 +41,24 @@ PO_FILE = 'de.po'
 MO_COPY_DIR = '../../novelibre/src/locale/de/LC_MESSAGES'
 
 
-def main(moFile, app='', version='unknown', languages='', translator='unknown'):
+def output(message):
+    print(f'(translate_de) {message}')
+
+
+def main(
+        moFile,
+        app='',
+        version='unknown',
+        languages='',
+        translator='unknown'
+    ):
     if not translations.main(
         'de',
         app=app,
         appVersion=version,
-        json=True,
         languages=languages,
         translator=translator
-        ):
+    ):
         sys.exit(1)
 
     moDir = f'{I18_DIR}/{MO_DIR}'
@@ -58,8 +67,9 @@ def main(moFile, app='', version='unknown', languages='', translator='unknown'):
     moCopyPath = f'{MO_COPY_DIR}/{moFile}'
     os.makedirs(moDir, exist_ok=True)
     os.makedirs(MO_COPY_DIR, exist_ok=True)
-    print(f'Writing "{moFile}" ...')
+    output(f'Writing "{moFile}" ...')
     msgfmt.make(poPath, moPath)
+    output(f'Copying "{moPath}" to "{moCopyPath}" ...')
     copyfile(moPath, moCopyPath)
     return I18_DIR, MO_DIR
 

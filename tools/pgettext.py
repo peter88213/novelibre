@@ -4,7 +4,7 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-VERSION = '0.3'
+VERSION = '0.4'
 
 import os
 import sys
@@ -12,9 +12,10 @@ import re
 from string import Template
 from datetime import datetime
 
-msgPatterns = [re.compile(r'_\(\"(.+?)\"\)'),
-              re.compile(r'_\(\'(.+?)\'\)'),
-              ]
+msgPatterns = [
+    re.compile(r'_\(\"(.+?)\"\)'),
+    re.compile(r'_\(\'(.+?)\'\)'),
+]
 
 potHeader = '''\
 # ${app} Dictionary
@@ -36,6 +37,10 @@ msgstr ""
 POT_FILE = '../i18n/messages.pot'
 
 
+def output(message):
+    print(f'(pgettext) {message}')
+
+
 class PotFile:
     """GNU gettext pot file generator.
     
@@ -44,29 +49,35 @@ class PotFile:
     This works also for Python 3.6+ f-strings.   
     """
 
-    def __init__(self, filePath='messages.pot', app='', appVersion='unknown'):
+    def __init__(
+            self,
+            filePath='messages.pot',
+            app='',
+            appVersion='unknown'
+        ):
         self.filePath = filePath
-        self.msgList = []
+        self.potMsgList = []
         self.app = app
         self.appVersion = appVersion
 
     def write_pot(self):
-        msgMap = {'app':self.app,
-                'appVersion': self.appVersion,
-                'datetime':datetime.today().replace(microsecond=0).isoformat(sep=' '),
-                'version': VERSION,
-                }
+        msgMap = {
+            'app':self.app,
+            'appVersion': self.appVersion,
+            'datetime':datetime.today().replace(microsecond=0).isoformat(sep=' '),
+            'version': VERSION,
+        }
         hdTemplate = Template(potHeader)
         potText = hdTemplate.safe_substitute(msgMap)
-        self.msgList = list(set(self.msgList))
-        self.msgList.sort()
-        for message in self.msgList:
+        self.potMsgList = list(set(self.potMsgList))
+        self.potMsgList.sort()
+        for message in self.potMsgList:
             message = message.replace('"', '\\"')
             entry = f'\nmsgid "{message}"\nmsgstr ""\n'
             potText += entry
         with open(self.filePath, 'w', encoding='utf-8') as f:
             f.write(potText)
-            print(f'\nPot file "{self.filePath}" written.')
+            output(f'Pot file "{self.filePath}" written.')
 
     def get_messages(self, text):
         result = []
@@ -77,8 +88,8 @@ class PotFile:
     def scan_file(self, filename):
         with open(filename, 'r', encoding='utf-8') as f:
             text = f.read()
-            print(f'Processing "{filename}"...')
-        self.msgList.extend(self.get_messages(text))
+            output(f'Processing "{filename}" ...')
+        self.potMsgList.extend(self.get_messages(text))
 
     def scan_dir(self, path):
         with os.scandir(path) as it:
@@ -92,7 +103,7 @@ class PotFile:
 
 def main(path):
     # Generate a template file (pot) for message translation.
-    print(f'Writing "{POT_FILE}" ...')
+    output(f'Writing "{POT_FILE}" ...')
     if os.path.isfile(POT_FILE):
         os.replace(POT_FILE, f'{POT_FILE}.bak')
         backedUp = True
@@ -105,7 +116,7 @@ def main(path):
     except Exception as ex:
         if backedUp:
             os.replace(f'{POT_FILE}.bak', POT_FILE)
-        print(f'ERROR: Cannot write file: "{POT_FILE}".\n{ex}')
+        output(f'ERROR: Cannot write file: "{POT_FILE}".\n{ex}')
 
 
 if __name__ == '__main__':
