@@ -77,9 +77,8 @@ class Translations:
         self.poFile = f'{POT_PATH}/{languageCode}.po'
         self.potFile = f'{POT_PATH}/{potFile}'
         self.lngFile = f'{JSON_PATH}/{languageCode}.json'
-        self.jsonMsgDict = {}
-        self.poMsgDict = {}
         self.potMsgList = []
+        self.jsonMsgDict = {}
         currentDateTime = datetime.today().replace(microsecond=0).isoformat(sep=" ")
         self.msgMap = {
             'app': app,
