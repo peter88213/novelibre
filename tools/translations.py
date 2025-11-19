@@ -178,23 +178,27 @@ class Translations:
         Return True in case of success.
         Return False, if the file cannot be written. 
         """
+        backedUp = False
         try:
             if os.path.isfile(self.lngFile):
                 with open(self.lngFile, 'r', encoding='utf-8') as f:
                     msgDict = json.load(f)
-                os.replace(self.lngFile, f'{self.lngFile}.bak')
-                backedUp = True
             else:
                 msgDict = {}
-                backedUp = False
-            with open(self.lngFile, 'w', encoding='utf-8') as f:
-                output(f'Writing "{self.lngFile}" ...')
+            newMsgCount = 0
+            for msg in self.jsonMsgDict:
+                if not msgDict.get(msg, ''):
+                    msgDict[msg] = self.jsonMsgDict[msg]
+                    newMsgCount += 1
+            if newMsgCount == 0:
+                output(f'"{self.lngFile}" remains unchanged (total: {len(msgDict)}).')
+                return True
 
-                newMsgCount = 0
-                for msg in self.jsonMsgDict:
-                    if not msgDict.get(msg, ''):
-                        msgDict[msg] = self.jsonMsgDict[msg]
-                        newMsgCount += 1
+            output(f'Writing "{self.lngFile}" ...')
+            if os.path.isfile(self.lngFile):
+                os.replace(self.lngFile, f'{self.lngFile}.bak')
+                backedUp = True
+            with open(self.lngFile, 'w', encoding='utf-8') as f:
                 json.dump(
                     msgDict,
                     f,
