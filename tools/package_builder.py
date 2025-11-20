@@ -109,7 +109,7 @@ setuplib.main(False)
         output('Creating/updating the translations ...')
         translation = translate_de.main(
             self.moFile,
-            app=self.PRJ_NAME,
+            app='novelibre',
             version=self.version,
         )
         if translation is None:
