@@ -1,4 +1,4 @@
-"""Provide a class to handle GNU gettext translation files.
+"""Update the .po and .json translation files.
 
 Requires Python 3.9+
 
@@ -6,6 +6,7 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from datetime import datetime
 import json
 import os
 
@@ -81,6 +82,9 @@ class PoFile:
                 f'(total: {len(self.messages)}).'
             )
             return
+
+        self.data['PO-Revision-Date'] = datetime.today().replace(
+            microsecond=0).isoformat(sep=' ')
 
         lines = self.headings.copy()
         lines.append('msgid ""')
@@ -172,12 +176,7 @@ class JsonDict:
         )
 
 
-def main(
-        potFilePath,
-        poFilePath,
-        jsonDictPath,
-        version=None,
-    ):
+def main(potFilePath, poFilePath, jsonDictPath, version=None):
     potFile = PoFile(potFilePath)
     potFile.read()
     poFile = PoFile(poFilePath)
