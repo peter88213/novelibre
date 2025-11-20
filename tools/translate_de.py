@@ -38,7 +38,6 @@ import translations
 I18_DIR = '../i18n'
 MO_DIR = 'locale/de/LC_MESSAGES'
 PO_FILE = 'de.po'
-MO_COPY_DIR = '../../novelibre/src/locale/de/LC_MESSAGES'
 
 
 def output(message):
@@ -49,24 +48,26 @@ def main(
         moFile,
         app='',
         version='unknown',
-        languages='',
-        translator='unknown'
     ):
-    if not translations.main(
-        'de',
-        app=app,
-        appVersion=version,
-        languages=languages,
-        translator=translator
-    ):
-        sys.exit(1)
-
     moDir = f'{I18_DIR}/{MO_DIR}'
     poPath = f'{I18_DIR}/{PO_FILE}'
+    try:
+        translations.main(
+            f'{I18_DIR}/messages.pot',
+            poPath,
+            f'../../{app}/i18n/de.json',
+            version=version,
+        )
+    except RuntimeError:
+        sys.exit(1)
+
     moPath = f'{I18_DIR}/{MO_DIR}/{moFile}'
-    moCopyPath = f'{MO_COPY_DIR}/{moFile}'
+    moCopyPath = f'../../{app}/src/{MO_DIR}/{moFile}'
     os.makedirs(moDir, exist_ok=True)
-    os.makedirs(MO_COPY_DIR, exist_ok=True)
+    os.makedirs(
+        '../../{app}/src/{MO_DIR}',
+        exist_ok=True
+    )
     output(f'Writing "{moFile}" ...')
     msgfmt.make(poPath, moPath)
     output(f'Copying "{moPath}" to "{moCopyPath}" ...')

@@ -111,8 +111,6 @@ setuplib.main(False)
             self.moFile,
             app=self.PRJ_NAME,
             version=self.version,
-            languages='English-German',
-            translator='Peter Triesberger'
         )
         if translation is None:
             sys.exit(1)

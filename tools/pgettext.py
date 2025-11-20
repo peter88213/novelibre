@@ -4,7 +4,7 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-VERSION = '0.4'
+VERSION = '1.0'
 
 import os
 import sys
@@ -31,7 +31,7 @@ msgstr ""
 "MIME-Version: 1.0\\n"
 "Content-Type: text/plain; charset=UTF-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
-"Generated-By: novxlib pgettext.py ${version}\\n"
+"Generated-By: novelibre pgettext.py ${version}\\n"
 
 '''
 POT_FILE = '../i18n/messages.pot'
@@ -65,7 +65,7 @@ class PotFile:
             'app':self.app,
             'appVersion': self.appVersion,
             'datetime':datetime.today().replace(microsecond=0).isoformat(sep=' '),
-            'version': VERSION,
+            'version': self.appVersion,
         }
         hdTemplate = Template(potHeader)
         potText = hdTemplate.safe_substitute(msgMap)
