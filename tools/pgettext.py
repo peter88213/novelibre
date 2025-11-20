@@ -19,7 +19,7 @@ msgPatterns = [
 
 potHeader = '''\
 # ${app} Dictionary
-# Copyright (C) 2023 Peter Triesberger
+# Copyright (C) $year Peter Triesberger
 #
 msgid ""
 msgstr ""
@@ -61,11 +61,13 @@ class PotFile:
         self.appVersion = appVersion
 
     def write_pot(self):
+        today = datetime.today()
         msgMap = {
             'app':self.app,
             'appVersion': self.appVersion,
-            'datetime':datetime.today().replace(microsecond=0).isoformat(sep=' '),
+            'datetime':today.replace(microsecond=0).isoformat(sep=' '),
             'version': VERSION,
+            'year':today.year
         }
         hdTemplate = Template(potHeader)
         potText = hdTemplate.safe_substitute(msgMap)
