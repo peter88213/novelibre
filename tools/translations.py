@@ -54,10 +54,10 @@ class PoFile:
         output(f'{len(self.messages)} entries read.')
 
     def write(self, potMsgList, jsonMessages, version):
-        """Write translations to the '.po' file.
+        """Write c translations to the '.po' file, if there are changes.
 
-        Return True, if all messages have translations.
-        Return False, if messages need to be translated. 
+        Create a backup file, if necessary.
+        Raise RuntimeError, if messages need to be translated. 
         """
         missingCount = 0
         changesCount = 0
@@ -127,9 +127,9 @@ class JsonDict:
         output(f'{len(self.messages)} translations total.')
 
     def write(self, poMessages):
-        """Add new translations to a JSON translation dictionary.
+        """Add new translations to the JSON translation dictionary.
         
-        Create a backup file.
+        Create a backup file, if necessary.
         """
         newMsgCount = 0
         for msg in poMessages:
