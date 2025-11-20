@@ -55,7 +55,7 @@ class PoFile:
         output(f'{len(self.messages)} entries read.')
 
     def write(self, potMsgList, jsonMessages, version):
-        """Write c translations to the '.po' file, if there are changes.
+        """Write translations to the '.po' file, if there are changes.
 
         Create a backup file, if necessary.
         Raise RuntimeError, if messages need to be translated. 
