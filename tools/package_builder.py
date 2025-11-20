@@ -112,9 +112,6 @@ setuplib.main(False)
             app='novelibre',
             version=self.version,
         )
-        if translation is None:
-            sys.exit(1)
-
         i18Dir, moDir = translation
         self.distFiles.append(
             (f'{i18Dir}/{moDir}/{self.moFile}', f'{self.buildDir}/{moDir}')

@@ -80,7 +80,7 @@ class PoFile:
                 f'"{self.filePath}" remains unchanged '
                 f'(total: {len(self.messages)}).'
             )
-            raise RuntimeError
+            return False
 
         lines = self.headings.copy()
         lines.append('msgid ""')
@@ -112,6 +112,8 @@ class PoFile:
         if missingCount > 0:
             output(f'NOTE: {missingCount} translations missing.')
             raise RuntimeError
+
+        return True
 
 
 class JsonDict:
@@ -185,7 +187,7 @@ def main(
     jsonDict = JsonDict(jsonDictPath)
     jsonDict.read()
     jsonDict.write(poFile.messages)
-    poFile.write(
+    return poFile.write(
         sorted(list(potFile.messages)),
         jsonDict.messages,
         version,

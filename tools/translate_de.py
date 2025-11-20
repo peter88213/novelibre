@@ -52,7 +52,7 @@ def main(
     moDir = f'{I18_DIR}/{MO_DIR}'
     poPath = f'{I18_DIR}/{PO_FILE}'
     try:
-        translations.main(
+        buildMo = translations.main(
             f'{I18_DIR}/messages.pot',
             poPath,
             f'../../{app}/i18n/de.json',
@@ -61,17 +61,18 @@ def main(
     except RuntimeError:
         sys.exit(1)
 
-    moPath = f'{I18_DIR}/{MO_DIR}/{moFile}'
-    moCopyPath = f'../../{app}/src/{MO_DIR}/{moFile}'
-    os.makedirs(moDir, exist_ok=True)
-    os.makedirs(
-        '../../{app}/src/{MO_DIR}',
-        exist_ok=True
-    )
-    output(f'Writing "{moFile}" ...')
-    msgfmt.make(poPath, moPath)
-    output(f'Copying "{moPath}" to "{moCopyPath}" ...')
-    copyfile(moPath, moCopyPath)
+    if buildMo:
+        moPath = f'{I18_DIR}/{MO_DIR}/{moFile}'
+        moCopyPath = f'../../{app}/src/{MO_DIR}/{moFile}'
+        os.makedirs(moDir, exist_ok=True)
+        os.makedirs(
+            '../../{app}/src/{MO_DIR}',
+            exist_ok=True
+        )
+        output(f'Writing "{moFile}" ...')
+        msgfmt.make(poPath, moPath)
+        output(f'Copying "{moPath}" to "{moCopyPath}" ...')
+        copyfile(moPath, moCopyPath)
     return I18_DIR, MO_DIR
 
 

@@ -65,7 +65,7 @@ class PotFile:
             'app':self.app,
             'appVersion': self.appVersion,
             'datetime':datetime.today().replace(microsecond=0).isoformat(sep=' '),
-            'version': self.appVersion,
+            'version': VERSION,
         }
         hdTemplate = Template(potHeader)
         potText = hdTemplate.safe_substitute(msgMap)
