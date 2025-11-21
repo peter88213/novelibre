@@ -64,6 +64,4 @@ class PluginBase(ABC, SubController):
         self._ctrl = controller
 
     def uninstall(self):
-        """Remove the plugin module file from the file system."""
-        if os.path.isfile(self.filePath):
-            os.remove(self.filePath)
+        pass

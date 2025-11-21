@@ -78,7 +78,8 @@ class PluginCollection(dict, SubController):
                         self[pluginName].uninstall()
                     except AttributeError:
                         # the plugin doesn't have an uninstaller method
-                        os.remove(self[pluginName].filePath)
+                        pass
+                    os.remove(self[pluginName].filePath)
                     self[pluginName].filePath = ''
                     return True
 
