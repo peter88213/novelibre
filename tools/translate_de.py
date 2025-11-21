@@ -58,7 +58,7 @@ def main(
             f'../../{app}/i18n/de.json',
             version=version,
         )
-    except RuntimeError:
+    except UserWarning:
         sys.exit(1)
 
     if buildMo:

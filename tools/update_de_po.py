@@ -37,6 +37,6 @@ with os.scandir(ROOT) as prjPaths:
                 poFile,
                 f'../../novelibre/i18n/de.json',
             )
-        except RuntimeError:
+        except UserWarning:
             pass
 os.chdir(START_DIR)

@@ -58,7 +58,7 @@ class PoFile:
         """Write translations to the '.po' file, if there are changes.
 
         Create a backup file, if necessary.
-        Raise RuntimeError, if messages need to be translated. 
+        Raise UserWarning, if messages need to be translated. 
         """
         missingCount = 0
         changesCount = 0
@@ -114,7 +114,7 @@ class PoFile:
             output(f'{len(self.messages)} entries written.')
         if missingCount > 0:
             output(f'NOTE: {missingCount} translations missing.')
-            raise RuntimeError
+            raise UserWarning
 
 
 class JsonDict:
