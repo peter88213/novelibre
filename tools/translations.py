@@ -81,38 +81,37 @@ class PoFile:
                 f'"{self.filePath}" remains unchanged '
                 f'(total: {len(self.messages)}).'
             )
-            return
+        else:
+            self.data['PO-Revision-Date'] = datetime.today().replace(
+                microsecond=0).isoformat(sep=' ')
 
-        self.data['PO-Revision-Date'] = datetime.today().replace(
-            microsecond=0).isoformat(sep=' ')
+            lines = self.headings.copy()
+            lines.append('msgid ""')
+            lines.append('msgstr ""')
 
-        lines = self.headings.copy()
-        lines.append('msgid ""')
-        lines.append('msgstr ""')
+            if version is not None:
+                self.data['Project-Id-Version'] = version
+            for key in self.data:
+                lines.append(f'"{key}: {self.data[key]}\\n"')
 
-        if version is not None:
-            self.data['Project-Id-Version'] = version
-        for key in self.data:
-            lines.append(f'"{key}: {self.data[key]}\\n"')
+            lines.append('\n')
+            for msg in self.messages:
+                lines.append(f'msgid "{msg}"\nmsgstr "{self.messages[msg]}"\n')
 
-        lines.append('\n')
-        for msg in self.messages:
-            lines.append(f'msgid "{msg}"\nmsgstr "{self.messages[msg]}"\n')
+            backedUp = False
+            output(f'Writing "{self.filePath}" ...')
+            try:
+                if os.path.isfile(self.filePath):
+                    os.replace(self.filePath, f'{self.filePath}.bak')
+                    backedUp = True
+                with open(self.filePath, 'w', encoding='utf-8') as f:
+                    f.write('\n'.join(lines))
+            except Exception as ex:
+                if backedUp:
+                    os.replace(f'{self.filePath}.bak', self.filePath)
+                raise ex
 
-        backedUp = False
-        output(f'Writing "{self.filePath}" ...')
-        try:
-            if os.path.isfile(self.filePath):
-                os.replace(self.filePath, f'{self.filePath}.bak')
-                backedUp = True
-            with open(self.filePath, 'w', encoding='utf-8') as f:
-                f.write('\n'.join(lines))
-        except Exception as ex:
-            if backedUp:
-                os.replace(f'{self.filePath}.bak', self.filePath)
-            raise ex
-
-        output(f'{len(self.messages)} entries written.')
+            output(f'{len(self.messages)} entries written.')
         if missingCount > 0:
             output(f'NOTE: {missingCount} translations missing.')
             raise RuntimeError
@@ -189,4 +188,5 @@ def main(potFilePath, poFilePath, jsonDictPath, version=None):
         jsonDict.messages,
         version,
     )
+    return poFile.data['Project-Id-Version']
 
