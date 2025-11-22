@@ -1,12 +1,9 @@
-[Deutsch](https://peter88213.github.io/novelibre/) | [Italiano](https://peter88213.github.io/nv_it/)
-
----
-
 [![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v0.99.0.pyz)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
 [![News/Feedback](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
 
+[![Deutsch](docs/img/germany.png)](https://peter88213.github.io/novelibre/) [![Italiano](docs/img/italy.png)](https://peter88213.github.io/nv_it/)
 
 # ![N](docs/img/nLogo32.png) novelibre
 
@@ -227,6 +224,7 @@ See the [online user guide](https://peter88213.github.io/nvhelp-en/)
 
 - The logos and file icons are made using the free *Pusab* font by Ryoichi Tsunekawa, [Flat-it](http://flat-it.com/).
 - The icons are based on the [Eva Icons](https://akveo.github.io/eva-icons/#/), published under the [MIT License](http://www.opensource.org/licenses/mit-license.php). The original black and white icons were colored for this application by the maintainer. 
+- The flag icons are from [Flaticon.com](https://www.flaticon.com/free-icons/flag).
 
 ## See also
   
