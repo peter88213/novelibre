@@ -2,7 +2,7 @@
 
 ---
 
-# ![N](img/nLogo32.png) novelibre (Deutsche Seite) ![Deutsch](img/germany.png)
+# ![N](img/nLogo32.png) ![Deutsch](img/germany.png) novelibre (Deutsche Seite)
 
 [novelibre](https://github.com/peter88213/novelibre/) hilft Romanautoren dabei, 
 umfangreiche Romane zu planen und während des Schreibens und Überarbeitens 
