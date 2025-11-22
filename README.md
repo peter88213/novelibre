@@ -1,4 +1,4 @@
-[Deutsch](https://peter88213.github.io/novelibre/) | [Italiano](https://peter88213.github.io/nv_it/)
+[![Deutsch](docs/img/germany.png)](https://peter88213.github.io/novelibre/) [![Italiano](docs/img/italy.png)](https://peter88213.github.io/nv_it/)
 
 ---
 
