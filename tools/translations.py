@@ -180,6 +180,7 @@ def main(potFilePath, poFilePath, jsonDictPath, version=None):
     potFile.read()
     poFile = PoFile(poFilePath)
     poFile.read()
+    latestVersion = potFile.data.get('Project-Id-Version', version)
     jsonDict = JsonDict(jsonDictPath)
     jsonDict.read()
     jsonDict.write(poFile.messages)
