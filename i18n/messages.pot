@@ -1,17 +1,17 @@
 # novelibre Dictionary
-# Copyright (C) 2023 Peter Triesberger
+# Copyright (C) 2025 Peter Triesberger
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.42.1\n"
-"POT-Creation-Date: 2025-11-14 18:55:34\n"
+"POT-Creation-Date: 2025-11-22 10:06:40\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: novxlib pgettext.py 0.3\n"
+"Generated-By: novelibre pgettext.py 1.0\n"
 
 
 msgid "\"Export\" options"
@@ -941,9 +941,6 @@ msgstr ""
 msgid "Online help"
 msgstr ""
 
-msgid "Online user guide"
-msgstr ""
-
 msgid "Open"
 msgstr ""
 
@@ -1412,6 +1409,12 @@ msgstr ""
 msgid "Unhandled exception on exit"
 msgstr ""
 
+msgid "Uninstall"
+msgstr ""
+
+msgid "Uninstalled {}"
+msgstr ""
+
 msgid "Unknown author"
 msgstr ""
 
@@ -1536,9 +1539,6 @@ msgid "days after death"
 msgstr ""
 
 msgid "days old"
-msgstr ""
-
-msgid "deleted"
 msgstr ""
 
 msgid "elements imported"

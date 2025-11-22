@@ -152,8 +152,8 @@ class PluginManagerDialog(ModalDialog, SubController):
         # "Delete" button.
         self._deleteButton = ttk.Button(
             self._footer,
-            text=_('Delete'),
-            command=self._delete_plugin,
+            text=_('Uninstall'),
+            command=self._uninstall_plugin,
             state='disabled'
         )
         self._deleteButton.pack(padx=5, pady=5, side='left')
@@ -175,7 +175,7 @@ class PluginManagerDialog(ModalDialog, SubController):
         # Set Key bindings.
         self.bind(KEYS.OPEN_HELP[0], self._open_help)
 
-    def _delete_plugin(self, event=None):
+    def _uninstall_plugin(self, event=None):
         pluginName = self._pluginTree.selection()[0]
         if not pluginName:
             return
@@ -194,11 +194,11 @@ class PluginManagerDialog(ModalDialog, SubController):
         ):
             return
 
-        if self._ctrl.plugins.delete_file(pluginName):
+        if self._ctrl.plugins.uninstall_plugin(pluginName):
             self._deleteButton.configure(state='disabled')
             if self._ctrl.plugins[pluginName].isActive:
                 self._ui.show_info(
-                    message=f'{pluginName} {_("deleted")}',
+                    message=_("Uninstalled {}").format(pluginName),
                     detail=(
                         f"{_('The plugin remains active until next start')}."
                     ),

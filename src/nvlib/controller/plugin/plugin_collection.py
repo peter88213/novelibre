@@ -59,11 +59,11 @@ class PluginCollection(dict, SubController):
         except ValueError:
             # Set defaults for testing.
             self.majorVersion = 5
-            self.minorVersion = 42
+            self.minorVersion = 43
             self.patchlevel = 0
 
-    def delete_file(self, pluginName):
-        """Remove a plugin module file from the file system.
+    def uninstall_plugin(self, pluginName):
+        """Call the plugin's uninstall method and delete its module file.
         
         Positional arguments:
             pluginName -- str: Plugin name as used as registry key.

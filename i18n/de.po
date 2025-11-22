@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 5.42.1\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2025-11-14 18:55:34\n"
+"PO-Revision-Date: 2025-11-22 10:02:16\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -934,9 +934,6 @@ msgstr "Älter als die Projektdatei"
 msgid "Online help"
 msgstr "Online-Hilfe"
 
-msgid "Online user guide"
-msgstr "Online-Benutzerhandbuch"
-
 msgid "Open"
 msgstr "Öffnen"
 
@@ -1405,6 +1402,12 @@ msgstr "Nicht definiert"
 msgid "Unhandled exception on exit"
 msgstr "Unbehandelte Ausnahme beim Beenden"
 
+msgid "Uninstall"
+msgstr "Deinistallieren"
+
+msgid "Uninstalled {}"
+msgstr "{} deinstalliert"
+
 msgid "Unknown author"
 msgstr "Unbekannter Autor"
 
@@ -1537,9 +1540,6 @@ msgstr "Tage seit dem Todesfall"
 msgid "days old"
 msgstr "Tage alt"
 
-msgid "deleted"
-msgstr "gelöscht"
-
 msgid "elements imported"
 msgstr "Elemente importiert"
 
@@ -1608,4 +1608,3 @@ msgstr "{0} Teile, {1} Kapitel, {2} Abschnitte, {3} Wörter"
 
 msgid "{} already exists."
 msgstr "{} gibt es schon."
-
