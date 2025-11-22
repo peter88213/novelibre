@@ -2,7 +2,7 @@
 
 ---
 
-# ![N](img/nLogo32.png) novelibre (Deutsche Seite)
+# ![N](img/nLogo32.png) novelibre (Deutsche Seite) ![Deutsch](docs/img/germany.png)]
 
 [novelibre](https://github.com/peter88213/novelibre/) hilft Romanautoren dabei, 
 umfangreiche Romane zu planen und während des Schreibens und Überarbeitens 
@@ -41,6 +41,13 @@ Das Benutzerhandbuch liegt komplett auf Deutsch vor.
 - [Benutzerhandbuch](https://peter88213.github.io/nvhelp-de/) 
 - [Download-Seite (Englisch)](https://github.com/peter88213/novelibre) 
 - [Feedback geben oder eine Frage stellen (Englisch)](https://github.com/peter88213/novelibre/discussions)
+
+---
+
+## Credits
+
+- The novelibre logo is made using the free *Pusab* font by Ryoichi Tsunekawa, [Flat-it](http://flat-it.com/).
+- The flag icon is from [Flaticon.com](https://www.flaticon.com/free-icons/flag).
 
 ---
 
