@@ -82,10 +82,6 @@ class Error(Exception):
     pass
 
 
-class Notification(Error):
-    pass
-
-
 def norm_path(path):
     if path is None:
         path = ''

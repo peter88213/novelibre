@@ -18,7 +18,6 @@ from nvlib.novx_globals import Error
 from nvlib.novx_globals import NO_SCENE_FIELD_1_DEFAULT
 from nvlib.novx_globals import NO_SCENE_FIELD_2_DEFAULT
 from nvlib.novx_globals import NO_SCENE_FIELD_3_DEFAULT
-from nvlib.novx_globals import Notification
 from nvlib.novx_globals import OTHER_SCENE_FIELD_1_DEFAULT
 from nvlib.novx_globals import OTHER_SCENE_FIELD_2_DEFAULT
 from nvlib.novx_globals import OTHER_SCENE_FIELD_3_DEFAULT
@@ -184,7 +183,7 @@ class Converter:
             os.path.isfile(target.filePath)
             and not self._confirm_overwrite(target.filePath)
         ):
-            raise Notification(f'{_("Action canceled by user")}.')
+            raise UserWarning(f'{_("Action canceled by user")}.')
 
     def _confirm_overwrite(self, filePath):
         """Return boolean permission to overwrite the target file.

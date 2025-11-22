@@ -13,7 +13,6 @@ from nvlib.model.converter.new_project_factory import NewProjectFactory
 from nvlib.model.converter.novx_conversion import NovxConversion
 from nvlib.model.novx.novx_file import NovxFile
 from nvlib.novx_globals import Error
-from nvlib.novx_globals import Notification
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
 
@@ -43,7 +42,7 @@ class DocImporter(ServiceBase, NovxConversion):
     def import_document(self, sourcePath, parent=None):
         try:
             message = self._run(sourcePath, parent=parent)
-        except Notification as ex:
+        except UserWarning as ex:
             self._ui.set_status(f'#{str(ex)}')
             return
 
@@ -129,7 +128,7 @@ class DocImporter(ServiceBase, NovxConversion):
                     detail=f"{_('Source document')}: {source.DESCRIPTION}",
                     parent=kwargs.get('parent', None)
                 ):
-                    raise Notification(f'{_("Action canceled by user")}.')
+                    raise UserWarning(f'{_("Action canceled by user")}.')
 
             target.novel = source.novel
             target.write()

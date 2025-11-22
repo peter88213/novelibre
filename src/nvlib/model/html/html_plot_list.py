@@ -6,7 +6,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.model.html.html_report import HtmlReport
 from nvlib.novx_globals import CH_ROOT
-from nvlib.novx_globals import Notification
 from nvlib.novx_globals import PLOTLIST_SUFFIX
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import list_to_string
@@ -28,7 +27,7 @@ class HtmlPlotList(HtmlReport):
         # Collect the plot lines.
         plotLines = self.novel.tree.get_children(PL_ROOT)
         if not plotLines:
-            raise Notification(f'{_("No plot lines found")}.')
+            raise UserWarning(f'{_("No plot lines found")}.')
 
         # Build the HTML table.
         htmlText = [self._fileHeader]

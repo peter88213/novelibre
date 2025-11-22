@@ -11,7 +11,6 @@ from nvlib.model.converter.export_target_factory import ExportTargetFactory
 from nvlib.model.converter.novx_conversion import NovxConversion
 from nvlib.model.exporter.filter_factory import FilterFactory
 from nvlib.model.file.doc_open import open_document
-from nvlib.novx_globals import Notification
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import USER_STYLES_XML
 from nvlib.nv_globals import prefs
@@ -97,7 +96,7 @@ class NvDocExporter(NovxConversion):
                 title=_('Export document')
             )
             if result == 2:
-                raise Notification(f'{_("Action canceled by user")}.')
+                raise UserWarning(f'{_("Action canceled by user")}.')
                 # raising the exception prevents project lock
 
             elif result == 1:

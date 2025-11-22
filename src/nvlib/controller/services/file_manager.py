@@ -20,7 +20,6 @@ from nvlib.model.odt.odt_writer import OdtWriter
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import Error
 from nvlib.novx_globals import MANUSCRIPT_SUFFIX
-from nvlib.novx_globals import Notification
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import HOME_DIR
 from nvlib.nv_globals import INSTALL_DIR
@@ -174,7 +173,7 @@ class FileManager(ServiceBase):
                     **kwargs
                 )
             )
-        except Notification as ex:
+        except UserWarning as ex:
             self._ui.set_status(f'#{str(ex)}')
         except Error as ex:
             self._ui.set_status(f'!{str(ex)}')
@@ -577,7 +576,7 @@ class FileManager(ServiceBase):
                 suffix,
                 tempdir=self._ctrl.tempDir,
             )
-        except Notification as ex:
+        except UserWarning as ex:
             self._ui.set_status(f'#{str(ex)}')
         except Error as ex:
             self._ui.set_status(f'!{str(ex)}')

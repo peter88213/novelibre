@@ -7,7 +7,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.model.data.section import Section
 from nvlib.model.html.html_report import HtmlReport
-from nvlib.novx_globals import Notification
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import TIMETABLE_SUFFIX
 from nvlib.novx_globals import list_to_string
@@ -29,7 +28,7 @@ class HtmlTimetable(HtmlReport):
         # Collect the normal sections with a date/day/time.
         srtSections = self._sort_sections_by_date()
         if not srtSections:
-            raise Notification(f'{_("No date/time data found")}.')
+            raise UserWarning(f'{_("No date/time data found")}.')
 
         # Build the HTML table.
         htmlText = [self._fileHeader]
