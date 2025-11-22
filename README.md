@@ -1,12 +1,9 @@
-[![Deutsch](docs/img/germany.png)](https://peter88213.github.io/novelibre/) [![Italiano](docs/img/italy.png)](https://peter88213.github.io/nv_it/)
-
----
-
 [![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.42.1.pyz)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
 [![News/Feedback](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
 
+[![Deutsch](docs/img/germany.png)](https://peter88213.github.io/novelibre/) [![Italiano](docs/img/italy.png)](https://peter88213.github.io/nv_it/)
 
 # ![N](docs/img/nLogo32.png) novelibre
 
