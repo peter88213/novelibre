@@ -77,11 +77,6 @@ SCENE = ['-', 'A', 'R', 'x']
 # emulating an enumeration for the scene Action/Reaction/Other type
 
 
-class Error(Exception):
-    """Base class for exceptions."""
-    pass
-
-
 def norm_path(path):
     if path is None:
         path = ''

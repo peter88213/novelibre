@@ -9,7 +9,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 
 from nvlib.model.converter.file_factory import FileFactory
-from nvlib.novx_globals import Error
 from nvlib.nv_locale import _
 
 
@@ -31,7 +30,7 @@ class ImportTargetFactory(FileFactory):
         - sourceFile: None
         - targetFile: a NovxFile subclass instance
 
-        Raise the "Error" exception in case of error. 
+        Raise the "RuntimeError" exception in case of error. 
         """
         fileName, __ = os.path.splitext(sourcePath)
         sourceSuffix = kwargs['suffix']
@@ -56,4 +55,4 @@ class ImportTargetFactory(FileFactory):
                 )
                 return None, targetFile
 
-        raise Error(f'{_("No novelibre project to write")}.')
+        raise RuntimeError(f'{_("No novelibre project to write")}.')

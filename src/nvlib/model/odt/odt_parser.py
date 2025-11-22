@@ -8,7 +8,6 @@ from xml import sax
 import zipfile
 
 from nvlib.model.odf.odf_file import OdfFile
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
 import xml.etree.ElementTree as ET
@@ -407,5 +406,7 @@ class OdtParser(sax.ContentHandler):
                 return styles, meta, content
 
         except:
-            raise Error(f'{_("Cannot read file")}: "{norm_path(filePath)}".')
+            raise RuntimeError(
+                f'{_("Cannot read file")}: "{norm_path(filePath)}".'
+            )
 

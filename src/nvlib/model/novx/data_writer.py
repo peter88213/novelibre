@@ -8,7 +8,6 @@ import os
 
 from nvlib.model.novx.novx_file import NovxFile
 from nvlib.novx_globals import DATA_SUFFIX
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
 import xml.etree.ElementTree as ET
@@ -59,7 +58,7 @@ class DataWriter(NovxFile):
         from a novelibre project.
         Generate the xml file paths from the .novx path and 
         write each xmlBranch to an xml file.
-        Raise the "Error" exception in case of error. 
+        Raise the "RuntimeError" exception in case of error. 
         """
         for xmlBranch in self._dataFiles:
             elementSubtree = xmlProject.xmlTree.find(xmlBranch)
@@ -71,10 +70,8 @@ class DataWriter(NovxFile):
                     encoding='utf-8',
                 )
             except(PermissionError):
-                raise Error(
-                    (
-                        f'{_("File is write protected")}: '
-                        f'"{norm_path(self._dataFiles[xmlBranch])}".'
-                    )
+                raise RuntimeError(
+                    f'{_("File is write protected")}: '
+                    f'"{norm_path(self._dataFiles[xmlBranch])}".'
                 )
 

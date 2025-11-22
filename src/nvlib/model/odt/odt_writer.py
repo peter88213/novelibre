@@ -12,7 +12,6 @@ from xml.sax.saxutils import escape
 
 from nvlib.model.odf.odf_file import OdfFile
 from nvlib.model.odt.novx_to_odt import NovxToOdt
-from nvlib.novx_globals import Error
 from nvlib.nv_locale import _
 
 
@@ -1021,7 +1020,7 @@ class OdtWriter(OdfFile):
         # Helper method for ZIP file generation.
         # Add rdf manifest to the temporary directory containing
         # the internal structure of an ODF file.
-        # Raise the "Error" exception in case of error.
+        # Raise the "RuntimeError" exception in case of error.
         # Extends the superclass method.
 
         # Generate the common ODF components.
@@ -1036,5 +1035,5 @@ class OdtWriter(OdfFile):
             ) as f:
                 f.write(self._MANIFEST_RDF)
         except:
-            raise Error(f'{_("Cannot write file")}: "manifest.rdf"')
+            raise RuntimeError(f'{_("Cannot write file")}: "manifest.rdf"')
 

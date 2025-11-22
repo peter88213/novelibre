@@ -8,7 +8,6 @@ import re
 import zipfile
 
 from nvlib.model.odf.odf_file import OdfFile
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
 import xml.etree.ElementTree as ET
@@ -103,5 +102,7 @@ class OdsParser:
             return content
 
         except:
-            raise Error(f'{_("Cannot read file")}: "{norm_path(filePath)}".')
+            raise RuntimeError(
+                f'{_("Cannot read file")}: "{norm_path(filePath)}".'
+            )
 

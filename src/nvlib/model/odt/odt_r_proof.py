@@ -7,7 +7,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import re
 
 from nvlib.model.odt.odt_r_formatted import OdtRFormatted
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import PROOF_SUFFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.nv_locale import _
@@ -61,8 +60,9 @@ class OdtRProof(OdtRFormatted):
                     self._lines.pop()
                     # remove the paragraph tag
                     text = ''.join(self._lines)
-                    self.novel.sections[self._scId
-                                        ].sectionContent = text.strip()
+                    self.novel.sections[
+                        self._scId
+                    ].sectionContent = text.strip()
                     self._lines.clear()
                 self._scId = None
                 self._content = False
@@ -71,7 +71,7 @@ class OdtRProof(OdtRFormatted):
             if self._scId is not None:
                 self._lines.append(data)
         except:
-            raise Error(f'{_("Corrupt marker")}: "{data}"')
+            raise RuntimeError(f'{_("Corrupt marker")}: "{data}"')
 
     def handle_endtag(self, tag):
         """Recognize the paragraph's end.      

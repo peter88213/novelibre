@@ -14,7 +14,6 @@ from nvlib.model.nv_work_file import NvWorkFile
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import IT_ROOT
 from nvlib.novx_globals import LC_ROOT
 from nvlib.novx_globals import PL_ROOT
@@ -101,7 +100,7 @@ class FileSplitter(ServiceBase):
         newProject.novel = newNovel
         try:
             newProject.write()
-        except Error as ex:
+        except RuntimeError as ex:
             self._ui.set_status(f'!{str(ex)}')
         else:
             for chId in elements:

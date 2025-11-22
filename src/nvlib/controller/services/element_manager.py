@@ -14,7 +14,6 @@ from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import ITEM_PREFIX
 from nvlib.novx_globals import IT_ROOT
 from nvlib.novx_globals import LC_ROOT
@@ -615,7 +614,7 @@ class ElementManager(ServiceBase):
         ):
             try:
                 self._mdl.join_sections(scId0, scId1)
-            except Error as ex:
+            except RuntimeError as ex:
                 self._ui.show_error(
                     message=_('Cannot join sections'),
                     detail=str(ex),

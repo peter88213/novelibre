@@ -12,7 +12,6 @@ from tkinter import ttk
 from nvlib.model.data.novel import Novel
 from nvlib.model.data.nv_tree import NvTree
 from nvlib.model.novx.novx_file import NovxFile
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
 from nvlib.user_interface.ui import Ui
@@ -172,7 +171,7 @@ class SimpleGui(Ui):
         self.prjFile.novel = self.novel
         try:
             self.prjFile.read()
-        except Error as ex:
+        except RuntimeError as ex:
             self.close_project()
             self.set_status(f'!{str(ex)}')
             return False

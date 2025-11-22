@@ -15,7 +15,6 @@ from nvlib.model.novx.novx_file import NovxFile
 from nvlib.model.odt.odt_r_import import OdtRImport
 from nvlib.model.odt.odt_r_outline import OdtROutline
 from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import XREF_SUFFIX
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
@@ -43,10 +42,10 @@ class NewProjectFactory(FileFactory):
         - sourceFile: a Novel subclass instance
         - targetFile: a Novel subclass instance
         
-        Raise the "Error" exception in case of error. 
+        Raise the "RuntimeError" exception in case of error. 
         """
         if not self._canImport(sourcePath):
-            raise Error(
+            raise RuntimeError(
                 f'{_("This document is not meant to be written back")}.'
             )
 
@@ -58,11 +57,8 @@ class NewProjectFactory(FileFactory):
                 with zipfile.ZipFile(sourcePath, 'r') as odfFile:
                     content = odfFile.read('content.xml')
             except:
-                raise Error(
-                    (
-                        f'{_("Cannot read file")}: '
-                        f'"{norm_path(sourcePath)}".'
-                    )
+                raise RuntimeError(
+                    f'{_("Cannot read file")}: "{norm_path(sourcePath)}".'
                 )
 
             if bytes('Heading_20_3', encoding='utf-8') in content:
@@ -80,11 +76,9 @@ class NewProjectFactory(FileFactory):
                         sourceFile = fileClass(sourcePath, **kwargs)
                         return sourceFile, targetFile
 
-            raise Error(
-                (
-                    f'{_("File type is not supported")}: '
-                    f'"{norm_path(sourcePath)}".'
-                )
+            raise RuntimeError(
+                f'{_("File type is not supported")}: '
+                f'"{norm_path(sourcePath)}".'
             )
 
     def _canImport(self, sourcePath):

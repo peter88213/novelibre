@@ -8,7 +8,6 @@ import os
 import zipfile
 
 from nvlib.model.novx.novx_opener import NovxOpener
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
 import xml.etree.ElementTree as ET
@@ -34,7 +33,7 @@ class ZippedNovxOpener(NovxOpener):
         __, extension = os.path.splitext(filePath)
         try:
             if not extension in cls.ZIP_EXTENSIONS:
-                raise Error('File type is not supported')
+                raise RuntimeError('File type is not supported')
 
             with zipfile.ZipFile(filePath, 'r') as z:
                 fileNames = z.namelist()
@@ -48,17 +47,17 @@ class ZippedNovxOpener(NovxOpener):
                         break
 
                 if xmlRoot is None:
-                    raise Error('File type is not supported')
+                    raise RuntimeError('File type is not supported')
 
         except Exception as ex:
             normPath = norm_path(filePath)
-            raise Error(
+            raise RuntimeError(
                 f'{_("Cannot process file")}: "{normPath}" - {str(ex)}'
             )
 
         if xmlRoot.tag != 'novx':
             msg = _("No valid xml root element found in file")
-            raise Error(f'{msg}: "{norm_path(filePath)}".')
+            raise RuntimeError(f'{msg}: "{norm_path(filePath)}".')
 
         fileMajorVersion, fileMinorVersion = cls._get_file_version(
             xmlRoot,

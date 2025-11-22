@@ -5,7 +5,6 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.model.data.id_generator import new_id
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
@@ -26,14 +25,14 @@ class NovxOpener:
             xmlTree = ET.parse(filePath)
         except Exception as ex:
             normPath = norm_path(filePath)
-            raise Error(
+            raise RuntimeError(
                 f'{_("Cannot process file")}: "{normPath}" - {str(ex)}'
             )
 
         xmlRoot = xmlTree.getroot()
         if xmlRoot.tag != 'novx':
             msg = _("No valid xml root element found in file")
-            raise Error(f'{msg}: "{norm_path(filePath)}".')
+            raise RuntimeError(f'{msg}: "{norm_path(filePath)}".')
 
         fileMajorVersion, fileMinorVersion = cls._get_file_version(
             xmlRoot,
@@ -66,15 +65,15 @@ class NovxOpener:
         # is not compatible with the supported DTD.
         if fileMajorVersion > majorVersion:
             msg = _('The project "{}" was created with a newer novelibre version.')
-            raise Error(msg.format(norm_path(filePath)))
+            raise RuntimeError(msg.format(norm_path(filePath)))
 
         if fileMajorVersion < majorVersion:
             msg = _('The project "{}" was created with an outdated novelibre version.')
-            raise Error(msg.format(norm_path(filePath)))
+            raise RuntimeError(msg.format(norm_path(filePath)))
 
         if fileMinorVersion > minorVersion:
             msg = _('The project "{}" was created with a newer novelibre version.')
-            raise Error(msg.format(norm_path(filePath)))
+            raise RuntimeError(msg.format(norm_path(filePath)))
 
     @classmethod
     def _upgrade_file_version(
@@ -107,7 +106,7 @@ class NovxOpener:
             fileMinorVersion = int(fileMinorVersionStr)
         except (KeyError, ValueError):
             msg = _("No valid version found in file")
-            raise Error(msg.format(norm_path(filePath)))
+            raise RuntimeError(msg.format(norm_path(filePath)))
 
         return fileMajorVersion, fileMinorVersion
 

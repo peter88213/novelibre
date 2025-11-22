@@ -12,7 +12,6 @@ from nvlib.model.novx.location_data_reader import LocationDataReader
 from nvlib.model.novx.plot_line_reader import PlotLineReader
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CR_ROOT
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import ITEM_PREFIX
 from nvlib.novx_globals import IT_ROOT
 from nvlib.novx_globals import LC_ROOT
@@ -56,7 +55,9 @@ class DataImporter(ServiceBase):
         try:
             source.read()
         except:
-            raise Error(f'{errorMessages[prefix]}: {norm_path(filePath)}')
+            raise RuntimeError(
+                f'{errorMessages[prefix]}: {norm_path(filePath)}'
+            )
 
         sourceElements = {
             CHARACTER_PREFIX:source.novel.characters,
@@ -65,7 +66,9 @@ class DataImporter(ServiceBase):
             PLOT_LINE_PREFIX:source.novel.plotLines,
         }
         if not sourceElements[prefix]:
-            raise Error(f'{errorMessages[prefix]}: {norm_path(filePath)}')
+            raise RuntimeError(
+                f'{errorMessages[prefix]}: {norm_path(filePath)}'
+            )
 
         self.sourceElements = sourceElements[prefix]
         self.sourceNovel = source.novel

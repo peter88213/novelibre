@@ -13,7 +13,6 @@ from nvlib.novx_globals import CR_FIELD_1_DEFAULT
 from nvlib.novx_globals import CR_FIELD_2_DEFAULT
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import ITEM_PREFIX
 from nvlib.novx_globals import IT_ROOT
 from nvlib.novx_globals import LC_ROOT
@@ -685,7 +684,7 @@ class NvModel:
             scId1: str -- ID of the section to be discarded.
             
         Discard section 1, keep section 0.
-        Raise Error in case of error.
+        Raise RuntimeError in case of error.
         """
 
         def join_str(text0, text1, newline='\n'):
@@ -713,16 +712,17 @@ class NvModel:
             self.novel.sections[ScId1].scType
             != self.novel.sections[ScId0].scType
         ):
-            raise Error(_('The sections are not of the same type'))
+            raise RuntimeError(_('The sections are not of the same type'))
 
         # Check viewpoint.
         if self.novel.sections[ScId1].characters:
             if self.novel.sections[ScId1].characters:
                 if self.novel.sections[ScId0].characters:
-                    if (self.novel.sections[ScId1].viewpoint
+                    if (
+                        self.novel.sections[ScId1].viewpoint
                         != self.novel.sections[ScId0].viewpoint
-                ):
-                        raise Error(
+                    ):
+                        raise RuntimeError(
                             _('The sections have different viewpoints')
                         )
 

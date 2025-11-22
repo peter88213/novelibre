@@ -9,7 +9,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 
 from nvlib.model.converter.file_factory import FileFactory
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
 
@@ -29,7 +28,7 @@ class ExportSourceFactory(FileFactory):
         - sourceFile: a NovxFile subclass instance
         - targetFile: None
 
-        Raise the "Error" exception in case of error. 
+        Raise the "RuntimeError" exception in case of error. 
         """
         __, fileExtension = os.path.splitext(sourcePath)
         for fileClass in self._fileClasses:
@@ -37,9 +36,6 @@ class ExportSourceFactory(FileFactory):
                 sourceFile = fileClass(sourcePath, **kwargs)
                 return sourceFile, None
 
-        raise Error(
-            (
-                f'{_("File type is not supported")}: '
-                f'"{norm_path(sourcePath)}".'
-            )
+        raise RuntimeError(
+            f'{_("File type is not supported")}: "{norm_path(sourcePath)}".'
         )

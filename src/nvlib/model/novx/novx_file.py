@@ -30,7 +30,6 @@ from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import ITEM_PREFIX
 from nvlib.novx_globals import IT_ROOT
 from nvlib.novx_globals import LC_ROOT
@@ -179,7 +178,7 @@ class NovxFile(File):
             self.adjust_section_types()
             self._read_word_count_log(xmlRoot)
         except Exception as ex:
-            raise Error(f"{_('Corrupt project data')} ({str(ex)})")
+            raise RuntimeError(f"{_('Corrupt project data')} ({str(ex)})")
         self._get_timestamp()
         self._keep_word_count()
 
@@ -332,7 +331,7 @@ class NovxFile(File):
 
     def _check_id(self, elemId, elemPrefix):
         if not elemId.startswith(elemPrefix):
-            raise Error(f"bad ID: '{elemId}'")
+            raise RuntimeError(f"bad ID: '{elemId}'")
 
     def _get_timestamp(self):
         try:
@@ -373,7 +372,7 @@ class NovxFile(File):
             msg = _("Cannot write file")
             msg = f'{msg}: "{norm_path(filePath)}"'
             msg = f'{msg} - {str(ex)}'
-            raise Error(msg)
+            raise RuntimeError(msg)
 
     def _read_chapters_and_sections(self, root):
         # Read data at chapter level from the xml element tree.
@@ -557,14 +556,14 @@ class NovxFile(File):
         # If a novx file already exists, rename it for backup.
         # If writing the file fails, restore the backup copy, if any.
         #
-        # Raise the "Error" exception in case of error.
+        # Raise the "RuntimeError" exception in case of error.
 
         backedUp = False
         if os.path.isfile(xmlProject.filePath):
             try:
                 os.replace(xmlProject.filePath, f'{xmlProject.filePath}.bak')
             except Exception as ex:
-                raise Error(str(ex))
+                raise RuntimeError(str(ex))
             else:
                 backedUp = True
         try:
@@ -576,4 +575,4 @@ class NovxFile(File):
             msg = _("Cannot write file")
             msg = f'{msg}: "{norm_path(xmlProject.filePath)}"'
             msg = f'{msg} - {str(ex)}'
-            raise Error(msg)
+            raise RuntimeError(msg)

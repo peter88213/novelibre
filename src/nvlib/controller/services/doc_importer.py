@@ -12,7 +12,6 @@ from nvlib.model.converter.import_target_factory import ImportTargetFactory
 from nvlib.model.converter.new_project_factory import NewProjectFactory
 from nvlib.model.converter.novx_conversion import NovxConversion
 from nvlib.model.novx.novx_file import NovxFile
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
 
@@ -46,7 +45,7 @@ class DocImporter(ServiceBase, NovxConversion):
             self._ui.set_status(f'#{str(ex)}')
             return
 
-        except Error as ex:
+        except RuntimeError as ex:
             self._ui.set_status(f'!{str(ex)}')
             return
 
@@ -69,18 +68,21 @@ class DocImporter(ServiceBase, NovxConversion):
         Required keyword arguments: 
             suffix: str -- target file name suffix.
 
-        On success, return a message. Otherwise raise the Error exception.
+        On success, return a message. 
+        Otherwise raise the RuntimeError exception.
         """
         self.newFile = None
         if not os.path.isfile(sourcePath):
-            raise Error(f'{_("File not found")}: "{norm_path(sourcePath)}".')
+            raise RuntimeError(
+                f'{_("File not found")}: "{norm_path(sourcePath)}".'
+            )
 
         try:
             source, __ = self.importSourceFactory.new_file_objects(
                 sourcePath,
                 **kwargs
             )
-        except Error:
+        except RuntimeError:
 
             #--- Import a document without section markers.
             source, target = self.newProjectFactory.new_file_objects(
@@ -90,11 +92,9 @@ class DocImporter(ServiceBase, NovxConversion):
             if os.path.isfile(target.filePath):
                 # do not overwrite an existing novelibre project
                 # with a non-tagged document
-                raise Error(
-                    (
-                        f'{_("File already exists")}: '
-                        f'"{norm_path(target.filePath)}".'
-                    )
+                raise RuntimeError(
+                    f'{_("File already exists")}: '
+                    f'"{norm_path(target.filePath)}".'
                 )
 
             self._check_source_file(source)
@@ -120,7 +120,7 @@ class DocImporter(ServiceBase, NovxConversion):
             source.novel = target.novel
             source.read()
             if source.sectionsSplit and source.is_locked():
-                raise Error(f'{_("Please close the document first")}.')
+                raise RuntimeError(f'{_("Please close the document first")}.')
 
             if os.path.isfile(target.filePath):
                 if not self._ui.ask_yes_no(
@@ -143,19 +143,16 @@ class DocImporter(ServiceBase, NovxConversion):
         # Error handling.
         if source.filePath is None:
             # the source is not correctly initialized
-            raise Error(f'{_("File type is not supported")}.')
+            raise RuntimeError(f'{_("File type is not supported")}.')
 
         if not os.path.isfile(source.filePath):
             # the source document does not exist
-            raise Error(
-                (
-                    f'{_("File not found")}: '
-                    f'"{norm_path(source.filePath)}".'
-                )
+            raise RuntimeError(
+                f'{_("File not found")}: "{norm_path(source.filePath)}".'
             )
 
         if source.is_locked():
             # the document might be open in the Office application
             if self.prefs['import_mode'] != '2':
-                raise Error(f'{_("Please close the document first")}.')
+                raise RuntimeError(f'{_("Please close the document first")}.')
 

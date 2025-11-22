@@ -17,7 +17,6 @@ from nvlib.model.file.file import File
 from nvlib.novx_globals import CHARACTERS_SUFFIX
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import ITEMS_SUFFIX
 from nvlib.novx_globals import IT_ROOT
 from nvlib.novx_globals import LC_ROOT
@@ -97,7 +96,7 @@ class FileExport(File):
         
         Create a template-based output file. 
         Return a message in case of success.
-        Raise the "Error" exception in case of error. 
+        Raise the "RuntimeError" exception in case of error. 
         """
         text = self._get_text()
         backedUp = False
@@ -105,11 +104,9 @@ class FileExport(File):
             try:
                 os.replace(self.filePath, f'{self.filePath}.bak')
             except:
-                raise Error(
-                    (
-                        f'{_("Cannot overwrite file")}: '
-                        f'"{norm_path(self.filePath)}".'
-                    )
+                raise RuntimeError(
+                    f'{_("Cannot overwrite file")}: '
+                    f'"{norm_path(self.filePath)}".'
                 )
             else:
                 backedUp = True
@@ -119,11 +116,9 @@ class FileExport(File):
         except:
             if backedUp:
                 os.replace(f'{self.filePath}.bak', self.filePath)
-            raise Error(
-                (
-                    f'{_("Cannot write file")}: '
-                    f'"{norm_path(self.filePath)}".'
-                )
+            raise RuntimeError(
+                f'{_("Cannot write file")}: '
+                f'"{norm_path(self.filePath)}".'
             )
 
     def _convert_from_novx(self, text, **kwargs):

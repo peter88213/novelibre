@@ -16,7 +16,6 @@ import zipfile
 
 from nvlib.model.file.file_export import FileExport
 from nvlib.model.odf.check_odf import odf_is_locked
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
 
@@ -94,7 +93,7 @@ class OdfFile(FileExport):
         """Write instance variables to the export file.
         
         Create a template-based output file. 
-        Raise the "Error" exception in case of error. 
+        Raise the "RuntimeError" exception in case of error. 
         Extends the super class method, adding ZIP file operations.
         """
 
@@ -116,11 +115,9 @@ class OdfFile(FileExport):
             try:
                 os.replace(self.filePath, f'{self.filePath}.bak')
             except:
-                raise Error(
-                    (
-                        f'{_("Cannot overwrite file")}: '
-                        f'"{norm_path(self.filePath)}".'
-                    )
+                raise RuntimeError(
+                    f'{_("Cannot overwrite file")}: '
+                    f'"{norm_path(self.filePath)}".'
                 )
             else:
                 backedUp = True
@@ -133,11 +130,9 @@ class OdfFile(FileExport):
             os.chdir(workdir)
             if backedUp:
                 os.replace(f'{self.filePath}.bak', self.filePath)
-            raise Error(
-                (
-                    f'{_("Cannot create file")}: '
-                    f'"{norm_path(self.filePath)}".'
-                )
+            raise RuntimeError(
+                f'{_("Cannot create file")}: '
+                f'"{norm_path(self.filePath)}".'
             )
 
         #--- Remove temporary data.
@@ -171,7 +166,7 @@ class OdfFile(FileExport):
         # Helper method for ZIP file generation.
         # Prepare the temporary directory containing the internal structure
         # of an ODF file except 'content.xml'.
-        # Raise the "Error" exception in case of error.
+        # Raise the "RuntimeError" exception in case of error.
 
         #--- Create and open a temporary directory for the files to zip.
         try:
@@ -179,11 +174,9 @@ class OdfFile(FileExport):
             os.mkdir(self._tempDir)
             os.mkdir(f'{self._tempDir}/META-INF')
         except:
-            raise Error(
-                (
-                    f'{_("Cannot create directory")}: '
-                    f'"{norm_path(self._tempDir)}".'
-                )
+            raise RuntimeError(
+                f'{_("Cannot create directory")}: '
+                f'"{norm_path(self._tempDir)}".'
             )
         #--- Generate mimetype.
         try:
@@ -194,7 +187,7 @@ class OdfFile(FileExport):
             ) as f:
                 f.write(self._MIMETYPE)
         except:
-            raise Error(f'{_("Cannot write file")}: "mimetype"')
+            raise RuntimeError(f'{_("Cannot write file")}: "mimetype"')
 
         #--- Generate settings.xml.
         try:
@@ -205,7 +198,7 @@ class OdfFile(FileExport):
             ) as f:
                 f.write(self._SETTINGS_XML)
         except:
-            raise Error(f'{_("Cannot write file")}: "settings.xml"')
+            raise RuntimeError(f'{_("Cannot write file")}: "settings.xml"')
 
         #--- Generate META-INF\manifest.xml.
         try:
@@ -216,7 +209,7 @@ class OdfFile(FileExport):
             ) as f:
                 f.write(self._MANIFEST_XML)
         except:
-            raise Error(f'{_("Cannot write file")}: "manifest.xml"')
+            raise RuntimeError(f'{_("Cannot write file")}: "manifest.xml"')
 
         #--- Generate styles.xml.
         stylesXmlStr = self._get_styles_xml_str()
@@ -228,7 +221,7 @@ class OdfFile(FileExport):
             ) as f:
                 f.write(stylesXmlStr)
         except:
-            raise Error(f'{_("Cannot write file")}: "styles.xml"')
+            raise RuntimeError(f'{_("Cannot write file")}: "styles.xml"')
 
         #--- Generate meta.xml with actual document metadata.
         metaMapping = dict(
@@ -247,7 +240,7 @@ class OdfFile(FileExport):
             ) as f:
                 f.write(stylesXmlStr)
         except:
-            raise Error(f'{_("Cannot write file")}: "meta.xml".')
+            raise RuntimeError(f'{_("Cannot write file")}: "meta.xml".')
 
     def _tear_down(self):
         # Delete the temporary directory containing the

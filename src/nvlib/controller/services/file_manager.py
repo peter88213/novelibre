@@ -18,7 +18,6 @@ from nvlib.model.nv_work_file import NvWorkFile
 from nvlib.model.odf.check_odf import odf_is_locked
 from nvlib.model.odt.odt_writer import OdtWriter
 from nvlib.novx_globals import CH_ROOT
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import MANUSCRIPT_SUFFIX
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import HOME_DIR
@@ -175,7 +174,7 @@ class FileManager(ServiceBase):
             )
         except UserWarning as ex:
             self._ui.set_status(f'#{str(ex)}')
-        except Error as ex:
+        except RuntimeError as ex:
             self._ui.set_status(f'!{str(ex)}')
         else:
             if (
@@ -280,7 +279,7 @@ class FileManager(ServiceBase):
         self.prefs['last_open'] = filePath
         try:
             self._mdl.open_project(filePath)
-        except Error as ex:
+        except RuntimeError as ex:
             self._ctrl.on_close(doNotSave=doNotSave)
             self._ui.set_status(f'!{str(ex)}')
             return False
@@ -423,7 +422,7 @@ class FileManager(ServiceBase):
         self._ui.propertiesView.apply_changes()
         try:
             self._mdl.save_project(fileName)
-        except Error as ex:
+        except RuntimeError as ex:
             self._ui.set_status(f'!{str(ex)}')
             return False
 
@@ -470,7 +469,7 @@ class FileManager(ServiceBase):
         self._ui.propertiesView.apply_changes()
         try:
             self._mdl.save_project()
-        except Error as ex:
+        except RuntimeError as ex:
             self._ui.set_status(f'!{str(ex)}')
             return False
 
@@ -578,6 +577,6 @@ class FileManager(ServiceBase):
             )
         except UserWarning as ex:
             self._ui.set_status(f'#{str(ex)}')
-        except Error as ex:
+        except RuntimeError as ex:
             self._ui.set_status(f'!{str(ex)}')
 

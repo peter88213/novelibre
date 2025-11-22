@@ -14,7 +14,6 @@ from nvlib.model.data.novel import Novel
 from nvlib.model.data.nv_tree import NvTree
 from nvlib.novx_globals import CR_FIELD_1_DEFAULT
 from nvlib.novx_globals import CR_FIELD_2_DEFAULT
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import NO_SCENE_FIELD_1_DEFAULT
 from nvlib.novx_globals import NO_SCENE_FIELD_2_DEFAULT
 from nvlib.novx_globals import NO_SCENE_FIELD_3_DEFAULT
@@ -87,10 +86,8 @@ class Converter:
         self.newFile = None
         if not os.path.isfile(sourcePath):
             self.ui.set_status(
-                (
-                    f'!{_("File not found")}: '
-                    f'"{norm_path(sourcePath)}".'
-                )
+                f'!{_("File not found")}: '
+                f'"{norm_path(sourcePath)}".'
             )
             return
 
@@ -99,14 +96,14 @@ class Converter:
                 sourcePath,
                 **kwargs
             )
-        except Error:
+        except RuntimeError:
             # The source file is not a novelibre project.
             try:
                 source, __ = self.importSourceFactory.new_file_objects(
                     sourcePath,
                     **kwargs
                 )
-            except Error:
+            except RuntimeError:
                 # A new novelibre project might be required.
                 try:
                     (
@@ -116,7 +113,7 @@ class Converter:
                         sourcePath,
                         **kwargs
                     )
-                except Error as ex:
+                except RuntimeError as ex:
                     self.ui.set_status(f'!{str(ex)}')
                 else:
                     self._create_novx(source, target)
@@ -131,7 +128,7 @@ class Converter:
                         sourcePath,
                         **kwargs
                     )
-                except Error as ex:
+                except RuntimeError as ex:
                     self.ui.set_status(f'!{str(ex)}')
                 else:
                     self._import_to_novx(source, target)
@@ -145,7 +142,7 @@ class Converter:
                     sourcePath,
                     **kwargs
                 )
-            except Error as ex:
+            except RuntimeError as ex:
                 self.ui.set_status(f'!{str(ex)}')
             else:
                 self._export_from_novx(source, target)
@@ -157,27 +154,24 @@ class Converter:
         - Ask for permission to overwrite target.
         - Check whether a source or target document is locked 
           by tis application.
-        - Raise the "Error" exception in case of error. 
+        - Raise the "RuntimeError" exception in case of error. 
         """
         if source.filePath is None:
-            raise Error(f'{_("File type is not supported")}.')
+            raise RuntimeError(f'{_("File type is not supported")}.')
 
         if not os.path.isfile(source.filePath):
-            raise Error(
-                (
-                    f'{_("File not found")}: '
-                    f'"{norm_path(source.filePath)}".'
-                )
+            raise RuntimeError(
+                f'{_("File not found")}: "{norm_path(source.filePath)}".'
             )
 
         if source.is_locked():
-            raise Error(f'{_("Please close the document first")}".')
+            raise RuntimeError(f'{_("Please close the document first")}".')
 
         if target.is_locked():
-            raise Error(f'{_("Please close the document first")}.')
+            raise RuntimeError(f'{_("Please close the document first")}.')
 
         if target.filePath is None:
-            raise Error(f'{_("File type is not supported")}.')
+            raise RuntimeError(f'{_("File type is not supported")}.')
 
         if (
             os.path.isfile(target.filePath)
@@ -249,7 +243,7 @@ class Converter:
                 source.read()
                 target.novel = source.novel
                 target.write()
-            except Error as ex:
+            except RuntimeError as ex:
                 statusMsg = f'!{str(ex)}'
                 self.newFile = None
             else:
@@ -302,7 +296,7 @@ class Converter:
             source.read()
             target.novel = source.novel
             target.write()
-        except Error as ex:
+        except RuntimeError as ex:
             statusMsg = f'!{str(ex)}'
             self.newFile = None
         else:

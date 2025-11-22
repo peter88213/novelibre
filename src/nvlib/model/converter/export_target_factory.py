@@ -9,7 +9,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 
 from nvlib.model.converter.file_factory import FileFactory
-from nvlib.novx_globals import Error
 from nvlib.nv_locale import _
 
 
@@ -31,7 +30,7 @@ class ExportTargetFactory(FileFactory):
         - sourceFile: None
         - targetFile: a FileExport subclass instance
         
-        Raise the "Error" exception in case of error.          
+        Raise the "RuntimeError" exception in case of error.          
         """
         fileName, __ = os.path.splitext(sourcePath)
         suffix = kwargs['suffix']
@@ -45,4 +44,6 @@ class ExportTargetFactory(FileFactory):
                 )
                 return None, targetFile
 
-        raise Error(f'{_("Export type is not supported")}: "{suffix}".')
+        raise RuntimeError(
+            f'{_("Export type is not supported")}: "{suffix}".'
+        )

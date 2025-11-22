@@ -11,7 +11,6 @@ from abc import ABC
 from nvlib.model.odf.odf_reader import OdfReader
 from nvlib.model.odt.odt_parser import OdtParser
 from nvlib.novx_globals import CHAPTER_PREFIX
-from nvlib.novx_globals import Error
 from nvlib.novx_globals import ITEM_PREFIX
 from nvlib.novx_globals import LOCATION_PREFIX
 from nvlib.novx_globals import PLOT_LINE_PREFIX
@@ -123,14 +122,14 @@ class OdtReader(OdfReader, ABC):
         try:
             parser.feed_file(self.filePath)
         except KeyError as ex:
-            raise Error(
+            raise RuntimeError(
                 f'{_("Unknown element in File")}: '
                 f'{norm_path(self.filePath)} - {str(ex)}'
             )
         except Exception as ex:
-            raise Error(
+            raise RuntimeError(
                 f'{_("Cannot parse File")}: '
-                '{norm_path(self.filePath)} - {str(ex)}'
+                f'{norm_path(self.filePath)} - {str(ex)}'
             )
 
     def _set_novel_language(self, attrs):
