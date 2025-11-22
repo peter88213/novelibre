@@ -85,7 +85,7 @@ setuplib.main(False)
         self.create_pyz(self.buildDir, self.distDir, self.release)
         self.make_zip(self.buildDir, self.distDir, self.release)
 
-    def build_script(self):
+    def build_py_module(self):
         """Generate the application/plugin script in the test directory."""
         output(f'\nInlining the code of the non-standard libraries ...')
         os.makedirs(self.testDir, exist_ok=True)
@@ -207,7 +207,7 @@ setuplib.main(False)
 
     def run(self):
         output(f'*** Building the {self.PRJ_NAME} version {self.version} distribution ***')
-        self.build_script()
+        self.build_py_module()
         self.build_translation()
         self.prepare_package()
         self.add_extras()
@@ -231,7 +231,7 @@ setuplib.main(False)
             f.write(text)
 
     def write_setup_script(self, filePath):
-        """Create the setup script for manual installatin from the zip file."""
+        """Create the setup script for manual installation from the zip file."""
         output(f'\nCreating the setup script ...')
         with open(
             f'{filePath}/setup.py',

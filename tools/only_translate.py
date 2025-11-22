@@ -2,7 +2,7 @@
 import build
 
 ab = build.ApplicationBuilder(build.VERSION)
-ab.build_script()
+ab.build_py_module()
 ab.build_translation()
 ab.clean_up()
 

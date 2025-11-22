@@ -35,7 +35,7 @@ class ApplicationBuilder(PackageBuilder):
         self.add_css()
         self.add_icons()
 
-    def build_script(self):
+    def build_py_module(self):
         os.makedirs(self.testDir, exist_ok=True)
         self.inline_modules(self.sourceFile, self.testFile)
         self.insert_version_number(self.testFile, version=self.version)
