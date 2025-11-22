@@ -223,7 +223,8 @@ See the [online user guide](https://peter88213.github.io/nvhelp-en/)
 ## Credits
 
 - The logos and file icons are made using the free *Pusab* font by Ryoichi Tsunekawa, [Flat-it](http://flat-it.com/).
-- The icons are based on the [Eva Icons](https://akveo.github.io/eva-icons/#/), published under the [MIT License](http://www.opensource.org/licenses/mit-license.php). The original black and white icons were colored for this application by the maintainer. 
+- The GUI icons are based on the [Eva Icons](https://akveo.github.io/eva-icons/#/), published under the [MIT License](http://www.opensource.org/licenses/mit-license.php). The original black and white icons were colored for this application by the maintainer. 
+- The flag icons are from [Flaticon.com](https://www.flaticon.com/free-icons).
 
 ## See also
   
