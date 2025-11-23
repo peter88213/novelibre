@@ -12,6 +12,7 @@
 -  [nv_dark](https://github.com/peter88213/nv_dark/) A dark mode for novelibre.
 -  [nv_editor](https://github.com/peter88213/nv_editor/) A novelibre markup editor plugin.
 -  [nv_extra_view](https://github.com/peter88213/nv_extra_view/) A "detach text viewer" plugin for novelibre.
+-  [nv_it](https://github.com/peter88213/nv_it/) An Italian language package for novelibre.
 -  [nv_matrix](https://github.com/peter88213/nv_matrix/) A novelibre plugin providing a section relationship matrix. 
 -  [nv_plugin](https://github.com/peter88213/nv_plugin/) A template repository for custom plugins.
 -  [nv_progress](https://github.com/peter88213/nv_progress/) A daily progress log viewer plufgin for novelibre.

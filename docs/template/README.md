@@ -161,6 +161,7 @@ The development phase has now come to an end. Nevertheless it is recommended to 
 
 [Feedback](https://github.com/peter88213/novelibre/discussions)
 
+---
 
 ## Download
 
@@ -185,9 +186,17 @@ The package is also available in zip format:
 [novelibre_v0.99.0.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v0.99.0.zip)
 
 
+### Strongly recommended
+
+- You might want to install the 
+  [nv_updater](https://github.com/peter88213/nv_updater/) 
+  update checker and run it from time to time. 
+
+
 ### Translations
 
 - [Italian language package](https://github.com/peter88213/nv_it)
+
 
 ---
 
