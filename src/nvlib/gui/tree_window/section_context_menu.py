@@ -1,4 +1,4 @@
-"""Provide a context menu class for sections in the "Chapter" branch.
+"""Provide a context menu class for sections.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre

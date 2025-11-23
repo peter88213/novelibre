@@ -13,8 +13,8 @@ from nvlib.gui.tree_window.plot_line_context_menu import PlotLineContextMenu
 from nvlib.gui.tree_window.section_context_menu import SectionContextMenu
 from nvlib.gui.tree_window.stage_context_menu import StageContextMenu
 from nvlib.gui.tree_window.trash_context_menu import TrashContextMenu
-from nvlib.gui.tree_window.world_context_menu import WorldContextMenu
-from nvlib.gui.tree_window.world_root_context_menu import WorldRootContextMenu
+from nvlib.gui.tree_window.element_context_menu import ElementContextMenu
+from nvlib.gui.tree_window.root_context_menu import RootContextMenu
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
@@ -56,6 +56,14 @@ class TreeContextMenu(SubController):
         )
         self._ctrl.register_client(self._chapterContextMenu)
 
+        self._characterContextMenu = CharacterContextMenu(
+            master,
+            self._mdl,
+            self._ui,
+            self._ctrl
+        )
+        self._ctrl.register_client(self._characterContextMenu)
+
         self._crRootContextMenu = CrRootContextMenu(
             master,
             self._mdl,
@@ -64,13 +72,29 @@ class TreeContextMenu(SubController):
         )
         self._ctrl.register_client(self._crRootContextMenu)
 
-        self._characterContextMenu = CharacterContextMenu(
+        self._plotLineContextMenu = PlotLineContextMenu(
             master,
             self._mdl,
             self._ui,
             self._ctrl
         )
-        self._ctrl.register_client(self._characterContextMenu)
+        self._ctrl.register_client(self._plotLineContextMenu)
+
+        self._plotRootContextMenu = RootContextMenu(
+            master,
+            self._mdl,
+            self._ui,
+            self._ctrl
+        )
+        self._ctrl.register_client(self._plotRootContextMenu)
+
+        self._pnRootContextMenu = RootContextMenu(
+            master,
+            self._mdl,
+            self._ui,
+            self._ctrl
+        )
+        self._ctrl.register_client(self._pnRootContextMenu)
 
         self._sectionContextMenu = SectionContextMenu(
             master,
@@ -96,61 +120,13 @@ class TreeContextMenu(SubController):
         )
         self._ctrl.register_client(self._trashContextMenu)
 
-        self._worldContextMenu = WorldContextMenu(
+        self._worldContextMenu = ElementContextMenu(
             master,
             self._mdl,
             self._ui,
             self._ctrl
         )
         self._ctrl.register_client(self._worldContextMenu)
-
-        self._worldRootContextMenu = WorldRootContextMenu(
-            master,
-            self._mdl,
-            self._ui,
-            self._ctrl
-        )
-        self._ctrl.register_client(self._worldRootContextMenu)
-
-        self._plotLineContextMenu = PlotLineContextMenu(
-            master,
-            self._mdl,
-            self._ui,
-            self._ctrl
-        )
-        self._ctrl.register_client(self._plotLineContextMenu)
-
-        self._plotPointContextMenu = WorldContextMenu(
-            master,
-            self._mdl,
-            self._ui,
-            self._ctrl
-        )
-        self._ctrl.register_client(self._plotPointContextMenu)
-
-        self._plotRootContextMenu = WorldRootContextMenu(
-            master,
-            self._mdl,
-            self._ui,
-            self._ctrl
-        )
-        self._ctrl.register_client(self._plotRootContextMenu)
-
-        self._pnRootContextMenu = WorldRootContextMenu(
-            master,
-            self._mdl,
-            self._ui,
-            self._ctrl
-        )
-        self._ctrl.register_client(self._pnRootContextMenu)
-
-        self._projectnoteContextMenu = WorldContextMenu(
-            master,
-            self._mdl,
-            self._ui,
-            self._ctrl
-        )
-        self._ctrl.register_client(self._projectnoteContextMenu)
 
     def open(self, event):
         # Event handler for the tree's context menu.
@@ -186,7 +162,7 @@ class TreeContextMenu(SubController):
         elif prefix == CHARACTER_PREFIX:
             self._characterContextMenu.open(event)
         elif prefix in (LC_ROOT, IT_ROOT):
-            self._worldRootContextMenu.open(event)
+            self._worldContextMenu.open(event)
         elif prefix in (LOCATION_PREFIX, ITEM_PREFIX):
             self._worldContextMenu.open(event)
         elif prefix == PL_ROOT:
@@ -194,9 +170,9 @@ class TreeContextMenu(SubController):
         elif prefix == PLOT_LINE_PREFIX:
             self._plotLineContextMenu.open(event)
         elif prefix == PLOT_POINT_PREFIX:
-            self._plotPointContextMenu.open(event)
+            self._worldContextMenu.open(event)
         elif prefix == PN_ROOT:
             self._pnRootContextMenu.open(event)
         elif prefix == PRJ_NOTE_PREFIX:
-            self._projectnoteContextMenu.open(event)
+            self._worldContextMenu.open(event)
 

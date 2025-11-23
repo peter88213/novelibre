@@ -1,14 +1,14 @@
-"""Provide a context menu class for the "Book" branch.
+"""Provide a context menu class for characters.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.gui.tree_window.world_context_menu import WorldContextMenu
+from nvlib.gui.tree_window.element_context_menu import ElementContextMenu
 from nvlib.nv_locale import _
 
 
-class CharacterContextMenu(WorldContextMenu):
+class CharacterContextMenu(ElementContextMenu):
 
     def __init__(self, master, model, view, controller):
         super().__init__(master, model, view, controller)

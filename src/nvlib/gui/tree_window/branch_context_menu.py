@@ -1,4 +1,4 @@
-"""Provide a context menu class for a tree view branch.
+"""Provide a basic context menu class for a tree view branch.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
