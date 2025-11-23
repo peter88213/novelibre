@@ -9,12 +9,12 @@ from nvlib.gui.tree_window.book_context_menu import BookContextMenu
 from nvlib.gui.tree_window.chapter_context_menu import ChapterContextMenu
 from nvlib.gui.tree_window.character_context_menu import CharacterContextMenu
 from nvlib.gui.tree_window.cr_root_context_menu import CrRootContextMenu
+from nvlib.gui.tree_window.element_context_menu import ElementContextMenu
 from nvlib.gui.tree_window.plot_line_context_menu import PlotLineContextMenu
+from nvlib.gui.tree_window.root_context_menu import RootContextMenu
 from nvlib.gui.tree_window.section_context_menu import SectionContextMenu
 from nvlib.gui.tree_window.stage_context_menu import StageContextMenu
 from nvlib.gui.tree_window.trash_context_menu import TrashContextMenu
-from nvlib.gui.tree_window.element_context_menu import ElementContextMenu
-from nvlib.gui.tree_window.root_context_menu import RootContextMenu
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
