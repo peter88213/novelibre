@@ -1,4 +1,4 @@
-[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.42.1.pyz)
+[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.43.0.pyz)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
 [![News/Feedback](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
@@ -161,12 +161,13 @@ The development phase has now come to an end. Nevertheless it is recommended to 
 
 [Feedback](https://github.com/peter88213/novelibre/discussions)
 
+---
 
 ## Download
 
 ### Default: Executable Python zip archive
 
-Download the latest release [novelibre_v5.42.1.pyz](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.42.1.pyz)
+Download the latest release [novelibre_v5.43.0.pyz](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.43.0.pyz)
 
 > [!IMPORTANT]
 > Many web browsers recognize the download as an executable file and offer to open it immediately. 
@@ -182,12 +183,20 @@ Download the latest release [novelibre_v5.42.1.pyz](https://github.com/peter8821
 ### Alternative: Zip file
 
 The package is also available in zip format: 
-[novelibre_v5.42.1.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.42.1.zip)
+[novelibre_v5.43.0.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.43.0.zip)
+
+
+### Strongly recommended
+
+- You might want to install the 
+  [nv_updater](https://github.com/peter88213/nv_updater/) 
+  update checker and run it from time to time. 
 
 
 ### Translations
 
 - [Italian language package](https://github.com/peter88213/nv_it)
+
 
 ---
 
@@ -223,7 +232,7 @@ See the [online user guide](https://peter88213.github.io/nvhelp-en/)
 ## Credits
 
 - The logos and file icons are made using the free *Pusab* font by Ryoichi Tsunekawa, [Flat-it](http://flat-it.com/).
-- The GUI icons are based on the [Eva Icons](https://akveo.github.io/eva-icons/#/), published under the [MIT License](http://www.opensource.org/licenses/mit-license.php). The original black and white icons were colored for this application by the maintainer. 
+- The icons are based on the [Eva Icons](https://akveo.github.io/eva-icons/#/), published under the [MIT License](http://www.opensource.org/licenses/mit-license.php). The original black and white icons were colored for this application by the maintainer. 
 - The flag icons are from [Flaticon.com](https://www.flaticon.com/free-icons/flag).
 
 ## See also

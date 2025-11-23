@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.43.0\n"
-"POT-Creation-Date: 2025-11-22 18:24:39\n"
+"POT-Creation-Date: 2025-11-23 13:22:12\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -60,9 +60,6 @@ msgid "Add Plot line"
 msgstr ""
 
 msgid "Add Plot point"
-msgstr ""
-
-msgid "Add Project note"
 msgstr ""
 
 msgid "Add Section"

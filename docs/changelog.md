@@ -10,6 +10,24 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.43.0
+
+- Changed the "Online help" menu entry.
+- Plugin manager: Changed command, replacing "Delete" with "Uninstall". 
+- Added Cut/Copy/Paste commands to the tree view context menu (#74).
+
+- Refactored the whole context menu, creating menu classes for each category(#74).
+- Refactored and reworded the plugin uninstaller mechanism.
+- Refactored the messaging, replacing Error with RuntimeError (#76).
+- Refactored the messaging, replacing Notification with UserWarning (#76).
+- Revised the build and translation scripts.
+
+#### API changes
+
+- Before removing a plugin module, 
+  the plugin manager calls the plugin's `uninstall` method, if any.
+
+
 ### Version 5.42.1
 
 - Fixed a bug where the scenes in a copied/pasted chapter may be in the wrong order.
