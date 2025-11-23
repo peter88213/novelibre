@@ -72,6 +72,14 @@ class TreeContextMenu(SubController):
         )
         self._ctrl.register_client(self._crRootContextMenu)
 
+        self._elementContextMenu = ElementContextMenu(
+            master,
+            self._mdl,
+            self._ui,
+            self._ctrl
+        )
+        self._ctrl.register_client(self._elementContextMenu)
+
         self._plotLineContextMenu = PlotLineContextMenu(
             master,
             self._mdl,
@@ -80,21 +88,13 @@ class TreeContextMenu(SubController):
         )
         self._ctrl.register_client(self._plotLineContextMenu)
 
-        self._plotRootContextMenu = RootContextMenu(
+        self._rootContextMenu = RootContextMenu(
             master,
             self._mdl,
             self._ui,
             self._ctrl
         )
-        self._ctrl.register_client(self._plotRootContextMenu)
-
-        self._pnRootContextMenu = RootContextMenu(
-            master,
-            self._mdl,
-            self._ui,
-            self._ctrl
-        )
-        self._ctrl.register_client(self._pnRootContextMenu)
+        self._ctrl.register_client(self._rootContextMenu)
 
         self._sectionContextMenu = SectionContextMenu(
             master,
@@ -119,14 +119,6 @@ class TreeContextMenu(SubController):
             self._ctrl
         )
         self._ctrl.register_client(self._trashContextMenu)
-
-        self._worldContextMenu = ElementContextMenu(
-            master,
-            self._mdl,
-            self._ui,
-            self._ctrl
-        )
-        self._ctrl.register_client(self._worldContextMenu)
 
     def open(self, event):
         # Event handler for the tree's context menu.
@@ -157,22 +149,24 @@ class TreeContextMenu(SubController):
                 self._sectionContextMenu.open(event)
             else:
                 self._stageContextMenu.open(event)
+        elif prefix in (
+            LOCATION_PREFIX,
+            ITEM_PREFIX,
+            PLOT_POINT_PREFIX,
+            PRJ_NOTE_PREFIX,
+        ):
+            self._elementContextMenu.open(event)
+        elif prefix in(
+            LC_ROOT,
+            IT_ROOT,
+            PL_ROOT,
+            PN_ROOT,
+        ):
+            self._rootContextMenu.open(event)
         elif prefix == CR_ROOT:
             self._crRootContextMenu.open(event)
         elif prefix == CHARACTER_PREFIX:
             self._characterContextMenu.open(event)
-        elif prefix in (LC_ROOT, IT_ROOT):
-            self._worldContextMenu.open(event)
-        elif prefix in (LOCATION_PREFIX, ITEM_PREFIX):
-            self._worldContextMenu.open(event)
-        elif prefix == PL_ROOT:
-            self._plotRootContextMenu.open(event)
         elif prefix == PLOT_LINE_PREFIX:
             self._plotLineContextMenu.open(event)
-        elif prefix == PLOT_POINT_PREFIX:
-            self._worldContextMenu.open(event)
-        elif prefix == PN_ROOT:
-            self._pnRootContextMenu.open(event)
-        elif prefix == PRJ_NOTE_PREFIX:
-            self._worldContextMenu.open(event)
 
