@@ -1,4 +1,4 @@
-"""Provide a context menu class for the "Character" branch.
+"""Provide a basic context menu class for a branch.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
