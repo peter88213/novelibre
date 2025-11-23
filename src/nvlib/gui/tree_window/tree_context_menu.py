@@ -8,12 +8,13 @@ from nvlib.controller.sub_controller import SubController
 from nvlib.gui.tree_window.book_context_menu import BookContextMenu
 from nvlib.gui.tree_window.chapter_context_menu import ChapterContextMenu
 from nvlib.gui.tree_window.character_context_menu import CharacterContextMenu
-from nvlib.gui.tree_window.plot_context_menu import PlotContextMenu
-from nvlib.gui.tree_window.projectnote_context_menu import ProjectnoteContextMenu
+from nvlib.gui.tree_window.cr_root_context_menu import CrRootContextMenu
+from nvlib.gui.tree_window.plot_line_context_menu import PlotLineContextMenu
 from nvlib.gui.tree_window.section_context_menu import SectionContextMenu
 from nvlib.gui.tree_window.stage_context_menu import StageContextMenu
 from nvlib.gui.tree_window.trash_context_menu import TrashContextMenu
 from nvlib.gui.tree_window.world_context_menu import WorldContextMenu
+from nvlib.gui.tree_window.world_root_context_menu import WorldRootContextMenu
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
@@ -56,13 +57,21 @@ class TreeContextMenu(SubController):
         )
         self._ctrl.register_client(self._chapterContextMenu)
 
-        self._trashContextMenu = TrashContextMenu(
+        self._crRootContextMenu = CrRootContextMenu(
             master,
             self._mdl,
             self._ui,
             self._ctrl
         )
-        self._ctrl.register_client(self._trashContextMenu)
+        self._ctrl.register_client(self._crRootContextMenu)
+
+        self._characterContextMenu = CharacterContextMenu(
+            master,
+            self._mdl,
+            self._ui,
+            self._ctrl
+        )
+        self._ctrl.register_client(self._characterContextMenu)
 
         self._sectionContextMenu = SectionContextMenu(
             master,
@@ -80,13 +89,14 @@ class TreeContextMenu(SubController):
         )
         self._ctrl.register_client(self._stageContextMenu)
 
-        self._characterContextMenu = CharacterContextMenu(
+        self._trashContextMenu = TrashContextMenu(
             master,
             self._mdl,
             self._ui,
             self._ctrl
         )
-        self._ctrl.register_client(self._characterContextMenu)
+        self._ctrl.register_client(self._trashContextMenu)
+
         self._worldContextMenu = WorldContextMenu(
             master,
             self._mdl,
@@ -95,14 +105,47 @@ class TreeContextMenu(SubController):
         )
         self._ctrl.register_client(self._worldContextMenu)
 
-        self.plotContextMenu = PlotContextMenu(
+        self._worldRootContextMenu = WorldRootContextMenu(
             master,
             self._mdl,
             self._ui,
             self._ctrl
         )
-        self._ctrl.register_client(self.plotContextMenu)
-        self._projectnoteContextMenu = ProjectnoteContextMenu(
+        self._ctrl.register_client(self._worldRootContextMenu)
+
+        self._plotLineContextMenu = PlotLineContextMenu(
+            master,
+            self._mdl,
+            self._ui,
+            self._ctrl
+        )
+        self._ctrl.register_client(self._plotLineContextMenu)
+
+        self._plotPointContextMenu = WorldContextMenu(
+            master,
+            self._mdl,
+            self._ui,
+            self._ctrl
+        )
+        self._ctrl.register_client(self._plotPointContextMenu)
+
+        self._plotRootContextMenu = WorldRootContextMenu(
+            master,
+            self._mdl,
+            self._ui,
+            self._ctrl
+        )
+        self._ctrl.register_client(self._plotRootContextMenu)
+
+        self._pnRootContextMenu = WorldRootContextMenu(
+            master,
+            self._mdl,
+            self._ui,
+            self._ctrl
+        )
+        self._ctrl.register_client(self._pnRootContextMenu)
+
+        self._projectnoteContextMenu = WorldContextMenu(
             master,
             self._mdl,
             self._ui,
@@ -139,6 +182,24 @@ class TreeContextMenu(SubController):
                 self._sectionContextMenu.open(event)
             else:
                 self._stageContextMenu.open(event)
+        elif prefix == CR_ROOT:
+            self._crRootContextMenu.open(event)
+        elif prefix == CHARACTER_PREFIX:
+            self._characterContextMenu.open(event)
+        elif prefix in (LC_ROOT, IT_ROOT):
+            self._worldRootContextMenu.open(event)
+        elif prefix in (LOCATION_PREFIX, ITEM_PREFIX):
+            self._worldContextMenu.open(event)
+        elif prefix == PL_ROOT:
+            self._plotRootContextMenu.open(event)
+        elif prefix == PLOT_LINE_PREFIX:
+            self._plotLineContextMenu.open(event)
+        elif prefix == PLOT_POINT_PREFIX:
+            self._plotPointContextMenu.open(event)
+        elif prefix == PN_ROOT:
+            self._pnRootContextMenu.open(event)
+        elif prefix == PRJ_NOTE_PREFIX:
+            self._projectnoteContextMenu.open(event)
 
     def _configure_book_context_menu(self, prefix, row):
         bookContextEntries = (
@@ -233,14 +294,14 @@ class TreeContextMenu(SubController):
             _('Change sections to Unused'),
             _('Change sections to Normal'),
         )
-        self.plotContextMenu.entryconfig(_('Copy'), state='normal')
+        self._plotContextMenu.entryconfig(_('Copy'), state='normal')
         if self._ctrl.isLocked:
             for label in plotContextEntries:
-                self.plotContextMenu.entryconfig(label, state='disabled')
+                self._plotContextMenu.entryconfig(label, state='disabled')
             return
 
         for label in plotContextEntries:
-            self.plotContextMenu.entryconfig(label, state='normal')
+            self._plotContextMenu.entryconfig(label, state='normal')
 
         if prefix == PLOT_LINE_PREFIX:
             return
@@ -252,7 +313,7 @@ class TreeContextMenu(SubController):
                 _('Change sections to Unused'),
                 _('Change sections to Normal'),
             ):
-                self.plotContextMenu.entryconfig(label, state='disabled')
+                self._plotContextMenu.entryconfig(label, state='disabled')
             return
 
         if prefix == PL_ROOT:
@@ -267,7 +328,7 @@ class TreeContextMenu(SubController):
                 _('Change sections to Unused'),
                 _('Change sections to Normal'),
             ):
-                self.plotContextMenu.entryconfig(label, state='disabled')
+                self._plotContextMenu.entryconfig(label, state='disabled')
             return
 
     def _configure_project_note_context_menu(self, prefix):

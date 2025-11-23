@@ -1,4 +1,4 @@
-"""Provide a context menu class for the "Plot" branch.
+"""Provide a context menu class for plot lines.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -9,7 +9,7 @@ from nvlib.gui.tree_window.branch_context_menu import BranchContextMenu
 from nvlib.nv_locale import _
 
 
-class PlotContextMenu(BranchContextMenu):
+class PlotLineContextMenu(BranchContextMenu):
 
     def __init__(self, master, model, view, controller):
         super().__init__(master, model, view, controller)
@@ -61,7 +61,7 @@ class PlotContextMenu(BranchContextMenu):
             accelerator=KEYS.PASTE[1],
             command=self._ctrl.paste_element,
         )
-        self._disableOnLock = [
+        self._disableOnLock.extend([
             _('Add Plot line'),
             _('Add Plot point'),
             _('Delete'),
@@ -71,5 +71,5 @@ class PlotContextMenu(BranchContextMenu):
             _('Export synopsis filtered by plot line'),
             _('Change sections to Unused'),
             _('Change sections to Normal'),
-        ]
+        ])
 

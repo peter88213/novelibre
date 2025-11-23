@@ -14,19 +14,11 @@ class BookContextMenu(BranchContextMenu):
         super().__init__(master, model, view, controller)
 
         self.add_command(
-            label=_('Add Section'),
-            command=self._ctrl.add_new_section,
-        )
-        self.add_command(
             label=_('Add Chapter'),
             command=self._ctrl.add_new_chapter)
         self.add_command(
             label=_('Add Part'),
             command=self._ctrl.add_new_part,
-        )
-        self.add_command(
-            label=_('Insert Stage'),
-            command=self._ctrl.add_new_stage,
         )
         self.add_separator()
         self.add_cascade(
@@ -58,10 +50,8 @@ class BookContextMenu(BranchContextMenu):
             command=master.collapse_all,
         )
         self._disableOnLock = [
-            _('Add Section'),
             _('Add Chapter'),
             _('Add Part'),
-            _('Insert Stage'),
             _('Set Status'),
             _('Set Viewpoint...'),
         ]

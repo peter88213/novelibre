@@ -14,6 +14,7 @@ class BranchContextMenu(ContextMenu, SubController):
         self._mdl = model
         self._ui = view
         self._ctrl = controller
+        self._disableOnLock = []
         super().__init__(master, tearoff=0)
 
     def lock(self):

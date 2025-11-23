@@ -19,13 +19,6 @@ class StageContextMenu(BranchContextMenu):
             command=self._ctrl.add_new_section,
         )
         self.add_command(
-            label=_('Add Chapter'),
-            command=self._ctrl.add_new_chapter)
-        self.add_command(
-            label=_('Add Part'),
-            command=self._ctrl.add_new_part,
-        )
-        self.add_command(
             label=_('Insert Stage'),
             command=self._ctrl.add_new_stage,
         )
@@ -75,14 +68,12 @@ class StageContextMenu(BranchContextMenu):
             label=_('Collapse all'),
             command=master.collapse_all,
         )
-        self._disableOnLock = [
+        self._disableOnLock.extend([
             _('Add Section'),
-            _('Add Chapter'),
-            _('Add Part'),
             _('Insert Stage'),
             _('Change Level'),
             _('Delete'),
             _('Cut'),
             _('Paste'),
-        ]
+        ])
 

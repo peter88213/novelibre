@@ -39,7 +39,7 @@ class TrashContextMenu(BranchContextMenu):
             label=_('Collapse all'),
             command=master.collapse_all,
         )
-        self._disableOnLock = [
+        self._disableOnLock.extend([
             _('Delete'),
-        ]
+        ])
 

@@ -92,7 +92,7 @@ class ChapterContextMenu(BranchContextMenu):
             label=_('Collapse all'),
             command=master.collapse_all,
         )
-        self._disableOnLock = [
+        self._disableOnLock.extend([
             _('Add Section'),
             _('Add Chapter'),
             _('Add Part'),
@@ -105,5 +105,5 @@ class ChapterContextMenu(BranchContextMenu):
             _('Set Type'),
             _('Set Status'),
             _('Set Viewpoint...'),
-        ]
+        ])
 
