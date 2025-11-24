@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.43.0\n"
-"POT-Creation-Date: 2025-11-23 13:22:12\n"
+"Project-Id-Version: 5.43.1\n"
+"POT-Creation-Date: 2025-11-24 02:25:58\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -305,9 +305,6 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-msgid "Collapse"
-msgstr ""
-
 msgid "Collapse all"
 msgstr ""
 
@@ -492,9 +489,6 @@ msgid "Epigraph_20_source"
 msgstr ""
 
 msgid "Exit"
-msgstr ""
-
-msgid "Expand"
 msgstr ""
 
 msgid "Expand all"

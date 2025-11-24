@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.43.0\n"
+"Project-Id-Version: 5.43.1\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2025-11-22 18:24:39\n"
+"PO-Revision-Date: 2025-11-24 02:25:58\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -54,9 +54,6 @@ msgstr "Plotlinie hinzufügen"
 
 msgid "Add Plot point"
 msgstr "Plotpunkt hinzufügen"
-
-msgid "Add Project note"
-msgstr "Projektnotiz hinzufügen"
 
 msgid "Add Section"
 msgstr "Abschnitt hinzufügen"
@@ -301,9 +298,6 @@ msgstr "Perspektive der ausgewählten Abschnitte löschen"
 msgid "Close"
 msgstr "Schließen"
 
-msgid "Collapse"
-msgstr "Einklappen"
-
 msgid "Collapse all"
 msgstr "Alle einklappen"
 
@@ -489,9 +483,6 @@ msgstr "Motto-Quelle"
 
 msgid "Exit"
 msgstr "Beenden"
-
-msgid "Expand"
-msgstr "Aufklappen"
 
 msgid "Expand all"
 msgstr "Alles aufklappen"
