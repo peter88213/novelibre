@@ -10,11 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.43.1
+### Version 5.43.2
 
 - Changed the "Online help" menu entry.
 - Plugin manager: Changed command, replacing "Delete" with "Uninstall". 
 - Added Cut/Copy/Paste commands to the tree view context menu (#74).
+- Made sure the selected node remains visible when expanding the entire tree.
 
 - Refactored the whole context menu, creating menu classes for each category(#74).
 - Refactored and reworded the plugin uninstaller mechanism.

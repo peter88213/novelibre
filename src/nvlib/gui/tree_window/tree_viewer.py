@@ -296,6 +296,13 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
     def expand_all(self, event=None):
         self.open_children('')
+        try:
+            node = self.tree.selection()[0]
+        except:
+            pass
+        else:
+            self.see_node(node)
+            self.tree.focus(node)
 
     def expand_selected(self, event=None):
         self.open_children(self.tree.selection()[0])
