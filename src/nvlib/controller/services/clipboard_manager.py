@@ -262,6 +262,7 @@ class ClipboardManager(ServiceBase):
             'PlotlineNotes',
             'Sections',
             'Section',
+            'Viewpoint',
         ]
         for ref in references:
             for xmlRef in xmlElement.findall(ref):
