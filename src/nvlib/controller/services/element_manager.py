@@ -778,6 +778,6 @@ class ElementManager(ServiceBase):
             self._ui.propertiesView.focus_title()
         else:
             self._ui.set_status(
-                f'!{_("Cannot create the element at this position")}.'
+                f'#{_("Cannot create the element at this position")}.'
             )
 

@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.43.3
+### Version 5.43.4
 
 - Changed the "Online help" menu entry.
 - Plugin manager: Changed command, replacing "Delete" with "Uninstall". 
