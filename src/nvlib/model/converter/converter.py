@@ -22,7 +22,7 @@ from nvlib.novx_globals import OTHER_SCENE_FIELD_2_DEFAULT
 from nvlib.novx_globals import OTHER_SCENE_FIELD_3_DEFAULT
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
-from nvlib.user_interface.ui import Ui
+from nvlib.alternative_ui.ui import Ui
 
 
 class Converter:

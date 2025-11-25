@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.43.2
+### Version 5.43.3
 
 - Changed the "Online help" menu entry.
 - Plugin manager: Changed command, replacing "Delete" with "Uninstall". 
@@ -27,7 +27,8 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 - Before removing a plugin module, 
   the plugin manager calls the plugin's `uninstall` method, if any.
-
+- Separated the color settings, moving them to a gui module. 
+  Thus it can be imported by the nv_dark.Plugin.uninstall() method.
 
 ### Version 5.42.1
 

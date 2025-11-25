@@ -5,7 +5,7 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.nv_locale import _
-from nvlib.user_interface.ui import Ui
+from nvlib.alternative_ui.ui import Ui
 
 
 class UiCmd(Ui):

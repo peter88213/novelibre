@@ -14,7 +14,7 @@ from nvlib.model.data.nv_tree import NvTree
 from nvlib.model.novx.novx_file import NovxFile
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
-from nvlib.user_interface.ui import Ui
+from nvlib.alternative_ui.ui import Ui
 import tkinter as tk
 
 
