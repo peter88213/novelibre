@@ -46,6 +46,7 @@ class FileMenu(tk.Menu, NvMenu):
             command=self._ctrl.restore_backup,
         )
         self._disableOnClose.append(label)
+        self._disableOnLock.append(label)
 
         self.add_separator()
 
@@ -96,6 +97,7 @@ class FileMenu(tk.Menu, NvMenu):
             command=self._ctrl.discard_manuscript,
         )
         self._disableOnClose.append(label)
+        self._disableOnLock.append(label)
 
         self.add_separator()
 
