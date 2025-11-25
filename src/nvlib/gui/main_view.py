@@ -14,7 +14,6 @@ from nvlib.gui.icons import Icons
 from nvlib.gui.observer import Observer
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.platform.platform_settings import MOUSE
-from nvlib.gui.platform.platform_settings import PLATFORM
 from nvlib.gui.pop_up.msg_boxes import MsgBoxes
 from nvlib.gui.properties_window.properties_viewer import PropertiesViewer
 from nvlib.gui.set_icon_tk import set_icon
@@ -23,6 +22,8 @@ from nvlib.gui.tree_window.tree_viewer import TreeViewer
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
+from nvlib.gui.menus.file_new_submenu import FileNewSubmenu
+from nvlib.gui.menus.file_menu import FileMenu
 
 
 class MainView(Observer, MsgBoxes, SubController):
@@ -150,8 +151,6 @@ class MainView(Observer, MsgBoxes, SubController):
         
         Overrides the SubController method.
         """
-        for entry in self._fileMenuDisableOnClose:
-            self.fileMenu.entryconfig(entry, state='disabled')
         for entry in self._mainMenuDisableOnClose:
             self.mainMenu.entryconfig(entry, state='disabled')
         for entry in self._viewMenuDisableOnClose:
@@ -162,8 +161,6 @@ class MainView(Observer, MsgBoxes, SubController):
         
         Overrides the SubController method.
         """
-        for entry in self._fileMenuDisableOnClose:
-            self.fileMenu.entryconfig(entry, state='normal')
         for entry in self._mainMenuDisableOnClose:
             self.mainMenu.entryconfig(entry, state='normal')
         for entry in self._viewMenuDisableOnClose:
@@ -179,8 +176,6 @@ class MainView(Observer, MsgBoxes, SubController):
         self.fileMenu.entryconfig(_('Lock'), state='disabled')
         for entry in self._mainMenuDisableOnLock:
             self.mainMenu.entryconfig(entry, state='disabled')
-        for entry in self._fileMenuDisableOnLock:
-            self.fileMenu.entryconfig(entry, state='disabled')
         for entry in self._sectionMenuDisableOnLock:
             self.sectionMenu.entryconfig(entry, state='disabled')
         for entry in self._characterMenuDisableOnLock:
@@ -332,8 +327,6 @@ class MainView(Observer, MsgBoxes, SubController):
         self.fileMenu.entryconfig(_('Lock'), state='normal')
         for entry in self._mainMenuDisableOnLock:
             self.mainMenu.entryconfig(entry, state='normal')
-        for entry in self._fileMenuDisableOnLock:
-            self.fileMenu.entryconfig(entry, state='normal')
         for entry in self._sectionMenuDisableOnLock:
             self.sectionMenu.entryconfig(entry, state='normal')
         for entry in self._characterMenuDisableOnLock:
@@ -369,115 +362,15 @@ class MainView(Observer, MsgBoxes, SubController):
     def _create_menu(self):
 
         # "New" submenu
-        self.newMenu = tk.Menu(self.mainMenu, tearoff=0)
-        self.newMenu.add_command(
-            label=_('Empty project'),
-            command=self._ctrl.create_project,
-        )
-        self.newMenu.add_command(
-            label=_('Create from ODT...'),
-            command=self._ctrl.import_odf,
-        )
+        self.newMenu = FileNewSubmenu(self.mainMenu, self._ctrl)
 
-        # Files
-        self.fileMenu = tk.Menu(self.mainMenu, tearoff=0)
+        # File
+        self.fileMenu = FileMenu(self.mainMenu, self._mdl, self, self._ctrl)
+        self._ctrl.register_client(self.fileMenu)
         self.mainMenu.add_cascade(
             label=_('File'),
             menu=self.fileMenu,
         )
-        self.fileMenu.add_cascade(
-            label=_('New'), menu=self.newMenu)
-        self.fileMenu.add_command(
-            label=_('Open...'),
-            accelerator=KEYS.OPEN_PROJECT[1],
-            command=self._ctrl.open_project,
-        )
-        self.fileMenu.add_command(
-            label=_('Reload'),
-            accelerator=KEYS.RELOAD_PROJECT[1],
-            command=self._ctrl.reload_project,
-        )
-        self.fileMenu.add_command(
-            label=_('Restore backup'),
-            accelerator=KEYS.RESTORE_BACKUP[1],
-            command=self._ctrl.restore_backup,
-        )
-        self.fileMenu.add_separator()
-        self.fileMenu.add_command(
-            label=_('Refresh Tree'),
-            accelerator=KEYS.REFRESH_TREE[1],
-            command=self._ctrl.refresh_tree,
-        )
-        self.fileMenu.add_command(
-            label=_('Lock'),
-            accelerator=KEYS.LOCK_PROJECT[1],
-            command=self._ctrl.lock,
-        )
-        self.fileMenu.add_command(
-            label=_('Unlock'),
-            accelerator=KEYS.UNLOCK_PROJECT[1],
-            command=self._ctrl.unlock,
-        )
-        self.fileMenu.add_separator()
-        self.fileMenu.add_command(
-            label=_('Open Project folder'),
-            accelerator=KEYS.FOLDER[1],
-            command=self._ctrl.open_project_folder,
-        )
-        self.fileMenu.add_command(
-            label=_('Copy style sheet'),
-            command=self._ctrl.copy_css,
-        )
-        self.fileMenu.add_command(
-            label=_('Discard manuscript'),
-            command=self._ctrl.discard_manuscript,
-        )
-        self.fileMenu.add_separator()
-        self.fileMenu.add_command(
-            label=_('Save'),
-            accelerator=KEYS.SAVE_PROJECT[1],
-            command=self._ctrl.save_project,
-        )
-        self.fileMenu.add_command(
-            label=_('Save as...'),
-            accelerator=KEYS.SAVE_AS[1],
-            command=self._ctrl.save_as,
-        )
-        self.fileMenu.add_command(
-            label=_('Close'),
-            command=self._ctrl.close_project,
-        )
-        if PLATFORM == 'win':
-            self.fileMenu.add_command(
-                label=_('Exit'),
-                accelerator=KEYS.QUIT_PROGRAM[1],
-                command=self._ctrl.on_quit,
-            )
-        else:
-            self.fileMenu.add_command(
-                label=_('Quit'),
-                accelerator=KEYS.QUIT_PROGRAM[1],
-                command=self._ctrl.on_quit,
-            )
-
-        self._fileMenuDisableOnClose = [
-            _('Close'),
-            _('Copy style sheet'),
-            _('Discard manuscript'),
-            _('Lock'),
-            _('Open Project folder'),
-            _('Refresh Tree'),
-            _('Reload'),
-            _('Restore backup'),
-            _('Save as...'),
-            _('Save'),
-            _('Unlock'),
-        ]
-        self._fileMenuDisableOnLock = [
-            _('Reload'),
-            _('Refresh Tree'),
-            _('Save'),
-        ]
 
         # View
         self.viewMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -644,7 +537,7 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         self.sectionMenu.add_cascade(
             label=_('Set Status'),
-            menu=self.tv.scStatusMenu,
+            menu=self.tv.selectSectionStatusMenu,
         )
         self.sectionMenu.add_command(
             label=_('Set Viewpoint...'),
@@ -686,7 +579,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self.characterMenu.add_separator()
         self.characterMenu.add_cascade(
             label=_('Set Status'),
-            menu=self.tv.crStatusMenu,
+            menu=self.tv.selectCharacterStatusMenu,
         )
         self.characterMenu.add_separator()
         self.characterMenu.add_command(

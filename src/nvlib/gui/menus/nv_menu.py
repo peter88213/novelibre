@@ -16,6 +16,15 @@ class NvMenu(SubController):
         self._ui = view
         self._ctrl = controller
         self._disableOnLock = []
+        self._disableOnClose = []
+
+    def disable_menu(self):
+        for label in self._disableOnClose:
+            self.entryconfig(label, state='disabled')
+
+    def enable_menu(self):
+        for label in self._disableOnClose:
+            self.entryconfig(label, state='normal')
 
     def lock(self):
         for label in self._disableOnLock:
@@ -139,7 +148,7 @@ class NvMenu(SubController):
         label = _('Set Status')
         self.add_cascade(
             label=label,
-            menu=master.crStatusMenu,
+            menu=master.selectCharacterStatusMenu,
         )
         self._disableOnLock.append(label)
 
@@ -147,7 +156,7 @@ class NvMenu(SubController):
         label = _('Set Status')
         self.add_cascade(
             label=label,
-            menu=master.scStatusMenu,
+            menu=master.selectSectionStatusMenu,
         )
         self._disableOnLock.append(label)
 
