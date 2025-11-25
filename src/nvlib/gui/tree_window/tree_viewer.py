@@ -7,15 +7,15 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 
 from nvlib.controller.sub_controller import SubController
+from nvlib.gui.menus.selection_menu_character_status import SelectionMenuCharacterStatus
+from nvlib.gui.menus.selection_menu_level import SelectionMenuLevel
+from nvlib.gui.menus.selection_menu_section_status import SelectionMenuSectionStatus
+from nvlib.gui.menus.selection_menu_type import SelectionMenuType
 from nvlib.gui.observer import Observer
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.platform.platform_settings import MOUSE
-from nvlib.gui.tree_window.cr_status_menu import CrStatusMenu
 from nvlib.gui.tree_window.history_list import HistoryList
-from nvlib.gui.tree_window.level_menu import LevelMenu
-from nvlib.gui.tree_window.sc_status_menu import ScStatusMenu
 from nvlib.gui.tree_window.tree_context_menu import TreeContextMenu
-from nvlib.gui.tree_window.type_menu import TypeMenu
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.model.nv_treeview import NvTreeview
 from nvlib.novx_globals import CHAPTER_PREFIX
@@ -217,10 +217,10 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             self.coloringMode = 0
 
         #--- Create public submenus and local context menus.
-        self.selectTypeMenu = TypeMenu(self, self._ctrl)
-        self.selectLevelMenu = LevelMenu(self, self._ctrl)
-        self.scStatusMenu = ScStatusMenu(self, self._ctrl)
-        self.crStatusMenu = CrStatusMenu(self, self._ctrl)
+        self.selectTypeMenu = SelectionMenuType(self, self._ctrl)
+        self.selectLevelMenu = SelectionMenuLevel(self, self._ctrl)
+        self.scStatusMenu = SelectionMenuSectionStatus(self, self._ctrl)
+        self.crStatusMenu = SelectionMenuCharacterStatus(self, self._ctrl)
         self.contextMenu = TreeContextMenu(
             self,
             self._mdl,

@@ -1,4 +1,4 @@
-"""Provide a menu class for character status selection.
+"""Provide a menu class for chapter/stage level selection.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -8,15 +8,15 @@ from nvlib.nv_locale import _
 import tkinter as tk
 
 
-class CrStatusMenu(tk.Menu):
+class SelectionMenuLevel(tk.Menu):
 
     def __init__(self, master, controller):
         super().__init__(master, tearoff=0)
         self.add_command(
-            label=_('Major Character'),
-            command=controller.set_chr_status_major,
+            label=_('1st Level'),
+            command=controller.set_level_1,
         )
         self.add_command(
-            label=_('Minor Character'),
-            command=controller.set_chr_status_minor,
+            label=_('2nd Level'),
+            command=controller.set_level_2,
         )

@@ -5,16 +5,16 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.controller.sub_controller import SubController
-from nvlib.gui.tree_window.book_context_menu import BookContextMenu
-from nvlib.gui.tree_window.chapter_context_menu import ChapterContextMenu
-from nvlib.gui.tree_window.character_context_menu import CharacterContextMenu
-from nvlib.gui.tree_window.cr_root_context_menu import CrRootContextMenu
-from nvlib.gui.tree_window.element_context_menu import ElementContextMenu
-from nvlib.gui.tree_window.plot_line_context_menu import PlotLineContextMenu
-from nvlib.gui.tree_window.root_context_menu import RootContextMenu
-from nvlib.gui.tree_window.section_context_menu import SectionContextMenu
-from nvlib.gui.tree_window.stage_context_menu import StageContextMenu
-from nvlib.gui.tree_window.trash_context_menu import TrashContextMenu
+from nvlib.gui.menus.context_menu_book import ContextMenuBook
+from nvlib.gui.menus.context_menu_chapter import ContextMenuChapter
+from nvlib.gui.menus.context_menu_character import ContextMenuCharacter
+from nvlib.gui.menus.context_menu_characters import ContextMenuCharacters
+from nvlib.gui.menus.context_menu_element import ContextMenuElement
+from nvlib.gui.menus.context_menu_elements import ContextMenuElements
+from nvlib.gui.menus.context_menu_plot_line import ContextMenuPlotLine
+from nvlib.gui.menus.context_menu_section import ContextMenuSection
+from nvlib.gui.menus.context_menu_stage import ContextMenuStage
+from nvlib.gui.menus.context_menu_trash import ContextMenuTrash
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
@@ -40,7 +40,7 @@ class TreeContextMenu(SubController):
         self._ctrl = controller
 
         #--- Create local context menus.
-        self._bookContextMenu = BookContextMenu(
+        self._bookContextMenu = ContextMenuBook(
             master,
             self._mdl,
             self._ui,
@@ -48,7 +48,7 @@ class TreeContextMenu(SubController):
         )
         self._ctrl.register_client(self._bookContextMenu)
 
-        self._chapterContextMenu = ChapterContextMenu(
+        self._chapterContextMenu = ContextMenuChapter(
             master,
             self._mdl,
             self._ui,
@@ -56,7 +56,7 @@ class TreeContextMenu(SubController):
         )
         self._ctrl.register_client(self._chapterContextMenu)
 
-        self._characterContextMenu = CharacterContextMenu(
+        self._characterContextMenu = ContextMenuCharacter(
             master,
             self._mdl,
             self._ui,
@@ -64,7 +64,7 @@ class TreeContextMenu(SubController):
         )
         self._ctrl.register_client(self._characterContextMenu)
 
-        self._crRootContextMenu = CrRootContextMenu(
+        self._crRootContextMenu = ContextMenuCharacters(
             master,
             self._mdl,
             self._ui,
@@ -72,7 +72,7 @@ class TreeContextMenu(SubController):
         )
         self._ctrl.register_client(self._crRootContextMenu)
 
-        self._elementContextMenu = ElementContextMenu(
+        self._elementContextMenu = ContextMenuElement(
             master,
             self._mdl,
             self._ui,
@@ -80,7 +80,7 @@ class TreeContextMenu(SubController):
         )
         self._ctrl.register_client(self._elementContextMenu)
 
-        self._plotLineContextMenu = PlotLineContextMenu(
+        self._plotLineContextMenu = ContextMenuPlotLine(
             master,
             self._mdl,
             self._ui,
@@ -88,7 +88,7 @@ class TreeContextMenu(SubController):
         )
         self._ctrl.register_client(self._plotLineContextMenu)
 
-        self._rootContextMenu = RootContextMenu(
+        self._rootContextMenu = ContextMenuElements(
             master,
             self._mdl,
             self._ui,
@@ -96,7 +96,7 @@ class TreeContextMenu(SubController):
         )
         self._ctrl.register_client(self._rootContextMenu)
 
-        self._sectionContextMenu = SectionContextMenu(
+        self._sectionContextMenu = ContextMenuSection(
             master,
             self._mdl,
             self._ui,
@@ -104,7 +104,7 @@ class TreeContextMenu(SubController):
         )
         self._ctrl.register_client(self._sectionContextMenu)
 
-        self._stageContextMenu = StageContextMenu(
+        self._stageContextMenu = ContextMenuStage(
             master,
             self._mdl,
             self._ui,
@@ -112,7 +112,7 @@ class TreeContextMenu(SubController):
         )
         self._ctrl.register_client(self._stageContextMenu)
 
-        self._trashContextMenu = TrashContextMenu(
+        self._trashContextMenu = ContextMenuTrash(
             master,
             self._mdl,
             self._ui,

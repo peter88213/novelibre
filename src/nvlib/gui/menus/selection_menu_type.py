@@ -8,7 +8,7 @@ from nvlib.nv_locale import _
 import tkinter as tk
 
 
-class TypeMenu(tk.Menu):
+class SelectionMenuType(tk.Menu):
 
     def __init__(self, master, controller):
         super().__init__(master, tearoff=0)

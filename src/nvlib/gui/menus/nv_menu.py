@@ -1,4 +1,4 @@
-"""Provide a basic context menu class for a tree view branch.
+"""Provide a basic menu class for novelibre menus.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -6,18 +6,16 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.controller.sub_controller import SubController
 from nvlib.gui.platform.platform_settings import KEYS
-from nvlib.gui.widgets.context_menu import ContextMenu
 from nvlib.nv_locale import _
 
 
-class BranchContextMenu(ContextMenu, SubController):
+class NvMenu(SubController):
 
     def __init__(self, master, model, view, controller):
         self._mdl = model
         self._ui = view
         self._ctrl = controller
         self._disableOnLock = []
-        super().__init__(master, tearoff=0)
 
     def lock(self):
         for label in self._disableOnLock:
