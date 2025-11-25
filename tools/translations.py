@@ -47,10 +47,10 @@ class PoFile:
                     inHeader = False
             if not inHeader:
                 if line.startswith('msgid "'):
-                    self._msgid = line.removeprefix('msgid "').rstrip('"')
+                    self._msgid = line.removeprefix('msgid "').removesuffix('"')
                     self.messages[self._msgid] = ''
                 elif line.startswith('msgstr "'):
-                    msgstr = line.removeprefix('msgstr "').rstrip('"')
+                    msgstr = line.removeprefix('msgstr "').removesuffix('"')
                     self.messages[self._msgid] = msgstr
         output(f'{len(self.messages)} entries read.')
 
