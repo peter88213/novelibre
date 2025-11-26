@@ -13,13 +13,18 @@ from nvlib.gui.footers.status_bar import StatusBar
 from nvlib.gui.icons import Icons
 from nvlib.gui.menus.chapter_menu import ChapterMenu
 from nvlib.gui.menus.characters_menu import CharactersMenu
+from nvlib.gui.menus.export_menu import ExportMenu
 from nvlib.gui.menus.file_menu import FileMenu
 from nvlib.gui.menus.file_new_submenu import FileNewSubmenu
 from nvlib.gui.menus.help_menu import HelpMenu
 from nvlib.gui.menus.items_menu import ItemsMenu
 from nvlib.gui.menus.locations_menu import LocationsMenu
+from nvlib.gui.menus.main_menu import MainMenu
 from nvlib.gui.menus.part_menu import PartMenu
+from nvlib.gui.menus.plot_menu import PlotMenu
+from nvlib.gui.menus.prj_notes_menu import PrjNotesMenu
 from nvlib.gui.menus.section_menu import SectionMenu
+from nvlib.gui.menus.tools_menu import ToolsMenu
 from nvlib.gui.menus.view_menu import ViewMenu
 from nvlib.gui.observer import Observer
 from nvlib.gui.platform.platform_settings import KEYS
@@ -32,11 +37,6 @@ from nvlib.gui.tree_window.tree_viewer import TreeViewer
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
-from nvlib.gui.menus.main_menu import MainMenu
-from nvlib.gui.menus.plot_menu import PlotMenu
-from nvlib.gui.menus.prj_notes_menu import PrjNotesMenu
-from nvlib.gui.menus.export_menu import ExportMenu
-from nvlib.gui.menus.tools_menu import ToolsMenu
 
 
 class MainView(Observer, MsgBoxes, SubController):
@@ -147,8 +147,8 @@ class MainView(Observer, MsgBoxes, SubController):
         self._mdl.add_observer(self.propertiesView)
         self._ctrl.register_client(self.propertiesView)
 
-        #--- Add commands and submenus to the main menu.
-        self._create_menus()
+        #--- Create the menu structure.
+        self._create_menu()
 
         #--- Add a toolbar.
         self.toolbar = Toolbar(self, self._ctrl)
@@ -319,7 +319,7 @@ class MainView(Observer, MsgBoxes, SubController):
             title=_('About novelibre'),
         )
 
-    def _create_menus(self):
+    def _create_menu(self):
 
         # "File > New" submenu.
         self.newMenu = FileNewSubmenu(self._ctrl)
