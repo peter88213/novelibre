@@ -10,8 +10,8 @@ import tkinter as tk
 
 class SelectionMenuSectionStatus(tk.Menu):
 
-    def __init__(self, master, controller):
-        super().__init__(master, tearoff=0)
+    def __init__(self, controller):
+        super().__init__(tearoff=0)
         self.add_command(
             label=_('Outline'),
             command=controller.set_scn_status_outline,

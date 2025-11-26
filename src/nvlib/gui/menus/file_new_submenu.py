@@ -12,10 +12,12 @@ class FileNewSubmenu(tk.Menu):
 
     def __init__(self, controller):
         super().__init__(tearoff=0)
+
         self.add_command(
             label=_('Empty project'),
             command=controller.create_project,
         )
+
         self.add_command(
             label=_('Create from ODT...'),
             command=controller.import_odf,

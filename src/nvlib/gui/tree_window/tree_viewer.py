@@ -296,10 +296,10 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
     def create_context_menu(self):
         # Create public submenus and local context menus.
-        self.selectTypeMenu = SelectionMenuType(self, self._ctrl)
-        self.selectLevelMenu = SelectionMenuLevel(self, self._ctrl)
-        self.selectSectionStatusMenu = SelectionMenuSectionStatus(self, self._ctrl)
-        self.selectCharacterStatusMenu = SelectionMenuCharacterStatus(self, self._ctrl)
+        self.selectTypeMenu = SelectionMenuType(self._ctrl)
+        self.selectLevelMenu = SelectionMenuLevel(self._ctrl)
+        self.selectSectionStatusMenu = SelectionMenuSectionStatus(self._ctrl)
+        self.selectCharacterStatusMenu = SelectionMenuCharacterStatus(self._ctrl)
         self.contextMenu = TreeContextMenu(
             self._mdl,
             self._ui,

@@ -10,12 +10,14 @@ import tkinter as tk
 
 class SelectionMenuLevel(tk.Menu):
 
-    def __init__(self, master, controller):
-        super().__init__(master, tearoff=0)
+    def __init__(self, controller):
+        super().__init__(tearoff=0)
+
         self.add_command(
             label=_('1st Level'),
             command=controller.set_level_1,
         )
+
         self.add_command(
             label=_('2nd Level'),
             command=controller.set_level_2,
