@@ -10,8 +10,8 @@ from nvlib.nv_locale import _
 
 class ContextMenuPlotLine(NvContextMenu):
 
-    def __init__(self, master, model, view, controller):
-        super().__init__(master, model, view, controller)
+    def __init__(self, view, controller):
+        super().__init__(view, controller)
 
         label = _('Add Plot line')
         self.add_command(
@@ -50,16 +50,16 @@ class ContextMenuPlotLine(NvContextMenu):
         label = _('Export manuscript filtered by plot line')
         self.add_command(
             label=label,
-            command=master._export_manuscript,
+            command=self._ctrl.export_filtered_manuscript,
         )
         self._disableOnLock.append(label)
 
         label = _('Export synopsis filtered by plot line')
         self.add_command(
             label=label,
-            command=master._export_synopsis,
+            command=self._ctrl.export_filtered_synopsis,
         )
         self._disableOnLock.append(label)
 
-        self._add_view_commands(master)
+        self._add_view_commands()
 

@@ -10,16 +10,16 @@ from nvlib.nv_locale import _
 
 class ContextMenuSection(NvContextMenu):
 
-    def __init__(self, master, model, view, controller):
-        super().__init__(master, model, view, controller)
+    def __init__(self, view, controller):
+        super().__init__(view, controller)
 
         self._add_add_section_command()
         self._add_insert_stage_command()
         self._add_delete_command()
         self._add_clipboard_commands()
         self.add_separator()
-        self._add_set_type_cascade(master)
-        self._add_set_status_cascade(master)
+        self._add_set_type_cascade()
+        self._add_set_status_cascade()
         self._add_set_viewpoint_command()
         self.add_separator()
 
@@ -30,5 +30,5 @@ class ContextMenuSection(NvContextMenu):
         )
         self._disableOnLock.append(label)
 
-        self._add_view_commands(master)
+        self._add_view_commands()
 

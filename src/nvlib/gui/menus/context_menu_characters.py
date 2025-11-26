@@ -9,10 +9,10 @@ from nvlib.gui.menus.nv_context_menu import NvContextMenu
 
 class ContextMenuCharacters(NvContextMenu):
 
-    def __init__(self, master, model, view, controller):
-        super().__init__(master, model, view, controller)
+    def __init__(self, view, controller):
+        super().__init__(view, controller)
 
         self._add_add_command()
         self.add_separator()
-        self._add_set_cr_status_cascade(master)
-        self._add_view_commands(master)
+        self._add_set_cr_status_cascade()
+        self._add_view_commands()

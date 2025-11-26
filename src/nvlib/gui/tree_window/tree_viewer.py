@@ -301,7 +301,6 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self.selectSectionStatusMenu = SelectionMenuSectionStatus(self, self._ctrl)
         self.selectCharacterStatusMenu = SelectionMenuCharacterStatus(self, self._ctrl)
         self.contextMenu = TreeContextMenu(
-            self,
             self._mdl,
             self._ui,
             self._ctrl
@@ -852,22 +851,6 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             return False
 
         return True
-
-    def _export_manuscript(self, event=None):
-        # Execute the context menu command.
-        self._ctrl.fileManager.export_document(
-            MANUSCRIPT_SUFFIX,
-            filter=self.tree.selection()[0],
-            ask=False,
-        )
-
-    def _export_synopsis(self, event=None):
-        # Execute the context menu command.
-        self._ctrl.fileManager.export_document(
-            SECTIONS_SUFFIX,
-            filter=self.tree.selection()[0],
-            ask=False,
-        )
 
     def _get_chapter_row_data(self, chId, position=None, collect=False):
         # Return title, nodeValues, and tags for a chapter row.

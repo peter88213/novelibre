@@ -1,4 +1,4 @@
-"""Provide a basic context menu class for the root of a branch.
+"""Provide a context menu class for the root of a branch.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -9,9 +9,9 @@ from nvlib.gui.menus.nv_context_menu import NvContextMenu
 
 class ContextMenuElements(NvContextMenu):
 
-    def __init__(self, master, model, view, controller):
-        super().__init__(master, model, view, controller)
+    def __init__(self, view, controller):
+        super().__init__(view, controller)
 
         self._add_add_command()
-        self._add_view_commands(master)
+        self._add_view_commands()
 

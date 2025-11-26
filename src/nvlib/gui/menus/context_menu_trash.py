@@ -9,7 +9,7 @@ from nvlib.gui.menus.nv_context_menu import NvContextMenu
 
 class ContextMenuTrash(NvContextMenu):
 
-    def __init__(self, master, model, view, controller):
-        super().__init__(master, model, view, controller)
+    def __init__(self, view, controller):
+        super().__init__(view, controller)
         self._add_delete_command()
 

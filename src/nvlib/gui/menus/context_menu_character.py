@@ -10,28 +10,28 @@ from nvlib.nv_locale import _
 
 class ContextMenuCharacter(NvContextMenu):
 
-    def __init__(self, master, model, view, controller):
-        super().__init__(master, model, view, controller)
+    def __init__(self, view, controller):
+        super().__init__(view, controller)
 
         self._add_add_command()
         self._add_delete_command()
         self._add_clipboard_commands()
         self.add_separator()
-        self._add_set_cr_status_cascade(master)
+        self._add_set_cr_status_cascade()
         self.add_separator()
 
         label = _('Export manuscript filtered by viewpoint')
         self.add_command(
             label=label,
-            command=master._export_manuscript,
+            command=self._ctrl.export_filtered_manuscript,
         )
         self._disableOnLock.append(label)
 
         label = _('Export synopsis filtered by viewpoint')
         self.add_command(
             label=label,
-            command=master._export_synopsis,
+            command=self._ctrl.export_filtered_synopsis,
         )
         self._disableOnLock.append(label)
 
-        self._add_view_commands(master)
+        self._add_view_commands()

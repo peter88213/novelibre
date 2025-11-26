@@ -1,4 +1,4 @@
-"""Provide a class for the "File" menu. 
+"""Provide a class for the "View" menu. 
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/
@@ -12,12 +12,11 @@ import tkinter as tk
 
 class ViewMenu(tk.Menu, NvMenu):
 
-    def __init__(self, master, model, view, controller):
-        tk.Menu.__init__(self, master, tearoff=0)
-        NvMenu.__init__(self, master, model, view, controller)
+    def __init__(self, view, controller):
+        tk.Menu.__init__(self, tearoff=0)
+        NvMenu.__init__(self, view, controller)
 
         label = _('Show Book')
-        self.add_separator()
         self.add_command(
             label=label,
             command=self._ui.tv.show_book,
@@ -59,7 +58,7 @@ class ViewMenu(tk.Menu, NvMenu):
         )
         self._disableOnClose.append(label)
 
-        self._add_view_commands(master)
+        self._add_view_commands()
 
         label = _('Expand selected')
         self.add_command(
@@ -98,8 +97,9 @@ class ViewMenu(tk.Menu, NvMenu):
             command=self._ui.toggle_properties_window,
         )
 
-        label = _('Options')
         self.add_separator()
+
+        label = _('Options')
         self.add_command(
             label=label,
             command=self._ctrl.open_view_options,

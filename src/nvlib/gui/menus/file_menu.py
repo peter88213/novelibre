@@ -13,9 +13,9 @@ import tkinter as tk
 
 class FileMenu(tk.Menu, NvMenu):
 
-    def __init__(self, master, model, view, controller):
-        tk.Menu.__init__(self, master, tearoff=0)
-        NvMenu.__init__(self, master, model, view, controller)
+    def __init__(self, view, controller):
+        tk.Menu.__init__(self, tearoff=0)
+        NvMenu.__init__(self, view, controller)
 
         label = _('New')
         self.add_cascade(

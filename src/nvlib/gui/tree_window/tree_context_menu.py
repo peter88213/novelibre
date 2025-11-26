@@ -34,87 +34,67 @@ from nvlib.novx_globals import SECTION_PREFIX
 
 class TreeContextMenu(SubController):
 
-    def __init__(self, master, model, view, controller):
+    def __init__(self, model, view, controller):
         self._mdl = model
         self._ui = view
         self._ctrl = controller
 
         #--- Create local context menus.
         self._bookContextMenu = ContextMenuBook(
-            master,
-            self._mdl,
             self._ui,
             self._ctrl
         )
         self._ctrl.register_client(self._bookContextMenu)
 
         self._chapterContextMenu = ContextMenuChapter(
-            master,
-            self._mdl,
             self._ui,
             self._ctrl
         )
         self._ctrl.register_client(self._chapterContextMenu)
 
         self._characterContextMenu = ContextMenuCharacter(
-            master,
-            self._mdl,
             self._ui,
             self._ctrl
         )
         self._ctrl.register_client(self._characterContextMenu)
 
         self._crRootContextMenu = ContextMenuCharacters(
-            master,
-            self._mdl,
             self._ui,
             self._ctrl
         )
         self._ctrl.register_client(self._crRootContextMenu)
 
         self._elementContextMenu = ContextMenuElement(
-            master,
-            self._mdl,
             self._ui,
             self._ctrl
         )
         self._ctrl.register_client(self._elementContextMenu)
 
         self._plotLineContextMenu = ContextMenuPlotLine(
-            master,
-            self._mdl,
             self._ui,
             self._ctrl
         )
         self._ctrl.register_client(self._plotLineContextMenu)
 
         self._rootContextMenu = ContextMenuElements(
-            master,
-            self._mdl,
             self._ui,
             self._ctrl
         )
         self._ctrl.register_client(self._rootContextMenu)
 
         self._sectionContextMenu = ContextMenuSection(
-            master,
-            self._mdl,
             self._ui,
             self._ctrl
         )
         self._ctrl.register_client(self._sectionContextMenu)
 
         self._stageContextMenu = ContextMenuStage(
-            master,
-            self._mdl,
             self._ui,
             self._ctrl
         )
         self._ctrl.register_client(self._stageContextMenu)
 
         self._trashContextMenu = ContextMenuTrash(
-            master,
-            self._mdl,
             self._ui,
             self._ctrl
         )

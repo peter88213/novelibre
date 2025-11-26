@@ -1,4 +1,4 @@
-"""Provide a basic menu class for novelibre menus.
+"""Provide a base class for novelibre menus.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -11,8 +11,7 @@ from nvlib.nv_locale import _
 
 class NvMenu(SubController):
 
-    def __init__(self, master, model, view, controller):
-        self._mdl = model
+    def __init__(self, view, controller):
         self._ui = view
         self._ctrl = controller
         self._disableOnLock = []
@@ -33,12 +32,6 @@ class NvMenu(SubController):
     def unlock(self):
         for label in self._disableOnLock:
             self.entryconfig(label, state='normal')
-
-    def open(self, event):
-        try:
-            self.tk_popup(event.x_root, event.y_root, 0)
-        finally:
-            self.grab_release()
 
     def _add_add_command(self):
         label = _('Add')
@@ -92,11 +85,11 @@ class NvMenu(SubController):
         )
         self._disableOnLock.append(label)
 
-    def _add_change_level_cascade(self, master):
+    def _add_change_level_cascade(self):
         label = _('Change Level')
         self.add_cascade(
             label=label,
-            menu=master.selectLevelMenu,
+            menu=self._ui.tv.selectLevelMenu,
         )
         self._disableOnLock.append(label)
 
@@ -123,27 +116,27 @@ class NvMenu(SubController):
         )
         self._disableOnLock.append(label)
 
-    def _add_set_cr_status_cascade(self, master):
+    def _add_set_cr_status_cascade(self):
         label = _('Set Status')
         self.add_cascade(
             label=label,
-            menu=master.selectCharacterStatusMenu,
+            menu=self._ui.tv.selectCharacterStatusMenu,
         )
         self._disableOnLock.append(label)
 
-    def _add_set_status_cascade(self, master):
+    def _add_set_status_cascade(self):
         label = _('Set Status')
         self.add_cascade(
             label=label,
-            menu=master.selectSectionStatusMenu,
+            menu=self._ui.tv.selectSectionStatusMenu,
         )
         self._disableOnLock.append(label)
 
-    def _add_set_type_cascade(self, master):
+    def _add_set_type_cascade(self):
         label = _('Set Type')
         self.add_cascade(
             label=label,
-            menu=master.selectTypeMenu,
+            menu=self._ui.tv.selectTypeMenu,
         )
         self._disableOnLock.append(label)
 
@@ -155,7 +148,7 @@ class NvMenu(SubController):
         )
         self._disableOnLock.append(label)
 
-    def _add_view_commands(self, master):
+    def _add_view_commands(self):
         self.add_separator()
 
         label = _('Chapter level')

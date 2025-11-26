@@ -292,6 +292,20 @@ class Commands:
             overwrite=True,
         )
 
+    def export_filtered_manuscript(self, event=None):
+        self.fileManager.export_document(
+            MANUSCRIPT_SUFFIX,
+            filter=self._ui.selectedNode,
+            ask=False,
+        )
+
+    def export_filtered_synopsis(self, event=None):
+        self.fileManager.export_document(
+            SECTIONS_SUFFIX,
+            filter=self._ui.selectedNode,
+            ask=False,
+        )
+
     def export_final_document(self, event=None):
         self.fileManager.export_document('', lock=False)
 

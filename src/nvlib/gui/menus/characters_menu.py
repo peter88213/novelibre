@@ -1,0 +1,60 @@
+"""Provide a class for the "Characters" menu. 
+
+Copyright (c) 2025 Peter Triesberger
+For further information see https://github.com/peter88213/
+License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
+"""
+from nvlib.gui.menus.nv_menu import NvMenu
+from nvlib.nv_locale import _
+import tkinter as tk
+
+
+class CharactersMenu(tk.Menu, NvMenu):
+
+    def __init__(self, view, controller):
+        tk.Menu.__init__(self, tearoff=0)
+        NvMenu.__init__(self, view, controller)
+
+        label = _('Add')
+        self.add_command(
+            label=label,
+            command=self._ctrl.add_new_character,
+        )
+        self._disableOnLock.append(label)
+
+        self.add_separator()
+
+        self._add_set_cr_status_cascade()
+
+        self.add_separator()
+
+        label = _('Import')
+        self.add_command(
+            label=label,
+            command=self._ctrl.import_character_data,
+        )
+        self._disableOnLock.append(label)
+
+        self.add_separator()
+
+        label = _('Export character descriptions for editing')
+        self.add_command(
+            label=label,
+            command=self._ctrl.export_character_desc,
+        )
+        self._disableOnLock.append(label)
+
+        label = _('Export character table')
+        self.add_command(
+            label=label,
+            command=self._ctrl.export_character_list,
+        )
+        self._disableOnLock.append(label)
+
+        self.add_separator()
+
+        label = _('Show table in Browser')
+        self.add_command(
+            label=label,
+            command=self._ctrl.show_character_list,
+        )

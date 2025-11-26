@@ -11,6 +11,16 @@ from nvlib.gui.contents_window.contents_viewer import ContentsViewer
 from nvlib.gui.footers.path_bar import PathBar
 from nvlib.gui.footers.status_bar import StatusBar
 from nvlib.gui.icons import Icons
+from nvlib.gui.menus.chapter_menu import ChapterMenu
+from nvlib.gui.menus.characters_menu import CharactersMenu
+from nvlib.gui.menus.file_menu import FileMenu
+from nvlib.gui.menus.file_new_submenu import FileNewSubmenu
+from nvlib.gui.menus.help_menu import HelpMenu
+from nvlib.gui.menus.items_menu import ItemsMenu
+from nvlib.gui.menus.locations_menu import LocationsMenu
+from nvlib.gui.menus.part_menu import PartMenu
+from nvlib.gui.menus.section_menu import SectionMenu
+from nvlib.gui.menus.view_menu import ViewMenu
 from nvlib.gui.observer import Observer
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.platform.platform_settings import MOUSE
@@ -22,9 +32,11 @@ from nvlib.gui.tree_window.tree_viewer import TreeViewer
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
-from nvlib.gui.menus.file_new_submenu import FileNewSubmenu
-from nvlib.gui.menus.file_menu import FileMenu
-from nvlib.gui.menus.view_menu import ViewMenu
+from nvlib.gui.menus.main_menu import MainMenu
+from nvlib.gui.menus.plot_menu import PlotMenu
+from nvlib.gui.menus.prj_notes_menu import PrjNotesMenu
+from nvlib.gui.menus.export_menu import ExportMenu
+from nvlib.gui.menus.tools_menu import ToolsMenu
 
 
 class MainView(Observer, MsgBoxes, SubController):
@@ -43,12 +55,12 @@ class MainView(Observer, MsgBoxes, SubController):
         self.root.protocol("WM_DELETE_WINDOW", self._ctrl.on_quit)
         self.root.title(title)
         self.title = title
+        colorProbe = tk.Label(self.root)
+        self._colorFg = colorProbe.cget('fg')
+        self._colorBg = colorProbe.cget('bg')
+        del colorProbe
 
         self._mdl.add_observer(self)
-
-        #---  Add en empty main menu to the root window.
-        self.mainMenu = tk.Menu(self.root)
-        self.root.config(menu=self.mainMenu)
 
         #--- Create the main window within the root window.
         self.mainWindow = ttk.Frame()
@@ -136,7 +148,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self._ctrl.register_client(self.propertiesView)
 
         #--- Add commands and submenus to the main menu.
-        self._create_menu()
+        self._create_menus()
 
         #--- Add a toolbar.
         self.toolbar = Toolbar(self, self._ctrl)
@@ -307,449 +319,54 @@ class MainView(Observer, MsgBoxes, SubController):
             title=_('About novelibre'),
         )
 
-    def _create_menu(self):
+    def _create_menus(self):
 
-        # "New" submenu
-        self.newMenu = FileNewSubmenu(self.mainMenu, self._ctrl)
+        # "File > New" submenu.
+        self.newMenu = FileNewSubmenu(self._ctrl)
 
-        # File
-        self.fileMenu = FileMenu(self.mainMenu, self._mdl, self, self._ctrl)
+        #--- Main submenus.
+        self.fileMenu = FileMenu(self, self._ctrl)
         self._ctrl.register_client(self.fileMenu)
-        self.mainMenu.add_cascade(
-            label=_('File'),
-            menu=self.fileMenu,
-        )
 
-        # View
-        self.viewMenu = ViewMenu(self.mainMenu, self._mdl, self, self._ctrl)
+        self.viewMenu = ViewMenu(self, self._ctrl)
         self._ctrl.register_client(self.viewMenu)
-        self.mainMenu.add_cascade(
-            label=_('View'), menu=self.viewMenu)
 
-        # Part
-        self.partMenu = tk.Menu(self.mainMenu, tearoff=0)
-        self.mainMenu.add_cascade(
-            label=_('Part'),
-            menu=self.partMenu,
-        )
-        self.partMenu.add_command(
-            label=_('Add'),
-            command=self._ctrl.add_new_part,
-        )
-        self.partMenu.add_separator()
-        self.partMenu.add_command(
-            label=_('Export part descriptions for editing'),
-            command=self._ctrl.export_part_desc,
-        )
-        self.partMenu.add_command(
-            label=_('Export part table'),
-            command=self._ctrl.export_part_list,
-        )
+        self.partMenu = PartMenu(self, self._ctrl)
+        self._ctrl.register_client(self.partMenu)
 
-        # Chapter
-        self.chapterMenu = tk.Menu(self.mainMenu, tearoff=0)
-        self.mainMenu.add_cascade(
-            label=_('Chapter'),
-            menu=self.chapterMenu,
-        )
-        self.chapterMenu.add_command(
-            label=_('Add'),
-            command=self._ctrl.add_new_chapter,
-        )
-        self.chapterMenu.add_command(
-            label=_('Add multiple chapters...'),
-            command=self._ctrl.add_multiple_new_chapters,
-        )
-        self.chapterMenu.add_separator()
-        self.chapterMenu.add_cascade(
-            label=_('Set Type'),
-            menu=self.tv.selectTypeMenu,
-        )
-        self.chapterMenu.add_cascade(
-            label=_('Change Level'),
-            menu=self.tv.selectLevelMenu,
-        )
-        self.chapterMenu.add_separator()
-        self.chapterMenu.add_command(
-            label=_('Move selected chapters to new project'),
-            command=self._ctrl.split_file,
-        )
-        self.chapterMenu.add_separator()
-        self.chapterMenu.add_command(
-            label=_('Export chapter descriptions for editing'),
-            command=self._ctrl.export_chapter_desc,
-        )
-        self.chapterMenu.add_command(
-            label=_('Export chapter table'),
-            command=self._ctrl.export_chapter_list,
-        )
+        self.chapterMenu = ChapterMenu(self, self._ctrl)
+        self._ctrl.register_client(self.chapterMenu)
 
-        # Section
-        self.sectionMenu = tk.Menu(self.mainMenu, tearoff=0)
-        self.mainMenu.add_cascade(
-            label=_('Section'),
-            menu=self.sectionMenu,
-        )
-        self.sectionMenu.add_command(
-            label=_('Add'),
-            command=self._ctrl.add_new_section,
-        )
-        self.sectionMenu.add_command(
-            label=_('Add multiple sections...'),
-            command=self._ctrl.add_multiple_new_sections,
-        )
-        self.sectionMenu.add_separator()
-        self.sectionMenu.add_cascade(
-            label=_('Set Type'),
-            menu=self.tv.selectTypeMenu,
-        )
-        self.sectionMenu.add_cascade(
-            label=_('Set Status'),
-            menu=self.tv.selectSectionStatusMenu,
-        )
-        self.sectionMenu.add_command(
-            label=_('Set Viewpoint...'),
-            command=self._ctrl.set_viewpoint,
-        )
-        self.sectionMenu.add_separator()
-        self.sectionMenu.add_command(
-            label=_('Export section descriptions for editing'),
-            command=self._ctrl.export_section_desc,
-        )
-        self.sectionMenu.add_separator()
-        self.sectionMenu.add_command(
-            label=_('Section table (export only)'),
-            command=self._ctrl.export_section_list,
-        )
-        self.sectionMenu.add_command(
-            label=_('Show Time table'),
-            command=self._ctrl.show_timetable,
-        )
+        self.sectionMenu = SectionMenu(self, self._ctrl)
+        self._ctrl.register_client(self.sectionMenu)
 
-        self._sectionMenuDisableOnLock = [
-            _('Add'),
-            _('Add multiple sections...'),
-            _('Set Type'),
-            _('Set Status'),
-            _('Set Viewpoint...'),
-            _('Export section descriptions for editing'),
-        ]
-        # Character
-        self.characterMenu = tk.Menu(self.mainMenu, tearoff=0)
-        self.mainMenu.add_cascade(
-            label=_('Characters'),
-            menu=self.characterMenu,
-        )
-        self.characterMenu.add_command(
-            label=_('Add'),
-            command=self._ctrl.add_new_character,
-        )
-        self.characterMenu.add_separator()
-        self.characterMenu.add_cascade(
-            label=_('Set Status'),
-            menu=self.tv.selectCharacterStatusMenu,
-        )
-        self.characterMenu.add_separator()
-        self.characterMenu.add_command(
-            label=_('Import'),
-            command=self._ctrl.import_character_data,
-        )
-        self.characterMenu.add_separator()
-        self.characterMenu.add_command(
-            label=_('Export character descriptions for editing'),
-            command=self._ctrl.export_character_desc,
-        )
-        self.characterMenu.add_command(
-            label=_('Export character table'),
-            command=self._ctrl.export_character_list,
-        )
-        self.characterMenu.add_separator()
-        self.characterMenu.add_command(
-            label=_('Show table in Browser'),
-            command=self._ctrl.show_character_list,
-        )
+        self.characterMenu = CharactersMenu(self, self._ctrl)
+        self._ctrl.register_client(self.characterMenu)
 
-        self._characterMenuDisableOnLock = [
-            _('Add'),
-            _('Set Status'),
-            _('Import'),
-            _('Export character descriptions for editing'),
-            _('Export character table'),
-        ]
+        self.locationMenu = LocationsMenu(self, self._ctrl)
+        self._ctrl.register_client(self.locationMenu)
 
-        # Location
-        self.locationMenu = tk.Menu(self.mainMenu, tearoff=0)
-        self.mainMenu.add_cascade(
-            label=_('Locations'),
-            menu=self.locationMenu,
-        )
-        self.locationMenu.add_command(
-            label=_('Add'),
-            command=self._ctrl.add_new_location,
-        )
-        self.locationMenu.add_separator()
-        self.locationMenu.add_command(
-            label=_('Import'),
-            command=self._ctrl.import_location_data,
-        )
-        self.locationMenu.add_separator()
-        self.locationMenu.add_command(
-            label=_('Export location descriptions for editing'),
-            command=self._ctrl.export_location_desc,
-        )
-        self.locationMenu.add_command(
-            label=_('Export location table'),
-            command=self._ctrl.export_location_list,
-        )
-        self.locationMenu.add_separator()
-        self.locationMenu.add_command(
-            label=_('Show table in Browser'),
-            command=self._ctrl.show_location_list,
-        )
+        self.itemMenu = ItemsMenu(self, self._ctrl)
+        self._ctrl.register_client(self.itemMenu)
 
-        self._locationMenuDisableOnLock = [
-            _('Add'),
-            _('Import'),
-            _('Export location descriptions for editing'),
-            _('Export location table'),
-        ]
+        self.plotMenu = PlotMenu(self, self._ctrl)
+        self._ctrl.register_client(self.plotMenu)
 
-        # "Item" menu.
-        self.itemMenu = tk.Menu(self.mainMenu, tearoff=0)
-        self.mainMenu.add_cascade(
-            label=_('Items'),
-            menu=self.itemMenu,
-        )
-        self.itemMenu.add_command(
-            label=_('Add'),
-            command=self._ctrl.add_new_item,
-        )
-        self.itemMenu.add_separator()
-        self.itemMenu.add_command(
-            label=_('Import'),
-            command=self._ctrl.import_item_data,
-        )
-        self.itemMenu.add_separator()
-        self.itemMenu.add_command(
-            label=_('Export item descriptions for editing'),
-            command=self._ctrl.export_item_desc,
-        )
-        self.itemMenu.add_command(
-            label=_('Export item table'),
-            command=self._ctrl.export_item_list,
-        )
-        self.itemMenu.add_separator()
-        self.itemMenu.add_command(
-            label=_('Show table in Browser'),
-            command=self._ctrl.show_item_list,
-        )
+        self.prjNoteMenu = PrjNotesMenu(self, self._ctrl)
+        self._ctrl.register_client(self.prjNoteMenu)
 
-        self._itemMenuDisableOnLock = [
-            _('Add'),
-            _('Import'),
-            _('Export item descriptions for editing'),
-            _('Export item table'),
-        ]
+        self.exportMenu = ExportMenu(self, self._ctrl)
+        self._ctrl.register_client(self.exportMenu)
 
-        # "Plot" menu.
-        self.plotMenu = tk.Menu(self.mainMenu, tearoff=0)
-        self.mainMenu.add_cascade(
-            label=_('Plot'), menu=self.plotMenu)
-        self.plotMenu.add_command(
-            label=_('Add Plot line'),
-            command=self._ctrl.add_new_plot_line,
-        )
-        self.plotMenu.add_command(
-            label=_('Add Plot point'),
-            command=self._ctrl.add_new_plot_point,
-        )
-        self.plotMenu.add_separator()
-        self.plotMenu.add_command(
-            label=_('Insert Stage'),
-            command=self._ctrl.add_new_stage,
-        )
-        self.plotMenu.add_cascade(
-            label=_('Change Level'),
-            menu=self.tv.selectLevelMenu,
-        )
-        self.plotMenu.add_separator()
-        self.plotMenu.add_command(
-            label=_('Import plot lines'),
-            command=self._ctrl.import_plot_lines,
-        )
-        self.plotMenu.add_separator()
-        self.plotMenu.add_command(
-            label=_('Export plot grid for editing'),
-            command=self._ctrl.export_plot_grid,
-        )
-        self.plotMenu.add_command(
-            label=_('Export story structure description for editing'),
-            command=self._ctrl.export_story_structure_desc,
-        )
-        self.plotMenu.add_command(
-            label=_('Export plot line descriptions for editing'),
-            command=self._ctrl.export_plot_lines_desc,
-        )
-        self.plotMenu.add_separator()
-        self.plotMenu.add_command(
-            label=_('Plot table (export only)'),
-            command=self._ctrl.export_plot_list,
-        )
-        self.plotMenu.add_command(
-            label=_('Show Plot table in browser'),
-            command=self._ctrl.show_plot_list,
-        )
+        self.toolsMenu = ToolsMenu(self, self._ctrl)
+        self._ctrl.register_client(self.toolsMenu)
 
-        self._plotMenuDisableOnLock = [
-            _('Add Plot line'),
-            _('Add Plot point'),
-            _('Insert Stage'),
-            _('Change Level'),
-            _('Import plot lines'),
-            _('Export plot grid for editing'),
-            _('Export story structure description for editing'),
-            _('Export plot line descriptions for editing'),
-        ]
+        self.helpMenu = HelpMenu(self, self._ctrl)
+        self._ctrl.register_client(self.helpMenu)
 
-        # Project notes
-        self.prjNoteMenu = tk.Menu(self.mainMenu, tearoff=0)
-        self.mainMenu.add_cascade(
-            label=_('Project notes'),
-            menu=self.prjNoteMenu,
-        )
-        self.prjNoteMenu.add_command(
-            label=_('Add'),
-            command=self._ctrl.add_new_project_note,
-        )
-        self.prjNoteMenu.add_separator()
-        self.prjNoteMenu.add_command(
-            label=_('Show table in Browser'),
-            command=self._ctrl.show_projectnotes_list,
-        )
-
-        self._prjNoteMenuDisableOnLock = [
-            _('Add'),
-        ]
-
-        # "Import" menu.
-        self.mainMenu.add_command(
-            label=_('Import'), command=self._ctrl.open_project_updater)
-
-        # "Export" menu.
-        self.exportMenu = tk.Menu(self.mainMenu, tearoff=0)
-        self.mainMenu.add_cascade(
-            label=_('Export'),
-            menu=self.exportMenu,
-        )
-        self.exportMenu.add_command(
-            label=_('Manuscript for editing'),
-            command=self._ctrl.export_manuscript,
-        )
-        self.exportMenu.add_command(
-            label=_('Manuscript for third-party word processing'),
-            command=self._ctrl.export_proofing_manuscript,
-        )
-        self.exportMenu.add_separator()
-        self.exportMenu.add_command(
-            label=_('Final manuscript document (export only)'),
-            command=self._ctrl.export_final_document,
-        )
-        self.exportMenu.add_command(
-            label=_('Brief synopsis (export only)'),
-            command=self._ctrl.export_brief_synopsis,
-        )
-        self.exportMenu.add_command(
-            label=_('Cross references (export only)'),
-            command=self._ctrl.export_cross_references,
-        )
-        self.exportMenu.add_separator()
-        self.exportMenu.add_command(
-            label=_('XML data files'),
-            command=self._ctrl.export_xml_data_files,
-        )
-        self.exportMenu.add_separator()
-        self.exportMenu.add_command(
-            label=_('Options'),
-            command=self._ctrl.open_export_options,
-        )
-
-        self._exportMenuDisableOnLock = [
-            _('Manuscript for editing'),
-            _('Manuscript for third-party word processing'),
-            _('Final manuscript document (export only)'),
-            _('Brief synopsis (export only)'),
-            _('Cross references (export only)'),
-            _('XML data files'),
-        ]
-
-        # "Tools" menu.
-        self.toolsMenu = tk.Menu(self.mainMenu, tearoff=0)
-        self.mainMenu.add_cascade(
-            label=_('Tools'), menu=self.toolsMenu)
-        self.toolsMenu.add_command(
-            label=_('Backup options'),
-            command=self._ctrl.open_backup_options,
-        )
-        self.toolsMenu.add_separator()
-        self.toolsMenu.add_command(
-            label=_('Open installation folder'),
-            command=self._ctrl.open_installationFolder,
-        )
-        self.toolsMenu.add_separator()
-        self.toolsMenu.add_command(
-            label=_('Plugin Manager'),
-            command=self._ctrl.open_plugin_manager,
-        )
-        self.toolsMenu.add_separator()
-        self.toolsMenu.add_command(
-            label=_('Show notes'),
-            command=self._ctrl.show_notes_list,
-        )
-        self.toolsMenu.add_separator()
-
-        # "Help" menu.
-        self.helpMenu = tk.Menu(self.mainMenu, tearoff=0)
-        self.mainMenu.add_cascade(
-            label=_('Help'),
-            menu=self.helpMenu,
-        )
-        self.helpMenu.add_command(
-            label=_('Online help'),
-            accelerator=KEYS.OPEN_HELP[1],
-            command=self._ctrl.open_help,
-        )
-        self.helpMenu.add_command(
-            label=_('About novelibre'),
-            command=self._about,
-        )
-        self.helpMenu.add_command(
-            label=f"novelibre {_('Home page')}",
-            command=self._ctrl.open_homepage,
-        )
-        self.helpMenu.add_command(
-            label=_('News about novelibre'),
-            command=self._ctrl.open_news,
-        )
-        self.helpMenu.add_separator()
-
-        # Group main menu entries for enabling/disabling.
-        self._mainMenuDisableOnClose = [
-            _('Chapter'),
-            _('Characters'),
-            _('Export'),
-            _('Import'),
-            _('Items'),
-            _('Locations'),
-            _('Part'),
-            _('Plot'),
-            _('Project notes'),
-            _('Section'),
-        ]
-        self._mainMenuDisableOnLock = [
-            _('Chapter'),
-            _('Import'),
-            _('Part'),
-        ]
+        self.mainMenu = MainMenu(self, self._ctrl)
+        self._ctrl.register_client(self.mainMenu)
+        self.root.config(menu=self.mainMenu)
 
     def _create_path_bar(self):
         self.pathBar = PathBar(
@@ -763,8 +380,8 @@ class MainView(Observer, MsgBoxes, SubController):
         self.pathBar.pack(expand=False, fill='both')
         self._mdl.add_observer(self.pathBar)
 
-        self.pathBar.COLOR_NORMAL_BG = self.mainMenu.cget('background')
-        self.pathBar.COLOR_NORMAL_FG = self.mainMenu.cget('foreground')
+        self.pathBar.COLOR_NORMAL_BG = self._colorBg
+        self.pathBar.COLOR_NORMAL_FG = self._colorFg
         self.pathBar.COLOR_MODIFIED_BG = prefs['color_modified_bg']
         self.pathBar.COLOR_MODIFIED_FG = prefs['color_modified_fg']
         self.pathBar.COLOR_LOCKED_BG = prefs['color_locked_bg']
@@ -780,8 +397,9 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         self.statusBar.pack(expand=False, fill='both')
         self.statusBar.bind(MOUSE.LEFT_CLICK, self.statusBar.restore_status)
-        self.statusBar.COLOR_NORMAL_BG = self.mainMenu.cget('background')
-        self.statusBar.COLOR_NORMAL_FG = self.mainMenu.cget('foreground')
+
+        self.statusBar.COLOR_NORMAL_BG = self._colorBg
+        self.statusBar.COLOR_NORMAL_FG = self._colorFg
         self.statusBar.COLOR_SUCCESS_BG = prefs['color_status_success_bg']
         self.statusBar.COLOR_SUCCESS_FG = prefs['color_status_success_fg']
         self.statusBar.COLOR_ERROR_BG = prefs['color_status_error_bg']
