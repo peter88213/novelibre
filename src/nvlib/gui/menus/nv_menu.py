@@ -92,27 +92,6 @@ class NvMenu(SubController):
         )
         self._disableOnLock.append(label)
 
-    def _add_view_commands(self, master):
-        self.add_separator()
-
-        label = _('Expand all')
-        self.add_command(
-            label=label,
-            command=master.expand_all,
-        )
-
-        label = _('Collapse all')
-        self.add_command(
-            label=label,
-            command=master.collapse_all,
-        )
-
-        label = _('Chapter level')
-        self.add_command(
-            label=label,
-            command=master.show_chapter_level,
-        )
-
     def _add_change_level_cascade(self, master):
         label = _('Change Level')
         self.add_cascade(
@@ -175,3 +154,28 @@ class NvMenu(SubController):
             command=self._ctrl.set_viewpoint,
         )
         self._disableOnLock.append(label)
+
+    def _add_view_commands(self, master):
+        self.add_separator()
+
+        label = _('Chapter level')
+        self.add_command(
+            label=label,
+            command=self._ui.tv.show_chapter_level,
+        )
+        self._disableOnClose.append(label)
+
+        label = _('Expand all')
+        self.add_command(
+            label=label,
+            command=self._ui.tv.expand_all,
+        )
+        self._disableOnClose.append(label)
+
+        label = _('Collapse all')
+        self.add_command(
+            label=label,
+            command=self._ui.tv.collapse_all,
+        )
+        self._disableOnClose.append(label)
+

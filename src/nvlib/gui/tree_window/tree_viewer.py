@@ -216,20 +216,20 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         if self.coloringMode > len(self.COLORING_MODES):
             self.coloringMode = 0
 
-        #--- Create public submenus and local context menus.
-        self.selectTypeMenu = SelectionMenuType(self, self._ctrl)
-        self.selectLevelMenu = SelectionMenuLevel(self, self._ctrl)
-        self.selectSectionStatusMenu = SelectionMenuSectionStatus(self, self._ctrl)
-        self.selectCharacterStatusMenu = SelectionMenuCharacterStatus(self, self._ctrl)
-        self.contextMenu = TreeContextMenu(
-            self,
-            self._mdl,
-            self._ui,
-            self._ctrl
-        )
-
-        #--- Bind events.
-        self._bind_events()
+    def bind_events(self):
+        self.tree.bind('<<TreeviewSelect>>', self._on_select_node)
+        self.tree.bind('<<TreeviewOpen>>', self._on_open_branch)
+        self.tree.bind('<<TreeviewClose>>', self._on_close_branch)
+        self.tree.bind(KEYS.DELETE[0], self._ctrl.delete_elements)
+        self.tree.bind(MOUSE.RIGHT_CLICK, self.contextMenu.open)
+        self.tree.bind(MOUSE.MOVE_NODE, self._on_move_node)
+        self.tree.bind(KEYS.CUT[0], self._ctrl.cut_element)
+        self.tree.bind(KEYS.COPY[0], self._ctrl.copy_element)
+        self.tree.bind(KEYS.PASTE[0], self._ctrl.paste_element)
+        self.tree.bind(KEYS.PREVIOUS[0], self.load_prev)
+        self.tree.bind(KEYS.NEXT[0], self.load_next)
+        self.tree.bind(KEYS.FORWARD[0], self.go_forward)
+        self.tree.bind(KEYS.BACK[0], self.go_back)
 
     def close_children(self, parent):
         """Recursively close children nodes.
@@ -292,6 +292,19 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             '#0',
             width=int(prefs['title_width']),
             stretch=False
+        )
+
+    def create_context_menu(self):
+        # Create public submenus and local context menus.
+        self.selectTypeMenu = SelectionMenuType(self, self._ctrl)
+        self.selectLevelMenu = SelectionMenuLevel(self, self._ctrl)
+        self.selectSectionStatusMenu = SelectionMenuSectionStatus(self, self._ctrl)
+        self.selectCharacterStatusMenu = SelectionMenuCharacterStatus(self, self._ctrl)
+        self.contextMenu = TreeContextMenu(
+            self,
+            self._mdl,
+            self._ui,
+            self._ctrl
         )
 
     def expand_all(self, event=None):
@@ -678,21 +691,6 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
         self._wordsTotal = self._mdl.get_counts()[0]
         update_branch('')
-
-    def _bind_events(self):
-        self.tree.bind('<<TreeviewSelect>>', self._on_select_node)
-        self.tree.bind('<<TreeviewOpen>>', self._on_open_branch)
-        self.tree.bind('<<TreeviewClose>>', self._on_close_branch)
-        self.tree.bind(KEYS.DELETE[0], self._ctrl.delete_elements)
-        self.tree.bind(MOUSE.RIGHT_CLICK, self.contextMenu.open)
-        self.tree.bind(MOUSE.MOVE_NODE, self._on_move_node)
-        self.tree.bind(KEYS.CUT[0], self._ctrl.cut_element)
-        self.tree.bind(KEYS.COPY[0], self._ctrl.copy_element)
-        self.tree.bind(KEYS.PASTE[0], self._ctrl.paste_element)
-        self.tree.bind(KEYS.PREVIOUS[0], self.load_prev)
-        self.tree.bind(KEYS.NEXT[0], self.load_next)
-        self.tree.bind(KEYS.FORWARD[0], self.go_forward)
-        self.tree.bind(KEYS.BACK[0], self.go_back)
 
     def _browse_tree(self, node):
         # Select and show a node.

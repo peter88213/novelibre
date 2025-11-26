@@ -128,10 +128,19 @@ class FileMenu(tk.Menu, NvMenu):
         if PLATFORM == 'win':
             label = _('Exit'),
         else:
-                label = _('Quit'),
+            label = _('Quit'),
         self.add_command(
             label=label,
             accelerator=KEYS.QUIT_PROGRAM[1],
             command=self._ctrl.on_quit,
         )
 
+    def unlock(self):
+        super().unlock()
+        self.entryconfig(_('Unlock'), state='disabled')
+        self.entryconfig(_('Lock'), state='normal')
+
+    def lock(self):
+        super().lock()
+        self.entryconfig(_('Unlock'), state='normal')
+        self.entryconfig(_('Lock'), state='disabled')

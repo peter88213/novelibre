@@ -24,6 +24,7 @@ from nvlib.nv_locale import _
 import tkinter as tk
 from nvlib.gui.menus.file_new_submenu import FileNewSubmenu
 from nvlib.gui.menus.file_menu import FileMenu
+from nvlib.gui.menus.view_menu import ViewMenu
 
 
 class MainView(Observer, MsgBoxes, SubController):
@@ -85,6 +86,9 @@ class MainView(Observer, MsgBoxes, SubController):
             self,
             self._ctrl,
         )
+        self.tv.create_context_menu()
+        self.tv.bind_events()
+
         self._mdl.add_observer(self.tv)
         self._ctrl.register_client(self.tv)
         self.tv.pack(expand=True, fill='both')
@@ -146,50 +150,12 @@ class MainView(Observer, MsgBoxes, SubController):
     def selectedNodes(self):
         return self._selection
 
-    def disable_menu(self):
-        """Disable menu entries when no project is open.        
-        
-        Overrides the SubController method.
-        """
-        for entry in self._mainMenuDisableOnClose:
-            self.mainMenu.entryconfig(entry, state='disabled')
-        for entry in self._viewMenuDisableOnClose:
-            self.viewMenu.entryconfig(entry, state='disabled')
-
-    def enable_menu(self):
-        """Enable menu entries when a project is open.
-        
-        Overrides the SubController method.
-        """
-        for entry in self._mainMenuDisableOnClose:
-            self.mainMenu.entryconfig(entry, state='normal')
-        for entry in self._viewMenuDisableOnClose:
-            self.viewMenu.entryconfig(entry, state='normal')
-
     def lock(self):
         """Make the "locked" state take effect.
         
         Overrides the SubController method.
         """
         self.pathBar.set_locked()
-        self.fileMenu.entryconfig(_('Unlock'), state='normal')
-        self.fileMenu.entryconfig(_('Lock'), state='disabled')
-        for entry in self._mainMenuDisableOnLock:
-            self.mainMenu.entryconfig(entry, state='disabled')
-        for entry in self._sectionMenuDisableOnLock:
-            self.sectionMenu.entryconfig(entry, state='disabled')
-        for entry in self._characterMenuDisableOnLock:
-            self.characterMenu.entryconfig(entry, state='disabled')
-        for entry in self._locationMenuDisableOnLock:
-            self.locationMenu.entryconfig(entry, state='disabled')
-        for entry in self._itemMenuDisableOnLock:
-            self.itemMenu.entryconfig(entry, state='disabled')
-        for entry in self._plotMenuDisableOnLock:
-            self.plotMenu.entryconfig(entry, state='disabled')
-        for entry in self._prjNoteMenuDisableOnLock:
-            self.prjNoteMenu.entryconfig(entry, state='disabled')
-        for entry in self._exportMenuDisableOnLock:
-            self.exportMenu.entryconfig(entry, state='disabled')
 
     def on_change_selection(self, nodeId):
         """Event handler for element selection.
@@ -323,24 +289,6 @@ class MainView(Observer, MsgBoxes, SubController):
         Overrides the SubController method.
         """
         self.pathBar.set_normal()
-        self.fileMenu.entryconfig(_('Unlock'), state='disabled')
-        self.fileMenu.entryconfig(_('Lock'), state='normal')
-        for entry in self._mainMenuDisableOnLock:
-            self.mainMenu.entryconfig(entry, state='normal')
-        for entry in self._sectionMenuDisableOnLock:
-            self.sectionMenu.entryconfig(entry, state='normal')
-        for entry in self._characterMenuDisableOnLock:
-            self.characterMenu.entryconfig(entry, state='normal')
-        for entry in self._locationMenuDisableOnLock:
-            self.locationMenu.entryconfig(entry, state='normal')
-        for entry in self._itemMenuDisableOnLock:
-            self.itemMenu.entryconfig(entry, state='normal')
-        for entry in self._plotMenuDisableOnLock:
-            self.plotMenu.entryconfig(entry, state='normal')
-        for entry in self._prjNoteMenuDisableOnLock:
-            self.prjNoteMenu.entryconfig(entry, state='normal')
-        for entry in self._exportMenuDisableOnLock:
-            self.exportMenu.entryconfig(entry, state='normal')
 
     def update_status(self, statusText=''):
         """Update the project status information on the status bar.
@@ -373,90 +321,10 @@ class MainView(Observer, MsgBoxes, SubController):
         )
 
         # View
-        self.viewMenu = tk.Menu(self.mainMenu, tearoff=0)
+        self.viewMenu = ViewMenu(self.mainMenu, self._mdl, self, self._ctrl)
+        self._ctrl.register_client(self.viewMenu)
         self.mainMenu.add_cascade(
             label=_('View'), menu=self.viewMenu)
-        self.viewMenu.add_command(
-            label=_('Chapter level'),
-            accelerator=KEYS.CHAPTER_LEVEL[1],
-            command=self.tv.show_chapter_level,
-        )
-        self.viewMenu.add_command(
-            label=_('Expand selected'),
-            command=self.tv.expand_selected,
-        )
-        self.viewMenu.add_command(
-            label=_('Collapse selected'),
-            command=self.tv.collapse_selected,
-        )
-        self.viewMenu.add_command(
-            label=_('Expand all'),
-            command=self.tv.expand_all,
-        )
-        self.viewMenu.add_command(
-            label=_('Collapse all'),
-            command=self.tv.collapse_all,
-        )
-        self.viewMenu.add_separator()
-        self.viewMenu.add_command(
-            label=_('Show Book'),
-            command=self.tv.show_book,
-        )
-        self.viewMenu.add_command(
-            label=_('Show Characters'),
-            command=self.tv.show_characters,
-        )
-        self.viewMenu.add_command(
-            label=_('Show Locations'),
-            command=self.tv.show_locations,
-        )
-        self.viewMenu.add_command(
-            label=_('Show Items'),
-            command=self.tv.show_items,
-        )
-        self.viewMenu.add_command(
-            label=_('Show Plot lines'),
-            command=self.tv.show_plot_lines,
-        )
-        self.viewMenu.add_command(
-            label=_('Show Project notes'),
-            command=self.tv.show_project_notes,
-        )
-        self.viewMenu.add_separator()
-        self.viewMenu.add_command(
-            label=_('Toggle Text viewer'),
-            accelerator=KEYS.TOGGLE_VIEWER[1],
-            command=self.toggle_contents_view,
-        )
-        self.viewMenu.add_command(
-            label=_('Toggle Properties'),
-            accelerator=KEYS.TOGGLE_PROPERTIES[1],
-            command=self.toggle_properties_view,
-        )
-        self.viewMenu.add_command(
-            label=_('Detach/Dock Properties'),
-            accelerator=KEYS.DETACH_PROPERTIES[1],
-            command=self.toggle_properties_window,
-        )
-        self.viewMenu.add_separator()
-        self.viewMenu.add_command(
-            label=_('Options'),
-            command=self._ctrl.open_view_options,
-        )
-
-        self._viewMenuDisableOnClose = [
-            _('Chapter level'),
-            _('Collapse all'),
-            _('Collapse selected'),
-            _('Expand all'),
-            _('Expand selected'),
-            _('Show Book'),
-            _('Show Characters'),
-            _('Show Items'),
-            _('Show Locations'),
-            _('Show Plot lines'),
-            _('Show Project notes'),
-        ]
 
         # Part
         self.partMenu = tk.Menu(self.mainMenu, tearoff=0)
