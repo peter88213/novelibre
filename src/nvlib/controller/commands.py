@@ -408,15 +408,21 @@ class Commands:
         if not self.check_lock():
             self.elementManager.join_sections(scId0, scId1)
 
-    def move_node(self, node, targetNode):
+    def move_node(self, event=None, node=None, targetNode=None):
         """Move a node to another position.
         
         Positional arguments:
             node: str - ID of the node to move.
             targetNode: str -- ID of the new parent/predecessor of the node.
         """
-        if not self.isLocked:
-            self.elementManager.move_node(node, targetNode)
+        if self.isLocked:
+            return 'break'
+
+        if event is not None:
+            node = self._ui.selectedNode
+            targetNode = self._ui.tv.tree.identify_row(event.y)
+        self.elementManager.move_node(node, targetNode)
+        return 'break'
 
     def open_backup_options(self, event=None):
         """Open a toplevel window to edit the backup options."""

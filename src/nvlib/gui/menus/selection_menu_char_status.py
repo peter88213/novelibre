@@ -8,7 +8,7 @@ from nvlib.nv_locale import _
 import tkinter as tk
 
 
-class SelectionMenuCharacterStatus(tk.Menu):
+class SelectionMenuCharStatus(tk.Menu):
 
     def __init__(self, controller):
         super().__init__(tearoff=0)

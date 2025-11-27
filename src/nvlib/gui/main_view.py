@@ -24,7 +24,12 @@ from nvlib.gui.menus.part_menu import PartMenu
 from nvlib.gui.menus.plot_menu import PlotMenu
 from nvlib.gui.menus.prj_notes_menu import PrjNotesMenu
 from nvlib.gui.menus.section_menu import SectionMenu
+from nvlib.gui.menus.selection_menu_char_status import SelectionMenuCharStatus
+from nvlib.gui.menus.selection_menu_level import SelectionMenuLevel
+from nvlib.gui.menus.selection_menu_section_status import SelectionMenuSectionStatus
+from nvlib.gui.menus.selection_menu_type import SelectionMenuType
 from nvlib.gui.menus.tools_menu import ToolsMenu
+from nvlib.gui.menus.tree_context_menu import TreeContextMenu
 from nvlib.gui.menus.view_menu import ViewMenu
 from nvlib.gui.observer import Observer
 from nvlib.gui.platform.platform_settings import KEYS
@@ -96,10 +101,7 @@ class MainView(Observer, MsgBoxes, SubController):
             self.leftFrame,
             self._mdl,
             self,
-            self._ctrl,
         )
-        self.tv.create_context_menu()
-        self.tv.bind_events()
 
         self._mdl.add_observer(self.tv)
         self._ctrl.register_client(self.tv)
@@ -153,6 +155,8 @@ class MainView(Observer, MsgBoxes, SubController):
         #--- Add a toolbar.
         self.toolbar = Toolbar(self, self._ctrl)
         self._ctrl.register_client(self.toolbar)
+
+        self._bind_events()
 
     @property
     def selectedNode(self):
@@ -319,7 +323,21 @@ class MainView(Observer, MsgBoxes, SubController):
             title=_('About novelibre'),
         )
 
+    def _bind_events(self):
+        self.tv.tree.bind(KEYS.DELETE[0], self._ctrl.delete_elements)
+        self.tv.tree.bind(MOUSE.RIGHT_CLICK, self.contextMenu.open)
+        self.tv.tree.bind(KEYS.CUT[0], self._ctrl.cut_element)
+        self.tv.tree.bind(KEYS.COPY[0], self._ctrl.copy_element)
+        self.tv.tree.bind(KEYS.PASTE[0], self._ctrl.paste_element)
+        self.tv.tree.bind(MOUSE.MOVE_NODE, self._ctrl.move_node)
+
     def _create_menu(self):
+
+        # Selection submenus.
+        self.selectTypeMenu = SelectionMenuType(self._ctrl)
+        self.selectLevelMenu = SelectionMenuLevel(self._ctrl)
+        self.selectSectionStatusMenu = SelectionMenuSectionStatus(self._ctrl)
+        self.selectCharacterStatusMenu = SelectionMenuCharStatus(self._ctrl)
 
         # "File > New" submenu.
         self.newMenu = FileNewSubmenu(self._ctrl)
@@ -364,9 +382,17 @@ class MainView(Observer, MsgBoxes, SubController):
         self.helpMenu = HelpMenu(self, self._ctrl)
         self._ctrl.register_client(self.helpMenu)
 
+        #--- Main menu.
         self.mainMenu = MainMenu(self, self._ctrl)
         self._ctrl.register_client(self.mainMenu)
         self.root.config(menu=self.mainMenu)
+
+        #--- Tree context menu.
+        self.contextMenu = TreeContextMenu(
+            self._mdl,
+            self,
+            self._ctrl
+        )
 
     def _create_path_bar(self):
         self.pathBar = PathBar(

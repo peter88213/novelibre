@@ -89,7 +89,7 @@ class NvMenu(SubController):
         label = _('Change Level')
         self.add_cascade(
             label=label,
-            menu=self._ui.tv.selectLevelMenu,
+            menu=self._ui.selectLevelMenu,
         )
         self._disableOnLock.append(label)
 
@@ -120,7 +120,7 @@ class NvMenu(SubController):
         label = _('Set Status')
         self.add_cascade(
             label=label,
-            menu=self._ui.tv.selectCharacterStatusMenu,
+            menu=self._ui.selectCharacterStatusMenu,
         )
         self._disableOnLock.append(label)
 
@@ -128,7 +128,7 @@ class NvMenu(SubController):
         label = _('Set Status')
         self.add_cascade(
             label=label,
-            menu=self._ui.tv.selectSectionStatusMenu,
+            menu=self._ui.selectSectionStatusMenu,
         )
         self._disableOnLock.append(label)
 
@@ -136,7 +136,7 @@ class NvMenu(SubController):
         label = _('Set Type')
         self.add_cascade(
             label=label,
-            menu=self._ui.tv.selectTypeMenu,
+            menu=self._ui.selectTypeMenu,
         )
         self._disableOnLock.append(label)
 

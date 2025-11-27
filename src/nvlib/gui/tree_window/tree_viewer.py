@@ -7,15 +7,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 
 from nvlib.controller.sub_controller import SubController
-from nvlib.gui.menus.selection_menu_character_status import SelectionMenuCharacterStatus
-from nvlib.gui.menus.selection_menu_level import SelectionMenuLevel
-from nvlib.gui.menus.selection_menu_section_status import SelectionMenuSectionStatus
-from nvlib.gui.menus.selection_menu_type import SelectionMenuType
 from nvlib.gui.observer import Observer
 from nvlib.gui.platform.platform_settings import KEYS
-from nvlib.gui.platform.platform_settings import MOUSE
 from nvlib.gui.tree_window.history_list import HistoryList
-from nvlib.gui.tree_window.tree_context_menu import TreeContextMenu
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.model.nv_treeview import NvTreeview
 from nvlib.novx_globals import CHAPTER_PREFIX
@@ -26,14 +20,12 @@ from nvlib.novx_globals import ITEM_PREFIX
 from nvlib.novx_globals import IT_ROOT
 from nvlib.novx_globals import LC_ROOT
 from nvlib.novx_globals import LOCATION_PREFIX
-from nvlib.novx_globals import MANUSCRIPT_SUFFIX
 from nvlib.novx_globals import PLOT_LINE_PREFIX
 from nvlib.novx_globals import PLOT_POINT_PREFIX
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import ROOT_PREFIX
-from nvlib.novx_globals import SECTIONS_SUFFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import STATUS
 from nvlib.novx_globals import list_to_string
@@ -86,7 +78,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
     _NOTE_INDICATOR = _('N')
     _COMMENT_INDICATOR = '◳'
 
-    def __init__(self, parent, model, view, controller, **kw):
+    def __init__(self, parent, model, view, **kw):
         """Put a tkinter tree in the specified parent widget.
         
         Positional arguments:
@@ -96,7 +88,6 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         super().__init__(parent, **kw)
         self._mdl = model
         self._ui = view
-        self._ctrl = controller
         self._wordsTotal = None
 
         self.skipUpdate = False
@@ -216,20 +207,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         if self.coloringMode > len(self.COLORING_MODES):
             self.coloringMode = 0
 
-    def bind_events(self):
-        self.tree.bind('<<TreeviewSelect>>', self._on_select_node)
-        self.tree.bind('<<TreeviewOpen>>', self._on_open_branch)
-        self.tree.bind('<<TreeviewClose>>', self._on_close_branch)
-        self.tree.bind(KEYS.DELETE[0], self._ctrl.delete_elements)
-        self.tree.bind(MOUSE.RIGHT_CLICK, self.contextMenu.open)
-        self.tree.bind(MOUSE.MOVE_NODE, self._on_move_node)
-        self.tree.bind(KEYS.CUT[0], self._ctrl.cut_element)
-        self.tree.bind(KEYS.COPY[0], self._ctrl.copy_element)
-        self.tree.bind(KEYS.PASTE[0], self._ctrl.paste_element)
-        self.tree.bind(KEYS.PREVIOUS[0], self.load_prev)
-        self.tree.bind(KEYS.NEXT[0], self.load_next)
-        self.tree.bind(KEYS.FORWARD[0], self.go_forward)
-        self.tree.bind(KEYS.BACK[0], self.go_back)
+        self._bind_events()
 
     def close_children(self, parent):
         """Recursively close children nodes.
@@ -292,18 +270,6 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             '#0',
             width=int(prefs['title_width']),
             stretch=False
-        )
-
-    def create_context_menu(self):
-        # Create public submenus and local context menus.
-        self.selectTypeMenu = SelectionMenuType(self._ctrl)
-        self.selectLevelMenu = SelectionMenuLevel(self._ctrl)
-        self.selectSectionStatusMenu = SelectionMenuSectionStatus(self._ctrl)
-        self.selectCharacterStatusMenu = SelectionMenuCharacterStatus(self._ctrl)
-        self.contextMenu = TreeContextMenu(
-            self._mdl,
-            self._ui,
-            self._ctrl
         )
 
     def expand_all(self, event=None):
@@ -690,6 +656,15 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
         self._wordsTotal = self._mdl.get_counts()[0]
         update_branch('')
+
+    def _bind_events(self):
+        self.tree.bind('<<TreeviewSelect>>', self._on_select_node)
+        self.tree.bind('<<TreeviewOpen>>', self._on_open_branch)
+        self.tree.bind('<<TreeviewClose>>', self._on_close_branch)
+        self.tree.bind(KEYS.PREVIOUS[0], self.load_prev)
+        self.tree.bind(KEYS.NEXT[0], self.load_next)
+        self.tree.bind(KEYS.FORWARD[0], self.go_forward)
+        self.tree.bind(KEYS.BACK[0], self.go_back)
 
     def _browse_tree(self, node):
         # Select and show a node.
@@ -1160,18 +1135,11 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             pass
         return to_string(
             self._mdl.novel.sections[scId].title
-            ), nodeValues, tuple(nodeTags)
+        ), nodeValues, tuple(nodeTags)
 
     def _on_close_branch(self, event):
         # Event handler for manually collapsing a branch.
         self._update_node_values(self.tree.selection()[0], collect=True)
-
-    def _on_move_node(self, event):
-        # Event handler for manually moving a node.
-        self._ctrl.move_node(
-            self.tree.selection()[0],
-            self.tree.identify_row(event.y)
-            )
 
     def _on_open_branch(self, event):
         # Event handler for manually expanding a branch.
