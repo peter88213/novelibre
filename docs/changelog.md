@@ -10,6 +10,14 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.43.6
+
+- Disabling "Restore backup" and "Discard manuscript" on lock.
+- Reordered some menu entries.
+- Fixed a bug in the translations module where messages ending with a literal quotation mark are corrupted.
+- Refactored the code for better maintainability.
+
+
 ### Version 5.43.5
 
 - Changed the "Online help" menu entry.
