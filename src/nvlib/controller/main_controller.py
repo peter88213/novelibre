@@ -80,7 +80,7 @@ class MainController(SubController, Commands):
         self.plugins.load_plugins(PLUGIN_PATH)
         self.register_client(self.plugins)
 
-        #--- tk root event bindings.
+        #--- Event bindings.
         self._bind_events()
 
         self.disable_menu()
@@ -286,25 +286,27 @@ class MainController(SubController, Commands):
         self._ui.update_status(statusText)
 
     def _bind_events(self):
+
+        #--- Root bindings.
         event_callbacks = {
-            KEYS.RESTORE_STATUS[0]: self._ui.restore_status,
-            KEYS.OPEN_PROJECT[0]: self.open_project,
+            KEYS.ADD_CHILD[0]: self.add_new_child,
+            KEYS.ADD_ELEMENT[0]: self.add_new_element,
+            KEYS.ADD_PARENT[0]: self.add_new_parent,
+            KEYS.CHAPTER_LEVEL[0]: self._ui.tv.show_chapter_level,
+            KEYS.DETACH_PROPERTIES[0]: self._ui.toggle_properties_window,
+            KEYS.FOLDER[0]: self.open_project_folder,
             KEYS.LOCK_PROJECT[0]: self.lock,
-            KEYS.UNLOCK_PROJECT[0]: self.unlock,
+            KEYS.OPEN_HELP[0]: self.open_help,
+            KEYS.OPEN_PROJECT[0]: self.open_project,
+            KEYS.REFRESH_TREE[0]: self.refresh_tree,
             KEYS.RELOAD_PROJECT[0]: self.reload_project,
             KEYS.RESTORE_BACKUP[0]: self.restore_backup,
-            KEYS.FOLDER[0]: self.open_project_folder,
-            KEYS.REFRESH_TREE[0]: self.refresh_tree,
-            KEYS.SAVE_PROJECT[0]: self.save_project,
+            KEYS.RESTORE_STATUS[0]: self._ui.restore_status,
             KEYS.SAVE_AS[0]: self.save_as,
-            KEYS.CHAPTER_LEVEL[0]: self._ui.tv.show_chapter_level,
-            KEYS.TOGGLE_VIEWER[0]: self._ui.toggle_contents_view,
+            KEYS.SAVE_PROJECT[0]: self.save_project,
             KEYS.TOGGLE_PROPERTIES[0]: self._ui.toggle_properties_view,
-            KEYS.DETACH_PROPERTIES[0]: self._ui.toggle_properties_window,
-            KEYS.ADD_ELEMENT[0]: self.add_new_element,
-            KEYS.ADD_CHILD[0]: self.add_new_child,
-            KEYS.ADD_PARENT[0]: self.add_new_parent,
-            KEYS.OPEN_HELP[0]: self.open_help,
+            KEYS.TOGGLE_VIEWER[0]: self._ui.toggle_contents_view,
+            KEYS.UNLOCK_PROJECT[0]: self.unlock,
         }
         if PLATFORM == 'win':
             event_callbacks.update({
@@ -318,3 +320,21 @@ class MainController(SubController, Commands):
         for sequence, callback in event_callbacks.items():
             self._ui.root.bind(sequence, callback)
 
+        #--- Tree view bindings.
+        event_callbacks = {
+            '<<TreeviewClose>>': self._ui.tv._on_close_branch,
+            '<<TreeviewOpen>>': self._ui.tv._on_open_branch,
+            '<<TreeviewSelect>>': self._ui.tv._on_select_node,
+            KEYS.BACK[0]: self._ui.tv.go_back,
+            KEYS.COPY[0]: self.copy_element,
+            KEYS.CUT[0]: self.cut_element,
+            KEYS.DELETE[0]: self.delete_elements,
+            KEYS.FORWARD[0]: self._ui.tv.go_forward,
+            KEYS.NEXT[0]: self._ui.tv.load_next,
+            KEYS.PASTE[0]: self.paste_element,
+            KEYS.PREVIOUS[0]: self._ui.tv.load_prev,
+            MOUSE.MOVE_NODE: self.move_node,
+            MOUSE.RIGHT_CLICK: self._ui.contextMenu.open,
+        }
+        for sequence, callback in event_callbacks.items():
+            self._ui.tv.tree.bind(sequence, callback)

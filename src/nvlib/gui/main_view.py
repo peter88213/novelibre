@@ -156,8 +156,6 @@ class MainView(Observer, MsgBoxes, SubController):
         self.toolbar = Toolbar(self, self._ctrl)
         self._ctrl.register_client(self.toolbar)
 
-        self._bind_events()
-
     @property
     def selectedNode(self):
         return self._selection[0]
@@ -322,14 +320,6 @@ class MainView(Observer, MsgBoxes, SubController):
             detail=__doc__,
             title=_('About novelibre'),
         )
-
-    def _bind_events(self):
-        self.tv.tree.bind(KEYS.DELETE[0], self._ctrl.delete_elements)
-        self.tv.tree.bind(MOUSE.RIGHT_CLICK, self.contextMenu.open)
-        self.tv.tree.bind(KEYS.CUT[0], self._ctrl.cut_element)
-        self.tv.tree.bind(KEYS.COPY[0], self._ctrl.copy_element)
-        self.tv.tree.bind(KEYS.PASTE[0], self._ctrl.paste_element)
-        self.tv.tree.bind(MOUSE.MOVE_NODE, self._ctrl.move_node)
 
     def _create_menu(self):
 

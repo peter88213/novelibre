@@ -8,7 +8,6 @@ from tkinter import ttk
 
 from nvlib.controller.sub_controller import SubController
 from nvlib.gui.observer import Observer
-from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.tree_window.history_list import HistoryList
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.model.nv_treeview import NvTreeview
@@ -206,8 +205,6 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             self.coloringMode = 0
         if self.coloringMode > len(self.COLORING_MODES):
             self.coloringMode = 0
-
-        self._bind_events()
 
     def close_children(self, parent):
         """Recursively close children nodes.
@@ -656,15 +653,6 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
         self._wordsTotal = self._mdl.get_counts()[0]
         update_branch('')
-
-    def _bind_events(self):
-        self.tree.bind('<<TreeviewSelect>>', self._on_select_node)
-        self.tree.bind('<<TreeviewOpen>>', self._on_open_branch)
-        self.tree.bind('<<TreeviewClose>>', self._on_close_branch)
-        self.tree.bind(KEYS.PREVIOUS[0], self.load_prev)
-        self.tree.bind(KEYS.NEXT[0], self.load_next)
-        self.tree.bind(KEYS.FORWARD[0], self.go_forward)
-        self.tree.bind(KEYS.BACK[0], self.go_back)
 
     def _browse_tree(self, node):
         # Select and show a node.
