@@ -109,7 +109,6 @@ class SectionView(ElementView):
             cmdAdd=self.pick_character,
             cmdRemove=self.remove_character,
             cmdOpen=self.go_to_character,
-            cmdActivate=self._activate_character_buttons,
             lblOpen=_('Go to'),
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
@@ -132,7 +131,6 @@ class SectionView(ElementView):
             cmdAdd=self.pick_location,
             cmdRemove=self.remove_location,
             cmdOpen=self.go_to_location,
-            cmdActivate=self._activate_location_buttons,
             lblOpen=_('Go to'),
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
@@ -152,7 +150,6 @@ class SectionView(ElementView):
             cmdAdd=self.pick_item,
             cmdRemove=self.remove_item,
             cmdOpen=self.go_to_item,
-            cmdActivate=self._activate_item_buttons,
             lblOpen=_('Go to'),
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
@@ -442,7 +439,6 @@ class SectionView(ElementView):
             cmdAdd=self.pick_plotline,
             cmdRemove=self.remove_plotline,
             cmdOpen=self.go_to_plotline,
-            cmdActivate=self._activate_plotline_buttons,
             cmdSelect=self.on_select_plotline,
             lblOpen=_('Go to'),
             iconAdd=self._ui.icons.addIcon,
@@ -796,7 +792,7 @@ class SectionView(ElementView):
         #--- 'Unused' checkbox.
         if self._isUnusedVar.get():
             self._ctrl.set_type_unused()
-        else:
+        elif self.element.scType > 0:
             self._ctrl.set_type_normal()
         if self.element.scType > 0:
             self._isUnusedVar.set(True)
@@ -1150,7 +1146,7 @@ class SectionView(ElementView):
             )
         else:
             self._plotNotesWindow.clear()
-        if self._isLocked:
+        if self.isLocked:
             self._plotNotesWindow.config(state='disabled')
         self._plotNotesWindow.config(bg=prefs['color_text_bg'])
 
@@ -1189,6 +1185,9 @@ class SectionView(ElementView):
     def remove_character(self, event=None):
         """Remove the character selected in the listbox 
         from the section characters."""
+        if self.isLocked:
+            return
+
         try:
             selection = self._characterCollection.cListbox.curselection()[0]
         except:
@@ -1205,6 +1204,9 @@ class SectionView(ElementView):
 
     def remove_item(self, event=None):
         """Remove the item selected in the listbox from the section items."""
+        if self.isLocked:
+            return
+
         try:
             selection = self._itemCollection.cListbox.curselection()[0]
         except:
@@ -1222,6 +1224,9 @@ class SectionView(ElementView):
     def remove_location(self, event=None):
         """Remove the location selected in the listbox 
         from the section locations."""
+        if self.isLocked:
+            return
+
         try:
             selection = self._locationCollection.cListbox.curselection()[0]
         except:
@@ -1239,6 +1244,9 @@ class SectionView(ElementView):
     def remove_plotline(self, event=None):
         """Remove the plot line selected in the listbox 
         from the section associations."""
+        if self.isLocked:
+            return
+
         try:
             selection = self._plotlineCollection.cListbox.curselection()[0]
         except:
@@ -1333,10 +1341,7 @@ class SectionView(ElementView):
         if listboxSize > self._HEIGHT_LIMIT:
             listboxSize = self._HEIGHT_LIMIT
         self._characterCollection.cListbox.config(height=listboxSize)
-        if (not self._characterCollection.cListbox.curselection()
-            or not self._characterCollection.cListbox.focus_get()
-        ):
-            self._characterCollection.disable_buttons()
+        self._configure_character_buttons()
 
         # 'Locations' window.
         self._lcTitles = self._get_element_titles(
@@ -1347,10 +1352,7 @@ class SectionView(ElementView):
         if listboxSize > self._HEIGHT_LIMIT:
             listboxSize = self._HEIGHT_LIMIT
         self._locationCollection.cListbox.config(height=listboxSize)
-        if (not self._locationCollection.cListbox.curselection()
-            or not self._locationCollection.cListbox.focus_get()
-        ):
-            self._locationCollection.disable_buttons()
+        self._configure_location_buttons()
 
         # 'Items' window.
         self._itTitles = self._get_element_titles(
@@ -1361,10 +1363,7 @@ class SectionView(ElementView):
         if listboxSize > self._HEIGHT_LIMIT:
             listboxSize = self._HEIGHT_LIMIT
         self._itemCollection.cListbox.config(height=listboxSize)
-        if (not self._itemCollection.cListbox.curselection()
-            or not self._itemCollection.cListbox.focus_get()
-        ):
-            self._itemCollection.disable_buttons()
+        self._configure_item_buttons()
 
         #--- Frame for date/time/duration.
 
@@ -1449,10 +1448,7 @@ class SectionView(ElementView):
         if listboxSize > self._HEIGHT_LIMIT:
             listboxSize = self._HEIGHT_LIMIT
         self._plotlineCollection.cListbox.config(height=listboxSize)
-        if (not self._plotlineCollection.cListbox.curselection()
-            or not self._plotlineCollection.cListbox.focus_get()
-        ):
-            self._plotlineCollection.disable_buttons()
+        self._configure_plotline_buttons()
 
         # 'Plot notes' text box.
         self._plotNotesWindow.clear()
@@ -1624,30 +1620,11 @@ class SectionView(ElementView):
         super().unlock()
         if self.selectedPlotline is None:
             self._plotNotesWindow.config(state='disabled')
-
-    def _activate_plotline_buttons(self, event=None):
-        if self.element.scPlotLines:
-            self._plotlineCollection.enable_buttons()
-        else:
-            self._plotlineCollection.disable_buttons()
-
-    def _activate_character_buttons(self, event=None):
-        if self.element.characters:
-            self._characterCollection.enable_buttons()
-        else:
-            self._characterCollection.disable_buttons()
-
-    def _activate_item_buttons(self, event=None):
-        if self.element.items:
-            self._itemCollection.enable_buttons()
-        else:
-            self._itemCollection.disable_buttons()
-
-    def _activate_location_buttons(self, event=None):
-        if self.element.locations:
-            self._locationCollection.enable_buttons()
-        else:
-            self._locationCollection.disable_buttons()
+        if self.element is not None:
+            self._configure_character_buttons()
+            self._configure_item_buttons()
+            self._configure_location_buttons()
+            self._configure_plotline_buttons()
 
     def _add_character(self, event=None):
         # Add the selected element to the collection, if applicable.
@@ -1687,9 +1664,47 @@ class SectionView(ElementView):
             if not self.elementId in plotlineSections:
                 plotlineSections.append(self.elementId)
                 self._mdl.novel.plotLines[plId].sections = plotlineSections
-
-            # TODO: Select the new plot line entry.
         self._ui.tv.restore_branch_status()
+
+    def _configure_character_buttons(self, event=None):
+        if self.element.characters:
+            if self.isLocked:
+                self._characterCollection.btnOpen.config(state='normal')
+                self._characterCollection.btnRemove.config(state='disabled')
+            else:
+                self._characterCollection.enable_buttons()
+        else:
+            self._characterCollection.disable_buttons()
+
+    def _configure_item_buttons(self, event=None):
+        if self.element.items:
+            if self.isLocked:
+                self._itemCollection.btnOpen.config(state='normal')
+                self._itemCollection.btnRemove.config(state='disabled')
+            else:
+                self._itemCollection.enable_buttons()
+        else:
+            self._itemCollection.disable_buttons()
+
+    def _configure_location_buttons(self, event=None):
+        if self.element.locations:
+            if self.isLocked:
+                self._locationCollection.btnOpen.config(state='normal')
+                self._locationCollection.btnRemove.config(state='disabled')
+            else:
+                self._locationCollection.enable_buttons()
+        else:
+            self._locationCollection.disable_buttons()
+
+    def _configure_plotline_buttons(self, event=None):
+        if self.element.scPlotLines:
+            if self.isLocked:
+                self._plotlineCollection.btnOpen.config(state='normal')
+                self._plotlineCollection.btnRemove.config(state='disabled')
+            else:
+                self._plotlineCollection.enable_buttons()
+        else:
+            self._plotlineCollection.disable_buttons()
 
     def _create_frames(self):
         # Template method for creating the frames in the right pane.

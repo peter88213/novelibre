@@ -51,7 +51,7 @@ class ElementView(BlankView):
         super().__init__(parent, model, view, controller, **kw)
         self._pickingMode = False
         self._pickCommand = None
-        self._isLocked = False
+        self.isLocked = False
         self._uiEscBinding = ''
         self._uiBtn1Binding = ''
         self._lastSelected = ''
@@ -141,7 +141,7 @@ class ElementView(BlankView):
             pass
         for widget in self.inputWidgets:
             widget.config(state='disabled')
-        self._isLocked = True
+        self.isLocked = True
 
     def open_link(self, event=None):
         """Open the selected link."""
@@ -180,11 +180,7 @@ class ElementView(BlankView):
             if listboxSize > self._HEIGHT_LIMIT:
                 listboxSize = self._HEIGHT_LIMIT
             self.linkCollection.cListbox.config(height=listboxSize)
-            if (
-                not self.linkCollection.cListbox.curselection()
-                or not self.linkCollection.cListbox.focus_get()
-            ):
-                self.linkCollection.disable_buttons()
+            self._configure_link_buttons()
 
         # Notes entry (if any).
         if hasattr(self.element, 'notes'):
@@ -200,11 +196,17 @@ class ElementView(BlankView):
             pass
         for widget in self.inputWidgets:
             widget.config(state='normal')
-        self._isLocked = False
+        self.isLocked = False
+        if hasattr(self.element, 'links'):
+            self._configure_link_buttons()
 
-    def _activate_link_buttons(self, event=None):
+    def _configure_link_buttons(self, event=None):
         if self.element.links:
-            self.linkCollection.enable_buttons()
+            if self.isLocked:
+                self.linkCollection.btnOpen.config(state='normal')
+                self.linkCollection.btnRemove.config(state='disabled')
+            else:
+                self.linkCollection.enable_buttons()
         else:
             self.linkCollection.disable_buttons()
 
@@ -292,7 +294,6 @@ class ElementView(BlankView):
             cmdAdd=self.add_link,
             cmdRemove=self._remove_link,
             cmdOpen=self.open_link,
-            cmdActivate=self._activate_link_buttons,
             lblOpen=_('Open link'),
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,

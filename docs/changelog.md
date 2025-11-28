@@ -11,6 +11,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.43.9
+
+- Disabling the properties of "trashed" sections (Closes #75).
+- Fixed a bug where related elements can be removed even when the project is locked.
+- Resetting the status bar on lock/unlock.
+
+
 ### Version 5.43.8
 
 - Fixed a regression from version 5.43.1 where right-clicking on a element in the "trash bin" raises an exception. 

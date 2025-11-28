@@ -36,22 +36,21 @@ class CollectionBox(ttk.Frame):
     """
 
     def __init__(
-            self,
-            master,
-            cmdAdd=None,
-            lblAdd=None,
-            iconAdd=None,
-            cmdOpen=None,
-            lblOpen=None,
-            iconOpen=None,
-            cmdRemove=None,
-            lblRemove=None,
-            iconRemove=None,
-            cmdActivate=None,
-            cmdSelect=None,
-            fg=None,
-            bg=None,
-            **kw
+        self,
+        master,
+        cmdAdd=None,
+        lblAdd=None,
+        iconAdd=None,
+        cmdOpen=None,
+        lblOpen=None,
+        iconOpen=None,
+        cmdRemove=None,
+        lblRemove=None,
+        iconRemove=None,
+        cmdSelect=None,
+        fg=None,
+        bg=None,
+        **kw
     ):
         """Set up the listbox and the buttons.
         
@@ -73,9 +72,6 @@ class CollectionBox(ttk.Frame):
                          If not set, the "Remove" button is not available.
             lblRemove -- Optional alternative text on the "Remove" button.
             iconRemove -- Optional icon on the "Remove" button.
-            cmdActivate -- Reference to an external callback routine 
-                           (optional)
-                           Bound to listbox focus and selection.
             cmdSelect -- Reference to the callback routine for list element 
                          selection (optional).
             bg -- Color for the normal background.
@@ -84,8 +80,6 @@ class CollectionBox(ttk.Frame):
         Extends the superclass constructor.
         """
         super().__init__(master, **kw)
-        if cmdActivate is None:
-            cmdActivate = self.enable_buttons
 
         # Listbox.
         listFrame = ttk.Frame(self)
@@ -110,8 +104,6 @@ class CollectionBox(ttk.Frame):
             expand=True,
         )
         self.cListbox.config(yscrollcommand=vbar.set)
-
-        self.cListbox.bind('<FocusIn>', cmdActivate)
         self.cListbox.bind('<<ListboxSelect>>', self._on_change_selection)
 
         # Buttons.
@@ -179,7 +171,6 @@ class CollectionBox(ttk.Frame):
         self.btnRemove.config(state='disabled')
 
     def _on_change_selection(self, event=None):
-        self.enable_buttons()
         if self._cmdSelect is not None:
             try:
                 self._cmdSelect(self.cListbox.curselection()[0])

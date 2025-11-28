@@ -169,6 +169,7 @@ class MainView(Observer, MsgBoxes, SubController):
         
         Overrides the SubController method.
         """
+        self.restore_status()
         self.pathBar.set_locked()
 
     def on_change_selection(self, nodeId):
@@ -302,6 +303,7 @@ class MainView(Observer, MsgBoxes, SubController):
         
         Overrides the SubController method.
         """
+        self.restore_status()
         self.pathBar.set_normal()
 
     def update_status(self, statusText=''):

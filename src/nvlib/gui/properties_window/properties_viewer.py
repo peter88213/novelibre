@@ -210,6 +210,10 @@ class PropertiesViewer(ttk.Frame, SubController):
                 self.activeView.hide()
                 self.activeView = self.sectionView
                 self.activeView.show()
+            if self._mdl.tree.parent(scId) == self._mdl.trashBin:
+                self.activeView.lock()
+            elif self.activeView.isLocked and not self._ctrl.isLocked:
+                self.activeView.unlock()
         self._set_data(scId)
 
     def _view_plot_point(self, ppId):
