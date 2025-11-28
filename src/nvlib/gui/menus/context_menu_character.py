@@ -14,7 +14,9 @@ class ContextMenuCharacter(NvContextMenu):
         super().__init__(view, controller)
 
         self._add_add_command()
+        self.add_separator()
         self._add_delete_command()
+        self.add_separator()
         self._add_clipboard_commands()
         self.add_separator()
         self._add_set_cr_status_cascade()
@@ -34,4 +36,5 @@ class ContextMenuCharacter(NvContextMenu):
         )
         self._disableOnLock.append(label)
 
+        self.add_separator()
         self._add_view_commands()

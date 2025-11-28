@@ -56,6 +56,7 @@ class ViewMenu(NvMenu):
         )
         self._disableOnClose.append(label)
 
+        self.add_separator()
         self._add_view_commands()
 
         label = _('Expand selected')

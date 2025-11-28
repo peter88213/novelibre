@@ -16,5 +16,6 @@ class ContextMenuBook(NvContextMenu):
         self.add_separator()
         self._add_set_status_cascade()
         self._add_set_viewpoint_command()
+        self.add_separator()
         self._add_view_commands()
 

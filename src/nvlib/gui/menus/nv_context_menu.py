@@ -16,7 +16,7 @@ class NvContextMenu(NvMenu):
 
     def open(self, event):
         try:
-            self.tk_popup(event.x_root, event.y_root, 0)
+            self.tk_popup(event.x_root, event.y_root)
         finally:
             self.grab_release()
 

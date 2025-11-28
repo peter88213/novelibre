@@ -14,9 +14,12 @@ class ContextMenuStage(NvContextMenu):
 
         self._add_add_section_command()
         self._add_insert_stage_command()
+        self.add_separator()
         self._add_delete_command()
+        self.add_separator()
         self._add_clipboard_commands()
         self.add_separator()
         self._add_change_level_cascade()
+        self.add_separator()
         self._add_view_commands()
 

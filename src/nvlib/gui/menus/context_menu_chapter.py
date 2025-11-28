@@ -16,7 +16,9 @@ class ContextMenuChapter(NvContextMenu):
         self._add_add_section_command()
         self._add_chapter_part_commands()
         self._add_insert_stage_command()
+        self.add_separator()
         self._add_delete_command()
+        self.add_separator()
         self._add_clipboard_commands()
         self.add_separator()
         self._add_change_level_cascade()
@@ -32,5 +34,6 @@ class ContextMenuChapter(NvContextMenu):
         )
         self._disableOnLock.append(label)
 
+        self.add_separator()
         self._add_view_commands()
 

@@ -44,8 +44,6 @@ class NvMenu(tk.Menu, SubController):
         self._disableOnLock.append(label)
 
     def _add_clipboard_commands(self):
-        self.add_separator()
-
         label = _('Cut')
         self.add_command(
             label=label,
@@ -77,8 +75,6 @@ class NvMenu(tk.Menu, SubController):
         self._disableOnLock.append(label)
 
     def _add_delete_command(self):
-        self.add_separator()
-
         label = _('Delete')
         self.add_command(
             label=label,
@@ -151,8 +147,6 @@ class NvMenu(tk.Menu, SubController):
         self._disableOnLock.append(label)
 
     def _add_view_commands(self):
-        self.add_separator()
-
         label = _('Chapter level')
         self.add_command(
             label=label,

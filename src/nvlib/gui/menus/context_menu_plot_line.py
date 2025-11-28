@@ -27,7 +27,9 @@ class ContextMenuPlotLine(NvContextMenu):
         )
         self._disableOnLock.append(label)
 
+        self.add_separator()
         self._add_delete_command()
+        self.add_separator()
         self._add_clipboard_commands()
         self.add_separator()
 
@@ -61,5 +63,6 @@ class ContextMenuPlotLine(NvContextMenu):
         )
         self._disableOnLock.append(label)
 
+        self.add_separator()
         self._add_view_commands()
 

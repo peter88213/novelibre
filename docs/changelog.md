@@ -11,6 +11,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.43.8
+
+- Fixed a regression from version 5.43.1 where right-clicking on a element in the "trash bin" raises an exception. 
+- Refactored the menu classes.- Refactored the menu classes.
+
+
 ### Version 5.43.7
 
 - Refactored the code for size reduction and better maintainability.

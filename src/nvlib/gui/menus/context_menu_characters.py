@@ -15,4 +15,5 @@ class ContextMenuCharacters(NvContextMenu):
         self._add_add_command()
         self.add_separator()
         self._add_set_cr_status_cascade()
+        self.add_separator()
         self._add_view_commands()

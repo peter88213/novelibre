@@ -13,5 +13,6 @@ class ContextMenuElements(NvContextMenu):
         super().__init__(view, controller)
 
         self._add_add_command()
+        self.add_separator()
         self._add_view_commands()
 
