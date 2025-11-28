@@ -293,8 +293,13 @@ class FileManager(ServiceBase):
         )
         self._ctrl.update_status()
         self._ui.contentsView.view_text()
+
+        #--- Set the initial lock status.
         if self._mdl.prjFile.has_lockfile():
             self._ctrl.lock()
+        else:
+            self._ctrl.unlock()
+
         self._ui.tv.show_branch(CH_ROOT)
         self._ctrl.on_open()
         return True
