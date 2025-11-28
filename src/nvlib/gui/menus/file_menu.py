@@ -8,14 +8,12 @@ from nvlib.gui.menus.nv_menu import NvMenu
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.platform.platform_settings import PLATFORM
 from nvlib.nv_locale import _
-import tkinter as tk
 
 
-class FileMenu(tk.Menu, NvMenu):
+class FileMenu(NvMenu):
 
     def __init__(self, view, controller):
-        tk.Menu.__init__(self, tearoff=0)
-        NvMenu.__init__(self, view, controller)
+        super().__init__(view, controller)
 
         label = _('New')
         self.add_cascade(

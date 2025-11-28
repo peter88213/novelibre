@@ -6,14 +6,12 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.gui.menus.nv_menu import NvMenu
 from nvlib.nv_locale import _
-import tkinter as tk
 
 
-class ItemsMenu(tk.Menu, NvMenu):
+class ItemsMenu(NvMenu):
 
     def __init__(self, view, controller):
-        tk.Menu.__init__(self, tearoff=0)
-        NvMenu.__init__(self, view, controller)
+        super().__init__(view, controller)
 
         label = _('Add')
         self.add_command(

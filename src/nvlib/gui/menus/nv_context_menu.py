@@ -5,15 +5,13 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.gui.menus.nv_menu import NvMenu
-import tkinter as tk
 
 
-class NvContextMenu(tk.Menu, NvMenu):
+class NvContextMenu(NvMenu):
     """A popup menu that closes under Linux when losing the focus."""
 
     def __init__(self, view, controller):
-        tk.Menu.__init__(self, tearoff=0)
-        NvMenu.__init__(self, view, controller)
+        super().__init__(view, controller)
         self.bind('<FocusOut>', self._close)
 
     def open(self, event):

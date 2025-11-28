@@ -66,7 +66,7 @@ def main(
         moCopyPath = f'../../{app}/src/{MO_DIR}/{moFile}'
         os.makedirs(moDir, exist_ok=True)
         os.makedirs(
-            '../../{app}/src/{MO_DIR}',
+            f'../../{app}/src/{MO_DIR}',
             exist_ok=True
         )
         output(f'Writing "{moFile}" ...')

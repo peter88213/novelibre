@@ -7,11 +7,13 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from nvlib.controller.sub_controller import SubController
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.nv_locale import _
+import tkinter as tk
 
 
-class NvMenu(SubController):
+class NvMenu(tk.Menu, SubController):
 
     def __init__(self, view, controller):
+        super().__init__(tearoff=0)
         self._ui = view
         self._ctrl = controller
         self._disableOnLock = []

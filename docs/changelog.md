@@ -10,6 +10,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+
+### Version 5.43.7
+
+- Refactored the code for size reduction and better maintainability.
+- Fixed a tool bug where a dead directory is created during translation into German.
+
+
 ### Version 5.43.6
 
 - Disabling "Restore backup" and "Discard manuscript" on lock.
