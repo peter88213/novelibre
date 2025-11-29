@@ -256,7 +256,7 @@ class Toolbar(SubController):
     def _add_separator(self):
         tk.Frame(
             self.buttonBar,
-            bg=self._ui.colorBg,
+            bg='light gray',
             width=1,
         ).pack(side='left', fill='y', padx=4)
 
