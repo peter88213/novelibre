@@ -27,417 +27,266 @@ class Toolbar(SubController):
         """
         self._ui = view
         self._ctrl = controller
+        self._disableOnLock = []
+        self._disableOnClose = []
 
         # Add a toolbar to the editor window.
         self.buttonBar = ttk.Frame(self._ui.mainWindow)
 
         # "Go back" button.
-        self.goBackButton = ttk.Button(
-            self.buttonBar,
+        self.goBackButton = self._new_button(
             text=_('Back'),
             image=self._ui.icons.goBackIcon,
-            command=self._ui.tv.go_back
+            command=self._ui.tv.go_back,
+            disableOnLock=False,
+            accelerator=KEYS.BACK[1],
         )
         self.goBackButton.pack(side='left')
-        self.goBackButton.image = self._ui.icons.goBackIcon
 
         # "Go forward" button.
-        self.goForwardButton = ttk.Button(
-            self.buttonBar,
+        self.goForwardButton = self._new_button(
             text=_('Forward'),
             image=self._ui.icons.goForwardIcon,
-            command=self._ui.tv.go_forward
+            command=self._ui.tv.go_forward,
+            disableOnLock=False,
+            accelerator=KEYS.FORWARD[1],
         )
         self.goForwardButton.pack(side='left')
-        self.goForwardButton.image = self._ui.icons.goForwardIcon
 
-        # Separator.
-        tk.Frame(
-            self.buttonBar,
-            bg='light gray',
-            width=1,
-        ).pack(side='left', fill='y', padx=4)
+        self._add_separator()
 
         # "View Book" button.
-        self.viewBookButton = ttk.Button(
-            self.buttonBar,
+        self.viewBookButton = self._new_button(
             text=_('Book'),
             image=self._ui.icons.viewBookIcon,
-            command=self._ui.tv.show_book
+            command=self._ui.tv.show_book,
+            disableOnLock=False,
         )
         self.viewBookButton.pack(side='left')
-        self.viewBookButton.image = self._ui.icons.viewBookIcon
 
         # "View Characters" button.
-        self.viewCharactersButton = ttk.Button(
-            self.buttonBar,
+        self.viewCharactersButton = self._new_button(
             text=_('Characters'),
             image=self._ui.icons.viewCharactersIcon,
-            command=self._ui.tv.show_characters
+            command=self._ui.tv.show_characters,
+            disableOnLock=False,
         )
         self.viewCharactersButton.pack(side='left')
-        self.viewCharactersButton.image = self._ui.icons.viewCharactersIcon
 
         # "View Locations" button.
-        self.viewLocationsButton = ttk.Button(
-            self.buttonBar,
+        self.viewLocationsButton = self._new_button(
             text=_('Locations'),
             image=self._ui.icons.viewLocationsIcon,
-            command=self._ui.tv.show_locations
+            command=self._ui.tv.show_locations,
+            disableOnLock=False,
         )
         self.viewLocationsButton.pack(side='left')
-        self.viewLocationsButton.image = self._ui.icons.viewLocationsIcon
 
         # "View Items" button.
-        self.viewItemsButton = ttk.Button(
-            self.buttonBar,
+        self.viewItemsButton = self._new_button(
             text=_('Items'),
             image=self._ui.icons.viewItemsIcon,
-            command=self._ui.tv.show_items
+            command=self._ui.tv.show_items,
+            disableOnLock=False,
         )
         self.viewItemsButton.pack(side='left')
-        self.viewItemsButton.image = self._ui.icons.viewItemsIcon
 
         # "View Plot lines" button.
-        self.viewPlotLinesButton = ttk.Button(
-            self.buttonBar,
+        self.viewPlotLinesButton = self._new_button(
             text=_('Plot lines'),
             image=self._ui.icons.viewPlotLinesIcon,
-            command=self._ui.tv.show_plot_lines
+            command=self._ui.tv.show_plot_lines,
+            disableOnLock=False,
         )
         self.viewPlotLinesButton.pack(side='left')
-        self.viewPlotLinesButton.image = self._ui.icons.viewPlotLinesIcon
 
         # "View Projectnotes" button.
-        self.viewProjectnotesButton = ttk.Button(
-            self.buttonBar,
+        self.viewProjectnotesButton = self._new_button(
             text=_('Project notes'),
             image=self._ui.icons.viewProjectnotesIcon,
-            command=self._ui.tv.show_project_notes
+            command=self._ui.tv.show_project_notes,
+            disableOnLock=False,
         )
         self.viewProjectnotesButton.pack(side='left')
-        self.viewProjectnotesButton.image = self._ui.icons.viewProjectnotesIcon
 
-        # Separator.
-        tk.Frame(
-            self.buttonBar,
-            bg='light gray',
-            width=1,
-        ).pack(side='left', fill='y', padx=4)
+        self._add_separator()
 
         # "Save" button.
-        self.saveButton = ttk.Button(
-            self.buttonBar,
+        self.saveButton = self._new_button(
             text=_('Save'),
             image=self._ui.icons.saveIcon,
-            command=self._ctrl.save_project
+            command=self._ctrl.save_project,
+            accelerator=KEYS.SAVE_PROJECT[1],
         )
         self.saveButton.pack(side='left')
-        self.saveButton.image = self._ui.icons.saveIcon
 
         # "Lock/Unlock" button.
-        self.lockButton = ttk.Button(
-            self.buttonBar,
+        self.lockButton = self._new_button(
             text=_('Lock/unlock'),
             image=self._ui.icons.lockIcon,
-            command=self._ctrl.toggle_lock
+            command=self._ctrl.toggle_lock,
+            disableOnLock=False,
         )
         self.lockButton.pack(side='left')
-        self.lockButton.image = self._ui.icons.lockIcon
 
         # "Update from manuscript" button.
-        self.updateButton = ttk.Button(
-            self.buttonBar,
+        self.updateButton = self._new_button(
             text=_('Update from manuscript'),
             image=self._ui.icons.updateFromManuscriptIcon,
-            command=self._ctrl.update_from_manuscript
+            command=self._ctrl.update_from_manuscript,
         )
         self.updateButton.pack(side='left')
-        self.updateButton.image = self._ui.icons.updateFromManuscriptIcon
 
         # "Manuscript" button.
-        self.manuscriptButton = ttk.Button(
-            self.buttonBar,
+        self.manuscriptButton = self._new_button(
             text=_('Export Manuscript'),
             image=self._ui.icons.manuscriptIcon,
-            command=self._ctrl.open_manuscript
+            command=self._ctrl.open_manuscript,
         )
         self.manuscriptButton.pack(side='left')
-        self.manuscriptButton.image = self._ui.icons.manuscriptIcon
 
-        # Separator.
-        tk.Frame(
-            self.buttonBar,
-            bg='light gray',
-            width=1,
-        ).pack(side='left', fill='y', padx=4)
+        self._add_separator()
 
         # "Add" button.
-        self.addElementButton = ttk.Button(
-            self.buttonBar,
+        self.addElementButton = self._new_button(
             text=_('Add'),
             image=self._ui.icons.addIcon,
-            command=self._ctrl.add_new_element
+            command=self._ctrl.add_new_element,
+            accelerator=KEYS.ADD_ELEMENT[1],
         )
         self.addElementButton.pack(side='left')
-        self.addElementButton.image = self._ui.icons.addIcon
 
         # "Add Child" button.
-        self.addChildButton = ttk.Button(
-            self.buttonBar,
+        self.addChildButton = self._new_button(
             text=_('Add child'),
             image=self._ui.icons.addChildIcon,
-            command=self._ctrl.add_new_child
+            command=self._ctrl.add_new_child,
+            accelerator=KEYS.ADD_CHILD[1],
         )
         self.addChildButton.pack(side='left')
-        self.addChildButton.image = self._ui.icons.addChildIcon
 
         # "Add Parent" button.
-        self.addParentButton = ttk.Button(
-            self.buttonBar,
+        self.addParentButton = self._new_button(
             text=_('Add parent'),
             image=self._ui.icons.addParentIcon,
-            command=self._ctrl.add_new_parent
+            command=self._ctrl.add_new_parent,
+            accelerator=KEYS.ADD_PARENT[1],
         )
         self.addParentButton.pack(side='left')
-        self.addParentButton.image = self._ui.icons.addParentIcon
 
         # "Delete" button.
-        self.deleteElementButton = ttk.Button(
-            self.buttonBar,
+        self.deleteElementButton = self._new_button(
             text=_('Delete'),
             image=self._ui.icons.removeIcon,
-            command=self._ctrl.delete_elements
+            command=self._ctrl.delete_elements,
+            accelerator=KEYS.DELETE[1],
         )
         self.deleteElementButton.pack(side='left')
-        self.deleteElementButton.image = self._ui.icons.removeIcon
 
-        # Put a Separator on the toolbar.
-        tk.Frame(
-            self.buttonBar,
-            bg='light gray',
-            width=1,
-        ).pack(side='left', fill='y', padx=4)
+        self._add_separator()
 
-        # Put a "Cut" button on the toolbar.
-        self.cutButton = ttk.Button(
-            self.buttonBar,
+        # "Cut" button.
+        self.cutButton = self._new_button(
             text=f"{_('Cut')} ({KEYS.CUT[1]})",
             image=self._ui.icons.cutIcon,
-            command=self._ctrl.cut_element
+            command=self._ctrl.cut_element,
         )
         self.cutButton.pack(side='left')
-        self.cutButton.image = self._ui.icons.cutIcon
 
-        # Put a "Copy" button on the toolbar.
-        self.copyButton = ttk.Button(
-            self.buttonBar,
+        # "Copy" button.
+        self.copyButton = self._new_button(
             text=f"{_('Copy')} ({KEYS.COPY[1]})",
             image=self._ui.icons.copyIcon,
-            command=self._ctrl.copy_element
+            command=self._ctrl.copy_element,
         )
         self.copyButton.pack(side='left')
-        self.copyButton.image = self._ui.icons.copyIcon
 
-        # Put a "Paste" button on the toolbar.
-        self.pasteButton = ttk.Button(
-            self.buttonBar,
+        # "Paste" button.
+        self.pasteButton = self._new_button(
             text=f"{_('Paste')} ({KEYS.PASTE[1]})",
             image=self._ui.icons.pasteIcon,
-            command=self._ctrl.paste_element
+            command=self._ctrl.paste_element,
         )
         self.pasteButton.pack(side='left')
-        self.pasteButton.image = self._ui.icons.pasteIcon
 
         # Reverse order (side='right').
 
         # "Toggle properties" button.
-        self.propertiesButton = ttk.Button(
-            self.buttonBar,
+        self.propertiesButton = self._new_button(
             text=_('Toggle Properties'),
             image=self._ui.icons.propertiesIcon,
-            command=self._ui.toggle_properties_view
+            command=self._ui.toggle_properties_view,
+            disableOnClose=False,
+            disableOnLock=False,
+            accelerator=KEYS.TOGGLE_PROPERTIES[1],
         )
         self.propertiesButton.pack(side='right')
-        self.propertiesButton.image = self._ui.icons.propertiesIcon
 
         # "Toggle content viewer" button.
-        self.viewerButton = ttk.Button(
-            self.buttonBar,
+        self.viewerButton = self._new_button(
             text=_('Toggle Text viewer'),
             image=self._ui.icons.viewerIcon,
-            command=self._ui.toggle_contents_view
+            command=self._ui.toggle_contents_view,
+            disableOnClose=False,
+            disableOnLock=False,
+            accelerator=KEYS.TOGGLE_VIEWER[1],
+
         )
         self.viewerButton.pack(side='right')
-        self.viewerButton.image = self._ui.icons.viewerIcon
 
         self.buttonBar.pack(
             expand=False, before=self._ui.appWindow, fill='both')
-        self._set_hovertips()
 
     def disable_menu(self):
-        """Disable toolbar buttons when no project is open.        
-        
-        Overrides the superclass method.
-        """
-        self.addChildButton.config(state='disabled')
-        self.addElementButton.config(state='disabled')
-        self.addParentButton.config(state='disabled')
-        self.goBackButton.config(state='disabled')
-        self.goForwardButton.config(state='disabled')
-        self.lockButton.config(state='disabled')
-        self.manuscriptButton.config(state='disabled')
-        self.deleteElementButton.config(state='disabled')
-        self.saveButton.config(state='disabled')
-        self.updateButton.config(state='disabled')
-        self.viewBookButton.config(state='disabled')
-        self.viewCharactersButton.config(state='disabled')
-        self.viewItemsButton.config(state='disabled')
-        self.viewLocationsButton.config(state='disabled')
-        self.viewPlotLinesButton.config(state='disabled')
-        self.viewProjectnotesButton.config(state='disabled')
-        self.cutButton.config(state='disabled')
-        self.copyButton.config(state='disabled')
-        self.pasteButton.config(state='disabled')
+        for button in self._disableOnClose:
+            button.config(state='disabled')
 
     def enable_menu(self):
-        """Enable toolbar buttons when a project is open.        
-        
-        Overrides the superclass method.
-        """
-        self.addChildButton.config(state='normal')
-        self.addElementButton.config(state='normal')
-        self.addParentButton.config(state='normal')
-        self.goBackButton.config(state='normal')
-        self.goForwardButton.config(state='normal')
-        self.lockButton.config(state='normal')
-        self.manuscriptButton.config(state='normal')
-        self.deleteElementButton.config(state='normal')
-        self.saveButton.config(state='normal')
-        self.updateButton.config(state='normal')
-        self.viewBookButton.config(state='normal')
-        self.viewCharactersButton.config(state='normal')
-        self.viewItemsButton.config(state='normal')
-        self.viewLocationsButton.config(state='normal')
-        self.viewPlotLinesButton.config(state='normal')
-        self.viewProjectnotesButton.config(state='normal')
-        self.cutButton.config(state='normal')
-        self.copyButton.config(state='normal')
-        self.pasteButton.config(state='normal')
+        for button in self._disableOnClose:
+            button.config(state='normal')
 
     def lock(self):
-        """Make the "locked" state take effect.
-        
-        Overrides the superclass method.
-        """
-        self.saveButton.config(state='disabled')
-        self.updateButton.config(state='disabled')
-        self.addElementButton.config(state='disabled')
-        self.addChildButton.config(state='disabled')
-        self.addParentButton.config(state='disabled')
-        self.deleteElementButton.config(state='disabled')
-        self.cutButton.config(state='disabled')
-        self.pasteButton.config(state='disabled')
+        for button in self._disableOnLock:
+            button.config(state='disabled')
 
     def unlock(self):
-        """Make the "unlocked" state take effect.
-        
-        Overrides the superclass method.
-        """
-        self.saveButton.config(state='normal')
-        self.updateButton.config(state='normal')
-        self.addElementButton.config(state='normal')
-        self.addChildButton.config(state='normal')
-        self.addParentButton.config(state='normal')
-        self.deleteElementButton.config(state='normal')
-        self.cutButton.config(state='normal')
-        self.pasteButton.config(state='normal')
+        for button in self._disableOnLock:
+            button.config(state='normal')
 
-    def _set_hovertips(self):
-        if not prefs['enable_hovertips']:
-            return
+    def _add_separator(self):
+        tk.Frame(
+            self.buttonBar,
+            bg=self._ui.colorBg,
+            width=1,
+        ).pack(side='left', fill='y', padx=4)
 
-        Hovertip(
-            self.addChildButton,
-            f"{self.addChildButton['text']} ({KEYS.ADD_CHILD[1]})"
+    def _new_button(
+        self,
+        text,
+        image,
+        command,
+        disableOnClose=True,
+        disableOnLock=True,
+        accelerator=None,
+    ):
+        newButton = ttk.Button(
+            self.buttonBar,
+            text=text,
+            image=image,
+            command=command,
         )
-        Hovertip(
-            self.addElementButton,
-            f"{self.addElementButton['text']} ({KEYS.ADD_ELEMENT[1]})"
-        )
-        Hovertip(
-            self.addParentButton,
-            f"{self.addParentButton['text']} ({KEYS.ADD_PARENT[1]})"
-        )
-        Hovertip(
-            self.goBackButton,
-            f"{self.goBackButton['text']} ({KEYS.BACK[1]})"
-        )
-        Hovertip(
-            self.goForwardButton,
-            f"{self.goForwardButton['text']} ({KEYS.FORWARD[1]})"
-        )
-        Hovertip(
-            self.lockButton,
-            self.lockButton['text']
-        )
-        Hovertip(
-            self.manuscriptButton,
-            self.manuscriptButton['text'])
-        Hovertip(
-            self.propertiesButton,
-            f"{self.propertiesButton['text']} ({KEYS.TOGGLE_PROPERTIES[1]})"
-        )
-        Hovertip(
-            self.saveButton,
-            f"{self.saveButton['text']} ({KEYS.SAVE_PROJECT[1]})"
-        )
-        Hovertip(
-            self.deleteElementButton,
-             f"{self.deleteElementButton['text']} ({KEYS.DELETE[1]})"
-        )
-        Hovertip(
-            self.updateButton,
-            self.updateButton['text']
-        )
-        Hovertip(
-            self.viewBookButton,
-            self.viewBookButton['text']
-        )
-        Hovertip(
-            self.viewCharactersButton,
-            self.viewCharactersButton['text']
-        )
-        Hovertip(
-            self.viewItemsButton,
-            self.viewItemsButton['text']
-        )
-        Hovertip(
-            self.viewLocationsButton,
-            self.viewLocationsButton['text']
-        )
-        Hovertip(
-            self.viewPlotLinesButton,
-            self.viewPlotLinesButton['text']
-        )
-        Hovertip(
-            self.viewProjectnotesButton,
-            self.viewProjectnotesButton['text']
-        )
-        Hovertip(
-            self.viewerButton,
-            f"{self.viewerButton['text']} ({KEYS.TOGGLE_VIEWER[1]})"
-        )
-        Hovertip(
-            self.cutButton,
-            self.cutButton['text']
-        )
-        Hovertip(
-            self.copyButton,
-            self.copyButton['text']
-        )
-        Hovertip(
-            self.pasteButton,
-            self.pasteButton['text']
-        )
+        newButton.image = image
+        if disableOnClose:
+            self._disableOnClose.append(newButton)
+        if disableOnLock:
+            self._disableOnLock.append(newButton)
+
+        if prefs['enable_hovertips']:
+            if accelerator is None:
+                hoverText = text
+            else:
+                hoverText = f'{text} ({accelerator})'
+            Hovertip(newButton, hoverText)
+
+        return newButton
 

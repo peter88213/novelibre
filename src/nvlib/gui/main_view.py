@@ -61,8 +61,8 @@ class MainView(Observer, MsgBoxes, SubController):
         self.root.title(title)
         self.title = title
         colorProbe = tk.Label(self.root)
-        self._colorFg = colorProbe.cget('fg')
-        self._colorBg = colorProbe.cget('bg')
+        self.colorFg = colorProbe.cget('fg')
+        self.colorBg = colorProbe.cget('bg')
         del colorProbe
 
         self._mdl.add_observer(self)
@@ -398,8 +398,8 @@ class MainView(Observer, MsgBoxes, SubController):
         self.pathBar.pack(expand=False, fill='both')
         self._mdl.add_observer(self.pathBar)
 
-        self.pathBar.COLOR_NORMAL_BG = self._colorBg
-        self.pathBar.COLOR_NORMAL_FG = self._colorFg
+        self.pathBar.COLOR_NORMAL_BG = self.colorBg
+        self.pathBar.COLOR_NORMAL_FG = self.colorFg
         self.pathBar.COLOR_MODIFIED_BG = prefs['color_modified_bg']
         self.pathBar.COLOR_MODIFIED_FG = prefs['color_modified_fg']
         self.pathBar.COLOR_LOCKED_BG = prefs['color_locked_bg']
@@ -416,8 +416,8 @@ class MainView(Observer, MsgBoxes, SubController):
         self.statusBar.pack(expand=False, fill='both')
         self.statusBar.bind(MOUSE.LEFT_CLICK, self.statusBar.restore_status)
 
-        self.statusBar.COLOR_NORMAL_BG = self._colorBg
-        self.statusBar.COLOR_NORMAL_FG = self._colorFg
+        self.statusBar.COLOR_NORMAL_BG = self.colorBg
+        self.statusBar.COLOR_NORMAL_FG = self.colorFg
         self.statusBar.COLOR_SUCCESS_BG = prefs['color_status_success_bg']
         self.statusBar.COLOR_SUCCESS_FG = prefs['color_status_success_fg']
         self.statusBar.COLOR_ERROR_BG = prefs['color_status_error_bg']
