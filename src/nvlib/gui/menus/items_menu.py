@@ -18,7 +18,7 @@ class ItemsMenu(NvMenu):
             label=label,
             command=self._ctrl.add_new_item,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 
@@ -27,7 +27,7 @@ class ItemsMenu(NvMenu):
             label=label,
             command=self._ctrl.import_item_data,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 
@@ -36,14 +36,14 @@ class ItemsMenu(NvMenu):
             label=label,
             command=self._ctrl.export_item_desc,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         label = _('Export item table')
         self.add_command(
             label=label,
             command=self._ctrl.export_item_list,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 

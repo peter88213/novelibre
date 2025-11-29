@@ -18,14 +18,14 @@ class ChapterMenu(NvMenu):
             label=label,
             command=self._ctrl.add_new_chapter,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         label = _('Add multiple chapters...')
         self.add_command(
             label=label,
             command=self._ctrl.add_multiple_new_chapters,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 
@@ -39,7 +39,7 @@ class ChapterMenu(NvMenu):
             label=label,
             command=self._ctrl.split_file,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 
@@ -48,12 +48,12 @@ class ChapterMenu(NvMenu):
             label=label,
             command=self._ctrl.export_chapter_desc,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         label = _('Export chapter table')
         self.add_command(
             label=label,
             command=self._ctrl.export_chapter_list,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 

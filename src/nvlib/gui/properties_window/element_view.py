@@ -200,6 +200,12 @@ class ElementView(BlankView):
         if hasattr(self.element, 'links'):
             self._configure_link_buttons()
 
+    def _add_separator(self):
+        ttk.Separator(
+            self._propertiesFrame,
+            orient='horizontal'
+        ).pack(fill='x')
+
     def _configure_link_buttons(self, event=None):
         if self.element.links:
             if self.isLocked:
@@ -209,12 +215,6 @@ class ElementView(BlankView):
                 self.linkCollection.enable_buttons()
         else:
             self.linkCollection.disable_buttons()
-
-    def _add_separator(self):
-        ttk.Separator(
-            self._propertiesFrame,
-            orient='horizontal'
-        ).pack(fill='x')
 
     def _create_button_bar(self):
         # Create a button bar at the bottom.

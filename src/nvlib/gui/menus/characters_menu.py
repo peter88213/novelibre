@@ -18,7 +18,7 @@ class CharactersMenu(NvMenu):
             label=label,
             command=self._ctrl.add_new_character,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 
@@ -31,7 +31,7 @@ class CharactersMenu(NvMenu):
             label=label,
             command=self._ctrl.import_character_data,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 
@@ -40,14 +40,14 @@ class CharactersMenu(NvMenu):
             label=label,
             command=self._ctrl.export_character_desc,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         label = _('Export character table')
         self.add_command(
             label=label,
             command=self._ctrl.export_character_list,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 

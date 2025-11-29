@@ -18,14 +18,14 @@ class ContextMenuPlotLine(NvContextMenu):
             label=label,
             command=self._ctrl.add_new_plot_line,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         label = _('Add Plot point')
         self.add_command(
             label=label,
             command=self._ctrl.add_new_plot_point,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
         self._add_delete_command()
@@ -38,14 +38,14 @@ class ContextMenuPlotLine(NvContextMenu):
             label=label,
             command=self._ctrl.exclude_plot_line,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         label = _('Change sections to Normal')
         self.add_command(
             label=label,
             command=self._ctrl.include_plot_line
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 
@@ -54,14 +54,14 @@ class ContextMenuPlotLine(NvContextMenu):
             label=label,
             command=self._ctrl.export_filtered_manuscript,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         label = _('Export synopsis filtered by plot line')
         self.add_command(
             label=label,
             command=self._ctrl.export_filtered_synopsis,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
         self._add_view_commands()

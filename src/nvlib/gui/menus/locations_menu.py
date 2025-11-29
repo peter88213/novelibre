@@ -18,7 +18,7 @@ class LocationsMenu(NvMenu):
             label=label,
             command=self._ctrl.add_new_location,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 
@@ -27,7 +27,7 @@ class LocationsMenu(NvMenu):
             label=label,
             command=self._ctrl.import_location_data,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 
@@ -36,14 +36,14 @@ class LocationsMenu(NvMenu):
             label=label,
             command=self._ctrl.export_location_desc,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         label = _('Export location table')
         self.add_command(
             label=label,
             command=self._ctrl.export_location_list,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 

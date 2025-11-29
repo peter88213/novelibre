@@ -34,7 +34,7 @@ class Toolbar(SubController):
         self.buttonBar = ttk.Frame(self._ui.mainWindow)
 
         # "Go back" button.
-        self.goBackButton = self._new_button(
+        self.goBackButton = self.new_button(
             text=_('Back'),
             image=self._ui.icons.goBackIcon,
             command=self._ui.tv.go_back,
@@ -44,7 +44,7 @@ class Toolbar(SubController):
         self.goBackButton.pack(side='left')
 
         # "Go forward" button.
-        self.goForwardButton = self._new_button(
+        self.goForwardButton = self.new_button(
             text=_('Forward'),
             image=self._ui.icons.goForwardIcon,
             command=self._ui.tv.go_forward,
@@ -53,10 +53,10 @@ class Toolbar(SubController):
         )
         self.goForwardButton.pack(side='left')
 
-        self._add_separator()
+        self.add_separator()
 
         # "View Book" button.
-        self.viewBookButton = self._new_button(
+        self.viewBookButton = self.new_button(
             text=_('Book'),
             image=self._ui.icons.viewBookIcon,
             command=self._ui.tv.show_book,
@@ -65,7 +65,7 @@ class Toolbar(SubController):
         self.viewBookButton.pack(side='left')
 
         # "View Characters" button.
-        self.viewCharactersButton = self._new_button(
+        self.viewCharactersButton = self.new_button(
             text=_('Characters'),
             image=self._ui.icons.viewCharactersIcon,
             command=self._ui.tv.show_characters,
@@ -74,7 +74,7 @@ class Toolbar(SubController):
         self.viewCharactersButton.pack(side='left')
 
         # "View Locations" button.
-        self.viewLocationsButton = self._new_button(
+        self.viewLocationsButton = self.new_button(
             text=_('Locations'),
             image=self._ui.icons.viewLocationsIcon,
             command=self._ui.tv.show_locations,
@@ -83,7 +83,7 @@ class Toolbar(SubController):
         self.viewLocationsButton.pack(side='left')
 
         # "View Items" button.
-        self.viewItemsButton = self._new_button(
+        self.viewItemsButton = self.new_button(
             text=_('Items'),
             image=self._ui.icons.viewItemsIcon,
             command=self._ui.tv.show_items,
@@ -92,7 +92,7 @@ class Toolbar(SubController):
         self.viewItemsButton.pack(side='left')
 
         # "View Plot lines" button.
-        self.viewPlotLinesButton = self._new_button(
+        self.viewPlotLinesButton = self.new_button(
             text=_('Plot lines'),
             image=self._ui.icons.viewPlotLinesIcon,
             command=self._ui.tv.show_plot_lines,
@@ -101,7 +101,7 @@ class Toolbar(SubController):
         self.viewPlotLinesButton.pack(side='left')
 
         # "View Projectnotes" button.
-        self.viewProjectnotesButton = self._new_button(
+        self.viewProjectnotesButton = self.new_button(
             text=_('Project notes'),
             image=self._ui.icons.viewProjectnotesIcon,
             command=self._ui.tv.show_project_notes,
@@ -109,10 +109,10 @@ class Toolbar(SubController):
         )
         self.viewProjectnotesButton.pack(side='left')
 
-        self._add_separator()
+        self.add_separator()
 
         # "Save" button.
-        self.saveButton = self._new_button(
+        self.saveButton = self.new_button(
             text=_('Save'),
             image=self._ui.icons.saveIcon,
             command=self._ctrl.save_project,
@@ -121,7 +121,7 @@ class Toolbar(SubController):
         self.saveButton.pack(side='left')
 
         # "Lock/Unlock" button.
-        self.lockButton = self._new_button(
+        self.lockButton = self.new_button(
             text=_('Lock/unlock'),
             image=self._ui.icons.lockIcon,
             command=self._ctrl.toggle_lock,
@@ -130,7 +130,7 @@ class Toolbar(SubController):
         self.lockButton.pack(side='left')
 
         # "Update from manuscript" button.
-        self.updateButton = self._new_button(
+        self.updateButton = self.new_button(
             text=_('Update from manuscript'),
             image=self._ui.icons.updateFromManuscriptIcon,
             command=self._ctrl.update_from_manuscript,
@@ -138,17 +138,17 @@ class Toolbar(SubController):
         self.updateButton.pack(side='left')
 
         # "Manuscript" button.
-        self.manuscriptButton = self._new_button(
+        self.manuscriptButton = self.new_button(
             text=_('Export Manuscript'),
             image=self._ui.icons.manuscriptIcon,
             command=self._ctrl.open_manuscript,
         )
         self.manuscriptButton.pack(side='left')
 
-        self._add_separator()
+        self.add_separator()
 
         # "Add" button.
-        self.addElementButton = self._new_button(
+        self.addElementButton = self.new_button(
             text=_('Add'),
             image=self._ui.icons.addIcon,
             command=self._ctrl.add_new_element,
@@ -157,7 +157,7 @@ class Toolbar(SubController):
         self.addElementButton.pack(side='left')
 
         # "Add Child" button.
-        self.addChildButton = self._new_button(
+        self.addChildButton = self.new_button(
             text=_('Add child'),
             image=self._ui.icons.addChildIcon,
             command=self._ctrl.add_new_child,
@@ -166,7 +166,7 @@ class Toolbar(SubController):
         self.addChildButton.pack(side='left')
 
         # "Add Parent" button.
-        self.addParentButton = self._new_button(
+        self.addParentButton = self.new_button(
             text=_('Add parent'),
             image=self._ui.icons.addParentIcon,
             command=self._ctrl.add_new_parent,
@@ -175,7 +175,7 @@ class Toolbar(SubController):
         self.addParentButton.pack(side='left')
 
         # "Delete" button.
-        self.deleteElementButton = self._new_button(
+        self.deleteElementButton = self.new_button(
             text=_('Delete'),
             image=self._ui.icons.removeIcon,
             command=self._ctrl.delete_elements,
@@ -183,10 +183,10 @@ class Toolbar(SubController):
         )
         self.deleteElementButton.pack(side='left')
 
-        self._add_separator()
+        self.add_separator()
 
         # "Cut" button.
-        self.cutButton = self._new_button(
+        self.cutButton = self.new_button(
             text=f"{_('Cut')} ({KEYS.CUT[1]})",
             image=self._ui.icons.cutIcon,
             command=self._ctrl.cut_element,
@@ -194,7 +194,7 @@ class Toolbar(SubController):
         self.cutButton.pack(side='left')
 
         # "Copy" button.
-        self.copyButton = self._new_button(
+        self.copyButton = self.new_button(
             text=f"{_('Copy')} ({KEYS.COPY[1]})",
             image=self._ui.icons.copyIcon,
             command=self._ctrl.copy_element,
@@ -202,7 +202,7 @@ class Toolbar(SubController):
         self.copyButton.pack(side='left')
 
         # "Paste" button.
-        self.pasteButton = self._new_button(
+        self.pasteButton = self.new_button(
             text=f"{_('Paste')} ({KEYS.PASTE[1]})",
             image=self._ui.icons.pasteIcon,
             command=self._ctrl.paste_element,
@@ -212,7 +212,7 @@ class Toolbar(SubController):
         # Reverse order (side='right').
 
         # "Toggle properties" button.
-        self.propertiesButton = self._new_button(
+        self.propertiesButton = self.new_button(
             text=_('Toggle Properties'),
             image=self._ui.icons.propertiesIcon,
             command=self._ui.toggle_properties_view,
@@ -223,7 +223,7 @@ class Toolbar(SubController):
         self.propertiesButton.pack(side='right')
 
         # "Toggle content viewer" button.
-        self.viewerButton = self._new_button(
+        self.viewerButton = self.new_button(
             text=_('Toggle Text viewer'),
             image=self._ui.icons.viewerIcon,
             command=self._ui.toggle_contents_view,
@@ -237,6 +237,13 @@ class Toolbar(SubController):
         self.buttonBar.pack(
             expand=False, before=self._ui.appWindow, fill='both')
 
+    def add_separator(self):
+        tk.Frame(
+            self.buttonBar,
+            bg=prefs['color_separator'],
+            width=1,
+        ).pack(side='left', fill='y', padx=4)
+
     def disable_menu(self):
         for button in self._disableOnClose:
             button.config(state='disabled')
@@ -249,18 +256,7 @@ class Toolbar(SubController):
         for button in self._disableOnLock:
             button.config(state='disabled')
 
-    def unlock(self):
-        for button in self._disableOnLock:
-            button.config(state='normal')
-
-    def _add_separator(self):
-        tk.Frame(
-            self.buttonBar,
-            bg='light gray',
-            width=1,
-        ).pack(side='left', fill='y', padx=4)
-
-    def _new_button(
+    def new_button(
         self,
         text,
         image,
@@ -289,4 +285,8 @@ class Toolbar(SubController):
             Hovertip(newButton, hoverText)
 
         return newButton
+
+    def unlock(self):
+        for button in self._disableOnLock:
+            button.config(state='normal')
 

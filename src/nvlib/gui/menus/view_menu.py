@@ -19,42 +19,42 @@ class ViewMenu(NvMenu):
             label=label,
             command=self._ui.tv.show_book,
         )
-        self._disableOnClose.append(label)
+        self.disableOnClose.append(label)
 
         label = _('Show Characters')
         self.add_command(
             label=label,
             command=self._ui.tv.show_characters,
         )
-        self._disableOnClose.append(label)
+        self.disableOnClose.append(label)
 
         label = _('Show Locations')
         self.add_command(
             label=label,
             command=self._ui.tv.show_locations,
         )
-        self._disableOnClose.append(label)
+        self.disableOnClose.append(label)
 
         label = _('Show Items')
         self.add_command(
             label=label,
             command=self._ui.tv.show_items,
         )
-        self._disableOnClose.append(label)
+        self.disableOnClose.append(label)
 
         label = _('Show Plot lines')
         self.add_command(
             label=label,
             command=self._ui.tv.show_plot_lines,
         )
-        self._disableOnClose.append(label)
+        self.disableOnClose.append(label)
 
         label = _('Show Project notes')
         self.add_command(
             label=label,
             command=self._ui.tv.show_project_notes,
         )
-        self._disableOnClose.append(label)
+        self.disableOnClose.append(label)
 
         self.add_separator()
         self._add_view_commands()
@@ -64,14 +64,14 @@ class ViewMenu(NvMenu):
             label=label,
             command=self._ui.tv.expand_selected,
         )
-        self._disableOnClose.append(label)
+        self.disableOnClose.append(label)
 
         label = _('Collapse selected')
         self.add_command(
             label=label,
             command=self._ui.tv.collapse_selected,
         )
-        self._disableOnClose.append(label)
+        self.disableOnClose.append(label)
 
         self.add_separator()
 

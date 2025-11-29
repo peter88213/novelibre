@@ -18,14 +18,14 @@ class SectionMenu(NvMenu):
             label=label,
             command=self._ctrl.add_new_section,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         label = _('Add multiple sections...')
         self.add_command(
             label=label,
             command=self._ctrl.add_multiple_new_sections,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 
@@ -40,7 +40,7 @@ class SectionMenu(NvMenu):
             label=label,
             command=self._ctrl.export_section_desc,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 

@@ -18,14 +18,14 @@ class ExportMenu(NvMenu):
             label=label,
             command=self._ctrl.export_manuscript,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         label = _('Manuscript for third-party word processing')
         self.add_command(
             label=label,
             command=self._ctrl.export_proofing_manuscript,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 

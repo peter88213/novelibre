@@ -150,6 +150,9 @@ class FileManager(ServiceBase):
         """
         self._ui.restore_status()
         self._ui.propertiesView.apply_changes()
+        if self._mdl.prjFile is None:
+            return
+
         if self._mdl.prjFile.filePath is None:
             if not self.save_project():
                 return
@@ -569,8 +572,11 @@ class FileManager(ServiceBase):
                            indicating the report type.        
         """
         self._ui.restore_status()
+        if self._mdl.prjFile is None:
+            return
+
         if self._mdl.prjFile.filePath is None:
-            return False
+            return
 
         self._ui.propertiesView.apply_changes()
         HtmlReport.localizeDate = self.prefs['localize_date']

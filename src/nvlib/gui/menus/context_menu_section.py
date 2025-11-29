@@ -30,7 +30,7 @@ class ContextMenuSection(NvContextMenu):
             label=label,
             command=self._ctrl.join_sections,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
         self._add_view_commands()

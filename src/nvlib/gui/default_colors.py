@@ -27,6 +27,7 @@ DEFAULT_COLORS = dict(
     color_note_tag='bisque',
     color_on_schedule='black',
     color_outline='dark orchid',
+    color_separator='light gray',
     color_stage='red',
     color_status_error_bg='red',
     color_status_error_fg='white',

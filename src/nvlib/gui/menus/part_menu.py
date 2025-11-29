@@ -18,7 +18,7 @@ class PartMenu(NvMenu):
             label=label,
             command=self._ctrl.add_new_part,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 
@@ -27,11 +27,11 @@ class PartMenu(NvMenu):
             label=label,
             command=self._ctrl.export_part_desc,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         label = _('Export part table')
         self.add_command(
             label=label,
             command=self._ctrl.export_part_list,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)

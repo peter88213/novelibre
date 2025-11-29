@@ -18,7 +18,7 @@ class PrjNotesMenu(NvMenu):
             label=label,
             command=self._ctrl.add_new_project_note,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 

@@ -18,14 +18,14 @@ class PlotMenu(NvMenu):
             label=label,
             command=self._ctrl.add_new_plot_line,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         label = _('Add Plot point')
         self.add_command(
             label=label,
             command=self._ctrl.add_new_plot_point,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 
@@ -39,7 +39,7 @@ class PlotMenu(NvMenu):
             label=label,
             command=self._ctrl.import_plot_lines,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 
@@ -48,21 +48,21 @@ class PlotMenu(NvMenu):
             label=label,
             command=self._ctrl.export_plot_grid,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         label = _('Export story structure description for editing')
         self.add_command(
             label=label,
             command=self._ctrl.export_story_structure_desc,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         label = _('Export plot line descriptions for editing')
         self.add_command(
             label=label,
             command=self._ctrl.export_plot_lines_desc,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 

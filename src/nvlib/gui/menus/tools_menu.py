@@ -42,6 +42,7 @@ class ToolsMenu(NvMenu):
             label=label,
             command=self._ctrl.show_notes_list,
         )
+        self.disableOnClose.append(label)
 
         self.add_separator()
 

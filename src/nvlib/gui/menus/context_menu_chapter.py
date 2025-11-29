@@ -32,7 +32,7 @@ class ContextMenuChapter(NvContextMenu):
             label=label,
             command=self._ctrl.export_filtered_manuscript,
         )
-        self._disableOnLock.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
         self._add_view_commands()

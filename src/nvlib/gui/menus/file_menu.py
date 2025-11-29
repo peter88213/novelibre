@@ -34,8 +34,8 @@ class FileMenu(NvMenu):
             accelerator=KEYS.RELOAD_PROJECT[1],
             command=self._ctrl.reload_project,
         )
-        self._disableOnClose.append(label)
-        self._disableOnLock.append(label)
+        self.disableOnClose.append(label)
+        self.disableOnLock.append(label)
 
         label = _('Restore backup')
         self.add_command(
@@ -43,8 +43,8 @@ class FileMenu(NvMenu):
             accelerator=KEYS.RESTORE_BACKUP[1],
             command=self._ctrl.restore_backup,
         )
-        self._disableOnClose.append(label)
-        self._disableOnLock.append(label)
+        self.disableOnClose.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 
@@ -54,8 +54,8 @@ class FileMenu(NvMenu):
             accelerator=KEYS.REFRESH_TREE[1],
             command=self._ctrl.refresh_tree,
         )
-        self._disableOnClose.append(label)
-        self._disableOnLock.append(label)
+        self.disableOnClose.append(label)
+        self.disableOnLock.append(label)
 
         label = _('Lock')
         self.add_command(
@@ -63,7 +63,7 @@ class FileMenu(NvMenu):
             accelerator=KEYS.LOCK_PROJECT[1],
             command=self._ctrl.lock,
         )
-        self._disableOnClose.append(label)
+        self.disableOnClose.append(label)
 
         label = _('Unlock')
         self.add_command(
@@ -71,7 +71,7 @@ class FileMenu(NvMenu):
             accelerator=KEYS.UNLOCK_PROJECT[1],
             command=self._ctrl.unlock,
         )
-        self._disableOnClose.append(label)
+        self.disableOnClose.append(label)
 
         label = _('Open Project folder')
         self.add_separator()
@@ -80,22 +80,22 @@ class FileMenu(NvMenu):
             accelerator=KEYS.FOLDER[1],
             command=self._ctrl.open_project_folder,
         )
-        self._disableOnClose.append(label)
+        self.disableOnClose.append(label)
 
         label = _('Copy style sheet')
         self.add_command(
             label=label,
             command=self._ctrl.copy_css,
         )
-        self._disableOnClose.append(label)
+        self.disableOnClose.append(label)
 
         label = _('Discard manuscript')
         self.add_command(
             label=label,
             command=self._ctrl.discard_manuscript,
         )
-        self._disableOnClose.append(label)
-        self._disableOnLock.append(label)
+        self.disableOnClose.append(label)
+        self.disableOnLock.append(label)
 
         self.add_separator()
 
@@ -105,8 +105,8 @@ class FileMenu(NvMenu):
             accelerator=KEYS.SAVE_PROJECT[1],
             command=self._ctrl.save_project,
         )
-        self._disableOnClose.append(label)
-        self._disableOnLock.append(label)
+        self.disableOnClose.append(label)
+        self.disableOnLock.append(label)
 
         label = _('Save as...')
         self.add_command(
@@ -114,14 +114,14 @@ class FileMenu(NvMenu):
             accelerator=KEYS.SAVE_AS[1],
             command=self._ctrl.save_as,
         )
-        self._disableOnClose.append(label)
+        self.disableOnClose.append(label)
 
         label = _('Close')
         self.add_command(
             label=label,
             command=self._ctrl.close_project,
         )
-        self._disableOnClose.append(label)
+        self.disableOnClose.append(label)
 
         if PLATFORM == 'win':
             label = _('Exit'),
