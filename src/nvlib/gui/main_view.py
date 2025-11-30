@@ -11,29 +11,12 @@ from nvlib.gui.contents_window.contents_viewer import ContentsViewer
 from nvlib.gui.footers.path_bar import PathBar
 from nvlib.gui.footers.status_bar import StatusBar
 from nvlib.gui.icons import Icons
-from nvlib.gui.menus.chapter_menu import ChapterMenu
-from nvlib.gui.menus.characters_menu import CharactersMenu
-from nvlib.gui.menus.export_menu import ExportMenu
-from nvlib.gui.menus.file_menu import FileMenu
-from nvlib.gui.menus.file_new_submenu import FileNewSubmenu
-from nvlib.gui.menus.help_menu import HelpMenu
-from nvlib.gui.menus.items_menu import ItemsMenu
-from nvlib.gui.menus.locations_menu import LocationsMenu
-from nvlib.gui.menus.main_menu import MainMenu
-from nvlib.gui.menus.part_menu import PartMenu
-from nvlib.gui.menus.plot_menu import PlotMenu
-from nvlib.gui.menus.prj_notes_menu import PrjNotesMenu
-from nvlib.gui.menus.section_menu import SectionMenu
-from nvlib.gui.menus.selection_menu_char_status import SelectionMenuCharStatus
-from nvlib.gui.menus.selection_menu_level import SelectionMenuLevel
-from nvlib.gui.menus.selection_menu_section_status import SelectionMenuSectionStatus
-from nvlib.gui.menus.selection_menu_type import SelectionMenuType
-from nvlib.gui.menus.tools_menu import ToolsMenu
+from nvlib.gui.menus.nv_menu import NvMenu
 from nvlib.gui.menus.tree_context_menu import TreeContextMenu
-from nvlib.gui.menus.view_menu import ViewMenu
 from nvlib.gui.observer import Observer
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.platform.platform_settings import MOUSE
+from nvlib.gui.platform.platform_settings import PLATFORM
 from nvlib.gui.pop_up.msg_boxes import MsgBoxes
 from nvlib.gui.properties_window.properties_viewer import PropertiesViewer
 from nvlib.gui.set_icon_tk import set_icon
@@ -150,7 +133,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self._ctrl.register_client(self.propertiesView)
 
         #--- Create the menu structure.
-        self._create_menu()
+        self._create_menus()
 
         #--- Add a toolbar.
         self.toolbar = Toolbar(self, self._ctrl)
@@ -165,12 +148,10 @@ class MainView(Observer, MsgBoxes, SubController):
         return self._selection
 
     def lock(self):
-        """Make the "locked" state take effect.
-        
-        Overrides the SubController method.
-        """
         self.restore_status()
         self.pathBar.set_locked()
+        self.fileMenu.entryconfig(_('Unlock'), state='normal')
+        self.fileMenu.entryconfig(_('Lock'), state='disabled')
 
     def on_change_selection(self, nodeId):
         """Event handler for element selection.
@@ -299,12 +280,10 @@ class MainView(Observer, MsgBoxes, SubController):
         return 'break'
 
     def unlock(self):
-        """Make the "unlocked" state take effect.
-        
-        Overrides the SubController method.
-        """
         self.restore_status()
         self.pathBar.set_normal()
+        self.fileMenu.entryconfig(_('Unlock'), state='disabled')
+        self.fileMenu.entryconfig(_('Lock'), state='normal')
 
     def update_status(self, statusText=''):
         """Update the project status information on the status bar.
@@ -323,59 +302,1029 @@ class MainView(Observer, MsgBoxes, SubController):
             title=_('About novelibre'),
         )
 
-    def _create_menu(self):
+    def _add_add_command(self, menu):
+        label = _('Add')
+        menu.add_command(
+            label=label,
+            command=self._ctrl.add_new_element,
+        )
+        menu.disableOnLock.append(label)
 
-        # Selection submenus.
-        self.selectTypeMenu = SelectionMenuType(self._ctrl)
-        self.selectLevelMenu = SelectionMenuLevel(self._ctrl)
-        self.selectSectionStatusMenu = SelectionMenuSectionStatus(self._ctrl)
-        self.selectCharacterStatusMenu = SelectionMenuCharStatus(self._ctrl)
+    def _add_clipboard_commands(self, menu):
+        label = _('Cut')
+        menu.add_command(
+            label=label,
+            accelerator=KEYS.CUT[1],
+            command=self._ctrl.cut_element,
+        )
+        menu.disableOnLock.append(label)
 
-        # "File > New" submenu.
-        self.newMenu = FileNewSubmenu(self._ctrl)
+        label = _('Copy')
+        menu.add_command(
+            label=label,
+            accelerator=KEYS.COPY[1],
+            command=self._ctrl.copy_element,
+        )
+        label = _('Paste')
+        menu.add_command(
+            label=label,
+            accelerator=KEYS.PASTE[1],
+            command=self._ctrl.paste_element,
+        )
+        menu.disableOnLock.append(label)
+
+    def _add_add_section_command(self, menu):
+        label = _('Add Section')
+        menu.add_command(
+            label=label,
+            command=self._ctrl.add_new_section,
+        )
+        menu.disableOnLock.append(label)
+
+    def _add_delete_command(self, menu):
+        label = _('Delete')
+        menu.add_command(
+            label=label,
+            accelerator=KEYS.DELETE[1],
+            command=self._ctrl.delete_elements,
+        )
+        menu.disableOnLock.append(label)
+
+    def _add_change_level_cascade(self, menu):
+        label = _('Change Level')
+        menu.add_cascade(
+            label=label,
+            menu=self.selectLevelMenu,
+        )
+        menu.disableOnLock.append(label)
+
+    def _add_chapter_part_commands(self, menu):
+        label = _('Add Chapter')
+        menu.add_command(
+            label=label,
+            command=self._ctrl.add_new_chapter
+        )
+        menu.disableOnLock.append(label)
+
+        label = _('Add Part')
+        menu.add_command(
+            label=label,
+            command=self._ctrl.add_new_part,
+        )
+        menu.disableOnLock.append(label)
+
+    def _add_insert_stage_command(self, menu):
+        label = _('Insert Stage')
+        menu.add_command(
+            label=label,
+            command=self._ctrl.add_new_stage,
+        )
+        menu.disableOnLock.append(label)
+
+    def _add_set_cr_status_cascade(self, menu):
+        label = _('Set Status')
+        menu.add_cascade(
+            label=label,
+            menu=self.selectCharacterStatusMenu,
+        )
+        menu.disableOnLock.append(label)
+
+    def _add_set_status_cascade(self, menu):
+        label = _('Set Status')
+        menu.add_cascade(
+            label=label,
+            menu=self.selectSectionStatusMenu,
+        )
+        menu.disableOnLock.append(label)
+
+    def _add_set_type_cascade(self, menu):
+        label = _('Set Type')
+        menu.add_cascade(
+            label=label,
+            menu=self.selectTypeMenu,
+        )
+        menu.disableOnLock.append(label)
+
+    def _add_set_viewpoint_command(self, menu):
+        label = _('Set Viewpoint...')
+        menu.add_command(
+            label=label,
+            command=self._ctrl.set_viewpoint,
+        )
+        menu.disableOnLock.append(label)
+
+    def _add_view_commands(self, menu):
+        label = _('Chapter level')
+        menu.add_command(
+            label=label,
+            command=self.tv.show_chapter_level,
+        )
+        menu.disableOnClose.append(label)
+
+        label = _('Expand all')
+        menu.add_command(
+            label=label,
+            command=self.tv.expand_all,
+        )
+        menu.disableOnClose.append(label)
+
+        label = _('Collapse all')
+        menu.add_command(
+            label=label,
+            command=self.tv.collapse_all,
+        )
+        menu.disableOnClose.append(label)
+
+    def _create_menus(self):
+
+        #--- Selection submenus.
+
+        self.selectTypeMenu = NvMenu()
+
+        label = _('Normal')
+        self.selectTypeMenu.add_command(
+            label=label,
+            command=self._ctrl.set_type_normal,
+        )
+
+        label = _('Unused')
+        self.selectTypeMenu.add_command(
+            label=label,
+            command=self._ctrl.set_type_unused,
+        )
+
+        self.selectLevelMenu = NvMenu()
+
+        label = _('1st Level')
+        self.selectLevelMenu.add_command(
+            label=label,
+            command=self._ctrl.set_level_1,
+        )
+
+        label = _('2nd Level')
+        self.selectLevelMenu.add_command(
+            label=label,
+            command=self._ctrl.set_level_2,
+        )
+
+        self.selectSectionStatusMenu = NvMenu()
+
+        label = _('Outline')
+        self.selectSectionStatusMenu.add_command(
+            label=label,
+            command=self._ctrl.set_scn_status_outline,
+        )
+
+        label = _('Draft')
+        self.selectSectionStatusMenu.add_command(
+            label=label,
+            command=self._ctrl.set_scn_status_draft,
+        )
+
+        label = _('1st Edit')
+        self.selectSectionStatusMenu.add_command(
+            label=label,
+            command=self._ctrl.set_scn_status_1st_edit,
+        )
+
+        label = _('2nd Edit')
+        self.selectSectionStatusMenu.add_command(
+            label=label,
+            command=self._ctrl.set_scn_status_2nd_edit,
+        )
+
+        label = _('Done')
+        self.selectSectionStatusMenu.add_command(
+            label=label,
+            command=self._ctrl.set_scn_status_done,
+        )
+
+        self.selectCharacterStatusMenu = NvMenu()
+
+        label = _('Major Character')
+        self.selectCharacterStatusMenu.add_command(
+            label=label,
+            command=self._ctrl.set_chr_status_major,
+        )
+
+        label = _('Minor Character')
+        self.selectCharacterStatusMenu.add_command(
+            label=label,
+            command=self._ctrl.set_chr_status_minor,
+        )
 
         #--- Main submenus.
-        self.fileMenu = FileMenu(self, self._ctrl)
+
+        # "File" > "New".
+        self.newMenu = NvMenu()
+
+        label = _('Empty project')
+        self.newMenu.add_command(
+            label=label,
+            command=self._ctrl.create_project,
+        )
+
+        label = _('Create from ODT...')
+        self.newMenu.add_command(
+            label=label,
+            command=self._ctrl.import_odf,
+        )
+
+        # "File"
+        self.fileMenu = NvMenu()
+
+        label = _('New')
+        self.fileMenu.add_cascade(
+            label=label,
+            menu=self.newMenu
+        )
+
+        label = _('Open...')
+        self.fileMenu.add_command(
+            label=label,
+            accelerator=KEYS.OPEN_PROJECT[1],
+            command=self._ctrl.open_project,
+        )
+
+        label = _('Reload')
+        self.fileMenu.add_command(
+            label=label,
+            accelerator=KEYS.RELOAD_PROJECT[1],
+            command=self._ctrl.reload_project,
+        )
+        self.fileMenu.disableOnClose.append(label)
+        self.fileMenu.disableOnLock.append(label)
+
+        label = _('Restore backup')
+        self.fileMenu.add_command(
+            label=label,
+            accelerator=KEYS.RESTORE_BACKUP[1],
+            command=self._ctrl.restore_backup,
+        )
+        self.fileMenu.disableOnClose.append(label)
+        self.fileMenu.disableOnLock.append(label)
+
+        self.fileMenu.add_separator()
+
+        label = _('Refresh Tree')
+        self.fileMenu.add_command(
+            label=label,
+            accelerator=KEYS.REFRESH_TREE[1],
+            command=self._ctrl.refresh_tree,
+        )
+        self.fileMenu.disableOnClose.append(label)
+        self.fileMenu.disableOnLock.append(label)
+
+        label = _('Lock')
+        self.fileMenu.add_command(
+            label=label,
+            accelerator=KEYS.LOCK_PROJECT[1],
+            command=self._ctrl.lock,
+        )
+        self.fileMenu.disableOnClose.append(label)
+
+        label = _('Unlock')
+        self.fileMenu.add_command(
+            label=label,
+            accelerator=KEYS.UNLOCK_PROJECT[1],
+            command=self._ctrl.unlock,
+        )
+        self.fileMenu.disableOnClose.append(label)
+
+        label = _('Open Project folder')
+        self.fileMenu.add_separator()
+        self.fileMenu.add_command(
+            label=label,
+            accelerator=KEYS.FOLDER[1],
+            command=self._ctrl.open_project_folder,
+        )
+        self.fileMenu.disableOnClose.append(label)
+
+        label = _('Copy style sheet')
+        self.fileMenu.add_command(
+            label=label,
+            command=self._ctrl.copy_css,
+        )
+        self.fileMenu.disableOnClose.append(label)
+
+        label = _('Discard manuscript')
+        self.fileMenu.add_command(
+            label=label,
+            command=self._ctrl.discard_manuscript,
+        )
+        self.fileMenu.disableOnClose.append(label)
+        self.fileMenu.disableOnLock.append(label)
+
+        self.fileMenu.add_separator()
+
+        label = _('Save')
+        self.fileMenu.add_command(
+            label=label,
+            accelerator=KEYS.SAVE_PROJECT[1],
+            command=self._ctrl.save_project,
+        )
+        self.fileMenu.disableOnClose.append(label)
+        self.fileMenu.disableOnLock.append(label)
+
+        label = _('Save as...')
+        self.fileMenu.add_command(
+            label=label,
+            accelerator=KEYS.SAVE_AS[1],
+            command=self._ctrl.save_as,
+        )
+        self.fileMenu.disableOnClose.append(label)
+
+        label = _('Close')
+        self.fileMenu.add_command(
+            label=label,
+            command=self._ctrl.close_project,
+        )
+        self.fileMenu.disableOnClose.append(label)
+
+        if PLATFORM == 'win':
+            label = _('Exit'),
+        else:
+            label = _('Quit'),
+        self.fileMenu.add_command(
+            label=label,
+            accelerator=KEYS.QUIT_PROGRAM[1],
+            command=self._ctrl.on_quit,
+        )
+
         self._ctrl.register_client(self.fileMenu)
 
-        self.viewMenu = ViewMenu(self, self._ctrl)
+        # "View".
+        self.viewMenu = NvMenu()
+
+        label = _('Show Book')
+        self.viewMenu.add_command(
+            label=label,
+            command=self.tv.show_book,
+        )
+        self.viewMenu.disableOnClose.append(label)
+
+        label = _('Show Characters')
+        self.viewMenu.add_command(
+            label=label,
+            command=self.tv.show_characters,
+        )
+        self.viewMenu.disableOnClose.append(label)
+
+        label = _('Show Locations')
+        self.viewMenu.add_command(
+            label=label,
+            command=self.tv.show_locations,
+        )
+        self.viewMenu.disableOnClose.append(label)
+
+        label = _('Show Items')
+        self.viewMenu.add_command(
+            label=label,
+            command=self.tv.show_items,
+        )
+        self.viewMenu.disableOnClose.append(label)
+
+        label = _('Show Plot lines')
+        self.viewMenu.add_command(
+            label=label,
+            command=self.tv.show_plot_lines,
+        )
+        self.viewMenu.disableOnClose.append(label)
+
+        label = _('Show Project notes')
+        self.viewMenu.add_command(
+            label=label,
+            command=self.tv.show_project_notes,
+        )
+        self.viewMenu.disableOnClose.append(label)
+
+        self.viewMenu.add_separator()
+        self._add_view_commands(self.viewMenu)
+
+        label = _('Expand selected')
+        self.viewMenu.add_command(
+            label=label,
+            command=self.tv.expand_selected,
+        )
+        self.viewMenu.disableOnClose.append(label)
+
+        label = _('Collapse selected')
+        self.viewMenu.add_command(
+            label=label,
+            command=self.tv.collapse_selected,
+        )
+        self.viewMenu.disableOnClose.append(label)
+
+        self.viewMenu.add_separator()
+
+        label = _('Toggle Text viewer')
+        self.viewMenu.add_command(
+            label=label,
+            accelerator=KEYS.TOGGLE_VIEWER[1],
+            command=self.toggle_contents_view,
+        )
+
+        label = _('Toggle Properties')
+        self.viewMenu.add_command(
+            label=label,
+            accelerator=KEYS.TOGGLE_PROPERTIES[1],
+            command=self.toggle_properties_view,
+        )
+
+        label = _('Detach/Dock Properties')
+        self.viewMenu.add_command(
+            label=label,
+            accelerator=KEYS.DETACH_PROPERTIES[1],
+            command=self.toggle_properties_window,
+        )
+
+        self.viewMenu.add_separator()
+
+        label = _('Options')
+        self.viewMenu.add_command(
+            label=label,
+            command=self._ctrl.open_view_options,
+        )
+
         self._ctrl.register_client(self.viewMenu)
 
-        self.partMenu = PartMenu(self, self._ctrl)
+        # "Part".
+        self.partMenu = NvMenu()
+
+        label = _('Add')
+        self.partMenu.add_command(
+            label=label,
+            command=self._ctrl.add_new_part,
+        )
+        self.partMenu.disableOnLock.append(label)
+
+        self.partMenu.add_separator()
+
+        label = _('Export part descriptions for editing')
+        self.partMenu.add_command(
+            label=label,
+            command=self._ctrl.export_part_desc,
+        )
+        self.partMenu.disableOnLock.append(label)
+
+        label = _('Export part table')
+        self.partMenu.add_command(
+            label=label,
+            command=self._ctrl.export_part_list,
+        )
+        self.partMenu.disableOnLock.append(label)
+
         self._ctrl.register_client(self.partMenu)
 
-        self.chapterMenu = ChapterMenu(self, self._ctrl)
+        # "Chapter".
+        self.chapterMenu = NvMenu()
+
+        label = _('Add')
+        self.chapterMenu.add_command(
+            label=label,
+            command=self._ctrl.add_new_chapter,
+        )
+        self.chapterMenu.disableOnLock.append(label)
+
+        label = _('Add multiple chapters...')
+        self.chapterMenu.add_command(
+            label=label,
+            command=self._ctrl.add_multiple_new_chapters,
+        )
+        self.chapterMenu.disableOnLock.append(label)
+
+        self.chapterMenu.add_separator()
+
+        self._add_set_type_cascade(self.chapterMenu)
+        self._add_change_level_cascade(self.chapterMenu)
+
+        self.chapterMenu.add_separator()
+
+        label = _('Move selected chapters to new project')
+        self.chapterMenu.add_command(
+            label=label,
+            command=self._ctrl.split_file,
+        )
+        self.chapterMenu.disableOnLock.append(label)
+
+        self.chapterMenu.add_separator()
+
+        label = _('Export chapter descriptions for editing')
+        self.chapterMenu.add_command(
+            label=label,
+            command=self._ctrl.export_chapter_desc,
+        )
+        self.chapterMenu.disableOnLock.append(label)
+
+        label = _('Export chapter table')
+        self.chapterMenu.add_command(
+            label=label,
+            command=self._ctrl.export_chapter_list,
+        )
+        self.chapterMenu.disableOnLock.append(label)
+
         self._ctrl.register_client(self.chapterMenu)
 
-        self.sectionMenu = SectionMenu(self, self._ctrl)
+        # "Section".
+        self.sectionMenu = NvMenu()
+
+        label = _('Add')
+        self.sectionMenu.add_command(
+            label=label,
+            command=self._ctrl.add_new_section,
+        )
+        self.sectionMenu.disableOnLock.append(label)
+
+        label = _('Add multiple sections...')
+        self.sectionMenu.add_command(
+            label=label,
+            command=self._ctrl.add_multiple_new_sections,
+        )
+        self.sectionMenu.disableOnLock.append(label)
+
+        self.sectionMenu.add_separator()
+
+        self._add_set_type_cascade(self.sectionMenu)
+        self._add_set_status_cascade(self.sectionMenu)
+        self._add_set_viewpoint_command(self.sectionMenu)
+
+        self.sectionMenu.add_separator()
+
+        label = _('Export section descriptions for editing')
+        self.sectionMenu.add_command(
+            label=label,
+            command=self._ctrl.export_section_desc,
+        )
+        self.sectionMenu.disableOnLock.append(label)
+
+        self.sectionMenu.add_separator()
+
+        label = _('Section table (export only)')
+        self.sectionMenu.add_command(
+            label=label,
+            command=self._ctrl.export_section_list,
+        )
+
+        label = _('Show Time table')
+        self.sectionMenu.add_command(
+            label=label,
+            command=self._ctrl.show_timetable,
+        )
+
         self._ctrl.register_client(self.sectionMenu)
 
-        self.characterMenu = CharactersMenu(self, self._ctrl)
+        # "Characters"
+        self.characterMenu = NvMenu()
+
+        label = _('Add')
+        self.characterMenu.add_command(
+            label=label,
+            command=self._ctrl.add_new_character,
+        )
+        self.characterMenu.disableOnLock.append(label)
+
+        self.characterMenu.add_separator()
+
+        self._add_set_cr_status_cascade(self.characterMenu)
+
+        self.characterMenu.add_separator()
+
+        label = _('Import')
+        self.characterMenu.add_command(
+            label=label,
+            command=self._ctrl.import_character_data,
+        )
+        self.characterMenu.disableOnLock.append(label)
+
+        self.characterMenu.add_separator()
+
+        label = _('Export character descriptions for editing')
+        self.characterMenu.add_command(
+            label=label,
+            command=self._ctrl.export_character_desc,
+        )
+        self.characterMenu.disableOnLock.append(label)
+
+        label = _('Export character table')
+        self.characterMenu.add_command(
+            label=label,
+            command=self._ctrl.export_character_list,
+        )
+        self.characterMenu.disableOnLock.append(label)
+
+        self.characterMenu.add_separator()
+
+        label = _('Show table in Browser')
+        self.characterMenu.add_command(
+            label=label,
+            command=self._ctrl.show_character_list,
+        )
+
         self._ctrl.register_client(self.characterMenu)
 
-        self.locationMenu = LocationsMenu(self, self._ctrl)
+        # "Locations".
+        self.locationMenu = NvMenu()
+
+        label = _('Add')
+        self.locationMenu.add_command(
+            label=label,
+            command=self._ctrl.add_new_location,
+        )
+        self.locationMenu.disableOnLock.append(label)
+
+        self.locationMenu.add_separator()
+
+        label = _('Import')
+        self.locationMenu.add_command(
+            label=label,
+            command=self._ctrl.import_location_data,
+        )
+        self.locationMenu.disableOnLock.append(label)
+
+        self.locationMenu.add_separator()
+
+        label = _('Export location descriptions for editing')
+        self.locationMenu.add_command(
+            label=label,
+            command=self._ctrl.export_location_desc,
+        )
+        self.locationMenu.disableOnLock.append(label)
+
+        label = _('Export location table')
+        self.locationMenu.add_command(
+            label=label,
+            command=self._ctrl.export_location_list,
+        )
+        self.locationMenu.disableOnLock.append(label)
+
+        self.locationMenu.add_separator()
+
+        label = _('Show table in Browser')
+        self.locationMenu.add_command(
+            label=label,
+            command=self._ctrl.show_location_list,
+        )
+
         self._ctrl.register_client(self.locationMenu)
 
-        self.itemMenu = ItemsMenu(self, self._ctrl)
+        # "Items".
+        self.itemMenu = NvMenu()
+
+        label = _('Add')
+        self.itemMenu.add_command(
+            label=label,
+            command=self._ctrl.add_new_item,
+        )
+        self.itemMenu.disableOnLock.append(label)
+
+        self.itemMenu.add_separator()
+
+        label = _('Import')
+        self.itemMenu.add_command(
+            label=label,
+            command=self._ctrl.import_item_data,
+        )
+        self.itemMenu.disableOnLock.append(label)
+
+        self.itemMenu.add_separator()
+
+        label = _('Export item descriptions for editing')
+        self.itemMenu.add_command(
+            label=label,
+            command=self._ctrl.export_item_desc,
+        )
+        self.itemMenu.disableOnLock.append(label)
+
+        label = _('Export item table')
+        self.itemMenu.add_command(
+            label=label,
+            command=self._ctrl.export_item_list,
+        )
+        self.itemMenu.disableOnLock.append(label)
+
+        self.itemMenu.add_separator()
+
+        label = _('Show table in Browser')
+        self.itemMenu.add_command(
+            label=label,
+            command=self._ctrl.show_item_list,
+        )
+
         self._ctrl.register_client(self.itemMenu)
 
-        self.plotMenu = PlotMenu(self, self._ctrl)
+        # "Plot".
+        self.plotMenu = NvMenu()
+
+        label = _('Add Plot line')
+        self.plotMenu.add_command(
+            label=label,
+            command=self._ctrl.add_new_plot_line,
+        )
+        self.plotMenu.disableOnLock.append(label)
+
+        label = _('Add Plot point')
+        self.plotMenu.add_command(
+            label=label,
+            command=self._ctrl.add_new_plot_point,
+        )
+        self.plotMenu.disableOnLock.append(label)
+
+        self.plotMenu.add_separator()
+
+        self._add_insert_stage_command(self.plotMenu)
+        self._add_change_level_cascade(self.plotMenu)
+
+        self.plotMenu.add_separator()
+
+        label = _('Import plot lines')
+        self.plotMenu.add_command(
+            label=label,
+            command=self._ctrl.import_plot_lines,
+        )
+        self.plotMenu.disableOnLock.append(label)
+
+        self.plotMenu.add_separator()
+
+        label = _('Export plot grid for editing')
+        self.plotMenu.add_command(
+            label=label,
+            command=self._ctrl.export_plot_grid,
+        )
+        self.plotMenu.disableOnLock.append(label)
+
+        label = _('Export story structure description for editing')
+        self.plotMenu.add_command(
+            label=label,
+            command=self._ctrl.export_story_structure_desc,
+        )
+        self.plotMenu.disableOnLock.append(label)
+
+        label = _('Export plot line descriptions for editing')
+        self.plotMenu.add_command(
+            label=label,
+            command=self._ctrl.export_plot_lines_desc,
+        )
+        self.plotMenu.disableOnLock.append(label)
+
+        self.plotMenu.add_separator()
+
+        label = _('Plot table (export only)')
+        self.plotMenu.add_command(
+            label=label,
+            command=self._ctrl.export_plot_list,
+        )
+
+        label = _('Show Plot table in browser')
+        self.plotMenu.add_command(
+            label=label,
+            command=self._ctrl.show_plot_list,
+        )
+
         self._ctrl.register_client(self.plotMenu)
 
-        self.prjNoteMenu = PrjNotesMenu(self, self._ctrl)
+        # "Project notes"
+        self.prjNoteMenu = NvMenu()
+
+        label = _('Add')
+        self.prjNoteMenu.add_command(
+            label=label,
+            command=self._ctrl.add_new_project_note,
+        )
+        self.prjNoteMenu.disableOnLock.append(label)
+
+        self.prjNoteMenu.add_separator()
+
+        label = _('Show table in Browser')
+        self.prjNoteMenu.add_command(
+            label=label,
+            command=self._ctrl.show_projectnotes_list,
+        )
+
         self._ctrl.register_client(self.prjNoteMenu)
 
-        self.exportMenu = ExportMenu(self, self._ctrl)
+        # "Export"
+        self.exportMenu = NvMenu()
+
+        label = _('Manuscript for editing')
+        self.exportMenu.add_command(
+            label=label,
+            command=self._ctrl.export_manuscript,
+        )
+        self.exportMenu.disableOnLock.append(label)
+
+        label = _('Manuscript for third-party word processing')
+        self.exportMenu.add_command(
+            label=label,
+            command=self._ctrl.export_proofing_manuscript,
+        )
+        self.exportMenu.disableOnLock.append(label)
+
+        self.exportMenu.add_separator()
+
+        label = _('Final manuscript document (export only)')
+        self.exportMenu.add_command(
+            label=label,
+            command=self._ctrl.export_final_document,
+        )
+
+        label = _('Brief synopsis (export only)')
+        self.exportMenu.add_command(
+            label=label,
+            command=self._ctrl.export_brief_synopsis,
+        )
+
+        label = _('Cross references (export only)')
+        self.exportMenu.add_command(
+            label=label,
+            command=self._ctrl.export_cross_references,
+        )
+
+        self.exportMenu.add_separator()
+
+        label = _('XML data files')
+        self.exportMenu.add_command(
+            label=label,
+            command=self._ctrl.export_xml_data_files,
+        )
+
+        self.exportMenu.add_separator()
+
+        label = _('Options')
+        self.exportMenu.add_command(
+            label=label,
+            command=self._ctrl.open_export_options,
+        )
+
         self._ctrl.register_client(self.exportMenu)
 
-        self.toolsMenu = ToolsMenu(self, self._ctrl)
+        # "Tools".
+        self.toolsMenu = NvMenu()
+
+        label = _('Backup options')
+        self.toolsMenu.add_command(
+            label=label,
+            command=self._ctrl.open_backup_options,
+        )
+
+        self.toolsMenu.add_separator()
+
+        label = _('Open installation folder')
+        self.toolsMenu.add_command(
+            label=label,
+            command=self._ctrl.open_installationFolder,
+        )
+
+        self.toolsMenu.add_separator()
+
+        label = _('Plugin Manager')
+        self.toolsMenu.add_command(
+            label=label,
+            command=self._ctrl.open_plugin_manager,
+        )
+
+        self.toolsMenu.add_separator()
+
+        label = _('Show notes')
+        self.toolsMenu.add_command(
+            label=label,
+            command=self._ctrl.show_notes_list,
+        )
+        self.toolsMenu.disableOnClose.append(label)
+
+        self.toolsMenu.add_separator()
+
         self._ctrl.register_client(self.toolsMenu)
 
-        self.helpMenu = HelpMenu(self, self._ctrl)
+        # "Help".
+        self.helpMenu = NvMenu()
+
+        label = _('Online help')
+        self.helpMenu.add_command(
+            label=label,
+            accelerator=KEYS.OPEN_HELP[1],
+            command=self._ctrl.open_help,
+        )
+
+        label = _('About novelibre')
+        self.helpMenu.add_command(
+            label=label,
+            command=self._about,
+        )
+
+        label = f"novelibre {_('Home page')}"
+        self.helpMenu.add_command(
+            label=label,
+            command=self._ctrl.open_homepage,
+        )
+
+        label = _('News about novelibre')
+        self.helpMenu.add_command(
+            label=label,
+            command=self._ctrl.open_news,
+        )
+
+        self.helpMenu.add_separator()
+
         self._ctrl.register_client(self.helpMenu)
 
         #--- Main menu.
-        self.mainMenu = MainMenu(self, self._ctrl)
+        self.mainMenu = NvMenu()
+
+        label = _('File')
+        self.mainMenu.add_cascade(
+            label=label,
+            menu=self.fileMenu,
+        )
+
+        label = _('View')
+        self.mainMenu.add_cascade(
+            label=label,
+            menu=self.viewMenu
+        )
+
+        label = _('Part')
+        self.mainMenu.add_cascade(
+            label=label,
+            menu=self.partMenu,
+        )
+        self.mainMenu.disableOnClose.append(label)
+
+        label = _('Chapter')
+        self.mainMenu.add_cascade(
+            label=label,
+            menu=self.chapterMenu,
+        )
+        self.mainMenu.disableOnClose.append(label)
+
+        label = _('Section')
+        self.mainMenu.add_cascade(
+            label=label,
+            menu=self.sectionMenu,
+        )
+        self.mainMenu.disableOnClose.append(label)
+
+        label = _('Characters')
+        self.mainMenu.add_cascade(
+            label=label,
+            menu=self.characterMenu,
+        )
+        self.mainMenu.disableOnClose.append(label)
+
+        label = _('Locations')
+        self.mainMenu.add_cascade(
+            label=label,
+            menu=self.locationMenu,
+        )
+        self.mainMenu.disableOnClose.append(label)
+
+        label = _('Items')
+        self.mainMenu.add_cascade(
+            label=label,
+            menu=self.itemMenu,
+        )
+        self.mainMenu.disableOnClose.append(label)
+
+        label = _('Plot')
+        self.mainMenu.add_cascade(
+            label=label,
+            menu=self.plotMenu
+        )
+        self.mainMenu.disableOnClose.append(label)
+
+        label = _('Project notes')
+        self.mainMenu.add_cascade(
+            label=label,
+            menu=self.prjNoteMenu,
+        )
+        self.mainMenu.disableOnClose.append(label)
+
+        label = _('Import')
+        self.mainMenu.add_command(
+            label=label,
+            command=self._ctrl.open_project_updater
+        )
+        self.mainMenu.disableOnLock.append(label)
+        self.mainMenu.disableOnClose.append(label)
+
+        label = _('Export')
+        self.mainMenu.add_cascade(
+            label=label,
+            menu=self.exportMenu,
+        )
+        self.mainMenu.disableOnClose.append(label)
+
+        label = _('Tools')
+        self.mainMenu.add_cascade(
+            label=label,
+            menu=self.toolsMenu
+        )
+
+        label = _('Help')
+        self.mainMenu.add_cascade(
+            label=label,
+            menu=self.helpMenu,
+        )
+
         self._ctrl.register_client(self.mainMenu)
         self.root.config(menu=self.mainMenu)
 

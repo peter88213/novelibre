@@ -27,7 +27,7 @@ class Toolbar(SubController):
         """
         self._ui = view
         self._ctrl = controller
-        self._disableOnLock = []
+        self.disableOnLock = []
         self._disableOnClose = []
 
         # Add a toolbar to the editor window.
@@ -253,7 +253,7 @@ class Toolbar(SubController):
             button.config(state='normal')
 
     def lock(self):
-        for button in self._disableOnLock:
+        for button in self.disableOnLock:
             button.config(state='disabled')
 
     def new_button(
@@ -275,7 +275,7 @@ class Toolbar(SubController):
         if disableOnClose:
             self._disableOnClose.append(newButton)
         if disableOnLock:
-            self._disableOnLock.append(newButton)
+            self.disableOnLock.append(newButton)
 
         if prefs['enable_hovertips']:
             if accelerator is None:
@@ -287,6 +287,6 @@ class Toolbar(SubController):
         return newButton
 
     def unlock(self):
-        for button in self._disableOnLock:
+        for button in self.disableOnLock:
             button.config(state='normal')
 

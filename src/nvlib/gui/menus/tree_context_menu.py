@@ -5,16 +5,7 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.controller.sub_controller import SubController
-from nvlib.gui.menus.context_menu_book import ContextMenuBook
-from nvlib.gui.menus.context_menu_chapter import ContextMenuChapter
-from nvlib.gui.menus.context_menu_character import ContextMenuCharacter
-from nvlib.gui.menus.context_menu_characters import ContextMenuCharacters
-from nvlib.gui.menus.context_menu_element import ContextMenuElement
-from nvlib.gui.menus.context_menu_elements import ContextMenuElements
-from nvlib.gui.menus.context_menu_plot_line import ContextMenuPlotLine
-from nvlib.gui.menus.context_menu_section import ContextMenuSection
-from nvlib.gui.menus.context_menu_stage import ContextMenuStage
-from nvlib.gui.menus.context_menu_trash import ContextMenuTrash
+from nvlib.gui.menus.nv_context_menu import NvContextMenu
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
@@ -30,6 +21,7 @@ from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import ROOT_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
+from nvlib.nv_locale import _
 
 
 class TreeContextMenu(SubController):
@@ -39,65 +31,217 @@ class TreeContextMenu(SubController):
         self._ui = view
         self._ctrl = controller
 
-        #--- Create local context menus.
-        self._bookContextMenu = ContextMenuBook(
-            self._ui,
-            self._ctrl
-        )
+        #--- Book context menu.
+        self._bookContextMenu = NvContextMenu()
+
+        self._ui._add_chapter_part_commands(self._bookContextMenu)
+        self._bookContextMenu.add_separator()
+        self._ui._add_set_status_cascade(self._bookContextMenu)
+        self._ui._add_set_viewpoint_command(self._bookContextMenu)
+        self._bookContextMenu.add_separator()
+        self._ui._add_view_commands(self._bookContextMenu)
+
         self._ctrl.register_client(self._bookContextMenu)
 
-        self._chapterContextMenu = ContextMenuChapter(
-            self._ui,
-            self._ctrl
+        #--- Chapter context menu.
+        self._chapterContextMenu = NvContextMenu()
+
+        self._ui._add_add_section_command(self._chapterContextMenu)
+        self._ui._add_chapter_part_commands(self._chapterContextMenu)
+        self._ui._add_insert_stage_command(self._chapterContextMenu)
+        self._chapterContextMenu.add_separator()
+        self._ui._add_delete_command(self._chapterContextMenu)
+        self._chapterContextMenu.add_separator()
+        self._ui._add_clipboard_commands(self._chapterContextMenu)
+        self._chapterContextMenu.add_separator()
+        self._ui._add_change_level_cascade(self._chapterContextMenu)
+        self._ui._add_set_type_cascade(self._chapterContextMenu)
+        self._ui._add_set_status_cascade(self._chapterContextMenu)
+        self._ui._add_set_viewpoint_command(self._chapterContextMenu)
+        self._chapterContextMenu.add_separator()
+
+        label = _('Export this chapter')
+        self._chapterContextMenu.add_cascade(
+            label=label,
+            command=self._ctrl.export_filtered_manuscript,
         )
+        self._chapterContextMenu.disableOnLock.append(label)
+
+        self._chapterContextMenu.add_separator()
+        self._ui._add_view_commands(self._chapterContextMenu)
+
         self._ctrl.register_client(self._chapterContextMenu)
 
-        self._characterContextMenu = ContextMenuCharacter(
-            self._ui,
-            self._ctrl
+        #--- Character context menu.
+        self._characterContextMenu = NvContextMenu()
+
+        self._ui._add_add_command(self._characterContextMenu)
+        self._characterContextMenu.add_separator()
+        self._ui._add_delete_command(self._characterContextMenu)
+        self._characterContextMenu.add_separator()
+        self._ui._add_clipboard_commands(self._characterContextMenu)
+        self._characterContextMenu.add_separator()
+        self._ui._add_set_cr_status_cascade(self._characterContextMenu)
+        self._characterContextMenu.add_separator()
+
+        label = _('Export manuscript filtered by viewpoint')
+        self._characterContextMenu.add_command(
+            label=label,
+            command=self._ctrl.export_filtered_manuscript,
         )
+        self._characterContextMenu.disableOnLock.append(label)
+
+        label = _('Export synopsis filtered by viewpoint')
+        self._characterContextMenu.add_command(
+            label=label,
+            command=self._ctrl.export_filtered_synopsis,
+        )
+        self._characterContextMenu.disableOnLock.append(label)
+
+        self._characterContextMenu.add_separator()
+        self._ui._add_view_commands(self._characterContextMenu)
+
         self._ctrl.register_client(self._characterContextMenu)
 
-        self._crRootContextMenu = ContextMenuCharacters(
-            self._ui,
-            self._ctrl
-        )
+        #--- Characters root context menu.
+        self._crRootContextMenu = NvContextMenu()
+
+        self._ui._add_add_command(self._crRootContextMenu)
+        self._crRootContextMenu.add_separator()
+        self._ui._add_set_cr_status_cascade(self._crRootContextMenu)
+        self._crRootContextMenu.add_separator()
+        self._ui._add_view_commands(self._crRootContextMenu)
+
         self._ctrl.register_client(self._crRootContextMenu)
 
-        self._elementContextMenu = ContextMenuElement(
-            self._ui,
-            self._ctrl
-        )
+        #--- Location/item/plot line/project note context menu.
+        self._elementContextMenu = NvContextMenu()
+
+        self._ui._add_add_command(self._elementContextMenu)
+        self._elementContextMenu.add_separator()
+        self._ui._add_delete_command(self._elementContextMenu)
+        self._elementContextMenu.add_separator()
+        self._ui._add_clipboard_commands(self._elementContextMenu)
+        self._elementContextMenu.add_separator()
+        self._ui._add_view_commands(self._elementContextMenu)
+
         self._ctrl.register_client(self._elementContextMenu)
 
-        self._plotLineContextMenu = ContextMenuPlotLine(
-            self._ui,
-            self._ctrl
+        #--- Plot line context menu.
+        self._plotLineContextMenu = NvContextMenu()
+
+        label = _('Add Plot line')
+        self._plotLineContextMenu.add_command(
+            label=label,
+            command=self._ctrl.add_new_plot_line,
         )
+        self._plotLineContextMenu.disableOnLock.append(label)
+
+        label = _('Add Plot point')
+        self._plotLineContextMenu.add_command(
+            label=label,
+            command=self._ctrl.add_new_plot_point,
+        )
+        self._plotLineContextMenu.disableOnLock.append(label)
+
+        self._plotLineContextMenu.add_separator()
+        self._ui._add_delete_command(self._plotLineContextMenu)
+        self._plotLineContextMenu.add_separator()
+        self._ui._add_clipboard_commands(self._plotLineContextMenu)
+        self._plotLineContextMenu.add_separator()
+
+        label = _('Change sections to Unused')
+        self._plotLineContextMenu.add_command(
+            label=label,
+            command=self._ctrl.exclude_plot_line,
+        )
+        self._plotLineContextMenu.disableOnLock.append(label)
+
+        label = _('Change sections to Normal')
+        self._plotLineContextMenu.add_command(
+            label=label,
+            command=self._ctrl.include_plot_line
+        )
+        self._plotLineContextMenu.disableOnLock.append(label)
+
+        self._plotLineContextMenu.add_separator()
+
+        label = _('Export manuscript filtered by plot line')
+        self._plotLineContextMenu.add_command(
+            label=label,
+            command=self._ctrl.export_filtered_manuscript,
+        )
+        self._plotLineContextMenu.disableOnLock.append(label)
+
+        label = _('Export synopsis filtered by plot line')
+        self._plotLineContextMenu.add_command(
+            label=label,
+            command=self._ctrl.export_filtered_synopsis,
+        )
+        self._plotLineContextMenu.disableOnLock.append(label)
+
+        self._plotLineContextMenu.add_separator()
+        self._ui._add_view_commands(self._plotLineContextMenu)
+
         self._ctrl.register_client(self._plotLineContextMenu)
 
-        self._rootContextMenu = ContextMenuElements(
-            self._ui,
-            self._ctrl
-        )
+        #--- Locations/items/plot lines/project notes root menu.
+        self._rootContextMenu = NvContextMenu()
+
+        self._ui._add_add_command(self._rootContextMenu)
+        self._rootContextMenu.add_separator()
+        self._ui._add_view_commands(self._rootContextMenu)
+
         self._ctrl.register_client(self._rootContextMenu)
 
-        self._sectionContextMenu = ContextMenuSection(
-            self._ui,
-            self._ctrl
+        #--- Section context menu.
+        self._sectionContextMenu = NvContextMenu()
+
+        self._ui._add_add_section_command(self._sectionContextMenu)
+        self._ui._add_insert_stage_command(self._sectionContextMenu)
+        self._sectionContextMenu.add_separator()
+        self._ui._add_delete_command(self._sectionContextMenu)
+        self._sectionContextMenu.add_separator()
+        self._ui._add_clipboard_commands(self._sectionContextMenu)
+        self._sectionContextMenu.add_separator()
+        self._ui._add_set_type_cascade(self._sectionContextMenu)
+        self._ui._add_set_status_cascade(self._sectionContextMenu)
+        self._ui._add_set_viewpoint_command(self._sectionContextMenu)
+        self._sectionContextMenu.add_separator()
+
+        label = _('Join with previous')
+        self._sectionContextMenu.add_command(
+            label=label,
+            command=self._ctrl.join_sections,
         )
+        self._sectionContextMenu.disableOnLock.append(label)
+
+        self._sectionContextMenu.add_separator()
+        self._ui._add_view_commands(self._sectionContextMenu)
+
         self._ctrl.register_client(self._sectionContextMenu)
 
-        self._stageContextMenu = ContextMenuStage(
-            self._ui,
-            self._ctrl
-        )
+        #--- Stage context menu.
+        self._stageContextMenu = NvContextMenu()
+
+        self._ui._add_add_section_command(self._stageContextMenu)
+        self._ui._add_insert_stage_command(self._stageContextMenu)
+        self._stageContextMenu.add_separator()
+        self._ui._add_delete_command(self._stageContextMenu)
+        self._stageContextMenu.add_separator()
+        self._ui._add_clipboard_commands(self._stageContextMenu)
+        self._stageContextMenu.add_separator()
+        self._ui._add_change_level_cascade(self._stageContextMenu)
+        self._stageContextMenu.add_separator()
+        self._ui._add_view_commands(self._stageContextMenu)
+
         self._ctrl.register_client(self._stageContextMenu)
 
-        self._trashContextMenu = ContextMenuTrash(
-            self._ui,
-            self._ctrl
-        )
+        #--- Trash bin context menu.
+        self._trashContextMenu = NvContextMenu()
+
+        self._ui._add_delete_command(self._trashContextMenu)
+
         self._ctrl.register_client(self._trashContextMenu)
 
     def open(self, event):

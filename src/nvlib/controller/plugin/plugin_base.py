@@ -5,8 +5,10 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from abc import ABC, abstractmethod
+from pathlib import Path
 
 from nvlib.controller.sub_controller import SubController
+import tkinter as tk
 
 
 class PluginBase(ABC, SubController):
@@ -64,3 +66,18 @@ class PluginBase(ABC, SubController):
 
     def uninstall(self):
         pass
+
+    def _get_icon(self, fileName):
+        # Return the icon for the main view.
+        if self._ctrl.get_preferences().get('large_icons', False):
+            size = 24
+        else:
+            size = 16
+        try:
+            homeDir = str(Path.home()).replace('\\', '/')
+            iconPath = f'{homeDir}/.novx/icons/{size}'
+            icon = tk.PhotoImage(file=f'{iconPath}/{fileName}')
+
+        except:
+            icon = None
+        return icon

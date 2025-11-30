@@ -10,8 +10,8 @@ from nvlib.gui.menus.nv_menu import NvMenu
 class NvContextMenu(NvMenu):
     """A popup menu that closes under Linux when losing the focus."""
 
-    def __init__(self, view, controller):
-        super().__init__(view, controller)
+    def __init__(self):
+        super().__init__()
         self.bind('<FocusOut>', self._close)
 
     def open(self, event):
