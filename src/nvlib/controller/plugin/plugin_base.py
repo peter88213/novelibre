@@ -77,7 +77,6 @@ class PluginBase(ABC, SubController):
             homeDir = str(Path.home()).replace('\\', '/')
             iconPath = f'{homeDir}/.novx/icons/{size}'
             icon = tk.PhotoImage(file=f'{iconPath}/{fileName}')
-
         except:
             icon = None
         return icon

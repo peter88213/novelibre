@@ -11,13 +11,17 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
-### Version 5.44.2
+### Version 5.44.3
+
+- Handling "hard unformatting" of text passages with a character style applied (#78).
+- No longer disabling the "Tools" when the project is closed.
+
+#### API changes
 
 - The toolbar separator color is now configurable.
 - The toolbar is now providing a public button factory method that can be used by plugins.
 - The toolbar is now providing a public separator insertion method that can be used by plugins.
 - Made the NvMenu lists for disabling entries public.
-- No longer disabling the "Tools" when the project is closed.
 - Refactored the menus, abandoning the menu classes introduced with version 5.43. 
 
 ### Version 5.43.9

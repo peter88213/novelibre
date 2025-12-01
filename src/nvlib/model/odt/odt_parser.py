@@ -25,6 +25,9 @@ class OdtParser(sax.ContentHandler):
         self._strongTags = ['Strong_20_Emphasis']
         # Collection of "strong emphasis" styles used in the ODT document.
 
+        self._normalTags = []
+        # Collection of "normal text" styles used in the ODT document.
+
         self._blockquoteTags = ['Quotations']
         # Collection of "blockquote" paragraph styles
         # used in the ODT document.
@@ -48,7 +51,7 @@ class OdtParser(sax.ContentHandler):
         # For skipped spans, the list entry is None.
 
         self._paraSpan = []
-        # Stack of additionsl spans created from ODT paragraph attributes.
+        # Stack of additional spans created from ODT paragraph attributes.
         # Each list entry is the novx element name of the additional span.
         # If no additional span was created, the list entry is None.
 
@@ -110,12 +113,11 @@ class OdtParser(sax.ContentHandler):
 
         if name == 'text:span':
             try:
-                spans = self._span.pop()
-                for span in reversed(spans):
-                    if span is not None:
-                        self._client.handle_endtag(span)
-                        if span == 'lang':
-                            self._currentLocale.pop()
+                span = self._span.pop()
+                if span is not None:
+                    self._client.handle_endtag(span)
+                    if span == 'lang':
+                        self._currentLocale.pop()
                 return
 
             except:
@@ -198,36 +200,43 @@ class OdtParser(sax.ContentHandler):
                 if not param:
                     param = [()]
                 self._client.handle_starttag('p', param)
-            if style in self._strongTags:
-                # Priority for "strong emphasis"
-                self._paraSpan.append('strong')
-                self._client.handle_starttag('strong', [()])
-            elif style in self._emTags:
+            if style in self._emTags:
+                # Priority for "Emphasis" over "Strong emphasis".
                 self._paraSpan.append('em')
                 self._client.handle_starttag('em', [()])
+            elif style in self._strongTags:
+                self._paraSpan.append('strong')
+                self._client.handle_starttag('strong', [()])
             else:
                 self._paraSpan.append(None)
             return
 
         if name == 'text:span':
-            spans = []
-            if style in self._emTags:
-                spans.append('em')
+            span = None
+            if style in self._normalTags:
+                # Reset all formatting.
+                while self._span:
+                    span = self._span.pop()
+                    if span is not None:
+                        self._client.handle_endtag(span)
+                        if span == 'lang':
+                            self._currentLocale.pop()
+                span = None
+            elif style in self._emTags:
+                span = 'em'
                 self._client.handle_starttag('em', [()])
             elif style in self._strongTags:
-                spans.append('strong')
+                span = 'strong'
                 self._client.handle_starttag('strong', [()])
             if style in self._languageTags:
                 if self._languageTags[style] != self._currentLocale[-1]:
-                    spans.append('lang')
+                    span = 'lang'
                     self._client.handle_starttag(
                         'lang',
                         [('lang', self._languageTags[style])]
                     )
                     self._currentLocale.append(self._languageTags[style])
-            if not spans:
-                spans.append(None)
-            self._span.append(spans)
+            self._span.append(span)
             return
 
         if name == 'text:section':
@@ -306,6 +315,9 @@ class OdtParser(sax.ContentHandler):
 
             if xmlAttributes.get('fo:font-weight', None) == 'bold':
                 self._strongTags.append(self._style)
+
+            if xmlAttributes.get('fo:font-style', None) == 'normal':
+                self._normalTags.append(self._style)
 
             if xmlAttributes.get('fo:language', False):
                 languageCode = xmlAttributes['fo:language']
