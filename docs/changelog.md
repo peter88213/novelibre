@@ -11,8 +11,14 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
-### Version 5.44.3
+### Version 5.44.4
 
+The file format has been upgraded from version 1.8 to version 1.9.
+*.novx* files created with *novelibre* version 5.44.4+ 
+cannot be read with older *novelibre* versions. 
+
+- The ODT paragraph styles *Heading 5*, *Heading 6*, *Heading 7*, *Heading 8*, 
+  and *Heading 9* are now supported and can be used within sections. 
 - Handling "hard unformatting" of text passages with a character style applied (#78).
 - No longer disabling the "Tools" when the project is closed.
 

@@ -55,6 +55,11 @@ class OdtRManuscript(OdtRFormatted):
             'note-citation',
             'ul',
             'li',
+            'h5',
+            'h6',
+            'h7',
+            'h8',
+            'h9',
         ):
             self._lines.append(f'</{tag}>')
             return
@@ -115,6 +120,11 @@ class OdtRManuscript(OdtRFormatted):
             'note-citation',
             'ul',
             'li',
+            'h5',
+            'h6',
+            'h7',
+            'h8',
+            'h9',
         ):
             self._lines.append(f'<{tag}>')
             return

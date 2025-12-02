@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE novx SYSTEM "novx_1_8.dtd">
+<!DOCTYPE novx SYSTEM "novx_1_9.dtd">
 <?xml-stylesheet href="novx.css" type="text/css"?>
-<novx version="1.8" xml:lang="de-DE">
+<novx version="1.9" xml:lang="de-DE">
   <PROJECT>
     <Title>Hal Spacejock book one - Sample yWriter Project</Title>
     <Desc>

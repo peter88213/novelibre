@@ -33,6 +33,7 @@ class ContentViewParser(sax.ContentHandler):
         self._note = None
         self._em = None
         self._strong = None
+        self._heading = None
 
     def feed(self, xmlString):
         """Feed a string file to the parser.
@@ -46,6 +47,7 @@ class ContentViewParser(sax.ContentHandler):
         self._note = False
         self._em = False
         self._strong = False
+        self._heading = False
         if xmlString:
             sax.parseString(f'<content>{xmlString}</content>', self)
 
@@ -59,6 +61,8 @@ class ContentViewParser(sax.ContentHandler):
             tag = self.emTag
         elif self._strong:
             tag = self.strongTag
+        if self._heading:
+            tag = self.headingTag
         if self._comment:
             tag = self.commentTag
         elif self._note:
@@ -82,8 +86,22 @@ class ContentViewParser(sax.ContentHandler):
             self._em = False
         elif name == 'strong':
             self._strong = False
-        elif name in ('li', 'creator', 'date', 'note-citation'):
+        elif name in (
+            'li',
+            'creator',
+            'date',
+            'note-citation',
+        ):
             suffix = '\n'
+        elif name in (
+            'h5',
+            'h6',
+            'h7',
+            'h8',
+            'h9',
+        ):
+            suffix = '\n'
+            self._heading = False
         elif name == 'ul':
             self._list = False
             if self.showTags:
@@ -112,6 +130,14 @@ class ContentViewParser(sax.ContentHandler):
             self._em = True
         elif name == 'strong':
             self._strong = True
+        elif name in (
+            'h5',
+            'h6',
+            'h7',
+            'h8',
+            'h9',
+        ):
+            self._heading = True
         elif name == 'ul':
             self._list = True
             if self.showTags:

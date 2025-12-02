@@ -81,9 +81,16 @@ class OdtRProof(OdtRFormatted):
 
         Overrides the superclass method.
         """
-        if tag == 'p':
+        if tag in (
+            'p',
+            'h5',
+            'h6',
+            'h7',
+            'h8',
+            'h9',
+        ):
             if self._content:
-                self._lines.append('</p>')
+                self._lines.append(f'</{tag}>')
                 return
 
             if self._scId:
@@ -132,7 +139,14 @@ class OdtRProof(OdtRFormatted):
         """
         if self._content:
 
-            if tag == 'p':
+            if tag in (
+                'p',
+                'h5',
+                'h6',
+                'h7',
+                'h8',
+                'h9',
+            ):
                 attributes = ''
                 try:
                     for att in attrs:
@@ -142,7 +156,7 @@ class OdtRProof(OdtRFormatted):
                                 self.novel.languages.append(att[1])
                 except:
                     pass
-                self._lines.append(f'<p{attributes}>')
+                self._lines.append(f'<{tag}{attributes}>')
                 return
 
             if tag in(

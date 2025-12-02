@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE novx SYSTEM "novx_1_8.dtd">
+<!DOCTYPE novx SYSTEM "novx_1_9.dtd">
 <?xml-stylesheet href="novx.css" type="text/css"?>
-<novx version="1.8" xml:lang="en-AU">
+<novx version="1.9" xml:lang="en-AU">
   <PROJECT>
     <Title>Hal Spacejock book one - Sample yWriter Project</Title>
     <Desc>
@@ -59,6 +59,8 @@
         <Characters ids="cr1 cr10 cr4 cr11" />
         <Locations ids="lc1 lc2" />
         <Content>
+          <h5>5th level heading</h5>
+          <h6>6th level heading</h6>
           <p>Hal Spacejock was sitting at the Black Gull's flight console, his attention riveted to a small chessboard balanced amongst the toggle switches, flashing lights and status displays. a few weeks earlier he'd read an article extolling the benefits of the ancient game: how playing it would sharpen his mind, improve his memory and increase his attraction to the opposite sex. Chess had been an important part of his daily routine ever since, but after two hundred and seventy-six losses in a row Hal was beginning to doubt the article's claims. He didn't feel any smarter and he couldn't remember the last time he'd spoken to a member of the opposite sex, let alone had one attracted to him. Briefly, he wondered whether it had been such a clever idea to play against the Navcom, the Black Gull's onboard computer. Underpowered and outdated, it was still more than capable of running the ship's accounts, navigation and life support systems while beating humans at simple board games. However, since Hal was the only human aboard the Black Gull, his choice of opponents was limited.</p>
           <p>"Your turn," said the Navcom, in a neutral female voice.</p>
           <p>"I'm thinking."</p>

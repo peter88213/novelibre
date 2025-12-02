@@ -76,10 +76,6 @@ class NovxToOdt(sax.ContentHandler):
             self.odtLines.append('</text:span>')
             return
 
-        if name == 'li':
-            self.odtLines.append('</text:list-item>')
-            return
-
         if name == 'creator':
             self.odtLines.append('</dc:creator>')
             return
@@ -93,13 +89,6 @@ class NovxToOdt(sax.ContentHandler):
                 '</text:note-citation><text:note-body>'
             )
             return
-
-        if name == 'ul':
-            self._list = False
-            self._indentParagraph = False
-            self.odtLines.append('</text:list>')
-            return
-
         if name == 'comment':
             self.odtLines.append('</office:annotation>')
             self._comment = False
@@ -108,6 +97,30 @@ class NovxToOdt(sax.ContentHandler):
         if name == 'note':
             self._note = None
             self.odtLines.append('</text:note-body></text:note>')
+
+        if name in (
+            'h5',
+            'h6',
+            'h7',
+            'h8',
+            'h9',
+        ):
+            while self._spanLevel > 0:
+                self._spanLevel -= 1
+                self.odtLines.append('</text:span>')
+            self.odtLines.append('</text:p>')
+            self._indentParagraph = False
+            return
+
+        if name == 'li':
+            self.odtLines.append('</text:list-item>')
+            return
+
+        if name == 'ul':
+            self._list = False
+            self._indentParagraph = False
+            self.odtLines.append('</text:list>')
+            return
 
     def startElement(self, name, attrs):
         """Signals the start of an element in non-namespace mode.
@@ -180,11 +193,6 @@ class NovxToOdt(sax.ContentHandler):
                 )
             return
 
-        if name == 'ul':
-            self._list = True
-            self.odtLines.append('<text:list>')
-            return
-
         if name == 'comment':
             self._comment = True
             self.odtLines.append('<office:annotation>')
@@ -207,6 +215,31 @@ class NovxToOdt(sax.ContentHandler):
 
         if name == 'note-citation':
             self.odtLines.append('<text:note-citation>')
+            return
+
+        if name in (
+            'h5',
+            'h6',
+            'h7',
+            'h8',
+            'h9',
+        ):
+            level = name[-1]
+            self.odtLines.append(
+                f'<text:p text:style-name="Heading_20_{level}">'
+            )
+            language = xmlAttributes.get('xml:lang', None)
+            if language:
+                i = self._languages.index(language) + 1
+                self.odtLines.append(
+                    f'<text:span text:style-name="T{i}">'
+                )
+                self._spanLevel += 1
+            return
+
+        if name == 'ul':
+            self._list = True
+            self.odtLines.append('<text:list>')
             return
 
         if name == 'li':

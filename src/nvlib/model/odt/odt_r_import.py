@@ -17,6 +17,7 @@ import re
 from xml.sax.saxutils import unescape
 
 from nvlib.model.data.chapter import Chapter
+from nvlib.model.data.id_generator import new_id
 from nvlib.model.data.section import Section
 from nvlib.model.odt.odt_r_formatted import OdtRFormatted
 from nvlib.novx_globals import CHAPTER_PREFIX
@@ -73,8 +74,15 @@ class OdtRImport(OdtRFormatted):
 
         Overrides the superclass method.
         """
-        if tag == 'p':
-            self._lines.append('</p>')
+        if tag in (
+            'p',
+            'h5',
+            'h6',
+            'h7',
+            'h8',
+            'h9',
+        ):
+            self._lines.append(f'</{tag}>')
             if self._scId is None:
                 return
 
@@ -127,11 +135,23 @@ class OdtRImport(OdtRFormatted):
         
         Overrides the superclass method.
         """
-        if tag == 'p':
+        if tag in (
+            'p',
+            'h5',
+            'h6',
+            'h7',
+            'h8',
+            'h9',
+        ):
             if self._scId is None and self._chId is not None:
+
+                # Create a section.
                 self._lines.clear()
                 self._scCount += 1
-                self._scId = f'{SECTION_PREFIX}{self._scCount}'
+                self._scId = new_id(
+                    self.novel.sections,
+                    prefix=SECTION_PREFIX
+                )
                 self.novel.sections[self._scId] = Section(
                     title=f'{_("Section")} {self._scCount}',
                     scType=0,
@@ -148,7 +168,7 @@ class OdtRImport(OdtRFormatted):
                             self.novel.languages.append(att[1])
             except:
                 pass
-            self._lines.append(f'<p{attributes}>')
+            self._lines.append(f'<{tag}{attributes}>')
             return
 
         if tag in(

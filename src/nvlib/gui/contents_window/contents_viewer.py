@@ -52,6 +52,7 @@ class ContentsViewer(RichTextNv, Observer, SubController):
         self._contentParser.xmlTag = self.XML_TAG
         self._contentParser.emTag = self.EM_TAG
         self._contentParser.strongTag = self.STRONG_TAG
+        self._contentParser.headingTag = self.CENTER_TAG
         self._contentParser.commentTag = self.COMMENT_TAG
         self._contentParser.commentXmlTag = self.COMMENT_XML_TAG
         self._contentParser.noteTag = self.NOTE_TAG
