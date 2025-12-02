@@ -10,7 +10,7 @@ import re
 from nvlib.model.data.basic_element import BasicElement
 from nvlib.model.data.py_calendar import PyCalendar
 
-LANGUAGE_TAG = re.compile(r'\<(p|span) xml\:lang=\"(.*?)\".*?\>')
+LANGUAGE_TAG = re.compile(r'\<(p|span|h.) xml\:lang=\"(.*?)\".*?\>')
 
 
 class Novel(BasicElement):

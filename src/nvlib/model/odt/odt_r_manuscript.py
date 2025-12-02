@@ -41,11 +41,8 @@ class OdtRManuscript(OdtRFormatted):
         if self._scId is None:
             return
 
-        if tag == 'p':
-            self._lines.append('</p>')
-            return
-
         if tag in (
+            'p',
             'em',
             'strong',
             'comment',
@@ -98,7 +95,14 @@ class OdtRManuscript(OdtRFormatted):
                 self._set_novel_language(attrs)
             return
 
-        if tag == 'p':
+        if tag in (
+            'p',
+            'h5',
+            'h6',
+            'h7',
+            'h8',
+            'h9',
+        ):
             attributes = ''
             try:
                 for att in attrs:
@@ -108,7 +112,7 @@ class OdtRManuscript(OdtRFormatted):
                             self.novel.languages.append(att[1])
             except:
                 pass
-            self._lines.append(f'<p{attributes}>')
+            self._lines.append(f'<{tag}{attributes}>')
             return
 
         if tag in(
@@ -120,11 +124,6 @@ class OdtRManuscript(OdtRFormatted):
             'note-citation',
             'ul',
             'li',
-            'h5',
-            'h6',
-            'h7',
-            'h8',
-            'h9',
         ):
             self._lines.append(f'<{tag}>')
             return

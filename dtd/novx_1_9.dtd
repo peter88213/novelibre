@@ -150,23 +150,23 @@
                 		ids IDREFS #REQUIRED
                 		>
                 <!ELEMENT Content (p | ul | h5 | h6 | h7 | h8 | h9)*>
-                  <!ELEMENT h5 (#PCDATA)>
+                  <!ELEMENT h5 (#PCDATA | em | strong | span)* >
                      <!ATTLIST h5 
                         xml:lang NMTOKEN #IMPLIED
                         >
-                  <!ELEMENT h6 (#PCDATA)>
+                  <!ELEMENT h6 (#PCDATA | em | strong | span)* >
                      <!ATTLIST h6 
                         xml:lang NMTOKEN #IMPLIED
                         >
-                  <!ELEMENT h7 (#PCDATA)>
+                  <!ELEMENT h7 (#PCDATA | em | strong | span)* >
                      <!ATTLIST h7 
                         xml:lang NMTOKEN #IMPLIED
                         >
-                  <!ELEMENT h8 (#PCDATA)>
+                  <!ELEMENT h8 (#PCDATA | em | strong | span)* >
                      <!ATTLIST h8 
                         xml:lang NMTOKEN #IMPLIED
                         >
-                  <!ELEMENT h9 (#PCDATA)>
+                  <!ELEMENT h9 (#PCDATA | em | strong | span)* >
                      <!ATTLIST h9 
                         xml:lang NMTOKEN #IMPLIED
                         >

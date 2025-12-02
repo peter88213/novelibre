@@ -192,10 +192,10 @@ class OdtParser(sax.ContentHandler):
                 self._client.handle_starttag('p', param)
             elif style.startswith('Heading'):
                 self._heading = f'h{style[-1]}'
-                self._client.handle_starttag(self._heading, [()])
+                self._client.handle_starttag(self._heading, param)
             elif style in self._headingTags:
                 self._heading = self._headingTags[style]
-                self._client.handle_starttag(self._heading, [()])
+                self._client.handle_starttag(self._heading, param)
             else:
                 if not param:
                     param = [()]

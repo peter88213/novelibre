@@ -11,6 +11,14 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.44.5
+
+- Fixed a regression from version 5.44.4 where an exception is raised when writing section 
+  subheadings in foreign languages to ODT.
+- When reading and writing ODT, the language attributes of the headings are preserved.
+- Extended the DTD: Subheadings can contain emphasized, strong, and foreign-language passages.
+
+
 ### Version 5.44.4
 
 The file format has been upgraded from version 1.8 to version 1.9.
