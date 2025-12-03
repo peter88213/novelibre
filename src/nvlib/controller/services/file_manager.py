@@ -531,13 +531,10 @@ class FileManager(ServiceBase):
         self._ui.restore_status()
         os.makedirs(USER_STYLES_DIR, exist_ok=True)
         fileTypes = [
-            (f'{_("ODF Text Document Template")} (*.ott)', '.ott'),
-            (f'{_("ODF Text Document")} (*.odt)', '.odt') ,
+            (_("ODF Text Document"), '.odt') ,
+            (_("ODF Text Document"), '.ott'),
         ]
-        docTemplate = filedialog.askopenfilename(
-            filetypes=fileTypes,
-            defaultextension=fileTypes[0][1],
-            )
+        docTemplate = filedialog.askopenfilename(filetypes=fileTypes)
         if not docTemplate:
             return
 

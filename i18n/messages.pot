@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.44.5\n"
-"POT-Creation-Date: 2025-12-02 21:07:16\n"
+"Project-Id-Version: 5.44.6\n"
+"POT-Creation-Date: 2025-12-03 13:43:52\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -909,9 +909,6 @@ msgid "ODF Spreadsheet document"
 msgstr ""
 
 msgid "ODF Text Document"
-msgstr ""
-
-msgid "ODF Text Document Template"
 msgstr ""
 
 msgid "ODF Text document"

@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.44.5\n"
+"Project-Id-Version: 5.44.6\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2025-12-02 21:07:16\n"
+"PO-Revision-Date: 2025-12-03 13:43:52\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -903,9 +903,6 @@ msgstr "ODF-Tabellendokument"
 
 msgid "ODF Text Document"
 msgstr "ODF Textdokument"
-
-msgid "ODF Text Document Template"
-msgstr "ODF Textdokumentenvorlage"
 
 msgid "ODF Text document"
 msgstr "ODF-Textdokument"

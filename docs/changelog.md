@@ -11,6 +11,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.44.6
+
+- Made selecting the document template a bit more convenient by bundling the file extensions in the file picker. 
+- Enabled the Export options dialog when no project is open.
+
+
 ### Version 5.44.5
 
 - Fixed a regression from version 5.44.4 where an exception is raised when writing section 

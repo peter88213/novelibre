@@ -1112,6 +1112,7 @@ class MainView(Observer, MsgBoxes, SubController):
             command=self._ctrl.export_manuscript,
         )
         self.exportMenu.disableOnLock.append(label)
+        self.exportMenu.disableOnClose.append(label)
 
         label = _('Manuscript for third-party word processing')
         self.exportMenu.add_command(
@@ -1119,6 +1120,7 @@ class MainView(Observer, MsgBoxes, SubController):
             command=self._ctrl.export_proofing_manuscript,
         )
         self.exportMenu.disableOnLock.append(label)
+        self.exportMenu.disableOnClose.append(label)
 
         self.exportMenu.add_separator()
 
@@ -1127,18 +1129,21 @@ class MainView(Observer, MsgBoxes, SubController):
             label=label,
             command=self._ctrl.export_final_document,
         )
+        self.exportMenu.disableOnClose.append(label)
 
         label = _('Brief synopsis (export only)')
         self.exportMenu.add_command(
             label=label,
             command=self._ctrl.export_brief_synopsis,
         )
+        self.exportMenu.disableOnClose.append(label)
 
         label = _('Cross references (export only)')
         self.exportMenu.add_command(
             label=label,
             command=self._ctrl.export_cross_references,
         )
+        self.exportMenu.disableOnClose.append(label)
 
         self.exportMenu.add_separator()
 
@@ -1147,6 +1152,7 @@ class MainView(Observer, MsgBoxes, SubController):
             label=label,
             command=self._ctrl.export_xml_data_files,
         )
+        self.exportMenu.disableOnClose.append(label)
 
         self.exportMenu.add_separator()
 
@@ -1312,7 +1318,6 @@ class MainView(Observer, MsgBoxes, SubController):
             label=label,
             menu=self.exportMenu,
         )
-        self.mainMenu.disableOnClose.append(label)
 
         label = _('Tools')
         self.mainMenu.add_cascade(
