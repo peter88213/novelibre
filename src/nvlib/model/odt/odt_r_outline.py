@@ -84,6 +84,9 @@ class OdtROutline(OdtReader):
             return
 
         if tag == 'h3':
+            if self._chId is None:
+                return
+
             self.novel.sections[self._scId].title = unescape(
                 re.sub('<.*?>', '', text).strip()
             )
@@ -117,6 +120,9 @@ class OdtROutline(OdtReader):
             return
 
         if tag == 'h3':
+            if self._chId is None:
+                return
+
             self._lines.clear()
             self._scCount += 1
             self._scId = f'{SECTION_PREFIX}{self._scCount}'

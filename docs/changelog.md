@@ -11,6 +11,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.44.7
+
+- Fixed a bug where an outline cannot be imported if it contains a "Heading 3" preceding the first chapter.
+
+
 ### Version 5.44.6
 
 - Made selecting the document template a bit more convenient by bundling the file extensions in the file picker. 
