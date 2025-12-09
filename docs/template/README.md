@@ -223,10 +223,19 @@ This is how the Python launcher looks on the Linux Mint desktop:
 
 ---
 
+## Documentation
 
-## Usage
+- [novelibre User guide](https://peter88213.github.io/nvhelp-en/) - Online manual in English.
+- [novelibre Wiki](https://github.com/peter88213/novelibre/wiki) - Tutorials.
+- [novelibre Benutzerhandbuch](https://peter88213.github.io/nvhelp-de/) - Online manual in German.
+- [novelibre development kanban board](https://github.com/users/peter88213/projects/14) - Planned features and deveopment progress.
 
-See the [online user guide](https://peter88213.github.io/nvhelp-en/)
+## Contact
+
+- [novelibre discussions](https://github.com/peter88213/novelibre/discussions) - The right place to ask questions and make suggestions.
+- [novelibre issues](https://github.com/peter88213/novelibre/issues) - The right place to report bugs.
+
+---
 
 
 ## Credits
