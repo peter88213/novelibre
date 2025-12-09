@@ -155,17 +155,17 @@ Here are a few examples:
 I use the program myself and fix bugs immediately if I notice any. As far as I can tell, *novelibre* runs fast and reliably under Windows and Linux. 
 The development phase has now come to an end. Nevertheless it is recommended to check for updates from time to time, as well as for the plugins. 
 
-[Changelog](docs/changelog.md)
-
-[News](https://github.com/peter88213/novelibre/discussions/1?sort=new)
-
-[Feedback](https://github.com/peter88213/novelibre/discussions)
-
 ---
 
-## Download
+## Get the latest release
 
-### Default: Executable Python zip archive
+- [News](https://github.com/peter88213/novelibre/discussions/1?sort=new)
+- [Changelog](docs/changelog.md)
+
+
+### Download
+
+#### Default: Executable Python zip archive
 
 Download the latest release [novelibre_v0.99.0.pyz](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v0.99.0.pyz)
 
@@ -180,7 +180,7 @@ Download the latest release [novelibre_v0.99.0.pyz](https://github.com/peter8821
 > the zip file. 
 
 
-### Alternative: Zip file
+#### Alternative: Zip file
 
 The package is also available in zip format: 
 [novelibre_v0.99.0.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v0.99.0.zip)
@@ -232,7 +232,7 @@ This is how the Python launcher looks on the Linux Mint desktop:
 
 ## Contact
 
-- [novelibre discussions](https://github.com/peter88213/novelibre/discussions) - The right place to ask questions and make suggestions.
+- [novelibre discussions](https://github.com/peter88213/novelibre/discussions) - The right place to give feedback, ask questions, and make suggestions.
 - [novelibre issues](https://github.com/peter88213/novelibre/issues) - The right place to report bugs.
 
 ---
