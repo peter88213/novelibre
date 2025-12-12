@@ -152,3 +152,9 @@ class Icons:
             )
         except:
             self.pasteIcon = None
+        try:
+            self.highlightIcon = tk.PhotoImage(
+                file=f'{iconPath}/highlight.png'
+            )
+        except:
+            self.highlightIcon = None

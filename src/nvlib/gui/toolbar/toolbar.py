@@ -214,17 +214,20 @@ class Toolbar(SubController):
         self.add_separator(master=self.masterBar)
 
         # "Reset highlighting" button.
-        self.highlightingButton = ttk.Button(
-            self.masterBar,
-            text='',
+        self.highlightingButton = self.new_button(
+            text=_('Reset Highlighting'),
+            image=self._ui.icons.highlightIcon,
             command=self._ui.tv.reset_highlighting,
+            disableOnLock=False,
+            master=self.masterBar,
         )
         self.highlightingButton.pack(side='left')
-        if prefs['enable_hovertips']:
-            Hovertip(
-                self.highlightingButton,
-                _('Reset Highlighting'),
+        self.highlightingLabel = tk.Label(
+            self.masterBar,
+            text='',
+            bg=prefs['color_highlight'],
             )
+        self.highlightingLabel.pack(side='left')
 
         # Reverse order (side='right').
 

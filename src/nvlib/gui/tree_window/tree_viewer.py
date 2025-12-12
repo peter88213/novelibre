@@ -226,7 +226,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self.expand_all()
         hilighted = self._mdl.novel.characters[selectedNode].title
         message = f"{_('Viewpoint')}: {hilighted}"
-        self._ui.toolbar.highlightingButton['text'] = message
+        self._ui.toolbar.highlightingLabel['text'] = message
 
     def highlight_related(self):
         self.reset_highlighting()
@@ -250,7 +250,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         elif selectedNode.startswith(PLOT_POINT_PREFIX):
             hilighted = self._mdl.novel.plotPoints[selectedNode].title
             message = f"{_('Plot point')}: {hilighted}"
-        self._ui.toolbar.highlightingButton['text'] = message
+        self._ui.toolbar.highlightingLabel['text'] = message
 
     def close_children(self, parent):
         """Recursively close children nodes.
@@ -508,7 +508,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self._highlightViewpoint = None
         self._highlightRelated = None
         self.update_tree()
-        self._ui.toolbar.highlightingButton['text'] = ''
+        self._ui.toolbar.highlightingLabel['text'] = ''
 
     def reset_view(self):
         """Clear the displayed tree, and reset the browsing history."""
