@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.44.7\n"
+"Project-Id-Version: 5.45.0\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2025-12-07 19:30:04\n"
+"PO-Revision-Date: 2025-12-12 15:05:36\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -634,6 +634,12 @@ msgstr "Überschrift_20_3_20_unsichtbar"
 msgid "Help"
 msgstr "Hilfe"
 
+msgid "Highlight related sections"
+msgstr "Zugeordnete Abschnitte hervorheben"
+
+msgid "Highlight sections with this viewpoint"
+msgstr "Abschnitte mit dieser Perspektive hervorheben"
+
 msgid "Home page"
 msgstr "Homepage"
 
@@ -1134,6 +1140,9 @@ msgstr "Plotlinie aus der Liste entfernen?"
 
 msgid "Required"
 msgstr "Erforderlich"
+
+msgid "Reset Highlighting"
+msgstr "Hervorhebung zurücksetzen"
 
 msgid "Restart chapter numbering at part beginning"
 msgstr "Kapitelnummerierung in jedem Teil neu beginnen"

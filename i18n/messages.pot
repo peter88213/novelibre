@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.44.7\n"
-"POT-Creation-Date: 2025-12-07 19:30:04\n"
+"Project-Id-Version: 5.45.0\n"
+"POT-Creation-Date: 2025-12-12 15:10:46\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -641,6 +641,12 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
+msgid "Highlight related sections"
+msgstr ""
+
+msgid "Highlight sections with this viewpoint"
+msgstr ""
+
 msgid "Home page"
 msgstr ""
 
@@ -1140,6 +1146,9 @@ msgid "Remove plot line from the list?"
 msgstr ""
 
 msgid "Required"
+msgstr ""
+
+msgid "Reset Highlighting"
 msgstr ""
 
 msgid "Restart chapter numbering at part beginning"
