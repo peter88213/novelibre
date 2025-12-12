@@ -1437,13 +1437,13 @@ class MainView(Observer, MsgBoxes, SubController):
 
         self.characterContextMenu.add_separator()
 
-        self.add_highlight_related_command(self.characterContextMenu)
-
         label = _('Highlight sections with this viewpoint')
         self.characterContextMenu.add_command(
             label=label,
             command=self.tv.highlight_viewpoint,
         )
+
+        self.add_highlight_related_command(self.characterContextMenu)
 
         self._ctrl.register_client(self.characterContextMenu)
 
