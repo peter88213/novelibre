@@ -31,7 +31,9 @@ class Toolbar(SubController):
         self._disableOnClose = []
 
         # Add a toolbar to the editor window.
-        self.buttonBar = ttk.Frame(self._ui.mainWindow)
+        self.masterBar = ttk.Frame(self._ui.mainWindow)
+        self.buttonBar = ttk.Frame(self.masterBar)
+        self.buttonBar.pack(fill='both', side='left')
 
         # "Go back" button.
         self.goBackButton = self.new_button(
@@ -209,6 +211,21 @@ class Toolbar(SubController):
         )
         self.pasteButton.pack(side='left')
 
+        self.add_separator(master=self.masterBar)
+
+        # "Reset highlighting" button.
+        self.highlightingButton = ttk.Button(
+            self.masterBar,
+            text='',
+            command=self._ui.tv.reset_highlighting,
+        )
+        self.highlightingButton.pack(side='left')
+        if prefs['enable_hovertips']:
+            Hovertip(
+                self.highlightingButton,
+                _('Reset Highlighting'),
+            )
+
         # Reverse order (side='right').
 
         # "Toggle properties" button.
@@ -219,6 +236,7 @@ class Toolbar(SubController):
             disableOnClose=False,
             disableOnLock=False,
             accelerator=KEYS.TOGGLE_PROPERTIES[1],
+            master=self.masterBar,
         )
         self.propertiesButton.pack(side='right')
 
@@ -230,16 +248,24 @@ class Toolbar(SubController):
             disableOnClose=False,
             disableOnLock=False,
             accelerator=KEYS.TOGGLE_VIEWER[1],
-
+            master=self.masterBar,
         )
         self.viewerButton.pack(side='right')
 
-        self.buttonBar.pack(
-            expand=False, before=self._ui.appWindow, fill='both')
+        self.masterBar.pack(
+            expand=False,
+            before=self._ui.appWindow,
+            fill='both',
+        )
 
-    def add_separator(self):
+    def add_separator(
+        self,
+        master=None,
+        ):
+        if master is None:
+            master = self.buttonBar
         tk.Frame(
-            self.buttonBar,
+            master,
             bg=prefs['color_separator'],
             width=1,
         ).pack(side='left', fill='y', padx=4)
@@ -264,9 +290,12 @@ class Toolbar(SubController):
         disableOnClose=True,
         disableOnLock=True,
         accelerator=None,
+        master=None,
     ):
+        if master is None:
+            master = self.buttonBar
         newButton = ttk.Button(
-            self.buttonBar,
+            master,
             text=text,
             image=image,
             command=command,

@@ -11,7 +11,7 @@ from nvlib.gui.observer import Observer
 from nvlib.gui.tree_window.history_list import HistoryList
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.model.nv_treeview import NvTreeview
-from nvlib.novx_globals import CHAPTER_PREFIX
+from nvlib.novx_globals import CHAPTER_PREFIX, PLOT_LINE_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
@@ -194,6 +194,10 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             'Before_schedule',
             foreground=prefs['color_before_schedule'],
         )
+        self.tree.tag_configure(
+            'highlighted',
+            background=prefs['color_highlight'],
+        )
 
         #--- Browsing history.
         self._history = HistoryList()
@@ -205,6 +209,45 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             self.coloringMode = 0
         if self.coloringMode > len(self.COLORING_MODES):
             self.coloringMode = 0
+
+        self._hilightTag = None
+        self._highlightViewpoint = None
+        self._hilightPlotline = None
+        self._highlightRelated = None
+
+    def highlight_tag(self):
+        self.reset_highlighting()
+
+    def highlight_viewpoint(self):
+        self.reset_highlighting()
+        selectedNode = self.tree.selection()[0]
+        self._highlightViewpoint = selectedNode
+        self.update_tree()
+        self.expand_all()
+        hilighted = self._mdl.novel.characters[selectedNode].title
+        message = f"{_('Viewpoint')}: {hilighted}"
+        self._ui.toolbar.highlightingButton['text'] = message
+
+    def highlight_related(self):
+        self.reset_highlighting()
+        selectedNode = self.tree.selection()[0]
+        self._highlightRelated = selectedNode
+        self.update_tree()
+        self.expand_all()
+        message = ''
+        if selectedNode.startswith(CHARACTER_PREFIX):
+            hilighted = self._mdl.novel.characters[selectedNode].title
+            message = f"{_('Character')}: {hilighted}"
+        elif selectedNode.startswith(LOCATION_PREFIX):
+            hilighted = self._mdl.novel.locations[selectedNode].title
+            message = f"{_('Location')}: {hilighted}"
+        elif selectedNode.startswith(LOCATION_PREFIX):
+            hilighted = self._mdl.novel.items[selectedNode].title
+            message = f"{_('Item')}: {hilighted}"
+        elif selectedNode.startswith(PLOT_LINE_PREFIX):
+            hilighted = self._mdl.novel.plotLines[selectedNode].title
+            message = f"{_('Plot line')}: {hilighted}"
+        self._ui.toolbar.highlightingButton['text'] = message
 
     def close_children(self, parent):
         """Recursively close children nodes.
@@ -457,6 +500,13 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self.update_tree()
         self.tree.configure(selectmode='extended')
 
+    def reset_highlighting(self):
+        self._hilightTag = None
+        self._highlightViewpoint = None
+        self._highlightRelated = None
+        self.update_tree()
+        self._ui.toolbar.highlightingButton['text'] = ''
+
     def reset_view(self):
         """Clear the displayed tree, and reset the browsing history."""
         self._history.reset()
@@ -464,89 +514,8 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             self.tree.item(rootElement, text='')
             # Make the root element "invisible".
         self.tree.configure({'selectmode': 'none'})
+        self.reset_highlighting()
         self._mdl.reset_tree()
-
-    def save_branch_status(self):
-        self._branch_status.clear()
-        for category in self.tree.get_children(''):
-            self._branch_status[category] = self.tree.item(
-                category, option='open')
-            for branch in self.tree.get_children(category):
-                self._branch_status[branch] = self.tree.item(
-                    branch, option='open')
-
-    def see_node(self, node):
-        """View a node.
-        
-        If the parent is being expanded for this, 
-        remove collected values from the parent's row.
-        
-        Positional arguments:
-            node: str -- Tree element to view.
-        """
-        try:
-            self.tree.see(node)
-            parent = self.tree.parent(node)
-            self._update_node_values(parent, collect=False)
-        except:
-            pass
-
-    def show_book(self, event=None):
-        self.collapse_all()
-        self.show_branch(CH_ROOT)
-
-    def show_branch(self, node):
-        """Go to node and open children.
-        
-        Positional arguments:
-            node: str -- Root element of the branch to open.
-        """
-        self.go_to_node(node)
-        self.open_children(node)
-        return 'break'
-        # this stops event propagation and allows for
-        # re-mapping e.g. the F10 key
-        # see:
-        # https://stackoverflow.com/a/22910425
-
-    def show_chapter_level(self, event=None):
-        """Show the book on chapter level.
-        
-        Open all Book/part nodes and close 
-        all chapter nodes in the tree viewer.
-        """
-
-        def show_chapters(parent):
-            if parent.startswith(CHAPTER_PREFIX):
-                self.tree.item(parent, open=False)
-                self._update_node_values(parent, collect=True)
-            else:
-                self.tree.item(parent, open=True)
-                for child in self.tree.get_children(parent):
-                    show_chapters(child)
-
-        show_chapters(CH_ROOT)
-        return 'break'
-
-    def show_characters(self, event=None):
-        self.collapse_all()
-        self.show_branch(CR_ROOT)
-
-    def show_items(self, event=None):
-        self.collapse_all()
-        self.show_branch(IT_ROOT)
-
-    def show_locations(self, event=None):
-        self.collapse_all()
-        self.show_branch(LC_ROOT)
-
-    def show_plot_lines(self, event=None):
-        self.collapse_all()
-        self.show_branch(PL_ROOT)
-
-    def show_project_notes(self, event=None):
-        self.collapse_all()
-        self.show_branch(PN_ROOT)
 
     def restore_branch_status(self):
         for branch in self._branch_status:
@@ -653,6 +622,88 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
         self._wordsTotal = self._mdl.get_counts()[0]
         update_branch('')
+
+    def save_branch_status(self):
+        self._branch_status.clear()
+        for category in self.tree.get_children(''):
+            self._branch_status[category] = self.tree.item(
+                category, option='open')
+            for branch in self.tree.get_children(category):
+                self._branch_status[branch] = self.tree.item(
+                    branch, option='open')
+
+    def see_node(self, node):
+        """View a node.
+        
+        If the parent is being expanded for this, 
+        remove collected values from the parent's row.
+        
+        Positional arguments:
+            node: str -- Tree element to view.
+        """
+        try:
+            self.tree.see(node)
+            parent = self.tree.parent(node)
+            self._update_node_values(parent, collect=False)
+        except:
+            pass
+
+    def show_book(self, event=None):
+        self.collapse_all()
+        self.show_branch(CH_ROOT)
+
+    def show_branch(self, node):
+        """Go to node and open children.
+        
+        Positional arguments:
+            node: str -- Root element of the branch to open.
+        """
+        self.go_to_node(node)
+        self.open_children(node)
+        return 'break'
+        # this stops event propagation and allows for
+        # re-mapping e.g. the F10 key
+        # see:
+        # https://stackoverflow.com/a/22910425
+
+    def show_chapter_level(self, event=None):
+        """Show the book on chapter level.
+        
+        Open all Book/part nodes and close 
+        all chapter nodes in the tree viewer.
+        """
+
+        def show_chapters(parent):
+            if parent.startswith(CHAPTER_PREFIX):
+                self.tree.item(parent, open=False)
+                self._update_node_values(parent, collect=True)
+            else:
+                self.tree.item(parent, open=True)
+                for child in self.tree.get_children(parent):
+                    show_chapters(child)
+
+        show_chapters(CH_ROOT)
+        return 'break'
+
+    def show_characters(self, event=None):
+        self.collapse_all()
+        self.show_branch(CR_ROOT)
+
+    def show_items(self, event=None):
+        self.collapse_all()
+        self.show_branch(IT_ROOT)
+
+    def show_locations(self, event=None):
+        self.collapse_all()
+        self.show_branch(LC_ROOT)
+
+    def show_plot_lines(self, event=None):
+        self.collapse_all()
+        self.show_branch(PL_ROOT)
+
+    def show_project_notes(self, event=None):
+        self.collapse_all()
+        self.show_branch(PN_ROOT)
 
     def _browse_tree(self, node):
         # Select and show a node.
@@ -1057,6 +1108,8 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                         nodeTags.append('Behind_schedule')
                     else:
                         nodeTags.append('Before_schedule')
+                if self._section_is_highlighted(self._mdl.novel.sections[scId]):
+                    nodeTags.append('highlighted')
                 try:
                     position = round(100 * position / self._wordsTotal, 1)
                     positionStr = f'{position}%'
@@ -1144,6 +1197,28 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
         self._history.append_node(nodeId)
         self._ui.on_change_selection(nodeId)
+
+    def _section_is_highlighted(self, section):
+        if self._hilightTag is not None:
+            return self._hilightTag in section.tags
+
+        elif self._highlightViewpoint is not None:
+            return self._highlightViewpoint == section.viewpoint
+
+        elif self._highlightRelated is not None:
+            if self._highlightRelated in section.characters:
+                return  True
+
+            elif self._highlightRelated in section.locations:
+                return True
+
+            elif self._highlightRelated in section.items:
+                return True
+
+            elif self._highlightRelated in section.scPlotLines:
+                return True
+
+        return False
 
     def _update_node_values(self, nodeId, collect=False):
         # Add/remove node values collected from the node's children.

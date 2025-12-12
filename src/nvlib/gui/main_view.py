@@ -374,6 +374,13 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         menu.disableOnLock.append(label)
 
+    def add_highlight_related_command(self, menu):
+        label = _('Highlight related sections')
+        menu.add_command(
+            label=label,
+            command=self.tv.highlight_related,
+        )
+
     def add_insert_stage_command(self, menu):
         label = _('Insert Stage')
         menu.add_command(
@@ -1388,7 +1395,13 @@ class MainView(Observer, MsgBoxes, SubController):
         self.characterContextMenu.add_separator()
         self.add_set_cr_status_cascade(self.characterContextMenu)
         self.characterContextMenu.add_separator()
+        self.add_highlight_related_command(self.characterContextMenu)
 
+        label = _('Highlight sections with this viewpoint')
+        self.characterContextMenu.add_command(
+            label=label,
+            command=self.tv.highlight_viewpoint,
+        )
         label = _('Export manuscript filtered by viewpoint')
         self.characterContextMenu.add_command(
             label=label,
@@ -1428,6 +1441,9 @@ class MainView(Observer, MsgBoxes, SubController):
         self.elementContextMenu.add_separator()
         self.add_clipboard_commands(self.elementContextMenu)
         self.elementContextMenu.add_separator()
+        self.add_highlight_related_command(self.elementContextMenu)
+        self.elementContextMenu.add_separator()
+
         self.add_view_commands(self.elementContextMenu)
 
         self._ctrl.register_client(self.elementContextMenu)
@@ -1470,6 +1486,8 @@ class MainView(Observer, MsgBoxes, SubController):
         self.plotLineContextMenu.disableOnLock.append(label)
 
         self.plotLineContextMenu.add_separator()
+
+        self.add_highlight_related_command(self.plotLineContextMenu)
 
         label = _('Export manuscript filtered by plot line')
         self.plotLineContextMenu.add_command(
@@ -1662,4 +1680,3 @@ class MainView(Observer, MsgBoxes, SubController):
         except IndexError:
             pass
         return 'break'
-
