@@ -223,11 +223,9 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self._highlightViewpoint = selectedNode
         self.update_tree()
         self.expand_all()
-        highlighted = self._mdl.novel.characters[selectedNode].title
-        message = f"{_('Viewpoint')}: {highlighted}"
-        self._ui.toolbar.highlightingButton.configure(
-            text=message,
-            state='normal',
+        self._ui.toolbar.set_section_highlighting(
+            f'{_("Viewpoint")}: '
+            f'{self._mdl.novel.characters[selectedNode].title}'
         )
 
     def highlight_related(self):
@@ -236,26 +234,23 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self._highlightRelated = selectedNode
         self.update_tree()
         self.expand_all()
-        message = ''
+        text = ''
         if selectedNode.startswith(CHARACTER_PREFIX):
             highlighted = self._mdl.novel.characters[selectedNode].title
-            message = f"{_('Character')}: {highlighted}"
+            text = f"{_('Character')}: {highlighted}"
         elif selectedNode.startswith(LOCATION_PREFIX):
             highlighted = self._mdl.novel.locations[selectedNode].title
-            message = f"{_('Location')}: {highlighted}"
+            text = f"{_('Location')}: {highlighted}"
         elif selectedNode.startswith(LOCATION_PREFIX):
             highlighted = self._mdl.novel.items[selectedNode].title
-            message = f"{_('Item')}: {highlighted}"
+            text = f"{_('Item')}: {highlighted}"
         elif selectedNode.startswith(PLOT_LINE_PREFIX):
             highlighted = self._mdl.novel.plotLines[selectedNode].title
-            message = f"{_('Plot line')}: {highlighted}"
+            text = f"{_('Plot line')}: {highlighted}"
         elif selectedNode.startswith(PLOT_POINT_PREFIX):
             highlighted = self._mdl.novel.plotPoints[selectedNode].title
-            message = f"{_('Plot point')}: {highlighted}"
-        self._ui.toolbar.highlightingButton.configure(
-            text=message,
-            state='normal',
-        )
+            text = f"{_('Plot point')}: {highlighted}"
+        self._ui.toolbar.set_section_highlighting(text)
 
     def close_children(self, parent):
         """Recursively close children nodes.
@@ -513,10 +508,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self._highlightViewpoint = None
         self._highlightRelated = None
         self.update_tree()
-        self._ui.toolbar.highlightingButton.configure(
-            text='',
-            state='disabled',
-        )
+        self._ui.toolbar.reset_section_highlighting()
 
     def reset_view(self):
         """Clear the displayed tree, and reset the browsing history."""

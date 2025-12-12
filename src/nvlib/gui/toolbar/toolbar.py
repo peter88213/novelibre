@@ -224,10 +224,14 @@ class Toolbar(SubController):
         )
         self.highlightingButton.configure(
             text='',
-            compound='left',
+            # compound='left',
             state='disabled',
         )
         self.highlightingButton.pack(side='left')
+        self.highlightingLabel = tk.Label(
+            self.masterBar,
+            bg=prefs['color_highlight'],
+        )
 
         # Reverse order (side='right').
 
@@ -317,6 +321,19 @@ class Toolbar(SubController):
             Hovertip(newButton, hoverText)
 
         return newButton
+
+    def reset_section_highlighting(self):
+        self.highlightingLabel.pack_forget()
+        self.highlightingButton.configure(state='disabled')
+
+    def set_section_highlighting(self, text):
+        self.highlightingLabel.pack(
+            side='left',
+            padx=5,
+            after=self.highlightingButton,
+        )
+        self.highlightingLabel.configure(text=text)
+        self.highlightingButton.configure(state='normal')
 
     def unlock(self):
         for button in self.disableOnLock:
