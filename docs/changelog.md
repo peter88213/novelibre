@@ -11,6 +11,18 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.45.0
+
+Highlighting sections (#79)
+
+#### API changes
+
+- The toolbar is now built with nested frames. ´Toolbar.new_button()` takes the master as an optional paramerter.
+- New method `Toolbar.set_section_highlighting()`
+- New method `Toolbar.reset_section_highlighting()`
+- `TreeViewer.highlightedSections` is a list with the IDs of the highlighted sections. 
+
+
 ### Version 5.44.7
 
 - Fixed a bug where an outline cannot be imported if it contains a "Heading 3" preceding the first chapter.

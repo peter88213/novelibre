@@ -378,7 +378,7 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Highlight related sections')
         menu.add_command(
             label=label,
-            command=self.tv.highlight_related,
+            command=self.tv.highlight_related_sections,
         )
 
     def add_insert_stage_command(self, menu):
@@ -1440,7 +1440,7 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Highlight sections with this viewpoint')
         self.characterContextMenu.add_command(
             label=label,
-            command=self.tv.highlight_viewpoint,
+            command=self.tv.highlight_viewpoint_sections,
         )
 
         self.add_highlight_related_command(self.characterContextMenu)

@@ -213,38 +213,52 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self._highlightTag = None
         self._highlightViewpoint = None
         self._highlightRelated = None
-        self.firstHighlighted = None
+        self.highlightedSections = []
 
-    def highlight_tag(self):
+    def highlight_tagged_sections(self, tag):
+        self._ui.restore_status()
         self.reset_highlighting()
+        self._highlightTag = tag
+        self.update_tree()
+        if not self.highlightedSections:
+            self._ui.set_status(f'#{_("No section tagged with")} "{tag}".')
+            return
 
-    def highlight_viewpoint(self):
+        self.show_book()
+        self.see_node(self.highlightedSections[0])
+        self._ui.toolbar.set_section_highlighting(
+            f'{_("Tag")}: "{tag}"'
+        )
+
+    def highlight_viewpoint_sections(self):
         self._ui.restore_status()
         self.reset_highlighting()
         selectedNode = self.tree.selection()[0]
         self._highlightViewpoint = selectedNode
         self.update_tree()
-        if self.firstHighlighted is None:
+        if not self.highlightedSections:
             self._ui.set_status(f'#{_("Not a viewpoint character")}.')
-        else:
-            self.show_book()
-            self.see_node(self.firstHighlighted)
+            return
+
+        self.show_book()
+        self.see_node(self.highlightedSections[0])
         self._ui.toolbar.set_section_highlighting(
             f'{_("Viewpoint")}: '
             f'{self._mdl.novel.characters[selectedNode].title}'
         )
 
-    def highlight_related(self):
+    def highlight_related_sections(self):
         self._ui.restore_status()
         self.reset_highlighting()
         selectedNode = self.tree.selection()[0]
         self._highlightRelated = selectedNode
         self.update_tree()
-        if self.firstHighlighted is None:
+        if not self.highlightedSections:
             self._ui.set_status(f'#{_("No relationship found")}.')
-        else:
-            self.show_book()
-            self.see_node(self.firstHighlighted)
+            return
+
+        self.show_book()
+        self.see_node(self.highlightedSections[0])
         text = ''
         if selectedNode.startswith(CHARACTER_PREFIX):
             highlighted = self._mdl.novel.characters[selectedNode].title
@@ -515,6 +529,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self.tree.configure(selectmode='extended')
 
     def reset_highlighting(self):
+        self.highlightedSections.clear()
         self._highlightTag = None
         self._highlightViewpoint = None
         self._highlightRelated = None
@@ -635,7 +650,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             return scnPos
 
         self._wordsTotal = self._mdl.get_counts()[0]
-        self.firstHighlighted = None
+        self.highlightedSections.clear()
         update_branch('')
 
     def save_branch_status(self):
@@ -1125,8 +1140,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                         nodeTags.append('Before_schedule')
                 if self._section_is_highlighted(self._mdl.novel.sections[scId]):
                     nodeTags.append('highlighted')
-                    if self.firstHighlighted is None:
-                        self.firstHighlighted = scId
+                    self.highlightedSections.append(scId)
 
                 try:
                     position = round(100 * position / self._wordsTotal, 1)

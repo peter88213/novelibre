@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 5.45.0\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2025-12-12 17:50:23\n"
+"PO-Revision-Date: 2025-12-12 18:24:27\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -871,6 +871,9 @@ msgstr "Keine Projektnotizen gefunden"
 msgid "No relationship found"
 msgstr "Keine Beziehung gefunden"
 
+msgid "No section tagged with"
+msgstr "Kein Abschnitt mit Schlagwort"
+
 msgid "No text available"
 msgstr "Kein Text vorhanden"
 
@@ -1305,6 +1308,9 @@ msgstr "Erzählte Zeit"
 
 msgid "Style sheet copied into the project folder."
 msgstr "Style sheet in den Projektordner kopiert."
+
+msgid "Tag"
+msgstr "Schlagwort"
 
 msgid "Tagged manuscript for proofing"
 msgstr "Manuskript mit Markierungen zum Überarbeiten"
