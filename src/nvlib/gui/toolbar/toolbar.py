@@ -230,6 +230,7 @@ class Toolbar(SubController):
         self.highlightingButton.pack(side='left')
         self.highlightingLabel = tk.Label(
             self.masterBar,
+            fg=prefs['color_text_fg'],
             bg=prefs['color_highlight'],
         )
 

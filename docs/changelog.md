@@ -11,9 +11,14 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.45.1
+
+- Made the new toolbar label's foreground color adjustable for dark mode (#79). 
+
+
 ### Version 5.45.0
 
-Highlighting sections (#79)
+Highlighting sections (#79).
 
 #### API changes
 
