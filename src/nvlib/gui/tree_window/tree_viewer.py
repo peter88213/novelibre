@@ -247,6 +247,9 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         elif selectedNode.startswith(PLOT_LINE_PREFIX):
             hilighted = self._mdl.novel.plotLines[selectedNode].title
             message = f"{_('Plot line')}: {hilighted}"
+        elif selectedNode.startswith(PLOT_POINT_PREFIX):
+            hilighted = self._mdl.novel.plotPoints[selectedNode].title
+            message = f"{_('Plot point')}: {hilighted}"
         self._ui.toolbar.highlightingButton['text'] = message
 
     def close_children(self, parent):
@@ -1216,6 +1219,9 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                 return True
 
             elif self._highlightRelated in section.scPlotLines:
+                return True
+
+            elif self._highlightRelated in section.scPlotPoints:
                 return True
 
         return False
