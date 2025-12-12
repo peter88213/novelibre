@@ -219,15 +219,15 @@ class Toolbar(SubController):
             image=self._ui.icons.highlightIcon,
             command=self._ui.tv.reset_highlighting,
             disableOnLock=False,
+            disableOnClose=False,
             master=self.masterBar,
         )
-        self.highlightingButton.pack(side='left')
-        self.highlightingLabel = tk.Label(
-            self.masterBar,
+        self.highlightingButton.configure(
             text='',
-            bg=prefs['color_highlight'],
-            )
-        self.highlightingLabel.pack(side='left')
+            compound='left',
+            state='disabled',
+        )
+        self.highlightingButton.pack(side='left')
 
         # Reverse order (side='right').
 

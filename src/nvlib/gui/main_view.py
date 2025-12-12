@@ -599,8 +599,9 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         self.fileMenu.disableOnClose.append(label)
 
-        label = _('Open Project folder')
         self.fileMenu.add_separator()
+
+        label = _('Open Project folder')
         self.fileMenu.add_command(
             label=label,
             accelerator=KEYS.FOLDER[1],
@@ -707,6 +708,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self.viewMenu.disableOnClose.append(label)
 
         self.viewMenu.add_separator()
+
         self.add_view_commands(self.viewMenu)
 
         label = _('Expand selected')
@@ -1347,10 +1349,14 @@ class MainView(Observer, MsgBoxes, SubController):
         self.bookContextMenu = NvContextMenu()
 
         self.add_chapter_part_commands(self.bookContextMenu)
+
         self.bookContextMenu.add_separator()
+
         self.add_set_status_cascade(self.bookContextMenu)
         self.add_set_viewpoint_command(self.bookContextMenu)
+
         self.bookContextMenu.add_separator()
+
         self.add_view_commands(self.bookContextMenu)
 
         self._ctrl.register_client(self.bookContextMenu)
@@ -1361,15 +1367,22 @@ class MainView(Observer, MsgBoxes, SubController):
         self.add_add_section_command(self.chapterContextMenu)
         self.add_chapter_part_commands(self.chapterContextMenu)
         self.add_insert_stage_command(self.chapterContextMenu)
+
         self.chapterContextMenu.add_separator()
+
         self.add_delete_command(self.chapterContextMenu)
+
         self.chapterContextMenu.add_separator()
+
         self.add_clipboard_commands(self.chapterContextMenu)
+
         self.chapterContextMenu.add_separator()
+
         self.add_change_level_cascade(self.chapterContextMenu)
         self.add_set_type_cascade(self.chapterContextMenu)
         self.add_set_status_cascade(self.chapterContextMenu)
         self.add_set_viewpoint_command(self.chapterContextMenu)
+
         self.chapterContextMenu.add_separator()
 
         label = _('Export this chapter')
@@ -1380,6 +1393,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self.chapterContextMenu.disableOnLock.append(label)
 
         self.chapterContextMenu.add_separator()
+
         self.add_view_commands(self.chapterContextMenu)
 
         self._ctrl.register_client(self.chapterContextMenu)
@@ -1388,20 +1402,21 @@ class MainView(Observer, MsgBoxes, SubController):
         self.characterContextMenu = NvContextMenu()
 
         self.add_add_command(self.characterContextMenu)
-        self.characterContextMenu.add_separator()
-        self.add_delete_command(self.characterContextMenu)
-        self.characterContextMenu.add_separator()
-        self.add_clipboard_commands(self.characterContextMenu)
-        self.characterContextMenu.add_separator()
-        self.add_set_cr_status_cascade(self.characterContextMenu)
-        self.characterContextMenu.add_separator()
-        self.add_highlight_related_command(self.characterContextMenu)
 
-        label = _('Highlight sections with this viewpoint')
-        self.characterContextMenu.add_command(
-            label=label,
-            command=self.tv.highlight_viewpoint,
-        )
+        self.characterContextMenu.add_separator()
+
+        self.add_delete_command(self.characterContextMenu)
+
+        self.characterContextMenu.add_separator()
+
+        self.add_clipboard_commands(self.characterContextMenu)
+
+        self.characterContextMenu.add_separator()
+
+        self.add_set_cr_status_cascade(self.characterContextMenu)
+
+        self.characterContextMenu.add_separator()
+
         label = _('Export manuscript filtered by viewpoint')
         self.characterContextMenu.add_command(
             label=label,
@@ -1417,7 +1432,18 @@ class MainView(Observer, MsgBoxes, SubController):
         self.characterContextMenu.disableOnLock.append(label)
 
         self.characterContextMenu.add_separator()
+
         self.add_view_commands(self.characterContextMenu)
+
+        self.characterContextMenu.add_separator()
+
+        self.add_highlight_related_command(self.characterContextMenu)
+
+        label = _('Highlight sections with this viewpoint')
+        self.characterContextMenu.add_command(
+            label=label,
+            command=self.tv.highlight_viewpoint,
+        )
 
         self._ctrl.register_client(self.characterContextMenu)
 
@@ -1425,9 +1451,13 @@ class MainView(Observer, MsgBoxes, SubController):
         self.crRootContextMenu = NvContextMenu()
 
         self.add_add_command(self.crRootContextMenu)
+
         self.crRootContextMenu.add_separator()
+
         self.add_set_cr_status_cascade(self.crRootContextMenu)
+
         self.crRootContextMenu.add_separator()
+
         self.add_view_commands(self.crRootContextMenu)
 
         self._ctrl.register_client(self.crRootContextMenu)
@@ -1436,15 +1466,22 @@ class MainView(Observer, MsgBoxes, SubController):
         self.elementContextMenu = NvContextMenu()
 
         self.add_add_command(self.elementContextMenu)
+
         self.elementContextMenu.add_separator()
+
         self.add_delete_command(self.elementContextMenu)
+
         self.elementContextMenu.add_separator()
+
         self.add_clipboard_commands(self.elementContextMenu)
-        self.elementContextMenu.add_separator()
-        self.add_highlight_related_command(self.elementContextMenu)
+
         self.elementContextMenu.add_separator()
 
         self.add_view_commands(self.elementContextMenu)
+
+        self.elementContextMenu.add_separator()
+
+        self.add_highlight_related_command(self.elementContextMenu)
 
         self._ctrl.register_client(self.elementContextMenu)
 
@@ -1466,9 +1503,13 @@ class MainView(Observer, MsgBoxes, SubController):
         self.plotLineContextMenu.disableOnLock.append(label)
 
         self.plotLineContextMenu.add_separator()
+
         self.add_delete_command(self.plotLineContextMenu)
+
         self.plotLineContextMenu.add_separator()
+
         self.add_clipboard_commands(self.plotLineContextMenu)
+
         self.plotLineContextMenu.add_separator()
 
         label = _('Change sections to Unused')
@@ -1487,8 +1528,6 @@ class MainView(Observer, MsgBoxes, SubController):
 
         self.plotLineContextMenu.add_separator()
 
-        self.add_highlight_related_command(self.plotLineContextMenu)
-
         label = _('Export manuscript filtered by plot line')
         self.plotLineContextMenu.add_command(
             label=label,
@@ -1504,7 +1543,12 @@ class MainView(Observer, MsgBoxes, SubController):
         self.plotLineContextMenu.disableOnLock.append(label)
 
         self.plotLineContextMenu.add_separator()
+
         self.add_view_commands(self.plotLineContextMenu)
+
+        self.plotLineContextMenu.add_separator()
+
+        self.add_highlight_related_command(self.plotLineContextMenu)
 
         self._ctrl.register_client(self.plotLineContextMenu)
 
@@ -1512,7 +1556,9 @@ class MainView(Observer, MsgBoxes, SubController):
         self.rootContextMenu = NvContextMenu()
 
         self.add_add_command(self.rootContextMenu)
+
         self.rootContextMenu.add_separator()
+
         self.add_view_commands(self.rootContextMenu)
 
         self._ctrl.register_client(self.rootContextMenu)
@@ -1522,14 +1568,21 @@ class MainView(Observer, MsgBoxes, SubController):
 
         self.add_add_section_command(self.sectionContextMenu)
         self.add_insert_stage_command(self.sectionContextMenu)
+
         self.sectionContextMenu.add_separator()
+
         self.add_delete_command(self.sectionContextMenu)
+
         self.sectionContextMenu.add_separator()
+
         self.add_clipboard_commands(self.sectionContextMenu)
+
         self.sectionContextMenu.add_separator()
+
         self.add_set_type_cascade(self.sectionContextMenu)
         self.add_set_status_cascade(self.sectionContextMenu)
         self.add_set_viewpoint_command(self.sectionContextMenu)
+
         self.sectionContextMenu.add_separator()
 
         label = _('Join with previous')
@@ -1540,6 +1593,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self.sectionContextMenu.disableOnLock.append(label)
 
         self.sectionContextMenu.add_separator()
+
         self.add_view_commands(self.sectionContextMenu)
 
         self._ctrl.register_client(self.sectionContextMenu)
@@ -1549,13 +1603,21 @@ class MainView(Observer, MsgBoxes, SubController):
 
         self.add_add_section_command(self.stageContextMenu)
         self.add_insert_stage_command(self.stageContextMenu)
+
         self.stageContextMenu.add_separator()
+
         self.add_delete_command(self.stageContextMenu)
+
         self.stageContextMenu.add_separator()
+
         self.add_clipboard_commands(self.stageContextMenu)
+
         self.stageContextMenu.add_separator()
+
         self.add_change_level_cascade(self.stageContextMenu)
+
         self.stageContextMenu.add_separator()
+
         self.add_view_commands(self.stageContextMenu)
 
         self._ctrl.register_client(self.stageContextMenu)

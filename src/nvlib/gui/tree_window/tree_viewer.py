@@ -210,9 +210,8 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         if self.coloringMode > len(self.COLORING_MODES):
             self.coloringMode = 0
 
-        self._hilightTag = None
+        self._highlightTag = None
         self._highlightViewpoint = None
-        self._hilightPlotline = None
         self._highlightRelated = None
 
     def highlight_tag(self):
@@ -224,9 +223,12 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self._highlightViewpoint = selectedNode
         self.update_tree()
         self.expand_all()
-        hilighted = self._mdl.novel.characters[selectedNode].title
-        message = f"{_('Viewpoint')}: {hilighted}"
-        self._ui.toolbar.highlightingLabel['text'] = message
+        highlighted = self._mdl.novel.characters[selectedNode].title
+        message = f"{_('Viewpoint')}: {highlighted}"
+        self._ui.toolbar.highlightingButton.configure(
+            text=message,
+            state='normal',
+        )
 
     def highlight_related(self):
         self.reset_highlighting()
@@ -236,21 +238,24 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self.expand_all()
         message = ''
         if selectedNode.startswith(CHARACTER_PREFIX):
-            hilighted = self._mdl.novel.characters[selectedNode].title
-            message = f"{_('Character')}: {hilighted}"
+            highlighted = self._mdl.novel.characters[selectedNode].title
+            message = f"{_('Character')}: {highlighted}"
         elif selectedNode.startswith(LOCATION_PREFIX):
-            hilighted = self._mdl.novel.locations[selectedNode].title
-            message = f"{_('Location')}: {hilighted}"
+            highlighted = self._mdl.novel.locations[selectedNode].title
+            message = f"{_('Location')}: {highlighted}"
         elif selectedNode.startswith(LOCATION_PREFIX):
-            hilighted = self._mdl.novel.items[selectedNode].title
-            message = f"{_('Item')}: {hilighted}"
+            highlighted = self._mdl.novel.items[selectedNode].title
+            message = f"{_('Item')}: {highlighted}"
         elif selectedNode.startswith(PLOT_LINE_PREFIX):
-            hilighted = self._mdl.novel.plotLines[selectedNode].title
-            message = f"{_('Plot line')}: {hilighted}"
+            highlighted = self._mdl.novel.plotLines[selectedNode].title
+            message = f"{_('Plot line')}: {highlighted}"
         elif selectedNode.startswith(PLOT_POINT_PREFIX):
-            hilighted = self._mdl.novel.plotPoints[selectedNode].title
-            message = f"{_('Plot point')}: {hilighted}"
-        self._ui.toolbar.highlightingLabel['text'] = message
+            highlighted = self._mdl.novel.plotPoints[selectedNode].title
+            message = f"{_('Plot point')}: {highlighted}"
+        self._ui.toolbar.highlightingButton.configure(
+            text=message,
+            state='normal',
+        )
 
     def close_children(self, parent):
         """Recursively close children nodes.
@@ -504,11 +509,14 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self.tree.configure(selectmode='extended')
 
     def reset_highlighting(self):
-        self._hilightTag = None
+        self._highlightTag = None
         self._highlightViewpoint = None
         self._highlightRelated = None
         self.update_tree()
-        self._ui.toolbar.highlightingLabel['text'] = ''
+        self._ui.toolbar.highlightingButton.configure(
+            text='',
+            state='disabled',
+        )
 
     def reset_view(self):
         """Clear the displayed tree, and reset the browsing history."""
@@ -1202,26 +1210,20 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self._ui.on_change_selection(nodeId)
 
     def _section_is_highlighted(self, section):
-        if self._hilightTag is not None:
-            return self._hilightTag in section.tags
+        if self._highlightTag is not None:
+            return self._highlightTag in section.tags
 
         elif self._highlightViewpoint is not None:
             return self._highlightViewpoint == section.viewpoint
 
         elif self._highlightRelated is not None:
-            if self._highlightRelated in section.characters:
-                return  True
-
-            elif self._highlightRelated in section.locations:
-                return True
-
-            elif self._highlightRelated in section.items:
-                return True
-
-            elif self._highlightRelated in section.scPlotLines:
-                return True
-
-            elif self._highlightRelated in section.scPlotPoints:
+            if (
+                self._highlightRelated in section.characters
+                or self._highlightRelated in section.locations
+                or self._highlightRelated in section.items
+                or self._highlightRelated in section.scPlotLines
+                or self._highlightRelated in section.scPlotPoints
+            ):
                 return True
 
         return False
