@@ -11,7 +11,7 @@ from nvlib.gui.observer import Observer
 from nvlib.gui.tree_window.history_list import HistoryList
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.model.nv_treeview import NvTreeview
-from nvlib.novx_globals import CHAPTER_PREFIX, PLOT_LINE_PREFIX
+from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
@@ -213,27 +213,38 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self._highlightTag = None
         self._highlightViewpoint = None
         self._highlightRelated = None
+        self.firstHighlighted = None
 
     def highlight_tag(self):
         self.reset_highlighting()
 
     def highlight_viewpoint(self):
+        self._ui.restore_status()
         self.reset_highlighting()
         selectedNode = self.tree.selection()[0]
         self._highlightViewpoint = selectedNode
         self.update_tree()
-        self.show_book()
+        if self.firstHighlighted is None:
+            self._ui.set_status(f'#{_("Not a viewpoint character")}.')
+        else:
+            self.show_book()
+            self.see_node(self.firstHighlighted)
         self._ui.toolbar.set_section_highlighting(
             f'{_("Viewpoint")}: '
             f'{self._mdl.novel.characters[selectedNode].title}'
         )
 
     def highlight_related(self):
+        self._ui.restore_status()
         self.reset_highlighting()
         selectedNode = self.tree.selection()[0]
         self._highlightRelated = selectedNode
         self.update_tree()
-        self.show_book()
+        if self.firstHighlighted is None:
+            self._ui.set_status(f'#{_("No relationship found")}.')
+        else:
+            self.show_book()
+            self.see_node(self.firstHighlighted)
         text = ''
         if selectedNode.startswith(CHARACTER_PREFIX):
             highlighted = self._mdl.novel.characters[selectedNode].title
@@ -624,6 +635,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             return scnPos
 
         self._wordsTotal = self._mdl.get_counts()[0]
+        self.firstHighlighted = None
         update_branch('')
 
     def save_branch_status(self):
@@ -1113,6 +1125,9 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                         nodeTags.append('Before_schedule')
                 if self._section_is_highlighted(self._mdl.novel.sections[scId]):
                     nodeTags.append('highlighted')
+                    if self.firstHighlighted is None:
+                        self.firstHighlighted = scId
+
                 try:
                     position = round(100 * position / self._wordsTotal, 1)
                     positionStr = f'{position}%'

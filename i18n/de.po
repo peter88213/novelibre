@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 5.45.0\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2025-12-12 15:05:36\n"
+"PO-Revision-Date: 2025-12-12 17:50:23\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -868,6 +868,9 @@ msgstr "Keine Plotlinien gefunden"
 msgid "No project notes found"
 msgstr "Keine Projektnotizen gefunden"
 
+msgid "No relationship found"
+msgstr "Keine Beziehung gefunden"
+
 msgid "No text available"
 msgstr "Kein Text vorhanden"
 
@@ -888,6 +891,9 @@ msgstr "Keine Fließkommazahl."
 
 msgid "Not a scene"
 msgstr "Keine Szene"
+
+msgid "Not a viewpoint character"
+msgstr "Keine Perspektivfigur"
 
 msgid "Not an integer."
 msgstr "Kein ganzzahliger Wert."

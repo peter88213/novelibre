@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.45.0\n"
-"POT-Creation-Date: 2025-12-12 15:10:46\n"
+"POT-Creation-Date: 2025-12-12 17:51:04\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -875,6 +875,9 @@ msgstr ""
 msgid "No project notes found"
 msgstr ""
 
+msgid "No relationship found"
+msgstr ""
+
 msgid "No text available"
 msgstr ""
 
@@ -894,6 +897,9 @@ msgid "Not a floating point value."
 msgstr ""
 
 msgid "Not a scene"
+msgstr ""
+
+msgid "Not a viewpoint character"
 msgstr ""
 
 msgid "Not an integer."
