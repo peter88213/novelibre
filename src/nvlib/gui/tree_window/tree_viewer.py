@@ -222,7 +222,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         selectedNode = self.tree.selection()[0]
         self._highlightViewpoint = selectedNode
         self.update_tree()
-        self.expand_all()
+        self.show_book()
         self._ui.toolbar.set_section_highlighting(
             f'{_("Viewpoint")}: '
             f'{self._mdl.novel.characters[selectedNode].title}'
@@ -233,7 +233,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         selectedNode = self.tree.selection()[0]
         self._highlightRelated = selectedNode
         self.update_tree()
-        self.expand_all()
+        self.show_book()
         text = ''
         if selectedNode.startswith(CHARACTER_PREFIX):
             highlighted = self._mdl.novel.characters[selectedNode].title
