@@ -39,7 +39,7 @@ class CharacterSelectionDialog(ModalDialog):
             pady=10,
         )
         self._characterCombobox.combo.bind(
-            '<<ComboboxSelected>>', self._apply_changes)
+            '<<ComboboxSelected>>', self.select_string)
 
         ttk.Separator(self, orient='horizontal').pack(fill='x')
 
@@ -50,7 +50,7 @@ class CharacterSelectionDialog(ModalDialog):
             command=self.destroy,
         ).pack(padx=5, pady=5, side='right')
 
-    def _apply_changes(self, event):
+    def select_string(self, event):
         # callback function returning the selected character's ID.
         option = self._characterCombobox.current()
         self.destroy()

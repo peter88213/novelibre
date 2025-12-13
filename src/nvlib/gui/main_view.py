@@ -692,7 +692,7 @@ class MainView(Observer, MsgBoxes, SubController):
             label=label,
             image=self.icons.tagsIcon,
             compound='left',
-            command=self.tv.highlight_tagged_elements,
+            command=self.tv.select_tag_and_highlight_elements,
         )
         self.viewMenu.disableOnClose.append(label)
 

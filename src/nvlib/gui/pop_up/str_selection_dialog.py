@@ -58,14 +58,14 @@ class StrSelectionDialog(ModalDialog):
             expand=True,
         )
         self._listBox.config(yscrollcommand=vbar.set)
-        self._listBox.bind('<Double-1>', self._apply_changes)
-        self._listBox.bind('<Return>', self._apply_changes)
+        self._listBox.bind('<Double-1>', self.select_string)
+        self._listBox.bind('<Return>', self.select_string)
 
-        # "Select" button.
+        # "OK" button.
         ttk.Button(
             self,
             text=_('OK'),
-            command=self._apply_changes,
+            command=self.select_string,
         ).pack(padx=5, pady=5, side='left')
 
         # "Close" button.
@@ -75,9 +75,10 @@ class StrSelectionDialog(ModalDialog):
             command=self.destroy,
         ).pack(padx=5, pady=5, side='right')
 
-    def _apply_changes(self, event=None):
+    def select_string(self, event=None):
         # callback function.
-        option = self._listBox.curselection()[0]
+        selection = self._listBox.curselection()
         self.destroy()
-        if option >= 0:
+        if selection:
+            option = selection[0]
             self._cb(self._strList[option])

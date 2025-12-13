@@ -317,19 +317,19 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         except:
             pass
 
-    def highlight_tagged_elements(self):
-        tags = sorted(list(self._mdl.novel.get_tags()))
-        if not tags:
-            self._ui.set_status(f'#{_("No tags defined")}.')
+    def highlight_tagged_elements(self, tag):
+        self._ui.restore_status()
+        self.reset_highlighting()
+        self._highlightTag = tag
+        self.update_tree()
+        if not self.highlightedElements:
+            self._ui.set_status(f'#{_("No elements tagged with")} "{tag}".')
             return
 
-        StrSelectionDialog(
-            self._ui,
-            tags,
-            self._highlight_tagged_elements,
-            _('Select tag'),
-            bg=prefs['color_text_bg'],
-            fg=prefs['color_text_fg'],
+        self.expand_all()
+        self.see_node(self.highlightedElements[0])
+        self._ui.toolbar.set_section_highlighting(
+            f'{_("Tag")}: "{tag}"'
         )
 
     def highlight_viewpoint_sections(self):
@@ -678,6 +678,21 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             self._update_node_values(parent, collect=False)
         except:
             pass
+
+    def select_tag_and_highlight_elements(self):
+        tags = sorted(list(self._mdl.novel.get_tags()))
+        if not tags:
+            self._ui.set_status(f'#{_("No tags defined")}.')
+            return
+
+        StrSelectionDialog(
+            self._ui,
+            tags,
+            self.highlight_tagged_elements,
+            _('Select tag'),
+            bg=prefs['color_text_bg'],
+            fg=prefs['color_text_fg'],
+        )
 
     def show_book(self, event=None):
         self.collapse_all()
@@ -1235,21 +1250,6 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         return to_string(
             self._mdl.novel.sections[scId].title
         ), nodeValues, tuple(nodeTags)
-
-    def _highlight_tagged_elements(self, tag):
-        self._ui.restore_status()
-        self.reset_highlighting()
-        self._highlightTag = tag
-        self.update_tree()
-        if not self.highlightedElements:
-            self._ui.set_status(f'#{_("No elements tagged with")} "{tag}".')
-            return
-
-        self.expand_all()
-        self.see_node(self.highlightedElements[0])
-        self._ui.toolbar.set_section_highlighting(
-            f'{_("Tag")}: "{tag}"'
-        )
 
     def _on_close_branch(self, event):
         # Event handler for manually collapsing a branch.

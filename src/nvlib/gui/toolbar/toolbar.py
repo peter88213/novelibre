@@ -217,7 +217,7 @@ class Toolbar(SubController):
         self.highlightTaggedButton = self.new_button(
             text=_('Highlight tagged elements'),
             image=self._ui.icons.tagsIcon,
-            command=self._ui.tv.highlight_tagged_elements,
+            command=self._ui.tv.select_tag_and_highlight_elements,
             disableOnLock=False,
             master=self.masterBar,
         )

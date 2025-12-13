@@ -11,7 +11,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
-### Version 5.46.0
+### Version 5.46.1
 
 - Implemented highlighting of tagged elements. Closes #79.
 - Added menu icons (#53)
