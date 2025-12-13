@@ -367,6 +367,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Change Level')
         menu.add_cascade(
             label=label,
+            image=self.icons.levelsIcon,
+            compound='left',
             menu=self.selectLevelMenu,
         )
         menu.disableOnLock.append(label)
@@ -403,6 +405,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Insert Stage')
         menu.add_command(
             label=label,
+            image=self.icons.stageIcon,
+            compound='left',
             command=self._ctrl.add_new_stage,
         )
         menu.disableOnLock.append(label)
@@ -411,6 +415,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Set Status')
         menu.add_cascade(
             label=label,
+            image=self.icons.statusIcon,
+            compound='left',
             menu=self.selectCharacterStatusMenu,
         )
         menu.disableOnLock.append(label)
@@ -419,6 +425,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Set Status')
         menu.add_cascade(
             label=label,
+            image=self.icons.statusIcon,
+            compound='left',
             menu=self.selectSectionStatusMenu,
         )
         menu.disableOnLock.append(label)
@@ -427,6 +435,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Set Type')
         menu.add_cascade(
             label=label,
+            image=self.icons.typeIcon,
+            compound='left',
             menu=self.selectTypeMenu,
         )
         menu.disableOnLock.append(label)
@@ -435,6 +445,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Set Viewpoint...')
         menu.add_command(
             label=label,
+            image=self.icons.povIcon,
+            compound='left',
             command=self._ctrl.set_viewpoint,
         )
         menu.disableOnLock.append(label)
@@ -443,6 +455,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Chapter level')
         menu.add_command(
             label=label,
+            image=self.icons.chaptersIcon,
+            compound='left',
             command=self.tv.show_chapter_level,
         )
         menu.disableOnClose.append(label)
@@ -450,6 +464,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Expand all')
         menu.add_command(
             label=label,
+            image=self.icons.expandIcon,
+            compound='left',
             command=self.tv.expand_all,
         )
         menu.disableOnClose.append(label)
@@ -457,6 +473,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Collapse all')
         menu.add_command(
             label=label,
+            image=self.icons.collapseIcon,
+            compound='left',
             command=self.tv.collapse_all,
         )
         menu.disableOnClose.append(label)
@@ -576,6 +594,8 @@ class MainView(Observer, MsgBoxes, SubController):
         self.fileMenu.add_command(
             label=label,
             accelerator=KEYS.RELOAD_PROJECT[1],
+            image=self.icons.reloadIcon,
+            compound='left',
             command=self._ctrl.reload_project,
         )
         self.fileMenu.disableOnClose.append(label)
@@ -615,6 +635,8 @@ class MainView(Observer, MsgBoxes, SubController):
         self.fileMenu.add_command(
             label=label,
             accelerator=KEYS.UNLOCK_PROJECT[1],
+            image=self.icons.unlockIcon,
+            compound='left',
             command=self._ctrl.unlock,
         )
         self.fileMenu.disableOnClose.append(label)
@@ -625,6 +647,8 @@ class MainView(Observer, MsgBoxes, SubController):
         self.fileMenu.add_command(
             label=label,
             accelerator=KEYS.FOLDER[1],
+            image=self.icons.folderIcon,
+            compound='left',
             command=self._ctrl.open_project_folder,
         )
         self.fileMenu.disableOnClose.append(label)
@@ -668,6 +692,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Close')
         self.fileMenu.add_command(
             label=label,
+            image=self.icons.closeIcon,
+            compound='left',
             command=self._ctrl.close_project,
         )
         self.fileMenu.disableOnClose.append(label)
@@ -679,6 +705,8 @@ class MainView(Observer, MsgBoxes, SubController):
         self.fileMenu.add_command(
             label=label,
             accelerator=KEYS.QUIT_PROGRAM[1],
+            image=self.icons.exitIcon,
+            compound='left',
             command=self._ctrl.on_quit,
         )
 
@@ -810,6 +838,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Options')
         self.viewMenu.add_command(
             label=label,
+            image=self.icons.settingsIcon,
+            compound='left',
             command=self._ctrl.open_view_options,
         )
 
@@ -967,6 +997,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Import')
         self.characterMenu.add_command(
             label=label,
+            image=self.icons.importIcon,
+            compound='left',
             command=self._ctrl.import_character_data,
         )
         self.characterMenu.disableOnLock.append(label)
@@ -1014,6 +1046,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Import')
         self.locationMenu.add_command(
             label=label,
+            image=self.icons.importIcon,
+            compound='left',
             command=self._ctrl.import_location_data,
         )
         self.locationMenu.disableOnLock.append(label)
@@ -1061,6 +1095,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Import')
         self.itemMenu.add_command(
             label=label,
+            image=self.icons.importIcon,
+            compound='left',
             command=self._ctrl.import_item_data,
         )
         self.itemMenu.disableOnLock.append(label)
@@ -1122,6 +1158,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Import plot lines')
         self.plotMenu.add_command(
             label=label,
+            image=self.icons.importIcon,
+            compound='left',
             command=self._ctrl.import_plot_lines,
         )
         self.plotMenu.disableOnLock.append(label)
@@ -1131,6 +1169,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Export plot grid for editing')
         self.plotMenu.add_command(
             label=label,
+            image=self.icons.gridIcon,
+            compound='left',
             command=self._ctrl.export_plot_grid,
         )
         self.plotMenu.disableOnLock.append(label)
@@ -1236,6 +1276,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('XML data files')
         self.exportMenu.add_command(
             label=label,
+            image=self.icons.exportIcon,
+            compound='left',
             command=self._ctrl.export_xml_data_files,
         )
         self.exportMenu.disableOnClose.append(label)
@@ -1245,6 +1287,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Options')
         self.exportMenu.add_command(
             label=label,
+            image=self.icons.settingsIcon,
+            compound='left',
             command=self._ctrl.open_export_options,
         )
 
@@ -1256,6 +1300,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Backup options')
         self.toolsMenu.add_command(
             label=label,
+            image=self.icons.settingsIcon,
+            compound='left',
             command=self._ctrl.open_backup_options,
         )
 
@@ -1264,6 +1310,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Open installation folder')
         self.toolsMenu.add_command(
             label=label,
+            image=self.icons.installationFolderIcon,
+            compound='left',
             command=self._ctrl.open_installationFolder,
         )
 
@@ -1272,6 +1320,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Plugin Manager')
         self.toolsMenu.add_command(
             label=label,
+            image=self.icons.pluginsIcon,
+            compound='left',
             command=self._ctrl.open_plugin_manager,
         )
 
@@ -1280,6 +1330,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Show notes')
         self.toolsMenu.add_command(
             label=label,
+            image=self.icons.stickyNoteIcon,
+            compound='left',
             command=self._ctrl.show_notes_list,
         )
         self.toolsMenu.disableOnClose.append(label)
@@ -1465,6 +1517,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Export this chapter')
         self.chapterContextMenu.add_cascade(
             label=label,
+            image=self.icons.manuscriptIcon,
+            compound='left',
             command=self._ctrl.export_filtered_manuscript,
         )
         self.chapterContextMenu.disableOnLock.append(label)

@@ -170,3 +170,123 @@ class Icons:
             )
         except:
             self.highlightIcon = None
+        try:
+            self.exitIcon = tk.PhotoImage(
+                file=f'{iconPath}/exit.png'
+            )
+        except:
+            self.exitIcon = None
+        try:
+            self.expandIcon = tk.PhotoImage(
+                file=f'{iconPath}/expand.png'
+            )
+        except:
+            self.expandIcon = None
+        try:
+            self.collapseIcon = tk.PhotoImage(
+                file=f'{iconPath}/collapse.png'
+            )
+        except:
+            self.collapseIcon = None
+        try:
+            self.unlockIcon = tk.PhotoImage(
+                file=f'{iconPath}/unlock.png'
+            )
+        except:
+            self.unlockIcon = None
+        try:
+            self.reloadIcon = tk.PhotoImage(
+                file=f'{iconPath}/reload.png'
+            )
+        except:
+            self.reloadIcon = None
+        try:
+            self.closeIcon = tk.PhotoImage(
+                file=f'{iconPath}/close.png'
+            )
+        except:
+            self.closeIcon = None
+        try:
+            self.settingsIcon = tk.PhotoImage(
+                file=f'{iconPath}/settings.png'
+            )
+        except:
+            self.settingsIcon = None
+        try:
+            self.gridIcon = tk.PhotoImage(
+                file=f'{iconPath}/grid.png'
+            )
+        except:
+            self.gridIcon = None
+        try:
+            self.levelsIcon = tk.PhotoImage(
+                file=f'{iconPath}/levels.png'
+            )
+        except:
+            self.levelsIcon = None
+        try:
+            self.stageIcon = tk.PhotoImage(
+                file=f'{iconPath}/stage.png'
+            )
+        except:
+            self.stageIcon = None
+        try:
+            self.importIcon = tk.PhotoImage(
+                file=f'{iconPath}/import.png'
+            )
+        except:
+            self.importIcon = None
+        try:
+            self.exportIcon = tk.PhotoImage(
+                file=f'{iconPath}/export.png'
+            )
+        except:
+            self.exportIcon = None
+        try:
+            self.povIcon = tk.PhotoImage(
+                file=f'{iconPath}/pov.png'
+            )
+        except:
+            self.povIcon = None
+        try:
+            self.statusIcon = tk.PhotoImage(
+                file=f'{iconPath}/status.png'
+            )
+        except:
+            self.statusIcon = None
+        try:
+            self.typeIcon = tk.PhotoImage(
+                file=f'{iconPath}/type.png'
+            )
+        except:
+            self.typeIcon = None
+        try:
+            self.chaptersIcon = tk.PhotoImage(
+                file=f'{iconPath}/chapters.png'
+            )
+        except:
+            self.chaptersIcon = None
+        try:
+            self.pluginsIcon = tk.PhotoImage(
+                file=f'{iconPath}/plugins.png'
+            )
+        except:
+            self.pluginsIcon = None
+        try:
+            self.installationFolderIcon = tk.PhotoImage(
+                file=f'{iconPath}/installation_folder.png'
+            )
+        except:
+            self.installationFolderIcon = None
+        try:
+            self.folderIcon = tk.PhotoImage(
+                file=f'{iconPath}/folder.png'
+            )
+        except:
+            self.folderIcon = None
+        try:
+            self.stickyNoteIcon = tk.PhotoImage(
+                file=f'{iconPath}/sticky_note.png'
+            )
+        except:
+            self.stickyNoteIcon = None
