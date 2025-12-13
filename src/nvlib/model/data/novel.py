@@ -488,6 +488,26 @@ class Novel(BasicElement):
                     if not language in self.languages:
                         self.languages.append(language)
 
+    def get_tags(self):
+        """Return a dictionary with all tags.
+        
+        key = tag; value = list of elements with this tag.
+        """
+        tags = {}
+        for elements in [
+            self.sections,
+            self.characters,
+            self.locations,
+            self.items,
+        ]:
+            for elemId in elements:
+                for tag in elements[elemId].tags:
+                    if not tag in tags:
+                        tags[tag] = [elemId]
+                    else:
+                        tags[tag].append(elemId)
+        return tags
+
     def update_plot_lines(self):
         """Update redundant model data.
         

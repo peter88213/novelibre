@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.45.1\n"
+"Project-Id-Version: 5.46.0\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2025-12-12 21:40:02\n"
+"PO-Revision-Date: 2025-12-13 15:11:27\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -640,6 +640,9 @@ msgstr "Zugeordnete Abschnitte hervorheben"
 msgid "Highlight sections with this viewpoint"
 msgstr "Abschnitte mit dieser Perspektive hervorheben"
 
+msgid "Highlight tagged elements"
+msgstr "Elemente mit Schlagwort hervorheben"
+
 msgid "Home page"
 msgstr "Homepage"
 
@@ -847,6 +850,9 @@ msgstr "Keine Beschreibung"
 msgid "No document type"
 msgstr "Kein Dokumenttyp"
 
+msgid "No elements tagged with"
+msgstr "Keine Elemente mit Schlagwort"
+
 msgid "No item data found"
 msgstr "Keine Gegenstandsdaten gefunden"
 
@@ -871,8 +877,8 @@ msgstr "Keine Projektnotizen gefunden"
 msgid "No relationship found"
 msgstr "Keine Beziehung gefunden"
 
-msgid "No section tagged with"
-msgstr "Kein Abschnitt mit Schlagwort"
+msgid "No tags defined"
+msgstr "Keine Schlagwörter definiert"
 
 msgid "No text available"
 msgstr "Kein Text vorhanden"
@@ -1224,6 +1230,9 @@ msgstr "Schauplätze auswählen"
 
 msgid "Select plot lines"
 msgstr "Plotlinien auswählen"
+
+msgid "Select tag"
+msgstr "Schlagwort auswählen"
 
 msgid "Set Status"
 msgstr "Status setzen"

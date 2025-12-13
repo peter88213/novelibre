@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.45.1\n"
-"POT-Creation-Date: 2025-12-12 21:40:02\n"
+"Project-Id-Version: 5.46.0\n"
+"POT-Creation-Date: 2025-12-13 15:57:17\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -647,6 +647,9 @@ msgstr ""
 msgid "Highlight sections with this viewpoint"
 msgstr ""
 
+msgid "Highlight tagged elements"
+msgstr ""
+
 msgid "Home page"
 msgstr ""
 
@@ -854,6 +857,9 @@ msgstr ""
 msgid "No document type"
 msgstr ""
 
+msgid "No elements tagged with"
+msgstr ""
+
 msgid "No item data found"
 msgstr ""
 
@@ -878,7 +884,7 @@ msgstr ""
 msgid "No relationship found"
 msgstr ""
 
-msgid "No section tagged with"
+msgid "No tags defined"
 msgstr ""
 
 msgid "No text available"
@@ -1230,6 +1236,9 @@ msgid "Select locations"
 msgstr ""
 
 msgid "Select plot lines"
+msgstr ""
+
+msgid "Select tag"
 msgstr ""
 
 msgid "Set Status"

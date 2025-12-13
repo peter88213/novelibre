@@ -13,12 +13,12 @@ class PickList(tk.Toplevel):
     """Data import pick list."""
 
     def __init__(
-            self,
-            title,
-            geometry,
-            sourceElements,
-            pickButtonLabel,
-            command
+        self,
+        title,
+        geometry,
+        sourceElements,
+        pickButtonLabel,
+        command
     ):
         """
         

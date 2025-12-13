@@ -11,6 +11,15 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.46.0
+
+- Implemented highlighting of tagged elements. Closes #79.
+- Added menu icons (#53)
+
+#### API changes
+
+- New method `Novel.get_tags()`
+
 ### Version 5.45.1
 
 - Made the new toolbar label's foreground color adjustable for dark mode (#79). 

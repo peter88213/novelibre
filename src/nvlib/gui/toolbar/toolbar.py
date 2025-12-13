@@ -213,18 +213,26 @@ class Toolbar(SubController):
 
         self.add_separator(master=self.masterBar)
 
+        # "Highlight tagged elements" button.
+        self.highlightTaggedButton = self.new_button(
+            text=_('Highlight tagged elements'),
+            image=self._ui.icons.tagsIcon,
+            command=self._ui.tv.highlight_tagged_elements,
+            disableOnLock=False,
+            master=self.masterBar,
+        )
+        self.highlightTaggedButton.pack(side='left')
+
         # "Reset highlighting" button.
         self.highlightingButton = self.new_button(
             text=_('Reset Highlighting'),
-            image=self._ui.icons.highlightIcon,
+            image=self._ui.icons.resetHighlightIcon,
             command=self._ui.tv.reset_highlighting,
             disableOnLock=False,
             disableOnClose=False,
             master=self.masterBar,
         )
         self.highlightingButton.configure(
-            text='',
-            # compound='left',
             state='disabled',
         )
         self.highlightingButton.pack(side='left')

@@ -307,6 +307,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Add')
         menu.add_command(
             label=label,
+            image=self.icons.addIcon,
+            compound='left',
             command=self._ctrl.add_new_element,
         )
         menu.disableOnLock.append(label)
@@ -316,6 +318,8 @@ class MainView(Observer, MsgBoxes, SubController):
         menu.add_command(
             label=label,
             accelerator=KEYS.CUT[1],
+            image=self.icons.cutIcon,
+            compound='left',
             command=self._ctrl.cut_element,
         )
         menu.disableOnLock.append(label)
@@ -324,12 +328,16 @@ class MainView(Observer, MsgBoxes, SubController):
         menu.add_command(
             label=label,
             accelerator=KEYS.COPY[1],
+            image=self.icons.copyIcon,
+            compound='left',
             command=self._ctrl.copy_element,
         )
         label = _('Paste')
         menu.add_command(
             label=label,
             accelerator=KEYS.PASTE[1],
+            image=self.icons.pasteIcon,
+            compound='left',
             command=self._ctrl.paste_element,
         )
         menu.disableOnLock.append(label)
@@ -338,6 +346,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Add Section')
         menu.add_command(
             label=label,
+            image=self.icons.addIcon,
+            compound='left',
             command=self._ctrl.add_new_section,
         )
         menu.disableOnLock.append(label)
@@ -347,6 +357,8 @@ class MainView(Observer, MsgBoxes, SubController):
         menu.add_command(
             label=label,
             accelerator=KEYS.DELETE[1],
+            image=self.icons.removeIcon,
+            compound='left',
             command=self._ctrl.delete_elements,
         )
         menu.disableOnLock.append(label)
@@ -363,6 +375,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Add Chapter')
         menu.add_command(
             label=label,
+            image=self.icons.addIcon,
+            compound='left',
             command=self._ctrl.add_new_chapter
         )
         menu.disableOnLock.append(label)
@@ -370,6 +384,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Add Part')
         menu.add_command(
             label=label,
+            image=self.icons.addIcon,
+            compound='left',
             command=self._ctrl.add_new_part,
         )
         menu.disableOnLock.append(label)
@@ -378,6 +394,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Highlight related sections')
         menu.add_command(
             label=label,
+            image=self.icons.highlightIcon,
+            compound='left',
             command=self.tv.highlight_related_sections,
         )
 
@@ -587,6 +605,8 @@ class MainView(Observer, MsgBoxes, SubController):
         self.fileMenu.add_command(
             label=label,
             accelerator=KEYS.LOCK_PROJECT[1],
+            image=self.icons.lockIcon,
+            compound='left',
             command=self._ctrl.lock,
         )
         self.fileMenu.disableOnClose.append(label)
@@ -630,6 +650,8 @@ class MainView(Observer, MsgBoxes, SubController):
         self.fileMenu.add_command(
             label=label,
             accelerator=KEYS.SAVE_PROJECT[1],
+            image=self.icons.saveIcon,
+            compound='left',
             command=self._ctrl.save_project,
         )
         self.fileMenu.disableOnClose.append(label)
@@ -665,9 +687,30 @@ class MainView(Observer, MsgBoxes, SubController):
         # "View".
         self.viewMenu = NvMenu()
 
+        label = _('Highlight tagged elements')
+        self.viewMenu.add_command(
+            label=label,
+            image=self.icons.tagsIcon,
+            compound='left',
+            command=self.tv.highlight_tagged_elements,
+        )
+        self.viewMenu.disableOnClose.append(label)
+
+        label = _('Reset Highlighting')
+        self.viewMenu.add_command(
+            label=label,
+            image=self.icons.resetHighlightIcon,
+            compound='left',
+            command=self.tv.reset_highlighting,
+        )
+
+        self.viewMenu.add_separator()
+
         label = _('Show Book')
         self.viewMenu.add_command(
             label=label,
+            image=self.icons.viewBookIcon,
+            compound='left',
             command=self.tv.show_book,
         )
         self.viewMenu.disableOnClose.append(label)
@@ -675,6 +718,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Show Characters')
         self.viewMenu.add_command(
             label=label,
+            image=self.icons.viewCharactersIcon,
+            compound='left',
             command=self.tv.show_characters,
         )
         self.viewMenu.disableOnClose.append(label)
@@ -682,6 +727,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Show Locations')
         self.viewMenu.add_command(
             label=label,
+            image=self.icons.viewLocationsIcon,
+            compound='left',
             command=self.tv.show_locations,
         )
         self.viewMenu.disableOnClose.append(label)
@@ -689,6 +736,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Show Items')
         self.viewMenu.add_command(
             label=label,
+            image=self.icons.viewItemsIcon,
+            compound='left',
             command=self.tv.show_items,
         )
         self.viewMenu.disableOnClose.append(label)
@@ -696,6 +745,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Show Plot lines')
         self.viewMenu.add_command(
             label=label,
+            image=self.icons.viewPlotLinesIcon,
+            compound='left',
             command=self.tv.show_plot_lines,
         )
         self.viewMenu.disableOnClose.append(label)
@@ -703,6 +754,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Show Project notes')
         self.viewMenu.add_command(
             label=label,
+            image=self.icons.viewProjectnotesIcon,
+            compound='left',
             command=self.tv.show_project_notes,
         )
         self.viewMenu.disableOnClose.append(label)
@@ -731,6 +784,8 @@ class MainView(Observer, MsgBoxes, SubController):
         self.viewMenu.add_command(
             label=label,
             accelerator=KEYS.TOGGLE_VIEWER[1],
+            image=self.icons.viewerIcon,
+            compound='left',
             command=self.toggle_contents_view,
         )
 
@@ -738,6 +793,8 @@ class MainView(Observer, MsgBoxes, SubController):
         self.viewMenu.add_command(
             label=label,
             accelerator=KEYS.TOGGLE_PROPERTIES[1],
+            image=self.icons.propertiesIcon,
+            compound='left',
             command=self.toggle_properties_view,
         )
 
@@ -764,6 +821,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Add')
         self.partMenu.add_command(
             label=label,
+            image=self.icons.addIcon,
+            compound='left',
             command=self._ctrl.add_new_part,
         )
         self.partMenu.disableOnLock.append(label)
@@ -792,6 +851,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Add')
         self.chapterMenu.add_command(
             label=label,
+            image=self.icons.addIcon,
+            compound='left',
             command=self._ctrl.add_new_chapter,
         )
         self.chapterMenu.disableOnLock.append(label)
@@ -841,6 +902,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Add')
         self.sectionMenu.add_command(
             label=label,
+            image=self.icons.addIcon,
+            compound='left',
             command=self._ctrl.add_new_section,
         )
         self.sectionMenu.disableOnLock.append(label)
@@ -889,6 +952,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Add')
         self.characterMenu.add_command(
             label=label,
+            image=self.icons.addIcon,
+            compound='left',
             command=self._ctrl.add_new_character,
         )
         self.characterMenu.disableOnLock.append(label)
@@ -938,6 +1003,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Add')
         self.locationMenu.add_command(
             label=label,
+            image=self.icons.addIcon,
+            compound='left',
             command=self._ctrl.add_new_location,
         )
         self.locationMenu.disableOnLock.append(label)
@@ -983,6 +1050,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Add')
         self.itemMenu.add_command(
             label=label,
+            image=self.icons.addIcon,
+            compound='left',
             command=self._ctrl.add_new_item,
         )
         self.itemMenu.disableOnLock.append(label)
@@ -1028,6 +1097,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Add Plot line')
         self.plotMenu.add_command(
             label=label,
+            image=self.icons.addIcon,
+            compound='left',
             command=self._ctrl.add_new_plot_line,
         )
         self.plotMenu.disableOnLock.append(label)
@@ -1035,6 +1106,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Add Plot point')
         self.plotMenu.add_command(
             label=label,
+            image=self.icons.addIcon,
+            compound='left',
             command=self._ctrl.add_new_plot_point,
         )
         self.plotMenu.disableOnLock.append(label)
@@ -1098,6 +1171,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Add')
         self.prjNoteMenu.add_command(
             label=label,
+            image=self.icons.addIcon,
+            compound='left',
             command=self._ctrl.add_new_project_note,
         )
         self.prjNoteMenu.disableOnLock.append(label)
@@ -1118,6 +1193,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Manuscript for editing')
         self.exportMenu.add_command(
             label=label,
+            image=self.icons.manuscriptIcon,
+            compound='left',
             command=self._ctrl.export_manuscript,
         )
         self.exportMenu.disableOnLock.append(label)
@@ -1420,6 +1497,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Export manuscript filtered by viewpoint')
         self.characterContextMenu.add_command(
             label=label,
+            image=self.icons.manuscriptIcon,
+            compound='left',
             command=self._ctrl.export_filtered_manuscript,
         )
         self.characterContextMenu.disableOnLock.append(label)
@@ -1427,6 +1506,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Export synopsis filtered by viewpoint')
         self.characterContextMenu.add_command(
             label=label,
+            image=self.icons.manuscriptIcon,
+            compound='left',
             command=self._ctrl.export_filtered_synopsis,
         )
         self.characterContextMenu.disableOnLock.append(label)
@@ -1440,6 +1521,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Highlight sections with this viewpoint')
         self.characterContextMenu.add_command(
             label=label,
+            image=self.icons.highlightIcon,
+            compound='left',
             command=self.tv.highlight_viewpoint_sections,
         )
 
@@ -1491,6 +1574,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Add Plot line')
         self.plotLineContextMenu.add_command(
             label=label,
+            image=self.icons.addIcon,
+            compound='left',
             command=self._ctrl.add_new_plot_line,
         )
         self.plotLineContextMenu.disableOnLock.append(label)
@@ -1498,6 +1583,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Add Plot point')
         self.plotLineContextMenu.add_command(
             label=label,
+            image=self.icons.addIcon,
+            compound='left',
             command=self._ctrl.add_new_plot_point,
         )
         self.plotLineContextMenu.disableOnLock.append(label)

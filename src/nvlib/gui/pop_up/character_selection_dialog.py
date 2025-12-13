@@ -18,19 +18,19 @@ class CharacterSelectionDialog(ModalDialog):
     def __init__(self, model, view, callback, label, **kw):
         super().__init__(view, **kw)
         self._cb = callback
-        self._vpIdList = [None]
+        self._crIdList = [None]
         self.title(_('Characters'))
         preset = ''
         charNames = [preset]
         for crId in model.novel.tree.get_children(CR_ROOT):
             charNames.append(model.novel.characters[crId].title)
-            self._vpIdList.append(crId)
+            self._crIdList.append(crId)
 
-        viewpointVar = MyStringVar(value=preset)
+        characterVar = MyStringVar(value=preset)
         self._characterCombobox = LabelCombo(
             self,
             text=label,
-            textvariable=viewpointVar,
+            textvariable=characterVar,
             values=charNames,
         )
         self._characterCombobox.pack(
@@ -55,4 +55,4 @@ class CharacterSelectionDialog(ModalDialog):
         option = self._characterCombobox.current()
         self.destroy()
         if option >= 0:
-            self._cb(self._vpIdList[option])
+            self._cb(self._crIdList[option])

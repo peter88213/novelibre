@@ -153,6 +153,18 @@ class Icons:
         except:
             self.pasteIcon = None
         try:
+            self.resetHighlightIcon = tk.PhotoImage(
+                file=f'{iconPath}/reset_highlight.png'
+            )
+        except:
+            self.resetHighlightIcon = None
+        try:
+            self.tagsIcon = tk.PhotoImage(
+                file=f'{iconPath}/tag.png'
+            )
+        except:
+            self.tagsIcon = None
+        try:
             self.highlightIcon = tk.PhotoImage(
                 file=f'{iconPath}/highlight.png'
             )

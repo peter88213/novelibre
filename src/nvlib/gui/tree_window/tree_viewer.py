@@ -8,6 +8,7 @@ from tkinter import ttk
 
 from nvlib.controller.sub_controller import SubController
 from nvlib.gui.observer import Observer
+from nvlib.gui.pop_up.str_selection_dialog import StrSelectionDialog
 from nvlib.gui.tree_window.history_list import HistoryList
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.model.nv_treeview import NvTreeview
@@ -213,69 +214,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self._highlightTag = None
         self._highlightViewpoint = None
         self._highlightRelated = None
-        self.highlightedSections = []
-
-    def highlight_tagged_sections(self, tag):
-        self._ui.restore_status()
-        self.reset_highlighting()
-        self._highlightTag = tag
-        self.update_tree()
-        if not self.highlightedSections:
-            self._ui.set_status(f'#{_("No section tagged with")} "{tag}".')
-            return
-
-        self.show_book()
-        self.see_node(self.highlightedSections[0])
-        self._ui.toolbar.set_section_highlighting(
-            f'{_("Tag")}: "{tag}"'
-        )
-
-    def highlight_viewpoint_sections(self):
-        self._ui.restore_status()
-        self.reset_highlighting()
-        selectedNode = self.tree.selection()[0]
-        self._highlightViewpoint = selectedNode
-        self.update_tree()
-        if not self.highlightedSections:
-            self._ui.set_status(f'#{_("Not a viewpoint character")}.')
-            return
-
-        self.show_book()
-        self.see_node(self.highlightedSections[0])
-        self._ui.toolbar.set_section_highlighting(
-            f'{_("Viewpoint")}: '
-            f'{self._mdl.novel.characters[selectedNode].title}'
-        )
-
-    def highlight_related_sections(self):
-        self._ui.restore_status()
-        self.reset_highlighting()
-        selectedNode = self.tree.selection()[0]
-        self._highlightRelated = selectedNode
-        self.update_tree()
-        if not self.highlightedSections:
-            self._ui.set_status(f'#{_("No relationship found")}.')
-            return
-
-        self.show_book()
-        self.see_node(self.highlightedSections[0])
-        text = ''
-        if selectedNode.startswith(CHARACTER_PREFIX):
-            highlighted = self._mdl.novel.characters[selectedNode].title
-            text = f"{_('Character')}: {highlighted}"
-        elif selectedNode.startswith(LOCATION_PREFIX):
-            highlighted = self._mdl.novel.locations[selectedNode].title
-            text = f"{_('Location')}: {highlighted}"
-        elif selectedNode.startswith(LOCATION_PREFIX):
-            highlighted = self._mdl.novel.items[selectedNode].title
-            text = f"{_('Item')}: {highlighted}"
-        elif selectedNode.startswith(PLOT_LINE_PREFIX):
-            highlighted = self._mdl.novel.plotLines[selectedNode].title
-            text = f"{_('Plot line')}: {highlighted}"
-        elif selectedNode.startswith(PLOT_POINT_PREFIX):
-            highlighted = self._mdl.novel.plotPoints[selectedNode].title
-            text = f"{_('Plot point')}: {highlighted}"
-        self._ui.toolbar.set_section_highlighting(text)
+        self.highlightedElements = []
 
     def close_children(self, parent):
         """Recursively close children nodes.
@@ -377,6 +316,68 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             self._ui.on_change_selection(node)
         except:
             pass
+
+    def highlight_tagged_elements(self):
+        tags = sorted(list(self._mdl.novel.get_tags()))
+        if not tags:
+            self._ui.set_status(f'#{_("No tags defined")}.')
+            return
+
+        StrSelectionDialog(
+            self._ui,
+            tags,
+            self._highlight_tagged_elements,
+            _('Select tag'),
+            bg=prefs['color_text_bg'],
+            fg=prefs['color_text_fg'],
+        )
+
+    def highlight_viewpoint_sections(self):
+        self._ui.restore_status()
+        self.reset_highlighting()
+        selectedNode = self.tree.selection()[0]
+        self._highlightViewpoint = selectedNode
+        self.update_tree()
+        if not self.highlightedElements:
+            self._ui.set_status(f'#{_("Not a viewpoint character")}.')
+            return
+
+        self.show_book()
+        self.see_node(self.highlightedElements[0])
+        self._ui.toolbar.set_section_highlighting(
+            f'{_("Viewpoint")}: '
+            f'{self._mdl.novel.characters[selectedNode].title}'
+        )
+
+    def highlight_related_sections(self):
+        self._ui.restore_status()
+        self.reset_highlighting()
+        selectedNode = self.tree.selection()[0]
+        self._highlightRelated = selectedNode
+        self.update_tree()
+        if not self.highlightedElements:
+            self._ui.set_status(f'#{_("No relationship found")}.')
+            return
+
+        self.show_book()
+        self.see_node(self.highlightedElements[0])
+        text = ''
+        if selectedNode.startswith(CHARACTER_PREFIX):
+            highlighted = self._mdl.novel.characters[selectedNode].title
+            text = f"{_('Character')}: {highlighted}"
+        elif selectedNode.startswith(LOCATION_PREFIX):
+            highlighted = self._mdl.novel.locations[selectedNode].title
+            text = f"{_('Location')}: {highlighted}"
+        elif selectedNode.startswith(LOCATION_PREFIX):
+            highlighted = self._mdl.novel.items[selectedNode].title
+            text = f"{_('Item')}: {highlighted}"
+        elif selectedNode.startswith(PLOT_LINE_PREFIX):
+            highlighted = self._mdl.novel.plotLines[selectedNode].title
+            text = f"{_('Plot line')}: {highlighted}"
+        elif selectedNode.startswith(PLOT_POINT_PREFIX):
+            highlighted = self._mdl.novel.plotPoints[selectedNode].title
+            text = f"{_('Plot point')}: {highlighted}"
+        self._ui.toolbar.set_section_highlighting(text)
 
     def load_next(self, event=None):
         """Load the next tree element of the same type."""
@@ -529,7 +530,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self.tree.configure(selectmode='extended')
 
     def reset_highlighting(self):
-        self.highlightedSections.clear()
+        self.highlightedElements.clear()
         self._highlightTag = None
         self._highlightViewpoint = None
         self._highlightRelated = None
@@ -650,7 +651,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             return scnPos
 
         self._wordsTotal = self._mdl.get_counts()[0]
-        self.highlightedSections.clear()
+        self.highlightedElements.clear()
         update_branch('')
 
     def save_branch_status(self):
@@ -981,12 +982,19 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         except:
             pass
 
-        # Set color according to the character's status.
         nodeTags = []
+
+        # Set color according to the character's status.
         if self._mdl.novel.characters[crId].isMajor:
             nodeTags.append('major')
         else:
             nodeTags.append('minor')
+
+        # Highlight element, if applicable.
+        if self._element_is_highlighted(self._mdl.novel.characters[crId]):
+            nodeTags.append('highlighted')
+            self.highlightedElements.append(crId)
+
         return to_string(
             self._mdl.novel.characters[crId].title
             ), nodeValues, tuple(nodeTags)
@@ -1012,15 +1020,23 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         nodeValues[self._colPos['nt']] = self._get_notes_indicator(
             self._mdl.novel.items[itId])
 
-        # tags.
+        # Tags.
         try:
             nodeValues[self._colPos['tg']] = list_to_string(
                 self._mdl.novel.items[itId].tags)
         except:
             pass
+
+        nodeTags = []
+
+        # Highlight element, if applicable.
+        if self._element_is_highlighted(self._mdl.novel.items[itId]):
+            nodeTags.append('highlighted')
+            self.highlightedElements.append(itId)
+
         return to_string(
             self._mdl.novel.items[itId].title
-            ), nodeValues, ()
+            ), nodeValues, tuple(nodeTags)
 
     def _get_location_row_data(self, lcId):
         # Return title, values, and tags for a location row.
@@ -1036,9 +1052,17 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                 self._mdl.novel.locations[lcId].tags)
         except:
             pass
+
+        nodeTags = []
+
+        # Highlight element, if applicable.
+        if self._element_is_highlighted(self._mdl.novel.locations[lcId]):
+            nodeTags.append('highlighted')
+            self.highlightedElements.append(lcId)
+
         return to_string(
             self._mdl.novel.locations[lcId].title
-            ), nodeValues, ()
+            ), nodeValues, tuple(nodeTags)
 
     def _get_comment_indicator(self, element):
         # Return a string that indicates whether the section contents
@@ -1138,9 +1162,11 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                         nodeTags.append('Behind_schedule')
                     else:
                         nodeTags.append('Before_schedule')
+
+                # Highlight section, if applicable.
                 if self._section_is_highlighted(self._mdl.novel.sections[scId]):
                     nodeTags.append('highlighted')
-                    self.highlightedSections.append(scId)
+                    self.highlightedElements.append(scId)
 
                 try:
                     position = round(100 * position / self._wordsTotal, 1)
@@ -1210,6 +1236,21 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             self._mdl.novel.sections[scId].title
         ), nodeValues, tuple(nodeTags)
 
+    def _highlight_tagged_elements(self, tag):
+        self._ui.restore_status()
+        self.reset_highlighting()
+        self._highlightTag = tag
+        self.update_tree()
+        if not self.highlightedElements:
+            self._ui.set_status(f'#{_("No elements tagged with")} "{tag}".')
+            return
+
+        self.expand_all()
+        self.see_node(self.highlightedElements[0])
+        self._ui.toolbar.set_section_highlighting(
+            f'{_("Tag")}: "{tag}"'
+        )
+
     def _on_close_branch(self, event):
         # Event handler for manually collapsing a branch.
         self._update_node_values(self.tree.selection()[0], collect=True)
@@ -1229,6 +1270,12 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
         self._history.append_node(nodeId)
         self._ui.on_change_selection(nodeId)
+
+    def _element_is_highlighted(self, element):
+        if self._highlightTag is not None:
+            return self._highlightTag in element.tags
+
+        return False
 
     def _section_is_highlighted(self, section):
         if self._highlightTag is not None:
