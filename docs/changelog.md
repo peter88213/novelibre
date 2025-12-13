@@ -11,10 +11,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
-### Version 5.46.2
+### Version 5.46.3
 
 - Implemented highlighting of tagged elements. Closes #79.
-- Added menu icons (#53)
+- Added menu icons (#53).
+- Revised the `ElementManager` methods to handle menu commands that do not apply to the selected elements.
+- Refactored and fixed the viewpoint selection dialog.
+
 
 #### API changes
 

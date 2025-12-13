@@ -23,9 +23,9 @@ class StrSelectionDialog(ModalDialog):
         bg=None,
     ):
         super().__init__(master)
+        self.title(label)
         self._cb = callback
         self._strList = strList
-        self.title(label)
 
         # Heading.
         ttk.Label(self, text=label).pack()
@@ -58,14 +58,14 @@ class StrSelectionDialog(ModalDialog):
             expand=True,
         )
         self._listBox.config(yscrollcommand=vbar.set)
-        self._listBox.bind('<Double-1>', self.select_string)
-        self._listBox.bind('<Return>', self.select_string)
+        self._listBox.bind('<Double-1>', self._select_string)
+        self._listBox.bind('<Return>', self._select_string)
 
         # "OK" button.
         ttk.Button(
             self,
             text=_('OK'),
-            command=self.select_string,
+            command=self._select_string,
         ).pack(padx=5, pady=5, side='left')
 
         # "Close" button.
@@ -75,7 +75,7 @@ class StrSelectionDialog(ModalDialog):
             command=self.destroy,
         ).pack(padx=5, pady=5, side='right')
 
-    def select_string(self, event=None):
+    def _select_string(self, event=None):
         # Pass the selected string as a parameter to the callback function.
         selection = self._listBox.curselection()
         self.destroy()

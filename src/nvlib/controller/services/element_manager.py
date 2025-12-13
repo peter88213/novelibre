@@ -7,10 +7,10 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import filedialog
 
 from nvlib.controller.services.service_base import ServiceBase
-from nvlib.gui.pop_up.character_selection_dialog import CharacterSelectionDialog
 from nvlib.gui.pop_up.data_import_dialog import DataImportDialog
+from nvlib.gui.pop_up.str_selection_dialog import StrSelectionDialog
 from nvlib.gui.widgets.nv_simpledialog import askinteger
-from nvlib.novx_globals import CHAPTER_PREFIX
+from nvlib.novx_globals import CHAPTER_PREFIX, SECTION_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
@@ -24,6 +24,7 @@ from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
+from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
 
@@ -655,13 +656,19 @@ class ElementManager(ServiceBase):
                              Otherwise, make them minor.
             elemIds: list of character IDs to process.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
         if elemIds is None:
-            try:
-                elemIds = self._ui.selectedNodes
-            except:
+            elemIds = self._ui.selectedNodes
+            if elemIds is None:
+                return
+
+            elif not self._applies_to_character(elemIds):
+                self._ui.set_status(
+                    f'#{_("Cannot set the character status at this position")}.'
+                )
                 return
 
         self._ui.tv.open_children(CR_ROOT)
@@ -674,13 +681,19 @@ class ElementManager(ServiceBase):
             newStatus: int -- New section status to be set.        
             elemIds: list of IDs to process.            
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
         if elemIds is None:
-            try:
-                elemIds = self._ui.selectedNodes
-            except:
+            elemIds = self._ui.selectedNodes
+            if elemIds is None:
+                return
+
+            elif not self._applies_to_book(elemIds):
+                self._ui.set_status(
+                    f'#{_("Cannot set the section status at this position")}.'
+                )
                 return
 
         self._ui.tv.open_children(elemIds[0])
@@ -693,13 +706,19 @@ class ElementManager(ServiceBase):
             newLevel: int -- New level to be set.
             elemIds: list of IDs to process.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
         if elemIds is None:
-            try:
-                elemIds = self._ui.selectedNodes
-            except:
+            elemIds = self._ui.selectedNodes
+            if elemIds is None:
+                return
+
+            elif not self._applies_to_levelled(elemIds):
+                self._ui.set_status(
+                    f'#{_("Cannot change the level at this position")}.'
+                )
                 return
 
         self._mdl.set_level(newLevel, elemIds)
@@ -711,13 +730,19 @@ class ElementManager(ServiceBase):
             newType: int -- New type to be set.
             elemIds: list of IDs to process.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
         if elemIds is None:
-            try:
-                elemIds = self._ui.selectedNodes
-            except:
+            elemIds = self._ui.selectedNodes
+            if elemIds is None:
+                return
+
+            elif not self._applies_to_book(elemIds):
+                self._ui.set_status(
+                    f'#{_("Cannot set the type at this position")}.'
+                )
                 return
 
         self._ui.tv.open_children(elemIds[0])
@@ -745,21 +770,38 @@ class ElementManager(ServiceBase):
                 self._ui.tv.open_children(elemIds[0])
                 self._mdl.set_viewpoint(crId, elemIds)
 
+        def set_selected_vp(crName):
+            set_vp(charIds[charNames.index(crName)])
+
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
         if elemIds is None:
-            try:
-                elemIds = self._ui.selectedNodes
-            except:
+            elemIds = self._ui.selectedNodes
+            if elemIds is None:
                 return
 
+            elif not self._applies_to_book(elemIds):
+                self._ui.set_status(
+                    f'#{_("Cannot assign a viewpoint at this position")}.'
+                )
+                return
+
+        charIds = [None]
         if crId is None:
-            CharacterSelectionDialog(
-                self._mdl,
+            charNames = [f"({_('Clear assignment')})"]
+            for crId in self._mdl.novel.tree.get_children(CR_ROOT):
+                charNames.append(self._mdl.novel.characters[crId].title)
+                charIds.append(crId)
+
+            StrSelectionDialog(
                 self._ui,
-                set_vp,
+                charNames,
+                set_selected_vp,
                 _('Viewpoint'),
+                bg=prefs['color_text_bg'],
+                fg=prefs['color_text_fg'],
             )
         else:
             set_vp(crId)
@@ -780,4 +822,40 @@ class ElementManager(ServiceBase):
             self._ui.set_status(
                 f'#{_("Cannot create the element at this position")}.'
             )
+
+    def _applies_to_book(self, elemIds):
+        for elemId in elemIds:
+            if (
+                elemId.startswith(SECTION_PREFIX)
+                or elemId.startswith(CHAPTER_PREFIX)
+                or elemId.startswith(CH_ROOT)
+            ):
+                return True
+
+        return False
+
+    def _applies_to_levelled(self, elemIds):
+        for elemId in elemIds:
+            if elemId.startswith(CHAPTER_PREFIX):
+                return True
+
+            if (
+                elemId.startswith(SECTION_PREFIX)
+                and self.novel.sections[elemId].scType > 1
+            ):
+                return True
+
+        return False
+
+        return False
+
+    def _applies_to_character(self, elemIds):
+        for elemId in elemIds:
+            if (
+                elemId.startswith(CR_ROOT)
+                or elemId.startswith(CHARACTER_PREFIX)
+            ):
+                return True
+
+        return False
 

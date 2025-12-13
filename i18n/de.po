@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.46.2\n"
+"Project-Id-Version: 5.46.3\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2025-12-13 20:18:10\n"
+"PO-Revision-Date: 2025-12-13 22:43:29\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -160,6 +160,12 @@ msgstr "Defekten Link korrigiert"
 msgid "Cancel"
 msgstr "Abbrechen"
 
+msgid "Cannot assign a viewpoint at this position"
+msgstr "Kann an dieser Position keine Perspektive zuordnen"
+
+msgid "Cannot change the level at this position"
+msgstr "Kann an dieser Position keine Ebene ändern"
+
 msgid "Cannot convert date/days"
 msgstr "Kann Datum/Tage nicht umwandeln"
 
@@ -201,6 +207,15 @@ msgstr "Kann das Projekt nicht abspeichern"
 
 msgid "Cannot save: The project is locked"
 msgstr "Speichern nicht möglich: Das Projekt ist gesperrt"
+
+msgid "Cannot set the character status at this position"
+msgstr "Kann an dieser Position keinen Figurenstatus setzen"
+
+msgid "Cannot set the section status at this position"
+msgstr "Kann an dieser Position keine Abschnittsstatus setzen"
+
+msgid "Cannot set the type at this position"
+msgstr "Kann an dieser Position keinen Typ einstellen"
 
 msgid "Cannot write file"
 msgstr "Kann Datei nicht schreiben"
