@@ -76,7 +76,7 @@ class StrSelectionDialog(ModalDialog):
         ).pack(padx=5, pady=5, side='right')
 
     def select_string(self, event=None):
-        # callback function.
+        # Pass the selected string as a parameter to the callback function.
         selection = self._listBox.curselection()
         self.destroy()
         if selection:
