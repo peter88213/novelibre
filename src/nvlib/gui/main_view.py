@@ -1572,8 +1572,6 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Export synopsis filtered by viewpoint')
         self.characterContextMenu.add_command(
             label=label,
-            image=self.icons.manuscriptIcon,
-            compound='left',
             command=self._ctrl.export_filtered_synopsis,
         )
         self.characterContextMenu.disableOnLock.append(label)
@@ -1684,6 +1682,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Export manuscript filtered by plot line')
         self.plotLineContextMenu.add_command(
             label=label,
+            image=self.icons.manuscriptIcon,
+            compound='left',
             command=self._ctrl.export_filtered_manuscript,
         )
         self.plotLineContextMenu.disableOnLock.append(label)

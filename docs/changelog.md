@@ -11,6 +11,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.46.4
+
+- Fixed menu icons.
+
+
 ### Version 5.46.3
 
 - Implemented highlighting of tagged elements. Closes #79.
