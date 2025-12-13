@@ -890,6 +890,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Add multiple chapters...')
         self.chapterMenu.add_command(
             label=label,
+            image=self.icons.addMultipleIcon,
+            compound='left',
             command=self._ctrl.add_multiple_new_chapters,
         )
         self.chapterMenu.disableOnLock.append(label)
@@ -941,6 +943,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Add multiple sections...')
         self.sectionMenu.add_command(
             label=label,
+            image=self.icons.addMultipleIcon,
+            compound='left',
             command=self._ctrl.add_multiple_new_sections,
         )
         self.sectionMenu.disableOnLock.append(label)
@@ -1347,24 +1351,32 @@ class MainView(Observer, MsgBoxes, SubController):
         self.helpMenu.add_command(
             label=label,
             accelerator=KEYS.OPEN_HELP[1],
+            image=self.icons.helpIcon,
+            compound='left',
             command=self._ctrl.open_help,
         )
 
         label = _('About novelibre')
         self.helpMenu.add_command(
             label=label,
+            image=self.icons.nLogoIcon,
+            compound='left',
             command=self._about,
         )
 
         label = f"novelibre {_('Home page')}"
         self.helpMenu.add_command(
             label=label,
+            image=self.icons.homeIcon,
+            compound='left',
             command=self._ctrl.open_homepage,
         )
 
         label = _('News about novelibre')
         self.helpMenu.add_command(
             label=label,
+            image=self.icons.newsIcon,
+            compound='left',
             command=self._ctrl.open_news,
         )
 

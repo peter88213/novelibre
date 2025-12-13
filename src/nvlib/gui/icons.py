@@ -27,6 +27,12 @@ class Icons:
         except:
             self.addIcon = None
         try:
+            self.addMultipleIcon = tk.PhotoImage(
+                file=f'{iconPath}/add_multiple.png'
+            )
+        except:
+            self.addMultipleIcon = None
+        try:
             self.addChildIcon = tk.PhotoImage(
                 file=f'{iconPath}/addChild.png'
             )
@@ -290,3 +296,27 @@ class Icons:
             )
         except:
             self.stickyNoteIcon = None
+        try:
+            self.homeIcon = tk.PhotoImage(
+                file=f'{iconPath}/home.png'
+            )
+        except:
+            self.homeIcon = None
+        try:
+            self.helpIcon = tk.PhotoImage(
+                file=f'{iconPath}/help.png'
+            )
+        except:
+            self.helpIcon = None
+        try:
+            self.nLogoIcon = tk.PhotoImage(
+                file=f'{iconPath}/nLogo.png'
+            )
+        except:
+            self.nLogoIcon = None
+        try:
+            self.newsIcon = tk.PhotoImage(
+                file=f'{iconPath}/smile.png'
+            )
+        except:
+            self.newsIcon = None
