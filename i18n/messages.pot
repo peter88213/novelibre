@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.46.4\n"
-"POT-Creation-Date: 2025-12-13 23:50:39\n"
+"Project-Id-Version: 5.46.5\n"
+"POT-Creation-Date: 2025-12-14 12:12:55\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -693,9 +693,6 @@ msgid "Import documents even if locked; do not discard"
 msgstr ""
 
 msgid "Import plot lines"
-msgstr ""
-
-msgid "Import selected elements"
 msgstr ""
 
 msgid "Importance"

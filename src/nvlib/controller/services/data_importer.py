@@ -56,7 +56,7 @@ class DataImporter(ServiceBase):
             source.read()
         except:
             raise RuntimeError(
-                f'{errorMessages[prefix]}: {norm_path(filePath)}'
+                f'{_("Cannot process file")}: {norm_path(filePath)}'
             )
 
         sourceElements = {
@@ -66,7 +66,7 @@ class DataImporter(ServiceBase):
             PLOT_LINE_PREFIX:source.novel.plotLines,
         }
         if not sourceElements[prefix]:
-            raise RuntimeError(
+            raise UserWarning(
                 f'{errorMessages[prefix]}: {norm_path(filePath)}'
             )
 

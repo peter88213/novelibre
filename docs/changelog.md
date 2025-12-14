@@ -10,6 +10,14 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.46.5
+
+- Refined the user interface, using specific icons for pop-up windows.
+- Refined the error messaging. 
+- Set minimum width of the `StrSelectionDialog` window.
+- Provided unified buttons for the `PickList` dialog.
+- Optimized icons.
+
 
 ### Version 5.46.4
 

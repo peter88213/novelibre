@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.46.4\n"
+"Project-Id-Version: 5.46.5\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2025-12-13 23:50:39\n"
+"PO-Revision-Date: 2025-12-14 12:12:55\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -687,9 +687,6 @@ msgstr "Auch gesperrte Dokumente importieren; nicht verwerfen"
 
 msgid "Import plot lines"
 msgstr "Plotlinien importieren"
-
-msgid "Import selected elements"
-msgstr "Ausgewählte Elemente importieren"
 
 msgid "Importance"
 msgstr "Bedeutung"

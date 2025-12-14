@@ -25,6 +25,7 @@ class ViewOptionsDialog(ModalDialog, SubController):
         self._ui = view
 
         self.title(_('"View" options'))
+        self.iconphoto(False, view.icons.settingsIcon)
         window = ttk.Frame(self)
         window.pack(
             fill='both',

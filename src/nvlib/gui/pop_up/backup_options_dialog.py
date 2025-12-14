@@ -31,6 +31,7 @@ class BackupOptionsDialog(ModalDialog, SubController):
         self._ui.restore_status()
 
         self.title(_('Backup options'))
+        self.iconphoto(False, view.icons.settingsIcon)
         window = ttk.Frame(self)
         window.pack(
             fill='both',

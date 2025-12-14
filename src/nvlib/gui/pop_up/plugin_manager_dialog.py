@@ -28,6 +28,7 @@ class PluginManagerDialog(ModalDialog, SubController):
         self._ctrl = controller
 
         self.title(f'{_("Installed plugins")} - novelibre @release')
+        self.iconphoto(False, view.icons.pluginsIcon)
 
         columns = (
             'Plugin',

@@ -47,9 +47,9 @@ class DataImportDialog(SubController):
             windowTitles[prefix],
             windowGeometry,
             sourceElements,
-            _('Import selected elements'),
-            self._import_selected_elements
-            )
+            self._import_selected_elements,
+            icon=self._ui.icons.importIcon,
+        )
         pickList.minsize(self.MIN_WIDTH, self.MIN_HEIGHT)
 
     def _import_selected_elements(self, selectedIds):

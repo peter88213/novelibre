@@ -12,6 +12,7 @@ import tkinter as tk
 
 
 class StrSelectionDialog(ModalDialog):
+    MIN_WIDTH = 45
 
     def __init__(
         self,
@@ -21,9 +22,12 @@ class StrSelectionDialog(ModalDialog):
         label,
         fg=None,
         bg=None,
+        icon=None,
     ):
         super().__init__(master)
         self.title(label)
+        if icon is not None:
+            self.iconphoto(False, icon)
         self._cb = callback
         self._strList = strList
 
@@ -45,7 +49,9 @@ class StrSelectionDialog(ModalDialog):
             selectmode='single',
             fg=fg,
             bg=bg,
+            width=self.MIN_WIDTH,
         )
+
         vbar = ttk.Scrollbar(
             listFrame,
             orient='vertical',

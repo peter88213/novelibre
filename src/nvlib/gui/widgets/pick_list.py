@@ -6,6 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
+from nvlib.nv_locale import _
 import tkinter as tk
 
 
@@ -17,8 +18,9 @@ class PickList(tk.Toplevel):
         title,
         geometry,
         sourceElements,
-        pickButtonLabel,
-        command
+        command,
+        icon=None,
+        selectmode='extended',
     ):
         """
         
@@ -26,35 +28,58 @@ class PickList(tk.Toplevel):
             title: str -- Window title.
             geometry: str -- Window geometry.
             sourceElements: dict -- Key=ID, value=BasicElement reference.
-            pickButtonLabel: str -- Text to be displayed on the 
-                                    "Pick element" button.
             command -- External callback function on picking elements.
         """
         super().__init__()
         self._command = command
         self.title(title)
+        if icon is not None:
+            self.iconphoto(False, icon)
         self.geometry(geometry)
         self.grab_set()
         self.focus()
-        self.pickList = ttk.Treeview(
-            self,
-            selectmode='extended',
+
+        listFrame = ttk.Frame(self)
+        listFrame.pack(
+            fill='both',
+            expand=True,
+            padx=4,
+            pady=4,
         )
-        scrollY = ttk.Scrollbar(
-            self.pickList,
+
+        self._pickList = ttk.Treeview(
+            listFrame,
+            selectmode=selectmode,
+        )
+        vbar = ttk.Scrollbar(
+            listFrame,
             orient='vertical',
-            command=self.pickList.yview,
+            command=self._pickList.yview,
         )
-        self.pickList.configure(yscrollcommand=scrollY.set)
-        scrollY.pack(side='right', fill='y')
-        self.pickList.pack(fill='both', expand=True)
+        vbar.pack(side='right', fill='y')
+        self._pickList.pack(
+            side='left',
+            fill='both',
+            expand=True,
+        )
+        self._pickList.config(yscrollcommand=vbar.set)
+
+        # "OK" button.
         ttk.Button(
             self,
-            text=pickButtonLabel,
-            command=self._pick_elements
-        ).pack()
+            text=_('OK'),
+            command=self._pick_elements,
+        ).pack(padx=5, pady=5, side='left')
+
+        # "Close" button.
+        ttk.Button(
+            self,
+            text=_('Cancel'),
+            command=self.destroy,
+        ).pack(padx=5, pady=5, side='right')
+
         for elemId in sourceElements:
-            self.pickList.insert(
+            self._pickList.insert(
                 '',
                 'end',
                 elemId,
@@ -63,7 +88,7 @@ class PickList(tk.Toplevel):
 
     def _pick_elements(self):
         # Internal callback function on picking elements.
-        selection = self.pickList.selection()
+        selection = self._pickList.selection()
         self.destroy()
         # first close the pop-up, because the command
         # might raise an exception

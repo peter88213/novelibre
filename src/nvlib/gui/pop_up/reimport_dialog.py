@@ -38,6 +38,7 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
         self._ui.restore_status()
 
         self.title(_('Exported documents'))
+        self.iconphoto(False, view.icons.updateFromManuscriptIcon)
         window = ttk.Frame(self)
         window.pack(fill='both', expand=True)
 

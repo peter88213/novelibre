@@ -23,6 +23,7 @@ class ExportOptionsDialog(ModalDialog, SubController):
         self._ctrl = controller
 
         self.title(_('"Export" options'))
+        self.iconphoto(False, view.icons.settingsIcon)
         window = ttk.Frame(self)
         window.pack(
             fill='both',

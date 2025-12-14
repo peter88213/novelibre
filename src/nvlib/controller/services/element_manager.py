@@ -565,6 +565,10 @@ class ElementManager(ServiceBase):
 
         try:
             self._ctrl.dataImporter.read_source(filePath, prefix)
+        except UserWarning as ex:
+            self._ui.set_status(f'#{str(ex)}')
+            return
+
         except Exception as ex:
             self._ui.set_status(f'!{str(ex)}')
             return
@@ -802,6 +806,7 @@ class ElementManager(ServiceBase):
                 _('Viewpoint'),
                 bg=prefs['color_text_bg'],
                 fg=prefs['color_text_fg'],
+                icon=self._ui.icons.povIcon,
             )
         else:
             set_vp(crId)

@@ -692,6 +692,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             _('Select tag'),
             bg=prefs['color_text_bg'],
             fg=prefs['color_text_fg'],
+            icon=self._ui.icons.tagsIcon,
         )
 
     def show_book(self, event=None):
