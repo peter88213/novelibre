@@ -7,10 +7,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import filedialog
 
 from nvlib.controller.services.service_base import ServiceBase
-from nvlib.gui.pop_up.data_import_dialog import DataImportDialog
-from nvlib.gui.pop_up.str_selection_dialog import StrSelectionDialog
 from nvlib.gui.widgets.nv_simpledialog import askinteger
-from nvlib.novx_globals import CHAPTER_PREFIX, SECTION_PREFIX
+from nvlib.gui.widgets.pick_list import PickList
+from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
@@ -24,7 +23,6 @@ from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
-from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
 
@@ -556,6 +554,11 @@ class ElementManager(ServiceBase):
         Positional arguments:
             prefix: str -- Prefix specifying the element type to be imported.
         """
+
+        def import_selected_elements(selectedIds):
+            # Callback function for the data import pick list.
+            self._ctrl.dataImporter.add_elements(selectedIds)
+
         self._ui.restore_status()
         filePath = filedialog.askopenfilename(
             filetypes=[(_('XML data file'), '.xml')]
@@ -573,11 +576,26 @@ class ElementManager(ServiceBase):
             self._ui.set_status(f'!{str(ex)}')
             return
 
-        DataImportDialog(
+        sourceElements = {}
+        for elemId in self._ctrl.dataImporter.sourceElements:
+            sourceElements[
+                elemId] = self._ctrl.dataImporter.sourceElements[elemId].title
+        if not sourceElements:
+            return
+
+        windowTitles = {
+            CHARACTER_PREFIX:_('Select characters'),
+            LOCATION_PREFIX:_('Select locations'),
+            ITEM_PREFIX:_('Select items'),
+            PLOT_LINE_PREFIX:_('Select plot lines'),
+        }
+        PickList(
             self._ui,
-            self._ctrl,
-            self._ctrl.dataImporter.sourceElements,
-            prefix,
+            windowTitles[prefix],
+            sourceElements,
+            import_selected_elements,
+            icon=self._ui.icons.importIcon,
+            multiple=True,
         )
 
     def join_sections(self, scId0=None, scId1=None):
@@ -774,8 +792,12 @@ class ElementManager(ServiceBase):
                 self._ui.tv.open_children(elemIds[0])
                 self._mdl.set_viewpoint(crId, elemIds)
 
-        def set_selected_vp(crName):
-            set_vp(charIds[charNames.index(crName)])
+        def set_selected_vp(crIds):
+            # Callback function for the viewpoint pick list.
+            crId = crIds[0]
+            if crId == '00':
+                crId = None
+            set_vp(crId)
 
         self._ui.restore_status()
         if self._mdl.prjFile is None:
@@ -792,21 +814,18 @@ class ElementManager(ServiceBase):
                 )
                 return
 
-        charIds = [None]
+        characters = {'00': f"({_('Clear assignment')})"}
         if crId is None:
-            charNames = [f"({_('Clear assignment')})"]
             for crId in self._mdl.novel.tree.get_children(CR_ROOT):
-                charNames.append(self._mdl.novel.characters[crId].title)
-                charIds.append(crId)
+                characters[crId] = self._mdl.novel.characters[crId].title
 
-            StrSelectionDialog(
+            PickList(
                 self._ui,
-                charNames,
+                _('Select viewpoint'),
+                characters,
                 set_selected_vp,
-                _('Viewpoint'),
-                bg=prefs['color_text_bg'],
-                fg=prefs['color_text_fg'],
                 icon=self._ui.icons.povIcon,
+                multiple=False,
             )
         else:
             set_vp(crId)

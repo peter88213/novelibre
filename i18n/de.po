@@ -1246,6 +1246,9 @@ msgstr "Plotlinien auswählen"
 msgid "Select tag"
 msgstr "Schlagwort auswählen"
 
+msgid "Select viewpoint"
+msgstr "Perspektive auswählen"
+
 msgid "Set Status"
 msgstr "Status setzen"
 

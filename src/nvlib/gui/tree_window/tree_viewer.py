@@ -8,7 +8,6 @@ from tkinter import ttk
 
 from nvlib.controller.sub_controller import SubController
 from nvlib.gui.observer import Observer
-from nvlib.gui.pop_up.str_selection_dialog import StrSelectionDialog
 from nvlib.gui.tree_window.history_list import HistoryList
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.model.nv_treeview import NvTreeview
@@ -35,6 +34,7 @@ from nvlib.nv_globals import prefs
 from nvlib.nv_globals import to_string
 from nvlib.nv_locale import _
 import tkinter.font as tkFont
+from nvlib.gui.widgets.pick_list import PickList
 
 
 class TreeViewer(ttk.Frame, Observer, SubController):
@@ -680,19 +680,27 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             pass
 
     def select_tag_and_highlight_elements(self):
-        tags = sorted(list(self._mdl.novel.get_tags()))
-        if not tags:
+
+        def highlight_selected(selectedTags):
+            # PickList returns a list.
+            if selectedTags:
+                self.highlight_tagged_elements(selectedTags[0])
+
+        tagList = sorted(list(self._mdl.novel.get_tags()))
+        if not tagList:
             self._ui.set_status(f'#{_("No tags defined")}.')
             return
 
-        StrSelectionDialog(
+        tags = {}
+        for tag in tagList:
+            tags[tag] = [tag]
+        PickList(
             self._ui,
-            tags,
-            self.highlight_tagged_elements,
             _('Select tag'),
-            bg=prefs['color_text_bg'],
-            fg=prefs['color_text_fg'],
+            tags,
+            highlight_selected,
             icon=self._ui.icons.tagsIcon,
+            multiple=False,
         )
 
     def show_book(self, event=None):

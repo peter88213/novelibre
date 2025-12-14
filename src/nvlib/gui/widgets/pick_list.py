@@ -7,37 +7,41 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 
 from nvlib.nv_locale import _
-import tkinter as tk
+from nvlib.gui.widgets.modal_dialog import ModalDialog
 
 
-class PickList(tk.Toplevel):
+class PickList(ModalDialog):
     """Data import pick list."""
 
     def __init__(
         self,
+        master,
         title,
-        geometry,
-        sourceElements,
+        valueList,
         command,
         icon=None,
-        selectmode='extended',
+        multiple=True,
     ):
         """
         
         Positional arguments:
             title: str -- Window title.
-            geometry: str -- Window geometry.
-            sourceElements: dict -- Key=ID, value=BasicElement reference.
-            command -- External callback function on picking elements.
+            valueList: dict -- Key=ID, value=string.
+            command -- External callback function to be called 
+                       with a list of picked keys as parameter.
+            icon -- tk.PhotoImage instance for window decoration.
+        
+        Optional arguments:
+            multiple: Bool -- If True, allow the selection 
+                              of multiple list elements. "OK" picks. 
+                              If False, "OK" or double click picks 
+                              a single list element.
         """
-        super().__init__()
-        self._command = command
+        super().__init__(master)
         self.title(title)
         if icon is not None:
             self.iconphoto(False, icon)
-        self.geometry(geometry)
-        self.grab_set()
-        self.focus()
+        self._command = command
 
         listFrame = ttk.Frame(self)
         listFrame.pack(
@@ -47,6 +51,11 @@ class PickList(tk.Toplevel):
             pady=4,
         )
 
+        # Prepare the pick list with a vertical scrollbar.
+        if multiple:
+            selectmode = 'extended'
+        else:
+            selectmode = 'browse'
         self._pickList = ttk.Treeview(
             listFrame,
             selectmode=selectmode,
@@ -63,33 +72,43 @@ class PickList(tk.Toplevel):
             expand=True,
         )
         self._pickList.config(yscrollcommand=vbar.set)
+        self._pickList.heading(
+            '#0',
+            text=_(title),
+        )
 
-        # "OK" button.
+        # "OK" button to pick single or multiple entries.
         ttk.Button(
             self,
             text=_('OK'),
             command=self._pick_elements,
         ).pack(padx=5, pady=5, side='left')
 
-        # "Close" button.
+        # Mouse key binding to pick a single entry.
+        if not multiple:
+            self._pickList.bind('<Double-1>', self._pick_elements)
+
+        # "Cancel" button to close the window without picking.
         ttk.Button(
             self,
             text=_('Cancel'),
             command=self.destroy,
         ).pack(padx=5, pady=5, side='right')
 
-        for elemId in sourceElements:
+        # Populate the pick list.
+        for key in valueList:
             self._pickList.insert(
                 '',
                 'end',
-                elemId,
-                text=sourceElements[elemId].title,
+                key,
+                text=valueList[key],
             )
 
-    def _pick_elements(self):
+    def _pick_elements(self, event=None):
         # Internal callback function on picking elements.
         selection = self._pickList.selection()
         self.destroy()
-        # first close the pop-up, because the command
-        # might raise an exception
+        # first close the pop-up, because
+        # the command might raise an exception
         self._command(selection)
+        # selection is a list of keys.
