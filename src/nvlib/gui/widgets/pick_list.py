@@ -13,6 +13,8 @@ from nvlib.gui.widgets.modal_dialog import ModalDialog
 class PickList(ModalDialog):
     """Data import pick list."""
 
+    LIST_WIDTH = 300
+
     def __init__(
         self,
         master,
@@ -56,9 +58,11 @@ class PickList(ModalDialog):
             selectmode = 'extended'
         else:
             selectmode = 'browse'
+
         self._pickList = ttk.Treeview(
             listFrame,
             selectmode=selectmode,
+            show='tree',
         )
         vbar = ttk.Scrollbar(
             listFrame,
@@ -72,10 +76,7 @@ class PickList(ModalDialog):
             expand=True,
         )
         self._pickList.config(yscrollcommand=vbar.set)
-        self._pickList.heading(
-            '#0',
-            text=_(title),
-        )
+        self._pickList.column('#0', width=self.LIST_WIDTH)
 
         # "OK" button to pick single or multiple entries.
         ttk.Button(
