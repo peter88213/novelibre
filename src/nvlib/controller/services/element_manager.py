@@ -554,11 +554,6 @@ class ElementManager(ServiceBase):
         Positional arguments:
             prefix: str -- Prefix specifying the element type to be imported.
         """
-
-        def import_selected_elements(selectedIds):
-            # Callback function for the data import pick list.
-            self._ctrl.dataImporter.add_elements(selectedIds)
-
         self._ui.restore_status()
         filePath = filedialog.askopenfilename(
             filetypes=[(_('XML data file'), '.xml')]
@@ -593,7 +588,7 @@ class ElementManager(ServiceBase):
             self._ui,
             windowTitles[prefix],
             sourceElements,
-            import_selected_elements,
+            self._ctrl.dataImporter.add_elements,
             icon=self._ui.icons.importIcon,
             multiple=True,
         )
