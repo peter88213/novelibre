@@ -10,6 +10,14 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.46.6
+
+- Changed the "Settings" icon.
+- Refactored the code for better maintainability, replacing the classes `DataImportDialog`
+  and `StrSelectionDialog` with a generic and improved `PickList` class.
+
+
+
 ### Version 5.46.5
 
 - Refined the user interface, using specific icons for pop-up windows.
