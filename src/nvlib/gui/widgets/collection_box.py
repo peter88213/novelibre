@@ -10,7 +10,6 @@ from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.tooltip import Hovertip
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
-import tkinter as tk
 
 
 class CollectionBox(ttk.Frame):
