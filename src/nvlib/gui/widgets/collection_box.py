@@ -98,6 +98,8 @@ class CollectionBox(ttk.Frame):
             listFrame,
             listvariable=self._cListVar,
             selectmode='single',
+            bg=prefs['color_text_bg'],
+            fg=prefs['color_text_fg'],
         )
         vbar = ttk.Scrollbar(
             listFrame,

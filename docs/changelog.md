@@ -10,11 +10,10 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.46.7
+### Version 5.46.8
 
 - Fixed the tag selection list display.
-- Refactored the `CollectionBox` class, using `ttk.Treeview` instead of `tk.Listbox`. 
-  This allows to enable the buttons on element selection.
+- Refactored the `CollectionBox` class, enabling the buttons on element selection.
 - Refactored `PickList`, simplifying the code.
 
 
