@@ -10,6 +10,7 @@ from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.tooltip import Hovertip
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
+import tkinter as tk
 
 
 class CollectionBox(ttk.Frame):
@@ -85,11 +86,6 @@ class CollectionBox(ttk.Frame):
                 except:
                     pass
 
-        def _on_focus_out(event=None):
-            # Internal callback function on leaving a listbox.
-            # self._cList.selection_clear(0, 'end')
-            self.disable_buttons()
-
         super().__init__(master, **kw)
 
         # Listbox.
@@ -116,7 +112,8 @@ class CollectionBox(ttk.Frame):
         )
         self._cList.config(yscrollcommand=vbar.set)
         self._cList.bind('<<ListboxSelect>>', on_change_selection)
-        self._cList.bind('<FocusOut>', _on_focus_out)
+        self._cList.configure(exportselection=False)
+        # keep selection when losing the focus
 
         # Buttons.
         buttonbar = ttk.Frame(self)
@@ -202,6 +199,7 @@ class CollectionBox(ttk.Frame):
 
     def set(self, valueDict):
         # Populate the collection.
+        self._cList.selection_clear(0, 'end')
         self._cKeyList = list(valueDict)
         self._cListVar.set(list(valueDict.values()))
         self.disable_buttons()
