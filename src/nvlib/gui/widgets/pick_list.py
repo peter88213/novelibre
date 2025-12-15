@@ -19,7 +19,7 @@ class PickList(ModalDialog):
         self,
         master,
         title,
-        valueList,
+        valueDict,
         command,
         icon=None,
         multiple=True,
@@ -28,7 +28,7 @@ class PickList(ModalDialog):
         
         Positional arguments:
             title: str -- Window title.
-            valueList: dict -- Key=ID, value=string.
+            valueDict: dict -- Key=ID, value=string.
             command -- External callback function to be called 
                        with a list of picked keys as parameter.
             icon -- tk.PhotoImage instance for window decoration.
@@ -39,6 +39,16 @@ class PickList(ModalDialog):
                               If False, "OK" or double click picks 
                               a single list element.
         """
+
+        def pick_elements(event=None):
+            # Internal callback function on picking elements.
+            selection = pList.selection()
+            self.destroy()
+            # first close the pop-up, because
+            # the command might raise an exception
+            self._command(selection)
+            # selection is a list of keys.
+
         super().__init__(master)
         self.title(title)
         if icon is not None:
@@ -59,7 +69,7 @@ class PickList(ModalDialog):
         else:
             selectmode = 'browse'
 
-        self._pickList = ttk.Treeview(
+        pList = ttk.Treeview(
             listFrame,
             selectmode=selectmode,
             show='tree',
@@ -67,27 +77,27 @@ class PickList(ModalDialog):
         vbar = ttk.Scrollbar(
             listFrame,
             orient='vertical',
-            command=self._pickList.yview,
+            command=pList.yview,
         )
         vbar.pack(side='right', fill='y')
-        self._pickList.pack(
+        pList.pack(
             side='left',
             fill='both',
             expand=True,
         )
-        self._pickList.config(yscrollcommand=vbar.set)
-        self._pickList.column('#0', width=self.LIST_WIDTH)
+        pList.config(yscrollcommand=vbar.set)
+        pList.column('#0', width=self.LIST_WIDTH)
 
         # "OK" button to pick single or multiple entries.
         ttk.Button(
             self,
             text=_('OK'),
-            command=self._pick_elements,
+            command=pick_elements,
         ).pack(padx=5, pady=5, side='left')
 
         # Mouse key binding to pick a single entry.
         if not multiple:
-            self._pickList.bind('<Double-1>', self._pick_elements)
+            pList.bind('<Double-1>', pick_elements)
 
         # "Cancel" button to close the window without picking.
         ttk.Button(
@@ -97,19 +107,11 @@ class PickList(ModalDialog):
         ).pack(padx=5, pady=5, side='right')
 
         # Populate the pick list.
-        for key in valueList:
-            self._pickList.insert(
+        for key in valueDict:
+            pList.insert(
                 '',
                 'end',
                 key,
-                text=valueList[key],
+                text=valueDict[key],
             )
 
-    def _pick_elements(self, event=None):
-        # Internal callback function on picking elements.
-        selection = self._pickList.selection()
-        self.destroy()
-        # first close the pop-up, because
-        # the command might raise an exception
-        self._command(selection)
-        # selection is a list of keys.

@@ -145,12 +145,11 @@ class ElementView(BlankView):
 
     def open_link(self, event=None):
         """Open the selected link."""
-        try:
-            selection = self.linkCollection.cListbox.curselection()[0]
-        except:
+        selection = self.linkCollection.selection
+        if selection is None:
             return
 
-        self._ctrl.open_link(self.element, selection)
+        self._ctrl.open_link(self.element, int(selection))
 
     def set_data(self, elementId):
         """Update the view with element's data.
@@ -172,14 +171,14 @@ class ElementView(BlankView):
 
         # Links window.
         if hasattr(self.element, 'links'):
-            linkList = []
-            for path in self.element.links:
-                linkList.append(os.path.basename(path))
-            self.linkCollection.cList.set(linkList)
-            listboxSize = len(linkList)
+            linkDict = {}
+            for i, path in enumerate(self.element.links):
+                linkDict[str(i)] = os.path.basename(path)
+            self.linkCollection.set(linkDict)
+            listboxSize = len(linkDict)
             if listboxSize > self._HEIGHT_LIMIT:
                 listboxSize = self._HEIGHT_LIMIT
-            self.linkCollection.cListbox.config(height=listboxSize)
+            self.linkCollection.set_height(listboxSize)
             self._configure_link_buttons()
 
         # Notes entry (if any).
@@ -207,7 +206,7 @@ class ElementView(BlankView):
         ).pack(fill='x')
 
     def _configure_link_buttons(self, event=None):
-        if self.element.links:
+        if self.element.links and self.linkCollection.selection:
             if self.isLocked:
                 self.linkCollection.btnOpen.config(state='normal')
                 self.linkCollection.btnRemove.config(state='disabled')
@@ -298,8 +297,7 @@ class ElementView(BlankView):
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
             iconOpen=self._ui.icons.gotoIcon,
-            bg=prefs['color_text_bg'],
-            fg=prefs['color_text_fg'],
+            cmdSelect=self._configure_link_buttons,
         )
         self.inputWidgets.extend(self.linkCollection.inputWidgets)
         self.linkCollection.pack(fill='x')
@@ -342,7 +340,7 @@ class ElementView(BlankView):
     def _remove_link(self, event=None):
         # Remove a link from the list.
         try:
-            selection = self.linkCollection.cListbox.curselection()[0]
+            selection = self.linkCollection.selection
         except:
             return
 

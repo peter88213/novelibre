@@ -94,7 +94,7 @@ class SectionView(ElementView):
         relationsPreview.bind('<Button-1>', self._toggle_relation_frame)
 
         # 'Characters' listbox.
-        self._crTitles = ''
+        self._crDict = ''
         crHeading = ttk.Frame(self._relationFrame)
         self._characterLabel = ttk.Label(crHeading, text=_('Characters'))
         self._characterLabel.pack(anchor='w', side='left')
@@ -113,14 +113,13 @@ class SectionView(ElementView):
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
             iconOpen=self._ui.icons.gotoIcon,
-            bg=prefs['color_text_bg'],
-            fg=prefs['color_text_fg'],
+            cmdSelect=self._configure_character_buttons,
         )
         self._characterCollection.pack(fill='x')
         inputWidgets.extend(self._characterCollection.inputWidgets)
 
         # 'Locations' listbox.
-        self._lcTitles = ''
+        self._lcDict = ''
         self._locationLabel = ttk.Label(
             self._relationFrame,
             text=_('Locations')
@@ -135,14 +134,13 @@ class SectionView(ElementView):
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
             iconOpen=self._ui.icons.gotoIcon,
-            bg=prefs['color_text_bg'],
-            fg=prefs['color_text_fg'],
+            cmdSelect=self._configure_location_buttons,
         )
         self._locationCollection.pack(fill='x')
         inputWidgets.extend(self._locationCollection.inputWidgets)
 
         # 'Items' listbox.
-        self._itTitles = ''
+        self._itDict = ''
         self._itemLabel = ttk.Label(self._relationFrame, text=_('Items'))
         self._itemLabel.pack(anchor='w')
         self._itemCollection = CollectionBox(
@@ -154,8 +152,7 @@ class SectionView(ElementView):
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
             iconOpen=self._ui.icons.gotoIcon,
-            bg=prefs['color_text_bg'],
-            fg=prefs['color_text_fg'],
+            cmdSelect=self._configure_item_buttons,
         )
         self._itemCollection.pack(fill='x')
         inputWidgets.extend(self._itemCollection.inputWidgets)
@@ -372,16 +369,16 @@ class SectionView(ElementView):
 
         #--- 'Viewpoint' combobox.
         self._viewpointVar = MyStringVar()
-        self._characterCombobox = LabelCombo(
+        self._viewpointCombobox = LabelCombo(
             self._sectionExtraFrame,
             text=_('Viewpoint'),
             textvariable=self._viewpointVar,
             values=[],
             lblWidth=self._LABEL_WIDTH,
         )
-        self._characterCombobox.pack(anchor='w', pady=2)
-        inputWidgets.append(self._characterCombobox)
-        self._characterCombobox.combo.bind(
+        self._viewpointCombobox.pack(anchor='w', pady=2)
+        inputWidgets.append(self._viewpointCombobox)
+        self._viewpointCombobox.combo.bind(
             '<<ComboboxSelected>>', self.apply_changes)
         self._vpIdList = []
 
@@ -444,8 +441,6 @@ class SectionView(ElementView):
             iconAdd=self._ui.icons.addIcon,
             iconRemove=self._ui.icons.removeIcon,
             iconOpen=self._ui.icons.gotoIcon,
-            bg=prefs['color_text_bg'],
-            fg=prefs['color_text_fg'],
         )
         self._plotlineCollection.pack(fill='x')
         inputWidgets.extend(self._plotlineCollection.inputWidgets)
@@ -782,7 +777,7 @@ class SectionView(ElementView):
             self.element.lastsDays = lastsDaysStr
 
         #--- 'Viewpoint' combobox.
-        option = self._characterCombobox.current()
+        option = self._viewpointCombobox.current()
         if option >= 0:
             # Put the selected character at the first position
             # of related characters.
@@ -1101,44 +1096,24 @@ class SectionView(ElementView):
 
     def go_to_character(self, event=None):
         """Go to the character selected in the listbox."""
-        try:
-            selection = self._characterCollection.cListbox.curselection()[0]
-        except:
-            return
-
-        self._ui.tv.go_to_node(self.element.characters[selection])
+        self._ui.tv.go_to_node(self._characterCollection.selection)
 
     def go_to_item(self, event=None):
         """Go to the item selected in the listbox."""
-        try:
-            selection = self._itemCollection.cListbox.curselection()[0]
-        except:
-            return
-
-        self._ui.tv.go_to_node(self.element.items[selection])
+        self._ui.tv.go_to_node(self._itemCollection.selection)
 
     def go_to_location(self, event=None):
         """Go to the location selected in the listbox."""
-        try:
-            selection = self._locationCollection.cListbox.curselection()[0]
-        except:
-            return
-
-        self._ui.tv.go_to_node(self.element.locations[selection])
+        self._ui.tv.go_to_node(self._locationCollection.selection)
 
     def go_to_plotline(self, event=None):
         """Go to the plot line selected in the listbox."""
-        try:
-            selection = self._plotlineCollection.cListbox.curselection()[0]
-        except:
-            return
-
-        self._ui.tv.go_to_node(self.element.scPlotLines[selection])
+        self._ui.tv.go_to_node(self._plotlineCollection.selection)
 
     def on_select_plotline(self, selection):
         """Callback routine for section plot line list selection."""
         self.save_plot_notes()
-        self.selectedPlotline = self.element.scPlotLines[selection]
+        self.selectedPlotline = selection
         self._plotNotesWindow.config(state='normal')
         if self.element.plotlineNotes:
             self._plotNotesWindow.set_text(
@@ -1188,18 +1163,16 @@ class SectionView(ElementView):
         if self.isLocked:
             return
 
-        try:
-            selection = self._characterCollection.cListbox.curselection()[0]
-        except:
+        crId = self._characterCollection.selection
+        if crId is None:
             return
 
-        crId = self.element.characters[selection]
         if self._ui.ask_yes_no(
             message=_('Remove character from the list?'),
             detail=self._mdl.novel.characters[crId].title
         ):
             crList = self.element.characters
-            del crList[selection]
+            crList.remove(crId)
             self.element.characters = crList
 
     def remove_item(self, event=None):
@@ -1207,18 +1180,16 @@ class SectionView(ElementView):
         if self.isLocked:
             return
 
-        try:
-            selection = self._itemCollection.cListbox.curselection()[0]
-        except:
+        itId = self._itemCollection.selection
+        if itId is None:
             return
 
-        itId = self.element.items[selection]
         if self._ui.ask_yes_no(
             message=_('Remove item from the list?'),
             detail=self._mdl.novel.items[itId].title
         ):
             itList = self.element.items
-            del itList[selection]
+            itList.remove(itId)
             self.element.items = itList
 
     def remove_location(self, event=None):
@@ -1227,18 +1198,16 @@ class SectionView(ElementView):
         if self.isLocked:
             return
 
-        try:
-            selection = self._locationCollection.cListbox.curselection()[0]
-        except:
+        lcId = self._locationCollection.selection
+        if lcId is None:
             return
 
-        lcId = self.element.locations[selection]
         if self._ui.ask_yes_no(
             message=_('Remove location from the list?'),
             detail=self._mdl.novel.locations[lcId].title
         ):
             lcList = self.element.locations
-            del lcList[selection]
+            lcList.remove(lcId)
             self.element.locations = lcList
 
     def remove_plotline(self, event=None):
@@ -1247,12 +1216,10 @@ class SectionView(ElementView):
         if self.isLocked:
             return
 
-        try:
-            selection = self._plotlineCollection.cListbox.curselection()[0]
-        except:
+        plId = self._plotlineCollection.selection
+        if plId is None:
             return
 
-        plId = self.element.scPlotLines[selection]
         if not self._ui.ask_yes_no(
             message=_('Remove plot line from the list?'),
             detail=(
@@ -1264,7 +1231,7 @@ class SectionView(ElementView):
 
         # Remove the plot line from the section's list.
         arcList = self.element.scPlotLines
-        del arcList[selection]
+        arcList.remove(plId)
         self.element.scPlotLines = arcList
 
         # Remove the section from the plot line's list.
@@ -1333,37 +1300,36 @@ class SectionView(ElementView):
         #--- Frame for 'Relationships'.
 
         # 'Characters' window.
-        self._crTitles = self._get_element_titles(
+        self._crDict = self._get_element_dict(
             self.element.characters, self._mdl.novel.characters
         )
-        self._characterCollection.cList.set(self._crTitles)
-        listboxSize = len(self._crTitles)
+        self._characterCollection.set(self._crDict)
+        listboxSize = len(self._crDict)
         if listboxSize > self._HEIGHT_LIMIT:
             listboxSize = self._HEIGHT_LIMIT
-        self._characterCollection.cListbox.config(height=listboxSize)
+        self._characterCollection.set_height(listboxSize)
         self._configure_character_buttons()
 
         # 'Locations' window.
-        self._lcTitles = self._get_element_titles(
+        self._lcDict = self._get_element_dict(
             self.element.locations, self._mdl.novel.locations
         )
-        self._locationCollection.cList.set(self._lcTitles)
-        listboxSize = len(self._lcTitles)
+        self._locationCollection.set(self._lcDict)
+        listboxSize = len(self._lcDict)
         if listboxSize > self._HEIGHT_LIMIT:
             listboxSize = self._HEIGHT_LIMIT
-        self._locationCollection.cListbox.config(height=listboxSize)
+        self._locationCollection.set_height(listboxSize)
         self._configure_location_buttons()
 
         # 'Items' window.
-        self._itTitles = self._get_element_titles(
+        self._itDict = self._get_element_dict(
             self.element.items, self._mdl.novel.items
         )
-        self._itemCollection.cList.set(self._itTitles)
-        listboxSize = len(self._itTitles)
+        self._itemCollection.set(self._itDict)
+        listboxSize = len(self._itDict)
         if listboxSize > self._HEIGHT_LIMIT:
             listboxSize = self._HEIGHT_LIMIT
-        self._itemCollection.cListbox.config(height=listboxSize)
-        self._configure_item_buttons()
+        self._itemCollection.set_height(listboxSize)
 
         #--- Frame for date/time/duration.
 
@@ -1391,7 +1357,7 @@ class SectionView(ElementView):
         for crId in self._mdl.novel.tree.get_children(CR_ROOT):
             charNames.append(self._mdl.novel.characters[crId].title)
             self._vpIdList.append(crId)
-        self._characterCombobox.configure(values=charNames)
+        self._viewpointCombobox.configure(values=charNames)
         self._viewpointVar.set(value=preset)
 
         #--- 'Unused' checkbox.
@@ -1439,26 +1405,26 @@ class SectionView(ElementView):
         #--- Frame for 'Plot'.
 
         #  'Plot lines' listbox.
-        self._plotlineTitles = self._get_plotline_titles(
+        self._plotlineTitles = self._get_plotline_dict(
             self.element.scPlotLines,
             self._mdl.novel.plotLines
         )
-        self._plotlineCollection.cList.set(self._plotlineTitles)
+        self._plotlineCollection.set(self._plotlineTitles)
         listboxSize = len(self._plotlineTitles)
         if listboxSize > self._HEIGHT_LIMIT:
             listboxSize = self._HEIGHT_LIMIT
-        self._plotlineCollection.cListbox.config(height=listboxSize)
+        self._plotlineCollection.set_height(listboxSize)
         self._configure_plotline_buttons()
 
         # 'Plot notes' text box.
+
         self._plotNotesWindow.clear()
         self._plotNotesWindow.config(state='disabled')
         self._plotNotesWindow.config(bg=prefs['color_inactive_bg'])
         if self._plotlineTitles:
-            self._plotlineCollection.cListbox.select_clear(0, 'end')
-            self._plotlineCollection.cListbox.select_set('end')
-            self.selectedPlotline = -1
-            self.on_select_plotline(-1)
+            self._plotlineCollection.selection = None
+            self.selectedPlotline = self._plotlineCollection.selection
+            self.on_select_plotline(self.selectedPlotline)
         else:
             self.selectedPlotline = None
 
@@ -1628,6 +1594,9 @@ class SectionView(ElementView):
 
     def _add_character(self, event=None):
         # Add the selected element to the collection, if applicable.
+        if self.element is None:
+            return
+
         crList = self.element.characters
         crId = self._ui.tv.tree.selection()[0]
         if crId.startswith(CHARACTER_PREFIX) and not crId in crList:
@@ -1637,6 +1606,9 @@ class SectionView(ElementView):
 
     def _add_item(self, event=None):
         # Add the selected element to the collection, if applicable.
+        if self.element is None:
+            return
+
         itList = self.element.items
         itId = self._ui.tv.tree.selection()[0]
         if itId.startswith(ITEM_PREFIX)and not itId in itList:
@@ -1646,6 +1618,9 @@ class SectionView(ElementView):
 
     def _add_location(self, event=None):
         # Add the selected element to the collection, if applicable.
+        if self.element is None:
+            return
+
         lcList = self.element.locations
         lcId = self._ui.tv.tree.selection()[0]
         if lcId.startswith(LOCATION_PREFIX)and not lcId in lcList:
@@ -1655,6 +1630,9 @@ class SectionView(ElementView):
 
     def _add_plotline(self, event=None):
         # Add the selected element to the collection, if applicable.
+        if self.element is None:
+            return
+
         plotlineList = self.element.scPlotLines
         plId = self._ui.tv.tree.selection()[0]
         if plId.startswith(PLOT_LINE_PREFIX) and not plId in plotlineList:
@@ -1667,7 +1645,7 @@ class SectionView(ElementView):
         self._ui.tv.restore_branch_status()
 
     def _configure_character_buttons(self, event=None):
-        if self.element.characters:
+        if self.element.characters and self._characterCollection.selection:
             if self.isLocked:
                 self._characterCollection.btnOpen.config(state='normal')
                 self._characterCollection.btnRemove.config(state='disabled')
@@ -1677,7 +1655,7 @@ class SectionView(ElementView):
             self._characterCollection.disable_buttons()
 
     def _configure_item_buttons(self, event=None):
-        if self.element.items:
+        if self.element.items and self._itemCollection.selection:
             if self.isLocked:
                 self._itemCollection.btnOpen.config(state='normal')
                 self._itemCollection.btnRemove.config(state='disabled')
@@ -1687,7 +1665,7 @@ class SectionView(ElementView):
             self._itemCollection.disable_buttons()
 
     def _configure_location_buttons(self, event=None):
-        if self.element.locations:
+        if self.element.locations and self._locationCollection.selection:
             if self.isLocked:
                 self._locationCollection.btnOpen.config(state='normal')
                 self._locationCollection.btnRemove.config(state='disabled')
@@ -1715,34 +1693,35 @@ class SectionView(ElementView):
         self._create_notes_window()
         self._create_button_bar()
 
-    def _get_element_titles(self, elemIds, elements):
-        # Return a list of element titles.
+    def _get_element_dict(self, elemIds, elements):
+        # Return a dictionary:
+        # key: element ID; value: element title.
         #   elemIds -- list of element IDs.
         #   elements -- list of element objects.
-        elemTitles = []
+        elementDict = {}
         if elemIds:
             for elemId in elemIds:
                 try:
-                    elemTitles.append(elements[elemId].title)
+                    elementDict[elemId] = elements[elemId].title
                 except:
                     pass
-        return elemTitles
+        return elementDict
 
-    def _get_plotline_titles(self, elemIds, elements):
+    def _get_plotline_dict(self, elemIds, elements):
         # Return a list of plot line titles, preceded by the short names.
         #    elemIds -- list of element IDs.
         #    elements -- list of element objects.
-        elemTitles = []
+        elementDict = {}
         if elemIds:
             for elemId in elemIds:
                 try:
-                    elemTitles.append(
+                    elementDict[elemId] = (
                         f'({elements[elemId].shortName}) '
                         f'{elements[elemId].title}'
                     )
                 except:
                     pass
-        return elemTitles
+        return elementDict
 
     def _get_relation_id_list(self, newTitleStr, oldTitleStr, elements):
         # Return a list of valid IDs from a string

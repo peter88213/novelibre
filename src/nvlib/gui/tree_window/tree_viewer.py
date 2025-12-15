@@ -693,7 +693,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
         tags = {}
         for tag in tagList:
-            tags[tag] = [tag]
+            tags[tag] = tag
         PickList(
             self._ui,
             _('Select tag'),

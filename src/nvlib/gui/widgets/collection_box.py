@@ -17,8 +17,8 @@ class CollectionBox(ttk.Frame):
     """A frame with a listbox and control buttons.
     
     Public instance variables:
-        cList: tk.strVar -- Holds a list representing the collection.
-        cListbox: tk.Listbox -- Displays the collection.
+        _cList: tk.strVar -- Holds a list representing the collection.
+        _cList: tk.Listbox -- Displays the collection.
         btnOpen: ttk.Button -- Activatable button, not intended to 
                                modify the collection.
         btnAdd: ttk.Button -- Input widget, always active by default.
@@ -48,8 +48,6 @@ class CollectionBox(ttk.Frame):
         lblRemove=None,
         iconRemove=None,
         cmdSelect=None,
-        fg=None,
-        bg=None,
         **kw
     ):
         """Set up the listbox and the buttons.
@@ -74,45 +72,46 @@ class CollectionBox(ttk.Frame):
             iconRemove -- Optional icon on the "Remove" button.
             cmdSelect -- Reference to the callback routine for list element 
                          selection (optional).
-            bg -- Color for the normal background.
-            fg -- Text color for non-selected items.
         
         Extends the superclass constructor.
         """
+
+        def on_change_selection(event=None):
+            # Internal callback function on selecting elements.
+            if cmdSelect is not None:
+                try:
+                    cmdSelect(self._cList.selection()[0])
+                except:
+                    pass
+
         super().__init__(master, **kw)
 
         # Listbox.
         listFrame = ttk.Frame(self)
         listFrame.pack(side='left', fill='both', expand=True)
-        self.cList = tk.StringVar()
-        self.cListbox = tk.Listbox(
+        self._cList = ttk.Treeview(
             listFrame,
-            listvariable=self.cList,
-            selectmode='single',
-            fg=fg,
-            bg=bg,
+            selectmode='browse',
+            show='tree',
         )
         vbar = ttk.Scrollbar(
             listFrame,
             orient='vertical',
-            command=self.cListbox.yview,
+            command=self._cList.yview,
         )
         vbar.pack(side='right', fill='y')
-        self.cListbox.pack(
+        self._cList.pack(
             side='left',
             fill='both',
             expand=True,
         )
-        self.cListbox.config(yscrollcommand=vbar.set)
-        self.cListbox.bind('<<ListboxSelect>>', self._on_change_selection)
+        self._cList.config(yscrollcommand=vbar.set)
+        self._cList.bind('<<TreeviewSelect>>', on_change_selection)
 
         # Buttons.
         buttonbar = ttk.Frame(self)
         buttonbar.pack(anchor='n', side='right', fill='x', padx=5)
         self.inputWidgets = []
-
-        # "Select" command.
-        self._cmdSelect = cmdSelect
 
         # "Open" command.
         kwargs = dict(
@@ -126,8 +125,8 @@ class CollectionBox(ttk.Frame):
         self.btnOpen = ttk.Button(buttonbar, **kwargs)
         if cmdOpen is not None:
             self.btnOpen.pack(fill='x', expand=True)
-            self.cListbox.bind('<Double-1>', cmdOpen)
-            self.cListbox.bind('<Return>', cmdOpen)
+            self._cList.bind('<Double-1>', cmdOpen)
+            self._cList.bind('<Return>', cmdOpen)
 
         # "Add" command.
         kwargs = dict(
@@ -156,9 +155,27 @@ class CollectionBox(ttk.Frame):
         if cmdRemove is not None:
             self.btnRemove.pack(fill='x', expand=True)
             self.inputWidgets.append(self.btnRemove)
-            self.cListbox.bind(KEYS.DELETE[0], cmdRemove)
+            self._cList.bind(KEYS.DELETE[0], cmdRemove)
 
         self._set_hovertips()
+
+    @property
+    def selection(self):
+        try:
+            return self._cList.selection()[0]
+
+        except:
+            return None
+
+    @selection.setter
+    def selection(self, node):
+        try:
+            if node is None:
+                node = self._cList.get_children()[0]
+            self._cList.focus()
+            self._cList.selection_set(node)
+        except:
+            pass
 
     def enable_buttons(self, event=None):
         """Activate the group of activatable buttons."""
@@ -170,12 +187,21 @@ class CollectionBox(ttk.Frame):
         self.btnOpen.config(state='disabled')
         self.btnRemove.config(state='disabled')
 
-    def _on_change_selection(self, event=None):
-        if self._cmdSelect is not None:
-            try:
-                self._cmdSelect(self.cListbox.curselection()[0])
-            except:
-                pass
+    def set(self, valueDict):
+        # Populate the collection.
+        for entry in self._cList.get_children():
+            self._cList.delete(entry)
+        for key in valueDict:
+            self._cList.insert(
+                '',
+                'end',
+                key,
+                text=valueDict[key],
+            )
+        self.disable_buttons()
+
+    def set_height(self, newVal):
+        self._cList.config(height=newVal)
 
     def _set_hovertips(self):
         if not prefs['enable_hovertips']:
