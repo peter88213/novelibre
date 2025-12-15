@@ -79,19 +79,29 @@ class CollectionBox(ttk.Frame):
             # Internal callback function on selecting elements.
             if cmdSelect is not None:
                 try:
-                    cmdSelect(self._cList.selection()[0])
+                    selectionIndex = self._cList.curselection()[0]
+                    selectedKey = self._cKeyList[selectionIndex]
+                    cmdSelect(selectedKey)
                 except:
                     pass
+
+        def _on_focus_out(event=None):
+            # Internal callback function on leaving a listbox.
+            # self._cList.selection_clear(0, 'end')
+            self.disable_buttons()
 
         super().__init__(master, **kw)
 
         # Listbox.
         listFrame = ttk.Frame(self)
         listFrame.pack(side='left', fill='both', expand=True)
-        self._cList = ttk.Treeview(
+
+        self._cKeyList = []
+        self._cListVar = tk.StringVar()
+        self._cList = tk.Listbox(
             listFrame,
-            selectmode='browse',
-            show='tree',
+            listvariable=self._cListVar,
+            selectmode='single',
         )
         vbar = ttk.Scrollbar(
             listFrame,
@@ -105,7 +115,8 @@ class CollectionBox(ttk.Frame):
             expand=True,
         )
         self._cList.config(yscrollcommand=vbar.set)
-        self._cList.bind('<<TreeviewSelect>>', on_change_selection)
+        self._cList.bind('<<ListboxSelect>>', on_change_selection)
+        self._cList.bind('<FocusOut>', _on_focus_out)
 
         # Buttons.
         buttonbar = ttk.Frame(self)
@@ -161,7 +172,8 @@ class CollectionBox(ttk.Frame):
     @property
     def selection(self):
         try:
-            return self._cList.selection()[0]
+            selection = self._cList.curselection()[0]
+            return self._cKeyList[selection]
 
         except:
             return None
@@ -170,9 +182,11 @@ class CollectionBox(ttk.Frame):
     def selection(self, node):
         try:
             if node is None:
-                node = self._cList.get_children()[0]
-            self._cList.focus()
-            self._cList.selection_set(node)
+                nodeIndex = 0
+            else:
+                nodeIndex = self._cKeyList.index(node)
+
+            self._cList.selection_set(nodeIndex)
         except:
             pass
 
@@ -188,15 +202,8 @@ class CollectionBox(ttk.Frame):
 
     def set(self, valueDict):
         # Populate the collection.
-        for entry in self._cList.get_children():
-            self._cList.delete(entry)
-        for key in valueDict:
-            self._cList.insert(
-                '',
-                'end',
-                key,
-                text=valueDict[key],
-            )
+        self._cKeyList = list(valueDict)
+        self._cListVar.set(list(valueDict.values()))
         self.disable_buttons()
 
     def set_height(self, newVal):
