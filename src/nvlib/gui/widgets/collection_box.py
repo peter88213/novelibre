@@ -16,8 +16,6 @@ class CollectionBox(ttk.Frame):
     """A frame with a listbox and control buttons.
     
     Public instance variables:
-        _cList: tk.strVar -- Holds a list representing the collection.
-        _cList: tk.Listbox -- Displays the collection.
         btnOpen: ttk.Button -- Activatable button, not intended to 
                                modify the collection.
         btnAdd: ttk.Button -- Input widget, always active by default.
