@@ -94,7 +94,6 @@ class SectionView(ElementView):
         relationsPreview.bind('<Button-1>', self._toggle_relation_frame)
 
         # 'Characters' listbox.
-        self._crDict = ''
         crHeading = ttk.Frame(self._relationFrame)
         self._characterLabel = ttk.Label(crHeading, text=_('Characters'))
         self._characterLabel.pack(anchor='w', side='left')
@@ -119,7 +118,6 @@ class SectionView(ElementView):
         inputWidgets.extend(self._characterCollection.inputWidgets)
 
         # 'Locations' listbox.
-        self._lcDict = ''
         self._locationLabel = ttk.Label(
             self._relationFrame,
             text=_('Locations')
@@ -140,7 +138,6 @@ class SectionView(ElementView):
         inputWidgets.extend(self._locationCollection.inputWidgets)
 
         # 'Items' listbox.
-        self._itDict = ''
         self._itemLabel = ttk.Label(self._relationFrame, text=_('Items'))
         self._itemLabel.pack(anchor='w')
         self._itemCollection = CollectionBox(
@@ -428,7 +425,6 @@ class SectionView(ElementView):
         plotlinesPreview.bind('<Button-1>', self._toggle_plot_frame)
 
         # 'Plot lines' listbox.
-        self._plotlineTitles = ''
         self._plotlineLabel = ttk.Label(self._plotFrame, text=_('Plot lines'))
         self._plotlineLabel.pack(anchor='w')
         self._plotlineCollection = CollectionBox(
@@ -444,7 +440,7 @@ class SectionView(ElementView):
         )
         self._plotlineCollection.pack(fill='x')
         inputWidgets.extend(self._plotlineCollection.inputWidgets)
-        self.selectedPlotline = None
+        self._selectedPlotline = None
 
         # 'Plot line notes' text box for entering element.plotlineNotes[plId],
         #  where plId is the ID of the selected plot line
@@ -1096,34 +1092,43 @@ class SectionView(ElementView):
 
     def go_to_character(self, event=None):
         """Go to the character selected in the listbox."""
-        self._ui.tv.go_to_node(self._characterCollection.selection)
+        crIndex = self._characterCollection.selection
+        if crIndex is not None:
+            self._ui.tv.go_to_node(self.element.characters[crIndex])
 
     def go_to_item(self, event=None):
         """Go to the item selected in the listbox."""
-        self._ui.tv.go_to_node(self._itemCollection.selection)
+        itIndex = self._itemCollection.selection
+        if itIndex is not None:
+            self._ui.tv.go_to_node(self.element.items[itIndex])
 
     def go_to_location(self, event=None):
         """Go to the location selected in the listbox."""
-        self._ui.tv.go_to_node(self._locationCollection.selection)
+        lcIndex = self._locationCollection.selection
+        if lcIndex is not None:
+            self._ui.tv.go_to_node(self.element.locations[lcIndex])
 
     def go_to_plotline(self, event=None):
         """Go to the plot line selected in the listbox."""
-        self._ui.tv.go_to_node(self._plotlineCollection.selection)
+        plIndex = self._plotlineCollection.selection
+        if plIndex is not None:
+            self._ui.tv.go_to_node(self.element.scPlotLines[plIndex])
 
-    def on_select_plotline(self, selection):
+    def on_select_plotline(self, plIndex):
         """Callback routine for section plot line list selection."""
         self.save_plot_notes()
-        self.selectedPlotline = selection
+        self._selectedPlotline = self.element.scPlotLines[plIndex]
         self._plotNotesWindow.config(state='normal')
         if self.element.plotlineNotes:
             self._plotNotesWindow.set_text(
-                self.element.plotlineNotes.get(self.selectedPlotline, '')
+                self.element.plotlineNotes.get(self._selectedPlotline, '')
             )
         else:
             self._plotNotesWindow.clear()
         if self.isLocked:
             self._plotNotesWindow.config(state='disabled')
         self._plotNotesWindow.config(bg=prefs['color_text_bg'])
+        self._configure_plotline_buttons()
 
     def pick_character(self, event=None):
         """Enter the "add character" selection mode."""
@@ -1163,10 +1168,11 @@ class SectionView(ElementView):
         if self.isLocked:
             return
 
-        crId = self._characterCollection.selection
-        if crId is None:
+        crIndex = self._characterCollection.selection
+        if crIndex is None:
             return
 
+        crId = self.element.characters[crIndex]
         if self._ui.ask_yes_no(
             message=_('Remove character from the list?'),
             detail=self._mdl.novel.characters[crId].title
@@ -1180,10 +1186,11 @@ class SectionView(ElementView):
         if self.isLocked:
             return
 
-        itId = self._itemCollection.selection
-        if itId is None:
+        itIndex = self._itemCollection.selection
+        if itIndex is None:
             return
 
+        itId = self.element.items[itIndex]
         if self._ui.ask_yes_no(
             message=_('Remove item from the list?'),
             detail=self._mdl.novel.items[itId].title
@@ -1198,10 +1205,11 @@ class SectionView(ElementView):
         if self.isLocked:
             return
 
-        lcId = self._locationCollection.selection
-        if lcId is None:
+        lcIndex = self._locationCollection.selection
+        if lcIndex is None:
             return
 
+        lcId = self.element.locations[lcIndex]
         if self._ui.ask_yes_no(
             message=_('Remove location from the list?'),
             detail=self._mdl.novel.locations[lcId].title
@@ -1216,10 +1224,11 @@ class SectionView(ElementView):
         if self.isLocked:
             return
 
-        plId = self._plotlineCollection.selection
-        if plId is None:
+        plIndex = self._plotlineCollection.selection
+        if plIndex is None:
             return
 
+        plId = self.element.scPlotLines[plIndex]
         if not self._ui.ask_yes_no(
             message=_('Remove plot line from the list?'),
             detail=(
@@ -1251,11 +1260,11 @@ class SectionView(ElementView):
                     # un-assigning the section from the plot line's plot point
 
     def save_plot_notes(self):
-        if self.selectedPlotline and self._plotNotesWindow.hasChanged:
+        if self._selectedPlotline and self._plotNotesWindow.hasChanged:
             plotlineNotes = self.element.plotlineNotes
             if plotlineNotes is None:
                 plotlineNotes = {}
-            plotlineNotes[self.selectedPlotline] = (
+            plotlineNotes[self._selectedPlotline] = (
                 self._plotNotesWindow.get_text()
             )
             self._doNotUpdate = True
@@ -1300,33 +1309,33 @@ class SectionView(ElementView):
         #--- Frame for 'Relationships'.
 
         # 'Characters' window.
-        self._crDict = self._get_element_dict(
-            self.element.characters, self._mdl.novel.characters
-        )
-        self._characterCollection.set(self._crDict)
-        listboxSize = len(self._crDict)
+        self._characterCollection.set([
+            self._mdl.novel.characters[crId].title
+            for crId in self.element.characters
+        ])
+        listboxSize = len(self.element.characters)
         if listboxSize > self._HEIGHT_LIMIT:
             listboxSize = self._HEIGHT_LIMIT
         self._characterCollection.set_height(listboxSize)
         self._configure_character_buttons()
 
         # 'Locations' window.
-        self._lcDict = self._get_element_dict(
-            self.element.locations, self._mdl.novel.locations
-        )
-        self._locationCollection.set(self._lcDict)
-        listboxSize = len(self._lcDict)
+        self._locationCollection.set([
+            self._mdl.novel.locations[lcId].title
+            for lcId in self.element.locations
+        ])
+        listboxSize = len(self._mdl.novel.locations)
         if listboxSize > self._HEIGHT_LIMIT:
             listboxSize = self._HEIGHT_LIMIT
         self._locationCollection.set_height(listboxSize)
         self._configure_location_buttons()
 
         # 'Items' window.
-        self._itDict = self._get_element_dict(
-            self.element.items, self._mdl.novel.items
-        )
-        self._itemCollection.set(self._itDict)
-        listboxSize = len(self._itDict)
+        self._itemCollection.set([
+            self._mdl.novel.items[itId].title
+            for itId in self.element.items
+        ])
+        listboxSize = len(self._mdl.novel.items)
         if listboxSize > self._HEIGHT_LIMIT:
             listboxSize = self._HEIGHT_LIMIT
         self._itemCollection.set_height(listboxSize)
@@ -1405,12 +1414,13 @@ class SectionView(ElementView):
         #--- Frame for 'Plot'.
 
         #  'Plot lines' listbox.
-        self._plotlineTitles = self._get_plotline_dict(
-            self.element.scPlotLines,
-            self._mdl.novel.plotLines
-        )
-        self._plotlineCollection.set(self._plotlineTitles)
-        listboxSize = len(self._plotlineTitles)
+        self._plotlineCollection.set([
+            (
+                f'({self._mdl.novel.plotLines[plId].shortName}) '
+                f'{self._mdl.novel.plotLines[plId].title}'
+            )for plId in self.element.scPlotLines
+        ])
+        listboxSize = len(self.element.scPlotLines)
         if listboxSize > self._HEIGHT_LIMIT:
             listboxSize = self._HEIGHT_LIMIT
         self._plotlineCollection.set_height(listboxSize)
@@ -1421,12 +1431,11 @@ class SectionView(ElementView):
         self._plotNotesWindow.clear()
         self._plotNotesWindow.config(state='disabled')
         self._plotNotesWindow.config(bg=prefs['color_inactive_bg'])
-        if self._plotlineTitles:
-            self._plotlineCollection.selection = None
-            self.selectedPlotline = self._plotlineCollection.selection
-            self.on_select_plotline(self.selectedPlotline)
+        if self.element.scPlotLines:
+            self._plotlineCollection.selection = 0
+            self.on_select_plotline(0)
         else:
-            self.selectedPlotline = None
+            self._selectedPlotline = None
 
         # "Plot points" label
         plotPointTitles = []
@@ -1584,7 +1593,7 @@ class SectionView(ElementView):
     def unlock(self):
         """Enable plot line notes only if a plot line is selected."""
         super().unlock()
-        if self.selectedPlotline is None:
+        if self._selectedPlotline is None:
             self._plotNotesWindow.config(state='disabled')
         if self.element is not None:
             self._configure_character_buttons()
@@ -1645,7 +1654,10 @@ class SectionView(ElementView):
         self._ui.tv.restore_branch_status()
 
     def _configure_character_buttons(self, event=None):
-        if self.element.characters and self._characterCollection.selection:
+        if (
+            self.element.characters
+            and self._characterCollection.selection is not None
+        ):
             if self.isLocked:
                 self._characterCollection.btnOpen.config(state='normal')
                 self._characterCollection.btnRemove.config(state='disabled')
@@ -1655,7 +1667,10 @@ class SectionView(ElementView):
             self._characterCollection.disable_buttons()
 
     def _configure_item_buttons(self, event=None):
-        if self.element.items and self._itemCollection.selection:
+        if (
+            self.element.items
+            and self._itemCollection.selection is not None
+        ):
             if self.isLocked:
                 self._itemCollection.btnOpen.config(state='normal')
                 self._itemCollection.btnRemove.config(state='disabled')
@@ -1665,7 +1680,10 @@ class SectionView(ElementView):
             self._itemCollection.disable_buttons()
 
     def _configure_location_buttons(self, event=None):
-        if self.element.locations and self._locationCollection.selection:
+        if (
+            self.element.locations
+            and self._locationCollection.selection is not None
+        ):
             if self.isLocked:
                 self._locationCollection.btnOpen.config(state='normal')
                 self._locationCollection.btnRemove.config(state='disabled')
@@ -1692,58 +1710,6 @@ class SectionView(ElementView):
         self._add_separator()
         self._create_notes_window()
         self._create_button_bar()
-
-    def _get_element_dict(self, elemIds, elements):
-        # Return a dictionary:
-        # key: element ID; value: element title.
-        #   elemIds -- list of element IDs.
-        #   elements -- list of element objects.
-        elementDict = {}
-        if elemIds:
-            for elemId in elemIds:
-                try:
-                    elementDict[elemId] = elements[elemId].title
-                except:
-                    pass
-        return elementDict
-
-    def _get_plotline_dict(self, elemIds, elements):
-        # Return a list of plot line titles, preceded by the short names.
-        #    elemIds -- list of element IDs.
-        #    elements -- list of element objects.
-        elementDict = {}
-        if elemIds:
-            for elemId in elemIds:
-                try:
-                    elementDict[elemId] = (
-                        f'({elements[elemId].shortName}) '
-                        f'{elements[elemId].title}'
-                    )
-                except:
-                    pass
-        return elementDict
-
-    def _get_relation_id_list(self, newTitleStr, oldTitleStr, elements):
-        # Return a list of valid IDs from a string
-        # containing semicolon-separated titles.
-        if newTitleStr or oldTitleStr:
-            if oldTitleStr != newTitleStr:
-                elemIds = []
-                for elemTitle in string_to_list(newTitleStr):
-                    for elemId in elements:
-                        if elements[elemId].title == elemTitle:
-                            elemIds.append(elemId)
-                            break
-                    else:
-                        # No break occurred:
-                        # there is no element with the specified title
-                        self._ui.show_error(
-                            message=_('Input rejected'),
-                            detail=f'{_("Wrong name")}: "{elemTitle}".'
-                        )
-                return elemIds
-
-        return None
 
     def _report_missing_date(self):
         self._ui.show_error(

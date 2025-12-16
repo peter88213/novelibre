@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.46.9
+
+- Refactored the `CollectionBox` class for better performance. 
+
+
 ### Version 5.46.8
 
 - Fixed the tag selection list display.

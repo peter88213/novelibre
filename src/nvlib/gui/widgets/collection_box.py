@@ -78,9 +78,7 @@ class CollectionBox(ttk.Frame):
             # Internal callback function on selecting elements.
             if cmdSelect is not None:
                 try:
-                    selectionIndex = self._cList.curselection()[0]
-                    selectedKey = self._cKeyList[selectionIndex]
-                    cmdSelect(selectedKey)
+                    cmdSelect(self._cList.curselection()[0])
                 except:
                     pass
 
@@ -90,7 +88,6 @@ class CollectionBox(ttk.Frame):
         listFrame = ttk.Frame(self)
         listFrame.pack(side='left', fill='both', expand=True)
 
-        self._cKeyList = []
         self._cListVar = tk.StringVar()
         self._cList = tk.Listbox(
             listFrame,
@@ -169,21 +166,15 @@ class CollectionBox(ttk.Frame):
     @property
     def selection(self):
         try:
-            selection = self._cList.curselection()[0]
-            return self._cKeyList[selection]
+            return self._cList.curselection()[0]
 
         except:
             return None
 
     @selection.setter
-    def selection(self, node):
+    def selection(self, listIndex):
         try:
-            if node is None:
-                nodeIndex = 0
-            else:
-                nodeIndex = self._cKeyList.index(node)
-
-            self._cList.selection_set(nodeIndex)
+            self._cList.selection_set(listIndex)
         except:
             pass
 
@@ -197,11 +188,10 @@ class CollectionBox(ttk.Frame):
         self.btnOpen.config(state='disabled')
         self.btnRemove.config(state='disabled')
 
-    def set(self, valueDict):
+    def set(self, newList):
         # Populate the collection.
         self._cList.selection_clear(0, 'end')
-        self._cKeyList = list(valueDict)
-        self._cListVar.set(list(valueDict.values()))
+        self._cListVar.set(newList)
         self.disable_buttons()
 
     def set_height(self, newVal):

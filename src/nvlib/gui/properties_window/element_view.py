@@ -145,11 +145,9 @@ class ElementView(BlankView):
 
     def open_link(self, event=None):
         """Open the selected link."""
-        selection = self.linkCollection.selection
-        if selection is None:
-            return
-
-        self._ctrl.open_link(self.element, int(selection))
+        linkIndex = self.linkCollection.selection
+        if linkIndex is not None:
+            self._ctrl.open_link(self.element, linkIndex)
 
     def set_data(self, elementId):
         """Update the view with element's data.
@@ -171,11 +169,10 @@ class ElementView(BlankView):
 
         # Links window.
         if hasattr(self.element, 'links'):
-            linkDict = {}
-            for i, path in enumerate(self.element.links):
-                linkDict[str(i)] = os.path.basename(path)
-            self.linkCollection.set(linkDict)
-            listboxSize = len(linkDict)
+            self.linkCollection.set([
+                os.path.basename(path) for path in self.element.links
+            ])
+            listboxSize = len(self.element.links)
             if listboxSize > self._HEIGHT_LIMIT:
                 listboxSize = self._HEIGHT_LIMIT
             self.linkCollection.set_height(listboxSize)
@@ -206,7 +203,7 @@ class ElementView(BlankView):
         ).pack(fill='x')
 
     def _configure_link_buttons(self, event=None):
-        if self.element.links and self.linkCollection.selection:
+        if self.element.links and self.linkCollection.selection is not None:
             if self.isLocked:
                 self.linkCollection.btnOpen.config(state='normal')
                 self.linkCollection.btnRemove.config(state='disabled')

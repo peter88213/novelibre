@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.46.8\n"
-"POT-Creation-Date: 2025-12-15 23:40:11\n"
+"Project-Id-Version: 5.46.9\n"
+"POT-Creation-Date: 2025-12-16 12:19:11\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -1521,9 +1521,6 @@ msgid "Wrong date"
 msgstr ""
 
 msgid "Wrong entry: number required"
-msgstr ""
-
-msgid "Wrong name"
 msgstr ""
 
 msgid "Wrong time"
