@@ -10,13 +10,14 @@ from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.tooltip import Hovertip
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
-import tkinter as tk
 
 
 class CollectionBox(ttk.Frame):
     """A frame with a listbox and control buttons.
     
     Public instance variables:
+        _cList: tk.strVar -- Holds a list representing the collection.
+        _cList: tk.Listbox -- Displays the collection.
         btnOpen: ttk.Button -- Activatable button, not intended to 
                                modify the collection.
         btnAdd: ttk.Button -- Input widget, always active by default.
@@ -78,7 +79,7 @@ class CollectionBox(ttk.Frame):
             # Internal callback function on selecting elements.
             if cmdSelect is not None:
                 try:
-                    cmdSelect(self._cList.curselection()[0])
+                    cmdSelect(int(self._cList.selection()[0]))
                 except:
                     pass
 
@@ -87,14 +88,10 @@ class CollectionBox(ttk.Frame):
         # Listbox.
         listFrame = ttk.Frame(self)
         listFrame.pack(side='left', fill='both', expand=True)
-
-        self._cListVar = tk.StringVar()
-        self._cList = tk.Listbox(
+        self._cList = ttk.Treeview(
             listFrame,
-            listvariable=self._cListVar,
-            selectmode='single',
-            bg=prefs['color_text_bg'],
-            fg=prefs['color_text_fg'],
+            selectmode='browse',
+            show='tree',
         )
         vbar = ttk.Scrollbar(
             listFrame,
@@ -108,9 +105,7 @@ class CollectionBox(ttk.Frame):
             expand=True,
         )
         self._cList.config(yscrollcommand=vbar.set)
-        self._cList.bind('<<ListboxSelect>>', on_change_selection)
-        self._cList.configure(exportselection=False)
-        # keep selection when losing the focus
+        self._cList.bind('<<TreeviewSelect>>', on_change_selection)
 
         # Buttons.
         buttonbar = ttk.Frame(self)
@@ -166,7 +161,7 @@ class CollectionBox(ttk.Frame):
     @property
     def selection(self):
         try:
-            return self._cList.curselection()[0]
+            return int(self._cList.selection()[0])
 
         except:
             return None
@@ -174,7 +169,8 @@ class CollectionBox(ttk.Frame):
     @selection.setter
     def selection(self, listIndex):
         try:
-            self._cList.selection_set(listIndex)
+            self._cList.focus()
+            self._cList.selection_set(str(listIndex))
         except:
             pass
 
@@ -190,8 +186,15 @@ class CollectionBox(ttk.Frame):
 
     def set(self, newList):
         # Populate the collection.
-        self._cList.selection_clear(0, 'end')
-        self._cListVar.set(newList)
+        for entry in self._cList.get_children():
+            self._cList.delete(entry)
+        for i, title in enumerate(newList):
+            self._cList.insert(
+                '',
+                'end',
+                str(i),
+                text=title,
+            )
         self.disable_buttons()
 
     def set_height(self, newVal):
