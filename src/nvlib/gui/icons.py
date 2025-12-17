@@ -93,6 +93,12 @@ class Icons:
         except:
             self.saveIcon = None
         try:
+            self.saveAsIcon = tk.PhotoImage(
+                file=f'{iconPath}/saveAs.png'
+            )
+        except:
+            self.saveAsIcon = None
+        try:
             self.updateFromManuscriptIcon = tk.PhotoImage(
                 file=f'{iconPath}/updateFromManuscript.png'
             )
@@ -320,3 +326,21 @@ class Icons:
             )
         except:
             self.newsIcon = None
+        try:
+            self.discardManuscriptIcon = tk.PhotoImage(
+                file=f'{iconPath}/discardManuscript.png'
+            )
+        except:
+            self.discardManuscriptIcon = None
+        try:
+            self.newProjectIcon = tk.PhotoImage(
+                file=f'{iconPath}/newProject.png'
+            )
+        except:
+            self.newProjectIcon = None
+        try:
+            self.openProjectIcon = tk.PhotoImage(
+                file=f'{iconPath}/openProject.png'
+            )
+        except:
+            self.openProjectIcon = None

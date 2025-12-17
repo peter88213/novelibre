@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.46.10
+
+- Updated menu icons.
+
+
 ### Version 5.46.9
 
 - Refactored the `CollectionBox` class for better performance. 

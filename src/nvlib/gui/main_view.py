@@ -580,6 +580,8 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('New')
         self.fileMenu.add_cascade(
             label=label,
+            image=self.icons.newProjectIcon,
+            compound='left',
             menu=self.newMenu
         )
 
@@ -587,6 +589,8 @@ class MainView(Observer, MsgBoxes, SubController):
         self.fileMenu.add_command(
             label=label,
             accelerator=KEYS.OPEN_PROJECT[1],
+            image=self.icons.openProjectIcon,
+            compound='left',
             command=self._ctrl.open_project,
         )
 
@@ -663,7 +667,9 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Discard manuscript')
         self.fileMenu.add_command(
             label=label,
-            command=self._ctrl.discard_manuscript,
+            image=self.icons.discardManuscriptIcon,
+            compound='left',
+             command=self._ctrl.discard_manuscript,
         )
         self.fileMenu.disableOnClose.append(label)
         self.fileMenu.disableOnLock.append(label)
@@ -685,6 +691,8 @@ class MainView(Observer, MsgBoxes, SubController):
         self.fileMenu.add_command(
             label=label,
             accelerator=KEYS.SAVE_AS[1],
+            image=self.icons.saveAsIcon,
+            compound='left',
             command=self._ctrl.save_as,
         )
         self.fileMenu.disableOnClose.append(label)
