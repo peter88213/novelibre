@@ -12,14 +12,6 @@ import tkinter as tk
 class Icons:
 
     def __init__(self):
-
-        def new_icon(iconFile):
-            try:
-                return tk.PhotoImage(file=f'{iconPath}/{iconFile}')
-
-            except:
-                return None
-
         if prefs.get('large_icons', False):
             size = 24
         else:
@@ -29,6 +21,17 @@ class Icons:
             iconPath = f'{PROGRAM_DIR}/icons/{size}'
         except:
             iconPath = None
+
+        self.set_icons(iconPath)
+
+    def set_icons(self, iconPath):
+
+        def new_icon(iconFile):
+            try:
+                return tk.PhotoImage(file=f'{iconPath}/{iconFile}')
+
+            except:
+                return None
 
         self.addChildIcon = new_icon('addChild.png')
 
