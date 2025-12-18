@@ -5,6 +5,7 @@
 # List of plugins
 
 -  [nv_aeon2](https://github.com/peter88213/nv_aeon2/) An Aeon Timeline 2 converter plugin for novelibre.
+-  [nv_bw_icons](https://github.com/peter88213/nv_bw_icons/) A "black/white" icon set for novelibre.
 -  [nv_character_counter](https://github.com/peter88213/nv_character_counter/) A novelibre plugin that replaces the built-in word counter with a character counter.
    *This can be used as a template repository for a customized word counter, e.g. for asian languages.*
 -  [nv_collection](https://github.com/peter88213/nv_collection/) A book/series collection manager plugin for novelibre.
