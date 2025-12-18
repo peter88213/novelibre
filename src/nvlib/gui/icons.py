@@ -12,6 +12,14 @@ import tkinter as tk
 class Icons:
 
     def __init__(self):
+
+        def new_icon(iconFile):
+            try:
+                return tk.PhotoImage(file=f'{iconPath}/{iconFile}')
+
+            except:
+                return None
+
         if prefs.get('large_icons', False):
             size = 24
         else:
@@ -22,124 +30,111 @@ class Icons:
         except:
             iconPath = None
 
-        self.addChildIcon = self.new_icon(f'{iconPath}/addChild.png')
+        self.addChildIcon = new_icon('addChild.png')
 
-        self.addIcon = self.new_icon(f'{iconPath}/add.png')
+        self.addIcon = new_icon('add.png')
 
-        self.addMultipleIcon = self.new_icon(f'{iconPath}/add_multiple.png')
+        self.addMultipleIcon = new_icon('add_multiple.png')
 
-        self.addParentIcon = self.new_icon(f'{iconPath}/addParent.png')
+        self.addParentIcon = new_icon('addParent.png')
 
-        self.chaptersIcon = self.new_icon(f'{iconPath}/chapters.png')
+        self.chaptersIcon = new_icon('chapters.png')
 
-        self.closeIcon = self.new_icon(f'{iconPath}/close.png')
+        self.closeIcon = new_icon('close.png')
 
-        self.collapseIcon = self.new_icon(f'{iconPath}/collapse.png')
+        self.collapseIcon = new_icon('collapse.png')
 
-        self.copyIcon = self.new_icon(f'{iconPath}/copy.png')
+        self.copyIcon = new_icon('copy.png')
 
-        self.cutIcon = self.new_icon(f'{iconPath}/cut.png')
+        self.cutIcon = new_icon('cut.png')
 
-        self.discardManuscriptIcon = self.new_icon(
-            f'{iconPath}/discardManuscript.png')
+        self.discardManuscriptIcon = new_icon('discardManuscript.png')
 
-        self.exitIcon = self.new_icon(f'{iconPath}/exit.png')
+        self.exitIcon = new_icon('exit.png')
 
-        self.expandIcon = self.new_icon(f'{iconPath}/expand.png')
+        self.expandIcon = new_icon('expand.png')
 
-        self.exportIcon = self.new_icon(f'{iconPath}/export.png')
+        self.exportIcon = new_icon('export.png')
 
-        self.folderIcon = self.new_icon(f'{iconPath}/folder.png')
+        self.folderIcon = new_icon('folder.png')
 
-        self.goBackIcon = self.new_icon(f'{iconPath}/goBack.png')
+        self.goBackIcon = new_icon('goBack.png')
 
-        self.goForwardIcon = self.new_icon(f'{iconPath}/goForward.png')
+        self.goForwardIcon = new_icon('goForward.png')
 
-        self.gotoIcon = self.new_icon(f'{iconPath}/goto.png')
+        self.gotoIcon = new_icon('goto.png')
 
-        self.gridIcon = self.new_icon(f'{iconPath}/grid.png')
+        self.gridIcon = new_icon('grid.png')
 
-        self.helpIcon = self.new_icon(f'{iconPath}/help.png')
+        self.helpIcon = new_icon('help.png')
 
-        self.highlightIcon = self.new_icon(f'{iconPath}/highlight.png')
+        self.highlightIcon = new_icon('highlight.png')
 
-        self.homeIcon = self.new_icon(f'{iconPath}/home.png')
+        self.homeIcon = new_icon('home.png')
 
-        self.importIcon = self.new_icon(f'{iconPath}/import.png')
+        self.importIcon = new_icon('import.png')
 
-        self.installationFolderIcon = self.new_icon(
-            f'{iconPath}/installation_folder.png')
+        self.installationFolderIcon = new_icon('installation_folder.png')
 
-        self.levelsIcon = self.new_icon(f'{iconPath}/levels.png')
+        self.levelsIcon = new_icon('levels.png')
 
-        self.lockIcon = self.new_icon(f'{iconPath}/lock.png')
+        self.lockIcon = new_icon('lock.png')
 
-        self.manuscriptIcon = self.new_icon(f'{iconPath}/manuscript.png')
+        self.manuscriptIcon = new_icon('manuscript.png')
 
-        self.nLogoIcon = self.new_icon(f'{iconPath}/nLogo.png')
+        self.nLogoIcon = new_icon('nLogo.png')
 
-        self.newProjectIcon = self.new_icon(f'{iconPath}/newProject.png')
+        self.newProjectIcon = new_icon('newProject.png')
 
-        self.newsIcon = self.new_icon(f'{iconPath}/smile.png')
+        self.newsIcon = new_icon('smile.png')
 
-        self.openProjectIcon = self.new_icon(f'{iconPath}/openProject.png')
+        self.openProjectIcon = new_icon('openProject.png')
 
-        self.pasteIcon = self.new_icon(f'{iconPath}/paste.png')
+        self.pasteIcon = new_icon('paste.png')
 
-        self.pluginsIcon = self.new_icon(f'{iconPath}/plugins.png')
+        self.pluginsIcon = new_icon('plugins.png')
 
-        self.povIcon = self.new_icon(f'{iconPath}/pov.png')
+        self.povIcon = new_icon('pov.png')
 
-        self.propertiesIcon = self.new_icon(f'{iconPath}/properties.png')
+        self.propertiesIcon = new_icon('properties.png')
 
-        self.reloadIcon = self.new_icon(f'{iconPath}/reload.png')
+        self.reloadIcon = new_icon('reload.png')
 
-        self.removeIcon = self.new_icon(f'{iconPath}/remove.png')
+        self.removeIcon = new_icon('remove.png')
 
-        self.resetHighlightIcon = self.new_icon(
-            f'{iconPath}/reset_highlight.png')
+        self.resetHighlightIcon = new_icon('reset_highlight.png')
 
-        self.saveAsIcon = self.new_icon(f'{iconPath}/saveAs.png')
+        self.saveAsIcon = new_icon('saveAs.png')
 
-        self.saveIcon = self.new_icon(f'{iconPath}/save.png')
+        self.saveIcon = new_icon('save.png')
 
-        self.settingsIcon = self.new_icon(f'{iconPath}/settings.png')
+        self.settingsIcon = new_icon('settings.png')
 
-        self.stageIcon = self.new_icon(f'{iconPath}/stage.png')
+        self.stageIcon = new_icon('stage.png')
 
-        self.statusIcon = self.new_icon(f'{iconPath}/status.png')
+        self.statusIcon = new_icon('status.png')
 
-        self.stickyNoteIcon = self.new_icon(f'{iconPath}/sticky_note.png')
+        self.stickyNoteIcon = new_icon('sticky_note.png')
 
-        self.tagsIcon = self.new_icon(f'{iconPath}/tag.png')
+        self.tagsIcon = new_icon('tag.png')
 
-        self.typeIcon = self.new_icon(f'{iconPath}/type.png')
+        self.typeIcon = new_icon('type.png')
 
-        self.unlockIcon = self.new_icon(f'{iconPath}/unlock.png')
+        self.unlockIcon = new_icon('unlock.png')
 
-        self.updateFromManuscriptIcon = self.new_icon(
-            f'{iconPath}/updateFromManuscript.png')
+        self.updateFromManuscriptIcon = new_icon('updateFromManuscript.png')
 
-        self.viewBookIcon = self.new_icon(f'{iconPath}/viewBook.png')
+        self.viewBookIcon = new_icon('viewBook.png')
 
-        self.viewCharactersIcon = self.new_icon(
-            f'{iconPath}/viewCharacters.png')
+        self.viewCharactersIcon = new_icon('viewCharacters.png')
 
-        self.viewItemsIcon = self.new_icon(f'{iconPath}/viewItems.png')
+        self.viewItemsIcon = new_icon('viewItems.png')
 
-        self.viewLocationsIcon = self.new_icon(f'{iconPath}/viewLocations.png')
+        self.viewLocationsIcon = new_icon('viewLocations.png')
 
-        self.viewPlotLinesIcon = self.new_icon(f'{iconPath}/viewArcs.png')
+        self.viewPlotLinesIcon = new_icon('viewArcs.png')
 
-        self.viewProjectnotesIcon = self.new_icon(
-            f'{iconPath}/viewProjectnotes.png')
+        self.viewProjectnotesIcon = new_icon('viewProjectnotes.png')
 
-        self.viewerIcon = self.new_icon(f'{iconPath}/viewer.png')
-
-    def new_icon(self, iconFile):
-        try:
-            return tk.PhotoImage(file=iconFile)
-
-        except:
-            return None
+        self.viewerIcon = new_icon('viewer.png')
 
