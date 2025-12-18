@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+
+### Version 5.47.0
+
+- The icon set can now be changed by plugins.
+
+
 ### Version 5.46.10
 
 - Updated menu icons.
