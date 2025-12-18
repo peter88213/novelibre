@@ -58,15 +58,17 @@ class Toolbar(SubController):
         self.add_separator()
 
         # "View Book" button.
+        label = _('Show Book')
         self.viewBookButton = self.new_button(
-            text=_('Book'),
-            image=self._ui.icons.viewBookIcon,
+            text=label,
+            image=self._ui.icons[label],
             command=self._ui.tv.show_book,
             disableOnLock=False,
         )
         self.viewBookButton.pack(side='left')
 
         # "View Characters" button.
+        label = _('Show Characters')
         self.viewCharactersButton = self.new_button(
             text=_('Characters'),
             image=self._ui.icons.viewCharactersIcon,
@@ -76,6 +78,7 @@ class Toolbar(SubController):
         self.viewCharactersButton.pack(side='left')
 
         # "View Locations" button.
+        label = _('Show Locations')
         self.viewLocationsButton = self.new_button(
             text=_('Locations'),
             image=self._ui.icons.viewLocationsIcon,
@@ -85,6 +88,7 @@ class Toolbar(SubController):
         self.viewLocationsButton.pack(side='left')
 
         # "View Items" button.
+        label = _('Show Items')
         self.viewItemsButton = self.new_button(
             text=_('Items'),
             image=self._ui.icons.viewItemsIcon,
@@ -94,6 +98,7 @@ class Toolbar(SubController):
         self.viewItemsButton.pack(side='left')
 
         # "View Plot lines" button.
+        label = _('Show Plot lines')
         self.viewPlotLinesButton = self.new_button(
             text=_('Plot lines'),
             image=self._ui.icons.viewPlotLinesIcon,
@@ -103,6 +108,7 @@ class Toolbar(SubController):
         self.viewPlotLinesButton.pack(side='left')
 
         # "View Projectnotes" button.
+        label = _('Show Project notes')
         self.viewProjectnotesButton = self.new_button(
             text=_('Project notes'),
             image=self._ui.icons.viewProjectnotesIcon,
@@ -114,27 +120,30 @@ class Toolbar(SubController):
         self.add_separator()
 
         # "Save" button.
+        label = _('Save')
         self.saveButton = self.new_button(
-            text=_('Save'),
-            image=self._ui.icons[_('Save')],
+            text=label,
+            image=self._ui.icons[label],
             command=self._ctrl.save_project,
             accelerator=KEYS.SAVE_PROJECT[1],
         )
         self.saveButton.pack(side='left')
 
         # "Lock/Unlock" button.
+        label = _('Lock/unlock')
         self.lockButton = self.new_button(
-            text=_('Lock/unlock'),
-            image=self._ui.icons[_('Lock')],
+            text=label,
+            image=self._ui.icons[label],
             command=self._ctrl.toggle_lock,
             disableOnLock=False,
         )
         self.lockButton.pack(side='left')
 
         # "Update from manuscript" button.
+        label = _('Update from manuscript')
         self.updateButton = self.new_button(
-            text=_('Update from manuscript'),
-            image=self._ui.icons.updateFromManuscriptIcon,
+            text=label,
+            image=self._ui.icons[label],
             command=self._ctrl.update_from_manuscript,
         )
         self.updateButton.pack(side='left')
@@ -214,9 +223,10 @@ class Toolbar(SubController):
         self.add_separator(master=self.masterBar)
 
         # "Highlight tagged elements" button.
+        label = _('Highlight tagged elements')
         self.highlightTaggedButton = self.new_button(
-            text=_('Highlight tagged elements'),
-            image=self._ui.icons[_('Highlight tagged elements')],
+            text=label,
+            image=self._ui.icons[label],
             command=self._ui.tv.select_tag_and_highlight_elements,
             disableOnLock=False,
             master=self.masterBar,
@@ -224,9 +234,10 @@ class Toolbar(SubController):
         self.highlightTaggedButton.pack(side='left')
 
         # "Reset highlighting" button.
+        label = _('Reset Highlighting')
         self.highlightingButton = self.new_button(
-            text=_('Reset Highlighting'),
-            image=self._ui.icons.resetHighlightIcon,
+            text=label,
+            image=self._ui.icons[label],
             command=self._ui.tv.reset_highlighting,
             disableOnLock=False,
             disableOnClose=False,

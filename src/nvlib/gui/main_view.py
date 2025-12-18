@@ -735,7 +735,7 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Reset Highlighting')
         self.viewMenu.add_command(
             label=label,
-            image=self.icons.resetHighlightIcon,
+            image=self.icons[label],
             compound='left',
             command=self.tv.reset_highlighting,
         )
@@ -745,7 +745,7 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Show Book')
         self.viewMenu.add_command(
             label=label,
-            image=self.icons.viewBookIcon,
+            image=self.icons[label],
             compound='left',
             command=self.tv.show_book,
         )

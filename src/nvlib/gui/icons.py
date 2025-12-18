@@ -84,23 +84,11 @@ class Icons(dict):
         except:
             self.removeIcon = None
         try:
-            self.updateFromManuscriptIcon = tk.PhotoImage(
-                file=f'{iconPath}/updateFromManuscript.png'
-            )
-        except:
-            self.updateFromManuscriptIcon = None
-        try:
             self.viewPlotLinesIcon = tk.PhotoImage(
                 file=f'{iconPath}/viewArcs.png'
             )
         except:
             self.viewPlotLinesIcon = None
-        try:
-            self.viewBookIcon = tk.PhotoImage(
-                file=f'{iconPath}/viewBook.png'
-            )
-        except:
-            self.viewBookIcon = None
         try:
             self.viewCharactersIcon = tk.PhotoImage(
                 file=f'{iconPath}/viewCharacters.png'
@@ -150,12 +138,6 @@ class Icons(dict):
         except:
             self.pasteIcon = None
         try:
-            self.resetHighlightIcon = tk.PhotoImage(
-                file=f'{iconPath}/reset_highlight.png'
-            )
-        except:
-            self.resetHighlightIcon = None
-        try:
             self.highlightIcon = tk.PhotoImage(
                 file=f'{iconPath}/highlight.png'
             )
@@ -173,12 +155,6 @@ class Icons(dict):
             )
         except:
             self.collapseIcon = None
-        try:
-            self.unlockIcon = tk.PhotoImage(
-                file=f'{iconPath}/unlock.png'
-            )
-        except:
-            self.unlockIcon = None
         try:
             self.settingsIcon = tk.PhotoImage(
                 file=f'{iconPath}/settings.png'
@@ -302,6 +278,11 @@ class Icons(dict):
             _('Quit'): 'exit',
             _('Exit'): 'exit',
             _('Highlight tagged elements'): 'tag',
+            _('Reset Highlighting'): 'reset_highlight',
+            _('Show Book'): 'viewBook',
+
+            _('Lock/unlock'): 'lock',
+            _('Update from manuscript'): 'updateFromManuscript',
 
         }
 
