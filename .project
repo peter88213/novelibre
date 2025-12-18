@@ -4,6 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>nv_aeon2</project>
+		<project>nv_bw_icons</project>
 		<project>nv_collection</project>
 		<project>nv_custom_export</project>
 		<project>nv_dark</project>
