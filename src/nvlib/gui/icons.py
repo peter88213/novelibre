@@ -16,331 +16,130 @@ class Icons:
             size = 24
         else:
             size = 16
+
         try:
             iconPath = f'{PROGRAM_DIR}/icons/{size}'
         except:
             iconPath = None
+
+        self.addChildIcon = self.new_icon(f'{iconPath}/addChild.png')
+
+        self.addIcon = self.new_icon(f'{iconPath}/add.png')
+
+        self.addMultipleIcon = self.new_icon(f'{iconPath}/add_multiple.png')
+
+        self.addParentIcon = self.new_icon(f'{iconPath}/addParent.png')
+
+        self.chaptersIcon = self.new_icon(f'{iconPath}/chapters.png')
+
+        self.closeIcon = self.new_icon(f'{iconPath}/close.png')
+
+        self.collapseIcon = self.new_icon(f'{iconPath}/collapse.png')
+
+        self.copyIcon = self.new_icon(f'{iconPath}/copy.png')
+
+        self.cutIcon = self.new_icon(f'{iconPath}/cut.png')
+
+        self.discardManuscriptIcon = self.new_icon(
+            f'{iconPath}/discardManuscript.png')
+
+        self.exitIcon = self.new_icon(f'{iconPath}/exit.png')
+
+        self.expandIcon = self.new_icon(f'{iconPath}/expand.png')
+
+        self.exportIcon = self.new_icon(f'{iconPath}/export.png')
+
+        self.folderIcon = self.new_icon(f'{iconPath}/folder.png')
+
+        self.goBackIcon = self.new_icon(f'{iconPath}/goBack.png')
+
+        self.goForwardIcon = self.new_icon(f'{iconPath}/goForward.png')
+
+        self.gotoIcon = self.new_icon(f'{iconPath}/goto.png')
+
+        self.gridIcon = self.new_icon(f'{iconPath}/grid.png')
+
+        self.helpIcon = self.new_icon(f'{iconPath}/help.png')
+
+        self.highlightIcon = self.new_icon(f'{iconPath}/highlight.png')
+
+        self.homeIcon = self.new_icon(f'{iconPath}/home.png')
+
+        self.importIcon = self.new_icon(f'{iconPath}/import.png')
+
+        self.installationFolderIcon = self.new_icon(
+            f'{iconPath}/installation_folder.png')
+
+        self.levelsIcon = self.new_icon(f'{iconPath}/levels.png')
+
+        self.lockIcon = self.new_icon(f'{iconPath}/lock.png')
+
+        self.manuscriptIcon = self.new_icon(f'{iconPath}/manuscript.png')
+
+        self.nLogoIcon = self.new_icon(f'{iconPath}/nLogo.png')
+
+        self.newProjectIcon = self.new_icon(f'{iconPath}/newProject.png')
+
+        self.newsIcon = self.new_icon(f'{iconPath}/smile.png')
+
+        self.openProjectIcon = self.new_icon(f'{iconPath}/openProject.png')
+
+        self.pasteIcon = self.new_icon(f'{iconPath}/paste.png')
+
+        self.pluginsIcon = self.new_icon(f'{iconPath}/plugins.png')
+
+        self.povIcon = self.new_icon(f'{iconPath}/pov.png')
+
+        self.propertiesIcon = self.new_icon(f'{iconPath}/properties.png')
+
+        self.reloadIcon = self.new_icon(f'{iconPath}/reload.png')
+
+        self.removeIcon = self.new_icon(f'{iconPath}/remove.png')
+
+        self.resetHighlightIcon = self.new_icon(
+            f'{iconPath}/reset_highlight.png')
+
+        self.saveAsIcon = self.new_icon(f'{iconPath}/saveAs.png')
+
+        self.saveIcon = self.new_icon(f'{iconPath}/save.png')
+
+        self.settingsIcon = self.new_icon(f'{iconPath}/settings.png')
+
+        self.stageIcon = self.new_icon(f'{iconPath}/stage.png')
+
+        self.statusIcon = self.new_icon(f'{iconPath}/status.png')
+
+        self.stickyNoteIcon = self.new_icon(f'{iconPath}/sticky_note.png')
+
+        self.tagsIcon = self.new_icon(f'{iconPath}/tag.png')
+
+        self.typeIcon = self.new_icon(f'{iconPath}/type.png')
+
+        self.unlockIcon = self.new_icon(f'{iconPath}/unlock.png')
+
+        self.updateFromManuscriptIcon = self.new_icon(
+            f'{iconPath}/updateFromManuscript.png')
+
+        self.viewBookIcon = self.new_icon(f'{iconPath}/viewBook.png')
+
+        self.viewCharactersIcon = self.new_icon(
+            f'{iconPath}/viewCharacters.png')
+
+        self.viewItemsIcon = self.new_icon(f'{iconPath}/viewItems.png')
+
+        self.viewLocationsIcon = self.new_icon(f'{iconPath}/viewLocations.png')
+
+        self.viewPlotLinesIcon = self.new_icon(f'{iconPath}/viewArcs.png')
+
+        self.viewProjectnotesIcon = self.new_icon(
+            f'{iconPath}/viewProjectnotes.png')
+
+        self.viewerIcon = self.new_icon(f'{iconPath}/viewer.png')
+
+    def new_icon(self, iconFile):
         try:
-            self.addIcon = tk.PhotoImage(
-                file=f'{iconPath}/add.png'
-            )
+            return tk.PhotoImage(file=iconFile)
+
         except:
-            self.addIcon = None
-        try:
-            self.addMultipleIcon = tk.PhotoImage(
-                file=f'{iconPath}/add_multiple.png'
-            )
-        except:
-            self.addMultipleIcon = None
-        try:
-            self.addChildIcon = tk.PhotoImage(
-                file=f'{iconPath}/addChild.png'
-            )
-        except:
-            self.addChildIcon = None
-        try:
-            self.addParentIcon = tk.PhotoImage(
-                file=f'{iconPath}/addParent.png'
-            )
-        except:
-            self.addParentIcon = None
-        try:
-            self.goBackIcon = tk.PhotoImage(
-                file=f'{iconPath}/goBack.png'
-            )
-        except:
-            self.goBackIcon = None
-        try:
-            self.goForwardIcon = tk.PhotoImage(
-                file=f'{iconPath}/goForward.png'
-            )
-        except:
-            self.goForwardIcon = None
-        try:
-            self.gotoIcon = tk.PhotoImage(
-                file=f'{iconPath}/goto.png'
-            )
-        except:
-            self.gotoIcon = None
-        try:
-            self.lockIcon = tk.PhotoImage(
-                file=f'{iconPath}/lock.png'
-            )
-        except:
-            self.lockIcon = None
-        try:
-            self.manuscriptIcon = tk.PhotoImage(
-                file=f'{iconPath}/manuscript.png'
-            )
-        except:
-            self.manuscriptIcon = None
-        try:
-            self.propertiesIcon = tk.PhotoImage(
-                file=f'{iconPath}/properties.png'
-            )
-        except:
-            self.propertiesIcon = None
-        try:
-            self.removeIcon = tk.PhotoImage(
-                file=f'{iconPath}/remove.png'
-            )
-        except:
-            self.removeIcon = None
-        try:
-            self.saveIcon = tk.PhotoImage(
-                file=f'{iconPath}/save.png'
-            )
-        except:
-            self.saveIcon = None
-        try:
-            self.saveAsIcon = tk.PhotoImage(
-                file=f'{iconPath}/saveAs.png'
-            )
-        except:
-            self.saveAsIcon = None
-        try:
-            self.updateFromManuscriptIcon = tk.PhotoImage(
-                file=f'{iconPath}/updateFromManuscript.png'
-            )
-        except:
-            self.updateFromManuscriptIcon = None
-        try:
-            self.viewPlotLinesIcon = tk.PhotoImage(
-                file=f'{iconPath}/viewArcs.png'
-            )
-        except:
-            self.viewPlotLinesIcon = None
-        try:
-            self.viewBookIcon = tk.PhotoImage(
-                file=f'{iconPath}/viewBook.png'
-            )
-        except:
-            self.viewBookIcon = None
-        try:
-            self.viewCharactersIcon = tk.PhotoImage(
-                file=f'{iconPath}/viewCharacters.png'
-            )
-        except:
-            self.viewCharactersIcon = None
-        try:
-            self.viewItemsIcon = tk.PhotoImage(
-                file=f'{iconPath}/viewItems.png'
-            )
-        except:
-            self.viewItemsIcon = None
-        try:
-            self.viewLocationsIcon = tk.PhotoImage(
-                file=f'{iconPath}/viewLocations.png'
-            )
-        except:
-            self.viewLocationsIcon = None
-        try:
-            self.viewProjectnotesIcon = tk.PhotoImage(
-                file=f'{iconPath}/viewProjectnotes.png'
-            )
-        except:
-            self.viewProjectnotesIcon = None
-        try:
-            self.viewerIcon = tk.PhotoImage(
-                file=f'{iconPath}/viewer.png'
-            )
-        except:
-            self.viewerIcon = None
-        try:
-            self.cutIcon = tk.PhotoImage(
-                file=f'{iconPath}/cut.png'
-            )
-        except:
-            self.cutIcon = None
-        try:
-            self.copyIcon = tk.PhotoImage(
-                file=f'{iconPath}/copy.png'
-            )
-        except:
-            self.copyIcon = None
-        try:
-            self.pasteIcon = tk.PhotoImage(
-                file=f'{iconPath}/paste.png'
-            )
-        except:
-            self.pasteIcon = None
-        try:
-            self.resetHighlightIcon = tk.PhotoImage(
-                file=f'{iconPath}/reset_highlight.png'
-            )
-        except:
-            self.resetHighlightIcon = None
-        try:
-            self.tagsIcon = tk.PhotoImage(
-                file=f'{iconPath}/tag.png'
-            )
-        except:
-            self.tagsIcon = None
-        try:
-            self.highlightIcon = tk.PhotoImage(
-                file=f'{iconPath}/highlight.png'
-            )
-        except:
-            self.highlightIcon = None
-        try:
-            self.exitIcon = tk.PhotoImage(
-                file=f'{iconPath}/exit.png'
-            )
-        except:
-            self.exitIcon = None
-        try:
-            self.expandIcon = tk.PhotoImage(
-                file=f'{iconPath}/expand.png'
-            )
-        except:
-            self.expandIcon = None
-        try:
-            self.collapseIcon = tk.PhotoImage(
-                file=f'{iconPath}/collapse.png'
-            )
-        except:
-            self.collapseIcon = None
-        try:
-            self.unlockIcon = tk.PhotoImage(
-                file=f'{iconPath}/unlock.png'
-            )
-        except:
-            self.unlockIcon = None
-        try:
-            self.reloadIcon = tk.PhotoImage(
-                file=f'{iconPath}/reload.png'
-            )
-        except:
-            self.reloadIcon = None
-        try:
-            self.closeIcon = tk.PhotoImage(
-                file=f'{iconPath}/close.png'
-            )
-        except:
-            self.closeIcon = None
-        try:
-            self.settingsIcon = tk.PhotoImage(
-                file=f'{iconPath}/settings.png'
-            )
-        except:
-            self.settingsIcon = None
-        try:
-            self.gridIcon = tk.PhotoImage(
-                file=f'{iconPath}/grid.png'
-            )
-        except:
-            self.gridIcon = None
-        try:
-            self.levelsIcon = tk.PhotoImage(
-                file=f'{iconPath}/levels.png'
-            )
-        except:
-            self.levelsIcon = None
-        try:
-            self.stageIcon = tk.PhotoImage(
-                file=f'{iconPath}/stage.png'
-            )
-        except:
-            self.stageIcon = None
-        try:
-            self.importIcon = tk.PhotoImage(
-                file=f'{iconPath}/import.png'
-            )
-        except:
-            self.importIcon = None
-        try:
-            self.exportIcon = tk.PhotoImage(
-                file=f'{iconPath}/export.png'
-            )
-        except:
-            self.exportIcon = None
-        try:
-            self.povIcon = tk.PhotoImage(
-                file=f'{iconPath}/pov.png'
-            )
-        except:
-            self.povIcon = None
-        try:
-            self.statusIcon = tk.PhotoImage(
-                file=f'{iconPath}/status.png'
-            )
-        except:
-            self.statusIcon = None
-        try:
-            self.typeIcon = tk.PhotoImage(
-                file=f'{iconPath}/type.png'
-            )
-        except:
-            self.typeIcon = None
-        try:
-            self.chaptersIcon = tk.PhotoImage(
-                file=f'{iconPath}/chapters.png'
-            )
-        except:
-            self.chaptersIcon = None
-        try:
-            self.pluginsIcon = tk.PhotoImage(
-                file=f'{iconPath}/plugins.png'
-            )
-        except:
-            self.pluginsIcon = None
-        try:
-            self.installationFolderIcon = tk.PhotoImage(
-                file=f'{iconPath}/installation_folder.png'
-            )
-        except:
-            self.installationFolderIcon = None
-        try:
-            self.folderIcon = tk.PhotoImage(
-                file=f'{iconPath}/folder.png'
-            )
-        except:
-            self.folderIcon = None
-        try:
-            self.stickyNoteIcon = tk.PhotoImage(
-                file=f'{iconPath}/sticky_note.png'
-            )
-        except:
-            self.stickyNoteIcon = None
-        try:
-            self.homeIcon = tk.PhotoImage(
-                file=f'{iconPath}/home.png'
-            )
-        except:
-            self.homeIcon = None
-        try:
-            self.helpIcon = tk.PhotoImage(
-                file=f'{iconPath}/help.png'
-            )
-        except:
-            self.helpIcon = None
-        try:
-            self.nLogoIcon = tk.PhotoImage(
-                file=f'{iconPath}/nLogo.png'
-            )
-        except:
-            self.nLogoIcon = None
-        try:
-            self.newsIcon = tk.PhotoImage(
-                file=f'{iconPath}/smile.png'
-            )
-        except:
-            self.newsIcon = None
-        try:
-            self.discardManuscriptIcon = tk.PhotoImage(
-                file=f'{iconPath}/discardManuscript.png'
-            )
-        except:
-            self.discardManuscriptIcon = None
-        try:
-            self.newProjectIcon = tk.PhotoImage(
-                file=f'{iconPath}/newProject.png'
-            )
-        except:
-            self.newProjectIcon = None
-        try:
-            self.openProjectIcon = tk.PhotoImage(
-                file=f'{iconPath}/openProject.png'
-            )
-        except:
-            self.openProjectIcon = None
+            return None
+
