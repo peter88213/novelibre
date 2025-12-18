@@ -4,27 +4,15 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.nv_globals import PROGRAM_DIR
 from nvlib.nv_globals import prefs
 import tkinter as tk
+import os
+from pathlib import Path
 
 
 class Icons:
 
     def __init__(self):
-        if prefs.get('large_icons', False):
-            size = 24
-        else:
-            size = 16
-
-        try:
-            iconPath = f'{PROGRAM_DIR}/icons/{size}'
-        except:
-            iconPath = None
-
-        self.set_icons(iconPath)
-
-    def set_icons(self, iconPath):
 
         def new_icon(iconFile):
             try:
@@ -32,6 +20,30 @@ class Icons:
 
             except:
                 return None
+
+        def get_icon_dir(size):
+            try:
+                homeDir = str(Path.home()).replace('\\', '/')
+            except:
+                return None
+
+            iconPath = f"{homeDir}/.novx/{prefs['icon_set']}/{size}"
+            if os.path.isdir(iconPath):
+                return iconPath
+
+            prefs['icon_set'] = 'icons'
+            iconPath = f'{homeDir}/.novx/icons/{size}'
+            if os.path.isdir(iconPath):
+                return iconPath
+
+            return None
+
+        if prefs.get('large_icons', False):
+            size = 24
+        else:
+            size = 16
+
+        iconPath = get_icon_dir(size)
 
         self.addChildIcon = new_icon('addChild.png')
 

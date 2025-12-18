@@ -38,6 +38,7 @@ SETTINGS = dict(
     gco_height=4,
     gui_theme='',
     import_mode='0',
+    icon_set='icons',
     index_card_height=13,
     last_open='',
     middle_frame_width=400,
