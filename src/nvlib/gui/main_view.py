@@ -580,7 +580,7 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('New')
         self.fileMenu.add_cascade(
             label=label,
-            image=self.icons.newProjectIcon,
+            image=self.icons[label],
             compound='left',
             menu=self.newMenu
         )
@@ -589,7 +589,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self.fileMenu.add_command(
             label=label,
             accelerator=KEYS.OPEN_PROJECT[1],
-            image=self.icons.openProjectIcon,
+            image=self.icons[label],
             compound='left',
             command=self._ctrl.open_project,
         )
@@ -598,7 +598,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self.fileMenu.add_command(
             label=label,
             accelerator=KEYS.RELOAD_PROJECT[1],
-            image=self.icons.reloadIcon,
+            image=self.icons[label],
             compound='left',
             command=self._ctrl.reload_project,
         )
@@ -629,7 +629,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self.fileMenu.add_command(
             label=label,
             accelerator=KEYS.LOCK_PROJECT[1],
-            image=self.icons.lockIcon,
+            image=self.icons[label],
             compound='left',
             command=self._ctrl.lock,
         )
@@ -639,7 +639,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self.fileMenu.add_command(
             label=label,
             accelerator=KEYS.UNLOCK_PROJECT[1],
-            image=self.icons.unlockIcon,
+            image=self.icons[label],
             compound='left',
             command=self._ctrl.unlock,
         )
@@ -651,7 +651,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self.fileMenu.add_command(
             label=label,
             accelerator=KEYS.FOLDER[1],
-            image=self.icons.folderIcon,
+            image=self.icons[label],
             compound='left',
             command=self._ctrl.open_project_folder,
         )
@@ -667,9 +667,9 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Discard manuscript')
         self.fileMenu.add_command(
             label=label,
-            image=self.icons.discardManuscriptIcon,
+            image=self.icons[label],
             compound='left',
-             command=self._ctrl.discard_manuscript,
+            command=self._ctrl.discard_manuscript,
         )
         self.fileMenu.disableOnClose.append(label)
         self.fileMenu.disableOnLock.append(label)
@@ -680,7 +680,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self.fileMenu.add_command(
             label=label,
             accelerator=KEYS.SAVE_PROJECT[1],
-            image=self.icons.saveIcon,
+            image=self.icons[label],
             compound='left',
             command=self._ctrl.save_project,
         )
@@ -691,7 +691,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self.fileMenu.add_command(
             label=label,
             accelerator=KEYS.SAVE_AS[1],
-            image=self.icons.saveAsIcon,
+            image=self.icons[label],
             compound='left',
             command=self._ctrl.save_as,
         )
@@ -700,20 +700,20 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Close')
         self.fileMenu.add_command(
             label=label,
-            image=self.icons.closeIcon,
+            image=self.icons[label],
             compound='left',
             command=self._ctrl.close_project,
         )
         self.fileMenu.disableOnClose.append(label)
 
         if PLATFORM == 'win':
-            label = _('Exit'),
+            label = _('Exit')
         else:
-            label = _('Quit'),
+            label = _('Quit')
         self.fileMenu.add_command(
             label=label,
             accelerator=KEYS.QUIT_PROGRAM[1],
-            image=self.icons.exitIcon,
+            image=self.icons[label],
             compound='left',
             command=self._ctrl.on_quit,
         )
@@ -726,7 +726,7 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Highlight tagged elements')
         self.viewMenu.add_command(
             label=label,
-            image=self.icons.tagsIcon,
+            image=self.icons[label],
             compound='left',
             command=self.tv.select_tag_and_highlight_elements,
         )

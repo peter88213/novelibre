@@ -6,12 +6,15 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.nv_globals import PROGRAM_DIR
 from nvlib.nv_globals import prefs
+from nvlib.nv_locale import _
 import tkinter as tk
 
 
-class Icons:
+class Icons(dict):
 
     def __init__(self):
+        super().__init__()
+
         if prefs.get('large_icons', False):
             size = 24
         else:
@@ -63,12 +66,6 @@ class Icons:
         except:
             self.gotoIcon = None
         try:
-            self.lockIcon = tk.PhotoImage(
-                file=f'{iconPath}/lock.png'
-            )
-        except:
-            self.lockIcon = None
-        try:
             self.manuscriptIcon = tk.PhotoImage(
                 file=f'{iconPath}/manuscript.png'
             )
@@ -86,18 +83,6 @@ class Icons:
             )
         except:
             self.removeIcon = None
-        try:
-            self.saveIcon = tk.PhotoImage(
-                file=f'{iconPath}/save.png'
-            )
-        except:
-            self.saveIcon = None
-        try:
-            self.saveAsIcon = tk.PhotoImage(
-                file=f'{iconPath}/saveAs.png'
-            )
-        except:
-            self.saveAsIcon = None
         try:
             self.updateFromManuscriptIcon = tk.PhotoImage(
                 file=f'{iconPath}/updateFromManuscript.png'
@@ -171,23 +156,11 @@ class Icons:
         except:
             self.resetHighlightIcon = None
         try:
-            self.tagsIcon = tk.PhotoImage(
-                file=f'{iconPath}/tag.png'
-            )
-        except:
-            self.tagsIcon = None
-        try:
             self.highlightIcon = tk.PhotoImage(
                 file=f'{iconPath}/highlight.png'
             )
         except:
             self.highlightIcon = None
-        try:
-            self.exitIcon = tk.PhotoImage(
-                file=f'{iconPath}/exit.png'
-            )
-        except:
-            self.exitIcon = None
         try:
             self.expandIcon = tk.PhotoImage(
                 file=f'{iconPath}/expand.png'
@@ -206,18 +179,6 @@ class Icons:
             )
         except:
             self.unlockIcon = None
-        try:
-            self.reloadIcon = tk.PhotoImage(
-                file=f'{iconPath}/reload.png'
-            )
-        except:
-            self.reloadIcon = None
-        try:
-            self.closeIcon = tk.PhotoImage(
-                file=f'{iconPath}/close.png'
-            )
-        except:
-            self.closeIcon = None
         try:
             self.settingsIcon = tk.PhotoImage(
                 file=f'{iconPath}/settings.png'
@@ -291,12 +252,6 @@ class Icons:
         except:
             self.installationFolderIcon = None
         try:
-            self.folderIcon = tk.PhotoImage(
-                file=f'{iconPath}/folder.png'
-            )
-        except:
-            self.folderIcon = None
-        try:
             self.stickyNoteIcon = tk.PhotoImage(
                 file=f'{iconPath}/sticky_note.png'
             )
@@ -327,20 +282,33 @@ class Icons:
         except:
             self.newsIcon = None
         try:
-            self.discardManuscriptIcon = tk.PhotoImage(
-                file=f'{iconPath}/discardManuscript.png'
-            )
-        except:
-            self.discardManuscriptIcon = None
-        try:
             self.newProjectIcon = tk.PhotoImage(
-                file=f'{iconPath}/newProject.png'
+                file=f'{iconPath}/.png'
             )
         except:
             self.newProjectIcon = None
-        try:
-            self.openProjectIcon = tk.PhotoImage(
-                file=f'{iconPath}/openProject.png'
-            )
-        except:
-            self.openProjectIcon = None
+
+        icons = {
+            _('New'): 'newProject',
+            _('Open...'): 'openProject',
+            _('Reload'): 'reload',
+            _('Lock'): 'lock',
+            _('Unlock'): 'unlock',
+            _('Open Project folder'): 'folder',
+            _('Discard manuscript'): 'discardManuscript',
+            _('Save'): 'save',
+            _('Save as...'): 'saveAs',
+            _('Close'): 'close',
+            _('Quit'): 'exit',
+            _('Exit'): 'exit',
+            _('Highlight tagged elements'): 'tag',
+
+        }
+
+        for label in icons:
+            try:
+                self[label] = tk.PhotoImage(
+                    file=f'{iconPath}/{icons[label]}.png'
+                )
+            except:
+                self[label] = None

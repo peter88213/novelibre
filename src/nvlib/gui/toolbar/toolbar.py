@@ -116,7 +116,7 @@ class Toolbar(SubController):
         # "Save" button.
         self.saveButton = self.new_button(
             text=_('Save'),
-            image=self._ui.icons.saveIcon,
+            image=self._ui.icons[_('Save')],
             command=self._ctrl.save_project,
             accelerator=KEYS.SAVE_PROJECT[1],
         )
@@ -125,7 +125,7 @@ class Toolbar(SubController):
         # "Lock/Unlock" button.
         self.lockButton = self.new_button(
             text=_('Lock/unlock'),
-            image=self._ui.icons.lockIcon,
+            image=self._ui.icons[_('Lock')],
             command=self._ctrl.toggle_lock,
             disableOnLock=False,
         )
@@ -216,7 +216,7 @@ class Toolbar(SubController):
         # "Highlight tagged elements" button.
         self.highlightTaggedButton = self.new_button(
             text=_('Highlight tagged elements'),
-            image=self._ui.icons.tagsIcon,
+            image=self._ui.icons[_('Highlight tagged elements')],
             command=self._ui.tv.select_tag_and_highlight_elements,
             disableOnLock=False,
             master=self.masterBar,
