@@ -1148,7 +1148,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         # Return title, values, and tags for a section row.
         # position: int -- Accumulated word count at section beginning.
 
-        # Time for displaying.
+        # Time to display.
         if self._mdl.novel.sections[scId].time is not None:
             dispTime = PyCalendar.time_disp(
                 self._mdl.novel.sections[scId].time)

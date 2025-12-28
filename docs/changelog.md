@@ -11,6 +11,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.47.3
+
+- Making sure that epigraphs are colored correctly in the project tree after moving sections within the chapter.
+
+
 ### Version 5.47.2
 
 - Fixed a bug where an exception may be raised when reading ODT code with text passages combining foreign language and emphasis.

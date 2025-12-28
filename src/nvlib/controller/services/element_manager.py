@@ -662,7 +662,6 @@ class ElementManager(ServiceBase):
             )
         ):
             self._ui.tv.open_children(targetNode)
-        self._ui.tv.skipUpdate = True
         self._mdl.move_node(node, targetNode)
 
     def set_character_status(self, isMajor, elemIds=None):
