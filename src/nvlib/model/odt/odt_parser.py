@@ -113,11 +113,12 @@ class OdtParser(sax.ContentHandler):
 
         if name == 'text:span':
             try:
-                span = self._span.pop()
-                if span is not None:
-                    self._client.handle_endtag(span)
-                    if span == 'lang':
-                        self._currentLocale.pop()
+                while self._span:
+                    span = self._span.pop()
+                    if span is not None:
+                        self._client.handle_endtag(span)
+                        if span == 'lang':
+                            self._currentLocale.pop()
                 return
 
             except:
@@ -225,9 +226,11 @@ class OdtParser(sax.ContentHandler):
             elif style in self._emTags:
                 span = 'em'
                 self._client.handle_starttag('em', [()])
+                self._span.append(span)
             elif style in self._strongTags:
                 span = 'strong'
                 self._client.handle_starttag('strong', [()])
+                self._span.append(span)
             if style in self._languageTags:
                 if self._languageTags[style] != self._currentLocale[-1]:
                     span = 'lang'
@@ -236,7 +239,7 @@ class OdtParser(sax.ContentHandler):
                         [('lang', self._languageTags[style])]
                     )
                     self._currentLocale.append(self._languageTags[style])
-            self._span.append(span)
+                    self._span.append(span)
             return
 
         if name == 'text:section':
