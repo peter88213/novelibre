@@ -77,19 +77,19 @@ class SimpleGui(Ui):
         self.mainWindow = ttk.Frame()
         self.mainWindow.pack(expand=True, fill='both')
         self.statusBar = tk.Label(
-            self.root, 
-            text='', 
-            anchor='w', 
-            padx=5, 
+            self.root,
+            text='',
+            anchor='w',
+            padx=5,
             pady=2,
         )
         self.statusBar.pack(expand=False, fill='both')
         self.statusBar.bind('<Button-1>', self.restore_status)
         self.pathBar = tk.Label(
-            self.root, 
-            text='', 
-            anchor='w', 
-            padx=5, 
+            self.root,
+            text='',
+            anchor='w',
+            padx=5,
             pady=3,
         )
         self.pathBar.pack(expand=False, fill='both')
@@ -304,22 +304,22 @@ class SimpleGui(Ui):
         """
         self.fileMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(
-            label=_('File'), 
+            label=_('File'),
             menu=self.fileMenu,
         )
         self.fileMenu.add_command(
-            label=_('Open...'), 
-            accelerator=self._KEY_OPEN_PROJECT[1], 
+            label=_('Open...'),
+            accelerator=self._KEY_OPEN_PROJECT[1],
             command=self._open_project,
         )
         self.fileMenu.add_command(
-            label=_('Close'), 
-            command=self.close_project),
+            label=_('Close'),
+            command=self.close_project,
         )
         self.fileMenu.entryconfig(_('Close'), state='disabled')
         self.fileMenu.add_command(
-            label=_('Exit'), 
-            accelerator=self._KEY_QUIT_PROGRAM[1], 
+            label=_('Exit'),
+            accelerator=self._KEY_QUIT_PROGRAM[1],
             command=self.on_quit,
         )
 
