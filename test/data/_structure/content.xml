@@ -15,17 +15,37 @@
 <text:p text:style-name="Subtitle"></text:p>
 
 <text:h text:style-name="Heading_20_1" text:outline-level="1">Story structure</text:h>
-<text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark text:name="sc1"/>ACT 1</text:h>
-<text:section text:style-name="Sect1" text:name="sc1">
-
+<text:h text:style-name="Heading_20_1" text:outline-level="1"><text:bookmark text:name="sc4"/>ACT 1</text:h>
+<text:section text:style-name="Sect1" text:name="sc4">
+<text:p text:style-name="Text_20_body">Setup</text:p>
 </text:section>
-<text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark text:name="sc2"/>ACT 2</text:h>
-<text:section text:style-name="Sect1" text:name="sc2">
-
+<text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark text:name="sc5"/>Inciting Incident</text:h>
+<text:section text:style-name="Sect1" text:name="sc5">
+<text:p text:style-name="Text_20_body">Also called "catalyst" or "call to adventure". This sets the protagonist in motion.</text:p>
 </text:section>
-<text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark text:name="sc3"/>ACT 3</text:h>
-<text:section text:style-name="Sect1" text:name="sc3">
-
+<text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark text:name="sc6"/>Plot Point 1</text:h>
+<text:section text:style-name="Sect1" text:name="sc6">
+<text:p text:style-name="Text_20_body">"Point of no return": The protagonist engages with the action the inciting incident has created.</text:p>
+</text:section>
+<text:h text:style-name="Heading_20_1" text:outline-level="1"><text:bookmark text:name="sc7"/>ACT 2</text:h>
+<text:section text:style-name="Sect1" text:name="sc7">
+<text:p text:style-name="Text_20_body">Confrontation</text:p>
+</text:section>
+<text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark text:name="sc8"/>Midpoint</text:h>
+<text:section text:style-name="Sect1" text:name="sc8">
+<text:p text:style-name="Text_20_body">The main turning point. A significant event, changing the development of things from good to bad, or vice versa.</text:p>
+</text:section>
+<text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark text:name="sc9"/>Plot Point 2</text:h>
+<text:section text:style-name="Sect1" text:name="sc9">
+<text:p text:style-name="Text_20_body">The aftermath of the Midpoint crisis. What changes the protagonist from "passenger" to "driver".</text:p>
+</text:section>
+<text:h text:style-name="Heading_20_1" text:outline-level="1"><text:bookmark text:name="sc10"/>ACT 3</text:h>
+<text:section text:style-name="Sect1" text:name="sc10">
+<text:p text:style-name="Text_20_body">Resolution</text:p>
+</text:section>
+<text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark text:name="sc11"/>Climax</text:h>
+<text:section text:style-name="Sect1" text:name="sc11">
+<text:p text:style-name="Text_20_body">The final moment of the story's conflict.</text:p>
 </text:section>
   </office:text>
  </office:body>
