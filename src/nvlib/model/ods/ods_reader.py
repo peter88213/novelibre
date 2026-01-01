@@ -49,13 +49,12 @@ class OdsReader(OdfReader, ABC):
 
         Overrides the superclass method.
         """
-        self._rows.clear()
         cellsPerRow = len(self._columnTitles)
         parser = OdsParser()
-        rows = parser.get_rows(self.filePath, cellsPerRow)
-        for title in rows[0]:
+        self._rows = parser.get_rows(self.filePath, cellsPerRow)
+        for title in self._rows[0]:
             self._columns[title] = {}
-        for row in rows:
+        for row in self._rows:
             if row[0].startswith(self._idPrefix):
                 for i, col in enumerate(self._columns):
                     self._columns[col][row[0]] = row[i]
