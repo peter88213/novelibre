@@ -1,20 +1,22 @@
-"""Regression test for the novxlib distributions.
+"""Regression test for novelibre file processing.
 
-Test the story structure description generation.
+Test the conversion of the plot grid.
 
-For further information see https://github.com/peter88213/novelibre
+Copyright (c) 2026 Peter Triesberger
+For further information see https://github.com/peter88213/
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+
 import unittest
 
-from nvlib.model.odt.odt_r_stages import OdtRStages
-from nvlib.model.odt.odt_w_stages import OdtWStages
+from nvlib.model.ods.ods_r_grid import OdsRGrid
+from nvlib.model.ods.ods_w_grid import OdsWGrid
 from testlib.import_export_test import ImportExportTest
 
 
 class NrmOpr(ImportExportTest, unittest.TestCase):
-    _importClass = OdtRStages
-    _exportClass = OdtWStages
+    _importClass = OdsRGrid
+    _exportClass = OdsWGrid
 
     # The test methods must be defined here to identify the source of failure.
 

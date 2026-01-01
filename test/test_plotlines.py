@@ -23,6 +23,9 @@ class NrmOpr(ImportExportTest, unittest.TestCase):
     def test_imp_to_novx(self):
         super().test_imp_to_novx()
 
+    def test_data(self):
+        super().test_data()
+
 
 def main():
     unittest.main()
