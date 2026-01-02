@@ -50,7 +50,6 @@
     <table:table-column table:style-name="co1" table:visibility="collapse" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
-    <table:table-column table:style-name="co2" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>
     <table:table-column table:style-name="co1" table:default-cell-style-name="Default"/>
@@ -68,9 +67,6 @@
      </table:table-cell>
      <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>Description</text:p>
-     </table:table-cell>
-     <table:table-cell table:style-name="Heading" office:value-type="string">
-      <text:p>Viewpoint</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Heading" office:value-type="string">
       <text:p>ac5</text:p>
@@ -107,9 +103,6 @@
       <text:p>Description of the first section.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
       <text:p>Lorem ipsum.</text:p>
      </table:table-cell>
 
@@ -138,9 +131,6 @@
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>New Scene (ID16)</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -181,9 +171,6 @@
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
 
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -210,9 +197,6 @@
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>New Scene (ID18)</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -253,9 +237,6 @@
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
 
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -282,9 +263,6 @@
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>New Scene (ID20)</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -325,9 +303,6 @@
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
 
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -354,9 +329,6 @@
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>New Scene (ID22)</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -397,9 +369,6 @@
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
 
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -426,9 +395,6 @@
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>New Scene (ID23)</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -469,9 +435,6 @@
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
 
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -498,9 +461,6 @@
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>New Scene (ID26)</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -541,9 +501,6 @@
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
 
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -577,9 +534,6 @@
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
-     </table:table-cell>
 
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -606,9 +560,6 @@
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>New Scene (ID29)</text:p>
-     </table:table-cell>
-     <table:table-cell office:value-type="string">
-      <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>

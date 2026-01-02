@@ -76,42 +76,6 @@ class OdsRMetadataText(OdsReader):
                     plSections.append(scId)
                     self.novel.plotLines[plId].sections = plSections
 
-            #--- date
-            try:
-                scDate = self._columnDict['Date'][scId]
-                self.novel.sections[scId].date = PyCalendar.verified_date(
-                    scDate)
-            except:
-                pass
-
-            #--- time
-            try:
-                scTime = self._columnDict['Time'][scId]
-                self.novel.sections[scId].time = PyCalendar.verified_time(
-                    scTime)
-            except:
-                pass
-
-            #--- day
-            try:
-                day = self._columnDict['Day'][scId]
-                int(day)
-            except:
-                pass
-            else:
-                self.novel.sections[scId].day = day.strip()
-
-            #--- duration
-            try:
-                durationStr = self._columnDict['Duration'][scId]
-                d, h, m = durationParser.get_duration(durationStr)
-            except:
-                pass
-            else:
-                self.novel.sections[scId].lastsDays = str(d)
-                self.novel.sections[scId].lastsHours = str(h)
-                self.novel.sections[scId].lastsMinutes = str(m)
-
             #--- title
             try:
                 title = self._columnDict['Title'][scId]
@@ -127,23 +91,6 @@ class OdsRMetadataText(OdsReader):
                 pass
             else:
                 self.novel.sections[scId].desc = desc.strip()
-
-            #--- viewpoint
-            try:
-                viewpoint = self._columnDict['Viewpoint'][scId]
-            except:
-                pass
-            else:
-                viewpoint = viewpoint.strip()
-
-                # Get the vp character ID.
-                vpId = None
-                for crId in self.novel.characters:
-                    if self.novel.characters[crId].title == viewpoint:
-                        vpId = crId
-                        break
-
-                self.novel.sections[scId].viewpoint = vpId
 
             #--- tags
             try:

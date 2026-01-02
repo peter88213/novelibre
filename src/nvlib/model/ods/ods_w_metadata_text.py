@@ -27,11 +27,6 @@ class OdsWMetadataText(OdsWriter):
 
     # Header structure:
     # Section ID (hidden)
-    # Section number (link to manuscript)
-    # Date
-    # Time
-    # Day
-    # Duration
     # Title
     # Description
     # Viewpoint
@@ -52,8 +47,6 @@ class OdsWMetadataText(OdsWriter):
         '    <table:table-column table:style-name="co3" '
         'table:default-cell-style-name="Default"/>\n'
         '    <table:table-column table:style-name="co4" '
-        'table:default-cell-style-name="Default"/>\n'
-        '    <table:table-column table:style-name="co2" '
         'table:default-cell-style-name="Default"/>\n'
         '$ArcColumns\n'
         '    <table:table-column table:style-name="co3" '
@@ -83,10 +76,6 @@ class OdsWMetadataText(OdsWriter):
         '     <table:table-cell '
         'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>Description</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell '
-        'table:style-name="Heading" office:value-type="string">\n'
-        '      <text:p>Viewpoint</text:p>\n'
         '     </table:table-cell>\n'
         '$ArcIdCells\n'
         '     <table:table-cell '
@@ -127,9 +116,6 @@ class OdsWMetadataText(OdsWriter):
         '     </table:table-cell>\n'
         '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$Desc</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell office:value-type="string">\n'
-        '      <text:p>$Viewpoint</text:p>\n'
         '     </table:table-cell>\n'
         '$ArcNoteCells\n'
         '     <table:table-cell office:value-type="string">\n'
