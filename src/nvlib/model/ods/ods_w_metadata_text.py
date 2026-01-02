@@ -29,13 +29,12 @@ class OdsWMetadataText(OdsWriter):
     # Section ID (hidden)
     # Title
     # Description
+    # Notes
     # All plot lines
     # Tags
-    # Scene
     # Goal
     # Conflict
     # Outcome
-    # Notes
 
     _fileHeader = (
         f'{OdsWriter._CONTENT_XML_HEADER}{DESCRIPTION}" '
@@ -47,10 +46,10 @@ class OdsWMetadataText(OdsWriter):
         'table:default-cell-style-name="Default"/>\n'
         '    <table:table-column table:style-name="co4" '
         'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co4" '
+        'table:default-cell-style-name="Default"/>\n'
         '$ArcColumns\n'
         '    <table:table-column table:style-name="co3" '
-        'table:default-cell-style-name="Default"/>\n'
-        '    <table:table-column table:style-name="co4" '
         'table:default-cell-style-name="Default"/>\n'
         '    <table:table-column table:style-name="co4" '
         'table:default-cell-style-name="Default"/>\n'
@@ -74,6 +73,10 @@ class OdsWMetadataText(OdsWriter):
         'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>Description</text:p>\n'
         '     </table:table-cell>\n'
+        '     <table:table-cell '
+        'table:style-name="Heading" office:value-type="string">\n'
+        '      <text:p>Notes</text:p>\n'
+        '     </table:table-cell>\n'
         '$ArcIdCells\n'
         '     <table:table-cell '
         'table:style-name="Heading" office:value-type="string">\n'
@@ -92,10 +95,6 @@ class OdsWMetadataText(OdsWriter):
         '      <text:p>Outcome</text:p>\n'
         '     </table:table-cell>\n'
         '     <table:table-cell '
-        'table:style-name="Heading" office:value-type="string">\n'
-        '      <text:p>Notes</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell '
         'table:style-name="Heading" table:number-columns-repeated="1003"/>\n'
         '    </table:table-row>\n'
     )
@@ -110,6 +109,9 @@ class OdsWMetadataText(OdsWriter):
         '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$Desc</text:p>\n'
         '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Notes</text:p>\n'
+        '     </table:table-cell>\n'
         '$ArcNoteCells\n'
         '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$Tags</text:p>\n'
@@ -122,9 +124,6 @@ class OdsWMetadataText(OdsWriter):
         '     </table:table-cell>\n'
         '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$Outcome</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell office:value-type="string">\n'
-        '      <text:p>$Notes</text:p>\n'
         '     </table:table-cell>\n'
         '    </table:table-row>\n'
     )
