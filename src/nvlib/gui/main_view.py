@@ -1260,6 +1260,14 @@ class MainView(Observer, MsgBoxes, SubController):
         self.exportMenu.disableOnLock.append(label)
         self.exportMenu.disableOnClose.append(label)
 
+        label = _('Metadata text table for editing')
+        self.exportMenu.add_command(
+            label=label,
+            command=self._ctrl.export_metadata_text,
+        )
+        self.exportMenu.disableOnLock.append(label)
+        self.exportMenu.disableOnClose.append(label)
+
         self.exportMenu.add_separator()
 
         label = _('Final manuscript document (export only)')

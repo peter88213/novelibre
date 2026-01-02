@@ -32,6 +32,7 @@ from nvlib.novx_globals import LOCATION_PREFIX
 from nvlib.novx_globals import LOCATION_REPORT_SUFFIX
 from nvlib.novx_globals import LOCLIST_SUFFIX
 from nvlib.novx_globals import MANUSCRIPT_SUFFIX
+from nvlib.novx_globals import METADATA_TEXT_SUFFIX
 from nvlib.novx_globals import PARTLIST_SUFFIX
 from nvlib.novx_globals import PARTS_SUFFIX
 from nvlib.novx_globals import PLOTLINES_SUFFIX
@@ -329,6 +330,9 @@ class Commands:
 
     def export_manuscript(self, event=None):
         self.fileManager.export_document(MANUSCRIPT_SUFFIX)
+
+    def export_metadata_text(self, event=None):
+        self.fileManager.export_document(METADATA_TEXT_SUFFIX)
 
     def export_plot_grid(self, event=None):
         self.fileManager.export_document(GRID_SUFFIX)

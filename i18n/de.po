@@ -1,11 +1,11 @@
 # novelibre Dictionary (English-German)
-# Copyright (C) 2025 Peter Triesberger
+# Copyright (C) Peter Triesberger
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.48.0\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-01-02 09:50:53\n"
+"PO-Revision-Date: 2026-01-02 12:46:35\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -780,6 +780,12 @@ msgstr "Manuskript für fremde Textverarbeitung"
 
 msgid "Manuscript not found"
 msgstr "Manuskript nicht gefunden"
+
+msgid "Metadata text"
+msgstr "Metadaten-Text"
+
+msgid "Metadata text table for editing"
+msgstr "Metadaten-Texttabelle zum Bearbeiten"
 
 msgid "Minor Character"
 msgstr "Nebenfigur"
