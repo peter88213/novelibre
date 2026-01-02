@@ -1,6 +1,6 @@
 """Provide a tkinter based folding frame with a "show/hide" button.
 
-Copyright (c) 2025 Peter Triesberger
+Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 Published under the MIT License 
 (https://opensource.org/licenses/mit-license.php)

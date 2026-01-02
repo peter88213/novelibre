@@ -16,7 +16,7 @@ For further information see https://github.com/peter88213/novelibre
 - Changed the tkinter import to avoid namespace issues when packaging.
 - Replaced some tk constants with simple strings.
 
-Copyright (c) 2025 Peter Triesberger
+Copyright (c) Peter Triesberger
 
 """
 import tkinter as tk
