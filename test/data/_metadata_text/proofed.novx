@@ -103,9 +103,51 @@
       <Title>Papierkorb</Title>
     </CHAPTER>
   </CHAPTERS>
-  <CHARACTERS />
-  <LOCATIONS />
-  <ITEMS />
+  <CHARACTERS>
+    <CHARACTER id="cr1">
+      <Title>Huey</Title>
+      <Desc>
+        <p>Huey's description</p>
+      </Desc>
+      <Tags>Nephew</Tags>
+      <Aka>Zoomer</Aka>
+      <FullName>Huey Smith</FullName>
+      <Bio>
+        <p>Huey's Bio</p>
+      </Bio>
+      <Goals>
+        <p>Huey's Goals</p>
+      </Goals>
+    </CHARACTER>
+    <CHARACTER id="cr2">
+      <Title>Louey</Title>
+      <Tags>Nephew</Tags>
+    </CHARACTER>
+    <CHARACTER id="cr3">
+      <Title>Dewey</Title>
+      <Tags>Nephew</Tags>
+    </CHARACTER>
+  </CHARACTERS>
+  <LOCATIONS>
+    <LOCATION id="lc1">
+      <Title>At home</Title>
+      <Desc>
+        <p>A cozy place.</p>
+      </Desc>
+      <Tags>Safe space</Tags>
+      <Aka>My castle</Aka>
+    </LOCATION>
+  </LOCATIONS>
+  <ITEMS>
+    <ITEM id="it1">
+      <Title>Electric drill</Title>
+      <Desc>
+        <p>A handy tool.</p>
+      </Desc>
+      <Tags>Tool</Tags>
+      <Aka>DeWalter</Aka>
+    </ITEM>
+  </ITEMS>
   <ARCS>
     <ARC id="ac5">
       <Title>A-Storyline</Title>
@@ -211,5 +253,12 @@
       </POINT>
     </ARC>
   </ARCS>
-  <PROJECTNOTES />
+  <PROJECTNOTES>
+    <PROJECTNOTE id="pn1">
+      <Title>Important project note</Title>
+      <Desc>
+        <p>Never forget your goals.</p>
+      </Desc>
+    </PROJECTNOTE>
+  </PROJECTNOTES>
 </novx>

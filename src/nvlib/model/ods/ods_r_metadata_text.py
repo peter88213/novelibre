@@ -25,6 +25,10 @@ class OdsRMetadataText(OdsReader):
         'Goal',
         'Conflict',
         'Outcome',
+        'Full name',
+        'Aka',
+        'Bio',
+        'Goals',
     ]
     _idPrefix = SECTION_PREFIX
 

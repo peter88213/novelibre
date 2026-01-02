@@ -28,7 +28,11 @@ class OdsWMetadataText(OdsWriter):
     # Header structure:
     # Section ID (hidden)
     # Title
+    # Full name
+    # Aka
     # Description
+    # Bio
+    # Goals
     # Notes
     # Tags
     # Goal
@@ -39,12 +43,18 @@ class OdsWMetadataText(OdsWriter):
     _fileHeader = (
         f'{OdsWriter._CONTENT_XML_HEADER}{DESCRIPTION}" '
         'table:style-name="ta1" table:print="false">\n'
+        'table:style-name="ta1" table:print="false">\n'
         '    <table:table-column table:style-name="co1" '
         'table:visibility="collapse" '
         'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co2" '
+        'table:default-cell-style-name="Default"/>\n'
         '    <table:table-column table:style-name="co3" '
         'table:default-cell-style-name="Default"/>\n'
+        '    <table:table-column table:style-name="co2" '
+        'table:default-cell-style-name="Default"/>\n'
         '    <table:table-column table:style-name="co4" '
+        'table:number-columns-repeated="3" '
         'table:default-cell-style-name="Default"/>\n'
         '    <table:table-column table:style-name="co4" '
         'table:default-cell-style-name="Default"/>\n'
@@ -69,9 +79,25 @@ class OdsWMetadataText(OdsWriter):
         'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>Title</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell '
-        'table:style-name="Heading" office:value-type="string">\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'office:value-type="string">\n'
+        '      <text:p>Full name</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'office:value-type="string">\n'
+        '      <text:p>Aka</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'office:value-type="string">\n'
         '      <text:p>Description</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'office:value-type="string">\n'
+        '      <text:p>Bio</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell table:style-name="Heading" '
+        'office:value-type="string">\n'
+        '      <text:p>Goals</text:p>\n'
         '     </table:table-cell>\n'
         '     <table:table-cell '
         'table:style-name="Heading" office:value-type="string">\n'
@@ -98,7 +124,7 @@ class OdsWMetadataText(OdsWriter):
         'table:style-name="Heading" table:number-columns-repeated="1003"/>\n'
         '    </table:table-row>\n'
     )
-    _sectionTemplate = _epigraphTemplate = (
+    _element_template = (
         '   <table:table-row table:style-name="ro2">\n'
         '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$ID</text:p>\n'
@@ -107,7 +133,19 @@ class OdsWMetadataText(OdsWriter):
         '      <text:p>$Title</text:p>\n'
         '     </table:table-cell>\n'
         '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$FullName</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$AKA</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$Desc</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Bio</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Goals</text:p>\n'
         '     </table:table-cell>\n'
         '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$Notes</text:p>\n'
@@ -127,6 +165,15 @@ class OdsWMetadataText(OdsWriter):
         '$ArcNoteCells\n'
         '    </table:table-row>\n'
     )
+    _sectionTemplate = _element_template
+    _epigraphTemplate = _element_template
+    _characterTemplate = _element_template
+    _locationTemplate = _element_template
+    _itemTemplate = _element_template
+    _plotLineTemplate = _element_template
+    _plotPointTemplate = _element_template
+    _projectNoteTemplate = _element_template
+
     _fileFooter = OdsWriter._CONTENT_XML_FOOTER
     _emptyDateCell = '     <table:table-cell table:style-name="ce2"/>'
     _validDateCell = (
@@ -229,24 +276,6 @@ class OdsWMetadataText(OdsWriter):
             isEpigraph,
         )
 
-        #--- $DateCell: if no section date is given,
-        #               the whole cell must be empty.
-        if sectionMapping['Date']:
-            sectionMapping['DateCell'] = Template(
-                self._validDateCell
-            ).safe_substitute(sectionMapping)
-        else:
-            sectionMapping['DateCell'] = self._emptyDateCell
-
-        #--- $TimeCell: if no section time is given,
-        #               the whole cell must be empty.
-        if sectionMapping['Time']:
-            sectionMapping['TimeCell'] = Template(
-                self._validTimeCell
-            ).safe_substitute(sectionMapping)
-        else:
-            sectionMapping['TimeCell'] = self._emptyTimeCell
-
         #--- $ArcNoteCells: one per plot line.
         arcNoteCells = []
         for plId in self.novel.tree.get_children(PL_ROOT):
@@ -262,5 +291,80 @@ class OdsWMetadataText(OdsWriter):
                 ).safe_substitute(mapping))
         sectionMapping['ArcNoteCells'] = '\n'.join(arcNoteCells)
 
+        sectionMapping['FullName'] = ''
+        sectionMapping['AKA'] = ''
+        sectionMapping['Bio'] = ''
+        sectionMapping['Goals'] = ''
+
         return sectionMapping
+
+    def _get_prjNoteMapping(self, pnId):
+        noteMapping = super()._get_prjNoteMapping(pnId)
+        noteMapping['Notes'] = ''
+        noteMapping['FullName'] = ''
+        noteMapping['AKA'] = ''
+        noteMapping['Bio'] = ''
+        noteMapping['Goals'] = ''
+        noteMapping['Goal'] = ''
+        noteMapping['Conflict'] = ''
+        noteMapping['Outcome'] = ''
+        noteMapping['Tags'] = ''
+
+        return noteMapping
+
+    def _get_plotLineMapping(self, plId):
+        plotlineMapping = super()._get_plotLineMapping(plId)
+        plotlineMapping['FullName'] = ''
+        plotlineMapping['AKA'] = ''
+        plotlineMapping['Bio'] = ''
+        plotlineMapping['Goals'] = ''
+        plotlineMapping['Goal'] = ''
+        plotlineMapping['Conflict'] = ''
+        plotlineMapping['Outcome'] = ''
+        plotlineMapping['Tags'] = ''
+
+        return plotlineMapping
+
+    def _get_plotPointMapping(self, ppId):
+        plotPointMapping = super()._get_plotPointMapping(ppId)
+        plotPointMapping['FullName'] = ''
+        plotPointMapping['AKA'] = ''
+        plotPointMapping['Bio'] = ''
+        plotPointMapping['Goals'] = ''
+        plotPointMapping['Goal'] = ''
+        plotPointMapping['Conflict'] = ''
+        plotPointMapping['Outcome'] = ''
+        plotPointMapping['Tags'] = ''
+
+        return plotPointMapping
+
+    def _get_locationMapping(self, lcId):
+        locationMapping = super()._get_locationMapping(lcId)
+        locationMapping['FullName'] = ''
+        locationMapping['Bio'] = ''
+        locationMapping['Goals'] = ''
+        locationMapping['Goal'] = ''
+        locationMapping['Conflict'] = ''
+        locationMapping['Outcome'] = ''
+
+        return locationMapping
+
+    def _get_itemMapping(self, itId):
+        itemMapping = super()._get_itemMapping(itId)
+        itemMapping['FullName'] = ''
+        itemMapping['Bio'] = ''
+        itemMapping['Goals'] = ''
+        itemMapping['Goal'] = ''
+        itemMapping['Conflict'] = ''
+        itemMapping['Outcome'] = ''
+
+        return itemMapping
+
+    def _get_characterMapping(self, crId):
+        characterMapping = super()._get_characterMapping(crId)
+        characterMapping['Goal'] = ''
+        characterMapping['Conflict'] = ''
+        characterMapping['Outcome'] = ''
+
+        return characterMapping
 
