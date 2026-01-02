@@ -26,16 +26,16 @@
         </Notes>
         <Tags>Tag1</Tags>
         <Goal>
-          <p>Goal in section 1.</p>
+          <p>Goal in the first section.</p>
         </Goal>
         <Conflict>
-          <p>Conflict in section 1.</p>
+          <p>Conflict in the first section.</p>
         </Conflict>
         <Outcome>
-          <p>Outcome in section 1.</p>
+          <p>Outcome in the first section.</p>
         </Outcome>
         <PlotlineNotes id="ac5">
-          <p>Section 1: Plotline notes.</p>
+          <p>A-Storyline: Plot line Notes on the first section.</p>
         </PlotlineNotes>
       </SECTION>
       <SECTION id="sc16">

@@ -17,14 +17,14 @@ class OdsRMetadataText(OdsReader):
     DESCRIPTION = _('Metadata text')
     SUFFIX = METADATA_TEXT_SUFFIX
     COLUMN_TITLES = [
-        'Link',
+        'ID',
         'Title',
         'Description',
+        'Notes',
         'Tags',
         'Goal',
         'Conflict',
         'Outcome',
-        'Notes',
     ]
     _idPrefix = SECTION_PREFIX
 
