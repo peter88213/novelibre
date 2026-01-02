@@ -428,25 +428,30 @@ class FileManager(ServiceBase):
             return False
 
         self._ui.propertiesView.apply_changes()
+        oldFileName = self._mdl.prjFile.filePath
         try:
             self._mdl.save_project(fileName)
         except RuntimeError as ex:
             self._ui.set_status(f'!{str(ex)}')
             return False
-
-        else:
-            self._ctrl.unlock()
-            self._ui.show_path(
-                (
-                    f'{norm_path(self._mdl.prjFile.filePath)} '
-                    f'({_("last saved on")} {self._mdl.prjFile.fileDate})'
-                )
+        try:
+            os.rename(
+                f'{oldFileName}.pid',
+                f'{self._mdl.prjFile.filePath}.pid'
             )
-            self._ui.restore_status()
-            self.prefs['last_open'] = self._mdl.prjFile.filePath
-            self.copy_to_backup(self._mdl.prjFile.filePath)
-            self._ctrl.on_open()
-            return True
+        except FileNotFoundError:
+            pass
+
+        self._ctrl.unlock()
+        self._ui.show_path(
+            f'{norm_path(self._mdl.prjFile.filePath)} '
+            f'({_("last saved on")} {self._mdl.prjFile.fileDate})'
+        )
+        self._ui.restore_status()
+        self.prefs['last_open'] = self._mdl.prjFile.filePath
+        self.copy_to_backup(self._mdl.prjFile.filePath)
+        self._ctrl.on_open()
+        return True
 
     def save_project(self):
         """Save the novelibre project to disk.
