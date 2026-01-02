@@ -18,6 +18,25 @@
       <Title>Chapter 1</Title>
       <SECTION id="sc15">
         <Title>New Scene (ID15)</Title>
+        <Desc>
+          <p>Description of the first section.</p>
+        </Desc>
+        <Notes>
+          <p>Notes on the first section.</p>
+        </Notes>
+        <Tags>Tag1</Tags>
+        <Goal>
+          <p>Goal in section 1.</p>
+        </Goal>
+        <Conflict>
+          <p>Conflict in section 1.</p>
+        </Conflict>
+        <Outcome>
+          <p>Outcome in section 1.</p>
+        </Outcome>
+        <PlotlineNotes id="ac5">
+          <p>Lorem ipsum.</p>
+        </PlotlineNotes>
       </SECTION>
       <SECTION id="sc16">
         <Title>New Scene (ID16)</Title>

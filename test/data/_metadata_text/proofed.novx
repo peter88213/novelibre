@@ -18,8 +18,24 @@
       <Title>Chapter 1</Title>
       <SECTION id="sc15">
         <Title>New Scene (ID15)</Title>
+        <Desc>
+          <p>Description of the first section.</p>
+        </Desc>
+        <Notes>
+          <p>Notes on the first section.</p>
+        </Notes>
+        <Tags>Tag1</Tags>
+        <Goal>
+          <p>Goal in section 1.</p>
+        </Goal>
+        <Conflict>
+          <p>Conflict in section 1.</p>
+        </Conflict>
+        <Outcome>
+          <p>Outcome in section 1.</p>
+        </Outcome>
         <PlotlineNotes id="ac5">
-          <p>First, establish the normal existence and expectations of your Main Character - but only enough to give context and meaning to the Unexpected Change that is about to occur.</p>
+          <p>Section 1: Plotline notes.</p>
         </PlotlineNotes>
       </SECTION>
       <SECTION id="sc16">
@@ -92,7 +108,7 @@
   <ITEMS />
   <ARCS>
     <ARC id="ac5">
-      <Title>B-Storyline</Title>
+      <Title>A-Storyline</Title>
       <Desc>
         <p>Applying the pattern as described in "The 1-3-5 Story Structure Made Simple" by Donna Michelle Anderson.</p>
       </Desc>

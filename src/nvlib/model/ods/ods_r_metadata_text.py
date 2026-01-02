@@ -53,11 +53,6 @@ class OdsRMetadataText(OdsReader):
         durationParser = DurationParser()
         for scId in self.novel.sections:
 
-            #--- plot line titles
-            for i, column in enumerate(self._rows[0]):
-                if column.startswith(PLOT_LINE_PREFIX):
-                    self.novel.plotLines[column].title = self._rows[1][i]
-
             #--- plot line notes
             for plId in plotLines:
                 try:
