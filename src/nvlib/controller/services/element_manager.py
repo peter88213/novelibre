@@ -859,7 +859,7 @@ class ElementManager(ServiceBase):
 
             if (
                 elemId.startswith(SECTION_PREFIX)
-                and self.novel.sections[elemId].scType > 1
+                and self._mdl.novel.sections[elemId].scType > 1
             ):
                 return True
 
