@@ -21,7 +21,7 @@ class OdsRGrid(OdsReader):
     DESCRIPTION = _('Plot grid')
     SUFFIX = GRID_SUFFIX
     COLUMN_TITLES = [
-        'Link',
+        'ID',
         'Section',
         'Date',
         'Time',
