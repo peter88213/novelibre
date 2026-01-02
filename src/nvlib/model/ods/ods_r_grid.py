@@ -7,7 +7,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.model.ods.duration_parser import DurationParser
 from nvlib.model.ods.ods_reader import OdsReader
-from nvlib.novx_globals import GRID_SUFFIX, PL_ROOT
+from nvlib.novx_globals import GRID_SUFFIX
+from nvlib.novx_globals import PLOT_LINE_PREFIX
+from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import SCENE
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import string_to_list
@@ -51,10 +53,15 @@ class OdsRGrid(OdsReader):
         durationParser = DurationParser()
         for scId in self.novel.sections:
 
+            #--- plot line titles
+            for i, column in enumerate(self._rows[0]):
+                if column.startswith(PLOT_LINE_PREFIX):
+                    self.novel.plotLines[column].title = self._rows[1][i]
+
             #--- plot line notes
             for plId in plotLines:
                 try:
-                    odsPlotLineNotes = self._columns[plId][scId]
+                    odsPlotLineNotes = self._columnDict[plId][scId]
                 except:
                     continue
 
@@ -76,7 +83,7 @@ class OdsRGrid(OdsReader):
 
             #--- date
             try:
-                scDate = self._columns['Date'][scId]
+                scDate = self._columnDict['Date'][scId]
                 self.novel.sections[scId].date = PyCalendar.verified_date(
                     scDate)
             except:
@@ -84,7 +91,7 @@ class OdsRGrid(OdsReader):
 
             #--- time
             try:
-                scTime = self._columns['Time'][scId]
+                scTime = self._columnDict['Time'][scId]
                 self.novel.sections[scId].time = PyCalendar.verified_time(
                     scTime)
             except:
@@ -92,7 +99,7 @@ class OdsRGrid(OdsReader):
 
             #--- day
             try:
-                day = self._columns['Day'][scId]
+                day = self._columnDict['Day'][scId]
                 int(day)
             except:
                 pass
@@ -101,7 +108,7 @@ class OdsRGrid(OdsReader):
 
             #--- duration
             try:
-                durationStr = self._columns['Duration'][scId]
+                durationStr = self._columnDict['Duration'][scId]
                 d, h, m = durationParser.get_duration(durationStr)
             except:
                 pass
@@ -112,7 +119,7 @@ class OdsRGrid(OdsReader):
 
             #--- title
             try:
-                title = self._columns['Title'][scId]
+                title = self._columnDict['Title'][scId]
             except:
                 pass
             else:
@@ -120,7 +127,7 @@ class OdsRGrid(OdsReader):
 
             #--- desc
             try:
-                desc = self._columns['Description'][scId]
+                desc = self._columnDict['Description'][scId]
             except:
                 pass
             else:
@@ -128,7 +135,7 @@ class OdsRGrid(OdsReader):
 
             #--- viewpoint
             try:
-                viewpoint = self._columns['Viewpoint'][scId]
+                viewpoint = self._columnDict['Viewpoint'][scId]
             except:
                 pass
             else:
@@ -145,7 +152,7 @@ class OdsRGrid(OdsReader):
 
             #--- tags
             try:
-                tags = self._columns['Tags'][scId]
+                tags = self._columnDict['Tags'][scId]
             except:
                 pass
             else:
@@ -159,7 +166,7 @@ class OdsRGrid(OdsReader):
 
             #--- Scene
             try:
-                ar = self._columns['Scene'][scId]
+                ar = self._columnDict['Scene'][scId]
             except:
                 pass
             else:
@@ -171,7 +178,7 @@ class OdsRGrid(OdsReader):
 
             #--- goal
             try:
-                goal = self._columns['Goal'][scId]
+                goal = self._columnDict['Goal'][scId]
             except:
                 pass
             else:
@@ -179,7 +186,7 @@ class OdsRGrid(OdsReader):
 
             #--- conflict
             try:
-                conflict = self._columns['Conflict'][scId]
+                conflict = self._columnDict['Conflict'][scId]
             except:
                 pass
             else:
@@ -187,7 +194,7 @@ class OdsRGrid(OdsReader):
 
             #--- outcome
             try:
-                outcome = self._columns['Outcome'][scId]
+                outcome = self._columnDict['Outcome'][scId]
             except:
                 pass
             else:
@@ -195,7 +202,7 @@ class OdsRGrid(OdsReader):
 
             #--- notes
             try:
-                notes = self._columns['Notes'][scId]
+                notes = self._columnDict['Notes'][scId]
             except:
                 pass
             else:

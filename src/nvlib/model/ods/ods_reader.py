@@ -37,9 +37,11 @@ class OdsReader(OdfReader, ABC):
         Extends the superclass constructor.
         """
         super().__init__(filePath)
-        self._columns = {}
+        self._columnDict = None
         # dict: {column title, {element ID, cell content}}
-        self._rows = []
+        self._rows = None
+        # list of lists of cell contents
+        self.parser = OdsParser()
 
     @abstractmethod
     def read(self):
@@ -49,13 +51,13 @@ class OdsReader(OdfReader, ABC):
 
         Overrides the superclass method.
         """
+        self._columnDict = {}
         cellsPerRow = len(self._columnTitles)
-        parser = OdsParser()
-        self._rows = parser.get_rows(self.filePath, cellsPerRow)
+        self._rows = self.parser.get_rows(self.filePath, cellsPerRow)
         for title in self._rows[0]:
-            self._columns[title] = {}
+            self._columnDict[title] = {}
         for row in self._rows:
             if row[0].startswith(self._idPrefix):
-                for i, col in enumerate(self._columns):
-                    self._columns[col][row[0]] = row[i]
+                for i, col in enumerate(self._columnDict):
+                    self._columnDict[col][row[0]] = row[i]
 

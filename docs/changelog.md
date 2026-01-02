@@ -11,6 +11,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.48.0
+
+The plot line titles can now be changed via the plot grid.
+
+- Refactored the ODS reader classes.
+
+
 ### Version 5.47.3
 
 - Making sure that epigraphs are colored correctly in the project tree after moving sections within the chapter.

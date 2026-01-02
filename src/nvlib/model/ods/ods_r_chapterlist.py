@@ -36,7 +36,7 @@ class OdsRChapterList(OdsReader):
 
             #--- name
             try:
-                title = self._columns['Title'][chId]
+                title = self._columnDict['Title'][chId]
             except:
                 pass
             else:
@@ -44,7 +44,7 @@ class OdsRChapterList(OdsReader):
 
             #--- desc
             try:
-                desc = self._columns['Description'][chId]
+                desc = self._columnDict['Description'][chId]
             except:
                 pass
             else:
@@ -52,7 +52,7 @@ class OdsRChapterList(OdsReader):
 
             #--- notes
             try:
-                notes = self._columns['Notes'][chId]
+                notes = self._columnDict['Notes'][chId]
             except:
                 pass
             else:

@@ -43,7 +43,7 @@ class OdsRCharList(OdsReader):
 
             #--- name
             try:
-                title = self._columns['Name'][crId]
+                title = self._columnDict['Name'][crId]
             except:
                 pass
             else:
@@ -51,7 +51,7 @@ class OdsRCharList(OdsReader):
 
             #--- fullName
             try:
-                fullName = self._columns['Full name'][crId]
+                fullName = self._columnDict['Full name'][crId]
             except:
                 pass
             else:
@@ -59,7 +59,7 @@ class OdsRCharList(OdsReader):
 
             #--- desc
             try:
-                desc = self._columns['Description'][crId]
+                desc = self._columnDict['Description'][crId]
             except:
                 pass
             else:
@@ -67,7 +67,7 @@ class OdsRCharList(OdsReader):
 
             #--- aka
             try:
-                aka = self._columns['Aka'][crId]
+                aka = self._columnDict['Aka'][crId]
             except:
                 pass
             else:
@@ -75,7 +75,7 @@ class OdsRCharList(OdsReader):
 
             #--- tags
             try:
-                tags = self._columns['Tags'][crId]
+                tags = self._columnDict['Tags'][crId]
             except:
                 pass
             else:
@@ -87,7 +87,7 @@ class OdsRCharList(OdsReader):
 
             #--- notes
             try:
-                notes = self._columns['Notes'][crId]
+                notes = self._columnDict['Notes'][crId]
             except:
                 pass
             else:
@@ -95,7 +95,7 @@ class OdsRCharList(OdsReader):
 
             #--- field 1
             try:
-                goals = self._columns['Goals'][crId]
+                goals = self._columnDict['Goals'][crId]
             except:
                 pass
             else:
@@ -103,7 +103,7 @@ class OdsRCharList(OdsReader):
 
             #--- field 2
             try:
-                field2 = self._columns['Field2'][crId]
+                field2 = self._columnDict['Field2'][crId]
             except:
                 pass
             else:
@@ -111,7 +111,7 @@ class OdsRCharList(OdsReader):
 
             #--- bio
             try:
-                bio = self._columns['Bio'][crId]
+                bio = self._columnDict['Bio'][crId]
             except:
                 pass
             else:
@@ -119,7 +119,7 @@ class OdsRCharList(OdsReader):
 
             #--- birthDate
             try:
-                birthDate = self._columns['Birth date'][crId]
+                birthDate = self._columnDict['Birth date'][crId]
             except:
                 pass
             else:
@@ -127,7 +127,7 @@ class OdsRCharList(OdsReader):
 
             #--- deathDate
             try:
-                deathDate = self._columns['Death date'][crId]
+                deathDate = self._columnDict['Death date'][crId]
             except:
                 pass
             else:
@@ -135,7 +135,7 @@ class OdsRCharList(OdsReader):
 
             #--- importance
             try:
-                importance = self._columns['Importance'][crId]
+                importance = self._columnDict['Importance'][crId]
             except:
                 pass
             else:

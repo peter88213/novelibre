@@ -36,7 +36,7 @@ class OdsRItemList(OdsReader):
 
             #--- name
             try:
-                title = self._columns['Name'][itId]
+                title = self._columnDict['Name'][itId]
             except:
                 pass
             else:
@@ -44,7 +44,7 @@ class OdsRItemList(OdsReader):
 
             #--- desc
             try:
-                desc = self._columns['Description'][itId]
+                desc = self._columnDict['Description'][itId]
             except:
                 pass
             else:
@@ -52,7 +52,7 @@ class OdsRItemList(OdsReader):
 
             #--- aka
             try:
-                aka = self._columns['Aka'][itId]
+                aka = self._columnDict['Aka'][itId]
             except:
                 pass
             else:
@@ -60,7 +60,7 @@ class OdsRItemList(OdsReader):
 
             #--- tags
             try:
-                tags = self._columns['Tags'][itId]
+                tags = self._columnDict['Tags'][itId]
             except:
                 pass
             else:
@@ -72,7 +72,7 @@ class OdsRItemList(OdsReader):
 
             #--- notes
             try:
-                notes = self._columns['Notes'][itId]
+                notes = self._columnDict['Notes'][itId]
             except:
                 pass
             else:

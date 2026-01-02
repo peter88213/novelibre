@@ -36,7 +36,7 @@ class OdsRLocList(OdsReader):
 
             #--- name
             try:
-                title = self._columns['Name'][lcId]
+                title = self._columnDict['Name'][lcId]
             except:
                 pass
             else:
@@ -44,7 +44,7 @@ class OdsRLocList(OdsReader):
 
             #--- desc
             try:
-                desc = self._columns['Description'][lcId]
+                desc = self._columnDict['Description'][lcId]
             except:
                 pass
             else:
@@ -52,7 +52,7 @@ class OdsRLocList(OdsReader):
 
             #--- aka
             try:
-                aka = self._columns['Aka'][lcId]
+                aka = self._columnDict['Aka'][lcId]
             except:
                 pass
             else:
@@ -60,7 +60,7 @@ class OdsRLocList(OdsReader):
 
             #--- tags
             try:
-                tags = self._columns['Tags'][lcId]
+                tags = self._columnDict['Tags'][lcId]
             except:
                 pass
             else:
@@ -72,7 +72,7 @@ class OdsRLocList(OdsReader):
 
             #--- notes
             try:
-                notes = self._columns['Notes'][lcId]
+                notes = self._columnDict['Notes'][lcId]
             except:
                 pass
             else:
