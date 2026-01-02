@@ -11,6 +11,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.48.1
+
+- Fixed a regression from version 5.28.4 where a project keeps marked as in use after having been saved under another name.
+
+
 ### Version 5.48.0
 
 The plot line titles can now be changed via the plot grid.
