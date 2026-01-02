@@ -29,7 +29,6 @@ class OdsWMetadataText(OdsWriter):
     # Section ID (hidden)
     # Title
     # Description
-    # Viewpoint
     # All plot lines
     # Tags
     # Scene
@@ -50,8 +49,6 @@ class OdsWMetadataText(OdsWriter):
         'table:default-cell-style-name="Default"/>\n'
         '$ArcColumns\n'
         '    <table:table-column table:style-name="co3" '
-        'table:default-cell-style-name="Default"/>\n'
-        '    <table:table-column table:style-name="co1" '
         'table:default-cell-style-name="Default"/>\n'
         '    <table:table-column table:style-name="co4" '
         'table:default-cell-style-name="Default"/>\n'
@@ -81,10 +78,6 @@ class OdsWMetadataText(OdsWriter):
         '     <table:table-cell '
         'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>Tags</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell '
-        'table:style-name="Heading" office:value-type="string">\n'
-        '      <text:p>Scene</text:p>\n'
         '     </table:table-cell>\n'
         '     <table:table-cell '
         'table:style-name="Heading" office:value-type="string">\n'
@@ -120,9 +113,6 @@ class OdsWMetadataText(OdsWriter):
         '$ArcNoteCells\n'
         '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$Tags</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell office:value-type="string">\n'
-        '      <text:p>$Scene</text:p>\n'
         '     </table:table-cell>\n'
         '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$Goal</text:p>\n'

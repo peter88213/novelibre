@@ -4,13 +4,9 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.model.data.py_calendar import PyCalendar
-from nvlib.model.ods.duration_parser import DurationParser
 from nvlib.model.ods.ods_reader import OdsReader
 from nvlib.novx_globals import METADATA_TEXT_SUFFIX
-from nvlib.novx_globals import PLOT_LINE_PREFIX
 from nvlib.novx_globals import PL_ROOT
-from nvlib.novx_globals import SCENE
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import string_to_list
 from nvlib.nv_locale import _
@@ -22,16 +18,9 @@ class OdsRMetadataText(OdsReader):
     SUFFIX = METADATA_TEXT_SUFFIX
     COLUMN_TITLES = [
         'Link',
-        'Section',
-        'Date',
-        'Time',
-        'Day',
-        'Duration',
         'Title',
         'Description',
-        'Viewpoint',
         'Tags',
-        'Scene',
         'Goal',
         'Conflict',
         'Outcome',
@@ -50,7 +39,6 @@ class OdsRMetadataText(OdsReader):
         for plId in plotLines:
             self._columnTitles.append(plId)
         super().read()
-        durationParser = DurationParser()
         for scId in self.novel.sections:
 
             #--- plot line notes
@@ -105,18 +93,6 @@ class OdsRMetadataText(OdsReader):
                     )
                 elif tags is not None:
                     self.novel.sections[scId].tags = None
-
-            #--- Scene
-            try:
-                ar = self._columnDict['Scene'][scId]
-            except:
-                pass
-            else:
-                if ar:
-                    try:
-                        self.novel.sections[scId].scene = SCENE.index(ar)
-                    except ValueError:
-                        pass
 
             #--- goal
             try:
