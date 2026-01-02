@@ -128,7 +128,7 @@ class OdsReader(OdfReader, ABC):
             else:
                 self.novel.characters[crId].fullName = fullName.rstrip()
 
-            #--- field 1: bio
+            #--- bio
             try:
                 bio = self._columnDict['Bio'][crId]
             except:
@@ -136,7 +136,7 @@ class OdsReader(OdfReader, ABC):
             else:
                 self.novel.characters[crId].bio = bio.rstrip()
 
-            #--- field 2: goals
+            #--- goals
             try:
                 goals = self._columnDict['Goals'][crId]
             except:
