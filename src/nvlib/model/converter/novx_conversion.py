@@ -11,12 +11,14 @@ from nvlib.model.ods.ods_r_charlist import OdsRCharList
 from nvlib.model.ods.ods_r_grid import OdsRGrid
 from nvlib.model.ods.ods_r_itemlist import OdsRItemList
 from nvlib.model.ods.ods_r_loclist import OdsRLocList
-from nvlib.model.ods.ods_w_chapterlist import OdsWChapterList
+from nvlib.model.ods.ods_r_metadata_text import OdsRMetadataText
 from nvlib.model.ods.ods_r_partlist import OdsRPartList
+from nvlib.model.ods.ods_w_chapterlist import OdsWChapterList
 from nvlib.model.ods.ods_w_charlist import OdsWCharList
 from nvlib.model.ods.ods_w_grid import OdsWGrid
 from nvlib.model.ods.ods_w_itemlist import OdsWItemList
 from nvlib.model.ods.ods_w_loclist import OdsWLocList
+from nvlib.model.ods.ods_w_metadata_text import OdsWMetadataText
 from nvlib.model.ods.ods_w_partlist import OdsWPartList
 from nvlib.model.ods.ods_w_plot_list import OdsWPlotList
 from nvlib.model.ods.ods_w_sectionlist import OdsWSectionList
@@ -69,6 +71,7 @@ class NovxConversion:
         OdsWGrid,
         OdsWItemList,
         OdsWLocList,
+        OdsWMetadataText,
         OdsWPartList,
         OdsWPlotList,
         OdsWSectionList,
@@ -93,6 +96,7 @@ class NovxConversion:
         OdsRGrid,
         OdsRItemList,
         OdsRLocList,
+        OdsRMetadataText,
         OdsRPartList,
         OdtRCharacters,
         OdtRItems,

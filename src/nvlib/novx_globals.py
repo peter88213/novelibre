@@ -41,6 +41,7 @@ LOCATIONS_SUFFIX = '_locations_tmp'
 LOCLIST_SUFFIX = '_loclist_tmp'
 MAJOR_MARKER = _('Major Character')
 MANUSCRIPT_SUFFIX = '_manuscript_tmp'
+METADATA_TEXT_SUFFIX = '_metadata_text_tmp'
 MINOR_MARKER = _('Minor Character')
 PARTLIST_SUFFIX = '_partlist_tmp'
 PARTS_SUFFIX = '_parts_tmp'
