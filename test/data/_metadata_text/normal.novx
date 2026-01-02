@@ -16,6 +16,24 @@
   <CHAPTERS>
     <CHAPTER id="ch6">
       <Title>Chapter 1</Title>
+      <SECTION id="sc1" type="2">
+        <Title>ACT I</Title>
+        <Desc>
+          <p>Description of the first act.</p>
+        </Desc>
+        <Notes>
+          <p>Notes on the first act.</p>
+        </Notes>
+      </SECTION>
+      <SECTION id="sc2" type="3">
+        <Title>Inciting incident</Title>
+        <Desc>
+          <p>Description of the inciting incident.</p>
+        </Desc>
+        <Notes>
+          <p>Notes on the inciting incident.</p>
+        </Notes>
+      </SECTION>
       <SECTION id="sc15">
         <Title>New Scene (ID15)</Title>
         <Desc>
@@ -170,7 +188,6 @@
   </ITEMS>
   <ARCS>
     <ARC id="ac5">
-      <Title>Main Storyline</Title>
       <Desc>
         <p>Applying the pattern as described in "The 1-3-5 Story Structure Made Simple" by Donna Michelle Anderson.</p>
         <p>This line is to be deleted.</p>
