@@ -26,7 +26,7 @@ class OdsWMetadataText(OdsWriter):
     # co4 8.000cm
 
     # Header structure:
-    # Section ID (hidden)
+    # ID (hidden)
     # Title
     # Full name
     # Aka
@@ -165,14 +165,18 @@ class OdsWMetadataText(OdsWriter):
         '$ArcNoteCells\n'
         '    </table:table-row>\n'
     )
-    _sectionTemplate = _element_template
-    _epigraphTemplate = _element_template
     _characterTemplate = _element_template
-    _locationTemplate = _element_template
+    _chapterTemplate = _element_template
+    _epigraphTemplate = _element_template
     _itemTemplate = _element_template
+    _locationTemplate = _element_template
+    _partTemplate = _element_template
     _plotLineTemplate = _element_template
     _plotPointTemplate = _element_template
     _projectNoteTemplate = _element_template
+    _sectionTemplate = _element_template
+    _stage1Template = _element_template
+    _stage2Template = _element_template
 
     _fileFooter = OdsWriter._CONTENT_XML_FOOTER
     _emptyDateCell = '     <table:table-cell table:style-name="ce2"/>'
@@ -206,6 +210,25 @@ class OdsWMetadataText(OdsWriter):
         '      <text:p>$ArcTitle</text:p>\n'
         '     </table:table-cell>\n'
     )
+
+    def _get_characterMapping(self, crId):
+        characterMapping = super()._get_characterMapping(crId)
+        characterMapping['Goal'] = ''
+        characterMapping['Conflict'] = ''
+        characterMapping['Outcome'] = ''
+        return characterMapping
+
+    def _get_chapterMapping(self, chId, chapterNumber):
+        chapterMapping = super()._get_chapterMapping(chId, chapterNumber)
+        chapterMapping['FullName'] = ''
+        chapterMapping['AKA'] = ''
+        chapterMapping['Bio'] = ''
+        chapterMapping['Goals'] = ''
+        chapterMapping['Tags'] = ''
+        chapterMapping['Goal'] = ''
+        chapterMapping['Conflict'] = ''
+        chapterMapping['Outcome'] = ''
+        return chapterMapping
 
     def _get_fileHeaderMapping(self):
         """Return a mapping dictionary for the project section.
@@ -248,8 +271,64 @@ class OdsWMetadataText(OdsWriter):
         fileHeaderMapping['ArcColumns'] = '\n'.join(arcColumns)
         fileHeaderMapping['ArcIdCells'] = '\n'.join(arcIdCells)
         fileHeaderMapping['ArcTitleCells'] = '\n'.join(arcTitleCells)
-
         return fileHeaderMapping
+
+    def _get_itemMapping(self, itId):
+        itemMapping = super()._get_itemMapping(itId)
+        itemMapping['FullName'] = ''
+        itemMapping['Bio'] = ''
+        itemMapping['Goals'] = ''
+        itemMapping['Goal'] = ''
+        itemMapping['Conflict'] = ''
+        itemMapping['Outcome'] = ''
+        return itemMapping
+
+    def _get_locationMapping(self, lcId):
+        locationMapping = super()._get_locationMapping(lcId)
+        locationMapping['FullName'] = ''
+        locationMapping['Bio'] = ''
+        locationMapping['Goals'] = ''
+        locationMapping['Goal'] = ''
+        locationMapping['Conflict'] = ''
+        locationMapping['Outcome'] = ''
+        return locationMapping
+
+    def _get_plotLineMapping(self, plId):
+        plotlineMapping = super()._get_plotLineMapping(plId)
+        plotlineMapping['FullName'] = ''
+        plotlineMapping['AKA'] = ''
+        plotlineMapping['Bio'] = ''
+        plotlineMapping['Goals'] = ''
+        plotlineMapping['Tags'] = ''
+        plotlineMapping['Goal'] = ''
+        plotlineMapping['Conflict'] = ''
+        plotlineMapping['Outcome'] = ''
+        return plotlineMapping
+
+    def _get_plotPointMapping(self, ppId):
+        plotPointMapping = super()._get_plotPointMapping(ppId)
+        plotPointMapping['FullName'] = ''
+        plotPointMapping['AKA'] = ''
+        plotPointMapping['Bio'] = ''
+        plotPointMapping['Goals'] = ''
+        plotPointMapping['Tags'] = ''
+        plotPointMapping['Goal'] = ''
+        plotPointMapping['Conflict'] = ''
+        plotPointMapping['Outcome'] = ''
+        return plotPointMapping
+
+    def _get_prjNoteMapping(self, pnId):
+        noteMapping = super()._get_prjNoteMapping(pnId)
+        noteMapping['FullName'] = ''
+        noteMapping['AKA'] = ''
+        noteMapping['Bio'] = ''
+        noteMapping['Goals'] = ''
+        noteMapping['Notes'] = ''
+        noteMapping['Tags'] = ''
+        noteMapping['Goal'] = ''
+        noteMapping['Conflict'] = ''
+        noteMapping['Outcome'] = ''
+        return noteMapping
 
     def _get_sectionMapping(
             self,
@@ -295,76 +374,5 @@ class OdsWMetadataText(OdsWriter):
         sectionMapping['AKA'] = ''
         sectionMapping['Bio'] = ''
         sectionMapping['Goals'] = ''
-
         return sectionMapping
-
-    def _get_prjNoteMapping(self, pnId):
-        noteMapping = super()._get_prjNoteMapping(pnId)
-        noteMapping['Notes'] = ''
-        noteMapping['FullName'] = ''
-        noteMapping['AKA'] = ''
-        noteMapping['Bio'] = ''
-        noteMapping['Goals'] = ''
-        noteMapping['Goal'] = ''
-        noteMapping['Conflict'] = ''
-        noteMapping['Outcome'] = ''
-        noteMapping['Tags'] = ''
-
-        return noteMapping
-
-    def _get_plotLineMapping(self, plId):
-        plotlineMapping = super()._get_plotLineMapping(plId)
-        plotlineMapping['FullName'] = ''
-        plotlineMapping['AKA'] = ''
-        plotlineMapping['Bio'] = ''
-        plotlineMapping['Goals'] = ''
-        plotlineMapping['Goal'] = ''
-        plotlineMapping['Conflict'] = ''
-        plotlineMapping['Outcome'] = ''
-        plotlineMapping['Tags'] = ''
-
-        return plotlineMapping
-
-    def _get_plotPointMapping(self, ppId):
-        plotPointMapping = super()._get_plotPointMapping(ppId)
-        plotPointMapping['FullName'] = ''
-        plotPointMapping['AKA'] = ''
-        plotPointMapping['Bio'] = ''
-        plotPointMapping['Goals'] = ''
-        plotPointMapping['Goal'] = ''
-        plotPointMapping['Conflict'] = ''
-        plotPointMapping['Outcome'] = ''
-        plotPointMapping['Tags'] = ''
-
-        return plotPointMapping
-
-    def _get_locationMapping(self, lcId):
-        locationMapping = super()._get_locationMapping(lcId)
-        locationMapping['FullName'] = ''
-        locationMapping['Bio'] = ''
-        locationMapping['Goals'] = ''
-        locationMapping['Goal'] = ''
-        locationMapping['Conflict'] = ''
-        locationMapping['Outcome'] = ''
-
-        return locationMapping
-
-    def _get_itemMapping(self, itId):
-        itemMapping = super()._get_itemMapping(itId)
-        itemMapping['FullName'] = ''
-        itemMapping['Bio'] = ''
-        itemMapping['Goals'] = ''
-        itemMapping['Goal'] = ''
-        itemMapping['Conflict'] = ''
-        itemMapping['Outcome'] = ''
-
-        return itemMapping
-
-    def _get_characterMapping(self, crId):
-        characterMapping = super()._get_characterMapping(crId)
-        characterMapping['Goal'] = ''
-        characterMapping['Conflict'] = ''
-        characterMapping['Outcome'] = ''
-
-        return characterMapping
 

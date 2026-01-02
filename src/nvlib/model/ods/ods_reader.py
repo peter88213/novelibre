@@ -179,6 +179,18 @@ class OdsReader(OdfReader, ABC):
         for lcId in self.novel.locations:
             self._read_world_element(self.novel.locations[lcId], lcId)
 
+    def _read_plotlines(self):
+        for plId in self.novel.plotLines:
+            self._read_basic_element_notes(self.novel.plotLines[plId], plId)
+
+    def _read_plot_points(self):
+        for ppId in self.novel.plotPoints:
+            self._read_basic_element_notes(self.novel.plotPoints[ppId], ppId)
+
+    def _read_project_notes(self):
+        for pnId in self.novel.projectNotes:
+            self._read_basic_element(self.novel.projectNotes[pnId], pnId)
+
     def _read_sections(self):
         durationParser = DurationParser()
         for scId in self.novel.sections:

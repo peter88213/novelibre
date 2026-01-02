@@ -17,16 +17,16 @@ class OdsRMetadataText(OdsReader):
     COLUMN_TITLES = [
         'ID',
         'Title',
+        'Full name',
+        'Aka',
         'Description',
+        'Bio',
+        'Goals',
         'Notes',
         'Tags',
         'Goal',
         'Conflict',
         'Outcome',
-        'Full name',
-        'Aka',
-        'Bio',
-        'Goals',
     ]
     _idPrefix = SECTION_PREFIX
 
@@ -45,3 +45,6 @@ class OdsRMetadataText(OdsReader):
         self._read_items()
         self._read_locations()
         self._read_sections()
+        self._read_plotlines()
+        self._read_plot_points()
+
