@@ -31,30 +31,5 @@ class OdsRChapterList(OdsReader):
         Extends the superclass method.
         """
         super().read()
-
-        for chId in self.novel.chapters:
-
-            #--- name
-            try:
-                title = self._columnDict['Title'][chId]
-            except:
-                pass
-            else:
-                self.novel.chapters[chId].title = title.rstrip()
-
-            #--- desc
-            try:
-                desc = self._columnDict['Description'][chId]
-            except:
-                pass
-            else:
-                self.novel.chapters[chId].desc = desc.rstrip()
-
-            #--- notes
-            try:
-                notes = self._columnDict['Notes'][chId]
-            except:
-                pass
-            else:
-                self.novel.chapters[chId].notes = notes.rstrip()
+        self._read_chapters()
 

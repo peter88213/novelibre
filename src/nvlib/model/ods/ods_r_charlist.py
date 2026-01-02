@@ -7,9 +7,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from nvlib.model.ods.ods_reader import OdsReader
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CHARLIST_SUFFIX
-from nvlib.novx_globals import MAJOR_MARKER
-from nvlib.novx_globals import MINOR_MARKER
-from nvlib.novx_globals import string_to_list
 from nvlib.nv_locale import _
 
 
@@ -38,109 +35,5 @@ class OdsRCharList(OdsReader):
         Extends the superclass method.
         """
         super().read()
-
-        for crId in self.novel.characters:
-
-            #--- name
-            try:
-                title = self._columnDict['Name'][crId]
-            except:
-                pass
-            else:
-                self.novel.characters[crId].title = title.rstrip()
-
-            #--- fullName
-            try:
-                fullName = self._columnDict['Full name'][crId]
-            except:
-                pass
-            else:
-                self.novel.characters[crId].fullName = fullName.rstrip()
-
-            #--- desc
-            try:
-                desc = self._columnDict['Description'][crId]
-            except:
-                pass
-            else:
-                self.novel.characters[crId].desc = desc.rstrip()
-
-            #--- aka
-            try:
-                aka = self._columnDict['Aka'][crId]
-            except:
-                pass
-            else:
-                self.novel.characters[crId].aka = aka.rstrip()
-
-            #--- tags
-            try:
-                tags = self._columnDict['Tags'][crId]
-            except:
-                pass
-            else:
-                if tags:
-                    self.novel.characters[crId].tags = string_to_list(
-                        tags,
-                        divider=self._DIVIDER
-                    )
-
-            #--- notes
-            try:
-                notes = self._columnDict['Notes'][crId]
-            except:
-                pass
-            else:
-                self.novel.characters[crId].notes = notes.rstrip()
-
-            #--- field 1
-            try:
-                goals = self._columnDict['Goals'][crId]
-            except:
-                pass
-            else:
-                self.novel.characters[crId].goals = goals.rstrip()
-
-            #--- field 2
-            try:
-                field2 = self._columnDict['Field2'][crId]
-            except:
-                pass
-            else:
-                self.novel.characters[crId].field2 = field2.rstrip()
-
-            #--- bio
-            try:
-                bio = self._columnDict['Bio'][crId]
-            except:
-                pass
-            else:
-                self.novel.characters[crId].bio = bio.rstrip()
-
-            #--- birthDate
-            try:
-                birthDate = self._columnDict['Birth date'][crId]
-            except:
-                pass
-            else:
-                self.novel.characters[crId].birthDate = birthDate.rstrip()
-
-            #--- deathDate
-            try:
-                deathDate = self._columnDict['Death date'][crId]
-            except:
-                pass
-            else:
-                self.novel.characters[crId].deathDate = deathDate.rstrip()
-
-            #--- importance
-            try:
-                importance = self._columnDict['Importance'][crId]
-            except:
-                pass
-            else:
-                if MAJOR_MARKER in importance:
-                    self.novel.characters[crId].isMajor = True
-                elif MINOR_MARKER in importance:
-                    self.novel.characters[crId].isMajor = False
+        self._read_characters()
 

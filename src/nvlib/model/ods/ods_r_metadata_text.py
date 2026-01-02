@@ -6,9 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.model.ods.ods_reader import OdsReader
 from nvlib.novx_globals import METADATA_TEXT_SUFFIX
-from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import SECTION_PREFIX
-from nvlib.novx_globals import string_to_list
 from nvlib.nv_locale import _
 
 
@@ -38,95 +36,12 @@ class OdsRMetadataText(OdsReader):
         Fetch the Section attributes contained.
         Extends the superclass method.
         """
-        plotLines = self.novel.tree.get_children(PL_ROOT)
         self._columnTitles = self.COLUMN_TITLES[:]
-        for plId in plotLines:
+        for plId in self.novel.plotLines:
             self._columnTitles.append(plId)
         super().read()
-        for scId in self.novel.sections:
-
-            #--- plot line notes
-            for plId in plotLines:
-                try:
-                    odsPlotLineNotes = self._columnDict[plId][scId]
-                except:
-                    continue
-
-                plotlineNotes = self.novel.sections[scId].plotlineNotes
-                if not plotlineNotes:
-                    plotlineNotes = {}
-                plotlineNotes[plId] = odsPlotLineNotes.strip()
-                self.novel.sections[scId].plotlineNotes = plotlineNotes
-                if (
-                    plotlineNotes[plId]
-                    and not plId in self.novel.sections[scId].scPlotLines
-                ):
-                    scPlotLines = self.novel.sections[scId].scPlotLines
-                    scPlotLines.append(plId)
-                    self.novel.sections[scId].scPlotLines = scPlotLines
-                    plSections = self.novel.plotLines[plId].sections
-                    plSections.append(scId)
-                    self.novel.plotLines[plId].sections = plSections
-
-            #--- title
-            try:
-                title = self._columnDict['Title'][scId]
-            except:
-                pass
-            else:
-                self.novel.sections[scId].title = title.strip()
-
-            #--- desc
-            try:
-                desc = self._columnDict['Description'][scId]
-            except:
-                pass
-            else:
-                self.novel.sections[scId].desc = desc.strip()
-
-            #--- tags
-            try:
-                tags = self._columnDict['Tags'][scId]
-            except:
-                pass
-            else:
-                if tags:
-                    self.novel.sections[scId].tags = string_to_list(
-                        tags,
-                        divider=self._DIVIDER,
-                    )
-                elif tags is not None:
-                    self.novel.sections[scId].tags = None
-
-            #--- goal
-            try:
-                goal = self._columnDict['Goal'][scId]
-            except:
-                pass
-            else:
-                self.novel.sections[scId].goal = goal.strip()
-
-            #--- conflict
-            try:
-                conflict = self._columnDict['Conflict'][scId]
-            except:
-                pass
-            else:
-                self.novel.sections[scId].conflict = conflict.strip()
-
-            #--- outcome
-            try:
-                outcome = self._columnDict['Outcome'][scId]
-            except:
-                pass
-            else:
-                self.novel.sections[scId].outcome = outcome.strip()
-
-            #--- notes
-            try:
-                notes = self._columnDict['Notes'][scId]
-            except:
-                pass
-            else:
-                self.novel.sections[scId].notes = notes.strip()
-
+        self._read_chapters()
+        self._read_characters()
+        self._read_items()
+        self._read_locations()
+        self._read_sections()

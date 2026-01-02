@@ -7,7 +7,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from nvlib.model.ods.ods_reader import OdsReader
 from nvlib.novx_globals import LOCATION_PREFIX
 from nvlib.novx_globals import LOCLIST_SUFFIX
-from nvlib.novx_globals import string_to_list
 from nvlib.nv_locale import _
 
 
@@ -32,49 +31,5 @@ class OdsRLocList(OdsReader):
         Extends the superclass method.
         """
         super().read()
-        for lcId in self.novel.locations:
-
-            #--- name
-            try:
-                title = self._columnDict['Name'][lcId]
-            except:
-                pass
-            else:
-                self.novel.locations[lcId].title = title.rstrip()
-
-            #--- desc
-            try:
-                desc = self._columnDict['Description'][lcId]
-            except:
-                pass
-            else:
-                self.novel.locations[lcId].desc = desc.rstrip()
-
-            #--- aka
-            try:
-                aka = self._columnDict['Aka'][lcId]
-            except:
-                pass
-            else:
-                self.novel.locations[lcId].aka = aka.rstrip()
-
-            #--- tags
-            try:
-                tags = self._columnDict['Tags'][lcId]
-            except:
-                pass
-            else:
-                if tags:
-                    self.novel.locations[lcId].tags = string_to_list(
-                        tags,
-                        divider=self._DIVIDER,
-                    )
-
-            #--- notes
-            try:
-                notes = self._columnDict['Notes'][lcId]
-            except:
-                pass
-            else:
-                self.novel.locations[lcId].notes = notes.rstrip()
+        self._read_locations()
 
