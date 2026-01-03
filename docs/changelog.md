@@ -16,8 +16,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Fixed a regression from version 5.46.3 where the stage levels cannot be changed.
 - Fixed a regression from version 5.28.4 where a project keeps marked as in use after having been saved under another name.
 - The plot line titles can now be changed via the plot grid.
+
 - Refactored the ODS reader classes.
 
+#### API changes
+
+- The ODS parser instance is now a OdsReader instance variable, applying the strategy pattern.
+ 
 
 ### Version 5.47.3
 
