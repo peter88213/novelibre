@@ -16,6 +16,12 @@
   <CHAPTERS>
     <CHAPTER id="ch6">
       <Title>Chapter 1</Title>
+      <Desc>
+        <p>Description of the first chapter.</p>
+      </Desc>
+      <Notes>
+        <p>Notes on the first chapter.</p>
+      </Notes>
       <SECTION id="sc1" type="2">
         <Title>ACT I</Title>
         <Desc>

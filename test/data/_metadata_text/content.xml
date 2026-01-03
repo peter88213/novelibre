@@ -105,6 +105,129 @@ table:style-name="ta1" table:print="false">
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
+      <text:p>ch6</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>Chapter 1</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>Description of the first chapter.</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>Notes on the first chapter.</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+$ArcNoteCells
+    </table:table-row>
+   <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string">
+      <text:p>sc1</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>ACT I</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>Description of the first act.</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>Notes on the first act.</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
+    </table:table-row>
+   <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string">
+      <text:p>sc2</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>Inciting incident</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>Description of the inciting incident.</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>Notes on the inciting incident.</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
+    </table:table-row>
+   <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string">
       <text:p>sc15</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
@@ -195,6 +318,45 @@ This line is to be deleted.</text:p>
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
+      <text:p>ch9</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>Chapter 2</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+$ArcNoteCells
+    </table:table-row>
+   <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string">
       <text:p>sc17</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
@@ -276,6 +438,45 @@ This line is to be deleted.</text:p>
       <text:p></text:p>
      </table:table-cell>
 
+    </table:table-row>
+   <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string">
+      <text:p>ch7</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>Chapter 3</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+$ArcNoteCells
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -363,6 +564,45 @@ This line is to be deleted.</text:p>
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
+      <text:p>ch10</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>Chapter 4</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+$ArcNoteCells
+    </table:table-row>
+   <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string">
       <text:p>sc21</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
@@ -444,6 +684,45 @@ This line is to be deleted.</text:p>
       <text:p></text:p>
      </table:table-cell>
 
+    </table:table-row>
+   <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string">
+      <text:p>ch8</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>Chapter 5</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+$ArcNoteCells
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -531,6 +810,45 @@ This line is to be deleted.</text:p>
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
+      <text:p>ch11</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>Chapter 6</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+$ArcNoteCells
+    </table:table-row>
+   <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string">
       <text:p>sc24</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
@@ -612,6 +930,45 @@ This line is to be deleted.</text:p>
       <text:p></text:p>
      </table:table-cell>
 
+    </table:table-row>
+   <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string">
+      <text:p>ch12</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>Chapter 7</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+$ArcNoteCells
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -944,7 +1301,7 @@ $ArcNoteCells
       <text:p>ac5</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Main Storyline</text:p>
+      <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>

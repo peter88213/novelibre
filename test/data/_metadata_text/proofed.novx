@@ -16,6 +16,30 @@
   <CHAPTERS>
     <CHAPTER id="ch6">
       <Title>Chapter 1</Title>
+      <Desc>
+        <p>Description of the first chapter.</p>
+      </Desc>
+      <Notes>
+        <p>Notes on the first chapter.</p>
+      </Notes>
+      <SECTION id="sc1" type="2">
+        <Title>ACT I</Title>
+        <Desc>
+          <p>Description of the first act.</p>
+        </Desc>
+        <Notes>
+          <p>Notes on the first act.</p>
+        </Notes>
+      </SECTION>
+      <SECTION id="sc2" type="3">
+        <Title>Inciting incident</Title>
+        <Desc>
+          <p>Description of the inciting incident.</p>
+        </Desc>
+        <Notes>
+          <p>Notes on the inciting incident.</p>
+        </Notes>
+      </SECTION>
       <SECTION id="sc15">
         <Title>New Scene (ID15)</Title>
         <Desc>
@@ -108,15 +132,21 @@
       <Title>Huey</Title>
       <Desc>
         <p>Huey's description</p>
+        <p>This line is to be deleted.</p>
       </Desc>
-      <Tags>Nephew</Tags>
-      <Aka>Zoomer</Aka>
-      <FullName>Huey Smith</FullName>
+      <Notes>
+        <p>Note on Huey.</p>
+      </Notes>
+      <Tags>Kid</Tags>
+      <Aka>Boomer</Aka>
+      <FullName>Huey Duck</FullName>
       <Bio>
         <p>Huey's Bio</p>
+        <p>This line is to be deleted.</p>
       </Bio>
       <Goals>
         <p>Huey's Goals</p>
+        <p>This line is to be deleted.</p>
       </Goals>
     </CHARACTER>
     <CHARACTER id="cr2">
@@ -130,30 +160,41 @@
   </CHARACTERS>
   <LOCATIONS>
     <LOCATION id="lc1">
-      <Title>At home</Title>
+      <Title>My home</Title>
       <Desc>
         <p>A cozy place.</p>
+        <p>This line is to be deleted.</p>
       </Desc>
-      <Tags>Safe space</Tags>
+      <Notes>
+        <p>This line is to be deleted.</p>
+      </Notes>
+      <Tags>Flat</Tags>
       <Aka>My castle</Aka>
     </LOCATION>
   </LOCATIONS>
   <ITEMS>
     <ITEM id="it1">
-      <Title>Electric drill</Title>
+      <Title>The old electric drill</Title>
       <Desc>
         <p>A handy tool.</p>
+        <p>This line is to be deleted.</p>
       </Desc>
-      <Tags>Tool</Tags>
-      <Aka>DeWalter</Aka>
+      <Notes>
+        <p>This line is to be deleted.</p>
+      </Notes>
+      <Tags>Electric</Tags>
+      <Aka>Milwaukee beast</Aka>
     </ITEM>
   </ITEMS>
   <ARCS>
     <ARC id="ac5">
-      <Title>A-Storyline</Title>
       <Desc>
         <p>Applying the pattern as described in "The 1-3-5 Story Structure Made Simple" by Donna Michelle Anderson.</p>
+        <p>This line is to be deleted.</p>
       </Desc>
+      <Notes>
+        <p>This line is to be deleted.</p>
+      </Notes>
       <ShortName>A</ShortName>
       <Sections ids="sc15 sc16 sc17 sc18 sc19 sc20 sc21 sc22 sc23 sc24 sc25 sc26 sc27 sc28 sc29" />
       <POINT id="ap1">
@@ -255,9 +296,10 @@
   </ARCS>
   <PROJECTNOTES>
     <PROJECTNOTE id="pn1">
-      <Title>Important project note</Title>
+      <Title>Not so Important project note</Title>
       <Desc>
         <p>Never forget your goals.</p>
+        <p>This line is to be deleted.</p>
       </Desc>
     </PROJECTNOTE>
   </PROJECTNOTES>

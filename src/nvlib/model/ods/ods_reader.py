@@ -196,11 +196,6 @@ class OdsReader(OdfReader, ABC):
         for scId in self.novel.sections:
             self._read_basic_element_tags(self.novel.sections[scId], scId)
 
-            #--- plot line titles
-            for i, column in enumerate(self._rows[0]):
-                if column.startswith(PLOT_LINE_PREFIX):
-                    self.novel.plotLines[column].title = self._rows[1][i]
-
             #--- plot line notes
             for plId in self.novel.plotLines:
                 try:
