@@ -10,6 +10,7 @@ from nvlib.model.ods.ods_writer import OdsWriter
 from nvlib.novx_globals import METADATA_TEXT_SUFFIX
 from nvlib.novx_globals import PLOTLINES_SUFFIX
 from nvlib.novx_globals import PL_ROOT
+from nvlib.novx_globals import ROOT_PREFIX
 from nvlib.nv_locale import _
 
 
@@ -40,6 +41,47 @@ class OdsWMetadataText(OdsWriter):
     # Outcome
     # All plot lines
 
+    _element_template = (
+        '   <table:table-row table:style-name="ro2">\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$ID</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Title</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$FullName</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$AKA</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Desc</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Bio</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Goals</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Notes</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Tags</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Goal</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Conflict</text:p>\n'
+        '     </table:table-cell>\n'
+        '     <table:table-cell office:value-type="string">\n'
+        '      <text:p>$Outcome</text:p>\n'
+        '     </table:table-cell>\n'
+        '$ArcNoteCells\n'
+        '    </table:table-row>\n'
+    )
     _fileHeader = (
         f'{OdsWriter._CONTENT_XML_HEADER}{DESCRIPTION}" '
         'table:style-name="ta1" table:print="false">\n'
@@ -123,47 +165,7 @@ class OdsWMetadataText(OdsWriter):
         '     <table:table-cell '
         'table:style-name="Heading" table:number-columns-repeated="1003"/>\n'
         '    </table:table-row>\n'
-    )
-    _element_template = (
-        '   <table:table-row table:style-name="ro2">\n'
-        '     <table:table-cell office:value-type="string">\n'
-        '      <text:p>$ID</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell office:value-type="string">\n'
-        '      <text:p>$Title</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell office:value-type="string">\n'
-        '      <text:p>$FullName</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell office:value-type="string">\n'
-        '      <text:p>$AKA</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell office:value-type="string">\n'
-        '      <text:p>$Desc</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell office:value-type="string">\n'
-        '      <text:p>$Bio</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell office:value-type="string">\n'
-        '      <text:p>$Goals</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell office:value-type="string">\n'
-        '      <text:p>$Notes</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell office:value-type="string">\n'
-        '      <text:p>$Tags</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell office:value-type="string">\n'
-        '      <text:p>$Goal</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell office:value-type="string">\n'
-        '      <text:p>$Conflict</text:p>\n'
-        '     </table:table-cell>\n'
-        '     <table:table-cell office:value-type="string">\n'
-        '      <text:p>$Outcome</text:p>\n'
-        '     </table:table-cell>\n'
-        '$ArcNoteCells\n'
-        '    </table:table-row>\n'
+        f'{_element_template}'
     )
     _characterTemplate = _element_template
     _chapterTemplate = _element_template
@@ -241,7 +243,8 @@ class OdsWMetadataText(OdsWriter):
         
         Extends the superclass method.
         """
-        fileHeaderMapping = super()._get_fileHeaderMapping()
+        mapping = self._MAPPING.copy()
+        mapping.update(super()._get_fileHeaderMapping())
 
         #--- Cells for the plot line notes: one column per plot line.
         arcColumns = []
@@ -256,7 +259,7 @@ class OdsWMetadataText(OdsWriter):
                 '    <table:table-column table:style-name="co4" '
                 'table:default-cell-style-name="Default"/>'
             )
-            mapping = dict(
+            arcMapping = dict(
                 ArcId=plId,
                 ArcTitle=self.novel.plotLines[plId].title,
                 Link=(
@@ -269,15 +272,16 @@ class OdsWMetadataText(OdsWriter):
             )
             arcIdCells.append(
                 Template(self._arcIdCell
-            ).safe_substitute(mapping))
+            ).safe_substitute(arcMapping))
             arcTitleCells.append(
                 Template(
                     self._arcTitleCell
-                ).safe_substitute(mapping))
-        fileHeaderMapping['ArcColumns'] = '\n'.join(arcColumns)
-        fileHeaderMapping['ArcIdCells'] = '\n'.join(arcIdCells)
-        fileHeaderMapping['ArcTitleCells'] = '\n'.join(arcTitleCells)
-        return fileHeaderMapping
+                ).safe_substitute(arcMapping))
+        mapping['ArcColumns'] = '\n'.join(arcColumns)
+        mapping['ArcIdCells'] = '\n'.join(arcIdCells)
+        mapping['ArcTitleCells'] = '\n'.join(arcTitleCells)
+        mapping['ID'] = ROOT_PREFIX
+        return mapping
 
     def _get_itemMapping(self, itId):
         mapping = self._MAPPING.copy()
@@ -331,8 +335,8 @@ class OdsWMetadataText(OdsWriter):
         
         Extends the superclass method.
         """
-        sectionMapping = self._MAPPING.copy()
-        sectionMapping.update(
+        mapping = self._MAPPING.copy()
+        mapping.update(
             super()._get_sectionMapping(
                 scId,
                 sectionNumber,
@@ -350,11 +354,11 @@ class OdsWMetadataText(OdsWriter):
                 arcNote = plotlineNotes.get(plId, '')
             else:
                 arcNote = ''
-            mapping = {'ArcNote':arcNote}
+            arcMapping = {'ArcNote':arcNote}
             arcNoteCells.append(
                 Template(
                     self._arcNoteCell
-                ).safe_substitute(mapping))
-        sectionMapping['ArcNoteCells'] = '\n'.join(arcNoteCells)
-        return sectionMapping
+                ).safe_substitute(arcMapping))
+        mapping['ArcNoteCells'] = '\n'.join(arcNoteCells)
+        return mapping
 
