@@ -22,7 +22,7 @@ class OdsRItemList(OdsReader):
         'Tags',
         'Notes',
     ]
-    _idPrefix = ITEM_PREFIX
+    _idPrefix = ITEM_PREFIX,
 
     def read(self):
         """Parse the ODS file located at filePath.

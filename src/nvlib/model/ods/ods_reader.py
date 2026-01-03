@@ -15,7 +15,6 @@ from nvlib.model.ods.duration_parser import DurationParser
 from nvlib.model.ods.ods_parser import OdsParser
 from nvlib.novx_globals import MAJOR_MARKER
 from nvlib.novx_globals import MINOR_MARKER
-from nvlib.novx_globals import PLOT_LINE_PREFIX
 from nvlib.novx_globals import SCENE
 from nvlib.novx_globals import string_to_list
 
@@ -27,7 +26,7 @@ class OdsReader(OdfReader, ABC):
     _SEPARATOR = ','
     # delimits data fields within a record.
     _columnTitles = []
-    _idPrefix = '??'
+    _idPrefix = '??',
 
     _DIVIDER = FileExport._DIVIDER
 
@@ -64,15 +63,22 @@ class OdsReader(OdfReader, ABC):
         for title in self._rows[0]:
             self._columnDict[title] = {}
         for row in self._rows:
-            if row[0].startswith(self._idPrefix):
+            if row[0][:2] in self._idPrefix:
                 for i, col in enumerate(self._columnDict):
                     self._columnDict[col][row[0]] = row[i]
 
     def _read_basic_element(self, element, elemId):
 
-        #--- name
+        #--- title
         try:
             title = self._columnDict['Name'][elemId]
+        except:
+            pass
+        else:
+            element.title = title.rstrip()
+
+        try:
+            title = self._columnDict['Title'][elemId]
         except:
             pass
         else:

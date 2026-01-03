@@ -22,7 +22,7 @@ class OdsRChapterList(OdsReader):
         'Description',
         'Notes',
     ]
-    _idPrefix = CHAPTER_PREFIX
+    _idPrefix = CHAPTER_PREFIX,
 
     def read(self):
         """Parse the ODS file located at filePath.

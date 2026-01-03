@@ -5,7 +5,9 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.model.ods.ods_reader import OdsReader
-from nvlib.novx_globals import METADATA_TEXT_SUFFIX
+from nvlib.novx_globals import METADATA_TEXT_SUFFIX, CHAPTER_PREFIX, \
+    CHARACTER_PREFIX, ITEM_PREFIX, LOCATION_PREFIX, PLOT_LINE_PREFIX, \
+    PLOT_POINT_PREFIX, PRJ_NOTE_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.nv_locale import _
 
@@ -28,7 +30,16 @@ class OdsRMetadataText(OdsReader):
         'Conflict',
         'Outcome',
     ]
-    _idPrefix = SECTION_PREFIX
+    _idPrefix = (
+        CHARACTER_PREFIX,
+        CHAPTER_PREFIX,
+        ITEM_PREFIX,
+        LOCATION_PREFIX,
+        SECTION_PREFIX,
+        PLOT_LINE_PREFIX,
+        PLOT_POINT_PREFIX,
+        PRJ_NOTE_PREFIX,
+    )
 
     def read(self):
         """Parse the ODS file located at filePath.

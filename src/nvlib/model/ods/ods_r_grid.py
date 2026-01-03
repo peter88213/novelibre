@@ -32,7 +32,7 @@ class OdsRGrid(OdsReader):
         'Outcome',
         'Notes',
     ]
-    _idPrefix = SECTION_PREFIX
+    _idPrefix = SECTION_PREFIX,
 
     def read(self):
         """Parse the ODS file located at filePath.

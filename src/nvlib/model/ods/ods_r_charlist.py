@@ -26,7 +26,7 @@ class OdsRCharList(OdsReader):
         'Tags',
         'Notes',
     ]
-    _idPrefix = CHARACTER_PREFIX
+    _idPrefix = CHARACTER_PREFIX,
 
     def read(self):
         """Parse the ODS file located at filePath. 

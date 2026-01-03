@@ -22,7 +22,7 @@ class OdsRLocList(OdsReader):
         'Tags',
         'Notes',
     ]
-    _idPrefix = LOCATION_PREFIX
+    _idPrefix = LOCATION_PREFIX,
 
     def read(self):
         """Parse the ODS file located at filePath.
