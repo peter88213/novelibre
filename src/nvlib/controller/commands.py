@@ -13,7 +13,7 @@ from nvlib.gui.pop_up.export_options_dialog import ExportOptionsDialog
 from nvlib.gui.pop_up.plugin_manager_dialog import PluginManagerDialog
 from nvlib.gui.pop_up.reimport_dialog import ReimportDialog
 from nvlib.gui.pop_up.view_options_dialog import ViewOptionsDialog
-from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
+from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX, FULL_MANUSCRIPT_SUFFIX
 from nvlib.novx_globals import CHAPTERLIST_SUFFIX
 from nvlib.novx_globals import CHAPTERS_SUFFIX
 from nvlib.novx_globals import CHARACTERS_SUFFIX
@@ -330,6 +330,9 @@ class Commands:
 
     def export_manuscript(self, event=None):
         self.fileManager.export_document(MANUSCRIPT_SUFFIX)
+
+    def export_manuscript_with_unused(self, event=None):
+        self.fileManager.export_document(FULL_MANUSCRIPT_SUFFIX)
 
     def export_metadata_text(self, event=None):
         self.fileManager.export_document(METADATA_TEXT_SUFFIX)

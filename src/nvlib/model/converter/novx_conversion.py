@@ -24,6 +24,7 @@ from nvlib.model.ods.ods_w_plot_list import OdsWPlotList
 from nvlib.model.ods.ods_w_sectionlist import OdsWSectionList
 from nvlib.model.odt.odt_r_chapterdesc import OdtRChapterDesc
 from nvlib.model.odt.odt_r_characters import OdtRCharacters
+from nvlib.model.odt.odt_r_full import OdtRFull
 from nvlib.model.odt.odt_r_items import OdtRItems
 from nvlib.model.odt.odt_r_locations import OdtRLocations
 from nvlib.model.odt.odt_r_manuscript import OdtRManuscript
@@ -36,6 +37,7 @@ from nvlib.model.odt.odt_w_brief_synopsis import OdtWBriefSynopsis
 from nvlib.model.odt.odt_w_chapterdesc import OdtWChapterDesc
 from nvlib.model.odt.odt_w_characters import OdtWCharacters
 from nvlib.model.odt.odt_w_export import OdtWExport
+from nvlib.model.odt.odt_w_full import OdtWFull
 from nvlib.model.odt.odt_w_items import OdtWItems
 from nvlib.model.odt.odt_w_locations import OdtWLocations
 from nvlib.model.odt.odt_w_manuscript import OdtWManuscript
@@ -79,6 +81,7 @@ class NovxConversion:
         OdtWChapterDesc,
         OdtWCharacters,
         OdtWExport,
+        OdtWFull,
         OdtWItems,
         OdtWLocations,
         OdtWManuscript,
@@ -99,6 +102,7 @@ class NovxConversion:
         OdsRMetadataText,
         OdsRPartList,
         OdtRCharacters,
+        OdtRFull,
         OdtRItems,
         OdtRLocations,
         OdtRManuscript,

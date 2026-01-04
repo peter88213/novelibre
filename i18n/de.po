@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.48.0\n"
+"Project-Id-Version: 5.48.2\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-01-02 12:46:35\n"
+"PO-Revision-Date: 2026-01-04 12:00:05\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -780,6 +780,9 @@ msgstr "Manuskript für fremde Textverarbeitung"
 
 msgid "Manuscript not found"
 msgstr "Manuskript nicht gefunden"
+
+msgid "Manuscript including unused text"
+msgstr "Manuskript einschließlich unbenutztem Text"
 
 msgid "Metadata text"
 msgstr "Metadaten-Text"

@@ -1260,6 +1260,14 @@ class MainView(Observer, MsgBoxes, SubController):
         self.exportMenu.disableOnLock.append(label)
         self.exportMenu.disableOnClose.append(label)
 
+        label = _('Manuscript including unused text')
+        self.exportMenu.add_command(
+            label=label,
+            command=self._ctrl.export_manuscript_with_unused,
+        )
+        self.exportMenu.disableOnLock.append(label)
+        self.exportMenu.disableOnClose.append(label)
+
         label = _('Metadata text table for editing')
         self.exportMenu.add_command(
             label=label,
