@@ -17,15 +17,5 @@ class OdtWFull(OdtWManuscript):
     DESCRIPTION = _('Manuscript including unused text')
     SUFFIX = FULL_MANUSCRIPT_SUFFIX
 
-    _unusedChapterTemplate = (
-        '<text:h text:style-name="Heading_20_2" text:outline-level="2">'
-        '$Title</text:h>\n'
-    )
-    _unusedSectionTemplate = (
-        f'<text:h text:style-name="{_("Heading_20_3_20_invisible")}" '
-        'text:outline-level="3">$Title</text:h>\n'
-        '<text:section text:style-name="Sect1" text:name="$ID">\n'
-        '$SectionContent\n'
-        '</text:section>\n'
-    )
-
+    _unusedChapterTemplate = OdtWManuscript._chapterTemplate
+    _unusedSectionTemplate = OdtWManuscript._sectionTemplate
