@@ -3,7 +3,11 @@
 <?xml-stylesheet href="novx.css" type="text/css"?>
 <novx version="1.9" xml:lang="en-US">
   <PROJECT renumberChapters="1" workPhase="1">
-    <ChapterHeadingPrefix>Chapter </ChapterHeadingPrefix>
+    <Title>The Alpha novel title</Title>
+    <Desc>
+      <p>Describing the Alpha novel.</p>
+    </Desc>
+    <ChapterHeadingPrefix>Alpha Chapter Title </ChapterHeadingPrefix>
     <CustomPlotProgress>Plot progress</CustomPlotProgress>
     <CustomCharacterization>Characterization</CustomCharacterization>
     <CustomWorldBuilding>World building</CustomWorldBuilding>
@@ -15,7 +19,7 @@
   </PROJECT>
   <CHAPTERS>
     <CHAPTER id="ch6">
-      <Title>Chapter 1</Title>
+      <Title>Alpha Chapter Title 1</Title>
       <Desc>
         <p>Description of the first chapter.</p>
       </Desc>
@@ -23,260 +27,283 @@
         <p>Notes on the first chapter.</p>
       </Notes>
       <SECTION id="sc1" type="2">
-        <Title>ACT I</Title>
+        <Title>Alpha ACT I</Title>
         <Desc>
-          <p>Description of the first act.</p>
+          <p>Description of Alpha act I.</p>
         </Desc>
         <Notes>
-          <p>Notes on the first act.</p>
+          <p>Notes on Alpha act I.</p>
         </Notes>
       </SECTION>
       <SECTION id="sc2" type="3">
-        <Title>Inciting incident</Title>
+        <Title> Alpha step (sc2)</Title>
         <Desc>
-          <p>Description of the inciting incident.</p>
+          <p>Description of Alpha step (sc2).</p>
         </Desc>
         <Notes>
-          <p>Notes on the inciting incident.</p>
+          <p>Notes on Alpha step (sc2).</p>
         </Notes>
       </SECTION>
       <SECTION id="sc15">
-        <Title>New Scene (ID15)</Title>
+        <Title>Alpha section (sc15)</Title>
         <Desc>
-          <p>Description of the first section.</p>
-          <p>This line is to be deleted.</p>
+          <p>Alpha section (sc15)'s description.</p>
         </Desc>
         <Notes>
-          <p>Notes on the first section.</p>
-          <p>This line is to be deleted.</p>
+          <p>Notes on the Alpha section (sc15).</p>
         </Notes>
-        <Tags>Tag1</Tags>
+        <Tags>AlphaSc15</Tags>
+        <Viewpoint id="cr1" />
         <Goal>
-          <p>Goal in the first section.</p>
-          <p>This line is to be deleted.</p>
+          <p>Goal in the Alpha section (sc15).</p>
         </Goal>
         <Conflict>
-          <p>Conflict in the first section.</p>
-          <p>This line is to be deleted.</p>
+          <p>Conflict in the Alpha section (sc15).</p>
         </Conflict>
         <Outcome>
-          <p>Outcome in the first section.</p>
-          <p>This line is to be deleted.</p>
+          <p>Outcome in the Alpha section (sc15).</p>
         </Outcome>
-        <PlotlineNotes id="ac5">
-          <p>A-Storyline: Plot line Notes on the first section.</p>
-          <p>This line is to be deleted.</p>
-        </PlotlineNotes>
+        <Characters ids="cr1" />
+        <Locations ids="lc1" />
+        <Items ids="it1" />
       </SECTION>
       <SECTION id="sc16">
-        <Title>New Scene (ID16)</Title>
+        <Title>Alpha section (sc16)</Title>
+        <Tags>AlphaSc2</Tags>
+        <Viewpoint id="cr2" />
       </SECTION>
     </CHAPTER>
     <CHAPTER id="ch9">
-      <Title>Chapter 2</Title>
+      <Title>Alpha Chapter Title 2</Title>
       <SECTION id="sc17">
-        <Title>New Scene (ID17)</Title>
+        <Title>Alpha section (sc17)</Title>
       </SECTION>
       <SECTION id="sc18">
-        <Title>New Scene (ID18)</Title>
+        <Title>Alpha section (sc18)</Title>
       </SECTION>
     </CHAPTER>
     <CHAPTER id="ch7">
-      <Title>Chapter 3</Title>
+      <Title>Alpha Chapter Title 3</Title>
       <SECTION id="sc19">
-        <Title>New Scene (ID19)</Title>
+        <Title>Alpha section (sc19)</Title>
       </SECTION>
       <SECTION id="sc20">
-        <Title>New Scene (ID20)</Title>
+        <Title>Alpha section (sc20)</Title>
       </SECTION>
     </CHAPTER>
     <CHAPTER id="ch10">
-      <Title>Chapter 4</Title>
+      <Title>Alpha Chapter Title 4</Title>
       <SECTION id="sc21">
-        <Title>New Scene (ID21)</Title>
+        <Title>Alpha section (sc21)</Title>
       </SECTION>
       <SECTION id="sc22">
-        <Title>New Scene (ID22)</Title>
+        <Title>Alpha section (sc22)</Title>
       </SECTION>
     </CHAPTER>
     <CHAPTER id="ch8">
-      <Title>Chapter 5</Title>
+      <Title>Alpha Chapter Title 5</Title>
       <SECTION id="sc25">
         <Title>New Scene (ID25)</Title>
       </SECTION>
       <SECTION id="sc23">
-        <Title>New Scene (ID23)</Title>
+        <Title>Alpha section (sc23)</Title>
       </SECTION>
     </CHAPTER>
     <CHAPTER id="ch11">
-      <Title>Chapter 6</Title>
+      <Title>Alpha Chapter Title 6</Title>
       <SECTION id="sc24">
-        <Title>New Scene (ID24)</Title>
+        <Title>Alpha section (sc24)</Title>
       </SECTION>
       <SECTION id="sc26">
-        <Title>New Scene (ID26)</Title>
+        <Title>Alpha section (sc26)</Title>
       </SECTION>
     </CHAPTER>
     <CHAPTER id="ch12">
-      <Title>Chapter 7</Title>
+      <Title>Alpha Chapter Title 7</Title>
       <SECTION id="sc27">
-        <Title>New Scene (ID27)</Title>
+        <Title>Alpha section (sc27)</Title>
       </SECTION>
       <SECTION id="sc28">
-        <Title>New Scene (ID28)</Title>
-      </SECTION>
-      <SECTION id="sc29">
-        <Title>New Scene (ID29)</Title>
+        <Title>Alpha section (sc28)</Title>
       </SECTION>
     </CHAPTER>
     <CHAPTER id="ch5" type="1" isTrash="1" noNumber="1">
-      <Title>Papierkorb</Title>
+      <Title>Trash</Title>
+      <SECTION id="sc29" type="1">
+        <Title>Deleted Alpha section (sc29)</Title>
+      </SECTION>
     </CHAPTER>
   </CHAPTERS>
   <CHARACTERS>
     <CHARACTER id="cr1">
-      <Title>Huey</Title>
+      <Title>Alpha character (cr1)</Title>
       <Desc>
-        <p>Huey's description</p>
-        <p>This line is to be deleted.</p>
+        <p>Alpha character (cr1)'s description.</p>
       </Desc>
       <Notes>
-        <p>Note on Huey.</p>
+        <p>Note on Alpha character (cr1).</p>
       </Notes>
-      <Tags>Kid</Tags>
-      <Aka>Boomer</Aka>
-      <FullName>Huey Duck</FullName>
+      <Tags>AlphaCr1</Tags>
+      <Aka>Character Alpha 1</Aka>
+      <FullName>Alpha character (cr1)'s' Full name</FullName>
       <Bio>
-        <p>Huey's Bio</p>
-        <p>This line is to be deleted.</p>
+        <p>Alpha character (cr1)'s Bio</p>
       </Bio>
       <Goals>
-        <p>Huey's Goals</p>
-        <p>This line is to be deleted.</p>
+        <p>Alpha character (cr1)'s Goals</p>
       </Goals>
     </CHARACTER>
     <CHARACTER id="cr2">
-      <Title>Louey</Title>
-      <Tags>Nephew</Tags>
-    </CHARACTER>
-    <CHARACTER id="cr3">
-      <Title>Dewey</Title>
-      <Tags>Nephew</Tags>
+      <Title>Alpha character (cr2)</Title>
+      <Desc>
+        <p>Alpha character (cr2)'s description.</p>
+      </Desc>
+      <Notes>
+        <p>Note on Alpha character (cr2).</p>
+      </Notes>
+      <Tags>AlphaCr2</Tags>
+      <Aka>Character Alpha 2</Aka>
+      <FullName>Alpha character (cr2)'s' Full name</FullName>
+      <Bio>
+        <p>Alpha character (cr2)'s Bio</p>
+      </Bio>
+      <Goals>
+        <p>Alpha character (cr2)'s Goals</p>
+      </Goals>
     </CHARACTER>
   </CHARACTERS>
   <LOCATIONS>
     <LOCATION id="lc1">
-      <Title>My home</Title>
+      <Title>Alpha location (lc1)</Title>
       <Desc>
-        <p>A cozy place.</p>
-        <p>This line is to be deleted.</p>
+        <p>Alpha location (lc1)'s description.</p>
       </Desc>
       <Notes>
-        <p>This line is to be deleted.</p>
+        <p>Notes on Alpha location (lc1).</p>
       </Notes>
-      <Tags>Flat</Tags>
-      <Aka>My castle</Aka>
+      <Tags>AlphaLc1</Tags>
+      <Aka>Location Alpha 1</Aka>
+    </LOCATION>
+    <LOCATION id="lc2">
+      <Title>Alpha location (lc2)</Title>
+      <Desc>
+        <p>A cozy place.</p>
+      </Desc>
+      <Notes>
+        <p>Notes on Alpha location (lc2).</p>
+      </Notes>
+      <Tags>AlphaLc2</Tags>
+      <Aka>Location Alpha 2</Aka>
     </LOCATION>
   </LOCATIONS>
   <ITEMS>
     <ITEM id="it1">
-      <Title>The old electric drill</Title>
+      <Title>Alpha item (it1)</Title>
       <Desc>
-        <p>A handy tool.</p>
-        <p>This line is to be deleted.</p>
+        <p>Alpha item (it1)'s description.</p>
       </Desc>
       <Notes>
-        <p>This line is to be deleted.</p>
+        <p>Notes on Alpha item (it1).</p>
       </Notes>
-      <Tags>Electric</Tags>
-      <Aka>Milwaukee beast</Aka>
+      <Tags>AlphaIt1</Tags>
+      <Aka>Item Alpha 1</Aka>
+    </ITEM>
+    <ITEM id="it2">
+      <Title>Alpha item (it2)</Title>
+      <Desc>
+        <p>Alpha item (it2)'s description.</p>
+      </Desc>
+      <Notes>
+        <p>Notes on Alpha item (it2).</p>
+      </Notes>
+      <Tags>AlphaIt2</Tags>
+      <Aka>Item Alpha 2</Aka>
     </ITEM>
   </ITEMS>
   <ARCS>
-    <ARC id="ac5">
+    <ARC id="ac1">
       <Desc>
-        <p>Applying the pattern as described in "The 1-3-5 Story Structure Made Simple" by Donna Michelle Anderson.</p>
-        <p>This line is to be deleted.</p>
+        <p>Alpha plot line A's description'.</p>
       </Desc>
       <Notes>
-        <p>This line is to be deleted.</p>
+        <p>Notes on Alpha plot line A.</p>
       </Notes>
-      <ShortName>A</ShortName>
-      <Sections ids="sc15 sc16 sc17 sc18 sc19 sc20 sc21 sc22 sc23 sc24 sc25 sc26 sc27 sc28 sc29" />
+      <ShortName>Alpha A</ShortName>
+      <Sections ids="sc15 sc16 sc17 sc18 sc19 sc20 sc21 sc22 sc23 sc24 sc25 sc26 sc27 sc28" />
       <POINT id="ap1">
-        <Title>The Setup</Title>
+        <Title>Alpha Plot point (ap1)</Title>
         <Desc>
-          <p>First, establish the normal existence and expectations of your Main Character - but only enough to give context and meaning to the Unexpected Change that is about to occur.</p>
+          <p>Alpha Plot point (ap1)'s description.</p>
         </Desc>
         <Section id="sc15" />
       </POINT>
       <POINT id="ap2">
-        <Title>The Unexpected Change</Title>
+        <Title>Alpha Plot point (ap2)</Title>
         <Desc>
-          <p>Next, a single event must occur that upsets your Main Character’s expectations and experience of normal life and launches his or her journey.</p>
+          <p>Alpha Plot point (ap2)'s description.</p>
         </Desc>
         <Section id="sc16" />
       </POINT>
       <POINT id="ap3">
-        <Title>The Rejection</Title>
+        <Title>Alpha Plot point (ap3)</Title>
         <Desc>
-          <p>"I don't want" - No one likes or accepts change in the instant it happens! Your Main Character now must exert the least possible effort to restore life to exactly the way it was before.</p>
+          <p>Alpha Plot point (ap3)'s description.</p>
         </Desc>
         <Section id="sc17" />
       </POINT>
       <POINT id="ap4">
-        <Title>The Commitment</Title>
+        <Title>Alpha Plot point (ap4)</Title>
         <Desc>
-          <p>Your main character eventually accepts that the Unexpected Change is not going to go away and commits to reluctantly struggling through this new life.</p>
+          <p>Alpha Plot point (ap4)'s description.</p>
         </Desc>
         <Section id="sc18" />
       </POINT>
       <POINT id="ap5">
-        <Title>The Reversal</Title>
+        <Title>Alpha Plot point (ap5)</Title>
         <Desc>
-          <p>Halfway through your script, your Main Character must fully embrace the Unexpected Change for purely self-serving reasons.</p>
+          <p>Alpha Plot point (ap5)'s description.</p>
         </Desc>
         <Section id="sc19" />
       </POINT>
       <POINT id="ap6">
-        <Title>The Embrace</Title>
+        <Title>Alpha Plot point (ap6)</Title>
         <Desc>
-          <p>"I DO want" - The Embrace is best seen, not heard.  In a comedy, it is typically a montage to a hot track.  In romance, it is typically a love scene.  In action, it is typically a high-energy action sequence with the Main Character in full control and engagement.  Keep dialogue to a minimum!</p>
+          <p>Alpha Plot point (ap6)'s description.</p>
         </Desc>
         <Section id="sc20" />
       </POINT>
       <POINT id="ap7">
-        <Title>The Return Of The Main Opponent</Title>
+        <Title>Alpha Plot point (ap7)</Title>
         <Desc>
-          <p>Now that your Main Character embraces his or her new life, it is time to surprise him or her with a significant obstacle - which is always the Main Opponent with newly heightened powers.</p>
+          <p>Alpha Plot point (ap7)'s description.</p>
         </Desc>
         <Section id="sc21" />
       </POINT>
       <POINT id="ap8">
-        <Title>The Escalation</Title>
+        <Title>Alpha Plot point (ap8)</Title>
         <Desc>
-          <p>The entire second half of your script will feature an increasingly focused and escalating duel between your Main Character and the Main Opponent.</p>
+          <p>Alpha Plot point (ap8)'s description.</p>
         </Desc>
         <Section id="sc22" />
       </POINT>
       <POINT id="ap9">
-        <Title>The Final Battle</Title>
+        <Title>Alpha Plot point (ap9)</Title>
         <Desc>
-          <p>Ultimately, your Main Character must physically face off against the Main Opponent and fight on behalf of self and a greater cause.</p>
+          <p>Alpha Plot point (ap9)'s description.</p>
         </Desc>
         <Section id="sc25" />
       </POINT>
       <POINT id="ap10">
-        <Title>The Twist</Title>
+        <Title>Alpha Plot point (ap10)</Title>
         <Desc>
-          <p>To heighten jeopardy for your Main Character, you may want to add a surprise “reveal” (built on earlier hints) that further challenges, limits or weakens your Main Character during the Final Battle.</p>
+          <p>Alpha Plot point (ap10)'s description.</p>
         </Desc>
         <Section id="sc23" />
       </POINT>
       <POINT id="ap11">
-        <Title>Rock Bottom</Title>
+        <Title>Alpha Plot point (ap11)</Title>
         <Desc>
-          <p>At the end of the Final Battle, your Main Character must be at his or her greatest point of weakness, with no support and seemingly no way out, while your Main Opponent is at his/her/its greatest point of power.</p>
+          <p>Alpha Plot point (ap11)'s description.</p>
         </Desc>
         <Section id="sc24" />
       </POINT>
@@ -288,24 +315,25 @@
         <Section id="sc27" />
       </POINT>
       <POINT id="ap13">
-        <Title>The Sacrifice</Title>
+        <Title>Alpha Plot point (ap13)</Title>
         <Desc>
-          <p>"I reluctantly give up" - Your Main Character should choose to reluctantly give up what he or she wants to become a better person and make the world a better place.</p>
+          <p>Alpha Plot point (ap13)'s description.</p>
         </Desc>
         <Section id="sc28" />
       </POINT>
       <POINT id="ap14">
-        <Title>The Reward</Title>
-        <Section id="sc29" />
+        <Title>Alpha Plot point (ap14)</Title>
+        <Desc>
+          <p>Alpha Plot point (ap14)'s description.</p>
+        </Desc>
       </POINT>
     </ARC>
   </ARCS>
   <PROJECTNOTES>
     <PROJECTNOTE id="pn1">
-      <Title>Not so Important project note</Title>
+      <Title>Alpha project note (pn1)</Title>
       <Desc>
-        <p>Never forget your goals.</p>
-        <p>This line is to be deleted.</p>
+        <p>Alpha project note (pn1)'s description.</p>
       </Desc>
     </PROJECTNOTE>
   </PROJECTNOTES>
