@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.48.0\n"
-"POT-Creation-Date: 2026-01-02 12:48:05\n"
+"Project-Id-Version: 5.49.0\n"
+"POT-Creation-Date: 2026-01-04 18:58:22\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -783,6 +783,9 @@ msgid "Manuscript for editing"
 msgstr ""
 
 msgid "Manuscript for third-party word processing"
+msgstr ""
+
+msgid "Manuscript including unused text"
 msgstr ""
 
 msgid "Manuscript not found"

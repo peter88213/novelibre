@@ -11,6 +11,14 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.49.0
+
+New feature: export/reimport documents for global search/replace. 
+
+- An ODS table containing all metadata text.
+- An ODT manuscript document containing all chapters/sections including the unused ones.
+
+
 ### Version 5.48.2
 
 - Fixed a regression from version 5.46.3 where the stage levels cannot be changed.
