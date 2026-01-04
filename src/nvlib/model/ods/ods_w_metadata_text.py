@@ -179,6 +179,8 @@ class OdsWMetadataText(OdsWriter):
     _sectionTemplate = _element_template
     _stage1Template = _element_template
     _stage2Template = _element_template
+    _unusedChapterTemplate = _element_template
+    _unusedSectionTemplate = _element_template
 
     _fileFooter = OdsWriter._CONTENT_XML_FOOTER
     _emptyDateCell = '     <table:table-cell table:style-name="ce2"/>'

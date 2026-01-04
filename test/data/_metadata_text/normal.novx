@@ -2,12 +2,12 @@
 <!DOCTYPE novx SYSTEM "novx_1_9.dtd">
 <?xml-stylesheet href="novx.css" type="text/css"?>
 <novx version="1.9" xml:lang="en-US">
-  <PROJECT renumberChapters="1" workPhase="1">
+  <PROJECT workPhase="1">
     <Title>The Alpha novel title</Title>
     <Desc>
       <p>Describing the Alpha novel.</p>
     </Desc>
-    <ChapterHeadingPrefix>Alpha Chapter Title </ChapterHeadingPrefix>
+    <ChapterHeadingPrefix>Chapter </ChapterHeadingPrefix>
     <CustomPlotProgress>Plot progress</CustomPlotProgress>
     <CustomCharacterization>Characterization</CustomCharacterization>
     <CustomWorldBuilding>World building</CustomWorldBuilding>
@@ -63,68 +63,96 @@
         <Outcome>
           <p>Outcome in the Alpha section (sc15).</p>
         </Outcome>
+        <PlotlineNotes id="ac1">
+          <p>Alpha section (sc15)'s notes on Plot line Alpha A.</p>
+        </PlotlineNotes>
         <Characters ids="cr1" />
         <Locations ids="lc1" />
         <Items ids="it1" />
       </SECTION>
-      <SECTION id="sc16">
-        <Title>Alpha section (sc16)</Title>
+      <SECTION id="sc16" append="1">
+        <Title>Appended Alpha section (sc16)</Title>
         <Tags>AlphaSc2</Tags>
         <Viewpoint id="cr2" />
+        <PlotlineNotes id="ac1">
+          <p>Alpha section (sc2)'s notes on Plot line Alpha A.</p>
+        </PlotlineNotes>
+        <Characters ids="cr1" />
+        <Locations ids="lc1" />
       </SECTION>
     </CHAPTER>
     <CHAPTER id="ch9">
       <Title>Alpha Chapter Title 2</Title>
       <SECTION id="sc17">
         <Title>Alpha section (sc17)</Title>
+        <Characters ids="cr2" />
+        <Locations ids="lc2" />
       </SECTION>
       <SECTION id="sc18">
         <Title>Alpha section (sc18)</Title>
+        <Characters ids="cr2" />
+        <Locations ids="lc2" />
       </SECTION>
     </CHAPTER>
     <CHAPTER id="ch7">
       <Title>Alpha Chapter Title 3</Title>
       <SECTION id="sc19">
         <Title>Alpha section (sc19)</Title>
+        <Characters ids="cr2 cr1" />
+        <Locations ids="lc2" />
       </SECTION>
       <SECTION id="sc20">
         <Title>Alpha section (sc20)</Title>
+        <Characters ids="cr1" />
+        <Locations ids="lc1" />
       </SECTION>
     </CHAPTER>
     <CHAPTER id="ch10">
       <Title>Alpha Chapter Title 4</Title>
       <SECTION id="sc21">
         <Title>Alpha section (sc21)</Title>
+        <Characters ids="cr1" />
+        <Locations ids="lc1" />
       </SECTION>
       <SECTION id="sc22">
         <Title>Alpha section (sc22)</Title>
+        <Characters ids="cr1 cr2" />
+        <Locations ids="lc1" />
       </SECTION>
     </CHAPTER>
     <CHAPTER id="ch8">
       <Title>Alpha Chapter Title 5</Title>
       <SECTION id="sc25">
-        <Title>New Scene (ID25)</Title>
+        <Title>Alpha section (sc25)</Title>
+        <Characters ids="cr2" />
+        <Locations ids="lc2" />
       </SECTION>
       <SECTION id="sc23">
         <Title>Alpha section (sc23)</Title>
+        <Characters ids="cr1" />
+        <Locations ids="lc2" />
       </SECTION>
     </CHAPTER>
     <CHAPTER id="ch11">
       <Title>Alpha Chapter Title 6</Title>
       <SECTION id="sc24">
         <Title>Alpha section (sc24)</Title>
+        <Characters ids="cr1 cr2" />
+        <Locations ids="lc2" />
       </SECTION>
       <SECTION id="sc26">
         <Title>Alpha section (sc26)</Title>
+        <Characters ids="cr1" />
+        <Locations ids="lc2" />
       </SECTION>
     </CHAPTER>
-    <CHAPTER id="ch12">
-      <Title>Alpha Chapter Title 7</Title>
-      <SECTION id="sc27">
-        <Title>Alpha section (sc27)</Title>
+    <CHAPTER id="ch12" type="1">
+      <Title>Unused Alpha Chapter Title 7</Title>
+      <SECTION id="sc27" type="1">
+        <Title>Unused Alpha section (sc27)</Title>
       </SECTION>
-      <SECTION id="sc28">
-        <Title>Alpha section (sc28)</Title>
+      <SECTION id="sc28" type="1">
+        <Title>Unused Alpha section (sc28)</Title>
       </SECTION>
     </CHAPTER>
     <CHAPTER id="ch5" type="1" isTrash="1" noNumber="1">
@@ -187,7 +215,7 @@
     <LOCATION id="lc2">
       <Title>Alpha location (lc2)</Title>
       <Desc>
-        <p>A cozy place.</p>
+        <p>Alpha location (lc2)'s description.</p>
       </Desc>
       <Notes>
         <p>Notes on Alpha location (lc2).</p>
@@ -222,13 +250,14 @@
   </ITEMS>
   <ARCS>
     <ARC id="ac1">
+      <Title>ac1</Title>
       <Desc>
         <p>Alpha plot line A's description'.</p>
       </Desc>
       <Notes>
         <p>Notes on Alpha plot line A.</p>
       </Notes>
-      <ShortName>Alpha A</ShortName>
+      <ShortName>A</ShortName>
       <Sections ids="sc15 sc16 sc17 sc18 sc19 sc20 sc21 sc22 sc23 sc24 sc25 sc26 sc27 sc28" />
       <POINT id="ap1">
         <Title>Alpha Plot point (ap1)</Title>
@@ -308,9 +337,9 @@
         <Section id="sc24" />
       </POINT>
       <POINT id="ap12">
-        <Title>The Final Choice</Title>
+        <Title>Alpha Plot point (ap12)</Title>
         <Desc>
-          <p>In the last moment of the Final Battle, give your Main Character precisely the choice he or she had to make after the Unexpected Change, now with far greater consequences.</p>
+          <p>Alpha Plot point (ap12)'s description.</p>
         </Desc>
         <Section id="sc27" />
       </POINT>

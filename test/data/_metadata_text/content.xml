@@ -303,7 +303,7 @@ $ArcNoteCells
       <text:p>Outcome in the Alpha section (sc15).</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p></text:p>
+      <text:p>Alpha section (sc15)'s notes on Plot line Alpha A.</text:p>
      </table:table-cell>
 
     </table:table-row>
@@ -312,7 +312,7 @@ $ArcNoteCells
       <text:p>sc16</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha section (sc16)</text:p>
+      <text:p>Appended Alpha section (sc16)</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -345,7 +345,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p></text:p>
+      <text:p>Alpha section (sc2)'s notes on Plot line Alpha A.</text:p>
      </table:table-cell>
 
     </table:table-row>
@@ -762,7 +762,7 @@ $ArcNoteCells
       <text:p>sc25</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>New Scene (ID25)</text:p>
+      <text:p>Alpha section (sc25)</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -969,7 +969,7 @@ $ArcNoteCells
       <text:p>ch12</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha Chapter Title 7</text:p>
+      <text:p>Unused Alpha Chapter Title 7</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1008,7 +1008,7 @@ $ArcNoteCells
       <text:p>sc27</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha section (sc27)</text:p>
+      <text:p>Unused Alpha section (sc27)</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1050,7 +1050,88 @@ $ArcNoteCells
       <text:p>sc28</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha section (sc28)</text:p>
+      <text:p>Unused Alpha section (sc28)</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
+    </table:table-row>
+   <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string">
+      <text:p>ch5</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>Trash</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+$ArcNoteCells
+    </table:table-row>
+   <table:table-row table:style-name="ro2">
+     <table:table-cell office:value-type="string">
+      <text:p>sc29</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>Deleted Alpha section (sc29)</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1218,7 +1299,7 @@ $ArcNoteCells
       <text:p>Location Alpha 2</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>A cozy place.</text:p>
+      <text:p>Alpha location (lc2)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1326,7 +1407,7 @@ $ArcNoteCells
       <text:p>ac1</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p></text:p>
+      <text:p>ac1</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1794,7 +1875,7 @@ $ArcNoteCells
       <text:p>ap12</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>The Final Choice</text:p>
+      <text:p>Alpha Plot point (ap12)</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1803,7 +1884,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>In the last moment of the Final Battle, give your Main Character precisely the choice he or she had to make after the Unexpected Change, now with far greater consequences.</text:p>
+      <text:p>Alpha Plot point (ap12)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>

@@ -65,4 +65,5 @@ class OdsRMetadataText(OdsReader):
         self._read_sections()
         self._read_plotlines()
         self._read_plot_points()
+        self._read_project_notes()
 
