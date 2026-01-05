@@ -487,15 +487,12 @@ class FileManager(ServiceBase):
             return False
 
         self._ui.show_path(
-            (
-                f'{norm_path(self._mdl.prjFile.filePath)} '
-                f'({_("last saved on")} {self._mdl.prjFile.fileDate})'
-            )
+            f'{norm_path(self._mdl.prjFile.filePath)} '
+            f'({_("last saved on")} {self._mdl.prjFile.fileDate})'
         )
         self._ui.restore_status()
         self.prefs['last_open'] = self._mdl.prjFile.filePath
         self.copy_to_backup(self._mdl.prjFile.filePath)
-        self._ctrl.on_open()
         return True
 
     def select_project(self, fileName):
