@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.49.1
+
+Minor bugfix
+
+- The FileManager no longer calls MainController.on_open() when saving the project.
+
 
 ### Version 5.49.0
 
