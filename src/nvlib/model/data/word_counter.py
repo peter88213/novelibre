@@ -22,6 +22,7 @@ class WordCounter:
 
     def get_word_count(self, text):
         """Return the total word count of text as an integer."""
+        text = text.replace('\n', '')
         text = self.ADDITIONAL_WORD_LIMITS.sub(' ', text)
         text = self.NO_WORD_LIMITS.sub('', text)
         return len(text.split())
