@@ -10,6 +10,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.49.2
+
+- Fixed a bug where comments containing newlines are included in the word count, as in the nv_editor box.
+- Double hyphens no longer act as word separators.
+- Refactored the WordCounter class, renaming the class constants.
+
+
 ### Version 5.49.1
 
 Minor bugfix
