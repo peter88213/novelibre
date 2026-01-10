@@ -69,14 +69,3 @@ class ConfigurationBase(ABC):
         # - If there are options, write them to the OPTIONS section.
         # - Do not write empty sections.
 
-    def _get_configuration(self, config):
-        if self._sLabel in config:
-            section = config[self._sLabel]
-            for setting in self.settings:
-                fallback = self.settings[setting]
-                self.settings[setting] = section.get(setting, fallback)
-        if self._oLabel in config:
-            section = config[self._oLabel]
-            for option in self.options:
-                fallback = self.options[option]
-                self.options[option] = section.getboolean(option, fallback)

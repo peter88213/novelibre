@@ -34,7 +34,16 @@ class ConfigurationJson(ConfigurationBase):
                 config = json.load(f)
         except FileNotFoundError:
             config = {}
-        self._get_configuration(config)
+        if self._sLabel in config:
+            section = config[self._sLabel]
+            for setting in self.settings:
+                fallback = self.settings[setting]
+                self.settings[setting] = section.get(setting, fallback)
+        if self._oLabel in config:
+            section = config[self._oLabel]
+            for option in self.options:
+                fallback = self.options[option]
+                self.options[option] = section.get(option, fallback)
 
     def write(self, iniFile):
         """Save the configuration to iniFile.
