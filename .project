@@ -4,7 +4,6 @@
 	<comment></comment>
 	<projects>
 		<project>nv_aeon2</project>
-		<project>nv_bw_icons</project>
 		<project>nv_collection</project>
 		<project>nv_custom_export</project>
 		<project>nv_dark</project>
@@ -19,6 +18,7 @@
 		<project>nv_timeline</project>
 		<project>nv_tlview</project>
 		<project>nv_updater</project>
+		<project>nv_word_counter</project>
 		<project>nv_yw7</project>
 		<project>nv_zim</project>
 	</projects>
