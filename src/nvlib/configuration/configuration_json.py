@@ -31,13 +31,13 @@ class ConfigurationJson(ConfigurationBase):
                 config = json.load(f)
         except FileNotFoundError:
             config = {}
-        if self._sLabel in config:
-            section = config[self._sLabel]
+        if self.strLabel in config:
+            section = config[self.strLabel]
             for setting in self.settings:
                 fallback = self.settings[setting]
                 self.settings[setting] = section.get(setting, fallback)
-        if self._oLabel in config:
-            section = config[self._oLabel]
+        if self.boolLabel in config:
+            section = config[self.boolLabel]
             for option in self.options:
                 fallback = self.options[option]
                 self.options[option] = section.get(option, fallback)
@@ -48,9 +48,9 @@ class ConfigurationJson(ConfigurationBase):
         with open(self.filePath, 'w', encoding='utf-8') as f:
             config = {}
             if self.settings:
-                config[self._sLabel] = self.settings
+                config[self.strLabel] = self.settings
             if self.options:
-                config[self._oLabel] = self.options
+                config[self.boolLabel] = self.options
             json.dump(
                 config,
                 f,

@@ -26,8 +26,8 @@ class JustSettings(Configuration):
         """
         config = ConfigParser()
         config.read(self.filePath, encoding='utf-8')
-        if config.has_section(self._sLabel):
-            section = config[self._sLabel]
+        if config.has_section(self.strLabel):
+            section = config[self.strLabel]
             for setting in section:
                 self.settings[setting] = section[setting]
 

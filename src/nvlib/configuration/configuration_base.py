@@ -29,16 +29,16 @@ class ConfigurationBase(ABC):
         self.settings = None
         self.options = None
         self.filePath = filePath
-        self._sLabel = 'SETTINGS'
-        self._oLabel = 'OPTIONS'
-        self.set(settings, options)
+        self.strLabel = 'SETTINGS'
+        self.boolLabel = 'OPTIONS'
+        self.set(
+            settings=settings,
+            options=options,
+        )
 
     @abstractmethod
-    def read(self, filePath=None):
+    def read(self):
         """Read the configuration file.
-        
-        Optional arguments:
-            filePath: str -- configuration file path.
             
         Settings and options that can not be read in, remain unchanged.
         """

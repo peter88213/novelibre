@@ -30,15 +30,17 @@ class Configuration(ConfigurationBase):
         Settings and options that can not be read in, remain unchanged.
         """
         self.filePath = self.filePath or filePath
+        # this is for downward compatibility with plugins
+
         config = ConfigParser()
         config.read(self.filePath, encoding='utf-8')
-        if self._sLabel in config:
-            section = config[self._sLabel]
+        if self.strLabel in config:
+            section = config[self.strLabel]
             for setting in self.settings:
                 fallback = self.settings[setting]
                 self.settings[setting] = section.get(setting, fallback)
-        if self._oLabel in config:
-            section = config[self._oLabel]
+        if self.boolLabel in config:
+            section = config[self.boolLabel]
             for option in self.options:
                 fallback = self.options[option]
                 self.options[option] = section.getboolean(option, fallback)
@@ -50,21 +52,23 @@ class Configuration(ConfigurationBase):
             filePath: str -- configuration file path.
         """
         self.filePath = self.filePath or filePath
+        # this is for downward compatibility with plugins
+
         config = ConfigParser()
         if self.settings:
-            config.add_section(self._sLabel)
+            config.add_section(self.strLabel)
             for settingId in self.settings:
                 config.set(
-                    self._sLabel,
+                    self.strLabel,
                     settingId,
                     str(self.settings[settingId]),
                 )
         if self.options:
-            config.add_section(self._oLabel)
+            config.add_section(self.boolLabel)
             for settingId in self.options:
                 if self.options[settingId]:
-                    config.set(self._oLabel, settingId, 'Yes')
+                    config.set(self.boolLabel, settingId, 'Yes')
                 else:
-                    config.set(self._oLabel, settingId, 'No')
+                    config.set(self.boolLabel, settingId, 'No')
         with open(self.filePath, 'w', encoding='utf-8') as f:
             config.write(f)
