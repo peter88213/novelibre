@@ -10,11 +10,25 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.50.0
+
+- Refactored the code for better maintainability.
+
+#### API changes
+
+- New instance variable `Configuration.filePath` to be set by the constructor. 
+- New public instance constants `Configuration.strLabel`
+  and `Configuration.boolLabel` to make the sections customizable.
+- The configuration file path parameters for `Configuration.read()` 
+  and `Configuration.write()` are optional and deprecated.
+
+
 ### Version 5.49.2
 
-- Fixed a bug where comments containing newlines are included in the word count, as in the nv_editor box.
+- Fixed a bug where comments containing newlines are included in the word count, 
+  as in the nv_editor box.
 - Double hyphens no longer act as word separators.
-- Refactored the WordCounter class, renaming the class constants.
+- Refactored the `WordCounter` class, renaming the class constants.
 
 
 ### Version 5.49.1

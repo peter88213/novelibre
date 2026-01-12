@@ -12,26 +12,23 @@ from nvlib.configuration.configuration_base import ConfigurationBase
 class ConfigurationJson(ConfigurationBase):
     """Application configuration, representing a JSON file.
 
-        Configuration file sections:
-        SETTINGS - Strings
-        OPTIONS - Boolean values
+    Public instance constants:    
+        strLabel - Label of the config section containing strings.
+        boolLabel - Label of the config section containing boolean values.
 
     Public instance variables:    
-        settings - dictionary of strings
-        options - dictionary of boolean values
+        settings: dict of str - Configuration strings.
+        options: dict of bool - Configuration booleans.
+        filePath: str - Path to the configuration file.
     """
 
-    def read(self, filePath=None):
+    def read(self):
         """Read the configuration file.
-        
-        Optional arguments:
-            filePath: str -- configuration file path.
             
         Settings and options that can not be read in, remain unchanged.
         """
-        filePath = filePath or self.filePath
         try:
-            with open(filePath, 'r', encoding='utf-8') as f:
+            with open(self.filePath, 'r', encoding='utf-8') as f:
                 config = json.load(f)
         except FileNotFoundError:
             config = {}
@@ -46,14 +43,9 @@ class ConfigurationJson(ConfigurationBase):
                 fallback = self.options[option]
                 self.options[option] = section.get(option, fallback)
 
-    def write(self, filePath=None):
-        """Save the configuration.
-
-        Optional arguments:
-            filePath: str -- configuration file path.
-        """
-        filePath = filePath or self.filePath
-        with open(filePath, 'w', encoding='utf-8') as f:
+    def write(self):
+        """Save the configuration file."""
+        with open(self.filePath, 'w', encoding='utf-8') as f:
             config = {}
             if self.settings:
                 config[self.strLabel] = self.settings

@@ -10,21 +10,22 @@ from abc import ABC, abstractmethod
 class ConfigurationBase(ABC):
     """Application configuration.
 
-        Configuration file sections:
-        SETTINGS - Strings
-        OPTIONS - Boolean values
+    Public instance constants:    
+        strLabel - Label of the config section containing strings.
+        boolLabel - Label of the config section containing boolean values.
 
     Public instance variables:    
-        settings - dictionary of strings
-        options - dictionary of boolean values
+        settings: dict of str - Configuration strings.
+        options: dict of bool - Configuration booleans.
+        filePath: str - Path to the configuration file.
     """
 
     def __init__(self, settings=None, options=None, filePath=None):
         """Initalize attribute variables.
 
         Optional arguments:
-            settings: dict of str -- default settings
-            options: dict of bool -- default options
+            settings: dict of str - default settings
+            options: dict of bool - default options
             filePath: str -- configuration file path.
         """
         self.settings = None
@@ -38,14 +39,12 @@ class ConfigurationBase(ABC):
         )
 
     @abstractmethod
-    def read(self, filePath=None):
+    def read(self):
         """Read the configuration file.
-        
-        Optional arguments:
-            filePath: str -- configuration file path.
             
         Settings and options that can not be read in, remain unchanged.
         """
+        pass
         # - Read the configuration file.
         # - If there is a SETTINGS section, get the settings,
         #   using the defaults as fallback.
@@ -63,12 +62,8 @@ class ConfigurationBase(ABC):
         self.options = (options or {}).copy()
 
     @abstractmethod
-    def write(self, filePath=None):
-        """Save the configuration.
-
-        Optional arguments:
-            filePath: str -- configuration file path.
-        """
+    def write(self):
+        """Save the configuration file."""
         pass
         # - If there are settings, write them to the SETTINGS section.
         # - If there are options, write them to the OPTIONS section.

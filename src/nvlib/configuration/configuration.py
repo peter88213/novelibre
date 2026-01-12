@@ -12,13 +12,14 @@ from nvlib.configuration.configuration_base import ConfigurationBase
 class Configuration(ConfigurationBase):
     """Application configuration, representing an INI file.
 
-        Configuration file sections:
-        SETTINGS - Strings
-        OPTIONS - Boolean values
+    Public instance constants:    
+        strLabel - Label of the config section containing strings.
+        boolLabel - Label of the config section containing boolean values.
 
     Public instance variables:    
-        settings - dictionary of strings
-        options - dictionary of boolean values
+        settings: dict of str - Configuration strings.
+        options: dict of bool - Configuration booleans.
+        filePath: str - Path to the configuration file.
     """
 
     def read(self, filePath=None):
@@ -29,9 +30,11 @@ class Configuration(ConfigurationBase):
             
         Settings and options that can not be read in, remain unchanged.
         """
-        filePath = filePath or self.filePath
+        self.filePath = self.filePath or filePath
+        # this is for downward compatibility with plugins
+
         config = ConfigParser()
-        config.read(filePath, encoding='utf-8')
+        config.read(self.filePath, encoding='utf-8')
         if self.strLabel in config:
             section = config[self.strLabel]
             for setting in self.settings:
@@ -49,7 +52,9 @@ class Configuration(ConfigurationBase):
         Optional arguments:
             filePath: str -- configuration file path.
         """
-        filePath = filePath or self.filePath
+        self.filePath = self.filePath or filePath
+        # this is for downward compatibility with plugins
+
         config = ConfigParser()
         if self.settings:
             config.add_section(self.strLabel)
@@ -66,5 +71,5 @@ class Configuration(ConfigurationBase):
                     config.set(self.boolLabel, settingId, 'Yes')
                 else:
                     config.set(self.boolLabel, settingId, 'No')
-        with open(filePath, 'w', encoding='utf-8') as f:
+        with open(self.filePath, 'w', encoding='utf-8') as f:
             config.write(f)
