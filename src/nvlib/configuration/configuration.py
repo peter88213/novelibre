@@ -24,16 +24,14 @@ class Configuration(ConfigurationBase):
     def read(self, filePath=None):
         """Read the configuration file.
         
-        Positional arguments:
+        Optional arguments:
             filePath: str -- configuration file path.
             
         Settings and options that can not be read in, remain unchanged.
         """
-        self.filePath = self.filePath or filePath
-        # this is for downward compatibility with plugins
-
+        filePath = filePath or self.filePath
         config = ConfigParser()
-        config.read(self.filePath, encoding='utf-8')
+        config.read(filePath, encoding='utf-8')
         if self.strLabel in config:
             section = config[self.strLabel]
             for setting in self.settings:
@@ -48,12 +46,10 @@ class Configuration(ConfigurationBase):
     def write(self, filePath=None):
         """Save the configuration.
 
-        Positional arguments:
+        Optional arguments:
             filePath: str -- configuration file path.
         """
-        self.filePath = self.filePath or filePath
-        # this is for downward compatibility with plugins
-
+        filePath = filePath or self.filePath
         config = ConfigParser()
         if self.settings:
             config.add_section(self.strLabel)
@@ -70,5 +66,5 @@ class Configuration(ConfigurationBase):
                     config.set(self.boolLabel, settingId, 'Yes')
                 else:
                     config.set(self.boolLabel, settingId, 'No')
-        with open(self.filePath, 'w', encoding='utf-8') as f:
+        with open(filePath, 'w', encoding='utf-8') as f:
             config.write(f)

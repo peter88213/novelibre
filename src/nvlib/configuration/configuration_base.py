@@ -25,6 +25,7 @@ class ConfigurationBase(ABC):
         Optional arguments:
             settings: dict of str -- default settings
             options: dict of bool -- default options
+            filePath: str -- configuration file path.
         """
         self.settings = None
         self.options = None
@@ -37,8 +38,11 @@ class ConfigurationBase(ABC):
         )
 
     @abstractmethod
-    def read(self):
+    def read(self, filePath=None):
         """Read the configuration file.
+        
+        Optional arguments:
+            filePath: str -- configuration file path.
             
         Settings and options that can not be read in, remain unchanged.
         """
@@ -59,8 +63,11 @@ class ConfigurationBase(ABC):
         self.options = (options or {}).copy()
 
     @abstractmethod
-    def write(self):
-        """Save the configuration to the configuration file.
+    def write(self, filePath=None):
+        """Save the configuration.
+
+        Optional arguments:
+            filePath: str -- configuration file path.
         """
         pass
         # - If there are settings, write them to the SETTINGS section.
