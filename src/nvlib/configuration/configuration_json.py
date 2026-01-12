@@ -21,16 +21,13 @@ class ConfigurationJson(ConfigurationBase):
         options - dictionary of boolean values
     """
 
-    def read(self, iniFile):
-        """Read the configuration from iniFile.
-        
-        Positional arguments:
-            iniFile: str -- configuration file path.
+    def read(self):
+        """Read the configuration file.
             
         Settings and options that can not be read in, remain unchanged.
         """
         try:
-            with open(iniFile, 'r', encoding='utf-8') as f:
+            with open(self.filePath, 'r', encoding='utf-8') as f:
                 config = json.load(f)
         except FileNotFoundError:
             config = {}
@@ -45,13 +42,10 @@ class ConfigurationJson(ConfigurationBase):
                 fallback = self.options[option]
                 self.options[option] = section.get(option, fallback)
 
-    def write(self, iniFile):
-        """Save the configuration to iniFile.
-
-        Positional arguments:
-            iniFile: str -- configuration file path.
+    def write(self):
+        """Save the configuration.
         """
-        with open(iniFile, 'w', encoding='utf-8') as f:
+        with open(self.filePath, 'w', encoding='utf-8') as f:
             config = {}
             if self.settings:
                 config[self._sLabel] = self.settings

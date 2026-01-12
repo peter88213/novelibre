@@ -17,18 +17,15 @@ class JustSettings(Configuration):
     - The constructor's optional arguments are not considered, if any. 
     """
 
-    def read(self, iniFile):
+    def read(self):
         """Read a configuration file.
         
-        Positional arguments:
-            iniFile -- path configuration file path.
-            
         Just read in settings that exist in the file.
         Do not use default settings as fallback.
         Overrides the superclass method. 
         """
         config = ConfigParser()
-        config.read(iniFile, encoding='utf-8')
+        config.read(self.filePath, encoding='utf-8')
         if config.has_section(self._sLabel):
             section = config[self._sLabel]
             for setting in section:

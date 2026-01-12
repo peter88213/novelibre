@@ -21,16 +21,17 @@ class Configuration(ConfigurationBase):
         options - dictionary of boolean values
     """
 
-    def read(self, iniFile):
-        """Read a configuration file.
+    def read(self, filePath=None):
+        """Read the configuration file.
         
         Positional arguments:
-            iniFile: str -- path configuration file path.
+            filePath: str -- configuration file path.
             
         Settings and options that can not be read in, remain unchanged.
         """
+        self.filePath = self.filePath or filePath
         config = ConfigParser()
-        config.read(iniFile, encoding='utf-8')
+        config.read(self.filePath, encoding='utf-8')
         if self._sLabel in config:
             section = config[self._sLabel]
             for setting in self.settings:
@@ -42,12 +43,13 @@ class Configuration(ConfigurationBase):
                 fallback = self.options[option]
                 self.options[option] = section.getboolean(option, fallback)
 
-    def write(self, iniFile):
-        """Save the configuration to iniFile.
+    def write(self, filePath=None):
+        """Save the configuration.
 
         Positional arguments:
-            iniFile: str -- path configuration file path.
+            filePath: str -- configuration file path.
         """
+        self.filePath = self.filePath or filePath
         config = ConfigParser()
         if self.settings:
             config.add_section(self._sLabel)
@@ -64,5 +66,5 @@ class Configuration(ConfigurationBase):
                     config.set(self._oLabel, settingId, 'Yes')
                 else:
                     config.set(self._oLabel, settingId, 'No')
-        with open(iniFile, 'w', encoding='utf-8') as f:
+        with open(self.filePath, 'w', encoding='utf-8') as f:
             config.write(f)

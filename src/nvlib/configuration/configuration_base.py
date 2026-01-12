@@ -19,7 +19,7 @@ class ConfigurationBase(ABC):
         options - dictionary of boolean values
     """
 
-    def __init__(self, settings=None, options=None):
+    def __init__(self, settings=None, options=None, filePath=None):
         """Initalize attribute variables.
 
         Optional arguments:
@@ -28,16 +28,17 @@ class ConfigurationBase(ABC):
         """
         self.settings = None
         self.options = None
+        self.filePath = filePath
         self._sLabel = 'SETTINGS'
         self._oLabel = 'OPTIONS'
         self.set(settings, options)
 
     @abstractmethod
-    def read(self, iniFile):
-        """Read the configuration from iniFile.
+    def read(self, filePath=None):
+        """Read the configuration file.
         
-        Positional arguments:
-            iniFile: str -- configuration file path.
+        Optional arguments:
+            filePath: str -- configuration file path.
             
         Settings and options that can not be read in, remain unchanged.
         """
@@ -58,11 +59,8 @@ class ConfigurationBase(ABC):
         self.options = (options or {}).copy()
 
     @abstractmethod
-    def write(self, iniFile):
-        """Save the configuration to iniFile.
-
-        Positional arguments:
-            iniFile: str -- configuration file path.
+    def write(self):
+        """Save the configuration to the configuration file.
         """
         pass
         # - If there are settings, write them to the SETTINGS section.

@@ -112,10 +112,13 @@ def main():
     os.makedirs(tempDir, exist_ok=True)
 
     #--- Load configuration.
-    iniFile = f'{configDir}/novx.ini'
-    configuration = Configuration(SETTINGS, OPTIONS)
+    configuration = Configuration(
+        settings=SETTINGS,
+        options=OPTIONS,
+        filePath=f'{configDir}/novx.ini',
+    )
     try:
-        configuration.read(iniFile)
+        configuration.read()
     except:
         pass
         # skipping the configuraton if faulty
@@ -123,8 +126,8 @@ def main():
     prefs.update(configuration.options)
 
     #--- Launchers for opening linked non-standard filetypes.
-    launcherConfig = JustSettings()
-    launcherConfig.read(f'{configDir}/launchers.ini')
+    launcherConfig = JustSettings(filePath=f'{configDir}/launchers.ini')
+    launcherConfig.read()
     launchers.update(launcherConfig.settings)
 
     #--- Instantiate the app object.
@@ -150,11 +153,11 @@ def main():
             configuration.options[keyword] = prefs[keyword]
         elif keyword in configuration.settings:
             configuration.settings[keyword] = prefs[keyword]
-    configuration.write(iniFile)
+    configuration.write()
 
     #--- Save launchers.
     launcherConfig.settings = launchers
-    launcherConfig.write(f'{configDir}/launchers.ini')
+    launcherConfig.write()
 
     #--- Delete the temporary files.
     # Note: Do not remove the temp directory itself,
