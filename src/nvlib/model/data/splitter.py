@@ -35,16 +35,17 @@ class Splitter(ABC):
     SECTION_SEPARATOR = '###'
     APPENDED_SECTION_SEPARATOR = '####'
     DESC_SEPARATOR = '|'
+    _WARNING = '(!)'
     _CLIP_TITLE = 20
     # Maximum length of newly generated section titles.
 
     def create_chapter(
-            self,
-            novel,
-            chapterId,
-            title,
-            desc,
-            level,
+        self,
+        novel,
+        chapterId,
+        title,
+        desc,
+        level,
     ):
         """Create a new chapter and add it to the novel.
         
@@ -61,14 +62,16 @@ class Splitter(ABC):
         newChapter.chType = 0
         novel.chapters[chapterId] = newChapter
 
-    def new_section(
+    def create_section(
         self,
+        novel,
+        sectionId,
         parent,
         splitCount,
         title,
         appendToPrev,
     ):
-        """Factory method, returning a new section instance.
+        """Create a new section and add it to the novel.
         
         Positional arguments:
             sectionId -- str: ID of the section to create.
@@ -78,7 +81,6 @@ class Splitter(ABC):
             appendToPrev -- boolean: when exporting, append the section
                             to the previous one without separator.
         """
-        WARNING = '(!)'
 
         # Mark metadata of split sections.
         newSection = Section(appendToPrev=appendToPrev)
@@ -92,12 +94,12 @@ class Splitter(ABC):
             newSection.title = f'{title} Split: {splitCount}'
         else:
             newSection.title = f'{_("New Section")} Split: {splitCount}'
-        if parent.goal and not parent.goal.startswith(WARNING):
-            parent.goal = f'{WARNING}{parent.goal}'
-        if parent.conflict and not parent.conflict.startswith(WARNING):
-            parent.conflict = f'{WARNING}{parent.conflict}'
-        if parent.outcome and not parent.outcome.startswith(WARNING):
-            parent.outcome = f'{WARNING}{parent.outcome}'
+        if parent.goal and not parent.goal.startswith(self._WARNING):
+            parent.goal = f'{self._WARNING}{parent.goal}'
+        if parent.conflict and not parent.conflict.startswith(self._WARNING):
+            parent.conflict = f'{self._WARNING}{parent.conflict}'
+        if parent.outcome and not parent.outcome.startswith(self._WARNING):
+            parent.outcome = f'{self._WARNING}{parent.outcome}'
 
         newSection.scType = parent.scType
         newSection.scene = parent.scene
@@ -107,5 +109,5 @@ class Splitter(ABC):
         newSection.lastsDays = parent.lastsDays
         newSection.lastsHours = parent.lastsHours
         newSection.lastsMinutes = parent.lastsMinutes
-        return newSection
+        novel.sections[sectionId] = newSection
 

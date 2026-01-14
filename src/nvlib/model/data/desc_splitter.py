@@ -40,14 +40,15 @@ class DescSplitter(Splitter):
             appendToPrev -- boolean: when exporting, append the section
                             to the previous one without separator.
         """
-        newSection = super().new_section(
+        super().create_section(
+            novel,
+            sectionId,
             parent,
             splitCount,
             title,
             appendToPrev,
         )
-        newSection.status = 0
-        novel.sections[sectionId] = newSection
+        novel.sections[sectionId].status = 0
 
     def split_sections(self, novel):
         """Split sections by inserted chapter and section dividers.

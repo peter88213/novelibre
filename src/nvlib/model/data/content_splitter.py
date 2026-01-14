@@ -44,23 +44,23 @@ class ContentSplitter(Splitter):
             appendToPrev -- boolean: when exporting, append the section
                             to the previous one without separator.
         """
-        newSection = super().new_section(
+        super().create_section(
+            novel,
+            sectionId,
             parent,
             splitCount,
             title,
             appendToPrev,
         )
-        WARNING = '(!)'
         if desc:
-            newSection.desc = desc
-        if parent.desc and not parent.desc.startswith(WARNING):
-            parent.desc = f'{WARNING}{parent.desc}'
+            novel.sections[sectionId].desc = desc
+        if parent.desc and not parent.desc.startswith(self._WARNING):
+            parent.desc = f'{self._WARNING}{parent.desc}'
 
         # Reset the parent's status to Draft, if not Outline.
         if parent.status > 2:
             parent.status = 2
-        newSection.status = parent.status
-        novel.sections[sectionId] = newSection
+        novel.sections[sectionId].status = parent.status
 
     def split_sections(self, novel):
         """Split sections by inserted chapter and section dividers.
