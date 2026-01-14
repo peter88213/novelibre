@@ -49,15 +49,24 @@ class ContentSplitter(Splitter):
             title,
             appendToPrev,
         )
+        WARNING = '(!)'
         if desc:
             novel.sections[sectionId].desc = desc
-        if parent.desc and not parent.desc.startswith(self._WARNING):
-            parent.desc = f'{self._WARNING}{parent.desc}'
 
         # Reset the parent's status to Draft, if not Outline.
         if parent.status > 2:
             parent.status = 2
         novel.sections[sectionId].status = parent.status
+
+        # Mark parent's metadata with a reminder.
+        if parent.desc and not parent.desc.startswith(WARNING):
+            parent.desc = f'{WARNING}{parent.desc}'
+        if parent.goal and not parent.goal.startswith(WARNING):
+            parent.goal = f'{WARNING}{parent.goal}'
+        if parent.conflict and not parent.conflict.startswith(WARNING):
+            parent.conflict = f'{WARNING}{parent.conflict}'
+        if parent.outcome and not parent.outcome.startswith(WARNING):
+            parent.outcome = f'{WARNING}{parent.outcome}'
 
     def _contains_heading(self, novel, scId):
         return (

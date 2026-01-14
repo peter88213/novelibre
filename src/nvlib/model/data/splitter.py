@@ -40,7 +40,6 @@ class Splitter(ABC):
     SECTION_SEPARATOR = '###'
     APPENDED_SECTION_SEPARATOR = '####'
     DESC_SEPARATOR = '|'
-    _WARNING = '(!)'
     _CLIP_TITLE = 20
     # Maximum length of newly generated section titles.
 
@@ -99,13 +98,6 @@ class Splitter(ABC):
             newSection.title = f'{title} Split: {splitCount}'
         else:
             newSection.title = f'{_("New Section")} Split: {splitCount}'
-        if parent.goal and not parent.goal.startswith(self._WARNING):
-            parent.goal = f'{self._WARNING}{parent.goal}'
-        if parent.conflict and not parent.conflict.startswith(self._WARNING):
-            parent.conflict = f'{self._WARNING}{parent.conflict}'
-        if parent.outcome and not parent.outcome.startswith(self._WARNING):
-            parent.outcome = f'{self._WARNING}{parent.outcome}'
-
         newSection.scType = parent.scType
         newSection.scene = parent.scene
         newSection.date = parent.date
