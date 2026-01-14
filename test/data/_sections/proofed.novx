@@ -146,6 +146,15 @@
         </Content>
       </SECTION>
     </CHAPTER>
+    <CHAPTER id="ch37">
+      <Title>New chapter</Title>
+      <SECTION id="sc13">
+        <Title>Clunk arrives Split: 1</Title>
+        <Desc>
+          <p>This happens in the first section of the new chapter.</p>
+        </Desc>
+      </SECTION>
+    </CHAPTER>
     <CHAPTER id="ch4">
       <Title>Chapter 4</Title>
       <SECTION id="sc5" status="4">
