@@ -48,15 +48,15 @@ class DescSplitter(Splitter):
         )
         novel.sections[sectionId].status = 0
 
-    def _get_lines(self, novel, scanScId):
-        return novel.sections[scanScId].desc.split('\n')
-
-    def _set_text(self, novel, scId, newLines):
-        novel.sections[scId].desc = '\n'.join(newLines)
-
     def _contains_heading(self, novel, scId):
         return (
             novel.sections[scId].desc and
             '#' in novel.sections[scId].desc
         )
+
+    def _get_lines(self, novel, scanScId):
+        return novel.sections[scanScId].desc.split('\n')
+
+    def _set_text(self, novel, scId, newLines):
+        novel.sections[scId].desc = '\n'.join(newLines)
 

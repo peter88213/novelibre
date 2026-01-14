@@ -59,16 +59,16 @@ class ContentSplitter(Splitter):
             parent.status = 2
         novel.sections[sectionId].status = parent.status
 
-    def _get_lines(self, novel, scanScId):
-        sectionContent = novel.sections[scanScId].sectionContent
-        sectionContent = sectionContent.replace('</p>', '</p>\n')
-        return sectionContent.split('\n')
-
     def _contains_heading(self, novel, scId):
         return (
             novel.sections[scId].sectionContent and
             '#' in novel.sections[scId].sectionContent
         )
+
+    def _get_lines(self, novel, scanScId):
+        sectionContent = novel.sections[scanScId].sectionContent
+        sectionContent = sectionContent.replace('</p>', '</p>\n')
+        return sectionContent.split('\n')
 
     def _set_text(self, novel, scId, newLines):
         novel.sections[scId].sectionContent = ''.join(newLines)

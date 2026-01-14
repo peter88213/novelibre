@@ -252,6 +252,9 @@ class Splitter(ABC):
             chIndex += 1
         return sectionsSplit
 
+    def _contains_heading(self, novel, scId):
+        return True
+
     @abstractmethod
     def _get_lines(self, novel, scanScId):
         pass
@@ -259,9 +262,6 @@ class Splitter(ABC):
     @abstractmethod
     def _set_text(self, novel, scId, newLines):
         pass
-
-    def _contains_heading(self, novel, scId):
-        return True
 
     def _stripped_line(self, line):
         return line
