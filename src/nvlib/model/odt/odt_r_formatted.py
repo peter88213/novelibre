@@ -13,6 +13,7 @@ class OdtRFormatted(OdtReader):
     
     Provide methods and data for processing chapters with formatted text.
     """
+    splitter = ContentSplitter()
 
     def read(self):
         """Parse the file and get the instance variables.
@@ -23,8 +24,7 @@ class OdtRFormatted(OdtReader):
         super().read()
 
         # Split sections, if necessary.
-        sectionSplitter = ContentSplitter()
-        self.sectionsSplit = sectionSplitter.split_sections(self.novel)
+        self.sectionsSplit = self.splitter.split_sections(self.novel)
 
     def _remove_redundant_tags(self, text):
         for tag in(

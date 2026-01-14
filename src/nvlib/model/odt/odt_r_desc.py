@@ -13,6 +13,7 @@ class OdtRDesc(OdtReader):
     
     Provide methods and data for processing chapters with formatted text.
     """
+    splitter = DescSplitter()
 
     def read(self):
         """Parse the file and get the instance variables.
@@ -23,6 +24,5 @@ class OdtRDesc(OdtReader):
         super().read()
 
         # Split sections, if necessary.
-        sectionSplitter = DescSplitter()
-        self.sectionsSplit = sectionSplitter.split_sections(self.novel)
+        self.sectionsSplit = self.splitter.split_sections(self.novel)
 

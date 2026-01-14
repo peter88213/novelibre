@@ -144,7 +144,6 @@ class ContentSplitter(Splitter):
                             novel.sections[scId].sectionContent = ''.join(
                                 newLines)
                             newLines.clear()
-                            # sectionSplitCount = 0
                             inSection = False
                         newChId = new_id(
                             novel.chapters,
@@ -164,7 +163,6 @@ class ContentSplitter(Splitter):
                             novel.sections[scId].sectionContent = ''.join(
                                 newLines)
                             newLines.clear()
-                            # sectionSplitCount = 0
                             inSection = False
                         newChId = new_id(
                             novel.chapters,

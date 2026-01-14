@@ -41,6 +41,7 @@ class OdtReader(OdfReader, ABC):
         'h3': f'{Splitter.SECTION_SEPARATOR} ',
         'h4': f'{Splitter.APPENDED_SECTION_SEPARATOR} ',
     }
+    splitter = None
 
     def __init__(self, filePath, **kwargs):
         """Initialize the ODT parser and local instance variables for parsing.
