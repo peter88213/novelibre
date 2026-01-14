@@ -71,7 +71,10 @@ class OdtRSectionDesc(OdtRDesc):
         """
         super().handle_starttag(tag, attrs)
 
-        if self._scId is not None:
+        if self._scId is None:
+            if tag == 'body':
+                self._set_novel_language(attrs)
+        else:
             if tag in self._SEPARATORS:
                 self._lines.append(self._SEPARATORS[tag])
                 return

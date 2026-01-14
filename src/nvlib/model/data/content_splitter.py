@@ -4,6 +4,8 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+import re
+
 from nvlib.model.data.chapter import Chapter
 from nvlib.model.data.id_generator import new_id
 from nvlib.model.data.section import Section
@@ -14,13 +16,13 @@ from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.nv_locale import _
 
 
-class DescSplitter(Splitter):
+class ContentSplitter(Splitter):
     """Helper class for section and chapter splitting.
     
     When importing sections to novelibre, they may contain manually 
     inserted section and chapter dividers.
     The Splitter class updates a Novel instance by splitting such sections 
-    and creating new chapters and sections.    
+    and creating new chapters and sections. 
     """
 
     def create_chapter(
@@ -53,6 +55,7 @@ class DescSplitter(Splitter):
             parent,
             splitCount,
             title,
+            desc,
             appendToPrev,
     ):
         """Create a new section and add it to the novel.
@@ -62,6 +65,7 @@ class DescSplitter(Splitter):
             parent -- Section instance: parent section.
             splitCount -- int: number of parent's splittings.
             title -- str: title of the section to create.
+            desc -- str: description of the section to create.
             appendToPrev -- boolean: when exporting, append the section
                             to the previous one without separator.
         """
@@ -79,6 +83,10 @@ class DescSplitter(Splitter):
             newSection.title = f'{title} Split: {splitCount}'
         else:
             newSection.title = f'{_("New Section")} Split: {splitCount}'
+        if desc:
+            newSection.desc = desc
+        if parent.desc and not parent.desc.startswith(WARNING):
+            parent.desc = f'{WARNING}{parent.desc}'
         if parent.goal and not parent.goal.startswith(WARNING):
             parent.goal = f'{WARNING}{parent.goal}'
         if parent.conflict and not parent.conflict.startswith(WARNING):
@@ -86,7 +94,10 @@ class DescSplitter(Splitter):
         if parent.outcome and not parent.outcome.startswith(WARNING):
             parent.outcome = f'{WARNING}{parent.outcome}'
 
-        newSection.status = 0
+        # Reset the parent's status to Draft, if not Outline.
+        if parent.status > 2:
+            parent.status = 2
+        newSection.status = parent.status
         newSection.scType = parent.scType
         newSection.scene = parent.scene
         newSection.date = parent.date
@@ -121,28 +132,36 @@ class DescSplitter(Splitter):
             for scanScId in scList:
                 scId = scanScId
                 novel.tree.append(chId, scId)
-                if not novel.sections[scId].desc:
+                if not novel.sections[scId].sectionContent:
                     continue
 
-                if not '#' in novel.sections[scId].desc:
+                if not '#' in novel.sections[scId].sectionContent:
                     continue
 
-                desc = novel.sections[scanScId].desc
-                lines = desc.split('\n')
+                sectionContent = novel.sections[scanScId].sectionContent
+                sectionContent = sectionContent.replace('</p>', '</p>\n')
+                lines = sectionContent.split('\n')
                 newLines.clear()
                 inSection = True
                 sectionSplitCount = 0
 
                 # Search section content for dividers.
                 for line in lines:
+                    plainLine = re.sub(r'\<.*?\>', '', line)
 
-                    if '#' in line:
-                        title = line.strip('# ')
+                    if '#' in plainLine:
+                        heading = plainLine.strip('# ').split(
+                            self.DESC_SEPARATOR)
+                        title = heading[0]
+                        desc = ''
+                        if len(heading) > 1:
+                            desc = heading[1].strip()
 
-                    if line.startswith(self.SECTION_SEPARATOR):
+                    if plainLine.startswith(self.SECTION_SEPARATOR):
                         # Split the section.
                         if inSection:
-                            novel.sections[scId].desc = '\n'.join(newLines)
+                            novel.sections[scId].sectionContent = ''.join(
+                                newLines)
                         newLines.clear()
                         sectionSplitCount += 1
                         newScId = new_id(
@@ -155,7 +174,8 @@ class DescSplitter(Splitter):
                             novel.sections[scId],
                             sectionSplitCount,
                             title,
-                            line.startswith(
+                            desc,
+                            plainLine.startswith(
                                 self.APPENDED_SECTION_SEPARATOR)
                         )
                         novel.tree.append(chId, newScId)
@@ -163,11 +183,13 @@ class DescSplitter(Splitter):
                         sectionsSplit = True
                         inSection = True
 
-                    elif line.startswith(self.CHAPTER_SEPARATOR):
+                    elif plainLine.startswith(self.CHAPTER_SEPARATOR):
                         # Start a new chapter.
                         if inSection:
-                            novel.sections[scId].desc = '\n'.join(newLines)
+                            novel.sections[scId].sectionContent = ''.join(
+                                newLines)
                             newLines.clear()
+                            # sectionSplitCount = 0
                             inSection = False
                         newChId = new_id(
                             novel.chapters,
@@ -181,11 +203,13 @@ class DescSplitter(Splitter):
                         chId = newChId
                         sectionsSplit = True
 
-                    elif line.startswith(self.PART_SEPARATOR):
+                    elif plainLine.startswith(self.PART_SEPARATOR):
                         # start a new part.
                         if inSection:
-                            novel.sections[scId].desc = '\n'.join(newLines)
+                            novel.sections[scId].sectionContent = ''.join(
+                                newLines)
                             newLines.clear()
+                            # sectionSplitCount = 0
                             inSection = False
                         newChId = new_id(
                             novel.chapters,
@@ -213,6 +237,7 @@ class DescSplitter(Splitter):
                             novel.sections[scId],
                             sectionSplitCount,
                             '',
+                            '',
                             False,
                         )
                         novel.tree.append(chId, newScId)
@@ -224,7 +249,7 @@ class DescSplitter(Splitter):
                         newLines.append(line)
 
                 if inSection:
-                    novel.sections[scId].desc = '\n'.join(
+                    novel.sections[scId].sectionContent = '\n'.join(
                         newLines)
             chIndex += 1
         return sectionsSplit

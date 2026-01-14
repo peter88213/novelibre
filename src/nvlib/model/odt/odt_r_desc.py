@@ -14,13 +14,6 @@ class OdtRDesc(OdtReader):
     Provide methods and data for processing chapters with formatted text.
     """
 
-    _SEPARATORS = {
-        'h1': f'{DescSplitter.PART_SEPARATOR} ',
-        'h2': f'{DescSplitter.CHAPTER_SEPARATOR} ',
-        'h3': f'{DescSplitter.SECTION_SEPARATOR} ',
-        'h4': f'{DescSplitter.APPENDED_SECTION_SEPARATOR} ',
-    }
-
     def read(self):
         """Parse the file and get the instance variables.
         

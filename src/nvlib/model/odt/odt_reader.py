@@ -8,6 +8,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from abc import ABC
 
+from nvlib.model.data.splitter import Splitter
 from nvlib.model.odf.odf_reader import OdfReader
 from nvlib.model.odt.odt_parser import OdtParser
 from nvlib.novx_globals import CHAPTER_PREFIX
@@ -33,6 +34,13 @@ class OdtReader(OdfReader, ABC):
         handle_starttag(tag, attrs) -- Identify sections and chapters.
     """
     EXTENSION = '.odt'
+
+    _SEPARATORS = {
+        'h1': f'{Splitter.PART_SEPARATOR} ',
+        'h2': f'{Splitter.CHAPTER_SEPARATOR} ',
+        'h3': f'{Splitter.SECTION_SEPARATOR} ',
+        'h4': f'{Splitter.APPENDED_SECTION_SEPARATOR} ',
+    }
 
     def __init__(self, filePath, **kwargs):
         """Initialize the ODT parser and local instance variables for parsing.
