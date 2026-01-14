@@ -1,22 +1,19 @@
 """Provide a helper class for section and chapter splitting.
 
+Splitting sections by headings in the descriptions.
+
 Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.model.data.id_generator import new_id
 from nvlib.model.data.splitter import Splitter
-from nvlib.novx_globals import CHAPTER_PREFIX
-from nvlib.novx_globals import CH_ROOT
-from nvlib.novx_globals import SECTION_PREFIX
-from nvlib.nv_locale import _
 
 
 class DescSplitter(Splitter):
-    """Helper class for section and chapter splitting.
+    """Helper class for section and chapter splitting by description.
     
-    When importing sections to novelibre, they may contain manually 
-    inserted section and chapter dividers.
+    When importing sections to novelibre, the descriptions may contain 
+    manually inserted section and chapter dividers.
     The Splitter class updates a Novel instance by splitting such sections 
     and creating new chapters and sections.    
     """

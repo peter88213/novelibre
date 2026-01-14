@@ -1,4 +1,4 @@
-"""Provide a base helper class for section and chapter splitting.
+"""Provide a base  class for section and chapter splitting.
 
 Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
