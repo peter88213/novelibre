@@ -37,6 +37,8 @@ class DescSplitter(Splitter):
             title -- str: title of the section to create.
             appendToPrev -- boolean: when exporting, append the section
                             to the previous one without separator.
+                            
+        Extends the superclass method.
         """
         super().create_section(
             novel,

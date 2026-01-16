@@ -38,6 +38,8 @@ class StageSplitter(DescSplitter):
             splitCount -- int: number of parent's splittings.
             title -- str: title of the section to create.
             level -- int: level of the stage to create.
+                            
+        Extends the superclass method.
         """
         super().create_section(
             novel,
@@ -61,6 +63,8 @@ class StageSplitter(DescSplitter):
         
         Return True if the sructure has changed, 
         otherwise return False.        
+                            
+        Overrides the superclass method.
         """
 
         # Process chapters and sections.
