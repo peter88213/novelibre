@@ -1,6 +1,6 @@
-"""Provide a helper class for chapter splitting.
+"""Provide a helper class for chapter and part splitting.
 
-Splitting sections by headings in the descriptions.
+Splitting chapters and parts by headings in the descriptions.
 
 Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -13,19 +13,19 @@ from nvlib.model.data.id_generator import new_id
 
 
 class ChapterSplitter(Splitter):
-    """Helper class for chapter splitting by description.
+    """Helper class for chapter and part splitting by description.
     
-    When importing chapters to novelibre, the descriptions may contain 
-    manually inserted section and chapter dividers.
+    When importing chapters or parts to novelibre, the descriptions may contain 
+    manually inserted part and chapter dividers.
     The Splitter class updates a Novel instance by splitting such chapters 
-    and creating new chapters.    
+    and creating new chapters or parts.    
     """
 
     def split_sections(self, novel):
-        """Split chapters by inserted chapter dividers.
+        """Split chapters or parts by inserted chapter dividers.
         
-        Update a Novel instance by generating new chapters 
-        if there are dividers within the chapter description.
+        Update a Novel instance by generating new chapters and parts
+        if there are dividers within the chapter or part description.
         
         Positional arguments: 
             novel -- Novel instance to update.
@@ -34,7 +34,7 @@ class ChapterSplitter(Splitter):
         otherwise return False.        
         """
 
-        # Process chapters and sections.
+        # Process chapters.
         chaptersSplit = False
         chIndex = 0
         newLines = []
