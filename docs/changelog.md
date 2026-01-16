@@ -12,6 +12,8 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### Version 5.50.0
 
+- Splitting sections at headings in the section description.
+- Updating the document's language from the section descriptions.
 - Refactored the code for better maintainability.
 
 #### API changes
@@ -21,6 +23,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
   and `Configuration.boolLabel` to make the sections customizable.
 - The configuration file path parameters for `Configuration.read()` 
   and `Configuration.write()` are optional and deprecated.
+- `Splitter` is now an abstract base class for the new document-specific splitter classes.
 
 
 ### Version 5.49.2
