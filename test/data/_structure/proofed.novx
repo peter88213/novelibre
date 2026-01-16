@@ -55,7 +55,14 @@
       <SECTION id="sc7" type="2">
         <Title>ACT 2</Title>
         <Desc>
-          <p>Confrontation</p>
+          <p>The bright side.</p>
+          <p>Everything is going well.</p>
+        </Desc>
+      </SECTION>
+      <SECTION id="sc1" type="3">
+        <Title>Intermediate plot point</Title>
+        <Desc>
+          <p>Sidekick appears.</p>
         </Desc>
       </SECTION>
       <SECTION id="sc19">
@@ -80,6 +87,13 @@
         <Title>Midpoint</Title>
         <Desc>
           <p>The main turning point. A significant event, changing the development of things from good to bad, or vice versa.</p>
+        </Desc>
+      </SECTION>
+      <SECTION id="sc2" type="2">
+        <Title>Act 3</Title>
+        <Desc>
+          <p>The dark side</p>
+          <p>Everything is going worse.</p>
         </Desc>
       </SECTION>
       <SECTION id="sc25">

@@ -13,7 +13,11 @@ class OdtRDesc(OdtReader):
     
     Provide methods and data for processing chapters with formatted text.
     """
-    splitter = DescSplitter()
+    SPLITTER = DescSplitter
+
+    def __init__(self, filePath, **kwargs):
+        super().__init__(filePath)
+        self.splitter = self.SPLITTER()
 
     def read(self):
         """Parse the file and get the instance variables.
