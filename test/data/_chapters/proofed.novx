@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE novx SYSTEM "novx_1_9.dtd">
 <?xml-stylesheet href="novx.css" type="text/css"?>
-<novx version="1.9" xml:lang="de-DE">
+<novx version="1.9" xml:lang="en-AU">
   <PROJECT>
     <Title>Hal Spacejock book one - Sample yWriter Project</Title>
     <Desc>
@@ -84,6 +84,12 @@
           <p>. . .</p>
         </Content>
       </SECTION>
+    </CHAPTER>
+    <CHAPTER id="ch37">
+      <Title>Chapter 1a</Title>
+      <Desc>
+        <p>This is an inserted chapter.</p>
+      </Desc>
     </CHAPTER>
     <CHAPTER id="ch2">
       <Title>Chapter 2</Title>

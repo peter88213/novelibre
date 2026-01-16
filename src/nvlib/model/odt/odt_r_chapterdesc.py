@@ -4,18 +4,21 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.model.odt.odt_reader import OdtReader
+from nvlib.model.data.chapter_splitter import ChapterSplitter
+from nvlib.model.odt.odt_r_desc import OdtRDesc
 from nvlib.novx_globals import CHAPTERS_SUFFIX
 from nvlib.nv_locale import _
 
 
-class OdtRChapterDesc(OdtReader):
+class OdtRChapterDesc(OdtRDesc):
     """ODT chapter summaries file reader.
 
     Import a brief synopsis with invisibly tagged chapter descriptions.
     """
     DESCRIPTION = _('Chapter descriptions')
     SUFFIX = CHAPTERS_SUFFIX
+
+    SPLITTER = ChapterSplitter
 
     def handle_data(self, data):
         """Collect data within chapter sections.
@@ -52,9 +55,28 @@ class OdtRChapterDesc(OdtReader):
             self._lines.append('\n')
             return
 
-        if tag == 'h1' or tag == 'h2':
-            # the document might be created with novelibre
-            # version 5.31.0 or earlier, where the heading
-            # was not yet separated from the description
-            self._lines.clear()
+        if tag in self._SEPARATORS:
+            self._lines.append('\n')
+            return
+
+    def handle_starttag(self, tag, attrs):
+        """Identify sections and chapters.
+        
+        Positional arguments:
+            tag: str -- name of the tag converted to lower case.
+            attrs -- list of (name, value) pairs containing the 
+                     attributes found inside the tag’s <> brackets.
+        
+        Extends the superclass method by processing inline chapter 
+        and section dividers.
+        """
+        super().handle_starttag(tag, attrs)
+
+        if self._chId is None:
+            if tag == 'body':
+                self._set_novel_language(attrs)
+        else:
+            if tag in self._SEPARATORS:
+                self._lines.append(self._SEPARATORS[tag])
+                return
 
