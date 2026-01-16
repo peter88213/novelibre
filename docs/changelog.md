@@ -16,7 +16,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Splitting chapters at headings in the chapter description.
 - Splitting sections at headings in the section description.
 - Splitting stages at headings in the story structure description.
-- Updating the document's language from the part/chapter/section descriptions.
+- Updating the document's language from the part/chapter/section/stage descriptions.
 - Refactored the code for better maintainability.
 
 #### API changes
