@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE novx SYSTEM "novx_1_9.dtd">
 <?xml-stylesheet href="novx.css" type="text/css"?>
-<novx version="1.9" xml:lang="en-US">
+<novx version="1.9" xml:lang="en-AU">
   <PROJECT renumberChapters="1" workPhase="1">
     <ChapterHeadingPrefix>Chapter </ChapterHeadingPrefix>
     <CustomPlotProgress>Handlungsfortschritt</CustomPlotProgress>

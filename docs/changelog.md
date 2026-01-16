@@ -10,10 +10,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.50.0
+### Version 5.50.2
 
+- Splitting parts at headings in the part description.
+- Splitting chapters at headings in the chapter description.
 - Splitting sections at headings in the section description.
-- Updating the document's language from the section descriptions.
+- Splitting stages at headings in the story structure description.
+- Updating the document's language from the part/chapter/section descriptions.
 - Refactored the code for better maintainability.
 
 #### API changes
