@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.51.0
+
+- Unused sections can now be highlighted.
+- New feature: Select highlighted elements.
+
+
 ### Version 5.50.2
 
 - Splitting parts at headings in the part description.
