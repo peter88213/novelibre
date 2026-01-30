@@ -90,7 +90,6 @@ class MainView(Observer, MsgBoxes, SubController):
         self._mdl.add_observer(self.tv)
         self._ctrl.register_client(self.tv)
         self.tv.pack(expand=True, fill='both')
-        self._selection = None
 
         #--- Middle frame (intended for the content viewer).
         self.middleFrame = ttk.Frame(
@@ -142,11 +141,11 @@ class MainView(Observer, MsgBoxes, SubController):
 
     @property
     def selectedNode(self):
-        return self._selection[0]
+        return self.tv.tree.selection()[0]
 
     @property
     def selectedNodes(self):
-        return self._selection
+        return self.tv.tree.selection()
 
     def lock(self):
         self.restore_status()
@@ -159,7 +158,6 @@ class MainView(Observer, MsgBoxes, SubController):
         
         Show the properties/contents of the selected element.
         """
-        self._selection = self.tv.tree.selection()
         self.propertiesView.show_properties(nodeId)
         self.contentsView.see(nodeId)
         self.root.event_generate('<<selection_changed>>', when='tail')

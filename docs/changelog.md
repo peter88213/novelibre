@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.51.1
+
+- Fixed a regression of version 5.51.0 where the selection of multiple tree elements may become inconsistent.
+
+
 ### Version 5.51.0
 
 - Unused sections can now be highlighted.
