@@ -1191,16 +1191,17 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                     else:
                         nodeTags.append('Before_schedule')
 
-                # Highlight section, if applicable.
-                if self._section_is_highlighted(self._mdl.novel.sections[scId]):
-                    nodeTags.append('highlighted')
-                    self.highlightedElements.append(scId)
-
                 try:
                     position = round(100 * position / self._wordsTotal, 1)
                     positionStr = f'{position}%'
                 except:
                     pass
+
+            # Highlight section, if applicable.
+            if self._section_is_highlighted(self._mdl.novel.sections[scId]):
+                nodeTags.append('highlighted')
+                self.highlightedElements.append(scId)
+
             nodeValues[self._colPos['po']] = positionStr
             nodeValues[self._colPos['wc']] = (
                 self._mdl.novel.sections[scId].wordCount
