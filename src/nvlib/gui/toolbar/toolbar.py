@@ -223,6 +223,16 @@ class Toolbar(SubController):
         )
         self.highlightTaggedButton.pack(side='left')
 
+        # "Select highlighted elements" button.
+        self.selectHighlightedButton = self.new_button(
+            text=_('Select highlighted elements'),
+            image=self._ui.icons.selectIcon,
+            command=self._ui.tv.select_highlighted_elements,
+            disableOnLock=False,
+            master=self.masterBar,
+        )
+        self.selectHighlightedButton.pack(side='left')
+
         # "Reset highlighting" button.
         self.highlightingButton = self.new_button(
             text=_('Reset Highlighting'),

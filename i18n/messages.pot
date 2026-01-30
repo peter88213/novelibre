@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.50.2\n"
-"POT-Creation-Date: 2026-01-16 22:01:14\n"
+"Project-Id-Version: 5.51.0\n"
+"POT-Creation-Date: 2026-01-30 23:45:37\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -1248,6 +1248,9 @@ msgid "Select characters"
 msgstr ""
 
 msgid "Select document template"
+msgstr ""
+
+msgid "Select highlighted elements"
 msgstr ""
 
 msgid "Select items"

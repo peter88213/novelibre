@@ -124,6 +124,8 @@ class Icons:
 
         self.saveIcon = new_icon('save.png')
 
+        self.selectIcon = new_icon('select.png')
+
         self.settingsIcon = new_icon('settings.png')
 
         self.stageIcon = new_icon('stage.png')

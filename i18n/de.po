@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.50.2\n"
+"Project-Id-Version: 5.51.0\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-01-16 22:01:14\n"
+"PO-Revision-Date: 2026-01-30 23:36:52\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1242,6 +1242,9 @@ msgstr "Figuren auswählen"
 
 msgid "Select document template"
 msgstr "Dokumentenvorlage auswählen"
+
+msgid "Select highlighted elements"
+msgstr "Hervorgehobene Elemente auswählen"
 
 msgid "Select items"
 msgstr "Gegenstände auswählen"

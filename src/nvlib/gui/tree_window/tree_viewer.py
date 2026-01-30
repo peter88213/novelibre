@@ -679,6 +679,10 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         except:
             pass
 
+    def select_highlighted_elements(self):
+        self.tree.selection_remove(self.tree.selection())
+        self.tree.selection_add(self.highlightedElements)
+
     def select_tag_and_highlight_elements(self):
 
         def highlight_selected(selectedTags):
