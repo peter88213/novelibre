@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.51.1\n"
+"Project-Id-Version: 5.51.2\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-01-31 00:46:55\n"
+"PO-Revision-Date: 2026-01-31 08:02:12\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -870,6 +870,9 @@ msgstr "Keine Beschreibung"
 
 msgid "No document type"
 msgstr "Kein Dokumenttyp"
+
+msgid "No elements highlighted"
+msgstr "Keine Elemente hervorgehoben"
 
 msgid "No elements tagged with"
 msgstr "Keine Elemente mit Schlagwort"

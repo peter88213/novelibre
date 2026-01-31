@@ -229,12 +229,16 @@ class Toolbar(SubController):
             image=self._ui.icons.selectIcon,
             command=self._ui.tv.select_highlighted_elements,
             disableOnLock=False,
+            disableOnClose=False,
             master=self.masterBar,
+        )
+        self.selectHighlightedButton.configure(
+            state='disabled',
         )
         self.selectHighlightedButton.pack(side='left')
 
         # "Reset highlighting" button.
-        self.highlightingButton = self.new_button(
+        self.resetHighlightingButton = self.new_button(
             text=_('Reset Highlighting'),
             image=self._ui.icons.resetHighlightIcon,
             command=self._ui.tv.reset_highlighting,
@@ -242,10 +246,10 @@ class Toolbar(SubController):
             disableOnClose=False,
             master=self.masterBar,
         )
-        self.highlightingButton.configure(
+        self.resetHighlightingButton.configure(
             state='disabled',
         )
-        self.highlightingButton.pack(side='left')
+        self.resetHighlightingButton.pack(side='left')
         self.highlightingLabel = tk.Label(
             self.masterBar,
             fg=prefs['color_text_fg'],
@@ -343,16 +347,18 @@ class Toolbar(SubController):
 
     def reset_section_highlighting(self):
         self.highlightingLabel.pack_forget()
-        self.highlightingButton.configure(state='disabled')
+        self.resetHighlightingButton.configure(state='disabled')
+        self.selectHighlightedButton.configure(state='disabled')
 
     def set_section_highlighting(self, text):
         self.highlightingLabel.pack(
             side='left',
             padx=5,
-            after=self.highlightingButton,
+            after=self.resetHighlightingButton,
         )
         self.highlightingLabel.configure(text=text)
-        self.highlightingButton.configure(state='normal')
+        self.resetHighlightingButton.configure(state='normal')
+        self.selectHighlightedButton.configure(state='normal')
 
     def unlock(self):
         for button in self.disableOnLock:

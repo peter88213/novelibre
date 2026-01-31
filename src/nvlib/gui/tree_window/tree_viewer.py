@@ -680,6 +680,10 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             pass
 
     def select_highlighted_elements(self):
+        if not self.highlightedElements:
+            self._ui.set_status(f'#{_("No elements highlighted")}.')
+            return
+
         self.tree.selection_remove(self.tree.selection())
         self.tree.selection_add(self.highlightedElements)
 
