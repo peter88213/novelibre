@@ -19,6 +19,7 @@ class ContentViewParser(sax.ContentHandler):
         self.xmlTag = ''
         self.emTag = ''
         self.strongTag = ''
+        self.headingTag = ''
         self.commentTag = ''
         self.commentXmlTag = ''
         self.noteTag = ''
