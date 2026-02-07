@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.52.0
+
+- New service: NovxService.get_novx_dtd_version()
+
+
 ### Version 5.51.2
 
 - Disabling the "Select highlighted elements" button when no element is highlighted.

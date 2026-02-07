@@ -24,6 +24,12 @@ class NovxService:
         """Change the section's strategy class for counting words."""
         Section.wordCounter = wordCounter
 
+    def get_novx_dtd_version(self):
+        return (
+            NovxFile.MAJOR_VERSION,
+            NovxFile.MINOR_VERSION
+        )
+
     def get_novelibre_home_url(self):
         return HOME_URL
 
