@@ -29,8 +29,6 @@ class ViewOptionsDialog(ModalDialog, SubController):
         window = ttk.Frame(self)
         window.pack(
             fill='both',
-            padx=5,
-            pady=5
         )
         frame1 = ttk.Frame(window)
         frame1.pack(fill='both', side='left')
@@ -38,7 +36,7 @@ class ViewOptionsDialog(ModalDialog, SubController):
         ttk.Separator(
             window,
             orient='vertical',
-        ).pack(fill='y', padx=10, side='left')
+        ).pack(fill='y', side='left')
         frame2 = ttk.Frame(window)
         frame2.pack(fill='both', side='left')
 
@@ -58,7 +56,7 @@ class ViewOptionsDialog(ModalDialog, SubController):
             width=20,
         ).pack(padx=5, pady=5, anchor='w')
 
-        ttk.Separator(frame1, orient='horizontal').pack(fill='x', pady=10)
+        ttk.Separator(frame1, orient='horizontal').pack(fill='x')
 
         # Checkbox for large toolbar buttons.
         self._largeIconsVar = tk.BooleanVar(
