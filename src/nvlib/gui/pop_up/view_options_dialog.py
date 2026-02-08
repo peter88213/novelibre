@@ -6,15 +6,15 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
+from nvlib.controller.services.nv_help import NvHelp
+from nvlib.controller.sub_controller import SubController
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.widgets.drag_drop_listbox import DragDropListbox
 from nvlib.gui.widgets.modal_dialog import ModalDialog
+from nvlib.novx_globals import list_to_string
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
-from nvlib.controller.services.nv_help import NvHelp
-from nvlib.controller.sub_controller import SubController
-from nvlib.novx_globals import list_to_string
 
 
 class ViewOptionsDialog(ModalDialog, SubController):
