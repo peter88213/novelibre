@@ -24,6 +24,7 @@
 -  [nv_timeline](https://github.com/peter88213/nv_timeline/) A Timeline converter plugin for novelibre.
 -  [nv_tlview](https://github.com/peter88213/nv_tlview/) A timeline viewer plugin for novelibre.
 -  [nv_updater](https://github.com/peter88213/nv_updater/) An update checker plugin for novelibre.
+-  [nv_writer](https://github.com/peter88213/nv_writer/) An experimental distraction free writing mode for novelibre.
 -  [nv_xx](https://github.com/peter88213/nv_xx/) A Language pack template for novelibre.
 -  [nv_yw7](https://github.com/peter88213/nv_yw7/) A yw7 file import/export plugin for novelibre.
 -  [nv_zim](https://github.com/peter88213/nv_zim) A plugin to connect novelibre with the Zim Desktop Wiki.
