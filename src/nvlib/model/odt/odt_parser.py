@@ -38,8 +38,8 @@ class OdtParser(sax.ContentHandler):
         self._headingTags = {}
         # Collection of heading style names used in the ODT document.
 
-        self._heading = None
-        # Transformed heading element.
+        self._paraTags = None
+        # Stack for paragraph-defining tags.
 
         self._getData = False
         # If True, handle the characters.
@@ -97,18 +97,12 @@ class OdtParser(sax.ContentHandler):
         Overrides the xml.sax.ContentHandler method     
         """
         if name in ('text:p', 'text:h'):
-            try:
+            if self._paraSpan:
                 span = self._paraSpan.pop()
                 if span is not None:
                     self._client.handle_endtag(span)
-            except:
-                pass
             self._getData = False
-            if self._heading:
-                self._client.handle_endtag(self._heading)
-                self._heading = None
-            else:
-                self._client.handle_endtag('p')
+            self._client.handle_endtag(self._paraTags.pop())
             return
 
         if name == 'text:span':
@@ -153,11 +147,6 @@ class OdtParser(sax.ContentHandler):
             self._getData = False
             return
 
-        if name == 'text:h':
-            self._client.handle_endtag(self._heading)
-            self._heading = None
-            return
-
         if name == 'text:list-item':
             self._client.handle_endtag('li')
             return
@@ -190,17 +179,23 @@ class OdtParser(sax.ContentHandler):
                     param.append(('xml:lang', self._currentLocale[-1]))
             if style in self._blockquoteTags:
                 param.append(('style', 'quotations'))
-                self._client.handle_starttag('p', param)
+                tag = 'p'
+                self._paraTags.append(tag)
+                self._client.handle_starttag(tag, param)
             elif style.startswith('Heading'):
-                self._heading = f'h{style[-1]}'
-                self._client.handle_starttag(self._heading, param)
+                tag = f'h{style[-1]}'
+                self._paraTags.append(tag)
+                self._client.handle_starttag(tag, param)
             elif style in self._headingTags:
-                self._heading = self._headingTags[style]
-                self._client.handle_starttag(self._heading, param)
+                tag = self._headingTags[style]
+                self._paraTags.append(tag)
+                self._client.handle_starttag(tag, param)
             else:
                 if not param:
                     param = [()]
-                self._client.handle_starttag('p', param)
+                tag = 'p'
+                self._paraTags.append(tag)
+                self._client.handle_starttag(tag, param)
             if style in self._emTags:
                 # Priority for "Emphasis" over "Strong emphasis".
                 self._paraSpan.append('em')
@@ -288,10 +283,11 @@ class OdtParser(sax.ContentHandler):
 
         if name == 'text:h':
             try:
-                self._heading = f'h{xmlAttributes["text:outline-level"]}'
+                tag = f'h{xmlAttributes["text:outline-level"]}'
             except:
-                self._heading = f'h{style[-1]}'
-            self._client.handle_starttag(self._heading, [()])
+                tag = f'h{style[-1]}'
+            self._paraTags.append(tag)
+            self._client.handle_starttag(tag, [()])
             return
 
         if name == 'text:list-item':
