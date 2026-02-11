@@ -17,6 +17,10 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### Version 5.52.0
 
+- Prepared the application for the *nv_writer* plugin.
+
+#### API changes
+
 - New service: NovxService.get_novx_dtd_version()
 
 
@@ -27,7 +31,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### Version 5.51.1
 
-- Fixed a regression of version 5.51.0 where the selection of multiple tree elements may become inconsistent.
+- Fixed a regression from version 5.51.0 where the selection of multiple tree elements may become inconsistent.
 
 
 ### Version 5.51.0
