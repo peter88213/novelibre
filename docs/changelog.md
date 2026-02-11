@@ -12,7 +12,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### Version 5.52.1
 
-Fixed ODT parser. Closes #82 *"Unexpected Error" when importing an odt document containing comments within heading-styled paragraphs*.
+- Fixed a regression from version 5.44.4 where an "Unexpected Error" occurs when importing an odt document containing comments within heading-styled paragraphs (#82).
 
 
 ### Version 5.52.0
