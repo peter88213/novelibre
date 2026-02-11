@@ -38,7 +38,7 @@ class OdtParser(sax.ContentHandler):
         self._headingTags = {}
         # Collection of heading style names used in the ODT document.
 
-        self._paraTags = None
+        self._paraTags = []
         # Stack for paragraph-defining tags.
 
         self._getData = False

@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.52.1
+
+Fixed ODT parser. Closes #82 *"Unexpected Error" when importing an odt document containing comments within heading-styled paragraphs*.
+
+
 ### Version 5.52.0
 
 - New service: NovxService.get_novx_dtd_version()
