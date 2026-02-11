@@ -281,15 +281,6 @@ class OdtParser(sax.ContentHandler):
             self._getData = True
             return
 
-        if name == 'text:h':
-            try:
-                tag = f'h{xmlAttributes["text:outline-level"]}'
-            except:
-                tag = f'h{style[-1]}'
-            self._paraTags.append(tag)
-            self._client.handle_starttag(tag, [()])
-            return
-
         if name == 'text:list-item':
             self._client.handle_starttag('li', [()])
             return
