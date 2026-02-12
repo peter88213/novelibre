@@ -83,6 +83,10 @@ so that only those users who need them actually install them.
    [nv_progress](https://github.com/peter88213/nv_progress/)
    daily word count log viewer.
 -  The [nv_snapshots](https://github.com/peter88213/nv_snapshots/) plugin is a lightweight version control system.
+-  Do you want to focus entirely on your text when writing? Then you should check out the 
+   [nv_writer](https://github.com/peter88213/nv_writer/) plugin, 
+   which offers a distraction-free mode where you can type scene by scene 
+   as if you were using a typewriter or a DOS word processor.  
 -  If you value a balanced text distribution, the
    [nv_statistics](https://github.com/peter88213/nv_statistics/)
    statistics viewer could be something for you.
