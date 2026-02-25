@@ -86,20 +86,16 @@ class FileManager(ServiceBase):
         backupDir = self.prefs['backup_dir']
         if not backupDir:
             self._ui.set_status(
-                (
-                    f'#{_("Backup directory not set")}. '
-                    f'{_("Please check the setting")}.'
-                )
+                f'#{_("Backup directory not set")}. '
+                f'{_("Please check the setting")}.'
             )
             return
 
         if not os.path.isdir(backupDir):
             self._ui.set_status(
-                (
-                    f'#{_("Backup directory not found")}: '
-                    f'"{norm_path(backupDir)}". '
-                    f'{_("Please check the setting")}.'
-                )
+                f'#{_("Backup directory not found")}: '
+                f'"{norm_path(backupDir)}". '
+                f'{_("Please check the setting")}.'
             )
             return
 
@@ -550,17 +546,13 @@ class FileManager(ServiceBase):
                 f.write(stylesXmlStr)
         except:
             self._ui.set_status(
-                (
-                    f'!{_("Invalid document template")}: '
-                    f'"{templateName}".'
-                )
+                f'!{_("Invalid document template")}: '
+                f'"{templateName}".'
             )
         else:
             self._ui.set_status(
-                (
-                    f'{_("Document template is set")}: '
-                    f'"{templateName}".'
-                )
+                f'{_("Document template is set")}: '
+                f'"{templateName}".'
             )
 
     def show_report(self, suffix):
