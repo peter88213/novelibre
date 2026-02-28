@@ -9,4 +9,5 @@ from nvlib.gui.platform.generic_mouse import GenericMouse
 
 class MacMouse(GenericMouse):
 
+    MOVE_NODE = '<Option-B1-Motion>'
     RIGHT_CLICK = '<Button-2>'
