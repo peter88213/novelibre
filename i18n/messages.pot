@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.52.1\n"
-"POT-Creation-Date: 2026-02-11 19:20:03\n"
+"POT-Creation-Date: 2026-03-03 14:53:10\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -315,6 +315,12 @@ msgid "Clear section assignments"
 msgstr ""
 
 msgid "Clear viewpoints of the selected sections"
+msgstr ""
+
+msgid "Clone"
+msgstr ""
+
+msgid "Clone of"
 msgstr ""
 
 msgid "Close"
@@ -1008,6 +1014,15 @@ msgid "Opened existing {0} (last saved on {1})"
 msgstr ""
 
 msgid "Opening"
+msgstr ""
+
+msgid "Option-Down"
+msgstr ""
+
+msgid "Option-Right"
+msgstr ""
+
+msgid "Option-Up"
 msgstr ""
 
 msgid "Options"

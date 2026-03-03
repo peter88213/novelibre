@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 5.52.1\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-02-11 19:20:03\n"
+"PO-Revision-Date: 2026-03-03 14:49:56\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -309,6 +309,12 @@ msgstr "Abschnittszuordnungen löschen"
 
 msgid "Clear viewpoints of the selected sections"
 msgstr "Perspektive der ausgewählten Abschnitte löschen"
+
+msgid "Clone"
+msgstr "Klonen"
+
+msgid "Clone of"
+msgstr "Klon von"
 
 msgid "Close"
 msgstr "Schließen"
@@ -1002,6 +1008,15 @@ msgstr "Bestehende(s) {0} geöffnet (zuletzt gespeichert: {1})"
 
 msgid "Opening"
 msgstr "Eröffnung"
+
+msgid "Option-Down"
+msgstr "Wahl-Ab"
+
+msgid "Option-Right"
+msgstr "Wahl-Rechts"
+
+msgid "Option-Up"
+msgstr "Wahl-Auf"
 
 msgid "Options"
 msgstr "Optionen"
