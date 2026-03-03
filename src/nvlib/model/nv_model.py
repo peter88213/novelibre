@@ -471,7 +471,7 @@ class NvModel:
             items=original.items[:],
         )
         clone.sectionContent = original.sectionContent
-        clone.scPlotLines = original.scPlotLines
+        clone.scPlotLines = original.scPlotLines[:]
         parent = self.tree.parent(scId)
         index = self.tree.index(scId) + 1
         cloneId = new_id(self.novel.sections, prefix=SECTION_PREFIX)

@@ -117,6 +117,7 @@ class PlotLineView(ElementView):
             if self.element.sections:
                 self._doNotUpdate = True
                 for scId in self.element.sections:
+                    print(self._mdl.novel.sections[scId].scPlotLines)
                     self._mdl.novel.sections[scId].scPlotLines.remove(
                         self.elementId)
                 for ppId in self._mdl.novel.tree.get_children(self.elementId):
