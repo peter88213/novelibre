@@ -471,11 +471,16 @@ class NvModel:
             items=original.items[:],
         )
         clone.sectionContent = original.sectionContent
+        clone.scPlotLines = original.scPlotLines
         parent = self.tree.parent(scId)
         index = self.tree.index(scId) + 1
         cloneId = new_id(self.novel.sections, prefix=SECTION_PREFIX)
         self.novel.sections[cloneId] = clone
         self.tree.insert(parent, index, cloneId)
+        for plId in clone.scPlotLines:
+            sections = self.novel.plotLines[plId].sections
+            sections.append(cloneId)
+            self.novel.plotLines[plId].sections = sections
         return cloneId
 
     def close_project(self):
