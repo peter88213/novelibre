@@ -23,7 +23,8 @@ class BasicElement:
         on_element_change=None,
         title=None,
         desc=None,
-        links=None
+        links=None,
+        fields=None,
     ):
         """Set the initial values.
 
@@ -46,7 +47,10 @@ class BasicElement:
             self._links = {}
         else:
             self._links = links
-        self._fields = {}
+        if fields is None:
+            self._fields = {}
+        else:
+            self._fields = fields
 
     @property
     def title(self):

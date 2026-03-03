@@ -223,6 +223,16 @@ class Commands:
         if not self.check_lock():
             return self.elementManager.add_new_stage(**kwargs)
 
+    def clone_section(self, scId=None):
+        """Create a duplicate of the section scId and add it to the novel.
+        
+        - Place the cloned section after the original. 
+        
+        Return the section ID, if successful.
+        """
+        if not self.check_lock():
+            return self.elementManager.clone_section(scId)
+
     def close_project(self, event=None, doNotSave=False):
         """Close the current project.
         

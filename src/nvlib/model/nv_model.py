@@ -424,6 +424,54 @@ class NvModel:
         if not client in self._observers:
             self._observers.append(client)
 
+    def clone_section(self, scId):
+        """Create a unused copy of the section specified by scId.
+        
+        Positional arguments:
+            scId: str -- ID of the section to be cloned
+            
+        Return the ID of the clone.
+        """
+
+        if not scId.startswith(SECTION_PREFIX):
+            return
+
+        original = self.novel.sections[scId]
+        clone = self.nvService.new_section(
+            on_element_change=self.on_element_change,
+            title=f"{_('Clone of')} {original.title}",
+            desc=original.desc,
+            links=original.links.copy(),
+            fields=original.fields.copy(),
+            notes=original.notes,
+            tags=original.tags[:],
+            scType=1,
+            scene=original.scene,
+            status=original.status,
+            appendToPrev=original.appendToPrev,
+            viewpoint=original.viewpoint,
+            goal=original.goal,
+            conflict=original.conflict,
+            outcome=original.outcome,
+            plotlineNotes=original.plotlineNotes.copy(),
+            scDate=original.date,
+            scTime=original.time,
+            day=original.day,
+            lastsMinutes=original.lastsMinutes,
+            lastsHours=original.lastsHours,
+            lastsDays=original.lastsDays,
+            characters=original.characters[:],
+            locations=original.locations[:],
+            items=original.items[:],
+        )
+        clone.sectionContent = original.sectionContent
+        parent = self.tree.parent(scId)
+        index = self.tree.index(scId) + 1
+        cloneId = new_id(self.novel.sections, prefix=SECTION_PREFIX)
+        self.novel.sections[cloneId] = clone
+        self.tree.insert(parent, index, cloneId)
+        return cloneId
+
     def close_project(self):
         self._isModified = False
         # writing the public isModified property here would trigger a refresh
@@ -676,7 +724,7 @@ class NvModel:
                            ] += self.novel.sections[scId].wordCount
         return counts
 
-    def join_sections(self, ScId0, ScId1):
+    def join_sections(self, scId0, scId1):
         """Join section 0 with section 1.
         
         Positional arguments:
@@ -704,138 +752,138 @@ class NvModel:
                     if not elemId in list0:
                         list0.append(elemId)
 
-        if not ScId1.startswith(SECTION_PREFIX):
+        if not scId1.startswith(SECTION_PREFIX):
             return
 
         # Check type.
         if (
-            self.novel.sections[ScId1].scType
-            != self.novel.sections[ScId0].scType
+            self.novel.sections[scId1].scType
+            != self.novel.sections[scId0].scType
         ):
             raise RuntimeError(_('The sections are not of the same type'))
 
         # Check viewpoint.
-        if self.novel.sections[ScId1].characters:
-            if self.novel.sections[ScId1].characters:
-                if self.novel.sections[ScId0].characters:
+        if self.novel.sections[scId1].characters:
+            if self.novel.sections[scId1].characters:
+                if self.novel.sections[scId0].characters:
                     if (
-                        self.novel.sections[ScId1].viewpoint
-                        != self.novel.sections[ScId0].viewpoint
+                        self.novel.sections[scId1].viewpoint
+                        != self.novel.sections[scId0].viewpoint
                     ):
                         raise RuntimeError(
                             _('The sections have different viewpoints')
                         )
 
                 else:
-                    self.novel.sections[ScId0].characters.append(
-                        self.novel.sections[ScId1].viewpoint
+                    self.novel.sections[scId0].characters.append(
+                        self.novel.sections[scId1].viewpoint
                     )
 
         # Join titles.
         joinedTitles = (
-            f'{self.novel.sections[ScId0].title}'
-            f' & {self.novel.sections[ScId1].title}'
+            f'{self.novel.sections[scId0].title}'
+            f' & {self.novel.sections[scId1].title}'
         )
-        self.novel.sections[ScId0].title = joinedTitles
+        self.novel.sections[scId0].title = joinedTitles
 
         # Join content.
-        content0 = self.novel.sections[ScId0].sectionContent
-        content1 = self.novel.sections[ScId1].sectionContent
+        content0 = self.novel.sections[scId0].sectionContent
+        content1 = self.novel.sections[scId1].sectionContent
         # this is because sectionContent is a property
-        self.novel.sections[ScId0].sectionContent = join_str(
+        self.novel.sections[scId0].sectionContent = join_str(
             content0, content1, newline='')
 
         # Join description, goal, conflict, outcome, notes.
-        self.novel.sections[ScId0].desc = join_str(
-            self.novel.sections[ScId0].desc,
-            self.novel.sections[ScId1].desc
+        self.novel.sections[scId0].desc = join_str(
+            self.novel.sections[scId0].desc,
+            self.novel.sections[scId1].desc
         )
-        self.novel.sections[ScId0].goal = join_str(
-            self.novel.sections[ScId0].goal,
-            self.novel.sections[ScId1].goal
+        self.novel.sections[scId0].goal = join_str(
+            self.novel.sections[scId0].goal,
+            self.novel.sections[scId1].goal
         )
-        self.novel.sections[ScId0].conflict = join_str(
-            self.novel.sections[ScId0].conflict,
-            self.novel.sections[ScId1].conflict
+        self.novel.sections[scId0].conflict = join_str(
+            self.novel.sections[scId0].conflict,
+            self.novel.sections[scId1].conflict
         )
-        self.novel.sections[ScId0].outcome = join_str(
-            self.novel.sections[ScId0].outcome,
-            self.novel.sections[ScId1].outcome
+        self.novel.sections[scId0].outcome = join_str(
+            self.novel.sections[scId0].outcome,
+            self.novel.sections[scId1].outcome
         )
-        self.novel.sections[ScId0].notes = join_str(
-            self.novel.sections[ScId0].notes,
-            self.novel.sections[ScId1].notes
+        self.novel.sections[scId0].notes = join_str(
+            self.novel.sections[scId0].notes,
+            self.novel.sections[scId1].notes
         )
 
         # Join characters, locations, items, tags.
         join_lst(
-            self.novel.sections[ScId0].characters,
-            self.novel.sections[ScId1].characters
+            self.novel.sections[scId0].characters,
+            self.novel.sections[scId1].characters
         )
         join_lst(
-            self.novel.sections[ScId0].locations,
-            self.novel.sections[ScId1].locations
+            self.novel.sections[scId0].locations,
+            self.novel.sections[scId1].locations
         )
         join_lst(
-            self.novel.sections[ScId0].items,
-            self.novel.sections[ScId1].items
+            self.novel.sections[scId0].items,
+            self.novel.sections[scId1].items
         )
         join_lst(
-            self.novel.sections[ScId0].tags,
-            self.novel.sections[ScId1].tags
+            self.novel.sections[scId0].tags,
+            self.novel.sections[scId1].tags
         )
 
         # Move plot line associations.
-        for scPlotLine in self.novel.sections[ScId1].scPlotLines:
-            self.novel.plotLines[scPlotLine].sections.remove(ScId1)
-            if not ScId0 in self.novel.plotLines[scPlotLine].sections:
-                self.novel.plotLines[scPlotLine].sections.append(ScId0)
-            if not scPlotLine in self.novel.sections[ScId0].scPlotLines:
-                self.novel.sections[ScId0].scPlotLines.append(scPlotLine)
+        for scPlotLine in self.novel.sections[scId1].scPlotLines:
+            self.novel.plotLines[scPlotLine].sections.remove(scId1)
+            if not scId0 in self.novel.plotLines[scPlotLine].sections:
+                self.novel.plotLines[scPlotLine].sections.append(scId0)
+            if not scPlotLine in self.novel.sections[scId0].scPlotLines:
+                self.novel.sections[scId0].scPlotLines.append(scPlotLine)
 
         # Move plot point associations.
-        for ppId in self.novel.sections[ScId1].scPlotPoints:
-            self.novel.plotPoints[ppId].sectionAssoc = ScId0
-            self.novel.sections[ScId0].scPlotPoints[ppId] = (
-                self.novel.sections[ScId1].scPlotPoints[ppId]
+        for ppId in self.novel.sections[scId1].scPlotPoints:
+            self.novel.plotPoints[ppId].sectionAssoc = scId0
+            self.novel.sections[scId0].scPlotPoints[ppId] = (
+                self.novel.sections[scId1].scPlotPoints[ppId]
             )
 
         # Add duration.
         try:
-            lastsMin1 = int(self.novel.sections[ScId1].lastsMinutes)
+            lastsMin1 = int(self.novel.sections[scId1].lastsMinutes)
         except:
             lastsMin1 = 0
         try:
-            lastsMin0 = int(self.novel.sections[ScId0].lastsMinutes)
+            lastsMin0 = int(self.novel.sections[scId0].lastsMinutes)
         except:
             lastsMin0 = 0
         hoursLeft, lastsMin0 = divmod((lastsMin0 + lastsMin1), 60)
-        self.novel.sections[ScId0].lastsMinutes = str(lastsMin0)
+        self.novel.sections[scId0].lastsMinutes = str(lastsMin0)
         try:
-            lastsHours1 = int(self.novel.sections[ScId1].lastsHours)
+            lastsHours1 = int(self.novel.sections[scId1].lastsHours)
         except:
             lastsHours1 = 0
         try:
-            lastsHours0 = int(self.novel.sections[ScId0].lastsHours)
+            lastsHours0 = int(self.novel.sections[scId0].lastsHours)
         except:
             lastsHours0 = 0
         daysLeft, lastsHours0 = divmod(
             (lastsHours0 + lastsHours1 + hoursLeft), 24
         )
-        self.novel.sections[ScId0].lastsHours = str(lastsHours0)
+        self.novel.sections[scId0].lastsHours = str(lastsHours0)
         try:
-            lastsDays1 = int(self.novel.sections[ScId1].lastsDays)
+            lastsDays1 = int(self.novel.sections[scId1].lastsDays)
         except:
             lastsDays1 = 0
         try:
-            LastsDays0 = int(self.novel.sections[ScId0].lastsDays)
+            LastsDays0 = int(self.novel.sections[scId0].lastsDays)
         except:
             LastsDays0 = 0
         LastsDays0 = LastsDays0 + lastsDays1 + daysLeft
-        self.novel.sections[ScId0].lastsDays = str(LastsDays0)
-        del(self.novel.sections[ScId1])
+        self.novel.sections[scId0].lastsDays = str(LastsDays0)
+        del(self.novel.sections[scId1])
         # deleting section 1 object instance
-        self.tree.delete(ScId1)
+        self.tree.delete(scId1)
         # removing section 1 reference from the tree
 
     def move_node(self, node, targetNode):

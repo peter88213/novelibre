@@ -311,6 +311,16 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         menu.disableOnLock.append(label)
 
+    def add_add_section_command(self, menu):
+        label = _('Add Section')
+        menu.add_command(
+            label=label,
+            image=self.icons.addIcon,
+            compound='left',
+            command=self._ctrl.add_new_section,
+        )
+        menu.disableOnLock.append(label)
+
     def add_clipboard_commands(self, menu):
         label = _('Cut')
         menu.add_command(
@@ -340,19 +350,18 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         menu.disableOnLock.append(label)
 
-    def add_add_section_command(self, menu):
-        label = _('Add Section')
+    def add_clone_command(self, menu):
+        label = _('Clone')
         menu.add_command(
             label=label,
-            image=self.icons.addIcon,
-            compound='left',
-            command=self._ctrl.add_new_section,
+            command=self._ctrl.clone_section,
         )
         menu.disableOnLock.append(label)
 
     def add_delete_command(self, menu):
         label = _('Delete')
         menu.add_command(
+
             label=label,
             accelerator=KEYS.DELETE[1],
             image=self.icons.removeIcon,
@@ -954,6 +963,8 @@ class MainView(Observer, MsgBoxes, SubController):
             command=self._ctrl.add_multiple_new_sections,
         )
         self.sectionMenu.disableOnLock.append(label)
+
+        self.add_clone_command(self.sectionMenu)
 
         self.sectionMenu.add_separator()
 
@@ -1743,6 +1754,7 @@ class MainView(Observer, MsgBoxes, SubController):
 
         self.add_add_section_command(self.sectionContextMenu)
         self.add_insert_stage_command(self.sectionContextMenu)
+        self.add_clone_command(self.sectionContextMenu)
 
         self.sectionContextMenu.add_separator()
 

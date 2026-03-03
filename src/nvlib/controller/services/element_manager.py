@@ -397,6 +397,25 @@ class ElementManager(ServiceBase):
         self.view_new_element(newNode)
         return newNode
 
+    def clone_section(self, scId=None):
+        """Create a duplicate of the section scId and add it to the novel.
+        
+        - Place the cloned section after the original. 
+        
+        Return the section ID, if successful.
+        """
+        if self._mdl.prjFile is None:
+            return
+
+        if scId is None:
+            try:
+                scId = self._ui.selectedNode
+            except:
+                pass
+        newNode = self._mdl.clone_section(scId)
+        self.view_new_element(newNode)
+        return newNode
+
     def delete_elements(self, elements=None):
         """Delete elements and their children.
         
