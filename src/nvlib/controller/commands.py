@@ -227,6 +227,7 @@ class Commands:
         """Create a duplicate of the section scId and add it to the novel.
         
         - Place the cloned section after the original. 
+        - The cloned section's type is "unused". 
         
         Return the section ID, if successful.
         """

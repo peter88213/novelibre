@@ -364,14 +364,17 @@ class NvModel:
         self.novel.sections[scId] = self.nvService.new_section(
             title=kwargs.get('title', f'{_("New Section")} ({scId})'),
             desc=kwargs.get('desc', ''),
+            links={},
+            fields={},
+            tags=[],
             scType=newType,
             scene=kwargs.get('scene', 0),
             status=kwargs.get('status', 1),
             appendToPrev=kwargs.get('appendToPrev', False),
+            plotlineNotes={},
             characters=[],
             locations=[],
             items=[],
-            links={},
             on_element_change=self.on_element_change,
         )
         self.novel.sections[scId].sectionContent = '<p></p>'
@@ -425,7 +428,10 @@ class NvModel:
             self._observers.append(client)
 
     def clone_section(self, scId):
-        """Create a unused copy of the section specified by scId.
+        """Create a duplicate of the section scId and add it to the novel.
+        
+        - Place the cloned section after the original. 
+        - The cloned section's type is "unused". 
         
         Positional arguments:
             scId: str -- ID of the section to be cloned
