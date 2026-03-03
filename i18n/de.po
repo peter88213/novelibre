@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 5.52.1\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-03-03 14:49:56\n"
+"PO-Revision-Date: 2026-03-03 15:22:33\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -78,18 +78,6 @@ msgstr "Alle"
 
 msgid "All files"
 msgstr "Alle Dateien"
-
-msgid "Alt-Down"
-msgstr "Alt-Ab"
-
-msgid "Alt-Left"
-msgstr "Alt-Links"
-
-msgid "Alt-Right"
-msgstr "Alt-Rechts"
-
-msgid "Alt-Up"
-msgstr "Alt-Auf"
 
 msgid "Always discard documents after import"
 msgstr "Dokumente nach dem Import immer verwerfen"
@@ -478,6 +466,9 @@ msgstr "Dokumentenvorlage ist eingestellt"
 msgid "Done"
 msgstr "Fertiggestellt"
 
+msgid "Down"
+msgstr "Ab"
+
 msgid "Draft"
 msgstr "Entwurf"
 
@@ -738,6 +729,9 @@ msgstr "Zuletzt gespeichert:"
 
 msgid "Latest backup successfully restored."
 msgstr "Letzte Sicherung erfolgreich wiederhergestellt."
+
+msgid "Left"
+msgstr "Links"
 
 msgid "Links"
 msgstr "Links"
@@ -1009,15 +1003,6 @@ msgstr "Bestehende(s) {0} geöffnet (zuletzt gespeichert: {1})"
 msgid "Opening"
 msgstr "Eröffnung"
 
-msgid "Option-Down"
-msgstr "Wahl-Ab"
-
-msgid "Option-Right"
-msgstr "Wahl-Rechts"
-
-msgid "Option-Up"
-msgstr "Wahl-Auf"
-
 msgid "Options"
 msgstr "Optionen"
 
@@ -1206,6 +1191,9 @@ msgstr "Sicherungskopie wiederherstellen"
 
 msgid "Restore default styles"
 msgstr "Standardvorlagen wiederherstellen"
+
+msgid "Right"
+msgstr "Rechts"
 
 msgid "Save"
 msgstr "Speichern"
@@ -1491,6 +1479,9 @@ msgstr "Projekt ohne Titel"
 
 msgid "Unused"
 msgstr "Unbenutzt"
+
+msgid "Up"
+msgstr "Auf"
 
 msgid "Update from manuscript"
 msgstr "Änderungen am Manuskript übernehmen"
