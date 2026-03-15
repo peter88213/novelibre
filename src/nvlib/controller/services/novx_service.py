@@ -4,9 +4,11 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+
 from nvlib.model.data.basic_element import BasicElement
 from nvlib.model.data.chapter import Chapter
 from nvlib.model.data.character import Character
+from nvlib.model.data.content_splitter import ContentSplitter
 from nvlib.model.data.novel import Novel
 from nvlib.model.data.nv_tree import NvTree
 from nvlib.model.data.plot_line import PlotLine
@@ -50,6 +52,9 @@ class NovxService:
 
     def new_character(self, **kwargs):
         return Character(**kwargs)
+
+    def new_content_splitter(self):
+        return ContentSplitter()
 
     def new_novel(self, **kwargs):
         kwargs['tree'] = kwargs.get('tree', NvTree())

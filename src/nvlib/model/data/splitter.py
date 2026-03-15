@@ -87,7 +87,20 @@ class Splitter(ABC):
         """
 
         # Mark metadata of split sections.
-        newSection = Section(appendToPrev=appendToPrev)
+        newSection = Section(
+            appendToPrev=appendToPrev,
+            scType=parent.scType,
+            scene=parent.scene,
+            scDate=parent.date,
+            scTime=parent.time,
+            day=parent.day,
+            lastsDays=parent.lastsDays,
+            lastsHours=parent.lastsHours,
+            lastsMinutes=parent.lastsMinutes,
+            characters=[],
+            locations=[],
+            items=[],
+        )
         if title:
             newSection.title = title
         elif parent.title:
@@ -98,14 +111,6 @@ class Splitter(ABC):
             newSection.title = f'{title} Split: {splitCount}'
         else:
             newSection.title = f'{_("New Section")} Split: {splitCount}'
-        newSection.scType = parent.scType
-        newSection.scene = parent.scene
-        newSection.date = parent.date
-        newSection.time = parent.time
-        newSection.day = parent.day
-        newSection.lastsDays = parent.lastsDays
-        newSection.lastsHours = parent.lastsHours
-        newSection.lastsMinutes = parent.lastsMinutes
         novel.sections[sectionId] = newSection
 
     def split_sections(self, novel):
