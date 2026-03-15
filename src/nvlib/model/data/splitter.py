@@ -47,6 +47,7 @@ class Splitter(ABC):
         self,
         novel,
         chapterId,
+        origin,
         title,
         desc,
         level,
@@ -54,23 +55,29 @@ class Splitter(ABC):
         """Create a new chapter and add it to the novel.
         
         Positional arguments:
+            novel -- Novel instance.
             chapterId -- str: ID of the chapter to create.
+            origin -- Chapter instance: original chapter.
             title -- str: title of the chapter to create.
             desc -- str: description of the chapter to create.
             level -- int: chapter level (part/chapter).
         """
-        newChapter = Chapter()
-        newChapter.title = title
-        newChapter.desc = desc
-        newChapter.chLevel = level
-        newChapter.chType = 0
+        newChapter = Chapter(
+            on_element_change=origin.on_element_change,
+            title=title,
+            desc=desc,
+            noNumber=origin.noNumber,
+            chLevel=level,
+            chType=0,
+            hasEpigraph=False,
+        )
         novel.chapters[chapterId] = newChapter
 
     def create_section(
         self,
         novel,
         sectionId,
-        parent,
+        origin,
         splitCount,
         title,
         appendToPrev,
@@ -78,9 +85,10 @@ class Splitter(ABC):
         """Create a new section and add it to the novel.
         
         Positional arguments:
+            novel -- Novel instance.
             sectionId -- str: ID of the section to create.
-            parent -- Section instance: parent section.
-            splitCount -- int: number of parent's splittings.
+            origin -- Section instance: original section.
+            splitCount -- int: number of origin's splittings.
             title -- str: title of the section to create.
             appendToPrev -- boolean: when exporting, append the section
                             to the previous one without separator.
@@ -88,26 +96,27 @@ class Splitter(ABC):
 
         # Mark metadata of split sections.
         newSection = Section(
+            on_element_change=origin.on_element_change,
             appendToPrev=appendToPrev,
-            scType=parent.scType,
-            scene=parent.scene,
-            scDate=parent.date,
-            scTime=parent.time,
-            day=parent.day,
-            lastsDays=parent.lastsDays,
-            lastsHours=parent.lastsHours,
-            lastsMinutes=parent.lastsMinutes,
+            scType=origin.scType,
+            scene=origin.scene,
+            scDate=origin.date,
+            scTime=origin.time,
+            day=origin.day,
+            lastsDays=origin.lastsDays,
+            lastsHours=origin.lastsHours,
+            lastsMinutes=origin.lastsMinutes,
             characters=[],
             locations=[],
             items=[],
         )
         if title:
             newSection.title = title
-        elif parent.title:
-            if len(parent.title) > self._CLIP_TITLE:
-                title = f'{parent.title[:self._CLIP_TITLE]}...'
+        elif origin.title:
+            if len(origin.title) > self._CLIP_TITLE:
+                title = f'{origin.title[:self._CLIP_TITLE]}...'
             else:
-                title = parent.title
+                title = origin.title
             newSection.title = f'{title} Split: {splitCount}'
         else:
             newSection.title = f'{_("New Section")} Split: {splitCount}'
@@ -195,7 +204,14 @@ class Splitter(ABC):
                         )
                         if not title:
                             title = _('New Chapter')
-                        self.create_chapter(novel, newChId, title, desc, 2)
+                        self.create_chapter(
+                            novel,
+                            newChId,
+                            novel.chapters[chId],
+                            title,
+                            desc,
+                            2,
+                        )
                         chIndex += 1
                         novel.tree.insert(CH_ROOT, chIndex, newChId)
                         chId = newChId
@@ -213,7 +229,14 @@ class Splitter(ABC):
                         )
                         if not title:
                             title = _('New Part')
-                        self.create_chapter(novel, newChId, title, desc, 1)
+                        self.create_chapter(
+                            novel,
+                            newChId,
+                            novel.chapters[chId],
+                            title,
+                            desc,
+                            1,
+                        )
                         chIndex += 1
                         novel.tree.insert(CH_ROOT, chIndex, newChId)
                         chId = newChId

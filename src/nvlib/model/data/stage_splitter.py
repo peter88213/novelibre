@@ -25,7 +25,7 @@ class StageSplitter(DescSplitter):
         self,
         novel,
         sectionId,
-        parent,
+        origin,
         splitCount,
         title,
         level,
@@ -33,9 +33,10 @@ class StageSplitter(DescSplitter):
         """Create a new section and add it to the novel.
         
         Positional arguments:
+            novel -- Novel instance.
             sectionId -- str: ID of the section to create.
-            parent -- Section instance: parent section.
-            splitCount -- int: number of parent's splittings.
+            origin -- Section instance: origin section.
+            splitCount -- int: number of origin's splittings.
             title -- str: title of the section to create.
             level -- int: level of the stage to create.
                             
@@ -44,7 +45,7 @@ class StageSplitter(DescSplitter):
         super().create_section(
             novel,
             sectionId,
-            parent,
+            origin,
             splitCount,
             title,
             '',

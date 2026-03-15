@@ -24,7 +24,7 @@ class ContentSplitter(Splitter):
         self,
         novel,
         sectionId,
-        parent,
+        origin,
         splitCount,
         title,
         desc,
@@ -34,8 +34,8 @@ class ContentSplitter(Splitter):
         
         Positional arguments:
             sectionId -- str: ID of the section to create.
-            parent -- Section instance: parent section.
-            splitCount -- int: number of parent's splittings.
+            origin -- Section instance: original section.
+            splitCount -- int: number of origin's splittings.
             title -- str: title of the section to create.
             desc -- str: description of the section to create.
             appendToPrev -- boolean: when exporting, append the section
@@ -46,7 +46,7 @@ class ContentSplitter(Splitter):
         super().create_section(
             novel,
             sectionId,
-            parent,
+            origin,
             splitCount,
             title,
             appendToPrev,
@@ -55,20 +55,20 @@ class ContentSplitter(Splitter):
         if desc:
             novel.sections[sectionId].desc = desc
 
-        # Reset the parent's status to Draft, if not Outline.
-        if parent.status > 2:
-            parent.status = 2
-        novel.sections[sectionId].status = parent.status
+        # Reset the origin's status to Draft, if not Outline.
+        if origin.status > 2:
+            origin.status = 2
+        novel.sections[sectionId].status = origin.status
 
-        # Mark parent's metadata with a reminder.
-        if parent.desc and not parent.desc.startswith(WARNING):
-            parent.desc = f'{WARNING}{parent.desc}'
-        if parent.goal and not parent.goal.startswith(WARNING):
-            parent.goal = f'{WARNING}{parent.goal}'
-        if parent.conflict and not parent.conflict.startswith(WARNING):
-            parent.conflict = f'{WARNING}{parent.conflict}'
-        if parent.outcome and not parent.outcome.startswith(WARNING):
-            parent.outcome = f'{WARNING}{parent.outcome}'
+        # Mark origin's metadata with a reminder.
+        if origin.desc and not origin.desc.startswith(WARNING):
+            origin.desc = f'{WARNING}{origin.desc}'
+        if origin.goal and not origin.goal.startswith(WARNING):
+            origin.goal = f'{WARNING}{origin.goal}'
+        if origin.conflict and not origin.conflict.startswith(WARNING):
+            origin.conflict = f'{WARNING}{origin.conflict}'
+        if origin.outcome and not origin.outcome.startswith(WARNING):
+            origin.outcome = f'{WARNING}{origin.outcome}'
 
     def _contains_heading(self, novel, scId):
         return (

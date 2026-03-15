@@ -71,6 +71,7 @@ class ChapterSplitter(Splitter):
                         self.create_chapter(
                             novel,
                             newChId,
+                            novel.chapters[chId],
                             title,
                             '',
                             level,

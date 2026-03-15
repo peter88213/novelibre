@@ -22,7 +22,7 @@ class DescSplitter(Splitter):
         self,
         novel,
         sectionId,
-        parent,
+        origin,
         splitCount,
         title,
         desc,
@@ -31,9 +31,10 @@ class DescSplitter(Splitter):
         """Create a new section and add it to the novel.
         
         Positional arguments:
+            novel -- Novel instance.
             sectionId -- str: ID of the section to create.
-            parent -- Section instance: parent section.
-            splitCount -- int: number of parent's splittings.
+            origin -- Section instance: original section.
+            splitCount -- int: number of origin's splittings.
             title -- str: title of the section to create.
             appendToPrev -- boolean: when exporting, append the section
                             to the previous one without separator.
@@ -43,7 +44,7 @@ class DescSplitter(Splitter):
         super().create_section(
             novel,
             sectionId,
-            parent,
+            origin,
             splitCount,
             title,
             appendToPrev,
