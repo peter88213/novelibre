@@ -163,6 +163,7 @@
   "Command": "Befehl",
   "Comment": "Kommentar",
   "Conflict": "Konflikt",
+  "Contrast": "Kontrast",
   "Convert all section dates to days relative to the reference date?": "Alle Abschnitts-Datumsangaben in Tage relativ zum Bezugsdatum umwandeln?",
   "Convert all section days to dates using the reference date?": "Alle Abschnitts-Tage mit Hilfe des Bezugsdatums in Datumsangaben umwandeln?",
   "Convert date/day": "Datum/Tag umwandeln",
