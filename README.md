@@ -86,7 +86,9 @@ so that only those users who need them actually install them.
 -  Do you want to focus entirely on your text when writing? Then you should check out the 
    [nv_writer](https://github.com/peter88213/nv_writer/) plugin, 
    which offers a distraction-free mode where you can type scene by scene 
-   as if you were using a typewriter or a DOS word processor.  
+   as if you were using a typewriter or a DOS word processor. 
+-  Got an e-reader? Then have the [nv_epub](https://github.com/peter88213/nv_epub/) exporter generate an EPUB ebook
+   either for your personal use or as a starting point for publishing. 
 -  If you value a balanced text distribution, the
    [nv_statistics](https://github.com/peter88213/nv_statistics/)
    statistics viewer could be something for you.
