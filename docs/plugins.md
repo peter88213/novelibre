@@ -12,6 +12,7 @@
 -  [nv_custom_export](https://github.com/peter88213/nv_custom_export/) A novelibre plugin providing a custom template-based export for the final document. 
 -  [nv_dark](https://github.com/peter88213/nv_dark/) A dark mode for novelibre.
 -  [nv_editor](https://github.com/peter88213/nv_editor/) A novelibre markup editor plugin.
+-  [nv_epub](https://github.com/peter88213/nv_epub/) A novelibre EPUB ebook exporter plugin.
 -  [nv_extra_view](https://github.com/peter88213/nv_extra_view/) A "detach text viewer" plugin for novelibre.
 -  [nv_it](https://github.com/peter88213/nv_it/) An Italian language package for novelibre.
 -  [nv_matrix](https://github.com/peter88213/nv_matrix/) A novelibre plugin providing a section relationship matrix. 
