@@ -766,7 +766,7 @@ class OdtWriter(OdfFile):
         f'style:family="paragraph" style:parent-style-name="{_("Epigraph")}" '
         'style:next-style-name="Text_20_body" style:class="text">\n'
         '  <style:paragraph-properties fo:margin-top="0cm" '
-        'fo:margin-bottom="1.46cm" fo:text-align="end"/>\n'
+        'fo:margin-bottom="1.46cm" fo:text-align="center"/>\n'
         '  <style:text-properties fo:language="zxx" fo:country="none" fo:font-style="italic"/>\n'
         '  </style:style>\n'
         f'  <style:style style:name="{_("Section_20_mark")}" '

@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+
+### Version 5.53.1
+
+- Centering the epigraph source line in ODT documents.
+
+
 ### Version 5.53.0
 
 - New feature: Clone section.
