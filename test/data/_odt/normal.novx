@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE novx SYSTEM "novx_1_8.dtd">
+<!DOCTYPE novx SYSTEM "novx_1_9.dtd">
 <?xml-stylesheet href="novx.css" type="text/css"?>
-<novx version="1.8" xml:lang="de-DE">
+<novx version="1.9" xml:lang="en-AU">
   <PROJECT>
     <Title>Hal Spacejock book one - Sample yWriter Project</Title>
-    <Author>Simon Haynes</Author>
     <Desc>
       <p>An incompetent, accident-prone pilot is given one last chance to save his ship. An ageing robot is trusted with a midnight landing in a deserted field. And a desperate businessman is prepared to sacrifice both of them to get what he wants...</p>
       <p />
       <p>Combining relentless action with non-stop laughs, Hal Spacejock explodes onto the science fiction scene with the subtlety of a meteor strike and the hushed reverence of a used car salesman.</p>
     </Desc>
+    <Author>Simon Haynes</Author>
+    <CustomPlotProgress>Handlungsfortschritt</CustomPlotProgress>
+    <CustomCharacterization>Charakterisierung</CustomCharacterization>
+    <CustomWorldBuilding>Weltenbau</CustomWorldBuilding>
+    <CustomGoal>Eröffnung</CustomGoal>
+    <CustomConflict>Emotionaler Höhepunkt</CustomConflict>
+    <CustomOutcome>Ende</CustomOutcome>
+    <CustomChrBio>Biographie</CustomChrBio>
+    <CustomChrGoals>Ziele</CustomChrGoals>
   </PROJECT>
   <CHAPTERS>
     <CHAPTER id="ch33" type="1">
@@ -49,26 +57,19 @@
         <Characters ids="cr1 cr10 cr4 cr11" />
         <Locations ids="lc1 lc2" />
         <Content>
-           <h5>5th level heading</h5>
-           <h6>6th level heading</h6>
-           <h7>7th level heading</h7>
-           <h8>8th level heading</h8>
-           <h9>9th level heading</h9>
-           <p>Hal Spacejock was sitting at the Black Gull's<note id="ftn1" class="footnote">
-              <note-citation>*</note-citation>
-              <p>Hal's spaceship </p>
-            </note> flight console, his attention riveted to a small chessboard balanced amongst the toggle switches, flashing lights and status displays. a few weeks earlier he'd read an article extolling the benefits of the ancient game: how playing it would sharpen his mind, improve his memory and increase his attraction to the opposite sex. Chess had been an important part of his daily routine ever since, but after two hundred and seventy-six losses in a row Hal was beginning to doubt the article's claims. He didn't feel any smarter and he couldn't remember the last time he'd spoken to a member of the opposite sex, let alone had one attracted to him. Briefly, he wondered whether it had been such a clever idea to play against the Navcom, the Black Gull's onboard computer. Underpowered and outdated, it was still more than capable of running the ship's accounts, navigation and life support systems while beating humans at simple board games. However, since Hal was the only human aboard the Black Gull, his choice of opponents was limited.</p>
+          <h5>5th level heading</h5>
+          <h6>6th level heading</h6>
+          <h7>7th level heading</h7>
+          <h8>8th level heading</h8>
+          <h9>9th level heading</h9>
+          <p>Hal Spacejock was sitting at the Black Gull's<note id="ftn1" class="footnote"><note-citation>*</note-citation><p>Hal's spaceship </p></note> flight console, his attention riveted to a small chessboard balanced amongst the toggle switches, flashing lights and status displays. a few weeks earlier he'd read an article extolling the benefits of the ancient game: how playing it would sharpen his mind, improve his memory and increase his attraction to the opposite sex. Chess had been an important part of his daily routine ever since, but after two hundred and seventy-six losses in a row Hal was beginning to doubt the article's claims. He didn't feel any smarter and he couldn't remember the last time he'd spoken to a member of the opposite sex, let alone had one attracted to him. Briefly, he wondered whether it had been such a clever idea to play against the Navcom, the Black Gull's onboard computer. Underpowered and outdated, it was still more than capable of running the ship's accounts, navigation and life support systems while beating humans at simple board games. However, since Hal was the only human aboard the Black Gull, his choice of opponents was limited.</p>
           <p>"Your turn," said the Navcom, in a neutral female voice.</p>
           <p>"I'm thinking."</p>
           <p>"While you're planning your opening move, can I tell you about a special offer?"</p>
           <p>"What kind of offer?" asked Hal suspiciously.</p>
           <p>"Planet books have a chess title on sale."</p>
           <p>"Really? Put it on main."</p>
-          <p>The wide viewscreen above the console turned red, and the word 'SaLE' appeared in vibrating yellow text. <comment>
-              <creator>Simon Haynes</creator>
-              <date>2023-12-09T11:51:45</date>
-              <p> this is the author's first note </p>
-            </comment>The letters grew legs and marched off the screen, bringing a wire basket on wheels into view.</p>
+          <p>The wide viewscreen above the console turned red, and the word 'SaLE' appeared in vibrating yellow text. <comment><creator>Simon Haynes</creator><date>2023-12-09T11:51:45</date><p> this is the author's first note </p></comment>The letters grew legs and marched off the screen, bringing a wire basket on wheels into view.</p>
           <p>"I don't need all this crap," said Hal. "Just show me the deal."</p>
           <p>"Almost there," said the Navcom. "Keep watching."</p>
           <p>A flock of pigeons burst from the basket, leaving a tumbling cloud of feathers which dropped to the ground and formed the words 'Special Offer'. a gust of wind blew the feathers away, and a book title flashed up on the screen.</p>
@@ -189,19 +190,7 @@
         </Desc>
         <Characters ids="cr1 cr12" />
         <Content>
-          <p>Hal left the maintenance vehicle<note id="ftn2" class="endnote">
-              <note-citation>1</note-citation>
-              <p>Maintenance vehicle: some sort of cablecar. </p>
-            </note> in the spaceport's outer carpark and walked to the admin block<note id="ftn3" class="endnote">
-              <note-citation>2</note-citation>
-              <p>Admin block: looks like a greek temple. </p>
-            </note>. An information kiosk<note id="ftn4" class="footnote">
-              <note-citation>3</note-citation>
-              <p>a cozy place </p>
-            </note> directed him to an elevator<note id="ftn5" class="footnote">
-              <note-citation>4</note-citation>
-              <p>built by Limbus Vertical Transportation inc. </p>
-            </note>, where he pressed the button marked 'Portmaster'.</p>
+          <p>Hal left the maintenance vehicle<note id="ftn2" class="endnote"><note-citation>1</note-citation><p>Maintenance vehicle: some sort of cablecar. </p></note> in the spaceport's outer carpark and walked to the admin block<note id="ftn3" class="endnote"><note-citation>2</note-citation><p>Admin block: looks like a greek temple. </p></note>. An information kiosk<note id="ftn4" class="footnote"><note-citation>3</note-citation><p>a cozy place </p></note> directed him to an elevator<note id="ftn5" class="footnote"><note-citation>4</note-citation><p>built by Limbus Vertical Transportation inc. </p></note>, where he pressed the button marked 'Portmaster'.</p>
           <p>Hal watched the floor numbers changing as he dropped further and further underground. He'd expected the Portmaster to have a spacious office with a view of the whole landing field, but instead he seemed to have an office in the basement. Below the basement, amended Hal, eying the elevator's control panel. He'd passed that already.</p>
           <p />
           <p>. . .</p>
@@ -245,11 +234,7 @@
           <p>The commset buzzed and Linten leant forward. "Yes?"</p>
           <p>There was a crackling sound. "Help! Fire!" said a voice over the noise.</p>
           <p>"Who is this? What are you talking about?"</p>
-          <p>"The grass is burning," cried the voice.<comment>
-              <creator>Simon Haynes</creator>
-              <date>2023-12-09T11:51:45</date>
-              <p> the author's second note ...</p>
-            </comment> "There's a fire on the landing field!"</p>
+          <p>"The grass is burning," cried the voice.<comment><creator>Simon Haynes</creator><date>2023-12-09T11:51:45</date><p> the author's second note ...</p></comment> "There's a fire on the landing field!"</p>
           <p>"Which pad?"</p>
           <p>"Fifty-two," said Hal, smothering a grin. "That's Clunk." He leant towards the commset. "Clunk, is the ship in danger from this, er, fire?"</p>
           <p>"Not yet, Mr Spacejock, but it soon will be. Would you like me to move it out of the way?"</p>
@@ -581,16 +566,16 @@
   <CHARACTERS>
     <CHARACTER id="cr1">
       <Title>Hal</Title>
-      <FullName>Hal Spacejock</FullName>
       <Aka>Spacejock</Aka>
+      <FullName>Hal Spacejock</FullName>
       <Bio>
         <p>Somehow, Hal Spacejock ended up in the cargo game. With a loan from a dodgy operator and a ship from the wrong side of the nearest junkyard he works the back reaches of the galaxy. A couple of important things about Hal - he's determined to stay on the right side of the law, and he has a strong sense of justice.</p>
       </Bio>
     </CHARACTER>
     <CHARACTER id="cr2">
       <Title>Jerling</Title>
-      <FullName>Walter Jerling</FullName>
       <Aka>Walter</Aka>
+      <FullName>Walter Jerling</FullName>
       <Bio>
         <p>Walter Jerling runs a conglomerate spanning several planets. Ruthless and wealthy, he's never forgotten his more modest roots and watches his money carefully.</p>
       </Bio>
@@ -600,8 +585,8 @@
     </CHARACTER>
     <CHARACTER id="cr3">
       <Title>Clunk</Title>
-      <FullName>Clunk XG99</FullName>
       <Aka>XG99</Aka>
+      <FullName>Clunk XG99</FullName>
       <Bio>
         <p>Aging humanoid robot owned by Walter Jerling's company, Clunk is being shipped off for reprogramming and advanced pilot training.</p>
       </Bio>

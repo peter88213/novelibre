@@ -10,6 +10,10 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.53.2
+
+- **ODT export**: No longer inserting the first paragraph after a quotation.
+
 
 ### Version 5.53.1
 

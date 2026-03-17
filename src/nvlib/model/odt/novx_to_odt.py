@@ -19,6 +19,7 @@ class NovxToOdt(sax.ContentHandler):
         self._indentParagraph = None
         self._note = None
         self._comment = None
+        self._quotations = None
         self._firstParagraphInChapter = None
         self._spanLevel = None
 
@@ -44,6 +45,7 @@ class NovxToOdt(sax.ContentHandler):
         self._firstParagraphInChapter = firstInChapter
         self._indentParagraph = append and not isEpigraph
         self._isEpigraph = isEpigraph
+        self._quotations = False
         self._note = None
         self._spanLevel = 0
         self._comment = False
@@ -58,7 +60,7 @@ class NovxToOdt(sax.ContentHandler):
         """
         content = sax.saxutils.escape(content)
         self.odtLines.append(content)
-        self._indentParagraph = True
+        self._indentParagraph = not self._quotations
 
     def endElement(self, name):
         """Signals the end of an element in non-namespace mode.
@@ -70,6 +72,7 @@ class NovxToOdt(sax.ContentHandler):
                 self._spanLevel -= 1
                 self.odtLines.append('</text:span>')
             self.odtLines.append('</text:p>')
+            self._quotations = False
             return
 
         if name in ('em', 'strong', 'span'):
@@ -137,6 +140,7 @@ class NovxToOdt(sax.ContentHandler):
                 self.odtLines.append(
                     '<text:p text:style-name="Quotations">'
                 )
+                self._quotations = True
             elif self._note:
                 self.odtLines.append(
                     f'<text:p text:style-name="{self._note.title()}">'

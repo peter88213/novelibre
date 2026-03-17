@@ -1,4 +1,4 @@
-[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.53.1.pyz)
+[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.53.2.pyz)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
 [![News/Feedback](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
@@ -86,7 +86,7 @@ so that only those users who need them actually install them.
 -  Do you want to focus entirely on your text when writing? Then you should check out the 
    [nv_writer](https://github.com/peter88213/nv_writer/) plugin, 
    which offers a distraction-free mode where you can type scene by scene 
-   as if you were using a typewriter or a DOS word processor. 
+   as if you were using a typewriter or a DOS word processor.  
 -  Got an e-reader? Then have the [nv_epub](https://github.com/peter88213/nv_epub/) exporter generate an EPUB ebook
    either for your personal use or as a starting point for publishing. 
 -  If you value a balanced text distribution, the
@@ -173,7 +173,7 @@ The development phase has now come to an end. Nevertheless it is recommended to 
 
 #### Default: Executable Python zip archive
 
-Download the latest release [novelibre_v5.53.1.pyz](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.53.1.pyz)
+Download the latest release [novelibre_v5.53.2.pyz](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.53.2.pyz)
 
 > [!IMPORTANT]
 > Many web browsers recognize the download as an executable file and offer to open it immediately. 
@@ -189,7 +189,7 @@ Download the latest release [novelibre_v5.53.1.pyz](https://github.com/peter8821
 #### Alternative: Zip file
 
 The package is also available in zip format: 
-[novelibre_v5.53.1.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.53.1.zip)
+[novelibre_v5.53.2.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.53.2.zip)
 
 
 ### Strongly recommended
