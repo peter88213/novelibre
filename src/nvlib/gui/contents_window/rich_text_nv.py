@@ -89,7 +89,7 @@ class RichTextNv(RichTextTk):
         )
         self.tag_configure(
             self.NOTE_TAG,
-            background=kwargs['color_comment_tag'],
+            background=kwargs['color_note_tag'],
         )
         self.tag_configure(
             self.NOTE_XML_TAG,

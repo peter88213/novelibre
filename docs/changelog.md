@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.53.4
+
+- Fixed the footnote color in the contents viewer.
+
+
 ### Version 5.53.3
 
 - Bugfix: Improved the handling of multiple inline language assignments when parsing ODT.
