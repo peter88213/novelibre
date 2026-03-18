@@ -227,7 +227,10 @@ class OdtParser(sax.ContentHandler):
                 self._client.handle_starttag('strong', [()])
                 self._span.append(span)
             if style in self._languageTags:
-                if self._languageTags[style] != self._currentLocale[-1]:
+                if (
+                    not self._currentLocale or 
+                    self._languageTags[style] != self._currentLocale[-1]
+                ):
                     span = 'lang'
                     self._client.handle_starttag(
                         'lang',
