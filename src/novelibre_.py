@@ -100,8 +100,8 @@ def main():
     minor = sys.version_info.minor
     if  major != 3 or minor < 7:
         raise Exception(
-            f'Wrong Python version installed: {major}.{minor}.\n'
-            'Must be 3.7 or newer.'
+            'Wrong Python version installed: {}.{}. ' \
+            'Must be 3.7 or newer.'.format(major, minor)
         )
 
     #--- Set up the directories for configuration and temporary files.

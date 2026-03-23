@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.53.5
+
+Fixed the Python version check.
+
+
 ### Version 5.53.4
 
 - Fixed the footnote color in the contents viewer.

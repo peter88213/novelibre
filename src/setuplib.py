@@ -25,8 +25,8 @@ major = sys.version_info.major
 minor = sys.version_info.minor
 if  major != 3 or minor < 7:
     print(
-        f'Wrong Python version installed: {major}.{minor}.\n'
-        'Must be 3.7 or newer.'
+        'Wrong Python version installed: {}.{}.\n' \
+        'Must be 3.7 or newer.'.format(major, minor)
     )
     input('Press ENTER to quit.')
     sys.exit(1)
