@@ -1761,13 +1761,21 @@ class MainView(Observer, MsgBoxes, SubController):
 
         self.add_add_section_command(self.sectionContextMenu)
         self.add_insert_stage_command(self.sectionContextMenu)
-        self.add_clone_command(self.sectionContextMenu)
 
         label = _('Insert Chapter')
         self.sectionContextMenu.add_command(
             label=label,
             command=self._ctrl.insert_chapter,
         )
+        self.sectionContextMenu.disableOnLock.append(label)
+
+        self.add_clone_command(self.sectionContextMenu)
+        label = _('Join with previous')
+        self.sectionContextMenu.add_command(
+            label=label,
+            command=self._ctrl.join_sections,
+        )
+        self.sectionContextMenu.disableOnLock.append(label)
 
         self.sectionContextMenu.add_separator()
 
@@ -1782,15 +1790,6 @@ class MainView(Observer, MsgBoxes, SubController):
         self.add_set_type_cascade(self.sectionContextMenu)
         self.add_set_status_cascade(self.sectionContextMenu)
         self.add_set_viewpoint_command(self.sectionContextMenu)
-
-        self.sectionContextMenu.add_separator()
-
-        label = _('Join with previous')
-        self.sectionContextMenu.add_command(
-            label=label,
-            command=self._ctrl.join_sections,
-        )
-        self.sectionContextMenu.disableOnLock.append(label)
 
         self.sectionContextMenu.add_separator()
 

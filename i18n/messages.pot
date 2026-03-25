@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.53.5\n"
-"POT-Creation-Date: 2026-03-25 15:32:37\n"
+"POT-Creation-Date: 2026-03-25 16:30:26\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -1265,7 +1265,7 @@ msgstr ""
 msgid "Sections from viewpoint"
 msgstr ""
 
-msgid "Sections will be moved to the previous one"
+msgid "Sections will be moved to the previous chapter"
 msgstr ""
 
 msgid "Select characters"
@@ -1403,7 +1403,7 @@ msgstr ""
 msgid "The first section is an epigraph"
 msgstr ""
 
-msgid "The following sections will be moved to the new one"
+msgid "The following sections will be moved to the new chapter"
 msgstr ""
 
 msgid "The next section has no time set"

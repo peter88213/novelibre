@@ -641,7 +641,7 @@ class ElementManager(ServiceBase):
 
         if not self._ui.ask_yes_no(
             message=_('Insert a chapter?'),
-            detail=f"{_('The following sections will be moved to the new one')}.",
+            detail=f"{_('The following sections will be moved to the new chapter')}.",
         ):
             return
 
@@ -750,7 +750,7 @@ class ElementManager(ServiceBase):
 
         if not self._ui.ask_yes_no(
             message=_('Remove this chapter?'),
-            detail=f"{_('Sections will be moved to the previous one')}.",
+            detail=f"{_('Sections will be moved to the previous chapter')}.",
         ):
             return
 
