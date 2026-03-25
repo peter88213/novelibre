@@ -10,7 +10,7 @@
 *novelibre* helps novelists to plan extensive novels and to keep track of them
 during creation and revision.
 
-*novelibre* is designed for writers who are familiar with LibreOffice or OpenOffice. 
+*novelibre* is designed for writers who are familiar with OpenOffice or LibreOffice. 
 
 *novelibre* is an add-on to OpenOffice or LibreOffice that helps to break down
 large novels into parts, chapters and sections, all of which are provided with
