@@ -630,6 +630,35 @@ class ElementManager(ServiceBase):
             multiple=True,
         )
 
+    def insert_chapter(self):
+        self._ui.restore_status()
+        if self._mdl.prjFile is None:
+            return
+
+        element = self._ui.selectedNode
+        if not element.startswith(SECTION_PREFIX):
+            return
+
+        if not self._ui.ask_yes_no(
+            message=_('Insert a chapter?'),
+            detail=f"{_('The following sections will be moved to the new one')}.",
+        ):
+            return
+
+        chId = self._mdl.add_new_chapter(
+            targetNode=element,
+        )
+
+        while self._mdl.novel.tree.next(element):
+            self._mdl.novel.tree.move(
+                self._mdl.novel.tree.next(element),
+                chId,
+                'end'
+            )
+        self._ctrl.refresh_tree()
+        self._ui.tv.go_to_node(chId)
+        self._ui.tv.open_children(chId)
+
     def join_sections(self, scId0=None, scId1=None):
         """Join section 0 with section 1.
 

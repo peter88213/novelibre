@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 5.53.5\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-03-25 14:40:45\n"
+"PO-Revision-Date: 2026-03-25 15:31:13\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -694,8 +694,14 @@ msgstr "Bedeutung"
 msgid "Input rejected"
 msgstr "Eingabe abgelehnt"
 
+msgid "Insert Chapter"
+msgstr "Kapitel einfügen"
+
 msgid "Insert Stage"
 msgstr "Stadium einfügen"
+
+msgid "Insert a chapter?"
+msgstr "Ein Kapitel einfügen?"
 
 msgid "Installed plugins"
 msgstr "Installierte Plugins"
@@ -1389,6 +1395,9 @@ msgstr "Die Änderung wird beim nächsten Programmstart wirksam"
 
 msgid "The first section is an epigraph"
 msgstr "Der erste Abschnitt ist ein Motto"
+
+msgid "The following sections will be moved to the new one"
+msgstr "Die nachfolgenden Abschnitte werden ins neue verschoben"
 
 msgid "The next section has no time set"
 msgstr "Der nachfolgende Abschnitt hat keine Zeitangabe"

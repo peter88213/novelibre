@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.53.5\n"
-"POT-Creation-Date: 2026-03-25 14:43:09\n"
+"POT-Creation-Date: 2026-03-25 15:32:37\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -701,7 +701,13 @@ msgstr ""
 msgid "Input rejected"
 msgstr ""
 
+msgid "Insert Chapter"
+msgstr ""
+
 msgid "Insert Stage"
+msgstr ""
+
+msgid "Insert a chapter?"
 msgstr ""
 
 msgid "Installed plugins"
@@ -1395,6 +1401,9 @@ msgid "The change takes effect after next startup"
 msgstr ""
 
 msgid "The first section is an epigraph"
+msgstr ""
+
+msgid "The following sections will be moved to the new one"
 msgstr ""
 
 msgid "The next section has no time set"

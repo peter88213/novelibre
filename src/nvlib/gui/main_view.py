@@ -1763,6 +1763,12 @@ class MainView(Observer, MsgBoxes, SubController):
         self.add_insert_stage_command(self.sectionContextMenu)
         self.add_clone_command(self.sectionContextMenu)
 
+        label = _('Insert Chapter')
+        self.sectionContextMenu.add_command(
+            label=label,
+            command=self._ctrl.insert_chapter,
+        )
+
         self.sectionContextMenu.add_separator()
 
         self.add_delete_command(self.sectionContextMenu)

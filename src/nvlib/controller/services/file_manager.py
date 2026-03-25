@@ -80,6 +80,7 @@ class FileManager(ServiceBase):
         If no valid backup directory is specified, do nothing.
         If the backup fails, show a notification on the status bar.
         """
+        self._ui.restore_status()
         if not self.prefs['enable_backup']:
             return
 

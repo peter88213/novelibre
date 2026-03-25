@@ -414,6 +414,11 @@ class Commands:
         if not self.check_lock():
             self.elementManager.include_plot_line()
 
+    def insert_chapter(self, event=None):
+        if not self.isLocked:
+            self.elementManager.insert_chapter()
+        return 'break'
+
     def join_sections(self, event=None, scId0=None, scId1=None):
         """Join section 0 with section 1.
 
