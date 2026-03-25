@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.54.0\n"
+"Project-Id-Version: 5.54.1\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-03-25 16:37:19\n"
+"PO-Revision-Date: 2026-03-25 18:59:26\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1259,7 +1259,7 @@ msgid "Sections from viewpoint"
 msgstr "Abschnitte aus Perspektive"
 
 msgid "Sections will be moved to the previous chapter"
-msgstr "Abschnitte werden ins vorhergehende kapitel verschoben"
+msgstr "Abschnitte werden ins vorhergehende Kapitel verschoben"
 
 msgid "Select characters"
 msgstr "Figuren auswählen"
@@ -1397,7 +1397,7 @@ msgid "The first section is an epigraph"
 msgstr "Der erste Abschnitt ist ein Motto"
 
 msgid "The following sections will be moved to the new chapter"
-msgstr "Die nachfolgenden Kapitel werden ins neue Kapitel verschoben"
+msgstr "Die nachfolgenden Abschnitte werden ins neue Kapitel verschoben"
 
 msgid "The next section has no time set"
 msgstr "Der nachfolgende Abschnitt hat keine Zeitangabe"

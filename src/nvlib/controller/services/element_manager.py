@@ -635,8 +635,8 @@ class ElementManager(ServiceBase):
         if self._mdl.prjFile is None:
             return
 
-        element = self._ui.selectedNode
-        if not element.startswith(SECTION_PREFIX):
+        scId = self._ui.selectedNode
+        if not scId.startswith(SECTION_PREFIX):
             return
 
         if not self._ui.ask_yes_no(
@@ -645,13 +645,11 @@ class ElementManager(ServiceBase):
         ):
             return
 
-        chId = self._mdl.add_new_chapter(
-            targetNode=element,
-        )
+        chId = self._mdl.add_new_chapter(targetNode=scId)
 
-        while self._mdl.novel.tree.next(element):
+        while self._mdl.novel.tree.next(scId):
             self._mdl.novel.tree.move(
-                self._mdl.novel.tree.next(element),
+                self._mdl.novel.tree.next(scId),
                 chId,
                 'end'
             )
@@ -737,12 +735,12 @@ class ElementManager(ServiceBase):
         if self._mdl.prjFile is None:
             return
 
-        element = self._ui.selectedNode
-        if not element.startswith(CHAPTER_PREFIX):
+        chId = self._ui.selectedNode
+        if not chId.startswith(CHAPTER_PREFIX):
             return
 
-        prevChapter = self._ui.tv.tree.prev(element)
-        if not prevChapter:
+        prevChId = self._ui.tv.tree.prev(chId)
+        if not prevChId:
             self._ui.set_status(
                 f'#{_("Cannot remove the first chapter")}.'
             )
@@ -754,12 +752,27 @@ class ElementManager(ServiceBase):
         ):
             return
 
-        sections = self._mdl.novel.tree.get_children(element)
-        for scId in sections:
-            self._mdl.novel.tree.move(scId, prevChapter, 'end')
-        self._mdl.delete_element(element)
+        # Move sections.
+        for scId in self._mdl.novel.tree.get_children(chId):
+            self._mdl.novel.tree.move(scId, prevChId, 'end')
+
+        # Append description to the previous chapter's.
+        self._mdl.novel.chapters[prevChId].desc = (
+            f'{self._mdl.novel.chapters[prevChId].desc}\n'
+            f'{self._mdl.novel.chapters[chId].desc}'
+        )
+
+        # Update the chapter title, if necessary.
+        if not self._mdl.novel.renumberChapters:
+            self._mdl.novel.chapters[prevChId].title = (
+                f'{self._mdl.novel.chapters[prevChId].title} & '
+                f'{self._mdl.novel.chapters[chId].title}'
+            )
+
+        # Delete the selected chapter and move the selection.
+        self._mdl.delete_element(chId)
         self._ctrl.refresh_tree()
-        self._ui.tv.go_to_node(prevChapter)
+        self._ui.tv.go_to_node(prevChId)
 
     def set_character_status(self, isMajor, elemIds=None):
         """Set character status to Major.
