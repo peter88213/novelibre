@@ -1544,6 +1544,13 @@ class MainView(Observer, MsgBoxes, SubController):
 
         self.chapterContextMenu.add_separator()
 
+        label = _('Remove this chapter, keep sections')
+        self.chapterContextMenu.add_command(
+            label=label,
+            command=self._ctrl.remove_chapter_keep_sections,
+        )
+        self.chapterContextMenu.disableOnLock.append(label)
+
         self.add_delete_command(self.chapterContextMenu)
 
         self.chapterContextMenu.add_separator()

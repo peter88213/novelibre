@@ -266,6 +266,7 @@ class Commands:
         """
         if not self.check_lock():
             self.elementManager.delete_elements(elements)
+        return 'break'
 
     def discard_manuscript(self):
         """Rename the current editable manuscript. 
@@ -541,6 +542,11 @@ class Commands:
         """Discard changes and reload the project."""
         if not self.isLocked:
             self.fileManager.reload_project()
+        return 'break'
+
+    def remove_chapter_keep_sections(self, event=None):
+        if not self.isLocked:
+            self.elementManager.remove_chapter_keep_sections()
         return 'break'
 
     def restore_backup(self, event=None):

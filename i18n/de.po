@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 5.53.5\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-03-23 17:00:05\n"
+"PO-Revision-Date: 2026-03-25 14:40:45\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -189,6 +189,9 @@ msgstr "Kann Datei nicht verarbeiten"
 
 msgid "Cannot read file"
 msgstr "Kann Datei nicht lesen"
+
+msgid "Cannot remove the first chapter"
+msgstr "Kann das erste Kapitel nicht entfernen"
 
 msgid "Cannot save the project"
 msgstr "Kann das Projekt nicht abspeichern"
@@ -1177,6 +1180,12 @@ msgstr "Schauplatz aus der Liste entfernen?"
 msgid "Remove plot line from the list?"
 msgstr "Plotlinie aus der Liste entfernen?"
 
+msgid "Remove this chapter, keep sections"
+msgstr "Dieses Kapitel entfernen, Abschnitte behalten"
+
+msgid "Remove this chapter?"
+msgstr "Dieses Kapitel entfernen?"
+
 msgid "Required"
 msgstr "Erforderlich"
 
@@ -1242,6 +1251,9 @@ msgstr "Abschnitte gehören zur Plotlinie"
 
 msgid "Sections from viewpoint"
 msgstr "Abschnitte aus Perspektive"
+
+msgid "Sections will be moved to the previous one"
+msgstr "Abschnitte werden ins vorige verschoben"
 
 msgid "Select characters"
 msgstr "Figuren auswählen"

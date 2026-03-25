@@ -78,6 +78,7 @@ class ElementManager(ServiceBase):
             
         Return the chapter ID, if successful.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
@@ -102,6 +103,7 @@ class ElementManager(ServiceBase):
             
         Return the element's ID, if successful.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
@@ -120,6 +122,7 @@ class ElementManager(ServiceBase):
         
         What kind of element is added, depends on the selection's prefix.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
@@ -157,6 +160,7 @@ class ElementManager(ServiceBase):
         
         What kind of element is added, depends on the selection's prefix.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
@@ -201,6 +205,7 @@ class ElementManager(ServiceBase):
             
         Return the element's ID, if successful.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
@@ -223,6 +228,7 @@ class ElementManager(ServiceBase):
             
         Return the element's ID, if successful.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
@@ -241,6 +247,7 @@ class ElementManager(ServiceBase):
         
         What kind of element is added, depends on the selection's prefix.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
@@ -266,6 +273,7 @@ class ElementManager(ServiceBase):
            
         Return the chapter ID, if successful.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
@@ -288,6 +296,7 @@ class ElementManager(ServiceBase):
             
         Return the plot line ID, if successful.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
@@ -310,6 +319,7 @@ class ElementManager(ServiceBase):
             
         Return the plot point ID, if successful.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
@@ -332,6 +342,7 @@ class ElementManager(ServiceBase):
             
         Return the element's ID, if successful.
         """
+        self._ui.restore_status()
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
@@ -360,6 +371,7 @@ class ElementManager(ServiceBase):
         
         Return the section ID, if successful.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
@@ -384,6 +396,7 @@ class ElementManager(ServiceBase):
             
         Return the section ID, if successful.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
@@ -405,6 +418,7 @@ class ElementManager(ServiceBase):
         
         Return the section ID, if successful.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
@@ -423,6 +437,7 @@ class ElementManager(ServiceBase):
         Optional arguments:
             elements: list of IDs of the elements to delete.        
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
@@ -536,6 +551,7 @@ class ElementManager(ServiceBase):
         Positional arguments: 
             plId: str -- ID of the plotline; if None, the selection is used.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
@@ -555,6 +571,7 @@ class ElementManager(ServiceBase):
         Positional arguments: 
             plId: str -- ID of the plotline; if None, the selection is used.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
@@ -623,6 +640,7 @@ class ElementManager(ServiceBase):
         If not both arguments are given, 
         determine them from the tree selection.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
@@ -668,6 +686,7 @@ class ElementManager(ServiceBase):
             node: str - ID of the node to move.
             targetNode: str -- ID of the new parent/predecessor of the node.
         """
+        self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
 
@@ -683,6 +702,35 @@ class ElementManager(ServiceBase):
         ):
             self._ui.tv.open_children(targetNode)
         self._mdl.move_node(node, targetNode)
+
+    def remove_chapter_keep_sections(self):
+        self._ui.restore_status()
+        if self._mdl.prjFile is None:
+            return
+
+        element = self._ui.selectedNode
+        if not element.startswith(CHAPTER_PREFIX):
+            return
+
+        prevChapter = self._ui.tv.tree.prev(element)
+        if not prevChapter:
+            self._ui.set_status(
+                f'#{_("Cannot remove the first chapter")}.'
+            )
+            return
+
+        if not self._ui.ask_yes_no(
+            message=_('Remove this chapter?'),
+            detail=f"{_('Sections will be moved to the previous one')}.",
+        ):
+            return
+
+        sections = self._mdl.novel.tree.get_children(element)
+        for scId in sections:
+            self._mdl.novel.tree.move(scId, prevChapter, 'end')
+        self._mdl.delete_element(element)
+        self._ctrl.refresh_tree()
+        self._ui.tv.go_to_node(prevChapter)
 
     def set_character_status(self, isMajor, elemIds=None):
         """Set character status to Major.

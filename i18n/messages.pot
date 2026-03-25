@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.53.5\n"
-"POT-Creation-Date: 2026-03-23 17:00:05\n"
+"POT-Creation-Date: 2026-03-25 14:43:09\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -195,6 +195,9 @@ msgid "Cannot process file"
 msgstr ""
 
 msgid "Cannot read file"
+msgstr ""
+
+msgid "Cannot remove the first chapter"
 msgstr ""
 
 msgid "Cannot save the project"
@@ -1184,6 +1187,12 @@ msgstr ""
 msgid "Remove plot line from the list?"
 msgstr ""
 
+msgid "Remove this chapter, keep sections"
+msgstr ""
+
+msgid "Remove this chapter?"
+msgstr ""
+
 msgid "Required"
 msgstr ""
 
@@ -1248,6 +1257,9 @@ msgid "Sections belonging to plot line"
 msgstr ""
 
 msgid "Sections from viewpoint"
+msgstr ""
+
+msgid "Sections will be moved to the previous one"
 msgstr ""
 
 msgid "Select characters"

@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+
+### Version 5.54.0
+
+- New feature: Remove chapter, but keep the sections.
+
+
 ### Version 5.53.5
 
 Fixed the Python version check.
