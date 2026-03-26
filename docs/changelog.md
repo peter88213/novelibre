@@ -11,6 +11,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.54.2
+
+- Fixed a bug in the *View Options* dialog where entering text in the
+  *Coloring mode* combobox may cause an exception.
+
+
 ### Version 5.54.1
 
 - Resetting the status bar color before each element-related operation. 
