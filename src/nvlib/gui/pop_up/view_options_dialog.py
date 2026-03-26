@@ -125,8 +125,9 @@ class ViewOptionsDialog(ModalDialog, SubController):
 
     def _change_colors(self, *args, **kwargs):
         cmStr = self._coloringModeStrVar.get()
-        self._ui.tv.coloringMode = self._ui.tv.COLORING_MODES.index(cmStr)
-        self._ui.tv.refresh()
+        if cmStr in self._ui.tv.COLORING_MODES:
+            self._ui.tv.coloringMode = self._ui.tv.COLORING_MODES.index(cmStr)
+            self._ui.tv.refresh()
 
     def _change_column_order(self, *args, **kwargs):
         srtColumns = []

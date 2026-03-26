@@ -775,8 +775,6 @@ class SectionView(ElementView):
         #--- 'Viewpoint' combobox.
         option = self._viewpointCombobox.current()
         if option >= 0:
-            # Put the selected character at the first position
-            # of related characters.
             vpId = self._vpIdList[option]
             self.element.viewpoint = vpId
 
