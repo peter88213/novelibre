@@ -40,21 +40,22 @@ class ViewOptionsDialog(ModalDialog, SubController):
         frame2 = ttk.Frame(window)
         frame2.pack(fill='both', side='left')
 
-        # Combobox for coloring mode setting.
-        self._coloringModeStrVar = tk.StringVar(
-            value=self._ui.tv.COLORING_MODES[self._ui.tv.coloringMode]
-        )
+        # Menu for coloring mode setting.
+        coloringModeFrame = ttk.Frame(frame1)
+        coloringModeFrame.pack(padx=5, pady=5, anchor='w')
+        self._coloringModeStrVar = tk.StringVar()
         self._coloringModeStrVar.trace('w', self._change_colors)
         ttk.Label(
-            frame1,
-            text=_('Coloring mode'),
-        ).pack(padx=5, pady=5, anchor='w')
-        ttk.Combobox(
-            frame1,
-            textvariable=self._coloringModeStrVar,
-            values=self._ui.tv.COLORING_MODES,
-            width=20,
-        ).pack(padx=5, pady=5, anchor='w')
+            coloringModeFrame,
+            text=f"{_('Coloring mode')}:",
+        ).pack(side='left')
+
+        ttk.OptionMenu(
+            coloringModeFrame,
+            self._coloringModeStrVar,
+            self._ui.tv.COLORING_MODES[self._ui.tv.coloringMode],
+            *self._ui.tv.COLORING_MODES,
+        ).pack()
 
         ttk.Separator(frame1, orient='horizontal').pack(fill='x')
 
