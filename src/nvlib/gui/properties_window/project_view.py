@@ -11,7 +11,6 @@ from nvlib.gui.properties_window.element_view import ElementView
 from nvlib.gui.widgets.folding_frame import FoldingFrame
 from nvlib.gui.widgets.label_disp import LabelDisp
 from nvlib.gui.widgets.label_entry import LabelEntry
-from nvlib.gui.widgets.label_option_menu import LabelOptionMenu
 from nvlib.gui.widgets.my_string_var import MyStringVar
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.novx_globals import CR_FIELD_1_DEFAULT
@@ -582,6 +581,14 @@ class ProjectView(ElementView):
         ).pack(anchor='w')
 
         #--- 'phase' option menu.
+        phaseFrame = ttk.Frame(self._progressFrame)
+        phaseFrame.pack(fill='x', expand=True)
+        ttk.Label(
+            phaseFrame,
+            text=_('Work phase'),
+            anchor='w',
+            width=self._LABEL_WIDTH,
+        ).pack(side='left')
         self._workPhases = [
             _('Undefined'),
             _('Outline'),
@@ -591,17 +598,15 @@ class ProjectView(ElementView):
             _('Done'),
         ]
         self._phaseVar = MyStringVar()
-        self._phaseOptions = LabelOptionMenu(
-            self._progressFrame,
-            _('Work phase'),
+        phaseOptionMenu = ttk.OptionMenu(
+            phaseFrame,
             self._phaseVar,
-            default=self._workPhases[0],
-            values=self._workPhases,
-            lblWidth=self._LABEL_WIDTH,
+            self._workPhases[0],
+            *self._workPhases,
             command=self.apply_changes
         )
-        self._phaseOptions.pack(anchor='w')
-        inputWidgets.append(self._phaseOptions)
+        phaseOptionMenu.pack(anchor='w')
+        inputWidgets.append(phaseOptionMenu)
 
         #--- Cover display
         self._coverFile = None
