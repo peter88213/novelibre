@@ -1,4 +1,4 @@
-"""Provide a tkinter based combobox with a label.
+"""Provide a tkinter based OptionMenu with a label.
 
 Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -9,11 +9,7 @@ from tkinter import ttk
 
 
 class LabelOptionMenu(ttk.Frame):
-    """OptionMenu with a label.
-    
-    Credit goes to user stovfl on stackoverflow
-    https://stackoverflow.com/a/54591761
-    """
+    """OptionMenu with a label."""
 
     def __init__(
             self,
@@ -22,28 +18,33 @@ class LabelOptionMenu(ttk.Frame):
             textvariable,
             default=None,
             values=None,
-            lblWidth=10
+            lblWidth=10,
+            command=None,
         ):
         super().__init__(parent)
         self.pack(fill='x')
-        self._label = ttk.Label(self, text=text, anchor='w', width=lblWidth)
+        self._label = ttk.Label(
+            self,
+            text=text,
+            anchor='w',
+            width=lblWidth,
+        )
         self._label.pack(side='left')
-        ttk.OptionMenu(
+        self.menu = ttk.OptionMenu(
             self,
             textvariable,
             default,
             *values,
-        ).pack(
-            side='left',
-            fill='x',
-            expand=True,
-            anchor='w',
+            command=command,
         )
+        self.menu.pack(anchor='w')
 
     def config(self, **kwargs):
         self.configure(**kwargs)
 
-    def configure(self, text=None):
+    def configure(self, text=None, state=None):
         """Configure internal widgets."""
         if text is not None:
             self._label['text'] = text
+        if state is not None:
+            self.menu['state'] = state

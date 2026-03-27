@@ -9,9 +9,9 @@ from tkinter import ttk
 
 from nvlib.gui.properties_window.element_view import ElementView
 from nvlib.gui.widgets.folding_frame import FoldingFrame
-from nvlib.gui.widgets.label_combo import LabelCombo
 from nvlib.gui.widgets.label_disp import LabelDisp
 from nvlib.gui.widgets.label_entry import LabelEntry
+from nvlib.gui.widgets.label_option_menu import LabelOptionMenu
 from nvlib.gui.widgets.my_string_var import MyStringVar
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.novx_globals import CR_FIELD_1_DEFAULT
@@ -581,18 +581,27 @@ class ProjectView(ElementView):
             lblWidth=self._LABEL_WIDTH,
         ).pack(anchor='w')
 
-        #--- 'phase' combobox.
+        #--- 'phase' option menu.
+        self._workPhases = [
+            _('Undefined'),
+            _('Outline'),
+            _('Draft'),
+            _('1st Edit'),
+            _('2nd Edit'),
+            _('Done'),
+        ]
         self._phaseVar = MyStringVar()
-        self._phaseCombobox = LabelCombo(
+        self._phaseOptions = LabelOptionMenu(
             self._progressFrame,
+            _('Work phase'),
+            self._phaseVar,
+            default=self._workPhases[0],
+            values=self._workPhases,
             lblWidth=self._LABEL_WIDTH,
-            text=_('Work phase'),
-            textvariable=self._phaseVar,
-            values=[],
-            )
-        self._phaseCombobox.pack(anchor='w')
-        inputWidgets.append(self._phaseCombobox)
-        self._phaseCombobox.bind('<Return>', self.apply_changes)
+            command=self.apply_changes
+        )
+        self._phaseOptions.pack(anchor='w')
+        inputWidgets.append(self._phaseOptions)
 
         #--- Cover display
         self._coverFile = None
@@ -703,11 +712,7 @@ class ProjectView(ElementView):
                 self._wordCountStartVar.set(self.element.wordCountStart)
 
         # Get work phase.
-        if not self._phaseCombobox.current():
-            entry = None
-        else:
-            entry = self._phaseCombobox.current()
-        self.element.workPhase = entry
+        self.element.workPhase = self._workPhases.index(self._phaseVar.get())
 
     def configure_display(self):
         """Expand or collapse the property frames."""
@@ -955,20 +960,11 @@ class ProjectView(ElementView):
         self._totalDoneVar.set(statusCounts[5])
 
         # "Work phase" combobox.
-        phases = [
-            _('Undefined'),
-            _('Outline'),
-            _('Draft'),
-            _('1st Edit'),
-            _('2nd Edit'),
-            _('Done'),
-        ]
-        self._phaseCombobox.configure(values=phases)
         try:
             workPhase = int(self.element.workPhase)
         except:
             workPhase = 0
-        self._phaseVar.set(value=phases[workPhase])
+        self._phaseVar.set(self._workPhases[workPhase])
 
     def set_initial_wc(self):
         """Set actual wordcount as start.

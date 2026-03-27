@@ -44,7 +44,6 @@ class ViewOptionsDialog(ModalDialog, SubController):
         coloringModeFrame = ttk.Frame(frame1)
         coloringModeFrame.pack(padx=5, pady=5, anchor='w')
         self._coloringModeStrVar = tk.StringVar()
-        self._coloringModeStrVar.trace('w', self._change_colors)
         ttk.Label(
             coloringModeFrame,
             text=f"{_('Coloring mode')}:",
@@ -55,6 +54,7 @@ class ViewOptionsDialog(ModalDialog, SubController):
             self._coloringModeStrVar,
             self._ui.tv.COLORING_MODES[self._ui.tv.coloringMode],
             *self._ui.tv.COLORING_MODES,
+            command=self._change_colors,
         ).pack()
 
         ttk.Separator(frame1, orient='horizontal').pack(fill='x')
@@ -125,10 +125,10 @@ class ViewOptionsDialog(ModalDialog, SubController):
         self.bind(KEYS.OPEN_HELP[0], self._open_help)
 
     def _change_colors(self, *args, **kwargs):
-        cmStr = self._coloringModeStrVar.get()
-        if cmStr in self._ui.tv.COLORING_MODES:
-            self._ui.tv.coloringMode = self._ui.tv.COLORING_MODES.index(cmStr)
-            self._ui.tv.refresh()
+        self._ui.tv.coloringMode = self._ui.tv.COLORING_MODES.index(
+            self._coloringModeStrVar.get()
+        )
+        self._ui.tv.refresh()
 
     def _change_column_order(self, *args, **kwargs):
         srtColumns = []
