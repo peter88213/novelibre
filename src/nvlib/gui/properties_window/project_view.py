@@ -717,7 +717,11 @@ class ProjectView(ElementView):
                 self._wordCountStartVar.set(self.element.wordCountStart)
 
         # Get work phase.
-        self.element.workPhase = self._workPhases.index(self._phaseVar.get())
+        selectionIndex = self._workPhases.index(self._phaseVar.get())
+        if selectionIndex:
+            self.element.workPhase = selectionIndex
+        else:
+            self.element.workPhase = None
 
     def configure_display(self):
         """Expand or collapse the property frames."""
@@ -965,11 +969,11 @@ class ProjectView(ElementView):
         self._totalDoneVar.set(statusCounts[5])
 
         # "Work phase" combobox.
-        try:
-            workPhase = int(self.element.workPhase)
-        except:
-            workPhase = 0
-        self._phaseVar.set(self._workPhases[workPhase])
+        if self.element.workPhase is None:
+            selectionIndex = 0
+        else:
+            selectionIndex = int(self.element.workPhase)
+        self._phaseVar.set(self._workPhases[selectionIndex])
 
     def set_initial_wc(self):
         """Set actual wordcount as start.

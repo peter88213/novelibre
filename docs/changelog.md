@@ -11,7 +11,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
-### Version 5.54.3
+### Version 5.54.4
 
 - Refactored the *View options*, replacing Combobox with OptionMenu.
 - Refactored the *Work phase" setting, replacing Combobox with OptionMenu.
