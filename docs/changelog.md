@@ -11,6 +11,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.54.3
+
+- Refactored the *View options*, replacing Combobox with OptionMenu.
+- Refactored the *Work phase" setting, replacing Combobox with OptionMenu.
+- Refactored the *Work phase" setting, replacing LabelCombo with Combobox.
+
+
 ### Version 5.54.2
 
 - Fixed a bug in the *View Options* dialog where entering text in the
