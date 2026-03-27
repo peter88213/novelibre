@@ -9,7 +9,6 @@ from tkinter import ttk
 from nvlib.gui.properties_window.element_view import ElementView
 from nvlib.gui.widgets.collection_box import CollectionBox
 from nvlib.gui.widgets.folding_frame import FoldingFrame
-from nvlib.gui.widgets.label_combo import LabelCombo
 from nvlib.gui.widgets.label_entry import LabelEntry
 from nvlib.gui.widgets.my_string_var import MyStringVar
 from nvlib.gui.widgets.text_box import TextBox
@@ -365,17 +364,23 @@ class SectionView(ElementView):
         inputWidgets.append(self._generatDurationButton)
 
         #--- 'Viewpoint' combobox.
-        self._viewpointVar = MyStringVar()
-        self._viewpointCombobox = LabelCombo(
-            self._sectionExtraFrame,
+        viewpointFrame = ttk.Frame(self._sectionExtraFrame)
+        viewpointFrame.pack(fill='x', expand=True, pady=2)
+        ttk.Label(
+            viewpointFrame,
             text=_('Viewpoint'),
+            anchor='w',
+            width=self._LABEL_WIDTH,
+        ).pack(side='left')
+        self._viewpointVar = MyStringVar()
+        self._viewpointCombobox = ttk.Combobox(
+            viewpointFrame,
             textvariable=self._viewpointVar,
             values=[],
-            lblWidth=self._LABEL_WIDTH,
         )
-        self._viewpointCombobox.pack(anchor='w', pady=2)
+        self._viewpointCombobox.pack(side='left', fill='x', expand=True)
         inputWidgets.append(self._viewpointCombobox)
-        self._viewpointCombobox.combo.bind(
+        self._viewpointCombobox.bind(
             '<<ComboboxSelected>>', self.apply_changes)
         self._vpIdList = []
 
