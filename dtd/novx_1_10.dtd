@@ -70,11 +70,12 @@
             >
 
 	<!ELEMENT CHARACTERS (CHARACTER*)>
-		<!ELEMENT CHARACTER (Title?, Desc?, Link*, Field*, Notes?, Tags?, Aka?, Color?, 
+		<!ELEMENT CHARACTER (Title?, Desc?, Link*, Field*, Notes?, Tags?, Aka?, 
 		   FullName?, Bio?, Goals?, BirthDate?, DeathDate?)>
 			<!ATTLIST CHARACTER 
 				id ID #REQUIRED
-				major (0 | 1) "0" 
+	         color CDATA #IMPLIED 
+			   major (0 | 1) "0" 
 				>
 	        <!ELEMENT FullName (#PCDATA)>
 	        <!ELEMENT Aka (#PCDATA)>
@@ -86,15 +87,17 @@
 	        <!ELEMENT DeathDate (#PCDATA)>
 	
     <!ELEMENT LOCATIONS (LOCATION*)>
-		<!ELEMENT LOCATION (Title?, Desc?, Link*, Field*, Notes?, Color?, Tags?, Aka?)>
+		<!ELEMENT LOCATION (Title?, Desc?, Link*, Field*, Notes?, Tags?, Aka?)>
 			<!ATTLIST LOCATION 
 				id ID #REQUIRED
+				color CDATA #IMPLIED 
 				>
 	
     <!ELEMENT ITEMS (ITEM*)>
-		<!ELEMENT ITEM (Title?, Desc?, Link*, Field*, Notes?, Color?, Tags?, Aka?)>
+		<!ELEMENT ITEM (Title?, Desc?, Link*, Field*, Notes?, Tags?, Aka?)>
 			<!ATTLIST ITEM 
 				id ID #REQUIRED
+            color CDATA #IMPLIED 
 				>
 
 	<!ELEMENT CHAPTERS (CHAPTER*)>
@@ -172,13 +175,13 @@
                         >
 	
     <!ELEMENT ARCS (ARC*)>
-		<!ELEMENT ARC (Title?, Desc?, Link*, Field*, Notes?, Color?, 
+		<!ELEMENT ARC (Title?, Desc?, Link*, Field*, Notes?, 
 		   ShortName?, Sections?, POINT*)>            
 			<!ATTLIST ARC 
 				id ID #REQUIRED
+            color CDATA #IMPLIED 
 				>
          <!ELEMENT ShortName (#PCDATA)>
-         <!ELEMENT Color (#PCDATA)>
 			<!ELEMENT Sections EMPTY>
 				<!ATTLIST Sections 
 					ids IDREFS #REQUIRED
