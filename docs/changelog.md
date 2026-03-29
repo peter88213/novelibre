@@ -10,6 +10,16 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.55.0
+
+- Project tree displaying 2nd level stages and main characters in italics.
+- Removed custom colorizing for plot lines and characters.
+
+
+### Version 5.54.5
+
+- Project tree displaying 2nd level stages and main characters in italics.
+
 
 ### Version 5.54.4
 

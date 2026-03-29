@@ -8,7 +8,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 DEFAULT_COLORS = dict(
     color_1st_edit='DarkGoldenrod4',
     color_2nd_edit='DarkGoldenrod3',
-    color_arc='maroon',
     color_before_schedule='lime green',
     color_behind_schedule='magenta',
     color_chapter='green',
@@ -19,8 +18,6 @@ DEFAULT_COLORS = dict(
     color_inactive_bg='light gray',
     color_locked_bg='dim gray',
     color_locked_fg='light gray',
-    color_major='navy',
-    color_minor='cornflower blue',
     color_modified_bg='goldenrod1',
     color_modified_fg='maroon',
     color_notes_bg='lemon chiffon',

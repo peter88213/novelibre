@@ -128,11 +128,9 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         self.tree.tag_configure(
             'arc',
             font=('', fontSize, 'bold'),
-            foreground=prefs['color_arc'],
         )
         self.tree.tag_configure(
             'plot_point',
-            foreground=prefs['color_arc'],
         )
         self.tree.tag_configure(
             'unused',
@@ -149,6 +147,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         )
         self.tree.tag_configure(
             'stage2',
+            font=('', fontSize, 'italic'),
             foreground=prefs['color_stage'],
         )
         self.tree.tag_configure(
@@ -157,11 +156,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         )
         self.tree.tag_configure(
             'major',
-            foreground=prefs['color_major'],
-        )
-        self.tree.tag_configure(
-            'minor',
-            foreground=prefs['color_minor'],
+            font=('', fontSize, 'italic'),
         )
         self.tree.tag_configure(
             'status1',
@@ -1019,8 +1014,6 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         # Set color according to the character's status.
         if self._mdl.novel.characters[crId].isMajor:
             nodeTags.append('major')
-        else:
-            nodeTags.append('minor')
 
         # Highlight element, if applicable.
         if self._element_is_highlighted(self._mdl.novel.characters[crId]):
