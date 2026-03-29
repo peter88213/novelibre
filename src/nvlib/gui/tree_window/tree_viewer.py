@@ -126,11 +126,8 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             foreground=prefs['color_chapter'],
         )
         self.tree.tag_configure(
-            'arc',
+            'plot_line',
             font=('', fontSize, 'bold'),
-        )
-        self.tree.tag_configure(
-            'plot_point',
         )
         self.tree.tag_configure(
             'unused',
@@ -1020,6 +1017,14 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             nodeTags.append('highlighted')
             self.highlightedElements.append(crId)
 
+        color = self._mdl.novel.characters[crId].color
+        if color:
+            self.tree.tag_configure(
+                f'{crId}_color',
+                foreground=color,
+            )
+            nodeTags.append(f'{crId}_color')
+
         return to_string(
             self._mdl.novel.characters[crId].title
             ), nodeValues, tuple(nodeTags)
@@ -1059,6 +1064,14 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             nodeTags.append('highlighted')
             self.highlightedElements.append(itId)
 
+        color = self._mdl.novel.items[itId].color
+        if color:
+            self.tree.tag_configure(
+                f'{itId}_color',
+                foreground=color,
+            )
+            nodeTags.append(f'{itId}_color')
+
         return to_string(
             self._mdl.novel.items[itId].title
             ), nodeValues, tuple(nodeTags)
@@ -1084,6 +1097,14 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         if self._element_is_highlighted(self._mdl.novel.locations[lcId]):
             nodeTags.append('highlighted')
             self.highlightedElements.append(lcId)
+
+        color = self._mdl.novel.locations[lcId].color
+        if color:
+            self.tree.tag_configure(
+                f'{lcId}_color',
+                foreground=color,
+            )
+            nodeTags.append(f'{lcId}_color')
 
         return to_string(
             self._mdl.novel.locations[lcId].title
@@ -1118,7 +1139,18 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             nodeValues[self._colPos['nt']] = (
                 self._get_notes_indicator(self._mdl.novel.plotLines[plId])
             )
-        return title, nodeValues, ('arc')
+
+        nodeTags = ['plot_line']
+
+        color = self._mdl.novel.plotLines[plId].color
+        if color:
+            self.tree.tag_configure(
+                f'{plId}_color',
+                foreground=color,
+            )
+            nodeTags.append(f'{plId}_color')
+
+        return title, nodeValues, tuple(nodeTags)
 
     def _get_plot_point_row_data(self, ppId):
         # Return title, values, and tags for a plot point row.
@@ -1134,9 +1166,10 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             sectionTitle = self._mdl.novel.sections[scId].title
             if sectionTitle is not None:
                 nodeValues[self._colPos['tp']] = sectionTitle
+
         return to_string(
             self._mdl.novel.plotPoints[ppId].title
-            ), nodeValues, ('plot_point')
+            ), nodeValues, ()
 
     def _get_prj_note_row_data(self, pnId):
         # Return title, values, and tags for a project note row.
