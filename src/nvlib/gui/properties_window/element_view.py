@@ -20,7 +20,8 @@ from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
-import tkinter as tk
+from nvlib.gui.platform.platform_settings import MOUSE
+from nvlib.gui.tooltip import Hovertip
 
 
 class ElementView(BlankView):
@@ -186,12 +187,11 @@ class ElementView(BlankView):
             self.notesWindow.clear()
             self.notesWindow.set_text(self.element.notes)
 
-        if hasattr(self, '_colorField'):
-            if self.element.color is None:
-                color = self._defaultBgColor
+        if hasattr(self.element, 'color'):
+            if self.element.color is not None:
+                self._indexCard.set_color(self.element.color)
             else:
-                color = self.element.color
-            self._colorField.configure(bg=color,)
+                self._indexCard.reset_color()
 
     def unlock(self):
         """Enable element change."""
@@ -206,6 +206,20 @@ class ElementView(BlankView):
         if hasattr(self.element, 'links'):
             self._configure_link_buttons()
 
+    def _activate_color_field(self):
+        self._indexCard.colorField.bind(
+            MOUSE.CHOOSE_COLOR,
+            self._choose_color,
+        )
+        self._indexCard.colorField.bind(
+            MOUSE.RESET_COLOR,
+            self._reset_color,
+        )
+        Hovertip(
+            self._indexCard.colorField,
+            _('Color'),
+        )
+
     def _add_separator(self):
         ttk.Separator(
             self._propertiesFrame,
@@ -216,8 +230,9 @@ class ElementView(BlankView):
         color = colorchooser.askcolor(
             title=f"{_('Choose color')}: {self.element.title}"
         )
-        if color is not None:
+        if color[1] is not None:
             self.element.color = color[1]
+        return 'break'
 
     def _configure_link_buttons(self, event=None):
         if self.element.links and self.linkCollection.selection is not None:
@@ -254,38 +269,6 @@ class ElementView(BlankView):
             text=_('Next'),
             command=self._ui.tv.load_next,
         ).pack(side='left', fill='x', expand=True, padx=1, pady=2)
-
-    def _create_color_window(self):
-        colorWindow = ttk.Frame(self._propertiesFrame)
-        colorWindow.pack(fill='x')
-        self._colorField = tk.Label(
-            colorWindow,
-            width=2,
-        )
-        self._colorField.pack(
-            side='left',
-            padx=2,
-        )
-        ttk.Button(
-            colorWindow,
-            text=_('Choose color'),
-            command=self._choose_color,
-        ).pack(
-            side='left',
-            fill='x',
-            expand=True,
-            padx=2,
-        )
-        ttk.Button(
-            colorWindow,
-            text=_('Reset color'),
-            command=self._reset_color,
-        ).pack(
-            side='left',
-            fill='x',
-            expand=True,
-            padx=2,
-        )
 
     def _create_element_info_window(self):
         # Create a window for element specific information.
@@ -409,8 +392,9 @@ class ElementView(BlankView):
             detail=f"{_('Please enter a reference date')}."
             )
 
-    def _reset_color(self):
+    def _reset_color(self, event=None):
         self.element.color = None
+        return 'break'
 
     def _start_picking_mode(self, event=None, command=None):
         # Start the picking mode for element selection.
