@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.54.5\n"
+"Project-Id-Version: 5.55.0\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-03-29 19:04:42\n"
+"PO-Revision-Date: 2026-03-29 23:07:54\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -318,6 +318,9 @@ msgstr "Alle einklappen"
 
 msgid "Collapse selected"
 msgstr "Ausgewählte einklappen"
+
+msgid "Color"
+msgstr "Farbe"
 
 msgid "Coloring mode"
 msgstr "Farbgebungsmodus"
@@ -1200,9 +1203,6 @@ msgstr "Erforderlich"
 
 msgid "Reset Highlighting"
 msgstr "Hervorhebung zurücksetzen"
-
-msgid "Reset color"
-msgstr "Farbe zurücksetzen"
 
 msgid "Restart chapter numbering at part beginning"
 msgstr "Kapitelnummerierung in jedem Teil neu beginnen"
