@@ -51,6 +51,7 @@ class ElementView(BlankView):
         - Place element-specific widgets in the element's info window.
         """
         super().__init__(parent, model, view, controller, **kw)
+        self._defaultBgColor = self._ui.root.cget('bg')
         self._pickingMode = False
         self._pickCommand = None
         self.isLocked = False
@@ -187,7 +188,7 @@ class ElementView(BlankView):
 
         if hasattr(self, '_colorField'):
             if self.element.color is None:
-                color = self._ui.root.cget('bg')
+                color = self._defaultBgColor
             else:
                 color = self.element.color
             self._colorField.configure(bg=color,)
