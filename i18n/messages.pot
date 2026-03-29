@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.54.4\n"
-"POT-Creation-Date: 2026-03-27 16:58:47\n"
+"Project-Id-Version: 5.54.5\n"
+"POT-Creation-Date: 2026-03-29 19:06:43\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -282,6 +282,9 @@ msgid "Characters"
 msgstr ""
 
 msgid "Choice"
+msgstr ""
+
+msgid "Choose color"
 msgstr ""
 
 msgid "Chp."
@@ -1203,6 +1206,9 @@ msgid "Required"
 msgstr ""
 
 msgid "Reset Highlighting"
+msgstr ""
+
+msgid "Reset color"
 msgstr ""
 
 msgid "Restart chapter numbering at part beginning"

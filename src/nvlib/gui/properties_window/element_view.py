@@ -5,6 +5,7 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
+from tkinter import colorchooser
 from tkinter import filedialog
 from tkinter import ttk
 
@@ -19,6 +20,7 @@ from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
+import tkinter as tk
 
 
 class ElementView(BlankView):
@@ -183,6 +185,13 @@ class ElementView(BlankView):
             self.notesWindow.clear()
             self.notesWindow.set_text(self.element.notes)
 
+        if hasattr(self, '_colorField'):
+            if self.element.color is None:
+                color = 'grey'
+            else:
+                color = self.element.color
+            self._colorField.configure(bg=color,)
+
     def unlock(self):
         """Enable element change."""
         self._indexCard.unlock()
@@ -201,6 +210,13 @@ class ElementView(BlankView):
             self._propertiesFrame,
             orient='horizontal'
         ).pack(fill='x')
+
+    def _choose_color(self, event=None):
+        color = colorchooser.askcolor(
+            title=f"{_('Choose color')}: {self.element.title}"
+        )
+        if color is not None:
+            self.element.color = color[1]
 
     def _configure_link_buttons(self, event=None):
         if self.element.links and self.linkCollection.selection is not None:
@@ -237,6 +253,38 @@ class ElementView(BlankView):
             text=_('Next'),
             command=self._ui.tv.load_next,
         ).pack(side='left', fill='x', expand=True, padx=1, pady=2)
+
+    def _create_color_window(self):
+        colorWindow = ttk.Frame(self._propertiesFrame)
+        colorWindow.pack(fill='x')
+        self._colorField = tk.Label(
+            colorWindow,
+            width=2,
+        )
+        self._colorField.pack(
+            side='left',
+            padx=2,
+        )
+        ttk.Button(
+            colorWindow,
+            text=_('Choose color'),
+            command=self._choose_color,
+        ).pack(
+            side='left',
+            fill='x',
+            expand=True,
+            padx=2,
+        )
+        ttk.Button(
+            colorWindow,
+            text=_('Reset color'),
+            command=self._reset_color,
+        ).pack(
+            side='left',
+            fill='x',
+            expand=True,
+            padx=2,
+        )
 
     def _create_element_info_window(self):
         # Create a window for element specific information.
@@ -359,6 +407,9 @@ class ElementView(BlankView):
             message=_('Cannot convert date/days'),
             detail=f"{_('Please enter a reference date')}."
             )
+
+    def _reset_color(self):
+        self.element.color = None
 
     def _start_picking_mode(self, event=None, command=None):
         # Start the picking mode for element selection.
