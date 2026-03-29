@@ -187,7 +187,7 @@ class ElementView(BlankView):
 
         if hasattr(self, '_colorField'):
             if self.element.color is None:
-                color = 'grey'
+                color = self._ui.root.cget('bg')
             else:
                 color = self.element.color
             self._colorField.configure(bg=color,)
