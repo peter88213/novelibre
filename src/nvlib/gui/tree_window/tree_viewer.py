@@ -39,7 +39,12 @@ from nvlib.gui.widgets.pick_list import PickList
 
 class TreeViewer(ttk.Frame, Observer, SubController):
     """Widget for novelibre tree view."""
-    COLORING_MODES = [_('None'), _('Status'), _('Work phase')]
+    COLORING_MODES = [
+        _('None'),
+        _('Status'),
+        _('Work phase'),
+        _('Viewpoint'),
+    ]
     # List[str] -- Section row coloring modes.
 
     _COLUMNS = dict(
@@ -973,6 +978,17 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         return to_string(
             self._mdl.novel.chapters[chId].title), nodeValues, tuple(nodeTags)
 
+    def _get_character_color_tag(self, crId):
+        color = self._mdl.novel.characters[crId].color
+        if not color:
+            return None
+
+        self.tree.tag_configure(
+            f'{crId}_color',
+            foreground=color,
+        )
+        return (f'{crId}_color')
+
     def _get_character_row_data(self, crId):
         # Return title, values, and tags for a character row.
         nodeValues = [''] * len(self.columns)
@@ -1017,17 +1033,14 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             nodeTags.append('highlighted')
             self.highlightedElements.append(crId)
 
-        color = self._mdl.novel.characters[crId].color
-        if color:
-            self.tree.tag_configure(
-                f'{crId}_color',
-                foreground=color,
-            )
-            nodeTags.append(f'{crId}_color')
+        colorTag = self._get_character_color_tag(crId)
+        if colorTag is not None:
+            nodeTags.append(colorTag)
 
-        return to_string(
-            self._mdl.novel.characters[crId].title
-            ), nodeValues, tuple(nodeTags)
+        return (
+            to_string(self._mdl.novel.characters[crId].title),
+            nodeValues, tuple(nodeTags)
+        )
 
     def _get_date_or_day(self, scId):
         # Return section date or day as a string for display.
@@ -1220,7 +1233,12 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                         nodeTags.append('Behind_schedule')
                     else:
                         nodeTags.append('Before_schedule')
-
+                elif self.coloringMode == 3:
+                    crId = self._mdl.novel.sections[scId].viewpoint
+                    if crId:
+                        colorTag = self._get_character_color_tag(crId)
+                        if colorTag is not None:
+                            nodeTags.append(colorTag)
                 try:
                     position = round(100 * position / self._wordsTotal, 1)
                     positionStr = f'{position}%'
