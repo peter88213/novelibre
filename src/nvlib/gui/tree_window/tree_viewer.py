@@ -144,7 +144,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         )
         self.tree.tag_configure(
             'stage1',
-            font=('', fontSize, 'bold'),
+            font=('', fontSize, 'bold underline'),
             foreground=prefs['color_stage'],
         )
         self.tree.tag_configure(

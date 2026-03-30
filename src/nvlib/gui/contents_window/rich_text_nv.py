@@ -49,6 +49,7 @@ class RichTextNv(RichTextTk):
         boldFont = tkFont.Font(**defaultFont.configure())
         italicFont = tkFont.Font(**defaultFont.configure())
         h1Font = tkFont.Font(**defaultFont.configure())
+        h1FontUnderline = tkFont.Font(**defaultFont.configure())
         h2Font = tkFont.Font(**defaultFont.configure())
         h3FontItalic = tkFont.Font(**defaultFont.configure())
         h3FontUnderline = tkFont.Font(**defaultFont.configure())
@@ -58,6 +59,11 @@ class RichTextNv(RichTextTk):
         h1Font.configure(
             size=int(defaultSize * self.H1_SIZE),
             weight='bold',
+        )
+        h1FontUnderline.configure(
+            size=int(defaultSize * self.H1_SIZE),
+            weight='bold',
+            underline=True
         )
         h2Font.configure(
             size=int(defaultSize * self.H2_SIZE),
@@ -167,7 +173,7 @@ class RichTextNv(RichTextTk):
         )
         self.tag_configure(
             self.STAGE1_TAG,
-            font=h1Font,
+            font=h1FontUnderline,
             spacing3=defaultSize,
             foreground=kwargs['color_stage'],
             justify='center',
