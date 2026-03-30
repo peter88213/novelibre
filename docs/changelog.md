@@ -12,8 +12,29 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### Version 5.55.0
 
-- Project tree displaying 2nd level stages and main characters in italics.
-- Removed custom colorizing for plot lines and characters.
+> [!IMPORTANT]
+> The file format has been upgraded from version 1.9 to version 1.10.
+> *.novx* files created with *novelibre* version 5.55.0+ 
+> cannot be read with older *novelibre* versions. 
+
+- Colors can be assigned to plot lines, characters, locations, and items
+  via a color chooser. 
+  The color setting is done via clicking on the upper right corner of the 
+  "index card". `Alt`-click resets the color.   
+- Project tree displaying stages underlined.
+- Project tree displaying main characters in bold.
+- New project tree coloring mode: "Viewpoint", displaying sections in the color
+  of the viewpoint character assigned.  
+
+#### API changes
+
+- New instance variable: `BasicElementNotes.color`.
+
+#### File format changes
+
+DTD 1.10: Added the optional `color` attribute to the `ARC`, `CHARACTER`, 
+`ITEM`, `LOCATION`, `POINT`, `CHAPTER` and `SECTION` elements.
+
 
 
 ### Version 5.54.5
