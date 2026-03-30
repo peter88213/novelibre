@@ -50,7 +50,8 @@ class RichTextNv(RichTextTk):
         italicFont = tkFont.Font(**defaultFont.configure())
         h1Font = tkFont.Font(**defaultFont.configure())
         h2Font = tkFont.Font(**defaultFont.configure())
-        h3Font = tkFont.Font(**defaultFont.configure())
+        h3FontItalic = tkFont.Font(**defaultFont.configure())
+        h3FontUnderline = tkFont.Font(**defaultFont.configure())
 
         boldFont.configure(weight='bold')
         italicFont.configure(slant='italic')
@@ -62,9 +63,13 @@ class RichTextNv(RichTextTk):
             size=int(defaultSize * self.H2_SIZE),
             weight='bold',
         )
-        h3Font.configure(
+        h3FontItalic.configure(
             size=int(defaultSize * self.H3_SIZE),
             slant='italic',
+        )
+        h3FontUnderline.configure(
+            size=int(defaultSize * self.H3_SIZE),
+            underline=True
         )
         self.tag_configure(
             self.XML_TAG,
@@ -130,7 +135,7 @@ class RichTextNv(RichTextTk):
         )
         self.tag_configure(
             self.H3_UNUSED_TAG,
-            font=h3Font,
+            font=h3FontItalic,
             spacing3=defaultSize,
             foreground=kwargs['color_unused'],
             justify='center',
@@ -138,7 +143,7 @@ class RichTextNv(RichTextTk):
         )
         self.tag_configure(
             self.H3_EPIGRAPH_TAG,
-            font=h3Font,
+            font=h3FontItalic,
             spacing3=defaultSize,
             foreground=kwargs['color_chapter'],
             justify='center',
@@ -147,10 +152,10 @@ class RichTextNv(RichTextTk):
         self.tag_configure(
             self.EPIGRAPH_SRC_TAG,
             font=italicFont,
-            spacing3=0,
+            spacing3=defaultSize,
             foreground=kwargs['color_chapter'],
-            justify='right',
-            spacing1=0,
+            justify='center',
+            spacing1=defaultSize,
         )
         self.tag_configure(
             self.UNUSED_TAG,
@@ -170,7 +175,7 @@ class RichTextNv(RichTextTk):
         )
         self.tag_configure(
             self.STAGE2_TAG,
-            font=h3Font,
+            font=h3FontUnderline,
             spacing3=defaultSize,
             foreground=kwargs['color_stage'],
             justify='center',

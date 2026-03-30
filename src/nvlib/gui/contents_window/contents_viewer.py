@@ -154,6 +154,10 @@ class ContentsViewer(RichTextNv, Observer, SubController):
                 taggedText.append(scId)
                 # inserting a section mark
                 textTag = ''
+                if section.title:
+                    title = section.title
+                else:
+                    title = _('Unnamed')
                 if section.scType == 3:
                     headingTag = self.STAGE2_TAG
                 elif section.scType == 2:
@@ -169,10 +173,10 @@ class ContentsViewer(RichTextNv, Observer, SubController):
                     textTag = self.UNUSED_TAG
                 if isEpigraph and section.scType == 0:
                     heading = ''
-                elif section.title:
-                    heading = f'[{section.title}]\n'
+                if section.scType > 1:
+                    heading = f'{title}\n'
                 else:
-                    heading = f"[{_('Unnamed')}]\n"
+                    heading = f"[{title}]\n"
                 taggedText.append((heading, headingTag))
 
                 if section.sectionContent:
