@@ -189,6 +189,7 @@
             <!ELEMENT POINT (Title?, Desc?, Link*, Field*, Notes?, Section?)>
                 <!ATTLIST POINT 
                     id ID #REQUIRED
+                    color CDATA #IMPLIED 
                     >
                 <!ELEMENT Section EMPTY>
                     <!ATTLIST Section 
