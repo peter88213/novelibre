@@ -52,7 +52,6 @@ class ElementView(BlankView):
         - Place element-specific widgets in the element's info window.
         """
         super().__init__(parent, model, view, controller, **kw)
-        self._defaultBgColor = self._ui.root.cget('bg')
         self._pickingMode = False
         self._pickCommand = None
         self.isLocked = False
@@ -227,11 +226,12 @@ class ElementView(BlankView):
         ).pack(fill='x')
 
     def _choose_color(self, event=None):
-        color = colorchooser.askcolor(
-            title=f"{_('Choose color')}: {self.element.title}"
-        )
-        if color[1] is not None:
-            self.element.color = color[1]
+        if not self.isLocked:
+            color = colorchooser.askcolor(
+                title=f"{_('Choose color')}: {self.element.title}"
+            )
+            if color[1] is not None:
+                self.element.color = color[1]
         return 'break'
 
     def _configure_link_buttons(self, event=None):
@@ -393,7 +393,8 @@ class ElementView(BlankView):
             )
 
     def _reset_color(self, event=None):
-        self.element.color = None
+        if not self.isLocked:
+            self.element.color = None
         return 'break'
 
     def _start_picking_mode(self, event=None, command=None):
