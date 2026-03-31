@@ -12,11 +12,6 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### Version 5.55.1
 
-- Underlining 1st level stage.
-
-
-### Version 5.55.0
-
 > [!IMPORTANT]
 > The file format has been upgraded from version 1.9 to version 1.10.
 > *.novx* files created with *novelibre* version 5.55.0+ 
