@@ -16,6 +16,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 > The file format has been upgraded from version 1.9 to version 1.10.
 > *.novx* files created with *novelibre* version 5.55.0+ 
 > cannot be read with older *novelibre* versions. 
+> 
+> The following plugins need to be updated:
+> - nv_aeon2
+> - nv_dark
+> - nv_writer
+> - nv_timeline
 
 - Colors can be assigned to plot lines, characters, locations, and items
   via a color chooser. 
