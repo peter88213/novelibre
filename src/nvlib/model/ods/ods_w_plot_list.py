@@ -4,6 +4,8 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/yw-table
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from string import Template
+
 from nvlib.model.ods.ods_writer import OdsWriter
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import MANUSCRIPT_SUFFIX
@@ -12,6 +14,7 @@ from nvlib.novx_globals import PLOTLIST_SUFFIX
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import list_to_string
 from nvlib.nv_locale import _
+from nvlib.model.hex_color import HexColor
 
 
 class OdsWPlotList(OdsWriter):
@@ -19,51 +22,15 @@ class OdsWPlotList(OdsWriter):
     DESCRIPTION = _('ODS Plot table')
     SUFFIX = PLOTLIST_SUFFIX
 
-    _CE_OFFSET = 6
-    _ADDITIONAL_STYLES = (
-        '\n\n  <style:style style:name="ce5" '
-        'style:family="table-cell" style:parent-style-name="Default">\n'
-        '   <style:table-cell-properties '
-        'style:text-align-source="value-type" '
-        'style:repeat-content="false"/>\n'
-        '   <style:paragraph-properties fo:margin-left="0cm"/>\n'
-        '   <style:text-properties fo:color="#ff0000" fo:font-weight="bold" '
-        'style:font-weight-asian="bold" style:font-weight-complex="bold"/>\n'
-        '  </style:style>\n'
-        '  <style:style style:name="ce6" style:family="table-cell" '
+    _ADDITIONAL_STYLE = (
+        '  <style:style style:name="$Name" style:family="table-cell" '
         'style:parent-style-name="Default">\n'
-        '   <style:table-cell-properties fo:background-color="#b0c4de"/>\n'
-        '  </style:style>\n'
-        '  <style:style style:name="ce7" style:family="table-cell" '
-        'style:parent-style-name="Default">\n'
-        '   <style:table-cell-properties fo:background-color="#ffd700"/>\n'
-        '  </style:style>\n'
-        '  <style:style style:name="ce8" style:family="table-cell" '
-        'style:parent-style-name="Default">\n'
-        '   <style:table-cell-properties fo:background-color="#ff7f50"/>\n'
-        '  </style:style>\n'
-        '  <style:style style:name="ce9" style:family="table-cell" '
-        'style:parent-style-name="Default">\n'
-        '   <style:table-cell-properties fo:background-color="#9acd32"/>\n'
-        '  </style:style>\n'
-        '  <style:style style:name="ce10" style:family="table-cell" '
-        'style:parent-style-name="Default">\n'
-        '   <style:table-cell-properties fo:background-color="#48d1cc"/>\n'
-        '  </style:style>\n'
-        '  <style:style style:name="ce11" style:family="table-cell" '
-        'style:parent-style-name="Default">\n'
-        '   <style:table-cell-properties fo:background-color="#dda0dd"/>\n'
-        '  </style:style>\n'
-        ' </office:automatic-styles>'
+        '   <style:table-cell-properties fo:background-color="$BgColor"/>\n'
+        '   <style:text-properties fo:color="$FgColor"/>\n'
+        '  </style:style>'
     )
-    _fileHeader = OdsWriter._CONTENT_XML_HEADER.replace(
-        ' </office:automatic-styles>',
-        _ADDITIONAL_STYLES
-    )
-    _fileHeader = (
-        f'{_fileHeader}{DESCRIPTION}" table:style-name="ta1" '
-        'table:print="false">'
-    )
+    DEFAULT_PLOTLINE_COLOR = '#dfdfdf'
+    DEFAULT_TEXT_COLOR = '#000000'
 
     def write_content_xml(self):
         """Create the ODS table.
@@ -71,41 +38,67 @@ class OdsWPlotList(OdsWriter):
         Raise the "Error" exception in case of error. 
         Extends the superclass method.
         """
-
-        odsText = [
-            self._fileHeader,
-            (
-                '<table:table-column table:style-name="co4" '
-                'table:default-cell-style-name="Default"/>'
-            ),
-        ]
-
-        plotLineColorsTotal = 6
-        # total number of the background colors used
-        # in the "ce" table cell styles
-
         # Get plot lines.
         if self.novel.tree.get_children(PL_ROOT) is not None:
             plotLines = self.novel.tree.get_children(PL_ROOT)
         else:
             plotLines = []
 
+        additionalStyles = []
+        for plId in plotLines:
+            plColor = self.novel.plotLines[plId].color
+            if plColor is not None:
+                if HexColor.is_dark(plColor):
+                    fgColor = '#ffffff'
+                else:
+                    fgColor = '#000000'
+                bgColor = plColor
+            else:
+                fgColor = self.DEFAULT_TEXT_COLOR
+                bgColor = self.DEFAULT_PLOTLINE_COLOR
+            additionalStyle = Template(self._ADDITIONAL_STYLE)
+            additionalStyles.append(
+                additionalStyle.substitute(
+                    {
+                        'Name': plId,
+                        'BgColor': bgColor.lower(),
+                        'FgColor': fgColor.lower(),
+                    }
+                )
+            )
+        additionalStyles.append(' </office:automatic-styles>')
+        self._fileHeader = super()._CONTENT_XML_HEADER.replace(
+            ' </office:automatic-styles>',
+            '\n'.join(additionalStyles)
+        )
+        self._fileHeader = (
+            f'{self._fileHeader}{self.DESCRIPTION}" table:style-name="ta1" '
+            'table:print="false">'
+        )
+
+        odsText = [
+            self._fileHeader,
+            (
+                '   <table:table-column table:style-name="co4" '
+                'table:default-cell-style-name="Default"/>'
+            ),
+        ]
+
         # Plot line columns.
         for plId in plotLines:
             odsText.append(
-                '<table:table-column table:style-name="co3" '
+                '   <table:table-column table:style-name="co3" '
                 'table:default-cell-style-name="Default"/>'
             )
 
         # Title row.
         odsText.append('   <table:table-row table:style-name="ro2">')
         odsText.append(self._new_cell(''))
-        for i, plId in enumerate(plotLines):
-            colorIndex = (i % plotLineColorsTotal) + self._CE_OFFSET
+        for plId in plotLines:
             odsText.append(
                 self._new_cell(
                     self.novel.plotLines[plId].title,
-                    attr=f'table:style-name="ce{colorIndex}"',
+                    attr=f'table:style-name="{plId}"',
                     link=f'{PLOTLINES_SUFFIX}.odt#{plId}'
                 )
             )
@@ -125,9 +118,7 @@ class OdsWPlotList(OdsWriter):
                             link=f'{MANUSCRIPT_SUFFIX}.odt#{scId}%7Cregion'
                         )
                     )
-                    for i, plId in enumerate(plotLines):
-                        colorIndex = (
-                            i % plotLineColorsTotal) + self._CE_OFFSET
+                    for plId in plotLines:
                         if scId in self.novel.plotLines[plId].sections:
                             plotPoints = []
                             for ppId in self.novel.tree.get_children(plId):
@@ -141,7 +132,7 @@ class OdsWPlotList(OdsWriter):
                             odsText.append(
                                 self._new_cell(
                                     list_to_string(plotPoints),
-                                    attr=f'table:style-name="ce{colorIndex}" '
+                                    attr=f'table:style-name="{plId}" '
                                 )
                             )
                         else:
