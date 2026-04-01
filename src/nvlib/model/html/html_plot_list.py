@@ -4,6 +4,7 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from nvlib.model.hex_color import HexColor
 from nvlib.model.html.html_report import HtmlReport
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import PLOTLIST_SUFFIX
@@ -17,6 +18,9 @@ class HtmlPlotList(HtmlReport):
     DESCRIPTION = _('HTML Plot table')
     SUFFIX = PLOTLIST_SUFFIX
 
+    DEFAULT_PLOTLINE_COLOR = '#DFDFDF'
+    DEFAULT_TEXT_COLOR = '#000000'
+
     def write(self):
         """Create a HTML table.
         
@@ -25,8 +29,8 @@ class HtmlPlotList(HtmlReport):
         """
 
         # Collect the plot lines.
-        plotLines = self.novel.tree.get_children(PL_ROOT)
-        if not plotLines:
+        srtPlotLines = self.novel.tree.get_children(PL_ROOT)
+        if not srtPlotLines:
             raise UserWarning(f'{_("No plot lines found")}.')
 
         # Build the HTML table.
@@ -40,24 +44,30 @@ class HtmlPlotList(HtmlReport):
                 '<table>'
             )
         )
-        plotLineColors = (
-            'LightSteelBlue',
-            'Gold',
-            'Coral',
-            'YellowGreen',
-            'MediumTurquoise',
-            'Plum',
-        )
+        plotLineColors = {}
 
         # Title row.
         htmlText.append('<tr class="heading">')
         htmlText.append(self._new_cell(''))
-        for i, plId in enumerate(plotLines):
-            colorIndex = i % len(plotLineColors)
+        for plId in srtPlotLines:
+            plColor = self.novel.plotLines[plId].color
+            if plColor is not None:
+                if HexColor.is_dark(plColor):
+                    fgColor = '#FFFFFF'
+                else:
+                    fgColor = '#000000'
+                bgColor = plColor
+            else:
+                fgColor = self.DEFAULT_TEXT_COLOR
+                bgColor = self.DEFAULT_PLOTLINE_COLOR
+            plotLineColors[plId] = (fgColor, bgColor)
             htmlText.append(
                 self._new_cell(
                     self.novel.plotLines[plId].title,
-                    attr=f'style="background: {plotLineColors[colorIndex]}"'
+                    attr=(
+                        f'style="background: {bgColor}; '
+                        f'color: {fgColor}"'
+                    )
                 )
             )
         htmlText.append('</tr>')
@@ -73,8 +83,8 @@ class HtmlPlotList(HtmlReport):
                             self.novel.sections[scId].title
                         )
                     )
-                    for i, plId in enumerate(plotLines):
-                        colorIndex = i % len(plotLineColors)
+                    for plId in srtPlotLines:
+                        fgColor, bgColor = plotLineColors[plId]
                         if scId in self.novel.plotLines[plId].sections:
                             plotPoints = []
                             for ppId in self.novel.tree.get_children(plId):
@@ -89,8 +99,8 @@ class HtmlPlotList(HtmlReport):
                                 self._new_cell(
                                     list_to_string(plotPoints),
                                     attr=(
-                                        'style="background: '
-                                        f'{plotLineColors[colorIndex]}"'
+                                        f'style="background: {bgColor}; '
+                                        f'color: {fgColor}"'
                                     )
                                 )
                             )
