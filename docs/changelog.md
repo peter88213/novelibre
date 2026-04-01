@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.55.1
+### Version 5.55.2
 
 > [!IMPORTANT]
 > The file format has been upgraded from version 1.9 to version 1.10.
@@ -30,7 +30,9 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Project tree displaying stages underlined.
 - Project tree displaying main characters in bold.
 - New project tree coloring mode: "Viewpoint", displaying sections in the color
-  of the viewpoint character assigned.  
+  of the viewpoint character assigned. 
+- HTML plot line table displaying the plot line colors.
+- ODS plot list displaying the plot line colors. 
 
 #### API changes
 
