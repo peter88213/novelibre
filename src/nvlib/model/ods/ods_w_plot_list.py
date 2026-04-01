@@ -120,10 +120,18 @@ class OdsWPlotList(OdsWriter):
         styleTemplate = (
             '  <style:style style:name="$Name" style:family="table-cell" '
             'style:parent-style-name="Default">\n'
-            '   <style:table-cell-properties fo:background-color="$BgColor"/>\n'
-            '   <style:text-properties fo:color="$FgColor"/>\n'
+            '   <style:table-cell-properties '
+            'fo:background-color="$DefaultBgColor" '
+            'fo:border-bottom="none" '
+            'fo:border-left="0.176cm solid $BgColor" '
+            'fo:border-right="none" fo:border-top="none"/>\n'
+            '   <style:text-properties fo:color="$DefaultFgColor"/>\n'
             '  </style:style>'
         )
+        mappings = {
+            'DefaultBgColor': DEFAULT_PLOTLINE_COLOR,
+            'DefaultFgColor': DEFAULT_TEXT_COLOR,
+        }
         additionalStyles = []
         for plId in self.novel.plotLines:
             plColor = self.novel.plotLines[plId].color
@@ -136,12 +144,10 @@ class OdsWPlotList(OdsWriter):
             else:
                 fgColor = DEFAULT_TEXT_COLOR
                 bgColor = DEFAULT_PLOTLINE_COLOR
-            mappings = {
-                'Name': plId,
-                'BgColor': bgColor,
-                'FgColor': fgColor,
-            }
 
+            mappings['Name'] = plId
+            mappings['BgColor'] = bgColor
+            mappings['FgColor'] = fgColor
             styleXml = Template(styleTemplateHeading)
             additionalStyles.append(styleXml.substitute(mappings))
             styleXml = Template(styleTemplate)
