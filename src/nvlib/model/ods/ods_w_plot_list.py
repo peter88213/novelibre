@@ -44,40 +44,8 @@ class OdsWPlotList(OdsWriter):
         else:
             plotLines = []
 
-        additionalStyles = []
-        for plId in plotLines:
-            plColor = self.novel.plotLines[plId].color
-            if plColor is not None:
-                if HexColor.is_dark(plColor):
-                    fgColor = '#ffffff'
-                else:
-                    fgColor = '#000000'
-                bgColor = plColor
-            else:
-                fgColor = self.DEFAULT_TEXT_COLOR
-                bgColor = self.DEFAULT_PLOTLINE_COLOR
-            additionalStyle = Template(self._ADDITIONAL_STYLE)
-            additionalStyles.append(
-                additionalStyle.substitute(
-                    {
-                        'Name': plId,
-                        'BgColor': bgColor.lower(),
-                        'FgColor': fgColor.lower(),
-                    }
-                )
-            )
-        additionalStyles.append(' </office:automatic-styles>')
-        self._fileHeader = super()._CONTENT_XML_HEADER.replace(
-            ' </office:automatic-styles>',
-            '\n'.join(additionalStyles)
-        )
-        self._fileHeader = (
-            f'{self._fileHeader}{self.DESCRIPTION}" table:style-name="ta1" '
-            'table:print="false">'
-        )
-
         odsText = [
-            self._fileHeader,
+            self._get_content_xml_header(plotLines),
             (
                 '   <table:table-column table:style-name="co4" '
                 'table:default-cell-style-name="Default"/>'
@@ -142,6 +110,39 @@ class OdsWPlotList(OdsWriter):
         odsText.append(self._CONTENT_XML_FOOTER)
         with open(self.filePath, 'w', encoding='utf-8') as f:
             f.write('\n'.join(odsText))
+
+    def _get_content_xml_header(self, plotLines):
+        additionalStyles = []
+        for plId in plotLines:
+            plColor = self.novel.plotLines[plId].color
+            if plColor is not None:
+                if HexColor.is_dark(plColor):
+                    fgColor = '#ffffff'
+                else:
+                    fgColor = '#000000'
+                bgColor = plColor
+            else:
+                fgColor = self.DEFAULT_TEXT_COLOR
+                bgColor = self.DEFAULT_PLOTLINE_COLOR
+            additionalStyle = Template(self._ADDITIONAL_STYLE)
+            additionalStyles.append(
+                additionalStyle.substitute(
+                    {
+                        'Name': plId,
+                        'BgColor': bgColor.lower(),
+                        'FgColor': fgColor.lower(),
+                    }
+                )
+            )
+        additionalStyles.append(' </office:automatic-styles>')
+        fileHeader = super()._CONTENT_XML_HEADER.replace(
+            ' </office:automatic-styles>',
+            '\n'.join(additionalStyles)
+        )
+        return (
+            f'{fileHeader}{self.DESCRIPTION}" table:style-name="ta1" '
+            'table:print="false">'
+        )
 
     def _new_cell(self, text, attr='', link=''):
         """Return the markup for a table cell with text and attributes."""
