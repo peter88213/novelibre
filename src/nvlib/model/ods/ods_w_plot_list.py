@@ -29,22 +29,22 @@ class OdsWPlotList(OdsWriter):
         Raise the "Error" exception in case of error. 
         Extends the superclass method.
         """
-        # Get plot lines.
-        if self.novel.tree.get_children(PL_ROOT) is not None:
-            plotLines = self.novel.tree.get_children(PL_ROOT)
-        else:
-            plotLines = []
-
         odsText = [
-            self._get_content_xml_header(plotLines),
+            self._get_content_xml_header(),
             (
                 '   <table:table-column table:style-name="co4" '
                 'table:default-cell-style-name="Default"/>'
             ),
         ]
 
+        # Get plot lines.
+        if self.novel.tree.get_children(PL_ROOT) is not None:
+            srtPlotLines = self.novel.tree.get_children(PL_ROOT)
+        else:
+            srtPlotLines = []
+
         # Plot line columns.
-        for plId in plotLines:
+        for plId in srtPlotLines:
             odsText.append(
                 '   <table:table-column table:style-name="co3" '
                 'table:default-cell-style-name="Default"/>'
@@ -53,7 +53,7 @@ class OdsWPlotList(OdsWriter):
         # Title row.
         odsText.append('   <table:table-row table:style-name="ro2">')
         odsText.append(self._new_cell(''))
-        for plId in plotLines:
+        for plId in srtPlotLines:
             odsText.append(
                 self._new_cell(
                     self.novel.plotLines[plId].title,
@@ -77,7 +77,7 @@ class OdsWPlotList(OdsWriter):
                             link=f'{MANUSCRIPT_SUFFIX}.odt#{scId}%7Cregion'
                         )
                     )
-                    for plId in plotLines:
+                    for plId in srtPlotLines:
                         if scId in self.novel.plotLines[plId].sections:
                             plotPoints = []
                             for ppId in self.novel.tree.get_children(plId):
@@ -102,7 +102,7 @@ class OdsWPlotList(OdsWriter):
         with open(self.filePath, 'w', encoding='utf-8') as f:
             f.write('\n'.join(odsText))
 
-    def _get_content_xml_header(self, plotLines):
+    def _get_content_xml_header(self):
 
         DEFAULT_PLOTLINE_COLOR = '#dfdfdf'
         DEFAULT_TEXT_COLOR = BLACK = '#000000'
@@ -116,7 +116,7 @@ class OdsWPlotList(OdsWriter):
             '  </style:style>'
         )
         additionalStyles = []
-        for plId in plotLines:
+        for plId in self.novel.plotLines:
             plColor = self.novel.plotLines[plId].color
             if plColor is not None:
                 if HexColor.is_dark(plColor):

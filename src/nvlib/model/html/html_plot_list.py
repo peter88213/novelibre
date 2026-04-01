@@ -28,28 +28,10 @@ class HtmlPlotList(HtmlReport):
         Extends the superclass method.
         """
 
-        # Collect the plot lines.
-        srtPlotLines = self.novel.tree.get_children(PL_ROOT)
-        if not srtPlotLines:
-            raise UserWarning(f'{_("No plot lines found")}.')
-
-        # Build the HTML table.
+        # Set up styles that define the plot line colors.
         htmlText = [self._fileHeader]
-        htmlText.append(
-            (
-                f'<title>{self.novel.title}</title>\n'
-                '</head>\n'
-                '<body>\n'
-                f'<p class=title>{self.novel.title} - {_("Plot")}</p>\n'
-                '<table>'
-            )
-        )
-        plotLineColors = {}
-
-        # Title row.
-        htmlText.append('<tr class="heading">')
-        htmlText.append(self._new_cell(''))
-        for plId in srtPlotLines:
+        htmlText.append('<style type="text/css">')
+        for plId in self.novel.plotLines:
             plColor = self.novel.plotLines[plId].color
             if plColor is not None:
                 if HexColor.is_dark(plColor):
@@ -60,14 +42,31 @@ class HtmlPlotList(HtmlReport):
             else:
                 fgColor = self.DEFAULT_TEXT_COLOR
                 bgColor = self.DEFAULT_PLOTLINE_COLOR
-            plotLineColors[plId] = (fgColor, bgColor)
+            htmlText.append(
+                f'td.{plId} {{background: {bgColor}; color: {fgColor}}}'
+            )
+        htmlText.append(
+            '</style>\n'
+            f'<title>{self.novel.title}</title>\n'
+            '</head>\n'
+            '<body>\n'
+            f'<p class=title>{self.novel.title} - {_("Plot")}</p>\n'
+            '<table>'
+        )
+
+        # Collect the plot lines.
+        srtPlotLines = self.novel.tree.get_children(PL_ROOT)
+        if not srtPlotLines:
+            raise UserWarning(f'{_("No plot lines found")}.')
+
+        # Title row.
+        htmlText.append('<tr class="heading">')
+        htmlText.append(self._new_cell(''))
+        for plId in srtPlotLines:
             htmlText.append(
                 self._new_cell(
                     self.novel.plotLines[plId].title,
-                    attr=(
-                        f'style="background: {bgColor}; '
-                        f'color: {fgColor}"'
-                    )
+                    attr=(f'class="{plId}"')
                 )
             )
         htmlText.append('</tr>')
@@ -84,7 +83,6 @@ class HtmlPlotList(HtmlReport):
                         )
                     )
                     for plId in srtPlotLines:
-                        fgColor, bgColor = plotLineColors[plId]
                         if scId in self.novel.plotLines[plId].sections:
                             plotPoints = []
                             for ppId in self.novel.tree.get_children(plId):
@@ -98,10 +96,7 @@ class HtmlPlotList(HtmlReport):
                             htmlText.append(
                                 self._new_cell(
                                     list_to_string(plotPoints),
-                                    attr=(
-                                        f'style="background: {bgColor}; '
-                                        f'color: {fgColor}"'
-                                    )
+                                    attr=(f'class="{plId}"')
                                 )
                             )
                         else:
