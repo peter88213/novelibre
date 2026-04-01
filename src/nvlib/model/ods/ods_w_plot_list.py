@@ -6,6 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from string import Template
 
+from nvlib.model.hex_color import HexColor
 from nvlib.model.ods.ods_writer import OdsWriter
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import MANUSCRIPT_SUFFIX
@@ -14,23 +15,13 @@ from nvlib.novx_globals import PLOTLIST_SUFFIX
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import list_to_string
 from nvlib.nv_locale import _
-from nvlib.model.hex_color import HexColor
 
 
 class OdsWPlotList(OdsWriter):
-    """html plot list templates and writer."""
+    """ODS plot list representation."""
+
     DESCRIPTION = _('ODS Plot table')
     SUFFIX = PLOTLIST_SUFFIX
-
-    _ADDITIONAL_STYLE = (
-        '  <style:style style:name="$Name" style:family="table-cell" '
-        'style:parent-style-name="Default">\n'
-        '   <style:table-cell-properties fo:background-color="$BgColor"/>\n'
-        '   <style:text-properties fo:color="$FgColor"/>\n'
-        '  </style:style>'
-    )
-    DEFAULT_PLOTLINE_COLOR = '#dfdfdf'
-    DEFAULT_TEXT_COLOR = '#000000'
 
     def write_content_xml(self):
         """Create the ODS table.
@@ -112,25 +103,37 @@ class OdsWPlotList(OdsWriter):
             f.write('\n'.join(odsText))
 
     def _get_content_xml_header(self, plotLines):
+
+        DEFAULT_PLOTLINE_COLOR = '#dfdfdf'
+        DEFAULT_TEXT_COLOR = BLACK = '#000000'
+        WHITE = '#ffffff'
+
+        styleTemplate = (
+            '  <style:style style:name="$Name" style:family="table-cell" '
+            'style:parent-style-name="Default">\n'
+            '   <style:table-cell-properties fo:background-color="$BgColor"/>\n'
+            '   <style:text-properties fo:color="$FgColor"/>\n'
+            '  </style:style>'
+        )
         additionalStyles = []
         for plId in plotLines:
             plColor = self.novel.plotLines[plId].color
             if plColor is not None:
                 if HexColor.is_dark(plColor):
-                    fgColor = '#ffffff'
+                    fgColor = WHITE
                 else:
-                    fgColor = '#000000'
-                bgColor = plColor
+                    fgColor = BLACK
+                bgColor = plColor.lower()
             else:
-                fgColor = self.DEFAULT_TEXT_COLOR
-                bgColor = self.DEFAULT_PLOTLINE_COLOR
-            additionalStyle = Template(self._ADDITIONAL_STYLE)
+                fgColor = DEFAULT_TEXT_COLOR
+                bgColor = DEFAULT_PLOTLINE_COLOR
+            styleXml = Template(styleTemplate)
             additionalStyles.append(
-                additionalStyle.substitute(
+                styleXml.substitute(
                     {
                         'Name': plId,
-                        'BgColor': bgColor.lower(),
-                        'FgColor': fgColor.lower(),
+                        'BgColor': bgColor,
+                        'FgColor': fgColor,
                     }
                 )
             )
