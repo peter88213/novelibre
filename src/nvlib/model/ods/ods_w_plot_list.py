@@ -57,7 +57,7 @@ class OdsWPlotList(OdsWriter):
             odsText.append(
                 self._new_cell(
                     self.novel.plotLines[plId].title,
-                    attr=f'table:style-name="{plId}"',
+                    attr=f'table:style-name="h{plId}"',
                     link=f'{PLOTLINES_SUFFIX}.odt#{plId}'
                 )
             )
@@ -108,6 +108,15 @@ class OdsWPlotList(OdsWriter):
         DEFAULT_TEXT_COLOR = BLACK = '#000000'
         WHITE = '#ffffff'
 
+        styleTemplateHeading = (
+            '  <style:style style:name="h$Name" style:family="table-cell" '
+            'style:parent-style-name="Default">\n'
+            '   <style:table-cell-properties fo:background-color="$BgColor"/>\n'
+            '   <style:text-properties fo:color="$FgColor" '
+            'fo:font-weight="bold" style:font-weight-asian="bold" '
+            'style:font-weight-complex="bold"/>\n'
+            '  </style:style>'
+        )
         styleTemplate = (
             '  <style:style style:name="$Name" style:family="table-cell" '
             'style:parent-style-name="Default">\n'
@@ -123,20 +132,20 @@ class OdsWPlotList(OdsWriter):
                     fgColor = WHITE
                 else:
                     fgColor = BLACK
-                bgColor = plColor.lower()
+                bgColor = plColor
             else:
                 fgColor = DEFAULT_TEXT_COLOR
                 bgColor = DEFAULT_PLOTLINE_COLOR
+            mappings = {
+                'Name': plId,
+                'BgColor': bgColor,
+                'FgColor': fgColor,
+            }
+
+            styleXml = Template(styleTemplateHeading)
+            additionalStyles.append(styleXml.substitute(mappings))
             styleXml = Template(styleTemplate)
-            additionalStyles.append(
-                styleXml.substitute(
-                    {
-                        'Name': plId,
-                        'BgColor': bgColor,
-                        'FgColor': fgColor,
-                    }
-                )
-            )
+            additionalStyles.append(styleXml.substitute(mappings))
         additionalStyles.append(' </office:automatic-styles>')
         fileHeader = super()._CONTENT_XML_HEADER.replace(
             ' </office:automatic-styles>',

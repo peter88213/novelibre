@@ -18,15 +18,16 @@ class HtmlPlotList(HtmlReport):
     DESCRIPTION = _('HTML Plot table')
     SUFFIX = PLOTLIST_SUFFIX
 
-    DEFAULT_PLOTLINE_COLOR = '#DFDFDF'
-    DEFAULT_TEXT_COLOR = '#000000'
-
     def write(self):
         """Create a HTML table.
         
         Raise the "Error" exception in case of error. 
         Extends the superclass method.
         """
+
+        DEFAULT_PLOTLINE_COLOR = '#dfdfdf'
+        DEFAULT_TEXT_COLOR = BLACK = '#000000'
+        WHITE = '#ffffff'
 
         # Set up styles that define the plot line colors.
         htmlText = [self._fileHeader]
@@ -35,13 +36,13 @@ class HtmlPlotList(HtmlReport):
             plColor = self.novel.plotLines[plId].color
             if plColor is not None:
                 if HexColor.is_dark(plColor):
-                    fgColor = '#FFFFFF'
+                    fgColor = WHITE
                 else:
-                    fgColor = '#000000'
+                    fgColor = BLACK
                 bgColor = plColor
             else:
-                fgColor = self.DEFAULT_TEXT_COLOR
-                bgColor = self.DEFAULT_PLOTLINE_COLOR
+                fgColor = DEFAULT_TEXT_COLOR
+                bgColor = DEFAULT_PLOTLINE_COLOR
             htmlText.append(
                 f'td.{plId} {{background: {bgColor}; color: {fgColor}}}'
             )
