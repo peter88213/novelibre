@@ -49,7 +49,7 @@ class HtmlPlotList(HtmlReport):
                 f'td.h{plId} {{'
                 f'background: {bgColor}; '
                 f'color: {fgColor}'
-                '}}'
+                '}'
             )
 
             # Plot line node cell style.
@@ -58,7 +58,7 @@ class HtmlPlotList(HtmlReport):
                 f'border-left: 0.5em solid {bgColor}; '
                 f'background: {DEFAULT_PLOTLINE_COLOR}; '
                 f'color: {DEFAULT_TEXT_COLOR}'
-                '}}'
+                '}'
             )
         htmlText.append(
             '</style>\n'
