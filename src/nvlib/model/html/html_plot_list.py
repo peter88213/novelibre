@@ -43,15 +43,22 @@ class HtmlPlotList(HtmlReport):
             else:
                 fgColor = DEFAULT_TEXT_COLOR
                 bgColor = DEFAULT_PLOTLINE_COLOR
+
+            # Plot line column heading cell style.
             htmlText.append(
                 f'td.h{plId} {{'
                 f'background: {bgColor}; '
-                f'color: {fgColor}}}'
+                f'color: {fgColor}'
+                '}}'
             )
+
+            # Plot line node cell style.
             htmlText.append(
-                f'td.{plId} {{border-left: 0.5em solid {bgColor}; '
+                f'td.{plId} {{'
+                f'border-left: 0.5em solid {bgColor}; '
                 f'background: {DEFAULT_PLOTLINE_COLOR}; '
-                f'color: {DEFAULT_TEXT_COLOR}}}'
+                f'color: {DEFAULT_TEXT_COLOR}'
+                '}}'
             )
         htmlText.append(
             '</style>\n'

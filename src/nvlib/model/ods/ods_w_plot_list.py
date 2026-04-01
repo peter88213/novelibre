@@ -108,15 +108,20 @@ class OdsWPlotList(OdsWriter):
         DEFAULT_TEXT_COLOR = BLACK = '#000000'
         WHITE = '#ffffff'
 
+        # Plot line column heading cell style.
         styleTemplateHeading = (
             '  <style:style style:name="h$Name" style:family="table-cell" '
             'style:parent-style-name="Default">\n'
-            '   <style:table-cell-properties fo:background-color="$BgColor"/>\n'
+            '   <style:table-cell-properties '
+            'fo:background-color="$BgColor"/>\n'
             '   <style:text-properties fo:color="$FgColor" '
-            'fo:font-weight="bold" style:font-weight-asian="bold" '
+            'fo:font-weight="bold" '
+            'style:font-weight-asian="bold" '
             'style:font-weight-complex="bold"/>\n'
             '  </style:style>'
         )
+
+        # Plot line node cell style.
         styleTemplate = (
             '  <style:style style:name="$Name" style:family="table-cell" '
             'style:parent-style-name="Default">\n'
@@ -128,6 +133,7 @@ class OdsWPlotList(OdsWriter):
             '   <style:text-properties fo:color="$DefaultFgColor"/>\n'
             '  </style:style>'
         )
+
         mappings = {
             'DefaultBgColor': DEFAULT_PLOTLINE_COLOR,
             'DefaultFgColor': DEFAULT_TEXT_COLOR,
