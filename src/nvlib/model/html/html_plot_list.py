@@ -44,7 +44,14 @@ class HtmlPlotList(HtmlReport):
                 fgColor = DEFAULT_TEXT_COLOR
                 bgColor = DEFAULT_PLOTLINE_COLOR
             htmlText.append(
-                f'td.{plId} {{background: {bgColor}; color: {fgColor}}}'
+                f'td.h{plId} {{'
+                f'background: {bgColor}; '
+                f'color: {fgColor}}}'
+            )
+            htmlText.append(
+                f'td.{plId} {{border-left: 0.5em solid {bgColor}; '
+                f'background: {DEFAULT_PLOTLINE_COLOR}; '
+                f'color: {DEFAULT_TEXT_COLOR}}}'
             )
         htmlText.append(
             '</style>\n'
@@ -67,7 +74,7 @@ class HtmlPlotList(HtmlReport):
             htmlText.append(
                 self._new_cell(
                     self.novel.plotLines[plId].title,
-                    attr=(f'class="{plId}"')
+                    attr=(f'class="h{plId}"')
                 )
             )
         htmlText.append('</tr>')
