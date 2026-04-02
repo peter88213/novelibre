@@ -43,7 +43,42 @@
   <style:style style:name="ce2" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N36"/>
   <style:style style:name="ce3" style:family="table-cell" style:parent-style-name="Heading" style:data-style-name="N40"/>
   <style:style style:name="ce4" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N40"/>
- </office:automatic-styles>
+  <style:style style:name="cr1" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="cr2" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="cr3" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="cr4" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="cr5" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="cr6" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="cr7" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="cr8" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="cr9" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="cr10" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="cr11" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="cr12" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style> </office:automatic-styles>
  <office:body>
   <office:spreadsheet>
    <table:table table:name="Character table" table:style-name="ta1" table:print="false">
@@ -140,7 +175,7 @@
      <table:table-cell office:value-type="string">
       <text:p>cr1</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
+     <table:table-cell table:style-name="cr1" office:value-type="string">
       <text:p>Hal</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
@@ -175,7 +210,7 @@
      <table:table-cell office:value-type="string">
       <text:p>cr2</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
+     <table:table-cell table:style-name="cr2" office:value-type="string">
       <text:p>Jerling</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
@@ -216,7 +251,7 @@
      <table:table-cell office:value-type="string">
       <text:p>cr3</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
+     <table:table-cell table:style-name="cr3" office:value-type="string">
       <text:p>Clunk</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
@@ -251,7 +286,7 @@
      <table:table-cell office:value-type="string">
       <text:p>cr4</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
+     <table:table-cell table:style-name="cr4" office:value-type="string">
       <text:p>Vurdi</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
@@ -286,7 +321,7 @@
      <table:table-cell office:value-type="string">
       <text:p>cr5</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
+     <table:table-cell table:style-name="cr5" office:value-type="string">
       <text:p>Farrell</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
@@ -321,7 +356,7 @@
      <table:table-cell office:value-type="string">
       <text:p>cr6</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
+     <table:table-cell table:style-name="cr6" office:value-type="string">
       <text:p>Terry</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
@@ -356,7 +391,7 @@
      <table:table-cell office:value-type="string">
       <text:p>cr7</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
+     <table:table-cell table:style-name="cr7" office:value-type="string">
       <text:p>Carina</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
@@ -391,7 +426,7 @@
      <table:table-cell office:value-type="string">
       <text:p>cr8</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
+     <table:table-cell table:style-name="cr8" office:value-type="string">
       <text:p>Mike</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
@@ -426,7 +461,7 @@
      <table:table-cell office:value-type="string">
       <text:p>cr9</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
+     <table:table-cell table:style-name="cr9" office:value-type="string">
       <text:p>Gordon</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
@@ -461,7 +496,7 @@
      <table:table-cell office:value-type="string">
       <text:p>cr10</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
+     <table:table-cell table:style-name="cr10" office:value-type="string">
       <text:p>Navcom</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
@@ -496,7 +531,7 @@
      <table:table-cell office:value-type="string">
       <text:p>cr11</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
+     <table:table-cell table:style-name="cr11" office:value-type="string">
       <text:p>Brutus</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
@@ -531,7 +566,7 @@
      <table:table-cell office:value-type="string">
       <text:p>cr12</text:p>
      </table:table-cell>
-     <table:table-cell office:value-type="string">
+     <table:table-cell table:style-name="cr12" office:value-type="string">
       <text:p>Portmaster</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
