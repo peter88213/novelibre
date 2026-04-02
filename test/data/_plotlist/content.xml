@@ -43,146 +43,128 @@
   <style:style style:name="ce2" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N36"/>
   <style:style style:name="ce3" style:family="table-cell" style:parent-style-name="Heading" style:data-style-name="N40"/>
   <style:style style:name="ce4" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N40"/>
-
-
-  <style:style style:name="ce5" style:family="table-cell" style:parent-style-name="Default">
-   <style:table-cell-properties style:text-align-source="value-type" style:repeat-content="false"/>
-   <style:paragraph-properties fo:margin-left="0cm"/>
-   <style:text-properties fo:color="#ff0000" fo:font-weight="bold" style:font-weight-asian="bold" style:font-weight-complex="bold"/>
+  <style:style style:name="hac5" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:background-color="#dfdfdf"/>
+   <style:text-properties fo:color="#000000" fo:font-weight="bold" style:font-weight-asian="bold" style:font-weight-complex="bold"/>
   </style:style>
-  <style:style style:name="ce6" style:family="table-cell" style:parent-style-name="Default">
-   <style:table-cell-properties fo:background-color="#b0c4de"/>
-  </style:style>
-  <style:style style:name="ce7" style:family="table-cell" style:parent-style-name="Default">
-   <style:table-cell-properties fo:background-color="#ffd700"/>
-  </style:style>
-  <style:style style:name="ce8" style:family="table-cell" style:parent-style-name="Default">
-   <style:table-cell-properties fo:background-color="#ff7f50"/>
-  </style:style>
-  <style:style style:name="ce9" style:family="table-cell" style:parent-style-name="Default">
-   <style:table-cell-properties fo:background-color="#9acd32"/>
-  </style:style>
-  <style:style style:name="ce10" style:family="table-cell" style:parent-style-name="Default">
-   <style:table-cell-properties fo:background-color="#48d1cc"/>
-  </style:style>
-  <style:style style:name="ce11" style:family="table-cell" style:parent-style-name="Default">
-   <style:table-cell-properties fo:background-color="#dda0dd"/>
-  </style:style>
- </office:automatic-styles>
+  <style:style style:name="ac5" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:background-color="#dfdfdf" fo:border-bottom="none" fo:border-left="0.176cm solid #dfdfdf" fo:border-right="none" fo:border-top="none"/>
+   <style:text-properties fo:color="#000000"/>
+  </style:style> </office:automatic-styles>
  <office:body>
   <office:spreadsheet>
    <table:table table:name="ODS Plot table" table:style-name="ta1" table:print="false">
-<table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
-<table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>
+   <table:table-column table:style-name="co4" table:default-cell-style-name="Default"/>
+   <table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>
    <table:table-row table:style-name="ro2">
      <table:table-cell  office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-     <table:table-cell table:style-name="ce6" table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_plotlines_tmp.odt#ac5&quot;;&quot;A-Storyline&quot;)" office:value-type="string">
+     <table:table-cell table:style-name="hac5" table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_plotlines_tmp.odt#ac5&quot;;&quot;A-Storyline&quot;)" office:value-type="string">
      </table:table-cell>
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell  table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc15%7Cregion&quot;;&quot;New Scene (ID15)&quot;)" office:value-type="string">
      </table:table-cell>
-     <table:table-cell table:style-name="ce6"  office:value-type="string">
+     <table:table-cell table:style-name="ac5"  office:value-type="string">
       <text:p>The Setup</text:p>
      </table:table-cell>
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell  table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc16%7Cregion&quot;;&quot;New Scene (ID16)&quot;)" office:value-type="string">
      </table:table-cell>
-     <table:table-cell table:style-name="ce6"  office:value-type="string">
+     <table:table-cell table:style-name="ac5"  office:value-type="string">
       <text:p>The Unexpected Change</text:p>
      </table:table-cell>
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell  table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc17%7Cregion&quot;;&quot;New Scene (ID17)&quot;)" office:value-type="string">
      </table:table-cell>
-     <table:table-cell table:style-name="ce6"  office:value-type="string">
+     <table:table-cell table:style-name="ac5"  office:value-type="string">
       <text:p>The Rejection</text:p>
      </table:table-cell>
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell  table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc18%7Cregion&quot;;&quot;New Scene (ID18)&quot;)" office:value-type="string">
      </table:table-cell>
-     <table:table-cell table:style-name="ce6"  office:value-type="string">
+     <table:table-cell table:style-name="ac5"  office:value-type="string">
       <text:p>The Commitment</text:p>
      </table:table-cell>
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell  table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc19%7Cregion&quot;;&quot;New Scene (ID19)&quot;)" office:value-type="string">
      </table:table-cell>
-     <table:table-cell table:style-name="ce6"  office:value-type="string">
+     <table:table-cell table:style-name="ac5"  office:value-type="string">
       <text:p>The Reversal</text:p>
      </table:table-cell>
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell  table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc20%7Cregion&quot;;&quot;New Scene (ID20)&quot;)" office:value-type="string">
      </table:table-cell>
-     <table:table-cell table:style-name="ce6"  office:value-type="string">
+     <table:table-cell table:style-name="ac5"  office:value-type="string">
       <text:p>The Embrace</text:p>
      </table:table-cell>
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell  table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc21%7Cregion&quot;;&quot;New Scene (ID21)&quot;)" office:value-type="string">
      </table:table-cell>
-     <table:table-cell table:style-name="ce6"  office:value-type="string">
+     <table:table-cell table:style-name="ac5"  office:value-type="string">
       <text:p>The Return Of The Main Opponent</text:p>
      </table:table-cell>
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell  table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc22%7Cregion&quot;;&quot;New Scene (ID22)&quot;)" office:value-type="string">
      </table:table-cell>
-     <table:table-cell table:style-name="ce6"  office:value-type="string">
+     <table:table-cell table:style-name="ac5"  office:value-type="string">
       <text:p>The Escalation</text:p>
      </table:table-cell>
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell  table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc25%7Cregion&quot;;&quot;New Scene (ID25)&quot;)" office:value-type="string">
      </table:table-cell>
-     <table:table-cell table:style-name="ce6"  office:value-type="string">
+     <table:table-cell table:style-name="ac5"  office:value-type="string">
       <text:p>The Final Battle</text:p>
      </table:table-cell>
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell  table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc23%7Cregion&quot;;&quot;New Scene (ID23)&quot;)" office:value-type="string">
      </table:table-cell>
-     <table:table-cell table:style-name="ce6"  office:value-type="string">
+     <table:table-cell table:style-name="ac5"  office:value-type="string">
       <text:p>The Twist</text:p>
      </table:table-cell>
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell  table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc24%7Cregion&quot;;&quot;New Scene (ID24)&quot;)" office:value-type="string">
      </table:table-cell>
-     <table:table-cell table:style-name="ce6"  office:value-type="string">
+     <table:table-cell table:style-name="ac5"  office:value-type="string">
       <text:p>Rock Bottom</text:p>
      </table:table-cell>
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell  table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc26%7Cregion&quot;;&quot;New Scene (ID26)&quot;)" office:value-type="string">
      </table:table-cell>
-     <table:table-cell table:style-name="ce6"  office:value-type="string">
+     <table:table-cell table:style-name="ac5"  office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell  table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc27%7Cregion&quot;;&quot;New Scene (ID27)&quot;)" office:value-type="string">
      </table:table-cell>
-     <table:table-cell table:style-name="ce6"  office:value-type="string">
+     <table:table-cell table:style-name="ac5"  office:value-type="string">
       <text:p>The Final Choice</text:p>
      </table:table-cell>
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell  table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc28%7Cregion&quot;;&quot;New Scene (ID28)&quot;)" office:value-type="string">
      </table:table-cell>
-     <table:table-cell table:style-name="ce6"  office:value-type="string">
+     <table:table-cell table:style-name="ac5"  office:value-type="string">
       <text:p>The Sacrifice</text:p>
      </table:table-cell>
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell  table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc29%7Cregion&quot;;&quot;New Scene (ID29)&quot;)" office:value-type="string">
      </table:table-cell>
-     <table:table-cell table:style-name="ce6"  office:value-type="string">
+     <table:table-cell table:style-name="ac5"  office:value-type="string">
       <text:p>The Reward</text:p>
      </table:table-cell>
     </table:table-row>
