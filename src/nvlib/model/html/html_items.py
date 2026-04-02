@@ -16,7 +16,7 @@ class HtmlItems(HtmlReport):
     SUFFIX = ITEM_REPORT_SUFFIX
 
     _fileHeader = (
-        f'{HtmlReport._fileHeader}\n'
+        f'{HtmlReport._fileHeader}$Styles'
         f'<title>{_("Items")} ($Title)</title>\n'
         '</head>\n'
         '<body>\n'
@@ -31,12 +31,19 @@ class HtmlItems(HtmlReport):
     )
     _itemTemplate = (
         '<tr>\n'
-        '<td class="chtitle">$Title</td>\n'
+        '<td class="$ID">$Title</td>\n'
         '<td>$AKA</td>\n'
         '<td>$Tags</td>\n'
         '<td>$Desc</td>\n'
         '</tr>\n'
     )
+
+    def _get_fileHeaderMapping(self):
+        fileHeaderMapping = super()._get_fileHeaderMapping()
+        fileHeaderMapping['Styles'] = '\n'.join(
+            self._get_extra_styles(self.novel.items)
+        )
+        return fileHeaderMapping
 
     def write(self):
         if not self.novel.items:

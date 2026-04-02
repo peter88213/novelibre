@@ -17,7 +17,7 @@ class HtmlCharacters(HtmlReport):
     SUFFIX = CHARACTER_REPORT_SUFFIX
 
     _fileHeader = (
-        f'{HtmlReport._fileHeader}\n'
+        f'{HtmlReport._fileHeader}$Styles'
         f'<title>{_("Characters")} ($Title)</title>\n'
         '</head>\n'
         '<body>\n'
@@ -39,7 +39,7 @@ class HtmlCharacters(HtmlReport):
     )
     _characterTemplate = (
         '<tr>\n'
-        '<td class="chtitle">$Title</td>\n'
+        '<td class="$ID">$Title</td>\n'
         '<td>$FullName</td>\n'
         '<td>$AKA</td>\n'
         '<td>$Tags</td>\n'
@@ -56,6 +56,13 @@ class HtmlCharacters(HtmlReport):
         if not self.novel.characters:
             raise UserWarning(f'{_("No characters found")}.')
         super().write()
+
+    def _get_fileHeaderMapping(self):
+        fileHeaderMapping = super()._get_fileHeaderMapping()
+        fileHeaderMapping['Styles'] = '\n'.join(
+            self._get_extra_styles(self.novel.characters)
+        )
+        return fileHeaderMapping
 
     def _get_characterMapping(self, crId):
         characterMapping = super()._get_characterMapping(crId)

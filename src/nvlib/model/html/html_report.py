@@ -70,6 +70,29 @@ class HtmlReport(FileExport):
             newlines.append(f'<p>{line}</p>')
         return '\n'.join(newlines)
 
+    def _get_extra_styles(self, elements):
+
+        DEFAULT_COLOR = '#dfdfdf'
+
+        htmlText = []
+        htmlText.append('<style type="text/css">')
+        for elemId in elements:
+            elemColor = elements[elemId].color
+            if elemColor is not None:
+                bgColor = elemColor
+            else:
+                bgColor = DEFAULT_COLOR
+            htmlText.append(
+                f'td.{elemId} {{'
+                'font-weight: bold; '
+                f'border-left: 0.5em solid {bgColor}'
+                '}'
+            )
+        htmlText.append(
+            '</style>\n'
+        )
+        return htmlText
+
     def _get_plot_line_styles(self):
 
         # Set up styles that define the plot line colors.
