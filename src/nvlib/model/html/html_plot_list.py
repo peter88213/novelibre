@@ -4,7 +4,6 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.model.hex_color import HexColor
 from nvlib.model.html.html_report import HtmlReport
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import PLOTLIST_SUFFIX

@@ -415,7 +415,7 @@ class OdsWriter(OdfFile):
         'style:parent-style-name="Result"/>\n'
         '  <style:style style:name="Heading" style:family="table-cell" '
         'style:parent-style-name="Default">\n'
-        '   <style:table-cell-properties fo:background-color="#cfe7f5" '
+        '   <style:table-cell-properties fo:background-color="#f0f0f0" '
         'style:text-align-source="fix" style:repeat-content="false"/>\n'
         '   <style:paragraph-properties fo:text-align="start"/>\n'
         '   <style:text-properties fo:font-weight="bold"/>\n'
