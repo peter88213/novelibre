@@ -6,6 +6,8 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from string import Template
+
 from nvlib.model.odf.odf_file import OdfFile
 
 
@@ -527,6 +529,39 @@ class OdsWriter(OdfFile):
         for nv, ods in ODS_REPLACEMENTS:
             text = text.replace(nv, ods)
         return text
+
+    def _get_extra_styles(self, elements):
+
+        DEFAULT_BG_COLOR = '#f0f0f0'
+
+        # Character name cell style.
+        styleTemplate = (
+            '  <style:style style:name="$Name" style:family="table-cell" '
+            'style:parent-style-name="Default">\n'
+            '   <style:table-cell-properties '
+            'fo:border-bottom="none" '
+            'fo:border-left="0.176cm solid $BgColor" '
+            'fo:border-right="none" '
+            'fo:border-top="none"/>\n'
+            '  </style:style>'
+        )
+
+        mappings = {
+            'DefaultBgColor': DEFAULT_BG_COLOR,
+        }
+        xmlText = []
+        for elemId in elements:
+            elemColor = elements[elemId].color
+            if elemColor is not None:
+                bgColor = elemColor
+            else:
+                bgColor = DEFAULT_BG_COLOR
+
+            mappings['Name'] = elemId
+            mappings['BgColor'] = bgColor
+            styleXml = Template(styleTemplate)
+            xmlText.append(styleXml.substitute(mappings))
+        return '\n'.join(xmlText)
 
     def _get_fileHeaderMapping(self):
         fileHeaderMapping = super()._get_fileHeaderMapping()

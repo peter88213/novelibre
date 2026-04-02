@@ -96,7 +96,8 @@ class OdsWLocList(OdsWriter):
         '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$ID</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell office:value-type="string">\n'
+        '     <table:table-cell table:style-name="$ID" '
+        'office:value-type="string">\n'
         '      <text:p>$Title</text:p>\n'
         '     </table:table-cell>\n'
         '     <table:table-cell office:value-type="string">\n'
@@ -115,3 +116,10 @@ class OdsWLocList(OdsWriter):
         '    </table:table-row>\n'
     )
     _fileFooter = OdsWriter._CONTENT_XML_FOOTER
+
+    def _get_fileHeaderMapping(self):
+        fileHeaderMapping = super()._get_fileHeaderMapping()
+        fileHeaderMapping['Styles'] = self._get_extra_styles(
+            self.novel.locations
+        )
+        return fileHeaderMapping

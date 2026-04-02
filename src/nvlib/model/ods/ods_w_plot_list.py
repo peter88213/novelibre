@@ -131,7 +131,8 @@ class OdsWPlotList(OdsWriter):
             'fo:background-color="$DefaultBgColor" '
             'fo:border-bottom="none" '
             'fo:border-left="0.176cm solid $BgColor" '
-            'fo:border-right="none" fo:border-top="none"/>\n'
+            'fo:border-right="none" '
+            'fo:border-top="none"/>\n'
             '   <style:text-properties fo:color="$DefaultFgColor"/>\n'
             '  </style:style>'
         )
