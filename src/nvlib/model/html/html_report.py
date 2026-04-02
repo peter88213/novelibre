@@ -7,6 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from html import escape
 
 from nvlib.model.file.file_export import FileExport
+from nvlib.model.hex_color import HexColor
 
 
 class HtmlReport(FileExport):
@@ -68,6 +69,48 @@ class HtmlReport(FileExport):
         for line in text.split('\n'):
             newlines.append(f'<p>{line}</p>')
         return '\n'.join(newlines)
+
+    def _get_plot_line_styles(self):
+
+        # Set up styles that define the plot line colors.
+        DEFAULT_PLOTLINE_COLOR = '#dfdfdf'
+        DEFAULT_TEXT_COLOR = BLACK = '#000000'
+        WHITE = '#ffffff'
+
+        htmlText = []
+        htmlText.append('<style type="text/css">')
+        for plId in self.novel.plotLines:
+            plColor = self.novel.plotLines[plId].color
+            if plColor is not None:
+                if HexColor.is_dark(plColor):
+                    fgColor = WHITE
+                else:
+                    fgColor = BLACK
+                bgColor = plColor
+            else:
+                fgColor = DEFAULT_TEXT_COLOR
+                bgColor = DEFAULT_PLOTLINE_COLOR
+
+            # Plot line column heading cell style.
+            htmlText.append(
+                f'td.h{plId} {{'
+                f'background: {bgColor}; '
+                f'color: {fgColor}'
+                '}'
+            )
+
+            # Plot line node cell style.
+            htmlText.append(
+                f'td.{plId} {{'
+                f'border-left: 0.5em solid {bgColor}; '
+                f'background: {DEFAULT_PLOTLINE_COLOR}; '
+                f'color: {DEFAULT_TEXT_COLOR}'
+                '}'
+            )
+        htmlText.append(
+            '</style>\n'
+        )
+        return htmlText
 
     def _new_cell(self, text, attr=''):
         # Return the markup for a table cell with text and attributes.

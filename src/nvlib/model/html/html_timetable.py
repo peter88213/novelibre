@@ -21,7 +21,6 @@ class HtmlTimetable(HtmlReport):
     def write(self):
         """Create a HTML table.
         
-        Raise the "Error" exception in case of error. 
         Overwrites the superclass method.
         """
 
@@ -30,25 +29,17 @@ class HtmlTimetable(HtmlReport):
         if not srtSections:
             raise UserWarning(f'{_("No date/time data found")}.')
 
-        # Build the HTML table.
         htmlText = [self._fileHeader]
+        htmlText.extend(self._get_plot_line_styles())
+
+        # Build the HTML table.
         htmlText.append(
-            (
-                f'<title>{_("Time table")} ({self.novel.title})</title>\n'
-                '</head>\n'
-                '<body>\n'
-                f'<p class=title>{self.novel.title} {_("by")} '
-                f'{self.novel.authorName} - {_("Time table")}</p>\n'
-                '<table>'
-            )
-        )
-        plotLineColors = (
-            'LightSteelBlue',
-            'Gold',
-            'Coral',
-            'YellowGreen',
-            'MediumTurquoise',
-            'Plum',
+            f'<title>{_("Time table")} ({self.novel.title})</title>\n'
+            '</head>\n'
+            '<body>\n'
+            f'<p class=title>{self.novel.title} {_("by")} '
+            f'{self.novel.authorName} - {_("Time table")}</p>\n'
+            '<table>'
         )
 
         # Title row.
@@ -61,12 +52,11 @@ class HtmlTimetable(HtmlReport):
         htmlText.append(self._new_cell(_('Locations')))
         htmlText.append(self._new_cell(_('Characters')))
         plotLines = self.novel.tree.get_children(PL_ROOT)
-        for i, plId in enumerate(plotLines):
-            colorIndex = i % len(plotLineColors)
+        for plId in plotLines:
             htmlText.append(
                 self._new_cell(
                     self.novel.plotLines[plId].title,
-                    attr=f'style="background: {plotLineColors[colorIndex]}"'
+                    attr=f'class="h{plId}"',
                 )
             )
         htmlText.append('</tr>')
@@ -120,8 +110,7 @@ class HtmlTimetable(HtmlReport):
                         self._get_character_str(scId)
                     )
                 )
-                for i, plId in enumerate(plotLines):
-                    colorIndex = i % len(plotLineColors)
+                for plId in plotLines:
                     if scId in self.novel.plotLines[plId].sections:
                         plNotes = self.novel.sections[scId].plotlineNotes.get(
                             plId,
@@ -130,10 +119,7 @@ class HtmlTimetable(HtmlReport):
                         htmlText.append(
                             self._new_cell(
                                 plNotes,
-                                attr=(
-                                    'style="background: '
-                                    f'{plotLineColors[colorIndex]}"'
-                                )
+                                attr=f'class="{plId}"',
                             )
                         )
                     else:

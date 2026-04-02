@@ -21,58 +21,24 @@ class HtmlPlotList(HtmlReport):
     def write(self):
         """Create a HTML table.
         
-        Raise the "Error" exception in case of error. 
-        Extends the superclass method.
+        Overwrites the superclass method.
         """
-
-        DEFAULT_PLOTLINE_COLOR = '#dfdfdf'
-        DEFAULT_TEXT_COLOR = BLACK = '#000000'
-        WHITE = '#ffffff'
-
-        # Set up styles that define the plot line colors.
-        htmlText = [self._fileHeader]
-        htmlText.append('<style type="text/css">')
-        for plId in self.novel.plotLines:
-            plColor = self.novel.plotLines[plId].color
-            if plColor is not None:
-                if HexColor.is_dark(plColor):
-                    fgColor = WHITE
-                else:
-                    fgColor = BLACK
-                bgColor = plColor
-            else:
-                fgColor = DEFAULT_TEXT_COLOR
-                bgColor = DEFAULT_PLOTLINE_COLOR
-
-            # Plot line column heading cell style.
-            htmlText.append(
-                f'td.h{plId} {{'
-                f'background: {bgColor}; '
-                f'color: {fgColor}'
-                '}'
-            )
-
-            # Plot line node cell style.
-            htmlText.append(
-                f'td.{plId} {{'
-                f'border-left: 0.5em solid {bgColor}; '
-                f'background: {DEFAULT_PLOTLINE_COLOR}; '
-                f'color: {DEFAULT_TEXT_COLOR}'
-                '}'
-            )
-        htmlText.append(
-            '</style>\n'
-            f'<title>{self.novel.title}</title>\n'
-            '</head>\n'
-            '<body>\n'
-            f'<p class=title>{self.novel.title} - {_("Plot")}</p>\n'
-            '<table>'
-        )
 
         # Collect the plot lines.
         srtPlotLines = self.novel.tree.get_children(PL_ROOT)
         if not srtPlotLines:
             raise UserWarning(f'{_("No plot lines found")}.')
+
+        htmlText = [self._fileHeader]
+        htmlText.extend(self._get_plot_line_styles())
+
+        htmlText.append(
+            f'<title>{_("Plot lines")} ({self.novel.title})</title>\n'
+            '</head>\n'
+            '<body>\n'
+            f'<p class=title>{self.novel.title} - {_("Plot lines")}</p>\n'
+            '<table>'
+        )
 
         # Title row.
         htmlText.append('<tr class="heading">')
