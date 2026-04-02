@@ -122,7 +122,7 @@ class OdsWriter(OdfFile):
         'style:parent-style-name="Heading" style:data-style-name="N40"/>\n'
         '  <style:style style:name="ce4" style:family="table-cell" '
         'style:parent-style-name="Default" style:data-style-name="N40"/>\n'
-        ' </office:automatic-styles>\n'
+        '$Styles </office:automatic-styles>\n'
         ' <office:body>\n'
         '  <office:spreadsheet>\n'
         '   <table:table table:name="'
@@ -528,3 +528,7 @@ class OdsWriter(OdfFile):
             text = text.replace(nv, ods)
         return text
 
+    def _get_fileHeaderMapping(self):
+        fileHeaderMapping = super()._get_fileHeaderMapping()
+        fileHeaderMapping['Styles'] = ''
+        return fileHeaderMapping

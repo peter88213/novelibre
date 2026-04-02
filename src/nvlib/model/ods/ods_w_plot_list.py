@@ -29,12 +29,14 @@ class OdsWPlotList(OdsWriter):
         Raise the "Error" exception in case of error. 
         Extends the superclass method.
         """
+        fileHeader = Template(self._CONTENT_XML_HEADER).substitute(
+            self._get_fileHeaderMapping()
+        )
         odsText = [
-            self._get_content_xml_header(),
-            (
-                '   <table:table-column table:style-name="co4" '
-                'table:default-cell-style-name="Default"/>'
-            ),
+            f'{fileHeader}{self.DESCRIPTION}" table:style-name="ta1" '
+            'table:print="false">\n'
+            '   <table:table-column table:style-name="co4" '
+            'table:default-cell-style-name="Default"/>'
         ]
 
         # Get plot lines.
@@ -102,7 +104,7 @@ class OdsWPlotList(OdsWriter):
         with open(self.filePath, 'w', encoding='utf-8') as f:
             f.write('\n'.join(odsText))
 
-    def _get_content_xml_header(self):
+    def _get_fileHeaderMapping(self):
 
         DEFAULT_PLOTLINE_COLOR = '#dfdfdf'
         DEFAULT_TEXT_COLOR = BLACK = '#000000'
@@ -138,7 +140,7 @@ class OdsWPlotList(OdsWriter):
             'DefaultBgColor': DEFAULT_PLOTLINE_COLOR,
             'DefaultFgColor': DEFAULT_TEXT_COLOR,
         }
-        additionalStyles = []
+        xmlText = []
         for plId in self.novel.plotLines:
             plColor = self.novel.plotLines[plId].color
             if plColor is not None:
@@ -155,18 +157,11 @@ class OdsWPlotList(OdsWriter):
             mappings['BgColor'] = bgColor
             mappings['FgColor'] = fgColor
             styleXml = Template(styleTemplateHeading)
-            additionalStyles.append(styleXml.substitute(mappings))
+            xmlText.append(styleXml.substitute(mappings))
             styleXml = Template(styleTemplate)
-            additionalStyles.append(styleXml.substitute(mappings))
-        additionalStyles.append(' </office:automatic-styles>')
-        fileHeader = super()._CONTENT_XML_HEADER.replace(
-            ' </office:automatic-styles>',
-            '\n'.join(additionalStyles)
-        )
-        return (
-            f'{fileHeader}{self.DESCRIPTION}" table:style-name="ta1" '
-            'table:print="false">'
-        )
+            xmlText.append(styleXml.substitute(mappings))
+
+        return {'Styles': '\n'.join(xmlText)}
 
     def _new_cell(self, text, attr='', link=''):
         """Return the markup for a table cell with text and attributes."""
