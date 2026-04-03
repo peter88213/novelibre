@@ -104,13 +104,13 @@ class OdsWPlotList(OdsWriter):
         with open(self.filePath, 'w', encoding='utf-8') as f:
             f.write('\n'.join(odsText))
 
-    def _get_fileHeaderMapping(self):
+    def _get_extra_styles(self, elements):
 
-        DEFAULT_PLOTLINE_COLOR = '#dfdfdf'
-        DEFAULT_TEXT_COLOR = BLACK = '#000000'
+        DEFAULT_BG_COLOR = '#dfdfdf'
+        DEFAULT_FG_COLOR = BLACK = '#000000'
         WHITE = '#ffffff'
 
-        # Plot line column heading cell style.
+        # Element column heading cell style.
         styleTemplateHeading = (
             '  <style:style style:name="h$Name" style:family="table-cell" '
             'style:parent-style-name="Default">\n'
@@ -123,7 +123,7 @@ class OdsWPlotList(OdsWriter):
             '  </style:style>'
         )
 
-        # Plot line node cell style.
+        # Element node cell style.
         styleTemplate = (
             '  <style:style style:name="$Name" style:family="table-cell" '
             'style:parent-style-name="Default">\n'
@@ -138,12 +138,12 @@ class OdsWPlotList(OdsWriter):
         )
 
         mappings = {
-            'DefaultBgColor': DEFAULT_PLOTLINE_COLOR,
-            'DefaultFgColor': DEFAULT_TEXT_COLOR,
+            'DefaultBgColor': DEFAULT_BG_COLOR,
+            'DefaultFgColor': DEFAULT_FG_COLOR,
         }
         xmlText = []
-        for plId in self.novel.plotLines:
-            plColor = self.novel.plotLines[plId].color
+        for elemId in elements:
+            plColor = elements[elemId].color
             if plColor is not None:
                 if HexColor.is_dark(plColor):
                     fgColor = WHITE
@@ -151,10 +151,10 @@ class OdsWPlotList(OdsWriter):
                     fgColor = BLACK
                 bgColor = plColor
             else:
-                fgColor = DEFAULT_TEXT_COLOR
-                bgColor = DEFAULT_PLOTLINE_COLOR
+                fgColor = DEFAULT_FG_COLOR
+                bgColor = DEFAULT_BG_COLOR
 
-            mappings['Name'] = plId
+            mappings['Name'] = elemId
             mappings['BgColor'] = bgColor
             mappings['FgColor'] = fgColor
             styleXml = Template(styleTemplateHeading)
@@ -162,7 +162,13 @@ class OdsWPlotList(OdsWriter):
             styleXml = Template(styleTemplate)
             xmlText.append(styleXml.substitute(mappings))
 
-        return {'Styles': '\n'.join(xmlText)}
+        return '\n'.join(xmlText)
+
+    def _get_fileHeaderMapping(self):
+        fileHeaderMapping = {
+            'Styles': self._get_extra_styles(self.novel.plotLines)
+        }
+        return fileHeaderMapping
 
     def _new_cell(self, text, attr='', link=''):
         """Return the markup for a table cell with text and attributes."""

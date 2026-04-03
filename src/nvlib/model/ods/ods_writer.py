@@ -534,7 +534,7 @@ class OdsWriter(OdfFile):
 
         DEFAULT_BG_COLOR = '#f0f0f0'
 
-        # Character name cell style.
+        # Element name cell style.
         styleTemplate = (
             '  <style:style style:name="$Name" style:family="table-cell" '
             'style:parent-style-name="Default">\n'
