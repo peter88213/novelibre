@@ -24,7 +24,6 @@ class OdfFile(FileExport):
     """Generic OpenDocument xml file representation."""
     _ODF_COMPONENTS = []
     _MIMETYPE = ''
-    _SETTINGS_XML = ''
     _MANIFEST_XML = ''
     _STYLES_XML = ''
     _META_XML = ''
@@ -188,17 +187,6 @@ class OdfFile(FileExport):
                 f.write(self._MIMETYPE)
         except:
             raise RuntimeError(f'{_("Cannot write file")}: "mimetype"')
-
-        #--- Generate settings.xml.
-        try:
-            with open(
-                f'{self._tempDir}/settings.xml',
-                'w',
-                encoding='utf-8'
-            ) as f:
-                f.write(self._SETTINGS_XML)
-        except:
-            raise RuntimeError(f'{_("Cannot write file")}: "settings.xml"')
 
         #--- Generate META-INF\manifest.xml.
         try:
