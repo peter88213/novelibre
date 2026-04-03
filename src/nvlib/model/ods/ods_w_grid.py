@@ -316,9 +316,9 @@ class OdsWGrid(OdsWriter):
         mappings = {}
         xmlText = []
         for elemId in elements:
-            plColor = elements[elemId].color
-            if plColor is not None:
-                bgColor = plColor
+            elemColor = elements[elemId].color
+            if elemColor is not None:
+                bgColor = elemColor
             else:
                 bgColor = DEFAULT_BG_COLOR
 
