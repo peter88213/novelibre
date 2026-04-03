@@ -6,6 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from string import Template
 
+from nvlib.model.hex_color import HexColor
 from nvlib.model.ods.ods_writer import OdsWriter
 from nvlib.novx_globals import GRID_SUFFIX
 from nvlib.novx_globals import PLOTLINES_SUFFIX
@@ -292,10 +293,42 @@ class OdsWGrid(OdsWriter):
     )
     _arcTitleCell = (
         '     <table:table-cell $Link '
-        'table:style-name="Heading" office:value-type="string">\n'
+        'table:style-name="h$ArcId" office:value-type="string">\n'
         '      <text:p>$ArcTitle</text:p>\n'
         '     </table:table-cell>\n'
     )
+
+    def _get_extra_styles(self, elements):
+
+        DEFAULT_BG_COLOR = '#f0f0f0'
+
+        # Element column heading cell style.
+        styleTemplateHeading = (
+            '  <style:style style:name="h$Name" style:family="table-cell" '
+            'style:parent-style-name="Heading">\n'
+            '   <style:table-cell-properties '
+            'fo:border-bottom="none" '
+            'fo:border-left="none" '
+            'fo:border-right="none" '
+            'fo:border-top="0.176cm solid $BgColor"/>\n'
+            '  </style:style>'
+        )
+
+        mappings = {}
+        xmlText = []
+        for elemId in elements:
+            plColor = elements[elemId].color
+            if plColor is not None:
+                bgColor = plColor
+            else:
+                bgColor = DEFAULT_BG_COLOR
+
+            mappings['Name'] = elemId
+            mappings['BgColor'] = bgColor
+            styleXml = Template(styleTemplateHeading)
+            xmlText.append(styleXml.substitute(mappings))
+
+        return '\n'.join(xmlText)
 
     def _get_fileHeaderMapping(self):
         """Return a mapping dictionary for the project section.
@@ -315,7 +348,7 @@ class OdsWGrid(OdsWriter):
             )
             arcColumns.append(
                 '    <table:table-column table:style-name="co4" '
-                'table:default-cell-style-name="Default"/>'
+                f'table:default-cell-style-name="Default"/>'
             )
             mapping = dict(
                 ArcId=plId,
@@ -338,6 +371,9 @@ class OdsWGrid(OdsWriter):
         fileHeaderMapping['ArcColumns'] = '\n'.join(arcColumns)
         fileHeaderMapping['ArcIdCells'] = '\n'.join(arcIdCells)
         fileHeaderMapping['ArcTitleCells'] = '\n'.join(arcTitleCells)
+        fileHeaderMapping['Styles'] = self._get_extra_styles(
+            self.novel.plotLines
+        )
 
         return fileHeaderMapping
 
@@ -392,7 +428,10 @@ class OdsWGrid(OdsWriter):
                 arcNote = plotlineNotes.get(plId, '')
             else:
                 arcNote = ''
-            mapping = {'ArcNote':arcNote}
+            mapping = {
+                'ArcNote':arcNote,
+                'ID':plId,
+            }
             arcNoteCells.append(
                 Template(
                     self._arcNoteCell
