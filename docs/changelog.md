@@ -24,6 +24,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 > - nv_timeline
 >
 > Optional plugin updates for color support:
+> - nv_matrix
 > - nv_statistics
 
 
