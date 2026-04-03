@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.55.3
+### Version 5.55.4
 
 > [!IMPORTANT]
 > The file format has been upgraded from version 1.9 to version 1.10.
@@ -37,9 +37,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - HTML location table displaying the location colors.
 - HTML item table displaying the item colors.
 - ODS plot list displaying the plot line colors. 
+- ODS plot grid displaying the plot line colors. 
 - ODS character table displaying the character colors.
 - ODS location table displaying the location colors.
 - ODS item table displaying the item colors.
+- No longer writing ODF `settings.xml`.
 
 #### API changes
 
