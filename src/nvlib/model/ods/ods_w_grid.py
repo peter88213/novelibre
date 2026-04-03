@@ -6,7 +6,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from string import Template
 
-from nvlib.model.hex_color import HexColor
 from nvlib.model.ods.ods_writer import OdsWriter
 from nvlib.novx_globals import GRID_SUFFIX
 from nvlib.novx_globals import PLOTLINES_SUFFIX
