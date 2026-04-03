@@ -59,6 +59,7 @@ class ElementView(BlankView):
         self._uiBtn1Binding = ''
         self._lastSelected = ''
         self._doNotUpdate = False
+        self._colorFieldIsActive = False
 
         self.elementId = None
         self.inputWidgets = []
@@ -186,7 +187,7 @@ class ElementView(BlankView):
             self.notesWindow.clear()
             self.notesWindow.set_text(self.element.notes)
 
-        if hasattr(self.element, 'color'):
+        if self._colorFieldIsActive:
             if self.element.color is not None:
                 self._indexCard.set_color(self.element.color)
             else:
@@ -206,6 +207,7 @@ class ElementView(BlankView):
             self._configure_link_buttons()
 
     def _activate_color_field(self):
+        self._colorFieldIsActive = True
         self._indexCard.colorField.bind(
             MOUSE.CHOOSE_COLOR,
             self._choose_color,
