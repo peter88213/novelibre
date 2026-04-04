@@ -30,6 +30,7 @@ class HtmlPlotList(HtmlReport):
 
         htmlText = [self._fileHeader]
         htmlText.extend(self._get_plot_line_styles())
+        htmlText.extend(self._get_extra_styles(self.novel.sections))
 
         htmlText.append(
             f'<title>{_("Plot lines")} ({self.novel.title})</title>\n'
@@ -59,7 +60,8 @@ class HtmlPlotList(HtmlReport):
                     htmlText.append(f'<tr>')
                     htmlText.append(
                         self._new_cell(
-                            self.novel.sections[scId].title
+                            self.novel.sections[scId].title,
+                            attr=f'class="{scId}"',
                         )
                     )
                     for plId in srtPlotLines:

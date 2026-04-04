@@ -31,6 +31,7 @@ class HtmlTimetable(HtmlReport):
 
         htmlText = [self._fileHeader]
         htmlText.extend(self._get_plot_line_styles())
+        htmlText.extend(self._get_extra_styles(self.novel.sections))
 
         # Build the HTML table.
         htmlText.append(
@@ -87,7 +88,8 @@ class HtmlTimetable(HtmlReport):
                 )
                 htmlText.append(
                     self._new_cell(
-                        self.novel.sections[scId].title
+                        self.novel.sections[scId].title,
+                        attr=f'class="{scId}"',
                     )
                 )
                 htmlText.append(
