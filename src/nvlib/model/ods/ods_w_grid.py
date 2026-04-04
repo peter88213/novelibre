@@ -220,7 +220,8 @@ class OdsWGrid(OdsWriter):
         '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$ID</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell table:formula="of:=HYPERLINK(&quot;'
+        '     <table:table-cell table:style-name="$ID" '
+        'table:formula="of:=HYPERLINK(&quot;'
         'file:///$ProjectPath/$ProjectName$ManuscriptSuffix.odt'
         '#$ID%7Cregion&quot;;&quot;$SectionNumber&quot;)" '
         'office:value-type="string" office:string-value="$SectionNumber">\n'
@@ -297,7 +298,7 @@ class OdsWGrid(OdsWriter):
         '     </table:table-cell>\n'
     )
 
-    def _get_extra_styles(self, elements):
+    def _get_extra_h_styles(self, elements):
 
         DEFAULT_BG_COLOR = '#f0f0f0'
 
@@ -370,9 +371,9 @@ class OdsWGrid(OdsWriter):
         fileHeaderMapping['ArcColumns'] = '\n'.join(arcColumns)
         fileHeaderMapping['ArcIdCells'] = '\n'.join(arcIdCells)
         fileHeaderMapping['ArcTitleCells'] = '\n'.join(arcTitleCells)
-        fileHeaderMapping['Styles'] = self._get_extra_styles(
-            self.novel.plotLines
-        )
+        extraStyles = self._get_extra_styles(self.novel.sections)
+        extraHeadingStyles = self._get_extra_h_styles(self.novel.plotLines)
+        fileHeaderMapping['Styles'] = f'{extraStyles}{extraHeadingStyles}'
 
         return fileHeaderMapping
 

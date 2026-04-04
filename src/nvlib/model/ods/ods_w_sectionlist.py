@@ -5,6 +5,7 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.model.ods.ods_w_grid import OdsWGrid
+from nvlib.model.ods.ods_writer import OdsWriter
 from nvlib.novx_globals import SECTIONLIST_SUFFIX
 from nvlib.novx_globals import STATUS
 from nvlib.nv_locale import _
@@ -287,7 +288,7 @@ class OdsWSectionList(OdsWGrid):
         '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$ID</text:p>\n'
         '     </table:table-cell>\n'
-        '     <table:table-cell '
+        '     <table:table-cell table:style-name="$ID" '
         'table:formula="of:=HYPERLINK(&quot;'
         'file:///$ProjectPath/$ProjectName$ManuscriptSuffix.odt'
         '#$ID%7Cregion&quot;;&quot;$SectionNumber&quot;)" '
@@ -352,6 +353,13 @@ class OdsWSectionList(OdsWGrid):
         '    </table:table-row>\n'
     )
     _epigraphTemplate = ''
+
+    def _get_fileHeaderMapping(self):
+        fileHeaderMapping = OdsWriter._get_fileHeaderMapping(self)
+        fileHeaderMapping['Styles'] = self._get_extra_styles(
+            self.novel.sections
+        )
+        return fileHeaderMapping
 
     def _get_sectionMapping(
             self,

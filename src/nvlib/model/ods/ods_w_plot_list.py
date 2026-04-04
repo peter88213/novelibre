@@ -76,7 +76,8 @@ class OdsWPlotList(OdsWriter):
                     odsText.append(
                         self._new_cell(
                             self.novel.sections[scId].title,
-                            link=f'{MANUSCRIPT_SUFFIX}.odt#{scId}%7Cregion'
+                            link=f'{MANUSCRIPT_SUFFIX}.odt#{scId}%7Cregion ',
+                            attr=f'table:style-name="{scId}" '
                         )
                     )
                     for plId in srtPlotLines:
@@ -104,7 +105,7 @@ class OdsWPlotList(OdsWriter):
         with open(self.filePath, 'w', encoding='utf-8') as f:
             f.write('\n'.join(odsText))
 
-    def _get_extra_styles(self, elements):
+    def _get_extra_h_styles(self, elements):
 
         DEFAULT_BG_COLOR = '#dfdfdf'
         DEFAULT_FG_COLOR = BLACK = '#000000'
@@ -165,8 +166,10 @@ class OdsWPlotList(OdsWriter):
         return '\n'.join(xmlText)
 
     def _get_fileHeaderMapping(self):
+        extraStyles = self._get_extra_styles(self.novel.sections)
+        extraHeadingStyles = self._get_extra_h_styles(self.novel.plotLines)
         fileHeaderMapping = {
-            'Styles': self._get_extra_styles(self.novel.plotLines)
+            'Styles': f'{extraStyles}{extraHeadingStyles}'
         }
         return fileHeaderMapping
 
