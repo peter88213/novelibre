@@ -1053,6 +1053,28 @@ class NvModel:
         self.prjFile.write()
         self.isModified = False
 
+    def set_color(self, color, elemIds):
+        """Set element color.
+        
+        Positional arguments:
+            color: str -- New color to be set.
+            elemIds: list of IDs to process.
+        """
+        for elemId in elemIds:
+            if elemId.startswith(PLOT_LINE_PREFIX):
+                self.novel.plotLines[elemId].color = color
+            elif elemId.startswith(CHARACTER_PREFIX):
+                self.novel.characters[elemId].color = color
+            elif elemId.startswith(LOCATION_PREFIX):
+                self.novel.locations[elemId].color = color
+            elif elemId.startswith(ITEM_PREFIX):
+                self.novel.items[elemId].color = color
+            elif elemId.startswith(CHAPTER_PREFIX):
+                self.novel.chapters[elemId].color = color
+            elif elemId.startswith(SECTION_PREFIX):
+                if self.novel.sections[elemId].scType < 2:
+                    self.novel.sections[elemId].color = color
+
     def set_level(self, newLevel, elemIds):
         """Set chapter or stage level.
         

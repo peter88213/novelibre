@@ -4,7 +4,7 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from tkinter import ttk
+from tkinter import ttk, colorchooser
 
 from nvlib.controller.sub_controller import SubController
 from nvlib.gui.contents_window.contents_viewer import ContentsViewer
@@ -485,6 +485,13 @@ class MainView(Observer, MsgBoxes, SubController):
             command=self.tv.collapse_all,
         )
         menu.disableOnClose.append(label)
+
+    def get_color(self, title=''):
+        color = colorchooser.askcolor(title=title)
+        if color is None:
+            return None
+
+        return color[1]
 
     def _create_menus(self):
 

@@ -554,6 +554,11 @@ class Commands:
             self.elementManager.remove_chapter_keep_sections()
         return 'break'
 
+    def reset_color(self, event=None):
+        if not self.isLocked:
+            self.elementManager.reset_color()
+        return 'break'
+
     def restore_backup(self, event=None):
         """Discard changes and restore the latest backup file."""
         self.fileManager.restore_backup()
@@ -581,6 +586,10 @@ class Commands:
     def set_chr_status_minor(self, event=None):
         if not self.check_lock():
             self.elementManager.set_character_status(False)
+
+    def set_color(self, event=None, title=''):
+        if not self.isLocked:
+            self.elementManager.set_color(title)
 
     def set_level_1(self, event=None):
         if not self.check_lock():

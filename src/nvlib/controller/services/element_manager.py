@@ -774,6 +774,18 @@ class ElementManager(ServiceBase):
         self._ctrl.refresh_tree()
         self._ui.tv.go_to_node(prevChId)
 
+    def reset_color(self, elemIds=None):
+        self._ui.restore_status()
+        if self._mdl.prjFile is None:
+            return
+
+        if elemIds is None:
+            elemIds = self._ui.selectedNodes
+            if elemIds is None:
+                return
+
+        self._mdl.set_color(None, elemIds)
+
     def set_character_status(self, isMajor, elemIds=None):
         """Set character status to Major.
         
@@ -799,6 +811,20 @@ class ElementManager(ServiceBase):
 
         self._ui.tv.open_children(CR_ROOT)
         self._mdl.set_character_status(isMajor, elemIds)
+
+    def set_color(self, title='', elemIds=None):
+        self._ui.restore_status()
+        if self._mdl.prjFile is None:
+            return
+
+        if elemIds is None:
+            elemIds = self._ui.selectedNodes
+            if elemIds is None:
+                return
+
+        color = self._ui.get_color(title=title)
+        if color is not None:
+            self._mdl.set_color(color, elemIds)
 
     def set_completion_status(self, newStatus, elemIds=None):
         """Set section completion status (Outline/Draft..).

@@ -210,11 +210,11 @@ class ElementView(BlankView):
         self._colorFieldIsActive = True
         self._indexCard.colorField.bind(
             MOUSE.CHOOSE_COLOR,
-            self._choose_color,
+            self._set_color,
         )
         self._indexCard.colorField.bind(
             MOUSE.RESET_COLOR,
-            self._reset_color,
+            self._ctrl.reset_color,
         )
         Hovertip(
             self._indexCard.colorField,
@@ -227,14 +227,10 @@ class ElementView(BlankView):
             orient='horizontal'
         ).pack(fill='x')
 
-    def _choose_color(self, event=None):
-        if not self.isLocked:
-            color = colorchooser.askcolor(
-                title=f"{_('Choose color')}: {self.element.title}"
-            )
-            if color[1] is not None:
-                self.element.color = color[1]
-        return 'break'
+    def _set_color(self, event=None):
+        self._ctrl.set_color(
+            title=f"{_('Choose color')}: {self.element.title}"
+        )
 
     def _configure_link_buttons(self, event=None):
         if self.element.links and self.linkCollection.selection is not None:
@@ -393,11 +389,6 @@ class ElementView(BlankView):
             message=_('Cannot convert date/days'),
             detail=f"{_('Please enter a reference date')}."
             )
-
-    def _reset_color(self, event=None):
-        if not self.isLocked:
-            self.element.color = None
-        return 'break'
 
     def _start_picking_mode(self, event=None, command=None):
         # Start the picking mode for element selection.
