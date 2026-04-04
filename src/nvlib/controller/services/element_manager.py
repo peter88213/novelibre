@@ -779,10 +779,9 @@ class ElementManager(ServiceBase):
         if self._mdl.prjFile is None:
             return
 
+        elemIds = elemIds or self._ui.selectedNodes
         if elemIds is None:
-            elemIds = self._ui.selectedNodes
-            if elemIds is None:
-                return
+            return
 
         self._mdl.set_color(None, elemIds)
 
@@ -798,16 +797,15 @@ class ElementManager(ServiceBase):
         if self._mdl.prjFile is None:
             return
 
+        elemIds = elemIds or self._ui.selectedNodes
         if elemIds is None:
-            elemIds = self._ui.selectedNodes
-            if elemIds is None:
-                return
+            return
 
-            elif not self._applies_to_character(elemIds):
-                self._ui.set_status(
-                    f'#{_("Cannot set the character status at this position")}.'
-                )
-                return
+        if not self._applies_to_character(elemIds):
+            self._ui.set_status(
+                f'#{_("Cannot set the character status at this position")}.'
+            )
+            return
 
         self._ui.tv.open_children(CR_ROOT)
         self._mdl.set_character_status(isMajor, elemIds)
@@ -817,10 +815,9 @@ class ElementManager(ServiceBase):
         if self._mdl.prjFile is None:
             return
 
+        elemIds = elemIds or self._ui.selectedNodes
         if elemIds is None:
-            elemIds = self._ui.selectedNodes
-            if elemIds is None:
-                return
+            return
 
         color = self._ui.get_color(title=title)
         if color is not None:
@@ -837,16 +834,15 @@ class ElementManager(ServiceBase):
         if self._mdl.prjFile is None:
             return
 
+        elemIds = elemIds or self._ui.selectedNodes
         if elemIds is None:
-            elemIds = self._ui.selectedNodes
-            if elemIds is None:
-                return
+            return
 
-            elif not self._applies_to_book(elemIds):
-                self._ui.set_status(
-                    f'#{_("Cannot set the section status at this position")}.'
-                )
-                return
+        if not self._applies_to_book(elemIds):
+            self._ui.set_status(
+                f'#{_("Cannot set the section status at this position")}.'
+            )
+            return
 
         self._ui.tv.open_children(elemIds[0])
         self._mdl.set_completion_status(newStatus, elemIds)
@@ -862,16 +858,15 @@ class ElementManager(ServiceBase):
         if self._mdl.prjFile is None:
             return
 
+        elemIds = elemIds or self._ui.selectedNodes
         if elemIds is None:
-            elemIds = self._ui.selectedNodes
-            if elemIds is None:
-                return
+            return
 
-            elif not self._applies_to_levelled(elemIds):
-                self._ui.set_status(
-                    f'#{_("Cannot change the level at this position")}.'
-                )
-                return
+        if not self._applies_to_levelled(elemIds):
+            self._ui.set_status(
+                f'#{_("Cannot change the level at this position")}.'
+            )
+            return
 
         self._mdl.set_level(newLevel, elemIds)
 
@@ -886,16 +881,15 @@ class ElementManager(ServiceBase):
         if self._mdl.prjFile is None:
             return
 
+        elemIds = elemIds or self._ui.selectedNodes
         if elemIds is None:
-            elemIds = self._ui.selectedNodes
-            if elemIds is None:
-                return
+            return
 
-            elif not self._applies_to_book(elemIds):
-                self._ui.set_status(
-                    f'#{_("Cannot set the type at this position")}.'
-                )
-                return
+        if not self._applies_to_book(elemIds):
+            self._ui.set_status(
+                f'#{_("Cannot set the type at this position")}.'
+            )
+            return
 
         self._ui.tv.open_children(elemIds[0])
         self._mdl.set_type(newType, elemIds)
@@ -933,16 +927,15 @@ class ElementManager(ServiceBase):
         if self._mdl.prjFile is None:
             return
 
+        elemIds = elemIds or self._ui.selectedNodes
         if elemIds is None:
-            elemIds = self._ui.selectedNodes
-            if elemIds is None:
-                return
+            return
 
-            elif not self._applies_to_book(elemIds):
-                self._ui.set_status(
-                    f'#{_("Cannot assign a viewpoint at this position")}.'
-                )
-                return
+        if not self._applies_to_book(elemIds):
+            self._ui.set_status(
+                f'#{_("Cannot assign a viewpoint at this position")}.'
+            )
+            return
 
         characters = {'00': f"({_('Clear assignment')})"}
         if crId is None:
