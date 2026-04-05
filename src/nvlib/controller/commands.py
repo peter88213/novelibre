@@ -562,6 +562,42 @@ class Commands:
             self.elementManager.reset_color()
         return 'break'
 
+    def reset_color_ch(self, event=None):
+        if not self.isLocked:
+            self.elementManager.reset_color(
+                prefix=CHAPTER_PREFIX,
+            )
+
+    def reset_color_cr(self, event=None):
+        if not self.isLocked:
+            self.elementManager.reset_color(
+                prefix=CHARACTER_PREFIX,
+            )
+
+    def reset_color_it(self, event=None):
+        if not self.isLocked:
+            self.elementManager.reset_color(
+                prefix=ITEM_PREFIX,
+            )
+
+    def reset_color_lc(self, event=None):
+        if not self.isLocked:
+            self.elementManager.reset_color(
+                prefix=LOCATION_PREFIX,
+            )
+
+    def reset_color_pl(self, event=None):
+        if not self.isLocked:
+            self.elementManager.reset_color(
+                prefix=PLOT_LINE_PREFIX,
+            )
+
+    def reset_color_sc(self, event=None):
+        if not self.isLocked:
+            self.elementManager.reset_color(
+                prefix=SECTION_PREFIX,
+            )
+
     def restore_backup(self, event=None):
         """Discard changes and restore the latest backup file."""
         self.fileManager.restore_backup()

@@ -774,7 +774,7 @@ class ElementManager(ServiceBase):
         self._ctrl.refresh_tree()
         self._ui.tv.go_to_node(prevChId)
 
-    def reset_color(self, elemIds=None):
+    def reset_color(self, elemIds=None, prefix=None):
         self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
@@ -782,6 +782,16 @@ class ElementManager(ServiceBase):
         elemIds = elemIds or self._ui.selectedNodes
         if elemIds is None:
             return
+
+        if prefix is not None:
+            for elemId in elemIds[:]:
+                if not elemId.startswith(prefix):
+                    elemIds.delete[elemId]
+            if not elemIds:
+                self._ui.set_status(
+                    f'#{_("Selection does not contain matching elements")}.'
+                )
+                return
 
         self._mdl.set_color(None, elemIds)
 
