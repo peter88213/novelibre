@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.55.5\n"
-"POT-Creation-Date: 2026-04-03 18:40:35\n"
+"POT-Creation-Date: 2026-04-05 19:35:18\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -1296,6 +1296,9 @@ msgid "Select tag"
 msgstr ""
 
 msgid "Select viewpoint"
+msgstr ""
+
+msgid "Selection does not contain matching elements"
 msgstr ""
 
 msgid "Set Status"

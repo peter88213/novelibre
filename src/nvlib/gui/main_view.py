@@ -870,45 +870,24 @@ class MainView(Observer, MsgBoxes, SubController):
 
         self._ctrl.register_client(self.viewMenu)
 
-        # "Part".
-        self.partMenu = NvMenu()
-
-        label = _('Add')
-        self.partMenu.add_command(
-            label=label,
-            image=self.icons.addIcon,
-            compound='left',
-            command=self._ctrl.add_new_part,
-        )
-        self.partMenu.disableOnLock.append(label)
-
-        self.partMenu.add_separator()
-
-        label = _('Export part descriptions for editing')
-        self.partMenu.add_command(
-            label=label,
-            command=self._ctrl.export_part_desc,
-        )
-        self.partMenu.disableOnLock.append(label)
-
-        label = _('Export part table')
-        self.partMenu.add_command(
-            label=label,
-            command=self._ctrl.export_part_list,
-        )
-        self.partMenu.disableOnLock.append(label)
-
-        self._ctrl.register_client(self.partMenu)
-
         # "Chapter".
         self.chapterMenu = NvMenu()
 
-        label = _('Add')
+        label = _('Add Chapter')
         self.chapterMenu.add_command(
             label=label,
             image=self.icons.addIcon,
             compound='left',
             command=self._ctrl.add_new_chapter,
+        )
+        self.chapterMenu.disableOnLock.append(label)
+
+        label = _('Add Part')
+        self.chapterMenu.add_command(
+            label=label,
+            image=self.icons.addIcon,
+            compound='left',
+            command=self._ctrl.add_new_part,
         )
         self.chapterMenu.disableOnLock.append(label)
 
@@ -944,10 +923,24 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         self.chapterMenu.disableOnLock.append(label)
 
+        label = _('Export part descriptions for editing')
+        self.chapterMenu.add_command(
+            label=label,
+            command=self._ctrl.export_part_desc,
+        )
+        self.chapterMenu.disableOnLock.append(label)
+
         label = _('Export chapter table')
         self.chapterMenu.add_command(
             label=label,
             command=self._ctrl.export_chapter_list,
+        )
+        self.chapterMenu.disableOnLock.append(label)
+
+        label = _('Export part table')
+        self.chapterMenu.add_command(
+            label=label,
+            command=self._ctrl.export_part_list,
         )
         self.chapterMenu.disableOnLock.append(label)
 
@@ -1441,13 +1434,6 @@ class MainView(Observer, MsgBoxes, SubController):
             label=label,
             menu=self.viewMenu
         )
-
-        label = _('Part')
-        self.mainMenu.add_cascade(
-            label=label,
-            menu=self.partMenu,
-        )
-        self.mainMenu.disableOnClose.append(label)
 
         label = _('Chapter')
         self.mainMenu.add_cascade(

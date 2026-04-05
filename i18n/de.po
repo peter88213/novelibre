@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 5.55.5\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-04-03 18:40:35\n"
+"PO-Revision-Date: 2026-04-05 19:25:53\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -57,6 +57,7 @@ msgstr "Plotpunkt hinzufügen"
 
 msgid "Add Section"
 msgstr "Abschnitt hinzufügen"
+
 
 msgid "Add child"
 msgstr "Kindelement hinzufügen"
@@ -1290,6 +1291,9 @@ msgstr "Schlagwort auswählen"
 
 msgid "Select viewpoint"
 msgstr "Perspektive auswählen"
+
+msgid "Selection does not contain matching elements"
+msgstr "Auswahl enthält keine passenden Elemente"
 
 msgid "Set Status"
 msgstr "Status setzen"

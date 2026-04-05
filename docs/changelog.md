@@ -28,6 +28,8 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 > - nv_statistics
 
 
+- Removed the **Part** menu from the main menu. 
+  Added its entries to the **Chapter** menu. 
 - Colors can be assigned to plot lines, characters, locations, and items
   via a color chooser. 
   The color setting is done via clicking on the upper right corner of the 
