@@ -399,6 +399,25 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         menu.disableOnLock.append(label)
 
+    def add_color_commands(self, menu):
+        label = _('Set color')
+        menu.add_command(
+            label=label,
+            image=self.icons.addIcon,
+            compound='left',
+            command=self._ctrl.add_new_chapter
+        )
+        menu.disableOnLock.append(label)
+
+        label = _('Reset color')
+        menu.add_command(
+            label=label,
+            image=self.icons.addIcon,
+            compound='left',
+            command=self._ctrl.add_new_part,
+        )
+        menu.disableOnLock.append(label)
+
     def add_highlight_related_command(self, menu):
         label = _('Highlight related sections')
         menu.add_command(
@@ -873,23 +892,7 @@ class MainView(Observer, MsgBoxes, SubController):
         # "Chapter".
         self.chapterMenu = NvMenu()
 
-        label = _('Add Chapter')
-        self.chapterMenu.add_command(
-            label=label,
-            image=self.icons.addIcon,
-            compound='left',
-            command=self._ctrl.add_new_chapter,
-        )
-        self.chapterMenu.disableOnLock.append(label)
-
-        label = _('Add Part')
-        self.chapterMenu.add_command(
-            label=label,
-            image=self.icons.addIcon,
-            compound='left',
-            command=self._ctrl.add_new_part,
-        )
-        self.chapterMenu.disableOnLock.append(label)
+        self.add_chapter_part_commands(self.chapterMenu)
 
         label = _('Add multiple chapters...')
         self.chapterMenu.add_command(
