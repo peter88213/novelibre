@@ -13,15 +13,17 @@ from nvlib.gui.pop_up.export_options_dialog import ExportOptionsDialog
 from nvlib.gui.pop_up.plugin_manager_dialog import PluginManagerDialog
 from nvlib.gui.pop_up.reimport_dialog import ReimportDialog
 from nvlib.gui.pop_up.view_options_dialog import ViewOptionsDialog
-from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX, FULL_MANUSCRIPT_SUFFIX
+from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from nvlib.novx_globals import CHAPTERLIST_SUFFIX
 from nvlib.novx_globals import CHAPTERS_SUFFIX
+from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTERS_SUFFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CHARACTER_REPORT_SUFFIX
 from nvlib.novx_globals import CHARLIST_SUFFIX
 from nvlib.novx_globals import DATA_SUFFIX
 from nvlib.novx_globals import ELEMENT_NOTES_SUFFIX
+from nvlib.novx_globals import FULL_MANUSCRIPT_SUFFIX
 from nvlib.novx_globals import GRID_SUFFIX
 from nvlib.novx_globals import ITEMLIST_SUFFIX
 from nvlib.novx_globals import ITEMS_SUFFIX
@@ -42,6 +44,7 @@ from nvlib.novx_globals import PROJECTNOTES_SUFFIX
 from nvlib.novx_globals import PROOF_SUFFIX
 from nvlib.novx_globals import SECTIONLIST_SUFFIX
 from nvlib.novx_globals import SECTIONS_SUFFIX
+from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import STAGES_SUFFIX
 from nvlib.novx_globals import TIMETABLE_SUFFIX
 from nvlib.novx_globals import XREF_SUFFIX
@@ -589,7 +592,51 @@ class Commands:
 
     def set_color(self, event=None, title=''):
         if not self.isLocked:
-            self.elementManager.set_color(title)
+            self.elementManager.set_color(
+                title=title,
+            )
+
+    def set_color_ch(self, event=None, title=''):
+        if not self.isLocked:
+            self.elementManager.set_color(
+                title=title,
+                prefix=CHAPTER_PREFIX,
+            )
+
+    def set_color_cr(self, event=None, title=''):
+        if not self.isLocked:
+            self.elementManager.set_color(
+                title=title,
+                prefix=CHARACTER_PREFIX,
+            )
+
+    def set_color_it(self, event=None, title=''):
+        if not self.isLocked:
+            self.elementManager.set_color(
+                title=title,
+                prefix=ITEM_PREFIX,
+            )
+
+    def set_color_lc(self, event=None, title=''):
+        if not self.isLocked:
+            self.elementManager.set_color(
+                title=title,
+                prefix=LOCATION_PREFIX,
+            )
+
+    def set_color_pl(self, event=None, title=''):
+        if not self.isLocked:
+            self.elementManager.set_color(
+                title=title,
+                prefix=PLOT_LINE_PREFIX,
+            )
+
+    def set_color_sc(self, event=None, title=''):
+        if not self.isLocked:
+            self.elementManager.set_color(
+                title=title,
+                prefix=SECTION_PREFIX,
+            )
 
     def set_level_1(self, event=None):
         if not self.check_lock():

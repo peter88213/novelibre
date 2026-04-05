@@ -810,7 +810,7 @@ class ElementManager(ServiceBase):
         self._ui.tv.open_children(CR_ROOT)
         self._mdl.set_character_status(isMajor, elemIds)
 
-    def set_color(self, title='', elemIds=None):
+    def set_color(self, title='', elemIds=None, prefix=None):
         self._ui.restore_status()
         if self._mdl.prjFile is None:
             return
@@ -818,6 +818,16 @@ class ElementManager(ServiceBase):
         elemIds = elemIds or self._ui.selectedNodes
         if elemIds is None:
             return
+
+        if prefix is not None:
+            for elemId in elemIds[:]:
+                if not elemId.startswith(prefix):
+                    elemIds.delete[elemId]
+            if not elemIds:
+                self._ui.set_status(
+                    f'#{_("Selection does not contain matching elements")}.'
+                )
+                return
 
         # Get the first assigned color as an
         # initial value for the color chooser.
