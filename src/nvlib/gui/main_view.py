@@ -486,8 +486,11 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         menu.disableOnClose.append(label)
 
-    def get_color(self, title=''):
-        color = colorchooser.askcolor(title=title)
+    def choose_color(self, title='', initialcolor=None):
+        color = colorchooser.askcolor(
+            title=title,
+            color=initialcolor,
+        )
         if color is None:
             return None
 

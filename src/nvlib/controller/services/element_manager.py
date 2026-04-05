@@ -819,7 +819,17 @@ class ElementManager(ServiceBase):
         if elemIds is None:
             return
 
-        color = self._ui.get_color(title=title)
+        # Get the first assigned color as an
+        # initial value for the color chooser.
+        for elemId in elemIds:
+            color = self._mdl.get_color(elemId)
+            if color is not None:
+                break
+
+        color = self._ui.choose_color(
+            title=title,
+            initialcolor=color,
+        )
         if color is not None:
             self._mdl.set_color(color, elemIds)
 

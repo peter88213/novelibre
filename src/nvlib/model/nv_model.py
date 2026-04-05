@@ -1075,6 +1075,32 @@ class NvModel:
                 if self.novel.sections[elemId].scType < 2:
                     self.novel.sections[elemId].color = color
 
+    def get_color(self, elemId):
+        """Get the color assigned to an element specified by elemId.
+        
+        Positional arguments:
+            elemId: IDof the welement to query.
+        """
+        if elemId.startswith(PLOT_LINE_PREFIX):
+            return self.novel.plotLines[elemId].color
+
+        if elemId.startswith(CHARACTER_PREFIX):
+            return self.novel.characters[elemId].color
+
+        if elemId.startswith(LOCATION_PREFIX):
+            return self.novel.locations[elemId].color
+
+        if elemId.startswith(ITEM_PREFIX):
+            return self.novel.items[elemId].color
+
+        if elemId.startswith(CHAPTER_PREFIX):
+            return self.novel.chapters[elemId].color
+
+        if elemId.startswith(SECTION_PREFIX):
+            return self.novel.sections[elemId].color
+
+        return None
+
     def set_level(self, newLevel, elemIds):
         """Set chapter or stage level.
         
