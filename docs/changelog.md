@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.55.5
+### Version 5.55.6
 
 > [!IMPORTANT]
 > The file format has been upgraded from version 1.9 to version 1.10.
@@ -33,7 +33,8 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Colors can be assigned to chapters, sections,
   plot lines, characters, locations, and items
   via a color chooser. 
-  The color setting is done via clicking on the upper right corner of the 
+  The color can be set via menu commands, or 
+  by clicking on the upper right corner of the 
   "index card". `Alt`-click resets the color.   
 - Project tree displaying stages underlined.
 - Project tree displaying main characters in bold.
