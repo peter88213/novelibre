@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.55.8\n"
+"Project-Id-Version: 5.55.9\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-04-06 12:09:46\n"
+"PO-Revision-Date: 2026-04-06 13:22:42\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -456,6 +456,9 @@ msgstr "Manuskript verwerfen"
 
 msgid "Discard manuscript?"
 msgstr "Manuskript verwerfen?"
+
+msgid "Display the entire project tree in color"
+msgstr "Gesamten Projektbaum farbig anzeigen"
 
 msgid "Display localized dates"
 msgstr "Lokalisierte Datumsangaben anzeigen"

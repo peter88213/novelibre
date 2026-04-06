@@ -57,6 +57,18 @@ class ViewOptionsDialog(ModalDialog, SubController):
             command=self._change_colors,
         ).pack()
 
+        # Checkbox for colored display of non-book tree elements.
+        self._colorTreeVar = tk.BooleanVar(
+            frame1,
+            value=prefs['color_tree'],
+        )
+        ttk.Checkbutton(
+            frame1,
+            text=_("Display colors of non-book elements"),
+            variable=self._colorTreeVar,
+            command=self._change_color_tree,
+        ).pack(padx=5, pady=5, anchor='w')
+
         ttk.Separator(frame1, orient='horizontal').pack(fill='x')
 
         # Checkbox for large toolbar buttons.
@@ -72,14 +84,14 @@ class ViewOptionsDialog(ModalDialog, SubController):
         ).pack(padx=5, pady=5, anchor='w')
 
         # Checkbox for ISO-formatted date display.
-        self._localizeDate = tk.BooleanVar(
+        self._localizeDateVar = tk.BooleanVar(
             frame1,
             value=prefs['localize_date'],
         )
         ttk.Checkbutton(
             frame1,
             text=_('Display localized dates'),
-            variable=self._localizeDate,
+            variable=self._localizeDateVar,
             command=self._change_localize_date,
         ).pack(padx=5, pady=5, anchor='w')
 
@@ -124,6 +136,10 @@ class ViewOptionsDialog(ModalDialog, SubController):
         # Set Key bindings.
         self.bind(KEYS.OPEN_HELP[0], self._open_help)
 
+    def _change_color_tree(self, *args):
+        prefs['color_tree'] = self._colorTreeVar.get()
+        self._ui.tv.refresh()
+
     def _change_colors(self, *args, **kwargs):
         self._ui.tv.coloringMode = self._ui.tv.COLORING_MODES.index(
             self._coloringModeStrVar.get()
@@ -149,7 +165,7 @@ class ViewOptionsDialog(ModalDialog, SubController):
         )
 
     def _change_localize_date(self, *args):
-        prefs['localize_date'] = self._localizeDate.get()
+        prefs['localize_date'] = self._localizeDateVar.get()
         self._ui.tv.refresh()
         self._ui.propertiesView.refresh()
 

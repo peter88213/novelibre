@@ -59,6 +59,7 @@ SETTINGS = dict(
 SETTINGS.update(DEFAULT_COLORS)
 OPTIONS = dict(
     ask_doc_open=True,
+    color_tree=True,
     detach_prop_win=False,
     enable_backup=False,
     enable_hovertips=True,

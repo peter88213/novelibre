@@ -978,16 +978,20 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         return to_string(
             self._mdl.novel.chapters[chId].title), nodeValues, tuple(nodeTags)
 
-    def _get_character_color_tag(self, crId):
-        color = self._mdl.novel.characters[crId].color
-        if not color:
-            return None
+    def _add_color_tag(self, elemId, nodeTags):
+        if not prefs['color_tree']:
+            return
+
+        prefix = elemId[:2]
+        color = self._mdl.novel.elementsByPrefix[prefix][elemId].color
+        if color is None:
+            return
 
         self.tree.tag_configure(
-            f'{crId}_color',
+            f'{elemId}_color',
             foreground=color,
         )
-        return (f'{crId}_color')
+        nodeTags.append(f'{elemId}_color')
 
     def _get_character_row_data(self, crId):
         # Return title, values, and tags for a character row.
@@ -1033,9 +1037,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             nodeTags.append('highlighted')
             self.highlightedElements.append(crId)
 
-        colorTag = self._get_character_color_tag(crId)
-        if colorTag is not None:
-            nodeTags.append(colorTag)
+        self._add_color_tag(crId, nodeTags)
 
         return (
             to_string(self._mdl.novel.characters[crId].title),
@@ -1077,13 +1079,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             nodeTags.append('highlighted')
             self.highlightedElements.append(itId)
 
-        color = self._mdl.novel.items[itId].color
-        if color:
-            self.tree.tag_configure(
-                f'{itId}_color',
-                foreground=color,
-            )
-            nodeTags.append(f'{itId}_color')
+        self._add_color_tag(itId, nodeTags)
 
         return to_string(
             self._mdl.novel.items[itId].title
@@ -1111,13 +1107,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             nodeTags.append('highlighted')
             self.highlightedElements.append(lcId)
 
-        color = self._mdl.novel.locations[lcId].color
-        if color:
-            self.tree.tag_configure(
-                f'{lcId}_color',
-                foreground=color,
-            )
-            nodeTags.append(f'{lcId}_color')
+        self._add_color_tag(lcId, nodeTags)
 
         return to_string(
             self._mdl.novel.locations[lcId].title
@@ -1155,13 +1145,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
         nodeTags = ['plot_line']
 
-        color = self._mdl.novel.plotLines[plId].color
-        if color:
-            self.tree.tag_configure(
-                f'{plId}_color',
-                foreground=color,
-            )
-            nodeTags.append(f'{plId}_color')
+        self._add_color_tag(plId, nodeTags)
 
         return title, nodeValues, tuple(nodeTags)
 
@@ -1181,13 +1165,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                 nodeValues[self._colPos['tp']] = sectionTitle
 
         nodeTags = []
-        color = self._mdl.novel.plotPoints[ppId].color
-        if color:
-            self.tree.tag_configure(
-                f'{ppId}_color',
-                foreground=color,
-            )
-            nodeTags.append(f'{ppId}_color')
+        self._add_color_tag(ppId, nodeTags)
 
         return to_string(
             self._mdl.novel.plotPoints[ppId].title
@@ -1196,14 +1174,9 @@ class TreeViewer(ttk.Frame, Observer, SubController):
     def _get_prj_note_row_data(self, pnId):
         # Return title, values, and tags for a project note row.
         nodeValues = [''] * len(self.columns)
+
         nodeTags = []
-        color = self._mdl.novel.projectNotes[pnId].color
-        if color:
-            self.tree.tag_configure(
-                f'{pnId}_color',
-                foreground=color,
-            )
-            nodeTags.append(f'{pnId}_color')
+        self._add_color_tag(pnId, nodeTags)
 
         return to_string(
             self._mdl.novel.projectNotes[pnId].title
@@ -1254,9 +1227,13 @@ class TreeViewer(ttk.Frame, Observer, SubController):
                 elif self.coloringMode == 3:
                     crId = self._mdl.novel.sections[scId].viewpoint
                     if crId:
-                        colorTag = self._get_character_color_tag(crId)
-                        if colorTag is not None:
-                            nodeTags.append(colorTag)
+                        color = self._mdl.novel.characters[crId].color
+                        if color:
+                            self.tree.tag_configure(
+                                f'{crId}_color',
+                                foreground=color,
+                            )
+                            nodeTags.append(f'{crId}_color')
                 try:
                     position = round(100 * position / self._wordsTotal, 1)
                     positionStr = f'{position}%'
