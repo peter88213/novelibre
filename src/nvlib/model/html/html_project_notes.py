@@ -16,7 +16,7 @@ class HtmlProjectNotes(HtmlReport):
     SUFFIX = PROJECTNOTES_SUFFIX
 
     _fileHeader = (
-        f'{HtmlReport._fileHeader}\n'
+        f'{HtmlReport._fileHeader}$Styles'
         f'<title>{_("Project notes")} ($Title)</title>\n'
         '</head>\n'
         '<body>\n'
@@ -31,7 +31,7 @@ class HtmlProjectNotes(HtmlReport):
 
     _projectNoteTemplate = (
         '<tr>\n'
-        '<td class="chtitle">$Title</td>\n'
+        '<td class="$ID">$Title</td>\n'
         '<td>$Desc</td>\n'
         '</tr>\n'
     )
@@ -41,3 +41,9 @@ class HtmlProjectNotes(HtmlReport):
             raise UserWarning(f'{_("No project notes found")}.')
         super().write()
 
+    def _get_fileHeaderMapping(self):
+        fileHeaderMapping = super()._get_fileHeaderMapping()
+        fileHeaderMapping['Styles'] = '\n'.join(
+            self._get_extra_styles(self.novel.projectNotes)
+        )
+        return fileHeaderMapping

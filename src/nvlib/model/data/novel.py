@@ -9,6 +9,14 @@ import re
 
 from nvlib.model.data.basic_element import BasicElement
 from nvlib.model.data.py_calendar import PyCalendar
+from nvlib.novx_globals import CHAPTER_PREFIX
+from nvlib.novx_globals import CHARACTER_PREFIX
+from nvlib.novx_globals import ITEM_PREFIX
+from nvlib.novx_globals import LOCATION_PREFIX
+from nvlib.novx_globals import PLOT_LINE_PREFIX
+from nvlib.novx_globals import PLOT_POINT_PREFIX
+from nvlib.novx_globals import PRJ_NOTE_PREFIX
+from nvlib.novx_globals import SECTION_PREFIX
 
 LANGUAGE_TAG = re.compile(r'\<(p|span|h.) xml\:lang=\"(.*?)\".*?\>')
 
@@ -101,6 +109,16 @@ class Novel(BasicElement):
             self.referenceWeekDay = None
             self._referenceDate = None
         self.tree = tree
+        self.elementsByPrefix = {
+            CHAPTER_PREFIX: self.chapters,
+            CHARACTER_PREFIX: self.characters,
+            ITEM_PREFIX: self.items,
+            LOCATION_PREFIX: self.locations,
+            PLOT_LINE_PREFIX: self.plotLines,
+            PLOT_POINT_PREFIX: self.plotPoints,
+            PRJ_NOTE_PREFIX: self.projectNotes,
+            SECTION_PREFIX: self.sections,
+        }
 
     @property
     def authorName(self):

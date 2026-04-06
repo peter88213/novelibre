@@ -17,7 +17,7 @@ class BasicElementTags(BasicElementNotes):
     ):
         """Extends the superclass constructor"""
         super().__init__(**kwargs)
-        self._tags = tags
+        self._tags = tags or []
 
     @property
     def tags(self):

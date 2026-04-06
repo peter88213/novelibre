@@ -87,7 +87,6 @@ class NovxFile(File):
         Extends the superclass constructor.
         """
         super().__init__(filePath)
-        self.on_element_change = None
         self.xmlTree = None
 
         self.wcLog = {}
@@ -383,8 +382,7 @@ class NovxFile(File):
         for xmlChapter in xmlChapters.iterfind('CHAPTER'):
             chId = xmlChapter.attrib['id']
             self._check_id(chId, CHAPTER_PREFIX)
-            self.novel.chapters[chId] = Chapter(
-                on_element_change=self.on_element_change)
+            self.novel.chapters[chId] = Chapter()
             self.chapterCnv.import_data(self.novel.chapters[chId], xmlChapter)
             self.novel.tree.append(CH_ROOT, chId)
 
@@ -402,8 +400,7 @@ class NovxFile(File):
         for xmlCharacter in xmlCharacters.iterfind('CHARACTER'):
             crId = xmlCharacter.attrib['id']
             self._check_id(crId, CHARACTER_PREFIX)
-            self.novel.characters[crId] = Character(
-                on_element_change=self.on_element_change)
+            self.novel.characters[crId] = Character()
             self.characterCnv.import_data(
                 self.novel.characters[crId],
                 xmlCharacter
@@ -418,8 +415,7 @@ class NovxFile(File):
         for xmlItem in xmlItems.iterfind('ITEM'):
             itId = xmlItem.attrib['id']
             self._check_id(itId, ITEM_PREFIX)
-            self.novel.items[itId] = WorldElement(
-                on_element_change=self.on_element_change)
+            self.novel.items[itId] = WorldElement()
             self.worldElementCnv.import_data(self.novel.items[itId], xmlItem)
             self.novel.tree.append(IT_ROOT, itId)
 
@@ -431,8 +427,7 @@ class NovxFile(File):
         for xmlLocation in xmlLocations.iterfind('LOCATION'):
             lcId = xmlLocation.attrib['id']
             self._check_id(lcId, LOCATION_PREFIX)
-            self.novel.locations[lcId] = WorldElement(
-                on_element_change=self.on_element_change)
+            self.novel.locations[lcId] = WorldElement()
             self.worldElementCnv.import_data(
                 self.novel.locations[lcId],
                 xmlLocation
@@ -447,8 +442,7 @@ class NovxFile(File):
         for xmlPlotLine in xmlPlotLines.iterfind('ARC'):
             plId = xmlPlotLine.attrib['id']
             self._check_id(plId, PLOT_LINE_PREFIX)
-            self.novel.plotLines[plId] = PlotLine(
-                on_element_change=self.on_element_change)
+            self.novel.plotLines[plId] = PlotLine()
             self.plotLineCnv.import_data(self.novel.plotLines[plId], xmlPlotLine)
             self.novel.tree.append(PL_ROOT, plId)
 
@@ -467,8 +461,7 @@ class NovxFile(File):
                 self.novel.tree.append(plId, ppId)
 
     def _read_plot_point(self, xmlPlotPoint, ppId, plId):
-        self.novel.plotPoints[ppId] = PlotPoint(
-            on_element_change=self.on_element_change)
+        self.novel.plotPoints[ppId] = PlotPoint()
         self.plotPointCnv.import_data(self.novel.plotPoints[ppId], xmlPlotPoint)
 
         # Verify section and create back reference.
@@ -502,8 +495,7 @@ class NovxFile(File):
             self.novel.tree.append(PN_ROOT, pnId)
 
     def _read_section(self, xmlSection, scId):
-        self.novel.sections[scId] = Section(
-            on_element_change=self.on_element_change)
+        self.novel.sections[scId] = Section()
         self.sectionCnv.import_data(self.novel.sections[scId], xmlSection)
 
         # Remove dead references.

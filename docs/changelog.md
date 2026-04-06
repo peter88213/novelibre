@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.55.7
+### Version 5.55.8
 
 > [!IMPORTANT]
 > The file format has been upgraded from version 1.9 to version 1.10.
@@ -31,8 +31,8 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Removed the **Part** menu from the main menu. 
   Added its entries to the **Chapter** menu. 
 - Colors can be assigned to chapters, sections,
-  plot lines, characters, locations, and items
-  via a color chooser. 
+  plot lines, characters, locations, items, plot points,
+  and project notes via a color chooser. 
   The color can be set via menu commands, or 
   by clicking on the upper right corner of the 
   "index card". `Alt`-click resets the color.   
@@ -51,10 +51,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - ODS location table displaying the location colors.
 - ODS item table displaying the item colors.
 - No longer writing ODF `settings.xml`.
+- Fixed a bug where changes made on project notes are not displayed immediately. 
 
 #### API changes
 
-- New instance variable: `BasicElementNotes.color`.
+- New instance variable: `BasicElement.color`.
+- New instance variable: `Novel.elementsByPrefix`.
 
 #### File format changes
 

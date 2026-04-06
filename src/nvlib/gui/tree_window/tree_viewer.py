@@ -1180,16 +1180,34 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             if sectionTitle is not None:
                 nodeValues[self._colPos['tp']] = sectionTitle
 
+        nodeTags = []
+        color = self._mdl.novel.plotPoints[ppId].color
+        if color:
+            self.tree.tag_configure(
+                f'{ppId}_color',
+                foreground=color,
+            )
+            nodeTags.append(f'{ppId}_color')
+
         return to_string(
             self._mdl.novel.plotPoints[ppId].title
-            ), nodeValues, ()
+            ), nodeValues, tuple(nodeTags)
 
     def _get_prj_note_row_data(self, pnId):
         # Return title, values, and tags for a project note row.
         nodeValues = [''] * len(self.columns)
+        nodeTags = []
+        color = self._mdl.novel.projectNotes[pnId].color
+        if color:
+            self.tree.tag_configure(
+                f'{pnId}_color',
+                foreground=color,
+            )
+            nodeTags.append(f'{pnId}_color')
+
         return to_string(
             self._mdl.novel.projectNotes[pnId].title
-            ), nodeValues, ()
+            ), nodeValues, tuple(nodeTags)
 
     def _get_section_row_data(self, scId, isEpigraph, position=None):
         # Return title, values, and tags for a section row.

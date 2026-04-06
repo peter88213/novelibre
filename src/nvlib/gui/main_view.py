@@ -28,6 +28,7 @@ from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import ITEM_PREFIX
 from nvlib.novx_globals import LOCATION_PREFIX
 from nvlib.novx_globals import PLOT_LINE_PREFIX
+from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
@@ -1259,6 +1260,8 @@ class MainView(Observer, MsgBoxes, SubController):
         self.prjNoteMenu.disableOnLock.append(label)
 
         self.prjNoteMenu.add_separator()
+        self.add_color_commands(self.prjNoteMenu, prefix=PRJ_NOTE_PREFIX)
+        self.prjNoteMenu.add_separator()
 
         label = _('Show table in Browser')
         self.prjNoteMenu.add_command(
@@ -1664,32 +1667,7 @@ class MainView(Observer, MsgBoxes, SubController):
 
         self._ctrl.register_client(self.crRootContextMenu)
 
-        #--- Location/item context menu.
-        self.worldElementContextMenu = NvContextMenu()
-
-        self.add_add_command(self.worldElementContextMenu)
-
-        self.worldElementContextMenu.add_separator()
-
-        self.add_delete_command(self.worldElementContextMenu)
-
-        self.worldElementContextMenu.add_separator()
-
-        self.add_clipboard_commands(self.worldElementContextMenu)
-
-        self.worldElementContextMenu.add_separator()
-        self.add_color_commands(self.worldElementContextMenu)
-        self.worldElementContextMenu.add_separator()
-
-        self.add_view_commands(self.worldElementContextMenu)
-
-        self.worldElementContextMenu.add_separator()
-
-        self.add_highlight_related_command(self.worldElementContextMenu)
-
-        self._ctrl.register_client(self.worldElementContextMenu)
-
-        #--- Plot point/project note context menu.
+        #--- Location/item/plot point/project note context menu.
         self.elementContextMenu = NvContextMenu()
 
         self.add_add_command(self.elementContextMenu)
@@ -1702,6 +1680,8 @@ class MainView(Observer, MsgBoxes, SubController):
 
         self.add_clipboard_commands(self.elementContextMenu)
 
+        self.elementContextMenu.add_separator()
+        self.add_color_commands(self.elementContextMenu)
         self.elementContextMenu.add_separator()
 
         self.add_view_commands(self.elementContextMenu)

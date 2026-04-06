@@ -37,20 +37,12 @@ class BasicElement:
         project from a document that contains only a subset of the data model.
         Keep this in mind when setting the initial values.
         """
-        if on_element_change is None:
-            self.on_element_change = self.do_nothing
-        else:
-            self.on_element_change = on_element_change
+        self.on_element_change = on_element_change or self.do_nothing
         self._title = title
         self._desc = desc
-        if links is None:
-            self._links = {}
-        else:
-            self._links = links
-        if fields is None:
-            self._fields = {}
-        else:
-            self._fields = fields
+        self._color = None
+        self._links = links or {}
+        self._fields = fields or {}
 
     @property
     def title(self):
@@ -74,6 +66,18 @@ class BasicElement:
             assert type(newVal) is str
         if self._desc != newVal:
             self._desc = newVal
+            self.on_element_change()
+
+    @property
+    def color(self):
+        return self._color
+
+    @color.setter
+    def color(self, newVal):
+        if newVal is not None:
+            assert type(newVal) is str
+        if self._color != newVal:
+            self._color = newVal
             self.on_element_change()
 
     @property

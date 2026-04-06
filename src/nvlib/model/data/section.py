@@ -56,7 +56,7 @@ class Section(BasicElementTags):
         self._goal = goal
         self._conflict = conflict
         self._outcome = outcome
-        self._plotlineNotes = plotlineNotes
+        self._plotlineNotes = plotlineNotes or {}
         try:
             self._weekDay = PyCalendar.weekday(scDate)
             self._localeDate = PyCalendar.locale_date(scDate)
@@ -71,9 +71,9 @@ class Section(BasicElementTags):
         self._lastsHours = lastsHours
         self._lastsDays = lastsDays
         self._viewpoint = viewpoint
-        self._characters = characters
-        self._locations = locations
-        self._items = items
+        self._characters = characters or []
+        self._locations = locations or []
+        self._items = items or []
 
         self.scPlotLines = []
         # Back references to PlotLine.sections

@@ -12,6 +12,7 @@ class BasicElementNovx:
     def import_data(self, element, xmlElement):
         element.title = self._get_element_text(xmlElement, 'Title')
         element.desc = self._xml_element_to_text(xmlElement.find('Desc'))
+        element.color = xmlElement.get('color', None)
         element.links = self._get_link_dict(xmlElement)
         element.fields = self._get_fields(xmlElement)
 
@@ -20,6 +21,8 @@ class BasicElementNovx:
             ET.SubElement(xmlElement, 'Title').text = element.title
         if element.desc:
             xmlElement.append(self._text_to_xml_element('Desc', element.desc))
+        if element.color:
+            xmlElement.set('color', element.color)
         for path in element.links:
             xmlLink = ET.SubElement(xmlElement, 'Link')
             ET.SubElement(xmlLink, 'Path').text = path

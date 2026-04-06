@@ -9,9 +9,9 @@ from nvlib.model.data.id_generator import new_id
 from nvlib.model.nv_work_file import NvWorkFile
 from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
+from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_FIELD_1_DEFAULT
 from nvlib.novx_globals import CR_FIELD_2_DEFAULT
-from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import CR_ROOT
 from nvlib.novx_globals import ITEM_PREFIX
 from nvlib.novx_globals import IT_ROOT
@@ -93,7 +93,6 @@ class NvModel:
             noNumber=kwargs.get('NoNumber', False),
             hasEpigraph=kwargs.get('hasEpigraph', False),
             isTrash=False,
-            links={},
             on_element_change=self.on_element_change,
         )
         self.tree.insert(CH_ROOT, index, chId)
@@ -123,13 +122,11 @@ class NvModel:
             title=kwargs.get('title', f'{_("New Character")} ({crId})'),
             desc='',
             aka='',
-            tags='',
             notes='',
             bio='',
             goals='',
             fullName='',
             isMajor=kwargs.get('isMajor', False),
-            links={},
             on_element_change=self.on_element_change,
         )
         self.tree.insert(CR_ROOT, index, crId)
@@ -157,8 +154,6 @@ class NvModel:
             title=kwargs.get('title', f'{_("New Item")} ({itId})'),
             desc='',
             aka='',
-            tags='',
-            links={},
             on_element_change=self.on_element_change,
         )
         self.tree.insert(IT_ROOT, index, itId)
@@ -186,8 +181,6 @@ class NvModel:
             title=kwargs.get('title', f'{_("New Location")} ({lcId})'),
             desc='',
             aka='',
-            tags='',
-            links={},
             on_element_change=self.on_element_change,
         )
         self.tree.insert(LC_ROOT, index, lcId)
@@ -224,7 +217,6 @@ class NvModel:
             noNumber=kwargs.get('NoNumber', False),
             hasEpigraph=kwargs.get('hasEpigraph', False),
             isTrash=False,
-            links={},
             on_element_change=self.on_element_change,
         )
         self.tree.insert(CH_ROOT, index, chId)
@@ -252,8 +244,6 @@ class NvModel:
             title=kwargs.get('title', f'{_("New Plot line")} ({plId})'),
             desc='',
             shortName=plId,
-            sections=[],
-            links={},
             on_element_change=self.on_element_change,
         )
         self.tree.insert(PL_ROOT, index, plId)
@@ -289,7 +279,6 @@ class NvModel:
         self.novel.plotPoints[ppId] = self.nvService.new_plot_point(
             title=kwargs.get('title', f'{_("New Plot point")} ({ppId})'),
             desc='',
-            links={},
             on_element_change=self.on_element_change,
         )
         self.tree.insert(parent, index, ppId)
@@ -316,7 +305,6 @@ class NvModel:
         self.novel.projectNotes[pnId] = self.nvService.new_basic_element(
             title=kwargs.get('title', f'{_("New Note")} ({pnId})'),
             desc='',
-            links={},
             on_element_change=self.on_element_change,
         )
         self.tree.insert(PN_ROOT, index, pnId)
@@ -364,17 +352,10 @@ class NvModel:
         self.novel.sections[scId] = self.nvService.new_section(
             title=kwargs.get('title', f'{_("New Section")} ({scId})'),
             desc=kwargs.get('desc', ''),
-            links={},
-            fields={},
-            tags=[],
             scType=newType,
             scene=kwargs.get('scene', 0),
             status=kwargs.get('status', 1),
             appendToPrev=kwargs.get('appendToPrev', False),
-            plotlineNotes={},
-            characters=[],
-            locations=[],
-            items=[],
             on_element_change=self.on_element_change,
         )
         self.novel.sections[scId].sectionContent = '<p></p>'
@@ -416,7 +397,6 @@ class NvModel:
             scType=kwargs.get('scType', 3),
             status=0,
             scene=0,
-            links={},
             on_element_change=self.on_element_change,
         )
         self.tree.insert(parent, index, scId)
@@ -519,7 +499,6 @@ class NvModel:
             otherSceneField3=OTHER_SCENE_FIELD_3_DEFAULT,
             crField1=CR_FIELD_1_DEFAULT,
             crField2=CR_FIELD_2_DEFAULT,
-            links=[],
             tree=tree,
             on_element_change=self.on_element_change,
         )
@@ -698,25 +677,12 @@ class NvModel:
         Positional arguments:
             elemId: ID of the element to query.
         """
-        if elemId.startswith(PLOT_LINE_PREFIX):
-            return self.novel.plotLines[elemId].color
+        prefix = elemId[:2]
+        try:
+            return self.novel.elementsByPrefix[prefix][elemId].color
 
-        if elemId.startswith(CHARACTER_PREFIX):
-            return self.novel.characters[elemId].color
-
-        if elemId.startswith(LOCATION_PREFIX):
-            return self.novel.locations[elemId].color
-
-        if elemId.startswith(ITEM_PREFIX):
-            return self.novel.items[elemId].color
-
-        if elemId.startswith(CHAPTER_PREFIX):
-            return self.novel.chapters[elemId].color
-
-        if elemId.startswith(SECTION_PREFIX):
-            return self.novel.sections[elemId].color
-
-        return None
+        except KeyError:
+            return None
 
     def get_counts(self):
         """Return a tuple with total numbers:
@@ -969,7 +935,6 @@ class NvModel:
         """
         self.novel = self.nvService.new_novel(
             tree=self.tree,
-            links={},
             noSceneField1=NO_SCENE_FIELD_1_DEFAULT,
             noSceneField2=NO_SCENE_FIELD_2_DEFAULT,
             noSceneField3=NO_SCENE_FIELD_3_DEFAULT,
@@ -1087,19 +1052,11 @@ class NvModel:
             elemIds: list of IDs to process.
         """
         for elemId in elemIds:
-            if elemId.startswith(PLOT_LINE_PREFIX):
-                self.novel.plotLines[elemId].color = color
-            elif elemId.startswith(CHARACTER_PREFIX):
-                self.novel.characters[elemId].color = color
-            elif elemId.startswith(LOCATION_PREFIX):
-                self.novel.locations[elemId].color = color
-            elif elemId.startswith(ITEM_PREFIX):
-                self.novel.items[elemId].color = color
-            elif elemId.startswith(CHAPTER_PREFIX):
-                self.novel.chapters[elemId].color = color
-            elif elemId.startswith(SECTION_PREFIX):
-                if self.novel.sections[elemId].scType < 2:
-                    self.novel.sections[elemId].color = color
+            prefix = elemId[:2]
+            try:
+                self.novel.elementsByPrefix[prefix][elemId].color = color
+            except KeyError:
+                pass
 
     def set_level(self, newLevel, elemIds):
         """Set chapter or stage level.
@@ -1207,39 +1164,16 @@ class NvModel:
             # Recursive tree walker.
             #    node: str -- Node ID to start from.
             for elemId in self.tree.get_children(node):
-                if elemId.startswith(SECTION_PREFIX):
-                    self.novel.sections[elemId].on_element_change = (
-                        on_element_change
-                    )
-                elif elemId.startswith(CHARACTER_PREFIX):
-                    self.novel.characters[elemId].on_element_change = (
-                        on_element_change
-                    )
-                elif elemId.startswith(LOCATION_PREFIX):
-                    self.novel.locations[elemId].on_element_change = (
-                        on_element_change
-                    )
-                elif elemId.startswith(ITEM_PREFIX):
-                    self.novel.items[elemId].on_element_change = (
-                        on_element_change
-                    )
-                elif elemId.startswith(CHAPTER_PREFIX):
+                prefix = elemId[:2]
+                try:
+                    self.novel.elementsByPrefix[prefix][
+                        elemId
+                    ].on_element_change = on_element_change
+                except KeyError:
                     initialize_branch(elemId)
-                    self.novel.chapters[elemId].on_element_change = (
-                        on_element_change
-                    )
-                    if self.novel.chapters[elemId].isTrash:
-                        self.trashBin = elemId
+                if elemId.startswith(CHAPTER_PREFIX):
+                    initialize_branch(elemId)
                 elif elemId.startswith(PLOT_LINE_PREFIX):
-                    initialize_branch(elemId)
-                    self.novel.plotLines[elemId].on_element_change = (
-                        on_element_change
-                    )
-                elif elemId.startswith(PLOT_POINT_PREFIX):
-                    self.novel.plotPoints[elemId].on_element_change = (
-                        on_element_change
-                    )
-                else:
                     initialize_branch(elemId)
 
         self.trashBin = None

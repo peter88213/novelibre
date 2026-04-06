@@ -59,11 +59,11 @@ class TreeContextMenu:
         elif prefix in (
             LOCATION_PREFIX,
             ITEM_PREFIX,
-        ):
-            self._ui.worldElementContextMenu.open(event)
-        elif prefix in (
-            PLOT_POINT_PREFIX,
             PRJ_NOTE_PREFIX,
+            PLOT_POINT_PREFIX,
+        ):
+            self._ui.elementContextMenu.open(event)
+        elif prefix in (
         ):
             self._ui.elementContextMenu.open(event)
         elif prefix in(

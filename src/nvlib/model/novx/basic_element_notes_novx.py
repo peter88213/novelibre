@@ -12,12 +12,9 @@ class BasicElementNotesNovx(BasicElementNovx):
     def import_data(self, element, xmlElement):
         super().import_data(element, xmlElement)
         element.notes = self._xml_element_to_text(xmlElement.find('Notes'))
-        element.color = xmlElement.get('color', None)
 
     def export_data(self, element, xmlElement):
         super().export_data(element, xmlElement)
         if element.notes:
             xmlElement.append(self._text_to_xml_element('Notes', element.notes))
-        if element.color:
-            xmlElement.set('color', element.color)
 

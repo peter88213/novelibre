@@ -39,15 +39,14 @@ class HtmlLocations(HtmlReport):
         '</tr>\n'
     )
 
+    def write(self):
+        if not self.novel.locations:
+            raise UserWarning(f'{_("No locations found")}.')
+        super().write()
+
     def _get_fileHeaderMapping(self):
         fileHeaderMapping = super()._get_fileHeaderMapping()
         fileHeaderMapping['Styles'] = '\n'.join(
             self._get_extra_styles(self.novel.locations)
         )
         return fileHeaderMapping
-
-    def write(self):
-        if not self.novel.locations:
-            raise UserWarning(f'{_("No locations found")}.')
-        super().write()
-

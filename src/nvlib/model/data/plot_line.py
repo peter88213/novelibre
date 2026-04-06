@@ -20,7 +20,7 @@ class PlotLine(BasicElementNotes):
         super().__init__(**kwargs)
 
         self._shortName = shortName
-        self._sections = sections
+        self._sections = sections or []
 
     @property
     def shortName(self):

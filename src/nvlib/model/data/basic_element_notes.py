@@ -18,7 +18,6 @@ class BasicElementNotes(BasicElement):
         """Extends the superclass constructor."""
         super().__init__(**kwargs)
         self._notes = notes
-        self._color = None
 
     @property
     def notes(self):
@@ -30,17 +29,5 @@ class BasicElementNotes(BasicElement):
             assert type(newVal) is str
         if self._notes != newVal:
             self._notes = newVal
-            self.on_element_change()
-
-    @property
-    def color(self):
-        return self._color
-
-    @color.setter
-    def color(self, newVal):
-        if newVal is not None:
-            assert type(newVal) is str
-        if self._color != newVal:
-            self._color = newVal
             self.on_element_change()
 

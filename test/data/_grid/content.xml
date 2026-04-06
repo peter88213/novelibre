@@ -43,7 +43,51 @@
   <style:style style:name="ce2" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N36"/>
   <style:style style:name="ce3" style:family="table-cell" style:parent-style-name="Heading" style:data-style-name="N40"/>
   <style:style style:name="ce4" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N40"/>
-  <style:style style:name="hac5" style:family="table-cell" style:parent-style-name="Heading">
+  <style:style style:name="sc15" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="sc16" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="sc17" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="sc18" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="sc19" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="sc20" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="sc21" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="sc22" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="sc25" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="sc23" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="sc24" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="sc26" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="sc27" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="sc28" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>
+  <style:style style:name="sc29" style:family="table-cell" style:parent-style-name="Default">
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+  </style:style>  <style:style style:name="hac5" style:family="table-cell" style:parent-style-name="Heading">
    <style:table-cell-properties fo:border-bottom="none" fo:border-left="none" fo:border-right="none" fo:border-top="0.176cm solid #f0f0f0"/>
   </style:style> </office:automatic-styles>
  <office:body>
@@ -174,7 +218,7 @@
      <table:table-cell office:value-type="string">
       <text:p>sc15</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc15%7Cregion&quot;;&quot;1&quot;)" office:value-type="string" office:string-value="1">
+     <table:table-cell table:style-name="sc15" table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc15%7Cregion&quot;;&quot;1&quot;)" office:value-type="string" office:string-value="1">
       <text:p>1</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce2"/>     <table:table-cell table:style-name="ce4"/>     <table:table-cell office:value-type="string">
@@ -219,7 +263,7 @@
      <table:table-cell office:value-type="string">
       <text:p>sc16</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc16%7Cregion&quot;;&quot;2&quot;)" office:value-type="string" office:string-value="2">
+     <table:table-cell table:style-name="sc16" table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc16%7Cregion&quot;;&quot;2&quot;)" office:value-type="string" office:string-value="2">
       <text:p>2</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce2"/>     <table:table-cell table:style-name="ce4"/>     <table:table-cell office:value-type="string">
@@ -264,7 +308,7 @@
      <table:table-cell office:value-type="string">
       <text:p>sc17</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc17%7Cregion&quot;;&quot;3&quot;)" office:value-type="string" office:string-value="3">
+     <table:table-cell table:style-name="sc17" table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc17%7Cregion&quot;;&quot;3&quot;)" office:value-type="string" office:string-value="3">
       <text:p>3</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce2"/>     <table:table-cell table:style-name="ce4"/>     <table:table-cell office:value-type="string">
@@ -309,7 +353,7 @@
      <table:table-cell office:value-type="string">
       <text:p>sc18</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc18%7Cregion&quot;;&quot;4&quot;)" office:value-type="string" office:string-value="4">
+     <table:table-cell table:style-name="sc18" table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc18%7Cregion&quot;;&quot;4&quot;)" office:value-type="string" office:string-value="4">
       <text:p>4</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce2"/>     <table:table-cell table:style-name="ce4"/>     <table:table-cell office:value-type="string">
@@ -354,7 +398,7 @@
      <table:table-cell office:value-type="string">
       <text:p>sc19</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc19%7Cregion&quot;;&quot;5&quot;)" office:value-type="string" office:string-value="5">
+     <table:table-cell table:style-name="sc19" table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc19%7Cregion&quot;;&quot;5&quot;)" office:value-type="string" office:string-value="5">
       <text:p>5</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce2"/>     <table:table-cell table:style-name="ce4"/>     <table:table-cell office:value-type="string">
@@ -399,7 +443,7 @@
      <table:table-cell office:value-type="string">
       <text:p>sc20</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc20%7Cregion&quot;;&quot;6&quot;)" office:value-type="string" office:string-value="6">
+     <table:table-cell table:style-name="sc20" table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc20%7Cregion&quot;;&quot;6&quot;)" office:value-type="string" office:string-value="6">
       <text:p>6</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce2"/>     <table:table-cell table:style-name="ce4"/>     <table:table-cell office:value-type="string">
@@ -444,7 +488,7 @@
      <table:table-cell office:value-type="string">
       <text:p>sc21</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc21%7Cregion&quot;;&quot;7&quot;)" office:value-type="string" office:string-value="7">
+     <table:table-cell table:style-name="sc21" table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc21%7Cregion&quot;;&quot;7&quot;)" office:value-type="string" office:string-value="7">
       <text:p>7</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce2"/>     <table:table-cell table:style-name="ce4"/>     <table:table-cell office:value-type="string">
@@ -489,7 +533,7 @@
      <table:table-cell office:value-type="string">
       <text:p>sc22</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc22%7Cregion&quot;;&quot;8&quot;)" office:value-type="string" office:string-value="8">
+     <table:table-cell table:style-name="sc22" table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc22%7Cregion&quot;;&quot;8&quot;)" office:value-type="string" office:string-value="8">
       <text:p>8</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce2"/>     <table:table-cell table:style-name="ce4"/>     <table:table-cell office:value-type="string">
@@ -534,7 +578,7 @@
      <table:table-cell office:value-type="string">
       <text:p>sc25</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc25%7Cregion&quot;;&quot;9&quot;)" office:value-type="string" office:string-value="9">
+     <table:table-cell table:style-name="sc25" table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc25%7Cregion&quot;;&quot;9&quot;)" office:value-type="string" office:string-value="9">
       <text:p>9</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce2"/>     <table:table-cell table:style-name="ce4"/>     <table:table-cell office:value-type="string">
@@ -579,7 +623,7 @@
      <table:table-cell office:value-type="string">
       <text:p>sc23</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc23%7Cregion&quot;;&quot;10&quot;)" office:value-type="string" office:string-value="10">
+     <table:table-cell table:style-name="sc23" table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc23%7Cregion&quot;;&quot;10&quot;)" office:value-type="string" office:string-value="10">
       <text:p>10</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce2"/>     <table:table-cell table:style-name="ce4"/>     <table:table-cell office:value-type="string">
@@ -624,7 +668,7 @@
      <table:table-cell office:value-type="string">
       <text:p>sc24</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc24%7Cregion&quot;;&quot;11&quot;)" office:value-type="string" office:string-value="11">
+     <table:table-cell table:style-name="sc24" table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc24%7Cregion&quot;;&quot;11&quot;)" office:value-type="string" office:string-value="11">
       <text:p>11</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce2"/>     <table:table-cell table:style-name="ce4"/>     <table:table-cell office:value-type="string">
@@ -669,7 +713,7 @@
      <table:table-cell office:value-type="string">
       <text:p>sc26</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc26%7Cregion&quot;;&quot;12&quot;)" office:value-type="string" office:string-value="12">
+     <table:table-cell table:style-name="sc26" table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc26%7Cregion&quot;;&quot;12&quot;)" office:value-type="string" office:string-value="12">
       <text:p>12</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce2"/>     <table:table-cell table:style-name="ce4"/>     <table:table-cell office:value-type="string">
@@ -714,7 +758,7 @@
      <table:table-cell office:value-type="string">
       <text:p>sc27</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc27%7Cregion&quot;;&quot;13&quot;)" office:value-type="string" office:string-value="13">
+     <table:table-cell table:style-name="sc27" table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc27%7Cregion&quot;;&quot;13&quot;)" office:value-type="string" office:string-value="13">
       <text:p>13</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce2"/>     <table:table-cell table:style-name="ce4"/>     <table:table-cell office:value-type="string">
@@ -759,7 +803,7 @@
      <table:table-cell office:value-type="string">
       <text:p>sc28</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc28%7Cregion&quot;;&quot;14&quot;)" office:value-type="string" office:string-value="14">
+     <table:table-cell table:style-name="sc28" table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc28%7Cregion&quot;;&quot;14&quot;)" office:value-type="string" office:string-value="14">
       <text:p>14</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce2"/>     <table:table-cell table:style-name="ce4"/>     <table:table-cell office:value-type="string">
@@ -804,7 +848,7 @@
      <table:table-cell office:value-type="string">
       <text:p>sc29</text:p>
      </table:table-cell>
-     <table:table-cell table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc29%7Cregion&quot;;&quot;15&quot;)" office:value-type="string" office:string-value="15">
+     <table:table-cell table:style-name="sc29" table:formula="of:=HYPERLINK(&quot;file:///C:/Users/Peter/git/novelibre/test/tmp/yw7%20Sample%20Project_manuscript_tmp.odt#sc29%7Cregion&quot;;&quot;15&quot;)" office:value-type="string" office:string-value="15">
       <text:p>15</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="ce2"/>     <table:table-cell table:style-name="ce4"/>     <table:table-cell office:value-type="string">
