@@ -783,17 +783,18 @@ class ElementManager(ServiceBase):
         if elemIds is None:
             return
 
+        validIds = list(elemIds)
         if prefix is not None:
-            for elemId in elemIds[:]:
+            for elemId in elemIds:
                 if not elemId.startswith(prefix):
-                    elemIds.delete[elemId]
-            if not elemIds:
+                    validIds.remove(elemId)
+            if not validIds:
                 self._ui.set_status(
-                    f'#{_("Selection does not contain matching elements")}.'
+                    f'#{_("The selection does not contain matching elements")}.'
                 )
                 return
 
-        self._mdl.set_color(None, elemIds)
+        self._mdl.set_color(None, validIds)
 
     def set_character_status(self, isMajor, elemIds=None):
         """Set character status to Major.
@@ -829,19 +830,20 @@ class ElementManager(ServiceBase):
         if elemIds is None:
             return
 
+        validIds = list(elemIds)
         if prefix is not None:
-            for elemId in elemIds[:]:
+            for elemId in elemIds:
                 if not elemId.startswith(prefix):
-                    elemIds.delete[elemId]
-            if not elemIds:
+                    validIds.remove(elemId)
+            if not validIds:
                 self._ui.set_status(
-                    f'#{_("Selection does not contain matching elements")}.'
+                    f'#{_("The selection does not contain matching elements")}.'
                 )
                 return
 
         # Get the first assigned color as an
         # initial value for the color chooser.
-        for elemId in elemIds:
+        for elemId in validIds:
             color = self._mdl.get_color(elemId)
             if color is not None:
                 break
@@ -851,7 +853,7 @@ class ElementManager(ServiceBase):
             initialcolor=color,
         )
         if color is not None:
-            self._mdl.set_color(color, elemIds)
+            self._mdl.set_color(color, validIds)
 
     def set_completion_status(self, newStatus, elemIds=None):
         """Set section completion status (Outline/Draft..).

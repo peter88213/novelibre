@@ -23,6 +23,12 @@ from nvlib.gui.properties_window.properties_viewer import PropertiesViewer
 from nvlib.gui.set_icon_tk import set_icon
 from nvlib.gui.toolbar.toolbar import Toolbar
 from nvlib.gui.tree_window.tree_viewer import TreeViewer
+from nvlib.novx_globals import CHAPTER_PREFIX
+from nvlib.novx_globals import CHARACTER_PREFIX
+from nvlib.novx_globals import ITEM_PREFIX
+from nvlib.novx_globals import LOCATION_PREFIX
+from nvlib.novx_globals import PLOT_LINE_PREFIX
+from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
@@ -358,6 +364,25 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         menu.disableOnLock.append(label)
 
+    def add_color_commands(self, menu, prefix=None):
+        label = _('Assign color')
+        menu.add_command(
+            label=label,
+            image=self.icons.colorsIcon,
+            compound='left',
+            command=lambda p=prefix: self._ctrl.set_color(prefix=p)
+        )
+        menu.disableOnLock.append(label)
+
+        label = _('Reset color')
+        menu.add_command(
+            label=label,
+            image=self.icons.resetColorsIcon,
+            compound='left',
+            command=lambda p=prefix: self._ctrl.reset_color(prefix=p)
+        )
+        menu.disableOnLock.append(label)
+
     def add_delete_command(self, menu):
         label = _('Delete')
         menu.add_command(
@@ -391,25 +416,6 @@ class MainView(Observer, MsgBoxes, SubController):
         menu.disableOnLock.append(label)
 
         label = _('Add Part')
-        menu.add_command(
-            label=label,
-            image=self.icons.addIcon,
-            compound='left',
-            command=self._ctrl.add_new_part,
-        )
-        menu.disableOnLock.append(label)
-
-    def add_color_commands(self, menu):
-        label = _('Set color')
-        menu.add_command(
-            label=label,
-            image=self.icons.addIcon,
-            compound='left',
-            command=self._ctrl.add_new_chapter
-        )
-        menu.disableOnLock.append(label)
-
-        label = _('Reset color')
         menu.add_command(
             label=label,
             image=self.icons.addIcon,
@@ -907,6 +913,7 @@ class MainView(Observer, MsgBoxes, SubController):
 
         self.add_set_type_cascade(self.chapterMenu)
         self.add_change_level_cascade(self.chapterMenu)
+        self.add_color_commands(self.chapterMenu, prefix=CHAPTER_PREFIX)
 
         self.chapterMenu.add_separator()
 
@@ -977,6 +984,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self.add_set_type_cascade(self.sectionMenu)
         self.add_set_status_cascade(self.sectionMenu)
         self.add_set_viewpoint_command(self.sectionMenu)
+        self.add_color_commands(self.sectionMenu, prefix=SECTION_PREFIX)
 
         self.sectionMenu.add_separator()
 
@@ -1018,6 +1026,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self.characterMenu.add_separator()
 
         self.add_set_cr_status_cascade(self.characterMenu)
+        self.add_color_commands(self.characterMenu, prefix=CHARACTER_PREFIX)
 
         self.characterMenu.add_separator()
 
@@ -1069,6 +1078,8 @@ class MainView(Observer, MsgBoxes, SubController):
         self.locationMenu.disableOnLock.append(label)
 
         self.locationMenu.add_separator()
+        self.add_color_commands(self.locationMenu, prefix=LOCATION_PREFIX)
+        self.locationMenu.add_separator()
 
         label = _('Import')
         self.locationMenu.add_command(
@@ -1117,6 +1128,8 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         self.itemMenu.disableOnLock.append(label)
 
+        self.itemMenu.add_separator()
+        self.add_color_commands(self.itemMenu, prefix=ITEM_PREFIX)
         self.itemMenu.add_separator()
 
         label = _('Import')
@@ -1179,6 +1192,7 @@ class MainView(Observer, MsgBoxes, SubController):
 
         self.add_insert_stage_command(self.plotMenu)
         self.add_change_level_cascade(self.plotMenu)
+        self.add_color_commands(self.plotMenu, prefix=PLOT_LINE_PREFIX)
 
         self.plotMenu.add_separator()
 
@@ -1562,6 +1576,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self.add_set_type_cascade(self.chapterContextMenu)
         self.add_set_status_cascade(self.chapterContextMenu)
         self.add_set_viewpoint_command(self.chapterContextMenu)
+        self.add_color_commands(self.chapterContextMenu)
 
         self.chapterContextMenu.add_separator()
 
@@ -1596,6 +1611,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self.characterContextMenu.add_separator()
 
         self.add_set_cr_status_cascade(self.characterContextMenu)
+        self.add_color_commands(self.characterContextMenu)
 
         self.characterContextMenu.add_separator()
 
@@ -1648,7 +1664,32 @@ class MainView(Observer, MsgBoxes, SubController):
 
         self._ctrl.register_client(self.crRootContextMenu)
 
-        #--- Location/item/plot line/project note context menu.
+        #--- Location/item context menu.
+        self.worldElementContextMenu = NvContextMenu()
+
+        self.add_add_command(self.worldElementContextMenu)
+
+        self.worldElementContextMenu.add_separator()
+
+        self.add_delete_command(self.worldElementContextMenu)
+
+        self.worldElementContextMenu.add_separator()
+
+        self.add_clipboard_commands(self.worldElementContextMenu)
+
+        self.worldElementContextMenu.add_separator()
+        self.add_color_commands(self.worldElementContextMenu)
+        self.worldElementContextMenu.add_separator()
+
+        self.add_view_commands(self.worldElementContextMenu)
+
+        self.worldElementContextMenu.add_separator()
+
+        self.add_highlight_related_command(self.worldElementContextMenu)
+
+        self._ctrl.register_client(self.worldElementContextMenu)
+
+        #--- Plot point/project note context menu.
         self.elementContextMenu = NvContextMenu()
 
         self.add_add_command(self.elementContextMenu)
@@ -1700,6 +1741,8 @@ class MainView(Observer, MsgBoxes, SubController):
 
         self.add_clipboard_commands(self.plotLineContextMenu)
 
+        self.plotLineContextMenu.add_separator()
+        self.add_color_commands(self.plotLineContextMenu)
         self.plotLineContextMenu.add_separator()
 
         label = _('Change sections to Unused')
@@ -1789,6 +1832,7 @@ class MainView(Observer, MsgBoxes, SubController):
         self.add_set_type_cascade(self.sectionContextMenu)
         self.add_set_status_cascade(self.sectionContextMenu)
         self.add_set_viewpoint_command(self.sectionContextMenu)
+        self.add_color_commands(self.sectionContextMenu)
 
         self.sectionContextMenu.add_separator()
 

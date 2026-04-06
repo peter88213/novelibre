@@ -557,9 +557,9 @@ class Commands:
             self.elementManager.remove_chapter_keep_sections()
         return 'break'
 
-    def reset_color(self, event=None):
+    def reset_color(self, event=None, prefix=None):
         if not self.isLocked:
-            self.elementManager.reset_color()
+            self.elementManager.reset_color(prefix=prefix)
         return 'break'
 
     def reset_color_ch(self, event=None):
@@ -626,10 +626,11 @@ class Commands:
         if not self.check_lock():
             self.elementManager.set_character_status(False)
 
-    def set_color(self, event=None, title=''):
+    def set_color(self, event=None, title='', prefix=None):
         if not self.isLocked:
             self.elementManager.set_color(
                 title=title,
+                prefix=prefix,
             )
 
     def set_color_ch(self, event=None, title=''):

@@ -60,6 +60,8 @@ class Icons:
 
         self.collapseIcon = new_icon('collapse.png')
 
+        self.colorsIcon = new_icon('colors.png')
+
         self.copyIcon = new_icon('copy.png')
 
         self.cutIcon = new_icon('cut.png')
@@ -117,6 +119,8 @@ class Icons:
         self.reloadIcon = new_icon('reload.png')
 
         self.removeIcon = new_icon('remove.png')
+
+        self.resetColorsIcon = new_icon('resetColors.png')
 
         self.resetHighlightIcon = new_icon('reset_highlight.png')
 
