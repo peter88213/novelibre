@@ -365,7 +365,7 @@ class MainView(Observer, MsgBoxes, SubController):
         menu.disableOnLock.append(label)
 
     def add_color_commands(self, menu, prefix=None):
-        label = _('Assign color')
+        label = f"{_('Assign color')}..."
         menu.add_command(
             label=label,
             image=self.icons.colorsIcon,

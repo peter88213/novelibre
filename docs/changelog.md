@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.55.6
+### Version 5.55.7
 
 > [!IMPORTANT]
 > The file format has been upgraded from version 1.9 to version 1.10.
