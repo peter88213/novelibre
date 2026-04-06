@@ -64,7 +64,7 @@ class ViewOptionsDialog(ModalDialog, SubController):
         )
         ttk.Checkbutton(
             frame1,
-            text=_("Display colors of non-book elements"),
+            text=_('Display the entire project tree in color'),
             variable=self._colorTreeVar,
             command=self._change_color_tree,
         ).pack(padx=5, pady=5, anchor='w')

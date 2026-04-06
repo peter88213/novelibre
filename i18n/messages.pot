@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.55.8\n"
-"POT-Creation-Date: 2026-04-06 12:19:12\n"
+"Project-Id-Version: 5.55.9\n"
+"POT-Creation-Date: 2026-04-06 13:25:55\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -465,6 +465,9 @@ msgid "Discard manuscript?"
 msgstr ""
 
 msgid "Display localized dates"
+msgstr ""
+
+msgid "Display the entire project tree in color"
 msgstr ""
 
 msgid "Do not auto-number this chapter"

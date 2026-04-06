@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.55.8
+### Version 5.55.9
 
 > [!IMPORTANT]
 > The file format has been upgraded from version 1.9 to version 1.10.
@@ -35,7 +35,8 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
   and project notes via a color chooser. 
   The color can be set via menu commands, or 
   by clicking on the upper right corner of the 
-  "index card". `Alt`-click resets the color.   
+  "index card". `Alt`-click resets the color. 
+- New "view" option: Display the entire project tree in color.  
 - Project tree displaying stages underlined.
 - Project tree displaying main characters in bold.
 - New project tree coloring mode: "Viewpoint", displaying sections in the color
