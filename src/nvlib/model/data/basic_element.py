@@ -25,6 +25,7 @@ class BasicElement:
         desc=None,
         links=None,
         fields=None,
+        color=None,
     ):
         """Set the initial values.
 
@@ -40,7 +41,7 @@ class BasicElement:
         self.on_element_change = on_element_change or self.do_nothing
         self._title = title
         self._desc = desc
-        self._color = None
+        self._color = color
         self._links = links or {}
         self._fields = fields or {}
 
