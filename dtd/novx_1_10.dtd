@@ -12,6 +12,7 @@
         WordCountStart?, WordTarget?, 
         ReferenceDate?)>
         <!ATTLIST PROJECT 
+            color CDATA #IMPLIED 
             renumberChapters (0 | 1) "0" 
             renumberParts (0 | 1) "0" 
             renumberWithinParts (0 | 1) "0" 
@@ -200,6 +201,7 @@
         <!ELEMENT PROJECTNOTE (Title?, Desc?, Link*, Field*)>
         <!ATTLIST PROJECTNOTE 
             id ID #REQUIRED
+            color CDATA #IMPLIED 
             >
     
     <!ELEMENT PROGRESS (WC*)>
