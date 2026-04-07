@@ -26,6 +26,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 > Optional plugin updates for color support:
 > - nv_matrix
 > - nv_statistics
+> - nv_tlview
 
 
 - Removed the **Part** menu from the main menu. 
