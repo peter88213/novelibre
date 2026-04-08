@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.55.9
+### Version 5.55.10
 
 > [!IMPORTANT]
 > The file format has been upgraded from version 1.9 to version 1.10.
@@ -38,6 +38,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
   by clicking on the upper right corner of the 
   "index card". `Alt`-click resets the color. 
 - New "view" option: Display the entire project tree in color.  
+- New feature: Export project notes for editing.
 - Project tree displaying stages underlined.
 - Project tree displaying main characters in bold.
 - New project tree coloring mode: "Viewpoint", displaying sections in the color
@@ -54,6 +55,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - ODS item table displaying the item colors.
 - No longer writing ODF `settings.xml`.
 - Fixed a bug where changes made on project notes are not displayed immediately. 
+- Fixed a regression from version 5.54.1 where successful import isn't indicated on the status bar.
 
 #### API changes
 

@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.55.9\n"
+"Project-Id-Version: 5.55.10\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-04-06 13:22:42\n"
+"PO-Revision-Date: 2026-04-08 15:40:02\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -457,11 +457,11 @@ msgstr "Manuskript verwerfen"
 msgid "Discard manuscript?"
 msgstr "Manuskript verwerfen?"
 
-msgid "Display the entire project tree in color"
-msgstr "Gesamten Projektbaum farbig anzeigen"
-
 msgid "Display localized dates"
 msgstr "Lokalisierte Datumsangaben anzeigen"
+
+msgid "Display the entire project tree in color"
+msgstr "Gesamten Projektbaum farbig anzeigen"
 
 msgid "Do not auto-number this chapter"
 msgstr "Dieses Kapitel nicht automatisch nummerieren"
@@ -532,9 +532,6 @@ msgstr "Kapiteltabelle exportieren"
 msgid "Export character descriptions for editing"
 msgstr "Figurenbeschreibungen zum Bearbeiten exportieren"
 
-msgid "Export project notes for editing"
-msgstr "Projektnotizen zum Bearbeiten exportieren"
-
 msgid "Export character table"
 msgstr "Figurentabelle exportieren"
 
@@ -570,6 +567,9 @@ msgstr "Handlungsraster (Plot grid) zum Bearbeiten exportieren"
 
 msgid "Export plot line descriptions for editing"
 msgstr "Plotlinienbeschreibungen zum Bearbeiten exportieren"
+
+msgid "Export project notes for editing"
+msgstr "Projektnotizen zum Bearbeiten exportieren"
 
 msgid "Export section descriptions for editing"
 msgstr "Abschnittsbeschreibungen zum Bearbeiten exportieren"

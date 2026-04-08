@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.55.9\n"
-"POT-Creation-Date: 2026-04-06 13:25:55\n"
+"Project-Id-Version: 5.55.10\n"
+"POT-Creation-Date: 2026-04-08 15:40:02\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -573,6 +573,9 @@ msgid "Export plot grid for editing"
 msgstr ""
 
 msgid "Export plot line descriptions for editing"
+msgstr ""
+
+msgid "Export project notes for editing"
 msgstr ""
 
 msgid "Export section descriptions for editing"
