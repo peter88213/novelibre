@@ -12,7 +12,7 @@ from nvlib.nv_locale import _
 class OdtWProjectNotes(OdtWriter):
     """ODT project notes templates.
 
-    Export project notes with invisibly tagged notes.
+    Export project notes with invisible tags.
     """
     DESCRIPTION = _('Project notes')
     SUFFIX = PROJECTNOTES_SUFFIX

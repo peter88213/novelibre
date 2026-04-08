@@ -11,7 +11,7 @@ from abc import ABC
 from nvlib.model.data.splitter import Splitter
 from nvlib.model.odf.odf_reader import OdfReader
 from nvlib.model.odt.odt_parser import OdtParser
-from nvlib.novx_globals import CHAPTER_PREFIX
+from nvlib.novx_globals import CHAPTER_PREFIX, PRJ_NOTE_PREFIX
 from nvlib.novx_globals import ITEM_PREFIX
 from nvlib.novx_globals import LOCATION_PREFIX
 from nvlib.novx_globals import PLOT_LINE_PREFIX
@@ -120,6 +120,11 @@ class OdtReader(OdfReader, ABC):
 
                 if attrs[0][1].startswith(ITEM_PREFIX):
                     self._itId = attrs[0][1]
+                    return
+
+                if attrs[0][1].startswith(PRJ_NOTE_PREFIX):
+                    self._pnId = attrs[0][1]
+                    return
 
                 return
 

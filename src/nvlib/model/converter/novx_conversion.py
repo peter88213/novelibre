@@ -30,6 +30,7 @@ from nvlib.model.odt.odt_r_locations import OdtRLocations
 from nvlib.model.odt.odt_r_manuscript import OdtRManuscript
 from nvlib.model.odt.odt_r_partdesc import OdtRPartDesc
 from nvlib.model.odt.odt_r_plotlines import OdtRPlotlines
+from nvlib.model.odt.odt_r_project_notes import OdtRProjectNotes
 from nvlib.model.odt.odt_r_proof import OdtRProof
 from nvlib.model.odt.odt_r_sectiondesc import OdtRSectionDesc
 from nvlib.model.odt.odt_r_stages import OdtRStages
@@ -110,6 +111,7 @@ class NovxConversion:
         OdtRManuscript,
         OdtRPartDesc,
         OdtRPlotlines,
+        OdtRProjectNotes,
         OdtRProof,
         OdtRSectionDesc,
         OdtRStages,
