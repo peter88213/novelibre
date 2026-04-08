@@ -1263,6 +1263,13 @@ class MainView(Observer, MsgBoxes, SubController):
         self.add_color_commands(self.prjNoteMenu, prefix=PRJ_NOTE_PREFIX)
         self.prjNoteMenu.add_separator()
 
+        label = _('Export project notes for editing')
+        self.prjNoteMenu.add_command(
+            label=label,
+            command=self._ctrl.export_project_notes,
+        )
+        self.prjNoteMenu.disableOnLock.append(label)
+
         label = _('Show table in Browser')
         self.prjNoteMenu.add_command(
             label=label,

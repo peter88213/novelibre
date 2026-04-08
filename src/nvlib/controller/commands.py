@@ -361,6 +361,9 @@ class Commands:
     def export_plot_list(self, event=None):
         self.fileManager.export_document(PLOTLIST_SUFFIX, lock=False)
 
+    def export_project_notes(self, event=None):
+        self.fileManager.export_document(PROJECTNOTES_SUFFIX)
+
     def export_proofing_manuscript(self, event=None):
         self.fileManager.export_document(PROOF_SUFFIX)
 
