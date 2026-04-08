@@ -1327,7 +1327,7 @@ class SectionView(ElementView):
             self._mdl.novel.locations[lcId].title
             for lcId in self.element.locations
         ])
-        listboxSize = len(self._mdl.novel.locations)
+        listboxSize = len(self.element.locations)
         if listboxSize > self._HEIGHT_LIMIT:
             listboxSize = self._HEIGHT_LIMIT
         self._locationCollection.set_height(listboxSize)
@@ -1338,7 +1338,7 @@ class SectionView(ElementView):
             self._mdl.novel.items[itId].title
             for itId in self.element.items
         ])
-        listboxSize = len(self._mdl.novel.items)
+        listboxSize = len(self.element.items)
         if listboxSize > self._HEIGHT_LIMIT:
             listboxSize = self._HEIGHT_LIMIT
         self._itemCollection.set_height(listboxSize)

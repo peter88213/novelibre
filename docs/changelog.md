@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.55.10
+### Version 5.55.11
 
 > [!IMPORTANT]
 > The file format has been upgraded from version 1.9 to version 1.10.
@@ -56,6 +56,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - No longer writing ODF `settings.xml`.
 - Fixed a bug where changes made on project notes are not displayed immediately. 
 - Fixed a regression from version 5.54.1 where successful import isn't indicated on the status bar.
+- Fixed a regression from version 5.46.9 where the "Locations" and "Items" lists in the section properties view are not correctly sized.
 
 #### API changes
 
