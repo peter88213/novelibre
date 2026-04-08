@@ -11,11 +11,12 @@ from abc import ABC
 from nvlib.model.data.splitter import Splitter
 from nvlib.model.odf.odf_reader import OdfReader
 from nvlib.model.odt.odt_parser import OdtParser
-from nvlib.novx_globals import CHAPTER_PREFIX, PRJ_NOTE_PREFIX
+from nvlib.novx_globals import CHAPTER_PREFIX
 from nvlib.novx_globals import ITEM_PREFIX
 from nvlib.novx_globals import LOCATION_PREFIX
 from nvlib.novx_globals import PLOT_LINE_PREFIX
 from nvlib.novx_globals import PLOT_POINT_PREFIX
+from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
