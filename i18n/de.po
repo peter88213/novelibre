@@ -532,6 +532,9 @@ msgstr "Kapiteltabelle exportieren"
 msgid "Export character descriptions for editing"
 msgstr "Figurenbeschreibungen zum Bearbeiten exportieren"
 
+msgid "Export project notes for editing"
+msgstr "Projektnotizen zum Bearbeiten exportieren"
+
 msgid "Export character table"
 msgstr "Figurentabelle exportieren"
 

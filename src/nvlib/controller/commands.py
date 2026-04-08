@@ -40,6 +40,7 @@ from nvlib.novx_globals import PARTS_SUFFIX
 from nvlib.novx_globals import PLOTLINES_SUFFIX
 from nvlib.novx_globals import PLOTLIST_SUFFIX
 from nvlib.novx_globals import PLOT_LINE_PREFIX
+from nvlib.novx_globals import PROJECTNOTES_REPORT_SUFFIX
 from nvlib.novx_globals import PROJECTNOTES_SUFFIX
 from nvlib.novx_globals import PROOF_SUFFIX
 from nvlib.novx_globals import SECTIONLIST_SUFFIX
@@ -734,7 +735,7 @@ class Commands:
         self.fileManager.show_report(PLOTLIST_SUFFIX)
 
     def show_projectnotes_list(self, event=None):
-        self.fileManager.show_report(PROJECTNOTES_SUFFIX)
+        self.fileManager.show_report(PROJECTNOTES_REPORT_SUFFIX)
 
     def show_timetable(self, event=None):
         self.fileManager.show_report(TIMETABLE_SUFFIX)

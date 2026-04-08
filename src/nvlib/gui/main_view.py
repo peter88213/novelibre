@@ -1270,6 +1270,8 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         self.prjNoteMenu.disableOnLock.append(label)
 
+        self.prjNoteMenu.add_separator()
+
         label = _('Show table in Browser')
         self.prjNoteMenu.add_command(
             label=label,
