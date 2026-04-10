@@ -668,7 +668,6 @@ class OdtWriter(OdfFile):
         firstInChapter=False,
         xml=False,
         linebreaks=False,
-        firstParagraphStyle='Text_20_body',
         isEpigraph=False,
     ):
         """Return text without markup, converted to target format.
@@ -684,8 +683,6 @@ class OdtWriter(OdfFile):
             xml: bool -- if True, parse XML content. 
             linebreaks: bool -- if True and not xml, break the lines 
                                 instead of creating paragraphs. 
-            firstParagraphStyle: str -- The first paragraph's style, 
-                                        if not xml and not append.
             isEpigraph: bool -- if True, use "Epigraph" paragraph styles.
         
         Overrides the superclass method.
@@ -707,21 +704,15 @@ class OdtWriter(OdfFile):
             return ''.join(self._contentParser.odtLines)
 
         # Convert plain text into XML.
-        lines = text.split('\n')
-        if linebreaks or isEpigraph:
-            # isEpigraph means that the text is an epigraph's source
+        lines = escape(text).split('\n')
+        if linebreaks:
             text = '<text:line-break/>'.join(lines)
         else:
             text = (
-                '</text:p><text:p text:style-name="First_20_line_20_indent">'
+                '</text:p><text:p text:style-name="Text_20_body">'
             ).join(lines)
-
-        if isEpigraph:
-            firstParagraphStyle = _('Epigraph_20_source')
-        elif append:
-            firstParagraphStyle = "First_20_line_20_indent"
         return (
-            f'<text:p text:style-name="{firstParagraphStyle}">{text}</text:p>'
+            f'<text:p text:style-name="Text_20_body">{text}</text:p>'
         )
 
     def _get_fileHeaderMapping(self):

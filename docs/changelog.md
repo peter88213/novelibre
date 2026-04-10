@@ -10,6 +10,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.55.12
+
+- Bugfix: Escaping descriptions for ODT export.
+- No longer indenting description paragraphs in ODT documents.
+- Refactored the "convert from novx" methods for ODF export.
+
+
 ### Version 5.55.11
 
 > [!IMPORTANT]

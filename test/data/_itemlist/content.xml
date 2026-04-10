@@ -109,7 +109,7 @@
       <text:p>Chessboard</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Hal&apos;s chessboard, source of infinite joy.</text:p>
+      <text:p>Hal's chessboard, source of infinite joy.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>My game</text:p>

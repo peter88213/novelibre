@@ -253,10 +253,7 @@ class OdsWMetadataText(OdsWriter):
         arcIdCells = []
         arcTitleCells = []
         for plId in self.novel.tree.get_children(PL_ROOT):
-            link = self._convert_from_novx(
-                self.novel.plotLines[plId].title,
-                isLink=True,
-            )
+            link = self._convert_from_novx(self.novel.plotLines[plId].title)
             arcColumns.append(
                 '    <table:table-column table:style-name="co4" '
                 'table:default-cell-style-name="Default"/>'

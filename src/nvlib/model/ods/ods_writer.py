@@ -7,6 +7,7 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from string import Template
+from xml.sax.saxutils import escape
 
 from nvlib.model.odf.odf_file import OdfFile
 
@@ -326,7 +327,7 @@ class OdsWriter(OdfFile):
     )
     _MIMETYPE = 'application/vnd.oasis.opendocument.spreadsheet'
 
-    def _convert_from_novx(self, text, isLink=False, **kwargs):
+    def _convert_from_novx(self, text, **kwargs):
         """Return text, converted from novelibre markup to target format.
         
         Positional arguments:
@@ -341,21 +342,7 @@ class OdsWriter(OdfFile):
         if not text:
             return ''
 
-        text = text.rstrip()
-        ODS_REPLACEMENTS = [
-            ('&', '&amp;'),  # must be first!
-            ("'", '&apos;'),
-            ('>', '&gt;'),
-            ('<', '&lt;'),
-            ('\n', '</text:p>\n<text:p>'),
-        ]
-        if isLink:
-            ODS_REPLACEMENTS.append(('"', '&apos;'))
-        else:
-            ODS_REPLACEMENTS.append(('"', '&quot;'))
-        for nv, ods in ODS_REPLACEMENTS:
-            text = text.replace(nv, ods)
-        return text
+        return escape(text.rstrip()).replace('\n', '</text:p>\n<text:p>')
 
     def _get_extra_styles(self, elements):
 

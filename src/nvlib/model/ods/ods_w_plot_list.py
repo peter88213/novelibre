@@ -180,7 +180,7 @@ class OdsWPlotList(OdsWriter):
                 f'{attr} table:formula="of:=HYPERLINK(&quot;file:///'
                 f'{self.projectPath}/'
                 f'{self._convert_from_novx(self.projectName)}{link}&quot;'
-                f';&quot;{self._convert_from_novx(text, isLink=True)}&quot;)"'
+                f';&quot;{self._convert_from_novx(text)}&quot;)"'
             )
             text = ''
         else:
