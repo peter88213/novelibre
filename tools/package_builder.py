@@ -227,10 +227,18 @@ setuplib.main(False)
         output(f'\nUpdating "{self.landingPage}" ...')
         with open(self.landingPageTemplate, 'r', encoding='utf_8') as f:
             text = f.read()
+        try:
+            zipSize = f'{os.stat(self.zipPath).st_size // 1024} KB'
+        except FileNotFoundError:
+            zipSize = ''
+        try:
+            pyzSize = f'{os.stat(self.pyzPath).st_size // 1024} KB'
+        except FileNotFoundError:
+            pyzSize = ''
         mapping = dict(
             Version=self.version,
-            ZipSize=f'{os.stat(self.zipPath).st_size // 1024} KB',
-            PyzSize=f'{os.stat(self.pyzPath).st_size // 1024} KB',
+            ZipSize=zipSize,
+            PyzSize=pyzSize,
         )
         with open(
             self.landingPage,
