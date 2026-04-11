@@ -44,7 +44,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
   The color can be set via menu commands, or 
   by clicking on the upper right corner of the 
   "index card". `Alt`-click resets the color. 
-- New "view" option: Display the entire project tree in color.  
+- New *View* option: Display the entire project tree in color.  
 - New feature: Export project notes for editing.
 - Project tree displaying stages underlined.
 - Project tree displaying main characters in bold.
@@ -73,7 +73,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 #### File format changes
 
 DTD 1.10: Added the optional `color` attribute to the `ARC`, `CHARACTER`, 
-`ITEM`, `LOCATION`, `POINT`, `CHAPTER` and `SECTION` elements.
+`ITEM`, `LOCATION`, `POINT`, `PROJECTNOTES`, `CHAPTER` and `SECTION` elements.
 
 
 
@@ -84,9 +84,8 @@ DTD 1.10: Added the optional `color` attribute to the `ARC`, `CHARACTER`,
 
 ### Version 5.54.4
 
-- Refactored the *View options*, replacing Combobox with OptionMenu.
-- Refactored the *Work phase" setting, replacing Combobox with OptionMenu.
-- Refactored the *Work phase" setting, replacing LabelCombo with Combobox.
+- Refactored the *View options*, replacing `Combobox` with `OptionMenu`.
+- Refactored the *Work phase* setting, replacing `Combobox` with `OptionMenu`.
 
 
 ### Version 5.54.2
