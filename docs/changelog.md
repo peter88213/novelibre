@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.55.13
+
+- novx to ODS conversion: converting single and double straight quotes 
+  as it was prior to version 5.55.12.
+
+
 ### Version 5.55.12
 
 - Bugfix: Escaping descriptions for ODT export.
