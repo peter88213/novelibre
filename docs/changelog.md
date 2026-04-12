@@ -10,6 +10,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+
+### Version 5.55.14
+
+- Using only the `xml.sax.saxutils.escape()` method. 
+  No longer importing the `html` package.
+
+
 ### Version 5.55.13
 
 - novx to ODS conversion: converting single and double straight quotes 

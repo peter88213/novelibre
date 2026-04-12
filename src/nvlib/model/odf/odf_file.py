@@ -7,11 +7,11 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from datetime import datetime
-from xml.sax.saxutils import escape
 import os
 from shutil import rmtree
 from string import Template
 import tempfile
+from xml import sax
 import zipfile
 
 from nvlib.model.file.file_export import FileExport
@@ -141,7 +141,7 @@ class OdfFile(FileExport):
 
     def _escape(self, text):
         try:
-            return escape(text)
+            return sax.saxutils.escape(text)
 
         except AttributeError:
             return text

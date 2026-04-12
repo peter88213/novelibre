@@ -4,7 +4,7 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from html import escape
+from xml import sax
 
 from nvlib.model.file.file_export import FileExport
 from nvlib.model.hex_color import HexColor
@@ -61,7 +61,12 @@ class HtmlReport(FileExport):
         if not text:
             return ''
 
-        text = escape(text.rstrip())
+        text = text.rstrip()
+        entities = {
+            "'": '&apos;',
+            '"': '&quot;',
+        }
+        text = sax.saxutils.escape(text, entities=entities)
         if quick:
             return text.replace('\n', ' ')
 

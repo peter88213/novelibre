@@ -7,8 +7,8 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import re
+from xml import sax
 from xml.etree import ElementTree as ET
-from xml.sax.saxutils import escape
 
 from nvlib.model.odf.odf_file import OdfFile
 from nvlib.model.odt.novx_to_odt import NovxToOdt
@@ -691,7 +691,7 @@ class OdtWriter(OdfFile):
             return ''
 
         if quick:
-            return escape(text)
+            return sax.saxutils.escape(text)
 
         if xml:
             self._contentParser.feed(
@@ -704,7 +704,7 @@ class OdtWriter(OdfFile):
             return ''.join(self._contentParser.odtLines)
 
         # Convert plain text into XML.
-        lines = escape(text).split('\n')
+        lines = sax.saxutils.escape(text).split('\n')
         if linebreaks:
             text = '<text:line-break/>'.join(lines)
         else:
