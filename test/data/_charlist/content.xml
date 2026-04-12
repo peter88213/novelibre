@@ -188,7 +188,7 @@
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Somehow, Hal Spacejock ended up in the cargo game. With a loan from a dodgy operator and a ship from the wrong side of the nearest junkyard he works the back reaches of the galaxy. A couple of important things about Hal - he's determined to stay on the right side of the law, and he has a strong sense of justice.</text:p>
+      <text:p>Somehow, Hal Spacejock ended up in the cargo game. With a loan from a dodgy operator and a ship from the wrong side of the nearest junkyard he works the back reaches of the galaxy. A couple of important things about Hal - he&apos;s determined to stay on the right side of the law, and he has a strong sense of justice.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -223,7 +223,7 @@
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Walter Jerling runs a conglomerate spanning several planets. Ruthless and wealthy, he's never forgotten his more modest roots and watches his money carefully.</text:p>
+      <text:p>Walter Jerling runs a conglomerate spanning several planets. Ruthless and wealthy, he&apos;s never forgotten his more modest roots and watches his money carefully.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>One of his companies needs an urgent shipment of parts to complete a set of new robots for the Emperor.</text:p>
@@ -264,7 +264,7 @@
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Aging humanoid robot owned by Walter Jerling's company, Clunk is being shipped off for reprogramming and advanced pilot training.</text:p>
+      <text:p>Aging humanoid robot owned by Walter Jerling&apos;s company, Clunk is being shipped off for reprogramming and advanced pilot training.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>Undergo a refit and advanced pilot training, making him even more useful to his owner.</text:p>
@@ -369,7 +369,7 @@
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Farrell's driver, bodyguard and dirty tricks man. Rough and tough, not someone to cross.</text:p>
+      <text:p>Farrell&apos;s driver, bodyguard and dirty tricks man. Rough and tough, not someone to cross.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>Whatever Farrell wants.</text:p>
@@ -404,7 +404,7 @@
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Walter Jerling's private assistant</text:p>
+      <text:p>Walter Jerling&apos;s private assistant</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>Bit player</text:p>
@@ -474,7 +474,7 @@
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Owner of Hinchfig Enterprises, which he inherited from his parents. His father had business acumen and a flair for new products. Gordon has none, and so he slavishly follows his late father's methods with little of his success. His lack of business nous is the reason the company is in trouble, and the reason Farrell Hinchfig no longer has cash to throw around.</text:p>
+      <text:p>Owner of Hinchfig Enterprises, which he inherited from his parents. His father had business acumen and a flair for new products. Gordon has none, and so he slavishly follows his late father&apos;s methods with little of his success. His lack of business nous is the reason the company is in trouble, and the reason Farrell Hinchfig no longer has cash to throw around.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>Revitalise the company</text:p>
@@ -506,7 +506,7 @@
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>The Black Gull's flight computer</text:p>
+      <text:p>The Black Gull&apos;s flight computer</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -541,7 +541,7 @@
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Vurdi's enforcer robot.</text:p>
+      <text:p>Vurdi&apos;s enforcer robot.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>

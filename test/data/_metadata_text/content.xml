@@ -279,7 +279,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha section (sc15)'s description.</text:p>
+      <text:p>Alpha section (sc15)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1176,19 +1176,19 @@ $ArcNoteCells
       <text:p>Alpha character (cr1)</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha character (cr1)'s' Full name</text:p>
+      <text:p>Alpha character (cr1)&apos;s&apos; Full name</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>Character Alpha 1</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha character (cr1)'s description.</text:p>
+      <text:p>Alpha character (cr1)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha character (cr1)'s Bio</text:p>
+      <text:p>Alpha character (cr1)&apos;s Bio</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha character (cr1)'s Goals</text:p>
+      <text:p>Alpha character (cr1)&apos;s Goals</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>Note on Alpha character (cr1).</text:p>
@@ -1215,19 +1215,19 @@ $ArcNoteCells
       <text:p>Alpha character (cr2)</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha character (cr2)'s' Full name</text:p>
+      <text:p>Alpha character (cr2)&apos;s&apos; Full name</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>Character Alpha 2</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha character (cr2)'s description.</text:p>
+      <text:p>Alpha character (cr2)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha character (cr2)'s Bio</text:p>
+      <text:p>Alpha character (cr2)&apos;s Bio</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha character (cr2)'s Goals</text:p>
+      <text:p>Alpha character (cr2)&apos;s Goals</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>Note on Alpha character (cr2).</text:p>
@@ -1260,7 +1260,7 @@ $ArcNoteCells
       <text:p>Location Alpha 1</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha location (lc1)'s description.</text:p>
+      <text:p>Alpha location (lc1)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1299,7 +1299,7 @@ $ArcNoteCells
       <text:p>Location Alpha 2</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha location (lc2)'s description.</text:p>
+      <text:p>Alpha location (lc2)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1338,7 +1338,7 @@ $ArcNoteCells
       <text:p>Item Alpha 1</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha item (it1)'s description.</text:p>
+      <text:p>Alpha item (it1)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1377,7 +1377,7 @@ $ArcNoteCells
       <text:p>Item Alpha 2</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha item (it2)'s description.</text:p>
+      <text:p>Alpha item (it2)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1416,7 +1416,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha plot line A's description'.</text:p>
+      <text:p>Alpha plot line A&apos;s description&apos;.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1455,7 +1455,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha Plot point (ap1)'s description.</text:p>
+      <text:p>Alpha Plot point (ap1)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1494,7 +1494,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha Plot point (ap2)'s description.</text:p>
+      <text:p>Alpha Plot point (ap2)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1533,7 +1533,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha Plot point (ap3)'s description.</text:p>
+      <text:p>Alpha Plot point (ap3)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1572,7 +1572,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha Plot point (ap4)'s description.</text:p>
+      <text:p>Alpha Plot point (ap4)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1611,7 +1611,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha Plot point (ap5)'s description.</text:p>
+      <text:p>Alpha Plot point (ap5)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1650,7 +1650,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha Plot point (ap6)'s description.</text:p>
+      <text:p>Alpha Plot point (ap6)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1689,7 +1689,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha Plot point (ap7)'s description.</text:p>
+      <text:p>Alpha Plot point (ap7)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1728,7 +1728,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha Plot point (ap8)'s description.</text:p>
+      <text:p>Alpha Plot point (ap8)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1767,7 +1767,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha Plot point (ap9)'s description.</text:p>
+      <text:p>Alpha Plot point (ap9)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1806,7 +1806,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha Plot point (ap10)'s description.</text:p>
+      <text:p>Alpha Plot point (ap10)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1845,7 +1845,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha Plot point (ap11)'s description.</text:p>
+      <text:p>Alpha Plot point (ap11)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1884,7 +1884,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha Plot point (ap12)'s description.</text:p>
+      <text:p>Alpha Plot point (ap12)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1923,7 +1923,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha Plot point (ap13)'s description.</text:p>
+      <text:p>Alpha Plot point (ap13)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -1962,7 +1962,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha Plot point (ap14)'s description.</text:p>
+      <text:p>Alpha Plot point (ap14)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
@@ -2001,7 +2001,7 @@ $ArcNoteCells
       <text:p></text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Alpha project note (pn1)'s description.</text:p>
+      <text:p>Alpha project note (pn1)&apos;s description.</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>

@@ -115,7 +115,7 @@
       <text:p>Black Gull</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
-      <text:p>Hal's ship, a decrepit old freighter he bought with a dodgy loan</text:p>
+      <text:p>Hal&apos;s ship, a decrepit old freighter he bought with a dodgy loan</text:p>
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p></text:p>
