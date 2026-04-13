@@ -75,7 +75,6 @@ controlflow {
 <reflist>
 <ref refid="268bf6d2-003c-11f0-946c-70d82353e50d"/>
 <ref refid="4a68d7c3-003c-11f0-b935-70d82353e50d"/>
-<ref refid="5e9b5feb-003c-11f0-b26b-70d82353e50d"/>
 </reflist>
 </nestedPackage>
 <ownedDiagram>
@@ -106,19 +105,17 @@ controlflow {
 <reflist>
 <ref refid="268bf6d2-003c-11f0-946c-70d82353e50d"/>
 <ref refid="4a68d7c3-003c-11f0-b935-70d82353e50d"/>
-<ref refid="5e9b5feb-003c-11f0-b26b-70d82353e50d"/>
 <ref refid="b73251a0-71b5-11ec-a409-f47b099bf663"/>
 <ref refid="4337973d-003b-11f0-90ce-70d82353e50d"/>
 <ref refid="583d4641-003b-11f0-b6e2-70d82353e50d"/>
+<ref refid="8bb06df6-003b-11f0-8cd6-70d82353e50d"/>
 <ref refid="6217e76e-00c9-11f0-b066-70d82353e50d"/>
 <ref refid="6f60963d-00c9-11f0-a518-70d82353e50d"/>
 <ref refid="7c54fa25-00c9-11f0-817d-70d82353e50d"/>
 <ref refid="32dbf61f-003c-11f0-8e04-70d82353e50d"/>
 <ref refid="55ac4be0-003c-11f0-8421-70d82353e50d"/>
-<ref refid="713ab260-003c-11f0-acb3-70d82353e50d"/>
 <ref refid="d7cad6b7-0041-11f0-84f9-70d82353e50d"/>
 <ref refid="e7bfc3fc-0041-11f0-8820-70d82353e50d"/>
-<ref refid="8bb06df6-003b-11f0-8cd6-70d82353e50d"/>
 </reflist>
 </packagedElement>
 </UML:Package>
@@ -466,8 +463,6 @@ existing classes or even new classes with specific responsibilities.</val>
 <ref refid="583dbef3-003b-11f0-8a3e-70d82353e50d"/>
 <ref refid="268c6be6-003c-11f0-98bf-70d82353e50d"/>
 <ref refid="4a6925cd-003c-11f0-a40b-70d82353e50d"/>
-<ref refid="5e9c595d-003c-11f0-ade8-70d82353e50d"/>
-<ref refid="897e77d3-003c-11f0-884a-70d82353e50d"/>
 <ref refid="bfb64b7e-003c-11f0-8fca-70d82353e50d"/>
 <ref refid="eef75840-003c-11f0-b8f5-70d82353e50d"/>
 <ref refid="3c1a956c-003d-11f0-b2b9-70d82353e50d"/>
@@ -477,8 +472,6 @@ existing classes or even new classes with specific responsibilities.</val>
 <ref refid="eb2146bb-003b-11f0-8f74-70d82353e50d"/>
 <ref refid="3220083c-003c-11f0-82e9-70d82353e50d"/>
 <ref refid="55129f29-003c-11f0-b588-70d82353e50d"/>
-<ref refid="70a1490d-003c-11f0-9d15-70d82353e50d"/>
-<ref refid="8b5d3b9b-003c-11f0-9b72-70d82353e50d"/>
 <ref refid="d5770ecd-003c-11f0-9637-70d82353e50d"/>
 <ref refid="00bd00a2-003d-11f0-bd72-70d82353e50d"/>
 <ref refid="43aab7ca-003d-11f0-a9a3-70d82353e50d"/>
@@ -492,7 +485,6 @@ existing classes or even new classes with specific responsibilities.</val>
 <reflist>
 <ref refid="32dbf61f-003c-11f0-8e04-70d82353e50d"/>
 <ref refid="55ac4be0-003c-11f0-8421-70d82353e50d"/>
-<ref refid="713ab260-003c-11f0-acb3-70d82353e50d"/>
 <ref refid="d7cad6b7-0041-11f0-84f9-70d82353e50d"/>
 </reflist>
 </clientDependency>
@@ -523,7 +515,7 @@ existing classes or even new classes with specific responsibilities.</val>
 </UML:Component>
 <UML:ComponentItem id="43386d08-003b-11f0-a0f6-70d82353e50d">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 273.0, 253.0)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 287.0, 248.0)</val>
 </matrix>
 <top-left>
 <val>(-47.0, 0.0)</val>
@@ -609,7 +601,7 @@ existing classes or even new classes with specific responsibilities.</val>
 <val>(1.0, 0.0, 0.0, 1.0, 437.0, 328.0)</val>
 </matrix>
 <points>
-<val>[(-251.67105263157896, 140.0), (-168.43650793650795, 4.0)]</val>
+<val>[(-251.67105263157896, 140.0), (-154.43650793650795, -1.0)]</val>
 </points>
 <head-connection>
 <ref refid="8bb0bf47-003b-11f0-a1fd-70d82353e50d"/>
@@ -645,6 +637,11 @@ existing classes or even new classes with specific responsibilities.</val>
 </tail-connection>
 </UML:DependencyItem>
 <UML:Package id="268bf6d2-003c-11f0-946c-70d82353e50d">
+<comment>
+<reflist>
+<ref refid="eef7583f-003c-11f0-a347-70d82353e50d"/>
+</reflist>
+</comment>
 <name>
 <val>Python standard lib</val>
 </name>
@@ -667,7 +664,7 @@ existing classes or even new classes with specific responsibilities.</val>
 </UML:Package>
 <UML:PackageItem id="268c6be6-003c-11f0-98bf-70d82353e50d">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 69.0, 76.0)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 130.0876469583718, 76.0)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -702,7 +699,7 @@ existing classes or even new classes with specific responsibilities.</val>
 <val>(1.0, 0.0, 0.0, 1.0, 289.0, 260.0)</val>
 </matrix>
 <points>
-<val>[(-114.0, -104.0), (-31.42063492063494, -7.0)]</val>
+<val>[(-52.912353041628194, -104.0), (-17.42063492063494, -12.0)]</val>
 </points>
 <head-connection>
 <ref refid="268c6be6-003c-11f0-98bf-70d82353e50d"/>
@@ -754,7 +751,7 @@ existing classes or even new classes with specific responsibilities.</val>
 </UML:Package>
 <UML:PackageItem id="4a6925cd-003c-11f0-a40b-70d82353e50d">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 281.0, 86.0)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 368.49999999999994, 86.0)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -789,7 +786,7 @@ existing classes or even new classes with specific responsibilities.</val>
 <val>(1.0, 0.0, 0.0, 1.0, 356.0, 260.0)</val>
 </matrix>
 <points>
-<val>[(-16.15789473684208, -104.0), (-38.22472848788635, -7.0)]</val>
+<val>[(71.34210526315792, -104.0), (-24.224728487886352, -12.0)]</val>
 </points>
 <head-connection>
 <ref refid="4a6925cd-003c-11f0-a40b-70d82353e50d"/>
@@ -818,144 +815,6 @@ existing classes or even new classes with specific responsibilities.</val>
 </reflist>
 </supplier>
 </UML:Dependency>
-<UML:Package id="5e9b5feb-003c-11f0-b26b-70d82353e50d">
-<name>
-<val>idlelib</val>
-</name>
-<owningPackage>
-<ref refid="cccf183a-71b1-11ec-a409-f47b099bf663"/>
-</owningPackage>
-<package>
-<ref refid="cccf183a-71b1-11ec-a409-f47b099bf663"/>
-</package>
-<presentation>
-<reflist>
-<ref refid="5e9c595d-003c-11f0-ade8-70d82353e50d"/>
-</reflist>
-</presentation>
-<supplierDependency>
-<reflist>
-<ref refid="713ab260-003c-11f0-acb3-70d82353e50d"/>
-</reflist>
-</supplierDependency>
-</UML:Package>
-<UML:PackageItem id="5e9c595d-003c-11f0-ade8-70d82353e50d">
-<matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 554.0, 86.0)</val>
-</matrix>
-<top-left>
-<val>(-71.0, 0.0)</val>
-</top-left>
-<width>
-<val>159.0</val>
-</width>
-<height>
-<val>70.0</val>
-</height>
-<diagram>
-<ref refid="0a4db210-003b-11f0-b32f-70d82353e50d"/>
-</diagram>
-<subject>
-<ref refid="5e9b5feb-003c-11f0-b26b-70d82353e50d"/>
-</subject>
-</UML:PackageItem>
-<UML:DependencyItem id="70a1490d-003c-11f0-9d15-70d82353e50d">
-<diagram>
-<ref refid="0a4db210-003b-11f0-b32f-70d82353e50d"/>
-</diagram>
-<horizontal>
-<val>0</val>
-</horizontal>
-<orthogonal>
-<val>0</val>
-</orthogonal>
-<subject>
-<ref refid="713ab260-003c-11f0-acb3-70d82353e50d"/>
-</subject>
-<matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 379.0, 264.0)</val>
-</matrix>
-<points>
-<val>[(137.0, -108.0), (-10.206349206349216, -11.0)]</val>
-</points>
-<head-connection>
-<ref refid="5e9c595d-003c-11f0-ade8-70d82353e50d"/>
-</head-connection>
-<tail-connection>
-<ref refid="43386d08-003b-11f0-a0f6-70d82353e50d"/>
-</tail-connection>
-</UML:DependencyItem>
-<UML:Dependency id="713ab260-003c-11f0-acb3-70d82353e50d">
-<client>
-<reflist>
-<ref refid="4337973d-003b-11f0-90ce-70d82353e50d"/>
-</reflist>
-</client>
-<owningPackage>
-<ref refid="cccf183a-71b1-11ec-a409-f47b099bf663"/>
-</owningPackage>
-<presentation>
-<reflist>
-<ref refid="70a1490d-003c-11f0-9d15-70d82353e50d"/>
-</reflist>
-</presentation>
-<supplier>
-<reflist>
-<ref refid="5e9b5feb-003c-11f0-b26b-70d82353e50d"/>
-</reflist>
-</supplier>
-</UML:Dependency>
-<UML:Comment id="897e77d2-003c-11f0-b620-70d82353e50d">
-<body>
-<val>Optional for hovertips; 
-included with the Windows Python installation</val>
-</body>
-<presentation>
-<reflist>
-<ref refid="897e77d3-003c-11f0-884a-70d82353e50d"/>
-</reflist>
-</presentation>
-</UML:Comment>
-<UML:CommentItem id="897e77d3-003c-11f0-884a-70d82353e50d">
-<matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 478.5, -80.0)</val>
-</matrix>
-<top-left>
-<val>(0.0, 0.0)</val>
-</top-left>
-<width>
-<val>188.0</val>
-</width>
-<height>
-<val>93.0</val>
-</height>
-<diagram>
-<ref refid="0a4db210-003b-11f0-b32f-70d82353e50d"/>
-</diagram>
-<subject>
-<ref refid="897e77d2-003c-11f0-b620-70d82353e50d"/>
-</subject>
-</UML:CommentItem>
-<UML:CommentLineItem id="8b5d3b9b-003c-11f0-9b72-70d82353e50d">
-<diagram>
-<ref refid="0a4db210-003b-11f0-b32f-70d82353e50d"/>
-</diagram>
-<horizontal>
-<val>0</val>
-</horizontal>
-<orthogonal>
-<val>0</val>
-</orthogonal>
-<matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 549.0, 53.0)</val>
-</matrix>
-<points>
-<val>[(29.19696969696963, -40.0), (21.0, 55.0)]</val>
-</points>
-<head-connection>
-<ref refid="897e77d3-003c-11f0-884a-70d82353e50d"/>
-</head-connection>
-</UML:CommentLineItem>
 <UML:Comment id="bfb624e4-003c-11f0-a433-70d82353e50d">
 <body>
 <val>Required; 
@@ -969,7 +828,7 @@ included with the Windows Python installation</val>
 </UML:Comment>
 <UML:CommentItem id="bfb64b7e-003c-11f0-8fca-70d82353e50d">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 199.7938234791859, -74.34540927546807)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 345.5876469583718, -62.49999999999996)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -1001,13 +860,18 @@ included with the Windows Python installation</val>
 <val>(1.0, 0.0, 0.0, 1.0, 337.0, -14.345409275468072)</val>
 </matrix>
 <points>
-<val>[(-24.912353041628194, 0.8454092754680715), (35.0, 117.0)]</val>
+<val>[(120.88147043755771, 12.690818550936186), (76.0, 100.34540927546806)]</val>
 </points>
 <head-connection>
 <ref refid="bfb64b7e-003c-11f0-8fca-70d82353e50d"/>
 </head-connection>
 </UML:CommentLineItem>
 <UML:Comment id="eef7583f-003c-11f0-a347-70d82353e50d">
+<annotatedElement>
+<reflist>
+<ref refid="268bf6d2-003c-11f0-946c-70d82353e50d"/>
+</reflist>
+</annotatedElement>
 <body>
 <val>Required; 
 part of the Linux distribution</val>
@@ -1020,7 +884,7 @@ part of the Linux distribution</val>
 </UML:Comment>
 <UML:CommentItem id="eef75840-003c-11f0-b8f5-70d82353e50d">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 19.0, -51.5)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 107.32894736842104, -62.49999999999994)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -1052,11 +916,14 @@ part of the Linux distribution</val>
 <val>(1.0, 0.0, 0.0, 1.0, 111.0, 10.654590724531928)</val>
 </matrix>
 <points>
-<val>[(0.0, 9.0), (-14.0, 65.34540927546806)]</val>
+<val>[(88.32894736842104, -1.9999999999999432), (55.0, 65.34540927546807)]</val>
 </points>
 <head-connection>
 <ref refid="eef75840-003c-11f0-b8f5-70d82353e50d"/>
 </head-connection>
+<tail-connection>
+<ref refid="268c6be6-003c-11f0-98bf-70d82353e50d"/>
+</tail-connection>
 </UML:CommentLineItem>
 <UML:Comment id="3c1a956b-003d-11f0-aaf7-70d82353e50d">
 <annotatedElement>
@@ -1234,9 +1101,9 @@ part of the Linux distribution</val>
 </name>
 <ownedAttribute>
 <reflist>
+<ref refid="5bd24ecd-0041-11f0-85fc-70d82353e50d"/>
 <ref refid="6eb2f44f-0041-11f0-9405-70d82353e50d"/>
 <ref refid="75e414bf-0041-11f0-b3cd-70d82353e50d"/>
-<ref refid="5bd24ecd-0041-11f0-85fc-70d82353e50d"/>
 <ref refid="7c41355a-0041-11f0-a554-70d82353e50d"/>
 <ref refid="94b179d3-0041-11f0-869b-70d82353e50d"/>
 <ref refid="9a399730-0041-11f0-a719-70d82353e50d"/>
@@ -1245,9 +1112,9 @@ part of the Linux distribution</val>
 </ownedAttribute>
 <ownedOperation>
 <reflist>
+<ref refid="6f2e352b-0042-11f0-9174-70d82353e50d"/>
 <ref refid="732e300e-0042-11f0-9cea-70d82353e50d"/>
 <ref refid="77e06ff0-0042-11f0-a664-70d82353e50d"/>
-<ref refid="6f2e352b-0042-11f0-9174-70d82353e50d"/>
 <ref refid="7bbc3d08-0042-11f0-b284-70d82353e50d"/>
 <ref refid="7f4abb0a-0042-11f0-a2c0-70d82353e50d"/>
 <ref refid="8319f077-0042-11f0-9c2d-70d82353e50d"/>
@@ -1309,7 +1176,7 @@ part of the Linux distribution</val>
 <val>(1.0, 0.0, 0.0, 1.0, 280.0, 296.0)</val>
 </matrix>
 <points>
-<val>[(68.19841269841271, 36.0), (119.0, 114.0)]</val>
+<val>[(82.19841269841271, 31.0), (119.0, 114.0)]</val>
 </points>
 <head-connection>
 <ref refid="43386d08-003b-11f0-a0f6-70d82353e50d"/>
