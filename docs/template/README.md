@@ -65,7 +65,7 @@ This is the manuscript to work on. *novelibre* generated it and passed it to Lib
   plain text and displayed with a standard web browser.
 - *novelibre* is written in Python and should run on several **operating systems**, like Windows and Linux.
 - The *novelibre* download file is a zip-compressed pure source code with a very **small size and footprint**.  
-- *novelibre* **works completely offline**. Only the optional on-demand updater plugin requires an internet connection.
+- *novelibre* **works completely offline**. Only the online help and the optional on-demand updater plugin require an internet connection.
 - The *novelibre* code development **does not involve any "Artificial Intelligence"**. Nor is there any in its operation.
 - The application is ready for [internationalization with GNU gettext](TRANSLATE.md). 
   German translations are provided. 
