@@ -6,6 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from abc import ABC
 import os
+import re
 from shutil import copy2
 from shutil import copytree
 from shutil import make_archive
@@ -159,6 +160,15 @@ setuplib.main(False)
             output(f'Copying "{file}" to "{targetDir}" ...')
             copy2(file, targetDir)
 
+    def get_api_version(self):
+        with open(self.sourceFile, 'r', encoding='utf-8') as f:
+            text = f.read()
+        try:
+            apiVersion = re.search(r"API_VERSION = '(.*?)'", text).group(1)
+        except AttributeError:
+            apiVersion = ''
+        return apiVersion
+
     def inline_modules(self, source, target):
         """Inline all non-standard library modules."""
         inliner.run(
@@ -239,6 +249,7 @@ setuplib.main(False)
             Version=self.version,
             ZipSize=zipSize,
             PyzSize=pyzSize,
+            ApiVersion=self.get_api_version(),
         )
         with open(
             self.landingPage,
