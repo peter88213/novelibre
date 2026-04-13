@@ -2,7 +2,9 @@
 
 ------------------------------------------------------------------------
 
-# ODT-Formatvorlagen, die für das *novelibre*-Manuskript und das endgültige Dokument verwendet wurden
+# ODT-Formatvorlagen im *novelibre*-Manuskript und im endgültigen Dokument
+
+Wenn Sie Ihr Dolumentenlayout selbst gestalten, berücksichtigen Sie bitte die folgenden Formatvorlagen:
 
 ## Zeichenformate zur Anwendung im Text
 
@@ -10,6 +12,8 @@
 |----------------------------------------|--------------------------------------------------------|
 | **Betont**                             | Betonter Text.                                         | 
 | **Stark betont**                       | Stark betonter Text.                                   | 
+
+---
 
 ## Absatzformate zur Anwendung im Text
 
@@ -21,6 +25,8 @@
 | **Überschrift 7**                      | Absatz, der sich visuell vom Textkörper unterscheidet. |
 | **Überschrift 8**                      | Absatz, der sich visuell vom Textkörper unterscheidet. |
 | **Überschrift 9**                      | Absatz, der sich visuell vom Textkörper unterscheidet. |
+
+---
 
 ## Automatisch angewendete Absatzformate
 

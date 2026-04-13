@@ -4,12 +4,16 @@
 
 # ODT styles used with the *novelibre* manuscript and final document
 
+If you are designing your own document layout, please consider the following style templates:
+
 ## Character styles to be applied in the text
 
 | *Writer* style name                             | Description                                            |
 |-------------------------------------------------|--------------------------------------------------------|
 | **Emphasis**                                    | Emphasized text.                                       | 
 | **Strong emphasis**                             | Strongly emphasized text.                              | 
+
+---
 
 ## Paragraph styles to be applied in the text
 
@@ -21,6 +25,8 @@
 | **Heading 7**                                   | Paragraph visually distinguished from the body text.   |
 | **Heading 8**                                   | Paragraph visually distinguished from the body text.   |
 | **Heading 9**                                   | Paragraph visually distinguished from the body text.   |
+
+---
 
 ## Auto-applied paragraph styles
 
