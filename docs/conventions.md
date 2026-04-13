@@ -56,13 +56,10 @@ This is the directory structure required for building an application:
         └── build.py
 ```
 
-**IMPORTANT**
-
-The *inliner.py* packager tool discards docstrings of imported modules in order to save memory. 
-
-Docstrings are considered to be all strings that begin and end with three double quotes.
-
-Thus, multiline strings not to be discarded during building *must* start and end with three single quotes. 
+> [!IMPORTANT]
+> The *inliner.py* packager tool discards docstrings of imported modules in order to save memory. 
+> Docstrings are considered to be all strings that begin and end with three double quotes.
+> Thus, multiline strings not to be discarded during building *must* start and end with three single quotes. 
 
 
 
