@@ -1,4 +1,4 @@
-[Project home page](../) > ODT styles documentation
+[User guide](https://peter88213.github.io/nvhelp-en/basic_concepts.html#formatting-text) > ODT styles documentation
 
 ------------------------------------------------------------------------
 

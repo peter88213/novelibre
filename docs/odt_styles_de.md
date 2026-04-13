@@ -1,4 +1,4 @@
-[Projekt-Homepage](../) > ODT-Formatvorlagen
+[Handbuch](https://peter88213.github.io/nvhelp-de/basic_concepts.html#text-formatieren) > ODT-Formatvorlagen
 
 ------------------------------------------------------------------------
 
