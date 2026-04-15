@@ -144,6 +144,7 @@ class Toolbar(SubController):
             text=_('Export Manuscript'),
             image=self._ui.icons.manuscriptIcon,
             command=self._ctrl.open_manuscript,
+            disableOnLock=False,
         )
         self.manuscriptButton.pack(side='left')
 

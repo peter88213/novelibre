@@ -11,6 +11,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 ---
 
 
+### Version 5.55.15
+
+- An existing manuscript can be opened via the toolbar button even if 
+the project is locked, provided it is not older than the project file. 
+This fixes a regression from version 5.44.
+
+
 ### Version 5.55.14
 
 - Using only the `xml.sax.saxutils.escape()` method. 

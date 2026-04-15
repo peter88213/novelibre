@@ -489,11 +489,10 @@ class Commands:
 
     def open_manuscript(self, event=None):
         """Export a manuscript document and open it for editing."""
-        doNotExport = self.isLocked
         self.fileManager.export_document(
             MANUSCRIPT_SUFFIX,
             ask=False,
-            doNotExport=doNotExport,
+            doNotExport=self.isLocked,
         )
 
     def open_news(self, event=None):
