@@ -711,8 +711,13 @@ class OdtWriter(OdfFile):
             text = (
                 '</text:p><text:p text:style-name="Text_20_body">'
             ).join(lines)
+
+        if isEpigraph:
+            firstParagraphStyle = _('Epigraph_20_source')
+        else:
+            firstParagraphStyle = "Text_20_body"
         return (
-            f'<text:p text:style-name="Text_20_body">{text}</text:p>'
+            f'<text:p text:style-name="{firstParagraphStyle}">{text}</text:p>'
         )
 
     def _get_fileHeaderMapping(self):
