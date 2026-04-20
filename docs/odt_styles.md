@@ -34,6 +34,7 @@ If you are designing your own document layout, please consider the following sty
 |-------------------------------------------------|--------------------------------------------------------|
 | **Heading 1**                                   | Part heading.                                          |
 | **Heading 2**                                   | Chapter heading.                                       |
+| **Heading 3 invisible**                         | Section title, displayed only with formatting marks (¶).|
 | **Heading 4**                                   | Section divider.                                       |
 | **Title**                                       | Novel title.                                           |
 | **Subtitle**                                    | Author.                                                |

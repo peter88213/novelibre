@@ -34,6 +34,7 @@ Wenn Sie Ihr Dolumentenlayout selbst gestalten, berücksichtigen Sie bitte die f
 |----------------------------------------|--------------------------------------------------------|
 | **Überschrift 1**                      | Teileüberschrift.                                      |
 | **Überschrift 2**                      | Kapitelüberschrift.                                    |
+| **Überschrift 3 unsichtbar**           | Abschnittstitel; nur mit den Steuerzeichen anzezeigt (¶).|
 | **Überschrift 4**                      | Abschnittstrenner.                                     |
 | **Titel**                              | Romantitel.                                            |
 | **Untertitel**                         | Autor.                                                 |
