@@ -6,7 +6,7 @@
 
 Wenn Sie Ihr Dolumentenlayout selbst gestalten, berücksichtigen Sie bitte die folgenden Formatvorlagen:
 
-## Zeichenformate zur Anwendung im Text
+## Zeichenformate zur Anwendung durch den Benutzer
 
 | *Writer* Vorlagenname                  | Beschreibung                                           |
 |----------------------------------------|--------------------------------------------------------|
@@ -15,7 +15,7 @@ Wenn Sie Ihr Dolumentenlayout selbst gestalten, berücksichtigen Sie bitte die f
 
 ---
 
-## Absatzformate zur Anwendung im Text
+## Absatzformate zur Anwendung durch den Benutzer
 
 | *Writer* Vorlagenname                  | Beschreibung                                           |
 |----------------------------------------|--------------------------------------------------------|

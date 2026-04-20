@@ -6,7 +6,7 @@
 
 If you are designing your own document layout, please consider the following style templates:
 
-## Character styles to be applied in the text
+## Character styles to be applied by the user
 
 | *Writer* style name                             | Description                                            |
 |-------------------------------------------------|--------------------------------------------------------|
@@ -15,7 +15,7 @@ If you are designing your own document layout, please consider the following sty
 
 ---
 
-## Paragraph styles to be applied in the text
+## Paragraph styles to be applied by the user
 
 | *Writer* style name                             | Description                                            |
 |-------------------------------------------------|--------------------------------------------------------|
