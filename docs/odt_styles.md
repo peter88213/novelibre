@@ -38,8 +38,8 @@ If you are designing your own document layout, please consider the following sty
 | **Heading 4**                                   | Section divider.                                       |
 | **Title**                                       | Novel title.                                           |
 | **Subtitle**                                    | Author.                                                |
-| **Epigraph**                                    | Epigraph body.                                         |
-| **Epigraph source**                             | The epigraph's source, if any.                         |
+| **Epigraph**                                    | Epigraph body (section content).                       |
+| **Epigraph source**                             | The epigraph's source, if any (section description).   |
 | **Chapter beginning**                           | Chapter's first paragraph.                             |
 | **Text body**                                   | Section's first paragraph, if not beginning a chapter. |
 | **First line indent**                           | Regular paragraph.                                     |

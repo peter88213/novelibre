@@ -38,8 +38,8 @@ Wenn Sie Ihr Dolumentenlayout selbst gestalten, berücksichtigen Sie bitte die f
 | **Überschrift 4**                      | Abschnittstrenner.                                     |
 | **Titel**                              | Romantitel.                                            |
 | **Untertitel**                         | Autor.                                                 |
-| **Motto**                              | Motto.                                                 |
-| **Motto-Quelle**                       | Die Quelle des Mottos, falls vorhanden.                |
+| **Motto**                              | Motto (Abschnittsinhalt).                              |
+| **Motto-Quelle**                       | Die Quelle des Mottos, falls vorhanden (Abschnittsbeschreibung).|
 | **Kapitelanfang**                      | Erster Absatz im Kapitel.                              |
 | **Textkörper**                         | Erster Absatz im Abschnitt, falls nicht Kapitelanfang. |
 | **Textkörper Einzug**                  | Normaler Absatz.                                       |
