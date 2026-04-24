@@ -3,7 +3,7 @@
 [![News/Feedback](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
 
-[![Deutsch](docs/img/germany.png)](https://codeberg.org/peter88213/novelibre) [![Italiano](docs/img/italy.png)](https://peter88213.github.io/nv_it/)
+[![Deutsch](docs/img/germany.png)](https://codeberg.org/peter88213/novelibre)
 
 # ![N](docs/img/nLogo32.png) novelibre
 
@@ -204,7 +204,9 @@ The package is also available in zip format:
 
 ### Translations
 
-- [Italian language package](https://github.com/peter88213/nv_it)
+- [Italian language package (to be completed)](https://github.com/peter88213/nv_it)
+- [French language package (to be completed)](https://github.com/peter88213/nv_fr)
+- [Spanish language package (to be completed)](https://github.com/peter88213/nv_es)
 
 
 ---
