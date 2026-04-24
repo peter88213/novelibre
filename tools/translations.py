@@ -124,6 +124,9 @@ class JsonDict:
         self.messages = {}
 
     def read(self):
+        if not os.path.isfile(self.filePath):
+            return
+
         output(f'Reading "{self.filePath}" ...')
         with open(self.filePath, 'r', encoding='utf-8') as f:
             self.messages = json.load(f)
