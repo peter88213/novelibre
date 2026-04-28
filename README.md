@@ -3,7 +3,7 @@
 [![News/Feedback](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
 
-[![Deutsch](docs/img/germany.png) Deutsche Seite](https://codeberg.org/peter88213/novelibre)
+[![Deutsch](docs/img/germany.png) Deutsche Seite](https://peter88213.codeberg.page/novelibre/)
 
 # ![N](docs/img/nLogo32.png) novelibre
 
