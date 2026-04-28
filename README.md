@@ -37,6 +37,7 @@ This is the manuscript to work on. *novelibre* generated it and passed it to Lib
 
 ## Features
 
+- Using *novelibre* is free, and the source code is publicly available.
 - With *novelibre*, extensive novels can be broken down into **parts, chapters, and sections**. 
 - You can store data on **characters, locations, and items** that are important for the story. 
   This includes the optional definition of a **viewpoint character** for each section. 
