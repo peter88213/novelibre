@@ -25,6 +25,10 @@ Wenn Sie Ihr Dolumentenlayout selbst gestalten, berücksichtigen Sie bitte die f
 | **Überschrift 7**                      | Absatz, der sich visuell vom Textkörper unterscheidet. |
 | **Überschrift 8**                      | Absatz, der sich visuell vom Textkörper unterscheidet. |
 | **Überschrift 9**                      | Absatz, der sich visuell vom Textkörper unterscheidet. |
+| **Überschrift 1**                      | Titel eines neuen Teils (anzuwenden innerhalb des editierten Abschnitts).|
+| **Überschrift 2**                      | Titel eines neuen Kapitels (anzuwenden innerhalb des editierten Abschnitts).|
+| **Überschrift 3**                      | Titel eines neuen Abschnitts (anzuwenden innerhalb des editierten Abschnitts).|
+| **Überschrift 4**                      | Titel eines neuen angehängten Abschnitts (anzuwenden innerhalb des editierten Abschnitts).|
 
 ---
 
