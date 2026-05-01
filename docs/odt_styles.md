@@ -19,16 +19,16 @@ If you are designing your own document layout, please consider the following sty
 
 | *Writer* style name                             | Description                                            |
 |-------------------------------------------------|--------------------------------------------------------|
-| **Quotations** (OO) / **Block Quotations** (LO) | Paragraph visually distinguished from the body text.   |
+| **Heading 1**                                   | New part's title (to be applied within an edited section).|
+| **Heading 2**                                   | New chapter's title (to be applied within an edited section).|
+| **Heading 3**                                   | New section's title (to be applied within an edited section).|
+| **Heading 4**                                   | New appended section's title (to be applied within an edited section).|
 | **Heading 5**                                   | Paragraph visually distinguished from the body text.   |
 | **Heading 6**                                   | Paragraph visually distinguished from the body text.   |
 | **Heading 7**                                   | Paragraph visually distinguished from the body text.   |
 | **Heading 8**                                   | Paragraph visually distinguished from the body text.   |
 | **Heading 9**                                   | Paragraph visually distinguished from the body text.   |
-| **Heading 1**                                   | New part's title (to be applied within an edited section).|
-| **Heading 2**                                   | New chapter's title (to be applied within an edited section).|
-| **Heading 3**                                   | New section's title (to be applied within an edited section).|
-| **Heading 4**                                   | New appended section's title (to be applied within an edited section).|
+| **Quotations** (OO) / **Block Quotations** (LO) | Paragraph visually distinguished from the body text.   |
 
 ---
 

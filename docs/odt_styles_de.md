@@ -19,16 +19,16 @@ Wenn Sie Ihr Dolumentenlayout selbst gestalten, berücksichtigen Sie bitte die f
 
 | *Writer* Vorlagenname                  | Beschreibung                                           |
 |----------------------------------------|--------------------------------------------------------|
-| **Zitat**                              | Absatz, der sich visuell vom Textkörper unterscheidet. |
+| **Überschrift 1**                      | Titel eines neuen Teils (anzuwenden innerhalb des editierten Abschnitts).|
+| **Überschrift 2**                      | Titel eines neuen Kapitels (anzuwenden innerhalb des editierten Abschnitts).|
+| **Überschrift 3**                      | Titel eines neuen Abschnitts (anzuwenden innerhalb des editierten Abschnitts).|
+| **Überschrift 4**                      | Titel eines neuen angehängten Abschnitts (anzuwenden innerhalb des editierten Abschnitts).|
 | **Überschrift 5**                      | Absatz, der sich visuell vom Textkörper unterscheidet. |
 | **Überschrift 6**                      | Absatz, der sich visuell vom Textkörper unterscheidet. |
 | **Überschrift 7**                      | Absatz, der sich visuell vom Textkörper unterscheidet. |
 | **Überschrift 8**                      | Absatz, der sich visuell vom Textkörper unterscheidet. |
 | **Überschrift 9**                      | Absatz, der sich visuell vom Textkörper unterscheidet. |
-| **Überschrift 1**                      | Titel eines neuen Teils (anzuwenden innerhalb des editierten Abschnitts).|
-| **Überschrift 2**                      | Titel eines neuen Kapitels (anzuwenden innerhalb des editierten Abschnitts).|
-| **Überschrift 3**                      | Titel eines neuen Abschnitts (anzuwenden innerhalb des editierten Abschnitts).|
-| **Überschrift 4**                      | Titel eines neuen angehängten Abschnitts (anzuwenden innerhalb des editierten Abschnitts).|
+| **Zitat**                              | Absatz, der sich visuell vom Textkörper unterscheidet. |
 
 ---
 
