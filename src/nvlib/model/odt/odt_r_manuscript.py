@@ -61,11 +61,7 @@ class OdtRManuscript(OdtRFormatted):
             self._lines.append(f'</{tag}>')
             return
 
-        if tag == 'lang':
-            self._lines.append('</span>')
-            return
-
-        if tag == 'bgcolor':
+        if tag in ('lang', 'bgcolor'):
             self._lines.append('</span>')
             return
 

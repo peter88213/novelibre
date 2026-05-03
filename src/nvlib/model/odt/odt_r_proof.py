@@ -111,7 +111,7 @@ class OdtRProof(OdtRFormatted):
             self._lines.append(f'</{tag}>')
             return
 
-        if tag == 'lang':
+        if tag in ('lang', 'bgcolor'):
             self._lines.append('</span>')
             return
 
@@ -192,6 +192,11 @@ class OdtRProof(OdtRFormatted):
                 for att in attrs:
                     attributes = f'{attributes} {att[0]}="{att[1]}"'
                 self._lines.append(f'<note {attributes}>')
+                return
+
+            if tag == 'bgcolor':
+                if attrs[0][0] == 'bgcolor':
+                    self._lines.append(f'<span bgcolor="{attrs[0][1]}">')
                 return
 
         if tag == 'body':
