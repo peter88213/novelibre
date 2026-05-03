@@ -111,7 +111,7 @@ class OdtRImport(OdtRFormatted):
             self._lines.append(f'</{tag}>')
             return
 
-        if tag == 'lang':
+        if tag in ('lang', 'bgcolor'):
             self._lines.append('</span>')
             return
 
@@ -184,11 +184,13 @@ class OdtRImport(OdtRFormatted):
             self._lines.append(f'<{tag}>')
             return
 
-        if tag == 'lang':
+        if tag in ('lang', 'bgcolor'):
             if attrs[0][0] == 'lang':
                 if not attrs[0][1] in self.novel.languages:
                     self.novel.languages.append(attrs[0][1])
                 self._lines.append(f'<span xml:lang="{attrs[0][1]}">')
+            elif attrs[0][0] == 'bgcolor':
+                self._lines.append(f'<span bgcolor="{attrs[0][1]}">')
             return
 
         if tag == 'note':

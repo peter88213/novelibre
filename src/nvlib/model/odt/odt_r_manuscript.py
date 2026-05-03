@@ -128,11 +128,13 @@ class OdtRManuscript(OdtRFormatted):
             self._lines.append(f'<{tag}>')
             return
 
-        if tag == 'lang':
+        if tag in ('lang', 'bgcolor'):
             if attrs[0][0] == 'lang':
                 if not attrs[0][1] in self.novel.languages:
                     self.novel.languages.append(attrs[0][1])
                 self._lines.append(f'<span xml:lang="{attrs[0][1]}">')
+            elif attrs[0][0] == 'bgcolor':
+                self._lines.append(f'<span bgcolor="{attrs[0][1]}">')
             return
 
         if tag in self._SEPARATORS:
@@ -145,7 +147,3 @@ class OdtRManuscript(OdtRFormatted):
                 attributes = f'{attributes} {att[0]}="{att[1]}"'
             self._lines.append(f'<note {attributes}>')
 
-        if tag == 'bgcolor':
-            if attrs[0][0] == 'bgcolor':
-                self._lines.append(f'<span bgcolor="{attrs[0][1]}">')
-            return
