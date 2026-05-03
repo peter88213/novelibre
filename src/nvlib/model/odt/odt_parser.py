@@ -35,6 +35,9 @@ class OdtParser(sax.ContentHandler):
         self._languageTags = {}
         # Collection of language tags used in the ODT document.
 
+        self._highlightTags = {}
+        # Collection of background color tags used in the ODT document.
+
         self._headingTags = {}
         # Collection of heading style names used in the ODT document.
 
@@ -57,6 +60,9 @@ class OdtParser(sax.ContentHandler):
 
         self._style = None
         # ODT style being processed.
+
+        self._bgcolor = None
+        # str: hex color triple, like "#ffff00"
 
         self._novelLocale = None
         # str: the document's global locale
@@ -113,6 +119,8 @@ class OdtParser(sax.ContentHandler):
                         self._client.handle_endtag(span)
                         if span == 'lang':
                             self._currentLocale.pop()
+                        elif span == 'bgcolor':
+                            self._bgcolor = None
                 return
 
             except:
@@ -220,24 +228,32 @@ class OdtParser(sax.ContentHandler):
                 span = None
             elif style in self._emTags:
                 span = 'em'
-                self._client.handle_starttag('em', [()])
+                self._client.handle_starttag(span, [()])
                 self._span.append(span)
             elif style in self._strongTags:
                 span = 'strong'
-                self._client.handle_starttag('strong', [()])
+                self._client.handle_starttag(span, [()])
                 self._span.append(span)
             if style in self._languageTags:
                 if (
-                    not self._currentLocale or 
+                    not self._currentLocale or
                     self._languageTags[style] != self._currentLocale[-1]
                 ):
                     span = 'lang'
                     self._client.handle_starttag(
-                        'lang',
+                        span,
                         [('lang', self._languageTags[style])]
                     )
                     self._currentLocale.append(self._languageTags[style])
                     self._span.append(span)
+            if style in self._highlightTags:
+                span = 'bgcolor'
+                self._bgcolor = self._highlightTags[style]
+                self._client.handle_starttag(
+                    span,
+                    [('bgcolor', self._bgcolor)]
+                )
+                self._span.append(span)
             return
 
         if name == 'text:section':
@@ -320,6 +336,9 @@ class OdtParser(sax.ContentHandler):
                 else:
                     locale = languageCode
                 self._languageTags[self._style] = locale
+            if xmlAttributes.get('fo:background-color', False):
+                color = xmlAttributes['fo:background-color']
+                self._highlightTags[self._style] = color
             return
 
         if name == 'text:s':
