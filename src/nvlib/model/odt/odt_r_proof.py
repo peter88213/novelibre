@@ -115,14 +115,6 @@ class OdtRProof(OdtRFormatted):
             self._lines.append('</span>')
             return
 
-        if tag == 'div':
-            text = ''.join(self._lines)
-            text = self._remove_redundant_tags(text)
-            self.novel.sections[self._scId].sectionContent = text
-            self._lines.clear()
-            self._scId = None
-            return
-
         if tag in self._SEPARATORS:
             self._lines.append('\n')
             return
