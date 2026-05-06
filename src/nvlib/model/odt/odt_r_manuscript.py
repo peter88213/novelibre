@@ -52,6 +52,7 @@ class OdtRManuscript(OdtRFormatted):
             'note-citation',
             'ul',
             'li',
+            'h4',
             'h5',
             'h6',
             'h7',
@@ -97,6 +98,7 @@ class OdtRManuscript(OdtRFormatted):
 
         if tag in (
             'p',
+            'h4',
             'h5',
             'h6',
             'h7',

@@ -21,7 +21,6 @@ class NovxToOdt(sax.ContentHandler):
         self._comment = None
         self._quotations = None
         self._firstParagraphInChapter = None
-        self._spanLevel = None
 
     def feed(
         self,
@@ -45,7 +44,6 @@ class NovxToOdt(sax.ContentHandler):
         self._firstParagraphInChapter = firstInChapter
         self._indentParagraph = append and not isEpigraph
         self._isEpigraph = isEpigraph
-        self._quotations = False
         self._note = None
         self._spanLevel = 0
         self._comment = False
@@ -60,7 +58,7 @@ class NovxToOdt(sax.ContentHandler):
         """
         content = sax.saxutils.escape(content)
         self.odtLines.append(content)
-        self._indentParagraph = not self._quotations
+        self._indentParagraph = True
 
     def endElement(self, name):
         """Signals the end of an element in non-namespace mode.
@@ -68,11 +66,7 @@ class NovxToOdt(sax.ContentHandler):
         Overrides the xml.sax.ContentHandler method     
         """
         if name == 'p':
-            while self._spanLevel > 0:
-                self._spanLevel -= 1
-                self.odtLines.append('</text:span>')
             self.odtLines.append('</text:p>')
-            self._quotations = False
             return
 
         if name in ('em', 'strong', 'span'):
@@ -102,17 +96,16 @@ class NovxToOdt(sax.ContentHandler):
             self.odtLines.append('</text:note-body></text:note>')
 
         if name in (
+            'h4',
             'h5',
             'h6',
             'h7',
             'h8',
             'h9',
         ):
-            while self._spanLevel > 0:
-                self._spanLevel -= 1
-                self.odtLines.append('</text:span>')
             self.odtLines.append('</text:p>')
             self._indentParagraph = False
+            self._firstParagraphInChapter = False
             return
 
         if name == 'li':
@@ -136,12 +129,7 @@ class NovxToOdt(sax.ContentHandler):
             xmlAttributes[attrKey] = attrValue
 
         if name == 'p':
-            if xmlAttributes.get('style', None) == 'quotations':
-                self.odtLines.append(
-                    '<text:p text:style-name="Quotations">'
-                )
-                self._quotations = True
-            elif self._note:
+            if self._note:
                 self.odtLines.append(
                     f'<text:p text:style-name="{self._note.title()}">'
                 )
@@ -166,14 +154,6 @@ class NovxToOdt(sax.ContentHandler):
             if not self._isEpigraph:
                 self._firstParagraphInChapter = False
                 self._indentParagraph = False
-
-            language = xmlAttributes.get('xml:lang', None)
-            if language:
-                i = self._languages.index(language) + 1
-                self.odtLines.append(
-                    f'<text:span text:style-name="T{i}">'
-                )
-                self._spanLevel += 1
             return
 
         if name == 'em':
@@ -221,6 +201,10 @@ class NovxToOdt(sax.ContentHandler):
             self.odtLines.append('<text:note-citation>')
             return
 
+        if name == 'h4':
+            self.odtLines.append('<text:p text:style-name="Quotations">')
+            return
+
         if name in (
             'h5',
             'h6',
@@ -229,16 +213,7 @@ class NovxToOdt(sax.ContentHandler):
             'h9',
         ):
             level = name[-1]
-            self.odtLines.append(
-                f'<text:p text:style-name="Heading_20_{level}">'
-            )
-            language = xmlAttributes.get('xml:lang', None)
-            if language:
-                i = self._languages.index(language) + 1
-                self.odtLines.append(
-                    f'<text:span text:style-name="T{i}">'
-                )
-                self._spanLevel += 1
+            self.odtLines.append(f'<text:p text:style-name="Heading_20_{level}">')
             return
 
         if name == 'ul':

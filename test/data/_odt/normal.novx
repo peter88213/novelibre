@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE novx SYSTEM "novx_1_10.dtd">
+<!DOCTYPE novx SYSTEM "novx_1_11.dtd">
 <?xml-stylesheet href="novx.css" type="text/css"?>
-<novx version="1.10" xml:lang="en-AU">
+<novx version="1.11" xml:lang="en-AU">
   <PROJECT>
     <Title>Hal Spacejock book one - Sample yWriter Project</Title>
     <Desc>
@@ -97,8 +97,8 @@
         <Characters ids="cr2 cr7" />
         <Locations ids="lc3 lc4" />
         <Content>
-          <p style="quotations">On planet Forg, a small crowd had gathered outside the local sky hockey stadium. South Forgberg was not a prosperous area - the semi-detached houses were modest and the residents faced a constant struggle to live within their means.</p>
-          <p style="quotations">It was unusual to see building work or renovations, so the extensive refurbishment to the decrepit old stadium had been a talking point for months.</p>
+          <h4>On planet Forg, a small crowd had gathered outside the local sky hockey stadium. South Forgberg was not a prosperous area - the semi-detached houses were modest and the residents faced a constant struggle to live within their means.</h4>
+          <h4>It was unusual to see building work or renovations, so the extensive refurbishment to the decrepit old stadium had been a talking point for months.</h4>
           <p>. . .</p>
         </Content>
       </SECTION>

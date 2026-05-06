@@ -83,6 +83,7 @@ class OdtRProof(OdtRFormatted):
         """
         if tag in (
             'p',
+            'h4',
             'h5',
             'h6',
             'h7',
@@ -133,6 +134,7 @@ class OdtRProof(OdtRFormatted):
 
             if tag in (
                 'p',
+                'h4',
                 'h5',
                 'h6',
                 'h7',

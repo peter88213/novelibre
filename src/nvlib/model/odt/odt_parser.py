@@ -103,7 +103,7 @@ class OdtParser(sax.ContentHandler):
         Overrides the xml.sax.ContentHandler method     
         """
         if name in ('text:p', 'text:h'):
-            if self._paraSpan:
+            while self._paraSpan:
                 span = self._paraSpan.pop()
                 if span is not None:
                     self._client.handle_endtag(span)
@@ -179,31 +179,23 @@ class OdtParser(sax.ContentHandler):
 
         if name in ('text:p', 'text:h'):
             self._getData = True
-            self._currentLocale = [self._novelLocale]
-            param = []
-            if style in self._languageTags:
-                self._currentLocale.append(self._languageTags[style])
-                if self._currentLocale[-1] != self._novelLocale:
-                    param.append(('xml:lang', self._currentLocale[-1]))
             if style in self._blockquoteTags:
-                param.append(('style', 'quotations'))
-                tag = 'p'
+                tag = 'h4'
                 self._paraTags.append(tag)
-                self._client.handle_starttag(tag, param)
+                self._client.handle_starttag(tag, [()])
             elif style.startswith('Heading'):
                 tag = f'h{style[-1]}'
                 self._paraTags.append(tag)
-                self._client.handle_starttag(tag, param)
+                self._client.handle_starttag(tag, [()])
             elif style in self._headingTags:
                 tag = self._headingTags[style]
                 self._paraTags.append(tag)
-                self._client.handle_starttag(tag, param)
+                self._client.handle_starttag(tag, [()])
             else:
-                if not param:
-                    param = [()]
                 tag = 'p'
                 self._paraTags.append(tag)
-                self._client.handle_starttag(tag, param)
+                self._client.handle_starttag(tag, [()])
+
             if style in self._emTags:
                 # Priority for "Emphasis" over "Strong emphasis".
                 self._paraSpan.append('em')
@@ -211,8 +203,15 @@ class OdtParser(sax.ContentHandler):
             elif style in self._strongTags:
                 self._paraSpan.append('strong')
                 self._client.handle_starttag('strong', [()])
-            else:
-                self._paraSpan.append(None)
+            self._currentLocale = [self._novelLocale]
+            if style in self._languageTags:
+                self._currentLocale.append(self._languageTags[style])
+                if self._currentLocale[-1] != self._novelLocale:
+                    self._paraSpan.append('lang')
+                    self._client.handle_starttag(
+                        'lang',
+                        [('lang', self._currentLocale[-1])]
+                    )
             return
 
         if name == 'text:span':

@@ -95,6 +95,7 @@ class ContentViewParser(sax.ContentHandler):
         ):
             suffix = '\n'
         elif name in (
+            'h4',
             'h5',
             'h6',
             'h7',
