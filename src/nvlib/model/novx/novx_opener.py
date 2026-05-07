@@ -4,6 +4,9 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+import re
+from xml import sax
+
 from nvlib.model.data.id_generator import new_id
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import norm_path
@@ -90,6 +93,9 @@ class NovxOpener:
         if fileMajorVersion == 1 and fileMinorVersion < 8:
             cls._upgrade_to_1_8(xmlRoot)
             fileMinorVersion = 8
+        if fileMajorVersion == 1 and fileMinorVersion < 11:
+            cls._upgrade_to_1_11(xmlRoot)
+            fileMinorVersion = 11
         return fileMajorVersion, fileMinorVersion
 
     @classmethod
@@ -174,3 +180,50 @@ class NovxOpener:
                 # Tntegrate the new section.
                 xmlChapter.insert(0, xmlNewSection)
 
+    @classmethod
+    def _upgrade_to_1_11(cls, xmlRoot):
+        for xmlSection in xmlRoot.iter(tag='SECTION'):
+            xmlContent = xmlSection.find('Content')
+            if xmlContent is None:
+                continue
+
+            xmlStr = ET.tostring(
+                xmlContent,
+                encoding='utf-8',
+                short_empty_elements=False
+            ).decode('utf-8')
+            if not re.search(r'<[ph]\d* [sx]', xmlStr):
+                continue
+
+            # Process deprecated attributes
+            converter = Converter1_11()
+            converter.feed(xmlStr)
+            xmlStr = ''.join(converter.xmlLines)
+            xmlSection.remove(xmlContent)
+            xmlSection.append(ET.fromstring(xmlStr))
+
+
+class Converter1_11(sax.ContentHandler):
+
+    def feed(self, xmlString):
+        self._tags = []
+        self.xmlLines = []
+        sax.parseString(xmlString, self)
+
+    def characters(self, content):
+        self.xmlLines.append(content)
+
+    def endElement(self, name):
+        while self._tags:
+            self.xmlLines.append(f'</{self._tags.pop()}>')
+        self.xmlLines.append(f'</{name}>')
+
+    def startElement(self, name, attrs):
+        xmlAttributes = {}
+        for attribute in attrs.items():
+            attrKey, attrValue = attribute
+            xmlAttributes[attrKey] = attrValue
+
+        tag = name
+        # self._tags.append(name)
+        self.xmlLines.append(f'<{name}>')

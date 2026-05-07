@@ -120,7 +120,7 @@ class SectionNovx(BasicElementTagsNovx):
                 xmlContent,
                 encoding='utf-8',
                 short_empty_elements=False
-                ).decode('utf-8')
+            ).decode('utf-8')
             xmlStr = xmlStr.replace('<Content>', '').replace('</Content>', '')
 
             # Remove indentiation, if any.
