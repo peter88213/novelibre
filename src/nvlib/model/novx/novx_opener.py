@@ -198,7 +198,7 @@ class NovxOpener:
             # Process deprecated attributes
             converter = Converter1_11()
             converter.feed(xmlStr)
-            xmlStr = ''.join(converter.xmlLines)
+            xmlStr = converter.get_result()
             xmlSection.remove(xmlContent)
             xmlSection.append(ET.fromstring(xmlStr))
 
@@ -207,23 +207,47 @@ class Converter1_11(sax.ContentHandler):
 
     def feed(self, xmlString):
         self._tags = []
-        self.xmlLines = []
+        self._xmlLines = []
         sax.parseString(xmlString, self)
 
+    def get_result(self):
+        while self._tags:
+            self._xmlLines.append(f'</{self._tags.pop()}>')
+        return ''.join(self._xmlLines)
+
     def characters(self, content):
-        self.xmlLines.append(content)
+        self._xmlLines.append(content)
 
     def endElement(self, name):
-        while self._tags:
-            self.xmlLines.append(f'</{self._tags.pop()}>')
-        self.xmlLines.append(f'</{name}>')
+        tags = self._tags.pop()
+        for name in tags:
+            self._xmlLines.append(f'</{name}>')
 
     def startElement(self, name, attrs):
-        xmlAttributes = {}
+        if not attrs.items():
+            self._xmlLines.append(f'<{name}>')
+            self._tags.append([name])
+            return
+
+        if name == 'span':
+            attrKey, attrValue = attrs.items()[0]
+            self._xmlLines.append(f'<{name} {attrKey}="{attrValue}">')
+            self._tags.append([name])
+            return
+
+        # Remove attributes from the paragraph.
+        language = None
         for attribute in attrs.items():
             attrKey, attrValue = attribute
-            xmlAttributes[attrKey] = attrValue
+            if attrKey == 'style' and attrValue == 'quotations':
+                name = 'h4'
+            elif attrKey == 'xml:lang':
+                language = attrValue
+        tags = []
+        self._xmlLines.append(f'<{name}>')
+        if language is not None:
+            self._xmlLines.append(f'<span xml:lang="{language}">')
+            tags.append('span')
+        tags.append(name)
+        self._tags.append(tags)
 
-        tag = name
-        # self._tags.append(name)
-        self.xmlLines.append(f'<{name}>')
