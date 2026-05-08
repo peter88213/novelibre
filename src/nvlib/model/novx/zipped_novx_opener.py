@@ -8,6 +8,7 @@ import os
 import zipfile
 
 from nvlib.model.novx.novx_opener import NovxOpener
+from nvlib.model.novx.novx_upgrader import NovxUpgrader
 from nvlib.novx_globals import norm_path
 from nvlib.nv_locale import _
 import xml.etree.ElementTree as ET
@@ -63,7 +64,7 @@ class ZippedNovxOpener(NovxOpener):
             xmlRoot,
             filePath,
         )
-        fileMajorVersion, fileMinorVersion = cls._upgrade_file_version(
+        fileMajorVersion, fileMinorVersion = NovxUpgrader.upgrade_file_version(
             xmlRoot,
             fileMajorVersion,
             fileMinorVersion,

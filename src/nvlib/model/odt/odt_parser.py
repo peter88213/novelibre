@@ -113,7 +113,7 @@ class OdtParser(sax.ContentHandler):
 
         if name == 'text:span':
             try:
-                while self._span:
+                if self._span:
                     span = self._span.pop()
                     if span is not None:
                         self._client.handle_endtag(span)
