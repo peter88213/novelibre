@@ -182,6 +182,7 @@ class NovxOpener:
 
     @classmethod
     def _upgrade_to_1_11(cls, xmlRoot):
+        # Remove attributes from the paragraphs.
         for xmlSection in xmlRoot.iter(tag='SECTION'):
             xmlContent = xmlSection.find('Content')
             if xmlContent is None:
@@ -190,9 +191,9 @@ class NovxOpener:
             xmlStr = ET.tostring(
                 xmlContent,
                 encoding='utf-8',
-                short_empty_elements=False
             ).decode('utf-8')
             if not re.search(r'<[ph]\d* [sx]', xmlStr):
+                # the section doesn't contain any paragraphs with attributes
                 continue
 
             # Process deprecated attributes
@@ -204,6 +205,8 @@ class NovxOpener:
 
 
 class Converter1_11(sax.ContentHandler):
+    # Replaces "quotations" style paragraphs with h4.
+    # Adds a span for the paragraph's language, if needed.
 
     def feed(self, xmlString):
         self._tags = []
@@ -225,17 +228,19 @@ class Converter1_11(sax.ContentHandler):
 
     def startElement(self, name, attrs):
         if not attrs.items():
+            # No attributes -> preserve original tag.
             self._xmlLines.append(f'<{name}>')
             self._tags.append([name])
             return
 
         if name == 'span':
+            # Preserve span with original attribute.
             attrKey, attrValue = attrs.items()[0]
             self._xmlLines.append(f'<{name} {attrKey}="{attrValue}">')
             self._tags.append([name])
             return
 
-        # Remove attributes from the paragraph.
+        # Remove attributes and change tag.
         language = None
         for attribute in attrs.items():
             attrKey, attrValue = attribute
