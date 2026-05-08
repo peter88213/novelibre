@@ -140,20 +140,6 @@ class OdtRProof(OdtRFormatted):
                 'h7',
                 'h8',
                 'h9',
-            ):
-                attributes = ''
-                try:
-                    for att in attrs:
-                        attributes = f'{attributes} {att[0]}="{att[1]}"'
-                        if att[0] == 'lang':
-                            if not att[1] in self.novel.languages:
-                                self.novel.languages.append(att[1])
-                except:
-                    pass
-                self._lines.append(f'<{tag}{attributes}>')
-                return
-
-            if tag in(
                 'em',
                 'strong',
                 'comment',
