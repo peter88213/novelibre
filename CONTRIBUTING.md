@@ -12,8 +12,8 @@ can be added and updated without requiring new versions of the application.
 ### Updating existing language packs 
 
 Anyone who would like to contribute to the further development and updating 
-of the existing language packs should fork the relevant plugin and 
-make a pull request after creating or revising the *.po files. 
+of the existing language packs should fork the relevant plugin repository 
+and make a pull request after creating or revising the *.po and/or *.md files. 
 The maintainer of *novelibre* can then 
 create the new release after merging the changes. 
 
