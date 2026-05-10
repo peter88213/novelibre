@@ -205,9 +205,9 @@ The package is also available in zip format:
 
 ### Translations
 
-- [Italian language package (to be completed)](https://github.com/peter88213/nv_it)
-- [French language package (to be completed)](https://github.com/peter88213/nv_fr)
-- [Spanish language package (to be completed)](https://github.com/peter88213/nv_es)
+- [![Italian](docs/img/italy.png) Italian language package (to be completed)](https://github.com/peter88213/nv_it)
+- [![French](docs/img/france.png)French language package (to be completed)](https://github.com/peter88213/nv_fr)
+- [![Spanish](docs/img/spain.png)Spanish language package (to be completed)](https://github.com/peter88213/nv_es)
 
 
 ---
