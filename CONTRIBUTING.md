@@ -24,7 +24,7 @@ New language packs are created using the
 [nv_xx](https://github.com/peter88213/nv_xx) 
 template repository. 
 If you don't feel confident doing this yourself, you can post on the 
-[novelibre discussion page](https://github.com/peter88213/novelibre/discussions)
+[novelibre discussion page](https://github.com/peter88213/novelibre/discussions/71)
 to request a language pack, whose translation files and help pages you can then edit. 
 
 
