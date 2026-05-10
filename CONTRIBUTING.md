@@ -2,14 +2,30 @@
 
 ## How to provide translations
 
-First, you need to know your language code according to ISO 639-1.
+Translation files are distributed as language packs. 
+This makes it easier to provide translations for all plugins, 
+and also to offer online help that uses the translated terms.
+The main advantage of this method is that separate language packs 
+can be added and updated without requiring new versions of the application. 
 
-For English, this is, for example, `en`, for German, it is `de`.
 
-Now you can create a language pack based on the [nv_xx](https://github.com/peter88213/nv_xx) 
-template and use the tools provided for this purpose. 
+### Updating existing language packages 
 
-Anyway, the nuts and bolts of the translations system are described [here](TRANSLATE.md).
+Anyone who would like to contribute to the further development and updating 
+of the existing language packs should fork the relevant plugin and create 
+or revise the *.po files. The maintainer of *novelibre* can then 
+create the new release after merging the changes. 
+
+
+### Creating new language packages
+
+New language packs are created using the 
+[nv_xx](https://github.com/peter88213/nv_xx) 
+template repository. 
+If you don't feel confident doing this yourself, you can post on the 
+[novelibre discussion page]((https://github.com/peter88213/novelibre/discussions)
+to request a language pack, whose translation files and help pages you can then edit. 
+
 
 
 
