@@ -9,15 +9,16 @@ The main advantage of this method is that separate language packs
 can be added and updated without requiring new versions of the application. 
 
 
-### Updating existing language packages 
+### Updating existing language packs 
 
 Anyone who would like to contribute to the further development and updating 
-of the existing language packs should fork the relevant plugin and create 
-or revise the *.po files. The maintainer of *novelibre* can then 
+of the existing language packs should fork the relevant plugin and 
+make a pull request after creating or revising the *.po files. 
+The maintainer of *novelibre* can then 
 create the new release after merging the changes. 
 
 
-### Creating new language packages
+### Creating new language packs
 
 New language packs are created using the 
 [nv_xx](https://github.com/peter88213/nv_xx) 
