@@ -2,7 +2,7 @@
 
 ---
 
-# ![N](img/nLogo32.png) ![Deutsch](img/germany.png) novelibre
+# ![N](../img/nLogo32.png) ![Deutsch](../img/germany.png) novelibre
 
 *novelibre* hilft Romanautoren dabei, 
 umfangreiche Romane zu planen und während des Schreibens und Überarbeitens 
@@ -25,12 +25,12 @@ den Abschnitten zugeordnet sind.
 
 So sieht der Arbeitsbereich von *novelibre* aus:
 
-![novelibre screenshot](Screenshots/screen01.png)
+![novelibre screenshot](../Screenshots/screen01.png)
 
 Hier ist das Manuskript, an dem gearbeitet werden soll. 
 *novelibre* hat es erstellt und an OpenOffice *Writer* weitergereicht:
 
-![LibreOffice screenshot](Screenshots/screen02.jpg)
+![LibreOffice screenshot](../Screenshots/screen02.jpg)
 
 Wenn die Systemsprache Ihres Computers Deutsch ist, erscheinen die Benutzeroberfläche 
 und die Online-Hilfe von *novelibre* ebenfalls in deutscher Sprache. 
