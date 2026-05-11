@@ -16,11 +16,16 @@ class NovxToOdt(sax.ContentHandler):
         super().__init__()
         self.odtLines = None
         self._languages = None
+        # TODO: discard
         self._indentParagraph = None
         self._note = None
         self._comment = None
         self._firstParagraphInChapter = None
         self._spanLevel = None
+
+        self.userStyles = {}
+        self._userParaStyleCount = 0
+        self._userTextStyleCount = 0
 
     def feed(
         self,
