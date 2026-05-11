@@ -113,7 +113,7 @@ class OdtParser(sax.ContentHandler):
 
         if name == 'text:span':
             try:
-                while self._span:
+                if self._span:
                     span = self._span.pop()
                     if span is not None:
                         self._client.handle_endtag(span)
@@ -186,8 +186,7 @@ class OdtParser(sax.ContentHandler):
                 if self._currentLocale[-1] != self._novelLocale:
                     param.append(('xml:lang', self._currentLocale[-1]))
             if style in self._blockquoteTags:
-                param.append(('style', 'quotations'))
-                tag = 'p'
+                tag = 'blockquote'
                 self._paraTags.append(tag)
                 self._client.handle_starttag(tag, param)
             elif style.startswith('Heading'):

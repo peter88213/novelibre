@@ -52,6 +52,7 @@ class OdtRManuscript(OdtRFormatted):
             'note-citation',
             'ul',
             'li',
+            'blockquote',
             'h5',
             'h6',
             'h7',
@@ -101,6 +102,7 @@ class OdtRManuscript(OdtRFormatted):
 
         if tag in (
             'p',
+            'blockquote',
             'h5',
             'h6',
             'h7',
