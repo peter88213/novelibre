@@ -84,6 +84,5 @@ Then start *novelibre* and see whether your translation works.
 
 ## Contribute your translations
 
-If *novelibre* works fine with your translations, you can consider contributing it. 
+If *novelibre* works fine with your translations, you can consider [contributing](CONTRIBUTING.md) it for a language pack. 
 
-An easy way may be to put a posting in the [novelibre forum](https://github.com/peter88213/novelibre/discussions), appending your  `<your language code>.po` file. 
