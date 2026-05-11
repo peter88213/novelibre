@@ -67,7 +67,7 @@ class NovxToOdt(sax.ContentHandler):
         
         Overrides the xml.sax.ContentHandler method     
         """
-        if name == 'p':
+        if name in ('p', 'blockquote'):
             while self._spanLevel > 0:
                 self._spanLevel -= 1
                 self.odtLines.append('</text:span>')
@@ -136,12 +136,7 @@ class NovxToOdt(sax.ContentHandler):
             xmlAttributes[attrKey] = attrValue
 
         if name == 'p':
-            if xmlAttributes.get('style', None) == 'quotations':
-                self.odtLines.append(
-                    '<text:p text:style-name="Quotations">'
-                )
-                self._quotations = True
-            elif self._note:
+            if self._note:
                 self.odtLines.append(
                     f'<text:p text:style-name="{self._note.title()}">'
                 )
@@ -167,6 +162,20 @@ class NovxToOdt(sax.ContentHandler):
                 self._firstParagraphInChapter = False
                 self._indentParagraph = False
 
+            language = xmlAttributes.get('xml:lang', None)
+            if language:
+                i = self._languages.index(language) + 1
+                self.odtLines.append(
+                    f'<text:span text:style-name="T{i}">'
+                )
+                self._spanLevel += 1
+            return
+
+        if name == 'blockquote':
+            self.odtLines.append(
+                '<text:p text:style-name="Quotations">'
+            )
+            self._quotations = True
             language = xmlAttributes.get('xml:lang', None)
             if language:
                 i = self._languages.index(language) + 1
