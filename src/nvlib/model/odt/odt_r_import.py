@@ -76,6 +76,7 @@ class OdtRImport(OdtRFormatted):
         """
         if tag in (
             'p',
+            'blockquote',
             'h5',
             'h6',
             'h7',
@@ -137,6 +138,7 @@ class OdtRImport(OdtRFormatted):
         """
         if tag in (
             'p',
+            'blockquote',
             'h5',
             'h6',
             'h7',
