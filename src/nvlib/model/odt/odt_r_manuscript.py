@@ -65,6 +65,10 @@ class OdtRManuscript(OdtRFormatted):
             self._lines.append('</span>')
             return
 
+        if tag == 'bgcolor':
+            self._lines.append('</span>')
+            return
+
         if tag == 'div':
             text = ''.join(self._lines)
             text = self._remove_redundant_tags(text)
@@ -145,3 +149,7 @@ class OdtRManuscript(OdtRFormatted):
                 attributes = f'{attributes} {att[0]}="{att[1]}"'
             self._lines.append(f'<note {attributes}>')
 
+        if tag == 'bgcolor':
+            if attrs[0][0] == 'bgcolor':
+                self._lines.append(f'<span bgcolor="{attrs[0][1]}">')
+            return
