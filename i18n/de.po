@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.55.16\n"
+"Project-Id-Version: 5.56.0\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-04-20 09:16:34\n"
+"PO-Revision-Date: 2026-05-17 13:06:27\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1207,6 +1207,12 @@ msgstr "Dieses Kapitel entfernen, Abschnitte behalten"
 msgid "Remove this chapter?"
 msgstr "Dieses Kapitel entfernen?"
 
+msgid "Replace the plot point description with this"
+msgstr "Die Plotpunktbeschreibung durch das hier ersetzen"
+
+msgid "Replace this with the plot point description"
+msgstr "Das hier durch die Plotpunktbeschreibung ersetzen"
+
 msgid "Required"
 msgstr "Erforderlich"
 
@@ -1407,6 +1413,9 @@ msgstr "Der zulässige Höchstwert ist"
 
 msgid "The allowed minimum value is"
 msgstr "Der zulässige Mindestwert ist"
+
+msgid "The assigned section's plot line notes"
+msgstr "Die Plotliniennotizen des zugeordneten Abschnitts"
 
 msgid "The change takes effect after next startup"
 msgstr "Die Änderung wird beim nächsten Programmstart wirksam"

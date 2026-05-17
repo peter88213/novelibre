@@ -7,6 +7,8 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 
 from nvlib.gui.properties_window.element_view import ElementView
+from nvlib.gui.widgets.folding_frame import FoldingFrame
+from nvlib.gui.widgets.text_box import TextBox
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.nv_globals import prefs
@@ -36,7 +38,7 @@ class PlotPointView(ElementView):
             orient='horizontal'
         ).pack(fill='x')
 
-        # Associated section display.
+        # Assigned section display.
         self._sectionFrame = ttk.Frame(self._elementInfoWindow)
         self._sectionFrame.pack(anchor='w', fill='x')
         ttk.Label(
@@ -79,23 +81,41 @@ class PlotPointView(ElementView):
                 expand=True,
             )
 
-        buttonBar2 = ttk.Frame(self._sectionFrame)
+        # Frame for the plot line notes of the assigned section.
+        self._notesFrame = FoldingFrame(
+            self._sectionFrame,
+            _("The assigned section's plot line notes"),
+            self._toggle_notes_frame,
+        )
+
+        self._plotNotesWindow = TextBox(
+            self._notesFrame,
+            wrap='word',
+            height=self._indexCard.bodyBox['height'],
+            padx=5,
+            pady=5,
+            bg=prefs['color_inactive_bg'],
+            fg=prefs['color_text_fg'],
+        )
+        self._plotNotesWindow.pack(fill='x')
+
+        buttonBar2 = ttk.Frame(self._notesFrame)
         buttonBar2.pack(pady=2, fill='x', expand=True)
 
         self._submitNotesButton = ttk.Button(
             buttonBar2,
-            text=_('Submit plot line notes'),
+            text=_('Replace this with the plot point description'),
             command=self._submit_plotline_notes,
         )
-        self._submitNotesButton.pack(side='left', fill='x', expand=True)
+        self._submitNotesButton.pack(fill='x', expand=True)
         inputWidgets.append(self._submitNotesButton)
 
         self._adoptNotesButton = ttk.Button(
             buttonBar2,
-            text=_('Adopt plot line notes'),
+            text=_('Replace the plot point description with this'),
             command=self._adopt_plotline_notes,
         )
-        self._adoptNotesButton.pack(side='left', fill='x', expand=True)
+        self._adoptNotesButton.pack(fill='x', expand=True)
         inputWidgets.append(self._adoptNotesButton)
 
         for widget in inputWidgets:
@@ -109,6 +129,14 @@ class PlotPointView(ElementView):
         if scId is not None:
             del(self._mdl.novel.sections[scId].scPlotPoints[self.elementId])
             self.element.sectionAssoc = None
+
+    def configure_display(self):
+        """Expand or collapse the property frames."""
+        super().configure_display()
+        if prefs['show_plotline_notes']:
+            self._notesFrame.show()
+        else:
+            self._notesFrame.hide()
 
     def go_to_assigned_section(self):
         """Select the section assigned to the plot point."""
@@ -133,13 +161,23 @@ class PlotPointView(ElementView):
         self.element = self._mdl.novel.plotPoints[elementId]
         super().set_data(elementId)
 
-        # Associated section display.
+        # Assigned section display.
+        scId = self.element.sectionAssoc
+        self._plotNotesWindow.config(state='normal')
         try:
-            sectionTitle = (
-                self._mdl.novel.sections[self.element.sectionAssoc].title
-            )
+            associatedSection = self._mdl.novel.sections[scId]
         except:
             sectionTitle = ''
+            self._plotNotesWindow.clear()
+        else:
+            sectionTitle = associatedSection.title or ''
+            plId = self._ui.tv.tree.parent(self.elementId)
+            plotlineNotes = self._mdl.novel.sections[scId].plotlineNotes.get(plId, None)
+            if plotlineNotes is None:
+                self._plotNotesWindow.clear()
+            else:
+                self._plotNotesWindow.set_text(plotlineNotes)
+        self._plotNotesWindow.config(state='disabled')
         self._sectionAssocTitle['text'] = sectionTitle
 
     def _adopt_plotline_notes(self):
@@ -203,4 +241,14 @@ class PlotPointView(ElementView):
         plId = self._ui.tv.tree.parent(self.elementId)
         plotlineNotes[plId] = self.element.desc
         self._mdl.novel.sections[scId].plotlineNotes = plotlineNotes
+
+    def _toggle_notes_frame(self, event=None):
+        # Hide/show the 'Plot line notes' frame.
+        if prefs['show_plotline_notes']:
+            self._notesFrame.hide()
+            prefs['show_plotline_notes'] = False
+        else:
+            self._notesFrame.show()
+            prefs['show_plotline_notes'] = True
+        self._toggle_folding_frame()
 

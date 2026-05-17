@@ -899,20 +899,23 @@ class NvModel:
         if node == self.trashBin:
             return
 
+        if (
+            node.startswith(PLOT_POINT_PREFIX)
+            and self.tree.parent(targetNode) != self.tree.parent(node)
+        ):
+            return
+
         if node[:2] == targetNode[:2]:
             self.tree.move(
                 node,
                 self.tree.parent(targetNode),
                 self.tree.index(targetNode),
             )
-        elif (
-                (
-                    node.startswith(SECTION_PREFIX)
-                    and targetNode.startswith(CHAPTER_PREFIX)
-                )or (
-                        node.startswith(PLOT_POINT_PREFIX)
-                        and targetNode.startswith(PLOT_LINE_PREFIX)
-                    )
+            return
+
+        if (
+            node.startswith(SECTION_PREFIX)
+            and targetNode.startswith(CHAPTER_PREFIX)
         ):
             if not self.tree.get_children(targetNode):
                 self.tree.move(node, targetNode, 0)

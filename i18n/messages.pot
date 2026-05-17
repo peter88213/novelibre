@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.55.16\n"
-"POT-Creation-Date: 2026-04-20 09:16:34\n"
+"Project-Id-Version: 5.56.0\n"
+"POT-Creation-Date: 2026-05-17 13:59:08\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -1214,6 +1214,12 @@ msgstr ""
 msgid "Remove this chapter?"
 msgstr ""
 
+msgid "Replace the plot point description with this"
+msgstr ""
+
+msgid "Replace this with the plot point description"
+msgstr ""
+
 msgid "Required"
 msgstr ""
 
@@ -1413,6 +1419,9 @@ msgid "The allowed maximum value is"
 msgstr ""
 
 msgid "The allowed minimum value is"
+msgstr ""
+
+msgid "The assigned section's plot line notes"
 msgstr ""
 
 msgid "The change takes effect after next startup"

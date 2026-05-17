@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.56.0
+
+- Added the assigned section's plot line notes to the plot point properties view.
+- It is no longer possible to move plot points to other plot lines.
+
+
 ### Version 5.55.16
 
 - Fixed a regression from version 5.55.12 where the epigraph source isn't formatted correctly in the manuscript. 

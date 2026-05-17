@@ -81,6 +81,7 @@ OPTIONS = dict(
     show_narrative_time=False,
     show_pl_links=False,
     show_plot=False,
+    show_plotline_notes=False,
     show_pn_links=False,
     show_pp_links=False,
     show_pr_links=False,
