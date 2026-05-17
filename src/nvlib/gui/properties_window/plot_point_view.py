@@ -51,8 +51,11 @@ class PlotPointView(ElementView):
         )
         self._sectionAssocTitle.pack(anchor='w', pady=2, fill='x')
 
+        buttonBar1 = ttk.Frame(self._sectionFrame)
+        buttonBar1.pack(pady=2, fill='x', expand=True)
+
         self._assignSectionButton = ttk.Button(
-            self._sectionFrame,
+            buttonBar1,
             text=_('Assign section'),
             command=self.pick_section,
         )
@@ -60,7 +63,7 @@ class PlotPointView(ElementView):
         inputWidgets.append(self._assignSectionButton)
 
         self._clearAssignmentButton = ttk.Button(
-            self._sectionFrame,
+            buttonBar1,
             text=_('Clear assignment'),
             command=self.clear_assignment,
         )
@@ -68,12 +71,32 @@ class PlotPointView(ElementView):
         inputWidgets.append(self._clearAssignmentButton)
 
         ttk.Button(
-            self._sectionFrame,
+            buttonBar1,
             text=_('Go to section'),
             command=self.go_to_assigned_section).pack(
                 side='left',
                 fill='x',
-                expand=True)
+                expand=True,
+            )
+
+        buttonBar2 = ttk.Frame(self._sectionFrame)
+        buttonBar2.pack(pady=2, fill='x', expand=True)
+
+        self._submitNotesButton = ttk.Button(
+            buttonBar2,
+            text=_('Submit plot line notes'),
+            command=self._submit_plotline_notes,
+        )
+        self._submitNotesButton.pack(side='left', fill='x', expand=True)
+        inputWidgets.append(self._submitNotesButton)
+
+        self._adoptNotesButton = ttk.Button(
+            buttonBar2,
+            text=_('Adopt plot line notes'),
+            command=self._adopt_plotline_notes,
+        )
+        self._adoptNotesButton.pack(side='left', fill='x', expand=True)
+        inputWidgets.append(self._adoptNotesButton)
 
         for widget in inputWidgets:
             self.inputWidgets.append(widget)
@@ -119,6 +142,16 @@ class PlotPointView(ElementView):
             sectionTitle = ''
         self._sectionAssocTitle['text'] = sectionTitle
 
+    def _adopt_plotline_notes(self):
+        scId = self.element.sectionAssoc
+        if scId is None:
+            return
+
+        plId = self._ui.tv.tree.parent(self.elementId)
+        plotlineNotes = self._mdl.novel.sections[scId].plotlineNotes.get(plId, None)
+        if plotlineNotes is not None:
+            self.element.desc = plotlineNotes
+
     def _assign_section(self, event=None):
         # Associate the selected section with the Plot point.
         # End the picking mode after the section is assigned.
@@ -139,6 +172,13 @@ class PlotPointView(ElementView):
                 if not plId in self._mdl.novel.sections[nodeId].scPlotLines:
                     self._mdl.novel.sections[nodeId].scPlotLines.append(plId)
                 self.element.sectionAssoc = nodeId
+
+                # Reuse existing plot line notes or plot point description.
+                if not self._mdl.novel.sections[nodeId].plotlineNotes.get(plId, None):
+                    self._submit_plotline_notes(plId)
+                elif not self.element.desc:
+                    self._adopt_plotline_notes(plId)
+
         self._ui.tv.restore_branch_status()
 
     def _create_frames(self):
@@ -150,4 +190,17 @@ class PlotPointView(ElementView):
         self._add_separator()
         self._create_notes_window()
         self._create_button_bar()
+
+    def _submit_plotline_notes(self):
+        if not self.element.desc:
+            return
+
+        scId = self.element.sectionAssoc
+        if scId is None:
+            return
+
+        plotlineNotes = self._mdl.novel.sections[scId].plotlineNotes
+        plId = self._ui.tv.tree.parent(self.elementId)
+        plotlineNotes[plId] = self.element.desc
+        self._mdl.novel.sections[scId].plotlineNotes = plotlineNotes
 
