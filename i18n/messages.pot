@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.56.0\n"
-"POT-Creation-Date: 2026-05-17 13:59:08\n"
+"Project-Id-Version: 5.56.1\n"
+"POT-Creation-Date: 2026-05-18 15:11:02\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -656,6 +656,9 @@ msgstr ""
 msgid "Goals"
 msgstr ""
 
+msgid "HTML Plot cards"
+msgstr ""
+
 msgid "HTML Plot table"
 msgstr ""
 
@@ -1115,6 +1118,9 @@ msgstr ""
 msgid "Plot"
 msgstr ""
 
+msgid "Plot cards"
+msgstr ""
+
 msgid "Plot grid"
 msgstr ""
 
@@ -1344,6 +1350,9 @@ msgid "Show Items"
 msgstr ""
 
 msgid "Show Locations"
+msgstr ""
+
+msgid "Show Plot cards in browser"
 msgstr ""
 
 msgid "Show Plot lines"

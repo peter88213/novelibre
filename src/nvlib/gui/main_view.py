@@ -1245,6 +1245,12 @@ class MainView(Observer, MsgBoxes, SubController):
             command=self._ctrl.show_plot_list,
         )
 
+        label = _('Show Plot cards in browser')
+        self.plotMenu.add_command(
+            label=label,
+            command=self._ctrl.show_plot_cards,
+        )
+
         self._ctrl.register_client(self.plotMenu)
 
         # "Project notes"

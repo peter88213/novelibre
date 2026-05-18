@@ -13,7 +13,7 @@ from nvlib.gui.pop_up.export_options_dialog import ExportOptionsDialog
 from nvlib.gui.pop_up.plugin_manager_dialog import PluginManagerDialog
 from nvlib.gui.pop_up.reimport_dialog import ReimportDialog
 from nvlib.gui.pop_up.view_options_dialog import ViewOptionsDialog
-from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
+from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX, PLOT_CARD_SUFFIX
 from nvlib.novx_globals import CHAPTERLIST_SUFFIX
 from nvlib.novx_globals import CHAPTERS_SUFFIX
 from nvlib.novx_globals import CHAPTER_PREFIX
@@ -732,6 +732,9 @@ class Commands:
 
     def show_plot_list(self, event=None):
         self.fileManager.show_report(PLOTLIST_SUFFIX)
+
+    def show_plot_cards(self, event=None):
+        self.fileManager.show_report(PLOT_CARD_SUFFIX)
 
     def show_projectnotes_list(self, event=None):
         self.fileManager.show_report(PROJECTNOTES_REPORT_SUFFIX)

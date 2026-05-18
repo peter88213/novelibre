@@ -9,12 +9,13 @@ import os
 from nvlib.model.converter.export_target_factory import ExportTargetFactory
 from nvlib.model.file.doc_open import open_document
 from nvlib.model.html.html_characters import HtmlCharacters
+from nvlib.model.html.html_element_notes import HtmlElementNotes
 from nvlib.model.html.html_items import HtmlItems
 from nvlib.model.html.html_locations import HtmlLocations
+from nvlib.model.html.html_plot_cards import HtmlPlotCards
 from nvlib.model.html.html_plot_list import HtmlPlotList
-from nvlib.model.html.html_timetable import HtmlTimetable
 from nvlib.model.html.html_project_notes import HtmlProjectNotes
-from nvlib.model.html.html_element_notes import HtmlElementNotes
+from nvlib.model.html.html_timetable import HtmlTimetable
 
 
 class NvHtmlReporter:
@@ -30,6 +31,7 @@ class NvHtmlReporter:
         HtmlLocations,
         HtmlItems,
         HtmlPlotList,
+        HtmlPlotCards,
         HtmlProjectNotes,
         HtmlTimetable,
         ]

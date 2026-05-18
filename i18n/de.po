@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.56.0\n"
+"Project-Id-Version: 5.56.1\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-05-17 13:06:27\n"
+"PO-Revision-Date: 2026-05-18 15:10:31\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -649,6 +649,9 @@ msgstr "Ziel"
 msgid "Goals"
 msgstr "Ziele"
 
+msgid "HTML Plot cards"
+msgstr "HTML-Plotkarten"
+
 msgid "HTML Plot table"
 msgstr "HTML-Plottabelle"
 
@@ -1108,6 +1111,9 @@ msgstr "Bitte warten ..."
 msgid "Plot"
 msgstr "Plot"
 
+msgid "Plot cards"
+msgstr "Plotkarten"
+
 msgid "Plot grid"
 msgstr "Handlungsraster (Plot grid)"
 
@@ -1338,6 +1344,9 @@ msgstr "Gegenstände anzeigen"
 
 msgid "Show Locations"
 msgstr "Schauplätze anzeigen"
+
+msgid "Show Plot cards in browser"
+msgstr "Plotkarten im Browser anzeigen"
 
 msgid "Show Plot lines"
 msgstr "Plotlinien anzeigen"
