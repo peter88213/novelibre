@@ -213,9 +213,9 @@ class PlotPointView(ElementView):
 
                 # Reuse existing plot line notes or plot point description.
                 if not self._mdl.novel.sections[nodeId].plotlineNotes.get(plId, None):
-                    self._submit_plotline_notes(plId)
+                    self._submit_plotline_notes()
                 elif not self.element.desc:
-                    self._adopt_plotline_notes(plId)
+                    self._adopt_plotline_notes()
 
         self._ui.tv.restore_branch_status()
 
