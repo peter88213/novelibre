@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.56.1\n"
+"Project-Id-Version: 5.56.2\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-05-18 18:53:21\n"
+"PO-Revision-Date: 2026-05-18 20:33:28\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -232,9 +232,6 @@ msgstr "Kapitel"
 msgid "Chapter beginning"
 msgstr "Kapitelanfang"
 
-msgid "Chapter structure board"
-msgstr "Kapitelstrukturtafel"
-
 msgid "Chapter descriptions"
 msgstr "Kapitelbeschreibungen"
 
@@ -246,6 +243,9 @@ msgstr "Präfix Kapitelnummer"
 
 msgid "Chapter number suffix"
 msgstr "Suffix Kapitelnummer"
+
+msgid "Chapter structure board"
+msgstr "Kapitelstrukturtafel"
 
 msgid "Chapter table"
 msgstr "Kapiteltabelle"

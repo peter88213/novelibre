@@ -12,6 +12,7 @@ class HtmlBoard(HtmlReport):
     """html plot list representation."""
 
     _fileHeader = (
+        '<!DOCTYPE html>\n'
         '<html>\n'
         '<head>\n'
         '<meta http-equiv="Content-Type" content="text/html; '
@@ -29,6 +30,10 @@ class HtmlBoard(HtmlReport):
         'min-width:15em; max-widh:15em; '
         '}\n'
         '</style>\n'
+    )
+    _fileFooter = (
+        '</body>\n'
+        '</html>\n'
     )
 
     def _get_card_header_styles(

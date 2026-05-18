@@ -17,6 +17,7 @@ class HtmlReport(FileExport):
     SUFFIX = '_report'
 
     _fileHeader = (
+        '<!DOCTYPE html>\n'
         '<html>\n'
         '<head>\n'
         '<meta http-equiv="Content-Type" content="text/html; '

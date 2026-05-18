@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.56.1
+### Version 5.56.2
 
 - New HTML exports:
   - Plot line board.
