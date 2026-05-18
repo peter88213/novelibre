@@ -49,6 +49,7 @@ from nvlib.novx_globals import SECTIONS_SUFFIX
 from nvlib.novx_globals import SECTION_CARD_SUFFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import STAGES_SUFFIX
+from nvlib.novx_globals import STAGE_CARD_SUFFIX
 from nvlib.novx_globals import TIMETABLE_SUFFIX
 from nvlib.novx_globals import XREF_SUFFIX
 from nvlib.nv_globals import HOME_URL
@@ -743,6 +744,9 @@ class Commands:
 
     def show_section_cards(self, event=None):
         self.fileManager.show_report(SECTION_CARD_SUFFIX)
+
+    def show_stage_cards(self, event=None):
+        self.fileManager.show_report(STAGE_CARD_SUFFIX)
 
     def show_timetable(self, event=None):
         self.fileManager.show_report(TIMETABLE_SUFFIX)

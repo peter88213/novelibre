@@ -56,6 +56,7 @@ SECTIONLIST_SUFFIX = '_sectionlist'
 SECTIONS_SUFFIX = '_sections_tmp'
 SECTION_CARD_SUFFIX = '_sectioncards'
 STAGES_SUFFIX = '_structure_tmp'
+STAGE_CARD_SUFFIX = '_stagecards'
 TIMETABLE_SUFFIX = '_tt_tmp'
 XREF_SUFFIX = '_xref'
 

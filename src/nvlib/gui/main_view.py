@@ -955,6 +955,14 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         self.chapterMenu.disableOnLock.append(label)
 
+        self.chapterMenu.add_separator()
+
+        label = _('Show chapter board in browser')
+        self.chapterMenu.add_command(
+            label=label,
+            command=self._ctrl.show_section_cards,
+        )
+
         self._ctrl.register_client(self.chapterMenu)
 
         # "Section".
@@ -1008,12 +1016,6 @@ class MainView(Observer, MsgBoxes, SubController):
         self.sectionMenu.add_command(
             label=label,
             command=self._ctrl.show_timetable,
-        )
-
-        label = _('Show section cards in browser')
-        self.sectionMenu.add_command(
-            label=label,
-            command=self._ctrl.show_section_cards,
         )
 
         self._ctrl.register_client(self.sectionMenu)
@@ -1255,6 +1257,12 @@ class MainView(Observer, MsgBoxes, SubController):
         self.plotMenu.add_command(
             label=label,
             command=self._ctrl.show_plot_cards,
+        )
+
+        label = _('Show story structure board in browser')
+        self.plotMenu.add_command(
+            label=label,
+            command=self._ctrl.show_stage_cards,
         )
 
         self._ctrl.register_client(self.plotMenu)

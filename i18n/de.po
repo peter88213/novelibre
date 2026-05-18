@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 5.56.1\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-05-18 16:55:21\n"
+"PO-Revision-Date: 2026-05-18 18:53:21\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -231,6 +231,9 @@ msgstr "Kapitel"
 
 msgid "Chapter beginning"
 msgstr "Kapitelanfang"
+
+msgid "Chapter board"
+msgstr "Kapiteltafel"
 
 msgid "Chapter descriptions"
 msgstr "Kapitelbeschreibungen"
@@ -649,14 +652,17 @@ msgstr "Ziel"
 msgid "Goals"
 msgstr "Ziele"
 
-msgid "HTML Plot cards"
-msgstr "HTML-Plotkarten"
+msgid "HTML Chapter board"
+msgstr "HTML Kapiteltafel"
+
+msgid "HTML Plot line board"
+msgstr "HTML-Plotlinientafel"
 
 msgid "HTML Plot table"
 msgstr "HTML-Plottabelle"
 
-msgid "HTML Section cards"
-msgstr "HTML Abschnittskarten"
+msgid "HTML Story structure board"
+msgstr "HTML-Erzählstruktur-Tafel"
 
 msgid "HTML Time table"
 msgstr "HTML Zeittafel"
@@ -934,6 +940,9 @@ msgstr "Keine Projektnotizen gefunden"
 msgid "No relationship found"
 msgstr "Keine Beziehung gefunden"
 
+msgid "No stages found"
+msgstr "Kein Stadium gefunden"
+
 msgid "No tags defined"
 msgstr "Keine Schlagwörter definiert"
 
@@ -1117,14 +1126,14 @@ msgstr "Bitte warten ..."
 msgid "Plot"
 msgstr "Plot"
 
-msgid "Plot cards"
-msgstr "Plotkarten"
-
 msgid "Plot grid"
 msgstr "Handlungsraster (Plot grid)"
 
 msgid "Plot line"
 msgstr "Plotlinie"
+
+msgid "Plot line board"
+msgstr "Plotlinientafel"
 
 msgid "Plot lines"
 msgstr "Plotlinien"
@@ -1264,9 +1273,6 @@ msgstr "Szene"
 msgid "Section"
 msgstr "Abschnitt"
 
-msgid "Section cards"
-msgstr "Abschnittskarten"
-
 msgid "Section descriptions"
 msgstr "Abschnittsbeschreibungen"
 
@@ -1372,14 +1378,17 @@ msgstr "Zeittafel anzeigen"
 msgid "Show ages"
 msgstr "Alter anzeigen"
 
+msgid "Show chapter board in browser"
+msgstr "Kapiteltafel im Browser anzeigen"
+
 msgid "Show markup"
 msgstr "Markup anzeigen"
 
 msgid "Show notes"
 msgstr "Notizen anzeigen"
 
-msgid "Show section cards in browser"
-msgstr "Abschnittskarten im Browser anzeigen"
+msgid "Show story structure board in browser"
+msgstr "Erzählstruktur-Tafel im Browser anzeigen"
 
 msgid "Show table in Browser"
 msgstr "Tabelle im Browser anzeigen"
@@ -1407,6 +1416,9 @@ msgstr "Status"
 
 msgid "Story structure"
 msgstr "Erzählstruktur"
+
+msgid "Story structure board"
+msgstr "Erzählstruktur-Tafel"
 
 msgid "Story time"
 msgstr "Erzählte Zeit"

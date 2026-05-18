@@ -12,7 +12,7 @@ from nvlib.nv_locale import _
 
 class HtmlSectionCards(HtmlCards):
     """html section board representation."""
-    DESCRIPTION = _('HTML Section cards')
+    DESCRIPTION = _('HTML Chapter board')
     SUFFIX = SECTION_CARD_SUFFIX
 
     def write(self):
@@ -63,10 +63,10 @@ class HtmlSectionCards(HtmlCards):
             )
 
         htmlText.append(
-            f'<title>{_("Section cards")} ({self.novel.title})</title>\n'
+            f'<title>{_("Chapter board")} ({self.novel.title})</title>\n'
             '</head>\n'
             '<body>\n'
-            f'<p class=title>{self.novel.title} - {_("Section cards")}</p>\n'
+            f'<p class=title>{self.novel.title} - {_("Chapter board")}</p>\n'
         )
 
         # Chapter rows.

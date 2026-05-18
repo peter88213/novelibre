@@ -1,4 +1,4 @@
-"""Provide a class for html plot cards representation.
+"""Provide a class for html plot line board representation.
 
 Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -11,8 +11,8 @@ from nvlib.nv_locale import _
 
 
 class HtmlPlotCards(HtmlCards):
-    """html plot board representation."""
-    DESCRIPTION = _('HTML Plot cards')
+    """html plot line board representation."""
+    DESCRIPTION = _('HTML Plot line board')
     SUFFIX = PLOT_CARD_SUFFIX
 
     def write(self):
@@ -62,10 +62,10 @@ class HtmlPlotCards(HtmlCards):
             )
 
         htmlText.append(
-            f'<title>{_("Plot cards")} ({self.novel.title})</title>\n'
+            f'<title>{_("Plot line board")} ({self.novel.title})</title>\n'
             '</head>\n'
             '<body>\n'
-            f'<p class=title>{self.novel.title} - {_("Plot cards")}</p>\n'
+            f'<p class=title>{self.novel.title} - {_("Plot line board")}</p>\n'
         )
 
         # Plot line rows.

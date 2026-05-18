@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.56.1\n"
-"POT-Creation-Date: 2026-05-18 16:57:14\n"
+"POT-Creation-Date: 2026-05-18 18:53:21\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -237,6 +237,9 @@ msgid "Chapter"
 msgstr ""
 
 msgid "Chapter beginning"
+msgstr ""
+
+msgid "Chapter board"
 msgstr ""
 
 msgid "Chapter descriptions"
@@ -656,13 +659,16 @@ msgstr ""
 msgid "Goals"
 msgstr ""
 
-msgid "HTML Plot cards"
+msgid "HTML Chapter board"
+msgstr ""
+
+msgid "HTML Plot line board"
 msgstr ""
 
 msgid "HTML Plot table"
 msgstr ""
 
-msgid "HTML Section cards"
+msgid "HTML Story structure board"
 msgstr ""
 
 msgid "HTML Time table"
@@ -941,6 +947,9 @@ msgstr ""
 msgid "No relationship found"
 msgstr ""
 
+msgid "No stages found"
+msgstr ""
+
 msgid "No tags defined"
 msgstr ""
 
@@ -1124,13 +1133,13 @@ msgstr ""
 msgid "Plot"
 msgstr ""
 
-msgid "Plot cards"
-msgstr ""
-
 msgid "Plot grid"
 msgstr ""
 
 msgid "Plot line"
+msgstr ""
+
+msgid "Plot line board"
 msgstr ""
 
 msgid "Plot lines"
@@ -1271,9 +1280,6 @@ msgstr ""
 msgid "Section"
 msgstr ""
 
-msgid "Section cards"
-msgstr ""
-
 msgid "Section descriptions"
 msgstr ""
 
@@ -1379,13 +1385,16 @@ msgstr ""
 msgid "Show ages"
 msgstr ""
 
+msgid "Show chapter board in browser"
+msgstr ""
+
 msgid "Show markup"
 msgstr ""
 
 msgid "Show notes"
 msgstr ""
 
-msgid "Show section cards in browser"
+msgid "Show story structure board in browser"
 msgstr ""
 
 msgid "Show table in Browser"
@@ -1413,6 +1422,9 @@ msgid "Status"
 msgstr ""
 
 msgid "Story structure"
+msgstr ""
+
+msgid "Story structure board"
 msgstr ""
 
 msgid "Story time"
