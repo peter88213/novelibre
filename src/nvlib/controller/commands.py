@@ -13,7 +13,7 @@ from nvlib.gui.pop_up.export_options_dialog import ExportOptionsDialog
 from nvlib.gui.pop_up.plugin_manager_dialog import PluginManagerDialog
 from nvlib.gui.pop_up.reimport_dialog import ReimportDialog
 from nvlib.gui.pop_up.view_options_dialog import ViewOptionsDialog
-from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX, PLOT_CARD_SUFFIX
+from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from nvlib.novx_globals import CHAPTERLIST_SUFFIX
 from nvlib.novx_globals import CHAPTERS_SUFFIX
 from nvlib.novx_globals import CHAPTER_PREFIX
@@ -39,12 +39,14 @@ from nvlib.novx_globals import PARTLIST_SUFFIX
 from nvlib.novx_globals import PARTS_SUFFIX
 from nvlib.novx_globals import PLOTLINES_SUFFIX
 from nvlib.novx_globals import PLOTLIST_SUFFIX
+from nvlib.novx_globals import PLOT_CARD_SUFFIX
 from nvlib.novx_globals import PLOT_LINE_PREFIX
 from nvlib.novx_globals import PROJECTNOTES_REPORT_SUFFIX
 from nvlib.novx_globals import PROJECTNOTES_SUFFIX
 from nvlib.novx_globals import PROOF_SUFFIX
 from nvlib.novx_globals import SECTIONLIST_SUFFIX
 from nvlib.novx_globals import SECTIONS_SUFFIX
+from nvlib.novx_globals import SECTION_CARD_SUFFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import STAGES_SUFFIX
 from nvlib.novx_globals import TIMETABLE_SUFFIX
@@ -738,6 +740,9 @@ class Commands:
 
     def show_projectnotes_list(self, event=None):
         self.fileManager.show_report(PROJECTNOTES_REPORT_SUFFIX)
+
+    def show_section_cards(self, event=None):
+        self.fileManager.show_report(SECTION_CARD_SUFFIX)
 
     def show_timetable(self, event=None):
         self.fileManager.show_report(TIMETABLE_SUFFIX)

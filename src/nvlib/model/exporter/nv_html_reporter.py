@@ -15,6 +15,7 @@ from nvlib.model.html.html_locations import HtmlLocations
 from nvlib.model.html.html_plot_cards import HtmlPlotCards
 from nvlib.model.html.html_plot_list import HtmlPlotList
 from nvlib.model.html.html_project_notes import HtmlProjectNotes
+from nvlib.model.html.html_section_cards import HtmlSectionCards
 from nvlib.model.html.html_timetable import HtmlTimetable
 
 
@@ -33,6 +34,7 @@ class NvHtmlReporter:
         HtmlPlotList,
         HtmlPlotCards,
         HtmlProjectNotes,
+        HtmlSectionCards,
         HtmlTimetable,
         ]
 

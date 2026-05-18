@@ -1010,6 +1010,12 @@ class MainView(Observer, MsgBoxes, SubController):
             command=self._ctrl.show_timetable,
         )
 
+        label = _('Show section cards in browser')
+        self.sectionMenu.add_command(
+            label=label,
+            command=self._ctrl.show_section_cards,
+        )
+
         self._ctrl.register_client(self.sectionMenu)
 
         # "Characters"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 5.56.1\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-05-18 15:10:31\n"
+"PO-Revision-Date: 2026-05-18 16:55:21\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -655,6 +655,9 @@ msgstr "HTML-Plotkarten"
 msgid "HTML Plot table"
 msgstr "HTML-Plottabelle"
 
+msgid "HTML Section cards"
+msgstr "HTML Abschnittskarten"
+
 msgid "HTML Time table"
 msgstr "HTML Zeittafel"
 
@@ -882,6 +885,9 @@ msgstr "Nächster Abschnitt beginnt in"
 
 msgid "No backup available"
 msgstr "Keine Sicherungskopie verfügbar"
+
+msgid "No chapters found"
+msgstr "Keine Kapitel gefunden"
 
 msgid "No character data found"
 msgstr "Keine Figurendaten gefunden"
@@ -1258,6 +1264,9 @@ msgstr "Szene"
 msgid "Section"
 msgstr "Abschnitt"
 
+msgid "Section cards"
+msgstr "Abschnittskarten"
+
 msgid "Section descriptions"
 msgstr "Abschnittsbeschreibungen"
 
@@ -1368,6 +1377,9 @@ msgstr "Markup anzeigen"
 
 msgid "Show notes"
 msgstr "Notizen anzeigen"
+
+msgid "Show section cards in browser"
+msgstr "Abschnittskarten im Browser anzeigen"
 
 msgid "Show table in Browser"
 msgstr "Tabelle im Browser anzeigen"

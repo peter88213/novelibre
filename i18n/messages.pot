@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.56.1\n"
-"POT-Creation-Date: 2026-05-18 15:11:02\n"
+"POT-Creation-Date: 2026-05-18 16:57:14\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -662,6 +662,9 @@ msgstr ""
 msgid "HTML Plot table"
 msgstr ""
 
+msgid "HTML Section cards"
+msgstr ""
+
 msgid "HTML Time table"
 msgstr ""
 
@@ -888,6 +891,9 @@ msgid "Next section begins in"
 msgstr ""
 
 msgid "No backup available"
+msgstr ""
+
+msgid "No chapters found"
 msgstr ""
 
 msgid "No character data found"
@@ -1265,6 +1271,9 @@ msgstr ""
 msgid "Section"
 msgstr ""
 
+msgid "Section cards"
+msgstr ""
+
 msgid "Section descriptions"
 msgstr ""
 
@@ -1374,6 +1383,9 @@ msgid "Show markup"
 msgstr ""
 
 msgid "Show notes"
+msgstr ""
+
+msgid "Show section cards in browser"
 msgstr ""
 
 msgid "Show table in Browser"
