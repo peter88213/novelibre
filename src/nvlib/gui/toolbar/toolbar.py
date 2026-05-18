@@ -66,6 +66,15 @@ class Toolbar(SubController):
         )
         self.viewBookButton.pack(side='left')
 
+        # "View Plot lines" button.
+        self.viewPlotLinesButton = self.new_button(
+            text=_('Plot lines'),
+            image=self._ui.icons.viewPlotLinesIcon,
+            command=self._ui.tv.show_plot_lines,
+            disableOnLock=False,
+        )
+        self.viewPlotLinesButton.pack(side='left')
+
         # "View Characters" button.
         self.viewCharactersButton = self.new_button(
             text=_('Characters'),
@@ -92,15 +101,6 @@ class Toolbar(SubController):
             disableOnLock=False,
         )
         self.viewItemsButton.pack(side='left')
-
-        # "View Plot lines" button.
-        self.viewPlotLinesButton = self.new_button(
-            text=_('Plot lines'),
-            image=self._ui.icons.viewPlotLinesIcon,
-            command=self._ui.tv.show_plot_lines,
-            disableOnLock=False,
-        )
-        self.viewPlotLinesButton.pack(side='left')
 
         # "View Projectnotes" button.
         self.viewProjectnotesButton = self.new_button(

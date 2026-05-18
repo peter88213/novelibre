@@ -1508,6 +1508,20 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         self.mainMenu.disableOnClose.append(label)
 
+        label = _('Story structure')
+        self.mainMenu.add_cascade(
+            label=label,
+            menu=self.storyStructureMenu
+        )
+        self.mainMenu.disableOnClose.append(label)
+
+        label = _('Plot lines')
+        self.mainMenu.add_cascade(
+            label=label,
+            menu=self.plotLinesMenu
+        )
+        self.mainMenu.disableOnClose.append(label)
+
         label = _('Characters')
         self.mainMenu.add_cascade(
             label=label,
@@ -1526,20 +1540,6 @@ class MainView(Observer, MsgBoxes, SubController):
         self.mainMenu.add_cascade(
             label=label,
             menu=self.itemMenu,
-        )
-        self.mainMenu.disableOnClose.append(label)
-
-        label = _('Story structure')
-        self.mainMenu.add_cascade(
-            label=label,
-            menu=self.storyStructureMenu
-        )
-        self.mainMenu.disableOnClose.append(label)
-
-        label = _('Plot lines')
-        self.mainMenu.add_cascade(
-            label=label,
-            menu=self.plotLinesMenu
         )
         self.mainMenu.disableOnClose.append(label)
 

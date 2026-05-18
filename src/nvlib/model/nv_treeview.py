@@ -23,10 +23,10 @@ class NvTreeview(ttk.Treeview):
 
         #--- Build the toplevel  structure.
         self.append('', CH_ROOT)
+        self.append('', PL_ROOT)
         self.append('', CR_ROOT)
         self.append('', LC_ROOT)
         self.append('', IT_ROOT)
-        self.append('', PL_ROOT)
         self.append('', PN_ROOT)
 
     def append(self, parent, iid, text=None):

@@ -25,10 +25,10 @@ class NvTree:
     def __init__(self):
         self.roots = {
             CH_ROOT:[],
+            PL_ROOT:[],
             CR_ROOT:[],
             LC_ROOT:[],
             IT_ROOT:[],
-            PL_ROOT:[],
             PN_ROOT:[],
         }
         # values : listed children's IDs
