@@ -12,12 +12,15 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### Version 5.56.2
 
+- Separated the story structure from the plot lines in the main menu.
+  Instead of the **Plot** menu there are a **Story structure** and a **Plot line menu**.  
 - New HTML exports:
   - Plot line board.
   - Story structure board.
   - Chapter structure board.
 - Added the assigned section's plot line notes to the plot point properties view.
 - It is no longer possible to move plot points to other plot lines.
+- Added the Doctype declaration to each HTML report.
 
 
 ### Version 5.55.16

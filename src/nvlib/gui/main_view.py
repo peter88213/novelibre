@@ -1176,96 +1176,106 @@ class MainView(Observer, MsgBoxes, SubController):
 
         self._ctrl.register_client(self.itemMenu)
 
-        # "Plot".
-        self.plotMenu = NvMenu()
+        # "Story structure".
+        self.storyStructureMenu = NvMenu()
+
+        self.add_insert_stage_command(self.storyStructureMenu)
+        self.add_change_level_cascade(self.storyStructureMenu)
+
+        self.storyStructureMenu.add_separator()
+
+        label = _('Export story structure description for editing')
+        self.storyStructureMenu.add_command(
+            label=label,
+            command=self._ctrl.export_story_structure_desc,
+        )
+        self.storyStructureMenu.disableOnLock.append(label)
+
+        self.storyStructureMenu.add_separator()
+
+        label = _('Show story structure board in browser')
+        self.storyStructureMenu.add_command(
+            label=label,
+            command=self._ctrl.show_stage_cards,
+        )
+
+        self._ctrl.register_client(self.storyStructureMenu)
+
+        # "Plot lines".
+        self.plotLinesMenu = NvMenu()
 
         label = _('Add Plot line')
-        self.plotMenu.add_command(
+        self.plotLinesMenu.add_command(
             label=label,
             image=self.icons.addIcon,
             compound='left',
             command=self._ctrl.add_new_plot_line,
         )
-        self.plotMenu.disableOnLock.append(label)
+        self.plotLinesMenu.disableOnLock.append(label)
 
         label = _('Add Plot point')
-        self.plotMenu.add_command(
+        self.plotLinesMenu.add_command(
             label=label,
             image=self.icons.addIcon,
             compound='left',
             command=self._ctrl.add_new_plot_point,
         )
-        self.plotMenu.disableOnLock.append(label)
+        self.plotLinesMenu.disableOnLock.append(label)
 
-        self.plotMenu.add_separator()
+        self.plotLinesMenu.add_separator()
 
-        self.add_insert_stage_command(self.plotMenu)
-        self.add_change_level_cascade(self.plotMenu)
-        self.add_color_commands(self.plotMenu, prefix=PLOT_LINE_PREFIX)
+        self.add_color_commands(self.plotLinesMenu, prefix=PLOT_LINE_PREFIX)
 
-        self.plotMenu.add_separator()
+        self.plotLinesMenu.add_separator()
 
         label = _('Import plot lines')
-        self.plotMenu.add_command(
+        self.plotLinesMenu.add_command(
             label=label,
             image=self.icons.importIcon,
             compound='left',
             command=self._ctrl.import_plot_lines,
         )
-        self.plotMenu.disableOnLock.append(label)
+        self.plotLinesMenu.disableOnLock.append(label)
 
-        self.plotMenu.add_separator()
+        self.plotLinesMenu.add_separator()
 
         label = _('Export plot grid for editing')
-        self.plotMenu.add_command(
+        self.plotLinesMenu.add_command(
             label=label,
             image=self.icons.gridIcon,
             compound='left',
             command=self._ctrl.export_plot_grid,
         )
-        self.plotMenu.disableOnLock.append(label)
-
-        label = _('Export story structure description for editing')
-        self.plotMenu.add_command(
-            label=label,
-            command=self._ctrl.export_story_structure_desc,
-        )
-        self.plotMenu.disableOnLock.append(label)
+        self.plotLinesMenu.disableOnLock.append(label)
 
         label = _('Export plot line descriptions for editing')
-        self.plotMenu.add_command(
+        self.plotLinesMenu.add_command(
             label=label,
             command=self._ctrl.export_plot_lines_desc,
         )
-        self.plotMenu.disableOnLock.append(label)
+        self.plotLinesMenu.disableOnLock.append(label)
 
-        self.plotMenu.add_separator()
+        self.plotLinesMenu.add_separator()
 
         label = _('Plot table (export only)')
-        self.plotMenu.add_command(
+        self.plotLinesMenu.add_command(
             label=label,
             command=self._ctrl.export_plot_list,
         )
 
         label = _('Show Plot table in browser')
-        self.plotMenu.add_command(
+        self.plotLinesMenu.add_command(
             label=label,
             command=self._ctrl.show_plot_list,
         )
 
         label = _('Show Plot line board in browser')
-        self.plotMenu.add_command(
+        self.plotLinesMenu.add_command(
             label=label,
             command=self._ctrl.show_plot_cards,
         )
 
-        label = _('Show story structure board in browser')
-        self.plotMenu.add_command(
-            label=label,
-            command=self._ctrl.show_stage_cards,
-        )
-
-        self._ctrl.register_client(self.plotMenu)
+        self._ctrl.register_client(self.plotLinesMenu)
 
         # "Project notes"
         self.prjNoteMenu = NvMenu()
@@ -1519,10 +1529,17 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         self.mainMenu.disableOnClose.append(label)
 
-        label = _('Plot')
+        label = _('Story structure')
         self.mainMenu.add_cascade(
             label=label,
-            menu=self.plotMenu
+            menu=self.storyStructureMenu
+        )
+        self.mainMenu.disableOnClose.append(label)
+
+        label = _('Plot lines')
+        self.mainMenu.add_cascade(
+            label=label,
+            menu=self.plotLinesMenu
         )
         self.mainMenu.disableOnClose.append(label)
 
