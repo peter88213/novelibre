@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.56.1\n"
-"POT-Creation-Date: 2026-05-18 18:53:21\n"
+"POT-Creation-Date: 2026-05-18 19:04:30\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -239,9 +239,6 @@ msgstr ""
 msgid "Chapter beginning"
 msgstr ""
 
-msgid "Chapter board"
-msgstr ""
-
 msgid "Chapter descriptions"
 msgstr ""
 
@@ -252,6 +249,9 @@ msgid "Chapter number prefix"
 msgstr ""
 
 msgid "Chapter number suffix"
+msgstr ""
+
+msgid "Chapter structure board"
 msgstr ""
 
 msgid "Chapter table"
@@ -659,7 +659,7 @@ msgstr ""
 msgid "Goals"
 msgstr ""
 
-msgid "HTML Chapter board"
+msgid "HTML Chapter structure board"
 msgstr ""
 
 msgid "HTML Plot line board"
@@ -1367,7 +1367,7 @@ msgstr ""
 msgid "Show Locations"
 msgstr ""
 
-msgid "Show Plot cards in browser"
+msgid "Show Plot line board in browser"
 msgstr ""
 
 msgid "Show Plot lines"
@@ -1385,7 +1385,7 @@ msgstr ""
 msgid "Show ages"
 msgstr ""
 
-msgid "Show chapter board in browser"
+msgid "Show chapter structure board in browser"
 msgstr ""
 
 msgid "Show markup"

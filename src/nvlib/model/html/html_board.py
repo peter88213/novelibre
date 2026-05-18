@@ -8,7 +8,7 @@ from nvlib.model.hex_color import HexColor
 from nvlib.model.html.html_report import HtmlReport
 
 
-class HtmlCards(HtmlReport):
+class HtmlBoard(HtmlReport):
     """html plot list representation."""
 
     _fileHeader = (

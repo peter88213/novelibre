@@ -232,8 +232,8 @@ msgstr "Kapitel"
 msgid "Chapter beginning"
 msgstr "Kapitelanfang"
 
-msgid "Chapter board"
-msgstr "Kapiteltafel"
+msgid "Chapter structure board"
+msgstr "Kapitelstrukturtafel"
 
 msgid "Chapter descriptions"
 msgstr "Kapitelbeschreibungen"
@@ -652,8 +652,8 @@ msgstr "Ziel"
 msgid "Goals"
 msgstr "Ziele"
 
-msgid "HTML Chapter board"
-msgstr "HTML Kapiteltafel"
+msgid "HTML Chapter structure board"
+msgstr "HTML Kapitelstrukturtafel"
 
 msgid "HTML Plot line board"
 msgstr "HTML-Plotlinientafel"
@@ -1360,8 +1360,8 @@ msgstr "Gegenstände anzeigen"
 msgid "Show Locations"
 msgstr "Schauplätze anzeigen"
 
-msgid "Show Plot cards in browser"
-msgstr "Plotkarten im Browser anzeigen"
+msgid "Show Plot line board in browser"
+msgstr "Plotlinientafel im Browser anzeigen"
 
 msgid "Show Plot lines"
 msgstr "Plotlinien anzeigen"
@@ -1378,8 +1378,8 @@ msgstr "Zeittafel anzeigen"
 msgid "Show ages"
 msgstr "Alter anzeigen"
 
-msgid "Show chapter board in browser"
-msgstr "Kapiteltafel im Browser anzeigen"
+msgid "Show chapter structure board in browser"
+msgstr "Kapitelstrukturtafel im Browser anzeigen"
 
 msgid "Show markup"
 msgstr "Markup anzeigen"
@@ -1388,7 +1388,7 @@ msgid "Show notes"
 msgstr "Notizen anzeigen"
 
 msgid "Show story structure board in browser"
-msgstr "Erzählstruktur-Tafel im Browser anzeigen"
+msgstr "Erzählstrukturtafel im Browser anzeigen"
 
 msgid "Show table in Browser"
 msgstr "Tabelle im Browser anzeigen"

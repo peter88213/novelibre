@@ -4,15 +4,15 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.model.html.html_cards import HtmlCards
+from nvlib.model.html.html_board import HtmlBoard
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import SECTION_CARD_SUFFIX
 from nvlib.nv_locale import _
 
 
-class HtmlSectionCards(HtmlCards):
+class HtmlChapterStructureBoard(HtmlBoard):
     """html section board representation."""
-    DESCRIPTION = _('HTML Chapter board')
+    DESCRIPTION = _('HTML Chapter structure board')
     SUFFIX = SECTION_CARD_SUFFIX
 
     def write(self):
@@ -63,10 +63,10 @@ class HtmlSectionCards(HtmlCards):
             )
 
         htmlText.append(
-            f'<title>{_("Chapter board")} ({self.novel.title})</title>\n'
+            f'<title>{_("Chapter structure board")} ({self.novel.title})</title>\n'
             '</head>\n'
             '<body>\n'
-            f'<p class=title>{self.novel.title} - {_("Chapter board")}</p>\n'
+            f'<p class=title>{self.novel.title} - {_("Chapter structure board")}</p>\n'
         )
 
         # Chapter rows.

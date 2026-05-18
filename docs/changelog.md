@@ -10,8 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.56.0
+### Version 5.56.1
 
+- New HTML exports:
+  - Plot line board.
+  - Story structure board.
+  - Chapter structure board.
 - Added the assigned section's plot line notes to the plot point properties view.
 - It is no longer possible to move plot points to other plot lines.
 

@@ -4,14 +4,14 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.model.html.html_cards import HtmlCards
+from nvlib.model.html.html_board import HtmlBoard
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import STAGE_CARD_SUFFIX
 from nvlib.nv_locale import _
 from nvlib.model.hex_color import HexColor
 
 
-class HtmlStageCards(HtmlCards):
+class HtmlStoryStructureBoard(HtmlBoard):
     """html story structure board representation."""
     DESCRIPTION = _('HTML Story structure board')
     SUFFIX = STAGE_CARD_SUFFIX

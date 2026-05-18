@@ -957,7 +957,7 @@ class MainView(Observer, MsgBoxes, SubController):
 
         self.chapterMenu.add_separator()
 
-        label = _('Show chapter board in browser')
+        label = _('Show chapter structure board in browser')
         self.chapterMenu.add_command(
             label=label,
             command=self._ctrl.show_section_cards,
@@ -1253,7 +1253,7 @@ class MainView(Observer, MsgBoxes, SubController):
             command=self._ctrl.show_plot_list,
         )
 
-        label = _('Show Plot cards in browser')
+        label = _('Show Plot line board in browser')
         self.plotMenu.add_command(
             label=label,
             command=self._ctrl.show_plot_cards,
