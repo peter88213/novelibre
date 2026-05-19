@@ -2,7 +2,7 @@
 
 ## How to provide translations
 
-Translation files are distributed as language packs. 
+Translation files are distributed as language packs and maintained in their own repositories. 
 This makes it easier to provide translations for all plugins, 
 and also to offer online help that uses the translated terms.
 The main advantage of this method is that separate language packs 
