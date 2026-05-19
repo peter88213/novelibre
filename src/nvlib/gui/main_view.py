@@ -794,6 +794,15 @@ class MainView(Observer, MsgBoxes, SubController):
         )
         self.viewMenu.disableOnClose.append(label)
 
+        label = _('Show Plot lines')
+        self.viewMenu.add_command(
+            label=label,
+            image=self.icons.viewPlotLinesIcon,
+            compound='left',
+            command=self.tv.show_plot_lines,
+        )
+        self.viewMenu.disableOnClose.append(label)
+
         label = _('Show Characters')
         self.viewMenu.add_command(
             label=label,
@@ -818,15 +827,6 @@ class MainView(Observer, MsgBoxes, SubController):
             image=self.icons.viewItemsIcon,
             compound='left',
             command=self.tv.show_items,
-        )
-        self.viewMenu.disableOnClose.append(label)
-
-        label = _('Show Plot lines')
-        self.viewMenu.add_command(
-            label=label,
-            image=self.icons.viewPlotLinesIcon,
-            compound='left',
-            command=self.tv.show_plot_lines,
         )
         self.viewMenu.disableOnClose.append(label)
 

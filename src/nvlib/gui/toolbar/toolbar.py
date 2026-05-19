@@ -59,7 +59,7 @@ class Toolbar(SubController):
 
         # "View Book" button.
         self.viewBookButton = self.new_button(
-            text=_('Book'),
+            text=_('Show Book'),
             image=self._ui.icons.viewBookIcon,
             command=self._ui.tv.show_book,
             disableOnLock=False,
@@ -68,7 +68,7 @@ class Toolbar(SubController):
 
         # "View Plot lines" button.
         self.viewPlotLinesButton = self.new_button(
-            text=_('Plot lines'),
+            text=_('Show Plot lines'),
             image=self._ui.icons.viewPlotLinesIcon,
             command=self._ui.tv.show_plot_lines,
             disableOnLock=False,
@@ -77,7 +77,7 @@ class Toolbar(SubController):
 
         # "View Characters" button.
         self.viewCharactersButton = self.new_button(
-            text=_('Characters'),
+            text=_('Show Characters'),
             image=self._ui.icons.viewCharactersIcon,
             command=self._ui.tv.show_characters,
             disableOnLock=False,
@@ -86,7 +86,7 @@ class Toolbar(SubController):
 
         # "View Locations" button.
         self.viewLocationsButton = self.new_button(
-            text=_('Locations'),
+            text=_('Show Locations'),
             image=self._ui.icons.viewLocationsIcon,
             command=self._ui.tv.show_locations,
             disableOnLock=False,
@@ -95,7 +95,7 @@ class Toolbar(SubController):
 
         # "View Items" button.
         self.viewItemsButton = self.new_button(
-            text=_('Items'),
+            text=_('Show Items'),
             image=self._ui.icons.viewItemsIcon,
             command=self._ui.tv.show_items,
             disableOnLock=False,
@@ -104,7 +104,7 @@ class Toolbar(SubController):
 
         # "View Projectnotes" button.
         self.viewProjectnotesButton = self.new_button(
-            text=_('Project notes'),
+            text=_('Show Project notes'),
             image=self._ui.icons.viewProjectnotesIcon,
             command=self._ui.tv.show_project_notes,
             disableOnLock=False,

@@ -10,11 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.56.4
+### Version 5.56.6
 
 - Separated the story structure from the plot lines in the main menu.
   Instead of the **Plot** menu there are a **Story structure** and a **Plot line menu**.
 - Rearranged the main menu and toolbar entries.
+- Reordered the View menu entries.
 - Restructured the project tree. 
 - New HTML exports:
   - Plot line board.
