@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+
+### Version 5.56.7
+
+- Improved the HTML "index card" layout.
+
+
 ### Version 5.56.6
 
 - Separated the story structure from the plot lines in the main menu.

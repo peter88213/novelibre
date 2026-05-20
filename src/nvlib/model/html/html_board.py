@@ -28,6 +28,8 @@ class HtmlBoard(HtmlReport):
         'table-layout:fixed; width:15em; overflow:hidden; '
         'word-wrap:break-word; '
         'min-width:15em; max-widh:15em; '
+        'padding-right: 0.5em; '
+        'padding-left: 0.5em; '
         '}\n'
         '</style>\n'
     )
