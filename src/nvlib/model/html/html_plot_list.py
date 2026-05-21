@@ -4,7 +4,7 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.model.html.html_report import HtmlReport
+from nvlib.model.html.html_table import HtmlTable
 from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import PLOTLIST_SUFFIX
 from nvlib.novx_globals import PL_ROOT
@@ -12,7 +12,7 @@ from nvlib.novx_globals import list_to_string
 from nvlib.nv_locale import _
 
 
-class HtmlPlotList(HtmlReport):
+class HtmlPlotList(HtmlTable):
     """html plot list representation."""
     DESCRIPTION = _('HTML Plot table')
     SUFFIX = PLOTLIST_SUFFIX

@@ -1,4 +1,4 @@
-"""Provide a class for html cards representation.
+"""Provide a class for HTML "corkboard" representation.
 
 Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -9,34 +9,24 @@ from nvlib.model.html.html_report import HtmlReport
 
 
 class HtmlBoard(HtmlReport):
-    """html plot list representation."""
+    """Class for HTML "corkboard" representation."""
 
-    _fileHeader = (
-        '<!DOCTYPE html>\n'
-        '<html>\n'
-        '<head>\n'
-        '<meta http-equiv="Content-Type" content="text/html; '
-        'charset=utf-8"/>\n\n'
+    _extraStyles = (
         '<style type="text/css">\n'
-        'body {font-family: sans-serif; background-color: #dfdfdf}\n'
-        'p.title {font-size: larger; font-weight: bold}\n'
-        'td {padding: 10}\n'
-        'table, td {border:0px solid transparent; '
-        'vertical-align: top}\n'
+        'body {background-color: #dfdfdf}\n'
+        '<style type="text/css">\n'
+        'table, td {'
+        'border:0px solid transparent; '
+        '}\n'
         'table {border-spacing:1em 0px;} '
         'td {'
         'table-layout:fixed; width:15em; overflow:hidden; '
         'word-wrap:break-word; '
         'min-width:15em; max-widh:15em; '
-        'padding-right: 0.5em; '
-        'padding-left: 0.5em; '
         '}\n'
         '</style>\n'
     )
-    _fileFooter = (
-        '</body>\n'
-        '</html>\n'
-    )
+    _fileHeader = f'{HtmlReport._fileHeader}{_extraStyles}'
 
     def _get_card_header_styles(
         self,

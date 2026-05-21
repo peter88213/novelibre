@@ -4,19 +4,19 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.model.html.html_report import HtmlReport
+from nvlib.model.html.html_table import HtmlTable
 from nvlib.novx_globals import LOCATION_REPORT_SUFFIX
 from nvlib.nv_locale import _
 
 
-class HtmlLocations(HtmlReport):
+class HtmlLocations(HtmlTable):
     """Class for HTML locations report file representation."""
     DESCRIPTION = 'HTML locations report'
     EXTENSION = '.html'
     SUFFIX = LOCATION_REPORT_SUFFIX
 
     _fileHeader = (
-        f'{HtmlReport._fileHeader}$Styles'
+        f'{HtmlTable._fileHeader}$Styles'
         f'<title>{_("Locations")} ($Title)</title>\n'
         '</head>\n'
         '<body>\n'
@@ -32,9 +32,9 @@ class HtmlLocations(HtmlReport):
     )
     _locationTemplate = (
         '<tr>\n'
-        '<td class="$ID">$Title</td>\n'
-        '<td>$AKA</td>\n'
-        '<td>$Tags</td>\n'
+        '<td class="$ID"><p>$Title</p></td>\n'
+        '<td><p>$AKA</p></td>\n'
+        '<td><p>$Tags</p></td>\n'
         '<td>$Desc</td>\n'
         '</tr>\n'
     )

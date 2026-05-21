@@ -10,7 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.56.8
 
+- Revised and refactored the HTML reports.
+
+ 
 ### Version 5.56.7
 
 - Improved the HTML "index card" layout.

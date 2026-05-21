@@ -146,7 +146,7 @@ class HtmlStoryStructureBoard(HtmlBoard):
                         attr=f'class="{scId}"',
                     )
                 )
-            htmlText.append('</tr></table><br>')
+            htmlText.append('</tr></table><br />')
 
         htmlText.append(self._fileFooter)
         with open(self.filePath, 'w', encoding='utf-8') as f:

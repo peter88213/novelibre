@@ -4,19 +4,19 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.model.html.html_report import HtmlReport
+from nvlib.model.html.html_table import HtmlTable
 from nvlib.novx_globals import PROJECTNOTES_REPORT_SUFFIX
 from nvlib.nv_locale import _
 
 
-class HtmlProjectNotes(HtmlReport):
+class HtmlProjectNotes(HtmlTable):
     """Class for HTML project notes report file representation."""
     DESCRIPTION = 'HTML project notes report'
     EXTENSION = '.html'
     SUFFIX = PROJECTNOTES_REPORT_SUFFIX
 
     _fileHeader = (
-        f'{HtmlReport._fileHeader}$Styles'
+        f'{HtmlTable._fileHeader}$Styles'
         f'<title>{_("Project notes")} ($Title)</title>\n'
         '</head>\n'
         '<body>\n'
@@ -31,7 +31,7 @@ class HtmlProjectNotes(HtmlReport):
 
     _projectNoteTemplate = (
         '<tr>\n'
-        '<td class="$ID">$Title</td>\n'
+        '<td class="$ID"><p>$Title</p></td>\n'
         '<td>$Desc</td>\n'
         '</tr>\n'
     )

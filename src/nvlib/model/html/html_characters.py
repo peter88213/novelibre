@@ -5,19 +5,19 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.model.data.py_calendar import PyCalendar
-from nvlib.model.html.html_report import HtmlReport
+from nvlib.model.html.html_table import HtmlTable
 from nvlib.novx_globals import CHARACTER_REPORT_SUFFIX
 from nvlib.nv_locale import _
 
 
-class HtmlCharacters(HtmlReport):
+class HtmlCharacters(HtmlTable):
     """Class for HTML characters report file representation."""
     DESCRIPTION = 'HTML charcters report'
     EXTENSION = '.html'
     SUFFIX = CHARACTER_REPORT_SUFFIX
 
     _fileHeader = (
-        f'{HtmlReport._fileHeader}$Styles'
+        f'{HtmlTable._fileHeader}$Styles'
         f'<title>{_("Characters")} ($Title)</title>\n'
         '</head>\n'
         '<body>\n'
@@ -39,15 +39,15 @@ class HtmlCharacters(HtmlReport):
     )
     _characterTemplate = (
         '<tr>\n'
-        '<td class="$ID">$Title</td>\n'
-        '<td>$FullName</td>\n'
-        '<td>$AKA</td>\n'
-        '<td>$Tags</td>\n'
+        '<td class="$ID"><p>$Title</p></td>\n'
+        '<td><p>$FullName</p></td>\n'
+        '<td><p>$AKA</p></td>\n'
+        '<td><p>$Tags</p></td>\n'
         '<td>$Desc</td>\n'
         '<td>$Bio</td>\n'
         '<td>$Goals</td>\n'
-        '<td>$BirthDate</td>\n'
-        '<td>$DeathDate</td>\n'
+        '<td><p>$BirthDate</p></td>\n'
+        '<td><p>$DeathDate</p></td>\n'
         '<td>$Notes</td>\n'
         '</tr>\n'
     )
