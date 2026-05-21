@@ -10,6 +10,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.56.9
+
+Refactored the code for Python 3.14.
+
+- No longer using the deprecated tkinter `trace()` method.
+
+
 ### Version 5.56.8
 
 - Revised and refactored the HTML reports.

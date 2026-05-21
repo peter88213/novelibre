@@ -75,10 +75,9 @@ class BackupOptionsDialog(ModalDialog, SubController):
         ttk.Checkbutton(
             frame1,
             text=_('Create backup copies'),
-            variable=self._enableBackupVar
+            variable=self._enableBackupVar,
+            command=self._change_enable_backup,
         ).pack(padx=5, pady=5, anchor='w')
-        self._enableBackupVar.trace('w', self._change_enable_backup)
-
         ttk.Separator(self, orient='horizontal').pack(fill='x')
 
         # "Close" button.

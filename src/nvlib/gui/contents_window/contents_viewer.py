@@ -41,9 +41,9 @@ class ContentsViewer(RichTextNv, Observer, SubController):
         ttk.Checkbutton(
             parent,
             text=_('Show markup'),
-            variable=self.showMarkup
+            variable=self.showMarkup,
+            command=self.refresh,
         ).pack(anchor='w')
-        self.showMarkup.trace('w', self.refresh)
         self._textMarks = {}
         self._index = '1.0'
         self._parent = parent

@@ -86,9 +86,8 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
                 text=buttonLabel,
                 variable=self._importModeVar,
                 value=i,
-                command=self._on_select_document,
+                command=self._save_options,
             ).pack(padx=5, pady=1, anchor='w')
-        self._importModeVar.trace('w', self._save_options)
 
         # "Import" button.
         self._importButton = ttk.Button(
