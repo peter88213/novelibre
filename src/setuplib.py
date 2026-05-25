@@ -136,7 +136,9 @@ There are plugins installed.
 You may want to run the Plugin Manager for compatibility check.
 '''
 
-START_UP_CODE = f'''import logging
+START_UP_CODE = f'''# novelibre application launcher
+# This Python script is auto-generated. Do not edit.
+import logging
 from tkinter import messagebox
 import traceback
 
