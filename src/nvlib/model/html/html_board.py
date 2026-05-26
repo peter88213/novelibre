@@ -55,7 +55,6 @@ class HtmlBoard(HtmlReport):
                 f'border-top: 0.2em solid {borderColor}; '
                 f'border-right: 0.2em solid {borderColor}; '
                 f'border-left: 0.2em solid {borderColor}; '
-                f'border-bottom: 0.1em solid #ff0000; '
                 f'background: {bgColor}; '
                 f'color: {fgColor}'
                 '}'
@@ -77,6 +76,7 @@ class HtmlBoard(HtmlReport):
                 borderColor = defaultBorderColor
             htmlText.append(
                 f'td.{elemId} {{'
+                f'border-top: 0.1em solid #ff0000; '
                 f'border-right: 0.2em solid {borderColor}; '
                 f'border-left: 0.2em solid {borderColor}; '
                 f'border-bottom: 0.2em solid {borderColor}; '

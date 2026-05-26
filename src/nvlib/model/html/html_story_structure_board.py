@@ -74,22 +74,13 @@ class HtmlStoryStructureBoard(HtmlBoard):
             '</style>\n'
         )
 
-        for stageId in stageTree:
-
-            # Section card styles per stage
-            sections = {}
-            for scId in stageTree[stageId]:
+        # Section card styles.
+        sections = {}
+        for scId in self.novel.sections:
+            if self.novel.sections[scId].scType == 0:
                 sections[scId] = self.novel.sections[scId]
-            htmlText.extend(
-                self._get_card_header_styles(
-                    sections,
-                )
-            )
-            htmlText.extend(
-                self._get_card_body_styles(
-                    sections,
-                )
-            )
+        htmlText.extend(self._get_card_header_styles(sections))
+        htmlText.extend(self._get_card_body_styles(sections))
 
         htmlText.append(
             f'<title>{_("Story structure board")} ({self.novel.title})</title>\n'
@@ -103,7 +94,7 @@ class HtmlStoryStructureBoard(HtmlBoard):
         for stageId in stageTree:
             htmlText.append('<tr>')
             if stageId == NO_STAGE:
-                htmlText.append('<td />')
+                htmlText.append('<td>')
             else:
                 if self.novel.sections[stageId].scType == 2:
                     style = 'stage1'
@@ -125,7 +116,7 @@ class HtmlStoryStructureBoard(HtmlBoard):
             htmlText.append('</tr>')
             htmlText.append('<tr>')
             if stageId == NO_STAGE:
-                htmlText.append('<td />')
+                htmlText.append('<td>')
             else:
                 htmlText.append(
                     self._new_cell(
@@ -142,7 +133,7 @@ class HtmlStoryStructureBoard(HtmlBoard):
                 )
             htmlText.append('</tr>')
             htmlText.append(f'<tr>')
-            htmlText.append('<td><br /></td></tr>')
+            htmlText.append('<td><br></td></tr>')
         htmlText.append('</table>')
         htmlText.append(self._fileFooter)
         with open(self.filePath, 'w', encoding='utf-8') as f:

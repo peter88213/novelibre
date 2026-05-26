@@ -28,7 +28,7 @@ class HtmlViewpointBoard(HtmlBoard):
         if not srtCharacters:
             raise UserWarning(f'{_("No characters found")}.')
 
-        DEFAULT_BG = '##dfdfdf'
+        DEFAULT_BG = '#dfdfdf'
         NO_VP = ''
         viewpointSections = {NO_VP: {}}
         viewpointCharacters = {}
@@ -61,37 +61,16 @@ class HtmlViewpointBoard(HtmlBoard):
 
         # Character card styles.
         htmlText.extend(
-            self._get_card_header_styles(
-                viewpointCharacters,
-                invert=True,
-            )
-        )
-        htmlText.extend(
-            self._get_card_body_styles(
-                viewpointCharacters,
-            )
+            self._get_card_header_styles(viewpointCharacters, invert=True)
         )
 
-        for crId in viewpointSections:
-
-            # Section card styles per viewpoint character
-            # (the default border color is the plot line color).
-            if crId == NO_VP:
-                defaultBorderColor = None
-            else:
-                defaultBorderColor = self.novel.characters[crId].color
-            htmlText.extend(
-                self._get_card_header_styles(
-                    viewpointSections[crId],
-                    defaultBorderColor=defaultBorderColor,
-                )
-            )
-            htmlText.extend(
-                self._get_card_body_styles(
-                    viewpointSections[crId],
-                    defaultBorderColor=defaultBorderColor,
-                )
-            )
+        # Section card styles.
+        sections = {}
+        for scId in self.novel.sections:
+            if self.novel.sections[scId].scType == 0:
+                sections[scId] = self.novel.sections[scId]
+        htmlText.extend(self._get_card_header_styles(sections))
+        htmlText.extend(self._get_card_body_styles(sections))
 
         htmlText.append(
             f'<title>{_("Viewpoint board")} ({self.novel.title})</title>\n'
@@ -110,7 +89,7 @@ class HtmlViewpointBoard(HtmlBoard):
                 bgcolor = DEFAULT_BG
             else:
                 bgcolor = self.novel.characters[crId].color or '#000000'
-            htmlText.append(f'<tr style="background: {bgcolor}">')
+            htmlText.append('<tr>')
             if crId == NO_VP:
                 htmlText.append(
                     self._new_cell(
@@ -133,21 +112,10 @@ class HtmlViewpointBoard(HtmlBoard):
                         )
                     )
                 else:
-                    htmlText.append('<td />')
+                    htmlText.append(f'<td style="border-bottom: 0.4em solid {bgcolor}">')
             htmlText.append('</tr>')
-            htmlText.append(f'<tr style="background: {bgcolor}">')
-            if crId == NO_VP:
-                htmlText.append('<td />')
-            else:
-                htmlText.append(
-                    self._new_cell(
-                        (
-                            f'{self.novel.characters[crId].fullName or ""}\n'
-                            f'{self.novel.characters[crId].aka or ""}'
-                        ),
-                        attr=f'class="{crId}"',
-                    )
-                )
+            htmlText.append(f'<tr>')
+            htmlText.append('<td>')
             for scId in srtSections:
                 if scId in viewpointSections[crId]:
                     htmlText.append(
@@ -157,10 +125,10 @@ class HtmlViewpointBoard(HtmlBoard):
                         )
                     )
                 else:
-                    htmlText.append('<td />')
+                    htmlText.append('<td>')
             htmlText.append('</tr>')
             htmlText.append(f'<tr style="background: {DEFAULT_BG}">')
-            htmlText.append('<td><br /></td></tr>')
+            htmlText.append('<td><br></td></tr>')
         htmlText.append('</table>')
         htmlText.append(self._fileFooter)
         with open(self.filePath, 'w', encoding='utf-8') as f:

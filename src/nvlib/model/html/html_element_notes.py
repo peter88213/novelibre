@@ -30,25 +30,25 @@ class HtmlElementNotes(HtmlTable):
     _characterHeadingTemplate = (
         '<tr class="heading">\n'
         f'<td>{_("Characters")}</td>\n'
-        '<td />\n'
+        '<td>\n'
         '</tr>\n'
     )
     _locationHeadingTemplate = (
         '<tr class="heading">\n'
         f'<td>{_("Locations")}</td>\n'
-        '<td />\n'
+        '<td>\n'
         '</tr>\n'
     )
     _itemHeadingTemplate = (
         '<tr class="heading">\n'
         f'<td>{_("Items")}</td>\n'
-        '<td />\n'
+        '<td>\n'
         '</tr>\n'
     )
     _plotLineHeadingTemplate = (
         '<tr class="heading">\n'
         f'<td>{_("Plot lines")}</td>\n'
-        '<td />\n'
+        '<td>\n'
         '</tr>\n'
     )
     _partTemplate = (

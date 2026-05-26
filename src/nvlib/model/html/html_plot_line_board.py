@@ -35,31 +35,11 @@ class HtmlPlotLineBoard(HtmlBoard):
                 invert=True,
             )
         )
-        htmlText.extend(
-            self._get_card_body_styles(
-                self.novel.plotLines,
-            )
-        )
+        htmlText.extend(self._get_card_body_styles(self.novel.plotLines))
 
-        for plId in srtPlotLines:
-
-            # Plot point card styles per plot line
-            # (the default border color is the plot line color).
-            plotPoints = {}
-            for ppId in self.novel.tree.get_children(plId):
-                plotPoints[ppId] = self.novel.plotPoints[ppId]
-            htmlText.extend(
-                self._get_card_header_styles(
-                    plotPoints,
-                    defaultBorderColor=self.novel.plotLines[plId].color,
-                )
-            )
-            htmlText.extend(
-                self._get_card_body_styles(
-                    plotPoints,
-                    defaultBorderColor=self.novel.plotLines[plId].color,
-                )
-            )
+        # Plot point card styles.
+        htmlText.extend(self._get_card_header_styles(self.novel.plotPoints))
+        htmlText.extend(self._get_card_body_styles(self.novel.plotPoints))
 
         htmlText.append(
             f'<title>{_("Plot line board")} ({self.novel.title})</title>\n'
@@ -102,7 +82,7 @@ class HtmlPlotLineBoard(HtmlBoard):
                 )
             htmlText.append('</tr>')
             htmlText.append(f'<tr>')
-            htmlText.append('<td><br /></td></tr>')
+            htmlText.append('<td><br></td></tr>')
         htmlText.append('</table>')
         htmlText.append(self._fileFooter)
         with open(self.filePath, 'w', encoding='utf-8') as f:

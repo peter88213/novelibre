@@ -22,10 +22,10 @@ class HtmlChapterBoard(HtmlBoard):
         """
 
         # Collect the chapters.
-        srtChapters = []
+        srtChapters = {}
         for chId in self.novel.tree.get_children(CH_ROOT):
             if self.novel.chapters[chId].chType == 0:
-                srtChapters.append(chId)
+                srtChapters[chId] = self.novel.chapters[chId]
 
         if not srtChapters:
             raise UserWarning(f'{_("No chapters found")}.')
@@ -34,36 +34,17 @@ class HtmlChapterBoard(HtmlBoard):
 
         # Chapter card styles.
         htmlText.extend(
-            self._get_card_header_styles(
-                self.novel.chapters,
-                invert=True,
-            )
+            self._get_card_header_styles(srtChapters, invert=True)
         )
-        htmlText.extend(
-            self._get_card_body_styles(
-                self.novel.chapters,
-            )
-        )
+        htmlText.extend(self._get_card_body_styles(srtChapters))
 
-        for chId in srtChapters:
-            # Section card styles per chapter
-            # (the default border color is the chapter color).
-            sections = {}
-            for scId in self.novel.tree.get_children(chId):
-                if self.novel.sections[scId].scType == 0:
-                    sections[scId] = self.novel.sections[scId]
-            htmlText.extend(
-                self._get_card_header_styles(
-                    sections,
-                    defaultBorderColor=self.novel.chapters[chId].color,
-                )
-            )
-            htmlText.extend(
-                self._get_card_body_styles(
-                    sections,
-                    defaultBorderColor=self.novel.chapters[chId].color,
-                )
-            )
+        # Section card styles.
+        sections = {}
+        for scId in self.novel.sections:
+            if self.novel.sections[scId].scType == 0:
+                sections[scId] = self.novel.sections[scId]
+        htmlText.extend(self._get_card_header_styles(sections))
+        htmlText.extend(self._get_card_body_styles(sections))
 
         htmlText.append(
             f'<title>{_("Chapter board")} ({self.novel.title})</title>\n'
@@ -78,7 +59,7 @@ class HtmlChapterBoard(HtmlBoard):
             htmlText.append('<tr>')
             htmlText.append(
                 self._new_cell(
-                    self.novel.chapters[chId].title,
+                    srtChapters[chId].title,
                     attr=f'class="h{chId}"',
                 )
             )
@@ -94,7 +75,7 @@ class HtmlChapterBoard(HtmlBoard):
             htmlText.append('<tr>')
             htmlText.append(
                 self._new_cell(
-                    self.novel.chapters[chId].desc,
+                    srtChapters[chId].desc,
                     attr=f'class="{chId}"',
                 )
             )
@@ -108,7 +89,7 @@ class HtmlChapterBoard(HtmlBoard):
                     )
             htmlText.append('</tr>')
             htmlText.append(f'<tr>')
-            htmlText.append('<td><br /></td></tr>')
+            htmlText.append('<td><br></td></tr>')
         htmlText.append('</table>')
         htmlText.append(self._fileFooter)
         with open(self.filePath, 'w', encoding='utf-8') as f:
