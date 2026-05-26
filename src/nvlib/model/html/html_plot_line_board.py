@@ -66,11 +66,12 @@ class HtmlPlotLineBoard(HtmlBoard):
             '</head>\n'
             '<body>\n'
             f'<p class=title>{self.novel.title} - {_("Plot line board")}</p>\n'
+            '<table>\n'
         )
 
         # Plot line rows.
         for plId in srtPlotLines:
-            htmlText.append('<table><tr>')
+            htmlText.append('<tr>')
             htmlText.append(
                 self._new_cell(
                     self.novel.plotLines[plId].title,
@@ -99,8 +100,10 @@ class HtmlPlotLineBoard(HtmlBoard):
                         attr=f'class="{ppId}"',
                     )
                 )
-            htmlText.append('</tr></table><br />')
-
+            htmlText.append('</tr>')
+            htmlText.append(f'<tr>')
+            htmlText.append('<td><br /></td></tr>')
+        htmlText.append('</table>')
         htmlText.append(self._fileFooter)
         with open(self.filePath, 'w', encoding='utf-8') as f:
             f.write('\n'.join(htmlText))

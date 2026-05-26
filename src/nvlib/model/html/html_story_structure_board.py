@@ -96,11 +96,12 @@ class HtmlStoryStructureBoard(HtmlBoard):
             '</head>\n'
             '<body>\n'
             f'<p class=title>{self.novel.title} - {_("Story structure board")}</p>\n'
+            '<table>\n'
         )
 
         # Stage rows.
         for stageId in stageTree:
-            htmlText.append('<table><tr>')
+            htmlText.append('<tr>')
             if stageId == NO_STAGE:
                 htmlText.append('<td />')
             else:
@@ -139,8 +140,10 @@ class HtmlStoryStructureBoard(HtmlBoard):
                         attr=f'class="{scId}"',
                     )
                 )
-            htmlText.append('</tr></table><br />')
-
+            htmlText.append('</tr>')
+            htmlText.append(f'<tr>')
+            htmlText.append('<td><br /></td></tr>')
+        htmlText.append('</table>')
         htmlText.append(self._fileFooter)
         with open(self.filePath, 'w', encoding='utf-8') as f:
             f.write('\n'.join(htmlText))

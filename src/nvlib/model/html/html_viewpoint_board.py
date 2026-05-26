@@ -159,8 +159,8 @@ class HtmlViewpointBoard(HtmlBoard):
                 else:
                     htmlText.append('<td />')
             htmlText.append('</tr>')
-            # htmlText.append(f'<tr style="background: {DEFAULT_BG}>')
-            # htmlText.append('<td /></tr>')
+            htmlText.append(f'<tr style="background: {DEFAULT_BG}">')
+            htmlText.append('<td><br /></td></tr>')
         htmlText.append('</table>')
         htmlText.append(self._fileFooter)
         with open(self.filePath, 'w', encoding='utf-8') as f:
