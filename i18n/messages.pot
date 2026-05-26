@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.56.9\n"
-"POT-Creation-Date: 2026-05-21 18:47:52\n"
+"POT-Creation-Date: 2026-05-26 22:40:41\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -239,6 +239,9 @@ msgstr ""
 msgid "Chapter beginning"
 msgstr ""
 
+msgid "Chapter board"
+msgstr ""
+
 msgid "Chapter descriptions"
 msgstr ""
 
@@ -249,9 +252,6 @@ msgid "Chapter number prefix"
 msgstr ""
 
 msgid "Chapter number suffix"
-msgstr ""
-
-msgid "Chapter structure board"
 msgstr ""
 
 msgid "Chapter table"
@@ -659,7 +659,7 @@ msgstr ""
 msgid "Goals"
 msgstr ""
 
-msgid "HTML Chapter structure board"
+msgid "HTML Chapter board"
 msgstr ""
 
 msgid "HTML Plot line board"
@@ -672,6 +672,9 @@ msgid "HTML Story structure board"
 msgstr ""
 
 msgid "HTML Time table"
+msgstr ""
+
+msgid "HTML Viewpoint board"
 msgstr ""
 
 msgid "Heading 3 invisible"
@@ -960,6 +963,12 @@ msgid "No valid version found in file"
 msgstr ""
 
 msgid "No valid xml root element found in file"
+msgstr ""
+
+msgid "No viewpoint"
+msgstr ""
+
+msgid "No viewpoint defined"
 msgstr ""
 
 msgid "None"
@@ -1385,7 +1394,7 @@ msgstr ""
 msgid "Show ages"
 msgstr ""
 
-msgid "Show chapter structure board in browser"
+msgid "Show chapter board in browser"
 msgstr ""
 
 msgid "Show markup"
@@ -1398,6 +1407,9 @@ msgid "Show story structure board in browser"
 msgstr ""
 
 msgid "Show table in Browser"
+msgstr ""
+
+msgid "Show viewpoint board in browser"
 msgstr ""
 
 msgid "Skip"
@@ -1596,6 +1608,9 @@ msgid "View"
 msgstr ""
 
 msgid "Viewpoint"
+msgstr ""
+
+msgid "Viewpoint board"
 msgstr ""
 
 msgid "Words"

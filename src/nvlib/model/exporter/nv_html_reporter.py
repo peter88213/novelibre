@@ -8,7 +8,7 @@ import os
 
 from nvlib.model.converter.export_target_factory import ExportTargetFactory
 from nvlib.model.file.doc_open import open_document
-from nvlib.model.html.html_chapter_structure_board import HtmlChapterStructureBoard
+from nvlib.model.html.html_chapter_board import HtmlChapterBoard
 from nvlib.model.html.html_characters import HtmlCharacters
 from nvlib.model.html.html_element_notes import HtmlElementNotes
 from nvlib.model.html.html_items import HtmlItems
@@ -18,6 +18,7 @@ from nvlib.model.html.html_plot_list import HtmlPlotList
 from nvlib.model.html.html_project_notes import HtmlProjectNotes
 from nvlib.model.html.html_story_structure_board import HtmlStoryStructureBoard
 from nvlib.model.html.html_timetable import HtmlTimetable
+from nvlib.model.html.html_viewpoint_board import HtmlViewpointBoard
 
 
 class NvHtmlReporter:
@@ -35,9 +36,10 @@ class NvHtmlReporter:
         HtmlPlotList,
         HtmlPlotLineBoard,
         HtmlProjectNotes,
-        HtmlChapterStructureBoard,
+        HtmlChapterBoard,
         HtmlStoryStructureBoard,
         HtmlTimetable,
+        HtmlViewpointBoard,
         ]
 
     def __init__(self):

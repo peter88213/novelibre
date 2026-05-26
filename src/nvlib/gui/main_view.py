@@ -944,23 +944,23 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Export chapter table')
         self.chapterMenu.add_command(
             label=label,
-            command=self._ctrl.export_chapter_list,
+            command=self._ctrl.export_chapter_table,
         )
         self.chapterMenu.disableOnLock.append(label)
 
         label = _('Export part table')
         self.chapterMenu.add_command(
             label=label,
-            command=self._ctrl.export_part_list,
+            command=self._ctrl.export_part_table,
         )
         self.chapterMenu.disableOnLock.append(label)
 
         self.chapterMenu.add_separator()
 
-        label = _('Show chapter structure board in browser')
+        label = _('Show chapter board in browser')
         self.chapterMenu.add_command(
             label=label,
-            command=self._ctrl.show_section_cards,
+            command=self._ctrl.show_chapter_board,
         )
 
         self._ctrl.register_client(self.chapterMenu)
@@ -1009,13 +1009,13 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Section table (export only)')
         self.sectionMenu.add_command(
             label=label,
-            command=self._ctrl.export_section_list,
+            command=self._ctrl.export_section_table,
         )
 
         label = _('Show Time table')
         self.sectionMenu.add_command(
             label=label,
-            command=self._ctrl.show_timetable,
+            command=self._ctrl.show_time_table,
         )
 
         self._ctrl.register_client(self.sectionMenu)
@@ -1060,7 +1060,7 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Export character table')
         self.characterMenu.add_command(
             label=label,
-            command=self._ctrl.export_character_list,
+            command=self._ctrl.export_character_table,
         )
         self.characterMenu.disableOnLock.append(label)
 
@@ -1069,7 +1069,13 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Show table in Browser')
         self.characterMenu.add_command(
             label=label,
-            command=self._ctrl.show_character_list,
+            command=self._ctrl.show_character_table,
+        )
+
+        label = _('Show viewpoint board in browser')
+        self.characterMenu.add_command(
+            label=label,
+            command=self._ctrl.show_viewpoint_board,
         )
 
         self._ctrl.register_client(self.characterMenu)
@@ -1111,7 +1117,7 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Export location table')
         self.locationMenu.add_command(
             label=label,
-            command=self._ctrl.export_location_list,
+            command=self._ctrl.export_location_table,
         )
         self.locationMenu.disableOnLock.append(label)
 
@@ -1162,7 +1168,7 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Export item table')
         self.itemMenu.add_command(
             label=label,
-            command=self._ctrl.export_item_list,
+            command=self._ctrl.export_item_table,
         )
         self.itemMenu.disableOnLock.append(label)
 
@@ -1196,7 +1202,7 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Show story structure board in browser')
         self.storyStructureMenu.add_command(
             label=label,
-            command=self._ctrl.show_stage_cards,
+            command=self._ctrl.show_story_structure_board,
         )
 
         self._ctrl.register_client(self.storyStructureMenu)
@@ -1266,13 +1272,13 @@ class MainView(Observer, MsgBoxes, SubController):
         label = _('Show Plot table in browser')
         self.plotLinesMenu.add_command(
             label=label,
-            command=self._ctrl.show_plot_list,
+            command=self._ctrl.show_plot_table,
         )
 
         label = _('Show Plot line board in browser')
         self.plotLinesMenu.add_command(
             label=label,
-            command=self._ctrl.show_plot_cards,
+            command=self._ctrl.show_plot_line_board,
         )
 
         self._ctrl.register_client(self.plotLinesMenu)

@@ -7,14 +7,14 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from nvlib.model.hex_color import HexColor
 from nvlib.model.html.html_board import HtmlBoard
 from nvlib.novx_globals import CH_ROOT
-from nvlib.novx_globals import STAGE_CARD_SUFFIX
+from nvlib.novx_globals import STORY_STRUCT_BOARD_SUFFIX
 from nvlib.nv_locale import _
 
 
 class HtmlStoryStructureBoard(HtmlBoard):
-    """html story structure board representation."""
+    """html section cards, arranged by stages."""
     DESCRIPTION = _('HTML Story structure board')
-    SUFFIX = STAGE_CARD_SUFFIX
+    SUFFIX = STORY_STRUCT_BOARD_SUFFIX
 
     def write(self):
         """Create a HTML page with a card for each stage and section.
@@ -77,24 +77,17 @@ class HtmlStoryStructureBoard(HtmlBoard):
         for stageId in stageTree:
 
             # Section card styles per stage
-            # (the default border color is the plot line color).
-            if stageId != NO_STAGE:
-                defaultBorderColor = self.novel.sections[stageId].color
-            else:
-                defaultBorderColor = '#FFFFFF'
             sections = {}
             for scId in stageTree[stageId]:
                 sections[scId] = self.novel.sections[scId]
             htmlText.extend(
                 self._get_card_header_styles(
                     sections,
-                    defaultBorderColor=defaultBorderColor,
                 )
             )
             htmlText.extend(
                 self._get_card_body_styles(
                     sections,
-                    defaultBorderColor=defaultBorderColor,
                 )
             )
 
@@ -128,8 +121,8 @@ class HtmlStoryStructureBoard(HtmlBoard):
                         attr=f'class="h{scId}"',
                     )
                 )
-            htmlText.append(f'</tr>')
-            htmlText.append(f'<tr>')
+            htmlText.append('</tr>')
+            htmlText.append('<tr>')
             if stageId == NO_STAGE:
                 htmlText.append('<td />')
             else:

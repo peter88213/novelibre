@@ -17,6 +17,7 @@ from nvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from nvlib.novx_globals import CHAPTERLIST_SUFFIX
 from nvlib.novx_globals import CHAPTERS_SUFFIX
 from nvlib.novx_globals import CHAPTER_PREFIX
+from nvlib.novx_globals import CHAPTER_BOARD_SUFFFIX
 from nvlib.novx_globals import CHARACTERS_SUFFIX
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import CHARACTER_REPORT_SUFFIX
@@ -38,19 +39,19 @@ from nvlib.novx_globals import METADATA_TEXT_SUFFIX
 from nvlib.novx_globals import PARTLIST_SUFFIX
 from nvlib.novx_globals import PARTS_SUFFIX
 from nvlib.novx_globals import PLOTLINES_SUFFIX
-from nvlib.novx_globals import PLOTLIST_SUFFIX
-from nvlib.novx_globals import PLOT_CARD_SUFFIX
+from nvlib.novx_globals import PLOT_LINE_BOARD_SUFFIX
 from nvlib.novx_globals import PLOT_LINE_PREFIX
+from nvlib.novx_globals import PLOTLIST_SUFFIX
 from nvlib.novx_globals import PROJECTNOTES_REPORT_SUFFIX
 from nvlib.novx_globals import PROJECTNOTES_SUFFIX
 from nvlib.novx_globals import PROOF_SUFFIX
 from nvlib.novx_globals import SECTIONLIST_SUFFIX
 from nvlib.novx_globals import SECTIONS_SUFFIX
-from nvlib.novx_globals import SECTION_CARD_SUFFIX
 from nvlib.novx_globals import SECTION_PREFIX
 from nvlib.novx_globals import STAGES_SUFFIX
-from nvlib.novx_globals import STAGE_CARD_SUFFIX
+from nvlib.novx_globals import STORY_STRUCT_BOARD_SUFFIX
 from nvlib.novx_globals import TIMETABLE_SUFFIX
+from nvlib.novx_globals import VIEWPOINT_BOARD_SUFFFIX
 from nvlib.novx_globals import XREF_SUFFIX
 from nvlib.nv_globals import HOME_URL
 from nvlib.nv_globals import NEWS_URL
@@ -296,13 +297,13 @@ class Commands:
     def export_chapter_desc(self, event=None):
         self.fileManager.export_document(CHAPTERS_SUFFIX)
 
-    def export_chapter_list(self, event=None):
+    def export_chapter_table(self, event=None):
         self.fileManager.export_document(CHAPTERLIST_SUFFIX)
 
     def export_character_desc(self, event=None):
         self.fileManager.export_document(CHARACTERS_SUFFIX)
 
-    def export_character_list(self, event=None):
+    def export_character_table(self, event=None):
         self.fileManager.export_document(CHARLIST_SUFFIX)
 
     def export_cross_references(self, event=None):
@@ -332,19 +333,19 @@ class Commands:
     def export_item_desc(self, event=None):
         self.fileManager.export_document(ITEMS_SUFFIX)
 
-    def export_item_list(self, event=None):
+    def export_item_table(self, event=None):
         self.fileManager.export_document(ITEMLIST_SUFFIX)
 
     def export_location_desc(self, event=None):
         self.fileManager.export_document(LOCATIONS_SUFFIX)
 
-    def export_location_list(self, event=None):
+    def export_location_table(self, event=None):
         self.fileManager.export_document(LOCLIST_SUFFIX)
 
     def export_part_desc(self, event=None):
         self.fileManager.export_document(PARTS_SUFFIX)
 
-    def export_part_list(self, event=None):
+    def export_part_table(self, event=None):
         self.fileManager.export_document(PARTLIST_SUFFIX)
 
     def export_manuscript(self, event=None):
@@ -374,7 +375,7 @@ class Commands:
     def export_section_desc(self, event=None):
         self.fileManager.export_document(SECTIONS_SUFFIX)
 
-    def export_section_list(self, event=None):
+    def export_section_table(self, event=None):
         self.fileManager.export_document(SECTIONLIST_SUFFIX, lock=False)
 
     def export_story_structure_desc(self, event=None):
@@ -721,7 +722,7 @@ class Commands:
         if not self.check_lock():
             self.elementManager.set_viewpoint()
 
-    def show_character_list(self, event=None):
+    def show_character_table(self, event=None):
         self.fileManager.show_report(CHARACTER_REPORT_SUFFIX)
 
     def show_notes_list(self, event=None):
@@ -733,23 +734,26 @@ class Commands:
     def show_location_list(self, event=None):
         self.fileManager.show_report(LOCATION_REPORT_SUFFIX)
 
-    def show_plot_list(self, event=None):
+    def show_plot_table(self, event=None):
         self.fileManager.show_report(PLOTLIST_SUFFIX)
 
-    def show_plot_cards(self, event=None):
-        self.fileManager.show_report(PLOT_CARD_SUFFIX)
+    def show_plot_line_board(self, event=None):
+        self.fileManager.show_report(PLOT_LINE_BOARD_SUFFIX)
 
     def show_projectnotes_list(self, event=None):
         self.fileManager.show_report(PROJECTNOTES_REPORT_SUFFIX)
 
-    def show_section_cards(self, event=None):
-        self.fileManager.show_report(SECTION_CARD_SUFFIX)
+    def show_chapter_board(self, event=None):
+        self.fileManager.show_report(CHAPTER_BOARD_SUFFFIX)
 
-    def show_stage_cards(self, event=None):
-        self.fileManager.show_report(STAGE_CARD_SUFFIX)
+    def show_story_structure_board(self, event=None):
+        self.fileManager.show_report(STORY_STRUCT_BOARD_SUFFIX)
 
-    def show_timetable(self, event=None):
+    def show_time_table(self, event=None):
         self.fileManager.show_report(TIMETABLE_SUFFIX)
+
+    def show_viewpoint_board(self, event=None):
+        self.fileManager.show_report(VIEWPOINT_BOARD_SUFFFIX)
 
     def split_file(self, event=None):
         if not self.check_lock():

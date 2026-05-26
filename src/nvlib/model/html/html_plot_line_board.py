@@ -5,15 +5,15 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.model.html.html_board import HtmlBoard
-from nvlib.novx_globals import PLOT_CARD_SUFFIX
+from nvlib.novx_globals import PLOT_LINE_BOARD_SUFFIX
 from nvlib.novx_globals import PL_ROOT
 from nvlib.nv_locale import _
 
 
 class HtmlPlotLineBoard(HtmlBoard):
-    """html Plot line board representation."""
+    """html plot point cards, arranged by plot lines."""
     DESCRIPTION = _('HTML Plot line board')
-    SUFFIX = PLOT_CARD_SUFFIX
+    SUFFIX = PLOT_LINE_BOARD_SUFFIX
 
     def write(self):
         """Create a HTML page with a card for each plot line and plot point.
@@ -84,8 +84,8 @@ class HtmlPlotLineBoard(HtmlBoard):
                         attr=f'class="h{ppId}"',
                     )
                 )
-            htmlText.append(f'</tr>')
-            htmlText.append(f'<tr>')
+            htmlText.append('</tr>')
+            htmlText.append('<tr>')
             htmlText.append(
                 self._new_cell(
                     self.novel.plotLines[plId].desc,

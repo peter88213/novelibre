@@ -1,4 +1,4 @@
-"""Provide a class for html section cards representation.
+"""Provide a class for html chapter board representation.
 
 Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -6,14 +6,14 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.model.html.html_board import HtmlBoard
 from nvlib.novx_globals import CH_ROOT
-from nvlib.novx_globals import SECTION_CARD_SUFFIX
+from nvlib.novx_globals import CHAPTER_BOARD_SUFFFIX
 from nvlib.nv_locale import _
 
 
-class HtmlChapterStructureBoard(HtmlBoard):
-    """html section board representation."""
-    DESCRIPTION = _('HTML Chapter structure board')
-    SUFFIX = SECTION_CARD_SUFFIX
+class HtmlChapterBoard(HtmlBoard):
+    """html section cards, arranged by chapters."""
+    DESCRIPTION = _('HTML Chapter board')
+    SUFFIX = CHAPTER_BOARD_SUFFFIX
 
     def write(self):
         """Create a HTML page with a card for each chapter and section.
@@ -22,7 +22,11 @@ class HtmlChapterStructureBoard(HtmlBoard):
         """
 
         # Collect the chapters.
-        srtChapters = self.novel.tree.get_children(CH_ROOT)
+        srtChapters = []
+        for chId in self.novel.tree.get_children(CH_ROOT):
+            if self.novel.chapters[chId].chType == 0:
+                srtChapters.append(chId)
+
         if not srtChapters:
             raise UserWarning(f'{_("No chapters found")}.')
 
@@ -42,9 +46,8 @@ class HtmlChapterStructureBoard(HtmlBoard):
         )
 
         for chId in srtChapters:
-
-            # Section card styles per plot line
-            # (the default border color is the plot line color).
+            # Section card styles per chapter
+            # (the default border color is the chapter color).
             sections = {}
             for scId in self.novel.tree.get_children(chId):
                 if self.novel.sections[scId].scType == 0:
@@ -63,10 +66,10 @@ class HtmlChapterStructureBoard(HtmlBoard):
             )
 
         htmlText.append(
-            f'<title>{_("Chapter structure board")} ({self.novel.title})</title>\n'
+            f'<title>{_("Chapter board")} ({self.novel.title})</title>\n'
             '</head>\n'
             '<body>\n'
-            f'<p class=title>{self.novel.title} - {_("Chapter structure board")}</p>\n'
+            f'<p class=title>{self.novel.title} - {_("Chapter board")}</p>\n'
         )
 
         # Chapter rows.
@@ -86,8 +89,8 @@ class HtmlChapterStructureBoard(HtmlBoard):
                             attr=f'class="h{scId}"',
                         )
                     )
-            htmlText.append(f'</tr>')
-            htmlText.append(f'<tr>')
+            htmlText.append('</tr>')
+            htmlText.append('<tr>')
             htmlText.append(
                 self._new_cell(
                     self.novel.chapters[chId].desc,
