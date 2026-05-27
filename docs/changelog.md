@@ -10,6 +10,17 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.57.0
+
+- Added a HTML board with section cards, arranged by viewpoint.
+- Revised the HTML boards.
+   - Creating the board using one table.
+   - The section and plot point cards' frame has the element's color, if any.
+   - Renamed methods and constants.
+   - Building the chapter structure board without unused chapters.
+- Refactored the view classes.
+
+
 ### Version 5.56.9
 
 Refactored the code for Python 3.14.
