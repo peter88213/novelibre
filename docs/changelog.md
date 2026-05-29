@@ -10,6 +10,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.57.1
+
+- Revised the HTML time table report.
+   - Added a viewpoint column.
+   - The default border color for section title cells is white.
+
+
 ### Version 5.57.0
 
 - Added a HTML board with section cards, arranged by viewpoint.
