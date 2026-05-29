@@ -50,8 +50,9 @@ class HtmlTimetable(HtmlTable):
         htmlText.append(self._new_cell(_('Description')))
         htmlText.append(self._new_cell(_('Duration')))
         htmlText.append(self._new_cell(_('Viewpoint')))
-        htmlText.append(self._new_cell(_('Locations')))
         htmlText.append(self._new_cell(_('Characters')))
+        htmlText.append(self._new_cell(_('Locations')))
+        htmlText.append(self._new_cell(_('Items')))
         plotLines = self.novel.tree.get_children(PL_ROOT)
         for plId in plotLines:
             htmlText.append(
@@ -107,14 +108,30 @@ class HtmlTimetable(HtmlTable):
                 else:
                     vpTitle = ''
                     style = ''
+                htmlText.append(self._new_cell(vpTitle, attr=style))
                 htmlText.append(
                     self._new_cell(
-                        vpTitle,
-                        attr=style
+                        self._get_relations_str(
+                            section.characters,
+                            self.novel.characters
+                        )
                     )
                 )
-                htmlText.append(self._new_cell(self._get_location_str(scId)))
-                htmlText.append(self._new_cell(self._get_character_str(scId))
+                htmlText.append(
+                    self._new_cell(
+                        self._get_relations_str(
+                            section.locations,
+                            self.novel.locations
+                        )
+                    )
+                )
+                htmlText.append(
+                    self._new_cell(
+                        self._get_relations_str(
+                            section.items,
+                            self.novel.items
+                        )
+                    )
                 )
                 for plId in plotLines:
                     if scId in self.novel.plotLines[plId].sections:
@@ -135,14 +152,6 @@ class HtmlTimetable(HtmlTable):
         with open(self.filePath, 'w', encoding='utf-8') as f:
             f.write('\n'.join(htmlText))
 
-    def _get_character_str(self, scId):
-        # Return a comma-separated characters string for the section
-        # defined by scId.
-        characterTitles = []
-        for crId in self.novel.sections[scId].characters:
-            characterTitles.append(self.novel.characters[crId].title)
-        return list_to_string(characterTitles)
-
     def _get_date_day_str(self, scId):
         # Return a date/day string for the section defined by scId.
         if (
@@ -157,13 +166,12 @@ class HtmlTimetable(HtmlTable):
                 dateDayStr = ''
         return dateDayStr
 
-    def _get_location_str(self, scId):
-        # Return a comma-separated locations string for the section
-        # defined by scId.
-        locationTitles = []
-        for lcId in self.novel.sections[scId].locations:
-            locationTitles.append(self.novel.locations[lcId].title)
-        return list_to_string(locationTitles)
+    def _get_relations_str(self, relations, elements):
+        # Return a comma-separated relation titles string.
+        elementTitles = []
+        for elemId in relations:
+            elementTitles.append(elements[elemId].title)
+        return list_to_string(elementTitles)
 
     def _get_time_str(self, scId):
         # Return a time string for the section defined by scId.
