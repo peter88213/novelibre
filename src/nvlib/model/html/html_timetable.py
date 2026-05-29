@@ -31,7 +31,6 @@ class HtmlTimetable(HtmlTable):
 
         htmlText = [self._fileHeader]
         htmlText.extend(self._get_plot_line_styles())
-        htmlText.extend(self._get_extra_styles(self.novel.sections))
 
         # Build the HTML table.
         htmlText.append(
@@ -87,31 +86,29 @@ class HtmlTimetable(HtmlTable):
                         self._get_time_str(scId)
                     )
                 )
+                section = self.novel.sections[scId]
+                if section.color:
+                    style = f'style="border-left: 0.5em solid {section.color}"'
+                else:
+                    style = ''
+                htmlText.append(self._new_cell(section.title, attr=style))
+                htmlText.append(self._new_cell(section.desc))
                 htmlText.append(
-                    self._new_cell(
-                        self.novel.sections[scId].title,
-                        attr=f'class="{scId}"',
-                    )
-                )
-                htmlText.append(
-                    self._new_cell(
-                        self.novel.sections[scId].desc
-                    )
-                )
-                htmlText.append(
-                    self._new_cell(
-                        PyCalendar.get_duration_str(self.novel.sections[scId])
-                    )
+                    self._new_cell(PyCalendar.get_duration_str(section))
                 )
                 crId = self.novel.sections[scId].viewpoint
                 if crId is not None:
                     vp = self.novel.characters[crId]
                     vpTitle = vp.title
                     vpColor = vp.color or ''
+                    style = f'style="border-left: 0.5em solid {vpColor}"'
+                else:
+                    vpTitle = ''
+                    style = ''
                 htmlText.append(
                     self._new_cell(
                         vpTitle,
-                        attr=f'style="border-left: 0.5em solid {vpColor}"'
+                        attr=style
                     )
                 )
                 htmlText.append(
