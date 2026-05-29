@@ -87,11 +87,13 @@ class HtmlTimetable(HtmlTable):
                     )
                 )
                 section = self.novel.sections[scId]
-                if section.color:
-                    style = f'style="border-left: 0.5em solid {section.color}"'
-                else:
-                    style = ''
-                htmlText.append(self._new_cell(section.title, attr=style))
+                color = section.color or '#ffffff'
+                htmlText.append(
+                    self._new_cell(
+                        section.title,
+                        attr=f'style="border-left: 0.5em solid {color}"'
+                    )
+                )
                 htmlText.append(self._new_cell(section.desc))
                 htmlText.append(
                     self._new_cell(PyCalendar.get_duration_str(section))
@@ -100,8 +102,8 @@ class HtmlTimetable(HtmlTable):
                 if crId is not None:
                     vp = self.novel.characters[crId]
                     vpTitle = vp.title
-                    vpColor = vp.color or ''
-                    style = f'style="border-left: 0.5em solid {vpColor}"'
+                    color = vp.color or '#ffffff'
+                    style = f'style="border-left: 0.5em solid {color}"'
                 else:
                     vpTitle = ''
                     style = ''
@@ -111,15 +113,8 @@ class HtmlTimetable(HtmlTable):
                         attr=style
                     )
                 )
-                htmlText.append(
-                    self._new_cell(
-                        self._get_location_str(scId)
-                    )
-                )
-                htmlText.append(
-                    self._new_cell(
-                        self._get_character_str(scId)
-                    )
+                htmlText.append(self._new_cell(self._get_location_str(scId)))
+                htmlText.append(self._new_cell(self._get_character_str(scId))
                 )
                 for plId in plotLines:
                     if scId in self.novel.plotLines[plId].sections:
