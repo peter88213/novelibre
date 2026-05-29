@@ -50,6 +50,7 @@ class HtmlTimetable(HtmlTable):
         htmlText.append(self._new_cell(_('Section')))
         htmlText.append(self._new_cell(_('Description')))
         htmlText.append(self._new_cell(_('Duration')))
+        htmlText.append(self._new_cell(_('Viewpoint')))
         htmlText.append(self._new_cell(_('Locations')))
         htmlText.append(self._new_cell(_('Characters')))
         plotLines = self.novel.tree.get_children(PL_ROOT)
@@ -100,6 +101,17 @@ class HtmlTimetable(HtmlTable):
                 htmlText.append(
                     self._new_cell(
                         PyCalendar.get_duration_str(self.novel.sections[scId])
+                    )
+                )
+                crId = self.novel.sections[scId].viewpoint
+                if crId is not None:
+                    vp = self.novel.characters[crId]
+                    vpTitle = vp.title
+                    vpColor = vp.color or ''
+                htmlText.append(
+                    self._new_cell(
+                        vpTitle,
+                        attr=f'style="border-left: 0.5em solid {vpColor}"'
                     )
                 )
                 htmlText.append(
