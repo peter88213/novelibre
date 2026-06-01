@@ -34,6 +34,7 @@ CHARLIST_SUFFIX = '_charlist_tmp'
 DATA_SUFFIX = '_data'
 ELEMENT_NOTES_SUFFIX = '_element_note_report',
 FULL_MANUSCRIPT_SUFFIX = '_full_tmp'
+GRID_REPORT_SUFFIX = '_grid_report'
 GRID_SUFFIX = '_grid_tmp'
 ITEMLIST_SUFFIX = '_itemlist_tmp'
 ITEMS_SUFFIX = '_items_tmp'

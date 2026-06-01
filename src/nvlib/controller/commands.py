@@ -26,6 +26,7 @@ from nvlib.novx_globals import DATA_SUFFIX
 from nvlib.novx_globals import ELEMENT_NOTES_SUFFIX
 from nvlib.novx_globals import FULL_MANUSCRIPT_SUFFIX
 from nvlib.novx_globals import GRID_SUFFIX
+from nvlib.novx_globals import GRID_REPORT_SUFFIX
 from nvlib.novx_globals import ITEMLIST_SUFFIX
 from nvlib.novx_globals import ITEMS_SUFFIX
 from nvlib.novx_globals import ITEM_PREFIX
@@ -733,6 +734,9 @@ class Commands:
 
     def show_location_list(self, event=None):
         self.fileManager.show_report(LOCATION_REPORT_SUFFIX)
+
+    def show_plot_grid(self, event=None):
+        self.fileManager.show_report(GRID_REPORT_SUFFIX)
 
     def show_plot_table(self, event=None):
         self.fileManager.show_report(PLOTLIST_SUFFIX)

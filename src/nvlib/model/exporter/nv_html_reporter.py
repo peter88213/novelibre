@@ -13,6 +13,7 @@ from nvlib.model.html.html_characters import HtmlCharacters
 from nvlib.model.html.html_element_notes import HtmlElementNotes
 from nvlib.model.html.html_items import HtmlItems
 from nvlib.model.html.html_locations import HtmlLocations
+from nvlib.model.html.html_grid import HtmlGrid
 from nvlib.model.html.html_plot_line_board import HtmlPlotLineBoard
 from nvlib.model.html.html_plot_list import HtmlPlotList
 from nvlib.model.html.html_project_notes import HtmlProjectNotes
@@ -29,18 +30,19 @@ class NvHtmlReporter:
     Otherwise, the project directory is used. 
     """
     EXPORT_TARGET_CLASSES = [
+        HtmlChapterBoard,
         HtmlCharacters,
         HtmlElementNotes,
-        HtmlLocations,
+        HtmlGrid,
         HtmlItems,
-        HtmlPlotList,
+        HtmlLocations,
         HtmlPlotLineBoard,
+        HtmlPlotList,
         HtmlProjectNotes,
-        HtmlChapterBoard,
         HtmlStoryStructureBoard,
         HtmlTimetable,
         HtmlViewpointBoard,
-        ]
+    ]
 
     def __init__(self):
         """Create strategy class instances.

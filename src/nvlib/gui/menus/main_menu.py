@@ -972,6 +972,12 @@ class MainMenu:
             command=self._ctrl.export_plot_list,
         )
 
+        label = _('Show Plot grid in browser')
+        self.plotLinesMenu.add_command(
+            label=label,
+            command=self._ctrl.show_plot_grid,
+        )
+
         label = _('Show Plot table in browser')
         self.plotLinesMenu.add_command(
             label=label,
