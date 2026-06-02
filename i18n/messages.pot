@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.57.2\n"
-"POT-Creation-Date: 2026-05-29 21:08:31\n"
+"POT-Creation-Date: 2026-06-02 13:32:43\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -950,6 +950,9 @@ msgstr ""
 msgid "No relationship found"
 msgstr ""
 
+msgid "No sections found"
+msgstr ""
+
 msgid "No stages found"
 msgstr ""
 
@@ -1374,6 +1377,9 @@ msgid "Show Items"
 msgstr ""
 
 msgid "Show Locations"
+msgstr ""
+
+msgid "Show Plot grid in browser"
 msgstr ""
 
 msgid "Show Plot line board in browser"
