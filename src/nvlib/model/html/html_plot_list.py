@@ -5,7 +5,6 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.model.html.html_table import HtmlTable
-from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import PLOTLIST_SUFFIX
 from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import list_to_string
@@ -17,75 +16,89 @@ class HtmlPlotList(HtmlTable):
     DESCRIPTION = _('HTML Plot table')
     SUFFIX = PLOTLIST_SUFFIX
 
-    def write(self):
-        """Create a HTML table.
+    _fileHeader = (
+        f'{HtmlTable._fileHeader}$Styles'
+        f'<title>{_("Plot lines")} ($Title)</title>\n'
+        '</head>\n'
+        '<body>\n'
+        f'<p class=title>$Title {_("by")} $AuthorName - '
+        f'{_("Plot lines")}</p>\n'
+        '<table>\n'
+        '<tr class="heading">\n'
+        f'<td>{_("Title")}</td>\n'
+        '$PlotlineCells\n'
+        '</tr>\n'
+    )
+    _sectionTemplate = (
+        '<tr>\n'
+        '<td class="$ID"><p>$Title</p></td>\n'
+        '$PlotlineCells\n'
+        '</tr>\n'
+    )
+
+    def _get_fileHeaderMapping(self):
+        """Return a mapping dictionary for the project section.
         
-        Overwrites the superclass method.
+        Extends the superclass method.
         """
+        fileHeaderMapping = super()._get_fileHeaderMapping()
 
-        # Collect the plot lines.
-        srtPlotLines = self.novel.tree.get_children(PL_ROOT)
-        if not srtPlotLines:
-            raise UserWarning(f'{_("No plot lines found")}.')
+        #--- Cells for the plot points: one column per plot line.
+        fileHeaderMapping['PlotlineCells'] = '\n'.join([
+            f'<td class="h{plId}"><p>{self.novel.plotLines[plId].title}</p></td>\n'
+            for plId in self.novel.tree.get_children(PL_ROOT)
+        ])
+        extraStyles = self._get_extra_styles(self.novel.sections)
+        extraStyles.extend(self._get_plot_line_styles())
+        fileHeaderMapping['Styles'] = '\n'.join(extraStyles)
+        return fileHeaderMapping
 
-        htmlText = [self._fileHeader]
-        htmlText.extend(self._get_plot_line_styles())
-        htmlText.extend(self._get_extra_styles(self.novel.sections))
-
-        htmlText.append(
-            f'<title>{_("Plot lines")} ({self.novel.title})</title>\n'
-            '</head>\n'
-            '<body>\n'
-            f'<p class=title>{self.novel.title} - {_("Plot lines")}</p>\n'
-            '<table>'
+    def _get_sectionMapping(
+            self,
+            scId,
+            sectionNumber,
+            wordsTotal,
+            firstInChapter=False,
+            isEpigraph=False,
+    ):
+        """Return a mapping dictionary for a section section.
+        
+        Positional arguments:
+            scId: str -- section ID.
+            sectionNumber: int -- section number to be displayed.
+            wordsTotal: int -- accumulated wordcount.
+        
+        Extends the superclass method.
+        """
+        sectionMapping = super()._get_sectionMapping(
+            scId,
+            sectionNumber,
+            wordsTotal,
+            firstInChapter,
+            isEpigraph,
         )
 
-        # Title row.
-        htmlText.append('<tr class="heading">')
-        htmlText.append(self._new_cell(''))
-        for plId in srtPlotLines:
-            htmlText.append(
-                self._new_cell(
-                    self.novel.plotLines[plId].title,
-                    attr=(f'class="h{plId}"')
-                )
-            )
-        htmlText.append('</tr>')
-
-        # Section rows.
-        for chId in self.novel.tree.get_children(CH_ROOT):
-            for scId in self.novel.tree.get_children(chId):
-                # Section row
-                if self.novel.sections[scId].scType == 0:
-                    htmlText.append(f'<tr>')
-                    htmlText.append(
-                        self._new_cell(
-                            self.novel.sections[scId].title,
-                            attr=f'class="{scId}"',
+        # Plotline cells: one per plot line.
+        plotlineCells = []
+        for plId in self.novel.tree.get_children(PL_ROOT):
+            if scId in self.novel.plotLines[plId].sections:
+                attr = f' class="{plId}"'
+                plotPoints = []
+                for ppId in self.novel.tree.get_children(plId):
+                    if (
+                        scId ==
+                        self.novel.plotPoints[ppId].sectionAssoc
+                    ):
+                        plotPoints.append(
+                            self.novel.plotPoints[ppId].title
                         )
-                    )
-                    for plId in srtPlotLines:
-                        if scId in self.novel.plotLines[plId].sections:
-                            plotPoints = []
-                            for ppId in self.novel.tree.get_children(plId):
-                                if (
-                                    scId ==
-                                    self.novel.plotPoints[ppId].sectionAssoc
-                                ):
-                                    plotPoints.append(
-                                        self.novel.plotPoints[ppId].title
-                                    )
-                            htmlText.append(
-                                self._new_cell(
-                                    list_to_string(plotPoints),
-                                    attr=(f'class="{plId}"')
-                                )
-                            )
-                        else:
-                            htmlText.append(self._new_cell(''))
-                    htmlText.append(f'</tr>')
-
-        htmlText.append(self._fileFooter)
-        with open(self.filePath, 'w', encoding='utf-8') as f:
-            f.write('\n'.join(htmlText))
+                plotPointTitles = list_to_string(plotPoints)
+            else:
+                attr = ''
+                plotPointTitles = ''
+            plotlineCells.append(
+                f'<td{attr}><p>{plotPointTitles}</p></td>\n'
+            )
+        sectionMapping['PlotlineCells'] = '\n'.join(plotlineCells)
+        return sectionMapping
 
