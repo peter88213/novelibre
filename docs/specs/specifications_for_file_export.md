@@ -121,7 +121,7 @@ There are two options:
 -   `$LastsDays` - Amount of time section lasts: days
 -   `$LastsHours` - Amount of time section lasts: hours
 -   `$LastsMinutes` - Amount of time section lasts: minutes
--   `Duration` - Combination of days and hours and minutes
+-   `$Duration` - Combination of days and hours and minutes
 -   `$Scene` - The sections's kind of scene, if any
 -   `$Goal` - The section protagonist's goal
 -   `$Conflict` - The section conflict
