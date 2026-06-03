@@ -43,7 +43,7 @@ class HtmlTable(HtmlReport):
 
     def _get_extra_styles(self, elements):
 
-        DEFAULT_COLOR = '#dfdfdf'
+        DEFAULT_COLOR = '#ffffff'
 
         htmlText = []
         htmlText.append('<style type="text/css">')
@@ -67,23 +67,20 @@ class HtmlTable(HtmlReport):
     def _get_plot_line_styles(self):
 
         # Set up styles that define the plot line colors.
-        DEFAULT_PLOTLINE_COLOR = '#dfdfdf'
-        DEFAULT_TEXT_COLOR = BLACK = '#000000'
+        NODE_BACKGROUND = '#dfdfdf'
+        NODE_FOREGROUND = BLACK = '#000000'
         WHITE = '#ffffff'
+        DEFAULT_PL_COLOR = BLACK
 
         htmlText = []
         htmlText.append('<style type="text/css">')
         for plId in self.novel.plotLines:
-            plColor = self.novel.plotLines[plId].color
-            if plColor is not None:
-                if HexColor.is_dark(plColor):
-                    fgColor = WHITE
-                else:
-                    fgColor = BLACK
-                bgColor = plColor
+            plColor = self.novel.plotLines[plId].color or DEFAULT_PL_COLOR
+            if HexColor.is_dark(plColor):
+                fgColor = WHITE
             else:
-                fgColor = DEFAULT_TEXT_COLOR
-                bgColor = DEFAULT_PLOTLINE_COLOR
+                fgColor = BLACK
+            bgColor = plColor
 
             # Plot line column heading cell style.
             htmlText.append(
@@ -97,8 +94,8 @@ class HtmlTable(HtmlReport):
             htmlText.append(
                 f'td.{plId} {{'
                 f'border-left: 0.5em solid {bgColor}; '
-                f'background: {DEFAULT_PLOTLINE_COLOR}; '
-                f'color: {DEFAULT_TEXT_COLOR}'
+                f'background: {NODE_BACKGROUND}; '
+                f'color: {NODE_FOREGROUND}'
                 '}'
             )
         htmlText.append(
