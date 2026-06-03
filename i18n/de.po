@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.57.2\n"
+"Project-Id-Version: 5.58.0\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-06-02 13:31:07\n"
+"PO-Revision-Date: 2026-06-03 17:49:13\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -942,9 +942,6 @@ msgstr "Keine Projektnotizen gefunden"
 
 msgid "No relationship found"
 msgstr "Keine Beziehung gefunden"
-
-msgid "No sections found"
-msgstr "Keine Abschnitte gefunden"
 
 msgid "No stages found"
 msgstr "Kein Stadium gefunden"

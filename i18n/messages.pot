@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.57.2\n"
-"POT-Creation-Date: 2026-06-02 13:32:43\n"
+"Project-Id-Version: 5.58.0\n"
+"POT-Creation-Date: 2026-06-03 17:49:13\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -948,9 +948,6 @@ msgid "No project notes found"
 msgstr ""
 
 msgid "No relationship found"
-msgstr ""
-
-msgid "No sections found"
 msgstr ""
 
 msgid "No stages found"

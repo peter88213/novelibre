@@ -10,6 +10,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.58.0
+
+- New HTML report: plot grid.
+- Changed the default plot line color for the reports and export documents.
+- Refactored the code for better maintainability.
+
+
 ### Version 5.57.2
 
 - Revised the HTML time table report.
