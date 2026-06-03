@@ -4,13 +4,14 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from nvlib.model.html.html_plot_list import HtmlPlotList
 from nvlib.model.html.html_table import HtmlTable
 from nvlib.novx_globals import GRID_REPORT_SUFFIX
 from nvlib.novx_globals import PL_ROOT
 from nvlib.nv_locale import _
 
 
-class HtmlGrid(HtmlTable):
+class HtmlGrid(HtmlPlotList):
     """html plot grid representation."""
     DESCRIPTION = f"HTML {_('Plot grid')}"
     SUFFIX = GRID_REPORT_SUFFIX
@@ -56,23 +57,6 @@ class HtmlGrid(HtmlTable):
         '<td>$Notes</td>\n'
         '</tr>\n'
     )
-
-    def _get_fileHeaderMapping(self):
-        """Return a mapping dictionary for the project section.
-        
-        Extends the superclass method.
-        """
-        fileHeaderMapping = super()._get_fileHeaderMapping()
-
-        #--- Cells for the plot line notes: one column per plot line.
-        fileHeaderMapping['PlotlineCells'] = '\n'.join([
-            f'<td class="h{plId}"><p>{self.novel.plotLines[plId].title}</p></td>\n'
-            for plId in self.novel.tree.get_children(PL_ROOT)
-        ])
-        extraStyles = self._get_extra_styles(self.novel.sections)
-        extraStyles.extend(self._get_plot_line_styles())
-        fileHeaderMapping['Styles'] = '\n'.join(extraStyles)
-        return fileHeaderMapping
 
     def _get_sectionMapping(
             self,
