@@ -362,12 +362,11 @@ class OdsWGrid(OdsWriter):
                 ),
             )
             arcIdCells.append(
-                Template(self._arcIdCell
-            ).safe_substitute(mapping))
+                Template(self._arcIdCell).safe_substitute(mapping)
+            )
             arcTitleCells.append(
-                Template(
-                    self._arcTitleCell
-                ).safe_substitute(mapping))
+                Template(self._arcTitleCell).safe_substitute(mapping)
+            )
         fileHeaderMapping['ArcColumns'] = '\n'.join(arcColumns)
         fileHeaderMapping['ArcIdCells'] = '\n'.join(arcIdCells)
         fileHeaderMapping['ArcTitleCells'] = '\n'.join(arcTitleCells)
@@ -433,9 +432,8 @@ class OdsWGrid(OdsWriter):
                 'ID':plId,
             }
             arcNoteCells.append(
-                Template(
-                    self._arcNoteCell
-                ).safe_substitute(mapping))
+                Template(self._arcNoteCell).safe_substitute(mapping)
+            )
         sectionMapping['ArcNoteCells'] = '\n'.join(arcNoteCells)
 
         return sectionMapping
