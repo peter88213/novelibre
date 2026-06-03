@@ -65,7 +65,7 @@ class OdsWGrid(OdsWriter):
         'table:default-cell-style-name="Default"/>\n'
         '    <table:table-column table:style-name="co2" '
         'table:default-cell-style-name="Default"/>\n'
-        '$ArcColumns\n'
+        '$PlotlineColumns\n'
         '    <table:table-column table:style-name="co3" '
         'table:default-cell-style-name="Default"/>\n'
         '    <table:table-column table:style-name="co1" '
@@ -118,7 +118,7 @@ class OdsWGrid(OdsWriter):
         'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>Viewpoint</text:p>\n'
         '     </table:table-cell>\n'
-        '$ArcIdCells\n'
+        '$PlotlineIdCells\n'
         '     <table:table-cell '
         'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>Tags</text:p>\n'
@@ -183,7 +183,7 @@ class OdsWGrid(OdsWriter):
         'table:style-name="Heading" office:value-type="string">\n'
         f'      <text:p>{_("Viewpoint")}</text:p>\n'
         '     </table:table-cell>\n'
-        '$ArcTitleCells\n'
+        '$PlotlineTitleCells\n'
         '     <table:table-cell '
         'table:style-name="Heading" office:value-type="string">\n'
         f'      <text:p>{_("Tags")}</text:p>\n'
@@ -244,7 +244,7 @@ class OdsWGrid(OdsWriter):
         '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$Viewpoint</text:p>\n'
         '     </table:table-cell>\n'
-        '$ArcNoteCells\n'
+        '$PlotlineNoteCells\n'
         '     <table:table-cell office:value-type="string">\n'
         '      <text:p>$Tags</text:p>\n'
         '     </table:table-cell>\n'
@@ -280,18 +280,18 @@ class OdsWGrid(OdsWriter):
         '      <text:p>$Time</text:p>\n'
         '     </table:table-cell>\n'
     )
-    _arcNoteCell = (
+    _plotlineNoteCell = (
         '     <table:table-cell office:value-type="string">\n'
-        '      <text:p>$ArcNote</text:p>\n'
+        '      <text:p>$PlotlineNote</text:p>\n'
         '     </table:table-cell>\n'
     )
-    _arcIdCell = (
+    _plotlineIdCell = (
         '     <table:table-cell '
         'table:style-name="Heading" office:value-type="string">\n'
         '      <text:p>$ArcId</text:p>\n'
         '     </table:table-cell>\n'
     )
-    _arcTitleCell = (
+    _plotlineTitleCell = (
         '     <table:table-cell $Link '
         'table:style-name="h$ArcId" office:value-type="string">\n'
         '      <text:p>$ArcTitle</text:p>\n'
@@ -338,15 +338,15 @@ class OdsWGrid(OdsWriter):
         fileHeaderMapping = super()._get_fileHeaderMapping()
 
         #--- Cells for the plot line notes: one column per plot line.
-        arcColumns = []
-        arcIdCells = []
-        arcTitleCells = []
+        plotlineColumns = []
+        plotlineIdCells = []
+        plotlineTitleCells = []
         for plId in self.novel.tree.get_children(PL_ROOT):
             link = self._convert_from_novx(
                 self.novel.plotLines[plId].title,
                 isLink=True,
             )
-            arcColumns.append(
+            plotlineColumns.append(
                 '    <table:table-column table:style-name="co4" '
                 f'table:default-cell-style-name="Default"/>'
             )
@@ -361,15 +361,15 @@ class OdsWGrid(OdsWriter):
                     f'{link}&quot;)"'
                 ),
             )
-            arcIdCells.append(
-                Template(self._arcIdCell).safe_substitute(mapping)
+            plotlineIdCells.append(
+                Template(self._plotlineIdCell).safe_substitute(mapping)
             )
-            arcTitleCells.append(
-                Template(self._arcTitleCell).safe_substitute(mapping)
+            plotlineTitleCells.append(
+                Template(self._plotlineTitleCell).safe_substitute(mapping)
             )
-        fileHeaderMapping['ArcColumns'] = '\n'.join(arcColumns)
-        fileHeaderMapping['ArcIdCells'] = '\n'.join(arcIdCells)
-        fileHeaderMapping['ArcTitleCells'] = '\n'.join(arcTitleCells)
+        fileHeaderMapping['PlotlineColumns'] = '\n'.join(plotlineColumns)
+        fileHeaderMapping['PlotlineIdCells'] = '\n'.join(plotlineIdCells)
+        fileHeaderMapping['PlotlineTitleCells'] = '\n'.join(plotlineTitleCells)
         extraStyles = self._get_extra_styles(self.novel.sections)
         extraHeadingStyles = self._get_extra_h_styles(self.novel.plotLines)
         fileHeaderMapping['Styles'] = f'{extraStyles}{extraHeadingStyles}'
@@ -419,22 +419,22 @@ class OdsWGrid(OdsWriter):
         else:
             sectionMapping['TimeCell'] = self._emptyTimeCell
 
-        #--- $ArcNoteCells: one per plot line.
-        arcNoteCells = []
+        #--- Plotline cells: one per plot line.
+        plotlineCells = []
         for plId in self.novel.tree.get_children(PL_ROOT):
             plotlineNotes = self.novel.sections[scId].plotlineNotes
             if plotlineNotes:
-                arcNote = plotlineNotes.get(plId, '')
+                plotlineNote = plotlineNotes.get(plId, '')
             else:
-                arcNote = ''
+                plotlineNote = ''
             mapping = {
-                'ArcNote':arcNote,
+                'PlotlineNote':plotlineNote,
                 'ID':plId,
             }
-            arcNoteCells.append(
-                Template(self._arcNoteCell).safe_substitute(mapping)
+            plotlineCells.append(
+                Template(self._plotlineNoteCell).safe_substitute(mapping)
             )
-        sectionMapping['ArcNoteCells'] = '\n'.join(arcNoteCells)
+        sectionMapping['PlotlineNoteCells'] = '\n'.join(plotlineCells)
 
         return sectionMapping
 
