@@ -88,7 +88,7 @@
   <style:style style:name="sc29" style:family="table-cell" style:parent-style-name="Default">
    <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
   </style:style>  <style:style style:name="hac5" style:family="table-cell" style:parent-style-name="Heading">
-   <style:table-cell-properties fo:border-bottom="none" fo:border-left="none" fo:border-right="none" fo:border-top="0.176cm solid #f0f0f0"/>
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="none" fo:border-right="none" fo:border-top="0.176cm solid #000000"/>
   </style:style> </office:automatic-styles>
  <office:body>
   <office:spreadsheet>
