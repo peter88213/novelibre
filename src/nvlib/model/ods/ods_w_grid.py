@@ -300,7 +300,7 @@ class OdsWGrid(OdsWriter):
 
     def _get_extra_h_styles(self, elements):
 
-        DEFAULT_BG_COLOR = '#f0f0f0'
+        DEFAULT_BG_COLOR = '#000000'
 
         # Element column heading cell style.
         styleTemplateHeading = (
@@ -317,12 +317,7 @@ class OdsWGrid(OdsWriter):
         mappings = {}
         xmlText = []
         for elemId in elements:
-            elemColor = elements[elemId].color
-            if elemColor is not None:
-                bgColor = elemColor
-            else:
-                bgColor = DEFAULT_BG_COLOR
-
+            bgColor = elements[elemId].color or DEFAULT_BG_COLOR
             mappings['Name'] = elemId
             mappings['BgColor'] = bgColor
             styleXml = Template(styleTemplateHeading)
@@ -377,12 +372,12 @@ class OdsWGrid(OdsWriter):
         return fileHeaderMapping
 
     def _get_sectionMapping(
-            self,
-            scId,
-            sectionNumber,
-            wordsTotal,
-            firstInChapter=False,
-            isEpigraph=False,
+        self,
+        scId,
+        sectionNumber,
+        wordsTotal,
+        firstInChapter=False,
+        isEpigraph=False,
     ):
         """Return a mapping dictionary for a section section.
         
