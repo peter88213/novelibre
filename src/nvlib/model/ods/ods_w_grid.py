@@ -288,13 +288,13 @@ class OdsWGrid(OdsWriter):
     _plotlineIdCell = (
         '     <table:table-cell '
         'table:style-name="Heading" office:value-type="string">\n'
-        '      <text:p>$ArcId</text:p>\n'
+        '      <text:p>$PlotlineId</text:p>\n'
         '     </table:table-cell>\n'
     )
     _plotlineTitleCell = (
         '     <table:table-cell $Link '
-        'table:style-name="h$ArcId" office:value-type="string">\n'
-        '      <text:p>$ArcTitle</text:p>\n'
+        'table:style-name="h$PlotlineId" office:value-type="string">\n'
+        '      <text:p>$PlotlineTitle</text:p>\n'
         '     </table:table-cell>\n'
     )
 
@@ -346,8 +346,8 @@ class OdsWGrid(OdsWriter):
                 f'table:default-cell-style-name="Default"/>'
             )
             mapping = dict(
-                ArcId=plId,
-                ArcTitle=self.novel.plotLines[plId].title,
+                PlotlineId=plId,
+                PlotlineTitle=self.novel.plotLines[plId].title,
                 Link=(
                     'table:formula="of:=HYPERLINK(&quot;'
                     f'file:///{self.projectPath}/'
