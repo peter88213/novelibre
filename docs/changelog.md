@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.58.1
+
+- Fixed list delimiters in the plot line tables and timetable.
+- Refactored the code for smaller size.
+
+
 ### Version 5.58.0
 
 - New HTML report: plot grid.

@@ -31,8 +31,5 @@ NOT_ASSIGNED = ''
 
 def to_string(text):
     """Return text, converted to a string."""
-    if text is None:
-        return ''
-
-    return str(text)
+    return str(text or '')
 

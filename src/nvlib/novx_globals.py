@@ -130,14 +130,12 @@ def list_to_string(elements, divider=';'):
         divider -- string that divides the substrings.
     
     Return a string which is the concatenation of the 
-    members of the list of strings "elements", separated by 
-    a comma plus a space. The space allows word wrap in 
-    spreadsheet cells.
+    members of the list of strings "elements", 
+    separated by divider.
     If an error occurs, return an empty string.
     """
     try:
-        text = divider.join(elements)
-        return text
+        return divider.join(elements)
 
     except:
         return ''

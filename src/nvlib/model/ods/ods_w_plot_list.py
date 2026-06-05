@@ -90,7 +90,10 @@ class OdsWPlotList(OdsWriter):
                                     )
                             odsText.append(
                                 self._new_cell(
-                                    list_to_string(plotPoints),
+                                    list_to_string(
+                                        plotPoints,
+                                        divider=self._DIVIDER
+                                    ),
                                     attr=f'table:style-name="{plId}" '
                                 )
                             )

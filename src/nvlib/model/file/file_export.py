@@ -140,9 +140,7 @@ class FileExport(File):
         
         Overrides the superclass method.
         """
-        if text is None:
-            text = ''
-        return(text)
+        return(text or '')
 
     def _get_chapterMapping(self, chId, chapterNumber):
         """Return a mapping dictionary for a chapter section.

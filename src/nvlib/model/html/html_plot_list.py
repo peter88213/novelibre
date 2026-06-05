@@ -92,7 +92,10 @@ class HtmlPlotList(HtmlTable):
                         plotPoints.append(
                             self.novel.plotPoints[ppId].title
                         )
-                plotPointTitles = list_to_string(plotPoints)
+                plotPointTitles = list_to_string(
+                    plotPoints,
+                    divider=self._DIVIDER
+                )
             else:
                 attr = ''
                 plotPointTitles = ''

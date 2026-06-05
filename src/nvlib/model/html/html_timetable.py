@@ -171,7 +171,10 @@ class HtmlTimetable(HtmlTable):
         elementTitles = []
         for elemId in relations:
             elementTitles.append(elements[elemId].title)
-        return list_to_string(elementTitles)
+        return list_to_string(
+            elementTitles,
+            divider=self._DIVIDER
+        )
 
     def _get_time_str(self, scId):
         # Return a time string for the section defined by scId.
