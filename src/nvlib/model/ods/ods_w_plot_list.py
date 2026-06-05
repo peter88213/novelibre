@@ -40,10 +40,8 @@ class OdsWPlotList(OdsWriter):
         ]
 
         # Get plot lines.
-        if self.novel.tree.get_children(PL_ROOT) is not None:
-            srtPlotLines = self.novel.tree.get_children(PL_ROOT)
-        else:
-            srtPlotLines = []
+        srtPlotLines = self.novel.tree.get_children(PL_ROOT)
+        print(srtPlotLines)
 
         # Plot line columns.
         for plId in srtPlotLines:
@@ -164,9 +162,7 @@ class OdsWPlotList(OdsWriter):
     def _get_fileHeaderMapping(self):
         extraStyles = self._get_extra_styles(self.novel.sections)
         extraHeadingStyles = self._get_extra_h_styles(self.novel.plotLines)
-        fileHeaderMapping = {
-            'Styles': f'{extraStyles}{extraHeadingStyles}'
-        }
+        fileHeaderMapping = {'Styles': f'{extraStyles}{extraHeadingStyles}'}
         return fileHeaderMapping
 
     def _new_cell(self, text, attr='', link=''):

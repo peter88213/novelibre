@@ -45,8 +45,7 @@ class HtmlTable(HtmlReport):
 
         DEFAULT_COLOR = '#ffffff'
 
-        htmlText = []
-        htmlText.append('<style type="text/css">')
+        htmlText = ['<style type="text/css">']
         for elemId in elements:
             elemColor = elements[elemId].color
             if elemColor is not None:
@@ -59,9 +58,7 @@ class HtmlTable(HtmlReport):
                 f'border-left: 0.5em solid {bgColor}'
                 '}'
             )
-        htmlText.append(
-            '</style>\n'
-        )
+        htmlText.append('</style>\n')
         return htmlText
 
     def _get_plot_line_styles(self):
@@ -72,8 +69,7 @@ class HtmlTable(HtmlReport):
         WHITE = '#ffffff'
         DEFAULT_PL_COLOR = BLACK
 
-        htmlText = []
-        htmlText.append('<style type="text/css">')
+        htmlText = ['<style type="text/css">']
         for plId in self.novel.plotLines:
             plColor = self.novel.plotLines[plId].color or DEFAULT_PL_COLOR
             if HexColor.is_dark(plColor):

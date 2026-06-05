@@ -58,10 +58,7 @@ class File(ABC):
         - Accept only filenames with the right suffix and extension.
         """
         filePath = filePath.replace('\\', '/')
-        if self.SUFFIX is not None:
-            suffix = self.SUFFIX
-        else:
-            suffix = ''
+        suffix = self.SUFFIX or ''
         if filePath.lower().endswith(f'{suffix}{self.EXTENSION}'.lower()):
             self._filePath = filePath
             try:

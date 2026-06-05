@@ -47,38 +47,10 @@ class Moon:
         
         Phase day, fraction, and a pseudo-graphic display.
         """
-        moonViews = [
-            '🌑',
-            '🌑',
-            '🌒',
-            '🌒',
-            '🌒',
-            '🌒',
-            '🌓',
-            '🌓',
-            '🌓',
-            '🌓',
-            '🌔',
-            '🌔',
-            '🌔',
-            '🌔',
-            '🌕',
-            '🌕',
-            '🌕',
-            '🌖',
-            '🌖',
-            '🌖',
-            '🌖',
-            '🌗',
-            '🌗',
-            '🌗',
-            '🌗',
-            '🌘',
-            '🌘',
-            '🌘',
-            '🌘',
-            '🌑'
-        ]
+        moonViews = (
+            '🌑🌑🌒🌒🌒🌒🌓🌓🌓🌓🌔🌔🌔🌔🌕'
+            '🌕🌕🌖🌖🌖🌖🌗🌗🌗🌗🌘🌘🌘🌘🌑'
+        )
         moonFractions = '00¼¼¼¼½½½½¾¾¾¾111¾¾¾¾½½½½¼¼¼¼0'
         moonPhaseDay = cls.get_phase_day(isoDate)
         if moonPhaseDay is not None:

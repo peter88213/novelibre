@@ -344,16 +344,11 @@ class OdsWriter(OdfFile):
 
         text = text.rstrip()
         entities = {"'": '&apos;'}
-        if isLink:
-            entities['"'] = '&apos;'
-        else:
-            entities['"'] = '&quot;'
+        entities['"'] = '&apos;' if isLink else '&quot;'
         text = sax.saxutils.escape(text, entities=entities)
         return text.replace('\n', '</text:p>\n<text:p>')
 
     def _get_extra_styles(self, elements):
-
-        DEFAULT_BG_COLOR = '#f0f0f0'
 
         # Element name cell style.
         styleTemplate = (
@@ -367,19 +362,11 @@ class OdsWriter(OdfFile):
             '  </style:style>'
         )
 
-        mappings = {
-            'DefaultBgColor': DEFAULT_BG_COLOR,
-        }
+        mappings = {}
         xmlText = []
         for elemId in elements:
-            elemColor = elements[elemId].color
-            if elemColor is not None:
-                bgColor = elemColor
-            else:
-                bgColor = DEFAULT_BG_COLOR
-
             mappings['Name'] = elemId
-            mappings['BgColor'] = bgColor
+            mappings['BgColor'] = elements[elemId].color or '#ffffff'
             styleXml = Template(styleTemplate)
             xmlText.append(styleXml.substitute(mappings))
         return '\n'.join(xmlText)

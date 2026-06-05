@@ -83,35 +83,19 @@ class SectionNovx(BasicElementTagsNovx):
             self._get_element_text(xmlElement, 'LastsMinutes')
         )
 
-        # Characters references.
-        scCharacters = []
-        xmlCharacters = xmlElement.find('Characters')
-        if xmlCharacters is not None:
-            crIds = xmlCharacters.get('ids', None)
-            if crIds is not None:
-                for crId in string_to_list(crIds, divider=' '):
-                    scCharacters.append(crId)
-        element.characters = scCharacters
+        def get_references(tag):
+            scReferences = []
+            xmlReferences = xmlElement.find(tag)
+            if xmlReferences is not None:
+                refIds = xmlReferences.get('ids', None)
+                if refIds is not None:
+                    for refId in string_to_list(refIds, divider=' '):
+                        scReferences.append(refId)
+            return scReferences
 
-        # Locations references.
-        scLocations = []
-        xmlLocations = xmlElement.find('Locations')
-        if xmlLocations is not None:
-            lcIds = xmlLocations.get('ids', None)
-            if lcIds is not None:
-                for lcId in string_to_list(lcIds, divider=' '):
-                    scLocations.append(lcId)
-        element.locations = scLocations
-
-        # Items references.
-        scItems = []
-        xmlItems = xmlElement.find('Items')
-        if xmlItems is not None:
-            itIds = xmlItems.get('ids', None)
-            if itIds is not None:
-                for itId in string_to_list(itIds, divider=' '):
-                    scItems.append(itId)
-        element.items = scItems
+        element.characters = get_references('Characters')
+        element.locations = get_references('Locations')
+        element.items = get_references('Items')
 
         # Content.
         xmlContent = xmlElement.find('Content')

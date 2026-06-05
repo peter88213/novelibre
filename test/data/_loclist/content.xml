@@ -44,16 +44,16 @@
   <style:style style:name="ce3" style:family="table-cell" style:parent-style-name="Heading" style:data-style-name="N40"/>
   <style:style style:name="ce4" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N40"/>
   <style:style style:name="lc1" style:family="table-cell" style:parent-style-name="Default">
-   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #ffffff" fo:border-right="none" fo:border-top="none"/>
   </style:style>
   <style:style style:name="lc2" style:family="table-cell" style:parent-style-name="Default">
-   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #ffffff" fo:border-right="none" fo:border-top="none"/>
   </style:style>
   <style:style style:name="lc3" style:family="table-cell" style:parent-style-name="Default">
-   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #ffffff" fo:border-right="none" fo:border-top="none"/>
   </style:style>
   <style:style style:name="lc4" style:family="table-cell" style:parent-style-name="Default">
-   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #f0f0f0" fo:border-right="none" fo:border-top="none"/>
+   <style:table-cell-properties fo:border-bottom="none" fo:border-left="0.176cm solid #ffffff" fo:border-right="none" fo:border-top="none"/>
   </style:style> </office:automatic-styles>
  <office:body>
   <office:spreadsheet>
