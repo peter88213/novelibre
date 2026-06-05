@@ -41,7 +41,6 @@ class OdsWPlotList(OdsWriter):
 
         # Get plot lines.
         srtPlotLines = self.novel.tree.get_children(PL_ROOT)
-        print(srtPlotLines)
 
         # Plot line columns.
         for plId in srtPlotLines:
