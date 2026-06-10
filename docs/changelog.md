@@ -10,6 +10,14 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.59.0
+
+- Reading new sections from the ODS plot grid.
+- Reading new chapters and parts from the ODS tables.
+- Reading new characters, items, and locations from the ODS tables.
+- Refactored the code, renaming an instance variable of the File class.
+
+
 ### Version 5.58.2
 
 - Fixed a bug where the trash bin may be duplicated.
