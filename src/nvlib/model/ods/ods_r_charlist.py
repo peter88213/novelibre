@@ -52,18 +52,18 @@ class OdsRCharList(OdsReader):
         If a name is given:
             Create a Character instance,
             place its ID it after prevId in the tree,
-            Return the chacacter ID.
+            Return the character ID.
         Otherwise, return an empty string.
         """
         if not row[1]:
             return ''
 
-        crId = new_id(self.novel.characters, prefix=CHARACTER_PREFIX)
-        self.novel.characters[crId] = Character()
+        newId = new_id(self.novel.characters, prefix=CHARACTER_PREFIX)
+        self.novel.characters[newId] = Character()
         if prevId is not None:
             index = self.novel.tree.get_children(CR_ROOT).index(prevId) + 1
         else:
             index = 0
-        self.novel.tree.insert(CR_ROOT, index, crId)
+        self.novel.tree.insert(CR_ROOT, index, newId)
         self.projectStructureModified = True
-        return crId
+        return newId

@@ -15,3 +15,5 @@ class OdsRPartList(OdsRChapterList):
     DESCRIPTION = _('Part table')
     SUFFIX = PARTLIST_SUFFIX
 
+    def add_new_element(self, prevId, row):
+        return super().add_new_element(prevId, row, level=1)

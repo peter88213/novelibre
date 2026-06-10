@@ -71,7 +71,7 @@ class OdsReader(OdfReader, ABC):
                 elemId = self.add_new_element(elemId, row)
             else:
                 elemId = row[0]
-            if elemId[:2] in self._idPrefix:
+            if elemId and elemId[:2] in self._idPrefix:
                 for i, col in enumerate(self._columnDict):
                     self._columnDict[col][elemId] = row[i]
             else:
