@@ -1175,6 +1175,8 @@ class NvModel:
                 except KeyError:
                     initialize_branch(elemId)
                 if elemId.startswith(CHAPTER_PREFIX):
+                    if self.novel.chapters[elemId].isTrash:
+                        self.trashBin = elemId
                     initialize_branch(elemId)
                 elif elemId.startswith(PLOT_LINE_PREFIX):
                     initialize_branch(elemId)
