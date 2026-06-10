@@ -227,7 +227,7 @@
   "Discard": "Verwerfen",
   "Discard changes and load the \\\".bak\\\" file?": "Änderungen verwerfen und die \\\".bak\\\"-Datei laden?",
   "Discard changes and reload the project?": "Änderungen verwerfen und das Projekt neu laden?",
-  "Discard documents only when sections are split": "Dokumente nur verwerfen, falls Abschnitte geteilt wurden",
+  "Discard documents only if the project structure is modified": "Dokumente nur verwerfen, falls die Projektstruktur geändert wurde",
   "Discard manuscript": "Manuskript verwerfen",
   "Discard manuscript?": "Manuskript verwerfen?",
   "Display localized dates": "Lokalisierte Datumsangaben anzeigen",

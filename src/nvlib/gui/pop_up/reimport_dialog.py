@@ -68,7 +68,7 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
 
         # "Discard after import" checkbox.
         IMPORT_MODES = [
-            _("Discard documents only when sections are split"),
+            _("Discard documents only if the project structure is modified"),
             _("Always discard documents after import"),
             _("Import documents even if locked; do not discard")
         ]

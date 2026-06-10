@@ -451,8 +451,8 @@ msgstr "Änderungen verwerfen und die \".bak\"-Datei laden?"
 msgid "Discard changes and reload the project?"
 msgstr "Änderungen verwerfen und das Projekt neu laden?"
 
-msgid "Discard documents only when sections are split"
-msgstr "Dokumente nur verwerfen, falls Abschnitte geteilt wurden"
+msgid "Discard documents only if the project structure is modified"
+msgstr "Dokumente nur verwerfen, falls die Projektstruktur geändert wurde"
 
 msgid "Discard manuscript"
 msgstr "Manuskript verwerfen"
