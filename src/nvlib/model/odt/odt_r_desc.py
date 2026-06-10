@@ -28,5 +28,5 @@ class OdtRDesc(OdtReader):
         super().read()
 
         # Split sections, if necessary.
-        self.sectionsSplit = self.splitter.split_sections(self.novel)
+        self.projectStructureModified = self.splitter.split_sections(self.novel)
 

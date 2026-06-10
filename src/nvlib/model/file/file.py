@@ -43,7 +43,7 @@ class File(ABC):
         # URL-coded file name without suffix and extension.
         self.projectPath = None
         # URL-coded path to the project directory.
-        self.sectionsSplit = False
+        self.projectStructureModified = False
         self.filePath = filePath
 
     @property

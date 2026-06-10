@@ -357,7 +357,7 @@ class Converter:
         else:
             statusMsg = f'{_("File written")}: "{norm_path(target.filePath)}".'
             self.newFile = target.filePath
-            if source.sectionsSplit:
+            if source.projectStructureModified:
                 os.replace(source.filePath, f'{source.filePath}.bak')
                 statusMsg = f'{statusMsg} - {_("Source document deleted")}.'
         finally:

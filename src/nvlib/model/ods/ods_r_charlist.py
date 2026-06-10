@@ -65,4 +65,5 @@ class OdsRCharList(OdsReader):
         else:
             index = 0
         self.novel.tree.insert(CR_ROOT, index, crId)
+        self.projectStructureModified = True
         return crId

@@ -119,7 +119,7 @@ class DocImporter(ServiceBase, NovxConversion):
             target.read()
             source.novel = target.novel
             source.read()
-            if source.sectionsSplit and source.is_locked():
+            if source.projectStructureModified and source.is_locked():
                 raise RuntimeError(f'{_("Please close the document first")}.')
 
             if os.path.isfile(target.filePath):
@@ -134,7 +134,7 @@ class DocImporter(ServiceBase, NovxConversion):
             target.write()
             message = f'{_("File written")}: "{norm_path(target.filePath)}".'
             self.newFile = target.filePath
-            if source.sectionsSplit:
+            if source.projectStructureModified:
                 os.replace(source.filePath, f'{source.filePath}.bak')
                 message = f'{message} - {_("Source document deleted")}.'
             return message

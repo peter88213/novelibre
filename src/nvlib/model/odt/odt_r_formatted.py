@@ -28,7 +28,7 @@ class OdtRFormatted(OdtReader):
         super().read()
 
         # Split sections, if necessary.
-        self.sectionsSplit = self.splitter.split_sections(self.novel)
+        self.projectStructureModified = self.splitter.split_sections(self.novel)
 
     def _remove_redundant_tags(self, text):
         for tag in(
