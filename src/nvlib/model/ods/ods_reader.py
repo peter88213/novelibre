@@ -49,6 +49,9 @@ class OdsReader(OdfReader, ABC):
         # list of lists of cell contents
         self.parser = OdsParser()
 
+    def add_new_element(self, prevId, row):
+        return ''
+
     @abstractmethod
     def read(self):
         """Parse the file and get the instance variables.
@@ -62,10 +65,17 @@ class OdsReader(OdfReader, ABC):
         self._rows = self.parser.get_rows(self.filePath, cellsPerRow)
         for title in self._rows[0]:
             self._columnDict[title] = {}
+        elemId = None
         for row in self._rows:
-            if row[0][:2] in self._idPrefix:
+            if not row[0]:
+                elemId = self.add_new_element(elemId, row)
+            else:
+                elemId = row[0]
+            if elemId[:2] in self._idPrefix:
                 for i, col in enumerate(self._columnDict):
-                    self._columnDict[col][row[0]] = row[i]
+                    self._columnDict[col][elemId] = row[i]
+            else:
+                elemId = None
 
     def _read_basic_element(self, element, elemId):
 

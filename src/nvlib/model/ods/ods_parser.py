@@ -62,11 +62,8 @@ class OdsParser:
                         lines.append(''.join(t for t in paragraph.itertext()))
                     content = '\n'.join(lines)
                     cells.append(content)
-                elif i > 0:
-                    cells.append(content)
                 else:
-                    # The ID cell is empty.
-                    break
+                    cells.append(content)
 
                 i += 1
                 if i >= cellsPerRow:
