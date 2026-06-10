@@ -10,8 +10,9 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.58.1
+### Version 5.58.2
 
+- Fixed a bug where the trash bin may be duplicated.
 - Fixed list delimiters in the plot line tables and timetable.
 - Refactored the code for smaller size.
 
