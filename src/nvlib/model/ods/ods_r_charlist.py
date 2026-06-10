@@ -31,15 +31,6 @@ class OdsRCharList(OdsReader):
     ]
     _idPrefix = CHARACTER_PREFIX,
 
-    def read(self):
-        """Parse the ODS file located at filePath. 
-        
-        Fetch the Character attributes contained.
-        Extends the superclass method.
-        """
-        super().read()
-        self._read_characters()
-
     def add_new_element(self, prevId, row):
         """Add a new character to the tree.
         
@@ -67,3 +58,13 @@ class OdsRCharList(OdsReader):
         self.novel.tree.insert(CR_ROOT, index, newId)
         self.projectStructureModified = True
         return newId
+
+    def read(self):
+        """Parse the ODS file located at filePath. 
+        
+        Fetch the Character attributes contained.
+        Extends the superclass method.
+        """
+        super().read()
+        self._read_characters()
+

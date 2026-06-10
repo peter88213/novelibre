@@ -27,15 +27,6 @@ class OdsRLocList(OdsReader):
     ]
     _idPrefix = LOCATION_PREFIX,
 
-    def read(self):
-        """Parse the ODS file located at filePath.
-        
-        Fetch the location attributes contained.
-        Extends the superclass method.
-        """
-        super().read()
-        self._read_locations()
-
     def add_new_element(self, prevId, row):
         """Add a new location to the tree.
         
@@ -63,3 +54,13 @@ class OdsRLocList(OdsReader):
         self.novel.tree.insert(LC_ROOT, index, newId)
         self.projectStructureModified = True
         return newId
+
+    def read(self):
+        """Parse the ODS file located at filePath.
+        
+        Fetch the location attributes contained.
+        Extends the superclass method.
+        """
+        super().read()
+        self._read_locations()
+

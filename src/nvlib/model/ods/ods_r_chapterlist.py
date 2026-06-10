@@ -27,15 +27,6 @@ class OdsRChapterList(OdsReader):
     ]
     _idPrefix = CHAPTER_PREFIX,
 
-    def read(self):
-        """Parse the ODS file located at filePath.
-        
-        Fetch the Chapter attributes contained.
-        Extends the superclass method.
-        """
-        super().read()
-        self._read_chapters()
-
     def add_new_element(self, prevId, row, level=2):
         """Add a new chapter to the tree.
         
@@ -69,3 +60,13 @@ class OdsRChapterList(OdsReader):
         self.novel.tree.insert(CH_ROOT, index, newId)
         self.projectStructureModified = True
         return newId
+
+    def read(self):
+        """Parse the ODS file located at filePath.
+        
+        Fetch the Chapter attributes contained.
+        Extends the superclass method.
+        """
+        super().read()
+        self._read_chapters()
+

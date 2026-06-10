@@ -27,15 +27,6 @@ class OdsRItemList(OdsReader):
     ]
     _idPrefix = ITEM_PREFIX,
 
-    def read(self):
-        """Parse the ODS file located at filePath.
-        
-        Fetch the item attributes contained.
-        Extends the superclass method.
-        """
-        super().read()
-        self._read_items()
-
     def add_new_element(self, prevId, row):
         """Add a new item to the tree.
         
@@ -63,3 +54,13 @@ class OdsRItemList(OdsReader):
         self.novel.tree.insert(IT_ROOT, index, newId)
         self.projectStructureModified = True
         return newId
+
+    def read(self):
+        """Parse the ODS file located at filePath.
+        
+        Fetch the item attributes contained.
+        Extends the superclass method.
+        """
+        super().read()
+        self._read_items()
+
