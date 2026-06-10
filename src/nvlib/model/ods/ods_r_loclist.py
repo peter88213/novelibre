@@ -4,13 +4,13 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from nvlib.model.ods.ods_reader import OdsReader
-from nvlib.novx_globals import LOCATION_PREFIX, ITEM_PREFIX, IT_ROOT
-from nvlib.novx_globals import LOCLIST_SUFFIX
-from nvlib.nv_locale import _
-from nvlib.novx_globals import LC_ROOT
 from nvlib.model.data.id_generator import new_id
 from nvlib.model.data.world_element import WorldElement
+from nvlib.model.ods.ods_reader import OdsReader
+from nvlib.novx_globals import LC_ROOT
+from nvlib.novx_globals import LOCATION_PREFIX
+from nvlib.novx_globals import LOCLIST_SUFFIX
+from nvlib.nv_locale import _
 
 
 class OdsRLocList(OdsReader):
