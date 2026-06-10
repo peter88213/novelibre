@@ -58,7 +58,9 @@ class OdsRChapterList(OdsReader):
         self.novel.chapters[newId] = Chapter(
             chLevel=level,
             chType=0,
+            noNumber=False,
             isTrash=False,
+            hasEpigraph=False,
         )
         if prevId:
             index = self.novel.tree.get_children(CH_ROOT).index(prevId) + 1
