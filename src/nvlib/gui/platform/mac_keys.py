@@ -12,7 +12,7 @@ class MacKeys(GenericKeys):
 
     ADD_CHILD = ('<Command-Option-n>', 'Cmd-Option-N')
     ADD_ELEMENT = ('<Command-n>', 'Cmd-N')
-    ADD_PARENT = ('<Command-Option-Shift-N>', 'Cmd-Option-Shift-N')
+    ADD_PARENT = ('<Command-Option-N>', 'Cmd-Option-Shift-N')
     BACK = ('<Option-Left>', f'Option-{_("Left")}')
     CHAPTER_LEVEL = ('<Command-Option-c>', 'Cmd-Option-C')
     COPY = ('<Command-c>', 'Cmd-C')
