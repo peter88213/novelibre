@@ -10,6 +10,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.60.0
+
+- Changed keyboard settings to avoid `Alt`-mouseclick, which may be reserved by Linux desktops:
+  - Resetting element colors via `Shift`-mousecklick.
+  - Moving project tree elements via dragging-and-droppping without holding down the `Alt` key.
+
+
 ### Version 5.59.0
 
 - Reading new sections from the ODS plot grid.

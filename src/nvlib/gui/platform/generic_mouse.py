@@ -10,6 +10,6 @@ class GenericMouse:
 
     CHOOSE_COLOR = '<Button-1>'
     LEFT_CLICK = '<Button-1>'
-    MOVE_NODE = '<Alt-B1-Motion>'
-    RESET_COLOR = '<Alt-Button-1>'
+    MOVE_NODE = '<B1-Motion>'
+    RESET_COLOR = '<Shift-Button-1>'
     RIGHT_CLICK = '<Button-3>'
