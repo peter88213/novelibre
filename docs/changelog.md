@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.61.0
+
+- `Ctrl`-`Z` reverting node moves in the project tree.
+
+
 ### Version 5.60.0
 
 - Changed keyboard settings to avoid `Alt`-mouseclick, which may be reserved by Linux desktops:

@@ -333,7 +333,7 @@ class MainController(SubController, Commands):
             KEYS.NEXT[0]: self._ui.tv.load_next,
             KEYS.PASTE[0]: self.paste_element,
             KEYS.PREVIOUS[0]: self._ui.tv.load_prev,
-            KEYS.UNDO[0]: self._ui.tv.revert_move,
+            KEYS.UNDO[0]: self.revert_move,
             MOUSE.MOVE_NODE: self.move_node,
             MOUSE.RIGHT_CLICK: self._ui.contextMenu.open,
         }

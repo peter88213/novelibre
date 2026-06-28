@@ -796,6 +796,16 @@ class ElementManager(ServiceBase):
 
         self._mdl.set_color(None, validIds)
 
+    def revert_move(self):
+        """Revert the latest move_node() operation."""
+        self._ui.restore_status()
+        if self._mdl.prjFile is None:
+            return
+
+        node = self._ui.tv.tree.revert_move()
+        if node is not None:
+            self._ui.tv.go_to_node(node)
+
     def set_character_status(self, isMajor, elemIds=None):
         """Set character status to Major.
         

@@ -577,11 +577,6 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             except:
                 pass
 
-    def revert_move(self, event=None):
-        node = self.tree.revert_move()
-        if node is not None:
-            self.go_to_node(node)
-
     def save_branch_status(self):
         self._branch_status.clear()
         for category in self.tree.get_children(''):

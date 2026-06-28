@@ -611,6 +611,12 @@ class Commands:
         self.fileManager.restore_backup()
         return 'break'
 
+    def revert_move(self, event=None):
+        """Revert the latest move_node() operation."""
+        if not self.isLocked:
+            self.elementManager.revert_move()
+        return 'break'
+
     def save_as(self, event=None):
         """Rename the project file and save it to disk.
         
