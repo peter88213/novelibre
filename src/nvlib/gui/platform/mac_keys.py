@@ -32,5 +32,6 @@ class MacKeys(GenericKeys):
     SAVE_PROJECT = ('<Command-s>', 'Cmd-S')
     TOGGLE_PROPERTIES = ('<Command-Option-t>', 'Cmd-Option-T')
     TOGGLE_VIEWER = ('<Command-t>', 'Cmd-T')
+    UNDO = ('<Command-z>', 'Cmd-Z')
     UNLOCK_PROJECT = ('<Command-u>', 'Cmd-U')
 

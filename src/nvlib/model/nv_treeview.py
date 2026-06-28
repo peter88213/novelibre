@@ -21,6 +21,11 @@ class NvTreeview(ttk.Treeview):
         super().__init__(*args, **kwargs)
         self.on_element_change = self.do_nothing
 
+        #--- Variables for the undo/redo function.
+        self.moving = False
+        self.moves = []
+        # list of tuples (start node, end node)
+
         #--- Build the toplevel  structure.
         self.append('', CH_ROOT)
         self.append('', PL_ROOT)
@@ -33,20 +38,30 @@ class NvTreeview(ttk.Treeview):
         if text is None:
             text = iid
         self.insert(parent, 'end', iid, text=text)
+        self.moves.clear()
 
     def delete(self, *items):
         super().delete(*items)
         self.on_element_change()
+        self.moves.clear()
 
     def delete_children(self, parent):
         for child in self.get_children(parent):
             self.delete(child)
+        self.moves.clear()
+
+    def do_nothing(self):
+        pass
 
     def insert(self, parent, index, iid=None, **kw):
         super().insert(parent, index, iid, **kw)
         self.on_element_change()
+        self.moves.clear()
 
     def move(self, item, parent, index):
+        if not self.moving:
+            self.moving = True
+            self.moves.append((item, self.parent(item), self.index(item)))
         super().move(item, parent, index)
         self.on_element_change()
 
@@ -56,6 +71,11 @@ class NvTreeview(ttk.Treeview):
         for rootElement in self.get_children(''):
             for child in self.get_children(rootElement):
                 self.delete(child)
+        self.moves.clear()
 
-    def do_nothing(self):
-        pass
+    def revert_move(self):
+        if self.moves:
+            item, parent, index = self.moves.pop()
+            super().move(item, parent, index)
+            return item
+

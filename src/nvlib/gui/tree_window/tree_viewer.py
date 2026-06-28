@@ -444,6 +444,14 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         """Actions to be performed when a project is closed."""
         self.reset_view()
 
+    def on_close_branch(self, event):
+        """Event handler for manually collapsing a branch."""
+        self._update_node_values(self.tree.selection()[0], collect=True)
+
+    def on_open_branch(self, event):
+        """Event handler for manually expanding a branch."""
+        self._update_node_values(self.tree.selection()[0], collect=False)
+
     def on_quit(self):
         """Write the applicaton's keyword arguments."""
         prefs['title_width'] = self.tree.column('#0', 'width')
@@ -452,6 +460,21 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
         # Save section coloring mode.
         prefs['coloring_mode'] = self.coloringMode
+
+    def on_select_node(self, event):
+        """Event handler for node selection.
+        
+          - Add the node ID to the browsing history.
+          - Call the controller.
+        """
+        try:
+            nodeId = self.tree.selection()[0]
+        except IndexError:
+            return
+
+        self._history.append_node(nodeId)
+        self._ui.on_change_selection(nodeId)
+        self.tree.moving = False
 
     def open_children(self, parent):
         """Recursively show children nodes.
@@ -554,102 +577,10 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             except:
                 pass
 
-    def update_tree(self):
-
-        def update_branch(node, scnPos=0, isEpigraph=False):
-            # Recursive tree walker.
-            #     node: str -- Node ID to start from.
-            #     scnPos: int -- Word count so far.
-            # Return the incremented word count.
-            for elemId in self.tree.get_children(node):
-                if elemId.startswith(SECTION_PREFIX):
-                    (
-                        title,
-                        nodeValues,
-                        nodeTags
-                    ) = self._get_section_row_data(
-                        elemId,
-                        isEpigraph,
-                        position=scnPos
-                    )
-                    if self._mdl.novel.sections[elemId].scType == 0:
-                        scnPos += self._mdl.novel.sections[elemId].wordCount
-                        isEpigraph = False
-                elif elemId.startswith(CHARACTER_PREFIX):
-                    (
-                        title,
-                        nodeValues,
-                        nodeTags
-                    ) = self._get_character_row_data(elemId)
-                elif elemId.startswith(LOCATION_PREFIX):
-                    (
-                        title,
-                        nodeValues,
-                        nodeTags
-                    ) = self._get_location_row_data(elemId)
-                elif elemId.startswith(ITEM_PREFIX):
-                    (
-                        title,
-                        nodeValues,
-                        nodeTags
-                    ) = self._get_item_row_data(elemId)
-                elif elemId.startswith(CHAPTER_PREFIX):
-                    chpPos = scnPos
-                    # save chapter start position, because the positions of
-                    # the chapters sections will now be added to scnPos.
-                    scnPos = update_branch(
-                        elemId,
-                        scnPos=scnPos,
-                        isEpigraph=self._mdl.novel.chapters[elemId].hasEpigraph
-                    )
-                    isCollapsed = not self.tree.item(elemId, 'open')
-                    (
-                        title,
-                        nodeValues,
-                        nodeTags
-                    ) = self._get_chapter_row_data(
-                        elemId,
-                        position=chpPos,
-                        collect=isCollapsed
-                    )
-                elif elemId.startswith(PLOT_LINE_PREFIX):
-                    update_branch(elemId, scnPos)
-                    isCollapsed = not self.tree.item(elemId, 'open')
-                    (
-                        title,
-                        nodeValues,
-                        nodeTags
-                    ) = self._get_plot_line_row_data(
-                        elemId,
-                        collect=isCollapsed
-                    )
-                elif elemId.startswith(PLOT_POINT_PREFIX):
-                    (
-                        title,
-                        nodeValues,
-                        nodeTags
-                    ) = self._get_plot_point_row_data(elemId)
-                elif elemId.startswith(PRJ_NOTE_PREFIX):
-                    (
-                        title,
-                        nodeValues,
-                        nodeTags
-                    ) = self._get_prj_note_row_data(elemId)
-                else:
-                    title = self._ROOT_TITLES[elemId]
-                    nodeValues = []
-                    nodeTags = 'root'
-                    update_branch(elemId, scnPos)
-                self.tree.item(
-                    elemId, text=title,
-                    values=nodeValues,
-                    tags=nodeTags
-                )
-            return scnPos
-
-        self._wordsTotal = self._mdl.get_counts()[0]
-        self.highlightedElements.clear()
-        update_branch('')
+    def revert_move(self, event=None):
+        node = self.tree.revert_move()
+        if node is not None:
+            self.go_to_node(node)
 
     def save_branch_status(self):
         self._branch_status.clear()
@@ -764,6 +695,103 @@ class TreeViewer(ttk.Frame, Observer, SubController):
     def show_project_notes(self, event=None):
         self.collapse_all()
         self.show_branch(PN_ROOT)
+
+    def update_tree(self):
+
+        def update_branch(node, scnPos=0, isEpigraph=False):
+            # Recursive tree walker.
+            #     node: str -- Node ID to start from.
+            #     scnPos: int -- Word count so far.
+            # Return the incremented word count.
+            for elemId in self.tree.get_children(node):
+                if elemId.startswith(SECTION_PREFIX):
+                    (
+                        title,
+                        nodeValues,
+                        nodeTags
+                    ) = self._get_section_row_data(
+                        elemId,
+                        isEpigraph,
+                        position=scnPos
+                    )
+                    if self._mdl.novel.sections[elemId].scType == 0:
+                        scnPos += self._mdl.novel.sections[elemId].wordCount
+                        isEpigraph = False
+                elif elemId.startswith(CHARACTER_PREFIX):
+                    (
+                        title,
+                        nodeValues,
+                        nodeTags
+                    ) = self._get_character_row_data(elemId)
+                elif elemId.startswith(LOCATION_PREFIX):
+                    (
+                        title,
+                        nodeValues,
+                        nodeTags
+                    ) = self._get_location_row_data(elemId)
+                elif elemId.startswith(ITEM_PREFIX):
+                    (
+                        title,
+                        nodeValues,
+                        nodeTags
+                    ) = self._get_item_row_data(elemId)
+                elif elemId.startswith(CHAPTER_PREFIX):
+                    chpPos = scnPos
+                    # save chapter start position, because the positions of
+                    # the chapters sections will now be added to scnPos.
+                    scnPos = update_branch(
+                        elemId,
+                        scnPos=scnPos,
+                        isEpigraph=self._mdl.novel.chapters[elemId].hasEpigraph
+                    )
+                    isCollapsed = not self.tree.item(elemId, 'open')
+                    (
+                        title,
+                        nodeValues,
+                        nodeTags
+                    ) = self._get_chapter_row_data(
+                        elemId,
+                        position=chpPos,
+                        collect=isCollapsed
+                    )
+                elif elemId.startswith(PLOT_LINE_PREFIX):
+                    update_branch(elemId, scnPos)
+                    isCollapsed = not self.tree.item(elemId, 'open')
+                    (
+                        title,
+                        nodeValues,
+                        nodeTags
+                    ) = self._get_plot_line_row_data(
+                        elemId,
+                        collect=isCollapsed
+                    )
+                elif elemId.startswith(PLOT_POINT_PREFIX):
+                    (
+                        title,
+                        nodeValues,
+                        nodeTags
+                    ) = self._get_plot_point_row_data(elemId)
+                elif elemId.startswith(PRJ_NOTE_PREFIX):
+                    (
+                        title,
+                        nodeValues,
+                        nodeTags
+                    ) = self._get_prj_note_row_data(elemId)
+                else:
+                    title = self._ROOT_TITLES[elemId]
+                    nodeValues = []
+                    nodeTags = 'root'
+                    update_branch(elemId, scnPos)
+                self.tree.item(
+                    elemId, text=title,
+                    values=nodeValues,
+                    tags=nodeTags
+                )
+            return scnPos
+
+        self._wordsTotal = self._mdl.get_counts()[0]
+        self.highlightedElements.clear()
+        update_branch('')
 
     def _browse_tree(self, node):
         # Select and show a node.
@@ -1307,26 +1335,6 @@ class TreeViewer(ttk.Frame, Observer, SubController):
         return to_string(
             self._mdl.novel.sections[scId].title
         ), nodeValues, tuple(nodeTags)
-
-    def _on_close_branch(self, event):
-        # Event handler for manually collapsing a branch.
-        self._update_node_values(self.tree.selection()[0], collect=True)
-
-    def _on_open_branch(self, event):
-        # Event handler for manually expanding a branch.
-        self._update_node_values(self.tree.selection()[0], collect=False)
-
-    def _on_select_node(self, event):
-        # Event handler for node selection.
-        # - Add the node ID to the browsing history.
-        # - Call the controller.
-        try:
-            nodeId = self.tree.selection()[0]
-        except IndexError:
-            return
-
-        self._history.append_node(nodeId)
-        self._ui.on_change_selection(nodeId)
 
     def _element_is_highlighted(self, element):
         if self._highlightTag is not None:

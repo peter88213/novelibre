@@ -322,9 +322,9 @@ class MainController(SubController, Commands):
 
         #--- Tree view bindings.
         event_callbacks = {
-            '<<TreeviewClose>>': self._ui.tv._on_close_branch,
-            '<<TreeviewOpen>>': self._ui.tv._on_open_branch,
-            '<<TreeviewSelect>>': self._ui.tv._on_select_node,
+            '<<TreeviewClose>>': self._ui.tv.on_close_branch,
+            '<<TreeviewOpen>>': self._ui.tv.on_open_branch,
+            '<<TreeviewSelect>>': self._ui.tv.on_select_node,
             KEYS.BACK[0]: self._ui.tv.go_back,
             KEYS.COPY[0]: self.copy_element,
             KEYS.CUT[0]: self.cut_element,
@@ -333,6 +333,7 @@ class MainController(SubController, Commands):
             KEYS.NEXT[0]: self._ui.tv.load_next,
             KEYS.PASTE[0]: self.paste_element,
             KEYS.PREVIOUS[0]: self._ui.tv.load_prev,
+            KEYS.UNDO[0]: self._ui.tv.revert_move,
             MOUSE.MOVE_NODE: self.move_node,
             MOUSE.RIGHT_CLICK: self._ui.contextMenu.open,
         }
