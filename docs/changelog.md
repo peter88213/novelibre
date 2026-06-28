@@ -10,9 +10,10 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.61.0
+### Version 5.61.1
 
 - `Ctrl`-`Z` reverting node moves in the project tree.
+- Fixed a bug where changes are notified unintentionally due to overly sensitive drag detection. 
 
 
 ### Version 5.60.0

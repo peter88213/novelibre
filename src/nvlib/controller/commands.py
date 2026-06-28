@@ -457,6 +457,9 @@ class Commands:
         if event is not None:
             node = self._ui.selectedNode
             targetNode = self._ui.tv.tree.identify_row(event.y)
+            if node == targetNode:
+                return 'break'
+
         self.elementManager.move_node(node, targetNode)
         return 'break'
 
