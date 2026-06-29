@@ -5,7 +5,6 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
-from tkinter import colorchooser
 from tkinter import filedialog
 from tkinter import ttk
 
@@ -83,7 +82,7 @@ class ElementView(BlankView):
             (_('ODF document'), '.odt'),
             (_('ODF document'), '.ods'),
             (_('All files'), '.*'),
-            ]
+        ]
         selectedPath = filedialog.askopenfilename(filetypes=fileTypes)
         if selectedPath:
             shortPath = self._ctrl.linkProcessor.shorten_path(selectedPath)

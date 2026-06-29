@@ -4,7 +4,7 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from tkinter import ttk, colorchooser
+from tkinter import ttk
 
 from nvlib.controller.sub_controller import SubController
 from nvlib.gui.contents_window.contents_viewer import ContentsViewer
@@ -20,6 +20,7 @@ from nvlib.gui.properties_window.properties_viewer import PropertiesViewer
 from nvlib.gui.set_icon_tk import set_icon
 from nvlib.gui.toolbar.toolbar import Toolbar
 from nvlib.gui.tree_window.tree_viewer import TreeViewer
+from nvlib.gui.widgets.tk_color_chooser import TkColorChooser
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
@@ -41,10 +42,12 @@ class MainView(Observer, MsgBoxes, SubController, MainMenu):
         self.root.protocol("WM_DELETE_WINDOW", self._ctrl.on_quit)
         self.root.title(title)
         self.title = title
+
         colorProbe = tk.Label(self.root)
         self.colorFg = colorProbe.cget('fg')
         self.colorBg = colorProbe.cget('bg')
         del colorProbe
+        self.colorChooser = TkColorChooser()
 
         self._mdl.add_observer(self)
 
@@ -297,16 +300,6 @@ class MainView(Observer, MsgBoxes, SubController, MainMenu):
             detail=__doc__,
             title=_('About novelibre'),
         )
-
-    def choose_color(self, title='', initialcolor=None):
-        color = colorchooser.askcolor(
-            title=title,
-            color=initialcolor,
-        )
-        if color is None:
-            return None
-
-        return color[1]
 
     def _create_path_bar(self):
         self.pathBar = PathBar(
