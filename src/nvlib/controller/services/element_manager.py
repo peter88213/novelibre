@@ -858,7 +858,7 @@ class ElementManager(ServiceBase):
             if color is not None:
                 break
 
-        color = self._ui.choose_color(
+        color = self._ui.colorChooser.choose_color(
             title=title,
             initialcolor=color,
         )
