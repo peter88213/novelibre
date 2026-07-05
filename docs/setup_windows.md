@@ -49,7 +49,7 @@ causing problems with the security mechanisms of the operating system.
 
 ## Installing the application
 
-#### Step 1
+### Step 1
 
 - Either launch the downloaded **novelibre_vx.x.x.pyz** file by
   double-clicking,
@@ -85,13 +85,13 @@ In both cases, a success message should appear.
 
 ## Making novelibre accessible on the Desktop
 
-#### Step 2
+### Step 2
 
 Open the installation folder.
 
 ![novelibre screenshot](_images/windows05.png)
 
-#### Step 3
+### Step 3
 
 Drag and drop **run.pyw** to the desktop while holding down the
 `Alt` key. This creates a shortcut to launch *novelibre* from the
@@ -100,7 +100,7 @@ files to this shortcut.
 
 ![novelibre screenshot](_images/windows06.png)
 
-#### Step 4
+### Step 4
 
 Optionally, you can replace the \"Python\" icon with the *novelibre*
 logo you may find in the installation\'s *icons* subdirectory.
@@ -113,7 +113,7 @@ Move to `<home>\.novx\icons` and double-click on the \"N\" logo (3).
 
 ![novelibre screenshot](_images/windows07.png)
 
-#### Step 5
+### Step 5
 
 To rename the shortcut to *novelibre*, right-click on the desktop
 shortcut and open the **Properties** dialog. In the first tab,
@@ -123,7 +123,7 @@ replace \"Shortcut to run.pyw\" with \"novelibre\".
 
 ## Associating .novx files with novelibre
 
-#### Step 6
+### Step 6
 
 Optionally, you can associate the **.novx** file extension with the
 *novelibre* application. Then the project files are displayed with

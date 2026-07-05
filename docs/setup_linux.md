@@ -38,7 +38,7 @@ desktop.
 
 ## Installing the application
 
-#### Step 1
+### Step 1
 
 - Either drag/drop the downloaded **novelibre_vx.x.x.pyz** onto
   the Python application launcher,
@@ -66,13 +66,13 @@ In both cases, a success message should appear.
 
 ## Making novelibre accessible on the Desktop
 
-#### Step 2
+### Step 2
 
 Open the installation folder.
 
 ![Linux Mint screenshot](img/linux08.png)
 
-#### Step 3
+### Step 3
 
 Drag and drop **novelibre.desktop** onto the desktop.
 
@@ -82,7 +82,7 @@ This creates a launcher to start *novelibre* from the desktop.
 
 ![Linux Mint screenshot](img/linux05.png)
 
-#### Step 4
+### Step 4
 
 When you click (or double-click) for the first time, a warning
 message may appear to prevent you from accidentally installing an
@@ -121,7 +121,7 @@ shortcut.
 > If you succeed, feel free to share your experience in the [novelibre
 > \"Discussions\" forum](https://github.com/peter88213/novelibre/discussions)
 
-#### Step 5
+### Step 5
 
 It\'s a good idea to register the *novx* extension in the mimetypes
 as **text/xml**, so it can be opened with your web browser for
