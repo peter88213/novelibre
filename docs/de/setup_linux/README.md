@@ -1,5 +1,5 @@
 ![external-link](../img/external-link.png)
-[English](../setup_linux)
+[English](../../setup_linux)
 
 ------------------------------------------------------------------------
 

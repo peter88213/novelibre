@@ -1,5 +1,5 @@
 ![external-link](../img/external-link.png)
-[English](../setup_windows)
+[English](../../setup_windows)
 
 ------------------------------------------------------------------------
 
