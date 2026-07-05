@@ -30,6 +30,8 @@ from nvlib.nv_locale import _
 
 class FileManager(ServiceBase):
 
+    _NEW_DIR_SEPARATOR = '|'
+
     def __init__(self, model, view, controller):
         super().__init__(model, view, controller)
         self.exporter = NvDocExporter(self._ui)
@@ -415,18 +417,28 @@ class FileManager(ServiceBase):
         else:
             initDir = HOME_DIR
         fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
-        fileName = filedialog.asksaveasfilename(
+        filePath = filedialog.asksaveasfilename(
             filetypes=fileTypes,
             defaultextension=fileTypes[0][1],
             initialdir=initDir,
         )
-        if not fileName:
+        if not filePath:
             return False
+
+        # Create a directory, if specified with the file path.
+        # This is a workaround for Linux if the dialog
+        # does not allow creating new directories.
+        dirName, fileName = os.path.split(filePath)
+        if self._NEW_DIR_SEPARATOR in fileName:
+            newDir, fileName = fileName.split(self._NEW_DIR_SEPARATOR)
+            dirName = os.path.join(dirName, newDir)
+            os.makedirs(dirName, exist_ok=True)
+            filePath = os.path.join(dirName, fileName)
 
         self._ui.propertiesView.apply_changes()
         oldFileName = self._mdl.prjFile.filePath
         try:
-            self._mdl.save_project(fileName)
+            self._mdl.save_project(filePath)
         except RuntimeError as ex:
             self._ui.set_status(f'!{str(ex)}')
             return False

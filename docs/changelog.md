@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.62.0
+
+- Under Linux, new directories can be created with the **Save as** dialog.
+- Implemented the color chooser dialog as a strategy class.
+
+
 ### Version 5.61.1
 
 - `Ctrl`-`Z` reverting node moves in the project tree.
