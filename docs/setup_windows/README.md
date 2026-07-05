@@ -1,5 +1,5 @@
-![external-link](img/external-link.png)
-[Deutsch](https://peter88213.github.io/nvhelp-de/setup_windows.html)
+![external-link](../img/external-link.png)
+[Deutsch](de/setup_windows)
 
 ------------------------------------------------------------------------
 
@@ -10,26 +10,27 @@
 > You receive *novelibre* as source code in the *Python* programming
 > language. In order to execute the program, Python must be installed on
 > your PC. There are several ways to obtain Python for free. In any case,
-> I recommend the developers\' website:
+> I recommend the developers' website:
 >
 > <https://www.python.org/>
 > 
-> Python is being continuously developed and improved. However, you don\'t
+> Python is being continuously developed and improved. However, you don't
 > need to update your Python installation as long as *novelibre* works
 > with it.
+
 
 > **Note**
 >
 > Files with the extensions **.py**, **.pyw**, and **.pyz** are Python
 > programs ready to run. If you double-click such a file in Windows
 > Explorer, the installed Python interpreter should launch, and nothing
-> else. If that doesn\'t happen, you may not have Python fully installed.
+> else. If that doesn't happen, you may not have Python fully installed.
 > 
-> If you\'re not sure, you can check the Windows Settings to see whether
+> If you're not sure, you can check the Windows Settings to see whether
 > the assignment is correct. In Windows 11, go to Settings. The
 > assignments should look like this:
 > 
-> ![Settings \> Apps \> Default apps \> Choose default apps by file type](img/windows11.png)
+> ![Settings \> Apps \> Default apps \> Choose default apps by file type](../img/windows11.png)
 
 
 The actual installation of *novelibre* is simple and straightforward.
@@ -47,24 +48,27 @@ application is started when you double-click on them.
 Unfortunately, I cannot automate this with my simple means without
 causing problems with the security mechanisms of the operating system.
 
+
 ## Installing the application
+
 
 ### Step 1
 
 - Either launch the downloaded **novelibre_vx.x.x.pyz** file by
   double-clicking,
 
-  ![Example (Windows Explorer)](img/windows01.png)
+  ![Example (Windows Explorer)](../img/windows01.png)
 
 - or execute `python novelibre_vx.x.x.pyz` on the command line.
 
-  ![Example (Windows command line)](img/windows02.png)
+  ![Example (Windows command line)](../img/windows02.png)
 
-  *\"x.x.x\"* means the version number.
+*"x.x.x"* means the version number.
 
 In both cases, a success message should appear.
 
-![Example (Windows)](img/windows03.png)
+![Example (Windows)](../img/windows03.png)
+
 
 > **Important**
 > 
@@ -72,7 +76,7 @@ In both cases, a success message should appear.
 > offer to open it immedately. This allows you to start the
 > installation conveniently.
 >
-> ![Beispiel (Chrome browser)](img/windows04.png)
+> ![Beispiel (Chrome browser)](../img/windows04.png)
 >
 > However, depending on your security settings, your browser may
 > initially refuse to download the executable file. In this case, your
@@ -80,16 +84,19 @@ In both cases, a success message should appear.
 >
 > If this is not possible, you have the option of downloading the zip
 > file. Then unpack it and execute `setup.py` by double-click.
+>
+> ![Example (Windows)](../img/windows10.png)
 
-> ![Example (Windows)](img/windows10.png)
 
 ## Making novelibre accessible on the Desktop
+
 
 ### Step 2
 
 Open the installation folder.
 
-![novelibre screenshot](img/windows05.png)
+![novelibre screenshot](../img/windows05.png)
+
 
 ### Step 3
 
@@ -98,30 +105,34 @@ Drag and drop **run.pyw** to the desktop while holding down the
 Windows desktop. Now you can also drag and drop *.novx* project
 files to this shortcut.
 
-![novelibre screenshot](img/windows06.png)
+![novelibre screenshot](../img/windows06.png)
+
 
 ### Step 4
 
-Optionally, you can replace the \"Python\" icon with the *novelibre*
-logo you may find in the installation\'s *icons* subdirectory.
+Optionally, you can replace the "Python" icon with the *novelibre*
+logo you may find in the installation's *icons* subdirectory.
 
 To do this, right-click on the desktop shortcut and open the
 **Properties** dialog. Select the **Shortcut** Tab and click on the
 **Change icon** button (1). In the icon selection dialog, click on
 the **Browse\...** button (2). This opens a file selection dialog.
-Move to `<home>\.novx\icons` and double-click on the \"N\" logo (3).
+Move to `<home>\.novx\icons` and double-click on the "N" logo (3).
 
-![novelibre screenshot](img/windows07.png)
+![novelibre screenshot](../img/windows07.png)
+
 
 ### Step 5
 
 To rename the shortcut to *novelibre*, right-click on the desktop
 shortcut and open the **Properties** dialog. In the first tab,
-replace \"Shortcut to run.pyw\" with \"novelibre\".
+replace "Shortcut to run.pyw" with "novelibre".
 
-![novelibre screenshot](img/windows08.png)
+![novelibre screenshot](../img/windows08.png)
+
 
 ## Associating .novx files with novelibre
+
 
 ### Step 6
 
@@ -137,7 +148,8 @@ display a warning and ask you for confirmation. If in doubt, you can
 inspect the *add_novelibre.reg* file with a text editor or ask an
 expert you trust.
 
-![novelibre screenshot](img/windows09.png)
+![novelibre screenshot](../img/windows09.png)
+
 
 > **Hint**
 >
@@ -149,6 +161,7 @@ expert you trust.
 > configuration data, just delete the `<home>\.novx` folder after
 > executing the **remove_novelibre.reg** script.
     
+
 > **Important**
 >
 > Executing the program under Windows by double-clicking on the *.novx*
@@ -160,8 +173,9 @@ expert you trust.
 > Otherwise, Windows will not be able to find the new Python version and
 > will fail when trying to open *.novx* files on double-clicking.
 > 
-> Please keep that in mind, even if it\'s pretty unlikely that *novelibre*
+> Please keep that in mind, even if it's pretty unlikely that *novelibre*
 > will need a Python update in the near future.
+
 
 ## Updating the application or a plugin
 
