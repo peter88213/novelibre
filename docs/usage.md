@@ -54,7 +54,7 @@ You can either
 
 --- 
 
-# [Online help](https://peter88213.github.io/nvhelp-en/index.html)
+# [Online help](https://peter88213.github.io/nvhelp-en)
 
 
 You can open the online help page with **Help > Online help**.
