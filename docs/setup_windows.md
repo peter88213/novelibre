@@ -1,4 +1,4 @@
-![external-link](_images/external-link.png)
+![external-link](img/external-link.png)
 [Deutsch](https://peter88213.github.io/nvhelp-de/setup_windows.html)
 
 ------------------------------------------------------------------------
@@ -29,7 +29,7 @@
 > the assignment is correct. In Windows 11, go to Settings. The
 > assignments should look like this:
 > 
-> ![Settings \> Apps \> Default apps \> Choose default apps by file type](_images/windows11.png)
+> ![Settings \> Apps \> Default apps \> Choose default apps by file type](img/windows11.png)
 
 
 The actual installation of *novelibre* is simple and straightforward.
@@ -54,17 +54,17 @@ causing problems with the security mechanisms of the operating system.
 - Either launch the downloaded **novelibre_vx.x.x.pyz** file by
   double-clicking,
 
-  ![Example (Windows Explorer)](_images/windows01.png)
+  ![Example (Windows Explorer)](img/windows01.png)
 
 - or execute `python novelibre_vx.x.x.pyz` on the command line.
 
-  ![Example (Windows command line)](_images/windows02.png)
+  ![Example (Windows command line)](img/windows02.png)
 
   *\"x.x.x\"* means the version number.
 
 In both cases, a success message should appear.
 
-![Example (Windows)](_images/windows03.png)
+![Example (Windows)](img/windows03.png)
 
 > **Important**
 > 
@@ -72,7 +72,7 @@ In both cases, a success message should appear.
 > offer to open it immedately. This allows you to start the
 > installation conveniently.
 >
-> ![Beispiel (Chrome browser)](_images/windows04.png)
+> ![Beispiel (Chrome browser)](img/windows04.png)
 >
 > However, depending on your security settings, your browser may
 > initially refuse to download the executable file. In this case, your
@@ -81,7 +81,7 @@ In both cases, a success message should appear.
 > If this is not possible, you have the option of downloading the zip
 > file. Then unpack it and execute `setup.py` by double-click.
 
-> ![Example (Windows)](_images/windows10.png)
+> ![Example (Windows)](img/windows10.png)
 
 ## Making novelibre accessible on the Desktop
 
@@ -89,7 +89,7 @@ In both cases, a success message should appear.
 
 Open the installation folder.
 
-![novelibre screenshot](_images/windows05.png)
+![novelibre screenshot](img/windows05.png)
 
 ### Step 3
 
@@ -98,7 +98,7 @@ Drag and drop **run.pyw** to the desktop while holding down the
 Windows desktop. Now you can also drag and drop *.novx* project
 files to this shortcut.
 
-![novelibre screenshot](_images/windows06.png)
+![novelibre screenshot](img/windows06.png)
 
 ### Step 4
 
@@ -111,7 +111,7 @@ To do this, right-click on the desktop shortcut and open the
 the **Browse\...** button (2). This opens a file selection dialog.
 Move to `<home>\.novx\icons` and double-click on the \"N\" logo (3).
 
-![novelibre screenshot](_images/windows07.png)
+![novelibre screenshot](img/windows07.png)
 
 ### Step 5
 
@@ -119,7 +119,7 @@ To rename the shortcut to *novelibre*, right-click on the desktop
 shortcut and open the **Properties** dialog. In the first tab,
 replace \"Shortcut to run.pyw\" with \"novelibre\".
 
-![novelibre screenshot](_images/windows08.png)
+![novelibre screenshot](img/windows08.png)
 
 ## Associating .novx files with novelibre
 
@@ -137,7 +137,7 @@ display a warning and ask you for confirmation. If in doubt, you can
 inspect the *add_novelibre.reg* file with a text editor or ask an
 expert you trust.
 
-![novelibre screenshot](_images/windows09.png)
+![novelibre screenshot](img/windows09.png)
 
 > **Hint**
 >
