@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.62.1
+
+- Handling multiple pipe symbols in "Save as" input.
+
+
 ### Version 5.62.0
 
 - Under Linux, new directories can be created with the **Save as** dialog.

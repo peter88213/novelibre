@@ -428,12 +428,9 @@ class FileManager(ServiceBase):
         # Create a directory, if specified with the file path.
         # This is a workaround for Linux if the dialog
         # does not allow creating new directories.
-        dirName, fileName = os.path.split(filePath)
-        if self._NEW_DIR_SEPARATOR in fileName:
-            newDir, fileName = fileName.split(self._NEW_DIR_SEPARATOR)
-            dirName = os.path.join(dirName, newDir)
-            os.makedirs(dirName, exist_ok=True)
-            filePath = os.path.join(dirName, fileName)
+        if self._NEW_DIR_SEPARATOR in os.path.split(filePath)[1]:
+            filePath = filePath.replace(self._NEW_DIR_SEPARATOR, '/')
+            os.makedirs(os.path.split(filePath)[0], exist_ok=True)
 
         self._ui.propertiesView.apply_changes()
         oldFileName = self._mdl.prjFile.filePath
