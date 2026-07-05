@@ -1,3 +1,7 @@
+- [Home page](https://github.com/peter88213/novelibre) 
+- [novelibre User guide](https://peter88213.github.io/nvhelp-en/)
+
+
 ![external-link](../img/external-link.png)
 [Deutsch](../de/setup_linux)
 

@@ -1,3 +1,7 @@
+- [Homepage](https://github.com/peter88213/novelibre) 
+- [Benutzerhandbuch](https://peter88213.github.io/nvhelp-de/) 
+
+
 ![external-link](../img/external-link.png)
 [English](../../setup_windows)
 

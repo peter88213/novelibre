@@ -217,8 +217,8 @@ The package is also available in zip format:
 Be sure to read the installation instructions in the online user manual 
 before you begin installation. 
 
-- [Windows](https://peter88213.github.io/nvhelp-en/setup_windows.html)
-- [Linux](https://peter88213.github.io/nvhelp-en/setup_linux.html)
+- [Windows](https://peter88213.github.io/novelibre/setup_windows)
+- [Linux](https://peter88213.github.io/novelibre/setup_linux)
 
 ### Python application launcher for Linux (optional)
 
