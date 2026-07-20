@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.62.2
+
+- Keeping modal dialogs always in front.
+
+
 ### Version 5.62.1
 
 - Handling multiple pipe symbols in "Save as" input.

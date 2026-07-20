@@ -20,4 +20,5 @@ class ModalDialog(tk.Toplevel):
         self.geometry(windowGeometry)
         self.grab_set()
         self.focus()
+        self.attributes('-topmost', 'true')
 
