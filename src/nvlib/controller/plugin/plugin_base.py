@@ -51,7 +51,7 @@ class PluginBase(ABC, SubController):
 
     @abstractmethod
     def install(self, model, view, controller):
-        """Install the plugin. 
+        """Install the plugin at runtime.
         
         Each plugin must extend this method. 
         
