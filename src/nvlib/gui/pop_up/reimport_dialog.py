@@ -8,7 +8,6 @@ from datetime import datetime
 import os
 from tkinter import ttk
 
-from nvlib.controller.services.nv_help import NvHelp
 from nvlib.controller.sub_controller import SubController
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.widgets.modal_dialog import ModalDialog
@@ -123,7 +122,7 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
         # "Help" button.
         ttk.Button(
             window,
-            text=_('Online help'),
+            text=_('Help'),
             command=self._open_help,
         ).pack(padx=5, pady=5, side='right')
 
@@ -225,7 +224,7 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
         self._importButton.configure(state=impButtonState)
 
     def _open_help(self, event=None):
-        NvHelp.open_help_page(f'import_menu.html')
+        self._ctrl.helpService.open_help_page(f'import_menu.html')
 
     def _reset_tree(self):
         """Clear the displayed tree."""

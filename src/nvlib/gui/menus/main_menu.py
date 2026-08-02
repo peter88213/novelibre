@@ -1157,7 +1157,7 @@ class MainMenu:
         # "Help".
         self.helpMenu = NvMenu()
 
-        label = _('Online help')
+        label = _('User guide')
         self.helpMenu.add_command(
             label=label,
             accelerator=KEYS.OPEN_HELP[1],

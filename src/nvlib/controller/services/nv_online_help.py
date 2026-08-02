@@ -1,4 +1,4 @@
-"""Provide a service class for the help function.
+"""Provide a service class for the online help function.
 
 Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -9,12 +9,11 @@ import webbrowser
 from nvlib.nv_locale import _
 
 
-class NvHelp:
+class NvOnlineHelp:
 
-    HELP_URL = f'{_("https://peter88213.github.io/nvhelp-en")}/'
+    HELP_URL = _("https://peter88213.github.io/nvhelp-en")
 
-    @classmethod
-    def open_help_page(cls, page):
+    def open_help_page(self, page, site=None):
         """Show the online help page specified by page."""
-        webbrowser.open(f'{cls.HELP_URL}{page}')
+        webbrowser.open(f'{site or self.HELP_URL}/{page}')
 

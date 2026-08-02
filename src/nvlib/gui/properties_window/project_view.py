@@ -1008,7 +1008,7 @@ class ProjectView(ElementView):
         # "Help" button.
         ttk.Button(
             self._buttonBar,
-            text=_('Online help'),
+            text=_('Help'),
             command=self._open_help,
         ).pack(side='left', fill='x', expand=True, padx=1, pady=2)
 

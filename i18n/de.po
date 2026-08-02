@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 5.62.2\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-07-20 19:34:34\n"
+"PO-Revision-Date: 2026-08-02 19:44:58\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1015,9 +1015,6 @@ msgstr "OK"
 msgid "Older than the project file"
 msgstr "Älter als die Projektdatei"
 
-msgid "Online help"
-msgstr "Online-Hilfe"
-
 msgid "Open"
 msgstr "Öffnen"
 
@@ -1596,6 +1593,9 @@ msgstr "Römische Teilenummern"
 
 msgid "Used"
 msgstr "Benutzt"
+
+msgid "User guide"
+msgstr "Benutzerhandbuch"
 
 msgid "Version"
 msgstr "Version"

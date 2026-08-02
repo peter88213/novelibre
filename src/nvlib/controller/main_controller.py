@@ -16,6 +16,7 @@ from nvlib.controller.services.element_manager import ElementManager
 from nvlib.controller.services.file_manager import FileManager
 from nvlib.controller.services.file_splitter import FileSplitter
 from nvlib.controller.services.link_processor import LinkProcessor
+from nvlib.controller.services.nv_online_help import NvOnlineHelp
 from nvlib.controller.sub_controller import SubController
 from nvlib.gui.main_view import MainView
 from nvlib.gui.platform.platform_settings import KEYS
@@ -72,6 +73,7 @@ class MainController(SubController, Commands):
         self.elementManager = ElementManager(self._mdl, self._ui, self)
         self.linkProcessor = LinkProcessor(self._mdl, self._ui, self)
         self.clipboardManager = ClipboardManager(self._mdl, self._ui, self)
+        self.helpService = NvOnlineHelp()
 
         #--- Load the plugins.
         self.plugins = PluginCollection(self._mdl, self._ui, self)

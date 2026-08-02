@@ -8,7 +8,6 @@ import os
 from tkinter import filedialog
 from tkinter import ttk
 
-from nvlib.controller.services.nv_help import NvHelp
 from nvlib.controller.sub_controller import SubController
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.widgets.label_disp import LabelDisp
@@ -25,10 +24,11 @@ class BackupOptionsDialog(ModalDialog, SubController):
     """A pop-up window with export preference settings."""
     LABEL_WIDTH = 20
 
-    def __init__(self, view, **kw):
+    def __init__(self, view, controller, **kw):
         super().__init__(view, **kw)
         self._ui = view
         self._ui.restore_status()
+        self._ctrl = controller
 
         self.title(_('Backup options'))
         self.iconphoto(False, view.icons.settingsIcon)
@@ -90,7 +90,7 @@ class BackupOptionsDialog(ModalDialog, SubController):
         # "Help" button.
         ttk.Button(
             self,
-            text=_('Online help'),
+            text=_('Help'),
             command=self._open_help
         ).pack(padx=5, pady=5, side='right')
 
@@ -123,8 +123,9 @@ class BackupOptionsDialog(ModalDialog, SubController):
             self._ui.set_status(f'!{str(ex)}')
 
     def _open_help(self, event=None):
-        NvHelp.open_help_page(
-            f'tools_menu.html#{_("backup-options")}')
+        self._ctrl.helpService.open_help_page(
+            f'tools_menu.html#{_("backup-options")}'
+        )
 
     def _set_backup_dir(self):
         self._ui.restore_status()

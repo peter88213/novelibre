@@ -12,7 +12,6 @@ from nvlib.gui.widgets.modal_dialog import ModalDialog
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk
-from nvlib.controller.services.nv_help import NvHelp
 
 
 class ExportOptionsDialog(ModalDialog, SubController):
@@ -88,7 +87,7 @@ class ExportOptionsDialog(ModalDialog, SubController):
         # "Help" button.
         ttk.Button(
             self,
-            text=_('Online help'),
+            text=_('Help'),
             command=self._open_help,
         ).pack(padx=5, pady=5, side='right')
 
@@ -102,5 +101,7 @@ class ExportOptionsDialog(ModalDialog, SubController):
         prefs['lock_on_export'] = self._lockOnExportVar.get()
 
     def _open_help(self, event=None):
-        NvHelp.open_help_page(f'export_menu.html#{_("options").lower()}')
+        self._ctrl.helpService.open_help_page(
+            f'export_menu.html#{_("options").lower()}'
+        )
 

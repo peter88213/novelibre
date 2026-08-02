@@ -8,7 +8,6 @@ import os
 from tkinter import filedialog
 from tkinter import ttk
 
-from nvlib.controller.services.nv_help import NvHelp
 from nvlib.gui.properties_window.blank_view import BlankView
 from nvlib.gui.widgets.collection_box import CollectionBox
 from nvlib.gui.widgets.folding_frame import FoldingFrame
@@ -256,7 +255,7 @@ class ElementView(BlankView):
         # "Help" button.
         ttk.Button(
             self._buttonBar,
-            text=_('Online help'),
+            text=_('Help'),
             command=self._open_help,
         ).pack(side='left', fill='x', expand=True, padx=1, pady=2)
 
@@ -361,7 +360,7 @@ class ElementView(BlankView):
         self._ui.restore_status()
 
     def _open_help(self, event=None):
-        NvHelp.open_help_page(self._HELP_PAGE)
+        self._ctrl.helpService.open_help_page(self._HELP_PAGE)
 
     def _remove_link(self, event=None):
         # Remove a link from the list.

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.62.2\n"
-"POT-Creation-Date: 2026-07-20 19:34:34\n"
+"POT-Creation-Date: 2026-08-02 19:45:53\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -1022,9 +1022,6 @@ msgstr ""
 msgid "Older than the project file"
 msgstr ""
 
-msgid "Online help"
-msgstr ""
-
 msgid "Open"
 msgstr ""
 
@@ -1602,6 +1599,9 @@ msgid "Use Roman part numbers"
 msgstr ""
 
 msgid "Used"
+msgstr ""
+
+msgid "User guide"
 msgstr ""
 
 msgid "Version"

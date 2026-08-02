@@ -7,7 +7,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 import webbrowser
 
-from nvlib.controller.services.nv_help import NvHelp
 from nvlib.controller.sub_controller import SubController
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.widgets.modal_dialog import ModalDialog
@@ -169,7 +168,7 @@ class PluginManagerDialog(ModalDialog, SubController):
         # "Help" button.
         ttk.Button(
             self._footer,
-            text=_('Online help'),
+            text=_('Help'),
             command=self._open_help,
         ).pack(padx=5, pady=5, side='right')
 
@@ -233,7 +232,9 @@ class PluginManagerDialog(ModalDialog, SubController):
         self._deleteButton.configure(state=deleteButtonState)
 
     def _open_help(self, event=None):
-        NvHelp.open_help_page(f'tools_menu.html#{_("plugin-manager")}')
+        self._ctrl.helpService.open_help_page(
+            f'tools_menu.html#{_("plugin-manager")}'
+        )
 
     def _open_homepage(self, event=None):
         pluginName = self._pluginTree.selection()[0]
