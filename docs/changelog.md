@@ -10,13 +10,14 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.63.0
+### Version 5.63.1
 
 - Redesigned the help system in order to make it configurable at runtime.
 
    - Replaced the **Help > Online help** menu entry with **Help > User guide**.
    - Implemented the help service class as a strategy.
    - Removed "Online" from the menu help entries.
+   - Extended the plugin base class.
 
 
 ### Version 5.62.2

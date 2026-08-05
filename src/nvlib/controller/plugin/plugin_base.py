@@ -32,6 +32,8 @@ class PluginBase(ABC, SubController):
         DESCRIPTION: str -- Description to be diplayed 
                             in the novelibre plugin list.
         URL: str -- Plugin project homepage URL.
+        HELP_SITE: str -- URL of the online help site.
+        HELP_PAGE: str -- Name of the plugin help page or directory.
 
     Public instance variables:
         filePath: str -- Location of the installed plugin.
@@ -43,6 +45,8 @@ class PluginBase(ABC, SubController):
     API_VERSION = ''
     DESCRIPTION = ''
     URL = ''
+    HELP_SITE = None
+    HELP_PAGE = None
 
     def __init__(self):
         self.filePath = None
@@ -66,6 +70,21 @@ class PluginBase(ABC, SubController):
 
     def uninstall(self):
         pass
+
+    def _add_help_menu_entry(self, label):
+
+        def open_help():
+            self._ctrl.helpService.open_help_page(
+                self.HELP_PAGE,
+                site=self.HELP_SITE
+            )
+
+        self._ui.helpMenu.add_command(
+            label=label,
+            image=self._icon,
+            compound='left',
+            command=open_help,
+        )
 
     def _get_icon(self, fileName):
         # Return the icon for the main view.
