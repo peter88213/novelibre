@@ -53,6 +53,8 @@ class PluginBase(ABC, SubController):
         self.isActive = True
         self.isRejected = False
 
+        self._icon = None
+
     @abstractmethod
     def install(self, model, view, controller):
         """Install the plugin at runtime.
