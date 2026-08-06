@@ -472,8 +472,8 @@ class Commands:
         ExportOptionsDialog(self._ui, self)
         return 'break'
 
-    def open_help(self, event=None):
-        self.helpService.open_help_page('')
+    def open_help(self, event=None, page='', site=None):
+        self.helpService.open_help_page(page, site=site)
 
     def open_homepage(self, event=None):
         webbrowser.open(HOME_URL)

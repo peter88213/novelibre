@@ -224,7 +224,7 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
         self._importButton.configure(state=impButtonState)
 
     def _open_help(self, event=None):
-        self._ctrl.helpService.open_help_page(f'import_menu.html')
+        self._ctrl.open_help(page=f'import_menu.html')
 
     def _reset_tree(self):
         """Clear the displayed tree."""

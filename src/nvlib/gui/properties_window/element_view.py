@@ -360,7 +360,7 @@ class ElementView(BlankView):
         self._ui.restore_status()
 
     def _open_help(self, event=None):
-        self._ctrl.helpService.open_help_page(self._HELP_PAGE)
+        self._ctrl.open_help(page=self._HELP_PAGE)
 
     def _remove_link(self, event=None):
         # Remove a link from the list.

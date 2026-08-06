@@ -171,6 +171,4 @@ class ViewOptionsDialog(ModalDialog, SubController):
         self._ui.propertiesView.refresh()
 
     def _open_help(self, event=None):
-        self._ctrl.helpService.open_help_page(
-            f'view_menu.html#{_("options").lower()}'
-        )
+        self._ctrl.open_help(page=f'view_menu.html#{_("options").lower()}')

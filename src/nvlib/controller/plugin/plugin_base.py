@@ -76,8 +76,8 @@ class PluginBase(ABC, SubController):
     def _add_help_menu_entry(self, label):
 
         def open_help():
-            self._ctrl.helpService.open_help_page(
-                self.HELP_PAGE,
+            self._ctrl.open_help(
+                page=self.HELP_PAGE,
                 site=self.HELP_SITE
             )
 

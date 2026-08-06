@@ -101,7 +101,5 @@ class ExportOptionsDialog(ModalDialog, SubController):
         prefs['lock_on_export'] = self._lockOnExportVar.get()
 
     def _open_help(self, event=None):
-        self._ctrl.helpService.open_help_page(
-            f'export_menu.html#{_("options").lower()}'
-        )
+        self._ctrl.open_help(page=f'export_menu.html#{_("options").lower()}')
 

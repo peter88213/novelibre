@@ -232,9 +232,7 @@ class PluginManagerDialog(ModalDialog, SubController):
         self._deleteButton.configure(state=deleteButtonState)
 
     def _open_help(self, event=None):
-        self._ctrl.helpService.open_help_page(
-            f'tools_menu.html#{_("plugin-manager")}'
-        )
+        self._ctrl.open_help(page=f'tools_menu.html#{_("plugin-manager")}')
 
     def _open_homepage(self, event=None):
         pluginName = self._pluginTree.selection()[0]

@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.63.1
+### Version 5.63.2
 
 - Redesigned the help system in order to make it configurable at runtime.
 

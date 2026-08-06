@@ -123,9 +123,7 @@ class BackupOptionsDialog(ModalDialog, SubController):
             self._ui.set_status(f'!{str(ex)}')
 
     def _open_help(self, event=None):
-        self._ctrl.helpService.open_help_page(
-            f'tools_menu.html#{_("backup-options")}'
-        )
+        self._ctrl.open_help(page=f'tools_menu.html#{_("backup-options")}')
 
     def _set_backup_dir(self):
         self._ui.restore_status()
