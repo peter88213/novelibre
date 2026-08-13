@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.63.3
+
+- Improved error handling in the HexColor class.
+- Adapting the color placeholder in the IndexCard class to the current color mode.
+
+
 ### Version 5.63.2
 
 - Redesigned the help system in order to make it configurable at runtime.

@@ -43,6 +43,7 @@ class IndexCard(tk.Frame):
             titleFrame,
             width=2,
             background=bg,
+            foreground=fg,
         )
         self.colorField.pack(
             side='right',

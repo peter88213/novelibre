@@ -20,8 +20,11 @@ class HexColor:
 
     @classmethod
     def is_dark(cls, hexColor):
-        if not hexColor.startswith('#'):
-            return None
+        try:
+            if hexColor.startswith('#'):
+                return cls.get_luminance(hexColor) < 140
 
-        return cls.get_luminance(hexColor) < 140
+        except:
+            pass
+        return None
 
