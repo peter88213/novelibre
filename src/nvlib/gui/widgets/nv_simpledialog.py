@@ -52,7 +52,12 @@ class SimpleDialog:
 
         _setup_dialog(self.root)
 
-        self.message = tk.Message(self.root, text=text, aspect=400, bg='white')
+        self.message = tk.Message(
+            self.root,
+            text=text,
+            aspect=400,
+            bg='#ffffff',
+        )
         self.message.pack(expand=1, fill='both')
         self.frame = ttk.Frame(self.root)
         self.frame.pack()

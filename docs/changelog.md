@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.64.0
+
+- Replaced tk color names with hex triple strings.
+
+
 ### Version 5.63.3
 
 - Improved error handling in the HexColor class.

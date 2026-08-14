@@ -9,14 +9,14 @@ import tkinter as tk
 
 class StatusBar(tk.Label):
 
-    COLOR_NORMAL_BG = 'light gray'
-    COLOR_NORMAL_FG = 'black'
-    COLOR_SUCCESS_BG = 'green'
-    COLOR_SUCCESS_FG = 'white'
-    COLOR_ERROR_BG = 'red'
-    COLOR_ERROR_FG = 'white'
-    COLOR_NOTIFICATION_BG = 'yellow'
-    COLOR_NOTIFICATION_FG = 'black'
+    COLOR_NORMAL_BG = '#d3d3d3'  # light gray
+    COLOR_NORMAL_FG = '#000000'  # black
+    COLOR_SUCCESS_BG = '#008b00'  # green4
+    COLOR_SUCCESS_FG = '#ffffff'  # white
+    COLOR_ERROR_BG = '#ff0000'  # red
+    COLOR_ERROR_FG = '#ffffff'  # white
+    COLOR_NOTIFICATION_BG = '#ffff00'  # yellow
+    COLOR_NOTIFICATION_FG = '#000000'  # black
 
     def __init__(self, master, **kw):
         tk.Label.__init__(self, master, **kw)

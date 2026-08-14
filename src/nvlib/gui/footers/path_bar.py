@@ -10,12 +10,12 @@ import tkinter as tk
 
 class PathBar(Observer, tk.Label):
 
-    COLOR_MODIFIED_BG = 'goldenrod1'
-    COLOR_MODIFIED_FG = 'maroon'
-    COLOR_NORMAL_BG = 'light gray'
-    COLOR_NORMAL_FG = 'black'
-    COLOR_LOCKED_BG = 'dim gray'
-    COLOR_LOCKED_FG = 'light gray'
+    COLOR_MODIFIED_BG = '#ffc125'  # goldenrod1
+    COLOR_MODIFIED_FG = '#b03060'  # maroon
+    COLOR_NORMAL_BG = '#d3d3d3'  # light gray
+    COLOR_NORMAL_FG = '#000000'  # black
+    COLOR_LOCKED_BG = '#696969'  # dim gray
+    COLOR_LOCKED_FG = '#d3d3d3'  # light gray
 
     def __init__(self, master, model, **kw):
         tk.Label.__init__(self, master, **kw)

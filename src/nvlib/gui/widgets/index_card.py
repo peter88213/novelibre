@@ -22,8 +22,8 @@ class IndexCard(tk.Frame):
             self,
             master=None,
             cnf={},
-            fg='black',
-            bg='white',
+            fg='#000000',
+            bg='#ffffff',
             font=None,
             scrollbar=True,
             **kw
@@ -68,7 +68,7 @@ class IndexCard(tk.Frame):
             expand=True,
         )
 
-        tk.Frame(self, bg='red', height=1, bd=0).pack(fill='x')
+        tk.Frame(self, bg='#ff0000', height=1, bd=0).pack(fill='x')
         tk.Frame(self, bg=bg, height=1, bd=0).pack(fill='x')
 
         # Description window.

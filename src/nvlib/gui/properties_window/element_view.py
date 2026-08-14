@@ -405,7 +405,7 @@ class ElementView(BlankView):
             self._pickingMode = True
         self._ui.set_status(
             _('Pick Mode (click here or press Esc to exit)'),
-            colors=('maroon', 'white')
+            colors=('#b03060', '#ffffff')
         )
 
     def _toggle_folding_frame(self):
