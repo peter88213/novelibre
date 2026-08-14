@@ -435,7 +435,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
         prefix = thisNode[:2]
         root = self.tree.parent(thisNode)
-        while not root.startswith(ROOT_PREFIX):
+        while root and not root.startswith(ROOT_PREFIX):
             root = self.tree.parent(root)
         nextNode, __ = search_tree(root, None, False)
         return nextNode
@@ -529,7 +529,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
 
         prefix = thisNode[:2]
         root = self.tree.parent(thisNode)
-        while not root.startswith(ROOT_PREFIX):
+        while root and not root.startswith(ROOT_PREFIX):
             root = self.tree.parent(root)
         prevNode, __ = search_tree(root, None, None)
         return prevNode

@@ -10,8 +10,10 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.64.1
+### Version 5.64.2
 
+- Fixed a bug where the program may freeze when pressing `Alt`-`Up` while the *Book* node is selected, 
+  or `Alt`-`Down` wen the *Project notes* node is selected.
 - Binding the QUIT_PROGRAM key independently of the operating system.
 - Replaced tk color names with hex triple strings.
 
