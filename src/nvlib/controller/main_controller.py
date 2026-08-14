@@ -309,15 +309,12 @@ class MainController(SubController, Commands):
             KEYS.TOGGLE_PROPERTIES[0]: self._ui.toggle_properties_view,
             KEYS.TOGGLE_VIEWER[0]: self._ui.toggle_contents_view,
             KEYS.UNLOCK_PROJECT[0]: self.unlock,
+            KEYS.QUIT_PROGRAM[0]: self.on_quit,
         }
         if PLATFORM == 'win':
             event_callbacks.update({
                 MOUSE.BACK_CLICK: self._ui.tv.go_back,
                 MOUSE.FORWARD_CLICK: self._ui.tv.go_forward,
-            })
-        else:
-            event_callbacks.update({
-                KEYS.QUIT_PROGRAM[0]: self.on_quit,
             })
         for sequence, callback in event_callbacks.items():
             self._ui.root.bind(sequence, callback)

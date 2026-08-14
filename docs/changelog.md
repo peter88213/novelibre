@@ -10,8 +10,9 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.64.0
+### Version 5.64.1
 
+- Binding the QUIT_PROGRAM key independently of the operating system.
 - Replaced tk color names with hex triple strings.
 
 
