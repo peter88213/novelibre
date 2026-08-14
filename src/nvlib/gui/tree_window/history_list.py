@@ -60,7 +60,7 @@ class HistoryList:
 
     def reset(self):
         """Clear the browsing history."""
-        self._historyList = []
+        self._historyList.clear()
         self._pointer = None
         self._lock = False
 
