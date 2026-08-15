@@ -22,9 +22,6 @@ class ApplicationBuilder(PackageBuilder):
 
     def __init__(self, version):
         super().__init__(version)
-        self.distFiles.append(
-            (f'{self.sourceDir}relocate.py', self.buildDir)
-        )
         self.sourceFile = f'{self.sourceDir}{self.PRJ_NAME}_.py'
 
     def add_css(self):

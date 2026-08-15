@@ -19,8 +19,6 @@ from string import Template
 import sys
 import zipfile
 
-import relocate
-
 major = sys.version_info.major
 minor = sys.version_info.minor
 if  major != 3 or minor < 7:
@@ -246,14 +244,6 @@ def install(zipped):
     else:
         copy_file = copy2
         copy_tree = cp_tree
-
-    #--- Relocate the v1.x installation directory, if necessary.
-    message = relocate.main()
-    if message:
-        messagebox.showinfo(
-            'Moving the novelibre installation directory',
-            message
-        )
 
     #--- Create a general novxlib installation directory, if necessary.
     os.makedirs(installDir, exist_ok=True)
