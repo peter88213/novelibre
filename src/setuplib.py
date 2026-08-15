@@ -6,6 +6,7 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from configparser import ConfigParser
 import gettext
 import glob
 import locale
@@ -18,6 +19,8 @@ import stat
 from string import Template
 import sys
 import zipfile
+
+from novelibre import DEFAULT_COLORS
 
 major = sys.version_info.major
 minor = sys.version_info.minor
@@ -230,6 +233,26 @@ def open_folder(installDir):
                 pass
 
 
+def set_colors(iniFile):
+    if not os.path.isfile(iniFile):
+        return
+
+    config = ConfigParser()
+    config.read(iniFile, encoding='utf-8')
+    for color in DEFAULT_COLORS:
+        try:
+            if not '#' in config['SETTINGS'][color]:
+                print(
+                    f'- Updating {color}: '
+                    f"{config['SETTINGS'][color]} -> {DEFAULT_COLORS[color]}"
+                )
+                config['SETTINGS'][color] = DEFAULT_COLORS[color]
+        except:
+            pass
+    with open(iniFile, 'w', encoding='utf-8') as f:
+        config.write(f)
+
+
 def install(zipped):
     scriptPath = os.path.abspath(sys.argv[0])
     scriptDir = os.path.dirname(scriptPath)
@@ -329,6 +352,10 @@ def install(zipped):
     #--- Install the icon files.
     print('Copying icons ...')
     copy_tree('icons', installDir)
+
+    #--- Set up the hex triple colors.
+    print(f'Checking the color settings ...')
+    set_colors(f'{installDir}{INI_PATH}novx.ini')
 
     #--- Generate registry entries for the context menu (Windows only).
     if platform.system() == 'Windows':
