@@ -119,17 +119,19 @@ class ViewOptionsDialog(ModalDialog, SubController):
         ).pack(padx=5, pady=5, anchor='w')
 
         ttk.Separator(self, orient='horizontal').pack(fill='x')
+        footer = ttk.Frame(self)
+        footer.pack(fill='both', expand=False)
 
         # "Close" button.
         ttk.Button(
-            self,
+            footer,
             text=_('Close'),
             command=self.destroy,
         ).pack(padx=5, pady=5, side='right')
 
         # "Help" button.
         ttk.Button(
-            self,
+            footer,
             text=_('Help'),
             command=self._open_help,
         ).pack(padx=5, pady=5, side='right')

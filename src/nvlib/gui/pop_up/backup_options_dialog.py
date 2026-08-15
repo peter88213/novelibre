@@ -35,11 +35,13 @@ class BackupOptionsDialog(ModalDialog, SubController):
         window = ttk.Frame(self)
         window.pack(
             fill='both',
-            padx=50,
-            pady=5
         )
         frame1 = ttk.Frame(window)
-        frame1.pack(fill='both', side='left')
+        frame1.pack(
+            fill='both',
+            padx=50,
+            pady=5,
+        )
 
         # Backup directory display.
         self._backupDirVar = tk.StringVar(
@@ -78,18 +80,21 @@ class BackupOptionsDialog(ModalDialog, SubController):
             variable=self._enableBackupVar,
             command=self._change_enable_backup,
         ).pack(padx=5, pady=5, anchor='w')
+
         ttk.Separator(self, orient='horizontal').pack(fill='x')
+        footer = ttk.Frame(self)
+        footer.pack(fill='both', expand=False)
 
         # "Close" button.
         ttk.Button(
-            self,
+            footer,
             text=_('Close'),
             command=self.destroy
         ).pack(padx=5, pady=5, side='right')
 
         # "Help" button.
         ttk.Button(
-            self,
+            footer,
             text=_('Help'),
             command=self._open_help
         ).pack(padx=5, pady=5, side='right')

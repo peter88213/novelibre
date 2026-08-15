@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.64.3
+
+- Updated popup dialogs for better "dark mode" support.
+- Checking the color settings during setup.
+
+
 ### Version 5.64.2
 
 - Fixed a bug where the program may freeze when pressing `Alt`-`Up` while the *Book* node is selected, 

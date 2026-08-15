@@ -26,10 +26,9 @@ class ExportOptionsDialog(ModalDialog, SubController):
         window = ttk.Frame(self)
         window.pack(
             fill='both',
-            pady=5
         )
         frame1 = ttk.Frame(window)
-        frame1.pack(fill='both', padx=50)
+        frame1.pack(fill='both')
 
         # Checkbox: Ask whether documents should be opened
         # straight after export.
@@ -76,17 +75,19 @@ class ExportOptionsDialog(ModalDialog, SubController):
         ).pack(padx=5, pady=5, anchor='w', fill='x')
 
         ttk.Separator(self, orient='horizontal').pack(fill='x')
+        footer = ttk.Frame(self)
+        footer.pack(fill='both', expand=False)
 
         # "Close" button.
         ttk.Button(
-            self,
+            footer,
             text=_('Close'),
             command=self.destroy,
         ).pack(padx=5, pady=5, side='right')
 
         # "Help" button.
         ttk.Button(
-            self,
+            footer,
             text=_('Help'),
             command=self._open_help,
         ).pack(padx=5, pady=5, side='right')
