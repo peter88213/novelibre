@@ -11,6 +11,7 @@ from nvlib.controller.sub_controller import SubController
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.widgets.modal_dialog import ModalDialog
 from nvlib.nv_locale import _
+import tkinter as tk
 
 
 class PluginManagerDialog(ModalDialog, SubController):
@@ -137,12 +138,12 @@ class PluginManagerDialog(ModalDialog, SubController):
                 tags=tuple(nodeTags),
             )
 
-        self._footer = ttk.Frame(self)
-        self._footer.pack(fill='both', expand=False)
+        footer = tk.Frame(self)
+        footer.pack(fill='both', expand=False)
 
         # "Home page" button.
         self._homeButton = ttk.Button(
-            self._footer,
+            footer,
             text=_('Home page'),
             command=self._open_homepage,
             state='disabled'
@@ -151,7 +152,7 @@ class PluginManagerDialog(ModalDialog, SubController):
 
         # "Delete" button.
         self._deleteButton = ttk.Button(
-            self._footer,
+            footer,
             text=_('Uninstall'),
             command=self._uninstall_plugin,
             state='disabled'
@@ -160,14 +161,14 @@ class PluginManagerDialog(ModalDialog, SubController):
 
         # "Close" button.
         ttk.Button(
-            self._footer,
+            footer,
             text=_('Close'),
             command=self.destroy,
         ).pack(padx=5, pady=5, side='right')
 
         # "Help" button.
         ttk.Button(
-            self._footer,
+            footer,
             text=_('Help'),
             command=self._open_help,
         ).pack(padx=5, pady=5, side='right')

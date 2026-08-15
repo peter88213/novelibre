@@ -82,7 +82,7 @@ class BackupOptionsDialog(ModalDialog, SubController):
         ).pack(padx=5, pady=5, anchor='w')
 
         ttk.Separator(self, orient='horizontal').pack(fill='x')
-        footer = ttk.Frame(self)
+        footer = tk.Frame(self)
         footer.pack(fill='both', expand=False)
 
         # "Close" button.

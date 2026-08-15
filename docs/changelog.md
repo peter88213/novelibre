@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.64.3
+### Version 5.64.4
 
 - Updated popup dialogs for better "dark mode" support.
 - Checking the color settings during setup.

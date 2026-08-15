@@ -88,9 +88,14 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
                 command=self._save_options,
             ).pack(padx=5, pady=1, anchor='w')
 
+        ttk.Separator(self, orient='horizontal').pack(fill='x')
+        footer = tk.Frame(self)
+        footer.pack(fill='both', expand=False)
+
         # "Import" button.
         self._importButton = ttk.Button(
-            window, text=_('Import'),
+            footer,
+            text=_('Import'),
             command=self._import_document,
             state='disabled'
         )
@@ -98,7 +103,8 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
 
         # "Discard" button.
         self._deleteButton = ttk.Button(
-            window, text=_('Discard'),
+            footer,
+            text=_('Discard'),
             command=self._delete_document,
             state='disabled'
         )
@@ -106,7 +112,7 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
 
         # "Refresh view" button.
         self._refreshButton = ttk.Button(
-            window,
+            footer,
             text=_('Refresh view'),
             command=self._list_documents
         )
@@ -114,14 +120,14 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
 
         # "Close" button.
         ttk.Button(
-            window,
+            footer,
             text=_('Close'),
             command=self.destroy,
         ).pack(padx=5, pady=5, side='right')
 
         # "Help" button.
         ttk.Button(
-            window,
+            footer,
             text=_('Help'),
             command=self._open_help,
         ).pack(padx=5, pady=5, side='right')
