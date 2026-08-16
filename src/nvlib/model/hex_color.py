@@ -4,6 +4,7 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+import string
 
 
 class HexColor:
@@ -20,11 +21,17 @@ class HexColor:
 
     @classmethod
     def is_dark(cls, hexColor):
+        if cls.is_hex_color(hexColor):
+            return cls.get_luminance(hexColor) < 140
+
+        return None
+
+    @classmethod
+    def is_hex_color(cls, s):
         try:
-            if hexColor.startswith('#'):
-                return cls.get_luminance(hexColor) < 140
+            if len(s) == 7 and s.startswith('#'):
+                return all(c in string.hexdigits for c in s[1:])
 
         except:
-            pass
-        return None
+            return False
 

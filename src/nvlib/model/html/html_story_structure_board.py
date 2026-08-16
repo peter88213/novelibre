@@ -43,10 +43,7 @@ class HtmlStoryStructureBoard(HtmlBoard):
 
         # Stage card styles.
         stageColor = '#FF0000'
-        if HexColor.is_dark(stageColor):
-            fgColor = '#FFFFFF'
-        else:
-            fgColor = '#000000'
+        fgColor = '#FFFFFF' if HexColor.is_dark(stageColor) else '#000000'
         borderColor = '#FFFFFF'
         htmlText.append(
             '<style type="text/css">\n'

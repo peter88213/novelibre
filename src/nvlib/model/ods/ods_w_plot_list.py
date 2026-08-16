@@ -145,10 +145,7 @@ class OdsWPlotList(OdsWriter):
         xmlText = []
         for elemId in elements:
             elemColor = elements[elemId].color or BLACK
-            if HexColor.is_dark(elemColor):
-                fgColor = WHITE
-            else:
-                fgColor = BLACK
+            fgColor = WHITE if HexColor.is_dark(elemColor) else BLACK
             bgColor = elemColor
 
             mappings['Name'] = elemId

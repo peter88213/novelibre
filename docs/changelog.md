@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.64.5
+
+- New class method: `HexColor.is_hex_color()`.
+- Refactored the code.
+
+
 ### Version 5.64.4
 
 - Updated popup dialogs for better "dark mode" support.

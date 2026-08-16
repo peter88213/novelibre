@@ -72,10 +72,7 @@ class HtmlTable(HtmlReport):
         htmlText = ['<style type="text/css">']
         for plId in self.novel.plotLines:
             plColor = self.novel.plotLines[plId].color or DEFAULT_PL_COLOR
-            if HexColor.is_dark(plColor):
-                fgColor = WHITE
-            else:
-                fgColor = BLACK
+            fgColor = WHITE if HexColor.is_dark(plColor) else BLACK
             bgColor = plColor
 
             # Plot line column heading cell style.
