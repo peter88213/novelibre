@@ -18,6 +18,7 @@ class ModalDialog(tk.Toplevel):
         __, x, y = ui.root.geometry().split('+')
         windowGeometry = f'+{int(x)+self.OFFSET}+{int(y)+self.OFFSET}'
         self.geometry(windowGeometry)
+        self.wait_visibility()
         self.grab_set()
         self.focus()
         self.wm_attributes('-topmost', True)
