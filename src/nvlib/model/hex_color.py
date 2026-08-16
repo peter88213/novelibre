@@ -4,7 +4,6 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-import string
 
 
 class HexColor:
@@ -30,7 +29,7 @@ class HexColor:
     def is_hex_color(cls, s):
         try:
             if len(s) == 7 and s.startswith('#'):
-                return all(c in string.hexdigits for c in s[1:])
+                return all(c in '0123456789abcdefABCDEF' for c in s[1:])
 
         except:
             return False

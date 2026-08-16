@@ -10,10 +10,10 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.64.5
+### Version 5.64.6
 
-- New class method: `HexColor.is_hex_color()`.
 - Refactored the code.
+- New class method: `HexColor.is_hex_color()`.
 
 
 ### Version 5.64.4
