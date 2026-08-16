@@ -14,6 +14,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 - Refactored the code.
 - New class method: `HexColor.is_hex_color()`.
+- Updated the `ModalDialog` class for safe operation under Linux.
 
 
 ### Version 5.64.4
