@@ -24,6 +24,7 @@ from nvlib.configuration.configuration import Configuration
 from nvlib.configuration.just_settings import JustSettings
 from nvlib.controller.main_controller import MainController
 from nvlib.gui.default_colors import DEFAULT_COLORS
+from nvlib.model.hex_color import HexColor
 from nvlib.nv_globals import INSTALL_DIR
 from nvlib.nv_globals import launchers
 from nvlib.nv_globals import prefs
@@ -125,6 +126,7 @@ def main():
         pass
         # skipping the configuraton if faulty
     prefs.update(configuration.settings)
+    HexColor.check_colors(prefs, DEFAULT_COLORS)
     prefs.update(configuration.options)
 
     #--- Launchers for opening linked non-standard filetypes.

@@ -34,3 +34,14 @@ class HexColor:
         except:
             return False
 
+    @classmethod
+    def check_colors(cls, settings, defaults):
+        for color in defaults:
+            try:
+                if cls.is_hex_color(settings[color]):
+                    continue
+
+            except KeyError:
+                pass
+            settings[color] = defaults[color]
+
