@@ -1113,12 +1113,13 @@ part of the Linux distribution</val>
 <ownedOperation>
 <reflist>
 <ref refid="6f2e352b-0042-11f0-9174-70d82353e50d"/>
-<ref refid="732e300e-0042-11f0-9cea-70d82353e50d"/>
+<ref refid="d751affb-9bee-11f1-a558-70d82353e50d"/>
 <ref refid="77e06ff0-0042-11f0-a664-70d82353e50d"/>
+<ref refid="732e300e-0042-11f0-9cea-70d82353e50d"/>
 <ref refid="7bbc3d08-0042-11f0-b284-70d82353e50d"/>
+<ref refid="86c96bb7-0042-11f0-92a5-70d82353e50d"/>
 <ref refid="7f4abb0a-0042-11f0-a2c0-70d82353e50d"/>
 <ref refid="8319f077-0042-11f0-9c2d-70d82353e50d"/>
-<ref refid="86c96bb7-0042-11f0-92a5-70d82353e50d"/>
 </reflist>
 </ownedOperation>
 <owningPackage>
@@ -1135,7 +1136,7 @@ part of the Linux distribution</val>
 </UML:Class>
 <UML:ClassItem id="62188039-00c9-11f0-b343-70d82353e50d">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 345.99999999999994, 410.0)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 345.99999999999994, 409.0)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -1144,7 +1145,7 @@ part of the Linux distribution</val>
 <val>217.0</val>
 </width>
 <height>
-<val>295.0</val>
+<val>312.0</val>
 </height>
 <diagram>
 <ref refid="0a4db210-003b-11f0-b32f-70d82353e50d"/>
@@ -1176,7 +1177,7 @@ part of the Linux distribution</val>
 <val>(1.0, 0.0, 0.0, 1.0, 280.0, 296.0)</val>
 </matrix>
 <points>
-<val>[(82.19841269841271, 31.0), (119.0, 114.0)]</val>
+<val>[(82.19841269841271, 31.0), (119.0, 113.0)]</val>
 </points>
 <head-connection>
 <ref refid="43386d08-003b-11f0-a0f6-70d82353e50d"/>
@@ -1254,7 +1255,7 @@ part of the Linux distribution</val>
 <val>(1.0, 0.0, 0.0, 1.0, 63.84210526315792, 367.0)</val>
 </matrix>
 <points>
-<val>[(239.15789473684208, 423.46273676566045), (321.1578947368421, 338.0)]</val>
+<val>[(239.15789473684208, 423.46273676566045), (321.1578947368421, 354.0)]</val>
 </points>
 <head-connection>
 <ref refid="583dbef3-003b-11f0-8a3e-70d82353e50d"/>
@@ -1428,5 +1429,13 @@ part of the Linux distribution</val>
 <val>model</val>
 </name>
 </UML:Property>
+<UML:Operation id="d751affb-9bee-11f1-a558-70d82353e50d">
+<class_>
+<ref refid="6217e76e-00c9-11f0-b066-70d82353e50d"/>
+</class_>
+<name>
+<val>uninstall</val>
+</name>
+</UML:Operation>
 </model>
 </gaphor>
