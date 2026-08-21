@@ -20,15 +20,20 @@ class PluginManagerDialog(ModalDialog, SubController):
     Displaying a list of all plugins found on application startup.
     """
     MIN_HEIGHT = 450
+    MIN_WIDTH = 600
+    RESIZABLE = True
 
     def __init__(self, view, controller, **kw):
         super().__init__(view, **kw)
-        self.minsize(1, self.MIN_HEIGHT)
         self._ui = view
         self._ctrl = controller
 
         self.title(f'{_("Installed plugins")} - novelibre @release')
         self.iconphoto(False, view.icons.pluginsIcon)
+        self.minsize(self.MIN_WIDTH, self.MIN_HEIGHT)
+
+        mainWindow = ttk.Frame(self)
+        mainWindow.pack(fill='both', expand=True)
 
         columns = (
             'Plugin',
@@ -37,19 +42,19 @@ class PluginManagerDialog(ModalDialog, SubController):
             'Description',
         )
         self._pluginTree = ttk.Treeview(
-            self,
+            mainWindow,
             columns=columns,
             show='headings',
             selectmode='browse',
         )
 
-        # scrollY = ttk.Scrollbar(
-        #    self._pluginTree, orient='vertical',
-        #    command=self._pluginTree.yview)
-        # self._pluginTree.configure(yscrollcommand=scrollY.set)
-        # scrollY.pack(side='right', fill='y')
-        #--- unsolved problem:
-        #    adding a scollbar makes the window shrink to minimum
+        scrollY = ttk.Scrollbar(
+            mainWindow,
+            orient='vertical',
+            command=self._pluginTree.yview,
+        )
+        self._pluginTree.configure(yscrollcommand=scrollY.set)
+        scrollY.pack(side='right', fill='y')
 
         self._pluginTree.pack(fill='both', expand=True)
         self._pluginTree.bind('<<TreeviewSelect>>', self._on_select_plugin)

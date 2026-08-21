@@ -25,6 +25,9 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
     A pop-up window displaying a picklist of previously 
     exported documents for re-import.
     """
+    MIN_HEIGHT = 400
+    MIN_WIDTH = 600
+    RESIZABLE = True
 
     def __init__(self, model, view, controller, **kw):
         if model.prjFile.filePath is None:
@@ -38,16 +41,26 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
 
         self.title(_('Exported documents'))
         self.iconphoto(False, view.icons.updateFromManuscriptIcon)
-        window = ttk.Frame(self)
-        window.pack(fill='both', expand=True)
+        self.minsize(self.MIN_WIDTH, self.MIN_HEIGHT)
+
+        mainWindow = ttk.Frame(self)
+        mainWindow.pack(fill='both', expand=True)
 
         columns = 'Document', 'Date'
         self._documentCollection = ttk.Treeview(
-            window,
+            mainWindow,
             columns=columns,
             show='headings',
             selectmode='browse'
         )
+        scrollY = ttk.Scrollbar(
+            self._documentCollection,
+            orient='vertical',
+            command=self._documentCollection.yview,
+        )
+        self._documentCollection.configure(yscrollcommand=scrollY.set)
+        scrollY.pack(side='right', fill='y')
+
         self._documentCollection.pack(fill='both', expand=True)
         self._documentCollection.bind(
             '<<TreeviewSelect>>', self._on_select_document)
@@ -65,6 +78,8 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
         self._documentCollection.heading(
             'Date', text=_('Date'), anchor='w')
 
+        #--- Settings.
+
         # "Discard after import" checkbox.
         IMPORT_MODES = [
             _("Discard documents only if the project structure is modified"),
@@ -78,10 +93,10 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
         if importMode >= len(IMPORT_MODES):
             importMode = 0
 
-        self._importModeVar = tk.IntVar(window, value=importMode)
+        self._importModeVar = tk.IntVar(mainWindow, value=importMode)
         for i, buttonLabel in enumerate(IMPORT_MODES):
             ttk.Radiobutton(
-                window,
+                mainWindow,
                 text=buttonLabel,
                 variable=self._importModeVar,
                 value=i,
@@ -89,6 +104,8 @@ class ReimportDialog(ModalDialog, SubController, NovxConversion):
             ).pack(padx=5, pady=1, anchor='w')
 
         ttk.Separator(self, orient='horizontal').pack(fill='x')
+
+        #--- Footer bar.
         footer = tk.Frame(self)
         footer.pack(fill='both', expand=False)
 
