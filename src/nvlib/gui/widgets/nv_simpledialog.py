@@ -5,6 +5,11 @@ This modification of the tkinter simpledialog module
 is slightly refactored, features ttk widgets, 
 and is prepared for translation with GNU gettext.
 
+Further modifications:
+- The dialog is kept in front.
+- Under Windows, the resizing buttons are removed.
+- The dialog is not resizable.
+
 This modules handles dialog boxes.
 
 It contains the following public symbols:
@@ -30,6 +35,7 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+import platform
 from tkinter import messagebox
 from tkinter import ttk
 
@@ -256,6 +262,9 @@ class Dialog(tk.Toplevel):
 # It is a Python implementation of ::tk::PlaceWindow.
 def _place_window(w, parent=None):
     w.wm_withdraw()  # Remain invisible while we figure out the geometry
+    w.wm_resizable(False, False)
+    if platform.system() == 'Windows':
+        w.attributes('-toolwindow', True)
     w.update_idletasks()  # Actualize geometry information
 
     minwidth = w.winfo_reqwidth()
@@ -281,6 +290,7 @@ def _place_window(w, parent=None):
     w.wm_maxsize(maxwidth, maxheight)
     w.wm_geometry('+%d+%d' % (x, y))
     w.wm_deiconify()  # Become visible at the desired location
+    w.wm_attributes('-topmost', True)
 
 
 def _setup_dialog(w):
