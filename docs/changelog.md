@@ -10,6 +10,18 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.65.1
+
+Revised pop-up dialogs
+
+- `ModalDialog` is non-resizable by default.
+- `ReimportDialog` gets a scrollbar and remains resizable.
+- `PluginManagerDialog` gets a scrollbar and remains resizable.
+- `nv_simpledialog` modifications:
+   - The dialog is kept in front.
+   - Under Windows, the resizing buttons are removed.
+   - The dialog is not resizable.
+
 ### Version 5.64.7
 
 - Refactored the code.
