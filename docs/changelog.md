@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.65.2
+
+- Word count log update on opening no longer sets the modification flag.
+
+
 ### Version 5.65.1
 
 Revised pop-up dialogs

@@ -950,10 +950,13 @@ class NvModel:
         self.prjFile = NvWorkFile(filePath)
         self.prjFile.novel = self.novel
         self.prjFile.read()
+        self.isModified = False
+        """
         if self.prjFile.wcLogUpdate and self.novel.saveWordCount:
             self.isModified = True
         else:
             self.isModified = False
+        """
         self._initialize_tree(self.on_element_change)
 
     def renumber_chapters(self):
