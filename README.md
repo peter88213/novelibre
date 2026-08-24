@@ -76,7 +76,11 @@ This is the manuscript to work on. *novelibre* generated it and passed it to Lib
 In order not to overload the program with features, some of them are offered as plugins 
 so that only those users who need them actually install them.
 
--  So if it's important to you to track characters, locations, items, and plot lines, 
+-  Do you want to make sure you're running the latest version of *novelibre* and its plugins?
+   Just launch the the on-demand update checker 
+   [nv_updater](https://github.com/peter88213/nv_updater/)
+   from time to time. 
+-  If it's important to you to track characters, locations, items, and plot lines, 
    you might want to download and install the
    [nv_matrix](https://github.com/peter88213/nv_matrix/) plugin.
 -  If you have more than one book project, or if you write a series, 
@@ -96,6 +100,8 @@ so that only those users who need them actually install them.
 -  If you value a balanced text distribution, the
    [nv_statistics](https://github.com/peter88213/nv_statistics/)
    statistics viewer could be something for you.
+-  If you use colors to organize your project and are unhappy with the default color selection dialog, 
+   the [nv_color_palette](https://github.com/peter88213/nv_color_palette) plugin might be just what you need.  
 -  If you want to set up your stories according to a proven dramaturgical scheme, 
    you can conveniently load one into your project with the help of the 
    [nv_templates](https://github.com/peter88213/nv_templates/)
@@ -114,10 +120,6 @@ so that only those users who need them actually install them.
 -  If you want to switch between *yWriter* and *novelibre*, the
    [nv_yw7](https://github.com/peter88213/nv_yw7/)
    yw7 file importer/exporter plugin might come in handy.
--  Do you want to make sure you're running the latest version of *novelibre* and its plugins?
-   Just launch the the on-demand update checker 
-   [nv_updater](https://github.com/peter88213/nv_updater/)
-   from time to time. 
 -  If you are familiar with XML, you can edit or split your sections directly in *novelibre*
    with [nv_editor](https://github.com/peter88213/nv_editor/).
 -  You would like to preface the chapters or sections of your final document with 
