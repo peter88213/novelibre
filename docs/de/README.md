@@ -72,6 +72,8 @@ Damit die vielen Funktionen das Programm nicht überladen, werden einige als Plu
 -  Wenn Sie Ihren Schreibfortschritt verfolgen wollen, wird Ihnen die tägliche Wortzahlansicht von 
    [nv_progress](https://github.com/peter88213/nv_progress/) gefallen.
 -  Das [nv_snapshots](https://github.com/peter88213/nv_snapshots/)-Plugin ist ein leichtgewichtiges Versionskontrollsystem.
+-  Wenn Sie Farben zur Organisation Ihres Projekts verwenden und mit dem Standard-Farbauswahldialog unzufrieden sind,
+   könnte das Plugin [nv_color_palette](https://github.com/peter88213/nv_color_palette) genau das Richtige für Sie sein.
 -  Wollen Sie sich beim Schreiben ganz und gar auf Ihren Text konzentrieren? Dann probieren Sie das 
    [nv_writer](https://github.com/peter88213/nv_writer/)-Plugin aus, 
    das einen ablenkungsfreien Schreibmodus bietet, in dem Sie Szene für Szene eintippen können,
