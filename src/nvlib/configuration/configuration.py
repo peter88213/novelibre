@@ -30,7 +30,7 @@ class Configuration(ConfigurationBase):
             
         Settings and options that can not be read in, remain unchanged.
         """
-        self.filePath = self.filePath or filePath
+        self.filePath = filePath or self.filePath
         # this is for downward compatibility with plugins
 
         config = ConfigParser()
