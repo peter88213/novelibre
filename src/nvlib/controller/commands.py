@@ -454,7 +454,11 @@ class Commands:
             return 'break'
 
         if event is not None:
-            node = self._ui.selectedNode
+            try:
+                node = self._ui.selectedNode
+            except IndexError:
+                return 'break'
+
             targetNode = self._ui.tv.tree.identify_row(event.y)
             if node == targetNode:
                 return 'break'
