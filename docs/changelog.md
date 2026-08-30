@@ -10,10 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.66.0
+### Version 5.66.1
 
 - API change: New method `SubController.ready_to_close()`.
 - Forced project closure after 3 failed project closing attempts.
+- Handling incidental errors when moving nodes.
 
 
 ### Version 5.65.2
