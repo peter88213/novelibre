@@ -33,6 +33,9 @@ PLUGIN_PATH = f'{sys.path[0]}/plugin'
 class MainController(SubController, Commands):
     """Controller for the novelibre application."""
 
+    MAX_NR_OF_CLOSING_ATTEMPTS = 3
+    # maximum number of attempts before forced project closure
+
     def __init__(self, title, tempDir):
         """Set up the application.
         
@@ -47,6 +50,7 @@ class MainController(SubController, Commands):
         self._internalLockFlag = False
         self._clients = []
         self.tempDir = tempDir
+        self._failedClosingAttempts = None
 
         #--- Create the model
         self._mdl = NvModel()
@@ -169,6 +173,17 @@ class MainController(SubController, Commands):
         - trigger plugins.
         """
         self.update_status()
+
+        # Notify the sub-controllers.
+        if (
+            not doNotSave and
+            self._failedClosingAttempts < self.MAX_NR_OF_CLOSING_ATTEMPTS
+        ):
+            for client in self._clients:
+                if not client.ready_to_close():
+                    self._failedClosingAttempts += 1
+                    return None
+
         self._ui.propertiesView.apply_changes()
         if self._mdl.prjFile:
             pidfile = f'{self._mdl.prjFile.filePath}.pid'
@@ -207,6 +222,7 @@ class MainController(SubController, Commands):
 
     def on_open(self):
         """Actions to be performed after a project is opened."""
+        self._failedClosingAttempts = 0
         for client in self._clients:
             client.on_open()
 

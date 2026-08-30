@@ -33,6 +33,10 @@ class SubController:
         """Actions to be performed when novelibre is closed."""
         pass
 
+    def ready_to_close(self):
+        """Return True if the subcontroller is ready to close."""
+        return True
+
     def unlock(self):
         """Enable changes on the model."""
         pass

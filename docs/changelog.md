@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.66.0
+
+- API change: New method `SubController.ready_to_close()`.
+- Forced project closure after 3 failed project closing attempts.
+
+
 ### Version 5.65.2
 
 - Word count log update on opening no longer sets the modification flag.

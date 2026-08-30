@@ -59,7 +59,7 @@ class PluginCollection(dict, SubController):
         except ValueError:
             # Set defaults for testing.
             self.majorVersion = 5
-            self.minorVersion = 65
+            self.minorVersion = 66
             self.patchlevel = 0
 
     def uninstall_plugin(self, pluginName):
@@ -210,6 +210,17 @@ class PluginCollection(dict, SubController):
                     self[pluginName].on_quit()
                 except:
                     pass
+
+    def ready_to_close(self):
+        for pluginName in self:
+            try:
+                if not self[pluginName].ready_to_close():
+                    return False
+
+            except AttributeError:
+                pass
+
+        return True
 
     def unlock(self):
         """Allow the plugins changing the model."""
