@@ -290,10 +290,15 @@ class OdsReader(OdfReader, ABC):
 
             #--- Scene
             try:
-                ar = self._columnDict['Scene'][scId] or '-'
+                ar = self._columnDict['Scene'][scId]
             except:
-                ar = '-'
-            self.novel.sections[scId].scene = SCENE.index(ar)
+                pass
+            else:
+                if ar:
+                    try:
+                        self.novel.sections[scId].scene = SCENE.index(ar)
+                    except ValueError:
+                        pass
 
             #--- goal
             try:
