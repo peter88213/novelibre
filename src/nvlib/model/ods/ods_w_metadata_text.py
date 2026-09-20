@@ -231,6 +231,7 @@ class OdsWMetadataText(OdsWriter):
         mapping.update(
             super()._get_characterMapping(crId)
         )
+        mapping['ArcNoteCells'] = self._get_empty_arc_note_cells()
         return mapping
 
     def _get_chapterMapping(self, chId, chapterNumber):
@@ -238,6 +239,7 @@ class OdsWMetadataText(OdsWriter):
         mapping.update(
             super()._get_chapterMapping(chId, chapterNumber)
         )
+        mapping['ArcNoteCells'] = self._get_empty_arc_note_cells()
         return mapping
 
     def _get_fileHeaderMapping(self):
@@ -283,6 +285,7 @@ class OdsWMetadataText(OdsWriter):
         mapping['ArcIdCells'] = '\n'.join(arcIdCells)
         mapping['ArcTitleCells'] = '\n'.join(arcTitleCells)
         mapping['ID'] = ROOT_PREFIX
+        mapping['ArcNoteCells'] = self._get_empty_arc_note_cells()
         return mapping
 
     def _get_itemMapping(self, itId):
@@ -290,6 +293,7 @@ class OdsWMetadataText(OdsWriter):
         mapping.update(
             super()._get_itemMapping(itId)
         )
+        mapping['ArcNoteCells'] = self._get_empty_arc_note_cells()
         return mapping
 
     def _get_locationMapping(self, lcId):
@@ -297,6 +301,7 @@ class OdsWMetadataText(OdsWriter):
         mapping.update(
             super()._get_locationMapping(lcId)
         )
+        mapping['ArcNoteCells'] = self._get_empty_arc_note_cells()
         return mapping
 
     def _get_plotLineMapping(self, plId):
@@ -304,6 +309,7 @@ class OdsWMetadataText(OdsWriter):
         mapping.update(
             super()._get_plotLineMapping(plId)
         )
+        mapping['ArcNoteCells'] = self._get_empty_arc_note_cells()
         return mapping
 
     def _get_plotPointMapping(self, ppId):
@@ -311,6 +317,7 @@ class OdsWMetadataText(OdsWriter):
         mapping.update(
             super()._get_plotPointMapping(ppId)
         )
+        mapping['ArcNoteCells'] = self._get_empty_arc_note_cells()
         return mapping
 
     def _get_prjNoteMapping(self, pnId):
@@ -318,6 +325,7 @@ class OdsWMetadataText(OdsWriter):
         mapping.update(
             super()._get_prjNoteMapping(pnId)
         )
+        mapping['ArcNoteCells'] = self._get_empty_arc_note_cells()
         return mapping
 
     def _get_sectionMapping(
@@ -363,4 +371,12 @@ class OdsWMetadataText(OdsWriter):
                 ).safe_substitute(arcMapping))
         mapping['ArcNoteCells'] = '\n'.join(arcNoteCells)
         return mapping
+
+    def _get_empty_arc_note_cells(self):
+        # Return filler cells for non-section elements.
+        return (
+            '     <table:table-cell office:value-type="string">\n'
+            '      <text:p></text:p>\n'
+            '     </table:table-cell>\n'
+        ) * len(self.novel.plotLines)
 

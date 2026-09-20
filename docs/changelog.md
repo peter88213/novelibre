@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.66.2
+
+- Fixed a bug where the metadata text table import might raise an exception
+  if the project has plot lines.  
+
+
 ### Version 5.66.1
 
 - API change: New method `SubController.ready_to_close()`.

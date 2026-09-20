@@ -140,7 +140,10 @@ table:style-name="ta1" table:print="false">
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -179,7 +182,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -386,7 +392,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -509,7 +518,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -632,7 +644,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -755,7 +770,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -878,7 +896,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1001,7 +1022,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1124,7 +1148,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1205,7 +1232,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1244,7 +1274,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1283,7 +1316,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1322,7 +1358,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1361,7 +1400,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1400,7 +1442,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1439,7 +1484,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1478,7 +1526,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1517,7 +1568,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1556,7 +1610,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1595,7 +1652,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1634,7 +1694,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1673,7 +1736,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1712,7 +1778,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1751,7 +1820,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1790,7 +1862,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1829,7 +1904,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1868,7 +1946,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1907,7 +1988,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1946,7 +2030,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -1985,7 +2072,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    <table:table-row table:style-name="ro2">
      <table:table-cell office:value-type="string">
@@ -2024,7 +2114,10 @@ $ArcNoteCells
      <table:table-cell office:value-type="string">
       <text:p></text:p>
      </table:table-cell>
-$ArcNoteCells
+     <table:table-cell office:value-type="string">
+      <text:p></text:p>
+     </table:table-cell>
+
     </table:table-row>
    </table:table>
   </office:spreadsheet>
