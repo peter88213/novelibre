@@ -10,12 +10,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.66.3
+### Version 5.66.4
 
 - Fixed a bug where the metadata text table import might raise an exception
   if the project has plot lines.  
 - Fixed a regression from version 5.59.0 where the section's scene information 
   may be lost during ODF table import.
+- Fixed a regression from version 5.61.0 where the project tree columns cannot be resized manually.
 
 
 ### Version 5.66.1

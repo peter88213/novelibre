@@ -460,6 +460,10 @@ class Commands:
                 return 'break'
 
             targetNode = self._ui.tv.tree.identify_row(event.y)
+            if not targetNode:
+                # resizing columns: pass the event
+                return
+
             if node == targetNode:
                 return 'break'
 
