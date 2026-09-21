@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.66.6
+
+- Refactored the code for better maintainability.
+
+
 ### Version 5.66.5
 
 - Enabled column resizing independently of the project's lock state.
