@@ -10,6 +10,11 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.66.5
+
+- Enabled column resizing independently of the project's lock state.
+
+
 ### Version 5.66.4
 
 - Fixed a bug where the metadata text table import might raise an exception

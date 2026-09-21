@@ -450,9 +450,6 @@ class Commands:
             node: str - ID of the node to move.
             targetNode: str -- ID of the new parent/predecessor of the node.
         """
-        if self.isLocked:
-            return 'break'
-
         if event is not None:
             try:
                 node = self._ui.selectedNode
@@ -466,6 +463,9 @@ class Commands:
 
             if node == targetNode:
                 return 'break'
+
+        if self.isLocked:
+            return 'break'
 
         self.elementManager.move_node(node, targetNode)
         return 'break'
