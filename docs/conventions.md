@@ -44,9 +44,9 @@ This is the directory structure required for building an application:
 ```
 .
 ├── novelibre/
-│   └── src/
-│       ├── nvlib/
-│       ├── inliner.py
+│   ├── src/
+│   │   └── nvlib/
+│   └── tools/ 
 │       └── package-builder.py
 └── plugin_or_application/
     ├── src/
