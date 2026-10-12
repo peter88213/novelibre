@@ -9,7 +9,7 @@ from nvlib.gui.menus.nv_menu import NvMenu
 from nvlib.gui.menus.tree_context_menu import TreeContextMenu
 from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.platform.platform_settings import PLATFORM
-from nvlib.novx_globals import CHAPTER_PREFIX
+from nvlib.novx_globals import CHAPTER_PREFIX, statusLabels
 from nvlib.novx_globals import CHARACTER_PREFIX
 from nvlib.novx_globals import ITEM_PREFIX
 from nvlib.novx_globals import LOCATION_PREFIX
@@ -259,31 +259,31 @@ class MainMenu:
 
         self.selectSectionStatusMenu = NvMenu()
 
-        label = _('Outline')
+        label = statusLabels[1]
         self.selectSectionStatusMenu.add_command(
             label=label,
             command=self._ctrl.set_scn_status_outline,
         )
 
-        label = _('Draft')
+        label = statusLabels[2]
         self.selectSectionStatusMenu.add_command(
             label=label,
             command=self._ctrl.set_scn_status_draft,
         )
 
-        label = _('1st Edit')
+        label = statusLabels[3]
         self.selectSectionStatusMenu.add_command(
             label=label,
             command=self._ctrl.set_scn_status_1st_edit,
         )
 
-        label = _('2nd Edit')
+        label = statusLabels[4]
         self.selectSectionStatusMenu.add_command(
             label=label,
             command=self._ctrl.set_scn_status_2nd_edit,
         )
 
-        label = _('Done')
+        label = statusLabels[5]
         self.selectSectionStatusMenu.add_command(
             label=label,
             command=self._ctrl.set_scn_status_done,

@@ -26,7 +26,7 @@ from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import ROOT_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
-from nvlib.novx_globals import STATUS
+from nvlib.novx_globals import statusLabels
 from nvlib.novx_globals import list_to_string
 from nvlib.novx_globals import string_to_list
 from nvlib.nv_globals import NOT_ASSIGNED
@@ -1272,7 +1272,7 @@ class TreeViewer(ttk.Frame, Observer, SubController):
             nodeValues[self._colPos['wc']] = (
                 self._mdl.novel.sections[scId].wordCount
             )
-            nodeValues[self._colPos['st']] = STATUS[
+            nodeValues[self._colPos['st']] = statusLabels[
                 self._mdl.novel.sections[scId].status
             ]
             try:

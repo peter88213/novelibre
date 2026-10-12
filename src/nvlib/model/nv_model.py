@@ -29,6 +29,8 @@ from nvlib.novx_globals import PL_ROOT
 from nvlib.novx_globals import PN_ROOT
 from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
+from nvlib.novx_globals import statusLabels
+from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 
 
@@ -51,6 +53,7 @@ class NvModel:
         self.wordCount = 0
 
         self.nvService = NvService()
+        self.initialize_status_labels()
 
     @property
     def isModified(self):
@@ -712,20 +715,27 @@ class NvModel:
     def get_status_counts(self):
         """Return a list with word count totals depending of section status.
         
-        Position 0 -- None 
+        Position 0 -- Total number of words with undefined status 
         Position 1 -- Total number of words in "outline" sections 
         Position 2 -- Total number of words in "draft" sections
         Position 3 -- Total number of words in "1st Edit" sections
         Position 4 -- Total number of words in "2nd Edit" sections
         Position 5 -- Total number of words in "Done" sections
         """
-        counts = [None, 0, 0, 0, 0, 0]
+        counts = [0, 0, 0, 0, 0, 0]
         for scId in self.novel.sections:
             if self.novel.sections[scId].scType == 0:
-                if self.novel.sections[scId].status is not None:
-                    counts[self.novel.sections[scId].status
-                           ] += self.novel.sections[scId].wordCount
+                counts[
+                    self.novel.sections[scId].status
+                ] += self.novel.sections[scId].wordCount
         return counts
+
+    def initialize_status_labels(self):
+        statusLabels[1] = prefs['status1']
+        statusLabels[2] = prefs['status2']
+        statusLabels[3] = prefs['status3']
+        statusLabels[4] = prefs['status4']
+        statusLabels[5] = prefs['status5']
 
     def join_sections(self, scId0, scId1):
         """Join section 0 with section 1.

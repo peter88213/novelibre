@@ -27,6 +27,7 @@ from nvlib.gui.default_colors import DEFAULT_COLORS
 from nvlib.nv_globals import INSTALL_DIR
 from nvlib.nv_globals import launchers
 from nvlib.nv_globals import prefs
+from nvlib.nv_locale import _
 
 SETTINGS = dict(
     arcs_width=55,
@@ -50,6 +51,12 @@ SETTINGS = dict(
     root_geometry='1200x800',
     scene_width=40,
     status_width=100,
+    status0=_('Undefined'),
+    status1=_('Outline'),
+    status2=_('Draft'),
+    status3=_('1st Edit'),
+    status4=_('2nd Edit'),
+    status5=_('Done'),
     tags_width=100,
     time_width=40,
     title_width=400,

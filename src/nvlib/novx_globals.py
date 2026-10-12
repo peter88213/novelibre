@@ -72,13 +72,13 @@ OTHER_SCENE_FIELD_3_DEFAULT = _('Ending')
 CR_FIELD_1_DEFAULT = _('Bio')
 CR_FIELD_2_DEFAULT = _('Goals')
 
-STATUS = [
-    None,
+statusLabels = [
+    _('Undefined'),
     _('Outline'),
     _('Draft'),
     _('1st Edit'),
     _('2nd Edit'),
-    _('Done')
+    _('Done'),
 ]
 # emulating an enumeration for the section completion status
 

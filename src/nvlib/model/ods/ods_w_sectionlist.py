@@ -7,7 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from nvlib.model.ods.ods_w_grid import OdsWGrid
 from nvlib.model.ods.ods_writer import OdsWriter
 from nvlib.novx_globals import SECTIONLIST_SUFFIX
-from nvlib.novx_globals import STATUS
+from nvlib.novx_globals import statusLabels
 from nvlib.nv_locale import _
 
 
@@ -385,5 +385,5 @@ class OdsWSectionList(OdsWGrid):
             firstInChapter,
             isEpigraph,
         )
-        sectionMapping['Status'] = STATUS[sectionMapping['Status']]
+        sectionMapping['Status'] = statusLabels[sectionMapping['Status']]
         return sectionMapping
