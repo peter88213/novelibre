@@ -15,6 +15,7 @@ from nvlib.model.data.section import Section
 from nvlib.model.data.world_element import WorldElement
 from nvlib.model.novx.novx_file import NovxFile
 from nvlib.model.novx.zipped_novx_file import ZippedNovxFile
+from nvlib.novx_globals import statusLabels
 from nvlib.nv_globals import HOME_URL
 
 
@@ -35,6 +36,9 @@ class NovxService:
 
     def get_novx_file_extension(self):
         return NovxFile.EXTENSION
+
+    def get_status_labels(self):
+        return statusLabels
 
     def get_word_counter(self):
         return Section.wordCounter

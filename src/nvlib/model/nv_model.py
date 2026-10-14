@@ -725,9 +725,10 @@ class NvModel:
         counts = [0, 0, 0, 0, 0, 0]
         for scId in self.novel.sections:
             if self.novel.sections[scId].scType == 0:
-                counts[
-                    self.novel.sections[scId].status
-                ] += self.novel.sections[scId].wordCount
+                if self.novel.sections[scId].status is not None:
+                    counts[
+                        self.novel.sections[scId].status
+                    ] += self.novel.sections[scId].wordCount
         return counts
 
     def initialize_status_labels(self):

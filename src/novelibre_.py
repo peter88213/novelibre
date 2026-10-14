@@ -51,7 +51,6 @@ SETTINGS = dict(
     root_geometry='1200x800',
     scene_width=40,
     status_width=100,
-    status0=_('Undefined'),
     status1=_('Outline'),
     status2=_('Draft'),
     status3=_('1st Edit'),
