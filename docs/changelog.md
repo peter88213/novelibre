@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.66.7
+
+- Using the globally defined section completion status labels.
+- Handling sections with undefined status when counting word totals. 
+
+
 ### Version 5.66.6
 
 - Refactored the code for better maintainability.

@@ -4,6 +4,7 @@ Copyright (c) Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+
 import os
 from tkinter import ttk
 
@@ -21,6 +22,7 @@ from nvlib.novx_globals import NO_SCENE_FIELD_3_DEFAULT
 from nvlib.novx_globals import OTHER_SCENE_FIELD_1_DEFAULT
 from nvlib.novx_globals import OTHER_SCENE_FIELD_2_DEFAULT
 from nvlib.novx_globals import OTHER_SCENE_FIELD_3_DEFAULT
+from nvlib.novx_globals import STATUS
 from nvlib.novx_globals import list_to_string
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
@@ -530,41 +532,17 @@ class ProjectView(ElementView):
             textvariable=self._totalUsedVar,
             lblWidth=self._LABEL_WIDTH,
         ).pack(anchor='w')
-        self._totalOutlineVar = MyStringVar()
-        LabelDisp(
-            self._progressFrame,
-            text=_('Outline'),
-            textvariable=self._totalOutlineVar,
-            lblWidth=self._LABEL_WIDTH,
-        ).pack(anchor='w')
-        self._totalDraftVar = MyStringVar()
-        LabelDisp(
-            self._progressFrame,
-            text=_('Draft'),
-            textvariable=self._totalDraftVar,
-            lblWidth=self._LABEL_WIDTH,
-        ).pack(anchor='w')
-        self._total1stEditVar = MyStringVar()
-        LabelDisp(
-            self._progressFrame,
-            text=_('1st Edit'),
-            textvariable=self._total1stEditVar,
-            lblWidth=self._LABEL_WIDTH,
-        ).pack(anchor='w')
-        self._total2ndEditVar = MyStringVar()
-        LabelDisp(
-            self._progressFrame,
-            text=_('2nd Edit'),
-            textvariable=self._total2ndEditVar,
-            lblWidth=self._LABEL_WIDTH,
-        ).pack(anchor='w')
-        self._totalDoneVar = MyStringVar()
-        LabelDisp(
-            self._progressFrame,
-            text=_('Done'),
-            textvariable=self._totalDoneVar,
-            lblWidth=self._LABEL_WIDTH,
-        ).pack(anchor='w')
+        self._totalStatusVars = []
+        for i, statusLabel in enumerate(STATUS):
+            self._totalStatusVars.append(MyStringVar())
+            if i:
+                # skipping "Undefined"
+                LabelDisp(
+                    self._progressFrame,
+                    text=statusLabel,
+                    textvariable=self._totalStatusVars[i],
+                    lblWidth=self._LABEL_WIDTH,
+                ).pack(anchor='w')
         self._totalUnusedVar = MyStringVar()
         LabelDisp(
             self._progressFrame,
@@ -589,20 +567,12 @@ class ProjectView(ElementView):
             anchor='w',
             width=self._LABEL_WIDTH,
         ).pack(side='left')
-        self._workPhases = [
-            _('Undefined'),
-            _('Outline'),
-            _('Draft'),
-            _('1st Edit'),
-            _('2nd Edit'),
-            _('Done'),
-        ]
         self._phaseVar = MyStringVar()
         phaseOptionMenu = ttk.OptionMenu(
             phaseFrame,
             self._phaseVar,
-            self._workPhases[0],
-            *self._workPhases,
+            STATUS[0],
+            *STATUS,
             command=self.apply_changes
         )
         phaseOptionMenu.pack(anchor='w')
@@ -717,7 +687,7 @@ class ProjectView(ElementView):
                 self._wordCountStartVar.set(self.element.wordCountStart)
 
         # Get work phase.
-        selectionIndex = self._workPhases.index(self._phaseVar.get())
+        selectionIndex = STATUS.index(self._phaseVar.get())
         if selectionIndex:
             self.element.workPhase = selectionIndex
         else:
@@ -962,18 +932,15 @@ class ProjectView(ElementView):
         self._totalUsedVar.set(normalWordsTotal)
         self._totalUnusedVar.set(allWordsTotal - normalWordsTotal)
         statusCounts = self._mdl.get_status_counts()
-        self._totalOutlineVar.set(statusCounts[1])
-        self._totalDraftVar.set(statusCounts[2])
-        self._total1stEditVar.set(statusCounts[3])
-        self._total2ndEditVar.set(statusCounts[4])
-        self._totalDoneVar.set(statusCounts[5])
+        for i, totalStatusVar in enumerate(self._totalStatusVars):
+            totalStatusVar.set(statusCounts[i])
 
         # "Work phase" combobox.
         if self.element.workPhase is None:
             selectionIndex = 0
         else:
             selectionIndex = int(self.element.workPhase)
-        self._phaseVar.set(self._workPhases[selectionIndex])
+        self._phaseVar.set(STATUS[selectionIndex])
 
     def set_initial_wc(self):
         """Set actual wordcount as start.

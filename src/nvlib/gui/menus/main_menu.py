@@ -16,6 +16,7 @@ from nvlib.novx_globals import LOCATION_PREFIX
 from nvlib.novx_globals import PLOT_LINE_PREFIX
 from nvlib.novx_globals import PRJ_NOTE_PREFIX
 from nvlib.novx_globals import SECTION_PREFIX
+from nvlib.novx_globals import STATUS
 from nvlib.nv_locale import _
 
 
@@ -259,31 +260,31 @@ class MainMenu:
 
         self.selectSectionStatusMenu = NvMenu()
 
-        label = _('Outline')
+        label = STATUS[1]
         self.selectSectionStatusMenu.add_command(
             label=label,
             command=self._ctrl.set_scn_status_outline,
         )
 
-        label = _('Draft')
+        label = STATUS[2]
         self.selectSectionStatusMenu.add_command(
             label=label,
             command=self._ctrl.set_scn_status_draft,
         )
 
-        label = _('1st Edit')
+        label = STATUS[3]
         self.selectSectionStatusMenu.add_command(
             label=label,
             command=self._ctrl.set_scn_status_1st_edit,
         )
 
-        label = _('2nd Edit')
+        label = STATUS[4]
         self.selectSectionStatusMenu.add_command(
             label=label,
             command=self._ctrl.set_scn_status_2nd_edit,
         )
 
-        label = _('Done')
+        label = STATUS[5]
         self.selectSectionStatusMenu.add_command(
             label=label,
             command=self._ctrl.set_scn_status_done,

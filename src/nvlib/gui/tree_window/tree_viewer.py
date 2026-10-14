@@ -9,6 +9,7 @@ from tkinter import ttk
 from nvlib.controller.sub_controller import SubController
 from nvlib.gui.observer import Observer
 from nvlib.gui.tree_window.history_list import HistoryList
+from nvlib.gui.widgets.pick_list import PickList
 from nvlib.model.data.py_calendar import PyCalendar
 from nvlib.model.nv_treeview import NvTreeview
 from nvlib.novx_globals import CHAPTER_PREFIX
@@ -34,7 +35,6 @@ from nvlib.nv_globals import prefs
 from nvlib.nv_globals import to_string
 from nvlib.nv_locale import _
 import tkinter.font as tkFont
-from nvlib.gui.widgets.pick_list import PickList
 
 
 class TreeViewer(ttk.Frame, Observer, SubController):
