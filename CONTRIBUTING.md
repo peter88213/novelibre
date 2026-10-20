@@ -14,7 +14,7 @@
   To do so, just leave a comment on the relevant issue.
 
 - The proper way to contribute code is forking the repository 
-  and implementing your solution in a thread other than `main`. 
+  and implementing your solution in a new branch other than `main`. 
   Then create a pull request. 
   Code sent via email attachment may be classified as spam and rejected.
 
