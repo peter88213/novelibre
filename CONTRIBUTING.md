@@ -2,7 +2,7 @@
 
 ## General
 
-- Unless you use *novelibre* yourself, it seems rather unlikely to me 
+- If you don't use *novelibre* yourself, it seems rather unlikely to me 
   that you could contribute anything meaningful.
 
 - Before contributing to this project, consider going to the 
@@ -14,9 +14,9 @@
   To do so, just leave a comment on the relevant issue.
 
 - The proper way to contribute code is forking the repository 
-  and implementing your solution in a thread other than `main`.  
+  and implementing your solution in a thread other than `main`. 
   Then create a pull request. 
-  Any code sent via email attachments etc. may be considered as spam and rejected.
+  Code sent via email attachment may be classified as spam and rejected.
 
 - Offers of code in exchange for payment will be discarded as spam. 
  
