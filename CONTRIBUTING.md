@@ -16,7 +16,7 @@
 - The proper way to contribute code is forking the repository 
   and implementing your solution in a new branch other than `main`. 
   Then create a pull request. 
-  Code sent via email attachment may be classified as spam and rejected.
+  Code sent via email may be classified as spam and rejected.
 
 - Offers of code in exchange for payment will be discarded as spam. 
  
