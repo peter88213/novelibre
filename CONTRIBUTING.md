@@ -5,10 +5,16 @@
 - If you don't use *novelibre* yourself, it seems rather unlikely to me 
   that you could contribute anything meaningful.
 
-- Any constructive feedback on the 
+- Any constructive feedback and any sharing of user experiences on the 
   [novelibre "Discussions" forum](https://github.com/peter88213/novelibre/discussions)
-  is a useful contribution to the maintenance and improvement of novelibre, 
+  is a useful contribution to the maintenance and improvement of *novelibre*, 
   even if it merely serves as an encouragement to continue providing the software. 
+
+- Contributions to the documentation in the form of best practices on the 
+  [novelibre Wiki](https://github.com/peter88213/novelibre/wiki) are greatly appreciated. 
+
+- Also, contributions to the translation into your language—if it is not English or 
+  German—are very welcome (see below). 
 
 - If the program does not behave as described in the user guide, 
   there may be a bug. In that case, an issue report would be appreciated. 
