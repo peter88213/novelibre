@@ -17,7 +17,7 @@
   German—are very welcome (see below). 
 
 - If the program does not behave as described in the user guide, 
-  there may be a bug. In that case, an issue report would be appreciated. 
+  there may be a bug. In that case, an issue report might help. 
   If it is obvious that the bug is in a plugin, please file the issue report 
   in the repository for that plugin. Otherwise, use the *Issues* page of 
   the *novelibre* repository.
