@@ -5,18 +5,39 @@
 - If you don't use *novelibre* yourself, it seems rather unlikely to me 
   that you could contribute anything meaningful.
 
-- Before contributing code to this project, consider going to the 
-  [novelibre "Discussions" forum](https://github.com/peter88213/novelibre/discussions) 
-  first to discuss your idea. 
-  If you're considering implementing a new feature, the preferred approach is to create a plugin. 
+- Any constructive feedback on the 
+  [novelibre "Discussions" forum](https://github.com/peter88213/novelibre/discussions)
+  is a useful contribution to the maintenance and improvement of novelibre, 
+  even if it merely serves as an encouragement to continue providing the software. 
 
-- If you want to pick up an issue, please contact me before creating a pull request. 
-  To do so, just leave a comment on the relevant issue.
+- If the program does not behave as described in the user guide, 
+  there may be a bug. In that case, an issue report would be appreciated. 
+  If it is obvious that the bug is in a plugin, please file the issue report 
+  in the repository for that plugin. Otherwise, use the *Issues* page of 
+  the *novelibre* repository.
 
+- If you'd like to suggest an improvement for *novelibre* or its plugins, the 
+  [novelibre "Discussions" forum](https://github.com/peter88213/novelibre/discussions)
+  is the place to go. 
+  Please do not submit a feature request as an issue before your idea 
+  has been discussed in the discussion forum. 
+
+- If you want to pick up an existing issue, contact the maintainer by
+  leaving a comment on the relevant issue before you start coding.
+
+- If you want to contribute code, keep in mind that *novelibre* users 
+  entrust the application with their work—which may span many years—and 
+  must therefore rely on your expertise and diligence.
+  If you need AI assistance while coding, it may be that you don't really 
+  understand the output you're trying to produce. 
+  In that case, you should refrain from contributing code to the *novelibre* project. 
+   
 - The proper way to contribute code is forking the repository 
   and implementing your solution in a new branch other than `main`. 
   Then create a pull request. 
-  Code sent via email may be classified as spam and rejected.
+  Pull requests—with the exception of translations—are only accepted 
+  if they are related to an issue to which you are assigned as a contributor.  
+  Code sent via email will be classified as spam and rejected.
 
 - Offers of code in exchange for payment will be discarded as spam. 
  
