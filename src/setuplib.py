@@ -97,7 +97,7 @@ ADD_TO_REGISTRY = fr'''Windows Registry Editor Version 5.00
 [HKEY_CURRENT_USER\Software\Classes\\novelibre\DefaultIcon]
 @="$INSTALL\\\\icons\\\\nLogo64.ico"
 [HKEY_CURRENT_USER\Software\Classes\\novelibre\shell\open\command]
-@="\\"$PYTHON\\" \\"$SCRIPT\\" \\"%1\\""
+@="\"$PYTHON\" \"$SCRIPT\" \"%1\""
 [HKEY_CURRENT_USER\Software\Classes\\.nvcx]
 "Content Type"="text/xml"
 @="novxCollection"
@@ -114,6 +114,8 @@ REMOVE_FROM_REGISTRY = fr'''Windows Registry Editor Version 5.00
 [-HKEY_CURRENT_USER\Software\Classes\\nv5Collection]
 [-HKEY_CURRENT_USER\Software\Classes\\novelibre]
 [-HKEY_CURRENT_USER\Software\Classes\\.novx]
+[-HKEY_CURRENT_USER\Software\Classes\\.nvcx]
+[-HKEY_CURRENT_USER\Software\Classes\\novxCollection]
 
 '''
 
@@ -192,7 +194,7 @@ def create_explorer_context_menu(installPath):
         with open(filePath, 'w') as f:
             f.write(template.safe_substitute(mapping))
 
-    python = sys.executable.replace('\\', '\\\\')
+    python = sys.executable.replace('\\', '\\\\').replace('python.exe', 'pythonw.exe')
     installUrl = installPath.replace('/', '\\\\')
     script = f'{installUrl}\\\\{START_UP_SCRIPT}'
     mapping = dict(PYTHON=python, SCRIPT=script, INSTALL=installUrl)

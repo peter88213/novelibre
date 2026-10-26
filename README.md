@@ -179,7 +179,7 @@ The development phase has now come to an end. Nevertheless it is recommended to 
 
 #### Default: Executable Python zip archive
 
-Download the latest release [novelibre_v5.66.7.pyz](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.66.7.pyz) (304 KB)
+Download the latest release [novelibre_v5.66.7.pyz](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.66.7.pyz) (303 KB)
 
 > [!IMPORTANT]
 > Many web browsers recognize the download as an executable file and offer to open it immediately. 
