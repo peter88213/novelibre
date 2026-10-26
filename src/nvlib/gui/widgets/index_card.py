@@ -5,6 +5,7 @@ For further information see https://github.com/peter88213/novelibre
 Published under the MIT License 
 (https://opensource.org/licenses/mit-license.php)
 """
+from tkinter import font
 import tkinter as tk
 from nvlib.gui.widgets.text_box import TextBox
 from nvlib.gui.widgets.my_string_var import MyStringVar
@@ -24,7 +25,6 @@ class IndexCard(tk.Frame):
             cnf={},
             fg='#000000',
             bg='#ffffff',
-            font=None,
             scrollbar=True,
             **kw
     ):
@@ -56,13 +56,13 @@ class IndexCard(tk.Frame):
             bd=0,
             textvariable=self.title,
             relief='flat',
-            font=font,
             background=bg,
             foreground=fg,
             insertbackground=fg,
         )
         self.titleEntry.pack(
             side='left',
+            padx=10,
             ipady=6,
             fill='x',
             expand=True,
@@ -72,6 +72,7 @@ class IndexCard(tk.Frame):
         tk.Frame(self, bg=bg, height=1, bd=0).pack(fill='x')
 
         # Description window.
+        # defaultFont = font.nametofont('TkDefaultFont').actual()
         self.bodyBox = TextBox(
             self,
             scrollbar=scrollbar,
@@ -79,12 +80,14 @@ class IndexCard(tk.Frame):
             undo=True,
             autoseparators=True,
             maxundo=-1,
-            padx=5,
+            padx=10,
             pady=5,
             bg=bg,
             fg=fg,
             insertbackground=fg,
-            font=font,
+            # font=f'{defaultFont} {defaultFont["size"]}',
+            # spacing1=2,
+            # spacing2=2,
         )
         self.bodyBox.pack(fill='both', expand=True)
 

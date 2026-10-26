@@ -19,8 +19,6 @@ class TextBox(tk.Text):
         Copied from tkinter.scrolledtext and modified (use ttk widgets).
         Extends the supeclass constructor.
         """
-        if kw.get('font', None) is None:
-            kw['font'] = 'Courier 10'
         if scrollbar:
             # Add a scrollbar:
             self.frame = ttk.Frame(master)

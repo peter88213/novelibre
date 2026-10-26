@@ -8,7 +8,9 @@ import os
 from tkinter import filedialog
 from tkinter import ttk
 
+from nvlib.gui.platform.platform_settings import MOUSE
 from nvlib.gui.properties_window.blank_view import BlankView
+from nvlib.gui.tooltip import Hovertip
 from nvlib.gui.widgets.collection_box import CollectionBox
 from nvlib.gui.widgets.folding_frame import FoldingFrame
 from nvlib.gui.widgets.index_card import IndexCard
@@ -18,8 +20,6 @@ from nvlib.novx_globals import CH_ROOT
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
-from nvlib.gui.platform.platform_settings import MOUSE
-from nvlib.gui.tooltip import Hovertip
 
 
 class ElementView(BlankView):
@@ -282,7 +282,7 @@ class ElementView(BlankView):
             bd=2,
             fg=prefs['color_text_fg'],
             bg=prefs['color_text_bg'],
-            relief='ridge'
+            relief='ridge',
         )
         self._indexCard.bodyBox['height'] = prefs['index_card_height']
         self._indexCard.pack(expand=False, fill='both')
