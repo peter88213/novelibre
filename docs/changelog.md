@@ -10,6 +10,14 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.66.8
+
+Improved the index card display.
+
+- Removed TextBox font specifications for better rendering with Tcl 9.
+- Indenting the text evenly in IndexCard.titleEntry and IndexCard.bodyBox.
+
+
 ### Version 5.66.7
 
 - Using the globally defined section completion status labels.
