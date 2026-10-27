@@ -5,10 +5,11 @@ For further information see https://github.com/peter88213/novelibre
 Published under the MIT License 
 (https://opensource.org/licenses/mit-license.php)
 """
-from tkinter import font
-import tkinter as tk
-from nvlib.gui.widgets.text_box import TextBox
+# from tkinter import font as tkFont
+
 from nvlib.gui.widgets.my_string_var import MyStringVar
+from nvlib.gui.widgets.text_box import TextBox
+import tkinter as tk
 
 
 class IndexCard(tk.Frame):
@@ -72,7 +73,7 @@ class IndexCard(tk.Frame):
         tk.Frame(self, bg=bg, height=1, bd=0).pack(fill='x')
 
         # Description window.
-        # defaultFont = font.nametofont('TkDefaultFont').actual()
+        # defaultFont = tkFont.nametofont('TkDefaultFont').actual()
         self.bodyBox = TextBox(
             self,
             scrollbar=scrollbar,
