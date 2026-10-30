@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.66.9
+
+- Displaying a message if the program is not launched via the application launcher.
+- Updated the copyright notice.
+
+
 ### Version 5.66.8
 
 Improved the index card display.
