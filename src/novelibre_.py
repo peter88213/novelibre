@@ -174,4 +174,9 @@ def main():
 
 
 if __name__ == '__main__':
+    print(
+        'novelibre @release\n'
+        'To exit the program, please use the controls'
+        ' on the graphical user interface.'
+    )
     main()
