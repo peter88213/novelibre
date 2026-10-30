@@ -130,7 +130,7 @@ See the [coding conventions page](docs/conventions.md)
 
 ## Development tools
 
-- [Python](https://python.org) version 3.12.
+- [Python](https://python.org) version 3.15.
 - **build.py** starts the building and packaging process.
 
 ### Optional IDE
