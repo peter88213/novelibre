@@ -8,12 +8,13 @@ import os
 from pathlib import Path
 import sys
 
+# Dictionaries to be populated by novelibre.py
+# after reading the configuration file
 prefs = {}
+# preferences (settings and options as specified in the main module)
 launchers = {}
 # launchers for opening linked non-standard filetypes.
 # key: extension, value: path to application
-# this dictionary is populated by novelibre.py
-# after reading the configuration file
 
 HOME_URL = 'https://github.com/peter88213/novelibre/'
 NEWS_URL = 'https://github.com/peter88213/novelibre/discussions/1?sort=new'
