@@ -10,6 +10,14 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.67.0
+
+Improved handling of links when using multiple operating systems
+
+- New method: `LinkProcessor.compress_path()`.
+- Storing and processing compressed links (using the "~" shortcut for the home directory).
+
+
 ### Version 5.66.9
 
 - Displaying a message if the program is not launched via the application launcher.
