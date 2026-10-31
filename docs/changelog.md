@@ -10,12 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.67.0
+### Version 5.67.1
 
 Improved handling of links when using multiple operating systems
 
-- New method: `LinkProcessor.compress_path()`.
-- Storing and processing compressed links (using the "~" shortcut for the home directory).
+- New method: `LinkProcessor.abbreviate_path()`.
+- Storing and processing abbreviated links (using the "~" shortcut for the home directory).
 
 
 ### Version 5.66.9
