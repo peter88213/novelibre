@@ -102,12 +102,12 @@ class LinkProcessor(ServiceBase):
                     self._ui.set_status(f"#{_('Broken link fixed')}")
         else:
             if not self._ctrl.isLocked:
-                # Relative path is o.k. -- now check the full path.
-                pathOk = self.expand_path(relativePath)
-                if fullPath != pathOk:
+                # Relative path is valid -- now check the full path.
+                validPath = self.compress_path(self.expand_path(relativePath))
+                if fullPath != validPath:
                     # Replace the broken full path.
                     links = element.links
-                    links[relativePath] = self.compress_path(pathOk)
+                    links[relativePath] = validPath
                     element.links = links
                     self._ui.set_status(f"#{_('Broken link fixed')}")
 
