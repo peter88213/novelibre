@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.67.1
+### Version 5.67.2
 
 Improved handling of links when using multiple operating systems
 
