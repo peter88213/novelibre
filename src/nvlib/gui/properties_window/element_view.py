@@ -86,7 +86,7 @@ class ElementView(BlankView):
         if selectedPath:
             shortPath = self._ctrl.linkProcessor.shorten_path(selectedPath)
             links = self.element.links or {}
-            links[shortPath] = self._ctrl.linkProcessor.compress_path(
+            links[shortPath] = self._ctrl.linkProcessor.abbreviate_path(
                 selectedPath
             )
             self.element.links = links

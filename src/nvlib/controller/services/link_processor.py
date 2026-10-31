@@ -23,11 +23,8 @@ class LinkProcessor(ServiceBase):
         self.externalOpeners = []
         # list of callback functions
 
-    def add_opener(self, method):
-        self.externalOpeners.append(method)
-
-    def compress_path(self, linkPath):
-        """Return a compressed path string.
+    def abbreviate_path(self, linkPath):
+        """Return an abbreviated path string.
         
         Positional arguments:
             linkPath: str -- Link path as represented in the file system.
@@ -38,6 +35,9 @@ class LinkProcessor(ServiceBase):
         if linkPath.startswith(HOME_DIR):
             linkPath = linkPath.replace(HOME_DIR, '~', 1)
         return linkPath
+
+    def add_opener(self, method):
+        self.externalOpeners.append(method)
 
     def expand_path(self, linkPath):
         """Return an expanded path string.
@@ -97,13 +97,13 @@ class LinkProcessor(ServiceBase):
                     # Replace the broken link with the fixed one.
                     links = element.links
                     del links[relativePath]
-                    links[newPath] = self.compress_path(fullPath)
+                    links[newPath] = self.abbreviate_path(fullPath)
                     element.links = links
                     self._ui.set_status(f"#{_('Broken link fixed')}")
         else:
             if not self._ctrl.isLocked:
                 # Relative path is valid -- now check the full path.
-                validPath = self.compress_path(self.expand_path(relativePath))
+                validPath = self.abbreviate_path(self.expand_path(relativePath))
                 if fullPath != validPath:
                     # Replace the broken full path.
                     links = element.links
