@@ -26,15 +26,31 @@ class LinkProcessor(ServiceBase):
     def add_opener(self, method):
         self.externalOpeners.append(method)
 
+    def compress_path(self, linkPath):
+        """Return a compressed path string.
+        
+        Positional arguments:
+            linkPath: str -- Link path as represented in the file system.
+
+        Substitute the full home path with a leading "~".            
+        """
+        linkPath = linkPath.replace('\\', '/')
+        if linkPath.startswith(HOME_DIR):
+            linkPath = linkPath.replace(HOME_DIR, '~', 1)
+        return linkPath
+
     def expand_path(self, linkPath):
         """Return an expanded path string.
         
         Positional arguments:
             linkPath: str -- Link path as stored in novx.
 
-        A leading "~" is substituted with the full home path.            
-        A path relative to the project path is expanded to a full path.
+        Substitute a leading "~" with the full home path.            
+        Expand a path relative to the project to a full path.
         """
+        if linkPath is None:
+            return None
+
         if linkPath.startswith('~'):
             linkPath = linkPath.replace('~', HOME_DIR, 1)
         else:
@@ -81,7 +97,7 @@ class LinkProcessor(ServiceBase):
                     # Replace the broken link with the fixed one.
                     links = element.links
                     del links[relativePath]
-                    links[newPath] = fullPath
+                    links[newPath] = self.compress_path(fullPath)
                     element.links = links
                     self._ui.set_status(f"#{_('Broken link fixed')}")
         else:
@@ -91,7 +107,7 @@ class LinkProcessor(ServiceBase):
                 if fullPath != pathOk:
                     # Replace the broken full path.
                     links = element.links
-                    links[relativePath] = pathOk
+                    links[relativePath] = self.compress_path(pathOk)
                     element.links = links
                     self._ui.set_status(f"#{_('Broken link fixed')}")
 

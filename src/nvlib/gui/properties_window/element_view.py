@@ -85,10 +85,10 @@ class ElementView(BlankView):
         selectedPath = filedialog.askopenfilename(filetypes=fileTypes)
         if selectedPath:
             shortPath = self._ctrl.linkProcessor.shorten_path(selectedPath)
-            links = self.element.links
-            if links is None:
-                links = {}
-            links[shortPath] = selectedPath
+            links = self.element.links or {}
+            links[shortPath] = self._ctrl.linkProcessor.compress_path(
+                selectedPath
+            )
             self.element.links = links
 
     def apply_changes(self, event=None):
