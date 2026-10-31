@@ -99,7 +99,7 @@ class LinkProcessor(ServiceBase):
                     del links[relativePath]
                     links[newPath] = self.abbreviate_path(fullPath)
                     element.links = links
-                    self._ui.set_status(f"#{_('Broken link fixed')}")
+                    self._ui.set_status(f"#{_('Link fixed')}")
         else:
             if not self._ctrl.isLocked:
                 # Relative path is valid -- now check the full path.
@@ -109,7 +109,7 @@ class LinkProcessor(ServiceBase):
                     links = element.links
                     links[relativePath] = validPath
                     element.links = links
-                    self._ui.set_status(f"#{_('Broken link fixed')}")
+                    self._ui.set_status(f"#{_('Link fixed')}")
 
     def open_link(self, linkPath):
         """Open a link specified by linkPath. Return True on success.

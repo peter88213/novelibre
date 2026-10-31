@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.67.1\n"
-"POT-Creation-Date: 2026-10-31 20:23:43\n"
+"POT-Creation-Date: 2026-10-31 21:41:49\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -150,9 +150,6 @@ msgid "Brief synopsis"
 msgstr ""
 
 msgid "Brief synopsis (export only)"
-msgstr ""
-
-msgid "Broken link fixed"
 msgstr ""
 
 msgid "Cancel"
@@ -777,6 +774,9 @@ msgid "Latest backup successfully restored."
 msgstr ""
 
 msgid "Left"
+msgstr ""
+
+msgid "Link fixed"
 msgstr ""
 
 msgid "Links"
