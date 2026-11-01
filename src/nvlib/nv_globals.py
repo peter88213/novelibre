@@ -4,9 +4,7 @@ Copyright (c) 2024-2026 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-import os
-from pathlib import Path
-import sys
+from nvlib.novx_globals import HOME_DIR
 
 # Dictionaries to be populated by novelibre.py
 # after reading the configuration file
@@ -19,11 +17,7 @@ launchers = {}
 HOME_URL = 'https://github.com/peter88213/novelibre/'
 NEWS_URL = 'https://github.com/peter88213/novelibre/discussions/1?sort=new'
 
-HOME_DIR = str(Path.home()).replace('\\', '/')
 INSTALL_DIR = f'{HOME_DIR}/.novx'
-PROGRAM_DIR = os.path.dirname(sys.argv[0])
-if not PROGRAM_DIR:
-    PROGRAM_DIR = '.'
 USER_STYLES_DIR = f'{INSTALL_DIR}/styles'
 USER_STYLES_XML = f'{USER_STYLES_DIR}/styles.xml'
 

@@ -18,9 +18,9 @@ from nvlib.model.nv_work_file import NvWorkFile
 from nvlib.model.odf.check_odf import odf_is_locked
 from nvlib.model.odt.odt_writer import OdtWriter
 from nvlib.novx_globals import CH_ROOT
+from nvlib.novx_globals import HOME_DIR
 from nvlib.novx_globals import MANUSCRIPT_SUFFIX
 from nvlib.novx_globals import norm_path
-from nvlib.nv_globals import HOME_DIR
 from nvlib.nv_globals import INSTALL_DIR
 from nvlib.nv_globals import USER_STYLES_DIR
 from nvlib.nv_globals import USER_STYLES_XML

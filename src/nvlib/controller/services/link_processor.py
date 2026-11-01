@@ -9,8 +9,8 @@ import subprocess
 
 from nvlib.controller.services.service_base import ServiceBase
 from nvlib.model.file.doc_open import open_document
+from nvlib.novx_globals import HOME_DIR
 from nvlib.novx_globals import norm_path
-from nvlib.nv_globals import HOME_DIR
 from nvlib.nv_globals import launchers
 from nvlib.nv_locale import _
 

@@ -13,8 +13,8 @@ from nvlib.gui.platform.platform_settings import KEYS
 from nvlib.gui.widgets.label_disp import LabelDisp
 from nvlib.gui.widgets.modal_dialog import ModalDialog
 from nvlib.model.file.doc_open import open_document
+from nvlib.novx_globals import HOME_DIR
 from nvlib.novx_globals import norm_path
-from nvlib.nv_globals import HOME_DIR
 from nvlib.nv_globals import prefs
 from nvlib.nv_locale import _
 import tkinter as tk

@@ -5,6 +5,8 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
+from pathlib import Path
+import sys
 
 from nvlib.nv_locale import _
 
@@ -71,6 +73,11 @@ OTHER_SCENE_FIELD_2_DEFAULT = _('Peak emotional moment')
 OTHER_SCENE_FIELD_3_DEFAULT = _('Ending')
 CR_FIELD_1_DEFAULT = _('Bio')
 CR_FIELD_2_DEFAULT = _('Goals')
+
+HOME_DIR = str(Path.home()).replace('\\', '/')
+PROGRAM_DIR = os.path.dirname(sys.argv[0])
+if not PROGRAM_DIR:
+    PROGRAM_DIR = '.'
 
 STATUS = [
     _('Undefined'),
