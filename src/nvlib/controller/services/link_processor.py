@@ -10,6 +10,8 @@ import subprocess
 from nvlib.controller.services.service_base import ServiceBase
 from nvlib.model.file.doc_open import open_document
 from nvlib.novx_globals import HOME_DIR
+from nvlib.novx_globals import abbreviated_path
+from nvlib.novx_globals import completed_path
 from nvlib.novx_globals import norm_path
 from nvlib.nv_globals import launchers
 from nvlib.nv_locale import _
@@ -24,20 +26,13 @@ class LinkProcessor(ServiceBase):
         # list of callback functions
 
     def abbreviate_path(self, linkPath):
-        """Return an abbreviated path string.
-        
-        Positional arguments:
-            linkPath: str -- Link path as represented in the file system.
-
-        Substitute the full home path with a leading "~".            
-        """
-        linkPath = linkPath.replace('\\', '/')
-        if linkPath.startswith(HOME_DIR):
-            linkPath = linkPath.replace(HOME_DIR, '~', 1)
-        return linkPath
+        return abbreviated_path(linkPath)
 
     def add_opener(self, method):
         self.externalOpeners.append(method)
+
+    def complete_path(self, linkPath):
+        return completed_path(linkPath)
 
     def expand_path(self, linkPath):
         """Return an expanded path string.
@@ -51,11 +46,12 @@ class LinkProcessor(ServiceBase):
         if linkPath is None:
             return None
 
+        # This is for API downward compatibility.
         if linkPath.startswith('~'):
-            linkPath = linkPath.replace('~', HOME_DIR, 1)
-        else:
-            projectDir = os.path.dirname(self._mdl.prjFile.filePath)
-            linkPath = os.path.join(projectDir, linkPath)
+            return linkPath.replace('~', HOME_DIR, 1)
+
+        projectDir = os.path.dirname(self._mdl.prjFile.filePath)
+        linkPath = os.path.join(projectDir, linkPath)
         return os.path.realpath(linkPath).replace('\\', '/')
 
     def open_link_by_index(self, element, linkIndex):
@@ -97,13 +93,13 @@ class LinkProcessor(ServiceBase):
                     # Replace the broken link with the fixed one.
                     links = element.links
                     del links[relativePath]
-                    links[newPath] = self.abbreviate_path(fullPath)
+                    links[newPath] = fullPath
                     element.links = links
                     self._ui.set_status(f"#{_('Link fixed')}")
         else:
             if not self._ctrl.isLocked:
                 # Relative path is valid -- now check the full path.
-                validPath = self.abbreviate_path(self.expand_path(relativePath))
+                validPath = self.expand_path(relativePath)
                 if fullPath != validPath:
                     # Replace the broken full path.
                     links = element.links
@@ -152,6 +148,9 @@ class LinkProcessor(ServiceBase):
         If linkPath is on the same drive as the project path,
         the shortened path is relative to the project path.            
         """
+        if linkPath is None:
+            return None
+
         projectDir = os.path.dirname(self._mdl.prjFile.filePath)
         try:
             linkPath = os.path.relpath(linkPath, projectDir)

@@ -93,6 +93,39 @@ SCENE = ['-', 'A', 'R', 'x']
 # emulating an enumeration for the scene Action/Reaction/Other type
 
 
+def abbreviated_path(path):
+    """Return an abbreviated path string.
+    
+    Positional arguments:
+        path: str -- Link path as represented in the file system.
+
+    Substitute the full home path with a leading "~".            
+    """
+    if path is None:
+        return None
+
+    path = path.replace('\\', '/')
+    if path.startswith(HOME_DIR):
+        path = path.replace(HOME_DIR, '~', 1)
+    return path
+
+
+def completed_path(path):
+    """Return a completed absolute path string.
+    
+    Positional arguments:
+        path: str -- Link path as stored in novx.
+
+    Substitute a leading "~" with the full home path.            
+    """
+    if path is None:
+        return None
+
+    if path.startswith('~'):
+        path = path.replace('~', HOME_DIR, 1)
+    return path
+
+
 def norm_path(path):
     if path is None:
         path = ''

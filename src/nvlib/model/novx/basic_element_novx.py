@@ -4,6 +4,8 @@ Copyright (c) 2024-2026 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from nvlib.novx_globals import abbreviated_path
+from nvlib.novx_globals import completed_path
 import xml.etree.ElementTree as ET
 
 
@@ -27,7 +29,9 @@ class BasicElementNovx:
             xmlLink = ET.SubElement(xmlElement, 'Link')
             ET.SubElement(xmlLink, 'Path').text = path
             if element.links[path]:
-                ET.SubElement(xmlLink, 'FullPath').text = element.links[path]
+                ET.SubElement(xmlLink, 'FullPath').text = abbreviated_path(
+                    element.links[path]
+                )
         for tag in element.fields:
             xmlField = ET.SubElement(xmlElement, 'Field')
             xmlField.set('tag', tag)
@@ -63,7 +67,7 @@ class BasicElementNovx:
                 path = xmlPath.text
                 xmlFullPath = xmlLink.find('FullPath')
                 if xmlFullPath is not None:
-                    fullPath = xmlFullPath.text
+                    fullPath = completed_path(xmlFullPath.text)
                 else:
                     fullPath = None
             else:
