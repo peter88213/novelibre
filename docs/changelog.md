@@ -10,12 +10,20 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.67.2
+### Version 5.67.3
 
-Improved handling of links when using multiple operating systems
+Improved handling of links when using multiple operating systems or user accounts.
+
+- Replacing the home path with `~` when storing absolute link paths in *.novx*.
+- Processing complete absolute links. 
+- Storing abbreviated links (using the "~" shortcut for the home directory).
+- New global function: `abbreviated_path()`.
+- New global function: `completed_path()`.
+
+#### API changes
 
 - New method: `LinkProcessor.abbreviate_path()`.
-- Storing and processing abbreviated links (using the "~" shortcut for the home directory).
+- New method: `LinkProcessor.complete_path()`.
 
 
 ### Version 5.66.9
