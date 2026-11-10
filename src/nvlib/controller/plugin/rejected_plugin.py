@@ -35,5 +35,3 @@ class RejectedPlugin:
     def uninstall(self):
         if self.uninstaller is not None:
             self.uninstaller()
-        else:
-            print('nothing uninstalled')
