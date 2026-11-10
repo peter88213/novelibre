@@ -155,8 +155,10 @@ class PluginCollection(dict, SubController):
         except Exception as ex:
             self[pluginName] = RejectedPlugin(filePath, str(ex))
             try:
+                # Make sure that the plugin can be completely uninstalled.
                 self[pluginName].uninstaller = pluginObject.uninstall
-            except:
+            except AttributeError:
+                # there's no Plugin.uninstaller() method
                 pass
             return False
 
