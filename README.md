@@ -112,11 +112,9 @@ so that only those users who need them actually install them.
    - The [nv_tlview](https://github.com/peter88213/nv_tlview/) timeline viewer plugin,
    - the [nv_timeline](https://github.com/peter88213/nv_timeline/) file synchronizer for the free *Timeline* application, and 
    - the [nv_aeon2](https://github.com/peter88213/nv_aeon2/) file synchronizer for the commercial *Aeon Timeline 2* application.
--  Do you have Linux, and *novelibre* doesn't look fancy enough for you? 
+-  Do you wish a dark mode, or doesn't *novelibre* look fancy enough for you on Linux? 
    Take a look at the alternative themes supported by the 
    [nv_themes](https://github.com/peter88213/nv_themes/) plugin.
--  Eye pain because of *novelibre*? Not necessarily. Just try the experimental dark mode
-   with [nv_dark](https://github.com/peter88213/nv_dark/).
 -  If you want to switch between *yWriter* and *novelibre*, the
    [nv_yw7](https://github.com/peter88213/nv_yw7/)
    yw7 file importer/exporter plugin might come in handy.

@@ -11,7 +11,7 @@
 -  [nv_collection](https://github.com/peter88213/nv_collection/) A book/series collection manager plugin for novelibre.
 -  [nv_color_palette](https://github.com/peter88213/nv_color_palette) A color palette dialog plugin for novelibre.
 -  [nv_custom_export](https://github.com/peter88213/nv_custom_export/) A novelibre plugin providing a custom template-based export for the final document. 
--  [nv_dark](https://github.com/peter88213/nv_dark/) A dark mode for novelibre.
+-  [nv_dark](https://github.com/peter88213/nv_dark/) A dark mode for novelibre (deprecated; better use *nv_themes* instead).
 -  [nv_editor](https://github.com/peter88213/nv_editor/) A novelibre markup editor plugin.
 -  [nv_epub](https://github.com/peter88213/nv_epub/) A novelibre EPUB ebook exporter plugin.
 -  [nv_extra_view](https://github.com/peter88213/nv_extra_view/) A "detach text viewer" plugin for novelibre.
