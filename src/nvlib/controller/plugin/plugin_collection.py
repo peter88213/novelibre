@@ -154,6 +154,10 @@ class PluginCollection(dict, SubController):
 
         except Exception as ex:
             self[pluginName] = RejectedPlugin(filePath, str(ex))
+            try:
+                self[pluginName].uninstaller = pluginObject.uninstall
+            except:
+                pass
             return False
 
     def load_plugins(self, pluginPath):

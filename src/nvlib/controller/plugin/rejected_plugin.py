@@ -30,4 +30,10 @@ class RejectedPlugin:
         self.isActive = False
         self.isRejected = True
         self.DESCRIPTION = message
+        self.uninstaller = None
 
+    def uninstall(self):
+        if self.uninstaller is not None:
+            self.uninstaller()
+        else:
+            print('nothing uninstalled')
