@@ -32,11 +32,5 @@ class OdtRFormatted(OdtReader):
         # Split sections, if necessary.
         self.projectStructureModified = self.splitter.split_sections(self.novel)
 
-    def _remove_redundant_tags(self, text):
-        for tag in(
-            'em',
-            'strong',
-        ):
-            text = text.replace(f'</{tag}><{tag}>', '')
-        text = self.xmlElementJoiner.feed(text)
-        return text
+    def _remove_redundant_tags(self, xmlText):
+        return self.xmlElementJoiner.feed(xmlText)

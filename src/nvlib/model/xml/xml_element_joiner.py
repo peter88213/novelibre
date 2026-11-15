@@ -9,7 +9,6 @@ from xml import sax
 
 
 class XmlElementJoiner(sax.ContentHandler):
-    """An XML parser to join consecutive spans of the same language."""
 
     def __init__(self):
         super().__init__()
@@ -17,14 +16,20 @@ class XmlElementJoiner(sax.ContentHandler):
         self._currentSpan = None
         self.xmlOutput = []
 
-    def feed(self, xmlInput):
+    def feed(self, xmlText):
+        for tag in(
+            'em',
+            'strong',
+            'em',
+        ):
+            xmlText = xmlText.replace(f'</{tag}><{tag}>', '')
+
         self.xmlOutput.clear()
         self._spanEndPending = False
         self._currentSpan = ''
-        sax.parseString(f'<content>{xmlInput}</content>', self)
+        sax.parseString(f'<content>{xmlText}</content>', self)
         self._end_span()
-        text = ''.join(self.xmlOutput)
-        return (text)
+        return ''.join(self.xmlOutput)
 
     def characters(self, content):
         self._end_span()
