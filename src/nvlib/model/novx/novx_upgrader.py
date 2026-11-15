@@ -126,7 +126,7 @@ class NovxUpgrader:
 
 
 class Converter1_11(sax.ContentHandler):
-    # Replaces "quotations" style paragraphs with h4.
+    # Replaces "quotations" style paragraphs with blockquotes.
     # Adds a span for the paragraph's language, if needed.
 
     def feed(self, xmlString):
