@@ -1,0 +1,68 @@
+"""Provide an xml parser to join consecutive language spans.
+
+Copyright (c) 2026 Peter Triesberger
+For further information see https://github.com/peter88213/novelibre
+License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
+"""
+
+from xml import sax
+
+
+class SpanJoiner(sax.ContentHandler):
+
+    def __init__(self):
+        super().__init__()
+        self._spanPending = None
+        self._currentSpan = None
+        self.xmlOutput = []
+
+    def feed(self, xmlInput):
+        self.xmlOutput.clear()
+        self._spanPending = False
+        self._currentSpan = ''
+        sax.parseString(f'<content>{xmlInput}</content>', self)
+        self._end_span()
+        text = ''.join(self.xmlOutput)
+        return (text)
+
+    def characters(self, content):
+        self._end_span()
+        self.xmlOutput.append(sax.saxutils.escape(content))
+
+    def endElement(self, name):
+
+        if name == 'content':
+            return
+
+        if name == 'span':
+            self._spanPending = True
+        else:
+            self._end_span()
+            self.xmlOutput.append(f'</{name}>')
+
+    def startElement(self, name, attrs):
+        if name == 'content':
+            return
+
+        attributes = []
+        for attrKey, attrValue in attrs.items():
+            attributes.append(f' {attrKey}="{attrValue}"')
+
+        if name == 'span':
+            spanStart = f'<{name}{"".join(attributes)}>'
+            if self._spanPending:
+                self._spanPending = False
+                if spanStart == self._currentSpan:
+                    return
+
+                self.xmlOutput.append('</span>')
+            self._currentSpan = spanStart
+
+        else:
+            self._end_span()
+        self.xmlOutput.append(f'<{name}{"".join(attributes)}>')
+
+    def _end_span(self):
+        if self._spanPending:
+            self._spanPending = False
+            self.xmlOutput.append('</span>')

@@ -6,6 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.model.data.content_splitter import ContentSplitter
 from nvlib.model.odt.odt_reader import OdtReader
+from nvlib.model.odt.span_joiner import SpanJoiner
 
 
 class OdtRFormatted(OdtReader):
@@ -18,6 +19,7 @@ class OdtRFormatted(OdtReader):
     def __init__(self, filePath, **kwargs):
         super().__init__(filePath)
         self.splitter = self.SPLITTER()
+        self.spanJoiner = SpanJoiner()
 
     def read(self):
         """Parse the file and get the instance variables.
@@ -36,4 +38,6 @@ class OdtRFormatted(OdtReader):
             'strong',
         ):
             text = text.replace(f'</{tag}><{tag}>', '')
+
+        text = self.spanJoiner.feed(text)
         return text
