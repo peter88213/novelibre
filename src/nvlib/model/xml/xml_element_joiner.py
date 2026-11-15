@@ -1,4 +1,4 @@
-"""Provide an xml parser to join consecutive language spans.
+"""Provide a Class to join consecutive xml elements of the same kind.
 
 Copyright (c) 2026 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -8,17 +8,18 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from xml import sax
 
 
-class SpanJoiner(sax.ContentHandler):
+class XmlElementJoiner(sax.ContentHandler):
+    """An XML parser to join consecutive spans of the same language."""
 
     def __init__(self):
         super().__init__()
-        self._spanPending = None
+        self._spanEndPending = None
         self._currentSpan = None
         self.xmlOutput = []
 
     def feed(self, xmlInput):
         self.xmlOutput.clear()
-        self._spanPending = False
+        self._spanEndPending = False
         self._currentSpan = ''
         sax.parseString(f'<content>{xmlInput}</content>', self)
         self._end_span()
@@ -35,7 +36,7 @@ class SpanJoiner(sax.ContentHandler):
             return
 
         if name == 'span':
-            self._spanPending = True
+            self._spanEndPending = True
         else:
             self._end_span()
             self.xmlOutput.append(f'</{name}>')
@@ -50,8 +51,8 @@ class SpanJoiner(sax.ContentHandler):
 
         if name == 'span':
             spanStart = f'<{name}{"".join(attributes)}>'
-            if self._spanPending:
-                self._spanPending = False
+            if self._spanEndPending:
+                self._spanEndPending = False
                 if spanStart == self._currentSpan:
                     return
 
@@ -63,6 +64,6 @@ class SpanJoiner(sax.ContentHandler):
         self.xmlOutput.append(f'<{name}{"".join(attributes)}>')
 
     def _end_span(self):
-        if self._spanPending:
-            self._spanPending = False
+        if self._spanEndPending:
+            self._spanEndPending = False
             self.xmlOutput.append('</span>')
