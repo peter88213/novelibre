@@ -14,41 +14,37 @@ class XmlElementJoiner(sax.ContentHandler):
         super().__init__()
         self._spanEndPending = None
         self._currentSpan = None
-        self.xmlOutput = []
+        self._xmlOutput = []
 
-    def feed(self, xmlText):
+    def join_consecutive_formatting(self, xmlText):
         for tag in(
             'em',
             'strong',
             'em',
         ):
             xmlText = xmlText.replace(f'</{tag}><{tag}>', '')
+        return xmlText
 
-        self.xmlOutput.clear()
+    def join_consecutive_spans(self, xmlText):
+        self._xmlOutput.clear()
         self._spanEndPending = False
         self._currentSpan = ''
         sax.parseString(f'<content>{xmlText}</content>', self)
-        self._end_span()
-        return ''.join(self.xmlOutput)
+        return ''.join(self._xmlOutput[1:-1])
 
     def characters(self, content):
         self._end_span()
-        self.xmlOutput.append(sax.saxutils.escape(content))
+        self._xmlOutput.append(sax.saxutils.escape(content))
 
     def endElement(self, name):
-        if name == 'content':
-            return
-
         if name == 'span':
             self._spanEndPending = True
-        else:
-            self._end_span()
-            self.xmlOutput.append(f'</{name}>')
-
-    def startElement(self, name, attrs):
-        if name == 'content':
             return
 
+        self._end_span()
+        self._xmlOutput.append(f'</{name}>')
+
+    def startElement(self, name, attrs):
         attributes = "".join([
             f' {attrKey}="{attrValue}"'
             for attrKey, attrValue in attrs.items()
@@ -60,13 +56,13 @@ class XmlElementJoiner(sax.ContentHandler):
                 if tag == self._currentSpan:
                     return
 
-                self.xmlOutput.append('</span>')
+                self._xmlOutput.append('</span>')
             self._currentSpan = tag
         else:
             self._end_span()
-        self.xmlOutput.append(tag)
+        self._xmlOutput.append(tag)
 
     def _end_span(self):
         if self._spanEndPending:
             self._spanEndPending = False
-            self.xmlOutput.append('</span>')
+            self._xmlOutput.append('</span>')

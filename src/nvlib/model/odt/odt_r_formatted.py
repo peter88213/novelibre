@@ -30,7 +30,11 @@ class OdtRFormatted(OdtReader):
         super().read()
 
         # Split sections, if necessary.
-        self.projectStructureModified = self.splitter.split_sections(self.novel)
+        self.projectStructureModified = self.splitter.split_sections(
+            self.novel
+        )
 
-    def _remove_redundant_tags(self, xmlText):
-        return self.xmlElementJoiner.feed(xmlText)
+    def join_consecutive_xml_elements(self, xmlText):
+        xmlText = self.xmlElementJoiner.join_consecutive_formatting(xmlText)
+        xmlText = self.xmlElementJoiner.join_consecutive_spans(xmlText)
+        return xmlText

@@ -67,7 +67,7 @@ class OdtRManuscript(OdtRFormatted):
 
         if tag == 'div':
             text = ''.join(self._lines)
-            text = self._remove_redundant_tags(text)
+            text = self.join_consecutive_xml_elements(text)
             self.novel.sections[self._scId].sectionContent = text
             self._lines.clear()
             self._scId = None

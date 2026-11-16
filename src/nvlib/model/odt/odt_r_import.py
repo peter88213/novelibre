@@ -87,7 +87,7 @@ class OdtRImport(OdtRFormatted):
                 return
 
             sectionText = ''.join(self._lines).rstrip()
-            sectionText = self._remove_redundant_tags(sectionText)
+            sectionText = self.join_consecutive_xml_elements(sectionText)
             self.novel.sections[self._scId].sectionContent = sectionText
             if self.novel.sections[self._scId].wordCount < self._LOW_WORDCOUNT:
                 self.novel.sections[self._scId].status = 1
