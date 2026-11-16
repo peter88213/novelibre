@@ -121,10 +121,10 @@ class ContentViewParser(sax.ContentHandler):
         
         Overrides the xml.sax.ContentHandler method             
         """
-        attributes = ''
-        for attribute in attrs.items():
-            attrKey, attrValue = attribute
-            attributes = f'{attributes} {attrKey}="{attrValue}"'
+        attributes = "".join([
+            f' {attrKey}="{attrValue}"'
+            for attrKey, attrValue in attrs.items()
+        ])
         tag = self.xmlTag
         suffix = ''
         if name == 'em':

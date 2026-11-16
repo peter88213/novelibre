@@ -163,10 +163,10 @@ class OdtParser(sax.ContentHandler):
         
         Overrides the xml.sax.ContentHandler method             
         """
-        xmlAttributes = {}
-        for attribute in attrs.items():
-            attrKey, attrValue = attribute
-            xmlAttributes[attrKey] = attrValue
+        xmlAttributes = {
+            attrKey: attrValue
+            for attrKey, attrValue in attrs.items()
+        }
         style = xmlAttributes.get('text:style-name', '')
 
         if name in ('text:p', 'text:h'):
