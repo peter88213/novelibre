@@ -10,7 +10,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
-### Version 5.67.5
+### Version 5.67.6
 
 - ODT import joining consecutive language spans produced e.g. by soft page breaks.
 - Refactored the code for better efficiency.
