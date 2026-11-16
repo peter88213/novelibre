@@ -1,4 +1,4 @@
-"""Provide a Class to join consecutive xml elements of the same kind.
+"""Provide a class to join consecutive xml elements of the same kind.
 
 Copyright (c) 2026 Peter Triesberger
 For further information see https://github.com/peter88213/novelibre
@@ -36,7 +36,6 @@ class XmlElementJoiner(sax.ContentHandler):
         self.xmlOutput.append(sax.saxutils.escape(content))
 
     def endElement(self, name):
-
         if name == 'content':
             return
 
@@ -50,23 +49,22 @@ class XmlElementJoiner(sax.ContentHandler):
         if name == 'content':
             return
 
-        attributes = []
-        for attrKey, attrValue in attrs.items():
-            attributes.append(f' {attrKey}="{attrValue}"')
-
+        attributes = "".join([
+            f' {attrKey}="{attrValue}"'
+            for attrKey, attrValue in attrs.items()
+        ])
+        tag = f'<{name}{attributes}>'
         if name == 'span':
-            spanStart = f'<{name}{"".join(attributes)}>'
             if self._spanEndPending:
                 self._spanEndPending = False
-                if spanStart == self._currentSpan:
+                if tag == self._currentSpan:
                     return
 
                 self.xmlOutput.append('</span>')
-            self._currentSpan = spanStart
-
+            self._currentSpan = tag
         else:
             self._end_span()
-        self.xmlOutput.append(f'<{name}{"".join(attributes)}>')
+        self.xmlOutput.append(tag)
 
     def _end_span(self):
         if self._spanEndPending:
