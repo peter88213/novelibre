@@ -10,6 +10,14 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.68.0
+
+The keyboard settings have been changed to prevent accidental movement of tree elements 
+(some of the changes from version 5.60.0 have been reversed).
+
+  - Moving project tree elements via dragging-and-droppping while holding down the `Alt` key.
+
+
 ### Version 5.67.6
 
 - ODT import joining consecutive language spans produced e.g. by soft page breaks.
