@@ -10,6 +10,16 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.68.1
+
+- Updated the Help menu
+   - novelibre home page links
+   - novelibre GitHub repository link
+- Moved some sections of the README file to the new English web page (novelibre-en).
+- Moved and redirected the German home page (novelibre-de).
+- Moved the installation instructions to the manual.
+
+
 ### Version 5.68.0
 
 The keyboard settings have been changed to prevent accidental movement of tree elements 

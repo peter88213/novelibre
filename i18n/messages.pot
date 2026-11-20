@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.68.0\n"
-"POT-Creation-Date: 2026-11-18 08:42:30\n"
+"Project-Id-Version: 5.68.1\n"
+"POT-Creation-Date: 2026-11-20 12:19:20\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -642,6 +642,9 @@ msgid "Full name"
 msgstr ""
 
 msgid "Generate"
+msgstr ""
+
+msgid "GitHub repository"
 msgstr ""
 
 msgid "Go to"
@@ -1701,6 +1704,9 @@ msgid "h"
 msgstr ""
 
 msgid "hh:mm"
+msgstr ""
+
+msgid "https://peter88213.github.io/novelibre-en/"
 msgstr ""
 
 msgid "https://peter88213.github.io/nvhelp-en"
