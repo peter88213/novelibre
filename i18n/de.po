@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 5.68.0\n"
+"Project-Id-Version: 5.68.1\n"
 "POT-Creation-Date: 2025-11-14 18:55:34\n"
-"PO-Revision-Date: 2026-11-18 08:42:30\n"
+"PO-Revision-Date: 2026-11-20 12:13:35\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -636,6 +636,9 @@ msgstr "Vollst. Name"
 
 msgid "Generate"
 msgstr "Erzeugen"
+
+msgid "GitHub repository"
+msgstr "GitHub-Repository"
 
 msgid "Go to"
 msgstr "Gehe zu"
@@ -1701,6 +1704,9 @@ msgstr "h"
 
 msgid "hh:mm"
 msgstr "hh:mm"
+
+msgid "https://peter88213.github.io/novelibre-en/"
+msgstr "https://peter88213.github.io/novelibre-de/"
 
 msgid "https://peter88213.github.io/nvhelp-en"
 msgstr "https://peter88213.github.io/nvhelp-de"

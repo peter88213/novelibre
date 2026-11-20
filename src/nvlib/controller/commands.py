@@ -55,6 +55,7 @@ from nvlib.novx_globals import VIEWPOINT_BOARD_SUFFFIX
 from nvlib.novx_globals import XREF_SUFFIX
 from nvlib.nv_globals import HOME_URL
 from nvlib.nv_globals import NEWS_URL
+from nvlib.nv_globals import REPO_URL
 
 
 class Commands:
@@ -546,6 +547,9 @@ class Commands:
         if not self.check_lock():
             ReimportDialog(self._mdl, self._ui, self)
         return 'break'
+
+    def open_repo(self, event=None):
+        webbrowser.open(REPO_URL)
 
     def open_view_options(self, event=None):
         """Open a toplevel window to edit the view options."""

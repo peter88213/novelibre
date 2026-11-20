@@ -76,6 +76,8 @@ class Icons:
 
         self.folderIcon = new_icon('folder.png')
 
+        self.githubIcon = new_icon('github.png')
+
         self.goBackIcon = new_icon('goBack.png')
 
         self.goForwardIcon = new_icon('goForward.png')

@@ -5,6 +5,7 @@ For further information see https://github.com/peter88213/novelibre
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from nvlib.novx_globals import HOME_DIR
+from nvlib.nv_locale import _
 
 # Dictionaries to be populated by novelibre.py
 # after reading the configuration file
@@ -14,8 +15,9 @@ launchers = {}
 # launchers for opening linked non-standard filetypes.
 # key: extension, value: path to application
 
-HOME_URL = 'https://github.com/peter88213/novelibre/'
+HOME_URL = _('https://peter88213.github.io/novelibre-en/')
 NEWS_URL = 'https://github.com/peter88213/novelibre/discussions/1?sort=new'
+REPO_URL = 'https://github.com/peter88213/novelibre/'
 
 INSTALL_DIR = f'{HOME_DIR}/.novx'
 USER_STYLES_DIR = f'{INSTALL_DIR}/styles'

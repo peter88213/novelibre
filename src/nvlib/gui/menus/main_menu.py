@@ -1183,6 +1183,14 @@ class MainMenu:
             command=self._ctrl.open_homepage,
         )
 
+        label = f"novelibre {_('GitHub repository')}"
+        self.helpMenu.add_command(
+            label=label,
+            image=self.icons.githubIcon,
+            compound='left',
+            command=self._ctrl.open_repo,
+        )
+
         label = _('News about novelibre')
         self.helpMenu.add_command(
             label=label,
