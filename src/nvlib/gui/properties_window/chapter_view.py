@@ -91,9 +91,9 @@ class ChapterView(ElementView):
 
         #--- "Unused" checkbox.
         if self._isUnusedVar.get():
-            self._ctrl.set_type_unused()
+            self.element.chType = 1
         else:
-            self._ctrl.set_type_normal()
+            self.element.chType = 0
 
         #--- "Do not auto-number..." checkbox.
         self.element.noNumber = self._noNumberVar.get()

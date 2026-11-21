@@ -785,9 +785,9 @@ class SectionView(ElementView):
 
         #--- 'Unused' checkbox.
         if self._isUnusedVar.get():
-            self._ctrl.set_type_unused()
+            self.element.scType = 1
         elif self.element.scType > 0:
-            self._ctrl.set_type_normal()
+            self.element.scType = 0
         if self.element.scType > 0:
             self._isUnusedVar.set(True)
             # adjustment for section in an unused chapter
