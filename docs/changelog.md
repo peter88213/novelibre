@@ -10,6 +10,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.68.2
+
+- Fixed a bug where after cloning a section or changing a chapter or section type to "unused" 
+  via the properties checkbox, the chapter or section which is selected next, automatically 
+  changes type to "unused" (#96).
+  
+
 ### Version 5.68.1
 
 - Updated the Help menu
