@@ -4,7 +4,6 @@
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
 
 [![Deutsch](docs/img/germany.png)](https://peter88213.github.io/novelibre-de/)
-[![Italiano](docs/img/italy.png)](https://peter88213.github.io/nv_it/)
 
 # ![N](docs/img/nLogo32.png) novelibre
 
