@@ -1,4 +1,4 @@
-[Project home page](../) > Plugins
+[Repository home](../) > Plugins
 
 ---
 
