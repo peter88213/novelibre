@@ -12,6 +12,7 @@
 		<project>nv_editor</project>
 		<project>nv_epub</project>
 		<project>nv_matrix</project>
+		<project>nv_offline_help_de</project>
 		<project>nv_offline_help_en</project>
 		<project>nv_plotlines</project>
 		<project>nv_progress</project>
