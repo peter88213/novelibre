@@ -17,6 +17,7 @@
 -  [nv_extra_view](https://github.com/peter88213/nv_extra_view/) A "detach text viewer" plugin for novelibre.
 -  [nv_it](https://github.com/peter88213/nv_it/) An Italian language package for novelibre.
 -  [nv_matrix](https://github.com/peter88213/nv_matrix/) A novelibre plugin providing a section relationship matrix. 
+-  [nv_offline_help_en](https://github.com/peter88213/nv_offline_help_en) English offline help pages for novelibre.
 -  [nv_plugin](https://github.com/peter88213/nv_plugin/) A template repository for custom plugins.
 -  [nv_progress](https://github.com/peter88213/nv_progress/) A daily progress log viewer plugin for novelibre.
 -  [nv_snapshots](https://github.com/peter88213/nv_snapshots/) A plugin providing a lightweight version control for novelibre projects.
