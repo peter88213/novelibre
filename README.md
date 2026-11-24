@@ -1,4 +1,4 @@
-[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.68.2.pyz)
+[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.68.3.pyz)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
 [![News/Feedback](docs/img/news-button.png)](https://github.com/peter88213/novelibre/discussions)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/nvhelp-en/)
@@ -39,7 +39,7 @@ For more information, see the [novelibre home page](https://peter88213.github.io
 
 #### Default: Executable Python zip archive
 
-Download the latest release [novelibre_v5.68.2.pyz](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.68.2.pyz) (306 KB)
+Download the latest release [novelibre_v5.68.3.pyz](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.68.3.pyz) (306 KB)
 
 > [!IMPORTANT]
 > Many web browsers recognize the download as an executable file and offer to open it immediately. 
@@ -55,7 +55,7 @@ Download the latest release [novelibre_v5.68.2.pyz](https://github.com/peter8821
 #### Alternative: Zip file
 
 The package is also available in zip format: 
-[novelibre_v5.68.2.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.68.2.zip) (307 KB)
+[novelibre_v5.68.3.zip](https://github.com/peter88213/novelibre/raw/main/dist/novelibre_v5.68.3.zip) (307 KB)
 
 
 ### Strongly recommended
@@ -119,7 +119,7 @@ This is how the Python launcher looks on the Linux Mint desktop:
 - The flag icons are from [Flaticon.com](https://www.flaticon.com/free-icons/flag).
 
 ## See also
-
+  
 ### Plugins
 
 [List of all plugins](docs/plugins.md)

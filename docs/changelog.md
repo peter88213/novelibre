@@ -10,6 +10,12 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ---
 
+### Version 5.68.3
+
+Fixed a regression from version 5.67.4 where trying to load a broken plugin module 
+may raise an unhandled exception.
+
+
 ### Version 5.68.2
 
 - Fixed a bug where after cloning a section or changing a chapter or section type to "unused" 

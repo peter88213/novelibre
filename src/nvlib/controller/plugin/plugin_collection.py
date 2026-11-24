@@ -157,8 +157,8 @@ class PluginCollection(dict, SubController):
             try:
                 # Make sure that the plugin can be completely uninstalled.
                 self[pluginName].uninstaller = pluginObject.uninstall
-            except AttributeError:
-                # there's no Plugin.uninstaller() method
+            except:
+                # there may be no Plugin.uninstaller() method
                 pass
             return False
 
