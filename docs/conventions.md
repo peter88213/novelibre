@@ -1,4 +1,4 @@
-[Project home page](../) > Conventions
+[Repository home](../) > Conventions
 
 ---
 

@@ -1,4 +1,4 @@
-[Project home page](../) > Specifications
+[Repository home](../) > Specifications
 
 ---
 

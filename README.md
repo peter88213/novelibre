@@ -123,7 +123,15 @@ This is how the Python launcher looks on the Linux Mint desktop:
 ### Plugins
 
 [List of all plugins](docs/plugins.md)
-  
+
+
+### Utilities
+
+- [scap_novx](https://github.com/peter88213/scap_novx/): A Python script for generating a novelibre project from a Scapple outline.
+- [novx_xtg](https://github.com/peter88213/novx_xtg/): A Python script for exporting XPress tagged text from novelibre projects.
+- [novx_html](https://github.com/peter88213/novx_html/): A template-based html exporter for novelibre.
+
+
 ### OpenOffice/LibreOffice extensions
 
 *Writer* macros that may come in handy when editing your manuscript.
