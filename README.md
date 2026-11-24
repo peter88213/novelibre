@@ -119,6 +119,10 @@ This is how the Python launcher looks on the Linux Mint desktop:
 - The flag icons are from [Flaticon.com](https://www.flaticon.com/free-icons/flag).
 
 ## See also
+
+### Plugins
+
+[List of all plugins](docs/plugins.md)
   
 ### OpenOffice/LibreOffice extensions
 
