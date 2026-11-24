@@ -1,4 +1,4 @@
-[Project home page](../) > Changelog
+[Repository home](../) > Changelog
 
 ------------------------------------------------------------------------
 
